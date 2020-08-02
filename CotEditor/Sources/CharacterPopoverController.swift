@@ -23,13 +23,14 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class CharacterPopoverController: NSViewController {
     
     // MARK: Private Properties
     
-    private var closingCueObserver: NotificationObservation?
+    private var closingCueObserver: AnyCancellable?
     
     @objc private dynamic var glyph: String?
     @objc private dynamic var unicodeName: String?
@@ -78,10 +79,11 @@ final class CharacterPopoverController: NSViewController {
         
         // auto-close popover if selection is changed
         if let textView = parentView as? NSTextView {
-            self.closingCueObserver?.invalidate()
-            self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak popover] _ in
-                popover?.performClose(nil)
-            }
+            self.closingCueObserver?.cancel()
+            self.closingCueObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+                .sink { [weak popover] _ in
+                    popover?.performClose(nil)
+                }
         }
     }
     
@@ -140,7 +142,7 @@ extension CharacterPopoverController: NSPopoverDelegate {
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
         // remove selection change observer
-        self.closingCueObserver?.invalidate()
+        self.closingCueObserver?.cancel()
         self.closingCueObserver = nil
         
         guard let parentWindow = popover.contentViewController?.view.window?.parent else {
@@ -151,9 +153,10 @@ extension CharacterPopoverController: NSPopoverDelegate {
         // close popover when the window of the parent editor is closed
         // -> Otherwise, a zombie window appears again when clicking somewhere after closing the window,
         //    as NSPopover seems to retain the parent window somehow. (2020 macOS 10.15)
-        self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: parentWindow, queue: .main) { [weak popover] _ in
-            popover?.close()
-        }
+        self.closingCueObserver = NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: parentWindow)
+            .sink { [weak popover] _ in
+                popover?.close()
+            }
         
         return true
     }

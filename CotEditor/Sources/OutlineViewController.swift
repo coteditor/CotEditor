@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 /// outilneView column identifiers
@@ -46,9 +47,9 @@ final class OutlineViewController: NSViewController {
         }
     }
     
-    private var documentObserver: NotificationObservation?
-    private var syntaxStyleObserver: NotificationObservation?
-    private var selectionObserver: NotificationObservation?
+    private var documentObserver: AnyCancellable?
+    private var syntaxStyleObserver: AnyCancellable?
+    private var selectionObserver: AnyCancellable?
     private var fontSizeObserver: UserDefaultsObservation?
     private var isOwnSelectionChange = false
     
@@ -95,26 +96,26 @@ final class OutlineViewController: NSViewController {
         // make sure the last observer is invalidated before a new one is set to the property.
         // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
         //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [weak self] (notification) in
-            guard
-                let self = self,
-                let textView = notification.object as? NSTextView
-                else { return assertionFailure() }
-            
-            guard textView.window == self.view.window else { return }
-            
-            // avoid updating outline item selection before finishing outline parse
-            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
-            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-            guard
-                !textView.hasMarkedText(),
-                let textStorage = textView.textStorage,
-                !textStorage.editedMask.contains(.editedCharacters)
-                else { return }
-            
-            self.invalidateCurrentLocation(textView: textView)
-        }
+        self.selectionObserver?.cancel()
+        self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
+            .map { $0.object as! NSTextView }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (textView) in
+                guard let self = self else { return assertionFailure() }
+                
+                guard textView.window == self.view.window else { return }
+                
+                // avoid updating outline item selection before finishing outline parse
+                // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+                //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+                guard
+                    !textView.hasMarkedText(),
+                    let textStorage = textView.textStorage,
+                    !textStorage.editedMask.contains(.editedCharacters)
+                    else { return }
+                
+                self.invalidateCurrentLocation(textView: textView)
+            }
         
         self.fontSizeObserver?.invalidate()
         self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
@@ -128,7 +129,7 @@ final class OutlineViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.selectionObserver?.invalidate()
+        self.selectionObserver?.cancel()
         self.selectionObserver = nil
         
         self.fontSizeObserver?.invalidate()
@@ -191,33 +192,35 @@ final class OutlineViewController: NSViewController {
     /// Update document observation for syntax style
     private func observeDocument() {
         
-        self.documentObserver?.invalidate()
+        self.documentObserver?.cancel()
         self.documentObserver = nil
         
         guard let document = self.document else { return assertionFailure() }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] notification in
-            guard let self = self, let document = notification.object as? Document else { return assertionFailure() }
-            
-            self.observeSyntaxStyle()
-            self.outlineItems = document.syntaxParser.outlineItems
-        }
+        self.documentObserver = NotificationCenter.default.publisher(for: Document.didChangeSyntaxStyleNotification, object: document)
+            .map { $0.object as! Document }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (document) in
+                self?.observeSyntaxStyle()
+                self?.outlineItems = document.syntaxParser.outlineItems
+            }
     }
     
     
     /// Update syntax style observation for outline menus
     private func observeSyntaxStyle() {
         
-        self.syntaxStyleObserver?.invalidate()
+        self.syntaxStyleObserver?.cancel()
         self.syntaxStyleObserver = nil
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [weak self] notification in
-            guard let self = self, let parser = notification.object as? SyntaxParser else { return assertionFailure() }
-            
-            self.outlineItems = parser.outlineItems
-        }
+        self.syntaxStyleObserver = NotificationCenter.default.publisher(for: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser)
+            .map { $0.object as! SyntaxParser }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (parser) in
+                self?.outlineItems = parser.outlineItems
+            }
     }
     
     

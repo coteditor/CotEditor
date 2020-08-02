@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class NavigationBarController: NSViewController {
@@ -61,7 +62,7 @@ final class NavigationBarController: NSViewController {
     // MARK: Private Properties
     
     private var orientationObserver: NSKeyValueObservation?
-    private var selectionObserver: NotificationObservation?
+    private var selectionObserver: AnyCancellable?
     
     private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
         guard
@@ -123,20 +124,22 @@ final class NavigationBarController: NSViewController {
             self?.updateTextOrientation(to: textView.layoutOrientation)
         }
         
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] (notification) in
-            // avoid updating outline item selection before finishing outline parse
-            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
-            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-            guard
-                let textView = notification.object as? NSTextView,
-                !textView.hasMarkedText(),
-                let textStorage = textView.textStorage,
-                !textStorage.editedMask.contains(.editedCharacters)
-                else { return }
-            
-            self?.invalidateOutlineMenuSelection()
-        }
+        self.selectionObserver?.cancel()
+        self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+            .map { $0.object as! NSTextView }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (textView) in
+                // avoid updating outline item selection before finishing outline parse
+                // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+                //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+                guard
+                    !textView.hasMarkedText(),
+                    let textStorage = textView.textStorage,
+                    !textStorage.editedMask.contains(.editedCharacters)
+                    else { return }
+                
+                self?.invalidateOutlineMenuSelection()
+            }
         
         self.updateOutlineMenu()
     }
@@ -149,7 +152,7 @@ final class NavigationBarController: NSViewController {
         self.orientationObserver?.invalidate()
         self.orientationObserver = nil
         
-        self.selectionObserver?.invalidate()
+        self.selectionObserver?.cancel()
         self.selectionObserver = nil
     }
     

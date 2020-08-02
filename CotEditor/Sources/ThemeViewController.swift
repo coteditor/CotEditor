@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import ColorCode
 
@@ -54,7 +55,7 @@ final class ThemeViewController: NSViewController {
     // MARK: Private Properties
     
     private var storedMetadata: Metadata?
-    private var themeObserver: NotificationObservation?
+    private var themeObserver: AnyCancellable?
     
     
     
@@ -78,10 +79,12 @@ final class ThemeViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.themeObserver?.invalidate()
-        self.themeObserver = NotificationCenter.default.addObserver(forName: Theme.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
-            self?.notifyUpdate()
-        }
+        self.themeObserver?.cancel()
+        self.themeObserver = NotificationCenter.default.publisher(for: Theme.didChangeNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.notifyUpdate()
+            }
     }
     
     
@@ -92,7 +95,7 @@ final class ThemeViewController: NSViewController {
         
         self.endEditing()
         
-        self.themeObserver?.invalidate()
+        self.themeObserver?.cancel()
         self.themeObserver = nil
     }
     

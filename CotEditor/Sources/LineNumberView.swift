@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import CoreText.CTFont
 
@@ -98,11 +99,11 @@ final class LineNumberView: NSView {
     private var drawingInfo: DrawingInfo?
     private var thickness: CGFloat = 32
     
-    private var opacityObserver: NotificationObservation?
-    private var textObserver: NotificationObservation?
-    private var selectionObserver: NotificationObservation?
-    private var frameObserver: NotificationObservation?
-    private var scrollObserver: NotificationObservation?
+    private var opacityObserver: AnyCancellable?
+    private var textObserver: AnyCancellable?
+    private var selectionObserver: AnyCancellable?
+    private var frameObserver: AnyCancellable?
+    private var scrollObserver: AnyCancellable?
     private var colorObserver: NSKeyValueObservation?
     private var fontObserver: NSKeyValueObservation?
     private var scaleObserver: NSKeyValueObservation?
@@ -172,11 +173,12 @@ final class LineNumberView: NSView {
         }
         
         // perform redraw on window opacity change
-        self.opacityObserver?.invalidate()
+        self.opacityObserver?.cancel()
         if let window = newWindow {
-            self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
-                self?.needsDisplay = true
-            }
+            self.opacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification, object: window)
+                .sink { [weak self] _ in
+                    self?.needsDisplay = true
+                }
         } else {
             self.opacityObserver = nil
         }
@@ -371,29 +373,34 @@ final class LineNumberView: NSView {
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver?.invalidate()
-        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] _ in
-            // -> The digit of the line numbers affect thickness.
-            if self?.orientation == .horizontal {
-                self?.invalidateThickness()
+        self.textObserver?.cancel()
+        self.textObserver = NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                // -> The digit of the line numbers affect thickness.
+                if self?.orientation == .horizontal {
+                    self?.invalidateThickness()
+                }
+                self?.needsDisplay = true
             }
-            self?.needsDisplay = true
-        }
         
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        self.selectionObserver?.cancel()
+        self.selectionObserver = NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+            .sink { [weak self] _ in
+                self?.needsDisplay = true
+            }
         
-        self.frameObserver?.invalidate()
-        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        self.frameObserver?.cancel()
+        self.frameObserver = NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
+            .sink { [weak self] _ in
+                self?.needsDisplay = true
+            }
         
-        self.scrollObserver?.invalidate()
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        self.scrollObserver?.cancel()
+        self.scrollObserver = NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
+            .sink { [weak self] _ in
+                self?.needsDisplay = true
+            }
         
         self.colorObserver?.invalidate()
         self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
@@ -418,16 +425,16 @@ final class LineNumberView: NSView {
         assert(self.textView != nil)
         assert(self.textView?.enclosingScrollView?.contentView != nil || self.scrollObserver == nil)
         
-        self.textObserver?.invalidate()
+        self.textObserver?.cancel()
         self.textObserver = nil
         
-        self.selectionObserver?.invalidate()
+        self.selectionObserver?.cancel()
         self.selectionObserver = nil
         
-        self.frameObserver?.invalidate()
+        self.frameObserver?.cancel()
         self.frameObserver = nil
         
-        self.scrollObserver?.invalidate()
+        self.scrollObserver?.cancel()
         self.scrollObserver = nil
         
         self.colorObserver?.invalidate()

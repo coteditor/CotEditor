@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class ScriptManager: NSObject, NSFilePresenter {
@@ -41,7 +42,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private var scriptHandlersTable: [ScriptingEventType: [Script]] = [:]
     
     private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
-    private var applicationObserver: NotificationObservation?
+    private var applicationObserver: AnyCancellable?
     
     
     
@@ -98,11 +99,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
             self.menuBuildingTask.schedule()
             
         } else {
-            self.applicationObserver?.invalidate()
-            self.applicationObserver = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
-                self?.applicationObserver?.invalidate()
-                self?.menuBuildingTask.perform()
-            }
+            self.applicationObserver?.cancel()
+            self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp)
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] _ in
+                    self?.applicationObserver?.cancel()
+                    self?.menuBuildingTask.perform()
+                }
         }
     }
     

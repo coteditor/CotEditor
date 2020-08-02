@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private extension NSAttributedString.Key {
@@ -110,7 +111,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
-    private var windowOpacityObserver: NotificationObservation?
+    private var windowOpacityObserver: AnyCancellable?
     
     
     
@@ -268,7 +269,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.viewWillMove(toWindow: window)
         
         // remove observation before the observed object is deallocated
-        self.windowOpacityObserver?.invalidate()
+        self.windowOpacityObserver?.cancel()
         self.windowOpacityObserver = nil
     }
     
@@ -286,12 +287,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
-        self.windowOpacityObserver?.invalidate()
-        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] (notification) in
-            guard let window = notification.object as? NSWindow else { return assertionFailure() }
-            
-            self?.didChangeWindowOpacity(to: window.isOpaque)
-        }
+        self.windowOpacityObserver?.cancel()
+        self.windowOpacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification, object: window)
+            .map { $0.object as! NSWindow }
+            .sink { [weak self] (window) in
+                self?.didChangeWindowOpacity(to: window.isOpaque)
+            }
     }
     
     
