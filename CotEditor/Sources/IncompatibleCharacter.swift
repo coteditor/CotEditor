@@ -25,7 +25,6 @@
 //
 
 import Foundation
-import DifferenceKit
 
 final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArrayController
     
@@ -61,8 +60,6 @@ final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArra
 
 // MARK: -
 
-extension Character: Differentiable { }
-
 extension String {
     
     /// list-up characters cannot be converted to the passed-in encoding
@@ -75,17 +72,14 @@ extension String {
             let convertedString = String(data: data, encoding: encoding)
             else { assertionFailure(); return [] }
         
-        // detect incompatible chars using DifferenceKit
-        return StagedChangeset(source: self, target: convertedString)
-            .flatMap(\.elementDeleted)
-            .map(\.element)
-            .compactMap { (offset) in
-                let index = self.index(self.startIndex, offsetBy: offset)
-                let location = index.utf16Offset(in: self)
-                let character = self[index]
+        return convertedString.difference(from: self).removals
+            .map { (change) in
+                guard case let .remove(offset, character, _) = change else { preconditionFailure() }
+                
                 let converted: String? = String(character)
                     .data(using: encoding, allowLossyConversion: true)
                     .flatMap { String(data: $0, encoding: encoding) }
+                let location = self.index(self.startIndex, offsetBy: offset).utf16Offset(in: self)
                 
                 return IncompatibleCharacter(character: character,
                                              convertedCharacter: converted,

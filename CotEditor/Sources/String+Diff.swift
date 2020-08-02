@@ -24,7 +24,6 @@
 //
 
 import struct Foundation.NSRange
-import DifferenceKit
 
 extension StringProtocol {
     
@@ -37,7 +36,9 @@ extension StringProtocol {
     func equivalentRanges(to ranges: [NSRange], in other: Self) -> [NSRange] {
         
         // -> Use UTF16View instead of Character due to a performance issue.
-        let diff = StagedChangeset(source: Array(other.utf16), target: Array(self.utf16))
+        let diff = self.utf16.difference(from: other.utf16)
+        
+        guard !diff.isEmpty else { return ranges }
         
         return ranges.map { NSRange(diff.move($0.lowerBound)..<diff.move($0.upperBound)) }
     }
@@ -48,18 +49,27 @@ extension StringProtocol {
 
 // MARK: -
 
-extension String.UTF16View.Element: Differentiable { }
-
-private extension StagedChangeset {
+private extension CollectionDifference {
     
     func move(_ index: Int) -> Int {
         
-        let insertionCount = self.flatMap(\.elementInserted)
-            .countPrefix { $0.element < index }
-        let removalCount = self.flatMap(\.elementDeleted)
-            .countPrefix { $0.element < index }
+        let insertionCount = self.insertions.countPrefix { $0.offset < index }
+        let removalCount = self.removals.countPrefix { $0.offset < index }
         
         return index + insertionCount - removalCount
+    }
+    
+}
+
+
+private extension CollectionDifference.Change {
+    
+    var offset: Int {
+        
+        switch self {
+            case .insert(let offset, _, _), .remove(let offset, _, _):
+                return offset
+        }
     }
     
 }

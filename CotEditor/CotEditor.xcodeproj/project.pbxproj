@@ -478,8 +478,6 @@
 		2AAD61F91D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */; };
 		2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
-		2AAF1E3E23DA671A00164CBF /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAF1E3D23DA671A00164CBF /* DifferenceKit */; };
-		2AAF1E4023DA672F00164CBF /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAF1E3F23DA672F00164CBF /* DifferenceKit */; };
 		2AB2241421A7CDEF00F6201F /* SyntaxInfoEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241221A7CDEF00F6201F /* SyntaxInfoEditView.storyboard */; };
 		2AB2241D21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241B21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard */; };
 		2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
@@ -1478,7 +1476,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AAF1E4023DA672F00164CBF /* DifferenceKit in Frameworks */,
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
 				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 			);
@@ -1489,7 +1486,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
-				2AAF1E3E23DA671A00164CBF /* DifferenceKit in Frameworks */,
 				2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */,
 				2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */,
 			);
@@ -2398,7 +2394,6 @@
 			name = CotEditor;
 			packageProductDependencies = (
 				2ACD02BE22A87F0400893051 /* ColorCode */,
-				2AAF1E3F23DA672F00164CBF /* DifferenceKit */,
 				2AA2C6FB24399A920017D1EC /* Yams */,
 			);
 			productInstallPath = "$(HOME)/Applications";
@@ -2445,7 +2440,6 @@
 			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
 				2ACD02BC22A87EFD00893051 /* ColorCode */,
-				2AAF1E3D23DA671A00164CBF /* DifferenceKit */,
 				2AA2C6FD24399AA20017D1EC /* Yams */,
 			);
 			productInstallPath = "$(HOME)/Applications";
@@ -2527,7 +2521,6 @@
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			packageReferences = (
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
-				2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */,
 				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			projectDirPath = "";
@@ -4465,14 +4458,6 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ra1028/DifferenceKit";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.5;
-			};
-		};
 		2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/1024jp/WFColorCode";
@@ -4493,16 +4478,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;
-		};
-		2AAF1E3D23DA671A00164CBF /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
-		};
-		2AAF1E3F23DA672F00164CBF /* DifferenceKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */;
-			productName = DifferenceKit;
 		};
 		2ACD02BC22A87EFD00893051 /* ColorCode */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -15,6 +15,7 @@ Change Log
     - Change default settings of items to display in toolbar/status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 - [trivial] Optimize the line number calculation in vertical text orientation.
+- [dev] Replace DifferenceKit package with native CollectionDifference.
 
 
 

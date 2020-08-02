@@ -258,7 +258,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         //    otherwise, just cut extra ranges off.
         let string = self.textStorage.string
         let range = self.textStorage.range
-        let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
+        let maxLength = 20_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
         let considersDiff = lastString.length < maxLength || string.length < maxLength
         
         for state in editorStates {
