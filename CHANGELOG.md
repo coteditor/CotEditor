@@ -12,6 +12,7 @@ Change Log
     - Update the application icon.
     - Update the line number view style.
     - Make status bar thicker.
+    - Change default settings of items to display in toolbar/status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 
 

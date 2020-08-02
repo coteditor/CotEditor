@@ -433,10 +433,8 @@
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XZj-vq-8Py"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="9p6-Sj-QjF"/>
-                                <toolbarItem reference="VL4-m8-9uC"/>
-                                <toolbarItem reference="rHo-eU-O5x"/>
                                 <toolbarItem reference="XZj-vq-8Py"/>
+                                <toolbarItem reference="rHo-eU-O5x"/>
                                 <toolbarItem reference="uXf-pD-u6A"/>
                             </defaultToolbarItems>
                             <connections>
