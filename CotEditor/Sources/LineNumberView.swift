@@ -42,7 +42,7 @@ final class LineNumberView: NSView {
         init(fontSize: CGFloat, scale: CGFloat) {
             
             // calculate font size for number
-            self.fontSize = (scale * LineNumberView.fontSizeFactor * fontSize).rounded(interval: 0.5)
+            self.fontSize = scale * fontSize
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
@@ -79,14 +79,13 @@ final class LineNumberView: NSView {
     private let minVerticalThickness: CGFloat = 32
     private let minHorizontalThickness: CGFloat = 20
     
-    private static let fontSizeFactor: CGFloat = 0.9
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
     private static let highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
         
-        case normal = 0.5
+        case normal = 0.6
         case bold = 1.0
         case stroke = 0.2
         
