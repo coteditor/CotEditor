@@ -50,7 +50,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         super.viewWillAppear()
         
         // observe text orientation for line number view
-        self.orientationObserver?.cancel()
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] (orientation) in
                 guard let self = self else { return assertionFailure() }
@@ -72,7 +71,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidDisappear()
         
-        self.orientationObserver?.cancel()
         self.orientationObserver = nil
     }
     

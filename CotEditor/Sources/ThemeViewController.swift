@@ -79,7 +79,6 @@ final class ThemeViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.themeObserver?.cancel()
         self.themeObserver = NotificationCenter.default.publisher(for: Theme.didChangeNotification)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -95,7 +94,6 @@ final class ThemeViewController: NSViewController {
         
         self.endEditing()
         
-        self.themeObserver?.cancel()
         self.themeObserver = nil
     }
     

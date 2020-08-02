@@ -317,7 +317,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
         // perform syntax highlight
-        self.asyncHighlightObserver?.cancel()
         let progress = self.syntaxParser.highlight()
         
         // asynchronously trigger preview update if needed
@@ -328,7 +327,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
                 .filter { $0 }
                 .sink { [weak self, weak controller] _ in
-                    self?.asyncHighlightObserver?.cancel()
                     self?.asyncHighlightObserver = nil
                     controller?.needsUpdatePreview = true
                 }

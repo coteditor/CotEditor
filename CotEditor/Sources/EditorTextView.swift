@@ -269,7 +269,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.viewWillMove(toWindow: window)
         
         // remove observation before the observed object is deallocated
-        self.windowOpacityObserver?.cancel()
         self.windowOpacityObserver = nil
     }
     
@@ -287,7 +286,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
-        self.windowOpacityObserver?.cancel()
         self.windowOpacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification, object: window)
             .map { $0.object as! NSWindow }
             .sink { [weak self] (window) in

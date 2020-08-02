@@ -87,7 +87,6 @@ final class DocumentWindow: NSWindow {
             self.invalidateTitlebarOpacity()
             
             if isOpaque {
-                self.appearanceObserver?.cancel()
                 self.appearanceObserver = nil
             } else if self.appearanceObserver == nil {
                 self.appearanceObserver = self.publisher(for: \.effectiveAppearance)

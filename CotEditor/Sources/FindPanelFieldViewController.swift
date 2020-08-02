@@ -58,7 +58,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // adjust clear button position according to the visiblity of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
-        self.scrollerStyleObserver?.cancel()
         self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
             .sink { [weak self] (scrollerStyle) in
                 var inset: CGFloat = 5

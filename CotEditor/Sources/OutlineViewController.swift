@@ -96,13 +96,11 @@ final class OutlineViewController: NSViewController {
         // make sure the last observer is invalidated before a new one is set to the property.
         // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
         //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
-        self.selectionObserver?.cancel()
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
             .map { $0.object as! NSTextView }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (textView) in
                 guard let self = self else { return assertionFailure() }
-                
                 guard textView.window == self.view.window else { return }
                 
                 // avoid updating outline item selection before finishing outline parse
@@ -129,7 +127,6 @@ final class OutlineViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.selectionObserver?.cancel()
         self.selectionObserver = nil
         
         self.fontSizeObserver?.invalidate()
@@ -192,7 +189,6 @@ final class OutlineViewController: NSViewController {
     /// Update document observation for syntax style
     private func observeDocument() {
         
-        self.documentObserver?.cancel()
         self.documentObserver = nil
         
         guard let document = self.document else { return assertionFailure() }
@@ -210,7 +206,6 @@ final class OutlineViewController: NSViewController {
     /// Update syntax style observation for outline menus
     private func observeSyntaxStyle() {
         
-        self.syntaxStyleObserver?.cancel()
         self.syntaxStyleObserver = nil
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }

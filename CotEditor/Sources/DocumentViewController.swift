@@ -109,7 +109,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         ]
         
         // observe appearance change for theme toggle
-        self.appearanceObserver?.cancel()
         self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
             .sink { [weak self] (appearance) in
                 guard

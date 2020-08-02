@@ -79,7 +79,6 @@ final class SidebarViewController: NSTabViewController {
             // apply also to .tabView that is the only child of .view
             self.view.layoutSubtreeIfNeeded()
         }
-        self.frameObserver?.cancel()
         self.frameObserver = self.view.publisher(for: \.frame)
             .sink { (frame) in
                 UserDefaults.standard[.sidebarWidth] = frame.width

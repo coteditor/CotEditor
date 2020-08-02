@@ -117,7 +117,6 @@ final class NavigationBarController: NSViewController {
                 self?.updateTextOrientation(to: orientation)
             }
         
-        self.selectionObserver?.cancel()
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
             .map { $0.object as! NSTextView }
             .receive(on: DispatchQueue.main)
@@ -142,10 +141,7 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.orientationObserver?.cancel()
         self.orientationObserver = nil
-        
-        self.selectionObserver?.cancel()
         self.selectionObserver = nil
     }
     

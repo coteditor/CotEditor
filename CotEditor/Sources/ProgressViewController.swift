@@ -107,13 +107,11 @@ final class ProgressViewController: NSViewController {
         self.progress = progress
         self.message = message
         
-        self.finishObserver?.cancel()
         self.finishObserver = progress.publisher(for: \.isFinished, options: .initial)
             .filter { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.done() }
         
-        self.cancelObserver?.cancel()
         self.cancelObserver = progress.publisher(for: \.isCancelled, options: .initial)
             .filter { $0 }
             .receive(on: DispatchQueue.main)

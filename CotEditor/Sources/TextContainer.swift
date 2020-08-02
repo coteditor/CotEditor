@@ -48,7 +48,7 @@ final class TextContainer: NSTextContainer {
     override weak var textView: NSTextView? {
         
         willSet {
-            self.typingAttributesObserver?.cancel()
+            self.typingAttributesObserver = nil
         }
         
         didSet {

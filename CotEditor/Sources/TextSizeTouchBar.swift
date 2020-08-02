@@ -74,11 +74,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     }
     
     
-    deinit {
-        self.scaleObserver.cancel()
-    }
-    
-    
     
     // MARK: Touch Bar Delegate
     

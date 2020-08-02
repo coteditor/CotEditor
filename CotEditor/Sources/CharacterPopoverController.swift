@@ -79,7 +79,6 @@ final class CharacterPopoverController: NSViewController {
         
         // auto-close popover if selection is changed
         if let textView = parentView as? NSTextView {
-            self.closingCueObserver?.cancel()
             self.closingCueObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
                 .sink { [weak popover] _ in
                     popover?.performClose(nil)
@@ -142,7 +141,6 @@ extension CharacterPopoverController: NSPopoverDelegate {
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
         // remove selection change observer
-        self.closingCueObserver?.cancel()
         self.closingCueObserver = nil
         
         guard let parentWindow = popover.contentViewController?.view.window?.parent else {
