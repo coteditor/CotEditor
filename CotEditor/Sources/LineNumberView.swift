@@ -275,11 +275,12 @@ final class LineNumberView: NSView {
         }
         
         // draw labels
-        textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
+        let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
+        textView.enumerateLineFragments(in: textView.visibleRect, options: options) { (lineRect, line, lineNumber) in
             let y = scale * -lineRect.minY
             
             switch line {
-                case .new(let lineNumber, let isSelected):
+                case .new(let isSelected):
                     // draw line number
                     if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
                         let digit = lineNumber.numberOfDigits
@@ -316,10 +317,8 @@ final class LineNumberView: NSView {
                 
                 case .wrapped:
                     // draw wrapped mark (-)
-                    if !isVerticalText {
-                        let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
-                        context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
-                    }
+                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
+                    context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
             }
         }
         

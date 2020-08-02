@@ -29,9 +29,19 @@ extension NSTextView {
     
     enum Line {
         
-        case new(_ lineNumber: Int, _ isSelected: Bool)
+        case new(_ isSelected: Bool)
         case wrapped
     }
+    
+    
+    struct LineEnumerationOptions: OptionSet {
+        
+        let rawValue: Int
+        
+        static let bySkippingWrappedLine = Self(rawValue: 1 << 0)
+        static let bySkippingExtraLine = Self(rawValue: 1 << 1)
+    }
+    
     
     
     /// The 1-based line number at the given character index.
@@ -50,11 +60,12 @@ extension NSTextView {
     ///
     /// - Parameters:
     ///   - rect: The bounding rectangle for which to process lines.
-    ///   - includingExtraLine: If `true`, `body` enumerate also the extra line fragment if any.
+    ///   - options: The options to skip invoking `body` in some specific fragments.
     ///   - body: The closure executed for each line in the enumeration.
-    ///   - line: The information of the line.
     ///   - lineRect: The line fragment rect.
-    func enumerateLineFragments(in rect: NSRect, includingExtraLine: Bool = true, body: (_ line: Line, _ lineRect: NSRect) -> Void) {
+    ///   - line: The information of the line.
+    ///   - lineNumber: The number of logical line (1-based).
+    func enumerateLineFragments(in rect: NSRect, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ line: Line, _ lineNumber: Int) -> Void) {
         
         guard
             let layoutManager = self.layoutManager,
@@ -89,9 +100,13 @@ extension NSTextView {
             while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
-                let line: Line = (range.location == lineGlyphRange.location) ? .new(lineNumber, isSelected) : .wrapped
+                let isWrapped = range.location != lineGlyphRange.location
                 
-                body(line, lineRect)
+                if options.contains(.bySkippingWrappedLine), isWrapped { break }
+                
+                let line: Line = isWrapped ? .wrapped : .new(isSelected)
+                
+                body(lineRect, line, lineNumber)
                 
                 wrappedLineGlyphIndex = range.upperBound
             }
@@ -99,7 +114,7 @@ extension NSTextView {
         }
         
         guard
-            includingExtraLine,
+            !options.contains(.bySkippingExtraLine),
             (!layoutManager.isValidGlyphIndex(glyphRangeToDraw.upperBound) || lineNumber == 1),
             layoutManager.extraLineFragmentTextContainer != nil
             else { return }
@@ -107,7 +122,7 @@ extension NSTextView {
         let lastLineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
         let isSelected = (selectedRanges.last?.location == string.length)
         
-        body(.new(lastLineNumber, isSelected), layoutManager.extraLineFragmentRect)
+        body(layoutManager.extraLineFragmentRect, .new(isSelected), lastLineNumber)
     }
     
     

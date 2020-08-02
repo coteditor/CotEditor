@@ -228,20 +228,20 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
             }
             
-            self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
-                guard let numberString: String = {
+            let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
+            self.enumerateLineFragments(in: dirtyRect, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
+                let numberString: String = {
                     switch line {
-                        case .new(let lineNumber, _):
+                        case .new:
                             if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
-                                return "·"  // draw real number only in every 5 times
+                                return "·"  // draw number only every 5 times
                             }
                             return String(lineNumber)
                         
                         case .wrapped:
-                            if isVerticalText { return nil }
                             return "-"
                     }
-                    }() else { return }
+                }()
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * charSize.width
