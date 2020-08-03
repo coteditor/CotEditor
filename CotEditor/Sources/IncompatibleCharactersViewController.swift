@@ -36,7 +36,6 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     }
     
     @objc private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
-    @objc private dynamic var characterAvailable = false
     
     @IBOutlet private var incompatibleCharsController: NSArrayController?
     
@@ -96,7 +95,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     // MARK: Scanner Delegate
     
     /// update list constantly only if the table is visible
-    func shouldUpdateIncompatibleCharacter(_ document: Document) -> Bool {
+    func shouldScanIncompatibleCharacter(_ document: Document) -> Bool {
         
         return self.isViewShown
     }
@@ -106,7 +105,6 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter]) {
         
         self.incompatibleCharacters = incompatibleCharacters
-        self.characterAvailable = !incompatibleCharacters.isEmpty
         
         let ranges = incompatibleCharacters.map(\.range)
         

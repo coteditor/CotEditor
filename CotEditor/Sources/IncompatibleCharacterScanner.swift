@@ -27,7 +27,7 @@ import AppKit
 
 protocol IncompatibleCharacterScannerDelegate: AnyObject {
     
-    func shouldUpdateIncompatibleCharacter(_ document: Document) -> Bool
+    func shouldScanIncompatibleCharacter(_ document: Document) -> Bool
     
     func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter])
 }
@@ -41,7 +41,7 @@ final class IncompatibleCharacterScanner {
     weak var delegate: IncompatibleCharacterScannerDelegate?
     
     private(set) weak var document: Document?  // weak to avoid cycle retain
-    private(set) var incompatibleCharacters = [IncompatibleCharacter]()  // line endings applied
+    private(set) var incompatibleCharacters: [IncompatibleCharacter] = []  // line endings applied
     
     
     // MARK: Private Properties
@@ -67,7 +67,7 @@ final class IncompatibleCharacterScanner {
         
         guard
             let document = self.document,
-            self.delegate?.shouldUpdateIncompatibleCharacter(document) == true
+            self.delegate?.shouldScanIncompatibleCharacter(document) == true
             else { return }
         
         self.updateTask.schedule()
