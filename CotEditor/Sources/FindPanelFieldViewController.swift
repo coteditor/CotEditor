@@ -32,10 +32,11 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     @objc private dynamic let textFinder = TextFinder.shared
     
-    private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
-    
     private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
+    
+    private var textStorageObserver: AnyCancellable?
+    private var windowCloseObserver: AnyCancellable?
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
@@ -190,11 +191,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         }()
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
         
-        // dismiss result either client text or find string did change
-        self.removeCurrentTargetObservers()
-        self.currentResultMessageTarget = target.layoutManager
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSWindow.willCloseNotification, object: target.window)
+        self.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
+            .sink { [weak self] _ in self?.clearNumberOfFound() }
+        self.windowCloseObserver = NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: target.window)
+            .sink { [weak self] _ in self?.clearNumberOfFound() }
     }
     
     
@@ -263,12 +263,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of found in find string field becomes no more valid
-    @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
+    private func clearNumberOfFound() {
         
         self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
-        // -> Specify the object to remove observer to avoid removing the windowWillClose notification (via delegate) from the find panel itself.
-        self.removeCurrentTargetObservers()
+        self.textStorageObserver = nil
+        self.windowCloseObserver = nil
     }
     
     
@@ -288,18 +288,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // add extra scroll margin to the right side of the textView, so that entire input can be read
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
-    }
-    
-    
-    /// remove observers for result message clear
-    private func removeCurrentTargetObservers() {
-        
-        guard let target = self.currentResultMessageTarget?.firstTextView else { return }
-        
-        NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
-        NotificationCenter.default.removeObserver(self, name: NSWindow.willCloseNotification, object: target.window)
-        
-        self.currentResultMessageTarget = nil
     }
     
 }

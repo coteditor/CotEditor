@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 @objc protocol TextFinderClientProvider: AnyObject {
@@ -78,6 +79,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
+    private var applicationActivationObserver: AnyCancellable?
+    
     private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
     private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
     
@@ -94,7 +97,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         NSApp.nextResponder = self
         
         // observe application activation to sync find string with other apps
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: nil)
+        self.applicationActivationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)
+            .sink { [weak self] _ in
+                if let sharedFindString = NSPasteboard.findString {
+                    self?.findString = sharedFindString
+                }
+            }
     }
     
     
@@ -132,18 +140,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             
             default:
                 return true
-        }
-    }
-    
-    
-    
-    // MARK: Notifications
-    
-    /// sync search string on activating application
-    @objc private func applicationDidBecomeActive(_ notification: Notification) {
-        
-        if let sharedFindString = NSPasteboard.findString {
-            self.findString = sharedFindString
         }
     }
     
