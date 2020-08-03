@@ -80,9 +80,7 @@ final class CharacterPopoverController: NSViewController {
         // auto-close popover if selection is changed
         if let textView = parentView as? NSTextView {
             self.closingCueObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
-                .sink { [weak popover] _ in
-                    popover?.performClose(nil)
-                }
+                .sink { [weak popover] _ in popover?.performClose(nil) }
         }
     }
     
@@ -152,9 +150,7 @@ extension CharacterPopoverController: NSPopoverDelegate {
         // -> Otherwise, a zombie window appears again when clicking somewhere after closing the window,
         //    as NSPopover seems to retain the parent window somehow. (2020 macOS 10.15)
         self.closingCueObserver = NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: parentWindow)
-            .sink { [weak popover] _ in
-                popover?.close()
-            }
+            .sink { [weak popover] _ in popover?.close() }
         
         return true
     }

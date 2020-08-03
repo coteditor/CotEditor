@@ -287,9 +287,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
         self.windowOpacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification, object: window)
-            .map { $0.object as! NSWindow }
-            .sink { [weak self] (window) in
-                self?.didChangeWindowOpacity(to: window.isOpaque)
+            .map { ($0.object as! NSWindow).isOpaque }
+            .sink { [weak self] (isOpaque) in
+                self?.didChangeWindowOpacity(to: isOpaque)
             }
     }
     

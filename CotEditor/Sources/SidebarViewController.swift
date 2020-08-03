@@ -80,6 +80,7 @@ final class SidebarViewController: NSTabViewController {
             self.view.layoutSubtreeIfNeeded()
         }
         self.frameObserver = self.view.publisher(for: \.frame)
+            .debounce(for: 0.1, scheduler: DispatchQueue.main)
             .sink { (frame) in
                 UserDefaults.standard[.sidebarWidth] = frame.width
             }

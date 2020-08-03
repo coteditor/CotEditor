@@ -194,11 +194,11 @@ final class OutlineViewController: NSViewController {
         guard let document = self.document else { return assertionFailure() }
         
         self.documentObserver = NotificationCenter.default.publisher(for: Document.didChangeSyntaxStyleNotification, object: document)
-            .map { $0.object as! Document }
+            .map { ($0.object as! Document).syntaxParser.outlineItems }
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (document) in
+            .sink { [weak self] (outlineItems) in
                 self?.observeSyntaxStyle()
-                self?.outlineItems = document.syntaxParser.outlineItems
+                self?.outlineItems = outlineItems
             }
     }
     
@@ -211,10 +211,10 @@ final class OutlineViewController: NSViewController {
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
         self.syntaxStyleObserver = NotificationCenter.default.publisher(for: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser)
-            .map { $0.object as! SyntaxParser }
+            .map { ($0.object as! SyntaxParser).outlineItems }
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (parser) in
-                self?.outlineItems = parser.outlineItems
+            .sink { [weak self] (outlineItems) in
+                self?.outlineItems = outlineItems
             }
     }
     

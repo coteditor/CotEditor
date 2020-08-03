@@ -326,6 +326,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         {
             self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
                 .filter { $0 }
+                .receive(on: DispatchQueue.main)
                 .sink { [weak self, weak controller] _ in
                     self?.asyncHighlightObserver = nil
                     controller?.needsUpdatePreview = true
