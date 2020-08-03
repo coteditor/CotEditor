@@ -25,6 +25,7 @@
 //
 
 import XCTest
+import Combine
 import Yams
 @testable import CotEditor
 
@@ -34,12 +35,11 @@ final class SyntaxTests: XCTestCase {
     private let styleDirectoryName = "Syntaxes"
     private let styleExtension = "yaml"
     
-    
     private var styleDicts: [String: SyntaxManager.StyleDictionary] = [:]
     private var htmlStyle: SyntaxStyle?
     private var htmlSource: String?
     
-    private var outlineParseExpectation: XCTestExpectation?
+    private var outlineParseCancellable: AnyCancellable?
     
     
     
@@ -122,39 +122,26 @@ final class SyntaxTests: XCTestCase {
         let textStorage = NSTextStorage(string: source)
         let parser = SyntaxParser(textStorage: textStorage, style: style)
         
-        // test outline parsing with delegate
-        parser.delegate = self
-        self.outlineParseExpectation = self.expectation(description: "didParseOutline")
+        // test outline parsing with publisher
+        let outlineParseExpectation = self.expectation(description: "didParseOutline")
+        self.outlineParseCancellable = parser.$outlineItems
+            .sink { (outlineItems) in
+                guard !outlineItems.isEmpty else { return }  // ignore the initial invocation
+                
+                outlineParseExpectation.fulfill()
+                
+                XCTAssertEqual(outlineItems.count, 3)
+                
+                XCTAssertEqual(parser.outlineItems, outlineItems)
+                
+                let item = outlineItems[1]
+                XCTAssertEqual(item.title, "   h2: 🐕🐄")
+                XCTAssertEqual(item.range.location, 354)
+                XCTAssertEqual(item.range.length, 13)
+                XCTAssertTrue(item.style.isEmpty)
+            }
         parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
-    }
-    
-}
-
-
-
-// MARK: Syntax Parser Delegate
-
-extension SyntaxTests: SyntaxParserDelegate {
-    
-    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
-        
-    }
-    
-    
-    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
-        
-        self.outlineParseExpectation?.fulfill()
-        
-        XCTAssertEqual(outlineItems.count, 3)
-        
-        XCTAssertEqual(syntaxParser.outlineItems, outlineItems)
-        
-        let item = outlineItems[1]
-        XCTAssertEqual(item.title, "   h2: 🐕🐄")
-        XCTAssertEqual(item.range.location, 354)
-        XCTAssertEqual(item.range.length, 13)
-        XCTAssertTrue(item.style.isEmpty)
     }
     
 }

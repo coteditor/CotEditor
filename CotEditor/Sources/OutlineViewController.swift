@@ -68,8 +68,6 @@ final class OutlineViewController: NSViewController {
             
             self.observeDocument()
             self.observeSyntaxStyle()
-            
-            self.outlineItems = (representedObject as? Document)?.syntaxParser.outlineItems ?? []
         }
     }
     
@@ -85,23 +83,19 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    override func viewWillAppear() {
+    override func viewDidAppear() {
         
-        super.viewWillAppear()
+        super.viewDidAppear()
         
-        self.outlineItems = self.document?.syntaxParser.outlineItems ?? []
-        
+        self.outlineView?.reloadData()
         self.invalidateCurrentLocation()
         
-        // make sure the last observer is invalidated before a new one is set to the property.
-        // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
-        //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
             .map { $0.object as! NSTextView }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (textView) in
                 guard let self = self else { return assertionFailure() }
-                guard textView.window == self.view.window else { return }
+                guard textView.textStorage == self.document?.textStorage else { return }
                 
                 // avoid updating outline item selection before finishing outline parse
                 // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
@@ -138,9 +132,9 @@ final class OutlineViewController: NSViewController {
     // MARK: Actions
     
     /// Item in outlineView was clicked.
-    @IBAction func selectOutlineItem(_ outlineView: NSOutlineView) {
+    @IBAction func selectOutlineItem(_ sender: NSOutlineView) {
         
-        self.selectOutlineItem(at: outlineView.clickedRow)
+        self.selectOutlineItem(at: sender.clickedRow)
     }
     
     
@@ -155,7 +149,7 @@ final class OutlineViewController: NSViewController {
     
     
     /// Paragraph style for outline items.
-    private var itemParagraphStyle: NSParagraphStyle = {
+    private let itemParagraphStyle: NSParagraphStyle = {
         
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingTail
@@ -194,11 +188,8 @@ final class OutlineViewController: NSViewController {
         guard let document = self.document else { return assertionFailure() }
         
         self.documentObserver = NotificationCenter.default.publisher(for: Document.didChangeSyntaxStyleNotification, object: document)
-            .map { ($0.object as! Document).syntaxParser.outlineItems }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (outlineItems) in
+            .sink { [weak self] _ in
                 self?.observeSyntaxStyle()
-                self?.outlineItems = outlineItems
             }
     }
     
@@ -210,8 +201,7 @@ final class OutlineViewController: NSViewController {
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
-        self.syntaxStyleObserver = NotificationCenter.default.publisher(for: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser)
-            .map { ($0.object as! SyntaxParser).outlineItems }
+        self.syntaxStyleObserver = syntaxParser.$outlineItems
             .receive(on: DispatchQueue.main)
             .sink { [weak self] (outlineItems) in
                 self?.outlineItems = outlineItems

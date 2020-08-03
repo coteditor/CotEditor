@@ -30,10 +30,11 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
+    private var outlineSubscriptions: Set<AnyCancellable> = []
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
     private weak var syntaxHighlightProgress: Progress?
@@ -194,7 +195,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
             document.textStorage.delegate = self
-            document.syntaxParser.delegate = self
+            self.subscribe(syntaxPerser: document.syntaxParser)
             
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
@@ -364,25 +365,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// update outline menu in navigation bar
-    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
-        
-        for viewController in self.editorViewControllers {
-            viewController.navigationBarController?.outlineProgress = nil
-            viewController.navigationBarController?.outlineItems = outlineItems
-            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it. (2008-05-16)
-        }
-    }
-    
-    
-    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
-        
-        for viewController in self.editorViewControllers {
-            viewController.navigationBarController?.outlineProgress = progress
-        }
-    }
-    
-    
     
     // MARK: Notifications
     
@@ -399,13 +381,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         
-        syntaxParser.delegate = self
-        
         for viewController in self.editorViewControllers {
             viewController.apply(style: syntaxParser.style)
-            viewController.navigationBarController?.outlineItems = []
-            viewController.navigationBarController?.outlineProgress = nil
         }
+        self.subscribe(syntaxPerser: syntaxParser)
         
         syntaxParser.invalidateOutline()
         self.invalidateSyntaxHighlight()
@@ -859,6 +838,33 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     // MARK: Private Methods
+    
+    /// Observe syntaxParser for outline update.
+    ///
+    /// - Parameter syntaxPerser: The syntax parser to observe.
+    private func subscribe(syntaxPerser: SyntaxParser) {
+        
+        self.outlineSubscriptions.removeAll()
+        
+        syntaxPerser.$outlineItems
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (outlineItems) in
+                self?.editorViewControllers
+                    .compactMap { $0.navigationBarController }
+                    .forEach { $0.outlineItems = outlineItems }
+            }
+            .store(in: &self.outlineSubscriptions)
+        
+        syntaxPerser.$outlineProgress
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (progress) in
+                self?.editorViewControllers
+                    .compactMap { $0.navigationBarController }
+                    .forEach { $0.outlineProgress = progress }
+            }
+            .store(in: &self.outlineSubscriptions)
+    }
+    
     
     /// Invalidate the current syntax highlight.
     ///

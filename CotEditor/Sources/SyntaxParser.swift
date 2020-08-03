@@ -24,15 +24,9 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import AppKit.NSTextStorage
-
-protocol SyntaxParserDelegate: AnyObject {
-    
-    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem])
-    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress)
-}
-
 
 private extension NSAttributedString.Key {
     
@@ -44,8 +38,6 @@ private extension NSAttributedString.Key {
 // MARK: -
 
 final class SyntaxParser {
-    
-    static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
     
     private struct Cache {
         
@@ -61,16 +53,8 @@ final class SyntaxParser {
     
     var style: SyntaxStyle
     
-    weak var delegate: SyntaxParserDelegate?
-    
-    private(set) var outlineItems: [OutlineItem] = [] {
-        
-        didSet {
-            assert(Thread.isMainThread)
-            self.delegate?.syntaxParser(self, didParseOutline: outlineItems)
-            NotificationCenter.default.post(name: SyntaxParser.didUpdateOutlineNotification, object: self)
-        }
-    }
+    @Published private(set) var outlineItems: [OutlineItem] = []
+    @Published private(set) var outlineProgress: Progress?
     
     
     // MARK: Private Properties
@@ -157,9 +141,8 @@ extension SyntaxParser {
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
-            DispatchQueue.main.async {
-                self?.outlineItems = operation.results
-            }
+            self?.outlineItems = operation.results
+            self?.outlineProgress = nil
         }
         
         // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
@@ -167,7 +150,7 @@ extension SyntaxParser {
         self.outlineParseOperationQueue.cancelAllOperations()
         self.outlineParseOperationQueue.addOperation(operation)
         
-        self.delegate?.syntaxParser(self, didStartParsingOutline: operation.progress)
+        self.outlineProgress = operation.progress
     }
     
 }
