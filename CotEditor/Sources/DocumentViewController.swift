@@ -37,7 +37,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var outlineSubscriptions: Set<AnyCancellable> = []
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
-    private var sheetAvailabilityObservers: [NSObjectProtocol] = []
+    private var sheetAvailabilityObservers: Set<AnyCancellable> = []
     private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
@@ -47,13 +47,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     // MARK: -
     // MARK: Split View Controller Methods
-    
-    deinit {
-        for observer in self.sheetAvailabilityObservers {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
     
     override func viewDidLoad() {
         
@@ -914,9 +907,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             return assertionFailure("Expected window to be non-nil.")
         }
         
-        for observer in self.sheetAvailabilityObservers {
-            NotificationCenter.default.removeObserver(observer)
-        }
         self.sheetAvailabilityObservers.removeAll()
         
         // display indicator first when window is visible
@@ -938,22 +928,18 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             presentBlock()
             
         } else {
-            let notificationBlock = { [weak self] (notification: Notification) in
-                guard let window = notification.object as? NSWindow else { return assertionFailure() }
-                guard window.occlusionState.contains(.visible), window.attachedSheet == nil else { return }
-                
-                for observer in self?.sheetAvailabilityObservers ?? [] {
-                    NotificationCenter.default.removeObserver(observer)
+            [NSWindow.didChangeOcclusionStateNotification,
+             NSWindow.didEndSheetNotification]
+                .forEach { notificationName in
+                    NotificationCenter.default.publisher(for: notificationName, object: window)
+                        .map { $0.object as! NSWindow }
+                        .filter { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
+                        .sink { [weak self] _ in
+                            self?.sheetAvailabilityObservers.removeAll()
+                            presentBlock()
+                        }
+                        .store(in: &self.sheetAvailabilityObservers)
                 }
-                self?.sheetAvailabilityObservers.removeAll()
-                
-                presentBlock()
-            }
-            
-            self.sheetAvailabilityObservers = [
-                NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main, using: notificationBlock),
-                NotificationCenter.default.addObserver(forName: NSWindow.didEndSheetNotification, object: window, queue: .main, using: notificationBlock),
-            ]
         }
     }
     
