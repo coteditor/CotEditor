@@ -11,6 +11,11 @@ Change Log
 - [dev] Update the build environment to Xcode 11.6.
 
 
+### Fixes
+
+- Fix an issue that an unremovable empty dialog could show up when performing Replace All under specific conditions.
+
+
 
 3.9.3 (427)
 --------------------------
