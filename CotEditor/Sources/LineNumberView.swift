@@ -55,7 +55,7 @@ final class LineNumberView: NSView {
             
             // calculate margins
             self.padding = self.charWidth
-            self.tickLength = ceil(self.charWidth)
+            self.tickLength = ceil(fontSize / 3)
         }
         
     }
@@ -88,7 +88,7 @@ final class LineNumberView: NSView {
         
         case normal = 0.6
         case bold = 1.0
-        case stroke = 0.2
+        case stroke = 0.4
         
         static let highContrastCoefficient: CGFloat = 0.4
     }
@@ -273,7 +273,7 @@ final class LineNumberView: NSView {
                         
                         // calculate base position
                         let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
+                            ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 3 * drawingInfo.tickLength)
                             : CGPoint(x: -drawingInfo.padding, y: y)
                         
                         // get glyphs and positions
@@ -340,7 +340,7 @@ final class LineNumberView: NSView {
                     return max(ceil(thickness), self.minVerticalThickness)
                 
                 case .vertical:
-                    let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
+                    let thickness = drawingInfo.fontSize + 4 * drawingInfo.tickLength
                     return max(ceil(thickness), self.minHorizontalThickness)
                 
                 @unknown default: fatalError()
