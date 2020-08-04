@@ -37,6 +37,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var outlineSubscriptions: Set<AnyCancellable> = []
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
+    private var sheetAvailabilityObservers: [NSObjectProtocol] = []
     private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
@@ -46,6 +47,13 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     // MARK: -
     // MARK: Split View Controller Methods
+    
+    deinit {
+        for observer in self.sheetAvailabilityObservers {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
     
     override func viewDidLoad() {
         
@@ -906,6 +914,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             return assertionFailure("Expected window to be non-nil.")
         }
         
+        for observer in self.sheetAvailabilityObservers {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        self.sheetAvailabilityObservers.removeAll()
+        
         // display indicator first when window is visible
         let presentBlock = { [weak self, weak progress] in
             guard
@@ -914,10 +927,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 !progress.isFinished, !progress.isCancelled
                 else { return }
             
-            self.presentedViewControllers?
-                .filter { $0 is ProgressViewController }
-                .forEach { $0.dismiss(nil) }
-            
             let message = "Coloring text…".localized
             let indicator = ProgressViewController.instantiate(storyboard: "CompactProgressView")
             indicator.setup(progress: progress, message: message)
@@ -925,22 +934,26 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             self.presentAsSheet(indicator)
         }
         
-        if window.occlusionState.contains(.visible) {
+        if window.occlusionState.contains(.visible), window.attachedSheet == nil {
             presentBlock()
+            
         } else {
-            weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (notification) in
-                guard
-                    let window = notification.object as? NSWindow,
-                    window.occlusionState.contains(.visible)
-                    else { return }
+            let notificationBlock = { [weak self] (notification: Notification) in
+                guard let window = notification.object as? NSWindow else { return assertionFailure() }
+                guard window.occlusionState.contains(.visible), window.attachedSheet == nil else { return }
                 
-                if let observer = observer {
+                for observer in self?.sheetAvailabilityObservers ?? [] {
                     NotificationCenter.default.removeObserver(observer)
                 }
+                self?.sheetAvailabilityObservers.removeAll()
                 
                 presentBlock()
             }
+            
+            self.sheetAvailabilityObservers = [
+                NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main, using: notificationBlock),
+                NotificationCenter.default.addObserver(forName: NSWindow.didEndSheetNotification, object: window, queue: .main, using: notificationBlock),
+            ]
         }
     }
     
