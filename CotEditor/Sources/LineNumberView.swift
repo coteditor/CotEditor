@@ -102,7 +102,7 @@ final class LineNumberView: NSView {
     private var opacityObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
     
-    private weak var draggingTimer: Timer?
+    private var draggingInfo: DraggingInfo?
     
     @IBOutlet private weak var textView: NSTextView? {
         
@@ -117,14 +117,6 @@ final class LineNumberView: NSView {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.draggingTimer?.invalidate()
-    }
-    
-    
-    
     // MARK: View Methods
     
     /// view name for VoiceOver
@@ -455,14 +447,15 @@ private extension FloatingPoint {
 
 // MARK: - Line Selecting
 
-private struct DraggingInfo {
-    
-    let index: Int
-    let selectedRanges: [NSRange]
-}
-
-
 extension LineNumberView {
+    
+    fileprivate struct DraggingInfo {
+        
+        var index: Int
+        var selectedRanges: [NSRange]
+    }
+    
+    
     
     // MARK: View Methods
     
@@ -480,18 +473,24 @@ extension LineNumberView {
         
         let selectedRanges = textView.selectedRanges.map(\.rangeValue)
         
-        // repeat while dragging
-        self.draggingTimer = .scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(selectLines),
-                                             userInfo: DraggingInfo(index: index, selectedRanges: selectedRanges),
-                                             repeats: true)
-        self.draggingTimer?.fire()  // for single click event
+        self.draggingInfo = DraggingInfo(index: index, selectedRanges: selectedRanges)
+        
+        // for single click event
+        self.selectLines(with: event)
+    }
+    
+    
+    /// select lines while dragging event
+    override func mouseDragged(with event: NSEvent) {
+        
+        self.selectLines(with: event)
     }
     
     
     /// end selecting correspondent lines in text view with drag event
     override func mouseUp(with event: NSEvent) {
         
-        self.draggingTimer?.invalidate()
+        self.draggingInfo = nil
     }
     
     
@@ -499,27 +498,26 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// select lines while dragging event
-    @objc private func selectLines(_ timer: Timer) {
+    @objc private func selectLines(with event: NSEvent) {
         
         guard
             let window = self.window,
             let textView = self.textView,
-            let draggingInfo = timer.userInfo as? DraggingInfo
+            let draggingInfo = self.draggingInfo
             else { return assertionFailure() }
         
         // scroll text view if needed
-        let pointInScreen = NSEvent.mouseLocation
-        let pointInWindow = window.convertPoint(fromScreen: pointInScreen)
-        let point = textView.convert(pointInWindow, from: nil)  // textView-based
+        let point = textView.convert(event.locationInWindow, from: nil)  // textView-based
         textView.scrollToVisible(NSRect(origin: point, size: .zero))
         
         // move focus to textView
         window.makeFirstResponder(textView)
         
         // select lines
-        let string = textView.string as NSString
+        let pointInScreen = window.convertPoint(toScreen: event.locationInWindow)
         let currentIndex = textView.characterIndex(for: pointInScreen)
         let clickedIndex = draggingInfo.index
+        let string = textView.string as NSString
         let currentLineRange = string.lineRange(at: currentIndex)
         let clickedLineRange = string.lineRange(at: clickedIndex)
         var range = currentLineRange.union(clickedLineRange)
@@ -527,7 +525,7 @@ extension LineNumberView {
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream
         
         // with Command key (add selection)
-        if NSEvent.modifierFlags.contains(.command) {
+        if event.modifierFlags.contains(.command) {
             var selectedRanges = [NSRange]()
             var intersects = false
             
@@ -561,7 +559,7 @@ extension LineNumberView {
         }
         
         // with Shift key (expand selection)
-        if NSEvent.modifierFlags.contains(.shift) {
+        if event.modifierFlags.contains(.shift) {
             let selectedRange = textView.selectedRange
             if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
