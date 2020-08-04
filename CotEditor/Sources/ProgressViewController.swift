@@ -38,9 +38,8 @@ final class ProgressViewController: NSViewController {
     @objc private dynamic var progress: Progress?
     @objc private dynamic var message: String = ""
     
-    private var finishObserver: AnyCancellable?
-    private var cancelObserver: AnyCancellable?
-    private var updateTimer: DispatchSourceTimer?
+    private var progressSubscriptions: Set<AnyCancellable> = []
+    private var completionSubscriptions: Set<AnyCancellable> = []
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var descriptionField: NSTextField?
@@ -49,49 +48,37 @@ final class ProgressViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.updateTimer?.cancel()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
-        self.indicator?.doubleValue = self.progress!.fractionCompleted
-        self.descriptionField?.stringValue = self.progress!.localizedDescription
+        guard
+            let progress = self.progress,
+            let indicator = self.indicator,
+            let descriptionField = self.descriptionField
+            else { return assertionFailure() }
         
-        // trigger a timer updating UI every 0.1 seconds.
-        // -> This is much more performance-efficient than KV-Observing `.fractionCompleted` or `.localizedDescription`. (2018-12 macOS 10.14)
-        let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.schedule(deadline: .now(), repeating: .milliseconds(100), leeway: .milliseconds(50))
-        timer.setEventHandler { [weak self] in self?.updateProgress() }
-        timer.resume()
-        self.updateTimer?.cancel()
-        self.updateTimer = timer
+        self.progressSubscriptions.removeAll()
+        
+        progress.publisher(for: \.fractionCompleted, options: .initial)
+            .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
+            .assign(to: \.doubleValue, on: indicator)
+            .store(in: &self.progressSubscriptions)
+        
+        progress.publisher(for: \.localizedDescription, options: .initial)
+            .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
+            .assign(to: \.stringValue, on: descriptionField)
+            .store(in: &self.progressSubscriptions)
     }
     
     
-    override func dismiss(_ sender: Any?) {
+    override func viewDidDisappear() {
         
-        self.updateTimer?.cancel()
-        self.updateTimer = nil
+        super.viewDidDisappear()
         
-        // close sheet in an old way
-        // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
-        //    if the receiver was presented and dismissed during another sheet is already presented. (2018-09 macOS 10.12)
-        if let parentWindow = self.presentingViewController?.view.window,
-            let sheetWindow = self.view.window,
-            parentWindow.sheets.count > 1 {
-            parentWindow.endSheet(sheetWindow)
-        }
-        
-        super.dismiss(sender)
+        self.progressSubscriptions.removeAll()
     }
     
     
@@ -104,40 +91,41 @@ final class ProgressViewController: NSViewController {
     ///   - message: The text to display as the message label of the indicator.
     func setup(progress: Progress, message: String) {
         
+        assert(self.progress == nil)
+        
         self.progress = progress
         self.message = message
         
-        self.finishObserver = progress.publisher(for: \.isFinished, options: .initial)
+        progress.publisher(for: \.isFinished, options: .initial)
             .filter { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.done() }
+            .store(in: &self.completionSubscriptions)
         
-        self.cancelObserver = progress.publisher(for: \.isCancelled, options: .initial)
+        progress.publisher(for: \.isCancelled, options: .initial)
             .filter { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.dismiss(nil) }
+            .store(in: &self.completionSubscriptions)
     }
     
     
     /// Change the state of progress to finished.
     func done() {
         
-        self.updateTimer?.cancel()
-        self.updateTimer = nil
-        
         if self.closesAutomatically {
-            self.dismiss(self)
-            
-        } else {
-            self.updateProgress()
-            
-            guard let button = self.button else { return assertionFailure() }
-            
-            button.title = "OK".localized
-            button.action = #selector(dismiss(_:) as (Any?) -> Void)
-            button.keyEquivalent = "\r"
-            button.isHidden = false
+            return self.dismiss(self)
         }
+        
+        guard let button = self.button else { return assertionFailure() }
+        
+        if let progress = self.progress {
+            self.descriptionField?.stringValue = progress.localizedDescription
+        }
+        
+        button.title = "OK".localized
+        button.action = #selector(dismiss(_:) as (Any?) -> Void)
+        button.keyEquivalent = "\r"
     }
     
     
@@ -148,26 +136,6 @@ final class ProgressViewController: NSViewController {
     @IBAction func cancel(_ sender: Any?) {
         
         self.progress?.cancel()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Apply the latest progress state to UI.
-    private func updateProgress() {
-        
-        guard
-            let progress = self.progress,
-            let indicator = self.indicator
-            else { return assertionFailure() }
-        
-        if indicator.doubleValue != progress.fractionCompleted {
-            indicator.doubleValue = progress.fractionCompleted
-        }
-        if self.descriptionField?.stringValue != progress.localizedDescription {
-            self.descriptionField?.stringValue = progress.localizedDescription
-        }
     }
     
 }
