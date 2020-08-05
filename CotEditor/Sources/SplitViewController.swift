@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class SplitViewController: NSSplitViewController {
@@ -31,6 +32,11 @@ final class SplitViewController: NSSplitViewController {
     // MARK: Public Properties
     
     private(set) weak var focusedChild: EditorViewController?
+    
+    
+    // MARK: Public Properties
+    
+    private var focuedEditorObserver: AnyCancellable?
     
     
     
@@ -46,7 +52,17 @@ final class SplitViewController: NSSplitViewController {
         self.invalidateOpenSplitEditorButtons()
         
         // observe focus change
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: EditorTextView.didBecomeFirstResponderNotification, object: nil)
+        self.focuedEditorObserver = NotificationCenter.default.publisher(for: EditorTextView.didBecomeFirstResponderNotification)
+            .map { $0.object as! EditorTextView }
+            .sink { [weak self] textView in
+                guard
+                    let viewController = self?.children.lazy
+                        .compactMap({ $0 as? EditorViewController })
+                        .first(where: { $0.textView == textView })
+                    else { return }
+                
+                self?.focusedChild = viewController
+            }
     }
     
     
@@ -84,24 +100,6 @@ final class SplitViewController: NSSplitViewController {
         }
         
         return super.validateUserInterfaceItem(item)
-    }
-    
-    
-    
-    // MARK: Notifications
-    
-    /// editor's focus did change
-    @objc private func textViewDidBecomeFirstResponder(_ notification: Notification) {
-        
-        guard let textView = notification.object as? EditorTextView else { return }
-        
-        guard
-            let viewController = self.children.lazy
-                .compactMap({ $0 as? EditorViewController })
-                .first(where: { $0.textView == textView })
-            else { return }
-        
-        self.focusedChild = viewController
     }
     
     
