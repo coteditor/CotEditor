@@ -30,6 +30,7 @@ final class TextFindProgress: Progress {
     // MARK: Private Properties
     
     private let format: CountableFormatter
+    private var _localizedDescription: String?
     
     
     
@@ -52,8 +53,8 @@ final class TextFindProgress: Progress {
     override var localizedDescription: String! {
         
         // -> KVO is sacrificed for the performance.
-        get { self.format.localizedString(for: Int(self.completedUnitCount)) }
-        set { _ = newValue }
+        get { self._localizedDescription ?? self.format.localizedString(for: Int(self.completedUnitCount)) }
+        set { self._localizedDescription = newValue }
     }
     
 }
