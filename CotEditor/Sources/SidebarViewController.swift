@@ -26,12 +26,6 @@
 import Combine
 import Cocoa
 
-protocol TabViewControllerDelegate: AnyObject {
-    
-    func tabViewController(_ viewController: NSTabViewController, didSelect tabViewIndex: Int)
-}
-
-
 final class SidebarViewController: NSTabViewController {
     
     enum TabIndex: Int {
@@ -44,7 +38,6 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: Public Properties
     
-    weak var delegate: TabViewControllerDelegate?
     var selectedTabIndex: TabIndex { TabIndex(rawValue: self.selectedTabViewItemIndex) ?? .documentInspector }
     
     
@@ -123,8 +116,6 @@ final class SidebarViewController: NSTabViewController {
         
         didSet {
             guard selectedTabViewItemIndex != oldValue else { return }
-            
-            self.delegate?.tabViewController(self, didSelect: selectedTabViewItemIndex)
             
             if self.isViewLoaded {  // avoid storing initial state (set in the storyboard)
                 UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
