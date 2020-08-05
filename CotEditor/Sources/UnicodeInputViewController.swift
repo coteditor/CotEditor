@@ -29,7 +29,7 @@ final class UnicodeInputViewController: NSViewController {
     
     // MARK: Public Properties
     
-    weak var clientTextView: NSTextView?
+    var completionHandler: ((_ character: Character) -> Void)?
     
     
     // MARK: Private Properties
@@ -49,13 +49,11 @@ final class UnicodeInputViewController: NSViewController {
     /// Input Unicode character to the parent text view.
     @IBAction func insertToDocument(_ sender: Any?) {
         
-        guard
-            let character = self.character,
-            let textView = self.clientTextView
-            else { return NSSound.beep() }
+        assert(self.completionHandler != nil)
         
-        textView.insertText(String(character), replacementRange: .notFound)
+        guard let character = self.character else { return NSSound.beep() }
         
+        self.completionHandler?(character)
         self.codePoint = ""
     }
     

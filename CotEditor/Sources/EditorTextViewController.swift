@@ -149,7 +149,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard let textView = self.textView else { return assertionFailure() }
         
         let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
-        inputViewController.clientTextView = textView
+        inputViewController.completionHandler = { [weak textView] (character) in
+            textView?.insertText(String(character), replacementRange: .notFound)
+        }
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY

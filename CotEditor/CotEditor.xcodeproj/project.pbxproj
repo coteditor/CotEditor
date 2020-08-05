@@ -2072,8 +2072,8 @@
 				2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */,
 				2AE12E061E7DDF0700681F72 /* CustomSurroundStringViewController.swift */,
 				2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */,
-				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
 				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
+				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
 			);
 			name = "Accessory Views";
