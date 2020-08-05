@@ -57,3 +57,16 @@ extension StoryboardInstantiatable {
 
 extension NSWindowController: StoryboardInstantiatable { }
 extension NSViewController: StoryboardInstantiatable { }
+
+
+
+// MARK: -
+
+extension NSStoryboard {
+    
+    convenience init(name: NSStoryboard.Name) {
+        
+        self.init(name: name, bundle: nil)
+    }
+    
+}

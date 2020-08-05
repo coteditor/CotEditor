@@ -284,9 +284,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
-        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        indicator.setup(progress: progress, message: "Replace All".localized)
+        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
+        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
+            ProgressViewController(coder: coder, progress: progress, message: "Replace All".localized, closesAutomatically: closesAutomatically)
+        }!
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -327,7 +328,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 indicator.done()
                 
-                if indicator.closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
+                if closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
                     panel.makeKey()
                 }
                 
@@ -488,9 +489,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
-        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        indicator.setup(progress: progress, message: actionName)
+        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
+        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
+            ProgressViewController(coder: coder, progress: progress, message: actionName, closesAutomatically: closesAutomatically)
+        }!
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -565,7 +567,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 // close also if result view has been shown
-                if indicator.closesAutomatically || !results.isEmpty {
+                if closesAutomatically || !results.isEmpty {
                     indicator.dismiss(nil)
                     if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()

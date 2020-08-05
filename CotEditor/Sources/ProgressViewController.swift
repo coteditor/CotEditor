@@ -28,15 +28,11 @@ import Cocoa
 
 final class ProgressViewController: NSViewController {
     
-    // MARK: Public Properties
-    
-    var closesAutomatically = true
-    
-    
     // MARK: Private Properties
     
-    @objc private dynamic var progress: Progress?
-    @objc private dynamic var message: String = ""
+    @objc private dynamic let progress: Progress
+    @objc private dynamic let message: String
+    let closesAutomatically: Bool
     
     private var progressSubscriptions: Set<AnyCancellable> = []
     private var completionSubscriptions: Set<AnyCancellable> = []
@@ -48,26 +44,63 @@ final class ProgressViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    /// Initialize view with given progress instance.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - progress: The progress instance to indicate.
+    ///   - message: The text to display as the message label of the indicator.
+    ///   - closesAutomatically: Whether dismiss the view when the progress is finished.
+    init?(coder: NSCoder, progress: Progress, message: String, closesAutomatically: Bool = true) {
+        
+        assert(!progress.isCancelled)
+        assert(!progress.isFinished)
+        
+        self.progress = progress
+        self.message = message
+        self.closesAutomatically = closesAutomatically
+        
+        super.init(coder: coder)
+        
+        progress.publisher(for: \.isFinished, options: .initial)
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.done() }
+            .store(in: &self.completionSubscriptions)
+        
+        progress.publisher(for: \.isCancelled, options: .initial)
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.dismiss(nil) }
+            .store(in: &self.completionSubscriptions)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
         guard
-            let progress = self.progress,
             let indicator = self.indicator,
             let descriptionField = self.descriptionField
             else { return assertionFailure() }
         
         self.progressSubscriptions.removeAll()
         
-        progress.publisher(for: \.fractionCompleted, options: .initial)
+        self.progress.publisher(for: \.fractionCompleted, options: .initial)
             .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
             .assign(to: \.doubleValue, on: indicator)
             .store(in: &self.progressSubscriptions)
         
-        progress.publisher(for: \.localizedDescription, options: .initial)
+        self.progress.publisher(for: \.localizedDescription, options: .initial)
             .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
             .assign(to: \.stringValue, on: descriptionField)
             .store(in: &self.progressSubscriptions)
@@ -85,31 +118,6 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Public Methods
     
-    /// Initialize view with given progress instance.
-    /// - Parameters:
-    ///   - progress: The progress instance to indicate.
-    ///   - message: The text to display as the message label of the indicator.
-    func setup(progress: Progress, message: String) {
-        
-        assert(self.progress == nil)
-        
-        self.progress = progress
-        self.message = message
-        
-        progress.publisher(for: \.isFinished, options: .initial)
-            .filter { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.done() }
-            .store(in: &self.completionSubscriptions)
-        
-        progress.publisher(for: \.isCancelled, options: .initial)
-            .filter { $0 }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.dismiss(nil) }
-            .store(in: &self.completionSubscriptions)
-    }
-    
-    
     /// Change the state of progress to finished.
     func done() {
         
@@ -119,9 +127,7 @@ final class ProgressViewController: NSViewController {
         
         guard let button = self.button else { return assertionFailure() }
         
-        if let progress = self.progress {
-            self.descriptionField?.stringValue = progress.localizedDescription
-        }
+        self.descriptionField?.stringValue = self.progress.localizedDescription
         
         button.title = "OK".localized
         button.action = #selector(dismiss(_:) as (Any?) -> Void)
@@ -135,7 +141,7 @@ final class ProgressViewController: NSViewController {
     /// Cancel current process.
     @IBAction func cancel(_ sender: Any?) {
         
-        self.progress?.cancel()
+        self.progress.cancel()
     }
     
 }
