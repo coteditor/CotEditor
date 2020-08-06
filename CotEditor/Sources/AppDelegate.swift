@@ -86,10 +86,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
-        // instantiate DocumentController
+        // instantiate shared instances
         _ = DocumentController.shared
-        
-        // wake text finder up
         _ = TextFinder.shared
         
         super.init()
@@ -121,6 +119,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // observe setting list updates
+        self.menuUpdateObservers.removeAll()
         EncodingManager.shared.didUpdateSettingList
             .sink { [weak self] in self?.buildEncodingMenu() }
             .store(in: &self.menuUpdateObservers)
@@ -403,7 +402,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Private Methods
     
     /// build encoding menu in the main menu
-    @objc private func buildEncodingMenu() {
+    private func buildEncodingMenu() {
         
         let menu = self.encodingsMenu!
         
@@ -412,7 +411,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build syntax style menu in the main menu
-    @objc private func buildSyntaxMenu() {
+    private func buildSyntaxMenu() {
         
         let menu = self.syntaxStylesMenu!
         
@@ -431,22 +430,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // add item to recolor
         let recolorAction = #selector(SyntaxHolder.recolorAll)
         let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
-        let recoloritem = NSMenuItem(title: "Re-Color All".localized, action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
-        recoloritem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
-        menu.addItem(recoloritem)
+        let recolorItem = NSMenuItem(title: "Re-Color All".localized, action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
+        recolorItem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
+        menu.addItem(recolorItem)
     }
     
     
     /// build theme menu in the main menu
-    @objc private func buildThemeMenu() {
+    private func buildThemeMenu() {
         
         let menu = self.themesMenu!
         
-        menu.removeAllItems()
-        
-        for themeName in ThemeManager.shared.settingNames {
-            menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
-        }
+        menu.items = ThemeManager.shared.settingNames
+            .map { NSMenuItem(title: $0, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "") }
     }
     
 }
