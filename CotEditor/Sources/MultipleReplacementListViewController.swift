@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import AudioToolbox
 
@@ -31,6 +32,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     // MARK: Private Properties
     
     private var settingNames = [String]()
+    
+    private var listUpdateObserver: AnyCancellable?
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -71,7 +74,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
+        self.listUpdateObserver = ReplacementManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.setupList() }
     }
     
     
@@ -317,7 +321,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     
     /// update setting list
-    @objc private func setupList() {
+    private func setupList() {
         
         let settingName = self.selectedSettingName
         

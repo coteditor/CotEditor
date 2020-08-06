@@ -66,18 +66,15 @@ enum SettingChange {
 }
 
 
-// MARK: Notifications
-
-/// Posted when the line-up of setting files did update. The sender is a manager.
-let didUpdateSettingListNotification = Notification.Name("SettingFileManagerDidUpdateSettingList")
-
-
 
 // MARK: -
 
 protocol SettingFileManaging: SettingManaging {
     
     associatedtype Setting
+    
+    /// Publishes when the line-up of setting files did update.
+    var didUpdateSettingList: PassthroughSubject<[String], Never> { get }
     
     /// Publishes when a setting file is updated with new/previous setting names.
     var didUpdateSetting: PassthroughSubject<SettingChange, Never> { get }
@@ -389,7 +386,7 @@ extension SettingFileManaging {
             
             DispatchQueue.main.sync {
                 if didUpdateList {
-                    NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
+                    self.didUpdateSettingList.send(self.settingNames)
                 }
                 
                 completionHandler()

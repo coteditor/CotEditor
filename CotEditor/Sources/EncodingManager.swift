@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 @objc protocol EncodingHolder: AnyObject {
@@ -43,6 +44,8 @@ final class EncodingManager: NSObject {
     // MARK: Public Properties
     
     static let shared = EncodingManager()
+    
+    let didUpdateSettingList: PassthroughSubject<Void, Never> = .init()
     
     
     // MARK: Private Properties
@@ -64,7 +67,7 @@ final class EncodingManager: NSObject {
         }
         
         self.encodingListObserver = UserDefaults.standard.observe(key: .encodingList) { [weak self] _ in
-            NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
+            self?.didUpdateSettingList.send()
         }
     }
     

@@ -61,6 +61,7 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
+    let didUpdateSettingList: PassthroughSubject<[String], Never> = .init()
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Syntaxes"

@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 extension LineEnding {
@@ -93,6 +94,7 @@ final class ToolbarController: NSObject {
     
     // MARK: Private Properties
     
+    private var menuUpdateObservers: Set<AnyCancellable> = []
     private var recentStyleNamesObserver: UserDefaultsObservation?
     
     @IBOutlet private weak var toolbar: NSToolbar?
@@ -120,8 +122,13 @@ final class ToolbarController: NSObject {
         self.shareToolbarItem!.menuFormRepresentation = NSDocumentController.shared.standardShareMenuItem()
         
         // observe popup menu line-up change
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
+        self.menuUpdateObservers.removeAll()
+        EncodingManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.buildEncodingPopupButton() }
+            .store(in: &self.menuUpdateObservers)
+        SyntaxManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.buildSyntaxPopupButton() }
+            .store(in: &self.menuUpdateObservers)
         
         self.recentStyleNamesObserver?.invalidate()
         self.recentStyleNamesObserver = UserDefaults.standard.observe(key: .recentStyleNames) { [weak self] _ in
@@ -170,7 +177,7 @@ final class ToolbarController: NSObject {
     
     
     /// build encoding popup item
-    @objc private func buildEncodingPopupButton() {
+    private func buildEncodingPopupButton() {
         
         guard let popUpButton = self.encodingPopupButton else { return }
         
@@ -181,7 +188,7 @@ final class ToolbarController: NSObject {
     
     
     /// build syntax style popup menu
-    @objc private func buildSyntaxPopupButton() {
+    private func buildSyntaxPopupButton() {
         
         guard let menu = self.syntaxPopupButton?.menu else { return }
         

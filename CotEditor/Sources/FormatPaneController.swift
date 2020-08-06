@@ -42,7 +42,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Private Properties
     
-    private var syntaxStyleChangeObserver: AnyCancellable?
+    private var encodingChangeObserver: AnyCancellable?
+    private var syntaxStyleChangeObservers: Set<AnyCancellable> = []
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -76,11 +77,15 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.setupEncodingMenu()
         self.setupSyntaxStyleMenus()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
+        self.encodingChangeObserver = EncodingManager.shared.didUpdateSettingList
+            .sink { [weak self] in self?.setupEncodingMenu() }
         
-        self.syntaxStyleChangeObserver = SyntaxManager.shared.didUpdateSetting
+        SyntaxManager.shared.didUpdateSettingList
             .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
+            .store(in: &self.syntaxStyleChangeObservers)
+        SyntaxManager.shared.didUpdateSetting
+            .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
+            .store(in: &self.syntaxStyleChangeObservers)
     }
     
     
@@ -89,8 +94,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewDidDisappear()
         
-        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
-        self.syntaxStyleChangeObserver = nil
+        self.encodingChangeObserver = nil
+        self.syntaxStyleChangeObservers.removeAll()
     }
     
     
@@ -402,7 +407,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: Private Methods
     
     /// build encoding menu
-    @objc private func setupEncodingMenu() {
+    private func setupEncodingMenu() {
         
         guard let popupButton = self.encodingPopupButton else { return assertionFailure() }
         assert(popupButton.menu != nil)
@@ -439,7 +444,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     /// build sytnax style menus
-    @objc private func setupSyntaxStyleMenus() {
+    private func setupSyntaxStyleMenus() {
         
         let styleNames = SyntaxManager.shared.settingNames
         

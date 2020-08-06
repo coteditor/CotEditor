@@ -107,10 +107,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // observe theme list change
         self.themeManagerObservers.removeAll()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
-        
-        // refresh theme view if current displayed theme was restored
+        ThemeManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.setupThemeList() }
+            .store(in: &self.themeManagerObservers)
         ThemeManager.shared.didUpdateSetting
             .sink { [weak self] _ in
                 guard
@@ -131,7 +130,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewDidDisappear()
         
         self.themeManagerObservers.removeAll()
-        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
         
     }
     
@@ -636,7 +634,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// update theme list
-    @objc private func setupThemeList() {
+    private func setupThemeList() {
         
         let themeName = ThemeManager.shared.userDefaultSettingName
         

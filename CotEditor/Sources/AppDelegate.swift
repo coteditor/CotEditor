@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private extension NSSound {
@@ -56,6 +57,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     // MARK: Private Properties
+    
+    private var menuUpdateObservers: Set<AnyCancellable> = []
     
     private lazy var preferencesWindowController = NSWindowController.instantiate(storyboard: "PreferencesWindow")
     
@@ -118,9 +121,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: didUpdateSettingListNotification, object: ThemeManager.shared)
+        EncodingManager.shared.didUpdateSettingList
+            .sink { [weak self] in self?.buildEncodingMenu() }
+            .store(in: &self.menuUpdateObservers)
+        SyntaxManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.buildSyntaxMenu() }
+            .store(in: &self.menuUpdateObservers)
+        ThemeManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.buildThemeMenu() }
+            .store(in: &self.menuUpdateObservers)
     }
     
     
