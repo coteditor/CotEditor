@@ -34,6 +34,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     // MARK: Private Properties
     
+    private var documentStyleObserver: AnyCancellable?
     private var outlineSubscriptions: Set<AnyCancellable> = []
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
@@ -185,11 +186,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     override var representedObject: Any? {
         
         willSet {
+            self.documentStyleObserver = nil
             self.outlineSubscriptions.removeAll()
-            
-            guard let document = representedObject as? Document else { return }
-            
-            NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
         }
         
         didSet {
@@ -226,9 +224,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             self.view.window?.makeFirstResponder(editorViewController.textView)
             
             // observe syntax change
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
-                                                   name: Document.didChangeSyntaxStyleNotification,
-                                                   object: document)
+            self.documentStyleObserver = document.didChangeSyntaxStyle
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in self?.didChangeSyntaxStyle() }
             
             // observe syntaxParser for outline update
             document.syntaxParser.$outlineItems
@@ -399,7 +397,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     
     /// document updated syntax style
-    @objc private func didChangeSyntaxStyle(_ notification: Notification) {
+    private func didChangeSyntaxStyle() {
         
         guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         

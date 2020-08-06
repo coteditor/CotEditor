@@ -29,13 +29,6 @@ import Cocoa
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
-    // MARK: Notification Names
-    
-    static let didChangeEncodingNotification = Notification.Name("DocumentDidChangeEncoding")
-    static let didChangeLineEndingNotification = Notification.Name("DocumentDidChangeLineEnding")
-    static let didChangeSyntaxStyleNotification = Notification.Name("DocumentDidChangeSyntaxStyle")
-    
-    
     // MARK: Enums
     
     private enum SerializationKey {
@@ -65,6 +58,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
+    
+    let didChangeEncoding = PassthroughSubject<FileEncoding, Never>()
+    let didChangeLineEnding = PassthroughSubject<LineEnding, Never>()
+    let didChangeSyntaxStyle = PassthroughSubject<String, Never>()
     
     
     // MARK: Private Properties
@@ -322,11 +319,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // notify
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
-            NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
-        }
+        self.didChangeEncoding.send(self.fileEncoding)
+        self.didChangeLineEnding.send(self.lineEnding)
         
         // standardize line endings to LF
         // -> Line endings replacement by other text modifications is processed in
@@ -832,7 +826,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.fileEncoding = fileEncoding
         
         // notify
-        NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+        self.didChangeEncoding.send(fileEncoding)
         
         // update UI
         self.incompatibleCharacterScanner.scan()
@@ -859,7 +853,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.lineEnding = lineEnding
         
         // notify
-        NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
+        self.didChangeLineEnding.send(lineEnding)
         
         // update UI
         self.analyzer.invalidateModeInfo()
@@ -883,10 +877,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // to avoid redundant highlight parse due to async notification.
         guard !isInitial else { return }
         
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            NotificationCenter.default.post(name: Document.didChangeSyntaxStyleNotification, object: self)
-        }
+        self.didChangeSyntaxStyle.send(name)
     }
     
     
@@ -938,7 +929,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let completionHandler = { [weak self] (didChange: Bool) in
                 if !didChange, let self = self {
                     // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                    NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+                    self.didChangeEncoding.send(self.fileEncoding)
                 }
                 activityCompletionHandler()
             }

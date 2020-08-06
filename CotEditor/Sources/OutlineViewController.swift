@@ -187,10 +187,9 @@ final class OutlineViewController: NSViewController {
         
         guard let document = self.document else { return assertionFailure() }
         
-        self.documentObserver = NotificationCenter.default.publisher(for: Document.didChangeSyntaxStyleNotification, object: document)
-            .sink { [weak self] _ in
-                self?.observeSyntaxStyle()
-            }
+        self.documentObserver = document.didChangeSyntaxStyle
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.observeSyntaxStyle() }
     }
     
     

@@ -69,31 +69,37 @@ final class ToolbarController: NSObject {
     weak var document: Document? {
         
         willSet {
-            guard let document = document else { return }
-            
-            NotificationCenter.default.removeObserver(self, name: Document.didChangeEncodingNotification, object: document)
-            NotificationCenter.default.removeObserver(self, name: Document.didChangeLineEndingNotification, object: document)
-            NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
+            self.documentObservers.removeAll()
         }
         
         didSet {
             guard let document = document else { return }
             
-            self.invalidateLineEndingSelection()
+            self.invalidateLineEndingSelection(to: document.lineEnding)
             self.invalidateEncodingSelection()
             self.invalidateSyntaxStyleSelection()
             self.toolbar?.validateVisibleItems()
             
             // observe document status change
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: Document.didChangeEncodingNotification, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: Document.didChangeLineEndingNotification, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: Document.didChangeSyntaxStyleNotification, object: document)
+            document.didChangeEncoding
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in self?.invalidateEncodingSelection() }
+                .store(in: &self.documentObservers)
+            document.didChangeLineEnding
+                .receive(on: RunLoop.main)
+                .sink { [weak self] in self?.invalidateLineEndingSelection(to: $0) }
+                .store(in: &self.documentObservers)
+            document.didChangeSyntaxStyle
+                .receive(on: RunLoop.main)
+                .sink { [weak self] _ in self?.invalidateSyntaxStyleSelection() }
+                .store(in: &self.documentObservers)
         }
     }
     
     
     // MARK: Private Properties
     
+    private var documentObservers: Set<AnyCancellable> = []
     private var menuUpdateObservers: Set<AnyCancellable> = []
     private var recentStyleNamesObserver: UserDefaultsObservation?
     
@@ -141,16 +147,14 @@ final class ToolbarController: NSObject {
     // MARK: Private Methods
     
     /// select item in the encoding popup menu
-    @objc private func invalidateLineEndingSelection() {
-        
-        guard let lineEnding = self.document?.lineEnding else { return }
+    private func invalidateLineEndingSelection(to lineEnding: LineEnding) {
         
         self.lineEndingPopupButton?.selectItem(withTag: lineEnding.index)
     }
     
     
     /// select item in the line ending menu
-    @objc private func invalidateEncodingSelection() {
+    private func invalidateEncodingSelection() {
         
         guard let fileEncoding = self.document?.fileEncoding else { return }
         
@@ -164,7 +168,7 @@ final class ToolbarController: NSObject {
     
     
     /// select item in the syntax style menu
-    @objc private func invalidateSyntaxStyleSelection() {
+    private func invalidateSyntaxStyleSelection() {
         
         guard let popUpButton = self.syntaxPopupButton else { return }
         guard let styleName = self.document?.syntaxParser.style.name else { return }
@@ -207,15 +211,11 @@ final class ToolbarController: NSObject {
             labelItem.isEnabled = false
             menu.addItem(labelItem)
             
-            for styleName in recentStyleNames {
-                menu.addItem(withTitle: styleName, action: action, keyEquivalent: "")
-            }
+            menu.items += recentStyleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
             menu.addItem(.separator())
         }
         
-        for styleName in styleNames {
-            menu.addItem(withTitle: styleName, action: action, keyEquivalent: "")
-        }
+        menu.items += styleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
         
         self.invalidateSyntaxStyleSelection()
     }
