@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import AudioToolbox
 
@@ -40,6 +41,8 @@ private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
     
     // MARK: Private Properties
+    
+    private var syntaxStyleChangeObserver: AnyCancellable?
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -75,7 +78,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
+        
+        self.syntaxStyleChangeObserver = SyntaxManager.shared.didUpdateSetting
+            .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
     }
     
     
@@ -85,7 +90,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         super.viewDidDisappear()
         
         NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
+        self.syntaxStyleChangeObserver = nil
     }
     
     

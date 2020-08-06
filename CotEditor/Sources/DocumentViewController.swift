@@ -38,6 +38,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var sheetAvailabilityObservers: Set<AnyCancellable> = []
+    private var themeChangeObserver: AnyCancellable?
     private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
@@ -77,9 +78,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         self.setTheme(name: themeName)
         
         // observe theme change
-        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: didUpdateSettingNotification,
-                                               object: ThemeManager.shared)
+        self.themeChangeObserver = ThemeManager.shared.didUpdateSetting
+            .filter { [weak self] in $0.old == self?.theme?.name }
+            .compactMap { $0.new }
+            .sink { [weak self] in self?.setTheme(name: $0) }
         
         // observe cursor
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
@@ -389,18 +391,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         syntaxParser.invalidateOutline()
         self.invalidateSyntaxHighlight()
-    }
-    
-    
-    /// theme did update
-    @objc private func didUpdateTheme(_ notification: Notification) {
-        
-        guard
-            let oldName = notification.userInfo?[Notification.UserInfoKey.old] as? String,
-            let newName = notification.userInfo?[Notification.UserInfoKey.new] as? String,
-            oldName == self.theme?.name else { return }
-        
-        self.setTheme(name: newName)
     }
     
     

@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
@@ -79,6 +80,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var autosaveIdentifier: String = UUID().uuidString
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
+    private var sytnaxUpdateObserver: AnyCancellable?
+    
     private var lastSavedData: Data?  // temporal data used only within saving process
     
     
@@ -107,7 +110,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: didUpdateSettingNotification, object: SyntaxManager.shared)
+        self.sytnaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
+            .filter { [weak self] (change) in change.old == self?.syntaxParser.style.name }
+            .sink { [weak self] (change) in self?.setSyntaxStyle(name: change.new ?? BundledStyleName.none) }
     }
     
     
@@ -754,22 +759,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // -> This method won't be invoked on Resume. (2015-01-26)
         
         ScriptManager.shared.dispatchEvent(documentOpened: self)
-    }
-    
-    
-    
-    // MARK: Notifications
-    
-    /// set a flag of syntax highlight update if corresponded style has been updated
-    @objc private func syntaxDidUpdate(_ notification: Notification) {
-        
-        guard
-            let oldName = notification.userInfo?[Notification.UserInfoKey.old] as? String,
-            oldName == self.syntaxParser.style.name else { return }
-        
-        let newName = (notification.userInfo?[Notification.UserInfoKey.new] as? String) ?? BundledStyleName.none
-        
-        self.setSyntaxStyle(name: newName)
     }
     
     

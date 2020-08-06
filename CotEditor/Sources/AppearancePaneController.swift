@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import AudioToolbox
 
@@ -34,6 +35,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     private var themeNames = [String]()
     private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
+    
+    private var themeManagerObservers: Set<AnyCancellable> = []
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
@@ -103,8 +106,22 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe theme list change
+        self.themeManagerObservers.removeAll()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
+        
+        // refresh theme view if current displayed theme was restored
+        ThemeManager.shared.didUpdateSetting
+            .sink { [weak self] _ in
+                guard
+                    let self = self,
+                    let latestTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
+                    latestTheme.name == self.themeViewController?.theme?.name
+                    else { return }
+                
+                self.themeViewController?.theme = latestTheme
+            }
+            .store(in: &self.themeManagerObservers)
     }
     
     
@@ -113,8 +130,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidDisappear()
         
+        self.themeManagerObservers.removeAll()
         NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
+        
     }
     
     
@@ -558,18 +576,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             return menuItem.representedObject as! String
         }
         return self.selectedThemeName
-    }
-    
-    
-    /// refresh theme view if current displayed theme was restored
-    @objc private func themeDidUpdate(_ notification: Notification) {
-        
-        guard
-            let latestTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
-            latestTheme.name == self.themeViewController?.theme?.name
-            else { return }
-        
-        self.themeViewController?.theme = latestTheme
     }
     
     

@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import AppKit
 
@@ -46,6 +47,8 @@ final class ThemeManager: SettingFileManaging {
     
     
     // MARK: Setting File Managing Properties
+    
+    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Themes"
     let filePathExtensions: [String] = DocumentType.theme.extensions
@@ -120,8 +123,9 @@ final class ThemeManager: SettingFileManaging {
         
         self.cachedSettings[name] = setting
         
+        let change: SettingChange = .updated(from: name, to: name)
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: name)
+            self?.didUpdateSetting.send(change)
             
             completionHandler()
         }

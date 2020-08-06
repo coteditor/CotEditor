@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import Yams
 
@@ -59,6 +60,8 @@ final class SyntaxManager: SettingFileManaging {
     
     
     // MARK: Setting File Managing Properties
+    
+    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Syntaxes"
     let filePathExtensions: [String] = ["yaml", "yml"]
@@ -214,11 +217,11 @@ final class SyntaxManager: SettingFileManaging {
             self.cachedSettings[oldName] = nil
         }
         
+        let change: SettingChange = oldName.flatMap { .updated(from: $0, to: name) } ?? .added(name)
+        
         // update internal cache
         self.updateCache { [weak self] in
-            if let oldName = oldName {
-                self?.notifySettingUpdate(oldName: oldName, newName: name)
-            }
+            self?.didUpdateSetting.send(change)
         }
     }
     

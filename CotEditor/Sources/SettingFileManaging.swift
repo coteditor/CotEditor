@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import AppKit.NSApplication
 
@@ -34,23 +35,41 @@ enum SettingFileType {
 }
 
 
+enum SettingChange {
+    
+    case added(_ name: String)
+    case removed(_ name: String)
+    case updated(from: String, to: String)
+    
+    
+    var old: String? {
+        
+        switch self {
+            case .removed(let name), .updated(from: let name, to: _):
+                return name
+            case .added:
+                return nil
+        }
+    }
+    
+    
+    var new: String? {
+        
+        switch self {
+            case .added(let name), .updated(from: _, to: let name):
+                return name
+            case .removed:
+                return nil
+        }
+    }
+    
+}
+
+
 // MARK: Notifications
 
 /// Posted when the line-up of setting files did update. The sender is a manager.
 let didUpdateSettingListNotification = Notification.Name("SettingFileManagerDidUpdateSettingList")
-
-/// Posted when a setting file is updated. Information about new/previous setting names are in userInfo. The sender is a manager.
-let didUpdateSettingNotification = Notification.Name("SettingFileManagerDidUpdateSetting")
-
-extension Notification {
-    
-    /// general notification's userInfo keys
-    enum UserInfoKey {
-        
-        static let old = "OldNameKey"
-        static let new = "NewNameKey"
-    }
-}
 
 
 
@@ -59,6 +78,9 @@ extension Notification {
 protocol SettingFileManaging: SettingManaging {
     
     associatedtype Setting
+    
+    /// Publishes when a setting file is updated with new/previous setting names.
+    var didUpdateSetting: PassthroughSubject<SettingChange, Never> { get }
     
     
     /// directory name in both Application Support and bundled Resources
@@ -235,8 +257,9 @@ extension SettingFileManaging {
         
         self.cachedSettings[name] = nil
         
+        let change: SettingChange = .removed(name)
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: nil)
+            self?.didUpdateSetting.send(change)
         }
     }
     
@@ -252,8 +275,9 @@ extension SettingFileManaging {
         
         self.cachedSettings[name] = nil
         
+        let change: SettingChange = .updated(from: name, to: name)
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: name)
+            self?.didUpdateSetting.send(change)
         }
     }
     
@@ -290,8 +314,9 @@ extension SettingFileManaging {
         self.cachedSettings[name] = nil
         self.cachedSettings[newName] = nil
         
+        let change: SettingChange = .updated(from: name, to: newName)
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: newName)
+            self?.didUpdateSetting.send(change)
         }
     }
     
@@ -370,16 +395,6 @@ extension SettingFileManaging {
                 completionHandler()
             }
         }
-    }
-    
-    
-    /// notify about change of a managed setting
-    func notifySettingUpdate(oldName: String, newName: String?) {
-        
-        var userInfo = [Notification.UserInfoKey.old: oldName]
-        userInfo[Notification.UserInfoKey.new] = newName
-        
-        NotificationCenter.default.post(name: didUpdateSettingNotification, object: self, userInfo: userInfo)
     }
     
     

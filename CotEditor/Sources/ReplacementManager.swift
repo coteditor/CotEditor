@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 
 final class ReplacementManager: SettingFileManaging {
@@ -36,6 +37,8 @@ final class ReplacementManager: SettingFileManaging {
     
     
     // MARK: Setting File Managing Properties
+    
+    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Replacements"
     let filePathExtensions: [String] = DocumentType.replacement.extensions
@@ -75,8 +78,9 @@ final class ReplacementManager: SettingFileManaging {
         
         self.cachedSettings[name] = setting
         
+        let change: SettingChange = .updated(from: name, to: name)
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: name)
+            self?.didUpdateSetting.send(change)
             
             completionHandler()
         }
