@@ -69,13 +69,6 @@ final class DocumentInfo: NSObject {
 
 final class DocumentAnalyzer: NSObject {
     
-    // MARK: Notification Names
-    
-    static let didUpdateFileInfoNotification = Notification.Name("DocumentAnalyzerDidUpdateFileInfo")
-    static let didUpdateModeInfoNotification = Notification.Name("DocumentAnalyzerDidUpdateModeInfo")
-    static let didUpdateEditorInfoNotification = Notification.Name("DocumentAnalyzerDidUpdateEditorInfo")
-    
-    
     // MARK: Public Properties
     
     var shouldUpdateEditorInfo = false  // need to update all editor info
@@ -123,8 +116,6 @@ final class DocumentAnalyzer: NSObject {
         guard let document = self.document else { return assertionFailure() }
         
         self.info.file = document.fileInfo
-        
-        NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateFileInfoNotification, object: self)
     }
     
     
@@ -134,8 +125,6 @@ final class DocumentAnalyzer: NSObject {
         guard let document = self.document else { return assertionFailure() }
         
         self.info.mode = document.modeInfo
-        
-        NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateModeInfoNotification, object: self)
     }
     
     
@@ -217,8 +206,6 @@ final class DocumentAnalyzer: NSObject {
                 }
                 self.lastEidorCountResult = result
                 self.info.editor = result.info
-                
-                NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
         }
         

@@ -23,12 +23,14 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class StatusBarController: NSViewController {
     
     // MARK: Private Properties
     
+    private var infoObservers: Set<AnyCancellable> = []
     private var defaultsObservers: [UserDefaultsObservation] = []
     private let byteCountFormatter = ByteCountFormatter()
     
@@ -112,13 +114,11 @@ final class StatusBarController: NSViewController {
     weak var documentAnalyzer: DocumentAnalyzer? {
         
         willSet {
+            self.infoObservers.removeAll()
+            
             guard let analyzer = documentAnalyzer else { return }
             
             analyzer.shouldUpdateStatusEditorInfo = false
-            
-            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
-            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
-            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateModeInfoNotification, object: analyzer)
         }
         
         didSet {
@@ -126,9 +126,15 @@ final class StatusBarController: NSViewController {
             
             analyzer.shouldUpdateStatusEditorInfo = self.isViewShown
             
-            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateModeInfoNotification, object: analyzer)
+            analyzer.publisher(for: \.info.editor)
+                .sink { [weak self] _ in self?.updateEditorStatus() }
+                .store(in: &self.infoObservers)
+            analyzer.publisher(for: \.info.file)
+                .sink { [weak self] _ in self?.updateDocumentStatus() }
+                .store(in: &self.infoObservers)
+            analyzer.publisher(for: \.info.mode)
+                .sink { [weak self] _ in self?.updateDocumentStatus() }
+                .store(in: &self.infoObservers)
             
             self.updateEditorStatus()
             self.updateDocumentStatus()
@@ -140,7 +146,7 @@ final class StatusBarController: NSViewController {
     // MARK: Private Methods
     
     /// update left side text
-    @objc private func updateEditorStatus() {
+    private func updateEditorStatus() {
         
         assert(Thread.isMainThread)
         
@@ -183,7 +189,7 @@ final class StatusBarController: NSViewController {
     
     
     /// update right side text and readonly icon state
-    @objc private func updateDocumentStatus() {
+    private func updateDocumentStatus() {
         
         assert(Thread.isMainThread)
         
