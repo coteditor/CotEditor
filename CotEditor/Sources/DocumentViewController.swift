@@ -185,6 +185,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     override var representedObject: Any? {
         
         willSet {
+            self.outlineSubscriptions.removeAll()
+            
             guard let document = representedObject as? Document else { return }
             
             NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
@@ -198,7 +200,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
             document.textStorage.delegate = self
-            self.subscribe(syntaxPerser: document.syntaxParser)
             
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
@@ -228,6 +229,24 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
                                                    name: Document.didChangeSyntaxStyleNotification,
                                                    object: document)
+            
+            // observe syntaxParser for outline update
+            document.syntaxParser.$outlineItems
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] (outlineItems) in
+                    self?.editorViewControllers
+                        .compactMap { $0.navigationBarController }
+                        .forEach { $0.outlineItems = outlineItems }
+                }
+                .store(in: &self.outlineSubscriptions)
+            document.syntaxParser.$outlineProgress
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] (progress) in
+                    self?.editorViewControllers
+                        .compactMap { $0.navigationBarController }
+                        .forEach { $0.outlineProgress = progress }
+                }
+                .store(in: &self.outlineSubscriptions)
         }
     }
     
@@ -387,7 +406,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         for viewController in self.editorViewControllers {
             viewController.apply(style: syntaxParser.style)
         }
-        self.subscribe(syntaxPerser: syntaxParser)
         
         syntaxParser.invalidateOutline()
         self.invalidateSyntaxHighlight()
@@ -829,33 +847,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     
     // MARK: Private Methods
-    
-    /// Observe syntaxParser for outline update.
-    ///
-    /// - Parameter syntaxPerser: The syntax parser to observe.
-    private func subscribe(syntaxPerser: SyntaxParser) {
-        
-        self.outlineSubscriptions.removeAll()
-        
-        syntaxPerser.$outlineItems
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (outlineItems) in
-                self?.editorViewControllers
-                    .compactMap { $0.navigationBarController }
-                    .forEach { $0.outlineItems = outlineItems }
-            }
-            .store(in: &self.outlineSubscriptions)
-        
-        syntaxPerser.$outlineProgress
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (progress) in
-                self?.editorViewControllers
-                    .compactMap { $0.navigationBarController }
-                    .forEach { $0.outlineProgress = progress }
-            }
-            .store(in: &self.outlineSubscriptions)
-    }
-    
     
     /// Invalidate the current syntax highlight.
     ///
