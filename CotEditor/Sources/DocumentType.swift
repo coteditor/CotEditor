@@ -1,5 +1,5 @@
 //
-//  AppInfo.swift
+//  DocumentType.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,17 +25,10 @@
 
 struct DocumentType {
     
-    let UTType: String
-    let extensions: [String]
+    var utType: String
+    var extensions: [String]
     
     
-    static let theme = DocumentType(UTType: "com.coteditor.CotEditor.theme", extensions: ["cottheme"])
-    static let replacement = DocumentType(UTType: "com.coteditor.CotEditor.replacement", extensions: ["cotrpl"])
-}
-
-
-
-enum AppVersion {
-    
-    static let version3_0 = 142
+    static let theme = Self(utType: "com.coteditor.CotEditor.theme", extensions: ["cottheme"])
+    static let replacement = Self(utType: "com.coteditor.CotEditor.replacement", extensions: ["cotrpl"])
 }

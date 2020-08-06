@@ -251,7 +251,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
+                                                   .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -270,7 +270,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
-                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
+                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
         { [unowned self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             
             guard let fileURL = draggingItem.item as? URL else { return }

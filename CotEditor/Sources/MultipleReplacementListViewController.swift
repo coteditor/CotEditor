@@ -392,7 +392,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])
+                                                   .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -411,7 +411,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
-                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])
+                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
         { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
