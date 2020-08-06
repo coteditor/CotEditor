@@ -27,41 +27,6 @@
 import Combine
 import Cocoa
 
-extension LineEnding {
-    
-    init?(index: Int) {
-        
-        switch index {
-            case 0:
-                self = .lf
-            case 1:
-                self = .cr
-            case 2:
-                self = .crlf
-            default:
-                return nil
-        }
-    }
-    
-    
-    var index: Int {
-        
-        switch self {
-            case .lf:
-                return 0
-            case .cr:
-                return 1
-            case .crlf:
-                return 2
-            default:
-                return -1
-        }
-    }
-    
-}
-
-
-
 final class ToolbarController: NSObject {
     
     // MARK: Public Properties
