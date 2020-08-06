@@ -188,8 +188,8 @@ private extension CFStringEncoding {
         
         // styled encoding name
         let encoding = String.Encoding(cfEncoding: self)
-        let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
-        let attrEncodingName = NSAttributedString(string: encodingName)
+        let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: withUTF8BOM)
+        let attrEncodingName = NSAttributedString(string: fileEncoding.localizedName)
         
         let ianaName = (CFStringConvertEncodingToIANACharSetName(self) as String?) ?? "-"
         let attrIanaName = NSAttributedString(string: " : " + ianaName,

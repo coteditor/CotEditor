@@ -58,8 +58,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
-    private(set) var encoding: String.Encoding
-    private(set) var hasUTF8BOM = false
+    private(set) var fileEncoding: FileEncoding
     private(set) var lineEnding: LineEnding
     private(set) var fileAttributes: [FileAttributeKey: Any]?
     
@@ -93,11 +92,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
-        self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
-        if self.encoding == .utf8 {
-            self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
-        }
+        let defaultEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
+        let encoding = String.availableStringEncodings.contains(defaultEncoding) ? defaultEncoding : .utf8
+        self.fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: (encoding == .utf8) && UserDefaults.standard[.saveUTF8BOM])
+        
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
@@ -121,7 +119,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         super.encodeRestorableState(with: coder)
         
-        coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
+        coder.encode(Int(self.fileEncoding.encoding.rawValue), forKey: SerializationKey.readingEncoding)
         coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
@@ -283,8 +281,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         document.setSyntaxStyle(name: self.syntaxParser.style.name)
         document.lineEnding = self.lineEnding
-        document.encoding = self.encoding
-        document.hasUTF8BOM = self.hasUTF8BOM
+        document.fileEncoding = self.fileEncoding
         document.isVerticalText = self.isVerticalText
         document.isExecutable = self.isExecutable
         
@@ -321,8 +318,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set read values
-        self.encoding = file.encoding
-        self.hasUTF8BOM = file.hasUTF8BOM
+        self.fileEncoding = file.fileEncoding
         self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // notify
@@ -354,23 +350,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to async-saving.
         
-        let encoding = self.encoding
-        let needsUTF8BOM = (encoding == .utf8) && self.hasUTF8BOM
+        let fileEncoding = self.fileEncoding
         
         // convert Yen sign in consideration of the current encoding
-        let string = self.string.convertingYenSign(for: encoding)
+        let string = self.string.convertingYenSign(for: fileEncoding.encoding)
         
         // unblock the user interface, since fetching current document state has been done here
         self.unblockUserInteraction()
         
         // get data from string to save
-        guard var data = string.data(using: encoding, allowLossyConversion: true) else {
+        guard var data = string.data(using: fileEncoding.encoding, allowLossyConversion: true) else {
             throw CocoaError.error(.fileWriteInapplicableStringEncoding,
-                                   userInfo: [NSStringEncodingErrorKey: encoding.rawValue])
+                                   userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
         }
         
         // add UTF-8 BOM if needed
-        if needsUTF8BOM {
+        if fileEncoding.withUTF8BOM {
             data.insert(contentsOf: Unicode.BOM.utf8.sequence, at: 0)
         }
         
@@ -455,7 +450,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to async-saving.
         
         // store current state here, since the main thread will already be unblocked after `data(ofType:)`
-        let encoding = self.encoding
+        let encoding = self.fileEncoding.encoding
         let isVerticalText = self.isVerticalText
         
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
@@ -735,7 +730,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         switch menuItem.action {
             case #selector(changeEncoding(_:)):
-                let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
+                let encodingInt = Int(self.fileEncoding.encoding.rawValue)
+                let encodingTag = self.fileEncoding.withUTF8BOM ? -encodingInt : encodingInt
                 menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
             case #selector(changeLineEnding(_:)):
@@ -795,7 +791,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // do nothing if given encoding is the same as current one
-        if encoding == self.encoding { return }
+        if encoding == self.fileEncoding.encoding { return }
         
         // reinterpret
         self.readingEncoding = encoding
@@ -803,7 +799,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
             
         } catch {
-            self.readingEncoding = self.encoding
+            self.readingEncoding = self.fileEncoding.encoding
             
             throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
@@ -813,29 +809,27 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change file encoding registering process to the undo manager
     ///
     /// - Throws: `EncodingError` (Kind.lossyConversion) can be thorwn but only if `lossy` flag is `true`.
-    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, lossy: Bool) throws {
+    func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
         
-        guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
+        guard fileEncoding != self.fileEncoding else { return }
         
         // check if conversion is lossy
-        guard lossy || self.string.canBeConverted(to: encoding) else {
-            throw EncodingError(kind: .lossyConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
+        guard lossy || self.string.canBeConverted(to: fileEncoding.encoding) else {
+            throw EncodingError(kind: .lossyConversion, fileEncoding: fileEncoding, attempter: self)
         }
         
         // register undo
         if let undoManager = self.undoManager {
-            let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
-            undoManager.registerUndo(withTarget: self) { [currentEncoding = self.encoding, currentHasUTF8BOM = self.hasUTF8BOM] target in
-                try? target.changeEncoding(to: currentEncoding, withUTF8BOM: currentHasUTF8BOM, lossy: lossy)
+            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding] target in
+                try? target.changeEncoding(to: currentFileEncoding, lossy: lossy)
             }
-            undoManager.setActionName(String(format: "Encoding to “%@”".localized, encodingName))
+            undoManager.setActionName(String(format: "Encoding to “%@”".localized, fileEncoding.localizedName))
         }
         
         // update encoding
-        self.encoding = encoding
-        self.hasUTF8BOM = withUTF8BOM
+        self.fileEncoding = fileEncoding
         
         // notify
         NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
@@ -933,10 +927,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change document file encoding
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
-        let encoding = String.Encoding(rawValue: UInt(abs(sender.tag)))
-        let withUTF8BOM = (sender.tag == -Int(String.Encoding.utf8.rawValue))
+        let fileEncoding = FileEncoding(encoding: String.Encoding(rawValue: UInt(abs(sender.tag))),
+                                        withUTF8BOM: (sender.tag == -Int(String.Encoding.utf8.rawValue)))
         
-        guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
+        guard fileEncoding != self.fileEncoding else { return }
         
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
@@ -952,9 +946,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // change encoding immediately if there is nothing to worry about
             if self.fileURL == nil ||
                 self.textStorage.string.isEmpty ||
-                (encoding == .utf8 && self.encoding == .utf8) {
+                (fileEncoding.encoding == .utf8 && self.fileEncoding.encoding == .utf8) {
                 do {
-                    try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+                    try self.changeEncoding(to: fileEncoding, lossy: false)
                     completionHandler(true)
                 } catch {
                     self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
@@ -963,10 +957,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             
             // ask whether just change the encoding or reinterpret docuemnt file
-            let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
             let alert = NSAlert()
             alert.messageText = "File encoding".localized
-            alert.informativeText = String(format: "Do you want to convert or reinterpret this document using “%@”?".localized, encodingName)
+            alert.informativeText = String(format: "Do you want to convert or reinterpret this document using “%@”?".localized, fileEncoding.localizedName)
             alert.addButton(withTitle: "Convert".localized)
             alert.addButton(withTitle: "Reinterpret".localized)
             alert.addButton(withTitle: "Cancel".localized)
@@ -976,7 +969,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 switch returnCode {
                     case .alertFirstButtonReturn:  // = Convert
                         do {
-                            try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+                            try self.changeEncoding(to: fileEncoding, lossy: false)
                             completionHandler(true)
                         } catch {
                             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
@@ -987,7 +980,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = "The document has unsaved changes.".localized
-                            alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, encodingName)
+                            alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, fileEncoding.localizedName)
                             alert.addButton(withTitle: "Cancel".localized)
                             alert.addButton(withTitle: "Discard Changes".localized)
                             
@@ -1002,7 +995,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         
                         // reinterpret
                         do {
-                            try self.reinterpret(encoding: encoding)
+                            try self.reinterpret(encoding: fileEncoding.encoding)
                             completionHandler(true)
                         } catch {
                             NSSound.beep()
@@ -1031,7 +1024,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// insert IANA CharSet name to editor's insertion point
     @IBAction func insertIANACharSetName(_ sender: Any?) {
         
-        guard let string = self.encoding.ianaCharSetName else { return }
+        guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
         
         self.insert(string: string)
     }
@@ -1080,8 +1073,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// check if the content can be saved with the file encoding
     private func checkSavingSafetyForConverting() throws {
         
-        guard self.string.canBeConverted(to: self.encoding) else {
-            throw EncodingError(kind: .lossySaving, encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
+        guard self.string.canBeConverted(to: self.fileEncoding.encoding) else {
+            throw EncodingError(kind: .lossySaving, fileEncoding: self.fileEncoding, attempter: self)
         }
     }
     
@@ -1213,17 +1206,14 @@ private struct EncodingError: LocalizedError, RecoverableError {
     }
     
     let kind: ErrorKind
-    let encoding: String.Encoding
-    let withUTF8BOM: Bool
+    let fileEncoding: FileEncoding
     let attempter: Document
     
     
     
     var errorDescription: String? {
         
-        let encodingName = String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
-        
-        return String(format: "Some characters would have to be changed or deleted in saving as “%@”.".localized, encodingName)
+        return String(format: "Some characters would have to be changed or deleted in saving as “%@”.".localized, self.fileEncoding.localizedName)
     }
     
     
@@ -1273,7 +1263,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case .lossyConversion:
                 switch recoveryOptionIndex {
                     case 0:  // == Change Encoding
-                        try? self.attempter.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, lossy: true)
+                        try? self.attempter.changeEncoding(to: self.fileEncoding, lossy: true)
                         self.showIncompatibleCharacters()
                         return true
                     case 1:  // == Cancel

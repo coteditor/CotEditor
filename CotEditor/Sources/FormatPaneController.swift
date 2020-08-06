@@ -420,8 +420,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             // add "UTF-8 with BOM" item
             if item.tag == utf8Int {
+                let fileEncoding = FileEncoding(encoding: .utf8, withUTF8BOM: true)
                 let bomItem = NSMenuItem()
-                bomItem.title = String.localizedName(of: .utf8, withUTF8BOM: true)
+                bomItem.title = fileEncoding.localizedName
                 bomItem.tag = utf8Int
                 bomItem.representedObject = isUTF8WithBOMFlag
                 popupButton.menu?.addItem(bomItem)

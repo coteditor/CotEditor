@@ -79,7 +79,7 @@ final class IncompatibleCharacterScanner {
         
         guard let document = self.document else { return }
         
-        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.encoding)
+        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.fileEncoding.encoding)
         self.updateTask.cancel()
         
         self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)

@@ -152,10 +152,10 @@ final class ToolbarController: NSObject {
     /// select item in the line ending menu
     @objc private func invalidateEncodingSelection() {
         
-        guard let document = self.document else { return }
+        guard let fileEncoding = self.document?.fileEncoding else { return }
         
-        var tag = Int(document.encoding.rawValue)
-        if document.hasUTF8BOM {
+        var tag = Int(fileEncoding.encoding.rawValue)
+        if fileEncoding.withUTF8BOM {
             tag *= -1
         }
         

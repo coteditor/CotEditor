@@ -51,8 +51,7 @@ struct DocumentFile {
     let string: String
     let attributes: [FileAttributeKey: Any]
     let lineEnding: LineEnding?
-    let encoding: String.Encoding
-    let hasUTF8BOM: Bool
+    let fileEncoding: FileEncoding
     let xattrEncoding: String.Encoding?
     let isVerticalText: Bool
     
@@ -95,8 +94,8 @@ struct DocumentFile {
         self.data = data
         self.attributes = attributes
         self.string = content
-        self.encoding = encoding
-        self.hasUTF8BOM = (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence)
+        self.fileEncoding = FileEncoding(encoding: encoding,
+                                         withUTF8BOM: (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence))
         self.lineEnding = content.detectedLineEnding
     }
     

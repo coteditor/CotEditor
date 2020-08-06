@@ -378,6 +378,8 @@
 		2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9431D286C53003D0C4B /* ScriptManager.swift */; };
 		2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
 		2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
+		2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
+		2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
 		2A8EF014241F0A8A001BDBC0 /* StringLineProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */; };
 		2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */; };
 		2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
@@ -1146,6 +1148,7 @@
 		2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacter.swift; sourceTree = "<group>"; };
 		2A8DA9431D286C53003D0C4B /* ScriptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptManager.swift; sourceTree = "<group>"; };
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncoding.swift; sourceTree = "<group>"; };
 		2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLineProcessingTests.swift; sourceTree = "<group>"; };
 		2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCommentingTests.swift; sourceTree = "<group>"; };
 		2A9082E11D32456300228F50 /* NSTextView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Layout.swift"; sourceTree = "<group>"; };
@@ -2025,6 +2028,7 @@
 				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
+				2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */,
 				2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
@@ -2795,7 +2799,6 @@
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
-				2A91C31C1D1BFE47007CF8BE /* DocumentType.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
@@ -2832,6 +2835,7 @@
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
+				2A91C31C1D1BFE47007CF8BE /* DocumentType.swift in Sources */,
 				2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
@@ -2859,6 +2863,7 @@
 				2A12C7FD1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2A4682B31D2F6B580005410E /* FileDropComposer.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
+				2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
@@ -3097,7 +3102,6 @@
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
-				2A91C31B1D1BFE47007CF8BE /* DocumentType.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
@@ -3136,6 +3140,7 @@
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
+				2A91C31B1D1BFE47007CF8BE /* DocumentType.swift in Sources */,
 				2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
@@ -3161,6 +3166,7 @@
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
+				2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,

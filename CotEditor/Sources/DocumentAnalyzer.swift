@@ -248,7 +248,7 @@ private extension Document {
     var modeInfo: DocumentInfo.ModeInfo {
         
         let info = DocumentInfo.ModeInfo()
-        info.encoding = String.localizedName(of: self.encoding, withUTF8BOM: self.hasUTF8BOM)
+        info.encoding = self.fileEncoding.localizedName
         info.lineEndings = self.lineEnding.name
         
         return info
