@@ -90,7 +90,7 @@ protocol SettingFileManaging: SettingManaging {
     var settingFileType: SettingFileType { get }
     
     /// list of names of setting file name (without extension)
-    var settingNames: [String] { get }
+    var settingNames: [String] { get set }
     
     /// list of names of setting file name which are bundled (without extension)
     var bundledSettingNames: [String] { get }
@@ -255,9 +255,8 @@ extension SettingFileManaging {
         self.cachedSettings[name] = nil
         
         let change: SettingChange = .removed(name)
-        self.updateCache { [weak self] in
-            self?.didUpdateSetting.send(change)
-        }
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     
@@ -273,9 +272,8 @@ extension SettingFileManaging {
         self.cachedSettings[name] = nil
         
         let change: SettingChange = .updated(from: name, to: name)
-        self.updateCache { [weak self] in
-            self?.didUpdateSetting.send(change)
-        }
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     
@@ -294,7 +292,9 @@ extension SettingFileManaging {
         try FileManager.default.copyItem(at: sourceURL,
                                          to: self.preparedURLForUserSetting(name: newName))
         
-        self.updateCache()
+        let change: SettingChange = .added(newName)
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     
@@ -312,9 +312,8 @@ extension SettingFileManaging {
         self.cachedSettings[newName] = nil
         
         let change: SettingChange = .updated(from: name, to: newName)
-        self.updateCache { [weak self] in
-            self?.didUpdateSetting.send(change)
-        }
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     
@@ -374,22 +373,41 @@ extension SettingFileManaging {
     }
     
     
-    /// update internal cache data
-    func updateCache(completionHandler: @escaping (() -> Void) = {}) {
+    /// Reload internal cache data from the user domain.
+    func updateSettingList(change: SettingChange) {
+        
+        guard change.old != change.new else { return }
+        
+        var settingNames = self.settingNames
+        
+        if let old = change.old {
+            settingNames.removeFirst(old)
+        }
+        if let new = change.new, !settingNames.contains(new) {
+            settingNames.append(new)
+        }
+        settingNames.sort(options: [.localized, .caseInsensitive])
+        
+        guard settingNames != self.settingNames else { return }
+        
+        self.settingNames = settingNames
+        
+        self.didUpdateSettingList.send(self.settingNames)
+    }
+    
+    
+    /// Reload internal cache data from the user domain.
+    func reloadCache() {
         
         DispatchQueue.global(qos: .utility).async { [weak self, previousSettingNames = self.settingNames] in
             guard let self = self else { return assertionFailure() }
             
             self.checkUserSettings()
             
-            let didUpdateList = self.settingNames != previousSettingNames
+            guard self.settingNames != previousSettingNames else { return }
             
             DispatchQueue.main.sync {
-                if didUpdateList {
-                    self.didUpdateSettingList.send(self.settingNames)
-                }
-                
-                completionHandler()
+                self.didUpdateSettingList.send(self.settingNames)
             }
         }
     }
@@ -432,7 +450,9 @@ extension SettingFileManaging {
         }
         
         // update internal cache
-        self.updateCache()
+        let change: SettingChange = self.settingNames.contains(name) ? .updated(from: name, to: name) : .added(name)
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
 }

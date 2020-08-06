@@ -68,7 +68,7 @@ final class SyntaxManager: SettingFileManaging {
     let filePathExtensions: [String] = ["yaml", "yml"]
     let settingFileType: SettingFileType = .syntaxStyle
     
-    private(set) var settingNames: [SettingName] = []
+    var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
     
     
@@ -218,12 +218,10 @@ final class SyntaxManager: SettingFileManaging {
             self.cachedSettings[oldName] = nil
         }
         
-        let change: SettingChange = oldName.flatMap { .updated(from: $0, to: name) } ?? .added(name)
-        
         // update internal cache
-        self.updateCache { [weak self] in
-            self?.didUpdateSetting.send(change)
-        }
+        let change: SettingChange = oldName.flatMap { .updated(from: $0, to: name) } ?? .added(name)
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     

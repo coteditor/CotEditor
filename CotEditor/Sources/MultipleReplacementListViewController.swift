@@ -150,11 +150,11 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         guard let tableView = self.tableView else { return }
         
-        try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
-            let row = ReplacementManager.shared.settingNames.firstIndex(of: settingName) ?? 0
-            
-            tableView.selectRowIndexes([row], byExtendingSelection: false)
-        }
+        guard let settingName = try? ReplacementManager.shared.createUntitledSetting() else { return }
+        
+        let row = ReplacementManager.shared.settingNames.firstIndex(of: settingName) ?? 0
+        
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
     }
     
     
@@ -249,7 +249,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     /// reload all setting files in Application Support
     @IBAction func reloadAllSettings(_ sender: Any?) {
         
-        ReplacementManager.shared.updateCache()
+        ReplacementManager.shared.reloadCache()
     }
     
     

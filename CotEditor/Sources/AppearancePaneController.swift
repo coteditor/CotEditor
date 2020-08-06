@@ -444,11 +444,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         guard let tableView = self.themeTableView else { return assertionFailure() }
         
-        try? ThemeManager.shared.createUntitledSetting { themeName in
-            let row = ThemeManager.shared.settingNames.firstIndex(of: themeName) ?? 0
-            
-            tableView.selectRowIndexes([row], byExtendingSelection: false)
-        }
+        guard let settingName = try? ThemeManager.shared.createUntitledSetting() else { return }
+        
+        let row = ThemeManager.shared.settingNames.firstIndex(of: settingName) ?? 0
+        
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
     }
     
     
@@ -550,7 +550,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     @IBAction func reloadAllThemes(_ sender: Any?) {
         
-        ThemeManager.shared.updateCache()
+        ThemeManager.shared.reloadCache()
     }
     
     
