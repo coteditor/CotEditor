@@ -374,7 +374,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions + ["plist"]
+        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions
         
         openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
@@ -553,11 +553,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     private func importSyntaxStyle(fileURL: URL) {
         
         do {
-            if fileURL.pathExtension == "plist" {
-                try SyntaxManager.shared.importLegacyStyle(fileURL: fileURL)
-            } else {
-                try SyntaxManager.shared.importSetting(fileURL: fileURL)
-            }
+            try SyntaxManager.shared.importSetting(fileURL: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
