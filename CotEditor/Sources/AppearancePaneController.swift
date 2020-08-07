@@ -585,6 +585,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
+        if #available(macOS 10.16, *) {
+            alert.buttons.last?.hasDestructiveAction = true
+        }
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in
