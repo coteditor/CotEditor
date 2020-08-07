@@ -649,14 +649,9 @@
                     <splitViewItems>
                         <splitViewItem holdingPriority="251" id="gyL-KP-Ao2"/>
                     </splitViewItems>
-                    <splitView key="splitView" misplaced="YES" dividerStyle="paneSplitter" id="erk-uh-Ad4" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="erk-uh-Ad4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="DividerColor"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="delegate" destination="vcx-nD-eDH" id="iQE-L1-593"/>
                         </connections>
