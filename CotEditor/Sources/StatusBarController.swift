@@ -28,15 +28,30 @@ import Cocoa
 
 final class StatusBarController: NSViewController {
     
+    // MARK: Public Properties
+    
+    weak var document: Document? {
+        
+        didSet {
+            if let document = document, self.isViewShown {
+                self.setup(for: document)
+            }
+        }
+    }
+    
+    
     // MARK: Private Properties
     
-    private var infoObservers: Set<AnyCancellable> = []
+    private var documentObservers: Set<AnyCancellable> = []
+    private var encodingListObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
-    private let byteCountFormatter = ByteCountFormatter()
     
     @objc private dynamic var editorStatus: NSAttributedString?
-    @objc private dynamic var documentStatus: NSAttributedString?
+    @objc private dynamic var fileSize: NSNumber?
     @objc private dynamic var showsReadOnly = false
+    
+    @IBOutlet private weak var encodingPopUpButton: NSPopUpButton?
+    @IBOutlet private weak var lineEndingPopUpButton: NSPopUpButton?
     
     
     
@@ -48,9 +63,7 @@ final class StatusBarController: NSViewController {
         
         super.viewDidLoad()
         
-        self.byteCountFormatter.isAdaptive = false
-        
-        if NSAppKitVersion.current >= .macOS11 {
+        if #available(macOS 10.16, *) {
             (self.view as? NSVisualEffectView)?.material = .titlebar
         }
         
@@ -66,14 +79,12 @@ final class StatusBarController: NSViewController {
         
         super.viewWillAppear()
         
-        assert(self.documentAnalyzer != nil)
-        
-        self.documentAnalyzer?.shouldUpdateStatusEditorInfo = true
-        self.documentAnalyzer?.invalidateEditorInfo()
+        // observe popup menu line-up change
+        self.buildEncodingPopupButton()
+        self.encodingListObserver = EncodingManager.shared.didUpdateSettingList
+            .sink { [weak self] _ in self?.buildEncodingPopupButton() }
         
         // observe change in defaults
-        self.defaultsObservers.forEach { $0.invalidate() }
-        self.defaultsObservers = []
         let editorDefaultKeys: [DefaultKeys] = [
             .showStatusBarLines,
             .showStatusBarChars,
@@ -82,17 +93,13 @@ final class StatusBarController: NSViewController {
             .showStatusBarLine,
             .showStatusBarColumn,
         ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: editorDefaultKeys) { [weak self] (_, _) in
+        self.defaultsObservers = UserDefaults.standard.observe(keys: editorDefaultKeys) { [weak self] (_, _) in
             self?.updateEditorStatus()
         }
-        let documentDefaultKeys: [DefaultKeys] = [
-            .showStatusBarEncoding,
-            .showStatusBarLineEndings,
-            .showStatusBarFileSize,
-        ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [weak self] (_, _) in
-            self?.updateDocumentStatus()
-        }
+        
+        guard let document = self.document else { return assertionFailure() }
+        
+        self.setup(for: document)
     }
     
     
@@ -101,59 +108,55 @@ final class StatusBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.documentAnalyzer?.shouldUpdateStatusEditorInfo = false
+        self.encodingListObserver = nil
+        self.defaultsObservers.removeAll()
         
-        self.defaultsObservers.forEach { $0.invalidate() }
-        self.defaultsObservers = []
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    weak var documentAnalyzer: DocumentAnalyzer? {
+        self.document?.analyzer.shouldUpdateStatusEditorInfo = false
         
-        willSet {
-            self.infoObservers.removeAll()
-            
-            guard let analyzer = documentAnalyzer else { return }
-            
-            analyzer.shouldUpdateStatusEditorInfo = false
-        }
-        
-        didSet {
-            guard let analyzer = documentAnalyzer else { return }
-            
-            analyzer.shouldUpdateStatusEditorInfo = self.isViewShown
-            
-            analyzer.publisher(for: \.info.editor)
-                .sink { [weak self] _ in self?.updateEditorStatus() }
-                .store(in: &self.infoObservers)
-            analyzer.publisher(for: \.info.file)
-                .sink { [weak self] _ in self?.updateDocumentStatus() }
-                .store(in: &self.infoObservers)
-            analyzer.publisher(for: \.info.mode)
-                .sink { [weak self] _ in self?.updateDocumentStatus() }
-                .store(in: &self.infoObservers)
-            
-            self.updateEditorStatus()
-            self.updateDocumentStatus()
-        }
+        self.documentObservers.removeAll()
     }
     
     
     
     // MARK: Private Methods
     
+    /// Update UI and observaion for the given document.
+    private func setup(for document: Document) {
+        
+        document.analyzer.shouldUpdateStatusEditorInfo = true
+        document.analyzer.invalidateEditorInfo()
+        
+        self.updateEditorStatus()
+        self.updateDocumentStatus()
+        self.invalidateEncodingSelection()
+        self.invalidateLineEndingSelection(to: document.lineEnding)
+        
+        // observe editor info update
+        document.analyzer.publisher(for: \.info.editor)
+            .sink { [weak self] _ in self?.updateEditorStatus() }
+            .store(in: &self.documentObservers)
+        document.analyzer.publisher(for: \.info.file)
+            .sink { [weak self] _ in self?.updateDocumentStatus() }
+            .store(in: &self.documentObservers)
+        
+        // observe document status change
+        document.didChangeEncoding
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.invalidateEncodingSelection() }
+            .store(in: &self.documentObservers)
+        document.didChangeLineEnding
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.invalidateLineEndingSelection(to: $0) }
+            .store(in: &self.documentObservers)
+    }
+    
+    
     /// update left side text
     private func updateEditorStatus() {
         
         assert(Thread.isMainThread)
         
-        guard
-            self.isViewShown,
-            let info = self.documentAnalyzer?.info.editor
-            else { return }
+        guard let info = self.document?.analyzer.info.editor else { return }
         
         let defaults = UserDefaults.standard
         var status: [NSAttributedString] = []
@@ -193,26 +196,43 @@ final class StatusBarController: NSViewController {
         
         assert(Thread.isMainThread)
         
-        guard
-            self.isViewShown,
-            let info = self.documentAnalyzer?.info
-            else { return }
+        guard let info = self.document?.analyzer.info.file else { return }
         
-        let defaults = UserDefaults.standard
-        var status: [NSAttributedString] = []
+        self.showsReadOnly = info.isReadOnly
+        self.fileSize = info.fileSize
+    }
+    
+    
+    /// build encoding popup item
+    private func buildEncodingPopupButton() {
         
-        if defaults[.showStatusBarEncoding] {
-            status.append(.formatted(state: info.mode.encoding))
-        }
-        if defaults[.showStatusBarLineEndings] {
-            status.append(.formatted(state: info.mode.lineEndings))
-        }
-        if defaults[.showStatusBarFileSize] {
-            status.append(.formatted(state: self.byteCountFormatter.string(for: info.file.fileSize)))
-        }
+        guard let popUpButton = self.encodingPopUpButton else { return }
         
-        self.documentStatus = status.joined(separator: .init(string: "   "))
-        self.showsReadOnly = info.file.isReadOnly
+        EncodingManager.shared.updateChangeEncodingMenu(popUpButton.menu!)
+        
+        popUpButton.insertItem(withTitle: "File Encoding".localized, at: 0)
+        popUpButton.item(at: 0)?.isEnabled = false
+        
+        self.invalidateEncodingSelection()
+    }
+    
+    
+    /// select item in the encoding popup menu
+    private func invalidateLineEndingSelection(to lineEnding: LineEnding) {
+        
+        self.lineEndingPopUpButton?.selectItem(withTag: lineEnding.index)
+    }
+    
+    
+    /// select item in the line ending menu
+    private func invalidateEncodingSelection() {
+        
+        guard let fileEncoding = self.document?.fileEncoding else { return }
+        
+        let encodingInt = Int(fileEncoding.encoding.rawValue)
+        let tag = fileEncoding.withUTF8BOM ? -encodingInt : encodingInt
+        
+        self.encodingPopUpButton?.selectItem(withTag: tag)
     }
     
 }

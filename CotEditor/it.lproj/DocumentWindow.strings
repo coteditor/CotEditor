@@ -34,30 +34,6 @@
 "JZo-ok-Dks.label" = "Caratteri incompatibili";
 
 
-/* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
-"9p6-Sj-QjF.label" = "Fine riga";  /* Line Endings */
-"9p6-Sj-QjF.paletteLabel" = "Fine riga";  /* Line Endings */
-"9p6-Sj-QjF.toolTip" = "Modifica fine riga";  /* Change line endings */
-
-/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.title" = "LF";
-/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.title" = "CR";
-/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.title" = "CRLF";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.ibShadowedToolTip" = "Mac OS classico";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
-
-/* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
-"VL4-m8-9uC.label" = "Codifica file";  /* File Encoding */
-"VL4-m8-9uC.paletteLabel" = "Codifica file";  /* File Encoding */
-"VL4-m8-9uC.toolTip" = "Modifica codifica file";  /* Change file encoding */
-
 /* Class = "NSToolbarItem"; ObjectID = "rHo-eU-O5x"; */
 "rHo-eU-O5x.label" = "Stile sintassi";  /* Syntax Style */
 "rHo-eU-O5x.paletteLabel" = "Stile sintassi";  /* Syntax Style */
@@ -205,3 +181,26 @@
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
 "hXt-K8-Jwk.ibShadowedToolTip" = "Questo documento è di sola lettura.";
+
+/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "Codifica file";
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
+"q4F-Uw-VL4.title" = "Codifica file";
+
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
+"mS8-3F-93y.title" = "Fine riga";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
+"FNE-H9-iZR.ibShadowedToolTip" = "Fine riga";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "Mac OS classico";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";

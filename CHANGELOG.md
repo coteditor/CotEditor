@@ -13,6 +13,7 @@ Change Log
     - Update the line number view style.
     - Make status bar thicker.
     - Change default settings of items to display in toolbar/status bar.
+- Move line endings/file encoding menus from the toolbar to the status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 - Remove feature to import the legacy syntax style file format that was used in CotEditor 1.x. 
 - [trivial] Optimize the line number calculation in vertical text orientation.

@@ -34,30 +34,6 @@
 "JZo-ok-Dks.label" = "不兼容字符";
 
 
-/* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
-"9p6-Sj-QjF.label" = "行尾";  /* Line Endings */
-"9p6-Sj-QjF.paletteLabel" = "行尾";  /* Line Endings */
-"9p6-Sj-QjF.toolTip" = "改变行尾";  /* Change line endings */
-
-/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.title" = "LF";
-/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.title" = "CR";
-/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.title" = "CRLF";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.ibShadowedToolTip" = "Classic Mac OS";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
-
-/* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
-"VL4-m8-9uC.label" = "文件编码";  /* File Encoding */
-"VL4-m8-9uC.paletteLabel" = "文件编码";  /* File Encoding */
-"VL4-m8-9uC.toolTip" = "改变文件编码";  /* Change file encoding */
-
 /* Class = "NSToolbarItem"; ObjectID = "rHo-eU-O5x"; */
 "rHo-eU-O5x.label" = "语法样式";  /* Syntax Style */
 "rHo-eU-O5x.paletteLabel" = "语法样式";  /* Syntax Style */
@@ -205,3 +181,26 @@
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
 "hXt-K8-Jwk.ibShadowedToolTip" = "这是只读文档。";
+
+/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "文件编码";
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
+"q4F-Uw-VL4.title" = "文件编码";
+
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
+"mS8-3F-93y.title" = "行尾";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
+"FNE-H9-iZR.ibShadowedToolTip" = "行尾";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "Classic Mac OS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";

@@ -195,7 +195,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             // This setter can be invoked twice if the view was initially made for a transient document.
             
-            (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
+            (self.statusBarItem?.viewController as? StatusBarController)?.document = document
             
             document.textStorage.delegate = self
             

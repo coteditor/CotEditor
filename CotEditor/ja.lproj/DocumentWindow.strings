@@ -33,30 +33,6 @@
 "JZo-ok-Dks.label" = "非互換文字";
 
 
-/* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
-"9p6-Sj-QjF.label" = "改行コード";  /* Line Endings */
-"9p6-Sj-QjF.paletteLabel" = "改行コード";  /* Line Endings */
-"9p6-Sj-QjF.toolTip" = "改行コードを変更";  /* Change line endings */
-
-/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.title" = "LF";
-/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.title" = "CR";
-/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.title" = "CRLF";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.ibShadowedToolTip" = "クラシックMac OS";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
-"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
-
-/* Class = "NSToolbarItem"; ObjectID = "VL4-m8-9uC"; */
-"VL4-m8-9uC.label" = "エンコーディング";  /* File Encoding */
-"VL4-m8-9uC.paletteLabel" = "エンコーディング";  /* File Encoding */
-"VL4-m8-9uC.toolTip" = "ファイルエンコーディングを変更";  /* Change file encoding */
-
 /* Class = "NSToolbarItem"; ObjectID = "rHo-eU-O5x"; */
 "rHo-eU-O5x.label" = "シンタックス";  /* Syntax Style */
 "rHo-eU-O5x.paletteLabel" = "シンタックス";  /* Syntax Style */
@@ -204,3 +180,27 @@
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
 "hXt-K8-Jwk.ibShadowedToolTip" = "書類は書き込み不可です。";
+
+/* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "ファイルエンコーディング";
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
+"q4F-Uw-VL4.title" = "ファイルエンコーディング";
+
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
+"mS8-3F-93y.title" = "改行コード";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
+"FNE-H9-iZR.ibShadowedToolTip" = "改行コード";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.ibShadowedToolTip" = "クラシックMac OS";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+
