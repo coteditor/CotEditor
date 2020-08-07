@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,16 +42,16 @@
         <scene sceneID="JxK-9F-xcJ">
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="15"/>
+                    <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
-                                <rect key="frame" x="31" y="-2" width="21" height="19"/>
+                                <rect key="frame" x="32" y="0.0" width="16" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="21" id="NdS-0U-G6w"/>
+                                    <constraint firstAttribute="width" constant="16" id="NdS-0U-G6w"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="NIe-Yu-BHr">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="NIe-Yu-BHr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -60,25 +60,25 @@
                                 </connections>
                             </button>
                             <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
-                                <rect key="frame" x="584" y="-2" width="17" height="19"/>
+                                <rect key="frame" x="580" y="0.0" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="Rrb-OZ-odM"/>
+                                    <constraint firstAttribute="height" constant="20" id="Rrb-OZ-odM"/>
                                     <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="3a0-fm-GbO">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="3a0-fm-GbO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="gJ1-uN-P5E"/>
                                 </connections>
                             </button>
                             <button hidden="YES" toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
-                                <rect key="frame" x="350" y="-2" width="21" height="19"/>
+                                <rect key="frame" x="48" y="0.0" width="16" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="21" id="rrS-MJ-wb5"/>
+                                    <constraint firstAttribute="width" constant="16" id="rrS-MJ-wb5"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="0aN-qE-Zpz">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="0aN-qE-Zpz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -86,17 +86,17 @@
                                     <action selector="selectNextItemOfOutlineMenu:" target="KjS-UJ-AjC" id="b7v-Xr-hG7"/>
                                 </connections>
                             </button>
-                            <popUpButton hidden="YES" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
-                                <rect key="frame" x="51" y="-2" width="300" height="19"/>
+                            <popUpButton hidden="YES" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
+                                <rect key="frame" x="77" y="0.0" width="135" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="499" constant="300" id="EMV-iW-vsD"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="7hJ-QZ-5Wd"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Noe-z9-zXZ" customClass="OutlineMenuButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                <popUpButtonCell key="cell" type="smallSquare" title="&lt;Outline Item&gt;" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="fgm-Hv-H3C" id="Noe-z9-zXZ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" id="EeX-Bi-kba">
                                         <items>
-                                            <menuItem title="&lt;Outline Item&gt;" id="fgm-Hv-H3C"/>
+                                            <menuItem title="&lt;Outline Item&gt;" state="on" id="fgm-Hv-H3C"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -105,11 +105,11 @@
                                 </connections>
                             </popUpButton>
                             <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
-                                <rect key="frame" x="568" y="-2" width="17" height="19"/>
+                                <rect key="frame" x="4" y="0.0" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="HiZ-3C-J5P">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="HiZ-3C-J5P">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -117,39 +117,45 @@
                                     <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="1" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
-                                <rect key="frame" x="59" y="0.0" width="16" height="16"/>
-                            </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
-                                <rect key="frame" x="81" y="1" width="107" height="14"/>
+                                <rect key="frame" x="107" y="3" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
-                                    <font key="font" metaFont="message" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="1" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
+                                <rect key="frame" x="85" y="2" width="16" height="16"/>
+                            </progressIndicator>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="hKG-xL-oDF">
+                                <rect key="frame" x="66" y="4" width="5" height="12"/>
+                            </box>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
+                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" id="0Ge-40-6cs"/>
                             <constraint firstItem="htM-ug-ofP" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="1t0-zI-rPl"/>
-                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="6cS-JS-uMe"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="8" symbolic="YES" id="2MH-a6-qwS"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="6cS-JS-uMe"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" id="A58-M8-L3L"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="8" symbolic="YES" id="AaP-3J-UKA"/>
                             <constraint firstItem="htM-ug-ofP" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="leading" constant="8" id="B4w-9d-cIQ"/>
-                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
-                            <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="-1" id="Lx9-yU-pBc"/>
+                            <constraint firstItem="hKG-xL-oDF" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" constant="4" id="GMe-bg-rbt"/>
+                            <constraint firstItem="hKG-xL-oDF" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="4" id="JFe-uj-hrk"/>
+                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" id="Kke-Sl-ibg"/>
+                            <constraint firstAttribute="bottom" secondItem="hKG-xL-oDF" secondAttribute="bottom" constant="4" id="My7-dE-ZLE"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
-                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" constant="-1" id="PLF-Ig-I6B"/>
-                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="Pdl-aM-DT9"/>
-                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="-1" id="YT4-Oj-3Yn"/>
-                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="31" id="llJ-3L-8Cd"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="lnf-XI-Uu9"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="Pdl-aM-DT9"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="hKG-xL-oDF" secondAttribute="trailing" constant="8" symbolic="YES" id="Y7c-Wu-ekX"/>
+                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" id="YT4-Oj-3Yn"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="lnf-XI-Uu9"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="leading" secondItem="htM-ug-ofP" secondAttribute="trailing" constant="8" symbolic="YES" id="ltj-Xb-WMJ"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MlW-Dz-FOk" secondAttribute="trailing" constant="-1" id="n4T-Zc-kHb"/>
-                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
-                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="qXY-wb-kbw"/>
-                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
-                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
-                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="-1" id="unz-gv-aLb"/>
-                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="vXG-JU-O6t"/>
+                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" id="oZh-rX-9Nd"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="4" id="onf-dY-Bgm"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="qXY-wb-kbw"/>
+                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" id="sNu-uV-dSg"/>
+                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" id="uPK-py-Bfo"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="vXG-JU-O6t"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="zxj-gI-io3"/>
                         </constraints>
                     </visualEffectView>
