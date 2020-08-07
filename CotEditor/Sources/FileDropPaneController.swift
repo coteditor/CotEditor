@@ -238,6 +238,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         alert.informativeText = "Deleted setting can’t be restored.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
+        if #available(macOS 10.16, *) {
+            alert.buttons.last?.hasDestructiveAction = true
+        }
         
         alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             

@@ -16,6 +16,7 @@ Change Log
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 - Remove feature to import the legacy syntax style file format that was used in CotEditor 1.x. 
 - [trivial] Optimize the line number calculation in vertical text orientation.
+- [dev] Update the build environment to Xcode 12 (Swift 5.3, macOS 11 SDK).
 - [dev] Replace DifferenceKit package with native CollectionDifference.
 
 
