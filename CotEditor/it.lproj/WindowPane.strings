@@ -61,10 +61,6 @@
 "JbR-gR-aiA.title" = "Riga";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "Colonna";
-/* Class = "NSButtonCell"; title = "Encoding"; ObjectID = "8m3-5I-Moe"; */
-"8m3-5I-Moe.title" = "Codifica";
-/* Class = "NSButtonCell"; title = "Line endings"; ObjectID = "Ief-Dy-mPR"; */
-"Ief-Dy-mPR.title" = "Fine riga";
 /* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
 "ikB-dS-c4S.title" = "Dimensione file";
 

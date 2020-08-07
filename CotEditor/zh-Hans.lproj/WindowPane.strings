@@ -61,10 +61,6 @@
 "JbR-gR-aiA.title" = "当前行";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "当前列";
-/* Class = "NSButtonCell"; title = "Encoding"; ObjectID = "8m3-5I-Moe"; */
-"8m3-5I-Moe.title" = "编码";
-/* Class = "NSButtonCell"; title = "Line endings"; ObjectID = "Ief-Dy-mPR"; */
-"Ief-Dy-mPR.title" = "行尾";
 /* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
 "ikB-dS-c4S.title" = "文件尺寸";
 
