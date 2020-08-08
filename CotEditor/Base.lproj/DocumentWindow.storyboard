@@ -86,7 +86,7 @@
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4" customClass="MonosizeToolbar" customModule="CotEditor" customModuleProvider="target">
+                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" displayMode="iconOnly" sizeMode="regular" id="peS-bo-gb4" customClass="MonosizeToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" sizingBehavior="auto" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <popUpButton key="view" verticalHuggingPriority="750" id="RTF-Xf-Dgz">
