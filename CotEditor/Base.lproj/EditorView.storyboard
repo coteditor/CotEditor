@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,11 +17,6 @@
                     <splitView key="splitView" identifier="EditorView" misplaced="YES" dividerStyle="thin" id="Kyz-NV-ro4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="DividerColor"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="delegate" destination="sY9-RN-jMg" id="75b-iN-Dc5"/>
                         </connections>
@@ -275,8 +269,5 @@
         <image name="DownArrowTemplate" width="8" height="8"/>
         <image name="OpenSplitTemplate" width="9" height="9"/>
         <image name="UpArrowTemplate" width="8" height="8"/>
-        <namedColor name="DividerColor">
-            <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </namedColor>
     </resources>
 </document>
