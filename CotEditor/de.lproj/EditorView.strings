@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,3 +41,6 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
 "syK-XU-x2I.ibShadowedToolTip" = "Editor teilen";
+
+/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "uXy-HK-1H7"; */
+"uXy-HK-1H7.title" = "Editor teilen";

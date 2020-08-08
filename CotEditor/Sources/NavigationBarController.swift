@@ -82,6 +82,7 @@ final class NavigationBarController: NSViewController {
     
     @IBOutlet private weak var openSplitButton: NSButton?
     @IBOutlet private weak var closeSplitButton: NSButton?
+    @IBOutlet private var editorSplitMenu: NSMenu?
     
     
     
@@ -113,9 +114,7 @@ final class NavigationBarController: NSViewController {
         guard let textView = self.textView else { return assertionFailure() }
         
         self.orientationObserver = textView.publisher(for: \.layoutOrientation, options: .initial)
-            .sink { [weak self] (orientation) in
-                self?.updateTextOrientation(to: orientation)
-            }
+            .sink { [weak self] in self?.updateTextOrientation(to: $0) }
         
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
             .map { $0.object as! NSTextView }
@@ -208,7 +207,7 @@ final class NavigationBarController: NSViewController {
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
         let index = popUp.itemArray[..<popUp.indexOfSelectedItem]
-            .lastIndex { $0.representedObject != nil } ?? 0
+            .lastIndex { $0.representedObject is NSRange } ?? 0
         
         popUp.menu!.performActionForItem(at: index)
     }
@@ -220,7 +219,7 @@ final class NavigationBarController: NSViewController {
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
         let index = popUp.itemArray[(popUp.indexOfSelectedItem + 1)...]
-            .firstIndex { $0.representedObject != nil }
+            .firstIndex { $0.representedObject is NSRange }
         
         if let index = index {
             popUp.menu!.performActionForItem(at: index)
@@ -258,7 +257,9 @@ final class NavigationBarController: NSViewController {
     /// Build outline menu from `outlineItems`.
     private func updateOutlineMenu() {
         
-        self.outlineMenu!.removeAllItems()
+        guard let outlineMenu = self.outlineMenu else { return assertionFailure() }
+        
+        outlineMenu.removeAllItems()
         
         self.leftButton!.isHidden = self.outlineItems.isEmpty
         self.rightButton!.isHidden = self.outlineItems.isEmpty
@@ -266,7 +267,7 @@ final class NavigationBarController: NSViewController {
         
         guard !self.outlineItems.isEmpty else { return }
         
-        let menu = self.outlineMenu!.menu!
+        let menu = outlineMenu.menu!
         
         // add headding item
         let headdingItem = NSMenuItem()

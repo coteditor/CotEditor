@@ -71,6 +71,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="gJ1-uN-P5E"/>
+                                    <outlet property="menu" destination="yKS-mO-j45" id="9an-zp-n21"/>
                                 </connections>
                             </button>
                             <button hidden="YES" toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
@@ -161,6 +162,7 @@
                     </visualEffectView>
                     <connections>
                         <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
+                        <outlet property="editorSplitMenu" destination="yKS-mO-j45" id="XVz-tF-UbW"/>
                         <outlet property="leftButton" destination="BUj-TD-scp" id="UPE-Vg-sYz"/>
                         <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
                         <outlet property="outlineIndicator" destination="htM-ug-ofP" id="U7C-1C-d8L"/>
@@ -170,6 +172,22 @@
                     </connections>
                 </viewController>
                 <customObject id="OuY-Pd-2q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="yKS-mO-j45">
+                    <items>
+                        <menuItem title="Split Editor" id="uXy-HK-1H7">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="w4l-1p-ffW"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Stack Editors Vertically" id="IhS-iT-L1i">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="toggleSplitOrientation:" target="OuY-Pd-2q9" id="7kY-DS-tf5"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="1469" y="-388"/>
         </scene>

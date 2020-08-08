@@ -91,7 +91,6 @@ final class SplitViewController: NSSplitViewController {
                     let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
                     item.title = title.localized
                 }
-                return self.splitViewItems.count > 1
             
             case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
                 return self.splitViewItems.count > 1
