@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,18 +31,18 @@
         <scene sceneID="7ic-e2-LjN">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="MultipleReplacementViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="8CD-v6-nsP">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="299"/>
+                    <view key="view" misplaced="YES" id="8CD-v6-nsP">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="276"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="99" width="390" height="150"/>
+                                <rect key="frame" x="20" y="99" width="390" height="104"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="0.0" width="388" height="149"/>
+                                    <rect key="frame" x="1" y="0.0" width="388" height="103"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="126"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -425,7 +425,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
-                                <rect key="frame" x="18" y="257" width="394" height="32"/>
+                                <rect key="frame" x="18" y="211" width="394" height="32"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -606,7 +606,7 @@
                                 </constraints>
                                 <popUpButtonCell key="cell" type="bevel" title="Action" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="3mW-VX-9wW" id="IwC-Jx-M4D">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="5JP-FI-8cb">
                                         <items>
                                             <menuItem title="Action" image="NSActionTemplate" hidden="YES" id="3mW-VX-9wW">
@@ -845,9 +845,9 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-Xg-g7I">
-                                <rect key="frame" x="31" y="218" width="158" height="17"/>
+                                <rect key="frame" x="33" y="218" width="155" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Advanced Find Options" id="NTu-fa-URI">
-                                    <font key="font" metaFont="systemBold"/>
+                                    <font key="font" metaFont="systemSemibold" size="13"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
