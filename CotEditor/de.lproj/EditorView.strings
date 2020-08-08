@@ -32,10 +32,6 @@
 "MlW-Dz-FOk.ibShadowedToolTip" = "Zum nächsten Gliederungspunkt springen";
 
 
-/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "Gliederung extrahieren …";
-
-
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "Geteilten Editor schließen";
 

@@ -32,10 +32,6 @@
 "MlW-Dz-FOk.ibShadowedToolTip" = "次の項目へ";
 
 
-/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "アウトラインを抽出中...";
-
-
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "分割されたエディタを閉じる";
 

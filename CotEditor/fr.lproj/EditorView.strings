@@ -32,10 +32,6 @@
 "MlW-Dz-FOk.ibShadowedToolTip" = "Aller à l'élément de structure précédent";
 
 
-/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "Récupération de la structure…";
-
-
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "Fermer l'éditeur divisé";
 

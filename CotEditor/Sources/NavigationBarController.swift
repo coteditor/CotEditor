@@ -47,7 +47,6 @@ final class NavigationBarController: NSViewController {
         didSet {
             assert(Thread.isMainThread)
             
-            self.outlineIndicator?.stopAnimation(nil)
             self.outlineLoadingMessage?.isHidden = true
             
             if let progress = outlineProgress, !progress.isFinished {
@@ -70,14 +69,14 @@ final class NavigationBarController: NSViewController {
             self?.outlineMenu?.isHidden ?? true
             else { return }
         
-        self?.outlineIndicator?.startAnimation(nil)
         self?.outlineLoadingMessage?.isHidden = false
     }
+    
+    @objc private dynamic var showsOutlineMenu = false
     
     @IBOutlet private weak var leftButton: NSButton?
     @IBOutlet private weak var rightButton: NSButton?
     @IBOutlet private weak var outlineMenu: NSPopUpButton?
-    @IBOutlet private weak var outlineIndicator: NSProgressIndicator?
     @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     @IBOutlet private weak var openSplitButton: NSButton?
@@ -94,7 +93,6 @@ final class NavigationBarController: NSViewController {
         super.viewDidLoad()
         
         if let progress = self.outlineProgress, (!progress.isFinished || !progress.isCancelled) {
-            self.outlineIndicator?.startAnimation(nil)
             self.outlineLoadingMessage?.isHidden = false
         }
         
@@ -261,9 +259,7 @@ final class NavigationBarController: NSViewController {
         
         outlineMenu.removeAllItems()
         
-        self.leftButton!.isHidden = self.outlineItems.isEmpty
-        self.rightButton!.isHidden = self.outlineItems.isEmpty
-        self.outlineMenu!.isHidden = self.outlineItems.isEmpty
+        self.showsOutlineMenu = !self.outlineItems.isEmpty
         
         guard !self.outlineItems.isEmpty else { return }
         

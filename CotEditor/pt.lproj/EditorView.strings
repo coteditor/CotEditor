@@ -30,9 +30,6 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
 "MlW-Dz-FOk.ibShadowedToolTip" = "Salte para o item seguinte do plano";
 
-/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
-"aUE-uy-XLQ.title" = "Extraindo Plano…";
-
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "Feche o editor dividido";
