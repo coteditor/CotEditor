@@ -82,7 +82,7 @@
         <scene sceneID="sAX-Gn-44h">
             <objects>
                 <windowController id="0UB-Lz-R6c" customClass="DocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
+                    <window key="window" title="Untitled" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" toolbarStyle="unified" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
