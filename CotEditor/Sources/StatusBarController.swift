@@ -48,7 +48,6 @@ final class StatusBarController: NSViewController {
     
     @objc private dynamic var editorStatus: NSAttributedString?
     @objc private dynamic var fileSize: NSNumber?
-    @objc private dynamic var showsReadOnly = false
     
     @IBOutlet private weak var encodingPopUpButton: NSPopUpButton?
     @IBOutlet private weak var lineEndingPopUpButton: NSPopUpButton?
@@ -126,17 +125,17 @@ final class StatusBarController: NSViewController {
         document.analyzer.shouldUpdateStatusEditorInfo = true
         document.analyzer.invalidateEditorInfo()
         
-        self.updateEditorStatus()
-        self.updateDocumentStatus()
         self.invalidateEncodingSelection()
         self.invalidateLineEndingSelection(to: document.lineEnding)
         
         // observe editor info update
         document.analyzer.publisher(for: \.info.editor)
+            .removeDuplicates()
             .sink { [weak self] _ in self?.updateEditorStatus() }
             .store(in: &self.documentObservers)
-        document.analyzer.publisher(for: \.info.file)
-            .sink { [weak self] _ in self?.updateDocumentStatus() }
+        document.analyzer.publisher(for: \.info.file.fileSize)
+            .removeDuplicates()
+            .sink { [weak self] in self?.fileSize = $0 }
             .store(in: &self.documentObservers)
         
         // observe document status change
@@ -188,18 +187,6 @@ final class StatusBarController: NSViewController {
         attrStatus.addAttribute(.paragraphStyle, value: paragraphStyle, range: attrStatus.range)
         
         self.editorStatus = attrStatus
-    }
-    
-    
-    /// update right side text and readonly icon state
-    private func updateDocumentStatus() {
-        
-        assert(Thread.isMainThread)
-        
-        guard let info = self.document?.analyzer.info.file else { return }
-        
-        self.showsReadOnly = info.isReadOnly
-        self.fileSize = info.fileSize
     }
     
     

@@ -36,7 +36,6 @@ final class DocumentInfo: NSObject {
         @objc dynamic var filePath: URL?
         @objc dynamic var owner: String?
         @objc dynamic var permission: NSNumber?
-        @objc dynamic var isReadOnly = false
     }
     
     final class ModeInfo: NSObject {
@@ -234,12 +233,6 @@ private extension Document {
         info.filePath = self.fileURL
         info.owner = attrs?[.ownerAccountName] as? String
         info.permission = attrs?[.posixPermissions] as? NSNumber
-        info.isReadOnly = {
-            guard !self.isInViewingMode else { return false }
-            guard let posix = attrs?[.posixPermissions] as? UInt16 else { return false }
-            
-            return !FilePermissions(mask: posix).user.contains(.write)
-        }()
         
         return info
     }
