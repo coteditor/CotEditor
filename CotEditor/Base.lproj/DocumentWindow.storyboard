@@ -656,9 +656,8 @@
         <scene sceneID="uT8-5A-k2A">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" id="JZo-9i-3gf">
+                    <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JZo-9i-3gf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
-                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="8" y="4" width="33" height="14"/>
@@ -704,7 +703,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
-                                <rect key="frame" x="407" y="2" width="128" height="18"/>
+                                <rect key="frame" x="411" y="2" width="128" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="gE6-7r-AUt"/>
                                 </constraints>
@@ -725,10 +724,10 @@
                                 <rect key="frame" x="541" y="4" width="5" height="13"/>
                             </box>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-lb-J3U">
-                                <rect key="frame" x="404" y="4" width="5" height="13"/>
+                                <rect key="frame" x="408" y="4" width="5" height="13"/>
                             </box>
                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="361" y="4" width="39" height="14"/>
+                                <rect key="frame" x="365" y="4" width="39" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="64 MB" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <byteCountFormatter key="formatter" allowsNonnumericFormatting="NO" adaptive="NO" id="esZ-c3-dIT"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -764,7 +763,7 @@
                             <constraint firstAttribute="bottom" secondItem="7Sd-lb-J3U" secondAttribute="bottom" constant="4" id="cph-Ly-dHn"/>
                             <constraint firstItem="7Sd-lb-J3U" firstAttribute="leading" secondItem="EJU-9e-uCA" secondAttribute="trailing" constant="8" symbolic="YES" id="oeg-hS-hEI"/>
                             <constraint firstItem="v28-4g-3Pc" firstAttribute="centerY" secondItem="JZo-9i-3gf" secondAttribute="centerY" id="r4M-7l-VhS"/>
-                            <constraint firstItem="DDY-i5-DV6" firstAttribute="leading" secondItem="CUv-So-9Og" secondAttribute="trailing" constant="8" symbolic="YES" id="wGi-ca-Rpd"/>
+                            <constraint firstItem="DDY-i5-DV6" firstAttribute="leading" secondItem="CUv-So-9Og" secondAttribute="trailing" constant="4" id="wGi-ca-Rpd"/>
                         </constraints>
                     </visualEffectView>
                     <connections>
