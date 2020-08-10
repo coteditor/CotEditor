@@ -30,7 +30,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextStorageDelegate, NSToolbarItemValidation {
     
     // MARK: Private Properties
     
@@ -259,6 +259,15 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     }
     
     
+    /// apply current state to related toolbar items
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        
+        // manually pass toolbar items to `validateUserInterfaceItem(_:)`,
+        // because they actually doesn't use it for validation (2020-08 on macOS 10.15)
+        return self.validateUserInterfaceItem(item)
+    }
+    
+    
     /// apply current state to related UI items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
@@ -342,7 +351,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
             
             case #selector(changeWritingDirection):
-                (item as? SegmentedToolbarItem)?.segmentedControl?.selectedSegment = {
+                (item as? NSToolbarItemGroup)?.selectedIndex = {
                     switch self.writingDirection {
                         case _ where self.verticalLayoutOrientation: return -1
                         case .rightToLeft: return 1
@@ -351,7 +360,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 }()
             
             case #selector(changeOrientation):
-                (item as? SegmentedToolbarItem)?.segmentedControl?.selectedSegment = self.verticalLayoutOrientation ? 1 : 0
+                (item as? NSToolbarItemGroup)?.selectedIndex = self.verticalLayoutOrientation ? 1 : 0
             
             case #selector(closeSplitTextView):
                 return (self.splitViewController?.splitViewItems.count ?? 0) > 1
@@ -746,33 +755,17 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     }
     
     
-    /// change writing direction from segmented control button
-    @IBAction func changeWritingDirection(_ sender: NSSegmentedControl) {
+    /// change writing direction by a grouped toolbar item
+    @IBAction func changeWritingDirection(_ sender: NSToolbarItemGroup) {
         
-        switch sender.selectedSegment {
-            case 0:
-                self.makeLayoutOrientationHorizontal(nil)
-                self.makeWritingDirectionLeftToRight(nil)
-            case 1:
-                self.makeLayoutOrientationHorizontal(nil)
-                self.makeWritingDirectionRightToLeft(nil)
-            default:
-                assertionFailure("Segmented writing direction button must have 2 segments only.")
-        }
+        assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     
-    /// change layout orientation from segmented control button
-    @IBAction func changeOrientation(_ sender: NSSegmentedControl) {
+    /// change layout orientation by a grouped toolbar item
+    @IBAction func changeOrientation(_ sender: NSToolbarItemGroup) {
         
-        switch sender.selectedSegment {
-            case 0:
-                self.makeLayoutOrientationHorizontal(nil)
-            case 1:
-                self.makeLayoutOrientationVertical(nil)
-            default:
-                assertionFailure("Segmented layout orientation button must have 2 segments only.")
-        }
+        assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
     }
     
     

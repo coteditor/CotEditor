@@ -174,6 +174,108 @@
 
 
 
+/* MARK: Toolbar */
+"Syntax Style" = "Estilo da Sintaxe";
+// tooltip
+"Change syntax style" = "Altere o estilo da sintaxe";
+
+"Inspector" = "Inspetor";
+// tooltip
+"Show document information" = "Mostre informações do documento";
+
+"Text Size" = "Tamanho do Texto";
+"Smaller" = "Menor";
+"Bigger" = "Maior";
+// tooltip
+"Change text size" = "Altere o tamanho do texto";
+"Decrease text size" = "Diminua o tamanho do texto";
+"Increase text size" = "Aumente o tamanho do texto";
+
+"Writing Direction" = "Direção da Escrita";
+"Left to Right" = "Da Esquerda para a Direita";
+"Right to Left" = "Da Direita para a Esquerda";
+// tooltip
+"Change writing direction" = "Altere a direção da escrita";
+"Left to right" = "Da Esquerda para a Direita";
+"Right to left" = "Da Direita para a Esquerda";
+
+"Text Orientation" = "Orientação";
+"Horizontal" = "Horizontal";
+"Vertical" = "Vertical";
+// tooltip
+"Toggle text orientation" = "Alterne a orientação do texto";
+
+"Indent" = "Recuo";
+"Shift Left" = "Deslocar à Esquerda";
+"Shift Right" = "Deslocar à Direita";
+// tooltip
+"Indent selection" = "Recue a seleção";
+"Shift lines to left" = "Desloque linhas para a esquerda";
+"Shift lines to right" = "Desloque linhas para a direita";
+
+"Comment" = "Comentário";
+// tooltip
+"Comment-out or uncomment selection" = "Adicione ou remova o comentário da seleção";
+
+"Tab Style" = "Estilo da Tabulação";
+// tooltip
+"Toggle tab auto-expansion" = "Ative ou desative a expansão de tabulações automática";
+"Change tab width" = "Altere a largura da tabulação";
+// menu
+"Tab Width" = "Largura da Tabulação";
+"Custom…" = "Personalizar…";
+"Auto-Expand Tabs" = "Expandir Tabulações Automaticamente";
+
+"Wrap Lines" = "Ajustar Linhas";
+// tooltip
+"Toggle wrap lines" = "Ative ou desative o ajuste de linhas";
+
+"Invisibles" = "不可視文字";
+// tooltip
+"Show or hide invisible characters in text" = "テキスト中の不可視文字を表示/非表示";
+
+"Page Guide" = "Ajustar Linhas";
+// tooltip
+"Show or hide page guide line" = "Ative ou desative o ajuste de linhas";
+
+"Indent Guides" = "Guia da Página";
+// tooltip
+"Show or hide indent guide lines" = "Mostre ou oculte a linha de guia da página";
+
+"Opacity" = "Opacidade";
+// tooltip
+"Change editor’s opacity" = "Altere a opacidade do editor";
+
+"Spell Check" = "Verificar Ortografia";
+// tooltip
+"Show spelling and grammar" = "Mostre o painel de ortografia e gramática";
+
+"Color Code" = "Código de Cor";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "Abra o Editor de Código de Cor e defina a seleção como um código de cor";
+
+"Emoji & Symbols" = "Emoji e símbolos";
+// tooltip
+"Show Emoji & Symbols palette" = "Mostrar Paleta de Emojis e Símbolos";
+
+"Find" = "Buscar";
+// tooltip
+"Show Find & Replace" = "Mostra o campo Buscar e Substituir";
+
+"Print" = "Imprimir";
+// tooltip
+"Print document" = "Imprima";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Compartilhe o arquivo do documento";
+
+"Fonts" = "Fontes";
+// tooltip
+"Show Font Panel" = "Exibir Painel de Fontes";
+
+
+
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisíveis";

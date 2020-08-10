@@ -1,14 +1,14 @@
 //
-//  ControlToolbarItem.swift
+//  ToolbarItemGroup.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2018-06-17.
+//  Created by 1024jp on 2020-08-10.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,30 +23,16 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
-class ControlToolbarItem: NSToolbarItem {
+final class ToolbarItemGroup: NSToolbarItemGroup {
     
-    // MARK: Toolbar Item Methods
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        // set menu for "Text Only" mode
-        let item = NSMenuItem()
-        item.title = self.label
-        item.action = self.action
-        item.target = self.target
-        
-        self.menuFormRepresentation = item
-    }
-    
-    
-    /// validate state of item
+    /// validate subitem selection
     override func validate() {
         
-        self.control?.isEnabled = {
+        super.validate()
+        
+        self.isEnabled = {
             guard
                 let action = self.action,
                 let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
@@ -63,13 +49,21 @@ class ControlToolbarItem: NSToolbarItem {
         }()
     }
     
+}
+
+
+extension NSToolbarItemGroup {
     
-    
-    // MARK: Public Methods
-    
-    final var control: NSControl? {
+    func useSubitemsForMenuFormRepresentation() {
         
-        return self.view as? NSControl
+        assert(!self.subitems.isEmpty)
+        
+        let menu = NSMenuItem(title: self.label, action: nil, keyEquivalent: "")
+        menu.submenu = NSMenu(title: self.label)
+        menu.submenu?.items = self.subitems
+            .map { NSMenuItem(title: $0.label, action: $0.action, keyEquivalent: "") }
+        
+        self.menuFormRepresentation = menu
     }
     
 }

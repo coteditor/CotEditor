@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,45 +23,52 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 final class StatableMenuToolbarItem: StatableToolbarItem {
     
-    @IBOutlet private weak var segmentMenu: NSMenu?
+    // MARK: Lifecycle
     
-    
-    
-    // MARK: -
-    // MARK: Toolbar Item Methods
-    
-    override func awakeFromNib() {
+    init(itemIdentifier: NSToolbarItem.Identifier, control: NSSegmentedControl, menu: NSMenu) {
         
-        super.awakeFromNib()
-        
-        let segmentedControl = self.segmentedControl!
+        super.init(itemIdentifier: itemIdentifier)
         
         // set menu to the last segment
-        segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
-        segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
+        control.setShowsMenuIndicator(true, forSegment: 1)
+        control.setMenu(menu, forSegment: 1)
         
-        // set menu for "Text Only" mode
-        let item = NSMenuItem()
-        item.title = self.label
-        item.action = segmentedControl.action
+        self.view = control
+    }
+    
+    
+    
+    // MARK: Toolbar Item Methods
+    
+    /// validate state of item
+    override func validate() {
         
-        self.menuFormRepresentation = item
+        (self.view as? NSControl)?.isEnabled = {
+            guard
+                let action = self.action,
+                let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
+            else { return false }
+            
+            switch validator {
+                case let validator as NSToolbarItemValidation:
+                    return validator.validateToolbarItem(self)
+                case let validator as NSUserInterfaceValidations:
+                    return validator.validateUserInterfaceItem(self)
+                default:
+                    return true
+            }
+        }()
     }
     
     
     override var image: NSImage? {
         
-        get {
-            return self.segmentedControl?.image(forSegment: 0)
-        }
-        
-        set {
-            self.segmentedControl?.setImage(newValue, forSegment: 0)
-        }
+        get { self.segmentedControl?.image(forSegment: 0) }
+        set { self.segmentedControl?.setImage(newValue, forSegment: 0) }
     }
     
     

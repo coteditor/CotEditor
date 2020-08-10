@@ -231,8 +231,6 @@
 		2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
 		2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
-		2A5D13221D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */; };
-		2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */; };
 		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
 		2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
 		2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */; };
@@ -426,8 +424,6 @@
 		2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CFE1FA498E900EAF586 /* UnixScript.swift */; };
 		2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
 		2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
-		2AA22A4F1FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */; };
-		2AA22A501FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */; };
 		2AA2C6FC24399A920017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FB24399A920017D1EC /* Yams */; };
 		2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FD24399AA20017D1EC /* Yams */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
@@ -606,10 +602,8 @@
 		2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */; };
 		2AD21FCC1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */; };
 		2AD21FCD1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */; };
-		2AD551E420D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E320D6CF2F007279B1 /* ControlToolbarItem.swift */; };
-		2AD551E520D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E320D6CF2F007279B1 /* ControlToolbarItem.swift */; };
-		2AD551E720D70026007279B1 /* SegmentedToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E620D70026007279B1 /* SegmentedToolbarItem.swift */; };
-		2AD551E820D70026007279B1 /* SegmentedToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E620D70026007279B1 /* SegmentedToolbarItem.swift */; };
+		2AD551E720D70026007279B1 /* ToolbarItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */; };
+		2AD551E820D70026007279B1 /* ToolbarItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */; };
 		2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
 		2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
 		2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */; };
@@ -1021,7 +1015,6 @@
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
-		2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarController.swift; sourceTree = "<group>"; };
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
@@ -1168,7 +1161,6 @@
 		2AA14CFB1FA4983500EAF586 /* AppleScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleScript.swift; sourceTree = "<group>"; };
 		2AA14CFE1FA498E900EAF586 /* UnixScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnixScript.swift; sourceTree = "<group>"; };
 		2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentOSAScript.swift; sourceTree = "<group>"; };
-		2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSDocument+SharingService.swift"; sourceTree = "<group>"; };
 		2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfoTests.swift; sourceTree = "<group>"; };
 		2AA2E0121BFE12620087BDD6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Unicode.strings; sourceTree = "<group>"; };
 		2AA2E0151BFE14310087BDD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Unicode.strings"; sourceTree = "<group>"; };
@@ -1322,8 +1314,7 @@
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
-		2AD551E320D6CF2F007279B1 /* ControlToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlToolbarItem.swift; sourceTree = "<group>"; };
-		2AD551E620D70026007279B1 /* SegmentedToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedToolbarItem.swift; sourceTree = "<group>"; };
+		2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarItemGroup.swift; sourceTree = "<group>"; };
 		2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatableMenuToolbarItem.swift; sourceTree = "<group>"; };
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
@@ -1969,7 +1960,6 @@
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
-				2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */,
 				2AD69B871D3E4FCD00FBD998 /* Editable.swift */,
 			);
 			name = Document;
@@ -2043,11 +2033,9 @@
 			children = (
 				2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */,
 				2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */,
-				2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */,
-				2AD551E320D6CF2F007279B1 /* ControlToolbarItem.swift */,
 				2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */,
 				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
-				2AD551E620D70026007279B1 /* SegmentedToolbarItem.swift */,
+				2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */,
 			);
 			name = Toolbar;
 			sourceTree = "<group>";
@@ -2798,7 +2786,6 @@
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
-				2AD551E520D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */,
 				2AE12E081E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A25C52920F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
@@ -2907,7 +2894,6 @@
 				2ADD0AEC2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
 				2A48982E215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */,
 				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
-				2AA22A501FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */,
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A71BC7F1DDC70A80085AE1C /* NSImage+Template.swift in Sources */,
@@ -2951,7 +2937,6 @@
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */,
-				2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
 				2A44321D219AC1F8008A0A6B /* PreferencesTabViewController.swift in Sources */,
 				2AA79C7921CB7251005AD6AD /* PreferencesWindow.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
@@ -2967,7 +2952,7 @@
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
 				2AA14CF91FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */,
-				2AD551E820D70026007279B1 /* SegmentedToolbarItem.swift in Sources */,
+				2AD551E820D70026007279B1 /* ToolbarItemGroup.swift in Sources */,
 				2A0AEA072124A83B00E4EC3D /* SelectionColorWell.swift in Sources */,
 				2A10C5FB1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
 				2A12C8001D1843B50069C60B /* SeparatorTextField.swift in Sources */,
@@ -3097,7 +3082,6 @@
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,
-				2AD551E420D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */,
 				2AFB30DF1E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
@@ -3206,7 +3190,6 @@
 				2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
 				2A48982D215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
-				2AA22A4F1FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */,
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A71BC7E1DDC70A80085AE1C /* NSImage+Template.swift in Sources */,
@@ -3250,7 +3233,6 @@
 				2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,
-				2A5D13221D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
 				2A44321C219AC1F8008A0A6B /* PreferencesTabViewController.swift in Sources */,
 				2AA79C7821CB7251005AD6AD /* PreferencesWindow.swift in Sources */,
 				2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
@@ -3266,7 +3248,7 @@
 				2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */,
 				2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
-				2AD551E720D70026007279B1 /* SegmentedToolbarItem.swift in Sources */,
+				2AD551E720D70026007279B1 /* ToolbarItemGroup.swift in Sources */,
 				2A0AEA062124A83B00E4EC3D /* SelectionColorWell.swift in Sources */,
 				2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
 				2A12C7FF1D1843B50069C60B /* SeparatorTextField.swift in Sources */,

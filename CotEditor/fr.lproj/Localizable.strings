@@ -172,6 +172,108 @@
 
 
 
+/* MARK: Toolbar */
+"Syntax Style" = "Syntaxe";
+// tooltip
+"Change syntax style" = "Changer la syntaxe";
+
+"Inspector" = "Inspecteur";
+// tooltip
+"Show document information" = "Afficher les informations de document";
+
+"Text Size" = "Taille du texte";
+"Smaller" = "Plus petit";
+"Bigger" = "Plus grand";
+// tooltip
+"Change text size" = "Changer la taille du texte";
+"Decrease text size" = "Diminuer la taille du texte";
+"Increase text size" = "Augmenter la taille du texte";
+
+"Writing Direction" = "Sens de l'écriture";
+"Left to Right" = "De gauche à droite";
+"Right to Left" = "De droite à gauche";
+// tooltip
+"Change writing direction" = "Changer le sens de l'écriture";
+"Left to right" = "De gauche à droite";
+"Right to left" = "De droite à gauche";
+
+"Text Orientation" = "Orientation du texte";
+"Horizontal" = "Horizontale";
+"Vertical" = "Verticale";
+// tooltip
+"Toggle text orientation" = "Changer l'orientation du texte";
+
+"Indent" = "Indenter";
+"Shift Left" = "Décaler à gauche";
+"Shift Right" = "Décaler à droite";
+// tooltip
+"Indent selection" = "Indenter ou désindenter la sélection";
+"Shift lines to left" = "Décaler les lignes à gauche";
+"Shift lines to right" = "Décaler les lignes à droite";
+
+"Comment" = "Commenter";
+// tooltip
+"Comment-out or uncomment selection" = "Commenter ou décommenter la sélection";
+
+"Tab Style" = "Style de tabulation";
+// tooltip
+"Toggle tab auto-expansion" = "Activer / Désactiver l'extension automatique des tabulation";
+"Change tab width" = "Changer la largeur de tabulation";
+// menu
+"Tab Width" = "Largeur de tabulation";
+"Custom…" = "Personnalisé…";
+"Auto-Expand Tabs" = "Convertir automatiquement les tabulation";
+
+"Wrap Lines" = "Renv. à la ligne";
+// tooltip
+"Toggle wrap lines" = "Activer / Désactiver le renvoi à la ligne";
+
+"Invisibles" = "Invisibles";
+// tooltip
+"Show or hide invisible characters in text" = "Afficher / Masquer les caractères invisibles";
+
+"Page Guide" = "Guide de page";
+// tooltip
+"Show or hide page guide line" = "Afficher / Masquer la ligne du guide de page";
+
+"Indent Guides" = "Guides d'indendation";
+// tooltip
+"Show or hide indent guide lines" = "Afficher ou masquer les guides d'indentation";
+
+"Opacity" = "Opacité";
+// tooltip
+"Change editor’s opacity" = "Changer l'opacité de l'éditeur";
+
+"Spell Check" = "Vérifier l'orthographe";
+// tooltip
+"Show spelling and grammar" = "Vérier l'orthographe et la grammaire";
+
+"Color Code" = "Code couleur";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "Ouvre l'éditeur de code couleur avec le code couleur sélectionné";
+
+"Emoji & Symbols" = "Emoji et Symboles";
+// tooltip
+"Show Emoji & Symbols palette" = "Afficher le panneau Emoji et Symboles";
+
+"Find" = "Rechercher";
+// tooltip
+"Show Find & Replace" = "Rechercher et remplacer";
+
+"Print" = "Imprimer";
+// tooltip
+"Print document" = "Imprimer le document";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Partager le document";
+
+"Fonts" = "Polices";
+// tooltip
+"Show Font Panel" = "Afficher le panneau des polices de texte";
+
+
+
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Caractères invisibles";

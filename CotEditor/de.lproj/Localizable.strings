@@ -173,6 +173,108 @@
 
 
 
+/* MARK: Toolbar */
+"Syntax Style" = "Syntaxstil";
+// tooltip
+"Change syntax style" = "Syntaxstil ändern";
+
+"Inspector" = "Infofenster";
+// tooltip
+"Show document information" = "Dokumentinformationen einblenden";
+
+"Text Size" = "Schriftgröße";
+"Smaller" = "Kleiner";
+"Bigger" = "Größer";
+// tooltip
+"Change text size" = "Schriftgröße wechseln";
+"Decrease text size" = "Die Schriftgröße verkleinern";
+"Increase text size" = "Die Schriftgröße vergrößern";
+
+"Writing Direction" = "Schreibrichtung";
+"Left to Right" = "Von links nach rechts";
+"Right to Left" = "Von rechts nach links";
+// tooltip
+"Change writing direction" = "Schreibrichtung wechseln";
+"Left to right" = "Von links nach rechts";
+"Right to left" = "Von rechts nach links";
+
+"Text Orientation" = "Textausrichtung";
+"Horizontal" = "Horizontal";
+"Vertical" = "Vertikal";
+// tooltip
+"Toggle text orientation" = "Text vertikal/horizontal ausrichten";
+
+"Indent" = "Einziehen";
+"Shift Left" = "Ausrücken";
+"Shift Right" = "Einrücken";
+// tooltip
+"Indent selection" = "Auswahl einziehen";
+"Shift lines to left" = "Zeilen nach Links verschieben";
+"Shift lines to right" = "Zeilen nach Rechts verschieben";
+
+"Comment" = "Kommentar";
+// tooltip
+"Comment-out or uncomment selection" = "Auswahl aus-/unkommentieren";
+
+"Tab Style" = "Tabulatorstil";
+// tooltip
+"Toggle tab auto-expansion" = "Auto-Tabulatorexpandierung ein/aus";
+"Change tab width" = "Tabulatorbreite wechseln";
+// menu
+"Tab Width" = "Tabulatorbreite";
+"Custom…" = "Konfigurieren …";
+"Auto-Expand Tabs" = "Tabulatoren automatisch expandieren";
+
+"Wrap Lines" = "Zeilen umbrechen";
+// tooltip
+"Toggle wrap lines" = "Zeilenumbruch ein/aus";
+
+"Invisibles" = "Steuerzeichen";
+// tooltip
+"Show or hide invisible characters in text" = "Steuerzeichen im Text ein-/ausblenden";
+
+"Page Guide" = "Seitenhilfslinie";
+// tooltip
+"Show or hide page guide line" = "Seitenhilfslinie ein-/ausblenden";
+
+"Indent Guides" = "Einzugshilfslinien";
+// tooltip
+"Show or hide indent guide lines" = "Einzugshilfslinien ein-/ausblenden";
+
+"Opacity" = "Deckkraft";
+// tooltip
+"Change editor’s opacity" = "Deckkraft des Editors wechseln";
+
+"Spell Check" = "Rechtschreibprüfung";
+// tooltip
+"Show spelling and grammar" = "Rechtschreibung und Grammatik einblenden";
+
+"Color Code" = "Farbcode";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "Farbcode-Editor öffnen und Auswahl als Farbcode einrichten";
+
+"Emoji & Symbols" = "Emoji & Symbole";
+// tooltip
+"Show Emoji & Symbols palette" = "Emoji- & Symbolpalette einblenden";
+
+"Find" = "Suchen";
+// tooltip
+"Show Find & Replace" = "Suchen & Ersetzen einblenden";
+
+"Print" = "Drucken";
+// tooltip
+"Print document" = "Dokument drucken";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Dokumentdatei bereitstellen";
+
+"Fonts" = "Schriften";
+// tooltip
+"Show Font Panel" = "Schriftfenster einblenden";
+
+
+
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Steuerzeichen";

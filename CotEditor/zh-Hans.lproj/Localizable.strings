@@ -174,6 +174,108 @@
 
 
 
+/* MARK: Toolbar */
+"Syntax Style" = "语法样式";
+// tooltip
+"Change syntax style" = "改变语法样式";
+
+"Inspector" = "检查器";
+// tooltip
+"Show document information" = "显示文档信息";
+
+"Text Size" = "文本尺寸";
+"Smaller" = "较小";
+"Bigger" = "较大";
+// tooltip
+"Change text size" = "改变文本尺寸";
+"Decrease text size" = "减少文本尺寸";
+"Increase text size" = "增加文本尺寸";
+
+"Writing Direction" = "书写方向";
+"Left to Right" = "从左到右";
+"Right to Left" = "从右到左";
+// tooltip
+"Change writing direction" = "改变书写方向";
+"Left to right" = "从左到右";
+"Right to left" = "从右到左";
+
+"Text Orientation" = "文字方向";
+"Horizontal" = "水平";
+"Vertical" = "竖直";
+// tooltip
+"Toggle text orientation" = "切换文字方向";
+
+"Indent" = "缩进";
+"Shift Left" = "左移";
+"Shift Right" = "右移";
+// tooltip
+"Indent selection" = "缩进选择";
+"Shift lines to left" = "将选中行左移";
+"Shift lines to right" = "将选中行右移";
+
+"Comment" = "注释";
+// tooltip
+"Comment-out or uncomment selection" = "将选中内容注释或取消注释";
+
+"Tab Style" = "Tab 样式";
+// tooltip
+"Toggle tab auto-expansion" = "切换自动扩展 Tab";
+"Change tab width" = "更改 Tab 宽度";
+// menu
+"Tab Width" = "Tab 宽度";
+"Custom…" = "自定义…";
+"Auto-Expand Tabs" = "Tab 转为空格";
+
+"Wrap Lines" = "换行";
+// tooltip
+"Toggle wrap lines" = "切换换行";
+
+"Invisibles" = "不可见元素";
+// tooltip
+"Show or hide invisible characters in text" = "显示或隐藏文本中的不可见元素";
+
+"Page Guide" = "页面指示";
+// tooltip
+"Show or hide page guide line" = "显示或隐藏页面指示";
+
+"Indent Guides" = "缩进指示";
+// tooltip
+"Show or hide indent guide lines" = "显示或隐藏缩进指示线";
+
+"Opacity" = "透明度";
+// tooltip
+"Change editor’s opacity" = "更改编辑器透明度";
+
+"Spell Check" = "拼写检查";
+// tooltip
+"Show spelling and grammar" = "显示拼写和语法";
+
+"Color Code" = "颜色代码";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "打开调色盘并将选中内容设为颜色代码";
+
+"Emoji & Symbols" = "表情与符号";
+// tooltip
+"Show Emoji & Symbols palette" = "显示查找和替换";
+
+"Find" = "查找";
+// tooltip
+"Show Find & Replace" = "“検索と置換”を表示";
+
+"Print" = "打印";
+// tooltip
+"Print document" = "打印文稿";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "共享文档文件";
+
+"Fonts" = "字体";
+// tooltip
+"Show Font Panel" = "显示字体面板";
+
+
+
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可见元素";

@@ -174,6 +174,108 @@
 
 
 
+/* MARK: Toolbar */
+"Syntax Style" = "シンタックス";
+// tooltip
+"Change syntax style" = "シンタックススタイルを変更";
+
+"Inspector" = "インスペクタ";
+// tooltip
+"Show document information" = "書類情報を表示";
+
+"Text Size" = "文字サイズ";
+"Smaller" = "小さく";
+"Bigger" = "大きく";
+// tooltip
+"Change text size" = "文字サイズを変更";
+"Decrease text size" = "文字を小さく";
+"Increase text size" = "文字を大きく";
+
+"Writing Direction" = "文章の方向";
+"Left to Right" = "左から右";
+"Right to Left" = "右から左";
+// tooltip
+"Change writing direction" = "文章の方向を切替";
+"Left to right" = "左から右";
+"Right to left" = "右から左";
+
+"Text Orientation" = "横書き/縦書き";
+"Horizontal" = "横書き";
+"Vertical" = "縦書き";
+// tooltip
+"Toggle text orientation" = "横書き/縦書きを切替";
+
+"Indent" = "インデント";
+"Shift Left" = "左へシフト";
+"Shift Right" = "右へシフト";
+// tooltip
+"Indent selection" = "選択範囲をインデント";
+"Shift lines to left" = "行を左へシフト";
+"Shift lines to right" = "行を右へシフト";
+
+"Comment" = "コメント";
+// tooltip
+"Comment-out or uncomment selection" = "選択範囲をコメントアウト/コメント解除";
+
+"Tab Style" = "タブスタイル";
+// tooltip
+"Toggle tab auto-expansion" = "自動タブ展開を切替";
+"Change tab width" = "タブ幅を変更";
+// menu
+"Tab Width" = "タブ幅";
+"Custom…" = "カスタム...";
+"Auto-Expand Tabs" = "タブを自動でスペースに展開";
+
+"Wrap Lines" = "行を折り返す";
+// tooltip
+"Toggle wrap lines" = "行の折り返しを切替";
+
+"Invisibles" = "不可視文字";
+// tooltip
+"Show or hide invisible characters in text" = "テキスト中の不可視文字を表示/非表示";
+
+"Page Guide" = "ページガイド";
+// tooltip
+"Show or hide page guide line" = "ページガイドを表示/非表示";
+
+"Indent Guides" = "インデントガイド";
+// tooltip
+"Show or hide indent guide lines" = "インデントガイドを表示/非表示";
+
+"Opacity" = "不透明度";
+// tooltip
+"Change editor’s opacity" = "エディタの不透明度を変更";
+
+"Spell Check" = "スペルチェック";
+// tooltip
+"Show spelling and grammar" = "スペルと文法を表示";
+
+"Color Code" = "カラーコード";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";
+
+"Emoji & Symbols" = "絵文字と記号";
+// tooltip
+"Show Emoji & Symbols palette" = "絵文字と記号パレットを表示";
+
+"Find" = "検索";
+// tooltip
+"Show Find & Replace" = "“検索と置換”を表示";
+
+"Print" = "プリント";
+// tooltip
+"Print document" = "書類をプリント";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "書類ファイルを共有";
+
+"Fonts" = "フォント";
+// tooltip
+"Show Font Panel" = "フォントパネルを表示";
+
+
+
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可視文字";

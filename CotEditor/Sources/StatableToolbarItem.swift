@@ -23,11 +23,11 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
-class StatableToolbarItem: ControlToolbarItem {
+class StatableToolbarItem: NSToolbarItem {
     
-    // MARK: Public Properties
+    // MARK: Public Methods
     
     final var state: NSControl.StateValue = .on {
         

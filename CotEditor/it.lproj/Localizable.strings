@@ -174,6 +174,108 @@
 
 
 
+/* MARK: Toolbar */
+"Syntax Style" = "Stile sintassi";
+// tooltip
+"Change syntax style" = "Modifica stile sintassi";
+
+"Inspector" = "Inspector";
+// tooltip
+"Show document information" = "Mostra informazioni sul documento";
+
+"Text Size" = "Dimensione testo";
+"Smaller" = "Più piccolo";
+"Bigger" = "Più grande";
+// tooltip
+"Change text size" = "Cambia dimensione testo";
+"Decrease text size" = "Testo più piccolo";
+"Increase text size" = "Testo più grande";
+
+"Writing Direction" = "Direzione di scrittura";
+"Left to Right" = "Da sinistra a destra";
+"Right to Left" = "Da destra a sinistra";
+// tooltip
+"Change writing direction" = "Cambia verso di scrittura";
+"Left to right" = "Da sinistra a destra";
+"Right to left" = "Da destra a sinistra";
+
+"Text Orientation" = "Orientamento";
+"Horizontal" = "Orizzontale";
+"Vertical" = "Verticale";
+// tooltip
+"Toggle text orientation" = "Seleziona orientamento orizzontale o verticale del testo";
+
+"Indent" = "Rientra";
+"Shift Left" = "Scorri a sinistra";
+"Shift Right" = "Scorri a destra";
+// tooltip
+"Indent selection" = "Rientra selezione";
+"Shift lines to left" = "Scorre le righe verso sinistra";
+"Shift lines to right" = "Scorre le righe verso destra";
+
+"Comment" = "Commento";
+// tooltip
+"Comment-out or uncomment selection" = "Commenta o de-commenta la selezione";
+
+"Tab Style" = "Stile Pannello";
+// tooltip
+"Toggle tab auto-expansion" = "Abilita/Disabilita l’espansione automatica dei Tab";
+"Change tab width" = "Cambia larghezza pannello";
+// menu
+"Tab Width" = "Larghezza Tab";
+"Custom…" = "Personalizzato…";
+"Auto-Expand Tabs" = "Espandi Tab automaticamente";
+
+"Wrap Lines" = "Aapo automatico";
+// tooltip
+"Toggle wrap lines" = "Abilita/Disabilita il ritorno a capo automatico";
+
+"Invisibles" = "Caratteri invisibili";
+// tooltip
+"Show or hide invisible characters in text" = "Mostra/Nasconde la guida in linea della pagina";
+
+"Page Guide" = "Guida della pagina";
+// tooltip
+"Show or hide page guide line" = "Mostra/Nascondi la guida della pagina";
+
+"Indent Guides" = "Guide di indentazione";
+// tooltip
+"Show or hide indent guide lines" = "Mostra/Nascondi le guide per l’indentazione";
+
+"Opacity" = "Opacità";
+// tooltip
+"Change editor’s opacity" = "Cambia la opacità dell’editor";
+
+"Spell Check" = "Controllo ortografia";
+// tooltip
+"Show spelling and grammar" = "Mostra il controllo dell’ortografia e della grammatica";
+
+"Color Code" = "Codice colore";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "Codice colore";
+
+"Emoji & Symbols" = "Emoji e simboli";
+// tooltip
+"Show Emoji & Symbols palette" = "Mostra palette delle Emoji e dei simboli";
+
+"Find" = "Cerca";
+// tooltip
+"Show Find & Replace" = "Mostra “Trova e sosituisci”";
+
+"Print" = "Stampa";
+// tooltip
+"Print document" = "Stampa documento";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Condivide documento";
+
+"Fonts" = "Font";
+// tooltip
+"Show Font Panel" = "Mostra il pannello dei font";
+
+
+
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisibili";
