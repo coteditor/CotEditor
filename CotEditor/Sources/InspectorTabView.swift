@@ -89,14 +89,13 @@ final class InspectorTabView: NSTabView {
         if self.drawsBackground {
             NSColor.windowBackgroundColor.setFill()
             dirtyRect.fill()
-            
         } else {
             super.draw(dirtyRect)
         }
         
         let strokeRect = NSRect(x: dirtyRect.minX, y: self.controlHeight, width: dirtyRect.width, height: 1)
         NSColor.gridColor.setFill()
-        strokeRect.fill()
+        self.centerScanRect(strokeRect).fill()
         
         NSGraphicsContext.restoreGraphicsState()
     }
