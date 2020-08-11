@@ -316,7 +316,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Inspector".localized
                 item.toolTip = "Show document information".localized
-                item.image = #imageLiteral(resourceName: "Inspector")
+                if #available(macOS 10.16, *) {
+                    item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
+                } else {
+                    item.image = #imageLiteral(resourceName: "Inspector")
+                }
                 item.action = #selector(WindowContentViewController.toggleInspector)
                 return item
                 
@@ -347,13 +351,21 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let ltrItem = NSToolbarItem()
                 ltrItem.label = "Left to Right".localized
                 ltrItem.toolTip = "Left to Right".localized
-                ltrItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
+                if #available(macOS 10.16, *) {
+                    ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
+                } else {
+                    ltrItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
+                }
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
                 let rtlItem = NSToolbarItem()
                 rtlItem.label = "Right to Left".localized
                 rtlItem.toolTip = "Right to Left".localized
-                rtlItem.image = #imageLiteral(resourceName: "WritingDirectionRTLTemplate")
+                if #available(macOS 10.16, *) {
+                    rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
+                } else {
+                    rtlItem.image = #imageLiteral(resourceName: "WritingDirectionRTLTemplate")
+                }
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -395,13 +407,21 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let leftItem = NSToolbarItem()
                 leftItem.label = "Shift Left".localized
                 leftItem.toolTip = "Shift lines to left".localized
-                leftItem.image = #imageLiteral(resourceName: "ShiftLeft")
+                if #available(macOS 10.16, *) {
+                    leftItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: leftItem.label)
+                } else {
+                    leftItem.image = #imageLiteral(resourceName: "ShiftLeft")
+                }
                 leftItem.action = #selector(EditorTextView.shiftLeft)
                 
                 let rightItem = NSToolbarItem()
                 rightItem.label = "Shift Right".localized
                 rightItem.toolTip = "Shift lines to right".localized
-                rightItem.image = #imageLiteral(resourceName: "ShiftRight")
+                if #available(macOS 10.16, *) {
+                    rightItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: rightItem.label)
+                } else {
+                    rightItem.image = #imageLiteral(resourceName: "ShiftRight")
+                }
                 rightItem.action = #selector(EditorTextView.shiftRight)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -513,7 +533,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Color Code".localized
                 item.toolTip = "Open Color Code Editor and set selection as color code".localized
-                item.image = #imageLiteral(resourceName: "ColorCode")
+                if #available(macOS 10.16, *) {
+                    item.image = NSImage(systemSymbolName: "eyedropper.halffull", accessibilityDescription: item.label)
+                } else {
+                    item.image = #imageLiteral(resourceName: "ColorCode")
+                }
                 item.action = #selector(EditorTextView.editColorCode)
                 return item
                 
@@ -531,7 +555,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Fonts".localized
                 item.toolTip = "Show Font Panel".localized
-                item.image = #imageLiteral(resourceName: "FontsTemplate")
+                if #available(macOS 10.16, *) {
+                    item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
+                } else {
+                    item.image = #imageLiteral(resourceName: "FontsTemplate")
+                }
                 item.action = #selector(NSFontManager.orderFrontFontPanel)
                 return item
                 
@@ -540,7 +568,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Find".localized
                 item.toolTip = "Show “Find and Replace”".localized
-                item.image = #imageLiteral(resourceName: "MagnifierTemplate")
+                if #available(macOS 10.16, *) {
+                    item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
+                } else {
+                    item.image = #imageLiteral(resourceName: "MagnifierTemplate")
+                }
                 item.action = #selector(TextFinder.showFindPanel)
                 return item
                 
@@ -549,7 +581,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Print".localized
                 item.toolTip = "Print".localized
-                item.image = #imageLiteral(resourceName: "PrintTemplate")
+                if #available(macOS 10.16, *) {
+                    item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
+                } else {
+                    item.image = #imageLiteral(resourceName: "PrintTemplate")
+                }
                 item.action = #selector(NSDocument.printDocument)
                 return item
                 
