@@ -26,6 +26,7 @@ opt_in_rules:
   - file_header
   - first_where
   - flatmap_over_map_reduce
+  - ibinspectable_in_extension
   - identical_operands
   - joined_default_parameter
   - last_where
@@ -42,6 +43,7 @@ opt_in_rules:
   - overridden_super_call
   - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
+  - prefer_zero_over_explicit_init
   - private_outlet
   - prohibited_super_call
   - quick_discouraged_call
