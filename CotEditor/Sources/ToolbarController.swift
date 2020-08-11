@@ -74,6 +74,7 @@ final class ToolbarController: NSObject {
             guard let document = document else { return }
             
             self.toolbar?.items.lazy.compactMap { $0 as? NSSharingServicePickerToolbarItem }.first?.delegate = document
+            self.invalidateSyntaxStyleSelection()
             
             // observe document's style change
             self.documentStyleObserver = document.didChangeSyntaxStyle
