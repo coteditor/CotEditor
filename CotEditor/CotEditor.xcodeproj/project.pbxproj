@@ -233,8 +233,6 @@
 		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
 		2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
-		2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */; };
-		2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */; };
 		2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
@@ -1016,7 +1014,6 @@
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
-		2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarController.swift; sourceTree = "<group>"; };
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
 		2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextView.swift; sourceTree = "<group>"; };
 		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
@@ -2031,7 +2028,6 @@
 		2A62D48D1CF73693002ADBE1 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */,
 				2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */,
 				2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */,
 				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
@@ -3006,7 +3002,6 @@
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
-				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
 				2A73B5B71D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
@@ -3302,7 +3297,6 @@
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
-				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
 				2A73B5B61D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
 				2A73B5BC1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
