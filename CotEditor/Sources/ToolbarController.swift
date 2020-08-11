@@ -161,10 +161,17 @@ extension ToolbarController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
+        guard #available(macOS 10.16, *) else {
+            return [
+                .flexibleSpace,
+                .syntaxStyle,
+                .inspector,
+            ]
+        }
+        
         return [
-            .flexibleSpace,
             .syntaxStyle,
-            .toggleSidebar,
+            .inspector,
         ]
     }
     
