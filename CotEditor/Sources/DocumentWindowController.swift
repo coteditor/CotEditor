@@ -487,7 +487,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                let item = ControlToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Opacity".localized
                 item.toolTip = "Change editor’s opacity".localized

@@ -689,6 +689,8 @@
 		2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
 		2AF45E231E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
+		2AF9249324E2ED410028AD3B /* ControlToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9249224E2ED410028AD3B /* ControlToolbarItem.swift */; };
+		2AF9249424E2ED410028AD3B /* ControlToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9249224E2ED410028AD3B /* ControlToolbarItem.swift */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9B23D208E24D50057DD21 /* Metadata.swift */; };
@@ -1401,6 +1403,7 @@
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2AF9249224E2ED410028AD3B /* ControlToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlToolbarItem.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AF9B23D208E24D50057DD21 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
@@ -2032,6 +2035,7 @@
 				2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */,
 				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
 				2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */,
+				2AF9249224E2ED410028AD3B /* ControlToolbarItem.swift */,
 			);
 			name = Toolbar;
 			sourceTree = "<group>";
@@ -2781,6 +2785,7 @@
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
+				2AF9249324E2ED410028AD3B /* ControlToolbarItem.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
 				2AE12E081E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A25C52920F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */,
@@ -3076,6 +3081,7 @@
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
+				2AF9249424E2ED410028AD3B /* ControlToolbarItem.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */,
