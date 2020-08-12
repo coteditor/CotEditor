@@ -248,34 +248,28 @@ final class NavigationBarController: NSViewController {
     /// Build outline menu from `outlineItems`.
     private func updateOutlineMenu() {
         
-        guard let outlineMenu = self.outlineMenu else { return assertionFailure() }
-        
-        outlineMenu.removeAllItems()
-        
         self.showsOutlineMenu = !self.outlineItems.isEmpty
         
-        guard !self.outlineItems.isEmpty else { return }
+        guard let outlineMenu = self.outlineMenu?.menu else { return assertionFailure() }
         
-        let menu = outlineMenu.menu!
-        
-        // add outline items
-        for outlineItem in self.outlineItems {
-            switch outlineItem.title {
-                case .separator:
-                    menu.addItem(.separator())
-                    
-                    // add dummy item to avoid merging sequential separators into a single separator
-                    let menuItem = NSMenuItem()
-                    menuItem.view = NSView()
-                    menu.addItem(menuItem)
-                
-                default:
-                    let menuItem = NSMenuItem()
-                    menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
-                    menuItem.representedObject = outlineItem.range
-                    menu.addItem(menuItem)
+        outlineMenu.items = self.outlineItems
+            .flatMap { (outlineItem) -> [NSMenuItem] in
+                switch outlineItem.title {
+                    case .separator:
+                        // dummy item to avoid merging sequential separators into a single separator
+                        let dummyItem = NSMenuItem()
+                        dummyItem.view = NSView()
+                        
+                        return [.separator(), dummyItem]
+                        
+                    default:
+                        let menuItem = NSMenuItem()
+                        menuItem.attributedTitle = outlineItem.attributedTitle(for: outlineMenu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
+                        menuItem.representedObject = outlineItem.range
+                        
+                        return [menuItem]
+                }
             }
-        }
         
         self.invalidateOutlineMenuSelection()
     }
@@ -285,6 +279,7 @@ final class NavigationBarController: NSViewController {
     private func invalidateOutlineMenuSelection() {
         
         guard
+            self.showsOutlineMenu,
             let location = self.textView?.selectedRange.location,
             let popUp = self.outlineMenu, popUp.isEnabled
             else { return }
