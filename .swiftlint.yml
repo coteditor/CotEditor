@@ -106,11 +106,11 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 250
-  error: 400
+  warning: 300
+  error: 500
 
 cyclomatic_complexity:
-  warning: 25
+  warning: 35
   error: 50
 
 large_tuple:

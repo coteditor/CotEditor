@@ -237,6 +237,7 @@ private extension NSToolbarItem.Identifier {
     static let find = Self(Self.prefix + "find")
     static let print = Self(Self.prefix + "print")
     static let share = Self(Self.prefix + "share")
+    static let inspectorTrackingSeparator = Self(Self.prefix + "inspectorTrackingSeparator")
 }
 
 
@@ -254,6 +255,7 @@ extension DocumentWindowController: NSToolbarDelegate {
         
         return [
             .syntaxStyle,
+            .inspectorTrackingSeparator,
             .inspector,
         ]
     }
@@ -593,6 +595,12 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
                 item.toolTip = "Share document file".localized
                 item.delegate = self.document as? NSSharingServicePickerToolbarItemDelegate
+                return item
+                
+            case .inspectorTrackingSeparator:
+                guard #available(macOS 10.16, *) else { fatalError() }
+                guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
+                let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
             
             default:
