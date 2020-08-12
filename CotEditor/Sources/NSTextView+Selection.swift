@@ -68,4 +68,15 @@ extension NSTextView {
         return (indentLocation < location) ? indentLocation : lineRange.location
     }
     
+    
+    /// Select the given range with visual feedback.
+    ///
+    /// - Parameter range: The character range to select.
+    func select(range: NSRange) {
+        
+        self.selectedRange = range
+        self.centerSelectionInVisibleArea(self)
+        self.window?.makeFirstResponder(self)
+    }
+    
 }

@@ -151,18 +151,18 @@ final class NavigationBarController: NSViewController {
     /// Can select the prev item in outline menu?
     var canSelectPrevItem: Bool {
         
-        guard let menu = self.outlineMenu else { return false }
+        guard let textView = self.textView else { return false }
         
-        return (menu.indexOfSelectedItem > 1)
+        return self.outlineItems.previousItem(for: textView.selectedRange) != nil
     }
     
     
     /// Can select the next item in outline menu?
     var canSelectNextItem: Bool {
         
-        guard let menu = self.outlineMenu else { return false }
+        guard let textView = self.textView else { return false }
         
-        return menu.itemArray[(menu.indexOfSelectedItem + 1)...].contains { $0.representedObject != nil }
+        return self.outlineItems.nextItem(for: textView.selectedRange) != nil
     }
     
     
@@ -182,39 +182,35 @@ final class NavigationBarController: NSViewController {
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard
-            let range = sender.representedObject as? NSRange,
-            let textView = self.textView
+            let textView = self.textView,
+            let range = sender.representedObject as? NSRange
             else { return assertionFailure() }
         
-        textView.selectedRange = range
-        textView.centerSelectionInVisibleArea(self)
-        textView.window?.makeFirstResponder(textView)
+        textView.select(range: range)
     }
     
     
     /// Select the previous outline menu item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
-        guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
+        guard
+            let textView = self.textView,
+            let item = self.outlineItems.previousItem(for: textView.selectedRange)
+            else { return }
         
-        let index = popUp.itemArray[..<popUp.indexOfSelectedItem]
-            .lastIndex { $0.representedObject is NSRange } ?? 0
-        
-        popUp.menu!.performActionForItem(at: index)
+        textView.select(range: item.range)
     }
     
     
     /// Select the next outline menu item.
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
-        guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
+        guard
+            let textView = self.textView,
+            let item = self.outlineItems.nextItem(for: textView.selectedRange)
+            else { return }
         
-        let index = popUp.itemArray[(popUp.indexOfSelectedItem + 1)...]
-            .firstIndex { $0.representedObject is NSRange }
-        
-        if let index = index {
-            popUp.menu!.performActionForItem(at: index)
-        }
+        textView.select(range: item.range)
     }
     
     

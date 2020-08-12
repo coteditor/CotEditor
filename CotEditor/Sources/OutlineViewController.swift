@@ -174,9 +174,7 @@ final class OutlineViewController: NSViewController {
             textView.string.nsRange.upperBound >= item.range.upperBound
             else { return }
         
-        textView.selectedRange = item.range
-        textView.scrollRangeToVisible(item.range)
-        textView.showFindIndicator(for: item.range)
+        textView.select(range: item.range)
     }
     
     
@@ -220,7 +218,7 @@ final class OutlineViewController: NSViewController {
         
         guard
             let textView = textView ?? self.document?.textView,
-            let row = self.outlineItems.indexOfItem(for: textView.selectedRange, allowsSeparator: false),
+            let row = self.outlineItems.indexOfItem(at: textView.selectedRange.location),
             outlineView.numberOfRows > row
             else { return outlineView.deselectAll(nil) }
         
