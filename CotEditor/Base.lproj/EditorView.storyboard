@@ -188,12 +188,6 @@
                 <customObject id="OuY-Pd-2q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="yKS-mO-j45">
                     <items>
-                        <menuItem title="Split Editor" id="uXy-HK-1H7">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="w4l-1p-ffW"/>
-                            </connections>
-                        </menuItem>
                         <menuItem title="Stack Editors Vertically" id="IhS-iT-L1i">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>

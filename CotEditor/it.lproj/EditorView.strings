@@ -38,6 +38,3 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
 "syK-XU-x2I.ibShadowedToolTip" = "Dividi Editor";
-
-/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "uXy-HK-1H7"; */
-"uXy-HK-1H7.title" = "Dividi Editor";
