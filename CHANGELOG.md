@@ -16,6 +16,7 @@ Change Log
 - Fix an issue that an unremovable empty dialog could show up when performing Replace All under specific conditions.
 - Fix an issue in the find/replacement progress report that the progress message was not updated when nothing found.
 - Fix an issue in the outline menu in the navigation bar that the last separator did not appear.
+- Fix an issue in toolbar that menu style items were vertically squashed in the toolbar customization dialog.
 
 
 
