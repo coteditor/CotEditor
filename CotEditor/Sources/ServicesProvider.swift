@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ final class ServicesProvider: NSObject {
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }
         
         for fileURL in fileURLs {
-            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
                 if let error = error {
                     NSApp.presentError(error)
                 }

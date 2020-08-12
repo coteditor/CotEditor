@@ -272,7 +272,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
                                                     .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
-        { [unowned self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+        { [unowned self] (draggingItem, _, _) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
             
@@ -344,20 +344,20 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
-                                         handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
+                                         handler: { [weak self] (_, _) in
                                             self?.restoreTheme(name: themeName)
                                             
                                             // finish swiped mode anyway
                                             tableView.rowActionsVisible = false
-                })]
+                                         })]
             
         } else {
             // Delete
             return [NSTableViewRowAction(style: .destructive,
                                          title: "Delete".localized,
-                                         handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
+                                         handler: { [weak self] (_, _) in
                                             self?.deleteTheme(name: themeName)
-                })]
+                                         })]
         }
     }
     

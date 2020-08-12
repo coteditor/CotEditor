@@ -415,7 +415,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
                                                     .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
-        { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+        { [weak self] (draggingItem, _, _) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
             

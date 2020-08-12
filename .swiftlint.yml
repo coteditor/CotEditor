@@ -70,9 +70,7 @@ disabled_rules:
   - force_try
   - nesting
   - opening_brace
-  - pattern_matching_keywords
   - trailing_comma
-  - unused_closure_parameter
   - weak_delegate
 
 private_outlet:

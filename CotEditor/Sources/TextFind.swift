@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -188,13 +188,13 @@ final class TextFind {
         
         var forwardMatches = [NSRange]()  // matches after the start location
         let forwardRange = NSRange(startLocation..<(self.string as NSString).length)
-        self.enumerateMatchs(in: [forwardRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+        self.enumerateMatchs(in: [forwardRange], using: { (matchedRange, _, _) in
             forwardMatches.append(matchedRange)
         })
         
         var wrappedMatches = [NSRange]()  // matches before the start location
         var intersectionMatches = [NSRange]()  // matches including the start location
-        self.enumerateMatchs(in: [(self.string as NSString).range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+        self.enumerateMatchs(in: [(self.string as NSString).range], using: { (matchedRange, _, stop) in
             if matchedRange.location >= startLocation {
                 stop = true
                 return
@@ -449,7 +449,7 @@ final class TextFind {
         for scopeRange in ranges {
             guard !cancelled else { return }
             
-            regex.enumerateMatches(in: string, options: options, range: scopeRange) { (result, flags, stop) in
+            regex.enumerateMatches(in: string, options: options, range: scopeRange) { (result, _, stop) in
                 guard let result = result else { return }
                 
                 var ioStop = false

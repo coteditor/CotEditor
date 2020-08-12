@@ -203,7 +203,7 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", mode: mode)
         
         var matches = [[NSRange]]()
-        textFind.findAll { (matchedRanges, stop) in
+        textFind.findAll { (matchedRanges, _) in
             matches.append(matchedRanges)
         }
         XCTAssertEqual(matches.count, 2)
@@ -218,7 +218,7 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "ab", mode: mode)
         
         matches = [[NSRange]]()
-        textFind.findAll { (matchedRanges, stop) in
+        textFind.findAll { (matchedRanges, _) in
             matches.append(matchedRanges)
         }
         XCTAssertEqual(matches.count, 2)

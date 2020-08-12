@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ extension NSRegularExpression {
     func matches(in string: String, options: NSRegularExpression.MatchingOptions, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSTextCheckingResult] {
         
         var matches: [NSTextCheckingResult] = []
-        self.enumerateMatches(in: string, options: options, range: range) { (match, flags, stopPointer) in
+        self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
             var stop = false
             block(&stop)
             if stop {
