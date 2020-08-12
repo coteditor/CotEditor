@@ -79,6 +79,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.setupFontFamilyNameAndSize()
         
+        self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         self.updateThemeSelection()
         
         // select one of cursor type radio buttons
@@ -307,35 +308,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         guard notification.object as? NSTableView == self.themeTableView else { return }
         
-        let themeName = self.selectedThemeName
-        let theme = ThemeManager.shared.setting(name: themeName)
-        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
-        
-        // update default theme setting
-        if UserDefaults.standard[.theme] != themeName {
-            // do not store to UserDefautls if it's the default theme
-            if ThemeManager.shared.defaultSettingName == themeName {
-                UserDefaults.standard.restore(key: .theme)
-                UserDefaults.standard[.pinsThemeAppearance] = false
-            } else {
-                let isDarkTheme = ThemeManager.shared.isDark(name: themeName)
-                let isDarkAppearance: Bool = {
-                    switch UserDefaults.standard[.documentAppearance] {
-                        case .default: return NSAppearance.current.isDark
-                        case .light: return false
-                        case .dark: return true
-                    }
-                }()
-                UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
-                UserDefaults.standard[.theme] = themeName
-            }
-        }
-        
-        self.themeViewController?.theme = theme
-        self.themeViewController?.isBundled = isBundled
-        self.themeViewController?.view.setAccessibilityLabel(themeName)
-        
-        self.isBundled = isBundled
+        self.setTheme(name: self.selectedThemeName)
     }
     
     
@@ -574,6 +547,40 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             return menuItem.representedObject as! String
         }
         return self.selectedThemeName
+    }
+    
+    
+    /// set given theme
+    private func setTheme(name: String) {
+        
+        let theme = ThemeManager.shared.setting(name: name)
+        let isBundled = ThemeManager.shared.isBundledSetting(name: name)
+        
+        // update default theme setting
+        if UserDefaults.standard[.theme] != name {
+            // do not store to UserDefautls if it's the default theme
+            if ThemeManager.shared.defaultSettingName == name {
+                UserDefaults.standard.restore(key: .theme)
+                UserDefaults.standard[.pinsThemeAppearance] = false
+            } else {
+                let isDarkTheme = ThemeManager.shared.isDark(name: name)
+                let isDarkAppearance: Bool = {
+                    switch UserDefaults.standard[.documentAppearance] {
+                        case .default: return NSAppearance.current.isDark
+                        case .light: return false
+                        case .dark: return true
+                    }
+                }()
+                UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
+                UserDefaults.standard[.theme] = name
+            }
+        }
+        
+        self.themeViewController?.theme = theme
+        self.themeViewController?.isBundled = isBundled
+        self.themeViewController?.view.setAccessibilityLabel(name)
+        
+        self.isBundled = isBundled
     }
     
     
