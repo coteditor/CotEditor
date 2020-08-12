@@ -37,11 +37,11 @@
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
-                                <rect key="frame" x="4" y="0.0" width="20" height="20"/>
+                                <rect key="frame" x="2" y="0.0" width="21" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
                                 </constraints>
@@ -51,12 +51,27 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="isCloseSplitButtonEnabled" id="3nh-ze-8tj">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="FJH-xr-Bxo">
+                                <rect key="frame" x="23" y="4" width="5" height="13"/>
+                                <connections>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="isCloseSplitButtonEnabled" id="sj9-Cr-bsZ">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </box>
                             <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
-                                <rect key="frame" x="580" y="0.0" width="20" height="20"/>
+                                <rect key="frame" x="577" y="0.0" width="21" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Rrb-OZ-odM"/>
+                                    <constraint firstAttribute="height" constant="21" id="Rrb-OZ-odM"/>
                                     <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="3a0-fm-GbO">
@@ -69,7 +84,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
-                                <rect key="frame" x="28" y="0.0" width="16" height="20"/>
+                                <rect key="frame" x="30" y="0.0" width="16" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="NdS-0U-G6w"/>
                                 </constraints>
@@ -87,7 +102,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
-                                <rect key="frame" x="44" y="0.0" width="16" height="20"/>
+                                <rect key="frame" x="46" y="0.0" width="16" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="rrS-MJ-wb5"/>
                                 </constraints>
@@ -105,7 +120,7 @@
                                 </connections>
                             </button>
                             <popUpButton horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
-                                <rect key="frame" x="65" y="0.0" width="111" height="20"/>
+                                <rect key="frame" x="62" y="0.0" width="111" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="7hJ-QZ-5Wd"/>
                                 </constraints>
@@ -127,18 +142,8 @@
                                     </binding>
                                 </connections>
                             </popUpButton>
-                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="hKG-xL-oDF">
-                                <rect key="frame" x="62" y="4" width="5" height="12"/>
-                                <connections>
-                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsOutlineMenu" id="p1e-KZ-B4J">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </box>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
-                                <rect key="frame" x="71" y="3" width="107" height="14"/>
+                                <rect key="frame" x="68" y="4" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -149,20 +154,20 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" id="0Ge-40-6cs"/>
                             <constraint firstItem="syK-XU-x2I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="8" symbolic="YES" id="2MH-a6-qwS"/>
+                            <constraint firstAttribute="bottom" secondItem="FJH-xr-Bxo" secondAttribute="bottom" constant="4" id="4MP-Ey-t02"/>
+                            <constraint firstItem="FJH-xr-Bxo" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="2" id="4QS-rF-z9f"/>
                             <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="6cS-JS-uMe"/>
+                            <constraint firstItem="FJH-xr-Bxo" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="4" id="7pu-c1-Tzy"/>
                             <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" id="A58-M8-L3L"/>
-                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="4" id="AaP-3J-UKA"/>
-                            <constraint firstItem="hKG-xL-oDF" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" constant="4" id="GMe-bg-rbt"/>
-                            <constraint firstItem="hKG-xL-oDF" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="4" id="JFe-uj-hrk"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="GA9-bT-tVf"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="FJH-xr-Bxo" secondAttribute="trailing" constant="4" id="JTE-zW-r6R"/>
                             <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" id="Kke-Sl-ibg"/>
-                            <constraint firstAttribute="bottom" secondItem="hKG-xL-oDF" secondAttribute="bottom" constant="4" id="My7-dE-ZLE"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="Pdl-aM-DT9"/>
-                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="hKG-xL-oDF" secondAttribute="trailing" id="Y7c-Wu-ekX"/>
-                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" id="YT4-Oj-3Yn"/>
+                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="2" id="YT4-Oj-3Yn"/>
                             <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="lnf-XI-Uu9"/>
                             <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" id="oZh-rX-9Nd"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="4" id="onf-dY-Bgm"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="2" id="onf-dY-Bgm"/>
                             <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="qXY-wb-kbw"/>
                             <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" id="sNu-uV-dSg"/>
                             <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" id="uPK-py-Bfo"/>
@@ -172,7 +177,6 @@
                         </constraints>
                     </visualEffectView>
                     <connections>
-                        <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
                         <outlet property="editorSplitMenu" destination="yKS-mO-j45" id="XVz-tF-UbW"/>
                         <outlet property="leftButton" destination="BUj-TD-scp" id="UPE-Vg-sYz"/>
                         <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
@@ -265,9 +269,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CloseSplitTemplate" width="9" height="9"/>
+        <image name="CloseSplitTemplate" width="11" height="11"/>
         <image name="DownArrowTemplate" width="8" height="8"/>
-        <image name="OpenSplitTemplate" width="9" height="9"/>
+        <image name="OpenSplitTemplate" width="11" height="11"/>
         <image name="UpArrowTemplate" width="8" height="8"/>
     </resources>
 </document>

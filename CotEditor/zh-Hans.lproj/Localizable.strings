@@ -419,7 +419,6 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"<Outline Menu>" = "<大纲菜单>";
 "Jump to previous outline item" = "上一个提纲项目";
 "Jump to next outline item" = "下一个提纲项目";
 "Extracting Outline…" = "提取提纲…";

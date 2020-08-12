@@ -418,7 +418,6 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"<Outline Menu>" = "<Gliederungsmenü>";
 "Jump to previous outline item" = "Zum vorherigen Gliederungspunkt springen";
 "Jump to next outline item" = "Zum nächsten Gliederungspunkt springen";
 "Extracting Outline…" = "Gliederung extrahieren …";

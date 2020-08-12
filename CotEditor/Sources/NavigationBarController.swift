@@ -57,6 +57,8 @@ final class NavigationBarController: NSViewController {
         }
     }
     
+    @objc dynamic var isCloseSplitButtonEnabled: Bool = false
+    
     
     // MARK: Private Properties
     
@@ -72,6 +74,7 @@ final class NavigationBarController: NSViewController {
         self?.outlineLoadingMessage?.isHidden = false
     }
     
+    @objc private dynamic var showsCloseSplitEidorButton = false
     @objc private dynamic var showsOutlineMenu = false
     
     @IBOutlet private weak var leftButton: NSButton?
@@ -80,7 +83,6 @@ final class NavigationBarController: NSViewController {
     @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     @IBOutlet private weak var openSplitButton: NSButton?
-    @IBOutlet private weak var closeSplitButton: NSButton?
     @IBOutlet private var editorSplitMenu: NSMenu?
     
     
@@ -161,15 +163,6 @@ final class NavigationBarController: NSViewController {
         guard let menu = self.outlineMenu else { return false }
         
         return menu.itemArray[(menu.indexOfSelectedItem + 1)...].contains { $0.representedObject != nil }
-    }
-    
-    
-    /// Set closeSplitButton enabled or disabled.
-    var isCloseSplitButtonEnabled: Bool = false {
-        
-        didSet {
-            self.closeSplitButton!.isHidden = !isCloseSplitButtonEnabled
-        }
     }
     
     
@@ -264,12 +257,6 @@ final class NavigationBarController: NSViewController {
         guard !self.outlineItems.isEmpty else { return }
         
         let menu = outlineMenu.menu!
-        
-        // add headding item
-        let headdingItem = NSMenuItem()
-        headdingItem.title = "<Outline Menu>".localized
-        headdingItem.representedObject = NSRange(0..<0)
-        menu.addItem(headdingItem)
         
         // add outline items
         for outlineItem in self.outlineItems {
