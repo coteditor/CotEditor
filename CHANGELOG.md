@@ -10,14 +10,13 @@ Change Log
 - Change the system requirement to __macOS 10.15 Catalina and later__.
 - Update the UI appearance for Big Sur.
     - Update the application icon.
-    - Update the line number view style.
-    - Make status bar thicker.
-    - Change default settings of items to display in toolbar/status bar.
+    - Update the document window UI.
+- Change default settings of items to display in toolbar/status bar.
 - Move line endings/file encoding menus from the toolbar to the status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
-- Show a menu about editor split by right-clicking the editor split button.
+- Enable toggling the editor split orientation by right-clicking the editor split button in the navigation bar.
 - Enable action to toggle editor split orientation even when no split editor is opened.
-- Remove feature to import the legacy syntax style file format that was used in CotEditor 1.x. 
+- Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x. 
 - [trivial] Optimize the line number calculation in vertical text orientation.
 - [dev] Update the build environment to Xcode 12 (Swift 5.3, macOS 11 SDK).
 - [dev] Replace DifferenceKit package with native CollectionDifference.
