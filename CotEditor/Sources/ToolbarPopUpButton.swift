@@ -37,7 +37,7 @@ final class ToolbarPopUpButton: NSPopUpButton {
     
     override var intrinsicContentSize: NSSize {
         
-        return NSSize(width: self.preferredWidth, height: NSView.noIntrinsicMetric)
+        return NSSize(width: self.preferredWidth, height: super.intrinsicContentSize.height)
     }
     
 }
