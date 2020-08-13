@@ -92,22 +92,14 @@ final class OutlineViewController: NSViewController {
         
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
             .map { $0.object as! NSTextView }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (textView) in
-                guard let self = self else { return assertionFailure() }
-                guard textView.textStorage == self.document?.textStorage else { return }
-                
-                // avoid updating outline item selection before finishing outline parse
-                // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
-                //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-                guard
-                    !textView.hasMarkedText(),
-                    let textStorage = textView.textStorage,
-                    !textStorage.editedMask.contains(.editedCharacters)
-                    else { return }
-                
-                self.invalidateCurrentLocation(textView: textView)
-            }
+            .filter { [weak self] in $0.textStorage == self?.document?.textStorage }
+            .filter { !$0.hasMarkedText() }
+            // avoid updating outline item selection before finishing outline parse
+            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+            .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
+            .debounce(for: 0.05, scheduler: RunLoop.main)
+            .sink { [weak self] in self?.invalidateCurrentLocation(textView: $0) }
         
         self.fontSizeObserver?.invalidate()
         self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
@@ -200,9 +192,7 @@ final class OutlineViewController: NSViewController {
         
         self.syntaxStyleObserver = syntaxParser.$outlineItems
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (outlineItems) in
-                self?.outlineItems = outlineItems
-            }
+            .sink { [weak self] in self?.outlineItems = $0 }
     }
     
     
