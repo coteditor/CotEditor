@@ -5,6 +5,10 @@ Change Log
 3.9.5-alpha (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the navigation bar that the open/close split editor buttons did ocasionally not work.
+
 
 
 3.9.4 (430)
