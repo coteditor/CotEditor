@@ -47,7 +47,7 @@ final class NavigationBarController: NSViewController {
         didSet {
             assert(Thread.isMainThread)
             
-            self.outlineLoadingMessage?.isHidden = true
+            self.isParsingOutline = false
             
             if let progress = outlineProgress, !progress.isFinished {
                 self.indicatorTask.schedule()
@@ -71,16 +71,16 @@ final class NavigationBarController: NSViewController {
             self?.outlineMenu?.isHidden ?? true
             else { return }
         
-        self?.outlineLoadingMessage?.isHidden = false
+        self?.isParsingOutline = true
     }
     
     @objc private dynamic var showsCloseSplitEidorButton = false
     @objc private dynamic var showsOutlineMenu = false
+    @objc private dynamic var isParsingOutline = false
     
     @IBOutlet private weak var leftButton: NSButton?
     @IBOutlet private weak var rightButton: NSButton?
     @IBOutlet private weak var outlineMenu: NSPopUpButton?
-    @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     @IBOutlet private weak var openSplitButton: NSButton?
     @IBOutlet private var editorSplitMenu: NSMenu?
@@ -95,7 +95,7 @@ final class NavigationBarController: NSViewController {
         super.viewDidLoad()
         
         if let progress = self.outlineProgress, (!progress.isFinished || !progress.isCancelled) {
-            self.outlineLoadingMessage?.isHidden = false
+            self.isParsingOutline = true
         }
         
         // set accessibility

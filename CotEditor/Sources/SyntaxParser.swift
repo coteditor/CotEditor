@@ -59,8 +59,8 @@ final class SyntaxParser {
     
     // MARK: Private Properties
     
-    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
-    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
+    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue", qos: .utility)
+    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue", qos: .userInitiated)
     
     private var highlightCache: Cache?  // results cache of the last whole string highlights
     
@@ -129,7 +129,7 @@ extension SyntaxParser {
     private func parseOutline() {
         
         let wholeRange = self.textStorage.range
-        guard !wholeRange.isEmpty else {
+        guard !wholeRange.isEmpty, !self.style.outlineExtractors.isEmpty else {
             self.outlineItems = []
             return
         }
@@ -137,7 +137,6 @@ extension SyntaxParser {
         let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
                                               string: self.textStorage.string.immutable,
                                               range: wholeRange)
-        operation.qualityOfService = .utility
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
@@ -266,7 +265,6 @@ extension SyntaxParser {
                                                                        blockCommentDelimiters: self.style.blockCommentDelimiters)
         
         let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
-        operation.qualityOfService = .userInitiated
         
         // give up if the editor's string is changed from the parsed string
         let isModified = Atomic(false)
