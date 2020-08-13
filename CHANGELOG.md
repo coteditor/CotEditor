@@ -22,6 +22,11 @@ Change Log
 - [dev] Replace DifferenceKit package with native CollectionDifference.
 
 
+### Fixes
+
+- Fix an issue in the navigation bar that the open/close split editor buttons did ocasionally not work.
+
+
 
 3.9.4 (430)
 --------------------------
