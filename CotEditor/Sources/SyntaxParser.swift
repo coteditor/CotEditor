@@ -53,8 +53,7 @@ final class SyntaxParser {
     
     var style: SyntaxStyle
     
-    @Published private(set) var outlineItems: [OutlineItem] = []
-    @Published private(set) var outlineProgress: Progress?
+    @Published private(set) var outlineItems: [OutlineItem]?
     
     
     // MARK: Private Properties
@@ -63,8 +62,6 @@ final class SyntaxParser {
     private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue", qos: .userInitiated)
     
     private var highlightCache: Cache?  // results cache of the last whole string highlights
-    
-    private lazy var outlineUpdateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.parseOutline() }
     
     
     
@@ -97,7 +94,6 @@ final class SyntaxParser {
     func invalidateCurrentParse() {
         
         self.highlightCache = nil
-        self.outlineUpdateTask.cancel()
         self.outlineParseOperationQueue.cancelAllOperations()
         self.syntaxHighlightParseOperationQueue.cancelAllOperations()
     }
@@ -110,46 +106,31 @@ final class SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Parse outline with delay.
+    /// Parse outline.
     func invalidateOutline() {
         
-        guard self.canParse, !self.style.outlineExtractors.isEmpty else {
+        guard
+            self.canParse,
+            !self.style.outlineExtractors.isEmpty,
+            !self.textStorage.range.isEmpty
+        else {
             self.outlineItems = []
             return
         }
         
-        self.outlineUpdateTask.schedule()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Perform outline parse.
-    private func parseOutline() {
-        
-        let wholeRange = self.textStorage.range
-        guard !wholeRange.isEmpty, !self.style.outlineExtractors.isEmpty else {
-            self.outlineItems = []
-            return
-        }
+        self.outlineItems = nil
         
         let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
                                               string: self.textStorage.string.immutable,
-                                              range: wholeRange)
-        operation.completionBlock = { [weak self, weak operation] in
-            guard let operation = operation, !operation.isCancelled else { return }
-            
-            self?.outlineItems = operation.results
-            self?.outlineProgress = nil
+                                              range: self.textStorage.range)
+        operation.completionBlock = { [weak self, unowned operation] in
+            self?.outlineItems = !operation.isCancelled ? operation.results : []
         }
         
         // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
         //    since user cannot cancel it manually.
         self.outlineParseOperationQueue.cancelAllOperations()
         self.outlineParseOperationQueue.addOperation(operation)
-        
-        self.outlineProgress = operation.progress
     }
     
 }

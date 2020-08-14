@@ -230,19 +230,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             // observe syntaxParser for outline update
             document.syntaxParser.$outlineItems
-                .receive(on: DispatchQueue.main)
+                .debounce(for: 0.1, scheduler: RunLoop.main)
+                .removeDuplicates()
                 .sink { [weak self] (outlineItems) in
                     self?.editorViewControllers
                         .compactMap { $0.navigationBarController }
                         .forEach { $0.outlineItems = outlineItems }
-                }
-                .store(in: &self.outlineSubscriptions)
-            document.syntaxParser.$outlineProgress
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] (progress) in
-                    self?.editorViewControllers
-                        .compactMap { $0.navigationBarController }
-                        .forEach { $0.outlineProgress = progress }
                 }
                 .store(in: &self.outlineSubscriptions)
         }

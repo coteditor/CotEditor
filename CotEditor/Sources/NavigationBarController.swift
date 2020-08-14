@@ -33,26 +33,11 @@ final class NavigationBarController: NSViewController {
     
     weak var textView: NSTextView?
     
-    var outlineItems: [OutlineItem] = [] {
+    var outlineItems: [OutlineItem]? {
         
         didSet {
-            guard self.isViewShown, outlineItems != oldValue else { return }
-            
-            self.updateOutlineMenu()
-        }
-    }
-    
-    weak var outlineProgress: Progress? {
-        
-        didSet {
-            assert(Thread.isMainThread)
-            
-            self.isParsingOutline = false
-            
-            if let progress = outlineProgress, !progress.isFinished {
-                self.indicatorTask.schedule()
-            } else {
-                self.indicatorTask.cancel()
+            if self.isViewShown {
+                self.updateOutlineMenu()
             }
         }
     }
@@ -63,15 +48,6 @@ final class NavigationBarController: NSViewController {
     private var splitViewObservers: Set<AnyCancellable> = []
     private var orientationObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
-    
-    private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
-        guard
-            let progress = self?.outlineProgress, !progress.isFinished,
-            self?.outlineMenu?.isHidden ?? true
-            else { return }
-        
-        self?.isParsingOutline = true
-    }
     
     @objc private dynamic var showsCloseButton = false
     @objc private dynamic var showsOutlineMenu = false
@@ -92,10 +68,6 @@ final class NavigationBarController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        if let progress = self.outlineProgress, (!progress.isFinished || !progress.isCancelled) {
-            self.isParsingOutline = true
-        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -158,7 +130,7 @@ final class NavigationBarController: NSViewController {
         
         guard let textView = self.textView else { return false }
         
-        return self.outlineItems.previousItem(for: textView.selectedRange) != nil
+        return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
     }
     
     
@@ -167,7 +139,7 @@ final class NavigationBarController: NSViewController {
         
         guard let textView = self.textView else { return false }
         
-        return self.outlineItems.nextItem(for: textView.selectedRange) != nil
+        return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
     }
     
     
@@ -191,7 +163,7 @@ final class NavigationBarController: NSViewController {
         
         guard
             let textView = self.textView,
-            let item = self.outlineItems.previousItem(for: textView.selectedRange)
+            let item = self.outlineItems?.previousItem(for: textView.selectedRange)
             else { return }
         
         textView.select(range: item.range)
@@ -203,7 +175,7 @@ final class NavigationBarController: NSViewController {
         
         guard
             let textView = self.textView,
-            let item = self.outlineItems.nextItem(for: textView.selectedRange)
+            let item = self.outlineItems?.nextItem(for: textView.selectedRange)
             else { return }
         
         textView.select(range: item.range)
@@ -250,11 +222,13 @@ final class NavigationBarController: NSViewController {
     /// Build outline menu from `outlineItems`.
     private func updateOutlineMenu() {
         
-        self.showsOutlineMenu = !self.outlineItems.isEmpty
+        self.isParsingOutline = (self.outlineItems == nil)
+        self.showsOutlineMenu = (self.outlineItems?.isEmpty == false)
         
+        guard let outlineItems = self.outlineItems else { return }
         guard let outlineMenu = self.outlineMenu?.menu else { return assertionFailure() }
         
-        outlineMenu.items = self.outlineItems
+        outlineMenu.items = outlineItems
             .flatMap { (outlineItem) -> [NSMenuItem] in
                 switch outlineItem.title {
                     case .separator:

@@ -191,6 +191,7 @@ final class OutlineViewController: NSViewController {
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
         self.syntaxStyleObserver = syntaxParser.$outlineItems
+            .compactMap { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.outlineItems = $0 }
     }
