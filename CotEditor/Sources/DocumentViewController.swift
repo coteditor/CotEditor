@@ -861,9 +861,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // move focus to the next text view if the view to close has a focus
         if splitViewController.focusedChild == currentEditorViewController {
-            let childViewControllers = self.editorViewControllers
-            let deleteIndex = childViewControllers.firstIndex(of: currentEditorViewController) ?? 0
-            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.last!
+            let children = self.editorViewControllers
+            let deleteIndex = children.firstIndex(of: currentEditorViewController) ?? 0
+            let newFocusEditorViewController = children[safe: deleteIndex - 1] ?? children.last!
             
             self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)
         }

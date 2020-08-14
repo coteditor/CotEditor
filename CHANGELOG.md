@@ -2,6 +2,17 @@
 Change Log
 ==========================
 
+3.9.5 (433)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 3.9.4 that window prevented from becoming smaller than the outline items' width.
+- Fix an issue that some text transformation commands, such as “Make Upper Case,” also transformed the next unselected word that is identical to the selected one.
+- Fix an issue in the navigation bar that the open/close split editor buttons did occasionally not work.
+
+
+
 3.9.4 (430)
 --------------------------
 
