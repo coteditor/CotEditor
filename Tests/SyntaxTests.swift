@@ -125,9 +125,9 @@ final class SyntaxTests: XCTestCase {
         // test outline parsing with publisher
         let outlineParseExpectation = self.expectation(description: "didParseOutline")
         self.outlineParseCancellable = parser.$outlineItems
+            .compactMap { $0 }  // ignore the initial invocation
+            .receive(on: RunLoop.main)
             .sink { (outlineItems) in
-                guard !outlineItems.isEmpty else { return }  // ignore the initial invocation
-                
                 outlineParseExpectation.fulfill()
                 
                 XCTAssertEqual(outlineItems.count, 3)
