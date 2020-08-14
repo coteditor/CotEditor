@@ -183,9 +183,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             textView.string.nsRange.upperBound >= range.upperBound
             else { return }
         
-        textView.selectedRange = range
-        textView.scrollRangeToVisible(range)
-        textView.showFindIndicator(for: range)
+        textView.select(range: range)
     }
     
 }

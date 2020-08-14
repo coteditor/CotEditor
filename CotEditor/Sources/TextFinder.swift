@@ -432,9 +432,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // found feedback
         if let range = result.range {
-            textView.selectedRange = range
-            textView.scrollRangeToVisible(range)
-            textView.showFindIndicator(for: range)
+            textView.select(range: range)
             
             if result.wrapped {
                 if let view = textView.enclosingScrollView?.superview {

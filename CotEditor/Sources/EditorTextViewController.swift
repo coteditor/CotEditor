@@ -132,9 +132,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         viewController.completionHandler = { (lineRange) in
             guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
             
-            textView.selectedRange = range
-            textView.scrollRangeToVisible(range)
-            textView.showFindIndicator(for: range)
+            textView.select(range: range)
             
             return true
         }
