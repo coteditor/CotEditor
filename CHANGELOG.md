@@ -5,6 +5,11 @@ Change Log
 3.9.5-alpha (unreleased)
 --------------------------
 
+### Improvements
+
+- Avoid preventing the window from becoming smaller than the selected outline item width.
+
+
 ### Fixes
 
 - Fix an issue in the navigation bar that the open/close split editor buttons did ocasionally not work.

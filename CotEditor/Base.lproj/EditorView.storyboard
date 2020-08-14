@@ -86,7 +86,7 @@
                                     <action selector="selectNextItemOfOutlineMenu:" target="KjS-UJ-AjC" id="b7v-Xr-hG7"/>
                                 </connections>
                             </button>
-                            <popUpButton hidden="YES" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
+                            <popUpButton hidden="YES" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
                                 <rect key="frame" x="51" y="-2" width="300" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="499" constant="300" id="EMV-iW-vsD"/>
