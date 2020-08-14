@@ -29,6 +29,30 @@ extension EditorTextView {
     
     // MARK: Action Messages (Case Transformations)
     
+    /// transform to upper case
+    @IBAction override func uppercaseWord(_ sender: Any?) {
+        
+        // override the default behavior to avoid invoking `selectWord(_:)` command
+        // that is also overwritten to select the next same word.
+        // -> The same for `lowercaseWord(_:)` and `capitalizeWord(_:)` below.
+        self.transformSelection { $0.localizedUppercase }
+    }
+    
+    
+    /// transform to lower case
+    @IBAction override func lowercaseWord(_ sender: Any?) {
+        
+        self.transformSelection { $0.localizedLowercase }
+    }
+    
+    
+    /// transform to capitalized case
+    @IBAction override func capitalizeWord(_ sender: Any?) {
+        
+        self.transformSelection { $0.localizedCapitalized }
+    }
+    
+    
     /// transform to snake case
     @IBAction func snakecaseWord(_ sender: Any?) {
         

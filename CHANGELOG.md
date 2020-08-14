@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that some text transformation commands, such as “Make Upper Case,” also transformed the next unselected word that is identical to the selected one.
 - Fix an issue in the navigation bar that the open/close split editor buttons did ocasionally not work.
 
 
