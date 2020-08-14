@@ -233,9 +233,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 .debounce(for: 0.1, scheduler: RunLoop.main)
                 .removeDuplicates()
                 .sink { [weak self] (outlineItems) in
-                    self?.editorViewControllers
-                        .compactMap { $0.navigationBarController }
-                        .forEach { $0.outlineItems = outlineItems }
+                    self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
                 }
                 .store(in: &self.outlineSubscriptions)
         }
@@ -779,7 +777,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
-        newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
+        newEditorViewController.outlineItems = self.syntaxParser?.outlineItems ?? []
         self.invalidateSyntaxHighlight()
         
         // adjust visible areas

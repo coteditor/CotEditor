@@ -158,30 +158,6 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// Select the previous outline menu item.
-    @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
-        
-        guard
-            let textView = self.textView,
-            let item = self.outlineItems?.previousItem(for: textView.selectedRange)
-            else { return }
-        
-        textView.select(range: item.range)
-    }
-    
-    
-    /// Select the next outline menu item.
-    @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
-        
-        guard
-            let textView = self.textView,
-            let item = self.outlineItems?.nextItem(for: textView.selectedRange)
-            else { return }
-        
-        textView.select(range: item.range)
-    }
-    
-    
     
     // MARK: Private Methods
     
@@ -292,11 +268,13 @@ final class NavigationBarController: NSViewController {
                 fatalError()
         }
         
-        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu)
+        self.prevButton?.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
+        self.prevButton?.target = self.parent
         self.prevButton?.toolTip = "Jump to previous outline item".localized
         self.prevButton?.isEnabled = self.canSelectPrevItem
         
-        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu)
+        self.nextButton?.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
+        self.nextButton?.target = self.parent
         self.nextButton?.toolTip = "Jump to next outline item".localized
         self.nextButton?.isEnabled = self.canSelectNextItem
     }

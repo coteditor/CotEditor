@@ -93,7 +93,7 @@
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="selectPrevItemOfOutlineMenu:" target="KjS-UJ-AjC" id="86A-SI-44q"/>
+                                    <action selector="selectNextItemOfOutlineMenu:" target="OuY-Pd-2q9" id="T0Q-fH-fG8"/>
                                     <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsOutlineMenu" id="bN2-v2-4GB">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -111,7 +111,7 @@
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="selectNextItemOfOutlineMenu:" target="KjS-UJ-AjC" id="b7v-Xr-hG7"/>
+                                    <action selector="selectNextItemOfOutlineMenu:" target="OuY-Pd-2q9" id="Hbm-fG-cAQ"/>
                                     <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsOutlineMenu" id="IeF-14-JgJ">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
