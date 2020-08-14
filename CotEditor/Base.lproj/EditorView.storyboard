@@ -14,7 +14,7 @@
                         <splitViewItem holdingPriority="750" id="1jV-uy-ka5"/>
                         <splitViewItem id="Z56-OS-hF0"/>
                     </splitViewItems>
-                    <splitView key="splitView" identifier="EditorView" misplaced="YES" dividerStyle="thin" id="Kyz-NV-ro4">
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="Kyz-NV-ro4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -51,7 +51,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
-                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="isCloseSplitButtonEnabled" id="3nh-ze-8tj">
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsCloseButton" id="cKc-yO-gH0">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
@@ -61,7 +61,7 @@
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="FJH-xr-Bxo">
                                 <rect key="frame" x="23" y="4" width="5" height="13"/>
                                 <connections>
-                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="isCloseSplitButtonEnabled" id="sj9-Cr-bsZ">
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsCloseButton" id="5UB-FO-ZD2">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>

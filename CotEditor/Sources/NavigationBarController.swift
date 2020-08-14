@@ -57,11 +57,10 @@ final class NavigationBarController: NSViewController {
         }
     }
     
-    @objc dynamic var isCloseSplitButtonEnabled: Bool = false
-    
     
     // MARK: Private Properties
     
+    private var splitViewObservers: Set<AnyCancellable> = []
     private var orientationObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
     
@@ -74,7 +73,7 @@ final class NavigationBarController: NSViewController {
         self?.isParsingOutline = true
     }
     
-    @objc private dynamic var showsCloseSplitEidorButton = false
+    @objc private dynamic var showsCloseButton = false
     @objc private dynamic var showsOutlineMenu = false
     @objc private dynamic var isParsingOutline = false
     
@@ -111,7 +110,18 @@ final class NavigationBarController: NSViewController {
         
         super.viewWillAppear()
         
-        guard let textView = self.textView else { return assertionFailure() }
+        guard
+            let splitViewController = self.splitViewController,
+            let textView = self.textView
+            else { return assertionFailure() }
+        
+        splitViewController.$isVertical
+            .map { $0 ? #imageLiteral(resourceName: "OpenSplitVerticalTemplate") : #imageLiteral(resourceName: "OpenSplitTemplate") }
+            .assign(to: \.image, on: self.openSplitButton!)
+            .store(in: &self.splitViewObservers)
+        splitViewController.$canCloseSplitItem
+            .sink { [weak self] in self?.showsCloseButton = $0 }
+            .store(in: &self.splitViewObservers)
         
         self.orientationObserver = textView.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] in self?.updateTextOrientation(to: $0) }
@@ -134,6 +144,7 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidDisappear()
         
+        self.splitViewObservers.removeAll()
         self.orientationObserver = nil
         self.selectionObserver = nil
     }
@@ -157,15 +168,6 @@ final class NavigationBarController: NSViewController {
         guard let textView = self.textView else { return false }
         
         return self.outlineItems.nextItem(for: textView.selectedRange) != nil
-    }
-    
-    
-    /// Set the image of the open split view button.
-    var isSplitOrientationVertical: Bool = false {
-        
-        didSet {
-            self.openSplitButton!.image = isSplitOrientationVertical ? #imageLiteral(resourceName: "OpenSplitVerticalTemplate") : #imageLiteral(resourceName: "OpenSplitTemplate")
-        }
     }
     
     
@@ -221,6 +223,16 @@ final class NavigationBarController: NSViewController {
         
         return paragraphStyle
     }()
+    
+    
+    /// The split view controller managing editor split.
+    private var splitViewController: SplitViewController? {
+        
+        guard let parent = self.parent else { return nil }
+        
+        return sequence(first: parent, next: \.parent)
+            .first { $0 is SplitViewController } as? SplitViewController
+    }
     
     
     private var prevButton: NSButton? {

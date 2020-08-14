@@ -774,7 +774,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         guard
             let splitViewController = self.splitViewController,
-            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
+            let currentEditorViewController = self.baseEditorViewController(for: sender)
             else { return assertionFailure() }
         
         guard splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
@@ -783,7 +783,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
-        splitViewController.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
+        splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
@@ -811,7 +811,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         guard
             let splitViewController = self.splitViewController,
-            let currentEditorViewController = self.findTargetEditorViewController(for: sender),
+            let currentEditorViewController = self.baseEditorViewController(for: sender),
             let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController)
             else { return }
         
@@ -989,16 +989,20 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     }
     
     
-    /// find target EditorViewController to manage split views for action sender
-    private func findTargetEditorViewController(for sender: Any?) -> EditorViewController? {
+    /// Find the base `EditorViewController` for split editor management actions.
+    ///
+    /// - Parameter sender: The action sender.
+    /// - Returns: An editor view controller, or `nil` if not found.
+    private func baseEditorViewController(for sender: Any?) -> EditorViewController? {
         
-        guard
-            let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: \.superview)
-                .first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
-            else { return nil }
+        if let view = sender as? NSView,
+           let controller = self.splitViewController?.children
+            .first(where: { view.isDescendant(of: $0.view) }) as? EditorViewController
+        {
+            return controller
+        }
         
-        return self.splitViewController?.viewController(for: editorView)
+        return self.splitViewController?.focusedChild
     }
     
 }
