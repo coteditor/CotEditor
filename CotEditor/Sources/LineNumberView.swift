@@ -561,14 +561,13 @@ extension LineNumberView {
         // with Shift key (expand selection)
         if event.modifierFlags.contains(.shift) {
             let selectedRange = textView.selectedRange
+            
             if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
-                if inUpperSelection {  // clicked upper half section of selected range
-                    range = NSRange(currentIndex..<selectedRange.upperBound)
-                } else {
-                    range = selectedRange
-                    range.length -= selectedRange.upperBound - currentLineRange.upperBound
-                }
+                range = inUpperSelection  // clicked upper half section of selected range
+                    ? NSRange(currentIndex..<selectedRange.upperBound)
+                    : NSRange(selectedRange.lowerBound..<currentLineRange.upperBound)
+                
             } else {  // expand
                 range.formUnion(selectedRange)
             }
