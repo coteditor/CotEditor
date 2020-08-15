@@ -37,11 +37,11 @@
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
-                                <rect key="frame" x="2" y="0.0" width="21" height="21"/>
+                                <rect key="frame" x="2" y="-1" width="21" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
                                 </constraints>
@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="FJH-xr-Bxo">
-                                <rect key="frame" x="23" y="4" width="5" height="13"/>
+                                <rect key="frame" x="23" y="3" width="5" height="13"/>
                                 <connections>
                                     <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsCloseButton" id="5UB-FO-ZD2">
                                         <dictionary key="options">
@@ -69,7 +69,7 @@
                                 </connections>
                             </box>
                             <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
-                                <rect key="frame" x="577" y="0.0" width="21" height="21"/>
+                                <rect key="frame" x="578" y="-1" width="21" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Rrb-OZ-odM"/>
                                     <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
@@ -84,7 +84,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
-                                <rect key="frame" x="30" y="0.0" width="16" height="21"/>
+                                <rect key="frame" x="30" y="-1" width="16" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="NdS-0U-G6w"/>
                                 </constraints>
@@ -102,7 +102,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
-                                <rect key="frame" x="46" y="0.0" width="16" height="21"/>
+                                <rect key="frame" x="46" y="-1" width="16" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="rrS-MJ-wb5"/>
                                 </constraints>
@@ -120,7 +120,7 @@
                                 </connections>
                             </button>
                             <popUpButton horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
-                                <rect key="frame" x="62" y="0.0" width="111" height="21"/>
+                                <rect key="frame" x="62" y="-1" width="111" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="7hJ-QZ-5Wd"/>
                                 </constraints>
@@ -143,7 +143,7 @@
                                 </connections>
                             </popUpButton>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
-                                <rect key="frame" x="68" y="4" width="107" height="14"/>
+                                <rect key="frame" x="68" y="2" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -159,28 +159,28 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" id="0Ge-40-6cs"/>
+                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
                             <constraint firstItem="syK-XU-x2I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="8" symbolic="YES" id="2MH-a6-qwS"/>
-                            <constraint firstAttribute="bottom" secondItem="FJH-xr-Bxo" secondAttribute="bottom" constant="4" id="4MP-Ey-t02"/>
+                            <constraint firstAttribute="bottom" secondItem="FJH-xr-Bxo" secondAttribute="bottom" constant="3" id="4MP-Ey-t02"/>
                             <constraint firstItem="FJH-xr-Bxo" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="2" id="4QS-rF-z9f"/>
                             <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="6cS-JS-uMe"/>
                             <constraint firstItem="FJH-xr-Bxo" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="4" id="7pu-c1-Tzy"/>
                             <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" id="A58-M8-L3L"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="GA9-bT-tVf"/>
                             <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="FJH-xr-Bxo" secondAttribute="trailing" constant="4" id="JTE-zW-r6R"/>
-                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" id="Kke-Sl-ibg"/>
+                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="Pdl-aM-DT9"/>
-                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="2" id="YT4-Oj-3Yn"/>
+                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="1" id="YT4-Oj-3Yn"/>
                             <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="lnf-XI-Uu9"/>
-                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" id="oZh-rX-9Nd"/>
+                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
                             <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="2" id="onf-dY-Bgm"/>
                             <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="qXY-wb-kbw"/>
-                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" id="sNu-uV-dSg"/>
-                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" id="uPK-py-Bfo"/>
+                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
+                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="leading" constant="8" id="v6J-Te-MSs"/>
                             <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="vXG-JU-O6t"/>
-                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="zxj-gI-io3"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" constant="1" id="zxj-gI-io3"/>
                         </constraints>
                     </visualEffectView>
                     <connections>
