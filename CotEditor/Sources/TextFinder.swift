@@ -482,7 +482,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         textView.isEditable = false
         
-        let highlightColors = NSColor.textHighlighterColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet

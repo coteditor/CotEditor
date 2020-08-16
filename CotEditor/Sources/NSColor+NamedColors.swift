@@ -28,7 +28,7 @@ import AppKit.NSAppearance
 
 extension NSColor {
     
-    static let textHighlighterColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
+    static let textHighlighterColor = NSColor(named: "Accent Color")!.withAlphaComponent(0.4)
     static let alternateDisabledControlTextColor = NSColor(white: 1.0, alpha: 0.75)
 }
 
