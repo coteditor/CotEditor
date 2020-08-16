@@ -83,9 +83,9 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         self.outlineView?.reloadData()
         self.invalidateCurrentLocation()
@@ -202,10 +202,7 @@ final class OutlineViewController: NSViewController {
     /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
-        guard
-            self.isViewShown,
-            let outlineView = self.outlineView
-            else { return }
+        guard let outlineView = self.outlineView else { return }
         
         guard
             let textView = textView ?? self.document?.textView,
