@@ -79,7 +79,9 @@ final class ReplacementManager: SettingFileManaging {
         
         self.cachedSettings[name] = setting
         
-        let change: SettingChange = .updated(from: name, to: name)
+        let change: SettingChange = self.settingNames.contains(name)
+            ? .updated(from: name, to: name)
+            : .added(name)
         self.updateSettingList(change: change)
         self.didUpdateSetting.send(change)
     }
