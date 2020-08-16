@@ -122,9 +122,9 @@
                             <popUpButton horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
                                 <rect key="frame" x="62" y="-1" width="111" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="7hJ-QZ-5Wd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="7hJ-QZ-5Wd"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" title="&lt;Outline Item&gt;" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="fgm-Hv-H3C" id="Noe-z9-zXZ">
+                                <popUpButtonCell key="cell" type="smallSquare" title="&lt;Outline Item&gt;" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="fgm-Hv-H3C" id="Noe-z9-zXZ" customClass="OutlinePopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" id="EeX-Bi-kba">
