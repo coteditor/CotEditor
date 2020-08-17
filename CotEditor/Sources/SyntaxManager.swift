@@ -70,14 +70,15 @@ final class SyntaxManager: SettingFileManaging {
     
     var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
+    @Atomic var cachedSettings: [SettingName: Setting] = [:]
     
     
     // MARK: Private Properties
     
     private let bundledMap: [SettingName: [String: [String]]]
-    private var mappingTables = Atomic<[SyntaxKey: [String: [SettingName]]]>([.extensions: [:],
-                                                                              .filenames: [:],
-                                                                              .interpreters: [:]])
+    @Atomic private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
+                                                                               .filenames: [:],
+                                                                               .interpreters: [:]]
     
     
     
@@ -113,7 +114,7 @@ final class SyntaxManager: SettingFileManaging {
     /// return style name corresponding to file name
     func settingName(documentFileName fileName: String) -> SettingName? {
         
-        let mappingTables = self.mappingTables.value
+        let mappingTables = self.mappingTables
         
         if let settingName = mappingTables[.filenames]?[fileName]?.first {
             return settingName
@@ -132,7 +133,7 @@ final class SyntaxManager: SettingFileManaging {
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-            let settingName = self.mappingTables.value[.interpreters]?[interpreter]?.first {
+            let settingName = self.mappingTables[.interpreters]?[interpreter]?.first {
             return settingName
         }
         
@@ -213,9 +214,9 @@ final class SyntaxManager: SettingFileManaging {
         }
         
         // invalidate current cache
-        self.cachedSettings[name] = nil
+        self.$cachedSettings.mutate { $0[name] = nil }
         if let oldName = oldName {
-            self.cachedSettings[oldName] = nil
+            self.$cachedSettings.mutate { $0[oldName] = nil }
         }
         
         // update internal cache
@@ -228,7 +229,7 @@ final class SyntaxManager: SettingFileManaging {
     /// conflicted maps
     var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
         
-        return self.mappingTables.value.mapValues { $0.filter { $0.value.count > 1 } }
+        return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
     }
     
     
@@ -275,7 +276,7 @@ final class SyntaxManager: SettingFileManaging {
             guard let url = self.urlForUsedSetting(name: name) else { return nil }
             
             let setting = try? self.loadSetting(at: url)
-            self.cachedSettings[name] = setting
+            self.$cachedSettings.mutate { $0[name] = setting }
             
             return setting
             }() else { return nil }
@@ -289,14 +290,6 @@ final class SyntaxManager: SettingFileManaging {
         
         return setting
     }
-    
-    
-    var cachedSettings: [SettingName: Setting] {
-        
-        get { self._cachedSettings.value }
-        set { self._cachedSettings.mutate { $0 = newValue } }
-    }
-    private let _cachedSettings = Atomic<[SettingName: Setting]>([:])
     
     
     /// load setting from the file at given URL
@@ -341,7 +334,7 @@ final class SyntaxManager: SettingFileManaging {
                 }
             }
         }
-        self.mappingTables.mutate { $0 = tables }
+        self.mappingTables = tables
     }
     
     

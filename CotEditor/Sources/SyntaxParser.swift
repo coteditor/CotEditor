@@ -253,7 +253,7 @@ extension SyntaxParser {
         modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
             guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
             
-            isModified.mutate { $0 = true }
+            isModified.wrappedValue = true
             operation?.cancel()
             
             if let observer = modificationObserver {
@@ -280,7 +280,7 @@ extension SyntaxParser {
                     }
                 }
                 
-                guard !isModified.value else {
+                guard !isModified.wrappedValue else {
                     progress.cancel()
                     return
                 }
