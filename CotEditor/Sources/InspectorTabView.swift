@@ -50,7 +50,6 @@ final class InspectorTabView: NSTabView {
         // setup segmented control
         self.segmentedControl.cell = SwitcherSegmentedCell()
         self.segmentedControl.segmentStyle = .texturedSquare
-        self.segmentedControl.frame.origin.y = floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2)
         self.addSubview(self.segmentedControl)
         
         self.rebuildSegmentedControl()
@@ -63,20 +62,25 @@ final class InspectorTabView: NSTabView {
     /// take off control space
     override var contentRect: NSRect {
         
+        let offset = self.topInset + self.controlHeight + 1  // +1 for border
+        
         var rect = self.bounds
-        rect.origin.y = self.controlHeight + 1  // +1 for border
-        rect.size.height -= self.controlHeight + 1
+        rect.origin.y = offset
+        rect.size.height -= offset
         
         return rect
     }
     
     
-    /// reposition control manually
-    override var frame: NSRect {
+    /// update private control position
+    override func layout() {
         
-        didSet {
-            self.invalidateControlPosition()
-        }
+        super.layout()
+        
+        self.segmentedControl.frame.origin = NSPoint(
+            x: floor((self.frame.width - self.segmentedControl.frame.width) / 2),
+            y: floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2) + self.topInset
+        )
     }
     
     
@@ -93,8 +97,8 @@ final class InspectorTabView: NSTabView {
             super.draw(dirtyRect)
         }
         
-        let strokeRect = NSRect(x: dirtyRect.minX, y: self.controlHeight, width: dirtyRect.width, height: 1)
-        NSColor.gridColor.setFill()
+        let strokeRect = NSRect(x: dirtyRect.minX, y: self.topInset + self.controlHeight, width: dirtyRect.width, height: 1)
+        NSColor.separatorColor.setFill()
         self.centerScanRect(strokeRect).fill()
         
         NSGraphicsContext.restoreGraphicsState()
@@ -136,6 +140,15 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Methods
     
+    /// The height of the tab control and the top inset.
+    private var topInset: CGFloat {
+        
+        guard #available(macOS 10.16, *) else { return 0 }
+        
+        return self.safeAreaInsets.top
+    }
+    
+    
     /// update selection of the private control
     private func invalidateControlSelection() {
         
@@ -153,13 +166,6 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    /// update private control position
-    private func invalidateControlPosition() {
-        
-        self.segmentedControl.frame.origin.x = floor((self.frame.width - self.segmentedControl.frame.width) / 2)
-    }
-    
-    
     /// update the private control every time when tab item line-up changed
     private func rebuildSegmentedControl() {
         
@@ -172,7 +178,6 @@ final class InspectorTabView: NSTabView {
         }
         
         self.segmentedControl.sizeToFit()
-        self.invalidateControlPosition()
         self.invalidateControlSelection()
     }
     
