@@ -43,7 +43,7 @@
         <scene sceneID="JxK-9F-xcJ">
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
+                    <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="titlebar" state="followsWindowActiveState" id="Fb7-9r-keA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

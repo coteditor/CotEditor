@@ -69,6 +69,10 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
+        if #available(macOS 10.16, *) { } else {
+            (self.view as? NSVisualEffectView)?.material = .windowBackground
+        }
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
