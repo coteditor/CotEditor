@@ -52,8 +52,6 @@ final class OutlineParseOperation: Operation {
         self.extractors = extractors
         self.string = string
         self.parseRange = parseRange
-        
-        super.init()
     }
     
     
