@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,10 +13,10 @@
             <objects>
                 <splitViewController id="sY9-RN-jMg" customClass="EditorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem holdingPriority="750" id="1jV-uy-ka5"/>
+                        <splitViewItem holdingPriority="750" separatorStyle="line" id="1jV-uy-ka5"/>
                         <splitViewItem id="Z56-OS-hF0"/>
                     </splitViewItems>
-                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="Kyz-NV-ro4">
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Kyz-NV-ro4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
@@ -43,7 +44,7 @@
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="20"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
@@ -65,7 +66,7 @@
                                 </connections>
                             </button>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="FJH-xr-Bxo">
-                                <rect key="frame" x="23" y="3" width="5" height="13"/>
+                                <rect key="frame" x="23" y="4" width="5" height="11"/>
                                 <connections>
                                     <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsCloseButton" id="5UB-FO-ZD2">
                                         <dictionary key="options">
@@ -148,7 +149,7 @@
                                     </binding>
                                 </connections>
                             </popUpButton>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
+                            <textField hidden="YES" wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
                                 <rect key="frame" x="68" y="2" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
                                     <font key="font" metaFont="smallSystem"/>
@@ -165,29 +166,31 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
                             <constraint firstItem="syK-XU-x2I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="8" symbolic="YES" id="2MH-a6-qwS"/>
-                            <constraint firstAttribute="bottom" secondItem="FJH-xr-Bxo" secondAttribute="bottom" constant="3" id="4MP-Ey-t02"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="FJH-xr-Bxo" secondAttribute="bottom" constant="4" id="4MP-Ey-t02"/>
                             <constraint firstItem="FJH-xr-Bxo" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="2" id="4QS-rF-z9f"/>
-                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="6cS-JS-uMe"/>
-                            <constraint firstItem="FJH-xr-Bxo" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="4" id="7pu-c1-Tzy"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="6cS-JS-uMe"/>
+                            <constraint firstItem="FJH-xr-Bxo" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" constant="5" id="7pu-c1-Tzy"/>
                             <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" id="A58-M8-L3L"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="GA9-bT-tVf"/>
                             <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="FJH-xr-Bxo" secondAttribute="trailing" constant="4" id="JTE-zW-r6R"/>
-                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
-                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="Pdl-aM-DT9"/>
-                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="1" id="YT4-Oj-3Yn"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="lnf-XI-Uu9"/>
-                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="2" id="onf-dY-Bgm"/>
-                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="qXY-wb-kbw"/>
-                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
-                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="Pdl-aM-DT9"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="1" id="YT4-Oj-3Yn"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="lnf-XI-Uu9"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="feF-Kd-UKM" secondAttribute="leading" constant="2" id="onf-dY-Bgm"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="qXY-wb-kbw"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="leading" constant="8" id="v6J-Te-MSs"/>
-                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" id="vXG-JU-O6t"/>
-                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" constant="1" id="zxj-gI-io3"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="vXG-JU-O6t"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="feF-Kd-UKM" secondAttribute="centerY" constant="1" id="zxj-gI-io3"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="feF-Kd-UKM"/>
+                        <viewLayoutGuide key="layoutMargins" id="z15-5N-tWk"/>
                     </visualEffectView>
                     <connections>
                         <outlet property="editorSplitMenu" destination="yKS-mO-j45" id="XVz-tF-UbW"/>
@@ -215,9 +218,8 @@
         <scene sceneID="F5v-F6-xnV">
             <objects>
                 <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <stackView key="view" distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Val-Qg-Ge8">
+                    <stackView key="view" distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Val-Qg-Ge8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="665"/>
-                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-Jr-jkg" customClass="LineNumberView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="32" height="665"/>
@@ -255,6 +257,8 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="rqf-ft-yx4"/>
+                        <viewLayoutGuide key="layoutMargins" id="Ogh-MF-aCB"/>
                         <visibilityPriorities>
                             <integer value="1000"/>
                             <integer value="1000"/>
