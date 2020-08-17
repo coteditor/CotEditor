@@ -548,7 +548,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Emoji & Symbols".localized
                 item.toolTip = "Show Emoji & Symbols palette".localized
-                item.image = #imageLiteral(resourceName: "Emoji")
+                if #available(macOS 10.16, *) {
+                    item.image = NSImage(systemSymbolName: "face.smiling", accessibilityDescription: item.label)
+                } else {
+                    item.image = #imageLiteral(resourceName: "Emoji")
+                }
                 item.action = #selector(NSApplication.orderFrontCharacterPalette)
                 return item
                 

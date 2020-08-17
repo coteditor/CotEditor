@@ -303,8 +303,8 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Edit selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q0c-oI-um3">
-                                            <rect key="frame" x="48" y="-2.5" width="24.5" height="29"/>
-                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="EditTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="9hy-QN-c7M">
+                                            <rect key="frame" x="48" y="-1.5" width="24.5" height="27"/>
+                                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="pencil" catalog="system" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="9hy-QN-c7M">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -512,9 +512,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EditTemplate" width="16" height="16"/>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>
 </document>

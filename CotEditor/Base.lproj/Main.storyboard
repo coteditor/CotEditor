@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -1089,7 +1089,7 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Script" image="ScriptTemplate" id="617">
+                            <menuItem title="Script" image="applescript.fill" catalog="system" id="617">
                                 <menu key="submenu" title="Script" id="616"/>
                             </menuItem>
                             <menuItem title="Help" id="103">
@@ -1197,6 +1197,6 @@ CA
         </scene>
     </scenes>
     <resources>
-        <image name="ScriptTemplate" width="22" height="22"/>
+        <image name="applescript.fill" catalog="system" width="14" height="19"/>
     </resources>
 </document>

@@ -30,7 +30,7 @@
                                     <constraint firstAttribute="width" constant="200" id="jww-tZ-Fas"/>
                                 </constraints>
                                 <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="0.29521857923497269" tickMarkPosition="below" numberOfTickMarks="9" sliderType="linear" id="wGe-ff-Cuy">
-                                    <font key="font" metaFont="user"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
                                 </sliderCell>
                                 <connections>
                                     <action selector="changeEditorOpaque:" target="Qki-Cn-AgK" id="sgc-gh-TRC"/>
@@ -120,7 +120,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPQ-lD-rUg">
-                                <rect key="frame" x="151" y="20" width="298" height="14"/>
+                                <rect key="frame" x="155" y="20" width="298" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Non-opaque editor can slow down on a huge document." id="gdC-8B-U5B">
                                     <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -131,8 +131,8 @@
                                 </connections>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bPu-Lc-Uek">
-                                <rect key="frame" x="136" y="21" width="13" height="13"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CautionTemplate" id="1Nk-nY-BWu"/>
+                                <rect key="frame" x="136" y="20" width="17" height="15"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="exclamationmark.triangle.fill" catalog="system" id="1Nk-nY-BWu"/>
                                 <connections>
                                     <binding destination="Qki-Cn-AgK" name="hidden" keyPath="editorOpaque" id="Ypy-zD-QcO"/>
                                 </connections>
@@ -557,6 +557,7 @@
                             <constraint firstItem="XGK-jf-PNq" firstAttribute="width" secondItem="hfv-mJ-E2k" secondAttribute="width" id="NKk-cs-8Bv"/>
                             <constraint firstItem="klg-3N-8x9" firstAttribute="leading" secondItem="bPu-Lc-Uek" secondAttribute="leading" id="Nam-aH-9QE"/>
                             <constraint firstItem="w4k-Qb-kRF" firstAttribute="top" secondItem="uRF-iT-6pD" secondAttribute="top" constant="20" symbolic="YES" id="O15-w1-7WN"/>
+                            <constraint firstItem="bPu-Lc-Uek" firstAttribute="centerY" secondItem="LPQ-lD-rUg" secondAttribute="centerY" id="P1D-CD-sWt"/>
                             <constraint firstItem="KaN-9u-fz0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uRF-iT-6pD" secondAttribute="leading" constant="20" symbolic="YES" id="PUY-Eg-UOm"/>
                             <constraint firstItem="O64-k1-YJA" firstAttribute="leading" secondItem="XTB-Ii-tsF" secondAttribute="leading" priority="250" constant="130" id="PVc-gc-DJP"/>
                             <constraint firstItem="W7e-Di-3ya" firstAttribute="leading" secondItem="Obi-8V-K8Q" secondAttribute="trailing" constant="8" symbolic="YES" id="Q2y-HS-ZDR"/>
@@ -616,7 +617,6 @@
                             <constraint firstItem="hqW-e1-Q8a" firstAttribute="leading" secondItem="klg-3N-8x9" secondAttribute="trailing" constant="8" symbolic="YES" id="u4X-bE-WYr"/>
                             <constraint firstItem="O64-k1-YJA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XTB-Ii-tsF" secondAttribute="trailing" constant="8" symbolic="YES" id="u60-p5-aqF"/>
                             <constraint firstItem="dlN-sO-hCs" firstAttribute="firstBaseline" secondItem="KaN-9u-fz0" secondAttribute="firstBaseline" id="uL5-NT-dRh"/>
-                            <constraint firstItem="LPQ-lD-rUg" firstAttribute="top" secondItem="bPu-Lc-Uek" secondAttribute="top" id="uaQ-c7-qz6"/>
                             <constraint firstItem="6S6-gu-D2C" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LPQ-lD-rUg" secondAttribute="trailing" constant="12" symbolic="YES" id="wQS-Sy-Yyt"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KWJ-gB-0KX" secondAttribute="trailing" constant="20" symbolic="YES" id="wRr-bq-JUw"/>
                             <constraint firstItem="C9r-v1-hrx" firstAttribute="baseline" secondItem="wv9-cn-NXQ" secondAttribute="baseline" id="x7L-AF-LYm"/>
@@ -645,6 +645,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CautionTemplate" width="13" height="13"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
     </resources>
 </document>

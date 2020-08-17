@@ -88,7 +88,7 @@ final class NavigationBarController: NSViewController {
             else { return assertionFailure() }
         
         splitViewController.$isVertical
-            .map { $0 ? #imageLiteral(resourceName: "OpenSplitVerticalTemplate") : #imageLiteral(resourceName: "OpenSplitTemplate") }
+            .map { $0 ? #imageLiteral(resourceName: "split.add.vertical") : #imageLiteral(resourceName: "split.add") }
             .assign(to: \.image, on: self.openSplitButton!)
             .store(in: &self.splitViewObservers)
         splitViewController.$canCloseSplitItem
@@ -259,11 +259,11 @@ final class NavigationBarController: NSViewController {
         
         switch orientation {
             case .horizontal:
-                self.leftButton?.image = #imageLiteral(resourceName: "UpArrowTemplate")
-                self.rightButton?.image = #imageLiteral(resourceName: "DownArrowTemplate")
+                self.leftButton?.image = Chevron.up.image
+                self.rightButton?.image = Chevron.down.image
             case .vertical:
-                self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
-                self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
+                self.leftButton?.image = Chevron.left.image
+                self.rightButton?.image = Chevron.right.image
             @unknown default:
                 fatalError()
         }
@@ -279,4 +279,26 @@ final class NavigationBarController: NSViewController {
         self.nextButton?.isEnabled = self.canSelectNextItem
     }
     
+}
+
+
+
+private enum Chevron: String {
+    
+    case left
+    case right
+    case up
+    case down
+    
+    
+    var image: NSImage {
+        
+        let name = "chevron." + self.rawValue
+        
+        guard #available(macOS 10.16, *) else {
+            return NSImage(imageLiteralResourceName: name)
+        }
+        
+        return NSImage(systemSymbolName: name, accessibilityDescription: self.rawValue)!
+    }
 }

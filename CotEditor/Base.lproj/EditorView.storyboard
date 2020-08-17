@@ -48,11 +48,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
-                                <rect key="frame" x="2" y="-1" width="21" height="21"/>
+                                <rect key="frame" x="2" y="-2.5" width="21" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="HiZ-3C-J5P">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="HiZ-3C-J5P">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -81,7 +81,7 @@
                                     <constraint firstAttribute="height" constant="21" id="Rrb-OZ-odM"/>
                                     <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="3a0-fm-GbO">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="split.add" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="3a0-fm-GbO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -91,11 +91,11 @@
                                 </connections>
                             </button>
                             <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
-                                <rect key="frame" x="30" y="-1" width="16" height="21"/>
+                                <rect key="frame" x="30" y="-0.5" width="16.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="NdS-0U-G6w"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="NIe-Yu-BHr">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="chevron.up" catalog="system" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="NIe-Yu-BHr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -109,11 +109,11 @@
                                 </connections>
                             </button>
                             <button toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
-                                <rect key="frame" x="46" y="-1" width="16" height="21"/>
+                                <rect key="frame" x="46" y="-1" width="16.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="rrS-MJ-wb5"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="0aN-qE-Zpz">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="chevron.down" catalog="system" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="0aN-qE-Zpz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
@@ -279,10 +279,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CloseSplitTemplate" width="11" height="11"/>
-        <image name="DownArrowTemplate" width="8" height="8"/>
-        <image name="OpenSplitTemplate" width="11" height="11"/>
-        <image name="UpArrowTemplate" width="8" height="8"/>
+        <image name="chevron.down" catalog="system" width="15" height="9"/>
+        <image name="chevron.up" catalog="system" width="15" height="9"/>
+        <image name="split.add" width="11" height="11"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="DividerColor">
             <color white="0.85000002384185791" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
