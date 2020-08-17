@@ -17,6 +17,7 @@ Change Log
 - Enable toggling the editor split orientation by right-clicking the editor split button in the navigation bar.
 - Enable action to toggle editor split orientation even when no split editor is opened.
 - Enable “select previous/next outline item” commands even when the navigation bar is hidden.
+- Update Swift syntax style. 
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x. 
 - [trivial] Optimize the line number calculation in vertical text orientation.
 - [dev] Update the build environment to Xcode 12 (Swift 5.3, macOS 11 SDK).
