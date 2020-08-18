@@ -24,6 +24,11 @@ Change Log
 - [dev] Replace DifferenceKit package with native CollectionDifference.
 
 
+### Fixes
+
+- Fix the progress message when highlighting a document with a multiple replacement definition.
+
+
 
 3.9.5 (433)
 --------------------------
