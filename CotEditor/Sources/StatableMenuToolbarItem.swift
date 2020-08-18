@@ -25,7 +25,7 @@
 
 import AppKit
 
-final class StatableMenuToolbarItem: StatableToolbarItem, Validatable {
+final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     
     // MARK: Lifecycle
     

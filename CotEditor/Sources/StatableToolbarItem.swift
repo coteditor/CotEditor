@@ -25,24 +25,28 @@
 
 import AppKit
 
-class StatableToolbarItem: NSToolbarItem {
+extension StatableItem where Self: NSToolbarItem {
     
-    // MARK: Public Methods
-    
-    final var state: NSControl.StateValue = .on {
+    var state: NSControl.StateValue {
         
-        didSet {
-            guard state != oldValue else { return }
+        get {
+            return (self.image?.name()?.hasSuffix("On") == true) ? .on : .off
+        }
+        
+        set {
+            guard newValue != self.state else { return }
             
-            let suffix = (state == .on) ? "On" : "Off"
+            let suffix = (newValue == .on) ? "On" : "Off"
             
             guard
                 let base = self.image?.name()?.components(separatedBy: "_").first,
                 let image = NSImage(named: base + "_" + suffix)
-                else { return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.") }
+            else { return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.") }
             
             self.image = image
         }
     }
-    
 }
+
+
+final class StatableToolbarItem: NSToolbarItem, StatableItem { }
