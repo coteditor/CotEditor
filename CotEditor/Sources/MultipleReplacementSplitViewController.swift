@@ -59,4 +59,14 @@ final class MultipleReplacementSplitViewController: NSSplitViewController {
     
     @IBOutlet fileprivate weak var contentListSplitViewItem: NSSplitViewItem?
     @IBOutlet fileprivate weak var mainSplitViewItem: NSSplitViewItem?
+    
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        if #available(macOS 10.16, *) {
+            self.contentListSplitViewItem?.allowsFullHeightLayout = true
+        }
+    }
 }
