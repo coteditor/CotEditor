@@ -193,7 +193,7 @@ private extension CFStringEncoding {
         
         let ianaName = (CFStringConvertEncodingToIANACharSetName(self) as String?) ?? "-"
         let attrIanaName = NSAttributedString(string: " : " + ianaName,
-                                              attributes: [.foregroundColor: NSColor.disabledControlTextColor])
+                                              attributes: [.foregroundColor: NSColor.secondaryLabelColor])
         
         return attrEncodingName + attrIanaName
     }
