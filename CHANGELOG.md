@@ -5,6 +5,9 @@ Change Log
 3.9.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix the progress message when highlighting a document with a multiple replacement definition.
 
 
 
