@@ -25,28 +25,14 @@
 
 import AppKit
 
-final class ToolbarItemGroup: NSToolbarItemGroup {
+final class ToolbarItemGroup: NSToolbarItemGroup, Validatable {
     
-    /// validate subitem selection
     override func validate() {
         
         super.validate()
         
-        self.isEnabled = {
-            guard
-                let action = self.action,
-                let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
-                else { return false }
-            
-            switch validator {
-                case let validator as NSToolbarItemValidation:
-                    return validator.validateToolbarItem(self)
-                case let validator as NSUserInterfaceValidations:
-                    return validator.validateUserInterfaceItem(self)
-                default:
-                    return true
-            }
-        }()
+        // validate subitem selection
+        self.isEnabled = self.validate()
     }
     
 }

@@ -518,6 +518,8 @@
 		2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
 		2AC6BFD121D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */; };
 		2AC6BFD221D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */; };
+		2AC7044824EBB76B00454706 /* NSToolbarItem+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validation.swift */; };
+		2AC7044924EBB76B00454706 /* NSToolbarItem+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validation.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
 		2ACA0C7121A18D6A00723073 /* SyntaxMappingConflictsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C6F21A18D6A00723073 /* SyntaxMappingConflictsView.storyboard */; };
 		2ACA0C7A21A1982300723073 /* EncodingListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C7821A1982300723073 /* EncodingListView.storyboard */; };
@@ -1263,6 +1265,7 @@
 		2AC606A02041760700F9C839 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2AC606A12041760900F9C839 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RegexParse.swift"; sourceTree = "<group>"; };
+		2AC7044724EBB76B00454706 /* NSToolbarItem+Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSToolbarItem+Validation.swift"; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2042,6 +2045,7 @@
 				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
 				2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */,
 				2AF9249224E2ED410028AD3B /* ControlToolbarItem.swift */,
+				2AC7044724EBB76B00454706 /* NSToolbarItem+Validation.swift */,
 			);
 			name = Toolbar;
 			sourceTree = "<group>";
@@ -2926,6 +2930,7 @@
 				2A36CE7D1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A1125C723F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */,
+				2AC7044824EBB76B00454706 /* NSToolbarItem+Validation.swift in Sources */,
 				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
 				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
@@ -2961,7 +2966,6 @@
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
 				2AA14CF91FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */,
-				2AD551E820D70026007279B1 /* ToolbarItemGroup.swift in Sources */,
 				2A0AEA072124A83B00E4EC3D /* SelectionColorWell.swift in Sources */,
 				2A10C5FB1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
 				2A12C8001D1843B50069C60B /* SeparatorTextField.swift in Sources */,
@@ -3015,6 +3019,7 @@
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
+				2AD551E820D70026007279B1 /* ToolbarItemGroup.swift in Sources */,
 				2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
 				2A73B5B71D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
@@ -3224,6 +3229,7 @@
 				2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A1125C623F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */,
+				2AC7044924EBB76B00454706 /* NSToolbarItem+Validation.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
 				2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,

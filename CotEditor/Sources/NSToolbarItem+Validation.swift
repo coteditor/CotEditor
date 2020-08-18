@@ -1,14 +1,14 @@
 //
-//  ControlToolbarItem.swift
+//  NSToolbarItem+Validation.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2018-06-17.
+//  Created by 1024jp on 2020/08/18.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,13 +25,26 @@
 
 import AppKit
 
-final class ControlToolbarItem: NSToolbarItem, Validatable {
+protocol Validatable: NSToolbarItem { }
+
+
+extension Validatable {
     
-    // MARK: Toolbar Item Methods
-    
-    override func validate() {
+    func validate() -> Bool {
         
-        (self.view as? NSControl)?.isEnabled = self.validate()
+        guard
+            let action = self.action,
+            let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
+        else { return false }
+        
+        switch validator {
+            case let validator as NSToolbarItemValidation:
+                return validator.validateToolbarItem(self)
+            case let validator as NSUserInterfaceValidations:
+                return validator.validateUserInterfaceItem(self)
+            default:
+                return true
+        }
     }
     
 }

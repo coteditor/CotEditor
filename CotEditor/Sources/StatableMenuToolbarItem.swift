@@ -25,7 +25,7 @@
 
 import AppKit
 
-final class StatableMenuToolbarItem: StatableToolbarItem {
+final class StatableMenuToolbarItem: StatableToolbarItem, Validatable {
     
     // MARK: Lifecycle
     
@@ -44,24 +44,10 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
     
     // MARK: Toolbar Item Methods
     
-    /// validate state of item
     override func validate() {
         
-        (self.view as? NSControl)?.isEnabled = {
-            guard
-                let action = self.action,
-                let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
-            else { return false }
-            
-            switch validator {
-                case let validator as NSToolbarItemValidation:
-                    return validator.validateToolbarItem(self)
-                case let validator as NSUserInterfaceValidations:
-                    return validator.validateUserInterfaceItem(self)
-                default:
-                    return true
-            }
-        }()
+        // validate state
+        (self.view as? NSControl)?.isEnabled = self.validate()
     }
     
     
