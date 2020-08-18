@@ -34,31 +34,14 @@ private extension NSAttributedString.Key {
 
 final class TokenTextView: NSTextView {
     
+    // MARK: Public Properties
+    
     var tokenizer: Tokenizer?
-    var tokenColor: NSColor = .selectedControlColor
     
     
     
     // MARK: -
     // MARK: Text View Methods
-    
-    override func viewDidMoveToWindow() {
-        
-        super.viewDidMoveToWindow()
-        
-        guard self.window != nil else { return }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(invalidateTokens), name: NSColor.systemColorsDidChangeNotification, object: nil)
-    }
-    
-    
-    override func viewDidChangeEffectiveAppearance() {
-        
-        super.viewDidChangeEffectiveAppearance()
-        
-        self.invalidateTokens()
-    }
-    
     
     override var string: String {
         
@@ -144,17 +127,12 @@ final class TokenTextView: NSTextView {
     // MARK: Private Method
     
     /// find tokens in contents and mark-up them
-    @objc private func invalidateTokens() {
+    private func invalidateTokens() {
         
         guard
             let tokenizer = self.tokenizer,
             let layoutManager = self.layoutManager
             else { return }
-        
-        let isDark = self.effectiveAppearance.isDark
-        let textColor = self.tokenColor.blended(withFraction: 0.7, of: isDark ? .white : .black)!
-        let braketColor = self.tokenColor.blended(withFraction: 0.3, of: isDark ? .white : .black)!
-        let backgroundColor = self.tokenColor.withAlphaComponent(0.3)
         
         let wholeRange = self.string.nsRange
         layoutManager.removeTemporaryAttribute(.token, forCharacterRange: wholeRange)
@@ -167,9 +145,9 @@ final class TokenTextView: NSTextView {
         
         tokenizer.tokenize(self.string) { (token, range, keywordRange) in
             layoutManager.addTemporaryAttribute(.token, value: token, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: backgroundColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: braketColor, forCharacterRange: range)
-            layoutManager.addTemporaryAttribute(.foregroundColor, value: textColor, forCharacterRange: keywordRange)
+            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: NSColor.tokenBackgroundColor, forCharacterRange: range)
+            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenBraketColor, forCharacterRange: range)
+            layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenTextColor, forCharacterRange: keywordRange)
         }
     }
     
@@ -204,6 +182,24 @@ extension TokenRepresentable {
         item.representedObject = self.token
         
         return item
+    }
+    
+}
+
+
+
+private extension NSColor {
+    
+    static let tokenTextColor = NSColor(name: nil) { (appearance) in
+        NSColor.selectedControlColor.blended(withFraction: 0.7, of: appearance.isDark ? .white : .black)!
+    }
+    
+    static let tokenBraketColor = NSColor(name: nil) { (appearance) in
+        NSColor.selectedControlColor.blended(withFraction: 0.3, of: appearance.isDark ? .white : .black)!
+    }
+    
+    static let tokenBackgroundColor = NSColor(name: nil) { (appearance) in
+        NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
     }
     
 }
