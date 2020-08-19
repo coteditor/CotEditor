@@ -172,7 +172,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Build syntax style popup menu in toolbar.
     private func buildSyntaxPopupButton() {
         
-        guard let menu = self.syntaxPopUpButton?.menu else { return }
+        guard
+            let popUpButton = self.syntaxPopUpButton,
+            let menu = popUpButton.menu
+            else { return }
         
         let styleNames = SyntaxManager.shared.settingNames
         let recentStyleNames = UserDefaults.standard[.recentStyleNames]!
@@ -195,16 +198,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         menu.items += styleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
         
-        self.invalidateSyntaxStyleSelection()
-    }
-    
-    
-    /// Select item in the syntax style menu in toolbar.
-    private func invalidateSyntaxStyleSelection() {
-        
-        guard let styleName = (self.document as? Document)?.syntaxParser.style.name else { return }
-        
-        self.syntaxPopUpButton?.selectItem(withTitle: styleName)
+        // select item
+        if let styleName = (self.document as? Document)?.syntaxParser.style.name {
+            popUpButton.selectItem(withTitle: styleName)
+        }
     }
     
 }
