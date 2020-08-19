@@ -90,26 +90,26 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                                                object: self.editorViewControllers.first!.textView!)
         
         // observe defaults change
-        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers.forEach { $0.cancel() }
         self.defaultsObservers = [
             UserDefaults.standard.observe(key: .theme) { [weak self] _ in
                 let themeName = ThemeManager.shared.userDefaultSettingName
                 self?.setTheme(name: themeName)
             },
-            UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [weak self] change in
-                self?.showsInvisibles = change.new!
+            UserDefaults.standard.observe(key: .showInvisibles) { [weak self] (value) in
+                self?.showsInvisibles = value!
             },
-            UserDefaults.standard.observe(key: .showLineNumbers, options: [.new]) { [weak self] change in
-                self?.showsLineNumber = change.new!
+            UserDefaults.standard.observe(key: .showLineNumbers) { [weak self] (value) in
+                self?.showsLineNumber = value!
             },
-            UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [weak self] change in
-                self?.showsPageGuide = change.new!
+            UserDefaults.standard.observe(key: .showPageGuide) { [weak self] (value) in
+                self?.showsPageGuide = value!
             },
-            UserDefaults.standard.observe(key: .showIndentGuides, options: [.new]) { [weak self] change in
-                self?.showsIndentGuides = change.new!
+            UserDefaults.standard.observe(key: .showIndentGuides) { [weak self] (value) in
+                self?.showsIndentGuides = value!
             },
-            UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [weak self] change in
-                self?.wrapsLines = change.new!
+            UserDefaults.standard.observe(key: .wrapLines) { [weak self] (value) in
+                self?.wrapsLines = value!
             },
         ]
         

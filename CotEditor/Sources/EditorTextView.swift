@@ -1648,46 +1648,45 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             .hangingIndentWidth,
         ]
         
-        return UserDefaults.standard.observe(keys: keys, options: [.new]) { [unowned self] (key, change) in
+        return UserDefaults.standard.observe(keys: keys) { [unowned self] (key, value) in
             
-            let new = change.new
             switch key {
                 case .cursorType:
                     self.cursorType = UserDefaults.standard[.cursorType]
                     self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
                 
                 case .autoExpandTab:
-                    self.isAutomaticTabExpansionEnabled = new as! Bool
+                    self.isAutomaticTabExpansionEnabled = value as! Bool
                 
                 case .autoIndent:
-                    self.isAutomaticIndentEnabled = new as! Bool
+                    self.isAutomaticIndentEnabled = value as! Bool
                 
                 case .enableSmartIndent:
-                    self.isSmartIndentEnabled = new as! Bool
+                    self.isSmartIndentEnabled = value as! Bool
                 
                 case .balancesBrackets:
-                    self.balancesBrackets = new as! Bool
+                    self.balancesBrackets = value as! Bool
                 
                 case .shouldAntialias:
-                    self.usesAntialias = new as! Bool
+                    self.usesAntialias = value as! Bool
                 
                 case .ligature:
-                    self.ligature = (new as! Bool) ? .standard : .none
+                    self.ligature = (value as! Bool) ? .standard : .none
                 
                 case .smartInsertAndDelete:
-                    self.smartInsertDeleteEnabled = new as! Bool
+                    self.smartInsertDeleteEnabled = value as! Bool
                 
                 case .enableSmartQuotes:
-                    self.isAutomaticQuoteSubstitutionEnabled = new as! Bool
+                    self.isAutomaticQuoteSubstitutionEnabled = value as! Bool
                 
                 case .enableSmartDashes:
-                    self.isAutomaticDashSubstitutionEnabled = new as! Bool
+                    self.isAutomaticDashSubstitutionEnabled = value as! Bool
                 
                 case .checkSpellingAsType:
-                    self.isContinuousSpellCheckingEnabled = new as! Bool
+                    self.isContinuousSpellCheckingEnabled = value as! Bool
                 
                 case .autoLinkDetection:
-                    self.isAutomaticLinkDetectionEnabled = new as! Bool
+                    self.isAutomaticLinkDetectionEnabled = value as! Bool
                     if self.isAutomaticLinkDetectionEnabled {
                         self.detectLink()
                     } else {
@@ -1698,34 +1697,34 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
                 
                 case .showIndentGuides:
-                    self.showsIndentGuides = new as! Bool
+                    self.showsIndentGuides = value as! Bool
                 
                 case .overscrollRate:
                     self.invalidateOverscrollRate()
                 
                 case .tabWidth:
-                    self.tabWidth = new as! Int
+                    self.tabWidth = value as! Int
                 
                 case .fontName, .fontSize:
                     self.resetFont(nil)
                 
                 case .lineHeight:
-                    self.lineHeight = new as! CGFloat
+                    self.lineHeight = value as! CGFloat
                     self.centerSelectionInVisibleArea(self)  // reset visible area
                 
                 case .highlightCurrentLine:
                     self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
                 
                 case .highlightSelectionInstance:
-                    if !(new as! Bool) {
+                    if !(value as! Bool) {
                         self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                     }
                 
                 case .enablesHangingIndent:
-                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
+                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = value as! Bool
                 
                 case .hangingIndentWidth:
-                    (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
+                    (self.textContainer as? TextContainer)?.hangingIndentWidth = value as! Int
                 
                 default:
                     preconditionFailure()

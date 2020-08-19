@@ -70,23 +70,23 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 self?.replacementClearButtonConstraint?.constant = -inset
             }
         
-        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers.forEach { $0.cancel() }
         self.defaultsObservers = [
             // sync history menus with user default
-            UserDefaults.standard.observe(key: .findHistory, options: .initial) { [unowned self] _ in
+            UserDefaults.standard.observe(key: .findHistory, initial: true) { [unowned self] _ in
                 self.updateFindHistoryMenu()
             },
-            UserDefaults.standard.observe(key: .replaceHistory, options: .initial) { [unowned self] _ in
+            UserDefaults.standard.observe(key: .replaceHistory, initial: true) { [unowned self] _ in
                 self.updateReplaceHistoryMenu()
             },
             
             // sync text view states with user default
-            UserDefaults.standard.observe(key: .findUsesRegularExpression, options: [.initial, .new]) { [unowned self] change in
-                self.findTextView?.isRegularExpressionMode = change.new!
-                self.replacementTextView?.isRegularExpressionMode = change.new!
+            UserDefaults.standard.observe(key: .findUsesRegularExpression, initial: true) { [unowned self] (value) in
+                self.findTextView?.isRegularExpressionMode = value!
+                self.replacementTextView?.isRegularExpressionMode = value!
             },
-            UserDefaults.standard.observe(key: .findRegexUnescapesReplacementString, options: [.initial, .new]) { [unowned self] change in
-                self.replacementTextView?.parseMode = .replacement(unescapes: change.new!)
+            UserDefaults.standard.observe(key: .findRegexUnescapesReplacementString, initial: true) { [unowned self] (value) in
+                self.replacementTextView?.parseMode = .replacement(unescapes: value!)
             }
         ]
     }

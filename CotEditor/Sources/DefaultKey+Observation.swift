@@ -34,36 +34,23 @@ extension UserDefaults {
     /// - Parameters:
     ///   - key: The typed UserDefaults key to obseve the change of its value.
     ///   - queue: The operation queue where to perform the `changeHandler`.
-    ///   - options: A combination of the NSKeyValueObservingOptions values that specifies what is included in observation notifications.
+    ///   - initial: If `true`, changeHandler performs immediately, before the observer registration method even returns.
     ///   - changeHandler: The block to be executed when the observerd the observed deafault is updated.
-    ///   - change: The information about the change.
+    ///   - value: The new value.
     /// - Returns: An observer object.
-    func observe<Value>(key: DefaultKey<Value>, queue: OperationQueue? = .main, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (_ change: UserDefaultsObservation.Change<Value>) -> Void) -> UserDefaultsObservation {
+    func observe<Value>(key: DefaultKey<Value>, queue: OperationQueue? = .main, initial: Bool = false, changeHandler: @escaping (_ value: Value?) -> Void) -> UserDefaultsObservation {
         
-        let observation = UserDefaultsObservation(object: self, key: key.rawValue, queue: queue) { (change) in
-            
-            let typedChange = UserDefaultsObservation.Change(kind: change.kind,
-                                                             new: change.new as? Value,
-                                                             old: change.old as? Value,
-                                                             indexes: change.indexes,
-                                                             isPrior: change.isPrior)
-            
-            changeHandler(typedChange)
+        return UserDefaultsObservation(object: self, key: key.rawValue, queue: queue, initial: initial) { (value) in
+            changeHandler(value as? Value)
         }
-        observation.startObservation(options)
-        
-        return observation
     }
     
     
-    func observe(keys: [DefaultKeys], queue: OperationQueue? = .main, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (DefaultKeys, UserDefaultsObservation.Change<Any>) -> Void) -> [UserDefaultsObservation] {
+    func observe(keys: [DefaultKeys], queue: OperationQueue? = .main, initial: Bool = false, changeHandler: @escaping (DefaultKeys, Any?) -> Void) -> [UserDefaultsObservation] {
         
-        let observations = keys.map { key in
-            UserDefaultsObservation(object: self, key: key.rawValue, queue: queue) { changeHandler(key, $0) }
+        return keys.map { key in
+            UserDefaultsObservation(object: self, key: key.rawValue, queue: queue, initial: initial) { changeHandler(key, $0) }
         }
-        observations.forEach { $0.startObservation(options) }
-        
-        return observations
     }
     
 }
@@ -72,35 +59,28 @@ extension UserDefaults {
 
 final class UserDefaultsObservation: NSObject {
     
-    struct Change<Value> {
-        
-        var kind: NSKeyValueChange
-        var new: Value?
-        var old: Value?
-        var indexes: IndexSet?
-        var isPrior: Bool
-    }
-    
-    
-    
     // MARK: Private Properties
     
     private weak var object: UserDefaults?
-    private let changeHandler: (Change<Any>) -> Void
     private let key: String
     private let queue: OperationQueue?
+    private let changeHandler: (Any?) -> Void
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    fileprivate init(object: UserDefaults, key: String, queue: OperationQueue?, changeHandler: @escaping (Change<Any>) -> Void) {
+    fileprivate init(object: UserDefaults, key: String, queue: OperationQueue?, initial: Bool = false, changeHandler: @escaping (Any?) -> Void) {
         
         self.object = object
         self.key = key
         self.queue = queue
         self.changeHandler = changeHandler
+        
+        super.init()
+        
+        object.addObserver(self, forKeyPath: self.key, options: initial ? [.initial, .new] : .new, context: nil)
     }
     
     
@@ -120,18 +100,14 @@ final class UserDefaultsObservation: NSObject {
             object as? NSObject == self.object
             else { return }
         
-        let typedChange = Change(kind: NSKeyValueChange(rawValue: change[.kindKey] as! UInt)!,
-                                 new: change[.newKey],
-                                 old: change[.oldKey],
-                                 indexes: change[.indexesKey] as! IndexSet?,
-                                 isPrior: change[.notificationIsPriorKey] as? Bool ?? false)
+        let new = change[.newKey]
         
         if let queue = self.queue, queue != OperationQueue.current {
             queue.addOperation { [weak self] in
-                self?.changeHandler(typedChange)
+                self?.changeHandler(new)
             }
         } else {
-            self.changeHandler(typedChange)
+            self.changeHandler(new)
         }
     }
     
@@ -139,20 +115,11 @@ final class UserDefaultsObservation: NSObject {
     
     // MARK: Public Methods
     
-    /// invalidate
-    func invalidate() {
+    /// Cancel observation.
+    func cancel() {
         
         self.object?.removeObserver(self, forKeyPath: self.key, context: nil)
         self.object = nil
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    fileprivate func startObservation(_ options: NSKeyValueObservingOptions) {
-        
-        self.object?.addObserver(self, forKeyPath: self.key, options: options, context: nil)
     }
     
 }

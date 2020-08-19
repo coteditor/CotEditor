@@ -53,8 +53,8 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         
         self.delegate = self
         
-        self.invisibleVisibilityObserver = UserDefaults.standard.observe(key: .showInvisibles, options: [.initial, .new]) { [weak self] (change) in
-            self?.showsInvisibles = change.new!
+        self.invisibleVisibilityObserver = UserDefaults.standard.observe(key: .showInvisibles, initial: true) { [weak self] (value) in
+            self?.showsInvisibles = value!
             self?.invalidateInvisibleDisplay()
         }
     }

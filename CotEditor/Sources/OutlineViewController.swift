@@ -101,7 +101,7 @@ final class OutlineViewController: NSViewController {
             .debounce(for: 0.05, scheduler: RunLoop.main)
             .sink { [weak self] in self?.invalidateCurrentLocation(textView: $0) }
         
-        self.fontSizeObserver?.invalidate()
+        self.fontSizeObserver?.cancel()
         self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
             self?.outlineView?.reloadData()
             self?.invalidateCurrentLocation()
@@ -114,8 +114,6 @@ final class OutlineViewController: NSViewController {
         super.viewDidDisappear()
         
         self.selectionObserver = nil
-        
-        self.fontSizeObserver?.invalidate()
         self.fontSizeObserver = nil
     }
     

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,9 +46,8 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard[Self.key] = false
         
-        let observer = UserDefaults.standard.observe(key: Self.key, options: [.new]) { (change) in
-            XCTAssertNil(change.old)
-            XCTAssertTrue(change.new!)
+        let observer = UserDefaults.standard.observe(key: Self.key) { (value) in
+            XCTAssertTrue(value!)
             XCTAssertEqual(OperationQueue.current, .main)
             
             expectation.fulfill()
@@ -58,7 +57,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         self.wait(for: [expectation], timeout: .zero)
         // -> Waiting with zero timeout can be failed when the closure is performed not immediately but in another runloop.
         
-        observer.invalidate()
+        observer.cancel()
         UserDefaults.standard[Self.key] = false
     }
     
