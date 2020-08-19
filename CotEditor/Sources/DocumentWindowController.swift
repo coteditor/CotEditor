@@ -92,15 +92,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        // -> The target menu item is occasionally not yet set in `.windowDidLoad()`.
-        self.window?.removeSmallSizeToolbarContextMenuItem()
-    }
-    
-    
     /// apply passed-in document instance to window
     override unowned(unsafe) var document: AnyObject? {
         

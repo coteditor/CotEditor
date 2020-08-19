@@ -87,11 +87,12 @@
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" displayMode="iconOnly" sizeMode="regular" id="peS-bo-gb4">
+                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" displayMode="iconOnly" sizeMode="regular" id="peS-bo-gb4" customClass="MonosizeToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems/>
                             <defaultToolbarItems/>
                             <connections>
                                 <outlet property="delegate" destination="0UB-Lz-R6c" id="Txl-48-iMP"/>
+                                <outlet property="window" destination="gE4-1J-3li" id="1aD-nb-0ey"/>
                             </connections>
                         </toolbar>
                         <connections>

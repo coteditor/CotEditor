@@ -25,6 +25,25 @@
 
 import AppKit
 
+final class MonosizeToolbar: NSToolbar {
+    
+    // MARK: Private Properties
+    
+    @IBOutlet private weak var window: NSWindow?
+    
+    
+    /// remove "Use Small Size" menu item in context menu
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        self.window?.removeSmallSizeToolbarContextMenuItem()
+    }
+    
+}
+
+
+
 extension NSWindow {
     
     // MARK: Private Property
@@ -44,18 +63,21 @@ extension NSWindow {
     
     /// Remove "Use small size" menu item in the context menu of toolbar area.
     ///
-    /// - Note:
     ///   This is really dirty way but works.
     ///   It actually doesn't matter if "Use Small Size" menu item cannot be removed.
     ///   What really matters is crashing, or any other unwanted side effects. So, be careful.
     ///   cf. https://forums.developer.apple.com/thread/21887
+    ///
+    /// - Note:
+    ///   It seems the context menu is shared among window instances.
+    ///   Therefore, removing once is enough (macOS 10.15).
     final func removeSmallSizeToolbarContextMenuItem() {
         
         guard
             let contextMenu = self.contentView?.superview?.menu,
             let menuItem = contextMenu.items
                 .first(where: { $0.action == Self.toggleUsingSmallToolbarIconsAction })
-            else { return assertionFailure("No \"Use Small Size\" in the context menu.") }
+            else { return }
         
         contextMenu.removeItem(menuItem)
     }
