@@ -205,8 +205,8 @@
 		2A48982E215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */; };
 		2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */; };
 		2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */; };
-		2A4CB9921D79F38A000D6ADA /* MonosizeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */; };
-		2A4CB9931D79F38A000D6ADA /* MonosizeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */; };
+		2A4CB9921D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */; };
+		2A4CB9931D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */; };
 		2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4D47BF2070D42500AB1E7E /* MultipleReplacementPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* MultipleReplacementPanelController.swift */; };
@@ -1003,7 +1003,7 @@
 		2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+ValidationIgnorable.swift"; sourceTree = "<group>"; };
 		2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Dark.swift"; sourceTree = "<group>"; };
 		2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFindPanelTextView.swift; sourceTree = "<group>"; };
-		2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonosizeToolbar.swift; sourceTree = "<group>"; };
+		2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+SmallSizeToolbar.swift"; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4D47BE2070D42500AB1E7E /* MultipleReplacementPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacementPanelController.swift; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
@@ -2036,7 +2036,7 @@
 		2A62D48D1CF73693002ADBE1 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */,
+				2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */,
 				2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */,
 				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
 				2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */,
@@ -2880,7 +2880,6 @@
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
 				2AF9B23F208E24D50057DD21 /* Metadata.swift in Sources */,
-				2A4CB9931D79F38A000D6ADA /* MonosizeToolbar.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
 				2A3581991E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
@@ -2931,6 +2930,7 @@
 				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
+				2A4CB9931D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift in Sources */,
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
@@ -3178,7 +3178,6 @@
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
 				2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */,
-				2A4CB9921D79F38A000D6ADA /* MonosizeToolbar.swift in Sources */,
 				2A231A281E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
 				2A3581981E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
@@ -3229,6 +3228,7 @@
 				2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
+				2A4CB9921D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,

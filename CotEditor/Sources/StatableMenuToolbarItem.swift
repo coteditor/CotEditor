@@ -46,8 +46,7 @@ final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     
     override func validate() {
         
-        // validate state
-        (self.view as? NSControl)?.isEnabled = self.validate()
+        self.segmentedControl?.isEnabled = self.validate()
     }
     
     

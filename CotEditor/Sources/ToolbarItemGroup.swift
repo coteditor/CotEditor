@@ -29,9 +29,6 @@ final class ToolbarItemGroup: NSToolbarItemGroup, Validatable {
     
     override func validate() {
         
-        super.validate()
-        
-        // validate subitem selection
         self.isEnabled = self.validate()
     }
     

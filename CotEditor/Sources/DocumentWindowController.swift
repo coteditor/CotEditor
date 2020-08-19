@@ -27,7 +27,7 @@
 import Combine
 import Cocoa
 
-final class DocumentWindowController: NSWindowController {
+final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
@@ -92,6 +92,15 @@ final class DocumentWindowController: NSWindowController {
     }
     
     
+    override func awakeFromNib() {
+        
+        super.awakeFromNib()
+        
+        // -> The target menu item is occasionally not yet set in `.windowDidLoad()`.
+        self.window?.removeSmallSizeToolbarContextMenuItem()
+    }
+    
+    
     /// apply passed-in document instance to window
     override unowned(unsafe) var document: AnyObject? {
         
@@ -113,6 +122,20 @@ final class DocumentWindowController: NSWindowController {
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.syntaxPopUpButton?.selectItem(withTitle: $0) }
         }
+    }
+    
+    
+    
+    // MARK: Window Delegate
+    
+    func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
+        
+        // remove "Use small size" button before showing the customization sheet
+        if sheet.isToolbarConfigPanel {
+            sheet.removeSmallSizeToolbarButton()
+        }
+        
+        return rect
     }
     
     
@@ -628,7 +651,7 @@ extension NSDocument: NSSharingServicePickerToolbarItemDelegate {
 
 // MARK: - Opaque Mode
 
-extension DocumentWindowController: NSWindowDelegate {
+extension DocumentWindowController {
     
     // MARK: Window Delegate
     

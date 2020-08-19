@@ -71,6 +71,7 @@ disabled_rules:
   - nesting
   - opening_brace
   - trailing_comma
+  - unused_setter_value
   - weak_delegate
 
 private_outlet:

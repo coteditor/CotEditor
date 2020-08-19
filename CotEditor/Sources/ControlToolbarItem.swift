@@ -27,8 +27,6 @@ import AppKit
 
 final class ControlToolbarItem: NSToolbarItem, Validatable {
     
-    // MARK: Toolbar Item Methods
-    
     override func validate() {
         
         (self.view as? NSControl)?.isEnabled = self.validate()
