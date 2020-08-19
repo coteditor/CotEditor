@@ -263,16 +263,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// the receiver is about to be attached to / detached from a window
-    override func viewWillMove(toWindow newWindow: NSWindow?) {
-        
-        super.viewWillMove(toWindow: window)
-        
-        // remove observation before the observed object is deallocated
-        self.windowOpacityObserver = nil
-    }
-    
-    
     /// the receiver was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
@@ -286,11 +276,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
-        self.windowOpacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification, object: window)
-            .map { ($0.object as! NSWindow).isOpaque }
-            .sink { [weak self] (isOpaque) in
-                self?.didChangeWindowOpacity(to: isOpaque)
-            }
+        // -> Intentionally not specifying observed object to avoid retain
+        //    because `viewWillMove(toWindow:)` is invoked only after the window could be deinit.
+        self.windowOpacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification)
+            .compactMap { $0.object as? NSWindow }
+            .filter { [weak window] in $0 == window }
+            .map { $0.isOpaque }
+            .sink { [weak self] in self?.didChangeWindowOpacity(to: $0) }
     }
     
     

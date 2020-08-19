@@ -27,6 +27,7 @@ Change Log
 ### Fixes
 
 - Fix the progress message when highlighting a document with a multiple replacement definition.
+- Fix an issue that zombie windows could remain in memory.
 
 
 

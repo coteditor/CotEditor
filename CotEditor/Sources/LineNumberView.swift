@@ -161,7 +161,10 @@ final class LineNumberView: NSView {
         // perform redraw on window opacity change
         self.opacityObserver = nil
         if let window = newWindow {
-            self.opacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification, object: window)
+            // -> Intentionally not specifying observed object to avoid retain
+            //    because `viewWillMove(toWindow:)` is invoked only after the window could be deinit.
+            self.opacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification)
+                .filter { [weak window] in ($0.object as? NSWindow) == window }
                 .sink { [weak self] _ in
                     self?.needsDisplay = true
                 }
