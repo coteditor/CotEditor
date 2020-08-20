@@ -42,9 +42,8 @@ final class ImageRadioButton: NSButton {
         super.awakeFromNib()
         
         // prepend image to the label
-        let image = self.leadingImage!
         let attachment = NSTextAttachment()
-        attachment.image = image.isTemplate ? image.tinted(color: .labelColor) : image
+        attachment.image = self.leadingImage
         
         self.attributedTitle = NSAttributedString(attachment: attachment)
             + NSAttributedString(string: " ")
