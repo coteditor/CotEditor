@@ -66,13 +66,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
-        self.windowAlphaObserver?.cancel()
         self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha) { [weak self] value in
             (self?.window as? DocumentWindow)?.backgroundAlpha = value!
         }
         
         // observe appearance setting change
-        self.appearanceModeObserver?.cancel()
         self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, initial: true) { [weak self] _ in
             self?.window?.appearance = {
                 switch UserDefaults.standard[.documentAppearance] {

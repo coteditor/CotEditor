@@ -61,7 +61,7 @@ final class UserDefaultsObservation: NSObject {
     
     // MARK: Private Properties
     
-    private weak var object: UserDefaults?
+    private let object: UserDefaults
     private let key: String
     private let queue: OperationQueue?
     private let changeHandler: (Any?) -> Void
@@ -80,12 +80,12 @@ final class UserDefaultsObservation: NSObject {
         
         super.init()
         
-        object.addObserver(self, forKeyPath: self.key, options: initial ? [.initial, .new] : .new, context: nil)
+        object.addObserver(self, forKeyPath: key, options: initial ? [.initial, .new] : .new, context: nil)
     }
     
     
     deinit {
-        self.object?.removeObserver(self, forKeyPath: self.key, context: nil)
+        self.object.removeObserver(self, forKeyPath: self.key, context: nil)
     }
     
     
@@ -109,17 +109,6 @@ final class UserDefaultsObservation: NSObject {
         } else {
             self.changeHandler(new)
         }
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// Cancel observation.
-    func cancel() {
-        
-        self.object?.removeObserver(self, forKeyPath: self.key, context: nil)
-        self.object = nil
     }
     
 }

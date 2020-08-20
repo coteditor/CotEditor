@@ -46,7 +46,6 @@ final class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
-        self.findNextAfterReplaceObserver?.cancel()
         self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace) { [unowned self] _ in
             self.invalidateReplaceButtonBehavior()
         }

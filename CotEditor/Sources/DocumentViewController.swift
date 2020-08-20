@@ -90,7 +90,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                                                object: self.editorViewControllers.first!.textView!)
         
         // observe defaults change
-        self.defaultsObservers.forEach { $0.cancel() }
         self.defaultsObservers = [
             UserDefaults.standard.observe(key: .theme) { [weak self] _ in
                 let themeName = ThemeManager.shared.userDefaultSettingName
