@@ -82,6 +82,10 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     
     private var indentGuideObserver: UserDefaultsObservation?
     
+    private static let unemphasizedSelectedContentBackgroundColor: NSColor = (ProcessInfo().operatingSystemVersion.majorVersion < 11)
+        ? .secondarySelectedControlColor
+        : .unemphasizedSelectedContentBackgroundColor
+    
     
     
     // MARK: -
@@ -149,9 +153,9 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
         // modify selected highlight color when the window is inactive
-        // -> Otherwise, `.secondarySelectedControlColor` will be used forcibly and text becomes unreadable
+        // -> Otherwise, `.unemphasizedSelectedContentBackgroundColor` will be used forcibly and text becomes unreadable
         //    when the window appearance and theme are inconsistent.
-        if color == .secondarySelectedControlColor,  // check if inactive
+        if color == Self.unemphasizedSelectedContentBackgroundColor,  // check if inactive
             let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
                                                    effectiveRange: nil, withoutAdditionalLayout: true),
             let theme = (textContainer.textView as? Themable)?.theme,
