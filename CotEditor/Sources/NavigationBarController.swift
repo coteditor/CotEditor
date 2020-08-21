@@ -297,12 +297,6 @@ private enum Chevron: String {
     
     var image: NSImage {
         
-        let name = "chevron." + self.rawValue
-        
-        guard #available(macOS 11, *) else {
-            return NSImage(imageLiteralResourceName: name)
-        }
-        
-        return NSImage(systemSymbolName: name, accessibilityDescription: self.rawValue)!
+        NSImage(symbolNamed: "chevron." + self.rawValue, accessibilityDescription: self.rawValue)!
     }
 }

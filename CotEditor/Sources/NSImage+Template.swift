@@ -27,6 +27,24 @@ import AppKit
 
 extension NSImage {
     
+    /// Return the symbol image object with backward compatibility for macOS 10.15.
+    ///
+    /// Just like the Interface Builder, use bundled recoure image with the same name for unsupported systems.
+    ///
+    /// - Parameters:
+    ///   - name: The name of image both for SF Symbols and image resorce.
+    ///   - accessibilityDescription: The accessibility description.
+    @available(macOS, deprecated: 11)
+    convenience init?(symbolNamed name: String, accessibilityDescription: String?) {
+        
+        if #available(macOS 11, *)  {
+            self.init(systemSymbolName: name, accessibilityDescription: accessibilityDescription)
+        } else {
+            self.init(named: name)
+        }
+    }
+    
+    
     /// Return rotated image by the specified degrees around the center.
     ///
     /// The `angle` must be a multiple of 90°; otherwise, parts of the rotated image may be drawn outside the image bounds.
