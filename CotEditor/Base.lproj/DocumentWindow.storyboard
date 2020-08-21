@@ -22,8 +22,7 @@
                                 </constraints>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="nH9-7k-ekd"/>
                                 <connections>
-                                    <action selector="changeOpacity:" target="5Ob-vN-y5O" id="ye6-US-Iju"/>
-                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject" id="SX0-IU-zgh"/>
+                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject.backgroundAlpha" id="6ud-qq-oFU"/>
                                 </connections>
                             </slider>
                             <customView toolTip="Opaque" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">

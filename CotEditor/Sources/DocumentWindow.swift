@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ final class DocumentWindow: NSWindow {
     /// make sure window title bar (incl. toolbar) is opaque
     private func invalidateTitlebarOpacity() {
         
-        guard let titlebarView = self.titlebarView else { return }
+        guard let titlebarView = self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView else { return }
         
         // dirty manupulation to avoid the title bar being dyed in the window background color (2016-01).
         titlebarView.wantsLayer = !self.isOpaque
@@ -207,18 +207,6 @@ extension DocumentWindow {
         }
         
         return super.validateMenuItem(menuItem)
-    }
-    
-}
-
-
-// MARK: -
-
-private extension NSWindow {
-    
-    var titlebarView: NSVisualEffectView? {
-        
-        return self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView
     }
     
 }

@@ -38,6 +38,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var outlineSubscriptions: Set<AnyCancellable> = []
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
+    private var opacityObserver: UserDefaultsObservation?
     private var sheetAvailabilityObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
     private weak var syntaxHighlightProgress: Progress?
@@ -126,6 +127,18 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 
                 self.setTheme(name: themeName)
             }
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // observe opacity setting change
+        self.opacityObserver = UserDefaults.standard.observe(key: .windowAlpha, initial: true) { [weak self] value in
+            guard let window = self?.view.window as? DocumentWindow else { return assertionFailure() }
+            window.backgroundAlpha = value!
+        }
     }
     
     
@@ -351,6 +364,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             case #selector(changeOrientation):
                 (item as? NSToolbarItemGroup)?.selectedIndex = self.verticalLayoutOrientation ? 1 : 0
+                
+            case #selector(showOpacitySlider):
+                return self.view.window?.styleMask.contains(.fullScreen) == false
             
             case #selector(closeSplitTextView):
                 return (self.splitViewController?.splitViewItems.count ?? 0) > 1
@@ -756,6 +772,18 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     @IBAction func changeOrientation(_ sender: NSToolbarItemGroup) {
         
         assertionFailure("This is a dummy action designed to be used just for the segmentation selection validation.")
+    }
+    
+    
+    /// show editor opacity slider as popover
+    @IBAction func showOpacitySlider(_ sender: Any?) {
+        
+        guard let viewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? NSViewController else { return assertionFailure() }
+        
+        viewController.representedObject = self.view.window
+        
+        self.present(viewController, asPopoverRelativeTo: .zero, of: sender as? NSView ?? self.view,
+                     preferredEdge: .maxY, behavior: .transient)
     }
     
     

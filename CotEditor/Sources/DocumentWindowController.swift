@@ -31,7 +31,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private var windowAlphaObserver: UserDefaultsObservation?
     private var appearanceModeObserver: UserDefaultsObservation?
     
     private var documentStyleObserver: AnyCancellable?
@@ -62,14 +61,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.window!.setContentSize(contentSize)
         (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         
-        // set background alpha
-        (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
-        
-        // observe opacity setting change
-        self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha) { [weak self] value in
-            (self?.window as? DocumentWindow)?.backgroundAlpha = value!
-        }
-        
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, initial: true) { [weak self] _ in
             self?.window?.appearance = {
@@ -99,8 +90,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             self.contentViewController!.representedObject = document
             
             // -> In case when the window was created as a restored window (the right side ones in the browsing mode).
-            if document.isInViewingMode, let window = self.window as? DocumentWindow {
-                window.backgroundAlpha = 1.0
+            if document.isInViewingMode {
+                self.window?.isOpaque = true
             }
             
             self.window?.toolbar?.items.lazy.compactMap { $0 as? NSSharingServicePickerToolbarItem }.first?.delegate = document
@@ -128,35 +119,38 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     }
     
     
-    
-    // MARK: Actions
-    
-    /// show editor opacity slider as popover
-    @IBAction func showOpacitySlider(_ sender: Any?) {
+    func windowWillEnterFullScreen(_ notification: Notification) {
         
-        guard
-            let window = self.window as? DocumentWindow,
-            let origin = sender as? NSView ?? self.contentViewController?.view,
-            let sliderViewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? NSViewController,
-            let contentViewController = self.contentViewController
-            else { return assertionFailure() }
-        
-        sliderViewController.representedObject = window.backgroundAlpha
-        
-        contentViewController.present(sliderViewController, asPopoverRelativeTo: .zero, of: origin,
-                                      preferredEdge: .maxY, behavior: .transient)
+        self.window?.isOpaque = true
     }
     
     
-    /// change editor opacity via toolbar
-    @IBAction func changeOpacity(_ sender: NSSlider) {
+    func windowWillEnterVersionBrowser(_ notification: Notification) {
         
-        (self.window as! DocumentWindow).backgroundAlpha = CGFloat(sender.doubleValue)
+        self.window?.isOpaque = true
+    }
+    
+    
+    func windowWillExitFullScreen(_ notification: Notification) {
+        
+        self.restoreWindowOpacity()
+    }
+    
+    
+    func windowWillExitVersionBrowser(_ notification: Notification) {
+        
+        self.restoreWindowOpacity()
     }
     
     
     
     // MARK: Private Methods
+    
+    private func restoreWindowOpacity() {
+        
+        self.window?.isOpaque = (self.window as? DocumentWindow)?.backgroundAlpha == 1
+    }
+    
     
     /// Build syntax style popup menu in toolbar.
     private func buildSyntaxPopupButton() {
@@ -190,24 +184,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // select item
         if let styleName = (self.document as? Document)?.syntaxParser.style.name {
             popUpButton.selectItem(withTitle: styleName)
-        }
-    }
-    
-}
-
-
-
-extension DocumentWindowController: NSUserInterfaceValidations {
-    
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        switch item.action {
-            case #selector(showOpacitySlider):
-                return self.window?.styleMask.contains(.fullScreen) == false
-            case nil:
-                return false
-            default:
-                return true
         }
     }
     
@@ -524,7 +500,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = "Opacity".localized
                 item.toolTip = "Change editor’s opacity".localized
                 item.image = #imageLiteral(resourceName: "Opacity")
-                item.action = #selector(DocumentWindowController.showOpacitySlider)
+                item.action = #selector(DocumentViewController.showOpacitySlider)
                 // use custom view to locate popup view
                 let button = NSButton(image: item.image!, target: nil, action: item.action)
                 button.bezelStyle = .texturedRounded
@@ -630,50 +606,6 @@ extension NSDocument: NSSharingServicePickerToolbarItemDelegate {
     public func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
         
         return [self]
-    }
-    
-}
-
-
-
-// MARK: - Opaque Mode
-
-extension DocumentWindowController {
-    
-    // MARK: Window Delegate
-    
-    func windowWillEnterFullScreen(_ notification: Notification) {
-        
-        self.window?.isOpaque = true
-    }
-    
-    
-    func windowWillEnterVersionBrowser(_ notification: Notification) {
-        
-        self.window?.isOpaque = true
-    }
-    
-    
-    func windowWillExitFullScreen(_ notification: Notification) {
-        
-        self.restoreWindowOpacity()
-    }
-    
-    
-    func windowWillExitVersionBrowser(_ notification: Notification) {
-        
-        self.restoreWindowOpacity()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    private func restoreWindowOpacity() {
-        
-        guard let window = self.window as? DocumentWindow else { return }
-        
-        window.isOpaque = (window.backgroundAlpha == 1)
     }
     
 }
