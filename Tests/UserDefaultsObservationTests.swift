@@ -31,6 +31,8 @@ final class UserDefaultsObservationTests: XCTestCase {
     
     private static let key = DefaultKey<Bool>("TestKey")
     
+    private var observer: UserDefaultsObservation?
+    
     
     override class func tearDown() {
         
@@ -46,7 +48,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard[Self.key] = false
         
-        let observer = UserDefaults.standard.observe(key: Self.key) { (value) in
+        self.observer = UserDefaults.standard.observe(key: Self.key) { (value) in
             XCTAssertTrue(value!)
             XCTAssertEqual(OperationQueue.current, .main)
             
@@ -57,7 +59,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         self.wait(for: [expectation], timeout: .zero)
         // -> Waiting with zero timeout can be failed when the closure is performed not immediately but in another runloop.
         
-        observer.cancel()
+        self.observer = nil
         UserDefaults.standard[Self.key] = false
     }
     
