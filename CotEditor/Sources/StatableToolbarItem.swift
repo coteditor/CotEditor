@@ -4,11 +4,11 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-05-26.
+//  Created by 1024jp on 2018-06-18.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,28 +25,69 @@
 
 import AppKit
 
-extension StatableItem where Self: NSToolbarItem {
+final class StatableToolbarItem: NSToolbarItem, StatableItem { }
+
+
+final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     
-    var state: NSControl.StateValue {
+    // MARK: Lifecycle
+    
+    init(itemIdentifier: NSToolbarItem.Identifier, control: NSSegmentedControl, menu: NSMenu) {
         
-        get {
-            return (self.image?.name()?.hasSuffix("On") == true) ? .on : .off
-        }
+        super.init(itemIdentifier: itemIdentifier)
         
-        set {
-            guard newValue != self.state else { return }
-            
-            let suffix = (newValue == .on) ? "On" : "Off"
-            
-            guard
-                let base = self.image?.name()?.components(separatedBy: "_").first,
-                let image = NSImage(named: base + "_" + suffix)
-            else { return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.") }
-            
-            self.image = image
-        }
+        // set menu to the last segment
+        control.setShowsMenuIndicator(true, forSegment: 1)
+        control.setMenu(menu, forSegment: 1)
+        
+        self.view = control
     }
+    
+    
+    
+    // MARK: Toolbar Item Methods
+    
+    override func validate() {
+        
+        self.segmentedControl?.isEnabled = self.validate()
+    }
+    
+    
+    override var image: NSImage? {
+        
+        get { self.segmentedControl?.image(forSegment: 0) }
+        set { self.segmentedControl?.setImage(newValue, forSegment: 0) }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private var segmentedControl: NSSegmentedControl? {
+        
+        return self.view as? NSSegmentedControl
+    }
+    
 }
 
 
-final class StatableToolbarItem: NSToolbarItem, StatableItem { }
+
+final class DropdownSegmentedControlCell: NSSegmentedCell {
+    
+    // MARK: Segmented Cell Methods
+    
+    /// return `nil` for the last segment to popup context menu immediately when user clicked
+    override var action: Selector? {
+        
+        get {
+            guard self.menu(forSegment: self.selectedSegment) == nil else { return nil }
+            
+            return super.action
+        }
+        
+        set {
+            super.action = newValue
+        }
+    }
+    
+}

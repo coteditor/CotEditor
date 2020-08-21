@@ -1,10 +1,10 @@
 //
-//  NSToolbarItem+Validation.swift
+//  NSToolbarItem+Validatable.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2020/08/18.
+//  Created by 1024jp on 2020-08-18.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -25,17 +25,17 @@
 
 import AppKit
 
-protocol Validatable: NSToolbarItem { }
+protocol Validatable { }
 
 
-extension Validatable {
+extension Validatable where Self: NSToolbarItem {
     
     func validate() -> Bool {
         
         guard
-            let action = self.action,
-            let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
-        else { return false }
+            let validator = self.target
+                ?? self.action.flatMap({ NSApp.target(forAction: $0, to: self.target, from: self) }) as AnyObject?
+            else { return false }
         
         switch validator {
             case let validator as NSToolbarItemValidation:

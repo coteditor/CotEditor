@@ -201,8 +201,8 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         // validate content control
         guard
             let control = self.control,
-            let action = control.action,
-            let validator = NSApp.target(forAction: action, to: control.target, from: self) as AnyObject?
+            let validator = control.target
+                ?? control.action.flatMap({ NSApp.target(forAction: $0, to: control.target, from: self) }) as AnyObject?
             else { return }
         
         switch validator {
