@@ -33,9 +33,12 @@ enum HUDSymbol {
     
     fileprivate var image: NSImage {
         
+        
         switch self {
             case .wrap(let reversed):
-                return reversed ? #imageLiteral(resourceName: "arrow.triangle.capsulepath").rotated(by: 180) : #imageLiteral(resourceName: "arrow.triangle.capsulepath")
+                return reversed
+                    ? NSImage(named: "arrow.triangle.capsulepath.counterclockwise")!
+                    : NSImage(symbolNamed: "arrow.triangle.capsulepath", accessibilityDescription: nil)!
         }
     }
     
