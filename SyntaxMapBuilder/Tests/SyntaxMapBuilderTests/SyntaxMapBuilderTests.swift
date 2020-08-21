@@ -98,7 +98,7 @@ private extension XCTestCase {
     /// Path to the test directory in package.
     var testDirectory: URL {
         
-        return URL(fileURLWithPath: #filePath)
+        return URL(fileURLWithPath: #file)
             .deletingLastPathComponent()
             .deletingLastPathComponent()
     }
