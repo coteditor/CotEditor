@@ -35,7 +35,7 @@ enum HUDSymbol {
         
         switch self {
             case .wrap(let reversed):
-                return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
+                return reversed ? #imageLiteral(resourceName: "arrow.triangle.capsulepath").rotated(by: 180) : #imageLiteral(resourceName: "arrow.triangle.capsulepath")
         }
     }
     
