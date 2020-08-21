@@ -335,6 +335,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                     item.image = #imageLiteral(resourceName: "Inspector")
                 }
                 item.action = #selector(WindowContentViewController.toggleInspector)
+                item.visibilityPriority = .high
                 return item
                 
             case .textSize:
