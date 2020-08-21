@@ -974,7 +974,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                             alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, fileEncoding.localizedName)
                             alert.addButton(withTitle: "Cancel".localized)
                             alert.addButton(withTitle: "Discard Changes".localized)
-                            if #available(macOS 10.16, *) {
+                            if #available(macOS 11, *) {
                                 alert.buttons.last?.hasDestructiveAction = true
                             }
                             

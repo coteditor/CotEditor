@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +12,11 @@
             <objects>
                 <viewController storyboardIdentifier="Opacity Slider" id="ZLM-Nl-Z29" sceneMemberID="viewController">
                     <view key="view" id="bOA-H3-R5s">
-                        <rect key="frame" x="0.0" y="0.0" width="168" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="168" height="58"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK">
-                                <rect key="frame" x="32" y="8" width="104" height="19"/>
+                                <rect key="frame" x="32" y="4" width="104" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="IyE-hB-aRv"/>
                                 </constraints>
@@ -27,7 +27,7 @@
                                 </connections>
                             </slider>
                             <customView toolTip="Opaque" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="142" y="10" width="16" height="16"/>
+                                <rect key="frame" x="142" y="12" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="fKr-dw-ydI"/>
                                     <constraint firstAttribute="width" secondItem="8NN-KX-RmA" secondAttribute="height" multiplier="1:1" id="z4I-AJ-XUY"/>
@@ -39,7 +39,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <customView toolTip="Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="EVo-Ee-gQ1" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="16" height="16"/>
+                                <rect key="frame" x="10" y="12" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Ua8-gn-INm"/>
                                     <constraint firstAttribute="width" secondItem="EVo-Ee-gQ1" secondAttribute="height" multiplier="1:1" id="ffh-fp-NbT"/>
@@ -51,7 +51,7 @@
                                 </userDefinedRuntimeAttributes>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w6y-xp-bly">
-                                <rect key="frame" x="8" y="34" width="101" height="16"/>
+                                <rect key="frame" x="8" y="36" width="101" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Editor’s Opacity" id="Are-7I-6OR">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -264,7 +264,7 @@
         <scene sceneID="uT8-5A-k2A">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="windowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JZo-9i-3gf">
+                    <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="titlebar" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="JZo-9i-3gf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
                         <subviews>
                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">

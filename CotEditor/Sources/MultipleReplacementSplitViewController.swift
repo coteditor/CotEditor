@@ -65,7 +65,7 @@ final class MultipleReplacementSplitViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        if #available(macOS 10.16, *) {
+        if #available(macOS 11, *) {
             self.contentListSplitViewItem?.allowsFullHeightLayout = true
         }
     }

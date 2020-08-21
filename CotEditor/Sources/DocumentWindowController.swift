@@ -256,7 +256,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        guard #available(macOS 10.16, *) else {
+        guard #available(macOS 11, *) else {
             return [
                 .flexibleSpace,
                 .syntaxStyle,
@@ -329,7 +329,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Inspector".localized
                 item.toolTip = "Show document information".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
                 } else {
                     item.image = #imageLiteral(resourceName: "Inspector")
@@ -364,7 +364,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let ltrItem = NSToolbarItem()
                 ltrItem.label = "Left to Right".localized
                 ltrItem.toolTip = "Left to Right".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
                 } else {
                     ltrItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
@@ -374,7 +374,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let rtlItem = NSToolbarItem()
                 rtlItem.label = "Right to Left".localized
                 rtlItem.toolTip = "Right to Left".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
                 } else {
                     rtlItem.image = #imageLiteral(resourceName: "WritingDirectionRTLTemplate")
@@ -420,7 +420,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let leftItem = NSToolbarItem()
                 leftItem.label = "Shift Left".localized
                 leftItem.toolTip = "Shift lines to left".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     leftItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: leftItem.label)
                 } else {
                     leftItem.image = #imageLiteral(resourceName: "ShiftLeft")
@@ -430,7 +430,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let rightItem = NSToolbarItem()
                 rightItem.label = "Shift Right".localized
                 rightItem.toolTip = "Shift lines to right".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     rightItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: rightItem.label)
                 } else {
                     rightItem.image = #imageLiteral(resourceName: "ShiftRight")
@@ -546,7 +546,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Color Code".localized
                 item.toolTip = "Open Color Code Editor and set selection as color code".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     item.image = NSImage(systemSymbolName: "eyedropper.halffull", accessibilityDescription: item.label)
                 } else {
                     item.image = #imageLiteral(resourceName: "ColorCode")
@@ -559,7 +559,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Emoji & Symbols".localized
                 item.toolTip = "Show Emoji & Symbols palette".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     item.image = NSImage(systemSymbolName: "face.smiling", accessibilityDescription: item.label)
                 } else {
                     item.image = #imageLiteral(resourceName: "Emoji")
@@ -572,7 +572,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Fonts".localized
                 item.toolTip = "Show Font Panel".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
                 } else {
                     item.image = #imageLiteral(resourceName: "FontsTemplate")
@@ -585,7 +585,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Find".localized
                 item.toolTip = "Show “Find and Replace”".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 } else {
                     item.image = #imageLiteral(resourceName: "MagnifierTemplate")
@@ -598,7 +598,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Print".localized
                 item.toolTip = "Print".localized
-                if #available(macOS 10.16, *) {
+                if #available(macOS 11, *) {
                     item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
                 } else {
                     item.image = #imageLiteral(resourceName: "PrintTemplate")
@@ -613,7 +613,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .inspectorTrackingSeparator:
-                guard #available(macOS 10.16, *) else { fatalError() }
+                guard #available(macOS 11, *) else { fatalError() }
                 guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item

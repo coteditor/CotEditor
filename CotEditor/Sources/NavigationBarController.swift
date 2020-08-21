@@ -69,7 +69,7 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
-        if #available(macOS 10.16, *) { } else {
+        if #available(macOS 11, *) { } else {
             (self.view as? NSVisualEffectView)?.material = .windowBackground
         }
         
@@ -299,7 +299,7 @@ private enum Chevron: String {
         
         let name = "chevron." + self.rawValue
         
-        guard #available(macOS 10.16, *) else {
+        guard #available(macOS 11, *) else {
             return NSImage(imageLiteralResourceName: name)
         }
         

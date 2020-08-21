@@ -143,7 +143,7 @@ final class InspectorTabView: NSTabView {
     /// The height of the tab control and the top inset.
     private var topInset: CGFloat {
         
-        guard #available(macOS 10.16, *) else { return 0 }
+        guard #available(macOS 11, *) else { return 0 }
         
         return self.safeAreaInsets.top
     }

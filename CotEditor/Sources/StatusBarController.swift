@@ -62,8 +62,8 @@ final class StatusBarController: NSViewController {
         
         super.viewDidLoad()
         
-        if #available(macOS 10.16, *) {
-            (self.view as? NSVisualEffectView)?.material = .titlebar
+        if #available(macOS 11, *) { } else {
+            (self.view as? NSVisualEffectView)?.material = .windowBackground
         }
         
         // set accessibility

@@ -514,7 +514,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
-        if #available(macOS 10.16, *) {
+        if #available(macOS 11, *) {
             alert.buttons.last?.hasDestructiveAction = true
         }
         
