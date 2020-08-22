@@ -187,7 +187,6 @@ struct DefaultSettings {
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
         .maximumSelectionInstanceHighlightCount: 100,
-        .minimumLengthForNonContiguousLayout: 500_000,
     ]
     
     

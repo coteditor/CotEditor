@@ -408,9 +408,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// text did change
     override func didChangeText() {
         
-        // invalidate before running the layout processes
-        self.invalidateNonContiguousLayout()
-        
         super.didChangeText()
         
         self.needsUpdateLineHighlight = true
@@ -974,7 +971,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
         
-        self.invalidateNonContiguousLayout()
+        // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 10.15)
+        //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
+        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
         
         // reset writing direction
         if orientation == .vertical {
@@ -1402,22 +1401,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // apply new style to current text
         self.invalidateStyle()
-    }
-    
-    
-    /// validate whether turns the noncontiguous layout on
-    private func invalidateNonContiguousLayout() {
-        
-        guard let storage = self.textStorage else { return }
-        
-        // -> Obtaining textStorage's length is much faster than string.count. (2018-12 on macOS 10.14)
-        let isLargeText = storage.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
-        
-        // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
-        //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
-        let isHorizontal = (self.layoutOrientation == .horizontal)
-        
-        self.layoutManager?.allowsNonContiguousLayout = isLargeText && isHorizontal
     }
     
     

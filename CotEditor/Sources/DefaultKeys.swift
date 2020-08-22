@@ -181,7 +181,6 @@ extension DefaultKeys {
     static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     static let maximumSelectionInstanceHighlightCount = DefaultKey<Int>("maximumSelectionInstanceHighlightCount")
-    static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
     
     static let lastVersion = DefaultKey<String>("lastVersion")
     

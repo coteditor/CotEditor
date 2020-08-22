@@ -20,6 +20,7 @@ Change Log
 - Update Swift syntax style. 
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x. 
 - [trivial] Optimize the line number calculation in vertical text orientation.
+- [trivial] Always enable non-contiguous layout by the normal horizontal text orientation.
 - [dev] Update the build environment to Xcode 12 (Swift 5.3, macOS 11 SDK).
 - [dev] Replace DifferenceKit package with native CollectionDifference.
 - [dev] Update Yams from 3.0.1 to 4.0.0.
