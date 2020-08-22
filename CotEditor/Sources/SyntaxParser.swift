@@ -63,6 +63,8 @@ final class SyntaxParser {
     
     private var highlightCache: Cache?  // results cache of the last whole string highlights
     
+    private var textEditingObserver: AnyCancellable?
+    
     
     
     // MARK: -
@@ -72,6 +74,12 @@ final class SyntaxParser {
         
         self.textStorage = textStorage
         self.style = style
+        
+        // give up if the string is changed while parsing
+        self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.willProcessEditingNotification, object: textStorage)
+            .map { $0.object as! NSTextStorage }
+            .filter { $0.editedMask.contains(.editedCharacters) }
+            .sink { [weak self] _ in self?.syntaxHighlightParseOperationQueue.cancelAllOperations() }
     }
     
     
@@ -247,45 +255,16 @@ extension SyntaxParser {
         
         let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
         
-        // give up if the editor's string is changed from the parsed string
-        let isModified = Atomic(false)
-        weak var modificationObserver: NSObjectProtocol?
-        modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
-            guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
-            
-            isModified.wrappedValue = true
-            operation?.cancel()
-            
-            if let observer = modificationObserver {
-                NotificationCenter.default.removeObserver(observer)
-            }
-        }
-        
         operation.completionBlock = { [weak self, weak operation, styleName = self.style.name] in
             guard
                 let highlights = operation?.highlights,
                 let progress = operation?.progress,
                 !progress.isCancelled
-                else {
-                    if let observer = modificationObserver {
-                        NotificationCenter.default.removeObserver(observer)
-                    }
-                    return
-                }
+                else { return }
             
             DispatchQueue.main.async {
-                defer {
-                    if let observer = modificationObserver {
-                        NotificationCenter.default.removeObserver(observer)
-                    }
-                }
+                guard !progress.isCancelled else { return }
                 
-                guard !isModified.wrappedValue else {
-                    progress.cancel()
-                    return
-                }
-                
-                // cache result if whole text was parsed
                 if highlightRange == string.nsRange {
                     self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
                 }
