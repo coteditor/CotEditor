@@ -45,7 +45,7 @@
 "Ki4-3Y-AZL.title" = "Enregistrement :";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
-"SGo-FL-Pax.title" = "Activer l'enregistrement automatique et l'historique des versions";
+"SGo-FL-Pax.title" = "Activer l'enregistrement automatique et les versions";
 /* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "Fonctionnalité de macOS qui enregistre automatiquement vos fichiers pendant que vous les éditez. Si vous désactivez cette optoin, CotEditor créera quand même des sauvegardes en prévision d'éventuels crashs.";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
@@ -101,7 +101,7 @@
 "3423.title" = "Vérifier les mises à jour automatiquement";
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
-"4aT-ka-sbv.title" = "Mettre à jour vers les versions préliminaires, quand disponible.";
+"4aT-ka-sbv.title" = "Mettre à jour vers les versions préliminaires, quand disponible";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
 "chR-VY-cuI.title" = "Lorsque vous utilisez une version préliminaire, vous recevrez toujours les nouvelles versions préliminaires, peu importe l'activation ou non de cette option.";

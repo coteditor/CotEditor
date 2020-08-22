@@ -29,7 +29,7 @@
         <!--Preferences Tab View Controller-->
         <scene sceneID="OoS-fo-9bG">
             <objects>
-                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="7" tabStyle="toolbar" id="apc-An-nuW" customClass="PreferencesTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" tabStyle="toolbar" id="apc-An-nuW" customClass="PreferencesTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="General" image="Preferences/General" id="CNJ-6L-fga"/>
                         <tabViewItem label="Window" identifier="Window" image="Preferences/Window" id="5fL-58-BrZ"/>

@@ -47,7 +47,7 @@
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "Automatische Sicherung mit Versionen aktivieren";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "Eine Systemfunktion, die Ihre Dateien während der Bearbeitung automatisch überschreibt. Auch wenn sie nicht aktiviert ist, erstellt CotEditor verdeckt Backups für den Fall eines unerwarteten Absturzes.";
+"sOa-Ea-zt9.title" = "Eine Systemfunktion, die deine Dateien während der Bearbeitung automatisch überschreibt. Auch wenn sie nicht aktiviert ist, erstellt CotEditor verdeckt Backups für den Fall eines unerwarteten Absturzes.";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Leerzeichen am Zeilenende beim Speichern entfernen";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
@@ -75,7 +75,7 @@
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
 "3300.title" = "Rechtschreibung während der Texteingabe prüfen";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "Übereinstimmende Klammern „()“ „[]“ „{}“ hervorheben";
+"RrC-LL-hid.title" = "Passende Klammern „()“ „[]“ „{}“ hervorheben";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "„<>“ hervorheben";
 /* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */

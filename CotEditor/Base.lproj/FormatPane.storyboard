@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="Lgm-sL-YIF" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="8Od-1h-2eW">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="383"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="377"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button identifier="pref_format" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-4V-mYI">
-                                <rect key="frame" x="517.5" y="16" width="25" height="25"/>
+                                <rect key="frame" x="537" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="qkT-9V-g1o">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-Q1-0g8">
-                                <rect key="frame" x="34" y="347" width="128" height="16"/>
+                                <rect key="frame" x="34" y="341" width="128" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Default line endings:" usesSingleLineMode="YES" id="3273">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -33,7 +33,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bJE-E6-Cbo">
-                                <rect key="frame" x="166" y="343" width="185" height="25"/>
+                                <rect key="frame" x="166" y="337" width="185" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="hbg-GK-r7p"/>
                                 </constraints>
@@ -53,7 +53,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MwE-73-7AJ">
-                                <rect key="frame" x="161" y="261" width="110" height="32"/>
+                                <rect key="frame" x="161" y="257" width="110" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="ac6-yE-gFi"/>
                                 </constraints>
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-gk-JM6">
-                                <rect key="frame" x="24" y="297" width="138" height="16"/>
+                                <rect key="frame" x="24" y="293" width="138" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Default text encoding:" usesSingleLineMode="YES" id="3278">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +74,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-OL-jLy">
-                                <rect key="frame" x="166" y="293" width="285" height="25"/>
+                                <rect key="frame" x="166" y="289" width="285" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="Iyz-Mm-eTf"/>
                                 </constraints>
@@ -93,7 +93,7 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Koi-2N-36K">
-                                <rect key="frame" x="35" y="169" width="127" height="16"/>
+                                <rect key="frame" x="35" y="165" width="127" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Default syntax style:" usesSingleLineMode="YES" id="3329">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -104,7 +104,7 @@
                                 </connections>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1qJ-mx-epO">
-                                <rect key="frame" x="166" y="165" width="287" height="25"/>
+                                <rect key="frame" x="166" y="161" width="287" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="smt-3X-ADr">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -119,7 +119,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="o7z-Td-5qC">
-                                <rect key="frame" x="18" y="196" width="185" height="18"/>
+                                <rect key="frame" x="18" y="192" width="185" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable syntax highlighting" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3326">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -129,7 +129,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-hA-pof">
-                                <rect key="frame" x="209" y="197" width="132" height="14"/>
+                                <rect key="frame" x="209" y="193" width="132" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(Including outline menu)" usesSingleLineMode="YES" id="3325">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -137,12 +137,12 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-bI-CJS">
-                                <rect key="frame" x="20" y="225" width="510" height="5"/>
+                                <rect key="frame" x="20" y="221" width="530" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N1E-uH-II1">
-                                <rect key="frame" x="20" y="327" width="510" height="5"/>
+                                <rect key="frame" x="20" y="321" width="530" height="5"/>
                             </box>
-                            <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJi-Od-G4t">
+                            <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uJi-Od-G4t">
                                 <rect key="frame" x="18" y="140" width="144" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Available syntax styles:" usesSingleLineMode="YES" id="vlw-Tc-sLl">
                                     <font key="font" metaFont="system"/>
@@ -151,7 +151,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-LF-z0j">
-                                <rect key="frame" x="166" y="243" width="284" height="18"/>
+                                <rect key="frame" x="166" y="239" width="284" height="18"/>
                                 <buttonCell key="cell" type="check" title="Refer to encoding declaration in document" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3280">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -161,7 +161,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-NI-fGx">
-                                <rect key="frame" x="28" y="271" width="134" height="16"/>
+                                <rect key="frame" x="28" y="267" width="134" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Priority of encodings:" usesSingleLineMode="YES" id="3277">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -187,7 +187,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn editable="NO" width="277" minWidth="40" maxWidth="1000" id="Tsu-pA-ACl">
+                                                            <tableColumn editable="NO" width="268" minWidth="40" maxWidth="1000" id="Tsu-pA-ACl">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Style Name">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -267,7 +267,7 @@
                                             </constraints>
                                             <edgeInsets key="contentInsets" left="0.0" right="0.0" top="2" bottom="0.0"/>
                                             <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="Q5h-Zp-r9T">
-                                                <rect key="frame" x="1" y="63" width="258" height="16"/>
+                                                <rect key="frame" x="0.0" y="96" width="280" height="14"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="m5L-fg-Q19">
@@ -279,7 +279,7 @@
                                             <rect key="frame" x="4" y="21" width="272" height="5"/>
                                         </box>
                                         <button toolTip="Add empty style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
-                                            <rect key="frame" x="2" y="-2" width="24.5" height="27"/>
+                                            <rect key="frame" x="2" y="0.0" width="24" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="23" id="DEJ-aJ-bjy"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="lWo-I8-cIT"/>
@@ -293,7 +293,7 @@
                                             </connections>
                                         </button>
                                         <button toolTip="Remove selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dI1-Dk-Mce">
-                                            <rect key="frame" x="25" y="3" width="24.5" height="18"/>
+                                            <rect key="frame" x="25" y="0.0" width="24" height="23"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="ckX-eD-lXp">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -314,7 +314,7 @@
                                             </connections>
                                         </button>
                                         <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="gNn-jg-1Xr">
-                                            <rect key="frame" x="243" y="-3" width="35" height="29"/>
+                                            <rect key="frame" x="243" y="0.0" width="35" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="23" id="gOc-0s-ci7"/>
                                                 <constraint firstAttribute="width" constant="35" id="iFj-WH-iHp"/>
@@ -412,10 +412,10 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FjK-rw-YKz" secondAttribute="trailing" constant="20" symbolic="YES" id="JqI-gL-b19"/>
                             <constraint firstItem="FjK-rw-YKz" firstAttribute="top" secondItem="uJi-Od-G4t" secondAttribute="top" id="Jvr-j7-6g8"/>
                             <constraint firstItem="Lt0-OL-jLy" firstAttribute="leading" secondItem="cPL-gk-JM6" secondAttribute="trailing" constant="8" symbolic="YES" id="LTX-9f-eCb"/>
-                            <constraint firstItem="FjK-rw-YKz" firstAttribute="top" secondItem="1qJ-mx-epO" secondAttribute="bottom" constant="12" id="OSy-sh-eUi"/>
+                            <constraint firstItem="FjK-rw-YKz" firstAttribute="top" secondItem="1qJ-mx-epO" secondAttribute="bottom" constant="8" symbolic="YES" id="OSy-sh-eUi"/>
                             <constraint firstItem="Koi-2N-36K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="Q1G-21-WAD"/>
                             <constraint firstItem="o7z-Td-5qC" firstAttribute="top" secondItem="QgD-bI-CJS" secondAttribute="bottom" constant="14" id="Qh6-dR-9CZ"/>
-                            <constraint firstItem="cPL-gk-JM6" firstAttribute="top" secondItem="N1E-uH-II1" secondAttribute="bottom" constant="16" id="RZG-aF-78B"/>
+                            <constraint firstItem="cPL-gk-JM6" firstAttribute="top" secondItem="N1E-uH-II1" secondAttribute="bottom" constant="14" id="RZG-aF-78B"/>
                             <constraint firstItem="MwE-73-7AJ" firstAttribute="firstBaseline" secondItem="LQO-NI-fGx" secondAttribute="firstBaseline" id="UPG-ee-rp4"/>
                             <constraint firstItem="Jhi-LF-z0j" firstAttribute="top" secondItem="MwE-73-7AJ" secondAttribute="bottom" constant="8" id="YYL-8K-a0q"/>
                             <constraint firstItem="o7z-Td-5qC" firstAttribute="leading" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="bwP-Td-JRE"/>
@@ -512,9 +512,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSActionTemplate" width="15" height="15"/>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>
 </document>
