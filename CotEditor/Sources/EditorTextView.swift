@@ -257,9 +257,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
+        guard super.becomeFirstResponder() else { return false }
+        
         NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
-        return super.becomeFirstResponder()
+        return true
     }
     
     
@@ -268,21 +270,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.viewDidMoveToWindow()
         
-        // textView was detached from the window
-        guard let window = self.window else { return }
-        
-        // apply theme to window
-        self.applyTheme()
+        // apply theme to window when attached
+        if let window = self.window as? DocumentWindow, let theme = self.theme {
+            window.contentBackgroundColor = theme.background.color
+        }
         
         // apply window opacity
-        self.didChangeWindowOpacity(to: window.isOpaque)
-        // -> Intentionally not specifying observed object to avoid retain
-        //    because `viewWillMove(toWindow:)` is invoked only after the window could be deinit.
-        self.windowOpacityObserver = NotificationCenter.default.publisher(for: DocumentWindow.didChangeOpacityNotification)
-            .compactMap { $0.object as? NSWindow }
-            .filter { [weak window] in $0 == window }
-            .map { $0.isOpaque }
-            .sink { [weak self] in self?.didChangeWindowOpacity(to: $0) }
+        self.windowOpacityObserver = self.window?.publisher(for: \.isOpaque, options: .initial)
+            .sink { [weak self] in
+                self?.drawsBackground = $0
+                self?.lineHighLightColor = self?.lineHighLightColor?.withAlphaComponent($0 ? 1.0 : 0.7)
+            }
     }
     
     
@@ -305,21 +303,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.viewDidEndLiveResize()
         
         self.overscrollResizingTask.schedule()
-    }
-    
-    
-    /// encrosing scroll view did scroll
-    override func adjustScroll(_ newVisible: NSRect) -> NSRect {
-        
-        let newVisible = super.adjustScroll(newVisible)
-        
-        // fix drawing area on non-opaque view
-        if !self.drawsBackground {
-            // -> Needs display visible rect since the drawing area will be modified in `draw(_ dirtyFrame:)`.
-            self.setNeedsDisplay(newVisible, avoidAdditionalLayout: true)
-        }
-        
-        return newVisible
     }
     
     
@@ -927,11 +910,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// draw view
     override func draw(_ dirtyRect: NSRect) {
         
-        // minimize drawing area for non-opaque background
-        // -> Otherwise, all textView (from the top to the bottom) is drawn every time
-        //    and it affects the drawing performance on a large document critically. (2017-03 macOS 10.12)
-        let dirtyRect = self.drawsBackground ? dirtyRect : self.visibleRect
-        
         super.draw(dirtyRect)
         
         // draw page guide
@@ -1359,27 +1337,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// window's opacity did change
-    private func didChangeWindowOpacity(to isOpaque: Bool) {
-        
-        // let text view have own background if possible
-        self.drawsBackground = isOpaque
-        self.enclosingScrollView?.drawsBackground = isOpaque
-        
-        // make the current line highlight a bit transparent
-        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(isOpaque ? 1.0 : 0.7)
-        
-        // redraw visible area
-        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-    }
-    
-    
     /// update coloring settings
     private func applyTheme() {
         
         assert(Thread.isMainThread)
+        assert(self.layoutManager != nil)
+        assert(self.enclosingScrollView != nil)
         
-        guard let theme = self.theme else { return }
+        guard let theme = self.theme else { return assertionFailure() }
         
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
@@ -1395,7 +1360,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
-        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)

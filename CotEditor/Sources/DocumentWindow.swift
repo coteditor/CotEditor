@@ -28,11 +28,6 @@ import Cocoa
 
 final class DocumentWindow: NSWindow {
     
-    // MARK: Notification Names
-    
-    static let didChangeOpacityNotification = Notification.Name("WindowDidChangeOpacity")
-    
-    
     // MARK: Public Properties
     
     var contentBackgroundColor: NSColor = .controlBackgroundColor {
@@ -81,7 +76,13 @@ final class DocumentWindow: NSWindow {
     /// notify about opacity change
     override var isOpaque: Bool {
         
+        willSet {
+            self.willChangeValue(for: \.isOpaque)
+        }
+        
         didSet {
+            self.didChangeValue(for: \.isOpaque)
+            
             guard isOpaque != oldValue else { return }
             
             self.invalidateTitlebarOpacity()
@@ -94,8 +95,6 @@ final class DocumentWindow: NSWindow {
                         self?.invalidateTitlebarOpacity()
                     }
             }
-            
-            NotificationCenter.default.post(name: DocumentWindow.didChangeOpacityNotification, object: self)
         }
     }
     
