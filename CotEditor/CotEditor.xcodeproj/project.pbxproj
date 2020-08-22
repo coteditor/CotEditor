@@ -333,8 +333,6 @@
 		2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
 		2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
 		2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
-		2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
-		2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
 		2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
 		2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */; };
 		2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
@@ -575,7 +573,6 @@
 		2ACDE29E2406B9C000FC31EC /* GoToLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */; };
 		2ACDE29F2406B9C000FC31EC /* HUDView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828621A950AC008F9229 /* HUDView.storyboard */; };
 		2ACDE2A02406B9C000FC31EC /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
-		2ACDE2A12406B9C000FC31EC /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
 		2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */; };
 		2ACDE2A42406B9C000FC31EC /* OpenDocumentAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */; };
@@ -632,7 +629,6 @@
 		2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */; };
 		2ADD0AEC2184AB6F00F78732 /* NSControl+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */; };
 		2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
-		2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
 		2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
 		2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
 		2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */; };
@@ -817,7 +813,6 @@
 		0D51D57F2274EAE100A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		0D51D5802274EAE100A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
 		0D51D5812274EAE100A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PrintPane.strings; sourceTree = "<group>"; };
-		0D51D5822274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		0D51D5832274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		0D51D5842274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		0D51D5852274EAE200A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -1356,11 +1351,6 @@
 		2ADF3C041E6D82E4009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropPane.strings"; sourceTree = "<group>"; };
 		2ADF3C051E6D82E7009125BB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		2ADF3C061E6D82EA009125BB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FileDropPane.strings; sourceTree = "<group>"; };
-		2ADF3C111E6D8774009125BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/IntegrationPane.storyboard; sourceTree = "<group>"; };
-		2ADF3C141E6D877D009125BB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
-		2ADF3C151E6D8780009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/IntegrationPane.strings"; sourceTree = "<group>"; };
-		2ADF3C161E6D8783009125BB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
-		2ADF3C171E6D8785009125BB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		2AE12DFA1E7DB47000681F72 /* Collection+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+String.swift"; sourceTree = "<group>"; };
 		2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCollectionTests.swift; sourceTree = "<group>"; };
 		2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+SurroundSelection.swift"; sourceTree = "<group>"; };
@@ -1442,7 +1432,6 @@
 		57ED315E1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		57ED315F1FFD892700F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/KeyBindingsPane.strings; sourceTree = "<group>"; };
 		57ED31601FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PrintPane.strings; sourceTree = "<group>"; };
-		57ED31611FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/IntegrationPane.strings; sourceTree = "<group>"; };
 		57ED31711FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57ED31721FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		57ED31731FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
@@ -1533,7 +1522,6 @@
 				2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */,
 				2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */,
 				2A10D11E1E713BE60027192A /* PrintPane.storyboard */,
-				2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */,
 			);
 			name = Panes;
 			sourceTree = "<group>";
@@ -2557,7 +2545,6 @@
 				2ACDE29E2406B9C000FC31EC /* GoToLineView.storyboard in Resources */,
 				2ACDE29F2406B9C000FC31EC /* HUDView.storyboard in Resources */,
 				2ACDE2A02406B9C000FC31EC /* IncompatibleCharactersView.storyboard in Resources */,
-				2ACDE2A12406B9C000FC31EC /* IntegrationPane.storyboard in Resources */,
 				2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */,
 				2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */,
 				2ACDE2A42406B9C000FC31EC /* OpenDocumentAccessory.storyboard in Resources */,
@@ -2636,7 +2623,6 @@
 				2AD940E721A47C4B0076A28C /* GoToLineView.storyboard in Resources */,
 				2ABC828821A950AC008F9229 /* HUDView.storyboard in Resources */,
 				2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */,
-				2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */,
 				2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */,
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */,
 				2AC60698204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
@@ -2871,7 +2857,6 @@
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
-				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
@@ -3170,7 +3155,6 @@
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
-				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
@@ -3998,20 +3982,6 @@
 				0D51D57F2274EAE100A5D747 /* fr */,
 			);
 			name = FileDropPane.storyboard;
-			sourceTree = "<group>";
-		};
-		2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ADF3C111E6D8774009125BB /* Base */,
-				2ADF3C141E6D877D009125BB /* ja */,
-				2ADF3C151E6D8780009125BB /* zh-Hans */,
-				2ADF3C161E6D8783009125BB /* de */,
-				2ADF3C171E6D8785009125BB /* it */,
-				57ED31611FFD892800F16CAD /* pt */,
-				0D51D5822274EAE200A5D747 /* fr */,
-			);
-			name = IntegrationPane.storyboard;
 			sourceTree = "<group>";
 		};
 		2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */ = {

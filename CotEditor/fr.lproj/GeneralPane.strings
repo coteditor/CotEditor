@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -84,6 +84,14 @@
 "rOw-DD-kV5.title" = "Délai :";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
 "ebJ-vk-RME.title" = "secondes";
+
+
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "Outil en ligne de commande :";
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "En savoir plus…";
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "Avec l'outil en ligne de commande 'cot', vous pouvez lancer CotEditor et ouvrir des fichiers depuis le Terminal.";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

@@ -35,6 +35,9 @@ final class GeneralPaneController: NSViewController {
     
     @IBOutlet private weak var selectionInstanceHighlightDelayField: NSTextField?
     
+    @IBOutlet private weak var cltStatusView: NSImageView?
+    @IBOutlet private weak var cltPathField: NSTextField?
+    
     
     
     // MARK: -
@@ -75,6 +78,9 @@ final class GeneralPaneController: NSViewController {
             case .revert:
                 self.revertConflictButton?.state = .on
         }
+        
+        // check command-line tool availability
+        self.validateCommandLineTool()
     }
     
     
@@ -130,6 +136,21 @@ final class GeneralPaneController: NSViewController {
                     preconditionFailure()
             }
         }
+    }
+    
+    
+    /// Apply command-line tool availability to UI.
+    private func validateCommandLineTool() {
+        
+        let status = CommandLineToolManager.shared.validateSymLink()
+        
+        self.cltStatusView?.isHidden = !status.installed
+        self.cltStatusView?.image = status.badge.image
+        self.cltStatusView?.toolTip = status.message
+        
+        self.cltPathField?.isHidden = !status.installed
+        self.cltPathField?.stringValue = String(format: "installed at %@".localized,
+                                                CommandLineToolManager.shared.linkURL.path)
     }
     
 }

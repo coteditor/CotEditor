@@ -16,6 +16,7 @@ Change Log
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 - Enable toggling the editor split orientation by right-clicking the editor split button in the navigation bar.
 - Enable action to toggle editor split orientation even when no split editor is opened.
+- Remove the Integration pereferences pane and move its contents to the General pane.
 - Enable “select previous/next outline item” commands even when the navigation bar is hidden.
 - Update Swift syntax style. 
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x. 

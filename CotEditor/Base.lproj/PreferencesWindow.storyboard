@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17132.0.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5CU-Ph-YiJ">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5CU-Ph-YiJ">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17132.0.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +29,7 @@
         <!--Preferences Tab View Controller-->
         <scene sceneID="OoS-fo-9bG">
             <objects>
-                <tabViewController showSeguePresentationStyle="single" tabStyle="toolbar" id="apc-An-nuW" customClass="PreferencesTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="7" tabStyle="toolbar" id="apc-An-nuW" customClass="PreferencesTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="General" image="Preferences/General" id="CNJ-6L-fga"/>
                         <tabViewItem label="Window" identifier="Window" image="Preferences/Window" id="5fL-58-BrZ"/>
@@ -38,7 +39,6 @@
                         <tabViewItem label="File Drop" identifier="File Drop" image="Preferences/FileDrop" id="aO6-oS-ZGt"/>
                         <tabViewItem label="Key Bindings" identifier="Key Bindings" image="Preferences/KeyBindings" id="b8q-WN-1ls"/>
                         <tabViewItem label="Print" identifier="Print" image="Preferences/Print" id="UuB-iq-kOt"/>
-                        <tabViewItem label="Integration" identifier="Integration" image="Preferences/Integration" id="gEv-qP-tRM"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="2ir-uf-iS5">
@@ -59,7 +59,6 @@
                         <segue destination="bZT-kf-2K1" kind="relationship" relationship="tabItems" id="OeU-vJ-0fq"/>
                         <segue destination="SwV-mf-Kkp" kind="relationship" relationship="tabItems" id="jtp-AM-NQI"/>
                         <segue destination="FEK-fe-svf" kind="relationship" relationship="tabItems" id="Se1-fr-9YR"/>
-                        <segue destination="KS4-Le-Igf" kind="relationship" relationship="tabItems" id="V4D-U3-zxp"/>
                     </connections>
                 </tabViewController>
                 <customObject id="rhG-T8-cni" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -130,14 +129,6 @@
             </objects>
             <point key="canvasLocation" x="531" y="593"/>
         </scene>
-        <!--IntegrationPane-->
-        <scene sceneID="Na5-2e-g0t">
-            <objects>
-                <controllerPlaceholder storyboardName="IntegrationPane" id="KS4-Le-Igf" sceneMemberID="viewController"/>
-                <customObject id="4eo-Wh-Yxu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="550" y="630"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Preferences/Appearance" width="32" height="32"/>
@@ -145,7 +136,6 @@
         <image name="Preferences/FileDrop" width="32" height="32"/>
         <image name="Preferences/Format" width="32" height="32"/>
         <image name="Preferences/General" width="32" height="32"/>
-        <image name="Preferences/Integration" width="32" height="32"/>
         <image name="Preferences/KeyBindings" width="32" height="32"/>
         <image name="Preferences/Print" width="32" height="32"/>
         <image name="Preferences/Window" width="32" height="32"/>

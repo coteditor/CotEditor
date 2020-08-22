@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2019 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -85,6 +85,14 @@
 "rOw-DD-kV5.title" = "延迟：";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
 "ebJ-vk-RME.title" = "秒";
+
+
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "命令行工具：";
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "了解更多…";
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "cot 命令行工具可以让您使用命令行来启动 CotEditor 并打开文件。";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

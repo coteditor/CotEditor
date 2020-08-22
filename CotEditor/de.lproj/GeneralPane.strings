@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2019 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -84,6 +84,14 @@
 "rOw-DD-kV5.title" = "Verzögerung:";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
 "ebJ-vk-RME.title" = "Sekunden";
+
+
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "Kommandozeilenwerkzeug:";
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "Mehr Infos …";
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "Mit dem „cot“-Kommandozeilenwerkzeug kannst du CotEditor von der Kommandozeile aus aktivieren und es Dateien öffnen lassen.";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
