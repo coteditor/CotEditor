@@ -99,6 +99,9 @@ final class LineNumberView: NSView {
     private var drawingInfo: DrawingInfo?
     private var thickness: CGFloat = 32
     
+    private var textColor: NSColor = .textColor  { didSet { self.needsDisplay = true } }
+    private var backgroundColor: NSColor = .textBackgroundColor  { didSet { self.needsDisplay = true } }
+    
     private var opacityObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
     
@@ -206,21 +209,13 @@ final class LineNumberView: NSView {
     /// return foreground color by considering the current accesibility setting
     private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
-        let textColor = self.textView?.textColor ?? .textColor
         let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
             ? strength.rawValue + ColorStrength.highContrastCoefficient
             : strength.rawValue
         
-        guard fraction < 1 else { return textColor }
-        
-        return textColor.blended(withFraction: 1 - fraction, of: backgroundColor) ?? textColor
-    }
-    
-    
-    /// return background color to fill
-    private var backgroundColor: NSColor {
-        
-        return self.textView?.backgroundColor ?? .textBackgroundColor
+        return fraction < 1
+            ? self.textColor.withAlphaComponent(1 - fraction)
+            : self.textColor
     }
     
     
@@ -393,22 +388,21 @@ final class LineNumberView: NSView {
             }
             .store(in: &self.textViewSubscriptions)
         
-        textView.publisher(for: \.backgroundColor)
-            .sink { [weak self] _ in
-                self?.needsDisplay = true
-            }
+        textView.publisher(for: \.textColor, options: .initial)
+            .compactMap { $0 }
+            .sink { [weak self] in self?.textColor = $0 }
+            .store(in: &self.textViewSubscriptions)
+        
+        textView.publisher(for: \.backgroundColor, options: .initial)
+            .sink { [weak self] in self?.backgroundColor = $0 }
             .store(in: &self.textViewSubscriptions)
         
         textView.publisher(for: \.font)
-            .sink { [weak self] _ in
-                self?.invalidateDrawingInfo()
-            }
+            .sink { [weak self] _ in self?.invalidateDrawingInfo() }
             .store(in: &self.textViewSubscriptions)
         
         textView.publisher(for: \.scale)
-            .sink { [weak self] _ in
-                self?.invalidateDrawingInfo()
-            }
+            .sink { [weak self] _ in self?.invalidateDrawingInfo() }
             .store(in: &self.textViewSubscriptions)
     }
     
