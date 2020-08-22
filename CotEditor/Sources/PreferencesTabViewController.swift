@@ -49,7 +49,9 @@ final class PreferencesTabViewController: NSTabViewController {
         super.viewDidLoad()
         
         // workaround for that NSTabViewItem is not localized by storyboard (2018-11 macOS 10.14)
-        self.localizeTabViewItems()
+        if #available(macOS 11, *) { } else {
+            self.localizeTabViewItems()
+        }
         
         // select last used pane
         if
