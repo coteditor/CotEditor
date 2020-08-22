@@ -41,6 +41,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var opacityObserver: UserDefaultsObservation?
     private var sheetAvailabilityObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
+    
+    private lazy var outlineParseTask = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
     private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
@@ -215,7 +217,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax for highlighting and outline menu
-            document.syntaxParser.invalidateOutline()
+            self.outlineParseTask.perform()
             self.invalidateSyntaxHighlight()
             
             // detect indent style
@@ -391,7 +393,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         self.document?.analyzer.invalidateEditorInfo()
         self.document?.incompatibleCharacterScanner.invalidate()
-        self.syntaxParser?.invalidateOutline()
+        self.outlineParseTask.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         DispatchQueue.main.async { [weak self] in
@@ -420,7 +422,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             viewController.apply(style: syntaxParser.style)
         }
         
-        syntaxParser.invalidateOutline()
+        self.outlineParseTask.perform()
         self.invalidateSyntaxHighlight()
     }
     
