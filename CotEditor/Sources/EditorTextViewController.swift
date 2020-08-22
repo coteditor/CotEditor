@@ -38,6 +38,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     private var orientationObserver: AnyCancellable?
     
+    private var stackView: NSStackView?  { self.view as? NSStackView }
+    
     @IBOutlet private weak var lineNumberView: LineNumberView?
     
     
@@ -45,9 +47,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    override func viewWillAppear() {
+    override func viewDidLoad() {
         
-        super.viewWillAppear()
+        super.viewDidLoad()
         
         // observe text orientation for line number view
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
@@ -64,14 +66,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 
                 self.lineNumberView?.orientation = orientation
             }
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.orientationObserver = nil
     }
     
     
@@ -166,16 +160,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         get { self.lineNumberView?.isHidden == false }
         set { self.lineNumberView?.isHidden = !newValue }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// cast view to NSStackView
-    private var stackView: NSStackView? {
-        
-        return self.view as? NSStackView
     }
     
 }
