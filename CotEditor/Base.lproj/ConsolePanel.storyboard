@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EcT-zs-4uz">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EcT-zs-4uz">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +17,7 @@
                         <toolbar key="toolbar" implicitIdentifier="E6F3CCE9-4AD4-47B3-9EF1-E93EBADCE675" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="NNy-0g-def">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Zms-Di-2KS"/>
-                                <toolbarItem implicitItemIdentifier="09F2FD3D-BD1E-4463-A6B1-D523662F7AFD" label="Clear Log" paletteLabel="Clear Log" toolTip="Clear error log" image="ClearTemplate" sizingBehavior="auto" id="Yei-b2-m1J">
+                                <toolbarItem implicitItemIdentifier="09F2FD3D-BD1E-4463-A6B1-D523662F7AFD" label="Clear Log" paletteLabel="Clear Log" toolTip="Clear error log" image="window.wipe" sizingBehavior="auto" id="Yei-b2-m1J">
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bordered" value="YES"/>
                                     </userDefinedRuntimeAttributes>
@@ -101,6 +101,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ClearTemplate" width="15" height="16"/>
+        <image name="window.wipe" width="15" height="16"/>
     </resources>
 </document>
