@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,11 +47,6 @@ final class PreferencesTabViewController: NSTabViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // workaround for that NSTabViewItem is not localized by storyboard (2018-11 macOS 10.14)
-        if #available(macOS 11, *) { } else {
-            self.localizeTabViewItems()
-        }
         
         // select last used pane
         if
@@ -111,42 +106,6 @@ final class PreferencesTabViewController: NSTabViewController {
             self?.view.isHidden = false
             window.title = tabViewItem.label
         })
-    }
-    
-}
-
-
-
-private extension PreferencesTabViewController {
-    
-    private static let ibIdentifiers: [String: String] = [
-        "General": "CNJ-6L-fga",
-        "Window": "5fL-58-BrZ",
-        "Appearance": "icK-P1-6ta",
-        "Edit": "sh3-xI-elX",
-        "Format": "frU-Pc-xZT",
-        "File Drop": "aO6-oS-ZGt",
-        "Key Bindings": "b8q-WN-1ls",
-        "Print": "UuB-iq-kOt",
-    ]
-    
-    
-    /// localize tabViewItems using storyboard's .string
-    func localizeTabViewItems() {
-        
-        for item in self.tabViewItems {
-            guard
-                let identifier = item.identifier as? String,
-                let ibIdentifier = Self.ibIdentifiers[identifier]
-                else { assertionFailure(); continue }
-            
-            let key = ibIdentifier + ".label"
-            let localized = key.localized(tableName: "PreferencesWindow")
-            
-            guard key != localized else { continue }
-            
-            item.label = localized
-        }
     }
     
 }

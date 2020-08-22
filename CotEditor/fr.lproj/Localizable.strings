@@ -37,7 +37,6 @@
 
 // Accessibility labels
 "inspector" = "inspecteur";
-"document inspector" = "inspecteur de document";
 "outline" = "structure";
 "incompatible characters" = "caractères incompatibles";
 "status bar" = "barre d'état";

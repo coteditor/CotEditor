@@ -174,7 +174,7 @@ final class InspectorTabView: NSTabView {
         // set tabViewItem values to control buttons
         for (index, item) in self.tabViewItems.enumerated() {
             self.segmentedControl.setImage(item.image, forSegment: index)
-            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(item.label.localized, forSegment: index)
+            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(item.label, forSegment: index)
         }
         
         self.segmentedControl.sizeToFit()

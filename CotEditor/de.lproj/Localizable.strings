@@ -37,7 +37,6 @@
 
 // Accessibility labels
 "inspector" = "Infofenster";
-"document inspector" = "Dokument-Informationen";
 "outline" = "Gliederung";
 "incompatible characters" = "Inkompatible Zeichen";
 "status bar" = "Statusleiste";

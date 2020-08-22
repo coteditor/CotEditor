@@ -38,7 +38,6 @@
 
 // Accessibility labels
 "inspector" = "inspetor";
-"document inspector" = "inspetor do documento";
 "outline" = "plano";
 "incompatible characters" = "Caracteres Incompatíveis";
 "status bar" = "barra de estado";
