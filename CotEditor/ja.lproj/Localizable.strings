@@ -459,6 +459,8 @@
 "Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
+// command-line tool
+"installed at %@" = "%@にインストール済み";
 
 
 // Appearance pane

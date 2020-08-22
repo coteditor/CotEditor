@@ -497,6 +497,8 @@
 		2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */; };
+		2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
+		2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */; };
 		2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
 		2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
 		2AC186DD1E2F4264002F4D27 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186DC1E2F4264002F4D27 /* Debug.swift */; };
@@ -1247,6 +1249,7 @@
 		2ABF49E2221A54AD00239278 /* TextClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClipping.swift; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
 		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
+		2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineToolManager.swift; sourceTree = "<group>"; };
 		2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDocument+ErrorHandling.swift"; sourceTree = "<group>"; };
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		2AC20A701E70819E0093B9C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GeneralPane.storyboard; sourceTree = "<group>"; };
@@ -1592,6 +1595,7 @@
 				2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */,
 				2AACB1DA1D19B1440073775B /* Key Binding Managers */,
 				2A8DA9431D286C53003D0C4B /* ScriptManager.swift */,
+				2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -2791,6 +2795,7 @@
 				2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
+				2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2AF9249324E2ED410028AD3B /* ControlToolbarItem.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
@@ -3089,6 +3094,7 @@
 				2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
+				2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2AF9249424E2ED410028AD3B /* ControlToolbarItem.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,

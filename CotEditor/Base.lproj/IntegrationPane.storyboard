@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NGa-54-JV0">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NGa-54-JV0">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,14 +11,11 @@
             <objects>
                 <viewController title="Integration" id="NGa-54-JV0" customClass="IntegrationPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" id="dua-kZ-3F1">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="167"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="128"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button identifier="about_cot" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-C4-VWY">
-                                <rect key="frame" x="142" y="121" width="109" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="2pf-7V-Y7I"/>
-                                </constraints>
+                                <rect key="frame" x="142" y="82" width="109" height="32"/>
                                 <buttonCell key="cell" type="push" title="Learn More" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ltN-wn-m8M">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -27,14 +24,6 @@
                                     <action selector="openHelpAnchor:" target="Wg0-Wy-vM7" id="MSd-Ay-omn"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wsF-Up-svi">
-                                <rect key="frame" x="18" y="131" width="124" height="16"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Command-line tool:" id="kQn-Uu-cqG">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button identifier="pref_integration" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-cF-8do">
                                 <rect key="frame" x="517" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WCi-c2-3a5">
@@ -46,101 +35,57 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hel-wg-HgL">
-                                <rect key="frame" x="146" y="92" width="396" height="28"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line." id="c48-xK-Ag1">
+                                <rect key="frame" x="146" y="53" width="396" height="28"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The 'cot' command-line tool let you launch CotEditor and let it open files from the command line." id="c48-xK-Ag1">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Os-2K-aO5">
-                                <rect key="frame" x="166" y="46" width="202" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="WARNING WILL BE DISPLAYED HERE." id="xIr-1B-mk1">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="NGa-54-JV0" name="hidden" keyPath="warning" id="B6j-FU-6Fe">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="NGa-54-JV0" name="value" keyPath="warning" id="shv-A2-IHo"/>
-                                </connections>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fK4-Mt-T9M">
-                                <rect key="frame" x="146" y="46" width="20" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="⚠️" id="Rh7-Oj-QlB">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="NGa-54-JV0" name="hidden" keyPath="warning" id="uyT-Bw-wcP">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4sy-48-Cic">
-                                <rect key="frame" x="166" y="68" width="176" height="16"/>
+                                <rect key="frame" x="271" y="92" width="176" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Installed at /usr/local/bin/cot" id="05a-N1-Hsd">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
-                                <connections>
-                                    <binding destination="NGa-54-JV0" name="hidden" keyPath="installed" id="bIt-85-7jy">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="NGa-54-JV0" name="displayPatternValue1" keyPath="linkURL.path" id="e2G-16-MxZ">
-                                        <dictionary key="options">
-                                            <string key="NSDisplayPattern">installed at %{value1}@</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wsF-Up-svi">
+                                <rect key="frame" x="18" y="92" width="124" height="16"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Command-line tool:" id="kQn-Uu-cqG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HBG-ey-tP2">
-                                <rect key="frame" x="148" y="67" width="16" height="16"/>
+                                <rect key="frame" x="253" y="91" width="16" height="16"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="uIH-f9-ant"/>
-                                <connections>
-                                    <binding destination="NGa-54-JV0" name="hidden" keyPath="installed" id="hKr-9p-NyN">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="rbP-cF-8do" firstAttribute="top" secondItem="7Os-2K-aO5" secondAttribute="bottom" constant="5" id="2N2-ZG-opX"/>
                             <constraint firstItem="rbP-cF-8do" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dua-kZ-3F1" secondAttribute="leading" constant="20" symbolic="YES" id="3Pd-Vp-HAi"/>
                             <constraint firstItem="4sy-48-Cic" firstAttribute="leading" secondItem="HBG-ey-tP2" secondAttribute="trailing" constant="4" id="3hz-k3-XQZ"/>
                             <constraint firstItem="hel-wg-HgL" firstAttribute="top" secondItem="Lc8-C4-VWY" secondAttribute="bottom" constant="8" id="4G1-91-6Qd"/>
-                            <constraint firstItem="HBG-ey-tP2" firstAttribute="leading" secondItem="hel-wg-HgL" secondAttribute="leading" id="9Fp-sR-mGE"/>
-                            <constraint firstItem="hel-wg-HgL" firstAttribute="leading" secondItem="fK4-Mt-T9M" secondAttribute="leading" id="AYx-Am-x3d"/>
+                            <constraint firstItem="hel-wg-HgL" firstAttribute="leading" secondItem="wsF-Up-svi" secondAttribute="trailing" constant="8" symbolic="YES" id="4Jh-9A-9RT"/>
+                            <constraint firstItem="HBG-ey-tP2" firstAttribute="leading" secondItem="Lc8-C4-VWY" secondAttribute="trailing" constant="8" symbolic="YES" id="6Un-Sc-gVY"/>
+                            <constraint firstItem="4sy-48-Cic" firstAttribute="firstBaseline" secondItem="wsF-Up-svi" secondAttribute="firstBaseline" id="Cue-la-DdC"/>
                             <constraint firstItem="wsF-Up-svi" firstAttribute="leading" secondItem="dua-kZ-3F1" secondAttribute="leading" constant="20" symbolic="YES" id="GGB-vb-O2M"/>
-                            <constraint firstItem="7Os-2K-aO5" firstAttribute="top" secondItem="fK4-Mt-T9M" secondAttribute="top" id="LeI-ze-yZC"/>
-                            <constraint firstItem="hel-wg-HgL" firstAttribute="leading" secondItem="Lc8-C4-VWY" secondAttribute="leading" id="M11-63-Ht8"/>
-                            <constraint firstItem="7Os-2K-aO5" firstAttribute="top" secondItem="4sy-48-Cic" secondAttribute="bottom" constant="8" symbolic="YES" id="NsP-iR-3tD"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lc8-C4-VWY" secondAttribute="trailing" constant="20" symbolic="YES" id="QA2-ZL-hcL"/>
                             <constraint firstAttribute="trailing" secondItem="rbP-cF-8do" secondAttribute="trailing" constant="20" symbolic="YES" id="QQy-7r-kcB"/>
-                            <constraint firstItem="4sy-48-Cic" firstAttribute="top" secondItem="hel-wg-HgL" secondAttribute="bottom" constant="8" symbolic="YES" id="Qw3-d7-S4g"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4sy-48-Cic" secondAttribute="trailing" constant="20" symbolic="YES" id="Se3-NR-Des"/>
+                            <constraint firstItem="rbP-cF-8do" firstAttribute="top" secondItem="hel-wg-HgL" secondAttribute="bottom" constant="12" symbolic="YES" id="YBD-9S-3tc"/>
                             <constraint firstAttribute="bottom" secondItem="rbP-cF-8do" secondAttribute="bottom" constant="20" symbolic="YES" id="du1-EE-aI9"/>
                             <constraint firstItem="wsF-Up-svi" firstAttribute="baseline" secondItem="Lc8-C4-VWY" secondAttribute="baseline" id="duV-ia-FS3"/>
-                            <constraint firstItem="7Os-2K-aO5" firstAttribute="leading" secondItem="fK4-Mt-T9M" secondAttribute="trailing" constant="4" id="hbA-I7-Nhl"/>
                             <constraint firstItem="4sy-48-Cic" firstAttribute="centerY" secondItem="HBG-ey-tP2" secondAttribute="centerY" constant="-1" id="kgB-Tx-k4N"/>
                             <constraint firstItem="Lc8-C4-VWY" firstAttribute="leading" secondItem="wsF-Up-svi" secondAttribute="trailing" constant="8" symbolic="YES" id="nKr-8q-4GT"/>
                             <constraint firstAttribute="trailing" secondItem="hel-wg-HgL" secondAttribute="trailing" constant="20" symbolic="YES" id="qgw-vf-q7U"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7Os-2K-aO5" secondAttribute="trailing" constant="20" symbolic="YES" id="xPu-od-dxI"/>
                             <constraint firstItem="wsF-Up-svi" firstAttribute="top" secondItem="dua-kZ-3F1" secondAttribute="top" constant="20" symbolic="YES" id="zce-9t-hl1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cltPathField" destination="4sy-48-Cic" id="lhE-d8-FFi"/>
+                        <outlet property="cltStatusView" destination="HBG-ey-tP2" id="nxq-fv-F6S"/>
+                    </connections>
                 </viewController>
                 <customObject id="Wg0-Wy-vM7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

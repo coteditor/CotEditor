@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,9 +30,6 @@
 
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "了解更多…";
-
-/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "Installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
-"e2G-16-MxZ.ibShadowedDisplayPattern" = "已安装于 %{value1}@";
 
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
 "c48-xK-Ag1.title" = "cot 命令行工具可以让您使用命令行来启动 CotEditor 并打开文件。";

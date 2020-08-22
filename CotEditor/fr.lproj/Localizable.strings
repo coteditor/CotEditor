@@ -457,6 +457,8 @@
 "Do you want to restart CotEditor now?" = "Voulez-vous relancer CotEditor maintenant ?";
 "Restart Now" = "Relancer maintenant";
 "Later" = "Plus tard";
+// command-line tool
+"installed at %@" = "Installé ici : %@";
 
 
 // Appearance pane

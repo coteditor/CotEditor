@@ -459,6 +459,8 @@
 "Do you want to restart CotEditor now?" = "现在就重启 CotEditor 吗？";
 "Restart Now" = "现在重启";
 "Later" = "稍后";
+// command-line tool
+"installed at %@" = "已安装于 %@";
 
 
 // Appearance pane

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,9 +31,6 @@
 
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "Altre informazioni…";
-
-/* Class = "IBBindingConnection"; ibShadowedDisplayPattern = "installed at %{value1}@"; ObjectID = "e2G-16-MxZ"; */
-"e2G-16-MxZ.ibShadowedDisplayPattern" = "Installato in bei %{value1}@";
 
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
 "c48-xK-Ag1.title" = "Con il comando testuale “cot” si può lanciare CotEditor facendogli aprire documenti dalla riga di comando.";
