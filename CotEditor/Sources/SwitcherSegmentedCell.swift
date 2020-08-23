@@ -88,7 +88,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             let selectedImage = NSImage(named: "Selected" + name)
             else { return nil }
         
-        let tintedImage = selectedImage.tinted(color: .controlAccentColor)
+        let tintedImage = selectedImage.tinted(with: .controlAccentColor)
         
         self.imageCache[segment] = (regularImage, tintedImage)
         
