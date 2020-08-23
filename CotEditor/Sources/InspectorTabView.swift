@@ -34,7 +34,8 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
-    private let controlHeight: CGFloat = 28.0
+    private let controlHeight: CGFloat = 28
+    private let segmentWidth: CGFloat = 30
     
     
     
@@ -172,9 +173,10 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
         
         // set tabViewItem values to control buttons
-        for (index, item) in self.tabViewItems.enumerated() {
-            self.segmentedControl.setImage(item.image, forSegment: index)
-            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(item.label, forSegment: index)
+        for (segment, item) in self.tabViewItems.enumerated() {
+            self.segmentedControl.setImage(item.image, forSegment: segment)
+            self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
+            self.segmentedControl.setToolTip(item.label, forSegment: segment)
         }
         
         self.segmentedControl.sizeToFit()

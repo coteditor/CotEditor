@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,9 +27,36 @@ import Cocoa
 
 final class SwitcherSegmentedCell: NSSegmentedCell {
     
+    // MARK: Private Properties
+    
+    private var imageCache: [Int: (regular: NSImage, selected: NSImage)] = [:]
+    
+    
+    
+    // MARK: -
     // MARK: Segmented Cell Methods
     
-    /// customize drawing items
+    override var selectedSegment: Int {
+        
+        didSet {
+            for segment in 0..<self.segmentCount {
+                let image = self.image(forSegment: segment, selected: segment == selectedSegment)
+                assert(image != nil)
+                
+                super.setImage(image, forSegment: segment)
+            }
+        }
+    }
+    
+    
+    override func setImage(_ image: NSImage?, forSegment segment: Int) {
+        
+        self.imageCache[segment] = nil
+        
+        super.setImage(image, forSegment: segment)
+    }
+    
+    
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         // draw only inside
@@ -37,34 +64,35 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
     }
     
     
-    /// draw each segment
-    override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView) {
+    
+    // MARK: Private Methods
+    
+    /// Return the image associated with the specified segment by taking the selection state into concideration.
+    ///
+    /// - Parameters:
+    ///   - segment: The index of the segment whose image you want to get.
+    ///   - selected: The selection state of the segment.
+    /// - Returns: A image for the  segment.
+    private func image(forSegment segment: Int, selected: Bool) -> NSImage? {
         
-        // use another image for selected segments
-        // -> From the universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one,
-        //    because some users may hard to distinguish the selected state just by the color.
-        if self.isSelected(forSegment: segment) {
-            // load "selected" icon template
-            guard
-                let iconName = self.image(forSegment: segment)?.name(),
-                let image = NSImage(named: "Selected" + iconName)
-                else { fatalError("No selected icon template for inspector tab view was found.") }
-            
-            // calculate area to draw
-            let imageRect = NSRect(origin: frame.mid.offset(by: -image.size.scaled(to: 0.5)),
-                                   size: image.size)
-            let alignedImageRect = controlView.centerScanRect(imageRect)
-            
-            // draw icon template
-            image.draw(in: alignedImageRect)
-            
-            // tint
-            NSColor.controlAccentColor.set()
-            alignedImageRect.fill(using: .sourceIn)
-            
-        } else {
-            super.drawSegment(segment, inFrame: frame, with: controlView)
+        if let cache = self.imageCache[segment] {
+            return selected ? cache.selected : cache.regular
         }
+        
+        guard let regularImage = self.image(forSegment: segment) else { return nil }
+        
+        if !selected { return regularImage }
+        
+        guard
+            let name = regularImage.name(),
+            let selectedImage = NSImage(named: "Selected" + name)
+            else { return nil }
+        
+        let tintedImage = selectedImage.tinted(color: .controlAccentColor)
+        
+        self.imageCache[segment] = (regularImage, tintedImage)
+        
+        return tintedImage
     }
     
 }
