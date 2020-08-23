@@ -1098,7 +1098,6 @@
 		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
 		2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyleValidator.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
-		2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPaneController.swift; sourceTree = "<group>"; };
 		2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaneController.swift; sourceTree = "<group>"; };
@@ -1545,7 +1544,6 @@
 				2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */,
 				2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */,
 				2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */,
-				2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */,
 			);
 			name = Panes;
 			sourceTree = "<group>";
