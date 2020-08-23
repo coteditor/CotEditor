@@ -405,9 +405,8 @@
         <scene sceneID="Daa-Pr-HcD">
             <objects>
                 <viewController id="q0M-8Q-aM1" customClass="UpdatesViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="LLa-wu-mor">
-                        <rect key="frame" x="0.0" y="0.0" width="580" height="103"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="LLa-wu-mor">
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="99"/>
                         <subviews>
                             <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
                                 <rect key="frame" x="130" y="61" width="222" height="18"/>
@@ -454,8 +453,9 @@
                             <constraint firstItem="FJU-WB-SQP" firstAttribute="top" secondItem="eh0-fN-8C5" secondAttribute="bottom" constant="6" symbolic="YES" id="8fU-Da-1wL"/>
                             <constraint firstAttribute="trailing" secondItem="dyM-Pb-Ay4" secondAttribute="trailing" constant="20" symbolic="YES" id="FsL-Eg-P3a"/>
                             <constraint firstItem="lSi-dW-Eg4" firstAttribute="baseline" secondItem="eh0-fN-8C5" secondAttribute="baseline" id="GXP-ey-68V"/>
-                            <constraint firstItem="lSi-dW-Eg4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LLa-wu-mor" secondAttribute="leading" constant="20" symbolic="YES" id="KLl-Cd-slR"/>
+                            <constraint firstItem="lSi-dW-Eg4" firstAttribute="leading" secondItem="LLa-wu-mor" secondAttribute="leading" constant="20" symbolic="YES" id="KLl-Cd-slR"/>
                             <constraint firstItem="eh0-fN-8C5" firstAttribute="leading" secondItem="lSi-dW-Eg4" secondAttribute="trailing" constant="8" symbolic="YES" id="NnR-c2-aUX"/>
+                            <constraint firstAttribute="bottom" secondItem="FJU-WB-SQP" secondAttribute="bottom" priority="751" constant="8" id="PHC-tL-mcq"/>
                             <constraint firstItem="9j3-BL-0Mu" firstAttribute="leading" secondItem="LLa-wu-mor" secondAttribute="leading" constant="20" symbolic="YES" id="Peg-z2-ye7"/>
                             <constraint firstItem="9j3-BL-0Mu" firstAttribute="top" secondItem="LLa-wu-mor" secondAttribute="top" constant="10" id="YRP-MT-gVv"/>
                             <constraint firstAttribute="trailing" secondItem="9j3-BL-0Mu" secondAttribute="trailing" constant="20" symbolic="YES" id="Ygt-p7-MQ7"/>
