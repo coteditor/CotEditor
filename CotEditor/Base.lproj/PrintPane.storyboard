@@ -509,7 +509,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.center.to.line" width="15" height="15"/>
+        <image name="arrow.center.to.line" width="14" height="10"/>
         <image name="arrow.left.to.line" catalog="system" width="15" height="12"/>
         <image name="arrow.right.to.line" catalog="system" width="15" height="12"/>
     </resources>
