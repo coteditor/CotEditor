@@ -48,10 +48,6 @@
 "SGo-FL-Pax.title" = "Activer l'enregistrement automatique et les versions";
 /* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "Fonctionnalité de macOS qui enregistre automatiquement vos fichiers pendant que vous les éditez. Si vous désactivez cette optoin, CotEditor créera quand même des sauvegardes en prévision d'éventuels crashs.";
-/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Tronquer les espaces en fin de ligne à l'enregistrement";
-/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Même les lignes composées uniquement d'espaces";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */

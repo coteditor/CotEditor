@@ -373,18 +373,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// save or autosave the document contents to a file
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
-        // trim trailing whitespace if needed
         assert(Thread.isMainThread)
-        if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
-            let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
-            let keepsEditingPoint = saveOperation.isAutoSaving
-            let textView = self.textStorage.layoutManagers.lazy
-                .compactMap(\.textViewForBeginningOfSelection)
-                .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
-            
-            textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,
-                                             keepingEditingPoint: keepsEditingPoint)
-        }
         
         // break undo grouping
         for layoutManager in self.textStorage.layoutManagers {

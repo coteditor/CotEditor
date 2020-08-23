@@ -14,12 +14,13 @@ Change Log
 - Change default settings of items to display in toolbar/status bar.
 - Move line endings/file encoding menus from the toolbar to the status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
+- Change the “trim trailing whitespace on save” option in the General pane to pefrom the trimming not on save but while typing with delay, and move the option to the Edit pane.
 - Enable toggling the editor split orientation by right-clicking the editor split button in the navigation bar.
 - Enable action to toggle editor split orientation even when no split editor is opened.
 - Remove the Integration pereferences pane and move its contents to the General pane.
 - Enable “select previous/next outline item” commands even when the navigation bar is hidden.
-- Update Swift syntax style. 
-- Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x. 
+- Update Swift syntax style.
+- Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Optimize the line number calculation in vertical text orientation.
 - [trivial] Always enable non-contiguous layout by the normal horizontal text orientation.
 - [dev] Update the build environment to Xcode 12 (Swift 5.3, macOS 11 SDK).

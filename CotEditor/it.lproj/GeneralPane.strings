@@ -49,10 +49,6 @@
 "SGo-FL-Pax.title" = "Abilita il salvataggio automatico delle versioni";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "Questa funzione registra automaticamente i documenti durante la loro lavorazione. Anche se non è attiva, CotEditor crea comunque dei backup, in caso di blocco dell’applicazione.";
-/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Rimuovi gli spazi bianchi a fine riga al salvataggio";
-/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Includere le righe di solo spazio bianco";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */

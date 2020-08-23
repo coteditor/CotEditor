@@ -110,6 +110,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
     
+    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines],
+                                                                                                          keepingEditingPoint: true) }
+    
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: AnyCancellable?
     
@@ -411,6 +414,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.didChangeText()
         
         self.needsUpdateLineHighlight = true
+        
+        // trim trailing whitespace if needed
+        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+            self.trimTrailingWhitespaceTask.schedule(delay: .seconds(5))
+        }
         
         // retry completion if needed
         // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
