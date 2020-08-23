@@ -49,18 +49,6 @@ final class GeneralPaneController: NSViewController {
         super.viewDidLoad()
         
         self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults()
-        
-        // remove updater options if no Sparkle provided
-        #if !SPARKLE
-            for subview in self.view.subviews where subview.tag < 0 {
-                subview.removeFromSuperview()
-            }
-        #endif
-        if !Bundle.main.isPrerelease {
-            for subview in self.view.subviews where subview.tag == -2 {
-                subview.removeFromSuperview()
-            }
-        }
     }
     
     
@@ -81,6 +69,17 @@ final class GeneralPaneController: NSViewController {
         
         // check command-line tool availability
         self.validateCommandLineTool()
+    }
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
+        
+        // append updater options only when Sparkle is provided
+        #if !SPARKLE
+        if identifier == "EmbedUpdatesView" { return false }
+        #endif
+        
+        return true
     }
     
     
@@ -173,6 +172,25 @@ private extension NSApplication {
         process.launch()
         
         self.terminate(nil)
+    }
+    
+}
+
+
+
+// MARK: -
+
+final class UpdatesViewController: NSViewController {
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        if !Bundle.main.isPrerelease {
+            for subview in self.view.subviews where subview.tag == -2 {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
 }

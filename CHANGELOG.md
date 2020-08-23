@@ -31,6 +31,7 @@ Change Log
 ### Fixes
 
 - Fix the progress message when highlighting a document with a multiple replacement definition.
+- Fix an issue that the preferences window sometimes performed odd resizing animation when initially display the General pane.
 
 
 
