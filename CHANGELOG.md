@@ -21,6 +21,7 @@ Change Log
 - Remove the Integration pereferences pane and move its contents to the General pane.
 - Enable “select previous/next outline item” commands even when the navigation bar is hidden.
 - Update Swift syntax style.
+- Update SVG syntax style.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Optimize the line number calculation in vertical text orientation.
 - [trivial] Always enable non-contiguous layout by the normal horizontal text orientation.
