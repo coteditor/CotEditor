@@ -55,7 +55,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     }
     
     
-    @available(*, unavailable, message: "Use `setImage(_:selectedImage:forSegment:) instead.`")
+    @available(*, unavailable, message: "Use 'setImage(_:selectedImage:forSegment:)' instead.")
     override func setImage(_ image: NSImage?, forSegment segment: Int) { }
     
     
