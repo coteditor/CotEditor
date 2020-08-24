@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
+- Update SVG syntax style.
 
 
 ### Fixes
