@@ -29,7 +29,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Public Properties
     
-    let segmentedControl = NSSegmentedControl()
+    let segmentedControl: NSSegmentedControl
     
     
     // MARK: Private Properties
@@ -44,16 +44,14 @@ final class InspectorTabView: NSTabView {
     
     required init?(coder: NSCoder) {
         
+        self.segmentedControl = InspectorTabSegmentedControl()
+        self.segmentedControl.segmentStyle = .texturedSquare
+        
         super.init(coder: coder)
         
         self.tabViewType = .noTabsNoBorder
         
-        // setup segmented control
-        self.segmentedControl.cell = SwitcherSegmentedCell()
-        self.segmentedControl.segmentStyle = .texturedSquare
         self.addSubview(self.segmentedControl)
-        
-        self.rebuildSegmentedControl()
     }
     
     
@@ -174,13 +172,24 @@ final class InspectorTabView: NSTabView {
         
         // set tabViewItem values to control buttons
         for (segment, item) in self.tabViewItems.enumerated() {
-            self.segmentedControl.setImage(item.image, forSegment: segment)
             self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
+            
+            (self.segmentedControl as? InspectorTabSegmentedControl)?
+                .setImage(item.image, selectedImage: item.image?.selectedImage, forSegment: segment)
         }
         
         self.segmentedControl.sizeToFit()
         self.invalidateControlSelection()
     }
     
+}
+
+
+private extension NSImage {
+    
+    var selectedImage: NSImage? {
+        
+        return self.name().flatMap { NSImage(named: "Selected" + $0) }
+    }
 }

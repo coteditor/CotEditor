@@ -549,8 +549,8 @@
 		2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */; };
 		2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */; };
 		2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */; };
-		2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */; };
-		2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */; };
+		2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */; };
+		2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */; };
 		2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */; };
 		2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* AppearancePane.storyboard */; };
@@ -1310,7 +1310,7 @@
 		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldCell.swift; sourceTree = "<group>"; };
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
-		2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitcherSegmentedCell.swift; sourceTree = "<group>"; };
+		2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabSegmentedControl.swift; sourceTree = "<group>"; };
 		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
@@ -2271,7 +2271,7 @@
 			isa = PBXGroup;
 			children = (
 				2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */,
-				2ACDC0A21D173250009B72D6 /* SwitcherSegmentedCell.swift */,
+				2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */,
 			);
 			name = "Inspector Tab View";
 			sourceTree = "<group>";
@@ -2854,6 +2854,7 @@
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
+				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
@@ -2976,7 +2977,6 @@
 				2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A10D1491E7477D30027192A /* StyledButton.swift in Sources */,
-				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AB2243221A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
@@ -3152,6 +3152,7 @@
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
+				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
 				2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */,
@@ -3275,7 +3276,6 @@
 				2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A10D1481E7477D30027192A /* StyledButton.swift in Sources */,
-				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
 				2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AB2243121A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
