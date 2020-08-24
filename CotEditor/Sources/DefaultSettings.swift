@@ -76,7 +76,7 @@ struct DefaultSettings {
         .showInvisibleControl: false,
         .showIndentGuides: false,
         .documentAppearance: AppearanceMode.default.rawValue,
-        .theme: "Dendrobates",
+        .theme: "Anura",
         
         .smartInsertAndDelete: false,
         .balancesBrackets: false,

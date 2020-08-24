@@ -12,6 +12,7 @@ Change Log
     - Update the application icon.
     - Update the document window UI.
 - Change default settings of items to display in toolbar/status bar.
+- Change the default theme from Dendrobates to Anura.
 - Move line endings/file encoding menus from the toolbar to the status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 - Change the “trim trailing whitespace on save” option in the General pane to pefrom the trimming not on save but while typing with delay, and move the option to the Edit pane.
