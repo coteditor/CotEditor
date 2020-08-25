@@ -53,7 +53,7 @@ extension NSImage {
         
         assert(self.isTemplate, "An image to tint should be a template image.")
         
-        return Self(size: self.size, flipped: false) { [image = self.copy() as! Self] (dstRect) -> Bool in
+        let image = Self(size: self.size, flipped: false) { [image = self.copy() as! Self] (dstRect) -> Bool in
             
             image.draw(in: dstRect)
             
@@ -62,6 +62,11 @@ extension NSImage {
             
             return true
         }
+        
+        image.capInsets = image.capInsets
+        image.alignmentRect = self.alignmentRect
+        
+        return image
     }
     
 }
