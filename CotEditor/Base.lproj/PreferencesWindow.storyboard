@@ -31,14 +31,14 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" tabStyle="toolbar" id="apc-An-nuW" customClass="PreferencesTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="General" identifier="General" image="Preferences/General" id="CNJ-6L-fga"/>
-                        <tabViewItem label="Window" identifier="Window" image="Preferences/Window" id="5fL-58-BrZ"/>
-                        <tabViewItem label="Appearance" identifier="Appearance" image="Preferences/Appearance" id="icK-P1-6ta"/>
-                        <tabViewItem label="Edit" identifier="Edit" image="Preferences/Edit" id="sh3-xI-elX"/>
-                        <tabViewItem label="Format" identifier="Format" image="Preferences/Format" id="frU-Pc-xZT"/>
-                        <tabViewItem label="File Drop" identifier="FileDrop" image="Preferences/FileDrop" id="aO6-oS-ZGt"/>
-                        <tabViewItem label="Key Bindings" identifier="KeyBindings" image="Preferences/KeyBindings" id="b8q-WN-1ls"/>
-                        <tabViewItem label="Print" identifier="Print" image="Preferences/Print" id="UuB-iq-kOt"/>
+                        <tabViewItem label="General" identifier="General" image="gearshape" catalog="system" id="CNJ-6L-fga"/>
+                        <tabViewItem label="Window" identifier="Window" image="uiwindow.split.2x1" catalog="system" id="5fL-58-BrZ"/>
+                        <tabViewItem label="Appearance" identifier="Appearance" image="eyeglasses" catalog="system" id="icK-P1-6ta"/>
+                        <tabViewItem label="Edit" identifier="Edit" image="square.and.pencil" catalog="system" id="sh3-xI-elX"/>
+                        <tabViewItem label="Format" identifier="Format" image="doc.text" catalog="system" id="frU-Pc-xZT"/>
+                        <tabViewItem label="File Drop" identifier="FileDrop" image="square.and.arrow.down" catalog="system" id="aO6-oS-ZGt"/>
+                        <tabViewItem label="Key Bindings" identifier="KeyBindings" image="keyboard" catalog="system" id="b8q-WN-1ls"/>
+                        <tabViewItem label="Print" identifier="Print" image="printer" catalog="system" id="UuB-iq-kOt"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="2ir-uf-iS5">
@@ -131,13 +131,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Preferences/Appearance" width="32" height="32"/>
-        <image name="Preferences/Edit" width="32" height="32"/>
-        <image name="Preferences/FileDrop" width="32" height="32"/>
-        <image name="Preferences/Format" width="32" height="32"/>
-        <image name="Preferences/General" width="32" height="32"/>
-        <image name="Preferences/KeyBindings" width="32" height="32"/>
-        <image name="Preferences/Print" width="32" height="32"/>
-        <image name="Preferences/Window" width="32" height="32"/>
+        <image name="doc.text" catalog="system" width="14" height="16"/>
+        <image name="eyeglasses" catalog="system" width="21" height="10"/>
+        <image name="gearshape" catalog="system" width="16" height="16"/>
+        <image name="keyboard" catalog="system" width="19" height="13"/>
+        <image name="printer" catalog="system" width="18" height="16"/>
+        <image name="square.and.arrow.down" catalog="system" width="15" height="16"/>
+        <image name="square.and.pencil" catalog="system" width="17" height="15"/>
+        <image name="uiwindow.split.2x1" catalog="system" width="18" height="14"/>
     </resources>
 </document>
