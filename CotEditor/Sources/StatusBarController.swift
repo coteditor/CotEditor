@@ -62,7 +62,7 @@ final class StatusBarController: NSViewController {
         
         super.viewDidLoad()
         
-        if #available(macOS 11, *) { } else {
+        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
             (self.view as? NSVisualEffectView)?.material = .windowBackground
         }
         
