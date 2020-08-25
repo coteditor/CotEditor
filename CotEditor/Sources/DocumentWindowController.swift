@@ -500,7 +500,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Opacity".localized
                 item.toolTip = "Change editor’s opacity".localized
-                item.image = #imageLiteral(resourceName: "Opacity")
+                if #available(macOS 11, *) {
+                    item.image = NSImage(named: "uiwindow.opacity")
+                } else {
+                    item.image = #imageLiteral(resourceName: "Opacity")
+                }
                 item.action = #selector(DocumentViewController.showOpacitySlider)
                 // use custom view to locate popup view
                 let button = NSButton(image: item.image!, target: nil, action: item.action)
