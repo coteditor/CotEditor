@@ -124,3 +124,29 @@ final class SidebarViewController: NSTabViewController {
     }
     
 }
+
+
+
+extension SidebarViewController: InspectorTabViewDelegate {
+    
+    func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage? {
+        
+        switch tabViewItem {
+            case self.documentInspectorTabViewItem:
+                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "doc_selected") }
+                return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)
+                
+            case self.outlineTabViewItem:
+                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "list.bullet.indent_selected") }
+                return nil  // -> bold version
+                
+            case self.incompatibleCharactersTabViewItem:
+                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "exclamationmark.triangle_slected") }
+                return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)
+                
+            default:
+                preconditionFailure()
+        }
+    }
+    
+}

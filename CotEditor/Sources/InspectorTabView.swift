@@ -25,6 +25,18 @@
 
 import Cocoa
 
+protocol InspectorTabViewDelegate: NSTabViewDelegate {
+    
+    /// Provide custom image for selected tab view item.
+    ///
+    /// - Parameters:
+    ///   - tabView: The tab view that sent the request.
+    ///   - selectedImageForItem: The tab view item that requests selected image.
+    /// - Returns: An image for selected tab, or `nil` for default behavior.
+    func tabView(_ tabView: NSTabView, selectedImageForItem: NSTabViewItem) -> NSImage?
+}
+
+
 final class InspectorTabView: NSTabView {
     
     // MARK: Public Properties
@@ -175,8 +187,10 @@ final class InspectorTabView: NSTabView {
             self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
             
+            let selectedImage = (self.delegate as? InspectorTabViewDelegate)?.tabView(self, selectedImageForItem: item)
+                ?? item.selectedImage
             (self.segmentedControl as? InspectorTabSegmentedControl)?
-                .setImage(item.image, selectedImage: item.selectedImage, forSegment: segment)
+                .setImage(item.image, selectedImage: selectedImage, forSegment: segment)
         }
         
         self.segmentedControl.sizeToFit()
@@ -190,9 +204,7 @@ private extension NSTabViewItem {
     
     var selectedImage: NSImage? {
         
-        guard #available(macOS 11, *) else {
-            return self.image?.name().flatMap { NSImage(named: "_selected" + $0) }
-        }
+        guard #available(macOS 11, *) else { return nil }
         
         return self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }
