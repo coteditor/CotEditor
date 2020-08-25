@@ -190,6 +190,11 @@ private extension NSTabViewItem {
     
     var selectedImage: NSImage? {
         
-        return self.image?.name().flatMap { NSImage(named: "Selected" + $0) }
+        guard #available(macOS 11, *) else {
+            return self.image?.name().flatMap { NSImage(named: "_selected" + $0) }
+        }
+        
+        return self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }
+    
 }

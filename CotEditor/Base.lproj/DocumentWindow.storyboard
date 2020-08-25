@@ -156,9 +156,9 @@
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
-                        <tabViewItem label="Document Inspector" image="DocumentTemplate" id="Kfj-q6-61N"/>
-                        <tabViewItem label="Outline" image="OutlineTemplate" id="hyM-2j-hen"/>
-                        <tabViewItem label="Incompatible Characters" image="ConflictsTemplate" id="JZo-ok-Dks"/>
+                        <tabViewItem label="Document Inspector" identifier="DocumentInspector" image="doc" catalog="system" id="Kfj-q6-61N"/>
+                        <tabViewItem label="Outline" identifier="Outline" image="list.bullet.indent" catalog="system" id="hyM-2j-hen"/>
+                        <tabViewItem label="Incompatible Characters" identifier="IncompatibleCharacters" image="exclamationmark.triangle" catalog="system" id="JZo-ok-Dks"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
@@ -393,10 +393,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ConflictsTemplate" width="15" height="15"/>
-        <image name="DocumentTemplate" width="15" height="15"/>
-        <image name="OutlineTemplate" width="15" height="15"/>
         <image name="TabStyle_On" width="20" height="18"/>
+        <image name="doc" catalog="system" width="14" height="16"/>
+        <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
+        <image name="list.bullet.indent" catalog="system" width="19" height="12"/>
         <namedColor name="DividerColor">
             <color white="0.85000002384185791" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
