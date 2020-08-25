@@ -544,11 +544,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Fonts".localized
                 item.toolTip = "Show Font Panel".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "FontsTemplate")
-                }
+                item.image = NSImage(symbolNamed: "textformat", accessibilityDescription: item.label)
                 item.action = #selector(NSFontManager.orderFrontFontPanel)
                 return item
                 
@@ -557,11 +553,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Find".localized
                 item.toolTip = "Show “Find and Replace”".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "MagnifierTemplate")
-                }
+                item.image = NSImage(symbolNamed: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(TextFinder.showFindPanel)
                 return item
                 
@@ -570,11 +562,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Print".localized
                 item.toolTip = "Print".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "PrintTemplate")
-                }
+                item.image = NSImage(symbolNamed: "printer", accessibilityDescription: item.label)
                 item.action = #selector(NSDocument.printDocument)
                 return item
                 
