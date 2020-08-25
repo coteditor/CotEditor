@@ -75,7 +75,7 @@ extension EditorTextView {
             case .textSize:
                 let item = NSPopoverTouchBarItem(identifier: identifier)
                 item.customizationLabel = "Text Size".localized(comment: "touch bar item")
-                item.collapsedRepresentationImage = #imageLiteral(resourceName: "TextSizeTemplate")
+                item.collapsedRepresentationImage = NSImage(symbolNamed: "textformat.size", accessibilityDescription: "Text Size".localized)!
                 item.popoverTouchBar = TextSizeTouchBar(textView: self)
                 item.pressAndHoldTouchBar = TextSizeTouchBar(textView: self, forPressAndHold: true)
                 return item

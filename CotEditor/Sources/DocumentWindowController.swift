@@ -316,13 +316,18 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let smallerItem = NSToolbarItem()
                 smallerItem.label = "Smaller".localized
                 smallerItem.toolTip = "Smaller".localized
-                smallerItem.image = #imageLiteral(resourceName: "TextSizeSmallerTemplate")
+                if #available(macOS 11, *) {
+                    smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
+                        .withSymbolConfiguration(.init(scale: .small))
+                } else {
+                    smallerItem.image = NSImage(named: "a.small")
+                }
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem()
                 biggerItem.label = "Bigger".localized
                 biggerItem.toolTip = "Bigger".localized
-                biggerItem.image = #imageLiteral(resourceName: "TextSizeLargerTemplate")
+                biggerItem.image = NSImage(symbolNamed: "a", accessibilityDescription: "Bigger".localized)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -339,21 +344,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let ltrItem = NSToolbarItem()
                 ltrItem.label = "Left to Right".localized
                 ltrItem.toolTip = "Left to Right".localized
-                if #available(macOS 11, *) {
-                    ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
-                } else {
-                    ltrItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
-                }
+                ltrItem.image = NSImage(symbolNamed: "text.alignleft", accessibilityDescription: ltrItem.label)
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
                 let rtlItem = NSToolbarItem()
                 rtlItem.label = "Right to Left".localized
                 rtlItem.toolTip = "Right to Left".localized
-                if #available(macOS 11, *) {
-                    rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
-                } else {
-                    rtlItem.image = #imageLiteral(resourceName: "WritingDirectionRTLTemplate")
-                }
+                rtlItem.image = NSImage(symbolNamed: "text.alignright", accessibilityDescription: rtlItem.label)
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -371,13 +368,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let horizontalItem = NSToolbarItem()
                 horizontalItem.label = "Horizontal".localized
                 horizontalItem.toolTip = "Horizontal".localized
-                horizontalItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
+                horizontalItem.image = NSImage(symbolNamed: "text.alignleft", accessibilityDescription: horizontalItem.label)
                 horizontalItem.action = #selector(DocumentViewController.makeLayoutOrientationHorizontal)
                 
                 let verticalItem = NSToolbarItem()
                 verticalItem.label = "Vertical".localized
                 verticalItem.toolTip = "Vertical".localized
-                verticalItem.image = #imageLiteral(resourceName: "WritingDirectionVerticalTemplate")
+                verticalItem.image = NSImage(named: "text.verticalorientation")
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -463,7 +460,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Invisibles".localized
                 item.toolTip = "Show or hide invisible characters in text".localized
-                item.image = #imageLiteral(resourceName: "Invisibles_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
                 return item
                 
@@ -472,7 +470,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
                 item.toolTip = "Toggle wrap lines".localized
-                item.image = #imageLiteral(resourceName: "WrapLines_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "WrapLines_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
                 item.action = #selector(DocumentViewController.toggleLineWrap)
                 return item
                 
@@ -481,7 +480,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Page Guide".localized
                 item.toolTip = "Show or hide page guide line".localized
-                item.image = #imageLiteral(resourceName: "PageGuide_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "PageGuide_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "PageGuide_Off")
                 item.action = #selector(DocumentViewController.togglePageGuide)
                 return item
                 
@@ -490,7 +490,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Indent Guides".localized
                 item.toolTip = "Show or hide indent guide lines".localized
-                item.image = #imageLiteral(resourceName: "IndentGuides_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "IndentGuides_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "IndentGuides_Off")
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 return item
                 
@@ -547,11 +548,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Fonts".localized
                 item.toolTip = "Show Font Panel".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "FontsTemplate")
-                }
+                item.image = NSImage(symbolNamed: "textformat", accessibilityDescription: item.label)
                 item.action = #selector(NSFontManager.orderFrontFontPanel)
                 return item
                 
@@ -560,11 +557,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Find".localized
                 item.toolTip = "Show “Find and Replace”".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "MagnifierTemplate")
-                }
+                item.image = NSImage(symbolNamed: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(TextFinder.showFindPanel)
                 return item
                 
@@ -573,11 +566,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Print".localized
                 item.toolTip = "Print".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "PrintTemplate")
-                }
+                item.image = NSImage(symbolNamed: "printer", accessibilityDescription: item.label)
                 item.action = #selector(NSDocument.printDocument)
                 return item
                 
