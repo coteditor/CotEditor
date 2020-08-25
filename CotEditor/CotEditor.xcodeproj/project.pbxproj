@@ -229,8 +229,8 @@
 		2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
 		2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
-		2A5D13251D1F9D4100D38E6A /* NSToolbarItem+Statable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* NSToolbarItem+Statable.swift */; };
-		2A5D13261D1F9D4100D38E6A /* NSToolbarItem+Statable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* NSToolbarItem+Statable.swift */; };
+		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
+		2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
 		2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13301D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */; };
 		2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */; };
@@ -604,8 +604,8 @@
 		2AD21FCD1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */; };
 		2AD551E720D70026007279B1 /* ToolbarItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */; };
 		2AD551E820D70026007279B1 /* ToolbarItemGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */; };
-		2AD551EA20D8206C007279B1 /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableToolbarItem.swift */; };
-		2AD551EB20D8206C007279B1 /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableToolbarItem.swift */; };
+		2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
+		2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */; };
 		2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */; };
 		2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */; };
 		2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B841D3E42F700FBD998 /* TextSelection.swift */; };
@@ -1014,7 +1014,7 @@
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
-		2A5D13241D1F9D4000D38E6A /* NSToolbarItem+Statable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSToolbarItem+Statable.swift"; sourceTree = "<group>"; };
+		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
 		2A5D13311D1FB90300D38E6A /* FindPanelTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextView.swift; sourceTree = "<group>"; };
 		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
@@ -1316,7 +1316,7 @@
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarItemGroup.swift; sourceTree = "<group>"; };
-		2AD551E920D8206C007279B1 /* StatableToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
+		2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatableMenuToolbarItem.swift; sourceTree = "<group>"; };
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
 		2AD69B871D3E4FCD00FBD998 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
@@ -2029,8 +2029,8 @@
 				2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */,
 				2AD551E620D70026007279B1 /* ToolbarItemGroup.swift */,
 				2AF9249224E2ED410028AD3B /* ControlToolbarItem.swift */,
-				2AD551E920D8206C007279B1 /* StatableToolbarItem.swift */,
-				2A5D13241D1F9D4000D38E6A /* NSToolbarItem+Statable.swift */,
+				2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */,
+				2AD551E920D8206C007279B1 /* StatableMenuToolbarItem.swift */,
 				2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */,
 			);
 			name = Toolbar;
@@ -2913,7 +2913,6 @@
 				2A36CE7D1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A1125C723F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */,
-				2A5D13261D1F9D4100D38E6A /* NSToolbarItem+Statable.swift in Sources */,
 				2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
@@ -2963,7 +2962,8 @@
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
-				2AD551EB20D8206C007279B1 /* StatableToolbarItem.swift in Sources */,
+				2AD551EB20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
+				2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCD1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
 				2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */,
 				2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */,
@@ -3211,7 +3211,6 @@
 				2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A1125C623F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */,
-				2A5D13251D1F9D4100D38E6A /* NSToolbarItem+Statable.swift in Sources */,
 				2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
@@ -3262,7 +3261,8 @@
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
-				2AD551EA20D8206C007279B1 /* StatableToolbarItem.swift in Sources */,
+				2AD551EA20D8206C007279B1 /* StatableMenuToolbarItem.swift in Sources */,
+				2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
 				2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */,
 				2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */,

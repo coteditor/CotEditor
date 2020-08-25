@@ -460,7 +460,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Invisibles".localized
                 item.toolTip = "Show or hide invisible characters in text".localized
-                item.image = #imageLiteral(resourceName: "Invisibles_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
                 return item
                 
@@ -469,7 +470,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
                 item.toolTip = "Toggle wrap lines".localized
-                item.image = #imageLiteral(resourceName: "WrapLines_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "WrapLines_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
                 item.action = #selector(DocumentViewController.toggleLineWrap)
                 return item
                 
@@ -478,7 +480,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Page Guide".localized
                 item.toolTip = "Show or hide page guide line".localized
-                item.image = #imageLiteral(resourceName: "PageGuide_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "PageGuide_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "PageGuide_Off")
                 item.action = #selector(DocumentViewController.togglePageGuide)
                 return item
                 
@@ -487,7 +490,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Indent Guides".localized
                 item.toolTip = "Show or hide indent guide lines".localized
-                item.image = #imageLiteral(resourceName: "IndentGuides_On")
+                item.stateImages[.on] = #imageLiteral(resourceName: "IndentGuides_On")
+                item.stateImages[.off] = #imageLiteral(resourceName: "IndentGuides_Off")
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 return item
                 
