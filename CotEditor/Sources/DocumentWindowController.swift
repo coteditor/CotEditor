@@ -424,7 +424,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Comment".localized
                 item.toolTip = "Comment-out or uncomment selection".localized
-                item.image = #imageLiteral(resourceName: "Comment")
+                if #available(macOS 11, *) {
+                    item.image = NSImage(named: "text.commentout")
+                } else {
+                    item.image = #imageLiteral(resourceName: "Comment")
+                }
                 item.action = #selector(EditorTextView.toggleComment)
                 return item
                 
