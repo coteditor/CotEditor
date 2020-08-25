@@ -48,6 +48,18 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.viewDidLoad()
         
+        // set fallback toolbar images for macOS 10.15
+        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
+            for item in self.tabViewItems {
+                guard
+                    let identifier = item.identifier as? String,
+                    let image = NSImage(named: "Preferences/" + identifier)
+                    else { continue }
+                
+                item.image = image
+            }
+        }
+        
         // select last used pane
         if
             let identifier = UserDefaults.standard[.lastPreferencesPaneIdentifier],
