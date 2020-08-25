@@ -176,7 +176,7 @@ final class InspectorTabView: NSTabView {
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
             
             (self.segmentedControl as? InspectorTabSegmentedControl)?
-                .setImage(item.image, selectedImage: item.image?.selectedImage, forSegment: segment)
+                .setImage(item.image, selectedImage: item.selectedImage, forSegment: segment)
         }
         
         self.segmentedControl.sizeToFit()
@@ -186,10 +186,10 @@ final class InspectorTabView: NSTabView {
 }
 
 
-private extension NSImage {
+private extension NSTabViewItem {
     
     var selectedImage: NSImage? {
         
-        return self.name().flatMap { NSImage(named: "Selected" + $0) }
+        return self.image?.name().flatMap { NSImage(named: "Selected" + $0) }
     }
 }
