@@ -339,21 +339,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let ltrItem = NSToolbarItem()
                 ltrItem.label = "Left to Right".localized
                 ltrItem.toolTip = "Left to Right".localized
-                if #available(macOS 11, *) {
-                    ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
-                } else {
-                    ltrItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
-                }
+                ltrItem.image = NSImage(symbolNamed: "text.alignleft", accessibilityDescription: ltrItem.label)
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
                 let rtlItem = NSToolbarItem()
                 rtlItem.label = "Right to Left".localized
                 rtlItem.toolTip = "Right to Left".localized
-                if #available(macOS 11, *) {
-                    rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
-                } else {
-                    rtlItem.image = #imageLiteral(resourceName: "WritingDirectionRTLTemplate")
-                }
+                rtlItem.image = NSImage(symbolNamed: "text.alignright", accessibilityDescription: rtlItem.label)
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -371,13 +363,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let horizontalItem = NSToolbarItem()
                 horizontalItem.label = "Horizontal".localized
                 horizontalItem.toolTip = "Horizontal".localized
-                horizontalItem.image = #imageLiteral(resourceName: "WritingDirectionLTRTemplate")
+                horizontalItem.image = NSImage(symbolNamed: "text.alignleft", accessibilityDescription: horizontalItem.label)
                 horizontalItem.action = #selector(DocumentViewController.makeLayoutOrientationHorizontal)
                 
                 let verticalItem = NSToolbarItem()
                 verticalItem.label = "Vertical".localized
                 verticalItem.toolTip = "Vertical".localized
-                verticalItem.image = #imageLiteral(resourceName: "WritingDirectionVerticalTemplate")
+                verticalItem.image = NSImage(named: "text.verticalorientation")
                 verticalItem.action = #selector(DocumentViewController.makeLayoutOrientationVertical)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
