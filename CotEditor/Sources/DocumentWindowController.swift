@@ -464,8 +464,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Invisibles".localized
                 item.toolTip = "Show or hide invisible characters in text".localized
-                item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
-                item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
+                if #available(macOS 11, *) {
+                    item.stateImages[.on] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
+                    item.stateImages[.off] = NSImage(named: "paragraphsign.slash")
+                } else {
+                    item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
+                    item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
+                }
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
                 return item
                 
