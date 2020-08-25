@@ -1,32 +1,30 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "ColorCode.pdf"
+      "filename" : "ShiftLeft.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "ColorCodeDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
-      ]
+      ],
+      "filename" : "ShiftLeftDark.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "ColorCodeHighContrast.pdf",
       "appearances" : [
         {
           "appearance" : "contrast",
           "value" : "high"
         }
-      ]
+      ],
+      "filename" : "ShiftLeftHighContrast.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "ColorCodeHighContrastDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
@@ -36,11 +34,16 @@
           "appearance" : "contrast",
           "value" : "high"
         }
-      ]
+      ],
+      "filename" : "ShiftLeftHighContrastDark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
   }
 }

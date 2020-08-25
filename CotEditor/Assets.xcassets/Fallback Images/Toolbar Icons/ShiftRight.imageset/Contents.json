@@ -1,32 +1,30 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "ShiftLeft.pdf"
+      "filename" : "ShiftRight.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "ShiftLeftDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
-      ]
+      ],
+      "filename" : "ShiftRightDark.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "ShiftLeftHighContrast.pdf",
       "appearances" : [
         {
           "appearance" : "contrast",
           "value" : "high"
         }
-      ]
+      ],
+      "filename" : "ShiftRightHighContrast.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "ShiftLeftHighContrastDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
@@ -36,12 +34,14 @@
           "appearance" : "contrast",
           "value" : "high"
         }
-      ]
+      ],
+      "filename" : "ShiftLeftHighContrastDark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   },
   "properties" : {
     "template-rendering-intent" : "original"
