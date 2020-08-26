@@ -450,6 +450,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier, control: self.tabStyleControl!, menu: menu)
                 item.label = "Tab Style".localized
                 item.toolTip = "Toggle tab auto-expansion".localized
+                if #available(macOS 11, *) {
+                    item.stateImages[.on] = NSImage(named: "tab.right.split")
+                    item.stateImages[.off] = NSImage(named: "tab.right")
+                } else {
+                    item.stateImages[.on] = #imageLiteral(resourceName: "TabStyle_On")
+                    item.stateImages[.off] = #imageLiteral(resourceName: "TabStyle_Off")
+                }
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 
                 let menuForm = NSMenuItem()

@@ -27,25 +27,10 @@ import AppKit
 
 final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     
-    var state: NSControl.StateValue {
-        
-        get {
-            return (self.image?.name()?.hasSuffix("On") == true) ? .on : .off
-        }
-        
-        set {
-            guard newValue != self.state else { return }
-            
-            let suffix = (newValue == .on) ? "On" : "Off"
-            
-            guard
-                let base = self.image?.name()?.components(separatedBy: "_").first,
-                let image = NSImage(named: base + "_" + suffix)
-            else { return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.") }
-            
-            self.image = image
-        }
-    }
+    // MARK: Public Properties
+    
+    var state: NSControl.StateValue = .on  { didSet { self.invalidateImage() } }
+    var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
     
     
     
@@ -85,6 +70,14 @@ final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     private var segmentedControl: NSSegmentedControl? {
         
         return self.view as? NSSegmentedControl
+    }
+    
+    
+    private func invalidateImage() {
+        
+        assert(self.state != .mixed)
+        
+        self.image = self.stateImages[self.state]
     }
     
 }
