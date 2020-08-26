@@ -480,8 +480,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
                 item.toolTip = "Wrap lines".localized
-                item.stateImages[.on] = #imageLiteral(resourceName: "WrapLines_On")
-                item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
+                if #available(macOS 11, *) {
+                    item.stateImages[.on] = NSImage(named: "text.unwrap")
+                    item.stateImages[.off] = NSImage(named: "text.wrap")
+                } else {
+                    item.stateImages[.on] = #imageLiteral(resourceName: "WrapLines_On")
+                    item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
+                }
                 item.action = #selector(DocumentViewController.toggleLineWrap)
                 return item
                 
