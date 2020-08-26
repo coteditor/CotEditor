@@ -464,10 +464,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Invisibles".localized
-                item.toolTip = "Show or hide invisible characters in text".localized
+                item.toolTip = "Show invisible characters".localized
                 if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
-                    item.stateImages[.off] = NSImage(named: "paragraphsign.slash")
+                    item.stateImages[.on] = NSImage(systemSymbolName: "paragraphsign.slash", accessibilityDescription: item.label)
+                    item.stateImages[.off] = NSImage(named: "paragraphsign")
                 } else {
                     item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
                     item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")

@@ -326,9 +326,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 
                 // disable if item cannot be enabled
                 let canActivateShowInvisibles = !UserDefaults.standard.showsInvisible.isEmpty
-                item.toolTip = canActivateShowInvisibles
-                    ? "Show or hide invisible characters in document".localized
-                    : "To show invisible characters, set them in Preferences".localized
+                item.toolTip = canActivateShowInvisibles ? nil : "To show invisible characters, set them in Preferences".localized
+                if canActivateShowInvisibles {
+                    (item as? NSToolbarItem)?.toolTip = self.showsInvisibles
+                        ? "Hide invisible characters".localized
+                        : "Show invisible characters".localized
+                }
                 return canActivateShowInvisibles
             
             case #selector(toggleAntialias):

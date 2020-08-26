@@ -229,9 +229,10 @@
 // tooltip
 "Toggle wrap lines" = "Ative ou desative o ajuste de linhas";
 
-"Invisibles" = "不可視文字";
+"Invisibles" = "Invisíveis";
 // tooltip
-"Show or hide invisible characters in text" = "テキスト中の不可視文字を表示/非表示";
+"Hide invisible characters" = "Ocultar invisíveis";
+"Show invisible characters" = "Mostrar invisíveis";
 
 "Page Guide" = "Ajustar Linhas";
 // tooltip
@@ -392,8 +393,7 @@
 "Unwrap Lines" = "Desajustar Linhas";
 "Wrap Lines" = "Ajustar Linhas";
 
-// Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "Mostre ou oculte os invisíveis no documento";
+// Tooltip for "Show Invisibles" menu item and toolbar item
 "To show invisible characters, set them in Preferences" = "Para mostrar invisíveis, ative-os nas Preferências";
 
 

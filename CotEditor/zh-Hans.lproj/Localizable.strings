@@ -231,7 +231,8 @@
 
 "Invisibles" = "不可见元素";
 // tooltip
-"Show or hide invisible characters in text" = "显示或隐藏文本中的不可见元素";
+"Hide invisible characters" = "隐藏不可见元素";
+"Show invisible characters" = "显示不可见元素";
 
 "Page Guide" = "页面指示";
 // tooltip
@@ -392,8 +393,7 @@
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 
-// Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "显示或隐藏文档中的不可见元素";
+// Tooltip for "Show Invisibles" menu item and toolbar item
 "To show invisible characters, set them in Preferences" = "要显示不可见元素，请在偏好设置中进行设定";
 
 

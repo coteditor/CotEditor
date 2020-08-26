@@ -231,7 +231,8 @@
 
 "Invisibles" = "不可視文字";
 // tooltip
-"Show or hide invisible characters in text" = "テキスト中の不可視文字を表示/非表示";
+"Hide invisible characters" = "不可視文字を非表示";
+"Show invisible characters" = "不可視文字を表示";
 
 "Page Guide" = "ページガイド";
 // tooltip
@@ -393,7 +394,6 @@
 "Wrap Lines" = "行を折り返す";
 
 // Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "書類中の不可視文字を表示/非表示";
 "To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
 
 

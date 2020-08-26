@@ -230,7 +230,8 @@
 
 "Invisibles" = "Steuerzeichen";
 // tooltip
-"Show or hide invisible characters in text" = "Steuerzeichen im Text ein-/ausblenden";
+"Hide invisible characters" = "Steuerzeichen ausblenden";
+"Show invisible characters" = "Steuerzeichen ausblenden";
 
 "Page Guide" = "Seitenhilfslinie";
 // tooltip
@@ -391,8 +392,7 @@
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
 
-// Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "Steuerzeichen im Text ein-/ausblenden";
+// Tooltip for "Show Invisibles" menu item and toolbar item
 "To show invisible characters, set them in Preferences" = "Um Steuerzeichen anzuzeigen, setze sie in den Einstellungen";
 
 

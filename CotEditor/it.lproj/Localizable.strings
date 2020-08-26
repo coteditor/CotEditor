@@ -231,7 +231,8 @@
 
 "Invisibles" = "Caratteri invisibili";
 // tooltip
-"Show or hide invisible characters in text" = "Mostra/Nasconde la guida in linea della pagina";
+"Hide invisible characters" = "Nascondi caratteri invisibili";
+"Show invisible characters" = "Mostra caratteri invisibili";
 
 "Page Guide" = "Guida della pagina";
 // tooltip
@@ -392,8 +393,7 @@
 "Unwrap Lines" = "Rimuovi a capo automatico";
 "Wrap Lines" = "A capo automatico";
 
-// Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "Mostra o nascondi i caratteri invisibili nel documento";
+// Tooltip for "Show Invisibles" menu item and toolbar item
 "To show invisible characters, set them in Preferences" = "Per visualizzare i caratteri invisibili, impostarli nelle Preferenze";
 
 
