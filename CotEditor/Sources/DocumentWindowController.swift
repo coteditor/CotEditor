@@ -38,8 +38,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var recentStyleNamesObserver: UserDefaultsObservation?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
-    @IBOutlet private var tabStyleControl: NSSegmentedControl?
-    
     
     
     // MARK: -
@@ -447,7 +445,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(.separator())
                 menu.addItem(withTitle: "Auto-Expand Tabs", action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
-                let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier, control: self.tabStyleControl!, menu: menu)
+                let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
                 item.toolTip = "Toggle tab auto-expansion".localized
                 if #available(macOS 11, *) {
@@ -458,11 +456,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                     item.stateImages[.off] = #imageLiteral(resourceName: "TabStyle_Off")
                 }
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
-                
-                let menuForm = NSMenuItem()
-                menuForm.title = item.label
-                menuForm.action = item.action
-                item.menuFormRepresentation = menuForm
+                item.menu = menu
                 
                 return item
                 

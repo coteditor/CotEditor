@@ -34,11 +34,6 @@
 "JZo-ok-Dks.label" = "Caratteri incompatibili";
 
 
-/* Class = "NSSegmentedCell"; ObjectID = "zn9-Cf-SiH"; */
-"zn9-Cf-SiH.ibShadowedToolTips[0]" = "Abilita/Disabilita l’espansione automatica dei Tab";  // "Toggle tab auto-expansion"
-"zn9-Cf-SiH.ibShadowedToolTips[1]" = "Cambia larghezza pannello";  // "Change tab width"
-
-
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
 "Are-7I-6OR.title" = "Opacità dell'Editor";
 /* Class = "NSView"; ibShadowedToolTip = "Transparent"; ObjectID = "EVo-Ee-gQ1"; */

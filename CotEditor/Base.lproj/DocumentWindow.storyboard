@@ -99,24 +99,10 @@
                         </connections>
                     </window>
                     <connections>
-                        <outlet property="tabStyleControl" destination="3Uu-hK-dWp" id="nRs-Un-38G"/>
                         <segue destination="O3C-zL-JF9" kind="relationship" relationship="window.shadowedContentViewController" id="ZEk-vy-cPA"/>
                     </connections>
                 </windowController>
                 <customObject id="klO-m3-n5X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <segmentedControl verticalHuggingPriority="750" id="3Uu-hK-dWp">
-                    <rect key="frame" x="0.0" y="0.0" width="52" height="23"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="Ss1-sJ-m11" customClass="DropdownSegmentedControlCell" customModule="CotEditor" customModuleProvider="target">
-                        <font key="font" metaFont="system"/>
-                        <segments>
-                            <segment toolTip="Toggle tab auto-expansion" image="TabStyle_On" width="30"/>
-                            <segment toolTip="Change tab width" width="15">
-                                <nil key="label"/>
-                            </segment>
-                        </segments>
-                    </segmentedCell>
-                </segmentedControl>
             </objects>
             <point key="canvasLocation" x="-172" y="292"/>
         </scene>
@@ -393,7 +379,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TabStyle_On" width="20" height="18"/>
         <image name="doc" catalog="system" width="14" height="16"/>
         <image name="exclamationmark.triangle" catalog="system" width="17" height="15"/>
         <image name="list.bullet.indent" catalog="system" width="19" height="12"/>

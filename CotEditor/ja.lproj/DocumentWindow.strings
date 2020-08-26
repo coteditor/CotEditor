@@ -33,11 +33,6 @@
 "JZo-ok-Dks.label" = "非互換文字";
 
 
-/* Class = "NSSegmentedCell"; ObjectID = "zn9-Cf-SiH"; */
-"zn9-Cf-SiH.ibShadowedToolTips[0]" = "自動タブ展開を切替";  // "Toggle tab auto-expansion"
-"zn9-Cf-SiH.ibShadowedToolTips[1]" = "タブ幅を変更";  // "Change tab width"
-
-
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
 "Are-7I-6OR.title" = "エディタの不透明度";
 /* Class = "NSView"; ibShadowedToolTip = "Transparent"; ObjectID = "EVo-Ee-gQ1"; */

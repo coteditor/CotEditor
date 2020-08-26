@@ -33,18 +33,27 @@ final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
     
     
+    // MARK: Private Properties
     
+    private let segmentedControl: NSSegmentedControl
+    
+    
+    
+    // MARK: -
     // MARK: Lifecycle
     
-    init(itemIdentifier: NSToolbarItem.Identifier, control: NSSegmentedControl, menu: NSMenu) {
+    override init(itemIdentifier: NSToolbarItem.Identifier) {
+        
+        self.segmentedControl = DropdownSegmentedControl()
+        self.segmentedControl.trackingMode = .momentary
+        self.segmentedControl.segmentCount = 2
+        self.segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
+        self.segmentedControl.setWidth(15, forSegment: 1)
         
         super.init(itemIdentifier: itemIdentifier)
         
-        // set menu to the last segment
-        control.setShowsMenuIndicator(true, forSegment: 1)
-        control.setMenu(menu, forSegment: 1)
-        
-        self.view = control
+        self.view = self.segmentedControl
+        self.menuFormRepresentation = NSMenuItem()
     }
     
     
@@ -53,25 +62,46 @@ final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
     
     override func validate() {
         
-        self.segmentedControl?.isEnabled = self.validate()
+        self.segmentedControl.isEnabled = self.validate()
     }
     
     
     override var image: NSImage? {
         
-        get { self.segmentedControl?.image(forSegment: 0) }
-        set { self.segmentedControl?.setImage(newValue, forSegment: 0) }
+        get { self.segmentedControl.image(forSegment: 0) }
+        set { self.segmentedControl.setImage(newValue, forSegment: 0) }
+    }
+    
+    
+    override var label: String {
+        
+        didSet {
+            self.menuFormRepresentation?.title = label
+        }
+    }
+    
+    
+    override var action: Selector? {
+        
+        didSet {
+            self.segmentedControl.action = action
+            self.menuFormRepresentation?.action = action
+        }
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    var menu: NSMenu? {
+        
+        get { self.segmentedControl.menu(forSegment: 1) }
+        set { self.segmentedControl.setMenu(newValue, forSegment: 1) }
     }
     
     
     
     // MARK: Private Methods
-    
-    private var segmentedControl: NSSegmentedControl? {
-        
-        return self.view as? NSSegmentedControl
-    }
-    
     
     private func invalidateImage() {
         
@@ -84,7 +114,21 @@ final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
 
 
 
-final class DropdownSegmentedControlCell: NSSegmentedCell {
+final private class DropdownSegmentedControl: NSSegmentedControl {
+    
+    // MARK: Segmented Control Methods
+    
+    override class var cellClass: AnyClass? {
+        
+        get { DropdownSegmentedControlCell.self }
+        set { _ = newValue }
+    }
+    
+}
+
+
+
+final private class DropdownSegmentedControlCell: NSSegmentedCell {
     
     // MARK: Segmented Cell Methods
     
