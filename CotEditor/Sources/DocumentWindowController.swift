@@ -466,8 +466,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = "Invisibles".localized
                 item.toolTip = "Show invisible characters".localized
                 if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(systemSymbolName: "paragraphsign.slash", accessibilityDescription: item.label)
-                    item.stateImages[.off] = NSImage(named: "paragraphsign")
+                    item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
+                    item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
                 } else {
                     item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
                     item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")

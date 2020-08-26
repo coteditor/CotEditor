@@ -29,7 +29,7 @@ final class StatableToolbarItem: NSToolbarItem, StatableItem {
     
     // MARK: Public Properties
     
-    var state: NSControl.StateValue = .on  { didSet { self.invalidateImage() } }
+    var state: NSControl.StateValue = .off  { didSet { self.invalidateImage() } }
     var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
     
     
