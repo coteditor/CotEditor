@@ -36,7 +36,7 @@
                         <tabViewItem label="Appearance" identifier="Appearance" image="eyeglasses" catalog="system" id="icK-P1-6ta"/>
                         <tabViewItem label="Edit" identifier="Edit" image="square.and.pencil" catalog="system" id="sh3-xI-elX"/>
                         <tabViewItem label="Format" identifier="Format" image="doc.text" catalog="system" id="frU-Pc-xZT"/>
-                        <tabViewItem label="File Drop" identifier="FileDrop" image="square.and.arrow.down" catalog="system" id="aO6-oS-ZGt"/>
+                        <tabViewItem label="File Drop" identifier="FileDrop" image="arrow.down.doc" catalog="system" id="aO6-oS-ZGt"/>
                         <tabViewItem label="Key Bindings" identifier="KeyBindings" image="keyboard" catalog="system" id="b8q-WN-1ls"/>
                         <tabViewItem label="Print" identifier="Print" image="printer" catalog="system" id="UuB-iq-kOt"/>
                     </tabViewItems>
