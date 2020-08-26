@@ -48,3 +48,25 @@ extension Validatable where Self: NSToolbarItem {
     }
     
 }
+
+
+// MARK: -
+
+final class ControlToolbarItem: NSToolbarItem, Validatable {
+    
+    override func validate() {
+        
+        (self.view as? NSControl)?.isEnabled = self.validate()
+    }
+    
+}
+
+
+final class ToolbarItemGroup: NSToolbarItemGroup, Validatable {
+    
+    override func validate() {
+        
+        self.isEnabled = self.validate()
+    }
+    
+}

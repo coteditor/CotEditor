@@ -335,7 +335,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = "Text Size".localized
                 item.toolTip = "Change text size".localized
                 item.subitems = [smallerItem, biggerItem]
-                item.useSubitemsForMenuFormRepresentation()
                 return item
                 
             case .writingDirection:
@@ -359,7 +358,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.toolTip = "Change writing direction".localized
                 item.action = #selector(DocumentViewController.changeWritingDirection)
                 item.subitems = [ltrItem, rtlItem]
-                item.useSubitemsForMenuFormRepresentation()
                 return item
                 
             case .textOrientation:
@@ -383,7 +381,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.toolTip = "Toggle text orientation".localized
                 item.action = #selector(DocumentViewController.changeOrientation)
                 item.subitems = [horizontalItem, verticalItem]
-                item.useSubitemsForMenuFormRepresentation()
                 return item
                 
             case .indent:
@@ -414,7 +411,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = "Indent".localized
                 item.toolTip = "Indent selection".localized
                 item.subitems = [leftItem, rightItem]
-                item.useSubitemsForMenuFormRepresentation()
                 return item
                 
             case .comment:
