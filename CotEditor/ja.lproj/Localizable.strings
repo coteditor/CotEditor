@@ -218,7 +218,8 @@
 
 "Tab Style" = "タブスタイル";
 // tooltip
-"Toggle tab auto-expansion" = "自動タブ展開を切替";
+"Disable expanding tabs to spaces" = "自動タブ展開を無効に";  // FIXME: added
+"Expand tabs to spaces automatically" = "自動でタブをスペースに展開";  // FIXME: added
 "Change tab width" = "タブ幅を変更";
 // menu
 "Tab Width" = "タブ幅";
@@ -227,7 +228,8 @@
 
 "Wrap Lines" = "行を折り返す";
 // tooltip
-"Toggle wrap lines" = "行の折り返しを切替";
+"Unwrap lines" = "行の折り返さない";
+"Wrap lines" = "行を折り返す";
 
 "Invisibles" = "不可視文字";
 // tooltip
@@ -236,11 +238,13 @@
 
 "Page Guide" = "ページガイド";
 // tooltip
-"Show or hide page guide line" = "ページガイドを表示/非表示";
+"Hide page guide line" = "ページガイドを非表示";
+"Show page guide line" = "ページガイドを表示";
 
 "Indent Guides" = "インデントガイド";
 // tooltip
-"Show or hide indent guide lines" = "インデントガイドを表示/非表示";
+"Hide indent guide lines" = "インデントガイドを非表示";
+"Show indent guide lines" = "インデントガイドを表示";
 
 "Opacity" = "不透明度";
 // tooltip

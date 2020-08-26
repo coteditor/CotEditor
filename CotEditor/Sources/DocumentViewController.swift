@@ -304,18 +304,27 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 (item as? NSMenuItem)?.title = self.showsPageGuide
                     ? "Hide Page Guide".localized
                     : "Show Page Guide".localized
+                (item as? NSToolbarItem)?.toolTip = self.showsPageGuide
+                    ? "Hide page guide line".localized
+                    : "Show page guide line".localized
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
             
             case #selector(toggleIndentGuides):
                 (item as? NSMenuItem)?.title = self.showsIndentGuides
                     ? "Hide Indent Guides".localized
                     : "Show Indent Guides".localized
+                (item as? NSToolbarItem)?.toolTip = self.showsIndentGuides
+                    ? "Hide indent guide lines".localized
+                    : "Show indent guide lines".localized
                 (item as? StatableToolbarItem)?.state = self.showsIndentGuides ? .on : .off
             
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
                     ? "Unwrap Lines".localized
                     : "Wrap Lines".localized
+                (item as? NSToolbarItem)?.toolTip = self.wrapsLines
+                    ? "Unwrap lines".localized
+                    : "Wrap lines".localized
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
             
             case #selector(toggleInvisibleChars):
@@ -342,6 +351,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             case #selector(toggleAutoTabExpand):
                 (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
+                (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
+                    ? "Disable expanding tabs to spaces".localized
+                    : "Expand tabs to spaces automatically".localized
             
             case #selector(changeTabWidth):
                 (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off

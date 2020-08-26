@@ -217,7 +217,8 @@
 
 "Tab Style" = "Tabulatorstil";
 // tooltip
-"Toggle tab auto-expansion" = "Auto-Tabulatorexpandierung ein/aus";
+"Disable expanding tabs to spaces" = "Auto-Tabulatorexpandierung deaktivieren";
+"Expand tabs to spaces automatically" = "Tabulator zu Leerzeichen automatisch expandieren";
 "Change tab width" = "Tabulatorbreite wechseln";
 // menu
 "Tab Width" = "Tabulatorbreite";
@@ -226,20 +227,23 @@
 
 "Wrap Lines" = "Zeilen umbrechen";
 // tooltip
-"Toggle wrap lines" = "Zeilenumbruch ein/aus";
+"Unwrap lines" = "Zeilen nicht umbrechen";
+"Wrap lines" = "Zeilen umbrechen";
 
 "Invisibles" = "Steuerzeichen";
 // tooltip
 "Hide invisible characters" = "Steuerzeichen ausblenden";
-"Show invisible characters" = "Steuerzeichen ausblenden";
+"Show invisible characters" = "Steuerzeichen einblenden";
 
 "Page Guide" = "Seitenhilfslinie";
 // tooltip
-"Show or hide page guide line" = "Seitenhilfslinie ein-/ausblenden";
+"Hide page guide line" = "Seitenhilfslinie ausblenden";
+"Show page guide line" = "Seitenhilfslinie einblenden";
 
 "Indent Guides" = "Einzugshilfslinien";
 // tooltip
-"Show or hide indent guide lines" = "Einzugshilfslinien ein-/ausblenden";
+"Hide indent guide lines" = "Einzugshilfslinien ausblenden";
+"Show indent guide lines" = "Einzugshilfslinien einblenden";
 
 "Opacity" = "Deckkraft";
 // tooltip

@@ -218,7 +218,8 @@
 
 "Tab Style" = "Tab 样式";
 // tooltip
-"Toggle tab auto-expansion" = "切换自动扩展 Tab";
+"Disable expanding tabs to spaces" = "切换自动扩展 Tab";  // FIXME: added
+"Expand tabs to spaces automatically" = "切换自动扩展 Tab";  // FIXME: added
 "Change tab width" = "更改 Tab 宽度";
 // menu
 "Tab Width" = "Tab 宽度";
@@ -227,7 +228,8 @@
 
 "Wrap Lines" = "换行";
 // tooltip
-"Toggle wrap lines" = "切换换行";
+"Unwrap lines" = "不换行";
+"Wrap lines" = "换行";
 
 "Invisibles" = "不可见元素";
 // tooltip
@@ -236,11 +238,13 @@
 
 "Page Guide" = "页面指示";
 // tooltip
-"Show or hide page guide line" = "显示或隐藏页面指示";
+"Hide page guide line" = "隐藏页面指示";
+"Show page guide line" = "显示页面指示";
 
 "Indent Guides" = "缩进指示";
 // tooltip
-"Show or hide indent guide lines" = "显示或隐藏缩进指示线";
+"Hide indent guide lines" = "隐藏缩进指示线";
+"Show indent guide lines" = "显示缩进指示线";
 
 "Opacity" = "透明度";
 // tooltip

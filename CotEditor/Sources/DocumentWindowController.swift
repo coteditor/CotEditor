@@ -447,7 +447,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
-                item.toolTip = "Toggle tab auto-expansion".localized
+                item.toolTip = "Expand tabs to spaces automatically".localized
                 if #available(macOS 11, *) {
                     item.stateImages[.on] = NSImage(named: "tab.right.split")
                     item.stateImages[.off] = NSImage(named: "tab.right")
@@ -479,7 +479,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
-                item.toolTip = "Toggle wrap lines".localized
+                item.toolTip = "Wrap lines".localized
                 item.stateImages[.on] = #imageLiteral(resourceName: "WrapLines_On")
                 item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
                 item.action = #selector(DocumentViewController.toggleLineWrap)
@@ -489,7 +489,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Page Guide".localized
-                item.toolTip = "Show or hide page guide line".localized
+                item.toolTip = "Hide page guide line".localized
                 item.stateImages[.on] = #imageLiteral(resourceName: "PageGuide_On")
                 item.stateImages[.off] = #imageLiteral(resourceName: "PageGuide_Off")
                 item.action = #selector(DocumentViewController.togglePageGuide)
@@ -499,7 +499,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Indent Guides".localized
-                item.toolTip = "Show or hide indent guide lines".localized
+                item.toolTip = "Hide indent guide lines".localized
                 item.stateImages[.on] = #imageLiteral(resourceName: "IndentGuides_On")
                 item.stateImages[.off] = #imageLiteral(resourceName: "IndentGuides_Off")
                 item.action = #selector(DocumentViewController.toggleIndentGuides)

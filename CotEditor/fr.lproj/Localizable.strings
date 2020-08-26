@@ -216,7 +216,8 @@
 
 "Tab Style" = "Style de tabulation";
 // tooltip
-"Toggle tab auto-expansion" = "Activer / Désactiver l'extension automatique des tabulation";
+"Disable expanding tabs to spaces" = "Désactiver l'extension automatique des tabulation";
+"Expand tabs to spaces automatically" = "Activer l'extension automatique des tabulation";
 "Change tab width" = "Changer la largeur de tabulation";
 // menu
 "Tab Width" = "Largeur de tabulation";
@@ -225,7 +226,8 @@
 
 "Wrap Lines" = "Renv. à la ligne";
 // tooltip
-"Toggle wrap lines" = "Activer / Désactiver le renvoi à la ligne";
+"Unwrap lines" = "Ne pas renvoyer à la ligne";
+"Wrap lines" = "Renvoyer à la ligne";
 
 "Invisibles" = "Invisibles";
 // tooltip
@@ -234,11 +236,13 @@
 
 "Page Guide" = "Guide de page";
 // tooltip
-"Show or hide page guide line" = "Afficher / Masquer la ligne du guide de page";
+"Hide page guide line" = "Masquer la ligne du guide de page";
+"Show page guide line" = "Afficher la ligne du guide de page";
 
 "Indent Guides" = "Guides d'indendation";
 // tooltip
-"Show or hide indent guide lines" = "Afficher ou masquer les guides d'indentation";
+"Hide indent guide lines" = "Masquer les guides d'indentation";
+"Show indent guide lines" = "Afficher les guides d'indentation";
 
 "Opacity" = "Opacité";
 // tooltip

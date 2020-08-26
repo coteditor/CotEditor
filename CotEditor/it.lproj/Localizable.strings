@@ -218,7 +218,8 @@
 
 "Tab Style" = "Stile Pannello";
 // tooltip
-"Toggle tab auto-expansion" = "Abilita/Disabilita l’espansione automatica dei Tab";
+"Disable expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
+"Expand tabs to spaces automatically" = "Abilita l’espansione automatica dei Tab";
 "Change tab width" = "Cambia larghezza pannello";
 // menu
 "Tab Width" = "Larghezza Tab";
@@ -227,7 +228,8 @@
 
 "Wrap Lines" = "Aapo automatico";
 // tooltip
-"Toggle wrap lines" = "Abilita/Disabilita il ritorno a capo automatico";
+"Unwrap lines" = "Rimuovi a capo automatico";
+"Wrap lines" = "Aapo automatico";
 
 "Invisibles" = "Caratteri invisibili";
 // tooltip
@@ -236,11 +238,13 @@
 
 "Page Guide" = "Guida della pagina";
 // tooltip
-"Show or hide page guide line" = "Mostra/Nascondi la guida della pagina";
+"Hide page guide line" = "Nascondi la guida della pagina";
+"Show page guide line" = "Mostra la guida della pagina";
 
 "Indent Guides" = "Guide di indentazione";
 // tooltip
-"Show or hide indent guide lines" = "Mostra/Nascondi le guide per l’indentazione";
+"Hide indent guide lines" = "Nascondi le guide per l’indentazione";
+"Show indent guide lines" = "Mostra le guide per l’indentazione";
 
 "Opacity" = "Opacità";
 // tooltip
