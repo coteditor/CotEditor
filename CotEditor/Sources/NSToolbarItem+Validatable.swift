@@ -25,7 +25,7 @@
 
 import AppKit
 
-protocol Validatable { }
+protocol Validatable: AnyObject { }
 
 
 extension Validatable where Self: NSToolbarItem {
