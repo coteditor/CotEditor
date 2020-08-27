@@ -796,7 +796,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         viewController.representedObject = self.view.window
         
-        self.present(viewController, asPopoverRelativeTo: .zero, of: sender as? NSView ?? self.view,
+        self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
                      preferredEdge: .maxY, behavior: .transient)
     }
     

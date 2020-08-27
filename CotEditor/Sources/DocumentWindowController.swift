@@ -501,8 +501,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let item = ControlToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
+                let opacityViewController = self.storyboard!.instantiateController(withIdentifier: "Opacity Slider") as! NSViewController
+                opacityViewController.representedObject = self.window
+                let menuItem = NSMenuItem()
+                menuItem.view = opacityViewController.view
+                menuItem.representedObject = opacityViewController
+                
+                let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Opacity".localized
                 item.toolTip = "Change editor’s opacity".localized
                 if #available(macOS 11, *) {
@@ -510,12 +515,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 } else {
                     item.image = #imageLiteral(resourceName: "Opacity")
                 }
-                item.action = #selector(DocumentViewController.showOpacitySlider)
-                // use custom view to locate popup view
-                let button = NSButton(image: item.image!, target: nil, action: item.action)
-                button.bezelStyle = .texturedRounded
-                item.view = button
-                item.menuFormRepresentation?.image = item.image
+                item.target = self
+                item.showsIndicator = false
+                item.menu = NSMenu()
+                item.menu.items = [menuItem]
                 return item
                 
             case .spellCheck:
@@ -594,6 +597,21 @@ extension DocumentWindowController: NSToolbarDelegate {
             
             default:
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
+        }
+    }
+    
+}
+
+
+extension DocumentWindowController: NSToolbarItemValidation {
+    
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        
+        switch item.itemIdentifier {
+            case .opacity:
+                return self.window?.styleMask.contains(.fullScreen) == false
+            default:
+                return item.action == nil
         }
     }
     
