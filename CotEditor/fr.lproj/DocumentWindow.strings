@@ -41,9 +41,6 @@
 "8NN-KX-RmA.ibShadowedToolTip" = "Opaque";
 
 
-/* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
-"hXt-K8-Jwk.ibShadowedToolTip" = "Ce document est en lecture seule.";
-
 /* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
 "CUv-So-9Og.ibShadowedToolTip" = "Encodage";
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
