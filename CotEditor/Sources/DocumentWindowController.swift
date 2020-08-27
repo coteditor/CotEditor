@@ -453,6 +453,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 }
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
+                item.menuFormRepresentation?.image = item.image
                 
                 return item
                 
@@ -521,6 +522,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let button = NSButton(image: item.image!, target: nil, action: item.action)
                 button.bezelStyle = .texturedRounded
                 item.view = button
+                item.menuFormRepresentation?.image = item.image
                 return item
                 
             case .spellCheck:
