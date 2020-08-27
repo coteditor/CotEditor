@@ -37,6 +37,17 @@ final class StatableToolbarItem: NSToolbarItem, StatableItem {
     // MARK: -
     // MARK: Toolbar Item Methods
     
+    override init(itemIdentifier: NSToolbarItem.Identifier) {
+        
+        super.init(itemIdentifier: itemIdentifier)
+        
+        // Use active (green) icons for colored icons in toolbar config panel
+        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
+            self.state = .on
+        }
+    }
+    
+    
     override var image: NSImage? {
         
         get { super.image }
