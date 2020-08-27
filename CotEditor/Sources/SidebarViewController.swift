@@ -134,7 +134,8 @@ extension SidebarViewController: InspectorTabViewDelegate {
         switch tabViewItem {
             case self.documentInspectorTabViewItem:
                 guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "doc_selected") }
-                return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)
+                return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)?
+                    .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 
             case self.outlineTabViewItem:
                 guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "list.bullet.indent_selected") }
@@ -142,7 +143,8 @@ extension SidebarViewController: InspectorTabViewDelegate {
                 
             case self.incompatibleCharactersTabViewItem:
                 guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "exclamationmark.triangle_slected") }
-                return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)
+                return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?
+                    .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 
             default:
                 preconditionFailure()
