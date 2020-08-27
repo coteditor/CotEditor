@@ -47,6 +47,8 @@ struct DefaultSettings {
         .showLineNumbers: true,
         .showPageGuide: false,
         .pageGuideColumn: 80,
+        .writingDirection: 0,
+        .overscrollRate: 0,
         .showStatusBarLines: true,
         .showStatusBarChars: true,
         .showStatusBarWords: false,
@@ -57,8 +59,6 @@ struct DefaultSettings {
         .windowWidth: 600.0,
         .windowHeight: 620.0,
         .splitViewVertical: false,
-        .writingDirection: 0,
-        .overscrollRate: 0,
         .windowAlpha: 1.0,
         
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,

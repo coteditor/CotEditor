@@ -46,6 +46,18 @@
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
 "3352.title" = "Guide pagina alla colonna:";
 
+/* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
+"RwN-73-I8c.title" = "Direzione scrittura:";
+/* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
+"3Kb-bF-CW0.title" = "Da sinistra a destra";
+/* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
+"USo-8p-Edc.title" = "Da destra a sinistra";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
+"Ge8-vU-lyg.title" = "Verticale";
+
+/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
+"7Nz-lv-JZb.title" = "Overscroll:";
+
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
 "kjP-FS-fyd.title" = "Barra di stato:";
@@ -74,27 +86,12 @@
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
 "VCx-PO-Fnr.title" = "px";
 
-
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
 "dug-hV-7hj.title" = "Editor diviso:";
 /* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
 "Bj6-2A-Nxj.title" = "Orizzontale";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "Verticale";
-
-
-/* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
-"RwN-73-I8c.title" = "Direzione scrittura:";
-/* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
-"3Kb-bF-CW0.title" = "Da sinistra a destra";
-/* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
-"USo-8p-Edc.title" = "Da destra a sinistra";
-/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
-"Ge8-vU-lyg.title" = "Verticale";
-
-/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "Overscroll:";
-
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Opacità dell’editor:";

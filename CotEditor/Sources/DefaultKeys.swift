@@ -47,6 +47,8 @@ extension DefaultKeys {
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
     static let showPageGuide = DefaultKey<Bool>("showPageGuide")
     static let pageGuideColumn = DefaultKey<Int>("pageGuideColumn")
+    static let writingDirection = DefaultKey<WritingDirection>("writingDirection")
+    static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
     static let showStatusBarLines = DefaultKey<Bool>("showStatusBarLines")
     static let showStatusBarChars = DefaultKey<Bool>("showStatusBarChars")
     static let showStatusBarWords = DefaultKey<Bool>("showStatusBarWords")
@@ -57,8 +59,6 @@ extension DefaultKeys {
     static let windowWidth = DefaultKey<CGFloat>("windowWidth")
     static let windowHeight = DefaultKey<CGFloat>("windowHeight")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
-    static let writingDirection = DefaultKey<WritingDirection>("writingDirection")
-    static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
     static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
     // Appearance
