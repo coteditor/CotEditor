@@ -36,9 +36,6 @@ import Cocoa
 
 // MARK: -
 
-private let UTF8Tag = Int(String.Encoding.utf8.rawValue)
-
-
 final class EncodingManager: NSObject {
     
     // MARK: Public Properties
@@ -121,12 +118,12 @@ final class EncodingManager: NSObject {
             menu.addItem(item)
             
             // add "UTF-8 with BOM" item just after the normal UTF-8
-            if item.tag == UTF8Tag {
+            if item.tag == FileEncoding(encoding: .utf8).tag {
                 let fileEncoding = FileEncoding(encoding: .utf8, withUTF8BOM: true)
                 let bomItem = NSMenuItem(title: fileEncoding.localizedName,
                                          action: #selector(EncodingHolder.changeEncoding),
                                          keyEquivalent: "")
-                bomItem.tag = -UTF8Tag  // negative value is sign for "with BOM"
+                bomItem.tag = fileEncoding.tag
                 menu.addItem(bomItem)
             }
         }

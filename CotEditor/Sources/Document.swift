@@ -713,16 +713,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         switch menuItem.action {
             case #selector(changeEncoding(_:)):
-                let encodingInt = Int(self.fileEncoding.encoding.rawValue)
-                let encodingTag = self.fileEncoding.withUTF8BOM ? -encodingInt : encodingInt
-                menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
+                menuItem.state = (menuItem.tag == self.fileEncoding.tag) ? .on : .off
             
             case #selector(changeLineEnding(_:)):
-                menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
+                menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
             
             case #selector(changeSyntaxStyle(_:)):
-                let name = self.syntaxParser.style.name
-                menuItem.state = (menuItem.title == name) ? .on : .off
+                menuItem.state = (menuItem.title == self.syntaxParser.style.name) ? .on : .off
             
             default: break
         }
@@ -907,8 +904,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change document file encoding
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
-        let fileEncoding = FileEncoding(encoding: String.Encoding(rawValue: UInt(abs(sender.tag))),
-                                        withUTF8BOM: (sender.tag == -Int(String.Encoding.utf8.rawValue)))
+        let fileEncoding = FileEncoding(tag: sender.tag)
         
         guard fileEncoding != self.fileEncoding else { return }
         

@@ -216,10 +216,7 @@ final class StatusBarController: NSViewController {
         
         guard let fileEncoding = self.document?.fileEncoding else { return }
         
-        let encodingInt = Int(fileEncoding.encoding.rawValue)
-        let tag = fileEncoding.withUTF8BOM ? -encodingInt : encodingInt
-        
-        self.encodingPopUpButton?.selectItem(withTag: tag)
+        self.encodingPopUpButton?.selectItem(withTag: fileEncoding.tag)
     }
     
 }
