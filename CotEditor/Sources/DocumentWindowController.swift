@@ -519,7 +519,11 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Spell Check".localized
                 item.toolTip = "Show spelling and grammar".localized
-                item.image = #imageLiteral(resourceName: "SpellCheck")
+                if #available(macOS 11, *) {
+                    item.image = NSImage(named: "abc.checkmark")
+                } else {
+                    item.image = #imageLiteral(resourceName: "SpellCheck")
+                }
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 

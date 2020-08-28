@@ -1,32 +1,30 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "SpellCheck.pdf"
+      "filename" : "SpellCheck.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "SpellCheckDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
         }
-      ]
+      ],
+      "filename" : "SpellCheckDark.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "SpellCheckHighContrast.pdf",
       "appearances" : [
         {
           "appearance" : "contrast",
           "value" : "high"
         }
-      ]
+      ],
+      "filename" : "SpellCheckHighContrast.pdf",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "filename" : "SpellCheckHighContrastDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
@@ -36,12 +34,14 @@
           "appearance" : "contrast",
           "value" : "high"
         }
-      ]
+      ],
+      "filename" : "SpellCheckHighContrastDark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   },
   "properties" : {
     "template-rendering-intent" : "original"
