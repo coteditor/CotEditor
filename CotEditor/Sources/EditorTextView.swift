@@ -1675,9 +1675,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 
                 case .enablesHangingIndent:
                     (self.textContainer as? TextContainer)?.isHangingIndentEnabled = value as! Bool
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
                 
                 case .hangingIndentWidth:
                     (self.textContainer as? TextContainer)?.hangingIndentWidth = value as! Int
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
                 
                 default:
                     preconditionFailure()
