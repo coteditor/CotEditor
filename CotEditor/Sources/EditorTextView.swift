@@ -1664,7 +1664,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 
                 case .lineHeight:
                     self.lineHeight = value as! CGFloat
-                    self.centerSelectionInVisibleArea(self)  // reset visible area
                 
                 case .highlightCurrentLine:
                     self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)

@@ -825,9 +825,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         self.invalidateSyntaxHighlight()
         
         // adjust visible areas
-        newEditorViewController.textView?.selectedRange = currentEditorViewController.textView!.selectedRange
-        currentEditorViewController.textView?.centerSelectionInVisibleArea(self)
-        newEditorViewController.textView?.centerSelectionInVisibleArea(self)
+        if let selectedRange = currentEditorViewController.textView?.selectedRange {
+            newEditorViewController.textView?.selectedRange = selectedRange
+            currentEditorViewController.textView?.scrollRangeToVisible(selectedRange)
+            newEditorViewController.textView?.scrollRangeToVisible(selectedRange)
+        }
         
         // observe cursor
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
