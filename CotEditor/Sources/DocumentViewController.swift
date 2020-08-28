@@ -623,7 +623,19 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     /// apply text styles from text view
     func invalidateStyleInTextStorage() {
         
-        self.focusedTextView?.invalidateStyle()
+        assert(Thread.isMainThread)
+        
+        guard
+            let textView = self.focusedTextView,
+            let textStorage = textView.textStorage
+            else { return assertionFailure() }
+        guard textStorage.length > 0 else { return }
+        
+        textStorage.addAttributes(textView.typingAttributes, range: textStorage.range)
+        
+        self.editorViewControllers
+            .compactMap(\.textView)
+            .forEach { $0.setNeedsDisplay($0.visibleRect) }
     }
     
     

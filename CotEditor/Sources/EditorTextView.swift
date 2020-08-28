@@ -1217,22 +1217,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     
-    // MARK: Public Methods
-    
-    /// invalidate string attributes
-    func invalidateStyle() {
-        
-        assert(Thread.isMainThread)
-        
-        guard let textStorage = self.textStorage else { return assertionFailure() }
-        guard textStorage.length > 0 else { return }
-        
-        textStorage.addAttributes(self.typingAttributes, range: textStorage.range)
-        self.setNeedsDisplay(self.visibleRect)
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// copy selection with syntax highlight and font style
