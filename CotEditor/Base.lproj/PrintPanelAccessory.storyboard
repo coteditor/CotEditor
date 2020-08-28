@@ -110,13 +110,16 @@
                                     <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Yrf-uD-ceK"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="256">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="256" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="45" y="141" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="706">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="xh6-XP-QYT"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="303">
                                 <rect key="frame" x="8" y="164" width="101" height="18"/>
@@ -152,13 +155,16 @@
                                     <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryHeaderContent" id="OC1-l1-jaV"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="27" y="110" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="707">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Le4-Dr-4g2"/>
+                                </connections>
                             </textField>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
                                 <rect key="frame" x="272" y="137" width="75" height="24"/>
@@ -260,13 +266,16 @@
                                     </binding>
                                 </connections>
                             </segmentedControl>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="296">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="296" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="27" y="23" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="712">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="N5P-Yt-nFW"/>
+                                </connections>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="321">
                                 <rect key="frame" x="104" y="17" width="165" height="25"/>
@@ -292,13 +301,16 @@
                                     <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryFooterContent" id="raJ-1y-Hyw"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="45" y="54" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="711">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="Yne-sb-QyR"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="304">
                                 <rect key="frame" x="8" y="77" width="95" height="18"/>

@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="JG1-NR-KT5" customClass="GeneralPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" id="T5J-Ml-0Oc">
-                        <rect key="frame" x="0.0" y="0.0" width="580" height="555"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="553"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-ng-N5P">
@@ -200,21 +200,27 @@
                                     <binding destination="ttU-LH-46v" name="selectedTag" keyPath="values.noDocumentOnLaunchBehavior" id="wWs-3z-fa0"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvR-Ur-0ju">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvR-Ur-0ju" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="166" y="122" width="37" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delay:" id="rOw-DD-kV5">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="ttU-LH-46v" name="enabled" keyPath="values.highlightSelectionInstance" id="NEf-fI-Dh0"/>
+                                </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ljx-Ae-jZN">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ljx-Ae-jZN" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="262" y="122" width="49" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="seconds" id="ebJ-vk-RME">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="ttU-LH-46v" name="enabled" keyPath="values.highlightSelectionInstance" id="lYe-3C-8NM"/>
+                                </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BFb-ec-a8q">
                                 <rect key="frame" x="247" y="118" width="15" height="22"/>
@@ -409,7 +415,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="580" height="99"/>
                         <subviews>
                             <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eh0-fN-8C5">
-                                <rect key="frame" x="130" y="61" width="222" height="18"/>
+                                <rect key="frame" x="130" y="57" width="222" height="18"/>
                                 <buttonCell key="cell" type="check" title="Check for updates automatically" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3423">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -419,7 +425,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" tag="-1" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-dW-Eg4">
-                                <rect key="frame" x="18" y="62" width="108" height="16"/>
+                                <rect key="frame" x="18" y="58" width="108" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Software update:" usesSingleLineMode="YES" id="geU-63-sAC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -427,7 +433,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" tag="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-WB-SQP">
-                                <rect key="frame" x="130" y="39" width="259" height="18"/>
+                                <rect key="frame" x="130" y="35" width="259" height="18"/>
                                 <buttonCell key="cell" type="check" title="Update to pre-releases when available" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4aT-ka-sbv">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -438,7 +444,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" tag="-2" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyM-Pb-Ay4">
-                                <rect key="frame" x="150" y="8" width="412" height="28"/>
+                                <rect key="frame" x="150" y="8" width="412" height="24"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Regardless of this setting, new pre-releases are always included while using a pre-release." id="chR-VY-cuI">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -446,7 +452,7 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="9j3-BL-0Mu">
-                                <rect key="frame" x="20" y="90" width="540" height="5"/>
+                                <rect key="frame" x="20" y="86" width="540" height="5"/>
                             </box>
                         </subviews>
                         <constraints>

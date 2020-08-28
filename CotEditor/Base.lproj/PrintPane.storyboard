@@ -150,21 +150,27 @@
                                     <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="dYe-fb-X6b"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z7k-f7-A18">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z7k-f7-A18" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="79" y="172" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="3369">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="yIY-Fa-Q4h"/>
+                                </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-yz-5sk">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RcK-yz-5sk" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="61" y="141" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="3373">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="NkY-rb-Zld"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MOp-QG-730">
                                 <rect key="frame" x="28" y="195" width="101" height="18"/>
@@ -200,21 +206,27 @@
                                     <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="99J-1E-olp"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZdO-IF-ch7">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZdO-IF-ch7" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="79" y="85" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="3379">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printFooter" id="Vs3-t8-B7Z"/>
+                                </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opm-wY-WU2">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opm-wY-WU2" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="61" y="54" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="3377">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printFooter" id="8iX-A8-9ON"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IyC-Jv-8WQ">
                                 <rect key="frame" x="28" y="108" width="95" height="18"/>
