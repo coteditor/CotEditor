@@ -1377,15 +1377,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         assert(Thread.isMainThread)
         
-        let paragraphStyle = NSParagraphStyle.default.mutable
+        guard let paragraphStyle = self.defaultParagraphStyle?.mutable else { return assertionFailure() }
         
         // set line height
         // -> The actual line height will be calculated in LayoutManager based on this line height multiple.
         //    Because the default Cocoa Text System calculate line height differently
         //     if the first character of the document is drawn with another font (typically by a composite font).
-        // -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
-        //    e.g. Times
-        paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
+        paragraphStyle.lineHeightMultiple = self.lineHeight
         
         // calculate tab interval
         if let font = self.font {
@@ -1393,21 +1391,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
         }
         
-        paragraphStyle.baseWritingDirection = self.baseWritingDirection
+        guard self.defaultParagraphStyle != paragraphStyle else { return }
         
         self.defaultParagraphStyle = paragraphStyle
-        
-        // add paragraph style also to the typing attributes
-        // -> textColor and font are added automatically.
         self.typingAttributes[.paragraphStyle] = paragraphStyle
+        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
             self.enclosingScrollView?.lineScroll = lineHeight
         }
-        
-        // apply new style to current text
-        self.invalidateStyle()
     }
     
     
