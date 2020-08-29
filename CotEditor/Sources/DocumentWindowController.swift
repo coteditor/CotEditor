@@ -159,7 +159,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             else { return }
         
         let styleNames = SyntaxManager.shared.settingNames
-        let recentStyleNames = UserDefaults.standard[.recentStyleNames]!
+        let recentStyleNames = UserDefaults.standard[.recentStyleNames]
         let action = #selector(Document.changeSyntaxStyle)
         
         menu.removeAllItems()

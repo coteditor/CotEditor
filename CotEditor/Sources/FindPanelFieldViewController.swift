@@ -246,7 +246,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             .filter { $0.action == action || $0.isSeparatorItem }
             .forEach { menu.removeItem($0) }
         
-        guard let history = UserDefaults.standard[key], !history.isEmpty else { return }
+        let history = UserDefaults.standard[key]
+        
+        guard !history.isEmpty else { return }
         
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         

@@ -283,7 +283,7 @@ final class SyntaxManager: SettingFileManaging {
         
         // add to recent styles list
         let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
-        var recentStyleNames = UserDefaults.standard[.recentStyleNames] ?? []
+        var recentStyleNames = UserDefaults.standard[.recentStyleNames]
         recentStyleNames.removeFirst(name)
         recentStyleNames.insert(name, at: 0)
         UserDefaults.standard[.recentStyleNames] = Array(recentStyleNames.prefix(maximumRecentStyleCount))
@@ -321,7 +321,7 @@ final class SyntaxManager: SettingFileManaging {
         // sort styles alphabetically
         self.settingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
         // remove styles not exist
-        UserDefaults.standard[.recentStyleNames]?.removeAll { !self.settingNames.contains($0) }
+        UserDefaults.standard[.recentStyleNames].removeAll { !self.settingNames.contains($0) }
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles

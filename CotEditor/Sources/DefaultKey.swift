@@ -117,9 +117,9 @@ extension UserDefaults {
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
-    subscript(key: DefaultKey<[String]>) -> [String]? {
+    subscript(key: DefaultKey<[String]>) -> [String] {
         
-        get { self.stringArray(forKey: key.rawValue) }
+        get { self.stringArray(forKey: key.rawValue) ?? [] }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     

@@ -613,7 +613,7 @@ private extension UserDefaults {
         guard !string.isEmpty else { return }
         
         // append new string to history
-        var history = self[key] ?? []
+        var history = self[key]
         history.removeFirst(string)  // remove duplicated item
         history.append(string)
         if history.count > UserDefaults.MaxHistorySize {  // remove overflow
