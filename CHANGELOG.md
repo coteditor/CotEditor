@@ -5,15 +5,20 @@ Change Log
 3.10.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Brand-new user interface designed to fit macOS 11 Big Sur.
+    - Update the application icon.
+    - Redesing the document window.
+- Support Apple Silicon.
+
+
 ### Improvements
 
 - Change the system requirement to __macOS 10.15 Catalina and later__.
-- Update the UI appearance for Big Sur.
-    - Update the application icon.
-    - Update the document window UI.
+- Move line endings/file encoding menus from the toolbar to the status bar.
 - Change default settings of items to display in toolbar/status bar.
 - Change the default theme from Dendrobates to Anura.
-- Move line endings/file encoding menus from the toolbar to the status bar.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 - Change the “trim trailing whitespace on save” option in the General pane to pefrom the trimming not on save but while typing with delay, and move the option to the Edit pane.
 - Enable toggling the editor split orientation by right-clicking the editor split button in the navigation bar.
