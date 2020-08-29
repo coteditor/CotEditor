@@ -381,8 +381,6 @@
 		2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E41D324D9A00228F50 /* Geometry.swift */; };
 		2A9082E91D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */; };
 		2A9082EA1D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */; };
-		2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082EB1D325BEC00228F50 /* UserDefaults.swift */; };
-		2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082EB1D325BEC00228F50 /* UserDefaults.swift */; };
 		2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082EE1D325ED900228F50 /* GeometryTests.swift */; };
 		2A9082F21D32A9B500228F50 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082F11D32A9B500228F50 /* ThemeManager.swift */; };
 		2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082F11D32A9B500228F50 /* ThemeManager.swift */; };
@@ -1135,7 +1133,6 @@
 		2A9082E11D32456300228F50 /* NSTextView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Layout.swift"; sourceTree = "<group>"; };
 		2A9082E41D324D9A00228F50 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Scaling.swift"; sourceTree = "<group>"; };
-		2A9082EB1D325BEC00228F50 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		2A9082EE1D325ED900228F50 /* GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		2A9082F11D32A9B500228F50 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSettings.swift; sourceTree = "<group>"; };
@@ -1792,7 +1789,6 @@
 				2A6FD9EC1D3A85D700A59784 /* NSString.swift */,
 				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
 				2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */,
-				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
 				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
 				2AF45E211E6C17700030CD60 /* OperationQueue.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
@@ -3006,7 +3002,6 @@
 				2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
-				2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
@@ -3304,7 +3299,6 @@
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
-				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
