@@ -119,16 +119,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // observe setting list updates
-        self.menuUpdateObservers.removeAll()
-        EncodingManager.shared.didUpdateSettingList
-            .sink { [weak self] in self?.buildEncodingMenu() }
-            .store(in: &self.menuUpdateObservers)
-        SyntaxManager.shared.didUpdateSettingList
-            .sink { [weak self] _ in self?.buildSyntaxMenu() }
-            .store(in: &self.menuUpdateObservers)
-        ThemeManager.shared.didUpdateSettingList
-            .sink { [weak self] _ in self?.buildThemeMenu() }
-            .store(in: &self.menuUpdateObservers)
+        self.menuUpdateObservers = [
+            EncodingManager.shared.didUpdateSettingList.sink { [weak self] in self?.buildEncodingMenu() },
+            SyntaxManager.shared.didUpdateSettingList.sink { [weak self] _ in self?.buildSyntaxMenu() },
+            ThemeManager.shared.didUpdateSettingList.sink { [weak self] _ in self?.buildThemeMenu() },
+        ]
     }
     
     

@@ -39,7 +39,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     // MARK: Private Properties
     
     private weak var textView: NSTextView?
-    private var scaleObserver: AnyCancellable!
+    private var scaleObserver: AnyCancellable?
     
     
     
@@ -56,15 +56,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         self.delegate = self
         self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
-        
-        // observe scale for slider
-        self.scaleObserver = textView.publisher(for: \.scale)
-            .sink { [weak self] (scale) in
-                guard self?.isVisible == true else { return }
-                guard let item = self?.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return assertionFailure() }
-                
-                item.doubleValue = Double(scale)
-            }
     }
     
     
@@ -110,6 +101,12 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 }
                 item.maximumValueAccessory = NSSliderAccessory(image: maximumValueImage)
                 item.maximumSliderWidth = 300
+                
+                // observe scale
+                self.scaleObserver = textView.publisher(for: \.scale)
+                    .filter { _ in item.isVisible }
+                    .map { Double($0) }
+                    .assign(to: \.doubleValue, on: item)
                 
                 return item
             

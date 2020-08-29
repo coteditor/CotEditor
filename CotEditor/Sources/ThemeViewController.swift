@@ -81,9 +81,7 @@ final class ThemeViewController: NSViewController {
         
         self.themeObserver = NotificationCenter.default.publisher(for: Theme.didChangeNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.notifyUpdate()
-            }
+            .sink { [weak self] _ in self?.notifyUpdate() }
     }
     
     

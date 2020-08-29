@@ -91,9 +91,7 @@ final class DocumentWindow: NSWindow {
                 self.appearanceObserver = nil
             } else if self.appearanceObserver == nil {
                 self.appearanceObserver = self.publisher(for: \.effectiveAppearance)
-                    .sink { [weak self] _ in
-                        self?.invalidateTitlebarOpacity()
-                    }
+                    .sink { [weak self] _ in self?.invalidateTitlebarOpacity() }
             }
         }
     }

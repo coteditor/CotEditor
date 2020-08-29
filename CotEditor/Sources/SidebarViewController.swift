@@ -76,9 +76,7 @@ final class SidebarViewController: NSTabViewController {
             .debounce(for: 0.1, scheduler: DispatchQueue.main)
             .map(\.size.width)
             .removeDuplicates()
-            .sink { (width) in
-                UserDefaults.standard[.sidebarWidth] = width
-            }
+            .sink { UserDefaults.standard[.sidebarWidth] = $0 }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
