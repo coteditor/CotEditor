@@ -109,6 +109,8 @@
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
+		2A222C3024FA8E0500251084 /* UserDefaults+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults+Publisher.swift */; };
+		2A222C3124FA8E0500251084 /* UserDefaults+Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults+Publisher.swift */; };
 		2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */; };
 		2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */; };
 		2A231A281E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */; };
@@ -909,6 +911,7 @@
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
+		2A222C2F24FA8E0500251084 /* UserDefaults+Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Publisher.swift"; sourceTree = "<group>"; };
 		2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement+Codable.swift"; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement.Settings+Object.swift"; sourceTree = "<group>"; };
 		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
@@ -1589,6 +1592,7 @@
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */,
+				2A222C2F24FA8E0500251084 /* UserDefaults+Publisher.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
@@ -3002,6 +3006,7 @@
 				2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
+				2A222C3024FA8E0500251084 /* UserDefaults+Publisher.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
@@ -3299,6 +3304,7 @@
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
+				2A222C3124FA8E0500251084 /* UserDefaults+Publisher.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,

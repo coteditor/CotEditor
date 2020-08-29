@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import XCTest
 @testable import CotEditor
 
@@ -31,7 +32,7 @@ final class UserDefaultsObservationTests: XCTestCase {
     
     private static let key = DefaultKey<Bool>("TestKey")
     
-    private var observer: UserDefaultsObservation?
+    private var observer: AnyCancellable?
     
     
     override class func tearDown() {
@@ -48,12 +49,14 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard[Self.key] = false
         
-        self.observer = UserDefaults.standard.observe(key: Self.key) { (value) in
-            XCTAssertTrue(value!)
-            XCTAssertEqual(OperationQueue.current, .main)
-            
-            expectation.fulfill()
-        }
+        self.observer = UserDefaults.standard.publisher(key: Self.key)
+            .dropFirst()
+            .sink { (value) in
+                XCTAssertTrue(value!)
+                XCTAssertEqual(OperationQueue.current, .main)
+                
+                expectation.fulfill()
+            }
         
         UserDefaults.standard[Self.key] = true
         self.wait(for: [expectation], timeout: .zero)
