@@ -84,7 +84,7 @@ final class StatusBarController: NSViewController {
             .sink { [weak self] _ in self?.buildEncodingPopupButton() }
         
         // observe change in defaults
-        let editorDefaultKeys: [DefaultKeys] = [
+        let editorDefaultKeys: [DefaultKey<Bool>] = [
             .showStatusBarLines,
             .showStatusBarChars,
             .showStatusBarWords,
@@ -92,9 +92,8 @@ final class StatusBarController: NSViewController {
             .showStatusBarLine,
             .showStatusBarColumn,
         ]
-        self.defaultsObservers = UserDefaults.standard.observe(keys: editorDefaultKeys) { [weak self] (_, _) in
-            self?.updateEditorStatus()
-        }
+        self.defaultsObservers = editorDefaultKeys
+            .map { UserDefaults.standard.observe(key: $0) { [weak self] _ in self?.updateEditorStatus() } }
         
         guard let document = self.document else { return assertionFailure() }
         

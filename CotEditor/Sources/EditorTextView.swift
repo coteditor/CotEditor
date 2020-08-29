@@ -1553,115 +1553,88 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// observe defaults to apply the change immediately
     private func observeDefaults() -> [UserDefaultsObservation] {
         
-        let keys: [DefaultKeys] = [
-            .cursorType,
-            .autoExpandTab,
-            .autoIndent,
-            .enableSmartIndent,
-            .balancesBrackets,
-            .shouldAntialias,
-            .ligature,
-            .smartInsertAndDelete,
-            .enableSmartQuotes,
-            .enableSmartDashes,
-            .checkSpellingAsType,
-            .autoLinkDetection,
-            .pageGuideColumn,
-            .showIndentGuides,
-            .overscrollRate,
-            .tabWidth,
-            .fontName,
-            .fontSize,
-            .lineHeight,
-            .highlightCurrentLine,
-            .highlightSelectionInstance,
-            .enablesHangingIndent,
-            .hangingIndentWidth,
-        ]
+        let defaults = UserDefaults.standard
         
-        return UserDefaults.standard.observe(keys: keys) { [unowned self] (key, value) in
-            
-            switch key {
-                case .cursorType:
-                    self.cursorType = UserDefaults.standard[.cursorType]
-                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
-                
-                case .autoExpandTab:
-                    self.isAutomaticTabExpansionEnabled = value as! Bool
-                
-                case .autoIndent:
-                    self.isAutomaticIndentEnabled = value as! Bool
-                
-                case .enableSmartIndent:
-                    self.isSmartIndentEnabled = value as! Bool
-                
-                case .balancesBrackets:
-                    self.balancesBrackets = value as! Bool
-                
-                case .shouldAntialias:
-                    self.usesAntialias = value as! Bool
-                
-                case .ligature:
-                    self.ligature = (value as! Bool) ? .standard : .none
-                
-                case .smartInsertAndDelete:
-                    self.smartInsertDeleteEnabled = value as! Bool
-                
-                case .enableSmartQuotes:
-                    self.isAutomaticQuoteSubstitutionEnabled = value as! Bool
-                
-                case .enableSmartDashes:
-                    self.isAutomaticDashSubstitutionEnabled = value as! Bool
-                
-                case .checkSpellingAsType:
-                    self.isContinuousSpellCheckingEnabled = value as! Bool
-                
-                case .autoLinkDetection:
-                    self.isAutomaticLinkDetectionEnabled = value as! Bool
-                    if self.isAutomaticLinkDetectionEnabled {
-                        self.detectLink()
-                    } else {
-                        self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
-                    }
-                
-                case .pageGuideColumn:
-                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-                
-                case .showIndentGuides:
-                    self.showsIndentGuides = value as! Bool
-                
-                case .overscrollRate:
-                    self.invalidateOverscrollRate()
-                
-                case .tabWidth:
-                    self.tabWidth = value as! Int
-                
-                case .fontName, .fontSize:
-                    self.resetFont(nil)
-                
-                case .lineHeight:
-                    self.lineHeight = value as! CGFloat
-                
-                case .highlightCurrentLine:
-                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-                
-                case .highlightSelectionInstance:
-                    if !(value as! Bool) {
-                        self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-                    }
-                
-                case .enablesHangingIndent:
-                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = value as! Bool
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                
-                case .hangingIndentWidth:
-                    (self.textContainer as? TextContainer)?.hangingIndentWidth = value as! Int
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                
-                default:
-                    preconditionFailure()
-            }
-        }
+        return [
+            defaults.observe(key: .cursorType) { [unowned self] _ in
+                self.cursorType = UserDefaults.standard[.cursorType]
+                self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+            },
+            defaults.observe(key: .autoExpandTab) { [unowned self] (value) in
+                self.isAutomaticTabExpansionEnabled = value!
+            },
+            defaults.observe(key: .autoIndent) { [unowned self] (value) in
+                self.isAutomaticIndentEnabled = value!
+            },
+            defaults.observe(key: .enableSmartIndent) { [unowned self] (value) in
+                self.isSmartIndentEnabled = value!
+            },
+            defaults.observe(key: .balancesBrackets) { [unowned self] (value) in
+                self.balancesBrackets = value!
+            },
+            defaults.observe(key: .shouldAntialias) { [unowned self] (value) in
+                self.usesAntialias = value!
+            },
+            defaults.observe(key: .ligature) { [unowned self] (value) in
+                self.ligature = value! ? .standard : .none
+            },
+            defaults.observe(key: .smartInsertAndDelete) { [unowned self] (value) in
+                self.smartInsertDeleteEnabled = value!
+            },
+            defaults.observe(key: .enableSmartQuotes) { [unowned self] (value) in
+                self.isAutomaticQuoteSubstitutionEnabled = value!
+            },
+            defaults.observe(key: .enableSmartDashes) { [unowned self] (value) in
+                self.isAutomaticDashSubstitutionEnabled = value!
+            },
+            defaults.observe(key: .checkSpellingAsType) { [unowned self] (value) in
+                self.isContinuousSpellCheckingEnabled = value!
+            },
+            defaults.observe(key: .autoLinkDetection) { [unowned self] (value) in
+                self.isAutomaticLinkDetectionEnabled = value!
+                if self.isAutomaticLinkDetectionEnabled {
+                    self.detectLink()
+                } else {
+                    self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
+                }
+            },
+            defaults.observe(key: .pageGuideColumn) { [unowned self] _ in
+                self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
+            },
+            defaults.observe(key: .showIndentGuides) { [unowned self] (value) in
+                self.showsIndentGuides = value!
+            },
+            defaults.observe(key: .overscrollRate) { [unowned self] _ in
+                self.invalidateOverscrollRate()
+            },
+            defaults.observe(key: .tabWidth) { [unowned self] (value) in
+                self.tabWidth = value!
+            },
+            defaults.observe(key: .fontName) { [unowned self] _ in
+                self.resetFont(nil)
+            },
+            defaults.observe(key: .fontSize) { [unowned self] _ in
+                self.resetFont(nil)
+            },
+            defaults.observe(key: .lineHeight) { [unowned self] (value) in
+                self.lineHeight = value!
+            },
+            defaults.observe(key: .highlightCurrentLine) { [unowned self] _ in
+                self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
+            },
+            defaults.observe(key: .highlightSelectionInstance) { [unowned self] (value) in
+                guard value == false else { return }
+                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            },
+            defaults.observe(key: .enablesHangingIndent) { [unowned self] (value) in
+                (self.textContainer as? TextContainer)?.isHangingIndentEnabled = value!
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            },
+            defaults.observe(key: .hangingIndentWidth) { [unowned self] (value) in
+                (self.textContainer as? TextContainer)?.hangingIndentWidth = value!
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            },
+        ]
     }
     
 }

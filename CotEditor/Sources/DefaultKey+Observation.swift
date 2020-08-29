@@ -45,14 +45,6 @@ extension UserDefaults {
         }
     }
     
-    
-    func observe(keys: [DefaultKeys], queue: OperationQueue? = .main, initial: Bool = false, changeHandler: @escaping (DefaultKeys, Any?) -> Void) -> [UserDefaultsObservation] {
-        
-        return keys.map { key in
-            UserDefaultsObservation(object: self, key: key.rawValue, queue: queue, initial: initial) { changeHandler(key, $0) }
-        }
-    }
-    
 }
 
 

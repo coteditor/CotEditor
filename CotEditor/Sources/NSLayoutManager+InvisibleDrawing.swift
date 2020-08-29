@@ -140,10 +140,8 @@ extension InvisibleDrawing {
         
         // update UserDefaults observation if needed
         if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
-            let visibilityKeys = Invisible.allCases.map(\.visibilityDefaultKey).unique
-            self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [weak self] (_, _) in
-                self?.invalidateInvisibleDisplay()
-            }
+            self.invisiblesDefaultsObservers = Invisible.allCases.map(\.visibilityDefaultKey).unique
+                .map { UserDefaults.standard.observe(key: $0) { [weak self] _ in self?.invalidateInvisibleDisplay() } }
         } else if !self.showsInvisibles, !self.invisiblesDefaultsObservers.isEmpty {
             self.invisiblesDefaultsObservers.removeAll()
         }
