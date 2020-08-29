@@ -704,7 +704,7 @@ extension AppearancePaneController: NSFontChanging {
         
         let name = UserDefaults.standard[.fontName]
         let size = UserDefaults.standard[.fontSize]
-        let font = NSFont(name: name ?? "", size: size) ?? NSFont.userFont(ofSize: size)!
+        let font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)!
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
         NSFontManager.shared.orderFrontFontPanel(sender)
@@ -739,7 +739,7 @@ extension AppearancePaneController: NSFontChanging {
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = UserDefaults.standard[.fontName]!
+        let name = UserDefaults.standard[.fontName]
         let size = UserDefaults.standard[.fontSize]
         let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
         let maxDisplaySize = NSFont.systemFontSize(for: .regular)

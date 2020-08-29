@@ -181,7 +181,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // set font
         let font: NSFont = {
-            let fontName = defaults[.fontName]!
+            let fontName = defaults[.fontName]
             let fontSize = defaults[.fontSize]
             return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
         }()

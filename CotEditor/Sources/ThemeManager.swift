@@ -92,7 +92,7 @@ final class ThemeManager: SettingFileManaging {
     /// user default setting by taking the appearance state into consideration
     var userDefaultSettingName: String {
         
-        let settingName = UserDefaults.standard[.theme]!
+        let settingName = UserDefaults.standard[.theme]
         
         if UserDefaults.standard[.pinsThemeAppearance] {
             return settingName
@@ -197,9 +197,7 @@ final class ThemeManager: SettingFileManaging {
         self.settingNames = (self.bundledSettingNames + userSettingNames).unique
         
         // reset user default if not found
-        if let userSetting = UserDefaults.standard[.theme],
-            !self.settingNames.contains(userSetting)
-        {
+        if !self.settingNames.contains(UserDefaults.standard[.theme]) {
             UserDefaults.standard.restore(key: .theme)
         }
     }

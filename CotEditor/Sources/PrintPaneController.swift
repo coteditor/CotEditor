@@ -139,7 +139,7 @@ extension PrintPaneController: NSFontChanging {
         
         let name = UserDefaults.standard[.printFontName]
         let size = UserDefaults.standard[.printFontSize]
-        let font = NSFont(name: name ?? "", size: size) ?? NSFont.userFont(ofSize: size)!
+        let font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)!
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
         NSFontManager.shared.orderFrontFontPanel(sender)
@@ -167,7 +167,7 @@ extension PrintPaneController: NSFontChanging {
     /// display font name and size in the font field
     private func setupFontFamilyNameAndSize() {
         
-        let name = UserDefaults.standard[.printFontName]!
+        let name = UserDefaults.standard[.printFontName]
         let size = UserDefaults.standard[.printFontSize]
         let maxDisplaySize = NSFont.systemFontSize(for: .regular)
         

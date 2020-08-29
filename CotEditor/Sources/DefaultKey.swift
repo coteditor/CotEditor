@@ -111,7 +111,13 @@ extension UserDefaults {
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
-    subscript(key: DefaultKey<String>) -> String? {
+    subscript(key: DefaultKey<String>) -> String {
+        
+        get { self.string(forKey: key.rawValue)! }
+        set { self.set(newValue, forKey: key.rawValue) }
+    }
+    
+    subscript(key: DefaultKey<String?>) -> String? {
         
         get { self.string(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
@@ -132,15 +138,7 @@ extension UserDefaults {
     
     subscript<T>(key: DefaultKey<T>) -> T where T: RawRepresentable, T.RawValue == Int {
         
-        get {
-            guard let value = T(rawValue: self.integer(forKey: key.rawValue)) else {
-                let defaultValue = self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as? Int ?? 0
-                return T(rawValue: defaultValue)!
-            }
-            
-            return value
-        }
-        
+        get { T(rawValue: self.integer(forKey: key.rawValue)) ?? T(rawValue: 0)! }
         set { self.set(newValue.rawValue, forKey: key.rawValue) }
     }
     

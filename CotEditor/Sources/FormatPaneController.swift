@@ -471,7 +471,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             // -> Because items were actually added after Cocoa-Binding selected the item.
-            let defaultStyle = UserDefaults.standard[.syntaxStyle]!
+            let defaultStyle = UserDefaults.standard[.syntaxStyle]
             let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
             
             popup.selectItem(withTitle: selectedStyle)
@@ -483,7 +483,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @objc private dynamic var selectedStyleName: String {
         
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
-            return UserDefaults.standard[.syntaxStyle]!
+            return UserDefaults.standard[.syntaxStyle]
         }
         return styleInfo[StyleKey.name.rawValue] as! String
     }

@@ -95,7 +95,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
-        self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
+        self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         
         // use the encoding selected by the user in the open panel, if exists
         self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding ?? .autoDetection
@@ -580,7 +580,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // set font for printing
         printView.font = UserDefaults.standard[.setPrintFont]
-            ? NSFont(name: UserDefaults.standard[.printFontName]!, size: UserDefaults.standard[.printFontSize])
+            ? NSFont(name: UserDefaults.standard[.printFontName], size: UserDefaults.standard[.printFontSize])
             : viewController.font
         
         // [caution] need to set string after setting other properties

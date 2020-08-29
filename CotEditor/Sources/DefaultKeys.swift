@@ -122,7 +122,7 @@ extension DefaultKeys {
     static let printFontName = DefaultKey<String>("printFontName")
     static let printFontSize = DefaultKey<CGFloat>("printFontSize")
     static let printColorIndex = DefaultKey<Int>("printColorIndex")
-    static let printTheme = DefaultKey<String>("printTheme")
+    static let printTheme = DefaultKey<String?>("printTheme")
     static let printLineNumIndex = DefaultKey<PrintVisibilityMode>("printLineNumIndex")
     static let printInvisibleCharIndex = DefaultKey<PrintVisibilityMode>("printInvisibleCharIndex")
     static let printHeader = DefaultKey<Bool>("printHeader")
@@ -158,16 +158,16 @@ extension DefaultKeys {
     
     // settings that are not in preferences
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
-    static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
+    static let lastPreferencesPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let outlineViewFontSize = DefaultKey<CGFloat>("outlineViewFontSize")
-    static let selectedMultipleReplacementSettingName = DefaultKey<String>("selectedMultipleReplacementSettingName")
-    static let beginCustomSurroundString = DefaultKey<String>("beginCustomSurroundString")
-    static let endCustomSurroundString = DefaultKey<String>("endCustomSurroundString")
+    static let selectedMultipleReplacementSettingName = DefaultKey<String?>("selectedMultipleReplacementSettingName")
+    static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
+    static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
     
     // hidden settings
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
@@ -182,6 +182,6 @@ extension DefaultKeys {
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     static let maximumSelectionInstanceHighlightCount = DefaultKey<Int>("maximumSelectionInstanceHighlightCount")
     
-    static let lastVersion = DefaultKey<String>("lastVersion")
+    static let lastVersion = DefaultKey<String?>("lastVersion")
     
 }
