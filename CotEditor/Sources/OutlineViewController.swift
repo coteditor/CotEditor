@@ -87,8 +87,10 @@ final class OutlineViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.outlineView?.reloadData()
-        self.invalidateCurrentLocation()
+        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize, initial: true) { [weak self] _ in
+            self?.outlineView?.reloadData()
+            self?.invalidateCurrentLocation()
+        }
         
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
             .map { $0.object as! NSTextView }
@@ -100,11 +102,6 @@ final class OutlineViewController: NSViewController {
             .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
             .debounce(for: 0.05, scheduler: RunLoop.main)
             .sink { [weak self] in self?.invalidateCurrentLocation(textView: $0) }
-        
-        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
-            self?.outlineView?.reloadData()
-            self?.invalidateCurrentLocation()
-        }
     }
     
     

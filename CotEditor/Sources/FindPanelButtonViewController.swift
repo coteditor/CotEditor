@@ -43,11 +43,11 @@ final class FindPanelButtonViewController: NSViewController {
         
         super.viewDidLoad()
         
-        self.invalidateReplaceButtonBehavior()
-        
-        // observe default change for the "Replace" button tooltip
-        self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace) { [unowned self] _ in
-            self.invalidateReplaceButtonBehavior()
+        // change "Replace" button behavior depending on the user setting
+        self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace, initial: true) { [unowned self] (value) in
+            self.replaceButton?.toolTip = value!
+                ? "Replace the current selection with the replacement text, then find the next match.".localized
+                : "Replace the current selection with the replacement text.".localized
         }
     }
     
@@ -78,22 +78,6 @@ final class FindPanelButtonViewController: NSViewController {
             default:
                 assertionFailure("Number of the find button segments must be 2.")
         }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// toggle replace button behavior and tooltip
-    private func invalidateReplaceButtonBehavior() {
-        
-        self.replaceButton?.toolTip = {
-            if UserDefaults.standard[.findNextAfterReplace] {
-                return "Replace the current selection with the replacement text, then find the next match.".localized
-            } else {
-                return "Replace the current selection with the replacement text.".localized
-            }
-        }()
     }
     
 }
