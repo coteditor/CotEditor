@@ -838,8 +838,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let font = fontManager.convert(currentFont)
         
         // apply to all text views sharing textStorage
-        for layoutManager in textStorage.layoutManagers {
-            layoutManager.firstTextView?.font = font
+        for textView in textStorage.layoutManagers.compactMap(\.firstTextView) {
+            textView.font = font
         }
     }
     

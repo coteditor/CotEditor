@@ -513,8 +513,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     @objc var wrapsLines = false {
         
         didSet {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.wrapsLines = wrapsLines
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.wrapsLines = wrapsLines
             }
         }
     }
@@ -524,8 +524,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     @objc var showsPageGuide = false {
         
         didSet {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.showsPageGuide = showsPageGuide
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.showsPageGuide = showsPageGuide
             }
         }
     }
@@ -535,8 +535,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     @objc var showsIndentGuides = false {
         
         didSet {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.showsIndentGuides = showsIndentGuides
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.showsIndentGuides = showsIndentGuides
             }
         }
     }
@@ -546,8 +546,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     @objc var showsInvisibles = false {
         
         didSet {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.showsInvisibles = showsInvisibles
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.showsInvisibles = showsInvisibles
             }
         }
     }
@@ -569,8 +569,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             let orientation: NSLayoutManager.TextLayoutOrientation = newValue ? .vertical : .horizontal
             
-            for viewController in self.editorViewControllers {
-                viewController.textView?.setLayoutOrientation(orientation)
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.setLayoutOrientation(orientation)
             }
         }
     }
@@ -583,8 +583,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         }
         
         set {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.baseWritingDirection = newValue
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.baseWritingDirection = newValue
             }
         }
     }
@@ -598,8 +598,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         }
         
         set {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.tabWidth = newValue
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.tabWidth = newValue
             }
         }
     }
@@ -613,8 +613,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         }
         
         set {
-            for viewController in self.editorViewControllers {
-                viewController.textView?.isAutomaticTabExpansionEnabled = newValue
+            for textView in self.editorViewControllers.compactMap(\.textView) {
+                textView.isAutomaticTabExpansionEnabled = newValue
             }
         }
     }
@@ -718,8 +718,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     /// toggle if antialias text in text view
     @IBAction func toggleAntialias(_ sender: Any?) {
         
-        for viewController in self.editorViewControllers {
-            viewController.textView?.usesAntialias.toggle()
+        for textView in self.editorViewControllers.compactMap(\.textView) {
+            textView.usesAntialias.toggle()
         }
     }
     
@@ -727,9 +727,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     /// toggle ligature mode in text view
     @IBAction func toggleLigatures(_ sender: Any?) {
         
-        for viewController in self.editorViewControllers {
-            guard let textView = viewController.textView else { continue }
-            
+        for textView in self.editorViewControllers.compactMap(\.textView) {
             textView.ligature = (textView.ligature == .none) ? .standard : .none
         }
     }
@@ -1029,9 +1027,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         guard let theme = ThemeManager.shared.setting(name: name) else { return }
         
-        for viewController in self.editorViewControllers {
-            viewController.textView?.theme = theme
-            viewController.textView?.layoutManager?.invalidateHighlight(theme: theme)
+        for textView in self.editorViewControllers.compactMap(\.textView) {
+            textView.theme = theme
+            textView.layoutManager?.invalidateHighlight(theme: theme)
         }
         
         self.invalidateRestorableState()
