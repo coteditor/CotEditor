@@ -108,6 +108,7 @@ final class StatableMenuToolbarItem: NSToolbarItem, StatableItem, Validatable {
         assert(self.state != .mixed)
         
         self.image = self.stateImages[self.state]
+        self.menuFormRepresentation?.image = self.image
     }
     
 }

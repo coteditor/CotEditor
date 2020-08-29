@@ -428,9 +428,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .tabStyle:
                 let menu = NSMenu()
-                menu.autoenablesItems = false
                 menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
-                menu.items.last!.isEnabled = false
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
                         let item = NSMenuItem(title: String(width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
@@ -438,8 +436,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                         return item
                     }
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
-                menu.addItem(.separator())
-                menu.addItem(withTitle: "Auto-Expand Tabs", action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
@@ -453,7 +449,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 }
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
-                item.menuFormRepresentation?.image = item.image
                 
                 return item
                 
