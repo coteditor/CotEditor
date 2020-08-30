@@ -31,8 +31,7 @@ import XCTest
 final class UserDefaultsObservationTests: XCTestCase {
     
     private static let key = DefaultKey<Bool>("TestKey")
-    
-    private var observer: AnyCancellable?
+    private static let optionalKey = DefaultKey<String?>("OptionalTestKey")
     
     
     override class func tearDown() {
@@ -40,6 +39,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         super.tearDown()
         
         UserDefaults.standard.restore(key: Self.key)
+        UserDefaults.standard.restore(key: Self.optionalKey)
     }
     
     
@@ -49,8 +49,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard[Self.key] = false
         
-        self.observer = UserDefaults.standard.publisher(key: Self.key)
-            .dropFirst()
+        let observer = UserDefaults.standard.publisher(key: Self.key)
             .sink { (value) in
                 XCTAssertTrue(value!)
                 XCTAssertEqual(OperationQueue.current, .main)
@@ -58,12 +57,57 @@ final class UserDefaultsObservationTests: XCTestCase {
                 expectation.fulfill()
             }
         
+        observer.cancel()
+        UserDefaults.standard[Self.key] = false
+        
         UserDefaults.standard[Self.key] = true
         self.wait(for: [expectation], timeout: .zero)
         // -> Waiting with zero timeout can be failed when the closure is performed not immediately but in another runloop.
+    }
+    
+    
+    func testInitialEmission() {
         
-        self.observer = nil
+        let expectation = self.expectation(description: "UserDefaults observation")
+        
         UserDefaults.standard[Self.key] = false
+        
+        let observer = UserDefaults.standard.publisher(key: Self.key, initial: true)
+            .sink { (value) in
+                XCTAssertFalse(value!)
+                expectation.fulfill()
+            }
+        
+        observer.cancel()
+        UserDefaults.standard[Self.key] = true
+        
+        self.wait(for: [expectation], timeout: .zero)
+    }
+    
+    
+    func testOptionalKey() {
+        
+        XCTAssertNil(UserDefaults.standard[Self.optionalKey])
+        
+        UserDefaults.standard[Self.optionalKey] = "cow"
+        XCTAssertEqual(UserDefaults.standard[Self.optionalKey], "cow")
+        
+        let expectation = self.expectation(description: "UserDefaults observation")
+        let observer = UserDefaults.standard.publisher(key: Self.optionalKey)
+            .sink { (value) in
+                XCTAssertEqual(value, "dog")
+                expectation.fulfill()
+            }
+        
+        UserDefaults.standard[Self.optionalKey] = "dog"
+        self.wait(for: [expectation], timeout: .zero)
+        
+        XCTAssertEqual(UserDefaults.standard[Self.optionalKey], "dog")
+        
+        observer.cancel()
+        UserDefaults.standard[Self.optionalKey] = nil
+        
+        XCTAssertNil(UserDefaults.standard[Self.optionalKey])
     }
     
 }

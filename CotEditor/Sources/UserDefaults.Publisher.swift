@@ -1,5 +1,5 @@
 //
-//  UserDefaults+Publisher.swift
+//  UserDefaults.Publisher.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -56,14 +56,14 @@ extension UserDefaults {
         
         
         
-        // MARK: -
         // MARK: Publisher Methods
         
         func receive<S>(subscriber: S) where S: Combine.Subscriber, Failure == S.Failure, Output == S.Input {
             
-            let subscription = Subscription(subscriber: subscriber, userDefaults: self.userDefaults, key: self.key, initial: self.initial)
+            let subscription = Subscription(subscriber: subscriber, userDefaults: self.userDefaults, key: self.key)
             
             subscriber.receive(subscription: subscription)
+            subscription.register(initial: self.initial)  // regsiter after assigning to subscriber to pass the initial emission
         }
         
     }
@@ -89,15 +89,11 @@ private extension UserDefaults.Publisher {
         
         // MARK: Lifecycle
         
-        init(subscriber: S, userDefaults: UserDefaults, key: DefaultKey<Value>, initial: Bool) {
+        init(subscriber: S, userDefaults: UserDefaults, key: DefaultKey<Value>) {
             
             self.subscriber = subscriber
             self.userDefaults = userDefaults
             self.key = key
-            
-            super.init()
-            
-            userDefaults.addObserver(self, forKeyPath: key.rawValue, options: initial ? [.new, .initial] : [.new], context: nil)
         }
         
         
@@ -125,6 +121,12 @@ private extension UserDefaults.Publisher {
         
         // MARK: KVO
         
+        func register(initial: Bool) {
+            
+            self.userDefaults?.addObserver(self, forKeyPath: key.rawValue, options: initial ? [.new, .initial] : [.new], context: nil)
+        }
+        
+        
         override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
             
             guard
@@ -135,8 +137,10 @@ private extension UserDefaults.Publisher {
                 let change = change
                 else { return }
             
+            let newValue = change[.newKey] as? Value
+            
             self.demand -= 1
-            self.demand += subscriber.receive(change[.newKey] as? Value)
+            self.demand += subscriber.receive(newValue)
         }
         
     }
