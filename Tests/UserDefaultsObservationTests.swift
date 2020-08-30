@@ -57,12 +57,12 @@ final class UserDefaultsObservationTests: XCTestCase {
                 expectation.fulfill()
             }
         
-        observer.cancel()
-        UserDefaults.standard[Self.key] = false
-        
         UserDefaults.standard[Self.key] = true
         self.wait(for: [expectation], timeout: .zero)
         // -> Waiting with zero timeout can be failed when the closure is performed not immediately but in another runloop.
+        
+        observer.cancel()
+        UserDefaults.standard[Self.key] = false
     }
     
     
