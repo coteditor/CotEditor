@@ -937,18 +937,15 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             presentBlock()
             
         } else {
-            [NSWindow.didChangeOcclusionStateNotification,
-             NSWindow.didEndSheetNotification]
-                .forEach { notificationName in
-                    NotificationCenter.default.publisher(for: notificationName, object: window)
-                        .map { $0.object as! NSWindow }
-                        .filter { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
-                        .sink { [weak self] _ in
-                            self?.sheetAvailabilityObservers.removeAll()
-                            presentBlock()
-                        }
-                        .store(in: &self.sheetAvailabilityObservers)
+            Publishers.Merge(NotificationCenter.default.publisher(for: NSWindow.didChangeOcclusionStateNotification, object: window),
+                             NotificationCenter.default.publisher(for: NSWindow.didEndSheetNotification, object: window))
+                .map { $0.object as! NSWindow }
+                .filter { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
+                .sink { [weak self] _ in
+                    self?.sheetAvailabilityObservers.removeAll()
+                    presentBlock()
                 }
+                .store(in: &self.sheetAvailabilityObservers)
         }
     }
     

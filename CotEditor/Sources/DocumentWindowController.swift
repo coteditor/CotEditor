@@ -34,7 +34,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     private var appearanceModeObserver: AnyCancellable?
     
     private var documentStyleObserver: AnyCancellable?
-    private var styleListObservers: Set<AnyCancellable> = []
+    private var styleListObserver: AnyCancellable?
     private var recentStyleNamesObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
@@ -71,13 +71,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .assign(to: \.appearance, on: self.window!)
         
         //  observe for syntax style line-up change
-        self.styleListObservers = [
-            SyntaxManager.shared.didUpdateSettingList
-                .sink { [weak self] _ in self?.buildSyntaxPopupButton() },
-            
-            UserDefaults.standard.publisher(key: .recentStyleNames)
-                .sink { [weak self] _ in self?.buildSyntaxPopupButton() }
-        ]
+        self.styleListObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.ereaseToVoid(),
+                                                  UserDefaults.standard.publisher(key: .recentStyleNames).ereaseToVoid())
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.buildSyntaxPopupButton() }
     }
     
     

@@ -103,6 +103,8 @@
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A1A4EAC24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAB24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift */; };
 		2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAB24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift */; };
+		2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
+		2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
 		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1CD5541DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
@@ -907,6 +909,7 @@
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1A4EAB24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+DefaultKey.swift"; sourceTree = "<group>"; };
+		2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1663,6 +1666,16 @@
 			name = UserDefaults;
 			sourceTree = "<group>";
 		};
+		2A1A4EB224FBA28100B50AA0 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				2A885E321D5C3A1B00288723 /* Comparable.swift */,
+				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
+				2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */,
+			);
+			name = Swift;
+			sourceTree = "<group>";
+		};
 		2A2184121D0426E800522EF5 /* Window */ = {
 			isa = PBXGroup;
 			children = (
@@ -1780,9 +1793,7 @@
 		2A359E011DAEA0FC00FEF7AA /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				2A885E321D5C3A1B00288723 /* Comparable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
-				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
 				2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */,
 				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
@@ -2023,6 +2034,7 @@
 		2A5ADE861D21690300F6CE26 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2A1A4EB224FBA28100B50AA0 /* Swift */,
 				2A359E011DAEA0FC00FEF7AA /* Foundation */,
 				2A359E001DAEA0EE00FEF7AA /* AppKit */,
 			);
@@ -2783,6 +2795,7 @@
 				2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
+				2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */,
 				2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
@@ -3080,6 +3093,7 @@
 				2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
+				2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */,
 				2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,
