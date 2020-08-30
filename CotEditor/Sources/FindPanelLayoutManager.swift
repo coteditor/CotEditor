@@ -33,7 +33,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     let textFont: NSFont = .systemFont(ofSize: 0)
     private(set) var showsInvisibles: Bool = false  { didSet { self.invalidateInvisibleDisplay() } }
     var showsControls: Bool = false
-    var invisiblesDefaultsObservers: Set<AnyCancellable> = []
+    var invisiblesDefaultsObserver: AnyCancellable?
     
     
     // MARK: Private Properties
@@ -54,7 +54,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         
         self.delegate = self
         
-        self.invisibleVisibilityObserver = UserDefaults.standard.publisher(key: .showInvisibles, initial: true)
+        self.invisibleVisibilityObserver = UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
             .sink { [weak self] in self?.showsInvisibles = $0! }
     }
     

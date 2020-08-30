@@ -60,7 +60,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         
         // observe appearance setting change
-        self.appearanceModeObserver = UserDefaults.standard.publisher(key: .documentAppearance, initial: true)
+        self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
             .map { _ in
                 switch UserDefaults.standard[.documentAppearance] {
                     case .default: return nil
@@ -72,7 +72,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         //  observe for syntax style line-up change
         self.styleListObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.ereaseToVoid(),
-                                                  UserDefaults.standard.publisher(key: .recentStyleNames).ereaseToVoid())
+                                                  UserDefaults.standard.publisher(for: .recentStyleNames).ereaseToVoid())
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.buildSyntaxPopupButton() }
     }

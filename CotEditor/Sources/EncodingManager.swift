@@ -63,7 +63,7 @@ final class EncodingManager: NSObject {
             self.sanitizeEncodingListSetting()
         }
         
-        self.encodingListObserver = UserDefaults.standard.publisher(key: .encodingList)
+        self.encodingListObserver = UserDefaults.standard.publisher(for: .encodingList)
             .sink { [weak self] _ in self?.didUpdateSettingList.send() }
     }
     

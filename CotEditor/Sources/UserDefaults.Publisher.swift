@@ -29,13 +29,13 @@ import Foundation
 
 extension UserDefaults {
     
-    /// Returns a publisher that emits events when changing value.
+    /// Publish values when the value identified by a default key changes.
     ///
     /// - Parameters:
-    ///   - key: The default key to observe.
+    ///   - key: The default key of the default value to publish.
     ///   - initial: If `true`, the first output will be send immediately, before the observer registration method even returns.
-    /// - Returns: The latest value.
-    func publisher<Value>(key: DefaultKey<Value>, initial: Bool = false) -> Publisher<Value> {
+    /// - Returns: A publisher that emits elements each time the defaults’ value changes.
+    func publisher<Value>(for key: DefaultKey<Value>, initial: Bool = false) -> Publisher<Value> {
         
         return Publisher(userDefaults: self, key: key, initial: initial)
     }

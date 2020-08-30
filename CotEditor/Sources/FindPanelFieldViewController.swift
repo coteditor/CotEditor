@@ -72,18 +72,18 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.defaultsObservers = [
             // sync history menus with user default
-            UserDefaults.standard.publisher(key: .findHistory, initial: true)
+            UserDefaults.standard.publisher(for: .findHistory, initial: true)
                 .sink { [unowned self] _ in self.updateFindHistoryMenu() },
-            UserDefaults.standard.publisher(key: .replaceHistory, initial: true)
+            UserDefaults.standard.publisher(for: .replaceHistory, initial: true)
                 .sink { [unowned self] _ in self.updateReplaceHistoryMenu() },
             
             // sync text view states with user default
-            UserDefaults.standard.publisher(key: .findUsesRegularExpression, initial: true)
+            UserDefaults.standard.publisher(for: .findUsesRegularExpression, initial: true)
                 .sink { [unowned self] (value) in
                     self.findTextView?.isRegularExpressionMode = value!
                     self.replacementTextView?.isRegularExpressionMode = value!
                 },
-            UserDefaults.standard.publisher(key: .findRegexUnescapesReplacementString, initial: true)
+            UserDefaults.standard.publisher(for: .findRegexUnescapesReplacementString, initial: true)
                 .sink { [unowned self] (value) in
                     self.replacementTextView?.parseMode = .replacement(unescapes: value!)
                 }

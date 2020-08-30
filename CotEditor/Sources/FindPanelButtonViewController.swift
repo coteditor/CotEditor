@@ -45,7 +45,7 @@ final class FindPanelButtonViewController: NSViewController {
         super.viewDidLoad()
         
         // change "Replace" button behavior depending on the user setting
-        self.findNextAfterReplaceObserver = UserDefaults.standard.publisher(key: .findNextAfterReplace, initial: true)
+        self.findNextAfterReplaceObserver = UserDefaults.standard.publisher(for: .findNextAfterReplace, initial: true)
             .map { $0!
                 ? "Replace the current selection with the replacement text, then find the next match.".localized
                 : "Replace the current selection with the replacement text.".localized

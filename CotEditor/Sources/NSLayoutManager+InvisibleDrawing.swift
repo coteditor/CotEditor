@@ -31,7 +31,7 @@ protocol InvisibleDrawing: NSLayoutManager {
     var textFont: NSFont { get }
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
-    var invisiblesDefaultsObservers: Set<AnyCancellable> { get set }
+    var invisiblesDefaultsObserver: AnyCancellable? { get set }
 }
 
 
@@ -140,15 +140,14 @@ extension InvisibleDrawing {
         }
         
         // update UserDefaults observation if needed
-        if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
+        if self.showsInvisibles, self.invisiblesDefaultsObserver == nil {
             let publishers = Invisible.allCases.map(\.visibilityDefaultKey).unique
-                .map { UserDefaults.standard.publisher(key: $0) }
-            publishers
-                .map { $0.sink { [weak self] _ in self?.invalidateInvisibleDisplay() } }
-                .forEach { $0.store(in: &self.invisiblesDefaultsObservers) }
+                .map { UserDefaults.standard.publisher(for: $0) }
+            self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
+                .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
             
-        } else if !self.showsInvisibles, !self.invisiblesDefaultsObservers.isEmpty {
-            self.invisiblesDefaultsObservers.removeAll()
+        } else if !self.showsInvisibles {
+            self.invisiblesDefaultsObserver = nil
         }
     }
     

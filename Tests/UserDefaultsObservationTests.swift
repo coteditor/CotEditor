@@ -49,7 +49,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard[Self.key] = false
         
-        let observer = UserDefaults.standard.publisher(key: Self.key)
+        let observer = UserDefaults.standard.publisher(for: Self.key)
             .sink { (value) in
                 XCTAssertTrue(value!)
                 XCTAssertEqual(OperationQueue.current, .main)
@@ -72,7 +72,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard[Self.key] = false
         
-        let observer = UserDefaults.standard.publisher(key: Self.key, initial: true)
+        let observer = UserDefaults.standard.publisher(for: Self.key, initial: true)
             .sink { (value) in
                 XCTAssertFalse(value!)
                 expectation.fulfill()
@@ -93,7 +93,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         XCTAssertEqual(UserDefaults.standard[Self.optionalKey], "cow")
         
         let expectation = self.expectation(description: "UserDefaults observation")
-        let observer = UserDefaults.standard.publisher(key: Self.optionalKey)
+        let observer = UserDefaults.standard.publisher(for: Self.optionalKey)
             .sink { (value) in
                 XCTAssertEqual(value, "dog")
                 expectation.fulfill()

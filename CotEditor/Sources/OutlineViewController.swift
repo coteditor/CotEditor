@@ -87,7 +87,7 @@ final class OutlineViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.fontSizeObserver = UserDefaults.standard.publisher(key: .outlineViewFontSize, initial: true)
+        self.fontSizeObserver = UserDefaults.standard.publisher(for: .outlineViewFontSize, initial: true)
             .sink { [weak self] _ in
                 self?.outlineView?.reloadData()
                 self?.invalidateCurrentLocation()
