@@ -44,7 +44,7 @@ final class StatusBarController: NSViewController {
     
     private var documentObservers: Set<AnyCancellable> = []
     private var encodingListObserver: AnyCancellable?
-    private var defaultsObservers: [UserDefaultsObservation] = []
+    private var defaultsObservers: [AnyCancellable] = []
     
     @objc private dynamic var editorStatus: NSAttributedString?
     @objc private dynamic var fileSize: NSNumber?
@@ -93,7 +93,7 @@ final class StatusBarController: NSViewController {
             .showStatusBarColumn,
         ]
         self.defaultsObservers = editorDefaultKeys
-            .map { UserDefaults.standard.observe(key: $0) { [weak self] _ in self?.updateEditorStatus() } }
+            .map { UserDefaults.standard.publisher(key: $0).sink { [weak self] _ in self?.updateEditorStatus() } }
         
         guard let document = self.document else { return assertionFailure() }
         

@@ -31,11 +31,11 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private var appearanceModeObserver: UserDefaultsObservation?
+    private var appearanceModeObserver: AnyCancellable?
     
     private var documentStyleObserver: AnyCancellable?
-    private var styleListObserver: AnyCancellable?
-    private var recentStyleNamesObserver: UserDefaultsObservation?
+    private var styleListObservers: Set<AnyCancellable> = []
+    private var recentStyleNamesObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     
@@ -60,22 +60,24 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         
         // observe appearance setting change
-        self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, initial: true) { [weak self] _ in
-            self?.window?.appearance = {
+        self.appearanceModeObserver = UserDefaults.standard.publisher(key: .documentAppearance, initial: true)
+            .map { _ in
                 switch UserDefaults.standard[.documentAppearance] {
                     case .default: return nil
                     case .light:   return NSAppearance(named: .aqua)
                     case .dark:    return NSAppearance(named: .darkAqua)
                 }
-            }()
-        }
+            }
+            .assign(to: \.appearance, on: self.window!)
         
         //  observe for syntax style line-up change
-        self.styleListObserver = SyntaxManager.shared.didUpdateSettingList
-            .sink { [weak self] _ in self?.buildSyntaxPopupButton() }
-        self.recentStyleNamesObserver = UserDefaults.standard.observe(key: .recentStyleNames) { [weak self] _ in
-            self?.buildSyntaxPopupButton()
-        }
+        self.styleListObservers = [
+            SyntaxManager.shared.didUpdateSettingList
+                .sink { [weak self] _ in self?.buildSyntaxPopupButton() },
+            
+            UserDefaults.standard.publisher(key: .recentStyleNames)
+                .sink { [weak self] _ in self?.buildSyntaxPopupButton() }
+        ]
     }
     
     

@@ -112,7 +112,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
     
-    private var defaultsObservers: [UserDefaultsObservation] = []
+    private var defaultsObservers: Set<AnyCancellable> = []
     private var windowOpacityObserver: AnyCancellable?
     
     
@@ -194,7 +194,78 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.invalidateDefaultParagraphStyle()
         
         // observe change in defaults
-        self.defaultsObservers = self.observeDefaults()
+        self.defaultsObservers = [
+            defaults.publisher(key: .cursorType)
+                .sink { [unowned self] _ in
+                    self.cursorType = UserDefaults.standard[.cursorType]
+                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+                },
+            defaults.publisher(key: .balancesBrackets)
+                .sink { [unowned self] in self.balancesBrackets = $0! },
+            defaults.publisher(key: .autoExpandTab)
+                .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0! },
+            defaults.publisher(key: .autoIndent)
+                .sink { [unowned self] in self.isAutomaticIndentEnabled = $0! },
+            defaults.publisher(key: .enableSmartIndent)
+                .sink { [unowned self] in self.isSmartIndentEnabled = $0! },
+            
+            defaults.publisher(key: .lineHeight)
+                .sink { [unowned self] in self.lineHeight = $0! },
+            defaults.publisher(key: .tabWidth)
+                .sink { [unowned self] in self.tabWidth = $0! },
+            
+            defaults.publisher(key: .smartInsertAndDelete)
+                .sink { [unowned self] in self.smartInsertDeleteEnabled = $0! },
+            defaults.publisher(key: .enableSmartQuotes)
+                .sink { [unowned self] in self.isAutomaticQuoteSubstitutionEnabled = $0! },
+            defaults.publisher(key: .enableSmartDashes)
+                .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0! },
+            defaults.publisher(key: .checkSpellingAsType)
+                .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0! },
+            defaults.publisher(key: .autoLinkDetection)
+                .sink { [unowned self] (value) in
+                    self.isAutomaticLinkDetectionEnabled = value!
+                    if self.isAutomaticLinkDetectionEnabled {
+                        self.detectLink()
+                    } else {
+                        self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
+                    }
+                },
+            
+            defaults.publisher(key: .fontName)
+                .sink { [unowned self] _ in self.resetFont(nil) },
+            defaults.publisher(key: .fontSize)
+                .sink { [unowned self] _ in self.resetFont(nil) },
+            defaults.publisher(key: .shouldAntialias)
+                .sink { [unowned self] in self.usesAntialias = $0! },
+            defaults.publisher(key: .showIndentGuides)
+                .sink { [unowned self] in self.showsIndentGuides = $0! },
+            defaults.publisher(key: .ligature)
+                .sink { [unowned self] in self.ligature = $0! ? .standard : .none },
+            
+            defaults.publisher(key: .enablesHangingIndent)
+                .sink { [unowned self] in
+                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = $0!
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                },
+            defaults.publisher(key: .hangingIndentWidth)
+                .sink { [unowned self] in
+                    (self.textContainer as? TextContainer)?.hangingIndentWidth = $0!
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                },
+            
+            defaults.publisher(key: .pageGuideColumn)
+                .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
+            defaults.publisher(key: .overscrollRate)
+                .sink { [unowned self] _ in self.invalidateOverscrollRate() },
+            defaults.publisher(key: .highlightCurrentLine)
+                .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
+            defaults.publisher(key: .highlightSelectionInstance)
+                .sink { [unowned self] in
+                    guard $0 == false else { return }
+                    self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                },
+        ]
     }
     
     
@@ -1547,94 +1618,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         for range in ranges {
             layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
         }
-    }
-    
-    
-    /// observe defaults to apply the change immediately
-    private func observeDefaults() -> [UserDefaultsObservation] {
-        
-        let defaults = UserDefaults.standard
-        
-        return [
-            defaults.observe(key: .cursorType) { [unowned self] _ in
-                self.cursorType = UserDefaults.standard[.cursorType]
-                self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
-            },
-            defaults.observe(key: .autoExpandTab) { [unowned self] (value) in
-                self.isAutomaticTabExpansionEnabled = value!
-            },
-            defaults.observe(key: .autoIndent) { [unowned self] (value) in
-                self.isAutomaticIndentEnabled = value!
-            },
-            defaults.observe(key: .enableSmartIndent) { [unowned self] (value) in
-                self.isSmartIndentEnabled = value!
-            },
-            defaults.observe(key: .balancesBrackets) { [unowned self] (value) in
-                self.balancesBrackets = value!
-            },
-            defaults.observe(key: .shouldAntialias) { [unowned self] (value) in
-                self.usesAntialias = value!
-            },
-            defaults.observe(key: .ligature) { [unowned self] (value) in
-                self.ligature = value! ? .standard : .none
-            },
-            defaults.observe(key: .smartInsertAndDelete) { [unowned self] (value) in
-                self.smartInsertDeleteEnabled = value!
-            },
-            defaults.observe(key: .enableSmartQuotes) { [unowned self] (value) in
-                self.isAutomaticQuoteSubstitutionEnabled = value!
-            },
-            defaults.observe(key: .enableSmartDashes) { [unowned self] (value) in
-                self.isAutomaticDashSubstitutionEnabled = value!
-            },
-            defaults.observe(key: .checkSpellingAsType) { [unowned self] (value) in
-                self.isContinuousSpellCheckingEnabled = value!
-            },
-            defaults.observe(key: .autoLinkDetection) { [unowned self] (value) in
-                self.isAutomaticLinkDetectionEnabled = value!
-                if self.isAutomaticLinkDetectionEnabled {
-                    self.detectLink()
-                } else {
-                    self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
-                }
-            },
-            defaults.observe(key: .pageGuideColumn) { [unowned self] _ in
-                self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-            },
-            defaults.observe(key: .showIndentGuides) { [unowned self] (value) in
-                self.showsIndentGuides = value!
-            },
-            defaults.observe(key: .overscrollRate) { [unowned self] _ in
-                self.invalidateOverscrollRate()
-            },
-            defaults.observe(key: .tabWidth) { [unowned self] (value) in
-                self.tabWidth = value!
-            },
-            defaults.observe(key: .fontName) { [unowned self] _ in
-                self.resetFont(nil)
-            },
-            defaults.observe(key: .fontSize) { [unowned self] _ in
-                self.resetFont(nil)
-            },
-            defaults.observe(key: .lineHeight) { [unowned self] (value) in
-                self.lineHeight = value!
-            },
-            defaults.observe(key: .highlightCurrentLine) { [unowned self] _ in
-                self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-            },
-            defaults.observe(key: .highlightSelectionInstance) { [unowned self] (value) in
-                guard value == false else { return }
-                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            },
-            defaults.observe(key: .enablesHangingIndent) { [unowned self] (value) in
-                (self.textContainer as? TextContainer)?.isHangingIndentEnabled = value!
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            },
-            defaults.observe(key: .hangingIndentWidth) { [unowned self] (value) in
-                (self.textContainer as? TextContainer)?.hangingIndentWidth = value!
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            },
-        ]
     }
     
 }

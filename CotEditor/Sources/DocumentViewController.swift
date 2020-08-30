@@ -37,8 +37,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var documentStyleObserver: AnyCancellable?
     private var outlineSubscriptions: Set<AnyCancellable> = []
     private var appearanceObserver: AnyCancellable?
-    private var defaultsObservers: [UserDefaultsObservation] = []
-    private var opacityObserver: UserDefaultsObservation?
+    private var defaultsObservers: Set<AnyCancellable> = []
+    private var opacityObserver: AnyCancellable?
     private var sheetAvailabilityObservers: Set<AnyCancellable> = []
     private var themeChangeObserver: AnyCancellable?
     
@@ -59,15 +59,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         // set user defaults
         let defaults = UserDefaults.standard
-        self.isStatusBarShown = defaults[.showStatusBar]
-        self.showsInvisibles = defaults[.showInvisibles]
-        self.showsLineNumber = defaults[.showLineNumbers]
-        self.showsNavigationBar = defaults[.showNavigationBar]
-        self.wrapsLines = defaults[.wrapLines]
-        self.showsPageGuide = defaults[.showPageGuide]
-        self.showsIndentGuides = defaults[.showIndentGuides]
-        
-        // set writing direction
         switch defaults[.writingDirection] {
             case .leftToRight:
                 break
@@ -76,10 +67,22 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             case .vertical:
                 self.verticalLayoutOrientation = true
         }
-        
-        // set theme
-        let themeName = ThemeManager.shared.userDefaultSettingName
-        self.setTheme(name: themeName)
+        self.isStatusBarShown = defaults[.showStatusBar]
+        self.showsNavigationBar = defaults[.showNavigationBar]
+        self.defaultsObservers = [
+            defaults.publisher(key: .theme, initial: true)
+                .sink { [weak self] _ in self?.setTheme(name: ThemeManager.shared.userDefaultSettingName) },
+            defaults.publisher(key: .showInvisibles, initial: true)
+                .sink { [weak self] in self?.showsInvisibles = $0! },
+            defaults.publisher(key: .showLineNumbers, initial: true)
+                .sink { [weak self] in self?.showsLineNumber = $0! },
+            defaults.publisher(key: .wrapLines, initial: true)
+                .sink { [weak self] in self?.wrapsLines = $0! },
+            defaults.publisher(key: .showPageGuide, initial: true)
+                .sink { [weak self] in self?.showsPageGuide = $0! },
+            defaults.publisher(key: .showIndentGuides, initial: true)
+                .sink { [weak self] in self?.showsIndentGuides = $0! },
+        ]
         
         // observe theme change
         self.themeChangeObserver = ThemeManager.shared.didUpdateSetting
@@ -91,29 +94,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
                                                name: NSTextView.didChangeSelectionNotification,
                                                object: self.editorViewControllers.first!.textView!)
-        
-        // observe defaults change
-        self.defaultsObservers = [
-            UserDefaults.standard.observe(key: .theme) { [weak self] _ in
-                let themeName = ThemeManager.shared.userDefaultSettingName
-                self?.setTheme(name: themeName)
-            },
-            UserDefaults.standard.observe(key: .showInvisibles) { [weak self] (value) in
-                self?.showsInvisibles = value!
-            },
-            UserDefaults.standard.observe(key: .showLineNumbers) { [weak self] (value) in
-                self?.showsLineNumber = value!
-            },
-            UserDefaults.standard.observe(key: .showPageGuide) { [weak self] (value) in
-                self?.showsPageGuide = value!
-            },
-            UserDefaults.standard.observe(key: .showIndentGuides) { [weak self] (value) in
-                self?.showsIndentGuides = value!
-            },
-            UserDefaults.standard.observe(key: .wrapLines) { [weak self] (value) in
-                self?.wrapsLines = value!
-            },
-        ]
         
         // observe appearance change for theme toggle
         self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
@@ -137,10 +117,19 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         super.viewWillAppear()
         
         // observe opacity setting change
-        self.opacityObserver = UserDefaults.standard.observe(key: .windowAlpha, initial: true) { [weak self] value in
-            guard let window = self?.view.window as? DocumentWindow else { return assertionFailure() }
-            window.backgroundAlpha = value!
+        if let window = self.view.window as? DocumentWindow {
+            self.opacityObserver = UserDefaults.standard.publisher(key: .windowAlpha, initial: true)
+                .map { $0! }
+                .assign(to: \.backgroundAlpha, on: window)
         }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.opacityObserver = nil
     }
     
     

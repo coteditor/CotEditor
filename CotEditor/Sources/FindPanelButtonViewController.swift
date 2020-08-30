@@ -23,13 +23,14 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class FindPanelButtonViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var findNextAfterReplaceObserver: UserDefaultsObservation?
+    private var findNextAfterReplaceObserver: AnyCancellable?
     
     @IBOutlet private weak var replaceButton: NSButton?
     
@@ -44,11 +45,12 @@ final class FindPanelButtonViewController: NSViewController {
         super.viewDidLoad()
         
         // change "Replace" button behavior depending on the user setting
-        self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace, initial: true) { [unowned self] (value) in
-            self.replaceButton?.toolTip = value!
+        self.findNextAfterReplaceObserver = UserDefaults.standard.publisher(key: .findNextAfterReplace, initial: true)
+            .map { $0!
                 ? "Replace the current selection with the replacement text, then find the next match.".localized
                 : "Replace the current selection with the replacement text.".localized
-        }
+            }
+            .assign(to: \.toolTip, on: self.replaceButton!)
     }
     
     

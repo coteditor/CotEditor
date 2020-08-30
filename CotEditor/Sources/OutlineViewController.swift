@@ -50,7 +50,7 @@ final class OutlineViewController: NSViewController {
     private var documentObserver: AnyCancellable?
     private var syntaxStyleObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
-    private var fontSizeObserver: UserDefaultsObservation?
+    private var fontSizeObserver: AnyCancellable?
     private var isOwnSelectionChange = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
@@ -87,10 +87,11 @@ final class OutlineViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize, initial: true) { [weak self] _ in
-            self?.outlineView?.reloadData()
-            self?.invalidateCurrentLocation()
-        }
+        self.fontSizeObserver = UserDefaults.standard.publisher(key: .outlineViewFontSize, initial: true)
+            .sink { [weak self] _ in
+                self?.outlineView?.reloadData()
+                self?.invalidateCurrentLocation()
+            }
         
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
             .map { $0.object as! NSTextView }

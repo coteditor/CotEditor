@@ -197,8 +197,6 @@
 		2A478F4022BE743200AEA45E /* NSTextView+Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */; };
 		2A479C821D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */; };
 		2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */; };
-		2A47CD3521D20E6F0094F62F /* DefaultKey+Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */; };
-		2A47CD3621D20E6F0094F62F /* DefaultKey+Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */; };
 		2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
 		2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
 		2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
@@ -994,7 +992,6 @@
 		2A476CB01D09D0500088E37A /* FontExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Ligature.swift"; sourceTree = "<group>"; };
 		2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringTextFieldCell.swift; sourceTree = "<group>"; };
-		2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultKey+Observation.swift"; sourceTree = "<group>"; };
 		2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSValidatedUserInterfaceItem.swift; sourceTree = "<group>"; };
 		2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+ValidationIgnorable.swift"; sourceTree = "<group>"; };
 		2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Dark.swift"; sourceTree = "<group>"; };
@@ -1591,7 +1588,6 @@
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
-				2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */,
 				2A222C2F24FA8E0500251084 /* UserDefaults+Publisher.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */,
@@ -2784,7 +2780,6 @@
 				2AC186DE1E2F4264002F4D27 /* Debug.swift in Sources */,
 				2A657D1E2033ED6B00C2611C /* DefaultInitializable.swift in Sources */,
 				2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */,
-				2A47CD3621D20E6F0094F62F /* DefaultKey+Observation.swift in Sources */,
 				2ACC21B61E52B8C50078241F /* DefaultKeys.swift in Sources */,
 				2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
@@ -3081,7 +3076,6 @@
 				2AC186DD1E2F4264002F4D27 /* Debug.swift in Sources */,
 				2A657D1D2033ED6B00C2611C /* DefaultInitializable.swift in Sources */,
 				2A6FD9F31D3ACEB500A59784 /* DefaultKey.swift in Sources */,
-				2A47CD3521D20E6F0094F62F /* DefaultKey+Observation.swift in Sources */,
 				2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */,
 				2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,

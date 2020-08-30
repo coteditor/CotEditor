@@ -47,7 +47,7 @@ final class EncodingManager: NSObject {
     
     // MARK: Private Properties
     
-    private var encodingListObserver: UserDefaultsObservation?
+    private var encodingListObserver: AnyCancellable?
     
     
     // MARK: -
@@ -63,9 +63,8 @@ final class EncodingManager: NSObject {
             self.sanitizeEncodingListSetting()
         }
         
-        self.encodingListObserver = UserDefaults.standard.observe(key: .encodingList) { [weak self] _ in
-            self?.didUpdateSettingList.send()
-        }
+        self.encodingListObserver = UserDefaults.standard.publisher(key: .encodingList)
+            .sink { [weak self] _ in self?.didUpdateSettingList.send() }
     }
     
     

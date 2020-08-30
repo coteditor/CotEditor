@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
@@ -31,7 +32,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     // MARK: Protocol Properties
     
     var showsControls = false
-    var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
+    var invisiblesDefaultsObservers: Set<AnyCancellable> = []
     
     var ignoresDisplayValidation = false
     
@@ -80,7 +81,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     private var defaultBaselineOffset: CGFloat = 0
     private var boundingBoxForControlGlyph: NSRect = .zero
     
-    private var indentGuideObserver: UserDefaultsObservation?
+    private var indentGuideObserver: AnyCancellable?
     
     private static let unemphasizedSelectedContentBackgroundColor: NSColor = (ProcessInfo().operatingSystemVersion.majorVersion < 11)
         ? .secondarySelectedControlColor
@@ -95,10 +96,11 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         
         super.init()
         
-        self.indentGuideObserver = UserDefaults.standard.observe(key: .showIndentGuides) { [weak self] _ in
-            guard let self = self, self.showsInvisibles else { return }
-            self.invalidateDisplay(forCharacterRange: self.attributedString().range)
-        }
+        self.indentGuideObserver = UserDefaults.standard.publisher(key: .showIndentGuides)
+            .sink { [weak self] _ in
+                guard let self = self, self.showsInvisibles else { return }
+                self.invalidateDisplay(forCharacterRange: self.attributedString().range)
+            }
         
         self.delegate = self
     }

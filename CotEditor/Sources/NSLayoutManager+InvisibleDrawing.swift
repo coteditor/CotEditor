@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 protocol InvisibleDrawing: NSLayoutManager {
@@ -30,7 +31,7 @@ protocol InvisibleDrawing: NSLayoutManager {
     var textFont: NSFont { get }
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
-    var invisiblesDefaultsObservers: [UserDefaultsObservation] { get set }
+    var invisiblesDefaultsObservers: Set<AnyCancellable> { get set }
 }
 
 
@@ -140,8 +141,12 @@ extension InvisibleDrawing {
         
         // update UserDefaults observation if needed
         if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
-            self.invisiblesDefaultsObservers = Invisible.allCases.map(\.visibilityDefaultKey).unique
-                .map { UserDefaults.standard.observe(key: $0) { [weak self] _ in self?.invalidateInvisibleDisplay() } }
+            let publishers = Invisible.allCases.map(\.visibilityDefaultKey).unique
+                .map { UserDefaults.standard.publisher(key: $0) }
+            publishers
+                .map { $0.sink { [weak self] _ in self?.invalidateInvisibleDisplay() } }
+                .forEach { $0.store(in: &self.invisiblesDefaultsObservers) }
+            
         } else if !self.showsInvisibles, !self.invisiblesDefaultsObservers.isEmpty {
             self.invisiblesDefaultsObservers.removeAll()
         }
