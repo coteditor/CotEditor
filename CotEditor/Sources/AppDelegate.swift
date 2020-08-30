@@ -417,9 +417,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
         
         // add syntax styles
-        for styleName in SyntaxManager.shared.settingNames {
-            menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
-        }
+        menu.items += SyntaxManager.shared.settingNames
+            .map { NSMenuItem(title: $0, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "") }
         menu.addItem(.separator())
         
         // add item to recolor

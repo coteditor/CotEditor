@@ -53,19 +53,16 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
-            for token in FileDropComposer.Token.pathTokens {
-                menu.addItem(token.insertionMenuItem(target: self.formatTextView))
-            }
+            menu.items += FileDropComposer.Token.pathTokens
+                .map { $0.insertionMenuItem(target: self.formatTextView) }
             
             menu.addItem(.separator())
-            for token in FileDropComposer.Token.textTokens {
-                menu.addItem(token.insertionMenuItem(target: self.formatTextView))
-            }
+            menu.items += FileDropComposer.Token.textTokens
+                .map { $0.insertionMenuItem(target: self.formatTextView) }
             
             menu.addItem(.separator())
-            for token in FileDropComposer.Token.imageTokens {
-                menu.addItem(token.insertionMenuItem(target: self.formatTextView))
-            }
+            menu.items += FileDropComposer.Token.imageTokens
+                .map { $0.insertionMenuItem(target: self.formatTextView) }
         }
     }
     
@@ -188,13 +185,11 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
-        if defaultSetting.count == sanitized.count,
-            zip(defaultSetting, sanitized).allSatisfy({ $0 == $1 }) {
+        if defaultSetting == sanitized {
             UserDefaults.standard.restore(key: .fileDropArray)
-            return
+        } else {
+            UserDefaults.standard[.fileDropArray] = sanitized
         }
-        
-        UserDefaults.standard[.fileDropArray] = sanitized
     }
     
     
