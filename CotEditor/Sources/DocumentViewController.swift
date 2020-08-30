@@ -39,7 +39,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var opacityObserver: AnyCancellable?
-    private var sheetAvailabilityObservers: Set<AnyCancellable> = []
+    private var sheetAvailabilityObserver: AnyCancellable?
     private var themeChangeObserver: AnyCancellable?
     
     private lazy var outlineParseTask = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
@@ -915,19 +915,19 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             return assertionFailure("Expected window to be non-nil.")
         }
         
-        self.sheetAvailabilityObservers.removeAll()
-        
         // display indicator first when window is visible
         let presentBlock = { [weak self, weak progress] in
+            
+            self?.sheetAvailabilityObserver = nil
+            
             guard
                 let self = self,
                 let progress = progress,
                 !progress.isFinished, !progress.isCancelled
                 else { return }
             
-            let message = "Coloring text…".localized
             let indicator = NSStoryboard(name: "CompactProgressView").instantiateInitialController { (coder) in
-                ProgressViewController(coder: coder, progress: progress, message: message)
+                ProgressViewController(coder: coder, progress: progress, message: "Coloring text…".localized)
             }!
             
             self.presentAsSheet(indicator)
@@ -937,15 +937,14 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             presentBlock()
             
         } else {
-            Publishers.Merge(NotificationCenter.default.publisher(for: NSWindow.didChangeOcclusionStateNotification, object: window),
-                             NotificationCenter.default.publisher(for: NSWindow.didEndSheetNotification, object: window))
+            let publishers = [NSWindow.didChangeOcclusionStateNotification,
+                              NSWindow.didEndSheetNotification]
+                .map { NotificationCenter.default.publisher(for: $0, object: window) }
+            
+            self.sheetAvailabilityObserver = Publishers.MergeMany(publishers)
                 .map { $0.object as! NSWindow }
                 .filter { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
-                .sink { [weak self] _ in
-                    self?.sheetAvailabilityObservers.removeAll()
-                    presentBlock()
-                }
-                .store(in: &self.sheetAvailabilityObservers)
+                .sink { _ in presentBlock() }
         }
     }
     
