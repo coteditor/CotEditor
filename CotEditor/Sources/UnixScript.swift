@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
+import AppKit.NSDocument
 
 final class UnixScript: Script {
     
@@ -136,16 +137,15 @@ final class UnixScript: Script {
         }
         
         let scriptName = self.descriptor.name
-        var isCancelled = false  // user cancel state
         
         // read output asynchronously for safe with huge output
+        weak var observer: NSObjectProtocol?
         if let outputType = outputType {
-            weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: .main) { (note: Notification) in
+            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: .main) { [weak document] (note: Notification) in
                 NotificationCenter.default.removeObserver(observer!)
                 
                 guard
-                    !isCancelled,
+                    let document = document,
                     let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data,
                     let output = String(data: data, encoding: .utf8)
                     else { return }
@@ -165,9 +165,11 @@ final class UnixScript: Script {
                 completionHandler?()
             }
             
-            // on user cancel
-            if let error = error as? POSIXError, error.code == .ENOTBLK {
-                isCancelled = true
+            // on user cancellation
+            if (error as? POSIXError)?.code == .ENOTBLK {
+                if let observer = observer {
+                    NotificationCenter.default.removeObserver(observer)
+                }
                 return
             }
             
