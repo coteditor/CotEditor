@@ -137,7 +137,12 @@ private extension UserDefaults.Publisher {
                 let change = change
                 else { return }
             
-            let newValue = change[.newKey] as? Value
+            let newValue: Value
+            do {
+                newValue = try self.key.newValue(from: change[.newKey])
+            } catch {
+                return assertionFailure("UserDefaults.Publisher.Subscription could not obtain value for '.\(self.key)' key as \(Value.self).")
+            }
             
             self.demand -= 1
             self.demand += subscriber.receive(newValue)

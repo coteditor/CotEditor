@@ -30,8 +30,15 @@ import XCTest
 
 final class UserDefaultsObservationTests: XCTestCase {
     
+    private enum Clarus: Int {
+        
+        case dog, cow
+    }
+    
+    
     private static let key = DefaultKey<Bool>("TestKey")
     private static let optionalKey = DefaultKey<String?>("OptionalTestKey")
+    private static let rawRepresentableKey = RawRepresentableDefaultKey<Clarus>("RawRepresentableTestKey")
     
     
     override class func tearDown() {
@@ -40,6 +47,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         UserDefaults.standard.restore(key: Self.key)
         UserDefaults.standard.restore(key: Self.optionalKey)
+        UserDefaults.standard.restore(key: Self.rawRepresentableKey)
     }
     
     
@@ -108,6 +116,27 @@ final class UserDefaultsObservationTests: XCTestCase {
         UserDefaults.standard[Self.optionalKey] = nil
         
         XCTAssertNil(UserDefaults.standard[Self.optionalKey])
+    }
+    
+    
+    func testRawRepresentable() {
+        
+        let expectation = self.expectation(description: "UserDefaults observation")
+        
+        UserDefaults.standard[Self.rawRepresentableKey] = .dog
+        
+        let observer = UserDefaults.standard.publisher(for: Self.rawRepresentableKey)
+            .sink { (value) in
+                XCTAssertEqual(value, .cow)
+                expectation.fulfill()
+            }
+        
+        UserDefaults.standard[Self.rawRepresentableKey] = .cow
+        self.wait(for: [expectation], timeout: .zero)
+        
+        observer.cancel()
+        UserDefaults.standard[Self.rawRepresentableKey] = .dog
+        XCTAssertEqual(UserDefaults.standard[Self.rawRepresentableKey], .dog)
     }
     
 }

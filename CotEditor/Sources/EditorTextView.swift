@@ -196,9 +196,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // observe change in defaults
         self.defaultsObservers = [
             defaults.publisher(for: .cursorType)
-                .sink { [unowned self] _ in
-                    self.cursorType = UserDefaults.standard[.cursorType]
-                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+                .sink { [unowned self] (value) in
+                    self.cursorType = value!
+                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(value! == .block ? 0.5 : 1)
                 },
             defaults.publisher(for: .balancesBrackets)
                 .sink { [unowned self] in self.balancesBrackets = $0! },

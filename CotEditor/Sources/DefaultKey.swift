@@ -56,4 +56,37 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
 }
 
 
-final class DefaultKey<T>: DefaultKeys { }
+
+class DefaultKey<Value>: DefaultKeys {
+    
+    enum Error: Swift.Error {
+        
+        case invalidValue
+    }
+    
+    
+    func newValue(from value: Any?) throws -> Value {
+        
+        // -> The seocnd Opional cast is important for in case if `Value` is already an optional type.
+        guard let newValue = value as? Value ?? Optional<Any>.none as? Value else {
+            throw Error.invalidValue
+        }
+        
+        return newValue
+    }
+}
+
+
+// specialize RawRepresentable types to use them for UserDefaults observation using UserDefaults.Publisher.
+// Otherwise, the type inference for RawRepresentable doesn't work unfortunately.
+final class RawRepresentableDefaultKey<Value>: DefaultKey<Value> where Value: RawRepresentable {
+    
+    override func newValue(from value: Any?) throws -> Value {
+        
+        guard let newValue = (value as? Value.RawValue).flatMap(Value.init) else {
+            throw Error.invalidValue
+        }
+        
+        return newValue
+    }
+}
