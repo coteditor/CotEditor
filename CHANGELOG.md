@@ -25,6 +25,7 @@ Change Log
 - Enable action to toggle editor split orientation even when no split editor is opened.
 - Remove the Integration pereferences pane and move its contents to the General pane.
 - Enable “select previous/next outline item” commands even when the navigation bar is hidden.
+- Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
 - Update Swift syntax style.
 - Update SVG syntax style.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.

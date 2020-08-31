@@ -34,6 +34,11 @@ final class UnixScript: Script {
     let descriptor: ScriptDescriptor
     
     
+    // MARK: Private Properties
+    
+    private lazy var content: String? = try? String(contentsOf: self.descriptor.url)
+    
+    
     
     // MARK: -
     // MARK: Lifecycle
@@ -184,18 +189,6 @@ final class UnixScript: Script {
     
     
     // MARK: Private Methods
-    
-    /// read content of script file
-    private lazy var content: String? = {
-        
-        guard let data = try? Data(contentsOf: self.descriptor.url) else { return nil }
-        
-        return EncodingManager.shared.defaultEncodings.lazy
-            .compactMap { $0 }
-            .compactMap { String(bomCapableData: data, encoding: $0) }
-            .first
-    }()
-    
     
     /// return document content conforming to the input type
     ///
