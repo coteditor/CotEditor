@@ -35,7 +35,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private var documentStyleObserver: AnyCancellable?
     private var styleListObserver: AnyCancellable?
-    private var recentStyleNamesObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     

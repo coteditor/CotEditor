@@ -35,7 +35,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     // MARK: Private Properties
     
     private var documentStyleObserver: AnyCancellable?
-    private var outlineSubscriptions: Set<AnyCancellable> = []
+    private var outlineObserver: AnyCancellable?
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var opacityObserver: AnyCancellable?
@@ -189,7 +189,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         willSet {
             self.documentStyleObserver = nil
-            self.outlineSubscriptions.removeAll()
+            self.outlineObserver = nil
         }
         
         didSet {
@@ -231,13 +231,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 .sink { [weak self] _ in self?.didChangeSyntaxStyle() }
             
             // observe syntaxParser for outline update
-            document.syntaxParser.$outlineItems
+            self.outlineObserver = document.syntaxParser.$outlineItems
                 .debounce(for: 0.1, scheduler: RunLoop.main)
                 .removeDuplicates()
                 .sink { [weak self] (outlineItems) in
                     self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
                 }
-                .store(in: &self.outlineSubscriptions)
         }
     }
     
