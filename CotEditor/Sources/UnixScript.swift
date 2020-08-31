@@ -75,7 +75,7 @@ final class UnixScript: Script {
     /// run script
     ///
     /// - Throws: `ScriptFileError` or Error by `NSUserScriptTask`
-    func run(completionHandler: (() -> Void)? = nil) throws {
+    func run(completionHandler: @escaping (() -> Void) = {}) throws {
         
         // check script file
         guard self.descriptor.url.isReachable else {
@@ -162,7 +162,7 @@ final class UnixScript: Script {
         // execute
         task.execute(withArguments: arguments) { error in
             defer {
-                completionHandler?()
+                completionHandler()
             }
             
             // on user cancellation

@@ -48,7 +48,7 @@ final class AppleScript: Script {
     /// run script
     ///
     /// - Throws: Error by `NSUserScriptTask`
-    func run(completionHandler: (() -> Void)? = nil) throws {
+    func run(completionHandler: @escaping (() -> Void) = {}) throws {
         
         try self.run(withAppleEvent: nil, completionHandler: completionHandler)
     }

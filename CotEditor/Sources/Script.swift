@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,13 +36,13 @@ protocol Script: AnyObject {
     // MARK: Methods
     
     /// Execute the script with the default way.
-    func run(completionHandler: (() -> Void)?) throws
+    func run(completionHandler: @escaping (() -> Void)) throws
     
     
     /// Execute the script by sending it the given Apple event.
     ///
     /// Events the script cannot handle must be ignored with no errors.
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)?) throws
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)) throws
     
 }
 
@@ -50,7 +50,7 @@ protocol Script: AnyObject {
 
 extension Script {
     
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void) = {}) throws {
         
         // ignore every request with an event by default
     }
