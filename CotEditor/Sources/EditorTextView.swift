@@ -197,34 +197,34 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.defaultsObservers = [
             defaults.publisher(for: .cursorType)
                 .sink { [unowned self] (value) in
-                    self.cursorType = value!
-                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(value! == .block ? 0.5 : 1)
+                    self.cursorType = value
+                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(value == .block ? 0.5 : 1)
                 },
             defaults.publisher(for: .balancesBrackets)
-                .sink { [unowned self] in self.balancesBrackets = $0! },
+                .sink { [unowned self] in self.balancesBrackets = $0 },
             defaults.publisher(for: .autoExpandTab)
-                .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0! },
+                .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
-                .sink { [unowned self] in self.isAutomaticIndentEnabled = $0! },
+                .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
             defaults.publisher(for: .enableSmartIndent)
-                .sink { [unowned self] in self.isSmartIndentEnabled = $0! },
+                .sink { [unowned self] in self.isSmartIndentEnabled = $0 },
             
             defaults.publisher(for: .lineHeight)
-                .sink { [unowned self] in self.lineHeight = $0! },
+                .sink { [unowned self] in self.lineHeight = $0 },
             defaults.publisher(for: .tabWidth)
-                .sink { [unowned self] in self.tabWidth = $0! },
+                .sink { [unowned self] in self.tabWidth = $0 },
             
             defaults.publisher(for: .smartInsertAndDelete)
-                .sink { [unowned self] in self.smartInsertDeleteEnabled = $0! },
+                .sink { [unowned self] in self.smartInsertDeleteEnabled = $0 },
             defaults.publisher(for: .enableSmartQuotes)
-                .sink { [unowned self] in self.isAutomaticQuoteSubstitutionEnabled = $0! },
+                .sink { [unowned self] in self.isAutomaticQuoteSubstitutionEnabled = $0 },
             defaults.publisher(for: .enableSmartDashes)
-                .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0! },
+                .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0 },
             defaults.publisher(for: .checkSpellingAsType)
-                .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0! },
+                .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0 },
             defaults.publisher(for: .autoLinkDetection)
                 .sink { [unowned self] (value) in
-                    self.isAutomaticLinkDetectionEnabled = value!
+                    self.isAutomaticLinkDetectionEnabled = value
                     if self.isAutomaticLinkDetectionEnabled {
                         self.detectLink()
                     } else {
@@ -236,20 +236,20 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                              defaults.publisher(for: .fontSize).ereaseToVoid())
                 .sink { [unowned self] in self.resetFont(nil) },
             defaults.publisher(for: .shouldAntialias)
-                .sink { [unowned self] in self.usesAntialias = $0! },
+                .sink { [unowned self] in self.usesAntialias = $0 },
             defaults.publisher(for: .showIndentGuides)
-                .sink { [unowned self] in self.showsIndentGuides = $0! },
+                .sink { [unowned self] in self.showsIndentGuides = $0 },
             defaults.publisher(for: .ligature)
-                .sink { [unowned self] in self.ligature = $0! ? .standard : .none },
+                .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
             
             defaults.publisher(for: .enablesHangingIndent)
                 .sink { [unowned self] in
-                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = $0!
+                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = $0
                     self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
                 },
             defaults.publisher(for: .hangingIndentWidth)
                 .sink { [unowned self] in
-                    (self.textContainer as? TextContainer)?.hangingIndentWidth = $0!
+                    (self.textContainer as? TextContainer)?.hangingIndentWidth = $0
                     self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
                 },
             
@@ -260,7 +260,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             defaults.publisher(for: .highlightCurrentLine)
                 .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
             defaults.publisher(for: .highlightSelectionInstance)
-                .filter { $0 == false }
+                .filter { !$0 }
                 .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange) },
         ]
     }

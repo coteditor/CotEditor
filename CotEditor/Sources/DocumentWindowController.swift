@@ -66,7 +66,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                     case .default: return nil
                     case .light:   return NSAppearance(named: .aqua)
                     case .dark:    return NSAppearance(named: .darkAqua)
-                    default: preconditionFailure()
                 }
             }
             .assign(to: \.appearance, on: self.window!)

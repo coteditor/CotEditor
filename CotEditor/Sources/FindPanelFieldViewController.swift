@@ -80,12 +80,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             // sync text view states with user default
             UserDefaults.standard.publisher(for: .findUsesRegularExpression, initial: true)
                 .sink { [unowned self] (value) in
-                    self.findTextView?.isRegularExpressionMode = value!
-                    self.replacementTextView?.isRegularExpressionMode = value!
+                    self.findTextView?.isRegularExpressionMode = value
+                    self.replacementTextView?.isRegularExpressionMode = value
                 },
             UserDefaults.standard.publisher(for: .findRegexUnescapesReplacementString, initial: true)
                 .sink { [unowned self] (value) in
-                    self.replacementTextView?.parseMode = .replacement(unescapes: value!)
+                    self.replacementTextView?.parseMode = .replacement(unescapes: value)
                 }
         ]
     }

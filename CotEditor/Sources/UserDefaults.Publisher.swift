@@ -44,7 +44,7 @@ extension UserDefaults {
     
     struct Publisher<Value>: Combine.Publisher {
         
-        typealias Output = Value?
+        typealias Output = Value
         typealias Failure = Never
         
         
@@ -76,7 +76,7 @@ extension UserDefaults {
 
 private extension UserDefaults.Publisher {
     
-    final class Subscription<Value, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value? {
+    final class Subscription<Value, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
         
         // MARK: Private Properties
         
