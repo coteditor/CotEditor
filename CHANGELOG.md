@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix the progress message when highlighting a document with a multiple replacement definition.
+- Fix an issue that “Open Scripts Folder” command in the script menu did not open the scripts folder for CotEditor but just the general Application Scripts folder.
 
 
 

@@ -217,7 +217,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// open Script menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
-        NSWorkspace.shared.activateFileViewerSelecting([self.scriptsDirectoryURL])
+        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: self.scriptsDirectoryURL.path)
     }
     
     
