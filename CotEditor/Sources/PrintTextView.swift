@@ -325,12 +325,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
         {
             self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
-                .filter { $0 }
+                .first { $0 }
                 .receive(on: DispatchQueue.main)
-                .sink { [weak self, weak controller] _ in
-                    self?.asyncHighlightObserver = nil
-                    controller?.needsUpdatePreview = true
-                }
+                .sink { [weak controller] _ in controller?.needsUpdatePreview = true }
         }
     }
     

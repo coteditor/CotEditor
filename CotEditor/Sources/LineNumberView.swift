@@ -363,21 +363,15 @@ final class LineNumberView: NSView {
             .store(in: &self.textViewSubscriptions)
         
         NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
-            .sink { [weak self] _ in
-                self?.needsDisplay = true
-            }
+            .sink { [weak self] _ in self?.needsDisplay = true }
             .store(in: &self.textViewSubscriptions)
         
         NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
-            .sink { [weak self] _ in
-                self?.needsDisplay = true
-            }
+            .sink { [weak self] _ in self?.needsDisplay = true }
             .store(in: &self.textViewSubscriptions)
         
         NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
-            .sink { [weak self] _ in
-                self?.needsDisplay = true
-            }
+            .sink { [weak self] _ in self?.needsDisplay = true }
             .store(in: &self.textViewSubscriptions)
         
         textView.publisher(for: \.textColor, options: .initial)

@@ -128,6 +128,8 @@ final class StatusBarController: NSViewController {
         self.invalidateEncodingSelection()
         self.invalidateLineEndingSelection(to: document.lineEnding)
         
+        self.documentObservers.removeAll()
+        
         // observe editor info update
         document.analyzer.publisher(for: \.info.editor)
             .removeDuplicates()

@@ -35,7 +35,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     // MARK: Private Properties
     
     private var documentStyleObserver: AnyCancellable?
-    private var outlineSubscriptions: Set<AnyCancellable> = []
+    private var outlineObserver: AnyCancellable?
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var opacityObserver: AnyCancellable?
@@ -73,15 +73,15 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             defaults.publisher(for: .theme, initial: true)
                 .sink { [weak self] _ in self?.setTheme(name: ThemeManager.shared.userDefaultSettingName) },
             defaults.publisher(for: .showInvisibles, initial: true)
-                .sink { [weak self] in self?.showsInvisibles = $0! },
+                .sink { [weak self] in self?.showsInvisibles = $0 },
             defaults.publisher(for: .showLineNumbers, initial: true)
-                .sink { [weak self] in self?.showsLineNumber = $0! },
+                .sink { [weak self] in self?.showsLineNumber = $0 },
             defaults.publisher(for: .wrapLines, initial: true)
-                .sink { [weak self] in self?.wrapsLines = $0! },
+                .sink { [weak self] in self?.wrapsLines = $0 },
             defaults.publisher(for: .showPageGuide, initial: true)
-                .sink { [weak self] in self?.showsPageGuide = $0! },
+                .sink { [weak self] in self?.showsPageGuide = $0 },
             defaults.publisher(for: .showIndentGuides, initial: true)
-                .sink { [weak self] in self?.showsIndentGuides = $0! },
+                .sink { [weak self] in self?.showsIndentGuides = $0 },
         ]
         
         // observe theme change
@@ -119,7 +119,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         // observe opacity setting change
         if let window = self.view.window as? DocumentWindow {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
-                .map { $0! }
                 .assign(to: \.backgroundAlpha, on: window)
         }
     }
@@ -190,7 +189,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         willSet {
             self.documentStyleObserver = nil
-            self.outlineSubscriptions.removeAll()
+            self.outlineObserver = nil
         }
         
         didSet {
@@ -232,13 +231,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 .sink { [weak self] _ in self?.didChangeSyntaxStyle() }
             
             // observe syntaxParser for outline update
-            document.syntaxParser.$outlineItems
+            self.outlineObserver = document.syntaxParser.$outlineItems
                 .debounce(for: 0.1, scheduler: RunLoop.main)
                 .removeDuplicates()
                 .sink { [weak self] (outlineItems) in
                     self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
                 }
-                .store(in: &self.outlineSubscriptions)
         }
     }
     

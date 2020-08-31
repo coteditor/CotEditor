@@ -44,7 +44,7 @@ extension UserDefaults {
     
     struct Publisher<Value>: Combine.Publisher {
         
-        typealias Output = Value?
+        typealias Output = Value
         typealias Failure = Never
         
         
@@ -76,7 +76,7 @@ extension UserDefaults {
 
 private extension UserDefaults.Publisher {
     
-    final class Subscription<Value, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value? {
+    final class Subscription<Value, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
         
         // MARK: Private Properties
         
@@ -113,8 +113,9 @@ private extension UserDefaults.Publisher {
         
         func cancel() {
             
-            self.userDefaults?.removeObserver(self, forKeyPath: key.rawValue)
+            self.userDefaults?.removeObserver(self, forKeyPath: self.key.rawValue)
             self.userDefaults = nil
+            self.subscriber = nil
         }
         
         
@@ -127,17 +128,24 @@ private extension UserDefaults.Publisher {
         }
         
         
-        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context _: UnsafeMutableRawPointer?) {
+        override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
             
             guard
                 keyPath == self.key.rawValue,
-                object as? NSObject == self.userDefaults,
+                object as? NSObject == self.userDefaults
+                else { return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }
+            
+            guard
                 self.demand > 0,
-                let subscriber = self.subscriber,
-                let change = change
+                let subscriber = self.subscriber
                 else { return }
             
-            let newValue = change[.newKey] as? Value
+            let newValue: Value
+            do {
+                newValue = try self.key.newValue(from: change?[.newKey])
+            } catch {
+                return assertionFailure("UserDefaults.Publisher.Subscription could not obtain value for '.\(self.key)' key as \(Value.self).")
+            }
             
             self.demand -= 1
             self.demand += subscriber.receive(newValue)

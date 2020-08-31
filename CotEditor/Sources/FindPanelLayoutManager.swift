@@ -55,7 +55,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         self.delegate = self
         
         self.invisibleVisibilityObserver = UserDefaults.standard.publisher(for: .showInvisibles, initial: true)
-            .sink { [weak self] in self?.showsInvisibles = $0! }
+            .sink { [weak self] in self?.showsInvisibles = $0 }
     }
     
     

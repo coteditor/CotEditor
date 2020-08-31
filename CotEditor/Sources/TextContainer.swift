@@ -47,10 +47,6 @@ final class TextContainer: NSTextContainer {
     
     override weak var textView: NSTextView? {
         
-        willSet {
-            self.typingAttributesObserver = nil
-        }
-        
         didSet {
             self.typingAttributesObserver = textView?.publisher(for: \.typingAttributes, options: .initial)
                 .sink { [weak self] (typingAttributes) in

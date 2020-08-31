@@ -35,7 +35,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     private var documentStyleObserver: AnyCancellable?
     private var styleListObserver: AnyCancellable?
-    private var recentStyleNamesObserver: AnyCancellable?
     private weak var syntaxPopUpButton: NSPopUpButton?
     
     
@@ -61,8 +60,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
-            .map { _ in
-                switch UserDefaults.standard[.documentAppearance] {
+            .map { (value) in
+                switch value {
                     case .default: return nil
                     case .light:   return NSAppearance(named: .aqua)
                     case .dark:    return NSAppearance(named: .darkAqua)

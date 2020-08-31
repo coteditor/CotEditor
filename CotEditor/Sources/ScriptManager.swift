@@ -101,10 +101,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         } else {
             self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp)
                 .receive(on: DispatchQueue.main)
-                .sink { [weak self] _ in
-                    self?.applicationObserver = nil
-                    self?.menuBuildingTask.perform()
-                }
+                .first()
+                .sink { [weak self] _ in self?.menuBuildingTask.perform() }
         }
     }
     

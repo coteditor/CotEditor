@@ -43,7 +43,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: Private Properties
     
     private var encodingChangeObserver: AnyCancellable?
-    private var syntaxStyleChangeObservers: Set<AnyCancellable> = []
+    private var syntaxStyleChangeObserver: AnyCancellable?
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -80,12 +80,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.encodingChangeObserver = EncodingManager.shared.didUpdateSettingList
             .sink { [weak self] in self?.setupEncodingMenu() }
         
-        SyntaxManager.shared.didUpdateSettingList
+        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.ereaseToVoid(),
+                                                          SyntaxManager.shared.didUpdateSetting.ereaseToVoid())
+            .debounce(for: 0, scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
-            .store(in: &self.syntaxStyleChangeObservers)
-        SyntaxManager.shared.didUpdateSetting
-            .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
-            .store(in: &self.syntaxStyleChangeObservers)
     }
     
     
@@ -95,7 +93,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         super.viewDidDisappear()
         
         self.encodingChangeObserver = nil
-        self.syntaxStyleChangeObservers.removeAll()
+        self.syntaxStyleChangeObserver = nil
     }
     
     

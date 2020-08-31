@@ -35,8 +35,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     
-    private var textStorageObserver: AnyCancellable?
-    private var windowCloseObserver: AnyCancellable?
+    private var resultClosingTrigerObserver: AnyCancellable?
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
@@ -80,12 +79,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             // sync text view states with user default
             UserDefaults.standard.publisher(for: .findUsesRegularExpression, initial: true)
                 .sink { [unowned self] (value) in
-                    self.findTextView?.isRegularExpressionMode = value!
-                    self.replacementTextView?.isRegularExpressionMode = value!
+                    self.findTextView?.isRegularExpressionMode = value
+                    self.replacementTextView?.isRegularExpressionMode = value
                 },
             UserDefaults.standard.publisher(for: .findRegexUnescapesReplacementString, initial: true)
                 .sink { [unowned self] (value) in
-                    self.replacementTextView?.parseMode = .replacement(unescapes: value!)
+                    self.replacementTextView?.parseMode = .replacement(unescapes: value)
                 }
         ]
     }
@@ -190,9 +189,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         }()
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
         
-        self.textStorageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
-            .sink { [weak self] _ in self?.clearNumberOfFound() }
-        self.windowCloseObserver = NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: target.window)
+        self.resultClosingTrigerObserver = Publishers.Merge(
+            NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: target.textStorage),
+            NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: target.window))
             .sink { [weak self] _ in self?.clearNumberOfFound() }
     }
     
@@ -268,8 +267,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
-        self.textStorageObserver = nil
-        self.windowCloseObserver = nil
+        self.resultClosingTrigerObserver = nil
     }
     
     
