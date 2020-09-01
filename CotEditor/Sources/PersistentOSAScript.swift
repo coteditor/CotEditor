@@ -58,32 +58,34 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     
     // MARK: Script Methods
     
-    /// run script
+    /// Execute the script.
     ///
-    /// - Throws: Error by `NSUserScriptTask`
-    func run(completionHandler: (() -> Void) = {}) throws {
+    /// - Parameters:
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError`
+    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
         
         guard self.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.url)
         }
         
         var errorInfo: NSDictionary? = NSDictionary()
-        if self.script.executeAndReturnError(&errorInfo) == nil {
-            let message = (errorInfo?[NSLocalizedDescriptionKey] as? String) ?? "Unknown error"
-            writeToConsole(message: message, scriptName: self.name)
-        }
+        self.script.executeAndReturnError(&errorInfo)
         
-        completionHandler()
+        let scriptError = (errorInfo?[NSLocalizedDescriptionKey] as? String).flatMap { ScriptError.standardError($0) }
+        completionHandler(scriptError)
     }
     
     
-    /// Execute the AppleScript script by sending it the given Apple event.
+    /// Execute the script by sending it the given Apple event.
     ///
-    /// Any script errors will be written to the console panel.
-    ///
-    /// - Parameter event: The apple event.
-    /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping (() -> Void) = {}) throws {
+    /// - Parameters:
+    ///   - event: The apple event.
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError`
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
         
         guard let event = event else {
             return try self.run(completionHandler: completionHandler)
@@ -94,12 +96,10 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
         }
         
         var errorInfo: NSDictionary?
-        if self.script.executeAppleEvent(event, error: &errorInfo) == nil {
-            let message = (errorInfo?[NSLocalizedDescriptionKey] as? String) ?? "Unknown error"
-            writeToConsole(message: message, scriptName: self.name)
-        }
+        self.script.executeAppleEvent(event, error: &errorInfo)
         
-        completionHandler()
+        let scriptError = (errorInfo?[NSLocalizedDescriptionKey] as? String).flatMap { ScriptError.standardError($0) }
+        completionHandler(scriptError)
     }
     
 }

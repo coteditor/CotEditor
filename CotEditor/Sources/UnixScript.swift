@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import AppKit.NSDocument
 
@@ -79,10 +80,13 @@ final class UnixScript: Script {
     
     // MARK: Script Methods
     
-    /// run script
+    /// Execute the script.
     ///
-    /// - Throws: `ScriptFileError` or Error by `NSUserScriptTask`
-    func run(completionHandler: @escaping (() -> Void) = {}) throws {
+    /// - Parameters:
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError`
+    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
         
         // check script file
         guard self.url.isReachable else {
@@ -103,9 +107,10 @@ final class UnixScript: Script {
         if let inputType = InputType(scanning: script) {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
+            } catch let error as ScriptError {
+                return completionHandler(error)
             } catch {
-                writeToConsole(message: error.localizedDescription, scriptName: self.name)
-                return
+                preconditionFailure()
             }
         } else {
             input = nil
@@ -119,8 +124,6 @@ final class UnixScript: Script {
         
         // create task
         let task = try NSUserUnixTask(url: self.url)
-        
-        // set pipes
         let inPipe = Pipe()
         let outPipe = Pipe()
         let errPipe = Pipe()
@@ -143,47 +146,43 @@ final class UnixScript: Script {
             }
         }
         
-        let scriptName = self.name
-        
         // read output asynchronously for safe with huge output
-        weak var observer: NSObjectProtocol?
-        if let outputType = outputType {
-            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: .main) { [weak document] (note: Notification) in
-                NotificationCenter.default.removeObserver(observer!)
-                
-                guard
-                    let document = document,
-                    let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data,
-                    let output = String(data: data, encoding: .utf8)
-                    else { return }
-                
-                do {
-                    try Self.applyOutput(output, editor: document, type: outputType)
-                } catch {
-                    writeToConsole(message: error.localizedDescription, scriptName: scriptName)
-                }
-            }
+        let output = Atomic<String?>(nil)
+        var outputObserver: AnyCancellable?
+        if outputType != nil {
+            outputObserver = NotificationCenter.default.publisher(for: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading)
+                .compactMap { $0.userInfo?[NSFileHandleNotificationDataItem] as? Data }
+                .compactMap { String(data: $0, encoding: .utf8) }
+                .assign(to: \.wrappedValue, on: output)
+            
             outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
         }
         
         // execute
-        task.execute(withArguments: arguments) { error in
-            defer {
-                completionHandler()
-            }
-            
+        task.execute(withArguments: arguments) { [weak document] (error) in
             // on user cancellation
             if (error as? POSIXError)?.code == .ENOTBLK {
-                if let observer = observer {
-                    NotificationCenter.default.removeObserver(observer)
-                }
-                return
+                outputObserver?.cancel()
+                return completionHandler(nil)
             }
             
-            // put error message on the console
+            // obtain standard error
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
-            if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                writeToConsole(message: message, scriptName: scriptName)
+            let message = String(data: errorData, encoding: .utf8)
+            let scriptError = message.flatMap { $0.isEmpty ? nil : ScriptError.standardError($0) }
+            
+            DispatchQueue.main.async {
+                if let outputType = outputType, let output = output.wrappedValue {
+                    do {
+                        try Self.applyOutput(output, editor: document, type: outputType)
+                    } catch let error as ScriptError {
+                        return completionHandler(error)
+                    } catch {
+                        preconditionFailure()
+                    }
+                }
+                
+                completionHandler(scriptError)
             }
         }
     }
@@ -240,28 +239,6 @@ final class UnixScript: Script {
             case .pasteBoard:
                 NSPasteboard.general.declareTypes([.string], owner: nil)
                 NSPasteboard.general.setString(output, forType: .string)
-        }
-    }
-    
-}
-
-
-
-// MARK: - Error
-
-private enum ScriptError: Error {
-    
-    case noInputTarget
-    case noOutputTarget
-    
-    
-    var localizedDescription: String {
-        
-        switch self {
-            case .noInputTarget:
-                return "No document to get input.".localized
-            case .noOutputTarget:
-                return "No document to put output.".localized
         }
     }
     
