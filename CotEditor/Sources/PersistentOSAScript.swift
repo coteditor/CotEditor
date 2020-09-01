@@ -42,9 +42,11 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     // MARK: -
     // MARK: Lifecycle
     
-    init?(descriptor: ScriptDescriptor) {
+    init(descriptor: ScriptDescriptor) throws {
         
-        guard let script = OSAScript(contentsOf: descriptor.url, error: nil) else { return nil }
+        guard let script = OSAScript(contentsOf: descriptor.url, error: nil) else {
+            throw ScriptFileError(kind: .read, url: descriptor.url)
+        }
         
         self.descriptor = descriptor
         self.script = script

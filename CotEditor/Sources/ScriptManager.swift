@@ -302,7 +302,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.submenu = submenu
                 menu.addItem(item)
                 
-            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = descriptor.makeScript() {  // scripts
+            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
                 for eventType in descriptor.eventTypes {
                     guard let script = script as? EventScript else { continue }
                     self.scriptHandlersTable[eventType, default: []].append(script)

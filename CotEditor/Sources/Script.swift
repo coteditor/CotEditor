@@ -35,6 +35,8 @@ protocol Script: AnyObject {
     
     // MARK: Methods
     
+    init(descriptor: ScriptDescriptor) throws
+    
     /// Execute the script with the default way.
     func run(completionHandler: @escaping (() -> Void)) throws
 }

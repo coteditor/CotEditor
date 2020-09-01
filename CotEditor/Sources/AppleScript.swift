@@ -36,7 +36,7 @@ final class AppleScript: Script, AppleEventReceivable {
     // MARK: -
     // MARK: Lifecycle
     
-    init(descriptor: ScriptDescriptor) {
+    init(descriptor: ScriptDescriptor) throws {
         
         self.descriptor = descriptor
     }
