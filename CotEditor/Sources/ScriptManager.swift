@@ -281,37 +281,40 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // ignore files/folders of which name starts with "_"
             if url.lastPathComponent.hasPrefix("_") { continue }
             
-            let descriptor = ScriptDescriptor(at: url)
+            var name = url.deletingPathExtension().lastPathComponent
+                .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
             
-            if descriptor.name == String.separator {
-                menu.addItem(.separator())
-                continue
+            var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+            shortcut = shortcut.isValid ? shortcut : .none
+            if shortcut != .none {
+                name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
             }
             
-            guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
-            
-            if let script = descriptor.makeScript() {
+            if name == .separator {  // separator
+                menu.addItem(.separator())
+                
+            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
+                let submenu = NSMenu(title: name)
+                self.addChildFileItem(in: url, to: submenu)
+                
+                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
+                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
+                item.submenu = submenu
+                menu.addItem(item)
+                
+            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = descriptor.makeScript() {  // scripts
                 for eventType in descriptor.eventTypes {
                     guard let script = script as? EventScript else { continue }
                     self.scriptHandlersTable[eventType, default: []].append(script)
                 }
                 
-                let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript),
-                                      keyEquivalent: descriptor.shortcut.keyEquivalent)
-                item.keyEquivalentModifierMask = descriptor.shortcut.modifierMask
+                let item = NSMenuItem(title: name, action: #selector(launchScript),
+                                      keyEquivalent: shortcut.keyEquivalent)
+                item.keyEquivalentModifierMask = shortcut.modifierMask
                 item.representedObject = script
                 item.target = self
                 item.toolTip = "“Option + click” to open script in editor.".localized
                 menu.addItem(item)
-                
-            } else if resourceType == .directory {
-                let submenu = NSMenu(title: descriptor.name)
-                let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
-                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
-                item.submenu = submenu
-                menu.addItem(item)
-                
-                self.addChildFileItem(in: url, to: submenu)
             }
         }
     }
