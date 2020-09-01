@@ -37,25 +37,16 @@ protocol Script: AnyObject {
     
     /// Execute the script with the default way.
     func run(completionHandler: @escaping (() -> Void)) throws
-    
+}
+
+
+protocol AppleEventReceivable {
     
     /// Execute the script by sending it the given Apple event.
-    ///
-    /// Events the script cannot handle must be ignored with no errors.
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)) throws
-    
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping (() -> Void)) throws
 }
 
-
-
-extension Script {
-    
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void) = {}) throws {
-        
-        // ignore every request with an event by default
-    }
-    
-}
+typealias EventScript = Script & AppleEventReceivable
 
 
 

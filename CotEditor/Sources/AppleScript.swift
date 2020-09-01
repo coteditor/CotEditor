@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class AppleScript: Script {
+final class AppleScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     
@@ -61,7 +61,7 @@ final class AppleScript: Script {
     /// - Parameter event: The apple event.
     ///
     /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping (() -> Void) = {}) throws {
         
         guard self.descriptor.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.descriptor.url)
@@ -75,7 +75,7 @@ final class AppleScript: Script {
                 writeToConsole(message: error.localizedDescription, scriptName: scriptName)
             }
             
-            completionHandler?()
+            completionHandler()
         }
     }
     

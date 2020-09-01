@@ -26,7 +26,7 @@
 import Foundation
 import OSAKit
 
-final class PersistentOSAScript: Script {
+final class PersistentOSAScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     
