@@ -193,13 +193,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // change behavior if modifier key is pressed
             switch NSEvent.modifierFlags {
                 case [.option]:
-                    try self.editScript(at: script.descriptor.url)
+                    try self.editScript(at: script.url)
                 
                 case [.option, .shift]:
-                    try self.revealScript(at: script.descriptor.url)
+                    try self.revealScript(at: script.url)
                 
                 default:
-                    self.currentScriptName = script.descriptor.name
+                    self.currentScriptName = script.name
                     try script.run { [weak self] in
                         self?.currentScriptName = nil
                     }

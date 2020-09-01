@@ -29,13 +29,13 @@ protocol Script: AnyObject {
     
     // MARK: Properties
     
-    /// A script descriptor the receiver was created from.
-    var descriptor: ScriptDescriptor { get }
+    var url: URL { get }
+    var name: String { get }
     
     
     // MARK: Methods
     
-    init(descriptor: ScriptDescriptor) throws
+    init(url: URL, name: String) throws
     
     /// Execute the script with the default way.
     func run(completionHandler: @escaping (() -> Void)) throws

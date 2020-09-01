@@ -30,7 +30,8 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     
-    let descriptor: ScriptDescriptor
+    let url: URL
+    let name: String
     
     
     // MARK: Private Properties
@@ -42,13 +43,14 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     // MARK: -
     // MARK: Lifecycle
     
-    init(descriptor: ScriptDescriptor) throws {
+    init(url: URL, name: String) throws {
         
-        guard let script = OSAScript(contentsOf: descriptor.url, error: nil) else {
-            throw ScriptFileError(kind: .read, url: descriptor.url)
+        guard let script = OSAScript(contentsOf: url, error: nil) else {
+            throw ScriptFileError(kind: .read, url: url)
         }
         
-        self.descriptor = descriptor
+        self.url = url
+        self.name = name
         self.script = script
     }
     
@@ -61,14 +63,14 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     /// - Throws: Error by `NSUserScriptTask`
     func run(completionHandler: (() -> Void) = {}) throws {
         
-        guard self.descriptor.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        guard self.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.url)
         }
         
         var errorInfo: NSDictionary? = NSDictionary()
         if self.script.executeAndReturnError(&errorInfo) == nil {
             let message = (errorInfo?[NSLocalizedDescriptionKey] as? String) ?? "Unknown error"
-            writeToConsole(message: message, scriptName: self.descriptor.name)
+            writeToConsole(message: message, scriptName: self.name)
         }
         
         completionHandler()
@@ -84,18 +86,17 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping (() -> Void) = {}) throws {
         
         guard let event = event else {
-            try self.run(completionHandler: completionHandler)
-            return
+            return try self.run(completionHandler: completionHandler)
         }
         
-        guard self.descriptor.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        guard self.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.url)
         }
         
         var errorInfo: NSDictionary?
         if self.script.executeAppleEvent(event, error: &errorInfo) == nil {
             let message = (errorInfo?[NSLocalizedDescriptionKey] as? String) ?? "Unknown error"
-            writeToConsole(message: message, scriptName: self.descriptor.name)
+            writeToConsole(message: message, scriptName: self.name)
         }
         
         completionHandler()

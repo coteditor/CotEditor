@@ -29,16 +29,18 @@ final class AppleScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     
-    let descriptor: ScriptDescriptor
+    let url: URL
+    let name: String
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(descriptor: ScriptDescriptor) throws {
+    init(url: URL, name: String) throws {
         
-        self.descriptor = descriptor
+        self.url = url
+        self.name = name
     }
     
     
@@ -63,12 +65,12 @@ final class AppleScript: Script, AppleEventReceivable {
     /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping (() -> Void) = {}) throws {
         
-        guard self.descriptor.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        guard self.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.url)
         }
         
-        let task = try NSUserAppleScriptTask(url: self.descriptor.url)
-        let scriptName = self.descriptor.name
+        let task = try NSUserAppleScriptTask(url: self.url)
+        let scriptName = self.name
         
         task.execute(withAppleEvent: event) { (_, error) in
             if let error = error {

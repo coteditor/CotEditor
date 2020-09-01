@@ -31,21 +31,23 @@ final class UnixScript: Script {
     
     // MARK: Script Properties
     
-    let descriptor: ScriptDescriptor
+    let url: URL
+    let name: String
     
     
     // MARK: Private Properties
     
-    private lazy var content: String? = try? String(contentsOf: self.descriptor.url)
+    private lazy var content: String? = try? String(contentsOf: self.url)
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(descriptor: ScriptDescriptor) throws {
+    init(url: URL, name: String) throws {
         
-        self.descriptor = descriptor
+        self.url = url
+        self.name = name
     }
     
     
@@ -83,14 +85,14 @@ final class UnixScript: Script {
     func run(completionHandler: @escaping (() -> Void) = {}) throws {
         
         // check script file
-        guard self.descriptor.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        guard self.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.url)
         }
-        guard try self.descriptor.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
-            throw ScriptFileError(kind: .permission, url: self.descriptor.url)
+        guard try self.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
+            throw ScriptFileError(kind: .permission, url: self.url)
         }
         guard let script = self.content, !script.isEmpty else {
-            throw ScriptFileError(kind: .read, url: self.descriptor.url)
+            throw ScriptFileError(kind: .read, url: self.url)
         }
         
         // fetch target document
@@ -102,7 +104,7 @@ final class UnixScript: Script {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
             } catch {
-                writeToConsole(message: error.localizedDescription, scriptName: self.descriptor.name)
+                writeToConsole(message: error.localizedDescription, scriptName: self.name)
                 return
             }
         } else {
@@ -116,7 +118,7 @@ final class UnixScript: Script {
         let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
         
         // create task
-        let task = try NSUserUnixTask(url: self.descriptor.url)
+        let task = try NSUserUnixTask(url: self.url)
         
         // set pipes
         let inPipe = Pipe()
@@ -141,7 +143,7 @@ final class UnixScript: Script {
             }
         }
         
-        let scriptName = self.descriptor.name
+        let scriptName = self.name
         
         // read output asynchronously for safe with huge output
         weak var observer: NSObjectProtocol?
