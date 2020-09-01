@@ -39,7 +39,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Properties
     
     private let scriptsDirectoryURL: URL
-    private var scriptHandlersTable: [ScriptingEventType: [Script]] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
     
     private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
@@ -193,15 +193,20 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // change behavior if modifier key is pressed
             switch NSEvent.modifierFlags {
                 case [.option]:
-                    try self.editScript(at: script.descriptor.url)
+                    try self.editScript(at: script.url)
                 
                 case [.option, .shift]:
-                    try self.revealScript(at: script.descriptor.url)
+                    try self.revealScript(at: script.url)
                 
                 default:
-                    self.currentScriptName = script.descriptor.name
-                    try script.run { [weak self] in
-                        self?.currentScriptName = nil
+                    self.currentScriptName = script.name
+                    try script.run { [weak self] (error) in
+                        if let error = error {
+                            Self.writeToConsole(message: error.localizedDescription, scriptName: script.name)
+                        }
+                        if self?.currentScriptName == script.name {
+                            self?.currentScriptName = nil
+                        }
                     }
             }
             
@@ -220,6 +225,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     // MARK: Private Methods
+    
+    class func writeToConsole(message: String, scriptName: String) {
+        
+        let log = Console.Log(message: message, title: scriptName)
+        
+        DispatchQueue.main.async {
+            Console.shared.panelController.showWindow(nil)
+            Console.shared.append(log: log)
+        }
+    }
+    
     
     /// Create an Apple Event caused by the given `Document`.
     ///
@@ -252,11 +268,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - event: The Apple Event to be dispatched.
     ///   - scripts: AppleScripts handling the given Apple Event.
-    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [Script]) {
+    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [EventScript]) {
         
         for script in scripts {
             do {
-                try script.run(withAppleEvent: event)
+                try script.run(withAppleEvent: event) { (error) in
+                    if let error = error {
+                        Self.writeToConsole(message: error.localizedDescription, scriptName: script.name)
+                    }
+                }
             } catch {
                 NSApp.presentError(error)
             }
@@ -281,36 +301,40 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // ignore files/folders of which name starts with "_"
             if url.lastPathComponent.hasPrefix("_") { continue }
             
-            let descriptor = ScriptDescriptor(at: url)
+            var name = url.deletingPathExtension().lastPathComponent
+                .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
             
-            if descriptor.name == String.separator {
-                menu.addItem(.separator())
-                continue
+            var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+            shortcut = shortcut.isValid ? shortcut : .none
+            if shortcut != .none {
+                name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
             }
             
-            guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
-            
-            if let script = descriptor.makeScript() {
-                for eventType in descriptor.eventTypes {
-                    self.scriptHandlersTable[eventType, default: []].append(script)
-                }
+            if name == .separator {  // separator
+                menu.addItem(.separator())
                 
-                let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript),
-                                      keyEquivalent: descriptor.shortcut.keyEquivalent)
-                item.keyEquivalentModifierMask = descriptor.shortcut.modifierMask
-                item.representedObject = script
-                item.target = self
-                item.toolTip = "“Option + click” to open script in editor.".localized
-                menu.addItem(item)
+            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
+                let submenu = NSMenu(title: name)
+                self.addChildFileItem(in: url, to: submenu)
                 
-            } else if resourceType == .directory {
-                let submenu = NSMenu(title: descriptor.name)
-                let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
+                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 item.submenu = submenu
                 menu.addItem(item)
                 
-                self.addChildFileItem(in: url, to: submenu)
+            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
+                for eventType in descriptor.eventTypes {
+                    guard let script = script as? EventScript else { continue }
+                    self.scriptHandlersTable[eventType, default: []].append(script)
+                }
+                
+                let item = NSMenuItem(title: name, action: #selector(launchScript),
+                                      keyEquivalent: shortcut.keyEquivalent)
+                item.keyEquivalentModifierMask = shortcut.modifierMask
+                item.representedObject = script
+                item.target = self
+                item.toolTip = "“Option + click” to open script in editor.".localized
+                menu.addItem(item)
             }
         }
     }
