@@ -145,6 +145,7 @@ final class UnixScript: Script {
                 NotificationCenter.default.removeObserver(observer!)
                 
                 guard
+                    let document = document,
                     let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data,
                     let output = String(data: data, encoding: .utf8)
                     else { return }
