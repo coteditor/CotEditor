@@ -3,6 +3,8 @@ extensions:
 - keyString: "command"
 filenames:
 - keyString: ".profile"
+- keyString: ".bash_login"
+- keyString: ".bash_logout"
 - keyString: ".bash_profile"
 - keyString: ".bashrc"
 - keyString: ".zlogin"
