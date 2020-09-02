@@ -28,6 +28,7 @@ Change Log
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
 - Update Swift syntax style.
 - Update SVG syntax style.
+- Update Shell Script syntax style (thanks to ansimita!).
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Improve tooltips of toolbar icons to reflect current document state.
 - [trivial] Optimize the line number calculation in vertical text orientation.
