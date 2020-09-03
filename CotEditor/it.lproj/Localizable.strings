@@ -55,10 +55,6 @@
 
 
 /* MARK: AppDelegate */
-// Format - Syntax coloring menu item title
-"Recently Used" = "Usati di recente";
-"Re-Color All" = "Ricolora tutto";
-
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@” è un file di tema CotEditor.";
 "Do you want to install this theme?" = "Si desidera installare questo tema?";
@@ -177,6 +173,8 @@
 "Syntax Style" = "Stile sintassi";
 // tooltip
 "Change syntax style" = "Modifica stile sintassi";
+// menu item title
+"Recently Used" = "Usati di recente";
 
 "Inspector" = "Inspector";
 // tooltip

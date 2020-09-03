@@ -55,10 +55,6 @@
 
 
 /* MARK: AppDelegate */
-// Format - Syntax coloring menu item title
-"Recently Used" = "最近使用";
-"Re-Color All" = "全部重新着色";
-
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@”是 CotEditor 主题文件";
 "Do you want to install this theme?" = "是否安装主题？";
@@ -177,6 +173,8 @@
 "Syntax Style" = "语法样式";
 // tooltip
 "Change syntax style" = "改变语法样式";
+// menu item title
+"Recently Used" = "最近使用";
 
 "Inspector" = "检查器";
 // tooltip

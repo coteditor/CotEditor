@@ -55,10 +55,6 @@
 
 
 /* MARK: AppDelegate */
-// Format - Syntax coloring menu item title
-"Recently Used" = "最近使った項目";
-"Re-Color All" = "再カラーリング";
-
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@”はCotEditorテーマファイルです。";
 "Do you want to install this theme?" = "テーマをインストールしますか?";
@@ -177,6 +173,8 @@
 "Syntax Style" = "シンタックス";
 // tooltip
 "Change syntax style" = "シンタックススタイルを変更";
+// menu item title
+"Recently Used" = "最近使った項目";
 
 "Inspector" = "インスペクタ";
 // tooltip

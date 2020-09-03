@@ -410,23 +410,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         let menu = self.syntaxStylesMenu!
         
-        menu.removeAllItems()
+        let recolorItem = menu.items.first { $0.action == #selector(SyntaxHolder.recolorAll) }
         
-        // add None
+        menu.removeAllItems()
         menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
         menu.addItem(.separator())
-        
-        // add syntax styles
         menu.items += SyntaxManager.shared.settingNames
             .map { NSMenuItem(title: $0, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "") }
         menu.addItem(.separator())
-        
-        // add item to recolor
-        let recolorAction = #selector(SyntaxHolder.recolorAll)
-        let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
-        let recolorItem = NSMenuItem(title: "Re-Color All".localized, action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
-        recolorItem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
-        menu.addItem(recolorItem)
+        menu.addItem(recolorItem!)
     }
     
     
