@@ -161,7 +161,8 @@ final class OutlineViewController: NSViewController {
             textView.string.nsRange.upperBound >= item.range.upperBound
             else { return }
         
-        textView.select(range: item.range)
+        textView.selectedRange = item.range
+        textView.centerSelectionInVisibleArea(self)
     }
     
     
