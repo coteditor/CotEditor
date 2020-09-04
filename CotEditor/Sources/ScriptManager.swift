@@ -132,7 +132,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         assert(Thread.isMainThread)
         
         self.menuBuildingTask.cancel()
-        self.scriptHandlersTable = [:]
+        self.scriptHandlersTable.removeAll()
         
         let menu = MainMenu.script.menu!
         

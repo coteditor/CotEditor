@@ -85,7 +85,7 @@ final class DocumentController: NSDocumentController {
         let transientDocument = self.transientDocumentToReplace
         if let transientDocument = transientDocument {
             transientDocument.isTransient = false
-            self.deferredDocuments = []
+            self.deferredDocuments.removeAll()
         }
         self.transientDocumentLock.unlock()
         
@@ -108,7 +108,7 @@ final class DocumentController: NSDocumentController {
                     deferredDocument.makeWindowControllers()
                     deferredDocument.showWindows()
                 }
-                self.deferredDocuments = []
+                self.deferredDocuments.removeAll()
                 
             } else if displayDocument, let document = document {
                 if self.deferredDocuments.isEmpty {
