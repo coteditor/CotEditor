@@ -108,7 +108,7 @@ final class StatusBarController: NSViewController {
         super.viewDidDisappear()
         
         self.encodingListObserver = nil
-        self.self.defaultsObserver = nil
+        self.defaultsObserver = nil
         
         self.document?.analyzer.shouldUpdateStatusEditorInfo = false
         
@@ -198,9 +198,6 @@ final class StatusBarController: NSViewController {
         guard let popUpButton = self.encodingPopUpButton else { return }
         
         EncodingManager.shared.updateChangeEncodingMenu(popUpButton.menu!)
-        
-        popUpButton.insertItem(withTitle: "File Encoding".localized, at: 0)
-        popUpButton.item(at: 0)?.isEnabled = false
         
         self.invalidateEncodingSelection()
     }

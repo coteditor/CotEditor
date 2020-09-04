@@ -308,7 +308,11 @@
                                             <menuItem title="File Encoding" tag="-1" enabled="NO" id="q4F-Uw-VL4">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Unicode (UTF-8)" state="on" id="fc5-iy-HpH"/>
+                                            <menuItem title="Unicode (UTF-8)" state="on" id="fc5-iy-HpH">
+                                                <connections>
+                                                    <action selector="changeEncoding:" target="wKh-dn-8NK" id="1lD-Lq-887"/>
+                                                </connections>
+                                            </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>

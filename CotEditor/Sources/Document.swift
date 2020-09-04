@@ -913,7 +913,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             let completionHandler = { [weak self] (didChange: Bool) in
                 if !didChange, let self = self {
-                    // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                    // reset status bar selection for in case if the operation was invoked from the popup button in the bar
                     self.didChangeEncoding.send(self.fileEncoding)
                 }
                 activityCompletionHandler()

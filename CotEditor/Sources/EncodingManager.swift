@@ -109,7 +109,7 @@ final class EncodingManager: NSObject {
     /// set available encoding menu items with action to passed-in menu
     func updateChangeEncodingMenu(_ menu: NSMenu) {
         
-        menu.removeAllItems()
+        menu.items.removeAll { $0.action == #selector(EncodingHolder.changeEncoding) }
         
         for item in self.createEncodingMenuItems() {
             item.action = #selector(EncodingHolder.changeEncoding)
