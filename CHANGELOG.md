@@ -40,8 +40,9 @@ Change Log
 
 ### Fixes
 
-- Fix the progress message when highlighting a document with a multiple replacement definition.
 - Fix an issue that “Open Scripts Folder” command in the script menu did not open the scripts folder for CotEditor but just the general Application Scripts folder.
+- Fix an issue in the find result table that the found string column truncated the text even in the middle of a character that consists of multiple Unicode characters.
+- Fix the progress message when highlighting a document with a multiple replacement definition.
 - Fix an issue that the preferences window sometimes performed odd resizing animation when initially display the General pane.
 
 
