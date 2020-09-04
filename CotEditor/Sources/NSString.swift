@@ -304,6 +304,39 @@ extension NSString {
         return NSRange(lowerBound..<upperBound)
     }
     
+    
+    /// Return the boundary of the composed character sequence by moving the offset by counting offset in composed character sequences.
+    ///
+    /// - Parameters:
+    ///   - index: The reference characer index in UTF-16.
+    ///   - offset: The number of composed character sequences to move index.
+    /// - Returns:A characer index in UTF-16.
+    func boundaryOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
+        
+        assert(index >= 0 && index < self.length)
+        
+        let reverse = (offset <= 0)
+        let range = reverse ? NSRange(location: 0, length: min(index + 1, self.length)) : NSRange(location: index, length: self.length - index)
+        var options: EnumerationOptions = [.byComposedCharacterSequences, .substringNotRequired]
+        if reverse {
+            options.formUnion(.reverse)
+        }
+        
+        var boundary = index
+        var remainingCount = reverse ? -offset + 1 : offset
+        self.enumerateSubstrings(in: range, options: options) { (_, range, _, stop) in
+            
+            boundary = reverse ? range.lowerBound : range.upperBound
+            
+            remainingCount -= 1
+            if remainingCount <= 0 {
+                stop.pointee = true
+            }
+        }
+        
+        return boundary
+    }
+    
 }
 
 
