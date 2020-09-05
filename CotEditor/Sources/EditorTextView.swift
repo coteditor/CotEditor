@@ -64,6 +64,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var needsUpdateLineHighlight = true {
         
         didSet {
+            guard needsUpdateLineHighlight else { return }
             // remove previous highlights
             (self.lineHighLightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
         }
