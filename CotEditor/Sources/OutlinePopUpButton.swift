@@ -1,0 +1,65 @@
+//
+//  OutlinePopUpButton.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2020-08-16.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2020 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import AppKit
+
+final class OutlinePopUpButton: NSPopUpButton {
+    
+    override var intrinsicContentSize: NSSize {
+        
+        var size = super.intrinsicContentSize
+        
+        guard let menuItemTitle = self.selectedItem?.attributedTitle else { return size }
+        
+        // trim indent width
+        size.width -= menuItemTitle.size().width - self.attributedTitle.size().width
+        size.width += 4  // for aesthetic margin
+        
+        return size
+    }
+    
+}
+
+
+
+final class OutlinePopUpButtonCell: NSPopUpButtonCell {
+    
+    override var attributedTitle: NSAttributedString {
+        
+        get {
+            let title = super.attributedTitle
+            let indentRange = (title.string as NSString).range(of: "^\\s+", options: .regularExpression)
+            
+            return indentRange.isEmpty
+                ? title
+                : title.attributedSubstring(from: NSRange(indentRange.upperBound..<title.length))
+        }
+        
+        set {
+            super.attributedTitle = newValue
+        }
+    }
+    
+}
