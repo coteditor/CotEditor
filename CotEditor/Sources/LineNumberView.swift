@@ -374,6 +374,10 @@ final class LineNumberView: NSView {
             .sink { [weak self] _ in self?.needsDisplay = true }
             .store(in: &self.textViewSubscriptions)
         
+        textView.publisher(for: \.defaultParagraphStyle?.lineHeightMultiple)
+            .sink { [weak self] _ in self?.needsDisplay = true }
+            .store(in: &self.textViewSubscriptions)
+        
         textView.publisher(for: \.textColor, options: .initial)
             .compactMap { $0 }
             .sink { [weak self] in self?.textColor = $0 }
