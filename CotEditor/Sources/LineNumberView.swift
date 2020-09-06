@@ -103,6 +103,7 @@ final class LineNumberView: NSView {
     private var selectionObserver: NotificationObservation?
     private var frameObserver: NotificationObservation?
     private var scrollObserver: NotificationObservation?
+    private var lineHeightObserver: NSKeyValueObservation?
     private var colorObserver: NSKeyValueObservation?
     private var fontObserver: NSKeyValueObservation?
     private var scaleObserver: NSKeyValueObservation?
@@ -416,6 +417,11 @@ final class LineNumberView: NSView {
             self?.needsDisplay = true
         }
         
+        self.lineHeightObserver?.invalidate()
+        self.lineHeightObserver = textView.observe(\.defaultParagraphStyle?.lineHeightMultiple) { [weak self] (_, _)  in
+            self?.needsDisplay = true
+        }
+        
         self.colorObserver?.invalidate()
         self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
             self?.needsDisplay = true
@@ -450,6 +456,9 @@ final class LineNumberView: NSView {
         
         self.scrollObserver?.invalidate()
         self.scrollObserver = nil
+        
+        self.lineHeightObserver?.invalidate()
+        self.lineHeightObserver = nil
         
         self.colorObserver?.invalidate()
         self.colorObserver = nil
