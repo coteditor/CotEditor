@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import AppKit.NSImage
 
 final class CommandLineToolManager {
     
@@ -112,46 +111,6 @@ extension CommandLineToolManager.Status {
                 return "The current 'cot' symbolic link doesn’t target the running CotEditor.".localized
             case .invalidTarget:
                 return "The current 'cot' symbolic link may target an invalid path.".localized
-        }
-    }
-    
-    
-    var badge: StatusBadge {
-        
-        switch self {
-            case .none: return .none
-            case .validTarget: return .available
-            case .differentTarget: return .partiallyAvailable
-            case .invalidTarget: return .unavailable
-        }
-    }
-    
-}
-
-
-
-enum StatusBadge: Equatable {
-    
-    case none
-    case available
-    case partiallyAvailable
-    case unavailable
-    
-    
-    var image: NSImage  { NSImage(named: self.imageName)! }
-    
-    
-    private var imageName: NSImage.Name {
-        
-        switch self {
-            case .none:
-                return NSImage.statusNoneName
-            case .available:
-                return NSImage.statusAvailableName
-            case .partiallyAvailable:
-                return NSImage.statusPartiallyAvailableName
-            case .unavailable:
-                return NSImage.statusUnavailableName
         }
     }
     

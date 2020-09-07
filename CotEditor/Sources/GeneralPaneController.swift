@@ -143,8 +143,20 @@ final class GeneralPaneController: NSViewController {
         
         let status = CommandLineToolManager.shared.validateSymLink()
         
+        let imageName: NSImage.Name = {
+            switch status {
+                case .none:
+                    return NSImage.statusNoneName
+                case .validTarget:
+                    return NSImage.statusAvailableName
+                case .differentTarget:
+                    return NSImage.statusPartiallyAvailableName
+                case .invalidTarget:
+                    return NSImage.statusUnavailableName
+            }
+        }()
+        self.cltStatusView?.image = NSImage(named: imageName)
         self.cltStatusView?.isHidden = !status.installed
-        self.cltStatusView?.image = status.badge.image
         self.cltStatusView?.toolTip = status.message
         
         self.cltPathField?.isHidden = !status.installed
