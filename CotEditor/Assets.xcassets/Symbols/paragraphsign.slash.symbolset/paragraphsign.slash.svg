@@ -74,8 +74,8 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"
   </g>
   <line id="Baseline-L" x1="263" y1="1556" x2="3036" y2="1556"/>
   <line id="Capline-L" x1="263" y1="1485.5" x2="3036" y2="1485.5"/>
-  <line id="left-margin" x1="1392.4" y1="1030.8" x2="1392.4" y2="1150.1"/>
-  <line id="right-margin" x1="1507.3" y1="1030.8" x2="1507.3" y2="1150.1"/>
+  <line id="left-margin" x1="1401.53" x2="1401.53" y1="1030.79" y2="1150.12"/>
+  <line id="right-margin" x1="1498.16" x2="1498.16" y1="1030.79" y2="1150.12"/>
  </g>
  
  <g id="Symbols">
