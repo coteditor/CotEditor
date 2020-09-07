@@ -228,8 +228,8 @@ extension DocumentWindowController: NSToolbarDelegate {
         
         guard #available(macOS 11, *) else {
             return [
-                .flexibleSpace,
                 .syntaxStyle,
+                .flexibleSpace,
                 .inspector,
             ]
         }
