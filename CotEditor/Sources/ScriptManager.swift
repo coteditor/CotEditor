@@ -67,6 +67,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
             }
         }
         
+        self.presentedItemURL = self.scriptsDirectoryURL
+        
         super.init()
         
         // observe script folder change
@@ -82,14 +84,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: File Presenter Protocol
     
-    var presentedItemOperationQueue: OperationQueue = .main
+    let presentedItemOperationQueue: OperationQueue = .main
     
-    
-    /// URL to observe
-    var presentedItemURL: URL? {
-        
-        return self.scriptsDirectoryURL
-    }
+    let presentedItemURL: URL?
     
     
     /// script folder did change
@@ -192,13 +189,18 @@ final class ScriptManager: NSObject, NSFilePresenter {
         do {
             // change behavior if modifier key is pressed
             switch NSEvent.modifierFlags {
-                case [.option]:
-                    try self.editScript(at: script.url)
+                case [.option]:  // open
+                    guard NSWorkspace.shared.open(script.url) else {
+                        throw ScriptFileError(kind: .open, url: script.url)
+                    }
                 
-                case [.option, .shift]:
-                    try self.revealScript(at: script.url)
+                case [.option, .shift]:  // reveal
+                    guard script.url.isReachable else {
+                        throw ScriptFileError(kind: .existance, url: script.url)
+                    }
+                    NSWorkspace.shared.activateFileViewerSelecting([script.url])
                 
-                default:
+                default:  // execute
                     self.currentScriptName = script.name
                     try script.run { [weak self] (error) in
                         if let error = error {
@@ -337,32 +339,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 menu.addItem(item)
             }
         }
-    }
-    
-    
-    /// Open script file in an editor.
-    ///
-    /// - Parameter url: The URL of a script file to open.
-    /// - Throws: `ScriptFileError`
-    private func editScript(at url: URL) throws {
-        
-        guard NSWorkspace.shared.open(url) else {
-            throw ScriptFileError(kind: .open, url: url)
-        }
-    }
-    
-    
-    /// Reveal script file in Finder.
-    ///
-    /// - Parameter url: The URL of a script file to reveal.
-    /// - Throws: `ScriptFileError`
-    private func revealScript(at url: URL) throws {
-        
-        guard url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: url)
-        }
-        
-        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
 }
