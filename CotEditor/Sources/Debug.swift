@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@
 
 import Foundation
 
-///  Debug friendly print with a dog/cow.
+/// Debug friendly print with a dog/cow.
 ///
-/// This function works just like `Swift.debugPrint()` function.
-/// The advantage is you can know the thread and the function name that invoked this function easily at the same time.
-/// A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thead, otherwise a 🐕.
+///  This function works just like `Swift.debugPrint()` function.
+///  The advantage is you can know the thread and the function name that invoked this function easily at the same time.
+///  A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thead, otherwise a 🐕.
 ///
 /// - Parameters:
 ///   - items: Zero or more items to print.
