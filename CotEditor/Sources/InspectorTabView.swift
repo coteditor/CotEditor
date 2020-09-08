@@ -109,8 +109,10 @@ final class InspectorTabView: NSTabView {
         }
         
         let strokeRect = NSRect(x: dirtyRect.minX, y: self.topInset + self.controlHeight, width: dirtyRect.width, height: 1)
-        NSColor.separatorColor.setFill()
-        self.centerScanRect(strokeRect).fill()
+        if strokeRect.intersects(dirtyRect) {
+            NSColor.separatorColor.setFill()
+            self.centerScanRect(strokeRect).fill()
+        }
         
         NSGraphicsContext.restoreGraphicsState()
     }

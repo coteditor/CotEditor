@@ -51,9 +51,11 @@ extension CurrentLineHighlighting {
         NSGraphicsContext.saveGraphicsState()
         
         color.setFill()
-        for rect in self.lineHighLightRects where rect.intersects(dirtyRect) {
-            self.centerScanRect(rect).fill()
-        }
+        self.lineHighLightRects
+            .filter { $0.intersects(dirtyRect) }
+            .map { self.centerScanRect($0) }
+            .compactMap { $0.intersection(dirtyRect) }
+            .forEach { $0.fill() }
         
         NSGraphicsContext.restoreGraphicsState()
     }

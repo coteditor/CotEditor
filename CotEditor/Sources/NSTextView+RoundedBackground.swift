@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,17 +41,30 @@ extension NSTextView {
         // avoid invoking heavy-duty `range(for:)` as possible
         guard
             let layoutManager = self.layoutManager,
-            let dirtyRange = self.range(for: dirtyRect),
-            layoutManager.hasTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange)
+            let dirtyRange = self.range(for: dirtyRect)
             else { return }
         
-        NSGraphicsContext.saveGraphicsState()
-        
+        var coloredPaths: [NSColor: [NSBezierPath]] = [:]
         layoutManager.enumerateTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange) { (value, range, _) in
             guard let color = value as? NSColor else { return }
             
+            let paths = self.roundedRectPaths(for: range)
+                .filter { $0.bounds.intersects(dirtyRect) }
+            
+            guard !paths.isEmpty else { return }
+            
+            coloredPaths[color, default: []] += paths
+        }
+        
+        guard !coloredPaths.isEmpty else { return }
+        
+        NSGraphicsContext.saveGraphicsState()
+        
+        for (color, paths) in coloredPaths {
             color.setFill()
-            self.roundedRectPaths(for: range).forEach { $0.fill() }
+            for path in paths {
+                path.fill()
+            }
         }
         
         NSGraphicsContext.restoreGraphicsState()

@@ -987,12 +987,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // draw page guide
         if self.showsPageGuide,
-            let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-            let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
-            
             let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerInset.width
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
@@ -1004,12 +1000,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                                    width: 1.0,
                                    height: dirtyRect.height)
             
-            NSGraphicsContext.saveGraphicsState()
-            
-            guideColor.setFill()
-            self.centerScanRect(guideRect).fill()
-            
-            NSGraphicsContext.restoreGraphicsState()
+            if guideRect.intersects(dirtyRect), let textColor = self.textColor {
+                let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+                let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
+                
+                NSGraphicsContext.saveGraphicsState()
+                guideColor.setFill()
+                self.centerScanRect(guideRect).intersection(dirtyRect).fill()
+                NSGraphicsContext.restoreGraphicsState()
+            }
         }
         
         // draw zero-width insertion points while rectangular selection
@@ -1018,6 +1017,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.insertionRanges
                 .filter(\.isEmpty)
                 .map { self.insertionPointRect(at: $0.location) }
+                .filter { $0.intersects(dirtyRect) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
     }
