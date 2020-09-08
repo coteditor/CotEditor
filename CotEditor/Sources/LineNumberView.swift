@@ -432,7 +432,7 @@ private extension FloatingPoint {
 
 
 
-// MARK: - Line Selecting
+// MARK: - Controlling Text View
 
 extension LineNumberView {
     
@@ -445,6 +445,13 @@ extension LineNumberView {
     
     
     // MARK: View Methods
+    
+    /// scroll parent textView with scroll event
+    override func scrollWheel(with event: NSEvent) {
+        
+        self.textView?.scrollWheel(with: event)
+    }
+    
     
     /// start selecting correspondent lines in text view with drag / click event
     override func mouseDown(with event: NSEvent) {
