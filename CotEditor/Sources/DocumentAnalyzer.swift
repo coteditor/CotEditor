@@ -136,7 +136,7 @@ final class DocumentAnalyzer: NSObject {
         
         guard self.shouldUpdateEditorInfo || self.shouldUpdateStatusEditorInfo else { return }
         
-        self.editorUpdateTask.schedule()
+        self.editorUpdateTask.schedule(delay: onlySelection ? .milliseconds(10) : nil)
     }
     
     

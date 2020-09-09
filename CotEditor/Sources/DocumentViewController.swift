@@ -91,8 +91,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             .sink { [weak self] in self?.setTheme(name: $0) }
         
         // observe cursor
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
-                                               name: NSTextView.didChangeSelectionNotification,
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
+                                               name: EditorTextView.didLiveChangeSelectionNotification,
                                                object: self.editorViewControllers.first!.textView!)
         
         // observe appearance change for theme toggle
@@ -408,10 +408,12 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     // MARK: Notifications
     
     /// selection did change
-    @objc private func textViewDidChangeSelection(_ notification: Notification) {
+    @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
+        
+        let editedCharacters = (notification.object as? NSTextView)?.textStorage?.editedMask.contains(.editedCharacters) == true
         
         // update document information
-        self.document?.analyzer.invalidateEditorInfo(onlySelection: true)
+        self.document?.analyzer.invalidateEditorInfo(onlySelection: !editedCharacters)
     }
     
     
@@ -829,8 +831,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         }
         
         // observe cursor
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
-                                               name: NSTextView.didChangeSelectionNotification,
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidLiveChangeSelection),
+                                               name: EditorTextView.didLiveChangeSelectionNotification,
                                                object: newEditorViewController.textView)
         
         // move focus to the new editor
