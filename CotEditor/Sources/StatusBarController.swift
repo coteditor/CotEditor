@@ -135,6 +135,8 @@ final class StatusBarController: NSViewController {
             .removeDuplicates()
             .sink { [weak self] _ in self?.updateEditorStatus() }
             .store(in: &self.documentObservers)
+        
+        // observe file size
         document.analyzer.publisher(for: \.info.file.fileSize)
             .removeDuplicates()
             .sink { [weak self] in self?.fileSize = $0 }

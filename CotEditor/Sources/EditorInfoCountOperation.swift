@@ -39,6 +39,9 @@ struct EditorInfoTypes: OptionSet {
     static let unicode    = EditorInfoTypes(rawValue: 1 << 7)
     
     static let all: EditorInfoTypes = [.length, .characters, .lines, .words, .location, .line, .column, .unicode]
+    
+    static let counts: EditorInfoTypes = [.length, .characters, .lines, .words]
+    static let cursors: EditorInfoTypes = [.location, .line, .column]
 }
 
 
@@ -116,24 +119,34 @@ final class EditorInfoCountOperation: Operation {
     
     override func main() {
         
-        if self.countsWholeText {
-            self.result.count = self.count()
+        if self.countsWholeText,
+           !self.requiredInfo.isDisjoint(with: .counts),
+           !self.string.isEmpty
+        {
+            self.result.count = self.count(in: self.string)
         }
         
         guard !self.isCancelled else { return }
         
-        self.result.cursor = self.locate(location: self.selectedRange.lowerBound)
+        if !self.requiredInfo.isDisjoint(with: .cursors),
+           !self.string.isEmpty
+        {
+            self.result.cursor = self.locate(location: self.selectedRange.lowerBound)
+        }
         
         guard !self.isCancelled else { return }
         
         if !self.selectedRange.isEmpty {
-            self.result.selectedCount = self.count(in: self.selectedRange)
+            let selectedString = self.string[self.selectedRange]
             
-            if self.requiredInfo.contains(.unicode) {
-                let selectedString = self.string[self.selectedRange]
-                if selectedString.unicodeScalars.compareCount(with: 1) == .equal {
-                    self.result.unicode = selectedString.unicodeScalars.first?.codePoint
-                }
+            if !self.requiredInfo.isDisjoint(with: .counts) {
+                self.result.selectedCount = self.count(in: selectedString)
+            }
+            
+            if self.requiredInfo.contains(.unicode),
+               selectedString.unicodeScalars.compareCount(with: 1) == .equal
+            {
+                self.result.unicode = selectedString.unicodeScalars.first?.codePoint
             }
         }
     }
@@ -142,15 +155,14 @@ final class EditorInfoCountOperation: Operation {
     
     // MARK: Private Methods
     
-    private func count(in range: Range<String.Index>? = nil) -> EditorCountResult.Count {
+    private func count<S: StringProtocol>(in string: S) -> EditorCountResult.Count {
         
-        let string = range.flatMap { self.string[$0] } ?? self.string[...]
         var count = EditorCountResult.Count()
         
         if self.requiredInfo.contains(.length) {
             count.length = (self.lineEnding.length == 1)
-                ? (string as NSString).length
-                : (string.replacingLineEndings(with: self.lineEnding) as NSString).length
+                ? string.utf16.count
+                : string.replacingLineEndings(with: self.lineEnding).utf16.count
         }
         
         guard !self.isCancelled else { return count }
@@ -179,26 +191,26 @@ final class EditorInfoCountOperation: Operation {
     
     private func locate(location: String.Index) -> EditorCountResult.Cursor {
         
+        let string = self.string[..<location]
         var cursor = EditorCountResult.Cursor()
         
         if self.requiredInfo.contains(.location) {
-            let locString = self.string[..<location]
             cursor.location = self.countsLineEnding
-                ? locString.count + 1
-                : locString.countExceptLineEnding + 1
+                ? string.count + 1
+                : string.countExceptLineEnding + 1
         }
         
         guard !self.isCancelled else { return cursor }
         
         if self.requiredInfo.contains(.line) {
-            cursor.line = self.string.lineNumber(at: location)
+            cursor.line = string.numberOfLines
         }
         
         guard !self.isCancelled else { return cursor }
         
         if self.requiredInfo.contains(.column) {
-            let lineStartIndex = self.string.lineStartIndex(at: location)
-            cursor.column = self.string.distance(from: lineStartIndex, to: location) + 1
+            let lineStartIndex = string.lineStartIndex(at: location)
+            cursor.column = string[lineStartIndex...].count + 1
         }
         
         return cursor

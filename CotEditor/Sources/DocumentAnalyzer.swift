@@ -173,7 +173,7 @@ final class DocumentAnalyzer: NSObject {
         
         // do nothing if only cursor is moved but no need to calculate the cursor location.
         if !self.needsCountWholeText,
-            requiredInfoTypes.isDisjoint(with: [.location, .line, .column]),
+            requiredInfoTypes.isDisjoint(with: .cursors),
             textView.selectedRange.isEmpty,
             self.lastEidorCountResult.selectedCount.isEmpty
             { return }

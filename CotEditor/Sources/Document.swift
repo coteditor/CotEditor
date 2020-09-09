@@ -1015,8 +1015,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// transfer file information to UI
     private func applyContentToWindow() {
         
-        guard let viewController = self.viewController else { return }
-        
         // update status bar and document inspector
         self.analyzer.invalidateFileInfo()
         self.analyzer.invalidateModeInfo()
@@ -1024,6 +1022,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update incompatible characters if pane is visible
         self.incompatibleCharacterScanner.invalidate()
+        
+        guard let viewController = self.viewController else { return }
         
         // update view
         viewController.invalidateStyleInTextStorage()
