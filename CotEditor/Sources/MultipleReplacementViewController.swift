@@ -233,7 +233,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     
     /// validate current setting
-    @objc private func validateObject() {
+    private func validateObject() {
         
         self.hasInvalidSetting = self.definition.replacements.contains {
             do { try $0.validate() } catch { return true }

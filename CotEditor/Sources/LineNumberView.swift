@@ -492,7 +492,7 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// select lines while dragging event
-    @objc private func selectLines(with event: NSEvent) {
+    private func selectLines(with event: NSEvent) {
         
         guard
             let window = self.window,
