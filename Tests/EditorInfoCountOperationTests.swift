@@ -47,8 +47,14 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         operation.start()
         
-        XCTAssert(operation.result.count.isEmpty)
-        XCTAssert(operation.result.selectedCount.isEmpty)
+        XCTAssertEqual(operation.result.count.length, 0)
+        XCTAssertEqual(operation.result.count.characters, 0)
+        XCTAssertEqual(operation.result.count.lines, 0)
+        XCTAssertEqual(operation.result.count.words, 0)
+        XCTAssertEqual(operation.result.selectedCount.length, 0)
+        XCTAssertEqual(operation.result.selectedCount.characters, 0)
+        XCTAssertEqual(operation.result.selectedCount.lines, 0)
+        XCTAssertEqual(operation.result.selectedCount.words, 0)
     }
     
     
