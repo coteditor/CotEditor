@@ -24,18 +24,19 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
-final class IncompatibleCharactersViewController: NSViewController, IncompatibleCharacterScannerDelegate {
+final class IncompatibleCharactersViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var scanner: IncompatibleCharacterScanner? {
-        
-        return self.representedObject as? IncompatibleCharacterScanner
-    }
+    private var document: Document?  { self.representedObject as? Document }
+    private var scanner: IncompatibleCharacterScanner?  { self.document?.incompatibleCharacterScanner }
     
     @objc private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
+    
+    private var scannerObserver: AnyCancellable?
     
     @IBOutlet private var incompatibleCharsController: NSArrayController?
     
@@ -60,6 +61,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         
         super.viewWillAppear()
         
+        self.scanner?.shouldScan = true
         self.scanner?.scan()
     }
     
@@ -69,7 +71,11 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         
         super.viewDidDisappear()
         
-        self.scanner?.document?.textStorage.clearAllMarkup()
+        self.scanner?.shouldScan = false
+        
+        if !self.incompatibleCharacters.isEmpty {
+            self.document?.textStorage.clearAllMarkup()
+        }
     }
     
     
@@ -77,39 +83,21 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     override var representedObject: Any? {
         
         willSet {
-            guard newValue is IncompatibleCharacterScanner else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(IncompatibleCharacterScanner.self)")
+            guard newValue is Document else {
+                assertionFailure("representedObject of \(self.className) must be an instance of \(Document.self)")
                 return
             }
-            self.scanner?.delegate = nil
         }
         
         didSet {
-            self.scanner?.delegate = self
+            self.scanner?.shouldScan = self.isViewShown
             self.scanner?.invalidate()
+            
+            self.scannerObserver = self.scanner?.$incompatibleCharacters
+                .removeDuplicates()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) }
         }
-    }
-    
-    
-    
-    // MARK: Scanner Delegate
-    
-    /// update list constantly only if the table is visible
-    func shouldScanIncompatibleCharacter(_ document: Document) -> Bool {
-        
-        return self.isViewShown
-    }
-    
-    
-    /// incompatible characters list was updated
-    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter]) {
-        
-        self.incompatibleCharacters = incompatibleCharacters
-        
-        let ranges = incompatibleCharacters.map(\.range)
-        
-        document.textStorage.clearAllMarkup()
-        document.textStorage.markup(ranges: ranges, lineEnding: document.lineEnding)
     }
     
     
@@ -123,10 +111,9 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
             tableView.clickedRow > -1,  // invalid click
             let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
             let selectedIncompatible = incompatibles[safe: tableView.clickedRow],
-            let editor = self.scanner?.document else { return }
+            let editor = self.document else { return }
         
-        let range = selectedIncompatible.range
-        editor.selectedRange = range
+        editor.selectedRange = selectedIncompatible.range
         
         // focus result
         // -> Use textView's `selectedRange` since `range` is incompatible with CRLF.
@@ -134,6 +121,24 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
             textView.scrollRangeToVisible(textView.selectedRange)
             textView.showFindIndicator(for: textView.selectedRange)
         }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
+        
+        guard let document = self.document else { return }
+        
+        if !self.incompatibleCharacters.isEmpty {
+            document.textStorage.clearAllMarkup()
+        }
+        
+        self.incompatibleCharacters = incompatibleCharacters
+        
+        document.textStorage.markup(ranges: incompatibleCharacters.map(\.range),
+                                    lineEnding: document.lineEnding)
     }
     
 }
@@ -145,12 +150,14 @@ private extension NSTextStorage {
     /// change background color of pased-in ranges
     func markup(ranges: [NSRange], lineEnding: LineEnding = .lf) {
         
+        guard !ranges.isEmpty else { return }
+        
         guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
         
-        for range in ranges {
-            let viewRange = self.string.convert(range: range, from: lineEnding, to: .lf)
-            
-            for manager in self.layoutManagers {
+        let viewRanges = ranges.map { self.string.convert(range: $0, from: lineEnding, to: .lf) }
+        
+        for manager in self.layoutManagers {
+            for viewRange in viewRanges {
                 manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)
             }
         }

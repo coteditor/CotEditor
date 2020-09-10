@@ -791,7 +791,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update encoding
         self.fileEncoding = fileEncoding
         
-        // update UI
+        // check encoding compatibility
         self.incompatibleCharacterScanner.scan()
     }
     
