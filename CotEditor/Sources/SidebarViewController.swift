@@ -103,7 +103,7 @@ final class SidebarViewController: NSTabViewController {
         didSet {
             guard let document = representedObject as? Document else { return }
             
-            self.documentInspectorTabViewItem?.viewController?.representedObject = document.analyzer
+            self.documentInspectorTabViewItem?.viewController?.representedObject = document
             self.outlineTabViewItem?.viewController?.representedObject = document
             self.incompatibleCharactersTabViewItem?.viewController?.representedObject = document.incompatibleCharacterScanner
         }

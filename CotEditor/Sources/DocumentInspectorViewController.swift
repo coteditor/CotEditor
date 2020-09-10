@@ -23,11 +23,45 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
+
+final class FileInfo: NSObject {
+    
+    @objc dynamic var creationDate: Date?
+    @objc dynamic var modificationDate: Date?
+    @objc dynamic var fileSize: NSNumber?
+    @objc dynamic var url: URL?
+    @objc dynamic var owner: String?
+    @objc dynamic var permission: NSNumber?
+}
+
+
+final class EditorInfo: NSObject {
+    
+    @objc dynamic var lines: String?
+    @objc dynamic var chars: String?
+    @objc dynamic var words: String?
+    @objc dynamic var length: String?    // character length as UTF-16 string
+    @objc dynamic var location: String?  // caret location from the beginning of document
+    @objc dynamic var line: String?      // current line
+    @objc dynamic var column: String?    // caret location from the beginning of line
+    @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+}
+
 
 final class DocumentInspectorViewController: NSViewController {
     
     // MARK: Private Properties
+    
+    private var documentObservers: Set<AnyCancellable> = []
+    private var document: Document?  { self.representedObject as? Document }
+    private var analyzer: DocumentAnalyzer?  { self.document?.analyzer }
+    
+    @objc dynamic private(set) var fileInfo: FileInfo = .init()
+    @objc dynamic private(set) var encoding: String = "–"
+    @objc dynamic private(set) var lineEndings: String = "–"
+    @objc dynamic private(set) var editorInfo: EditorInfo = .init()
     
     @IBOutlet private var dateFormatter: DateFormatter?
     @IBOutlet private var byteCountFormatter: ByteCountFormatter?
@@ -52,10 +86,11 @@ final class DocumentInspectorViewController: NSViewController {
         
         super.viewWillAppear()
         
-        assert(self.analyzer != nil)
+        guard let document = self.document else { return assertionFailure() }
         
-        self.analyzer?.shouldUpdateEditorInfo = true
-        self.analyzer?.invalidateEditorInfo()
+        self.setup(for: document)
+        self.analyzer?.shouldUpdate = true
+        self.analyzer?.invalidate()
     }
     
     
@@ -64,7 +99,8 @@ final class DocumentInspectorViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.analyzer?.shouldUpdateEditorInfo = false
+        self.documentObservers.removeAll()
+        self.analyzer?.shouldUpdate = false
     }
     
     
@@ -72,14 +108,19 @@ final class DocumentInspectorViewController: NSViewController {
     override var representedObject: Any? {
         
         willSet {
-            self.analyzer?.shouldUpdateEditorInfo = false
+            self.analyzer?.shouldUpdate = false
+            self.documentObservers.removeAll()
         }
         
         didSet {
-            assert(representedObject == nil || representedObject is DocumentAnalyzer,
-                   "representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className())")
+            assert(representedObject == nil || representedObject is Document,
+                   "representedObject of \(self.className) must be an instance of \(Document.className())")
             
-            self.analyzer?.shouldUpdateEditorInfo = self.isViewShown
+            self.analyzer?.shouldUpdate = self.isViewShown
+            
+            if self.isViewShown, let document = self.document {
+                self.setup(for: document)
+            }
         }
     }
     
@@ -87,9 +128,50 @@ final class DocumentInspectorViewController: NSViewController {
     
     // MARK: Private Methods
     
-    private var analyzer: DocumentAnalyzer? {
+    /// Update UI and observaion for the given document.
+    private func setup(for document: Document) {
         
-        return self.representedObject as? DocumentAnalyzer
+        document.publisher(for: \.fileURL, options: .initial)
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.url, on: self.fileInfo)
+            .store(in: &self.documentObservers)
+        
+        document.$fileAttributes
+            .receive(on: DispatchQueue.main)
+            .sink { [info = self.fileInfo] (attributes) in
+                info.creationDate = attributes?[.creationDate] as? Date
+                info.modificationDate = attributes?[.modificationDate] as? Date
+                info.fileSize = attributes?[.size] as? NSNumber
+                info.owner = attributes?[.ownerAccountName] as? String
+                info.permission = attributes?[.posixPermissions] as? NSNumber
+            }
+            .store(in: &self.documentObservers)
+        
+        document.$fileEncoding
+            .map(\.localizedName)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.encoding = $0 }
+            .store(in: &self.documentObservers)
+        
+        document.$lineEnding
+            .map(\.name)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.lineEndings = $0 }
+            .store(in: &self.documentObservers)
+        
+        document.analyzer.$result
+            .receive(on: DispatchQueue.main)
+            .sink { [info = self.editorInfo] (result) in
+                info.length = result?.format(\.length)
+                info.chars = result?.format(\.characters)
+                info.lines = result?.format(\.lines)
+                info.words = result?.format(\.words)
+                info.location = result?.format(\.location)
+                info.line = result?.format(\.line)
+                info.column = result?.format(\.column)
+                info.unicode = result?.unicode
+            }
+            .store(in: &self.documentObservers)
     }
     
 }

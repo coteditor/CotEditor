@@ -393,7 +393,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             self.focusedTextView?.hasMarkedText() != true
             else { return }
         
-        self.document?.analyzer.invalidateEditorInfo()
+        self.document?.analyzer.invalidate()
         self.document?.incompatibleCharacterScanner.invalidate()
         self.outlineParseTask.schedule()
         
@@ -413,7 +413,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         let editedCharacters = (notification.object as? NSTextView)?.textStorage?.editedMask.contains(.editedCharacters) == true
         
         // update document information
-        self.document?.analyzer.invalidateEditorInfo(onlySelection: !editedCharacters)
+        self.document?.analyzer.invalidate(onlySelection: !editedCharacters)
     }
     
     

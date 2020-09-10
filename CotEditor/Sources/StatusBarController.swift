@@ -94,7 +94,11 @@ final class StatusBarController: NSViewController {
         ]
         let publishers = editorDefaultKeys.map { UserDefaults.standard.publisher(for: $0) }
         self.defaultsObserver = Publishers.MergeMany(publishers)
-            .sink { [weak self] _ in self?.updateEditorStatus() }
+            .map { _ in UserDefaults.standard.statusBarEditorInfo }
+            .sink { [weak self] in
+                self?.document?.analyzer.statusBarRequirements = $0
+                self?.editorStatus = self?.statusAttributedString(result: self?.document?.analyzer.result, types: $0)
+            }
         
         guard let document = self.document else { return assertionFailure() }
         
@@ -110,7 +114,7 @@ final class StatusBarController: NSViewController {
         self.encodingListObserver = nil
         self.defaultsObserver = nil
         
-        self.document?.analyzer.shouldUpdateStatusEditorInfo = false
+        self.document?.analyzer.statusBarRequirements = []
         
         self.documentObservers.removeAll()
     }
@@ -122,65 +126,61 @@ final class StatusBarController: NSViewController {
     /// Update UI and observaion for the given document.
     private func setup(for document: Document) {
         
-        document.analyzer.shouldUpdateStatusEditorInfo = true
-        document.analyzer.invalidateEditorInfo()
-        
-        self.invalidateEncodingSelection()
-        self.invalidateLineEndingSelection(to: document.lineEnding)
+        document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
+        document.analyzer.invalidate()
         
         self.documentObservers.removeAll()
         
         // observe editor info update
-        document.analyzer.publisher(for: \.info.editor)
+        document.analyzer.$result
             .removeDuplicates()
-            .sink { [weak self] _ in self?.updateEditorStatus() }
+            .map { [weak self] in self?.statusAttributedString(result: $0, types: UserDefaults.standard.statusBarEditorInfo) }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.editorStatus = $0 }
             .store(in: &self.documentObservers)
         
         // observe file size
-        document.analyzer.publisher(for: \.info.file.fileSize)
+        document.$fileAttributes
+            .map { $0?[.size] as? NSNumber }
             .removeDuplicates()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.fileSize = $0 }
             .store(in: &self.documentObservers)
         
         // observe document status change
-        document.didChangeEncoding
-            .receive(on: RunLoop.main)
+        document.$fileEncoding
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.invalidateEncodingSelection() }
             .store(in: &self.documentObservers)
-        document.didChangeLineEnding
-            .receive(on: RunLoop.main)
+        document.$lineEnding
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.invalidateLineEndingSelection(to: $0) }
             .store(in: &self.documentObservers)
     }
     
     
     /// update left side text
-    private func updateEditorStatus() {
+    func statusAttributedString(result: EditorCountResult?, types: EditorInfoTypes) -> NSAttributedString {
         
-        assert(Thread.isMainThread)
-        
-        guard let info = self.document?.analyzer.info.editor else { return }
-        
-        let defaults = UserDefaults.standard
         var status: [NSAttributedString] = []
         
-        if defaults[.showStatusBarLines] {
-            status.append(.formatted(label: "Lines") + .formatted(state: info.lines))
+        if types.contains(.lines) {
+            status.append(.formatted(label: "Lines") + .formatted(state: result?.format(\.lines)))
         }
-        if defaults[.showStatusBarChars] {
-            status.append(.formatted(label: "Characters") + .formatted(state: info.chars))
+        if types.contains(.characters) {
+            status.append(.formatted(label: "Characters") + .formatted(state: result?.format(\.characters)))
         }
-        if defaults[.showStatusBarWords] {
-            status.append(.formatted(label: "Words") + .formatted(state: info.words))
+        if types.contains(.words) {
+            status.append(.formatted(label: "Words") + .formatted(state: result?.format(\.words)))
         }
-        if defaults[.showStatusBarLocation] {
-            status.append(.formatted(label: "Location") + .formatted(state: info.location))
+        if types.contains(.location) {
+            status.append(.formatted(label: "Location") + .formatted(state: result?.format(\.location)))
         }
-        if defaults[.showStatusBarLine] {
-            status.append(.formatted(label: "Line") + .formatted(state: info.line))
+        if types.contains(.line) {
+            status.append(.formatted(label: "Line") + .formatted(state: result?.format(\.line)))
         }
-        if defaults[.showStatusBarColumn] {
-            status.append(.formatted(label: "Column") + .formatted(state: info.column))
+        if types.contains(.column) {
+            status.append(.formatted(label: "Column") + .formatted(state: result?.format(\.column)))
         }
         
         let attrStatus = status.joined(separator: .init(string: "   ")).mutable
@@ -190,7 +190,7 @@ final class StatusBarController: NSViewController {
         paragraphStyle.lineBreakMode = .byTruncatingTail
         attrStatus.addAttribute(.paragraphStyle, value: paragraphStyle, range: attrStatus.range)
         
-        self.editorStatus = attrStatus
+        return attrStatus
     }
     
     
@@ -225,6 +225,25 @@ final class StatusBarController: NSViewController {
 
 
 // MARK: -
+
+private extension UserDefaults {
+    
+    /// info types needed to be calculated
+    var statusBarEditorInfo: EditorInfoTypes {
+        
+        var types = EditorInfoTypes()
+        if self[.showStatusBarChars]    { types.formUnion(.characters) }
+        if self[.showStatusBarLines]    { types.formUnion(.lines) }
+        if self[.showStatusBarWords]    { types.formUnion(.words) }
+        if self[.showStatusBarLocation] { types.formUnion(.location) }
+        if self[.showStatusBarLine]     { types.formUnion(.line) }
+        if self[.showStatusBarColumn]   { types.formUnion(.column) }
+        
+        return types
+    }
+    
+}
+
 
 private extension NSAttributedString {
     

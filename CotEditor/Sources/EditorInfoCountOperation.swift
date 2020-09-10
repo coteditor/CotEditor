@@ -53,8 +53,6 @@ struct EditorCountResult: Equatable {
         var characters = 0
         var lines = 0
         var words = 0
-        
-        var isEmpty: Bool { self.length == 0 && self.characters == 0 && self.lines == 0 && self.words == 0 }
     }
     
     struct Cursor: Equatable {
@@ -69,6 +67,29 @@ struct EditorCountResult: Equatable {
     var selectedCount = Count()
     var cursor = Cursor()
     var unicode: String?  // Unicode of selected single character (or surrogate-pair)
+    
+    
+    
+    func format(_ keyPath: KeyPath<Count, Int>) -> String {
+        
+        let count = self.count[keyPath: keyPath]
+        let selectedCount = self.selectedCount[keyPath: keyPath]
+        
+        if selectedCount > 0 {
+            return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
+        }
+        
+        return String.localizedStringWithFormat("%li", count)
+    }
+    
+    
+    func format(_ keyPath: KeyPath<Cursor, Int>) -> String {
+        
+        let count = self.cursor[keyPath: keyPath]
+        
+        return String.localizedStringWithFormat("%li", count)
+    }
+    
 }
 
 

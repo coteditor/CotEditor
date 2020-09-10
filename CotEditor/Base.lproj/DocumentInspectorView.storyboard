@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NoI-km-aN6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NoI-km-aN6">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -70,7 +70,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.file.creationDate" id="lMY-LZ-AZT">
+                                                <binding destination="frz-9g-1DO" name="value" keyPath="selection.creationDate" id="0n8-OL-ojv">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
                                                     </dictionary>
@@ -86,7 +86,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.file.modificationDate" id="ABh-dN-ysL">
+                                                <binding destination="frz-9g-1DO" name="value" keyPath="selection.modificationDate" id="r3W-JM-h9l">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
                                                     </dictionary>
@@ -118,7 +118,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.file.owner" id="pSL-FP-dTP">
+                                                <binding destination="frz-9g-1DO" name="value" keyPath="selection.owner" id="GeV-8X-P1X">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
                                                     </dictionary>
@@ -141,7 +141,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.file.fileSize" id="ybB-Wv-Owq">
+                                                <binding destination="frz-9g-1DO" name="value" keyPath="selection.fileSize" id="fEO-TD-8lt">
                                                     <dictionary key="options">
                                                         <string key="NSNoSelectionPlaceholder">-</string>
                                                         <string key="NSNotApplicablePlaceholder">-</string>
@@ -167,7 +167,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.file.permission" id="99z-sW-I79">
+                                                <binding destination="frz-9g-1DO" name="value" keyPath="selection.permission" id="igM-5I-vUh">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
                                                     </dictionary>
@@ -196,14 +196,14 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ms-66-Fiu">
-                                            <rect key="frame" x="85" y="258" width="93" height="14"/>
+                                            <rect key="frame" x="85" y="261" width="93" height="14"/>
                                             <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Unicode (UTF-8)" usesSingleLineMode="YES" id="ebe-II-qO1">
                                                 <font key="font" metaFont="message" size="11"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.mode.encoding" id="3J6-4c-AbT"/>
+                                                <binding destination="NoI-km-aN6" name="value" keyPath="encoding" id="jjk-QT-KDQ"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7w-Hl-QZ3">
@@ -222,7 +222,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.mode.lineEndings" id="erz-09-X2R"/>
+                                                <binding destination="NoI-km-aN6" name="value" keyPath="lineEndings" id="GlT-4X-OMA"/>
                                             </connections>
                                         </textField>
                                         <box autoresizesSubviews="NO" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TeY-8i-bFA" userLabel="Horizontal Line">
@@ -265,7 +265,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.lines" id="JrV-AW-lX7"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.lines" id="aaV-tu-pJP"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zO6-zt-3hX">
@@ -284,7 +284,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.chars" id="CAh-5w-AsE"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.chars" id="xBc-3c-nqL"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lx4-8L-owE">
@@ -303,7 +303,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.words" id="Mdn-Z1-X87"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.words" id="KQe-UB-12r"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="som-BJ-EXl">
@@ -322,7 +322,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.length" id="3SF-pU-Epj"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.length" id="fVx-gX-01E"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9a-lK-7bb">
@@ -341,7 +341,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.location" id="bNS-p8-fBi"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.location" id="bpr-Z9-pcF"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-BC-fJD">
@@ -360,7 +360,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.line" id="psv-aH-RyN"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.line" id="5og-2S-7ZT"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-4P-eSh">
@@ -379,7 +379,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.unicode" id="EAF-Bu-KjM">
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.unicode" id="Gog-5a-Rts">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">Not selected</string>
                                                     </dictionary>
@@ -402,7 +402,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.editor.column" id="U3d-Fe-HQS"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.column" id="4s3-mg-crD"/>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-i2-FuC">
@@ -424,7 +424,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.file.filePath.path" id="qXw-ss-5PM">
+                                                <binding destination="frz-9g-1DO" name="value" keyPath="selection.url.path" id="IXM-Of-uQb">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
                                                     </dictionary>
@@ -577,7 +577,7 @@
                             <rect key="frame" x="-100" y="-100" width="194" height="11"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="Z2R-Q4-fwc">
+                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="Z2R-Q4-fwc">
                             <rect key="frame" x="206" y="0.0" width="14" height="453"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -589,9 +589,14 @@
                     </connections>
                 </viewController>
                 <customObject id="ZgV-No-dDZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="CotEditor.DocumentInfo" editable="NO" automaticallyPreparesContent="YES" id="KUC-8F-iAD" userLabel="Document Info Controller">
+                <objectController objectClassName="CotEditor.FileInfo" id="frz-9g-1DO" userLabel="File Info Controller">
                     <connections>
-                        <binding destination="NoI-km-aN6" name="contentObject" keyPath="representedObject.info" id="MCp-zc-kpC"/>
+                        <binding destination="NoI-km-aN6" name="contentObject" keyPath="fileInfo" id="cGF-zC-FHU"/>
+                    </connections>
+                </objectController>
+                <objectController objectClassName="CotEditor.EditorInfo" editable="NO" automaticallyPreparesContent="YES" id="KUC-8F-iAD" userLabel="Editor Info Controller">
+                    <connections>
+                        <binding destination="NoI-km-aN6" name="contentObject" keyPath="editorInfo" id="892-iH-YsH"/>
                     </connections>
                 </objectController>
                 <dateFormatter dateStyle="medium" timeStyle="short" id="X5c-wy-wfb"/>

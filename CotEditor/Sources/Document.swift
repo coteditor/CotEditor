@@ -51,16 +51,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     let textStorage = NSTextStorage()
     let syntaxParser: SyntaxParser
-    private(set) var fileEncoding: FileEncoding
-    private(set) var lineEnding: LineEnding
-    private(set) var fileAttributes: [FileAttributeKey: Any]?
+    @Published private(set) var fileEncoding: FileEncoding
+    @Published private(set) var lineEnding: LineEnding
+    @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
     
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
-    let didChangeEncoding = PassthroughSubject<FileEncoding, Never>()
-    let didChangeLineEnding = PassthroughSubject<LineEnding, Never>()
     let didChangeSyntaxStyle = PassthroughSubject<String, Never>()
     
     
@@ -205,19 +203,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// URL of document file
-    override var fileURL: URL? {
-        
-        didSet {
-            guard fileURL != oldValue else { return }
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.analyzer.invalidateFileInfo()
-            }
-        }
-    }
-    
-    
     /// return preferred file extension corresponding to the current syntax style
     override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
@@ -318,10 +303,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.fileEncoding = file.fileEncoding
         self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
         
-        // notify
-        self.didChangeEncoding.send(self.fileEncoding)
-        self.didChangeLineEnding.send(self.lineEnding)
-        
         // standardize line endings to LF
         // -> Line endings replacement by other text modifications is processed in
         //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
@@ -420,7 +401,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             
             if !saveOperation.isAutoSaving {
-                self.analyzer.invalidateFileInfo()
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
             }
         }
@@ -811,12 +791,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update encoding
         self.fileEncoding = fileEncoding
         
-        // notify
-        self.didChangeEncoding.send(fileEncoding)
-        
         // update UI
         self.incompatibleCharacterScanner.scan()
-        self.analyzer.invalidateModeInfo()
     }
     
     
@@ -838,12 +814,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update line ending
         self.lineEnding = lineEnding
         
-        // notify
-        self.didChangeLineEnding.send(lineEnding)
-        
         // update UI
-        self.analyzer.invalidateModeInfo()
-        self.analyzer.invalidateEditorInfo()
+        self.analyzer.invalidate()
     }
     
     
@@ -914,7 +886,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let completionHandler = { [weak self] (didChange: Bool) in
                 if !didChange, let self = self {
                     // reset status bar selection for in case if the operation was invoked from the popup button in the bar
-                    self.didChangeEncoding.send(self.fileEncoding)
+                    let originalEncoding = self.fileEncoding
+                    self.fileEncoding = originalEncoding
                 }
                 activityCompletionHandler()
             }
@@ -1016,9 +989,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private func applyContentToWindow() {
         
         // update status bar and document inspector
-        self.analyzer.invalidateFileInfo()
-        self.analyzer.invalidateModeInfo()
-        self.analyzer.invalidateEditorInfo()
+        self.analyzer.invalidate()
         
         // update incompatible characters if pane is visible
         self.incompatibleCharacterScanner.invalidate()
