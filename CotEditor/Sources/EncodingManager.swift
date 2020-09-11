@@ -36,7 +36,7 @@ import Cocoa
 
 // MARK: -
 
-final class EncodingManager: NSObject {
+final class EncodingManager {
     
     // MARK: Public Properties
     
@@ -53,9 +53,7 @@ final class EncodingManager: NSObject {
     // MARK: -
     // MARK: Lifecycle
     
-    override private init() {
-        
-        super.init()
+    private init() {
         
         // -> UserDefaults.standard[.encodingList] can be empty if the user's list contains negative values.
         //    It seems to be possible if the setting was made a long time ago. (2018-01 CotEditor 3.3.0)
