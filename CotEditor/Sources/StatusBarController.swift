@@ -34,7 +34,7 @@ final class StatusBarController: NSViewController {
         
         didSet {
             if let document = document, self.isViewShown {
-                self.setup(for: document)
+                self.subscribe(document)
             }
         }
     }
@@ -102,7 +102,7 @@ final class StatusBarController: NSViewController {
         
         guard let document = self.document else { return assertionFailure() }
         
-        self.setup(for: document)
+        self.subscribe(document)
     }
     
     
@@ -115,7 +115,6 @@ final class StatusBarController: NSViewController {
         self.defaultsObserver = nil
         
         self.document?.analyzer.statusBarRequirements = []
-        
         self.documentObservers.removeAll()
     }
     
@@ -123,8 +122,10 @@ final class StatusBarController: NSViewController {
     
     // MARK: Private Methods
     
-    /// Update UI and observaion for the given document.
-    private func setup(for document: Document) {
+    /// Synchronize UI with related document values.
+    ///
+    /// - Parameter document: The doucment to observe.
+    private func subscribe(_ document: Document) {
         
         document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo
         document.analyzer.invalidate()

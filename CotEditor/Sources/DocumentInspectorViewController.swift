@@ -88,7 +88,7 @@ final class DocumentInspectorViewController: NSViewController {
         
         guard let document = self.document else { return assertionFailure() }
         
-        self.setup(for: document)
+        self.subscribe(document)
         self.analyzer?.shouldUpdate = true
         self.analyzer?.invalidate()
     }
@@ -119,7 +119,7 @@ final class DocumentInspectorViewController: NSViewController {
             self.analyzer?.shouldUpdate = self.isViewShown
             
             if self.isViewShown, let document = self.document {
-                self.setup(for: document)
+                self.subscribe(document)
             }
         }
     }
@@ -128,8 +128,10 @@ final class DocumentInspectorViewController: NSViewController {
     
     // MARK: Private Methods
     
-    /// Update UI and observaion for the given document.
-    private func setup(for document: Document) {
+    /// Synchronize UI with related document values.
+    ///
+    /// - Parameter document: The doucment to observe.
+    private func subscribe(_ document: Document) {
         
         document.publisher(for: \.fileURL, options: .initial)
             .receive(on: DispatchQueue.main)
