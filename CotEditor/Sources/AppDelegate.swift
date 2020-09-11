@@ -303,7 +303,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         #if !SPARKLE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
-            html.replaceSubrange(html.lineRange(for: range), with: "")
+            html.removeSubrange(html.lineRange(for: range))
         }
         #endif
         
