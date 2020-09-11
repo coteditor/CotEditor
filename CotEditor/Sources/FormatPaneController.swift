@@ -80,8 +80,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.encodingChangeObserver = EncodingManager.shared.didUpdateSettingList
             .sink { [weak self] in self?.setupEncodingMenu() }
         
-        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.ereaseToVoid(),
-                                                          SyntaxManager.shared.didUpdateSetting.ereaseToVoid())
+        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.eraseToVoid(),
+                                                          SyntaxManager.shared.didUpdateSetting.eraseToVoid())
             .debounce(for: 0, scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
     }

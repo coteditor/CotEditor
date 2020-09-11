@@ -28,7 +28,7 @@ import Combine
 extension Publisher {
     
     /// Wraps this publisher with a type eraser.
-    func ereaseToVoid() -> AnyPublisher<Void, Never> where Failure == Never {
+    func eraseToVoid() -> AnyPublisher<Void, Never> where Failure == Never {
         
         return self.map { _ in () }.eraseToAnyPublisher()
     }

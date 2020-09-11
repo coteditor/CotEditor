@@ -233,8 +233,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     }
                 },
             
-            Publishers.Merge(defaults.publisher(for: .fontName).ereaseToVoid(),
-                             defaults.publisher(for: .fontSize).ereaseToVoid())
+            Publishers.Merge(defaults.publisher(for: .fontName).eraseToVoid(),
+                             defaults.publisher(for: .fontSize).eraseToVoid())
                 .sink { [unowned self] in self.resetFont(nil) },
             defaults.publisher(for: .shouldAntialias)
                 .sink { [unowned self] in self.usesAntialias = $0 },
