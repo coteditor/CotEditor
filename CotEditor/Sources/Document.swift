@@ -921,7 +921,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                             completionHandler(true)
                         } catch {
                             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                    }
+                        }
                     
                     case .alertSecondButtonReturn:  // = Reinterpret
                         // ask user if document is edited
@@ -951,8 +951,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         } catch {
                             NSSound.beep()
                             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                    }
-                    
+                        }
+                        
                     case .alertThirdButtonReturn:  // = Cancel
                         completionHandler(false)
                     
@@ -1207,8 +1207,8 @@ private struct EncodingError: LocalizedError, RecoverableError {
                         return false
                     default:
                         preconditionFailure()
-            }
-            
+                }
+                
             case .lossyConversion:
                 switch recoveryOptionIndex {
                     case 0:  // == Change Encoding
@@ -1219,7 +1219,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                         return false
                     default:
                         preconditionFailure()
-            }
+                }
         }
     }
     

@@ -146,7 +146,7 @@ final class TextFind {
                     self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: options)
                 } catch {
                     throw TextFind.Error.regularExpression(reason: error.localizedDescription)
-            }
+                }
         }
         
         self.mode = mode

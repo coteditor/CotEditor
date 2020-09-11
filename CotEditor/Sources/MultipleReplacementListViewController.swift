@@ -125,12 +125,12 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
                     menuItem.title = String(format: "Export “%@”…".localized, name)
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(revealSettingInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
-            }
-            
+                }
+                
             case nil:
                 return false
             

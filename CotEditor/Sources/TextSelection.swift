@@ -123,7 +123,7 @@ final class TextSelection: NSObject {
                         return string
                     default: return nil
                 }
-                }() else { return }
+            }() else { return }
             
             self.document?.insert(string: string)
         }

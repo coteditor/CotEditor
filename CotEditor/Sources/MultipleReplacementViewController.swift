@@ -503,8 +503,8 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
                                 replacement.description = value.isEmpty ? nil : value
                             default:
                                 preconditionFailure()
-                    }
-                    
+                        }
+                        
                     case let checkbox as NSButton:
                         let value = (checkbox.state == .on)
                         switch identifier {
@@ -516,8 +516,8 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
                                 replacement.usesRegularExpression = value
                             default:
                                 preconditionFailure()
-                    }
-                    
+                        }
+                        
                     default:
                         preconditionFailure()
                 }

@@ -88,7 +88,7 @@ struct DocumentFile {
                     content = string
                 } else {
                     content = ""
-            }
+                }
         }
         
         // set properties

@@ -97,34 +97,34 @@ enum RegularExpressionSyntaxType {
                             escapeIgnorer + "\\\\" + "x\\{[0-9a-fA-F]{1,6}\\}",  // \x{hhhh} (h: hex)
                             escapeIgnorer + "\\\\" + "x[0-9a-fA-F]{2}",  // \xhh (h: hex)
                             escapeIgnorer + "\\\\" + "0[0-7]{1,3}",  // \0ooo (o: octal)
-                    ]
+                        ]
                     case .backReference:
                         return [
                             escapeIgnorer + "\\$[0-9]",  // $0
                             escapeIgnorer + "\\\\[1-9]",  // \1
-                    ]
+                        ]
                     case .symbol:
                         return [
                             escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?)",  // (?...
                             escapeIgnorer + "[()|]",  // () |
                             escapeIgnorer + "(\\[\\^?|\\])",  // [^ ]
                             escapeIgnorer + "\\\\[QE]",  // \Q ... \E
-                    ]
+                        ]
                     case .quantifier:
                         // -> `?` is also used for .symbol.
                         return [
                             escapeIgnorer + "[*+?]",  // * + ?
                             escapeIgnorer + "\\{[0-9]+(,[0-9]*)?\\}",  // {n,m}
-                    ]
+                        ]
                     case .anchor:
                         // -> `^` is also used for [^abc].
                         // -> `$` is also used for .backReference.
                         return [
                             escapeIgnorer + "[$^]",  // ^ $
                             escapeIgnorer + "\\\\[AbGZz]",  // \A, \b, ...
-                    ]
+                        ]
             }
-            
+                
             case .replacement(let unescapes):
                 switch self {
                     case .character where unescapes:
@@ -133,7 +133,7 @@ enum RegularExpressionSyntaxType {
                         return [escapeIgnorer + "\\$[0-9]"]
                     default:
                         return []
-            }
+                }
         }
     }
     
