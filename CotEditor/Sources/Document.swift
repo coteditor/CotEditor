@@ -286,8 +286,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
             self.fileAttributes = file.attributes
-            let permissions = FilePermissions(mask: (file.attributes[.posixPermissions] as? UInt16) ?? 0)
-            self.isExecutable = permissions.user.contains(.execute)
+            self.isExecutable = file.permissions.user.contains(.execute)
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
