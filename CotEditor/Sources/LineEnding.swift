@@ -112,7 +112,7 @@ extension StringProtocol where Self.Index == String.Index {
         
         // workarond for a bug since Swift 5 that removes BOM at the beginning (2019-05 Swift 5.1).
         // cf. https://bugs.swift.org/browse/SR-10896
-        guard !self.starts(with: "\u{FEFF}") || self.compareCount(with: 16) == .greater else {
+        guard self.first != "\u{FEFF}" || self.compareCount(with: 16) == .greater else {
             let startIndex = self.index(after: self.startIndex)
             return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
         }
@@ -144,7 +144,7 @@ extension StringProtocol where Self.Index == String.Index {
         guard delta != 0 else { return range }
         
         let string = self.replacingLineEndings(with: currentLineEnding)
-        let regex = try! NSRegularExpression(pattern: LineEnding.regexPattern)
+        let regex = try! NSRegularExpression(pattern: currentLineEnding.string)
         let locationRange = NSRange(location: 0, length: range.location)
         
         let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
