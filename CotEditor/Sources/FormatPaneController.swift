@@ -74,13 +74,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewWillAppear()
         
-        self.setupEncodingMenu()
-        self.setupSyntaxStyleMenus()
+        self.encodingChangeObserver = EncodingManager.shared.$encodings
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.setupEncodingMenu() }
         
-        self.encodingChangeObserver = EncodingManager.shared.didUpdateSettingList
-            .sink { [weak self] in self?.setupEncodingMenu() }
-        
-        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.eraseToVoid(),
+        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
                                                           SyntaxManager.shared.didUpdateSetting.eraseToVoid())
             .debounce(for: 0, scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }

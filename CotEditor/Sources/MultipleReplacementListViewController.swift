@@ -51,16 +51,16 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         // register droppable types
         self.tableView?.registerForDraggedTypes([.fileURL])
         
-        self.settingNames = ReplacementManager.shared.settingNames
-        
         // create blank if empty
-        if self.settingNames.isEmpty {
+        if ReplacementManager.shared.settingNames.isEmpty {
             do {
                 try ReplacementManager.shared.createUntitledSetting()
             } catch {
                 NSAlert(error: error).beginSheetModal(for: self.view.window!)
             }
         }
+        
+        self.settingNames = ReplacementManager.shared.settingNames
         
         // select an item in list
         let row: Int = {
@@ -74,8 +74,9 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change
-        self.listUpdateObserver = ReplacementManager.shared.didUpdateSettingList
-            .sink { [weak self] _ in self?.setupList() }
+        self.listUpdateObserver = ReplacementManager.shared.$settingNames
+            .receive(on: RunLoop.current)
+            .sink { [weak self] in self?.setupList(names: $0) }
     }
     
     
@@ -324,11 +325,11 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     
     /// update setting list
-    private func setupList() {
+    private func setupList(names: [String]) {
         
         let settingName = self.selectedSettingName
         
-        self.settingNames = ReplacementManager.shared.settingNames
+        self.settingNames = names
         
         self.tableView?.reloadData()
         

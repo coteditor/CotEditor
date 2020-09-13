@@ -38,14 +38,13 @@ final class ReplacementManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
-    let didUpdateSettingList: PassthroughSubject<[String], Never> = .init()
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Replacements"
     let filePathExtensions: [String] = DocumentType.replacement.extensions
     let settingFileType: SettingFileType = .replacement
     
-    var settingNames: [String] = []
+    @Published var settingNames: [String] = []
     let bundledSettingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     

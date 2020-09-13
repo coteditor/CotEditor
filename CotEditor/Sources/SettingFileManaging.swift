@@ -73,8 +73,6 @@ protocol SettingFileManaging: SettingManaging {
     
     associatedtype Setting
     
-    /// Publishes when the line-up of setting files did update.
-    var didUpdateSettingList: PassthroughSubject<[String], Never> { get }
     
     /// Publishes when a setting file is updated with new/previous setting names.
     var didUpdateSetting: PassthroughSubject<SettingChange, Never> { get }
@@ -391,24 +389,14 @@ extension SettingFileManaging {
         guard settingNames != self.settingNames else { return }
         
         self.settingNames = settingNames
-        
-        self.didUpdateSettingList.send(self.settingNames)
     }
     
     
     /// Reload internal cache data from the user domain.
     func reloadCache() {
         
-        DispatchQueue.global(qos: .utility).async { [weak self, previousSettingNames = self.settingNames] in
-            guard let self = self else { return assertionFailure() }
-            
-            self.checkUserSettings()
-            
-            guard self.settingNames != previousSettingNames else { return }
-            
-            DispatchQueue.main.sync {
-                self.didUpdateSettingList.send(self.settingNames)
-            }
+        DispatchQueue.global(qos: .utility).async { [weak self] in
+            self?.checkUserSettings()
         }
     }
     

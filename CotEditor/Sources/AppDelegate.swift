@@ -112,18 +112,40 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
         self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
         
-        // build menus
-        self.buildEncodingMenu()
-        self.buildSyntaxMenu()
-        self.buildThemeMenu()
-        ScriptManager.shared.buildScriptMenu()
+        // sync menus with setting list updates
+        EncodingManager.shared.$encodings
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let menu = self?.encodingsMenu else { return }
+                EncodingManager.shared.updateChangeEncodingMenu(menu)
+            }
+            .store(in: &self.menuUpdateObservers)
         
-        // observe setting list updates
-        self.menuUpdateObservers = [
-            EncodingManager.shared.didUpdateSettingList.sink { [weak self] in self?.buildEncodingMenu() },
-            SyntaxManager.shared.didUpdateSettingList.sink { [weak self] _ in self?.buildSyntaxMenu() },
-            ThemeManager.shared.didUpdateSettingList.sink { [weak self] _ in self?.buildThemeMenu() },
-        ]
+        SyntaxManager.shared.$settingNames
+            .map { $0.map { NSMenuItem(title: $0, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "") } }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (items) in
+                guard let menu = self?.syntaxStylesMenu else { return }
+                
+                let recolorItem = menu.items.first { $0.action == #selector(SyntaxHolder.recolorAll) }
+                
+                menu.removeAllItems()
+                menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
+                menu.addItem(.separator())
+                menu.items += items
+                menu.addItem(.separator())
+                menu.addItem(recolorItem!)
+            }
+            .store(in: &self.menuUpdateObservers)
+        
+        ThemeManager.shared.$settingNames
+            .map { $0.map { NSMenuItem(title: $0, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "") } }
+            .receive(on: RunLoop.main)
+            .assign(to: \.items, on: self.themesMenu!)
+            .store(in: &self.menuUpdateObservers)
+        
+        // build menus
+        ScriptManager.shared.buildScriptMenu()
     }
     
     
@@ -390,45 +412,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// build encoding menu in the main menu
-    private func buildEncodingMenu() {
-        
-        let menu = self.encodingsMenu!
-        
-        EncodingManager.shared.updateChangeEncodingMenu(menu)
-    }
-    
-    
-    /// build syntax style menu in the main menu
-    private func buildSyntaxMenu() {
-        
-        let menu = self.syntaxStylesMenu!
-        
-        let recolorItem = menu.items.first { $0.action == #selector(SyntaxHolder.recolorAll) }
-        
-        menu.removeAllItems()
-        menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
-        menu.addItem(.separator())
-        menu.items += SyntaxManager.shared.settingNames
-            .map { NSMenuItem(title: $0, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "") }
-        menu.addItem(.separator())
-        menu.addItem(recolorItem!)
-    }
-    
-    
-    /// build theme menu in the main menu
-    private func buildThemeMenu() {
-        
-        let menu = self.themesMenu!
-        
-        menu.items = ThemeManager.shared.settingNames
-            .map { NSMenuItem(title: $0, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "") }
     }
     
 }

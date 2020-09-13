@@ -61,14 +61,13 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
-    let didUpdateSettingList: PassthroughSubject<[String], Never> = .init()
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Syntaxes"
     let filePathExtensions: [String] = ["yaml", "yml"]
     let settingFileType: SettingFileType = .syntaxStyle
     
-    var settingNames: [SettingName] = []
+    @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
     @Atomic var cachedSettings: [SettingName: Setting] = [:]
     

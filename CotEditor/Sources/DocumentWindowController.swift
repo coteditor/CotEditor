@@ -70,7 +70,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             .assign(to: \.appearance, on: self.window!)
         
         //  observe for syntax style line-up change
-        self.styleListObserver = Publishers.Merge(SyntaxManager.shared.didUpdateSettingList.eraseToVoid(),
+        self.styleListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
                                                   UserDefaults.standard.publisher(for: .recentStyleNames).eraseToVoid())
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.buildSyntaxPopupButton() }

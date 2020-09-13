@@ -79,8 +79,8 @@ final class StatusBarController: NSViewController {
         super.viewWillAppear()
         
         // observe popup menu line-up change
-        self.buildEncodingPopupButton()
-        self.encodingListObserver = EncodingManager.shared.didUpdateSettingList
+        self.encodingListObserver = EncodingManager.shared.$encodings
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in self?.buildEncodingPopupButton() }
         
         // observe change in defaults

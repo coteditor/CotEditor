@@ -48,14 +48,13 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
-    let didUpdateSettingList: PassthroughSubject<[String], Never> = .init()
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Themes"
     let filePathExtensions: [String] = DocumentType.theme.extensions
     let settingFileType: SettingFileType = .theme
     
-    var settingNames: [String] = []
+    @Published var settingNames: [String] = []
     private(set) var bundledSettingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     

@@ -65,10 +65,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // register droppable types
         self.themeTableView?.registerForDraggedTypes([.URL])
         
-        self.themeNames = ThemeManager.shared.settingNames
-        
         // set initial value as field's placeholder
         self.lineHeightField?.bindNullPlaceholderToUserDefaults()
+        
+        self.themeNames = ThemeManager.shared.settingNames
     }
     
     
@@ -78,9 +78,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewWillAppear()
         
         self.setupFontFamilyNameAndSize()
-        
-        self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
-        self.updateThemeSelection()
         
         // select one of cursor type radio buttons
         switch UserDefaults.standard[.cursorType] {
@@ -102,14 +99,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 self.darkAppearanceButton?.state = .on
         }
         
-        let themeName = ThemeManager.shared.userDefaultSettingName
-        let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
-        
-        // observe theme list change
+        // sync theme list change
         self.themeManagerObservers.removeAll()
-        ThemeManager.shared.didUpdateSettingList
-            .sink { [weak self] _ in self?.setupThemeList() }
+        ThemeManager.shared.$settingNames
+            .receive(on: RunLoop.current)
+            .sink { [weak self] in self?.setupThemeList(names: $0) }
             .store(in: &self.themeManagerObservers)
         ThemeManager.shared.didUpdateSetting
             .sink { [weak self] _ in
@@ -644,11 +638,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// update theme list
-    private func setupThemeList() {
+    private func setupThemeList(names: [String]) {
         
         let themeName = ThemeManager.shared.userDefaultSettingName
         
-        self.themeNames = ThemeManager.shared.settingNames
+        self.themeNames = names
         self.themeTableView?.reloadData()
         
         let row = self.themeNames.firstIndex(of: themeName) ?? 0

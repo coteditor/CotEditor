@@ -42,7 +42,7 @@ final class EncodingManager {
     
     static let shared = EncodingManager()
     
-    let didUpdateSettingList: PassthroughSubject<Void, Never> = .init()
+    @Published private(set) var encodings: [CFStringEncoding] = []
     
     
     // MARK: Private Properties
@@ -61,8 +61,8 @@ final class EncodingManager {
             self.sanitizeEncodingListSetting()
         }
         
-        self.encodingListObserver = UserDefaults.standard.publisher(for: .encodingList)
-            .sink { [weak self] _ in self?.didUpdateSettingList.send() }
+        self.encodingListObserver = UserDefaults.standard.publisher(for: .encodingList, initial: true)
+            .sink { [weak self] in self?.encodings = $0 }
     }
     
     
