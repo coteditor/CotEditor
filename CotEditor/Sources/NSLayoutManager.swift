@@ -244,7 +244,7 @@ extension NSLayoutManager {
     private static let guidelineColor = NSColor(hue: 0.5, saturation: 0.75, brightness: 0.5, alpha: 1)
     
     
-    /// Draw guildelines of line fragement and baseline for debugging.
+    /// Draw guildelines of line fragment and baseline for debugging.
     ///
     /// Invoke this method in `drawBackground(forGlyphRange:at:)` to check the text layout for debugging.
     ///
