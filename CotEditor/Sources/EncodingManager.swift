@@ -42,7 +42,7 @@ final class EncodingManager {
     
     static let shared = EncodingManager()
     
-    @Published private(set) var encodings: [CFStringEncoding] = []
+    @Published private(set) var encodings: [String.Encoding?] = []
     
     
     // MARK: Private Properties
@@ -62,20 +62,13 @@ final class EncodingManager {
         }
         
         self.encodingListObserver = UserDefaults.standard.publisher(for: .encodingList, initial: true)
+            .map { $0.map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil } }
             .sink { [weak self] in self?.encodings = $0 }
     }
     
     
     
     // MARK: Public Methods
-    
-    /// return user's encoding priority list
-    var defaultEncodings: [String.Encoding?] {
-        
-        return UserDefaults.standard[.encodingList]
-            .map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil }
-    }
-    
     
     /// returns corresponding NSStringEncoding from a encoding name
     func encoding(name encodingName: String) -> String.Encoding? {
@@ -90,7 +83,7 @@ final class EncodingManager {
     /// return copied encoding menu items
     func createEncodingMenuItems() -> [NSMenuItem] {
         
-        return self.defaultEncodings.map { encoding in
+        return self.encodings.map { encoding in
             guard let encoding = encoding else {
                 return .separator()
             }
