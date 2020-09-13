@@ -229,6 +229,31 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testComposedCharacterSequence() {
+        
+        let blackDog = "🐕‍⬛️" as NSString  // 5
+        XCTAssertEqual(blackDog.boundaryOfComposedCharacterSequence(2, offsetBy: -1), 0)
+        XCTAssertEqual(blackDog.boundaryOfComposedCharacterSequence(1, offsetBy: 1), blackDog.length)
+        
+        let string = "🐕🏴‍☠️🇯🇵🧑‍💻" as NSString  // 2 5 4 5
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: -3), 0)
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: -2), 0)
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: -1), "🐕".utf16.count)
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 0), "🐕🏴‍☠️".utf16.count)
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 1), "🐕🏴‍☠️🇯🇵".utf16.count)
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 2), "🐕🏴‍☠️🇯🇵🧑‍💻".utf16.count)
+        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 3), "🐕🏴‍☠️🇯🇵🧑‍💻".utf16.count)
+        
+        let abc = "abc" as NSString
+        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: -2), 0)
+        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: -1), 0)
+        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 0), 1)
+        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 1), 2)
+        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 2), 3)
+        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 3), 3)
+    }
+    
+    
     func testUnicodeNormalization() {
         
         XCTAssertEqual("É \t 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCasefold, "é \t 神 リットル abc")
