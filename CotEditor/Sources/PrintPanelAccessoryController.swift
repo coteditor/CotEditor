@@ -80,15 +80,14 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             let defaults = UserDefaults.standard
             
             self.theme = {
-                if let mode = PrintColorMode(rawValue: defaults[.printColorIndex]) {
-                    switch mode {
-                        case .blackWhite:
-                            return ThemeName.blackAndWhite
-                        case .sameAsDocument:
-                            return ThemeManager.shared.userDefaultSettingName
-                    }
+                switch PrintColorMode(rawValue: defaults[.printColorIndex]) {
+                    case .blackAndWhite:
+                        return ThemeName.blackAndWhite
+                    case .sameAsDocument:
+                        return ThemeManager.shared.userDefaultSettingName
+                    default:
+                        return defaults[.printTheme] ?? ThemeName.blackAndWhite
                 }
-                return defaults[.printTheme] ?? ThemeName.blackAndWhite
             }()
             self.lineNumberMode = defaults[.printLineNumIndex]
             self.invisibleCharsMode = defaults[.printInvisibleCharIndex]

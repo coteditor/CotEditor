@@ -134,7 +134,7 @@ struct DefaultSettings {
         .setPrintFont: false,
         .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
         .printFontSize: NSFont.systemFontSize,
-        .printColorIndex: PrintColorMode.blackWhite.rawValue,
+        .printColorIndex: PrintColorMode.blackAndWhite.rawValue,
         .printLineNumIndex: PrintVisibilityMode.no.rawValue,
         .printInvisibleCharIndex: PrintVisibilityMode.no.rawValue,
         .printHeader: true,
