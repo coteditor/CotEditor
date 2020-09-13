@@ -97,7 +97,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
-    private var isSmartIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
     
@@ -129,7 +128,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.balancesBrackets = defaults[.balancesBrackets]
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
-        self.isSmartIndentEnabled = defaults[.enableSmartIndent]
         
         // set paragraph style values
         self.lineHeight = defaults[.lineHeight]
@@ -207,8 +205,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
             defaults.publisher(for: .autoIndent)
                 .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
-            defaults.publisher(for: .enableSmartIndent)
-                .sink { [unowned self] in self.isSmartIndentEnabled = $0 },
             
             defaults.publisher(for: .lineHeight)
                 .sink { [unowned self] in self.lineHeight = $0 },
@@ -561,7 +557,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         // smart outdent with '}'
-        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.isEmpty,
+        if self.isAutomaticIndentEnabled, replacementRange.isEmpty,
             plainString == "}"
         {
             let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
@@ -654,21 +650,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 var insertion = indent.count
                 
                 // smart indent
-                if self.isSmartIndentEnabled {
-                    let lastCharacter = self.character(before: range)
-                    let nextCharacter = self.character(after: range)
-                    let indentBase = indent
-                    
-                    // increase indent level
-                    if lastCharacter == ":" || lastCharacter == "{" {
-                        indent += tab
-                        insertion += tab.count
-                    }
-                    
-                    // expand block
-                    if lastCharacter == "{", nextCharacter == "}" {
-                        indent += "\n" + indentBase
-                    }
+                let lastCharacter = self.character(before: range)
+                let nextCharacter = self.character(after: range)
+                let indentBase = indent
+                
+                // increase indent level
+                if lastCharacter == ":" || lastCharacter == "{" {
+                    indent += tab
+                    insertion += tab.count
+                }
+                
+                // expand block
+                if lastCharacter == "{", nextCharacter == "}" {
+                    indent += "\n" + indentBase
                 }
                 
                 return (range, indent, insertion)

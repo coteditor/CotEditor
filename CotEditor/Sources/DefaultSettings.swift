@@ -183,7 +183,6 @@ struct DefaultSettings {
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
         .savesTextOrientation: true,
-        .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
         .maximumSelectionInstanceHighlightCount: 100,
     ]

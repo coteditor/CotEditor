@@ -177,7 +177,6 @@ extension DefaultKeys {
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
-    static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     static let maximumSelectionInstanceHighlightCount = DefaultKey<Int>("maximumSelectionInstanceHighlightCount")
     
