@@ -176,52 +176,55 @@ struct Shortcut: Hashable {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
-        if CharacterSet.alphanumerics.contains(scalar) {
-            return self.keyEquivalent.uppercased()
-        }
-        
-        return Shortcut.printableKeyEquivalents[scalar] ?? self.keyEquivalent
+        return Shortcut.printableKeyEquivalents[scalar] ?? self.keyEquivalent.uppercased()
     }
     
     
     /// table for characters that cannot be displayed as is with their printable substitutions
     private static let printableKeyEquivalents: [Unicode.Scalar: String] = [
-        NSUpArrowFunctionKey: "↑",
-        NSDownArrowFunctionKey: "↓",
-        NSLeftArrowFunctionKey: "←",
-        NSRightArrowFunctionKey: "→",
-        NSF1FunctionKey: "F1",
-        NSF2FunctionKey: "F2",
-        NSF3FunctionKey: "F3",
-        NSF4FunctionKey: "F4",
-        NSF5FunctionKey: "F5",
-        NSF6FunctionKey: "F6",
-        NSF7FunctionKey: "F7",
-        NSF8FunctionKey: "F8",
-        NSF9FunctionKey: "F9",
-        NSF10FunctionKey: "F10",
-        NSF11FunctionKey: "F11",
-        NSF12FunctionKey: "F12",
-        NSF13FunctionKey: "F13",
-        NSF14FunctionKey: "F14",
-        NSF15FunctionKey: "F15",
-        NSF16FunctionKey: "F16",
-        NSDeleteCharacter: "⌦",  // = "Delete forward" (do not use NSDeleteFunctionKey)
-        NSHomeFunctionKey: "↖",
-        NSEndFunctionKey: "↘",
-        NSPageUpFunctionKey: "⇞",
-        NSPageDownFunctionKey: "⇟",
-        NSClearLineFunctionKey: "⌧",
-        NSHelpFunctionKey: "Help",
-        0x20: "Space".localized(comment: "keyboard key name"),  // = Space
-        0x09: "⇥",  // = Tab
-        0x0d: "↩",  // = Return
-        0x08: "⌫",  // = Backspace, (delete backword)
-        0x03: "⌅",  // = Enter
-        0x31: "⇤",  // = Backtab
-        0x1b: "⎋",  // = Escape
-        ].mapKeys { Unicode.Scalar($0)! }
+        NSEvent.SpecialKey
+        .upArrow: "↑",
+        .downArrow: "↓",
+        .leftArrow: "←",
+        .rightArrow: "→",
+        .f1: "F1",
+        .f2: "F2",
+        .f3: "F3",
+        .f4: "F4",
+        .f5: "F5",
+        .f6: "F6",
+        .f7: "F7",
+        .f8: "F8",
+        .f9: "F9",
+        .f10: "F10",
+        .f11: "F11",
+        .f12: "F12",
+        .f13: "F13",
+        .f14: "F14",
+        .f15: "F15",
+        .f16: "F16",
+        .deleteCharacter: "⌦",  // "Delete forward" (do not use .delete)
+        .home: "↖",
+        .end: "↘",
+        .pageUp: "⇞",
+        .pageDown: "⇟",
+        .clearLine: "⌧",
+        .help: "Help",
+        .space: "Space".localized(comment: "keyboard key name"),
+        .tab: "⇥",
+        .carriageReturn: "↩",
+        .backspace: "⌫",  //  (delete backward)
+        .enter: "⌅",
+        .backTab: "⇤",
+        .escape: "⎋",
+    ].mapKeys(\.unicodeScalar)
     
+}
+
+private extension NSEvent.SpecialKey {
+    
+    static let space = Self(rawValue: 0x20)
+    static let escape = Self(rawValue: 0x1b)
 }
 
 

@@ -61,23 +61,24 @@ final class ShortcutKeyField: NSTextField {
             // correct Backspace and Delete keys
             //  -> "backspace" key:        the key above "return"
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
-            switch Int(char.value) {
-                case NSDeleteCharacter:
-                    charsIgnoringModifiers = String(Unicode.Scalar(NSBackspaceCharacter)!)
-                case NSDeleteFunctionKey:
-                    charsIgnoringModifiers = String(Unicode.Scalar(NSDeleteCharacter)!)
+            switch event.specialKey {
+                case NSEvent.SpecialKey.deleteCharacter:
+                    charsIgnoringModifiers = String(NSEvent.SpecialKey.backspace.unicodeScalar)
+                case NSEvent.SpecialKey.delete:
+                    charsIgnoringModifiers = String(NSEvent.SpecialKey.deleteCharacter.unicodeScalar)
                 default: break
             }
             
             // remove unwanted Shift
             let ignoringShiftSet = CharacterSet(charactersIn: "`~!@#$%^&()_{}|\":<>?=/*-+.'")
             let ignoringMask: NSEvent.ModifierFlags = ignoringShiftSet.contains(char) ? .shift : []
-            let modifierMask = event.modifierFlags.subtracting(ignoringMask)
+            let modifierMask = event.modifierFlags.subtracting(ignoringMask).intersection([.control, .option, .shift, .command])
             
             // set input shortcut string to field
-            // -> The single NSDeleteCharacter works as delete.
-            let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
-            self.objectValue = (keySpecChars == "\u{8}") ? nil : keySpecChars
+            // -> The single .delete works as delete.
+            self.objectValue = (event.specialKey == .delete && modifierMask.isEmpty)
+                ? nil
+                : Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
             
             // end editing
             self.window?.endEditing(for: nil)
