@@ -40,12 +40,16 @@ Change Log
 - [dev] Update Yams from 3.0.1 to 4.0.0.
 
 
+
+3.9.6 (435)
+--------------------------
+
 ### Fixes
 
-- Fix an issue that “Open Scripts Folder” command in the script menu did not open the scripts folder for CotEditor but just the general Application Scripts folder.
+- Fix an issue that the “Open Scripts Folder” command in the script menu did not open the scripts folder for CotEditor but just the general Application Scripts folder.
 - Fix an issue in the find result table that the found string column truncated the text even in the middle of a character that consists of multiple Unicode characters.
+- Fix an issue where the line number view did not update under some specific conditions even when the line height setting is changed.
 - Fix the progress message when highlighting a document with a multiple replacement definition.
-- Fix an issue that the preferences window sometimes performed odd resizing animation when initially display the General pane.
 
 
 
