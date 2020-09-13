@@ -192,6 +192,30 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    override var fileURL: URL? {
+        
+        didSet {
+            // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
+            // -> The default backup URL is the same directory as the fileURL.
+            guard !Self.autosavesInPlace, let fileURL = fileURL else { return }
+            
+            let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
+            let baseFileName = fileURL.deletingPathExtension().lastPathComponent
+                .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
+            
+            // append an unique string to avoid overwriting another backup file with the same file name.
+            let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
+            let fileName = baseFileName + " (" + self.autosaveIdentifier.prefix(maxIdentifierLength) + ")"
+            
+            let autosavingURL = autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.autosavedContentsFileURL = autosavingURL
+            }
+        }
+    }
+    
+    
     /// make custom windowControllers
     override func makeWindowControllers() {
         
@@ -360,26 +384,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
-        // -> The default backup URL is the same directory as the fileURL.
-        let newURL: URL = {
-            guard
-                saveOperation == .autosaveElsewhereOperation,
-                let fileURL = self.fileURL
-                else { return url }
-            
-            let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
-            let baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
-            
-            // append an unique string to avoid overwriting another backup file with the same file name.
-            let maxIdentifierLength = Int(NAME_MAX) - (baseFileName.length + " ().".length + fileURL.pathExtension.length)
-            let fileName = baseFileName + " (" + self.autosaveIdentifier.prefix(maxIdentifierLength) + ")"
-            
-            return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
-        }()
-        
-        super.save(to: newURL, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
+        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
             defer {
                 completionHandler(error)
             }
@@ -399,7 +404,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            if !saveOperation.isAutoSaving {
+            if !saveOperation.isAutosaving {
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
             }
         }
@@ -446,7 +451,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.isExecutable, !saveOperation.isAutoSaving {
+        if self.isExecutable, !saveOperation.isAutosaving {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions.rawValue] = permissions | S_IXUSR
         }

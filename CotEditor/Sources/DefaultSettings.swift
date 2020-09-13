@@ -182,7 +182,6 @@ struct DefaultSettings {
         .showColoringIndicatorTextLength: 75000,
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
-        .autosavingDelay: 5.0,
         .savesTextOrientation: true,
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,

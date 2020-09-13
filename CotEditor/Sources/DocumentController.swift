@@ -57,7 +57,7 @@ final class DocumentController: NSDocumentController {
         
         super.init()
         
-        self.autosavingDelay = UserDefaults.standard[.autosavingDelay]
+        self.autosavingDelay = 5.0
     }
     
     
