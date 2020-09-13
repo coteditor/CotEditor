@@ -203,7 +203,7 @@ struct Shortcut: Hashable {
         .f14: "F14",
         .f15: "F15",
         .f16: "F16",
-        .deleteCharacter: "⌦",  // "Delete forward" (do not use .delete)
+        .delete: "⌦",
         .home: "↖",
         .end: "↘",
         .pageUp: "⇞",

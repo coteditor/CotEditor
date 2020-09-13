@@ -62,10 +62,10 @@ final class ShortcutKeyField: NSTextField {
             //  -> "backspace" key:        the key above "return"
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
             switch event.specialKey {
-                case NSEvent.SpecialKey.deleteCharacter:
-                    charsIgnoringModifiers = String(NSEvent.SpecialKey.backspace.unicodeScalar)
                 case NSEvent.SpecialKey.delete:
-                    charsIgnoringModifiers = String(NSEvent.SpecialKey.deleteCharacter.unicodeScalar)
+                    charsIgnoringModifiers = String(NSEvent.SpecialKey.backspace.unicodeScalar)
+                case NSEvent.SpecialKey.deleteForward:
+                    charsIgnoringModifiers = String(NSEvent.SpecialKey.delete.unicodeScalar)
                 default: break
             }
             
