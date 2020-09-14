@@ -11,6 +11,7 @@ Change Log
     - Update the application icon.
     - Redesing the document window.
 - Support Apple Silicon.
+- Add syntax style for Dockerfile.
 
 
 ### Improvements

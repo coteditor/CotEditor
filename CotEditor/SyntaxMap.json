@@ -140,6 +140,17 @@
 
     ]
   },
+  "Dockerfile" : {
+    "extensions" : [
+
+    ],
+    "filenames" : [
+      "Dockerfile"
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "DTD" : {
     "extensions" : [
       "dtd"
