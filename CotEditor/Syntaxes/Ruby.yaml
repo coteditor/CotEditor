@@ -1,14 +1,16 @@
 extensions:
 - keyString: "rb"
+filenames:
+- keyString: "Gemfile"
 interpreters:
 - keyString: "ruby"
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "https://coteditor.com"
-  version: "2.2.2"
+  version: "2.3.0"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2017-03-29"
+  lastModified: "2020-09-14"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"
@@ -59,8 +61,10 @@ commands:
 - beginString: "format"
 - beginString: "freeze"
 - beginString: "frozen?"
+- beginString: "gem"
 - beginString: "gets"
 - beginString: "global_variables"
+- beginString: "group"
 - beginString: "gsub"
 - beginString: "gsub!"
 - beginString: "hash"
@@ -87,6 +91,7 @@ commands:
 - beginString: "object_id"
 - beginString: "open"
 - beginString: "p"
+- beginString: "path"
 - beginString: "print"
 - beginString: "private"
 - beginString: "private_methods"
@@ -113,6 +118,7 @@ commands:
 - beginString: "singleton_method_undefined"
 - beginString: "singleton_methods"
 - beginString: "sleep"
+- beginString: "source"
 - beginString: "spawn"
 - beginString: "split"
 - beginString: "sprintf"
