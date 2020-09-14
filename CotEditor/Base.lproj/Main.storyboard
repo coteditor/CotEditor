@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -410,6 +410,10 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
+                                        <menuItem title="Theme" id="8z7-Jc-agP">
+                                            <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="9GY-M7-uHl"/>
                                         <menuItem title="Tab Width" id="djM-fI-MkN">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Tab Width" id="xAm-b4-9CY">
@@ -453,12 +457,20 @@ Gw
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Theme" id="8z7-Jc-agP">
-                                            <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
-                                        </menuItem>
                                         <menuItem title="Show Invisibles" id="788">
                                             <connections>
                                                 <action selector="toggleInvisibleChars:" target="Ady-hI-5gd" id="HlM-Aw-tfM"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Indent Guides" id="Qqu-pI-Xz6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleIndentGuides:" target="Ady-hI-5gd" id="Sbg-ca-Seo"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Page Guide" id="749">
+                                            <connections>
+                                                <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="397"/>
@@ -571,18 +583,6 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>
-                                        <menuItem title="Show Indent Guides" id="Qqu-pI-Xz6">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleIndentGuides:" target="Ady-hI-5gd" id="Sbg-ca-Seo"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Page Guide" id="749">
-                                            <connections>
-                                                <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="792"/>
                                         <menuItem title="Split Editor" id="793">
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ

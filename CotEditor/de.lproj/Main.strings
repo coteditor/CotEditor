@@ -246,6 +246,10 @@
 
 /* Class = "NSMenuItem"; title = "Show Invisibless"; ObjectID = "788"; */
 "788.title" = "Steuerzeichen einblenden";
+/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
+"Qqu-pI-Xz6.title" = "Einzugshilfslinien einblenden";
+/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
+"749.title" = "Seitenhilfslinie einblenden";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
 "mEh-BD-ZlV.title" = "Schreibrichtung";
@@ -306,11 +310,6 @@
 "323.title" = "Zeilennummern einblenden";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "Statusleiste einblenden";
-
-/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Einzugshilfslinien einblenden";
-/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
-"749.title" = "Seitenhilfslinie einblenden";
 
 /* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
 "793.title" = "Editor teilen";

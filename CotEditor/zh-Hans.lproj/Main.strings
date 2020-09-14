@@ -248,6 +248,10 @@
 
 /* Class = "NSMenuItem"; title = "Show Invisibless"; ObjectID = "788"; */
 "788.title" = "显示不可见元素";
+/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
+"Qqu-pI-Xz6.title" = "显示缩进指示";
+/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
+"749.title" = "显示页面指示";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
 "mEh-BD-ZlV.title" = "书写方向";
@@ -307,11 +311,6 @@
 "323.title" = "显示行号";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "显示状态栏";
-
-/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "显示缩进指示";
-/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
-"749.title" = "显示页面指示";
 
 /* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
 "793.title" = "分栏显示";

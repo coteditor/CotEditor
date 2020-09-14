@@ -246,6 +246,10 @@
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
 "788.title" = "不可視文字を表示";
+/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
+"Qqu-pI-Xz6.title" = "インデントガイドを表示";
+/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
+"749.title" = "ページガイドを表示";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
 "mEh-BD-ZlV.title" = "文章の方向";
@@ -306,11 +310,6 @@
 "323.title" = "行番号を表示";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "ステータスバーを表示";
-
-/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "インデントガイドを表示";
-/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
-"749.title" = "ページガイドを表示";
 
 /* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
 "793.title" = "エディタを分割";
