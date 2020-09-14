@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +10,7 @@
         <scene sceneID="lwx-CG-VEr">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="2Yd-sK-nho" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
+                    <window key="window" identifier="findPanel" title="Find &amp; Replace" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <rect key="contentRect" x="425" y="461" width="460" height="197"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -379,25 +379,25 @@
             <objects>
                 <customObject id="1A4-z5-xxx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController showSeguePresentationStyle="single" id="2MH-SD-abc" customClass="FindPanelResultViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="XqS-F4-g0U">
+                    <view key="view" misplaced="YES" id="XqS-F4-g0U">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="180"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6B5-44-pzE">
-                                <rect key="frame" x="0.0" y="0.0" width="460" height="111"/>
+                                <rect key="frame" x="0.0" y="0.0" width="457" height="134"/>
                                 <clipView key="contentView" id="t3I-Kd-8zN">
-                                    <rect key="frame" x="0.0" y="0.0" width="460" height="111"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="457" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="sQa-6h-5pq" viewBased="YES" id="kbr-iQ-AQQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="460" height="88"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="sQa-6h-5pq" viewBased="YES" id="kbr-iQ-AQQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="457" height="111"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="line" editable="NO" width="42" minWidth="40" maxWidth="1000" id="CPd-0W-bKv">
+                                                <tableColumn identifier="line" editable="NO" width="50" minWidth="48" maxWidth="1000" id="CPd-0W-bKv">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="right" title="Line">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -410,11 +410,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="vg5-xP-Hs5">
-                                                            <rect key="frame" x="1" y="1" width="42" height="14"/>
+                                                            <rect key="frame" x="1" y="1" width="55" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-nU-MWf" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="16" usesSingleLineMode="YES" id="8w9-f5-haz">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -437,7 +437,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="string" editable="NO" width="412" minWidth="40" maxWidth="1000" id="PJ8-wp-pdK">
+                                                <tableColumn identifier="string" editable="NO" width="392" minWidth="40" maxWidth="1000" id="PJ8-wp-pdK">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Found String">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -450,11 +450,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="ORp-qn-1S4">
-                                                            <rect key="frame" x="46" y="1" width="412" height="14"/>
+                                                            <rect key="frame" x="59" y="1" width="396" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7JA-yX-ldU">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="412" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="396" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Clarus says moof!" usesSingleLineMode="YES" id="RSI-QP-jZ1">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -486,7 +486,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4il-pN-ytW">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="0.0" y="26" width="457" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="bLD-Wn-XE2">
@@ -494,7 +494,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="sQa-6h-5pq">
-                                    <rect key="frame" x="0.0" y="0.0" width="460" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="457" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -520,7 +520,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t8U-kV-AgP">
-                                <rect key="frame" x="18" y="138" width="424" height="14"/>
+                                <rect key="frame" x="18" y="138" width="421" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" placeholderString="" id="t1S-wd-olE">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -558,7 +558,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="773" y="659"/>
+            <point key="canvasLocation" x="772.5" y="659"/>
         </scene>
         <!--Find Panel Button View Controller-->
         <scene sceneID="YMJ-TJ-Z4x">
@@ -570,7 +570,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button toolTip="List all matches." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-Y5-8XR">
-                                <rect key="frame" x="13" y="13" width="91" height="32"/>
+                                <rect key="frame" x="13" y="13" width="79" height="32"/>
                                 <buttonCell key="cell" type="push" title="Find All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XLZ-92-VVF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -580,7 +580,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vX8-lQ-g9B">
-                                <rect key="frame" x="279" y="13" width="95" height="32"/>
+                                <rect key="frame" x="291" y="13" width="83" height="32"/>
                                 <buttonCell key="cell" type="push" title="Replace" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4Z-S2-wvv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -603,7 +603,7 @@
                                 </connections>
                             </segmentedControl>
                             <button toolTip="Replace all matches with the replacement text." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-rj-B8P">
-                                <rect key="frame" x="102" y="13" width="113" height="32"/>
+                                <rect key="frame" x="90" y="13" width="101" height="32"/>
                                 <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5gU-5y-iLn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

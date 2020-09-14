@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,17 +33,17 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="MultipleReplacementViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8CD-v6-nsP">
-                        <rect key="frame" x="0.0" y="0.0" width="433" height="299"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="299"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="97" width="393" height="100"/>
+                                <rect key="frame" x="20" y="97" width="388" height="100"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="1" width="391" height="98"/>
+                                    <rect key="frame" x="1" y="1" width="386" height="98"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="391" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="387" height="75"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -62,11 +62,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="CUv-XJ-HRY">
-                                                            <rect key="frame" x="1" y="1" width="20" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="25" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="isEnabled" toolTip="Select to enable this replacement rule." translatesAutoresizingMaskIntoConstraints="NO" id="PuQ-No-wC1">
-                                                                    <rect key="frame" x="1" y="-2" width="18" height="21"/>
+                                                                    <rect key="frame" x="1" y="-2" width="23" height="21"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" state="on" inset="2" id="P46-am-sIg">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                         <font key="font" metaFont="menu" size="11"/>
@@ -86,7 +86,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="findString" editable="NO" width="111" minWidth="40" maxWidth="1000" id="zee-UW-TVR">
+                                                <tableColumn identifier="findString" editable="NO" width="106.5" minWidth="40" maxWidth="1000" id="zee-UW-TVR">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Find">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -99,11 +99,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Rqz-SK-mda">
-                                                            <rect key="frame" x="24" y="1" width="111" height="16"/>
+                                                            <rect key="frame" x="29" y="1" width="106" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-ma-bo2">
-                                                                    <rect key="frame" x="93" y="0.0" width="16" height="16"/>
+                                                                    <rect key="frame" x="89" y="0.0" width="16" height="16"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="16" id="MKU-qq-mme"/>
                                                                         <constraint firstAttribute="width" secondItem="iAj-ma-bo2" secondAttribute="height" multiplier="1:1" id="bPQ-kY-hnR"/>
@@ -111,7 +111,7 @@
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="G1j-rT-ITB"/>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="111" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="107" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -142,7 +142,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="replacementString" editable="NO" width="111" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
+                                                <tableColumn identifier="replacementString" editable="NO" width="106.5" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Replace With">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -155,11 +155,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="138" y="1" width="111" height="16"/>
+                                                            <rect key="frame" x="139" y="1" width="90" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="111" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="107" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="cow" id="DD9-M3-I3n">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -201,7 +201,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gVj-CA-2D0">
-                                                            <rect key="frame" x="252" y="1" width="28" height="17"/>
+                                                            <rect key="frame" x="248" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="regularExpression" toolTip="Select to search with regular expression." translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Ym-IrV">
@@ -238,7 +238,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="E0A-sg-252">
-                                                            <rect key="frame" x="283" y="1" width="28" height="17"/>
+                                                            <rect key="frame" x="279" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="regularExpression" toolTip="Select to ignore character case on search." translatesAutoresizingMaskIntoConstraints="NO" id="I23-3I-yq5">
@@ -262,7 +262,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="description" width="75" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
+                                                <tableColumn identifier="description" width="70.5" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -275,7 +275,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="rOM-3j-LP8">
-                                                            <rect key="frame" x="314" y="1" width="75" height="16"/>
+                                                            <rect key="frame" x="310" y="1" width="74" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DzM-r8-scw">
@@ -314,8 +314,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="A2J-mQ-AKK"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1Ol-X7-w6C">
-                                    <rect key="frame" x="1" y="149" width="388" height="16"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="1Ol-X7-w6C">
+                                    <rect key="frame" x="1" y="83" width="386" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="7r7-tr-Dft">
@@ -323,12 +323,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="PHz-PV-X13">
-                                    <rect key="frame" x="0.0" y="0.0" width="391" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="387" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <button toolTip="Set advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i8z-Xa-PxI">
-                                <rect key="frame" x="363" y="62" width="57" height="32"/>
+                                <rect key="frame" x="370" y="62" width="45" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="HVo-mZ-xtQ"/>
                                 </constraints>
@@ -342,7 +342,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Replace all matches according to the replacement rules." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-za-4Ad">
-                                <rect key="frame" x="307" y="13" width="113" height="32"/>
+                                <rect key="frame" x="314" y="13" width="101" height="32"/>
                                 <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LI2-Hh-D6g">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -352,7 +352,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Select to replace text only in selection." translatesAutoresizingMaskIntoConstraints="NO" id="pfM-xk-MrN">
-                                <rect key="frame" x="124" y="22" width="83" height="16"/>
+                                <rect key="frame" x="143" y="22" width="83" height="16"/>
                                 <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="4lm-Fu-Fcf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="menu" size="11"/>
@@ -362,7 +362,7 @@
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gG4-IL-p7b">
-                                <rect key="frame" x="0.0" y="50" width="433" height="5"/>
+                                <rect key="frame" x="0.0" y="50" width="428" height="5"/>
                             </box>
                             <button identifier="howto_multiple_replace" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-Fc-QBG">
                                 <rect key="frame" x="19" y="18" width="18" height="19"/>
@@ -375,7 +375,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
-                                <rect key="frame" x="212" y="72" width="152" height="14"/>
+                                <rect key="frame" x="220" y="72" width="151" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid rules will be skipped." id="gRf-KM-GZo">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -390,7 +390,7 @@
                                 </connections>
                             </textField>
                             <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6DU-wH-q4e">
-                                <rect key="frame" x="194" y="72" width="16" height="16"/>
+                                <rect key="frame" x="202" y="72" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="2MS-D3-JNa"/>
                                     <constraint firstAttribute="width" secondItem="6DU-wH-q4e" secondAttribute="height" multiplier="1:1" id="qiO-b0-Yjf"/>
@@ -405,7 +405,7 @@
                                 </connections>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
-                                <rect key="frame" x="59" y="23" width="60" height="14"/>
+                                <rect key="frame" x="78" y="23" width="60" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 replaced" id="HU0-YI-OIX">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -416,7 +416,7 @@
                                 </connections>
                             </textField>
                             <button toolTip="Highlight all matches of the replacement rules." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="99C-Bz-ySi">
-                                <rect key="frame" x="208" y="13" width="101" height="32"/>
+                                <rect key="frame" x="227" y="13" width="89" height="32"/>
                                 <buttonCell key="cell" type="push" title="Highlight" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kdu-Ni-M64">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -426,7 +426,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
-                                <rect key="frame" x="18" y="205" width="397" height="32"/>
+                                <rect key="frame" x="18" y="205" width="392" height="32"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -503,13 +503,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-4N-kRH">
-                                <rect key="frame" x="0.0" y="27" width="101" height="272"/>
+                                <rect key="frame" x="0.0" y="27" width="101" height="242"/>
                                 <clipView key="contentView" drawsBackground="NO" id="fvK-do-Kwl">
-                                    <rect key="frame" x="0.0" y="0.0" width="101" height="272"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="101" height="242"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
-                                            <rect key="frame" x="0.0" y="0.0" width="101" height="272"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="101" height="242"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -733,7 +733,7 @@
                 <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="MultipleReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem holdingPriority="251" separatorStyle="shadow" id="t6n-9g-dQO"/>
-                        <splitViewItem id="RVu-VR-TJq"/>
+                        <splitViewItem separatorStyle="line" id="RVu-VR-TJq"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" vertical="YES" id="IVS-tk-SwU">
                         <rect key="frame" x="0.0" y="0.0" width="520" height="300"/>
