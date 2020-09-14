@@ -252,8 +252,8 @@ extension DocumentWindowController: NSToolbarDelegate {
             .indent,
             .comment,
             .tabStyle,
-            .invisibles,
             .wrapLines,
+            .invisibles,
             .indentGuides,
             .opacity,
             .spellCheck,
@@ -448,21 +448,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
                 return item
                 
-            case .invisibles:
-                let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
-                item.label = "Invisibles".localized
-                item.toolTip = "Show invisible characters".localized
-                if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
-                    item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
-                } else {
-                    item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
-                    item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
-                }
-                item.action = #selector(DocumentViewController.toggleInvisibleChars)
-                return item
-                
             case .wrapLines:
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
@@ -476,6 +461,21 @@ extension DocumentWindowController: NSToolbarDelegate {
                     item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
                 }
                 item.action = #selector(DocumentViewController.toggleLineWrap)
+                return item
+                
+            case .invisibles:
+                let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
+                item.label = "Invisibles".localized
+                item.toolTip = "Show invisible characters".localized
+                if #available(macOS 11, *) {
+                    item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
+                    item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
+                } else {
+                    item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
+                    item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
+                }
+                item.action = #selector(DocumentViewController.toggleInvisibleChars)
                 return item
                 
             case .indentGuides:
