@@ -483,8 +483,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Indent Guides".localized
                 item.toolTip = "Hide indent guide lines".localized
-                item.stateImages[.on] = #imageLiteral(resourceName: "IndentGuides_On")
-                item.stateImages[.off] = #imageLiteral(resourceName: "IndentGuides_Off")
+                if #available(macOS 11, *) {
+                    item.stateImages[.on] = NSImage(named: "text.indentguides.hide")
+                    item.stateImages[.off] = NSImage(named: "text.indentguides")
+                } else {
+                    item.stateImages[.on] = #imageLiteral(resourceName: "IndentGuides_On")
+                    item.stateImages[.off] = #imageLiteral(resourceName: "IndentGuides_Off")
+                }
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
                 return item
                 

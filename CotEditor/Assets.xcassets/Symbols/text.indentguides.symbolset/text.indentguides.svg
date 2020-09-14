@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3300" height="2200">
+ 
+ <g id="Notes">
+  <style>
+   text { fill: black; stroke: none;
+          font-family: -apple-system,&quot;SF Pro Display&quot;,&quot;SF Pro Text&quot;,Helvetica,sans-serif; }
+   .separator { fill: none; stroke: black; stroke-width: 0.5; }
+  </style>
+  
+  <rect height="2200" id="artboard" style="fill:white" width="3300"/>
+  
+  <g title="header" transform="translate(263 292)">
+   <line class="separator" x1="0" x2="2773"/>
+   
+   <g transform="translate(0 30)">
+    <text style="font-weight:bold;">Weight/Scale Variations</text>
+    
+    <g style="text-anchor:middle;">
+     <text x="296.711">Ultralight</text>
+     <text x="593.422">Thin</text>
+     <text x="890.13">Light</text>
+     <text x="1186.84">Regular</text>
+     <text x="1483.56">Medium</text>
+     <text x="1780.27">Semibold</text>
+     <text x="2076.98">Bold</text>
+     <text x="2373.69">Heavy</text>
+     <text x="2670.4">Black</text>
+    </g>
+   </g>
+  </g>
+  
+  <g title="footer" transform="translate(263 1903)">
+   <line class="separator" x1="0" x2="2773"/>
+   
+   <g transform="translate(2773 0)" style="text-anchor:end;">
+    <text id="template-version" y="30">Template v.2.0</text>
+    <text y="48">Requires Xcode 12 or greater</text>
+    <text y="66">Generated from text.alignleft</text>
+    <text y="84">Typeset at 100 points</text>
+   </g>
+  </g>
+  
+  <g transform="translate(263 0)">
+   <text y="726">Small</text>
+   <text y="1156">Medium</text>
+   <text y="1586">Large</text>
+  </g>
+ </g>
+ 
+<g id="Guides">
+  <style>
+   #H-reference      { fill:#27AAE1; stroke:none; }
+   [id^="Baseline"],
+   [id^="Capline"]   { fill:none; stroke:#27AAE1; stroke-width:0.5; }
+   [id$="-margin"]   { fill:none; stroke:#00AEEF; stroke-width:0.5; }
+  </style>
+  
+  <g id="H-reference" transform="translate(339 696)">
+   <path d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+  </g>
+  <line id="Baseline-S" x1="263" y1="696" x2="3036" y2="696"/>
+  <line id="Capline-S" x1="263" y1="625.5" x2="3036" y2="625.5"/>
+  <g id="H-reference" transform="translate(339 1126)">
+   <path class="st6" d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+  </g>
+  <line id="Baseline-M" x1="263" y1="1126" x2="3036" y2="1126"/>
+  <line id="Capline-M" x1="263" y1="1055.5" x2="3036" y2="1055.5"/>
+  <g id="H-reference" transform="translate(339 1556)">
+   <path d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+  </g>
+  <line id="Baseline-L" x1="263" y1="1556" x2="3036" y2="1556"/>
+  <line id="Capline-L" x1="263" y1="1485.5" x2="3036" y2="1485.5"/>
+ <line id="left-margin" x1="1380.8" y1="1030.8" x2="1380.8" y2="1150.1"/>
+ <line id="right-margin" x1="1518.9" y1="1030.8" x2="1518.9" y2="1150.1"/>
+</g>
+
+<g id="Symbols">
+ <g id="Regular-L" transform="matrix(1 0 0 1 1361.39 1556)">
+  <path d="M55.9-80.9h100.8c2.3,0,4.1-1.8,4.1-4.1c0-2.3-1.8-4.1-4.1-4.1H55.9c-2.3,0-4.1,1.8-4.1,4.1
+   C51.8-82.6,53.6-80.9,55.9-80.9z M55.9-47.8h100.8c2.3,0,4.1-1.8,4.1-4.1S159-56,156.7-56H55.9c-2.3,0-4.1,1.8-4.1,4.1
+   S53.6-47.8,55.9-47.8z M92.9-14.8h63.8c2.3,0,4.1-1.8,4.1-4.1S159-23,156.7-23H92.9c-2.3,0-4.1,1.8-4.1,4.1S90.6-14.8,92.9-14.8z
+    M92.9,18.3h31.6c2.3,0,4.1-1.8,4.1-4.1s-1.8-4.1-4.1-4.1H92.9c-2.3,0-4.1,1.8-4.1,4.1S90.6,18.3,92.9,18.3z"/>
+  <path d="M18.6,26c-5,0-9-4-9-9V-87c0-5,4-9,9-9s9,4,9,9V17C27.6,22,23.6,26,18.6,26z"/>
+  <path d="M59.6,26c-5,0-9-4-9-9v-36c0-5,4-9,9-9s9,4,9,9v36C68.6,22,64.6,26,59.6,26z"/>
+ </g>
+ <g id="Regular-M" transform="matrix(1 0 0 1 1380.75 1126)">
+  <path d="M42.4-70.1H122c2.1,0,3.8-1.6,3.8-3.7s-1.7-3.7-3.8-3.7H42.4c-2.1,0-3.7,1.6-3.7,3.7S40.3-70.1,42.4-70.1z M42.4-44.5H122
+   c2.1,0,3.8-1.6,3.8-3.7c0-2.1-1.7-3.7-3.8-3.7H42.4c-2.1,0-3.7,1.6-3.7,3.7S40.3-44.5,42.4-44.5z M72.4-18.9H122
+   c2.1,0,3.8-1.7,3.8-3.7s-1.7-3.7-3.8-3.7H72.4c-2.1,0-3.7,1.6-3.7,3.7S70.3-18.9,72.4-18.9z M72.4,6.6h24.7c2.1,0,3.7-1.6,3.7-3.7
+   s-1.7-3.7-3.7-3.7H72.4c-2.1,0-3.7,1.7-3.7,3.7C68.7,5,70.3,6.6,72.4,6.6z"/>
+  <path d="M16.2,13c-3.9,0-7-3.1-7-7v-84c0-3.9,3.1-7,7-7s7,3.1,7,7V6C23.2,9.9,20.1,13,16.2,13z"/>
+  <path d="M46.2,13c-3.9,0-7-3.1-7-7v-32c0-3.9,3.1-7,7-7s7,3.1,7,7V6C53.2,9.9,50.1,13,46.2,13z"/>
+ </g>
+ <g id="Regular-S" transform="matrix(1 0 0 1 1395.3 696)">
+  <path d="M32.4-62.2H96c1.9,0,3.3-1.4,3.3-3.3c0-1.9-1.5-3.3-3.3-3.3H32.4c-1.8,0-3.3,1.4-3.3,3.3C29.2-63.6,30.6-62.2,32.4-62.2z
+    M32.4-42.1H96c1.9,0,3.3-1.5,3.3-3.3s-1.5-3.3-3.3-3.3H32.4c-1.8,0-3.3,1.5-3.3,3.3C29.2-43.6,30.6-42.1,32.4-42.1z M56.4-22.1
+   H96c1.9,0,3.3-1.5,3.3-3.3s-1.5-3.3-3.3-3.3H56.4c-1.8,0-3.3,1.5-3.3,3.3C53.2-23.5,54.6-22.1,56.4-22.1z M56.4-2.1h20
+   c1.9,0,3.3-1.5,3.3-3.3s-1.5-3.3-3.3-3.3h-20c-1.8,0-3.3,1.5-3.3,3.3C53.2-3.5,54.6-2.1,56.4-2.1z"/>
+  <path d="M10.7,2c-3.3,0-6-2.7-6-6v-62c0-3.3,2.7-6,6-6s6,2.7,6,6v62C16.7-0.7,14,2,10.7,2z"/>
+  <path d="M35.7,2c-3.3,0-6-2.7-6-6v-24c0-3.3,2.7-6,6-6s6,2.7,6,6v24C41.7-0.7,39,2,35.7,2z"/>
+ </g>
+</g>
+</svg>
