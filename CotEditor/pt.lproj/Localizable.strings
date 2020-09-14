@@ -233,11 +233,6 @@
 "Hide invisible characters" = "Ocultar invisíveis";
 "Show invisible characters" = "Mostrar invisíveis";
 
-"Page Guide" = "Ajustar Linhas";
-// tooltip
-"Hide page guide line" = "Oculte o ajuste de linhas";
-"Show page guide line" = "Mostre o ajuste de linhas";
-
 "Indent Guides" = "Guia da Página";
 // tooltip
 "Hide indent guide lines" = "Oculte a linha de guia da página";

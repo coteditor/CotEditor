@@ -207,7 +207,6 @@ private extension NSToolbarItem.Identifier {
     static let tabStyle = Self(Self.prefix + "tabStyle")
     static let invisibles = Self(Self.prefix + "invisibles")
     static let wrapLines = Self(Self.prefix + "wrapLines")
-    static let pageGuide = Self(Self.prefix + "pageGuilde")
     static let indentGuides = Self(Self.prefix + "indentGuildes")
     
     static let opacity = Self(Self.prefix + "opacity")
@@ -255,7 +254,6 @@ extension DocumentWindowController: NSToolbarDelegate {
             .tabStyle,
             .invisibles,
             .wrapLines,
-            .pageGuide,
             .indentGuides,
             .opacity,
             .spellCheck,
@@ -478,16 +476,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                     item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
                 }
                 item.action = #selector(DocumentViewController.toggleLineWrap)
-                return item
-                
-            case .pageGuide:
-                let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
-                item.isBordered = true
-                item.label = "Page Guide".localized
-                item.toolTip = "Hide page guide line".localized
-                item.stateImages[.on] = #imageLiteral(resourceName: "PageGuide_On")
-                item.stateImages[.off] = #imageLiteral(resourceName: "PageGuide_Off")
-                item.action = #selector(DocumentViewController.togglePageGuide)
                 return item
                 
             case .indentGuides:

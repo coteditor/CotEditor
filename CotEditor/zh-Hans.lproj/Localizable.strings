@@ -233,11 +233,6 @@
 "Hide invisible characters" = "隐藏不可见元素";
 "Show invisible characters" = "显示不可见元素";
 
-"Page Guide" = "页面指示";
-// tooltip
-"Hide page guide line" = "隐藏页面指示";
-"Show page guide line" = "显示页面指示";
-
 "Indent Guides" = "缩进指示";
 // tooltip
 "Hide indent guide lines" = "隐藏缩进指示线";

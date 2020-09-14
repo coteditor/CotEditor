@@ -291,9 +291,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 (item as? NSMenuItem)?.title = self.showsPageGuide
                     ? "Hide Page Guide".localized
                     : "Show Page Guide".localized
-                (item as? NSToolbarItem)?.toolTip = self.showsPageGuide
-                    ? "Hide page guide line".localized
-                    : "Show page guide line".localized
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
             
             case #selector(toggleIndentGuides):

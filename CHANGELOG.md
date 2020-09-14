@@ -33,6 +33,7 @@ Change Log
 - Update SVG syntax style.
 - Update Ruby syntax style.
 - Update Shell Script syntax style (thanks to ansimita!).
+- Remove the tool bar button to toggle page guide visiility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Improve tooltips of toolbar icons to reflect current document state.
 - [trivial] Optimize the line number calculation in vertical text orientation.

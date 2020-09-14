@@ -233,11 +233,6 @@
 "Hide invisible characters" = "不可視文字を非表示";
 "Show invisible characters" = "不可視文字を表示";
 
-"Page Guide" = "ページガイド";
-// tooltip
-"Hide page guide line" = "ページガイドを非表示";
-"Show page guide line" = "ページガイドを表示";
-
 "Indent Guides" = "インデントガイド";
 // tooltip
 "Hide indent guide lines" = "インデントガイドを非表示";
