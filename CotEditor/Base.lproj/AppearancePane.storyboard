@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uMj-Iu-oCy">
-                                <rect key="frame" x="386" y="577" width="95" height="32"/>
+                                <rect key="frame" x="386" y="577" width="83" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="T74-lW-Yta"/>
                                 </constraints>
@@ -323,13 +323,13 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="q5s-Pc-w3C" viewBased="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Dt-hO9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="189" height="231"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="231"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="4"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="themeName" width="157" minWidth="40" maxWidth="1000" id="Avf-y8-wXG">
+                                                            <tableColumn identifier="themeName" width="168" minWidth="40" maxWidth="1000" id="Avf-y8-wXG">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Theme">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,10 +342,10 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="IKs-Gh-g0j">
-                                                                        <rect key="frame" x="11" y="2" width="166" height="16"/>
+                                                                        <rect key="frame" x="11" y="2" width="177" height="16"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVT-ne-6NT">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="166" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="177" height="16"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Dendrobates" id="sRo-2c-Ydn">
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -379,15 +379,15 @@
                                                 </subviews>
                                                 <nil key="backgroundColor"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="FrY-ys-Wya">
-                                                <rect key="frame" x="0.0" y="230" width="189" height="16"/>
+                                            <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="FrY-ys-Wya">
+                                                <rect key="frame" x="0.0" y="238" width="189" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Czd-4t-kEc">
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" wantsLayer="YES" id="q5s-Pc-w3C">
-                                                <rect key="frame" x="0.0" y="0.0" width="189" height="23"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="23"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -395,7 +395,7 @@
                                             <rect key="frame" x="4" y="22" width="181" height="5"/>
                                         </box>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-Bf-yVl">
-                                            <rect key="frame" x="2" y="1" width="24" height="23"/>
+                                            <rect key="frame" x="2" y="-1" width="24.5" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="23" id="U6N-28-bzY"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="tOH-dt-pv7"/>
@@ -409,7 +409,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FYd-hb-j4K">
-                                            <rect key="frame" x="25" y="1" width="24" height="23"/>
+                                            <rect key="frame" x="25" y="4" width="24.5" height="18"/>
                                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Srn-QD-aiu">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -424,7 +424,7 @@
                                             </connections>
                                         </button>
                                         <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="IcH-In-axb">
-                                            <rect key="frame" x="151" y="1" width="36" height="23"/>
+                                            <rect key="frame" x="151" y="-2" width="36" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="36" id="pud-N8-x0h"/>
                                             </constraints>
@@ -1232,7 +1232,7 @@
                                 </connections>
                             </textField>
                             <button toolTip="Jump to URL" translatesAutoresizingMaskIntoConstraints="NO" id="Usu-Br-G0a">
-                                <rect key="frame" x="278" y="59" width="12" height="13"/>
+                                <rect key="frame" x="278" y="56.5" width="12" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="13" id="X1F-jL-AI1"/>
                                     <constraint firstAttribute="width" constant="12" id="vJi-lL-ThO"/>
@@ -1295,10 +1295,10 @@
         <image name="Insertion Point/BarTemplate" width="8" height="11"/>
         <image name="Insertion Point/BlockTemplate" width="8" height="11"/>
         <image name="Insertion Point/ThickBarTemplate" width="8" height="11"/>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="15" height="15"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
         <image name="info.circle" catalog="system" width="15" height="15"/>
     </resources>
 </document>
