@@ -525,7 +525,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // MARK: Private Methods
     
     /// return theme name which is currently selected in the list table
-    @objc private dynamic var selectedThemeName: String {
+    private var selectedThemeName: String {
         
         guard let tableView = self.themeTableView, tableView.selectedRow >= 0 else {
             return ThemeManager.shared.userDefaultSettingName
