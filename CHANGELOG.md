@@ -42,6 +42,10 @@ Change Log
 - [dev] Replace DifferenceKit package with native CollectionDifference.
 - [dev] Update Yams from 3.0.1 to 4.0.0.
 
+### Fixes
+
+- [trivial] Fix an issue in the sytnax style toolbar item that the menu selected blank if the current style was deleted.
+
 
 
 3.9.6 (435)

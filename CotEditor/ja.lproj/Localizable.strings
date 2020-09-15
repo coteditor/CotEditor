@@ -175,6 +175,7 @@
 "Change syntax style" = "シンタックススタイルを変更";
 // menu item title
 "Recently Used" = "最近使った項目";
+"Deleted" = " 削除された項目";
 
 "Inspector" = "インスペクタ";
 // tooltip

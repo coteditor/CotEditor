@@ -173,8 +173,8 @@
 "Change syntax style" = "Changer la syntaxe";
 // item in the menu
 "Recently Used" = "Récemment utilisés";
-// menu item title
-"Recently Used" = "Récemment utilisés";
+"Deleted" = "Deleted";  // FIXME: added (heading for deleted items)
+
 
 "Inspector" = "Inspecteur";
 // tooltip

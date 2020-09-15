@@ -91,12 +91,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
             
             self.window?.toolbar?.items.lazy.compactMap { $0 as? NSSharingServicePickerToolbarItem }.first?.delegate = document
-            self.syntaxPopUpButton?.selectItem(withTitle: document.syntaxParser.style.name)
+            self.selectSyntaxPopUp(with: document.syntaxParser.style.name)
             
             // observe document's style change
             self.documentStyleObserver = document.didChangeSyntaxStyle
                 .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.syntaxPopUpButton?.selectItem(withTitle: $0) }
+                .sink { [weak self] in self?.selectSyntaxPopUp(with: $0) }
         }
     }
     
@@ -151,10 +151,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     /// Build syntax style popup menu in toolbar.
     private func buildSyntaxPopupButton() {
         
-        guard
-            let popUpButton = self.syntaxPopUpButton,
-            let menu = popUpButton.menu
-            else { return }
+        guard let menu = self.syntaxPopUpButton?.menu else { return }
         
         let styleNames = SyntaxManager.shared.settingNames
         let recentStyleNames = UserDefaults.standard[.recentStyleNames]
@@ -177,9 +174,36 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         menu.items += styleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
         
-        // select item
         if let styleName = (self.document as? Document)?.syntaxParser.style.name {
-            popUpButton.selectItem(withTitle: styleName)
+            self.selectSyntaxPopUp(with: styleName)
+        }
+    }
+    
+    
+    private func selectSyntaxPopUp(with styleName: String) {
+        
+        guard let popUpButton = self.syntaxPopUpButton else { return }
+        
+        let deletedTag = -1
+        
+        // remove deleted items
+        popUpButton.menu?.items.removeAll { $0.tag == deletedTag }
+        
+        if let item = popUpButton.item(withTitle: styleName) {
+            popUpButton.select(item)
+        
+        } else {
+            // insert item by adding deleted item section
+            popUpButton.insertItem(withTitle: styleName, at: 1)
+            popUpButton.item(at: 1)?.tag = deletedTag
+            popUpButton.selectItem(at: 1)
+            
+            popUpButton.insertItem(withTitle: "Deleted".localized, at: 1)
+            popUpButton.item(at: 1)?.tag = deletedTag
+            popUpButton.item(at: 1)?.isEnabled = false
+            
+            popUpButton.menu?.insertItem(.separator(), at: 1)
+            popUpButton.item(at: 1)?.tag = deletedTag
         }
     }
     

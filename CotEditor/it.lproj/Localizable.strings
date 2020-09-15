@@ -175,6 +175,8 @@
 "Change syntax style" = "Modifica stile sintassi";
 // menu item title
 "Recently Used" = "Usati di recente";
+"Deleted" = "Deleted";  // FIXME: added (heading for deleted items)
+
 
 "Inspector" = "Inspector";
 // tooltip
