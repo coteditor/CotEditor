@@ -9,7 +9,7 @@ Change Log
 
 - Brand-new user interface designed to fit macOS 11 Big Sur.
     - Update the application icon.
-    - Redesing the document window.
+    - Redesign the document window.
 - Support Apple Silicon.
 - Add syntax style for Dockerfile.
 
@@ -18,24 +18,24 @@ Change Log
 
 - Change the system requirement to __macOS 10.15 Catalina and later__.
 - Move line endings/file encoding menus from the toolbar to the status bar.
-- Change default settings of items to display in toolbar/status bar.
+- Change default settings of items to display in the toolbar/status bar.
 - Change the default theme from Dendrobates to Anura.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
-- Change the “trim trailing whitespace on save” option in the General pane to pefrom the trimming not on save but while typing with delay, and move the option to the Edit pane.
+- Change the “trim trailing whitespace on save” option in the General pane to perform the trimming not on save but while typing with delay, and move the option to the Edit pane.
 - Enable toggling the editor split orientation by right-clicking the editor split button in the navigation bar.
 - Enable action to toggle editor split orientation even when no split editor is opened.
-- Remove the Integration pereferences pane and move its contents to the General pane.
+- Remove the Integration preferences pane and move its contents to the General pane.
 - Enable “select previous/next outline item” commands even when the navigation bar is hidden.
-- Live update selection counts while moving selection.
+- Live update selection counts while moving the selection.
 - Scroll editor by swiping the line number area.
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
 - Update Swift syntax style.
 - Update SVG syntax style.
 - Update Ruby syntax style.
 - Update Shell Script syntax style (thanks to ansimita!).
-- Remove the tool bar button to toggle page guide visiility.
+- Remove the toolbar button to toggle page guide visibility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
-- [trivial] Improve tooltips of toolbar icons to reflect current document state.
+- [trivial] Improve tooltips of toolbar icons to reflect the current document state.
 - [trivial] Optimize the line number calculation in vertical text orientation.
 - [trivial] Always enable non-contiguous layout by the normal horizontal text orientation.
 - [dev] Update the build environment to Xcode 12 (Swift 5.3, macOS 11 SDK).
