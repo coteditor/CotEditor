@@ -109,7 +109,7 @@ function_body_length:
   error: 500
 
 cyclomatic_complexity:
-  warning: 35
+  warning: 40
   error: 50
 
 large_tuple:
