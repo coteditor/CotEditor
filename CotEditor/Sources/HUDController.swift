@@ -33,7 +33,6 @@ enum HUDSymbol {
     
     fileprivate var image: NSImage {
         
-        
         switch self {
             case .wrap(let reversed):
                 return reversed
