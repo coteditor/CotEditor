@@ -73,7 +73,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.styleListObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
                                                   UserDefaults.standard.publisher(for: .recentStyleNames).eraseToVoid())
             .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.buildSyntaxPopupButton() }
+            .sink { [weak self] in self?.buildSyntaxPopUpButton() }
     }
     
     
@@ -91,12 +91,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             }
             
             self.window?.toolbar?.items.lazy.compactMap { $0 as? NSSharingServicePickerToolbarItem }.first?.delegate = document
-            self.selectSyntaxPopUp(with: document.syntaxParser.style.name)
+            self.selectSyntaxPopUpItem(with: document.syntaxParser.style.name)
             
             // observe document's style change
             self.documentStyleObserver = document.didChangeSyntaxStyle
                 .receive(on: RunLoop.main)
-                .sink { [weak self] in self?.selectSyntaxPopUp(with: $0) }
+                .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
     }
     
@@ -149,7 +149,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     /// Build syntax style popup menu in toolbar.
-    private func buildSyntaxPopupButton() {
+    private func buildSyntaxPopUpButton() {
         
         guard let menu = self.syntaxPopUpButton?.menu else { return }
         
@@ -175,12 +175,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         menu.items += styleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
         
         if let styleName = (self.document as? Document)?.syntaxParser.style.name {
-            self.selectSyntaxPopUp(with: styleName)
+            self.selectSyntaxPopUpItem(with: styleName)
         }
     }
     
     
-    private func selectSyntaxPopUp(with styleName: String) {
+    private func selectSyntaxPopUpItem(with styleName: String) {
         
         guard let popUpButton = self.syntaxPopUpButton else { return }
         
@@ -301,7 +301,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 popUpButton.bezelStyle = .texturedRounded
                 popUpButton.menu?.autoenablesItems = false
                 self.syntaxPopUpButton = popUpButton
-                self.buildSyntaxPopupButton()
+                self.buildSyntaxPopUpButton()
                 
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Syntax Style".localized
