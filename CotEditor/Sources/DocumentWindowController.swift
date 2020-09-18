@@ -29,6 +29,18 @@ import Cocoa
 
 final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
+    // MARK: Public Properties
+    
+    var isWhitepaper = false {
+        
+        didSet {
+            guard isWhitepaper || oldValue else { return }
+            
+            self.setDocumentEdited(!isWhitepaper)
+        }
+    }
+    
+    
     // MARK: Private Properties
     
     private var appearanceModeObserver: AnyCancellable?
@@ -98,6 +110,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                 .receive(on: RunLoop.main)
                 .sink { [weak self] in self?.selectSyntaxPopUpItem(with: $0) }
         }
+    }
+    
+    
+    override func setDocumentEdited(_ dirtyFlag: Bool) {
+        
+        super.setDocumentEdited(self.isWhitepaper ? false : dirtyFlag)
     }
     
     

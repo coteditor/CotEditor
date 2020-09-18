@@ -29,6 +29,7 @@ Change Log
 - Live update selection counts while moving the selection.
 - Scroll editor by swiping the line number area.
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
+- Avoid showing the "edited" indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
 - Update Swift syntax style.
 - Update SVG syntax style.
 - Update Ruby syntax style.
