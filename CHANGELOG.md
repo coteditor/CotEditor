@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.10.0 (unreleased)
+4.0.0 (unreleased)
 --------------------------
 
 ### New Features
@@ -46,6 +46,12 @@ Change Log
 ### Fixes
 
 - [trivial] Fix an issue in the sytnax style toolbar item that the menu selected blank if the current style was deleted.
+
+
+### Known Issues
+
+- Some of help contents are not updated yet.
+- Document icons are not updated yet for Big Sur style.
 
 
 
