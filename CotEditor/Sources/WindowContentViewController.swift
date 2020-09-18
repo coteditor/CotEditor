@@ -136,6 +136,7 @@ final class WindowContentViewController: NSSplitViewController {
         
         assert(self.sidebarViewItem!.isCollapsed)
         assert(self.sidebarViewItem == self.splitViewItems[1])
+        assert(self.isViewLoaded)
         assert(!self.view.window!.isVisible)
         
         guard let sidebarViewItem = self.sidebarViewItem else { return assertionFailure() }
@@ -282,6 +283,8 @@ final class WindowContentViewController: NSSplitViewController {
     /// whether sidebar state can be toggled
     private var canToggleSidebar: Bool {
         
+        guard self.isViewLoaded else { return false }
+        
         // cannot toggle in the tab overview mode
         if let tabGroup = self.view.window?.tabGroup {
             return !tabGroup.isOverviewVisible
@@ -293,6 +296,8 @@ final class WindowContentViewController: NSSplitViewController {
     
     /// window content view controllers in all tabs in the same window
     private var siblings: [WindowContentViewController] {
+        
+        guard self.isViewLoaded else { return [] }
         
         return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
     }
