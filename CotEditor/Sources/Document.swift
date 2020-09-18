@@ -75,6 +75,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var sytnaxUpdateObserver: AnyCancellable?
+    private var textStorageObserver: AnyCancellable?
     
     private var lastSavedData: Data?  // temporal data used only within saving process
     
@@ -220,7 +221,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func makeWindowControllers() {
         
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
-            self.addWindowController(.instantiate(storyboard: "DocumentWindow"))
+            let windowController: NSWindowController = .instantiate(storyboard: "DocumentWindow")
+            self.addWindowController(windowController)
+            
+            // avoid showing "edited" indicator in the close button when the content is empty
+            if !Self.autosavesInPlace,
+               let windowController = windowController as? DocumentWindowController
+            {
+                self.textStorageObserver = NotificationCenter.default
+                    .publisher(for: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
+                    .map { $0.object as! NSTextStorage }
+                    .map { $0.string.isEmpty }
+                    .removeDuplicates()
+                    .receive(on: RunLoop.main)
+                    .assign(to: \.isWhitepaper, on: windowController)
+            }
         }
         
         self.applyContentToWindow()
