@@ -221,13 +221,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func makeWindowControllers() {
         
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
-            let windowController: NSWindowController = .instantiate(storyboard: "DocumentWindow")
+            let windowController = DocumentWindowController.instantiate(storyboard: "DocumentWindow")
+            
             self.addWindowController(windowController)
             
             // avoid showing "edited" indicator in the close button when the content is empty
-            if !Self.autosavesInPlace,
-               let windowController = windowController as? DocumentWindowController
-            {
+            if !Self.autosavesInPlace {
                 self.textStorageObserver = NotificationCenter.default
                     .publisher(for: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
                     .map { $0.object as! NSTextStorage }
