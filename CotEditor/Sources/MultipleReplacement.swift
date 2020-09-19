@@ -98,13 +98,7 @@ extension MultipleReplacement {
             let mode = replacement.mode(settings: self.settings)
             
             // -> Invalid replacement rules will just be ignored.
-            let textFind: TextFind
-            do {
-                textFind = try TextFind(for: string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: ranges)
-            } catch {
-                print(error.localizedDescription)
-                continue
-            }
+            guard let textFind = try? TextFind(for: string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: ranges) else { continue }
             
             // process find
             var isCancelled = false
@@ -142,13 +136,7 @@ extension MultipleReplacement {
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
             // -> Invalid replacement rules will just be ignored.
-            let textFind: TextFind
-            do {
-                textFind = try TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges)
-            } catch {
-                print(error.localizedDescription)
-                continue
-            }
+            guard let textFind = try? TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges) else { continue }
             
             // process replacement
             var isCancelled = false
