@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix the jump button for theme URL.
 
 
 

@@ -39,8 +39,8 @@ final class ThemeMetaDataViewController: NSViewController {
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
-            let theme = self.representedObject as? Theme,
-            let address = theme.metadata?.distributionURL,
+            let theme = self.representedObject as? Metadata,
+            let address = theme.distributionURL,
             let url = URL(string: address)
             else { return NSSound.beep() }
         
