@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class PrintTextView: NSTextView, Themable, URLDetectable {
@@ -61,6 +62,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private var xOffset: CGFloat = 0
     private let dateFormatter: DateFormatter
     private var lastPaperContentSize: NSSize = .zero
+    
+    private var asyncHighlightObserver: AnyCancellable?
     
     
     
@@ -225,20 +228,20 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
             }
             
-            self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
-                guard let numberString: String = {
+            let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
+            self.enumerateLineFragments(in: dirtyRect, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
+                let numberString: String = {
                     switch line {
-                        case .new(let lineNumber, _):
+                        case .new:
                             if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
-                                return "·"  // draw real number only in every 5 times
+                                return "·"  // draw number only every 5 times
                             }
                             return String(lineNumber)
                         
                         case .wrapped:
-                            if isVerticalText { return nil }
                             return "-"
                     }
-                    }() else { return }
+                }()
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * charSize.width
@@ -314,13 +317,17 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
         // perform syntax highlight
-        weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
-        _ = self.syntaxParser.highlightAll {
-            DispatchQueue.main.async {
-                guard let controller = controller, controller.isViewShown else { return }
-                
-                controller.needsUpdatePreview = true
-            }
+        let progress = self.syntaxParser.highlight()
+        
+        // asynchronously trigger preview update if needed
+        if
+            let progress = progress,
+            let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
+        {
+            self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
+                .first { $0 }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak controller] _ in controller?.needsUpdatePreview = true }
         }
     }
     

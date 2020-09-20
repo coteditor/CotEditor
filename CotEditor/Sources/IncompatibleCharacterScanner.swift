@@ -23,28 +23,21 @@
 //  limitations under the License.
 //
 
+import Combine
 import AppKit
-
-protocol IncompatibleCharacterScannerDelegate: AnyObject {
-    
-    func shouldUpdateIncompatibleCharacter(_ document: Document) -> Bool
-    
-    func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter])
-}
-
-
 
 final class IncompatibleCharacterScanner {
     
     // MARK: Public Properties
     
-    weak var delegate: IncompatibleCharacterScannerDelegate?
+    var shouldScan = false
     
-    private(set) weak var document: Document?  // weak to avoid cycle retain
-    private(set) var incompatibleCharacters = [IncompatibleCharacter]()  // line endings applied
+    @Published private(set) var incompatibleCharacters: [IncompatibleCharacter] = []  // line endings applied
     
     
     // MARK: Private Properties
+    
+    private weak var document: Document?
     
     private lazy var updateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
@@ -65,10 +58,7 @@ final class IncompatibleCharacterScanner {
     /// set update timer
     func invalidate() {
         
-        guard
-            let document = self.document,
-            self.delegate?.shouldUpdateIncompatibleCharacter(document) == true
-            else { return }
+        guard self.shouldScan else { return }
         
         self.updateTask.schedule()
     }
@@ -77,22 +67,11 @@ final class IncompatibleCharacterScanner {
     /// scan immediately
     func scan() {
         
-        guard let document = self.document else { return }
-        
-        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.encoding)
         self.updateTask.cancel()
         
-        self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)
-    }
-    
-}
-
-
-extension IncompatibleCharacterScanner: CustomDebugStringConvertible {
-    
-    var debugDescription: String {
+        guard let document = self.document else { return assertionFailure() }
         
-        return "<\(self): \(self.document?.displayName ?? "NO DOCUMENT")>"
+        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.fileEncoding.encoding)
     }
     
 }

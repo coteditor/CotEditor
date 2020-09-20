@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class TextContainer: NSTextContainer {
@@ -37,29 +38,21 @@ final class TextContainer: NSTextContainer {
     
     private var indentWidthCache: [String: CGFloat] = [:]
     private var indentAttributes: [NSAttributedString.Key: Any] = [:]
-    private var typingAttributesObserver: NSKeyValueObservation?
+    private var typingAttributesObserver: AnyCancellable?
     
     
     
     // MARK: -
     // MARK: Text Container Methods
     
-    deinit {
-        self.typingAttributesObserver?.invalidate()
-    }
-    
-    
     override weak var textView: NSTextView? {
         
-        willSet {
-            self.typingAttributesObserver?.invalidate()
-        }
-        
         didSet {
-            self.typingAttributesObserver = textView?.observe(\.typingAttributes, options: [.initial, .new]) { [weak self] (_, change) in
-                self?.indentAttributes = change.newValue ?? [:]
-                self?.indentWidthCache.removeAll()
-            }
+            self.typingAttributesObserver = textView?.publisher(for: \.typingAttributes, options: .initial)
+                .sink { [weak self] (typingAttributes) in
+                    self?.indentAttributes = typingAttributes
+                    self?.indentWidthCache.removeAll()
+                }
         }
     }
     

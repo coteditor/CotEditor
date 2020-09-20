@@ -23,13 +23,8 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
-
-protocol TabViewControllerDelegate: AnyObject {
-    
-    func tabViewController(_ viewController: NSTabViewController, didSelect tabViewIndex: Int)
-}
-
 
 final class SidebarViewController: NSTabViewController {
     
@@ -43,13 +38,12 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: Public Properties
     
-    weak var delegate: TabViewControllerDelegate?
     var selectedTabIndex: TabIndex { TabIndex(rawValue: self.selectedTabViewItemIndex) ?? .documentInspector }
     
     
     // MARK: Private Properties
     
-    private var frameObserver: NSKeyValueObservation?
+    private var frameObserver: AnyCancellable?
     
     @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
     @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
@@ -59,11 +53,6 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: -
     // MARK: Lifecycle
-    
-    deinit {
-        self.frameObserver?.invalidate()
-    }
-    
     
     /// prepare tabs
     override func viewDidLoad() {
@@ -83,10 +72,11 @@ final class SidebarViewController: NSTabViewController {
             // apply also to .tabView that is the only child of .view
             self.view.layoutSubtreeIfNeeded()
         }
-        self.frameObserver?.invalidate()
-        self.frameObserver = self.view.observe(\.frame) { (view, _) in
-            UserDefaults.standard[.sidebarWidth] = view.frame.width
-        }
+        self.frameObserver = self.view.publisher(for: \.frame)
+            .debounce(for: 0.1, scheduler: DispatchQueue.main)
+            .map(\.size.width)
+            .removeDuplicates()
+            .sink { UserDefaults.standard[.sidebarWidth] = $0 }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -111,11 +101,9 @@ final class SidebarViewController: NSTabViewController {
     override var representedObject: Any? {
         
         didSet {
-            guard let document = representedObject as? Document else { return }
-            
-            self.documentInspectorTabViewItem?.viewController?.representedObject = document.analyzer
-            self.outlineTabViewItem?.viewController?.representedObject = document
-            self.incompatibleCharactersTabViewItem?.viewController?.representedObject = document.incompatibleCharacterScanner
+            for item in self.tabViewItems {
+                item.viewController?.representedObject = representedObject as? Document
+            }
         }
     }
     
@@ -125,11 +113,37 @@ final class SidebarViewController: NSTabViewController {
         didSet {
             guard selectedTabViewItemIndex != oldValue else { return }
             
-            self.delegate?.tabViewController(self, didSelect: selectedTabViewItemIndex)
-            
             if self.isViewLoaded {  // avoid storing initial state (set in the storyboard)
                 UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
             }
+        }
+    }
+    
+}
+
+
+
+extension SidebarViewController: InspectorTabViewDelegate {
+    
+    func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage? {
+        
+        switch tabViewItem {
+            case self.documentInspectorTabViewItem:
+                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "doc_selected") }
+                return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)?
+                    .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
+                
+            case self.outlineTabViewItem:
+                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "list.bullet.indent_selected") }
+                return nil  // -> bold version
+                
+            case self.incompatibleCharactersTabViewItem:
+                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "exclamationmark.triangle_slected") }
+                return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?
+                    .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
+                
+            default:
+                preconditionFailure()
         }
     }
     

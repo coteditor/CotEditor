@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,51 +23,65 @@
 //  limitations under the License.
 //
 
-import Dispatch
+import class Dispatch.DispatchQueue
 
+@propertyWrapper
 final class Atomic<T> {
+    
+    // MARK: Public Properties
+    
+    var projectedValue: Atomic<T>  { self }
+    
     
     // MARK: Private Properties
     
     private let queue: DispatchQueue
-    private var _value: T
+    private var value: T
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(_ value: T, attributes: DispatchQueue.Attributes = []) {
+    init(_ wrappedValue: T, attributes: DispatchQueue.Attributes = []) {
         
         self.queue = DispatchQueue(label: "com.coteditor.CotEdiotor.atomic." + String(describing: T.self), attributes: attributes)
-        self._value = value
+        self.value = wrappedValue
+    }
+    
+    
+    /// Initializer for proeprtyWrapper.
+    convenience init(wrappedValue: T) {
+        
+        self.init(wrappedValue)
     }
     
     
     
     // MARK: Public Methods
     
-    /// thread-safe getter for value
-    var value: T {
+    /// Thread-safe accessor for value.
+    var wrappedValue: T {
         
-        return self.queue.sync { self._value }
+        get { self.queue.sync { self.value } }
+        set { self.queue.sync { self.value = newValue } }
     }
     
     
-    /// thread-safe update of value
+    /// Thread-safe update of value.
     func mutate(_ transform: (inout T) -> Void) {
         
         self.queue.sync {
-            transform(&self._value)
+            transform(&self.value)
         }
     }
     
     
-    /// thread-safe update of value without blocking the current thread
+    /// Thread-safe update of value without blocking the current thread.
     func asyncMutate(_ transform: @escaping (inout T) -> Void) {
         
         self.queue.async(flags: .barrier) { [unowned self] in
-            transform(&self._value)
+            transform(&self.value)
         }
     }
     

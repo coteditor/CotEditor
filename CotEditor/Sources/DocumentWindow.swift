@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,14 +23,10 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class DocumentWindow: NSWindow {
-    
-    // MARK: Notification Names
-    
-    static let didChangeOpacityNotification = Notification.Name("WindowDidChangeOpacity")
-    
     
     // MARK: Public Properties
     
@@ -61,19 +57,11 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Private Properties
     
-    private var appearanceObserver: NSKeyValueObservation?
+    private var appearanceObserver: AnyCancellable?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.appearanceObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: Window Methods
     
     /// keys to be restored from the last session
@@ -88,21 +76,23 @@ final class DocumentWindow: NSWindow {
     /// notify about opacity change
     override var isOpaque: Bool {
         
+        willSet {
+            self.willChangeValue(for: \.isOpaque)
+        }
+        
         didSet {
+            self.didChangeValue(for: \.isOpaque)
+            
             guard isOpaque != oldValue else { return }
             
             self.invalidateTitlebarOpacity()
             
             if isOpaque {
-                self.appearanceObserver?.invalidate()
                 self.appearanceObserver = nil
             } else if self.appearanceObserver == nil {
-                self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
-                    self?.invalidateTitlebarOpacity()
-                }
+                self.appearanceObserver = self.publisher(for: \.effectiveAppearance)
+                    .sink { [weak self] _ in self?.invalidateTitlebarOpacity() }
             }
-            
-            NotificationCenter.default.post(name: DocumentWindow.didChangeOpacityNotification, object: self)
         }
     }
     
@@ -133,7 +123,7 @@ final class DocumentWindow: NSWindow {
     /// make sure window title bar (incl. toolbar) is opaque
     private func invalidateTitlebarOpacity() {
         
-        guard let titlebarView = self.titlebarView else { return }
+        guard let titlebarView = self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView else { return }
         
         // dirty manupulation to avoid the title bar being dyed in the window background color (2016-01).
         titlebarView.wantsLayer = !self.isOpaque
@@ -214,18 +204,6 @@ extension DocumentWindow {
         }
         
         return super.validateMenuItem(menuItem)
-    }
-    
-}
-
-
-// MARK: -
-
-private extension NSWindow {
-    
-    var titlebarView: NSVisualEffectView? {
-        
-        return self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView
     }
     
 }

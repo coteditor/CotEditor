@@ -82,13 +82,7 @@ final class ConsoleViewController: NSViewController {
     
     private static let fontSize: CGFloat = 11
     
-    private let messageFont: NSFont = {
-        if #available(macOS 10.15, *) {
-            return .monospacedSystemFont(ofSize: ConsoleViewController.fontSize, weight: .regular)
-        } else {
-            return NSFont(named: .menlo, size: ConsoleViewController.fontSize)!
-        }
-    }()
+    private let messageFont: NSFont = .monospacedSystemFont(ofSize: ConsoleViewController.fontSize, weight: .regular)
     
     private let messageParagraphStyle: NSParagraphStyle = {
         // indent for message body

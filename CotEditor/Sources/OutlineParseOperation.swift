@@ -26,12 +26,11 @@
 
 import Foundation
 
-final class OutlineParseOperation: Operation, ProgressReporting {
+final class OutlineParseOperation: Operation {
     
     // MARK: Public Properties
     
-    let progress: Progress
-    private(set) var results = [OutlineItem]()
+    private(set) var results: [OutlineItem] = []
     
     
     // MARK: Private Properties
@@ -53,14 +52,6 @@ final class OutlineParseOperation: Operation, ProgressReporting {
         self.extractors = extractors
         self.string = string
         self.parseRange = parseRange
-        
-        self.progress = Progress(totalUnitCount: Int64(extractors.count + 1))
-        
-        super.init()
-        
-        self.progress.cancellationHandler = { [weak self] in
-            self?.cancel()
-        }
     }
     
     
@@ -73,10 +64,7 @@ final class OutlineParseOperation: Operation, ProgressReporting {
         guard
             !self.extractors.isEmpty,
             !self.string.isEmpty
-            else {
-                self.progress.completedUnitCount = self.progress.totalUnitCount
-                return
-            }
+            else { return }
         
         for extractor in self.extractors {
             guard !self.isCancelled else { return }
@@ -84,15 +72,11 @@ final class OutlineParseOperation: Operation, ProgressReporting {
             self.results += extractor.items(in: self.string, range: self.parseRange) { (stop) in
                 stop = self.isCancelled
             }
-            
-            self.progress.completedUnitCount += 1
         }
         
         guard !self.isCancelled else { return }
         
         self.results.sort(\.range.location)
-        
-        self.progress.completedUnitCount += 1
     }
     
 }

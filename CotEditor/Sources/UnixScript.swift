@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,22 +24,31 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Combine
+import Foundation
+import AppKit.NSDocument
 
 final class UnixScript: Script {
     
     // MARK: Script Properties
     
-    let descriptor: ScriptDescriptor
+    let url: URL
+    let name: String
+    
+    
+    // MARK: Private Properties
+    
+    private lazy var content: String? = try? String(contentsOf: self.url)
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(descriptor: ScriptDescriptor) {
+    init(url: URL, name: String) throws {
         
-        self.descriptor = descriptor
+        self.url = url
+        self.name = name
     }
     
     
@@ -71,20 +80,23 @@ final class UnixScript: Script {
     
     // MARK: Script Methods
     
-    /// run script
+    /// Execute the script.
     ///
-    /// - Throws: `ScriptFileError` or Error by `NSUserScriptTask`
-    func run(completionHandler: (() -> Void)? = nil) throws {
+    /// - Parameters:
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError`
+    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
         
         // check script file
-        guard self.descriptor.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        guard self.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.url)
         }
-        guard try self.descriptor.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
-            throw ScriptFileError(kind: .permission, url: self.descriptor.url)
+        guard try self.url.resourceValues(forKeys: [.isExecutableKey]).isExecutable ?? false else {
+            throw ScriptFileError(kind: .permission, url: self.url)
         }
         guard let script = self.content, !script.isEmpty else {
-            throw ScriptFileError(kind: .read, url: self.descriptor.url)
+            throw ScriptFileError(kind: .read, url: self.url)
         }
         
         // fetch target document
@@ -95,9 +107,10 @@ final class UnixScript: Script {
         if let inputType = InputType(scanning: script) {
             do {
                 input = try self.readInputString(type: inputType, editor: document)
+            } catch let error as ScriptError {
+                return completionHandler(error)
             } catch {
-                writeToConsole(message: error.localizedDescription, scriptName: self.descriptor.name)
-                return
+                preconditionFailure()
             }
         } else {
             input = nil
@@ -110,9 +123,7 @@ final class UnixScript: Script {
         let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
         
         // create task
-        let task = try NSUserUnixTask(url: self.descriptor.url)
-        
-        // set pipes
+        let task = try NSUserUnixTask(url: self.url)
         let inPipe = Pipe()
         let outPipe = Pipe()
         let errPipe = Pipe()
@@ -135,46 +146,43 @@ final class UnixScript: Script {
             }
         }
         
-        let scriptName = self.descriptor.name
-        var isCancelled = false  // user cancel state
-        
         // read output asynchronously for safe with huge output
-        if let outputType = outputType {
-            weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: .main) { (note: Notification) in
-                NotificationCenter.default.removeObserver(observer!)
-                
-                guard
-                    !isCancelled,
-                    let data = note.userInfo?[NSFileHandleNotificationDataItem] as? Data,
-                    let output = String(data: data, encoding: .utf8)
-                    else { return }
-                
-                do {
-                    try Self.applyOutput(output, editor: document, type: outputType)
-                } catch {
-                    writeToConsole(message: error.localizedDescription, scriptName: scriptName)
-                }
-            }
+        let output = Atomic<String?>(nil)
+        var outputObserver: AnyCancellable?
+        if outputType != nil {
+            outputObserver = NotificationCenter.default.publisher(for: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading)
+                .compactMap { $0.userInfo?[NSFileHandleNotificationDataItem] as? Data }
+                .compactMap { String(data: $0, encoding: .utf8) }
+                .assign(to: \.wrappedValue, on: output)
+            
             outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
         }
         
         // execute
-        task.execute(withArguments: arguments) { error in
-            defer {
-                completionHandler?()
+        task.execute(withArguments: arguments) { [weak document] (error) in
+            // on user cancellation
+            if (error as? POSIXError)?.code == .ENOTBLK {
+                outputObserver?.cancel()
+                return completionHandler(nil)
             }
             
-            // on user cancel
-            if let error = error as? POSIXError, error.code == .ENOTBLK {
-                isCancelled = true
-                return
-            }
-            
-            // put error message on the console
+            // obtain standard error
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
-            if let message = String(data: errorData, encoding: .utf8), !message.isEmpty {
-                writeToConsole(message: message, scriptName: scriptName)
+            let message = String(data: errorData, encoding: .utf8)
+            let scriptError = message.flatMap { $0.isEmpty ? nil : ScriptError.standardError($0) }
+            
+            DispatchQueue.main.async {
+                if let outputType = outputType, let output = output.wrappedValue {
+                    do {
+                        try Self.applyOutput(output, editor: document, type: outputType)
+                    } catch let error as ScriptError {
+                        return completionHandler(error)
+                    } catch {
+                        preconditionFailure()
+                    }
+                }
+                
+                completionHandler(scriptError)
             }
         }
     }
@@ -182,18 +190,6 @@ final class UnixScript: Script {
     
     
     // MARK: Private Methods
-    
-    /// read content of script file
-    private lazy var content: String? = {
-        
-        guard let data = try? Data(contentsOf: self.descriptor.url) else { return nil }
-        
-        return EncodingManager.shared.defaultEncodings.lazy
-            .compactMap { $0 }
-            .compactMap { String(bomCapableData: data, encoding: $0) }
-            .first
-    }()
-    
     
     /// return document content conforming to the input type
     ///
@@ -243,28 +239,6 @@ final class UnixScript: Script {
             case .pasteBoard:
                 NSPasteboard.general.declareTypes([.string], owner: nil)
                 NSPasteboard.general.setString(output, forType: .string)
-        }
-    }
-    
-}
-
-
-
-// MARK: - Error
-
-private enum ScriptError: Error {
-    
-    case noInputTarget
-    case noOutputTarget
-    
-    
-    var localizedDescription: String {
-        
-        switch self {
-            case .noInputTarget:
-                return "No document to get input.".localized
-            case .noOutputTarget:
-                return "No document to put output.".localized
         }
     }
     

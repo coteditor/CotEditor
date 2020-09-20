@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import AudioToolbox
 
@@ -40,6 +41,9 @@ private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
     
     // MARK: Private Properties
+    
+    private var encodingChangeObserver: AnyCancellable?
+    private var syntaxStyleChangeObserver: AnyCancellable?
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -70,12 +74,14 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewWillAppear()
         
-        self.setupEncodingMenu()
-        self.setupSyntaxStyleMenus()
+        self.encodingChangeObserver = EncodingManager.shared.$encodings
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.setupEncodingMenu() }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
+        self.syntaxStyleChangeObserver = Publishers.Merge(SyntaxManager.shared.$settingNames.eraseToVoid(),
+                                                          SyntaxManager.shared.didUpdateSetting.eraseToVoid())
+            .debounce(for: 0, scheduler: RunLoop.main)
+            .sink { [weak self] _ in self?.setupSyntaxStyleMenus() }
     }
     
     
@@ -84,8 +90,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         super.viewDidDisappear()
         
-        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
+        self.encodingChangeObserver = nil
+        self.syntaxStyleChangeObserver = nil
     }
     
     
@@ -201,20 +207,20 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
-                                         handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
+                                         handler: { [weak self] (_, _) in
                                             self?.restoreSyntaxStyle(name: styleName)
                                             
                                             // finish swiped mode anyway
                                             tableView.rowActionsVisible = false
-                })]
+                                         })]
             
         } else {
             // Delete
             return [NSTableViewRowAction(style: .destructive,
                                          title: "Delete".localized,
-                                         handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
+                                         handler: { [weak self] (_, _) in
                                             self?.deleteSyntaxStyle(name: styleName)
-                })]
+                                         })]
         }
     }
     
@@ -246,7 +252,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true])
-        { [unowned self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+        { [unowned self] (draggingItem, _, _) in
             
             guard
                 let fileURL = draggingItem.item as? URL,
@@ -364,7 +370,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions + ["plist"]
+        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions
         
         openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
@@ -389,7 +395,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     @IBAction func reloadAllStyles(_ sender: Any?) {
         
-        SyntaxManager.shared.updateCache()
+        SyntaxManager.shared.reloadCache()
     }
     
     
@@ -397,7 +403,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: Private Methods
     
     /// build encoding menu
-    @objc private func setupEncodingMenu() {
+    private func setupEncodingMenu() {
         
         guard let popupButton = self.encodingPopupButton else { return assertionFailure() }
         assert(popupButton.menu != nil)
@@ -410,8 +416,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             // add "UTF-8 with BOM" item
             if item.tag == utf8Int {
+                let fileEncoding = FileEncoding(encoding: .utf8, withUTF8BOM: true)
                 let bomItem = NSMenuItem()
-                bomItem.title = String.localizedName(of: .utf8, withUTF8BOM: true)
+                bomItem.title = fileEncoding.localizedName
                 bomItem.tag = utf8Int
                 bomItem.representedObject = isUTF8WithBOMFlag
                 popupButton.menu?.addItem(bomItem)
@@ -434,7 +441,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     /// build sytnax style menus
-    @objc private func setupSyntaxStyleMenus() {
+    private func setupSyntaxStyleMenus() {
         
         let styleNames = SyntaxManager.shared.settingNames
         
@@ -460,7 +467,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             // -> Because items were actually added after Cocoa-Binding selected the item.
-            let defaultStyle = UserDefaults.standard[.syntaxStyle]!
+            let defaultStyle = UserDefaults.standard[.syntaxStyle]
             let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
             
             popup.selectItem(withTitle: selectedStyle)
@@ -472,7 +479,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @objc private dynamic var selectedStyleName: String {
         
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
-            return UserDefaults.standard[.syntaxStyle]!
+            return UserDefaults.standard[.syntaxStyle]
         }
         return styleInfo[StyleKey.name.rawValue] as! String
     }
@@ -503,6 +510,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
+        if #available(macOS 11, *) {
+            alert.buttons.last?.hasDestructiveAction = true
+        }
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in
@@ -543,11 +553,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     private func importSyntaxStyle(fileURL: URL) {
         
         do {
-            if fileURL.pathExtension == "plist" {
-                try SyntaxManager.shared.importLegacyStyle(fileURL: fileURL)
-            } else {
-                try SyntaxManager.shared.importSetting(fileURL: fileURL)
-            }
+            try SyntaxManager.shared.importSetting(fileURL: fileURL)
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)

@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class ScriptManager: NSObject, NSFilePresenter {
@@ -38,10 +39,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Properties
     
     private let scriptsDirectoryURL: URL
-    private var scriptHandlersTable: [ScriptingEventType: [Script]] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
     
     private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
-    private var applicationObserver: NotificationObservation?
+    private var applicationObserver: AnyCancellable?
     
     
     
@@ -66,6 +67,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
             }
         }
         
+        self.presentedItemURL = self.scriptsDirectoryURL
+        
         super.init()
         
         // observe script folder change
@@ -81,14 +84,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: File Presenter Protocol
     
-    var presentedItemOperationQueue: OperationQueue = .main
+    let presentedItemOperationQueue: OperationQueue = .main
     
-    
-    /// URL to observe
-    var presentedItemURL: URL? {
-        
-        return self.scriptsDirectoryURL
-    }
+    let presentedItemURL: URL?
     
     
     /// script folder did change
@@ -98,11 +96,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
             self.menuBuildingTask.schedule()
             
         } else {
-            self.applicationObserver?.invalidate()
-            self.applicationObserver = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
-                self?.applicationObserver?.invalidate()
-                self?.menuBuildingTask.perform()
-            }
+            self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp)
+                .receive(on: DispatchQueue.main)
+                .first()
+                .sink { [weak self] _ in self?.menuBuildingTask.perform() }
         }
     }
     
@@ -120,10 +117,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         guard !items.isEmpty else { return nil }
         
         let menu = NSMenu()
-//        menu.items = items  // <- this line fails on macOS 10.13 and earlier
-        for item in items {
-            menu.addItem(item)
-        }
+        menu.items = items
         
         return menu
     }
@@ -135,7 +129,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         assert(Thread.isMainThread)
         
         self.menuBuildingTask.cancel()
-        self.scriptHandlersTable = [:]
+        self.scriptHandlersTable.removeAll()
         
         let menu = MainMenu.script.menu!
         
@@ -195,16 +189,26 @@ final class ScriptManager: NSObject, NSFilePresenter {
         do {
             // change behavior if modifier key is pressed
             switch NSEvent.modifierFlags {
-                case [.option]:
-                    try self.editScript(at: script.descriptor.url)
+                case [.option]:  // open
+                    guard NSWorkspace.shared.open(script.url) else {
+                        throw ScriptFileError(kind: .open, url: script.url)
+                    }
                 
-                case [.option, .shift]:
-                    try self.revealScript(at: script.descriptor.url)
+                case [.option, .shift]:  // reveal
+                    guard script.url.isReachable else {
+                        throw ScriptFileError(kind: .existance, url: script.url)
+                    }
+                    NSWorkspace.shared.activateFileViewerSelecting([script.url])
                 
-                default:
-                    self.currentScriptName = script.descriptor.name
-                    try script.run { [weak self] in
-                        self?.currentScriptName = nil
+                default:  // execute
+                    self.currentScriptName = script.name
+                    try script.run { [weak self] (error) in
+                        if let error = error {
+                            Self.writeToConsole(message: error.localizedDescription, scriptName: script.name)
+                        }
+                        if self?.currentScriptName == script.name {
+                            self?.currentScriptName = nil
+                        }
                     }
             }
             
@@ -223,6 +227,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     // MARK: Private Methods
+    
+    class func writeToConsole(message: String, scriptName: String) {
+        
+        let log = Console.Log(message: message, title: scriptName)
+        
+        DispatchQueue.main.async {
+            Console.shared.panelController.showWindow(nil)
+            Console.shared.append(log: log)
+        }
+    }
+    
     
     /// Create an Apple Event caused by the given `Document`.
     ///
@@ -255,11 +270,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - event: The Apple Event to be dispatched.
     ///   - scripts: AppleScripts handling the given Apple Event.
-    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [Script]) {
+    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [EventScript]) {
         
         for script in scripts {
             do {
-                try script.run(withAppleEvent: event)
+                try script.run(withAppleEvent: event) { (error) in
+                    if let error = error {
+                        Self.writeToConsole(message: error.localizedDescription, scriptName: script.name)
+                    }
+                }
             } catch {
                 NSApp.presentError(error)
             }
@@ -284,64 +303,42 @@ final class ScriptManager: NSObject, NSFilePresenter {
             // ignore files/folders of which name starts with "_"
             if url.lastPathComponent.hasPrefix("_") { continue }
             
-            let descriptor = ScriptDescriptor(at: url)
+            var name = url.deletingPathExtension().lastPathComponent
+                .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
             
-            if descriptor.name == String.separator {
-                menu.addItem(.separator())
-                continue
+            var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+            shortcut = shortcut.isValid ? shortcut : .none
+            if shortcut != .none {
+                name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
             }
             
-            guard let resourceType = (try? url.resourceValues(forKeys: [.fileResourceTypeKey]))?.fileResourceType else { continue }
-            
-            if let script = descriptor.makeScript() {
-                for eventType in descriptor.eventTypes {
-                    self.scriptHandlersTable[eventType, default: []].append(script)
-                }
+            if name == .separator {  // separator
+                menu.addItem(.separator())
                 
-                let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript),
-                                      keyEquivalent: descriptor.shortcut.keyEquivalent)
-                item.keyEquivalentModifierMask = descriptor.shortcut.modifierMask
-                item.representedObject = script
-                item.target = self
-                item.toolTip = "“Option + click” to open script in editor.".localized
-                menu.addItem(item)
+            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
+                let submenu = NSMenu(title: name)
+                self.addChildFileItem(in: url, to: submenu)
                 
-            } else if resourceType == .directory {
-                let submenu = NSMenu(title: descriptor.name)
-                let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
+                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 item.submenu = submenu
                 menu.addItem(item)
                 
-                self.addChildFileItem(in: url, to: submenu)
+            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
+                for eventType in descriptor.eventTypes {
+                    guard let script = script as? EventScript else { continue }
+                    self.scriptHandlersTable[eventType, default: []].append(script)
+                }
+                
+                let item = NSMenuItem(title: name, action: #selector(launchScript),
+                                      keyEquivalent: shortcut.keyEquivalent)
+                item.keyEquivalentModifierMask = shortcut.modifierMask
+                item.representedObject = script
+                item.target = self
+                item.toolTip = "“Option + click” to open script in editor.".localized
+                menu.addItem(item)
             }
         }
-    }
-    
-    
-    /// Open script file in an editor.
-    ///
-    /// - Parameter url: The URL of a script file to open.
-    /// - Throws: `ScriptFileError`
-    private func editScript(at url: URL) throws {
-        
-        guard NSWorkspace.shared.open(url) else {
-            throw ScriptFileError(kind: .open, url: url)
-        }
-    }
-    
-    
-    /// Reveal script file in Finder.
-    ///
-    /// - Parameter url: The URL of a script file to reveal.
-    /// - Throws: `ScriptFileError`
-    private func revealScript(at url: URL) throws {
-        
-        guard url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: url)
-        }
-        
-        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
 }

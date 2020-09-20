@@ -37,7 +37,6 @@
 
 // Accessibility labels
 "inspector" = "inspecteur";
-"document inspector" = "inspecteur de document";
 "outline" = "structure";
 "incompatible characters" = "caractères incompatibles";
 "status bar" = "barre d'état";
@@ -55,10 +54,6 @@
 
 
 /* MARK: AppDelegate */
-// Format - Syntax coloring menu item title
-"Recently Used" = "Récemment utilisés";
-"Re-Color All" = "Tout recolorer";
-
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@” est un fichier de thème CotEditor.";
 "Do you want to install this theme?" = "Voulez-vous installer ce thème ?";
@@ -169,6 +164,111 @@
 "Do you want to keep CotEditor’s edition or update to the modified edition?" = "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?";
 "Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
 "Update" = "Rafraîchir";
+
+
+
+/* MARK: Toolbar */
+"Syntax Style" = "Syntaxe";
+// tooltip
+"Change syntax style" = "Changer la syntaxe";
+// item in the menu
+"Recently Used" = "Récemment utilisés";
+"Deleted" = "Deleted";  // FIXME: added (heading for deleted items)
+
+
+"Inspector" = "Inspecteur";
+// tooltip
+"Show document information" = "Afficher les informations de document";
+
+"Text Size" = "Taille du texte";
+"Smaller" = "Plus petit";
+"Bigger" = "Plus grand";
+// tooltip
+"Change text size" = "Changer la taille du texte";
+"Decrease text size" = "Diminuer la taille du texte";
+"Increase text size" = "Augmenter la taille du texte";
+
+"Writing Direction" = "Sens de l'écriture";
+"Left to Right" = "De gauche à droite";
+"Right to Left" = "De droite à gauche";
+// tooltip
+"Change writing direction" = "Changer le sens de l'écriture";
+"Left to right" = "De gauche à droite";
+"Right to left" = "De droite à gauche";
+
+"Text Orientation" = "Orientation du texte";
+"Horizontal" = "Horizontale";
+"Vertical" = "Verticale";
+// tooltip
+"Toggle text orientation" = "Changer l'orientation du texte";
+
+"Indent" = "Indenter";
+"Shift Left" = "Décaler à gauche";
+"Shift Right" = "Décaler à droite";
+// tooltip
+"Indent selection" = "Indenter ou désindenter la sélection";
+"Shift lines to left" = "Décaler les lignes à gauche";
+"Shift lines to right" = "Décaler les lignes à droite";
+
+"Comment" = "Commenter";
+// tooltip
+"Comment-out or uncomment selection" = "Commenter ou décommenter la sélection";
+
+"Tab Style" = "Style de tabulation";
+// tooltip
+"Disable expanding tabs to spaces" = "Désactiver l'extension automatique des tabulation";
+"Expand tabs to spaces automatically" = "Activer l'extension automatique des tabulation";
+"Change tab width" = "Changer la largeur de tabulation";
+// menu
+"Tab Width" = "Largeur de tabulation";
+"Custom…" = "Personnalisé…";
+
+"Wrap Lines" = "Renv. à la ligne";
+// tooltip
+"Unwrap lines" = "Ne pas renvoyer à la ligne";
+"Wrap lines" = "Renvoyer à la ligne";
+
+"Invisibles" = "Invisibles";
+// tooltip
+"Hide invisible characters" = "Masquer les caractères invisibles";
+"Show invisible characters" = "Afficher les caractères invisibles";
+
+"Indent Guides" = "Guides d'indendation";
+// tooltip
+"Hide indent guide lines" = "Masquer les guides d'indentation";
+"Show indent guide lines" = "Afficher les guides d'indentation";
+
+"Opacity" = "Opacité";
+// tooltip
+"Change editor’s opacity" = "Changer l'opacité de l'éditeur";
+
+"Spell Check" = "Vérifier l'orthographe";
+// tooltip
+"Show spelling and grammar" = "Vérier l'orthographe et la grammaire";
+
+"Color Code" = "Code couleur";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "Ouvre l'éditeur de code couleur avec le code couleur sélectionné";
+
+"Emoji & Symbols" = "Emoji et Symboles";
+// tooltip
+"Show Emoji & Symbols palette" = "Afficher le panneau Emoji et Symboles";
+
+"Find" = "Rechercher";
+// tooltip
+"Show Find & Replace" = "Rechercher et remplacer";
+
+"Print" = "Imprimer";
+// tooltip
+"Print document" = "Imprimer le document";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Partager le document";
+
+"Fonts" = "Polices";
+// tooltip
+"Show Font Panel" = "Afficher le panneau des polices de texte";
 
 
 
@@ -289,8 +389,7 @@
 "Unwrap Lines" = "Ne pas renvoyer à la ligne";
 "Wrap Lines" = "Renvoyer à la ligne";
 
-// Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "Affiche ou masque les caractères invisibles dans le document";
+// Tooltip for "Show Invisibles" menu item and toolbar item
 "To show invisible characters, set them in Preferences" = "Pour afficher les caractères invisibles, activez l'option dans les Préférences";
 
 
@@ -315,9 +414,9 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"<Outline Menu>" = "＜Menu Structure＞";
 "Jump to previous outline item" = "Aller à l'élément de structure précédent";
 "Jump to next outline item" = "Aller à l'élément de structure suivant";
+"Extracting Outline…" = "Récupération de la structure…";
 
 
 
@@ -355,6 +454,8 @@
 "Do you want to restart CotEditor now?" = "Voulez-vous relancer CotEditor maintenant ?";
 "Restart Now" = "Relancer maintenant";
 "Later" = "Plus tard";
+// command-line tool
+"installed at %@" = "Installé ici : %@";
 
 
 // Appearance pane

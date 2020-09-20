@@ -49,23 +49,18 @@ class AsynchronousOperation: Operation {
     
     // MARK: Private Properties
     
-    private var state: State {
+    @Atomic private var state: State = .ready {
         
-        get {
-            return self._state.value
+        willSet {
+            self.willChangeValue(for: state.keyPath)
+            self.willChangeValue(for: newValue.keyPath)
         }
         
-        set {
-            let oldValue = self._state.value
-            
-            self.willChangeValue(for: oldValue.keyPath)
-            self.willChangeValue(for: newValue.keyPath)
-            self._state.mutate { $0 = newValue }
+        didSet {
             self.didChangeValue(for: oldValue.keyPath)
-            self.didChangeValue(for: newValue.keyPath)
+            self.didChangeValue(for: state.keyPath)
         }
     }
-    private var _state = Atomic<State>(.ready)
     
     
     

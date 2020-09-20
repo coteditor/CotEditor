@@ -185,24 +185,6 @@ extension String {
     
     // MARK: Public Methods
     
-    /// Human-readable encoding name by taking UTF-8 BOM into consideration.
-    ///
-    /// The `withUTF8BOM` flag is just ignored when the given `encoding` is other than UTF-8.
-    ///
-    /// - Parameters:
-    ///   - encoding: The string encoding.
-    ///   - withUTF8BOM: True when needing to attach " with BOM" to the name if the encoding is .utf8.
-    /// - Returns: A localized string value.
-    static func localizedName(of encoding: String.Encoding, withUTF8BOM: Bool) -> String {
-        
-        let localizedName = self.localizedName(of: encoding)
-        
-        return (encoding == .utf8 && withUTF8BOM)
-            ? String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"), localizedName)
-            : localizedName
-    }
-    
-    
     /// scan encoding declaration in string
     func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
         

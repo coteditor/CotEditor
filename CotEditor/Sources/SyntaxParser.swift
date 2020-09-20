@@ -24,15 +24,9 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import AppKit.NSTextStorage
-
-protocol SyntaxParserDelegate: AnyObject {
-    
-    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem])
-    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress)
-}
-
 
 private extension NSAttributedString.Key {
     
@@ -44,8 +38,6 @@ private extension NSAttributedString.Key {
 // MARK: -
 
 final class SyntaxParser {
-    
-    static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
     
     private struct Cache {
         
@@ -61,30 +53,17 @@ final class SyntaxParser {
     
     var style: SyntaxStyle
     
-    weak var delegate: SyntaxParserDelegate?
-    
-    private(set) var outlineItems: [OutlineItem] = [] {
-        
-        didSet {
-            // inform about outline items update
-            DispatchQueue.main.async { [weak self, items = outlineItems] in
-                guard let self = self else { return assertionFailure() }
-                
-                self.delegate?.syntaxParser(self, didParseOutline: items)
-                NotificationCenter.default.post(name: SyntaxParser.didUpdateOutlineNotification, object: self)
-            }
-        }
-    }
+    @Published private(set) var outlineItems: [OutlineItem]?
     
     
     // MARK: Private Properties
     
-    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
-    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
+    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue", qos: .utility)
+    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue", qos: .userInitiated)
     
     private var highlightCache: Cache?  // results cache of the last whole string highlights
     
-    private lazy var outlineUpdateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.parseOutline() }
+    private var textEditingObserver: AnyCancellable?
     
     
     
@@ -95,6 +74,12 @@ final class SyntaxParser {
         
         self.textStorage = textStorage
         self.style = style
+        
+        // give up if the string is changed while parsing
+        self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.willProcessEditingNotification, object: textStorage)
+            .map { $0.object as! NSTextStorage }
+            .filter { $0.editedMask.contains(.editedCharacters) }
+            .sink { [weak self] _ in self?.syntaxHighlightParseOperationQueue.cancelAllOperations() }
     }
     
     
@@ -117,7 +102,6 @@ final class SyntaxParser {
     func invalidateCurrentParse() {
         
         self.highlightCache = nil
-        self.outlineUpdateTask.cancel()
         self.outlineParseOperationQueue.cancelAllOperations()
         self.syntaxHighlightParseOperationQueue.cancelAllOperations()
     }
@@ -130,51 +114,31 @@ final class SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Parse outline with delay.
+    /// Parse outline.
     func invalidateOutline() {
         
         guard
             self.canParse,
-            !self.style.outlineExtractors.isEmpty
-            else {
-                self.outlineItems = []
-                return
-        }
-        
-        self.outlineUpdateTask.schedule()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Perform outline parse.
-    private func parseOutline() {
-        
-        let wholeRange = self.textStorage.range
-        guard !wholeRange.isEmpty else {
+            !self.style.outlineExtractors.isEmpty,
+            !self.textStorage.range.isEmpty
+        else {
             self.outlineItems = []
             return
         }
         
+        self.outlineItems = nil
+        
         let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
                                               string: self.textStorage.string.immutable,
-                                              range: wholeRange)
-        
-        operation.completionBlock = { [weak self, weak operation] in
-            guard let operation = operation, !operation.isCancelled else { return }
-            
-            self?.outlineItems = operation.results
+                                              range: self.textStorage.range)
+        operation.completionBlock = { [weak self, unowned operation] in
+            self?.outlineItems = !operation.isCancelled ? operation.results : []
         }
-        operation.qualityOfService = .utility
         
         // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
         //    since user cannot cancel it manually.
         self.outlineParseOperationQueue.cancelAllOperations()
-        
         self.outlineParseOperationQueue.addOperation(operation)
-        
-        self.delegate?.syntaxParser(self, didStartParsingOutline: operation.progress)
     }
     
 }
@@ -185,32 +149,81 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Update whole syntax highlights.
+    /// Update highlights around passed-in range.
     ///
-    /// - Parameter completionHandler: The block to execute when the process completes.
+    /// - Parameters:
+    ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
     /// - Returns: The progress of the async highlight task if performed.
-    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    func highlight(around editedRange: NSRange? = nil) -> Progress? {
         
         assert(Thread.isMainThread)
         
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        guard !self.style.isNone else {
-            self.textStorage.apply(highlights: [:], range: self.textStorage.range)
+        // in case that wholeRange length is changed from editedRange
+        guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
+            assertionFailure("Invalid range is passed in to \(#function)")
             return nil
         }
         
         let wholeRange = self.textStorage.range
+        let highlightRange: NSRange = {
+            guard let editedRange = editedRange, editedRange != wholeRange else { return wholeRange }
+            
+            // highlight whole if string is enough short
+            let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
+            if wholeRange.length <= bufferLength {
+                return wholeRange
+            }
+            
+            // highlight whole visible area if edited point is visible
+            var highlightRange = self.textStorage.layoutManagers
+                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
+                .filter { $0.intersects(editedRange) }
+                .reduce(into: editedRange) { $0.formUnion($1) }
+            
+            highlightRange = (self.textStorage.string as NSString).lineRange(for: highlightRange)
+            
+            // expand highlight area if the character just before/after the highlighting area is the same syntax type
+            if let layoutManager = self.textStorage.layoutManagers.first {
+                if highlightRange.lowerBound > 0,
+                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
+                {
+                    highlightRange = NSRange(location: effectiveRange.lowerBound,
+                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
+                }
+                
+                if highlightRange.upperBound < wholeRange.upperBound,
+                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
+                {
+                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
+                }
+            }
+            
+            if highlightRange.upperBound < bufferLength {
+                return NSRange(location: 0, length: highlightRange.upperBound)
+            }
+            
+            return highlightRange
+        }()
+        
+        guard !highlightRange.isEmpty else { return nil }
+        
+        // just clear current highlight and return if no coloring needs
+        guard self.style.hasHighlightDefinition else {
+            self.textStorage.apply(highlights: [:], range: highlightRange)
+            return nil
+        }
         
         // use cache if the content of the whole document is the same as the last
         if
+            highlightRange == wholeRange,
             let cache = self.highlightCache,
             cache.styleName == self.style.name,
             cache.string == self.textStorage.string
         {
-            self.textStorage.apply(highlights: cache.highlights, range: wholeRange)
-            completionHandler()
+            self.textStorage.apply(highlights: cache.highlights, range: highlightRange)
             return nil
         }
         
@@ -220,60 +233,6 @@ extension SyntaxParser {
         //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
-        return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
-    }
-    
-    
-    /// Update highlights around passed-in range.
-    ///
-    /// - Parameter editedRange: The character range that was edited.
-    /// - Returns: The progress of the async highlight task if performed.
-    func highlight(around editedRange: NSRange) -> Progress? {
-        
-        assert(Thread.isMainThread)
-        
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
-        guard !self.textStorage.string.isEmpty else { return nil }
-        
-        let wholeRange = self.textStorage.range
-        
-        // in case that wholeRange length is changed from editedRange
-        guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
-        
-        // make sure that string is immutable (see `highlightAll()` for details)
-        let string = self.textStorage.string.immutable
-        
-        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
-        var highlightRange = editedRange
-        
-        // highlight whole if string is enough short
-        if wholeRange.length <= bufferLength {
-            highlightRange = wholeRange
-            
-        } else {
-            // highlight whole visible area if edited point is visible
-            highlightRange = self.textStorage.layoutManagers
-                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
-                .filter { $0.intersects(highlightRange) }
-                .reduce(into: highlightRange) { $0.formUnion($1) }
-            
-            highlightRange = (string as NSString).lineRange(for: highlightRange)
-            
-            // expand highlight area if the character just before/after the highlighting area is the same syntax type
-            if let layoutManager = self.textStorage.layoutManagers.first {
-                if highlightRange.lowerBound <= bufferLength {
-                    highlightRange = NSRange(location: 0, length: highlightRange.upperBound)
-                } else if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound) {
-                    highlightRange = NSRange(location: effectiveRange.lowerBound,
-                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
-                }
-                
-                if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound) {
-                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
-                }
-            }
-        }
-        
         return self.highlight(string: string, range: highlightRange)
     }
     
@@ -282,22 +241,12 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    private func highlight(string: String, range highlightRange: NSRange) -> Progress {
         
         assert(Thread.isMainThread)
         assert(!(string as NSString).className.contains("MutableString"))
-        
-        guard !highlightRange.isEmpty, !self.style.isNone else { return nil }
-        
-        // just clear current highlight and return if no coloring needs
-        guard self.style.hasHighlightDefinition else {
-            self.textStorage.apply(highlights: [:], range: highlightRange)
-            completionHandler()
-            return nil
-        }
-        
-        let wholeRange = string.nsRange
-        let styleName = self.style.name
+        assert(!highlightRange.isEmpty)
+        assert(!self.style.isNone)
         
         let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
                                                                        pairedQuoteTypes: self.style.pairedQuoteTypes,
@@ -305,49 +254,18 @@ extension SyntaxParser {
                                                                        blockCommentDelimiters: self.style.blockCommentDelimiters)
         
         let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
-        operation.qualityOfService = .userInitiated
         
-        // give up if the editor's string is changed from the parsed string
-        let isModified = Atomic(false)
-        weak var modificationObserver: NSObjectProtocol?
-        modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
-            guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
-            
-            isModified.mutate { $0 = true }
-            operation?.cancel()
-            
-            if let observer = modificationObserver {
-                NotificationCenter.default.removeObserver(observer)
-            }
-        }
-        
-        operation.completionBlock = { [weak self, weak operation] in
+        operation.completionBlock = { [weak self, weak operation, styleName = self.style.name] in
             guard
-                let operation = operation,
-                let highlights = operation.highlights,
-                !operation.isCancelled
-                else {
-                    if let observer = modificationObserver {
-                        NotificationCenter.default.removeObserver(observer)
-                    }
-                    return completionHandler()
-                }
+                let highlights = operation?.highlights,
+                let progress = operation?.progress,
+                !progress.isCancelled
+                else { return }
             
-            DispatchQueue.main.async { [weak self, progress = operation.progress] in
-                defer {
-                    if let observer = modificationObserver {
-                        NotificationCenter.default.removeObserver(observer)
-                    }
-                    completionHandler()
-                }
+            DispatchQueue.main.async {
+                guard !progress.isCancelled else { return }
                 
-                guard !isModified.value else {
-                    progress.cancel()
-                    return
-                }
-                
-                // cache result if whole text was parsed
-                if highlightRange == wholeRange {
+                if highlightRange == string.nsRange {
                     self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
                 }
                 

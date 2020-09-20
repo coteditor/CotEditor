@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 @objc protocol TextFinderClientProvider: AnyObject {
@@ -78,6 +79,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
+    private var applicationActivationObserver: AnyCancellable?
+    
     private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
     private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
     
@@ -94,7 +97,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         NSApp.nextResponder = self
         
         // observe application activation to sync find string with other apps
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: nil)
+        self.applicationActivationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)
+            .sink { [weak self] _ in
+                if let sharedFindString = NSPasteboard.findString {
+                    self?.findString = sharedFindString
+                }
+            }
     }
     
     
@@ -132,18 +140,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             
             default:
                 return true
-        }
-    }
-    
-    
-    
-    // MARK: Notifications
-    
-    /// sync search string on activating application
-    @objc private func applicationDidBecomeActive(_ notification: Notification) {
-        
-        if let sharedFindString = NSPasteboard.findString {
-            self.findString = sharedFindString
         }
     }
     
@@ -288,9 +284,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
-        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        indicator.setup(progress: progress, message: "Replace All".localized)
+        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
+        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
+            ProgressViewController(coder: coder, progress: progress, message: "Replace All".localized, closesAutomatically: closesAutomatically)
+        }!
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -331,7 +328,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 indicator.done()
                 
-                if indicator.closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
+                if closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
                     panel.makeKey()
                 }
                 
@@ -435,9 +432,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // found feedback
         if let range = result.range {
-            textView.selectedRange = range
-            textView.scrollRangeToVisible(range)
-            textView.showFindIndicator(for: range)
+            textView.select(range: range)
             
             if result.wrapped {
                 if let view = textView.enclosingScrollView?.superview {
@@ -487,14 +482,15 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         textView.isEditable = false
         
-        let highlightColors = NSColor.textHighlighterColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
-        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        indicator.setup(progress: progress, message: actionName)
+        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
+        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
+            ProgressViewController(coder: coder, progress: progress, message: actionName, closesAutomatically: closesAutomatically)
+        }!
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -569,7 +565,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 // close also if result view has been shown
-                if indicator.closesAutomatically || !results.isEmpty {
+                if closesAutomatically || !results.isEmpty {
                     indicator.dismiss(nil)
                     if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
@@ -617,7 +613,7 @@ private extension UserDefaults {
         guard !string.isEmpty else { return }
         
         // append new string to history
-        var history = self[key] ?? []
+        var history = self[key]
         history.removeFirst(string)  // remove duplicated item
         history.append(string)
         if history.count > UserDefaults.MaxHistorySize {  // remove overflow

@@ -46,15 +46,21 @@ extension CurrentLineHighlighting {
             self.needsUpdateLineHighlight = false
         }
         
-        guard let color = self.lineHighLightColor else { return }
+        let rects = self.lineHighLightRects
+            .filter { $0.intersects(dirtyRect) }
+            .map { self.centerScanRect($0) }
+            .compactMap { $0.intersection(dirtyRect) }
+        
+        guard
+            !rects.isEmpty,
+            let color = self.lineHighLightColor
+            else { return }
         
         NSGraphicsContext.saveGraphicsState()
-        
         color.setFill()
-        for rect in self.lineHighLightRects where rect.intersects(dirtyRect) {
-            self.centerScanRect(rect).fill()
+        for rect in rects {
+            rect.fill()
         }
-        
         NSGraphicsContext.restoreGraphicsState()
     }
     

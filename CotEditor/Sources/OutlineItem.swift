@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import struct Foundation.NSRange
 import AppKit.NSFont
 
 struct OutlineItem: Equatable {
@@ -77,9 +77,44 @@ extension OutlineItem {
 
 extension BidirectionalCollection where Element == OutlineItem {
     
-    func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
+    /// Return the index of element for the given range.
+    ///
+    /// - Parameter range: The character range to refer.
+    /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
+    func indexOfItem(at location: Int, allowsSeparator: Bool = false) -> Index? {
         
-        return self.lastIndex { $0.range.location <= characterRange.location && (allowsSeparator || !$0.isSeparator ) }
+        return self.lastIndex { $0.range.location <= location && (allowsSeparator || !$0.isSeparator ) }
+    }
+    
+    
+    /// Return the previous non-separator element from the given range.
+    ///
+    /// - Parameter range: The character range to refer.
+    /// - Returns: The previous outline item, or `nil` if not exist.
+    func previousItem(for range: NSRange) -> OutlineItem? {
+        
+        guard let currentIndex = self.indexOfItem(at: range.lowerBound) else { return nil }
+        
+        return self[..<currentIndex].last { !$0.isSeparator }
+    }
+    
+    
+    /// Return the next non-separator element from the given range.
+    ///
+    /// - Parameter range: The character range to refer.
+    /// - Returns: The next outline item, or `nil` if not exist.
+    func nextItem(for range: NSRange) -> OutlineItem? {
+        
+        if let first = self.first(where: { !$0.isSeparator }), range.upperBound < first.range.location {
+            return first
+        }
+        
+        guard
+            let currentIndex = self.indexOfItem(at: range.upperBound),
+            currentIndex <= self.endIndex
+            else { return nil }
+        
+        return self[self.index(after: currentIndex)...].first { !$0.isSeparator }
     }
     
 }

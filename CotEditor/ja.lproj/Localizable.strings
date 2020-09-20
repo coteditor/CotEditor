@@ -38,7 +38,6 @@
 
 // Accessibility labels
 "inspector" = "インスペクタ";
-"document inspector" = "書類情報";
 "outline" = "アウトライン";
 "incompatible characters" = "非互換文字";
 "status bar" = "ステータスバー";
@@ -56,10 +55,6 @@
 
 
 /* MARK: AppDelegate */
-// Format - Syntax coloring menu item title
-"Recently Used" = "最近使った項目";
-"Re-Color All" = "再カラーリング";
-
 // Importing theme
 "“%@” is a CotEditor theme file." = "“%@”はCotEditorテーマファイルです。";
 "Do you want to install this theme?" = "テーマをインストールしますか?";
@@ -171,6 +166,110 @@
 "Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
+
+
+
+/* MARK: Toolbar */
+"Syntax Style" = "シンタックス";
+// tooltip
+"Change syntax style" = "シンタックススタイルを変更";
+// menu item title
+"Recently Used" = "最近使った項目";
+"Deleted" = " 削除された項目";
+
+"Inspector" = "インスペクタ";
+// tooltip
+"Show document information" = "書類情報を表示";
+
+"Text Size" = "文字サイズ";
+"Smaller" = "小さく";
+"Bigger" = "大きく";
+// tooltip
+"Change text size" = "文字サイズを変更";
+"Decrease text size" = "文字を小さく";
+"Increase text size" = "文字を大きく";
+
+"Writing Direction" = "文章の方向";
+"Left to Right" = "左から右";
+"Right to Left" = "右から左";
+// tooltip
+"Change writing direction" = "文章の方向を切替";
+"Left to right" = "左から右";
+"Right to left" = "右から左";
+
+"Text Orientation" = "横書き/縦書き";
+"Horizontal" = "横書き";
+"Vertical" = "縦書き";
+// tooltip
+"Toggle text orientation" = "横書き/縦書きを切替";
+
+"Indent" = "インデント";
+"Shift Left" = "左へシフト";
+"Shift Right" = "右へシフト";
+// tooltip
+"Indent selection" = "選択範囲をインデント";
+"Shift lines to left" = "行を左へシフト";
+"Shift lines to right" = "行を右へシフト";
+
+"Comment" = "コメント";
+// tooltip
+"Comment-out or uncomment selection" = "選択範囲をコメントアウト/コメント解除";
+
+"Tab Style" = "タブスタイル";
+// tooltip
+"Disable expanding tabs to spaces" = "自動タブ展開を無効に";  // FIXME: added
+"Expand tabs to spaces automatically" = "自動でタブをスペースに展開";  // FIXME: added
+"Change tab width" = "タブ幅を変更";
+// menu
+"Tab Width" = "タブ幅";
+"Custom…" = "カスタム...";
+
+"Wrap Lines" = "行を折り返す";
+// tooltip
+"Unwrap lines" = "行の折り返さない";
+"Wrap lines" = "行を折り返す";
+
+"Invisibles" = "不可視文字";
+// tooltip
+"Hide invisible characters" = "不可視文字を非表示";
+"Show invisible characters" = "不可視文字を表示";
+
+"Indent Guides" = "インデントガイド";
+// tooltip
+"Hide indent guide lines" = "インデントガイドを非表示";
+"Show indent guide lines" = "インデントガイドを表示";
+
+"Opacity" = "不透明度";
+// tooltip
+"Change editor’s opacity" = "エディタの不透明度を変更";
+
+"Spell Check" = "スペルチェック";
+// tooltip
+"Show spelling and grammar" = "スペルと文法を表示";
+
+"Color Code" = "カラーコード";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";
+
+"Emoji & Symbols" = "絵文字と記号";
+// tooltip
+"Show Emoji & Symbols palette" = "絵文字と記号パレットを表示";
+
+"Find" = "検索";
+// tooltip
+"Show Find & Replace" = "“検索と置換”を表示";
+
+"Print" = "プリント";
+// tooltip
+"Print document" = "書類をプリント";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "書類ファイルを共有";
+
+"Fonts" = "フォント";
+// tooltip
+"Show Font Panel" = "フォントパネルを表示";
 
 
 
@@ -292,7 +391,6 @@
 "Wrap Lines" = "行を折り返す";
 
 // Tooltip for "Show Invisibles" menu item
-"Show or hide invisible characters in document" = "書類中の不可視文字を表示/非表示";
 "To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
 
 
@@ -317,9 +415,9 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"<Outline Menu>" = "＜アウトラインメニュー＞";
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
+"Extracting Outline…" = "アウトラインを抽出中...";
 
 
 
@@ -357,6 +455,8 @@
 "Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
+// command-line tool
+"installed at %@" = "%@にインストール済み";
 
 
 // Appearance pane

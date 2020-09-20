@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class EditorTextViewController: NSViewController, NSTextViewDelegate {
@@ -35,7 +36,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private var orientationObserver: NSKeyValueObservation?
+    private var orientationObserver: AnyCancellable?
+    
+    private var stackView: NSStackView?  { self.view as? NSStackView }
     
     @IBOutlet private weak var lineNumberView: LineNumberView?
     
@@ -44,39 +47,25 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        self.orientationObserver?.invalidate()
-    }
-    
-    
-    override func viewWillAppear() {
+    override func viewDidLoad() {
         
-        super.viewWillAppear()
+        super.viewDidLoad()
         
         // observe text orientation for line number view
-        self.orientationObserver?.invalidate()
-        self.orientationObserver = self.textView!.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-            guard let self = self else { return assertionFailure() }
-            
-            self.stackView?.orientation = {
-                switch textView.layoutOrientation {
-                    case .horizontal: return .horizontal
-                    case .vertical: return .vertical
-                    @unknown default: fatalError()
-                }
-            }()
-            
-            self.lineNumberView?.orientation = textView.layoutOrientation
-        }
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.orientationObserver?.invalidate()
-        self.orientationObserver = nil
+        self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
+            .sink { [weak self] (orientation) in
+                guard let self = self else { return assertionFailure() }
+                
+                self.stackView?.orientation = {
+                    switch orientation {
+                        case .horizontal: return .horizontal
+                        case .vertical: return .vertical
+                        @unknown default: fatalError()
+                    }
+                }()
+                
+                self.lineNumberView?.orientation = orientation
+            }
     }
     
     
@@ -109,7 +98,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
             let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-            item.image = #imageLiteral(resourceName: "ScriptTemplate")
+            item.image = NSImage(symbolNamed: "applescript.fill", accessibilityDescription: "Scripts".localized)
             item.toolTip = "Scripts".localized
             item.submenu = scriptMenu
             menu.addItem(item)
@@ -137,14 +126,30 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         viewController.completionHandler = { (lineRange) in
             guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
             
-            textView.selectedRange = range
-            textView.scrollRangeToVisible(range)
-            textView.showFindIndicator(for: range)
+            textView.select(range: range)
             
             return true
         }
         
         self.presentAsSheet(viewController)
+    }
+    
+    
+    /// show Unicode input view
+    @IBAction func showUnicodeInputPanel(_ sender: Any?) {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
+        inputViewController.completionHandler = { [weak textView] (character) in
+            textView?.insertText(String(character), replacementRange: .notFound)
+        }
+        
+        let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
+        let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
+        
+        textView.scrollRangeToVisible(textView.selectedRange)
+        self.present(inputViewController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: edge, behavior: .transient)
     }
     
     
@@ -155,16 +160,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         get { self.lineNumberView?.isHidden == false }
         set { self.lineNumberView?.isHidden = !newValue }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// cast view to NSStackView
-    private var stackView: NSStackView? {
-        
-        return self.view as? NSStackView
     }
     
 }

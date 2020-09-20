@@ -76,7 +76,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
         let identifier = tableView.tableColumns[columnIndex].identifier
         let isChecked = checkbox.state == .on
         
-        tableView.enumerateAvailableRowViews { (rowView: NSTableRowView, row: Int) in
+        tableView.enumerateAvailableRowViews { (rowView, _) in
             guard
                 rowView.isSelected,
                 let view = rowView.view(atColumn: columnIndex) as? NSTableCellView

@@ -24,7 +24,6 @@
 //
 
 import struct CoreGraphics.CGFloat
-import class Foundation.UserDefaults
 
 class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     
@@ -57,91 +56,37 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
 }
 
 
-final class DefaultKey<T>: DefaultKeys { }
 
-
-
-extension UserDefaults {
+class DefaultKey<Value>: DefaultKeys {
     
-    /// restore default value to factory default
-    func restore<T>(key: DefaultKey<T>) {
+    enum Error: Swift.Error {
         
-        self.removeObject(forKey: key.rawValue)
+        case invalidValue
     }
     
     
-    /// return the initial value for key registered on `register(defaults:)`
-    func registeredValue<T>(for key: DefaultKey<T>) -> T {
+    func newValue(from value: Any?) throws -> Value {
         
-        return self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as! T
-    }
-    
-    
-    subscript(key: DefaultKey<Bool>) -> Bool {
-        
-        get { self.bool(forKey: key.rawValue) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
-    subscript(key: DefaultKey<Int>) -> Int {
-        
-        get { self.integer(forKey: key.rawValue) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
-    subscript(key: DefaultKey<UInt>) -> UInt {
-        
-        get { UInt(exactly: self.integer(forKey: key.rawValue)) ?? 0 }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
-    subscript(key: DefaultKey<Double>) -> Double {
-        
-        get { self.double(forKey: key.rawValue) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
-    subscript(key: DefaultKey<CGFloat>) -> CGFloat {
-        
-        get { CGFloat(self.double(forKey: key.rawValue)) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    subscript(key: DefaultKey<String>) -> String? {
-        
-        get { self.string(forKey: key.rawValue) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    subscript(key: DefaultKey<[String]>) -> [String]? {
-        
-        get { self.stringArray(forKey: key.rawValue) }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    subscript<T>(key: DefaultKey<[T]>) -> [T] {
-        
-        get { self.array(forKey: key.rawValue) as? [T] ?? [] }
-        set { self.set(newValue, forKey: key.rawValue) }
-    }
-    
-    
-    subscript<T>(key: DefaultKey<T>) -> T where T: RawRepresentable, T.RawValue == Int {
-        
-        get {
-            guard let value = T(rawValue: self.integer(forKey: key.rawValue)) else {
-                let defaultValue = self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as? Int ?? 0
-                return T(rawValue: defaultValue)!
-            }
-            
-            return value
+        // -> The seocnd Opional cast is important for in case if `Value` is already an optional type.
+        guard let newValue = value as? Value ?? Optional<Any>.none as? Value else {
+            throw Error.invalidValue
         }
         
-        set { self.set(newValue.rawValue, forKey: key.rawValue) }
+        return newValue
     }
+}
+
+
+// specialize RawRepresentable types to use them for UserDefaults observation using UserDefaults.Publisher.
+// Otherwise, the type inference for RawRepresentable doesn't work unfortunately.
+final class RawRepresentableDefaultKey<Value>: DefaultKey<Value> where Value: RawRepresentable {
     
+    override func newValue(from value: Any?) throws -> Value {
+        
+        guard let newValue = (value as? Value.RawValue).flatMap(Value.init) else {
+            throw Error.invalidValue
+        }
+        
+        return newValue
+    }
 }

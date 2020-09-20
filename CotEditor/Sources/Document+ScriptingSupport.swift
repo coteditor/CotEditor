@@ -139,14 +139,14 @@ extension Document {
     /// encoding name (Unicode text)
     @objc var encodingName: String {
         
-        return String.localizedName(of: self.encoding)
+        return String.localizedName(of: self.fileEncoding.encoding)
     }
     
     
     /// encoding in IANA CharSet name (Unicode text)
     @objc var IANACharSetName: String {
         
-        return self.encoding.ianaCharSetName ?? ""
+        return self.fileEncoding.encoding.ianaCharSetName ?? ""
     }
     
     
@@ -214,14 +214,15 @@ extension Document {
             let encoding = EncodingManager.shared.encoding(name: encodingName)
             else { return false }
         
-        if encoding == self.encoding {
+        if encoding == self.fileEncoding.encoding {
             return true
         }
         
+        let fileEncoding = FileEncoding(encoding: encoding)
         let lossy = (arguments["lossy"] as? Bool) ?? false
         
         do {
-            try self.changeEncoding(to: encoding, withUTF8BOM: false, lossy: lossy)
+            try self.changeEncoding(to: fileEncoding, lossy: lossy)
         } catch {
             return false
         }

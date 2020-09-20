@@ -86,7 +86,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
         
         // update
-        NSAnimationContext.runAnimationGroup({ context in
+        NSAnimationContext.runAnimationGroup({ _ in
             // update UI
             tableView.beginUpdates()
             tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])

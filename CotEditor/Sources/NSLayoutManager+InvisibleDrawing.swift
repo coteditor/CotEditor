@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 protocol InvisibleDrawing: NSLayoutManager {
@@ -30,7 +31,7 @@ protocol InvisibleDrawing: NSLayoutManager {
     var textFont: NSFont { get }
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
-    var invisiblesDefaultsObservers: [UserDefaultsObservation] { get set }
+    var invisiblesDefaultsObserver: AnyCancellable? { get set }
 }
 
 
@@ -139,15 +140,14 @@ extension InvisibleDrawing {
         }
         
         // update UserDefaults observation if needed
-        if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
-            let visibilityKeys = Invisible.allCases.map(\.visibilityDefaultKey).unique
-            self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
-            self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [weak self] (_, _) in
-                self?.invalidateInvisibleDisplay()
-            }
-        } else if !self.showsInvisibles, !self.invisiblesDefaultsObservers.isEmpty {
-            self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
-            self.invisiblesDefaultsObservers = []
+        if self.showsInvisibles, self.invisiblesDefaultsObserver == nil {
+            let publishers = Invisible.allCases.map(\.visibilityDefaultKey).unique
+                .map { UserDefaults.standard.publisher(for: $0) }
+            self.invisiblesDefaultsObserver = Publishers.MergeMany(publishers)
+                .sink { [weak self] _ in self?.invalidateInvisibleDisplay() }
+            
+        } else if !self.showsInvisibles {
+            self.invisiblesDefaultsObserver = nil
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  StatableToolbarItem.swift
+//  NSToolbarItem+Statable.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,26 +23,46 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
-class StatableToolbarItem: ControlToolbarItem {
+final class StatableToolbarItem: NSToolbarItem, StatableItem {
     
     // MARK: Public Properties
     
-    final var state: NSControl.StateValue = .on {
+    var state: NSControl.StateValue = .off  { didSet { self.invalidateImage() } }
+    var stateImages: [NSControl.StateValue: NSImage] = [:]  { didSet { self.invalidateImage() } }
+    
+    
+    
+    // MARK: -
+    // MARK: Toolbar Item Methods
+    
+    override init(itemIdentifier: NSToolbarItem.Identifier) {
         
-        didSet {
-            guard state != oldValue else { return }
-            
-            let suffix = (state == .on) ? "On" : "Off"
-            
-            guard
-                let base = self.image?.name()?.components(separatedBy: "_").first,
-                let image = NSImage(named: base + "_" + suffix)
-                else { return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.") }
-            
-            self.image = image
+        super.init(itemIdentifier: itemIdentifier)
+        
+        // Use active (green) icons for colored icons in toolbar config panel
+        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
+            self.state = .on
         }
+    }
+    
+    
+    override var image: NSImage? {
+        
+        get { super.image }
+        @available(*, unavailable, message: "Set images through 'stateImages' instead.") set {  }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func invalidateImage() {
+        
+        assert(self.state != .mixed)
+        
+        super.image = self.stateImages[self.state]
     }
     
 }

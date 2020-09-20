@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,17 +11,17 @@
             <objects>
                 <viewController id="YLz-6z-SWq" customClass="PrintPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cDb-GN-YmZ">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="292"/>
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="296"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="585">
-                                <rect key="frame" x="104" y="252" width="213" height="25"/>
+                                <rect key="frame" x="104" y="256" width="214" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ywH-Ua-doT"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="590" id="722">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="587">
                                         <items>
                                             <menuItem title="Black and White" state="on" id="590"/>
@@ -34,10 +34,10 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="424">
-                                <rect key="frame" x="104" y="190" width="213" height="25"/>
+                                <rect key="frame" x="104" y="194" width="214" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Don’t Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="428" id="719">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="425">
                                         <items>
                                             <menuItem title="Don’t Print" state="on" id="428"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="752" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="423">
-                                <rect key="frame" x="36" y="195" width="64" height="16"/>
+                                <rect key="frame" x="36" y="199" width="64" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="718">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -59,10 +59,10 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="416">
-                                <rect key="frame" x="104" y="221" width="213" height="25"/>
+                                <rect key="frame" x="104" y="225" width="214" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Don’t Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="420" id="717">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="417">
                                         <items>
                                             <menuItem title="Don’t Print" state="on" id="420"/>
@@ -76,7 +76,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="415">
-                                <rect key="frame" x="8" y="226" width="92" height="16"/>
+                                <rect key="frame" x="8" y="230" width="92" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line Numbers:" usesSingleLineMode="YES" id="716">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -84,13 +84,13 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                <rect key="frame" x="104" y="133" width="165" height="25"/>
+                                <rect key="frame" x="104" y="135" width="165" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="160" id="EKF-Mv-PUx"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="199">
                                         <items>
                                             <menuItem title="None" id="393"/>
@@ -110,16 +110,19 @@
                                     <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Yrf-uD-ceK"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="256">
-                                <rect key="frame" x="45" y="139" width="55" height="16"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="256" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="45" y="141" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="706">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="xh6-XP-QYT"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="303">
-                                <rect key="frame" x="8" y="161" width="97" height="18"/>
+                                <rect key="frame" x="8" y="164" width="101" height="18"/>
                                 <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -129,10 +132,10 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="305">
-                                <rect key="frame" x="104" y="102" width="165" height="25"/>
+                                <rect key="frame" x="104" y="104" width="165" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="306">
                                         <items>
                                             <menuItem title="None" id="395"/>
@@ -152,22 +155,25 @@
                                     <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryHeaderContent" id="OC1-l1-jaV"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257">
-                                <rect key="frame" x="27" y="108" width="73" height="16"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="27" y="110" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="707">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Le4-Dr-4g2"/>
+                                </connections>
                             </textField>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
-                                <rect key="frame" x="272" y="134" width="71" height="24"/>
+                                <rect key="frame" x="272" y="137" width="75" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="21"/>
-                                        <segment toolTip="Center" image="CenterAlignTemplate" width="21" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="21">
+                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                        <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -186,13 +192,13 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
-                                <rect key="frame" x="272" y="49" width="71" height="24"/>
+                                <rect key="frame" x="272" y="50" width="75" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="21"/>
-                                        <segment toolTip="Center" image="CenterAlignTemplate" width="21" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="21">
+                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                        <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -211,13 +217,13 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
-                                <rect key="frame" x="272" y="103" width="71" height="24"/>
+                                <rect key="frame" x="272" y="106" width="75" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="21"/>
-                                        <segment toolTip="Center" image="CenterAlignTemplate" width="21" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="21">
+                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                        <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -236,13 +242,13 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
-                                <rect key="frame" x="272" y="18" width="71" height="24"/>
+                                <rect key="frame" x="272" y="19" width="75" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="21"/>
-                                        <segment toolTip="Center" image="CenterAlignTemplate" width="21" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="21">
+                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                        <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -260,19 +266,22 @@
                                     </binding>
                                 </connections>
                             </segmentedControl>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="296">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="296" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="27" y="23" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="712">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="N5P-Yt-nFW"/>
+                                </connections>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="321">
                                 <rect key="frame" x="104" y="17" width="165" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="322">
                                         <items>
                                             <menuItem title="None" state="on" id="399"/>
@@ -292,16 +301,19 @@
                                     <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryFooterContent" id="raJ-1y-Hyw"/>
                                 </connections>
                             </popUpButton>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295" customClass="DisableableTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="45" y="54" width="55" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="711">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="Yne-sb-QyR"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="304">
-                                <rect key="frame" x="8" y="76" width="91" height="18"/>
+                                <rect key="frame" x="8" y="77" width="95" height="18"/>
                                 <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -314,7 +326,7 @@
                                 <rect key="frame" x="104" y="48" width="165" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="314">
                                         <items>
                                             <menuItem title="None" id="397"/>
@@ -335,7 +347,7 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
-                                <rect key="frame" x="59" y="258" width="41" height="16"/>
+                                <rect key="frame" x="59" y="260" width="41" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Color:" usesSingleLineMode="YES" id="eXI-55-yQO">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -356,7 +368,7 @@
                             <constraint firstItem="256" firstAttribute="centerY" secondItem="ErI-yf-OgH" secondAttribute="centerY" id="EhF-cG-9vr"/>
                             <constraint firstItem="424" firstAttribute="centerY" secondItem="423" secondAttribute="centerY" id="Gjg-se-imD"/>
                             <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="305" secondAttribute="centerY" id="H1z-kp-hhI"/>
-                            <constraint firstAttribute="bottom" secondItem="321" secondAttribute="bottom" constant="20" id="HUj-fv-c2v"/>
+                            <constraint firstAttribute="bottom" secondItem="321" secondAttribute="bottom" constant="20" symbolic="YES" id="HUj-fv-c2v"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="424" secondAttribute="trailing" id="JhO-dp-yws"/>
                             <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="Kl0-Q7-Dgr"/>
                             <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
@@ -417,8 +429,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CenterAlignTemplate" width="15" height="15"/>
-        <image name="LeftAlignTemplate" width="15" height="15"/>
-        <image name="RightAlignTemplate" width="15" height="15"/>
+        <image name="arrow.center.to.line" width="14" height="10"/>
+        <image name="arrow.left.to.line" catalog="system" width="15" height="12"/>
+        <image name="arrow.right.to.line" catalog="system" width="15" height="12"/>
     </resources>
 </document>

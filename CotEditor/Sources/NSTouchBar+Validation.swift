@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 protocol TouchBarItemValidations: AnyObject {
@@ -87,9 +88,10 @@ private final class TouchBarValidator {
             guard isEnabled != oldValue else { return }
             
             if isEnabled {
-                NotificationCenter.default.addObserver(self, selector: #selector(applicationDidUpdate(_:)), name: NSApplication.didUpdateNotification, object: nil)
+                self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didUpdateNotification)
+                    .sink { [weak self] _ in self?.validateTouchBarIfNeeded() }
             } else {
-                NotificationCenter.default.removeObserver(self, name: NSApplication.didUpdateNotification, object: nil)
+                self.applicationObserver = nil
             }
         }
     }
@@ -99,6 +101,8 @@ private final class TouchBarValidator {
     // MARK: Private Properties
     
     private weak var validationTimer: Timer?
+    private var applicationObserver: AnyCancellable?
+    
     
     private enum ValidationDelay: TimeInterval {
         
@@ -122,13 +126,6 @@ private final class TouchBarValidator {
     
     // MARK: Private Methods
     
-    /// application did update
-    @objc private func applicationDidUpdate(_ notification: Notification) {
-        
-        self.validateTouchBarIfNeeded()
-    }
-    
-    
     /// validate current touch bar
     @objc private func validateTouchBar(timer: Timer?) {
         
@@ -147,16 +144,13 @@ private final class TouchBarValidator {
     /// check necessity of touch bar validation and schedule with a delay if needed
     private func validateTouchBarIfNeeded() {
         
-        guard
-            self.isEnabled,
-            let event = NSApp.currentEvent
-            else { return }
+        assert(self.isEnabled)
         
         // skip validation for specific events just like NSToolbar does
         // -> See Apple's API reference for NSToolbar's `validateVisibleItems()` to see which events should be skipped:
         //      cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
-        let isLazy: Bool
-        switch event.type {
+        let delay: ValidationDelay
+        switch NSApp.currentEvent?.type {
             case .leftMouseDragged,
                  .rightMouseDragged,
                  .otherMouseDragged,
@@ -165,15 +159,16 @@ private final class TouchBarValidator {
                  .scrollWheel,
                  .cursorUpdate,
                  .keyDown,
-                 .mouseMoved:
+                 .mouseMoved,
+                 nil:
                 return
             
             case .keyUp,
                  .flagsChanged:
-                isLazy = true
+                delay = .lazy
             
             default:
-                isLazy = false
+                delay = .normal
         }
         
         // schedule validation with delay
@@ -183,7 +178,6 @@ private final class TouchBarValidator {
         if let timer = self.validationTimer, timer.isValid {
             timer.fireDate = Date(timeIntervalSinceNow: ValidationDelay.normal.rawValue)
         } else {
-            let delay: ValidationDelay = isLazy ? .lazy : .normal
             self.validationTimer = Timer.scheduledTimer(timeInterval: delay.rawValue,
                                                         target: self,
                                                         selector: #selector(validateTouchBar(timer:)),
@@ -207,8 +201,8 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         // validate content control
         guard
             let control = self.control,
-            let action = control.action,
-            let validator = NSApp.target(forAction: action, to: control.target, from: self) as AnyObject?
+            let validator = control.target
+                ?? control.action.flatMap({ NSApp.target(forAction: $0, to: control.target, from: self) }) as AnyObject?
             else { return }
         
         switch validator {

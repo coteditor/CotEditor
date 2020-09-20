@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 @objc protocol EncodingHolder: AnyObject {
@@ -35,27 +36,24 @@ import Cocoa
 
 // MARK: -
 
-private let UTF8Tag = Int(String.Encoding.utf8.rawValue)
-
-
-final class EncodingManager: NSObject {
+final class EncodingManager {
     
     // MARK: Public Properties
     
     static let shared = EncodingManager()
     
+    @Published private(set) var encodings: [String.Encoding?] = []
+    
     
     // MARK: Private Properties
     
-    private var encodingListObserver: UserDefaultsObservation?
+    private var encodingListObserver: AnyCancellable?
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override private init() {
-        
-        super.init()
+    private init() {
         
         // -> UserDefaults.standard[.encodingList] can be empty if the user's list contains negative values.
         //    It seems to be possible if the setting was made a long time ago. (2018-01 CotEditor 3.3.0)
@@ -63,22 +61,14 @@ final class EncodingManager: NSObject {
             self.sanitizeEncodingListSetting()
         }
         
-        self.encodingListObserver = UserDefaults.standard.observe(key: .encodingList) { [weak self] _ in
-            NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
-        }
+        self.encodingListObserver = UserDefaults.standard.publisher(for: .encodingList, initial: true)
+            .map { $0.map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil } }
+            .sink { [weak self] in self?.encodings = $0 }
     }
     
     
     
     // MARK: Public Methods
-    
-    /// return user's encoding priority list
-    var defaultEncodings: [String.Encoding?] {
-        
-        return UserDefaults.standard[.encodingList]
-            .map { $0 != kCFStringEncodingInvalidId ? String.Encoding(cfEncoding: $0) : nil }
-    }
-    
     
     /// returns corresponding NSStringEncoding from a encoding name
     func encoding(name encodingName: String) -> String.Encoding? {
@@ -93,7 +83,7 @@ final class EncodingManager: NSObject {
     /// return copied encoding menu items
     func createEncodingMenuItems() -> [NSMenuItem] {
         
-        return self.defaultEncodings.map { encoding in
+        return self.encodings.map { encoding in
             guard let encoding = encoding else {
                 return .separator()
             }
@@ -110,7 +100,7 @@ final class EncodingManager: NSObject {
     /// set available encoding menu items with action to passed-in menu
     func updateChangeEncodingMenu(_ menu: NSMenu) {
         
-        menu.removeAllItems()
+        menu.items.removeAll { $0.action == #selector(EncodingHolder.changeEncoding) }
         
         for item in self.createEncodingMenuItems() {
             item.action = #selector(EncodingHolder.changeEncoding)
@@ -118,11 +108,12 @@ final class EncodingManager: NSObject {
             menu.addItem(item)
             
             // add "UTF-8 with BOM" item just after the normal UTF-8
-            if item.tag == UTF8Tag {
-                let bomItem = NSMenuItem(title: String.localizedName(of: .utf8, withUTF8BOM: true),
+            if item.tag == FileEncoding(encoding: .utf8).tag {
+                let fileEncoding = FileEncoding(encoding: .utf8, withUTF8BOM: true)
+                let bomItem = NSMenuItem(title: fileEncoding.localizedName,
                                          action: #selector(EncodingHolder.changeEncoding),
                                          keyEquivalent: "")
-                bomItem.tag = -UTF8Tag  // negative value is sign for "with BOM"
+                bomItem.tag = fileEncoding.tag
                 menu.addItem(bomItem)
             }
         }

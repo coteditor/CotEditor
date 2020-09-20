@@ -35,6 +35,9 @@ final class GeneralPaneController: NSViewController {
     
     @IBOutlet private weak var selectionInstanceHighlightDelayField: NSTextField?
     
+    @IBOutlet private weak var cltStatusView: NSImageView?
+    @IBOutlet private weak var cltPathField: NSTextField?
+    
     
     
     // MARK: -
@@ -46,18 +49,6 @@ final class GeneralPaneController: NSViewController {
         super.viewDidLoad()
         
         self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults()
-        
-        // remove updater options if no Sparkle provided
-        #if !SPARKLE
-            for subview in self.view.subviews where subview.tag < 0 {
-                subview.removeFromSuperview()
-            }
-        #endif
-        if !Bundle.main.isPrerelease {
-            for subview in self.view.subviews where subview.tag == -2 {
-                subview.removeFromSuperview()
-            }
-        }
     }
     
     
@@ -75,6 +66,20 @@ final class GeneralPaneController: NSViewController {
             case .revert:
                 self.revertConflictButton?.state = .on
         }
+        
+        // check command-line tool availability
+        self.validateCommandLineTool()
+    }
+    
+    
+    override func shouldPerformSegue(withIdentifier identifier: NSStoryboardSegue.Identifier, sender: Any?) -> Bool {
+        
+        // append updater options only when Sparkle is provided
+        #if !SPARKLE
+        if identifier == "EmbedUpdatesView" { return false }
+        #endif
+        
+        return true
     }
     
     
@@ -132,6 +137,33 @@ final class GeneralPaneController: NSViewController {
         }
     }
     
+    
+    /// Apply command-line tool availability to UI.
+    private func validateCommandLineTool() {
+        
+        let status = CommandLineToolManager.shared.validateSymLink()
+        
+        let imageName: NSImage.Name = {
+            switch status {
+                case .none:
+                    return NSImage.statusNoneName
+                case .validTarget:
+                    return NSImage.statusAvailableName
+                case .differentTarget:
+                    return NSImage.statusPartiallyAvailableName
+                case .invalidTarget:
+                    return NSImage.statusUnavailableName
+            }
+        }()
+        self.cltStatusView?.image = NSImage(named: imageName)
+        self.cltStatusView?.isHidden = !status.installed
+        self.cltStatusView?.toolTip = status.message
+        
+        self.cltPathField?.isHidden = !status.installed
+        self.cltPathField?.stringValue = String(format: "installed at %@".localized,
+                                                CommandLineToolManager.shared.linkURL.path)
+    }
+    
 }
 
 
@@ -152,6 +184,25 @@ private extension NSApplication {
         process.launch()
         
         self.terminate(nil)
+    }
+    
+}
+
+
+
+// MARK: -
+
+final class UpdatesViewController: NSViewController {
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        if !Bundle.main.isPrerelease {
+            for subview in self.view.subviews where subview.tag == -2 {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
 }

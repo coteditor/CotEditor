@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,10 +13,10 @@
             <objects>
                 <splitViewController id="sY9-RN-jMg" customClass="EditorViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem holdingPriority="750" id="1jV-uy-ka5"/>
+                        <splitViewItem holdingPriority="750" separatorStyle="line" id="1jV-uy-ka5"/>
                         <splitViewItem id="Z56-OS-hF0"/>
                     </splitViewItems>
-                    <splitView key="splitView" identifier="EditorView" misplaced="YES" dividerStyle="thin" id="Kyz-NV-ro4">
+                    <splitView key="splitView" misplaced="YES" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Kyz-NV-ro4">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="640"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
@@ -42,138 +43,183 @@
         <scene sceneID="JxK-9F-xcJ">
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" id="Fb7-9r-keA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="15"/>
+                    <visualEffectView key="view" wantsLayer="YES" verticalCompressionResistancePriority="249" blendingMode="withinWindow" material="titlebar" state="followsWindowActiveState" id="Fb7-9r-keA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="72"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button hidden="YES" toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
-                                <rect key="frame" x="31" y="-2" width="21" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="21" id="NdS-0U-G6w"/>
-                                </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="UpArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="NIe-Yu-BHr">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectPrevItemOfOutlineMenu:" target="KjS-UJ-AjC" id="86A-SI-44q"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
-                                <rect key="frame" x="584" y="-2" width="17" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="Rrb-OZ-odM"/>
-                                    <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
-                                </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OpenSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="3a0-fm-GbO">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="gJ1-uN-P5E"/>
-                                </connections>
-                            </button>
-                            <button hidden="YES" toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
-                                <rect key="frame" x="350" y="-2" width="21" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="21" id="rrS-MJ-wb5"/>
-                                </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="DownArrowTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="0aN-qE-Zpz">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="selectNextItemOfOutlineMenu:" target="KjS-UJ-AjC" id="b7v-Xr-hG7"/>
-                                </connections>
-                            </button>
-                            <popUpButton hidden="YES" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
-                                <rect key="frame" x="51" y="-2" width="300" height="19"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" priority="499" constant="300" id="EMV-iW-vsD"/>
-                                </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Noe-z9-zXZ" customClass="OutlineMenuButtonCell" customModule="CotEditor" customModuleProvider="target">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="message" size="11"/>
-                                    <menu key="menu" id="EeX-Bi-kba">
-                                        <items>
-                                            <menuItem title="&lt;Outline Item&gt;" id="fgm-Hv-H3C"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <action selector="selectOutlineMenuItem:" target="KjS-UJ-AjC" id="jAt-GM-6vD"/>
-                                </connections>
-                            </popUpButton>
                             <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
-                                <rect key="frame" x="568" y="-2" width="17" height="19"/>
+                                <rect key="frame" x="2" y="-2.5" width="21" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="CloseSplitTemplate" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" id="HiZ-3C-J5P">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="xmark" catalog="system" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="HiZ-3C-J5P">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsCloseButton" id="cKc-yO-gH0">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="1" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
-                                <rect key="frame" x="59" y="0.0" width="16" height="16"/>
-                            </progressIndicator>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
-                                <rect key="frame" x="81" y="1" width="107" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
+                            <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="FJH-xr-Bxo">
+                                <rect key="frame" x="23" y="4" width="5" height="11"/>
+                                <connections>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsCloseButton" id="5UB-FO-ZD2">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </box>
+                            <button toolTip="Split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="syK-XU-x2I">
+                                <rect key="frame" x="578" y="-1" width="21" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Rrb-OZ-odM"/>
+                                    <constraint firstAttribute="width" secondItem="syK-XU-x2I" secondAttribute="height" multiplier="1:1" id="fki-al-uAw"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="split.add" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" id="3a0-fm-GbO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="gJ1-uN-P5E"/>
+                                    <outlet property="menu" destination="yKS-mO-j45" id="9an-zp-n21"/>
+                                </connections>
+                            </button>
+                            <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
+                                <rect key="frame" x="30" y="-0.5" width="16.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="NdS-0U-G6w"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="chevron.up" catalog="system" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="NIe-Yu-BHr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectNextItemOfOutlineMenu:" target="OuY-Pd-2q9" id="T0Q-fH-fG8"/>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsOutlineMenu" id="bN2-v2-4GB">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <button toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
+                                <rect key="frame" x="46" y="-1" width="16.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="rrS-MJ-wb5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="chevron.down" catalog="system" imagePosition="only" alignment="center" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" id="0aN-qE-Zpz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="message" size="11"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectNextItemOfOutlineMenu:" target="OuY-Pd-2q9" id="Hbm-fG-cAQ"/>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsOutlineMenu" id="IeF-14-JgJ">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <popUpButton horizontalHuggingPriority="751" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ" customClass="OutlinePopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="62" y="-1" width="100" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="7hJ-QZ-5Wd"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="smallSquare" title="&lt;Outline Item&gt;" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="fgm-Hv-H3C" id="Noe-z9-zXZ" customClass="OutlinePopUpButtonCell" customModule="CotEditor" customModuleProvider="target">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <menu key="menu" id="EeX-Bi-kba">
+                                        <items>
+                                            <menuItem title="&lt;Outline Item&gt;" state="on" id="fgm-Hv-H3C"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="selectOutlineMenuItem:" target="KjS-UJ-AjC" id="jAt-GM-6vD"/>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="showsOutlineMenu" id="rh5-YN-sWZ">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </popUpButton>
+                            <textField hidden="YES" wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
+                                <rect key="frame" x="68" y="2" width="96" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="isParsingOutline" id="JwZ-ZK-f49">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
-                            <constraint firstItem="htM-ug-ofP" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="1t0-zI-rPl"/>
-                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="6cS-JS-uMe"/>
-                            <constraint firstItem="htM-ug-ofP" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="leading" constant="8" id="B4w-9d-cIQ"/>
-                            <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
-                            <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="-1" id="Lx9-yU-pBc"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="uo6-wO-fJZ" secondAttribute="bottom" constant="-1" id="0Ge-40-6cs"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="8" symbolic="YES" id="2MH-a6-qwS"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="FJH-xr-Bxo" secondAttribute="bottom" constant="4" id="4MP-Ey-t02"/>
+                            <constraint firstItem="FJH-xr-Bxo" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="2" id="4QS-rF-z9f"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="6cS-JS-uMe"/>
+                            <constraint firstItem="FJH-xr-Bxo" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" constant="5" id="7pu-c1-Tzy"/>
+                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" id="A58-M8-L3L"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="MlW-Dz-FOk" secondAttribute="trailing" id="GA9-bT-tVf"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="FJH-xr-Bxo" secondAttribute="trailing" constant="4" id="JTE-zW-r6R"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
                             <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
-                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" constant="-1" id="PLF-Ig-I6B"/>
-                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="Pdl-aM-DT9"/>
-                            <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="-1" id="YT4-Oj-3Yn"/>
-                            <constraint firstItem="BUj-TD-scp" firstAttribute="leading" secondItem="Fb7-9r-keA" secondAttribute="leading" constant="31" id="llJ-3L-8Cd"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="lnf-XI-Uu9"/>
-                            <constraint firstItem="Svt-vI-TEc" firstAttribute="leading" secondItem="htM-ug-ofP" secondAttribute="trailing" constant="8" symbolic="YES" id="ltj-Xb-WMJ"/>
-                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MlW-Dz-FOk" secondAttribute="trailing" constant="-1" id="n4T-Zc-kHb"/>
-                            <constraint firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
-                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="qXY-wb-kbw"/>
-                            <constraint firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
-                            <constraint firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
-                            <constraint firstItem="MlW-Dz-FOk" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="trailing" constant="-1" id="unz-gv-aLb"/>
-                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="vXG-JU-O6t"/>
-                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="Fb7-9r-keA" secondAttribute="centerY" id="zxj-gI-io3"/>
+                            <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="Pdl-aM-DT9"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="1" id="YT4-Oj-3Yn"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="lnf-XI-Uu9"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="MlW-Dz-FOk" secondAttribute="bottom" constant="-1" id="oZh-rX-9Nd"/>
+                            <constraint firstItem="Bmo-XE-CCn" firstAttribute="leading" secondItem="feF-Kd-UKM" secondAttribute="leading" constant="2" id="onf-dY-Bgm"/>
+                            <constraint firstItem="BUj-TD-scp" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="qXY-wb-kbw"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="syK-XU-x2I" secondAttribute="bottom" constant="-1" id="sNu-uV-dSg"/>
+                            <constraint firstItem="feF-Kd-UKM" firstAttribute="bottom" secondItem="BUj-TD-scp" secondAttribute="bottom" constant="-1" id="uPK-py-Bfo"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="leading" secondItem="uo6-wO-fJZ" secondAttribute="leading" constant="8" id="v6J-Te-MSs"/>
+                            <constraint firstItem="syK-XU-x2I" firstAttribute="top" secondItem="feF-Kd-UKM" secondAttribute="top" id="vXG-JU-O6t"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="centerY" secondItem="feF-Kd-UKM" secondAttribute="centerY" constant="1" id="zxj-gI-io3"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="feF-Kd-UKM"/>
+                        <viewLayoutGuide key="layoutMargins" id="z15-5N-tWk"/>
                     </visualEffectView>
                     <connections>
-                        <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
+                        <outlet property="editorSplitMenu" destination="yKS-mO-j45" id="XVz-tF-UbW"/>
                         <outlet property="leftButton" destination="BUj-TD-scp" id="UPE-Vg-sYz"/>
                         <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
-                        <outlet property="outlineIndicator" destination="htM-ug-ofP" id="U7C-1C-d8L"/>
-                        <outlet property="outlineLoadingMessage" destination="Svt-vI-TEc" id="GOz-wI-mIO"/>
                         <outlet property="outlineMenu" destination="uo6-wO-fJZ" id="E2p-BI-hLI"/>
                         <outlet property="rightButton" destination="MlW-Dz-FOk" id="rRE-Sr-4yx"/>
                     </connections>
                 </viewController>
                 <customObject id="OuY-Pd-2q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <menu id="yKS-mO-j45">
+                    <items>
+                        <menuItem title="Stack Editors Vertically" id="IhS-iT-L1i">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="toggleSplitOrientation:" target="OuY-Pd-2q9" id="7kY-DS-tf5"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="1469" y="-388"/>
+            <point key="canvasLocation" x="1469" y="-429"/>
         </scene>
         <!--Editor Text View Controller-->
         <scene sceneID="F5v-F6-xnV">
             <objects>
                 <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <stackView key="view" distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Val-Qg-Ge8">
+                    <stackView key="view" distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Val-Qg-Ge8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="665"/>
-                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-Jr-jkg" customClass="LineNumberView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="32" height="665"/>
@@ -211,6 +257,8 @@
                                 </scroller>
                             </scrollView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="rqf-ft-yx4"/>
+                        <viewLayoutGuide key="layoutMargins" id="Ogh-MF-aCB"/>
                         <visibilityPriorities>
                             <integer value="1000"/>
                             <integer value="1000"/>
@@ -231,12 +279,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CloseSplitTemplate" width="9" height="9"/>
-        <image name="DownArrowTemplate" width="8" height="8"/>
-        <image name="OpenSplitTemplate" width="9" height="9"/>
-        <image name="UpArrowTemplate" width="8" height="8"/>
+        <image name="chevron.down" catalog="system" width="15" height="9"/>
+        <image name="chevron.up" catalog="system" width="15" height="9"/>
+        <image name="split.add" width="11" height="11"/>
+        <image name="xmark" catalog="system" width="14" height="13"/>
         <namedColor name="DividerColor">
-            <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color white="0.85000002384185791" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
     </resources>
 </document>

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,21 +27,13 @@ import Foundation
 
 extension String {
     
-    /// Returns a new string representing the receiver as a path with a tilde (~) substituted for the full path to the current user’s home directory.
+    private static let homeDirectory = getpwuid(getuid())?.pointee.pw_dir.flatMap { String(cString: $0) } ?? NSHomeDirectory()
+    
+    
+    /// New string representing the receiver as a path with a tilde (~) substituted for the full path to the current user’s home directory.
     var abbreviatingWithTildeInSandboxedPath: String {
         
-        return self.replacingOccurrences(of: homeDirectory, with: "~", options: .anchored)
+        return self.replacingOccurrences(of: Self.homeDirectory, with: "~", options: .anchored)
     }
     
 }
-
-
-private let homeDirectory: String = {
-    
-    guard
-        let passwd = getpwuid(getuid()),
-        let directory = passwd.pointee.pw_dir
-        else { return NSHomeDirectory() }
-    
-    return String(cString: directory)
-}()

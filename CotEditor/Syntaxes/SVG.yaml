@@ -3,12 +3,12 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.4"
+  version: "1.2.5"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
-  lastModified: "2020-03-04"
+  lastModified: "2020-09-15"
 outlineMenu:
-- beginString: "(?<= )id=\"(.+?)\""
+- beginString: "(?<= )id=\"([^\"]+?)\""
   description: "id"
   ignoreCase: true
   keyString: "#$1"
@@ -483,8 +483,6 @@ attributes:
   regularExpression: true
 - beginString: "\\sformat\\b(?=[^<>]*>)"
   regularExpression: true
-- beginString: "\\sfradientTransform\\b(?=[^<>]*>)"
-  regularExpression: true
 - beginString: "\\sfrom\\b(?=[^<>]*>)"
   regularExpression: true
 - beginString: "\\sfx\\b(?=[^<>]*>)"
@@ -503,7 +501,7 @@ attributes:
   regularExpression: true
 - beginString: "\\sglyphRef\\b(?=[^<>]*>)"
   regularExpression: true
-- beginString: "\\gradientTransform\\b(?=[^<>]*>)"
+- beginString: "\\sgradientTransform\\b(?=[^<>]*>)"
   regularExpression: true
 - beginString: "\\sgradientUnits\\b(?=[^<>]*>)"
   regularExpression: true

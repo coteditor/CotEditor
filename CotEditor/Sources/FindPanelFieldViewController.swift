@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
@@ -31,10 +32,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     @objc private dynamic let textFinder = TextFinder.shared
     
-    private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
+    private var scrollerStyleObserver: AnyCancellable?
+    private var defaultsObservers: Set<AnyCancellable> = []
     
-    private var scrollerStyleObserver: NSKeyValueObservation?
-    private var defaultsObservers: [UserDefaultsObservation] = []
+    private var resultClosingTrigerObserver: AnyCancellable?
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
@@ -48,14 +49,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.scrollerStyleObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
@@ -65,35 +58,34 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // adjust clear button position according to the visiblity of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
-        self.scrollerStyleObserver?.invalidate()
-        self.scrollerStyleObserver = scroller?.observe(\.scrollerStyle, options: .initial) { [weak self] (scroller, _) in
-            var inset: CGFloat = 5
-            if scroller.scrollerStyle == .legacy {
-                inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
+        self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
+            .sink { [weak self, weak scroller] (scrollerStyle) in
+                var inset: CGFloat = 5
+                if scrollerStyle == .legacy, let scroller = scroller {
+                    inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
+                }
+                
+                self?.findClearButtonConstraint?.constant = -inset
+                self?.replacementClearButtonConstraint?.constant = -inset
             }
-            
-            self?.findClearButtonConstraint?.constant = -inset
-            self?.replacementClearButtonConstraint?.constant = -inset
-        }
         
-        self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = [
             // sync history menus with user default
-            UserDefaults.standard.observe(key: .findHistory, options: .initial) { [unowned self] _ in
-                self.updateFindHistoryMenu()
-            },
-            UserDefaults.standard.observe(key: .replaceHistory, options: .initial) { [unowned self] _ in
-                self.updateReplaceHistoryMenu()
-            },
+            UserDefaults.standard.publisher(for: .findHistory, initial: true)
+                .sink { [unowned self] _ in self.updateFindHistoryMenu() },
+            UserDefaults.standard.publisher(for: .replaceHistory, initial: true)
+                .sink { [unowned self] _ in self.updateReplaceHistoryMenu() },
             
             // sync text view states with user default
-            UserDefaults.standard.observe(key: .findUsesRegularExpression, options: [.initial, .new]) { [unowned self] change in
-                self.findTextView?.isRegularExpressionMode = change.new!
-                self.replacementTextView?.isRegularExpressionMode = change.new!
-            },
-            UserDefaults.standard.observe(key: .findRegexUnescapesReplacementString, options: [.initial, .new]) { [unowned self] change in
-                self.replacementTextView?.parseMode = .replacement(unescapes: change.new!)
-            }
+            UserDefaults.standard.publisher(for: .findUsesRegularExpression, initial: true)
+                .sink { [unowned self] (value) in
+                    self.findTextView?.isRegularExpressionMode = value
+                    self.replacementTextView?.isRegularExpressionMode = value
+                },
+            UserDefaults.standard.publisher(for: .findRegexUnescapesReplacementString, initial: true)
+                .sink { [unowned self] (value) in
+                    self.replacementTextView?.parseMode = .replacement(unescapes: value)
+                }
         ]
     }
     
@@ -197,11 +189,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         }()
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
         
-        // dismiss result either client text or find string did change
-        self.removeCurrentTargetObservers()
-        self.currentResultMessageTarget = target.layoutManager
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSWindow.willCloseNotification, object: target.window)
+        self.resultClosingTrigerObserver = Publishers.Merge(
+            NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: target.textStorage),
+            NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: target.window))
+            .sink { [weak self] _ in self?.clearNumberOfFound() }
     }
     
     
@@ -254,7 +245,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             .filter { $0.action == action || $0.isSeparatorItem }
             .forEach { menu.removeItem($0) }
         
-        guard let history = UserDefaults.standard[key], !history.isEmpty else { return }
+        let history = UserDefaults.standard[key]
+        
+        guard !history.isEmpty else { return }
         
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         
@@ -270,17 +263,16 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     /// number of found in find string field becomes no more valid
-    @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
+    private func clearNumberOfFound() {
         
         self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
-        // -> Specify the object to remove observer to avoid removing the windowWillClose notification (via delegate) from the find panel itself.
-        self.removeCurrentTargetObservers()
+        self.resultClosingTrigerObserver = nil
     }
     
     
     /// number of replaced in replacement string field becomes no more valid
-    @objc private func clearNumberOfReplaced(_ notification: Notification? = nil) {
+    private func clearNumberOfReplaced(_ notification: Notification? = nil) {
         
         self.applyResult(message: nil, textField: self.replacementResultField!, textView: self.replacementTextView!)
     }
@@ -295,18 +287,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // add extra scroll margin to the right side of the textView, so that entire input can be read
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
-    }
-    
-    
-    /// remove observers for result message clear
-    private func removeCurrentTargetObservers() {
-        
-        guard let target = self.currentResultMessageTarget?.firstTextView else { return }
-        
-        NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
-        NotificationCenter.default.removeObserver(self, name: NSWindow.willCloseNotification, object: target.window)
-        
-        self.currentResultMessageTarget = nil
     }
     
 }

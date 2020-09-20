@@ -25,16 +25,29 @@
 
 import Cocoa
 
+protocol InspectorTabViewDelegate: NSTabViewDelegate {
+    
+    /// Provide custom image for selected tab view item.
+    ///
+    /// - Parameters:
+    ///   - tabView: The tab view that sent the request.
+    ///   - selectedImageForItem: The tab view item that requests selected image.
+    /// - Returns: An image for selected tab, or `nil` for default behavior.
+    func tabView(_ tabView: NSTabView, selectedImageForItem: NSTabViewItem) -> NSImage?
+}
+
+
 final class InspectorTabView: NSTabView {
     
     // MARK: Public Properties
     
-    let segmentedControl = NSSegmentedControl()
+    let segmentedControl: NSSegmentedControl
     
     
     // MARK: Private Properties
     
-    private let controlHeight: CGFloat = 28.0
+    private let controlHeight: CGFloat = 28
+    private let segmentWidth: CGFloat = 30
     
     
     
@@ -43,17 +56,14 @@ final class InspectorTabView: NSTabView {
     
     required init?(coder: NSCoder) {
         
+        self.segmentedControl = InspectorTabSegmentedControl()
+        self.segmentedControl.segmentStyle = .texturedSquare
+        
         super.init(coder: coder)
         
         self.tabViewType = .noTabsNoBorder
         
-        // setup segmented control
-        self.segmentedControl.cell = SwitcherSegmentedCell()
-        self.segmentedControl.segmentStyle = .texturedSquare
-        self.segmentedControl.frame.origin.y = floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2)
         self.addSubview(self.segmentedControl)
-        
-        self.rebuildSegmentedControl()
     }
     
     
@@ -63,20 +73,25 @@ final class InspectorTabView: NSTabView {
     /// take off control space
     override var contentRect: NSRect {
         
+        let offset = self.topInset + self.controlHeight + 1  // +1 for border
+        
         var rect = self.bounds
-        rect.origin.y = self.controlHeight + 1  // +1 for border
-        rect.size.height -= self.controlHeight + 1
+        rect.origin.y = offset
+        rect.size.height -= offset
         
         return rect
     }
     
     
-    /// reposition control manually
-    override var frame: NSRect {
+    /// update private control position
+    override func layout() {
         
-        didSet {
-            self.invalidateControlPosition()
-        }
+        super.layout()
+        
+        self.segmentedControl.frame.origin = NSPoint(
+            x: floor((self.frame.width - self.segmentedControl.frame.width) / 2),
+            y: floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2) + self.topInset
+        )
     }
     
     
@@ -86,17 +101,18 @@ final class InspectorTabView: NSTabView {
         NSGraphicsContext.saveGraphicsState()
         
         // draw background
-        if #available(macOS 10.14, *), self.drawsBackground {
+        if self.drawsBackground {
             NSColor.windowBackgroundColor.setFill()
             dirtyRect.fill()
-            
         } else {
             super.draw(dirtyRect)
         }
         
-        let strokeRect = NSRect(x: dirtyRect.minX, y: self.controlHeight, width: dirtyRect.width, height: 1)
-        NSColor.gridColor.setFill()
-        strokeRect.fill()
+        let strokeRect = NSRect(x: dirtyRect.minX, y: self.topInset + self.controlHeight, width: dirtyRect.width, height: 1)
+        if strokeRect.intersects(dirtyRect) {
+            NSColor.separatorColor.setFill()
+            self.centerScanRect(strokeRect).fill()
+        }
         
         NSGraphicsContext.restoreGraphicsState()
     }
@@ -137,6 +153,15 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Methods
     
+    /// The height of the tab control and the top inset.
+    private var topInset: CGFloat {
+        
+        guard #available(macOS 11, *) else { return 0 }
+        
+        return self.safeAreaInsets.top
+    }
+    
+    
     /// update selection of the private control
     private func invalidateControlSelection() {
         
@@ -154,27 +179,36 @@ final class InspectorTabView: NSTabView {
     }
     
     
-    /// update private control position
-    private func invalidateControlPosition() {
-        
-        self.segmentedControl.frame.origin.x = floor((self.frame.width - self.segmentedControl.frame.width) / 2)
-    }
-    
-    
     /// update the private control every time when tab item line-up changed
     private func rebuildSegmentedControl() {
         
         self.segmentedControl.segmentCount = self.numberOfTabViewItems
         
         // set tabViewItem values to control buttons
-        for (index, item) in self.tabViewItems.enumerated() {
-            self.segmentedControl.setImage(item.image, forSegment: index)
-            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(item.label.localized, forSegment: index)
+        for (segment, item) in self.tabViewItems.enumerated() {
+            self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
+            self.segmentedControl.setToolTip(item.label, forSegment: segment)
+            
+            let selectedImage = (self.delegate as? InspectorTabViewDelegate)?.tabView(self, selectedImageForItem: item)
+                ?? item.selectedImage
+            (self.segmentedControl as? InspectorTabSegmentedControl)?
+                .setImage(item.image, selectedImage: selectedImage, forSegment: segment)
         }
         
         self.segmentedControl.sizeToFit()
-        self.invalidateControlPosition()
         self.invalidateControlSelection()
+    }
+    
+}
+
+
+private extension NSTabViewItem {
+    
+    var selectedImage: NSImage? {
+        
+        guard #available(macOS 11, *) else { return nil }
+        
+        return self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }
     
 }

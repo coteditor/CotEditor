@@ -23,13 +23,14 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class FindPanelButtonViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var findNextAfterReplaceObserver: UserDefaultsObservation?
+    private var findNextAfterReplaceObserver: AnyCancellable?
     
     @IBOutlet private weak var replaceButton: NSButton?
     
@@ -43,13 +44,13 @@ final class FindPanelButtonViewController: NSViewController {
         
         super.viewDidLoad()
         
-        self.invalidateReplaceButtonBehavior()
-        
-        // observe default change for the "Replace" button tooltip
-        self.findNextAfterReplaceObserver?.invalidate()
-        self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace) { [unowned self] _ in
-            self.invalidateReplaceButtonBehavior()
-        }
+        // change "Replace" button behavior depending on the user setting
+        self.findNextAfterReplaceObserver = UserDefaults.standard.publisher(for: .findNextAfterReplace, initial: true)
+            .map { $0
+                ? "Replace the current selection with the replacement text, then find the next match.".localized
+                : "Replace the current selection with the replacement text.".localized
+            }
+            .assign(to: \.toolTip, on: self.replaceButton!)
     }
     
     
@@ -79,22 +80,6 @@ final class FindPanelButtonViewController: NSViewController {
             default:
                 assertionFailure("Number of the find button segments must be 2.")
         }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// toggle replace button behavior and tooltip
-    private func invalidateReplaceButtonBehavior() {
-        
-        self.replaceButton?.toolTip = {
-            if UserDefaults.standard[.findNextAfterReplace] {
-                return "Replace the current selection with the replacement text, then find the next match.".localized
-            } else {
-                return "Replace the current selection with the replacement text.".localized
-            }
-        }()
     }
     
 }

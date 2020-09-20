@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private extension NSAttributedString.Key {
@@ -63,6 +64,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var needsUpdateLineHighlight = true {
         
         didSet {
+            guard needsUpdateLineHighlight else { return }
             // remove previous highlights
             (self.lineHighLightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
         }
@@ -95,7 +97,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
-    private var isSmartIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
     
@@ -109,8 +110,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
     
-    private var defaultsObservers: [UserDefaultsObservation] = []
-    private var windowOpacityObserver: NotificationObservation?
+    private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
+    
+    private var defaultsObservers: Set<AnyCancellable> = []
+    private var windowOpacityObserver: AnyCancellable?
     
     
     
@@ -125,7 +128,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.balancesBrackets = defaults[.balancesBrackets]
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
-        self.isSmartIndentEnabled = defaults[.enableSmartIndent]
         
         // set paragraph style values
         self.lineHeight = defaults[.lineHeight]
@@ -178,7 +180,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // set font
         let font: NSFont = {
-            let fontName = defaults[.fontName]!
+            let fontName = defaults[.fontName]
             let fontSize = defaults[.fontSize]
             return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
         }()
@@ -191,7 +193,73 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.invalidateDefaultParagraphStyle()
         
         // observe change in defaults
-        self.defaultsObservers = self.observeDefaults()
+        self.defaultsObservers = [
+            defaults.publisher(for: .cursorType)
+                .sink { [unowned self] (value) in
+                    self.cursorType = value
+                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(value == .block ? 0.5 : 1)
+                },
+            defaults.publisher(for: .balancesBrackets)
+                .sink { [unowned self] in self.balancesBrackets = $0 },
+            defaults.publisher(for: .autoExpandTab)
+                .sink { [unowned self] in self.isAutomaticTabExpansionEnabled = $0 },
+            defaults.publisher(for: .autoIndent)
+                .sink { [unowned self] in self.isAutomaticIndentEnabled = $0 },
+            
+            defaults.publisher(for: .lineHeight)
+                .sink { [unowned self] in self.lineHeight = $0 },
+            defaults.publisher(for: .tabWidth)
+                .sink { [unowned self] in self.tabWidth = $0 },
+            
+            defaults.publisher(for: .smartInsertAndDelete)
+                .sink { [unowned self] in self.smartInsertDeleteEnabled = $0 },
+            defaults.publisher(for: .enableSmartQuotes)
+                .sink { [unowned self] in self.isAutomaticQuoteSubstitutionEnabled = $0 },
+            defaults.publisher(for: .enableSmartDashes)
+                .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0 },
+            defaults.publisher(for: .checkSpellingAsType)
+                .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0 },
+            defaults.publisher(for: .autoLinkDetection)
+                .sink { [unowned self] (value) in
+                    self.isAutomaticLinkDetectionEnabled = value
+                    if self.isAutomaticLinkDetectionEnabled {
+                        self.detectLink()
+                    } else {
+                        self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
+                    }
+                },
+            
+            Publishers.Merge(defaults.publisher(for: .fontName).eraseToVoid(),
+                             defaults.publisher(for: .fontSize).eraseToVoid())
+                .sink { [unowned self] in self.resetFont(nil) },
+            defaults.publisher(for: .shouldAntialias)
+                .sink { [unowned self] in self.usesAntialias = $0 },
+            defaults.publisher(for: .showIndentGuides)
+                .sink { [unowned self] in self.showsIndentGuides = $0 },
+            defaults.publisher(for: .ligature)
+                .sink { [unowned self] in self.ligature = $0 ? .standard : .none },
+            
+            defaults.publisher(for: .enablesHangingIndent)
+                .sink { [unowned self] in
+                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = $0
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                },
+            defaults.publisher(for: .hangingIndentWidth)
+                .sink { [unowned self] in
+                    (self.textContainer as? TextContainer)?.hangingIndentWidth = $0
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                },
+            
+            defaults.publisher(for: .pageGuideColumn)
+                .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
+            defaults.publisher(for: .overscrollRate)
+                .sink { [unowned self] _ in self.invalidateOverscrollRate() },
+            defaults.publisher(for: .highlightCurrentLine)
+                .sink { [unowned self] _ in self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true) },
+            defaults.publisher(for: .highlightSelectionInstance)
+                .filter { !$0 }
+                .sink { [unowned self] _ in self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange) },
+        ]
     }
     
     
@@ -256,20 +324,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
+        guard super.becomeFirstResponder() else { return false }
+        
         NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
-        return super.becomeFirstResponder()
-    }
-    
-    
-    /// the receiver is about to be attached to / detached from a window
-    override func viewWillMove(toWindow newWindow: NSWindow?) {
-        
-        super.viewWillMove(toWindow: window)
-        
-        // remove observation before the observed object is deallocated
-        self.windowOpacityObserver?.invalidate()
-        self.windowOpacityObserver = nil
+        return true
     }
     
     
@@ -278,20 +337,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.viewDidMoveToWindow()
         
-        // textView was detached from the window
-        guard let window = self.window else { return }
-        
-        // apply theme to window
-        self.applyTheme()
+        // apply theme to window when attached
+        if let window = self.window as? DocumentWindow, let theme = self.theme {
+            window.contentBackgroundColor = theme.background.color
+        }
         
         // apply window opacity
-        self.didChangeWindowOpacity(to: window.isOpaque)
-        self.windowOpacityObserver?.invalidate()
-        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] (notification) in
-            guard let window = notification.object as? NSWindow else { return assertionFailure() }
-            
-            self?.didChangeWindowOpacity(to: window.isOpaque)
-        }
+        self.windowOpacityObserver = self.window?.publisher(for: \.isOpaque, options: .initial)
+            .sink { [weak self] in
+                self?.drawsBackground = $0
+                self?.lineHighLightColor = self?.lineHighLightColor?.withAlphaComponent($0 ? 1.0 : 0.7)
+            }
     }
     
     
@@ -314,21 +370,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.viewDidEndLiveResize()
         
         self.overscrollResizingTask.schedule()
-    }
-    
-    
-    /// encrosing scroll view did scroll
-    override func adjustScroll(_ newVisible: NSRect) -> NSRect {
-        
-        let newVisible = super.adjustScroll(newVisible)
-        
-        // fix drawing area on non-opaque view
-        if !self.drawsBackground {
-            // -> Needs display visible rect since the drawing area will be modified in `draw(_ dirtyFrame:)`.
-            self.setNeedsDisplay(newVisible, avoidAdditionalLayout: true)
-        }
-        
-        return newVisible
     }
     
     
@@ -434,12 +475,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// text did change
     override func didChangeText() {
         
-        // invalidate before running the layout processes
-        self.invalidateNonContiguousLayout()
-        
         super.didChangeText()
         
         self.needsUpdateLineHighlight = true
+        
+        // trim trailing whitespace if needed
+        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+            self.trimTrailingWhitespaceTask.schedule(delay: .seconds(5))
+        }
         
         // retry completion if needed
         // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
@@ -514,7 +557,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         // smart outdent with '}'
-        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.isEmpty,
+        if self.isAutomaticIndentEnabled, replacementRange.isEmpty,
             plainString == "}"
         {
             let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
@@ -607,21 +650,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 var insertion = indent.count
                 
                 // smart indent
-                if self.isSmartIndentEnabled {
-                    let lastCharacter = self.character(before: range)
-                    let nextCharacter = self.character(after: range)
-                    let indentBase = indent
-                    
-                    // increase indent level
-                    if lastCharacter == ":" || lastCharacter == "{" {
-                        indent += tab
-                        insertion += tab.count
-                    }
-                    
-                    // expand block
-                    if lastCharacter == "{", nextCharacter == "}" {
-                        indent += "\n" + indentBase
-                    }
+                let lastCharacter = self.character(before: range)
+                let nextCharacter = self.character(after: range)
+                let indentBase = indent
+                
+                // increase indent level
+                if lastCharacter == ":" || lastCharacter == "{" {
+                    indent += tab
+                    insertion += tab.count
+                }
+                
+                // expand block
+                if lastCharacter == "{", nextCharacter == "}" {
+                    indent += "\n" + indentBase
                 }
                 
                 return (range, indent, insertion)
@@ -719,15 +760,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // interrupt rectangular selection
         if self.isPerformingRectangularSelection {
-            if NSAppKitVersion.current >= .macOS10_15 || stillSelectingFlag {
-                if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
-                    ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
-                    self.insertionLocations = Array(locations[1...])
-                } else {
-                    self.insertionLocations = []
-                }
-            } else if ranges.isEmpty {
-                ranges = self.selectedRanges
+            if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
+                ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
+                self.insertionLocations = Array(locations[1...])
+            } else {
+                self.insertionLocations = []
             }
         }
         
@@ -864,8 +901,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let font = fontManager.convert(currentFont)
         
         // apply to all text views sharing textStorage
-        for layoutManager in textStorage.layoutManagers {
-            layoutManager.firstTextView?.font = font
+        for textView in textStorage.layoutManagers.compactMap(\.firstTextView) {
+            textView.font = font
         }
     }
     
@@ -940,21 +977,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// draw view
     override func draw(_ dirtyRect: NSRect) {
         
-        // minimize drawing area for non-opaque background
-        // -> Otherwise, all textView (from the top to the bottom) is drawn every time
-        //    and it affects the drawing performance on a large document critically. (2017-03 macOS 10.12)
-        let dirtyRect = self.drawsBackground ? dirtyRect : self.visibleRect
-        
         super.draw(dirtyRect)
         
         // draw page guide
         if self.showsPageGuide,
-            let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-            let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
-            
             let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerInset.width
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
@@ -966,12 +994,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                                    width: 1.0,
                                    height: dirtyRect.height)
             
-            NSGraphicsContext.saveGraphicsState()
-            
-            guideColor.setFill()
-            self.centerScanRect(guideRect).fill()
-            
-            NSGraphicsContext.restoreGraphicsState()
+            if guideRect.intersects(dirtyRect), let textColor = self.textColor {
+                let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+                let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
+                
+                NSGraphicsContext.saveGraphicsState()
+                guideColor.setFill()
+                self.centerScanRect(guideRect).intersection(dirtyRect).fill()
+                NSGraphicsContext.restoreGraphicsState()
+            }
         }
         
         // draw zero-width insertion points while rectangular selection
@@ -980,6 +1011,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.insertionRanges
                 .filter(\.isEmpty)
                 .map { self.insertionPointRect(at: $0.location) }
+                .filter { $0.intersects(dirtyRect) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
     }
@@ -1009,7 +1041,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
         
-        self.invalidateNonContiguousLayout()
+        // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 10.15)
+        //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
+        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
         
         // reset writing direction
         if orientation == .vertical {
@@ -1246,22 +1280,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     
-    // MARK: Public Methods
-    
-    /// invalidate string attributes
-    func invalidateStyle() {
-        
-        assert(Thread.isMainThread)
-        
-        guard let textStorage = self.textStorage else { return assertionFailure() }
-        guard textStorage.length > 0 else { return }
-        
-        textStorage.addAttributes(self.typingAttributes, range: textStorage.range)
-        self.setNeedsDisplay(self.visibleRect)
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// copy selection with syntax highlight and font style
@@ -1372,27 +1390,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// window's opacity did change
-    private func didChangeWindowOpacity(to isOpaque: Bool) {
-        
-        // let text view have own background if possible
-        self.drawsBackground = isOpaque
-        self.enclosingScrollView?.drawsBackground = isOpaque
-        
-        // make the current line highlight a bit transparent
-        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(isOpaque ? 1.0 : 0.7)
-        
-        // redraw visible area
-        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-    }
-    
-    
     /// update coloring settings
     private func applyTheme() {
         
         assert(Thread.isMainThread)
+        assert(self.layoutManager != nil)
+        assert(self.enclosingScrollView != nil)
         
-        guard let theme = self.theme else { return }
+        guard let theme = self.theme else { return assertionFailure() }
         
         self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
@@ -1408,7 +1413,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
-        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
@@ -1420,15 +1424,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         assert(Thread.isMainThread)
         
-        let paragraphStyle = NSParagraphStyle.default.mutable
+        guard let paragraphStyle = self.defaultParagraphStyle?.mutable else { return assertionFailure() }
         
         // set line height
         // -> The actual line height will be calculated in LayoutManager based on this line height multiple.
         //    Because the default Cocoa Text System calculate line height differently
         //     if the first character of the document is drawn with another font (typically by a composite font).
-        // -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
-        //    e.g. Times
-        paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
+        paragraphStyle.lineHeightMultiple = self.lineHeight
         
         // calculate tab interval
         if let font = self.font {
@@ -1436,37 +1438,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
         }
         
-        paragraphStyle.baseWritingDirection = self.baseWritingDirection
+        guard self.defaultParagraphStyle != paragraphStyle else { return }
         
         self.defaultParagraphStyle = paragraphStyle
-        
-        // add paragraph style also to the typing attributes
-        // -> textColor and font are added automatically.
         self.typingAttributes[.paragraphStyle] = paragraphStyle
+        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
             self.enclosingScrollView?.lineScroll = lineHeight
         }
-        
-        // apply new style to current text
-        self.invalidateStyle()
-    }
-    
-    
-    /// validate whether turns the noncontiguous layout on
-    private func invalidateNonContiguousLayout() {
-        
-        guard let storage = self.textStorage else { return }
-        
-        // -> Obtaining textStorage's length is much faster than string.count. (2018-12 on macOS 10.14)
-        let isLargeText = storage.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
-        
-        // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
-        //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
-        let isHorizontal = (self.layoutOrientation == .horizontal)
-        
-        self.layoutManager?.allowsNonContiguousLayout = isLargeText && isHorizontal
     }
     
     
@@ -1476,10 +1457,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard self.theme?.isDarkTheme == true else { return }
         
         switch NSCursor.current {
-            case .iBeam where NSAppKitVersion.current <= .macOS10_13:
-                // -> The i-beam is enough findable with dark background since Mojave.
-                NSCursor.lightIBeam.set()
-            
             case .iBeamCursorForVerticalLayout:
                 NSCursor.lightIBeamCursorForVerticalLayout.set()
             
@@ -1632,121 +1609,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         for range in ranges {
             layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
-        }
-    }
-    
-    
-    /// observe defaults to apply the change immediately
-    private func observeDefaults() -> [UserDefaultsObservation] {
-        
-        let keys: [DefaultKeys] = [
-            .cursorType,
-            .autoExpandTab,
-            .autoIndent,
-            .enableSmartIndent,
-            .balancesBrackets,
-            .shouldAntialias,
-            .ligature,
-            .smartInsertAndDelete,
-            .enableSmartQuotes,
-            .enableSmartDashes,
-            .checkSpellingAsType,
-            .autoLinkDetection,
-            .pageGuideColumn,
-            .showIndentGuides,
-            .overscrollRate,
-            .tabWidth,
-            .fontName,
-            .fontSize,
-            .lineHeight,
-            .highlightCurrentLine,
-            .highlightSelectionInstance,
-            .enablesHangingIndent,
-            .hangingIndentWidth,
-        ]
-        
-        return UserDefaults.standard.observe(keys: keys, options: [.new]) { [unowned self] (key, change) in
-            
-            let new = change.new
-            switch key {
-                case .cursorType:
-                    self.cursorType = UserDefaults.standard[.cursorType]
-                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
-                
-                case .autoExpandTab:
-                    self.isAutomaticTabExpansionEnabled = new as! Bool
-                
-                case .autoIndent:
-                    self.isAutomaticIndentEnabled = new as! Bool
-                
-                case .enableSmartIndent:
-                    self.isSmartIndentEnabled = new as! Bool
-                
-                case .balancesBrackets:
-                    self.balancesBrackets = new as! Bool
-                
-                case .shouldAntialias:
-                    self.usesAntialias = new as! Bool
-                
-                case .ligature:
-                    self.ligature = (new as! Bool) ? .standard : .none
-                
-                case .smartInsertAndDelete:
-                    self.smartInsertDeleteEnabled = new as! Bool
-                
-                case .enableSmartQuotes:
-                    self.isAutomaticQuoteSubstitutionEnabled = new as! Bool
-                
-                case .enableSmartDashes:
-                    self.isAutomaticDashSubstitutionEnabled = new as! Bool
-                
-                case .checkSpellingAsType:
-                    self.isContinuousSpellCheckingEnabled = new as! Bool
-                
-                case .autoLinkDetection:
-                    self.isAutomaticLinkDetectionEnabled = new as! Bool
-                    if self.isAutomaticLinkDetectionEnabled {
-                        self.detectLink()
-                    } else {
-                        self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
-                    }
-                
-                case .pageGuideColumn:
-                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-                
-                case .showIndentGuides:
-                    self.showsIndentGuides = new as! Bool
-                
-                case .overscrollRate:
-                    self.invalidateOverscrollRate()
-                
-                case .tabWidth:
-                    self.tabWidth = new as! Int
-                
-                case .fontName, .fontSize:
-                    self.resetFont(nil)
-                
-                case .lineHeight:
-                    self.lineHeight = new as! CGFloat
-                    self.centerSelectionInVisibleArea(self)  // reset visible area
-                
-                case .highlightCurrentLine:
-                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
-                
-                case .highlightSelectionInstance:
-                    if !(new as! Bool) {
-                        self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-                    }
-                
-                case .enablesHangingIndent:
-                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
-                
-                case .hangingIndentWidth:
-                    (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
-                
-                default:
-                    preconditionFailure()
-            }
         }
     }
     

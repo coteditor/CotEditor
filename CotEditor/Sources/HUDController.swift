@@ -35,7 +35,9 @@ enum HUDSymbol {
         
         switch self {
             case .wrap(let reversed):
-                return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
+                return reversed
+                    ? NSImage(named: "arrow.triangle.capsulepath.counterclockwise")!
+                    : NSImage(symbolNamed: "arrow.triangle.capsulepath", accessibilityDescription: nil)!
         }
     }
     
@@ -81,9 +83,7 @@ final class HUDController: NSViewController {
         
         assert(self.view.layer != nil)
         self.view.layer?.cornerRadius = self.cornerRadius
-        if #available(macOS 10.15, *) {
-            self.view.layer?.cornerCurve = .continuous
-        }
+        self.view.layer?.cornerCurve = .continuous
     }
     
     

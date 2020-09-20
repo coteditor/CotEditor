@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,37 +29,42 @@ protocol Script: AnyObject {
     
     // MARK: Properties
     
-    /// A script descriptor the receiver was created from.
-    var descriptor: ScriptDescriptor { get }
+    var url: URL { get }
+    var name: String { get }
     
     
     // MARK: Methods
     
-    /// Execute the script with the default way.
-    func run(completionHandler: (() -> Void)?) throws
+    init(url: URL, name: String) throws
     
+    
+    /// Execute the script.
+    ///
+    /// - Parameters:
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError` and any errors on script loading.
+    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws
+}
+
+
+protocol AppleEventReceivable {
     
     /// Execute the script by sending it the given Apple event.
     ///
-    /// Events the script cannot handle must be ignored with no errors.
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)?) throws
-    
+    /// - Parameters:
+    ///   - event: The apple event.
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError` and any errors on `NSUserAppleScriptTask.init(url:)`
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws
 }
 
-
-
-extension Script {
-    
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
-        
-        // ignore every request with an event by default
-    }
-    
-}
+typealias EventScript = Script & AppleEventReceivable
 
 
 
-// MARK: - Error
+// MARK: - Errors
 
 struct ScriptFileError: LocalizedError {
     
@@ -102,14 +107,24 @@ struct ScriptFileError: LocalizedError {
 }
 
 
-// MARK: Functions
 
-func writeToConsole(message: String, scriptName: String) {
+enum ScriptError: LocalizedError {
     
-    let log = Console.Log(message: message, title: scriptName)
+    case standardError(String)
+    case noInputTarget
+    case noOutputTarget
     
-    DispatchQueue.main.async {
-        Console.shared.panelController.showWindow(nil)
-        Console.shared.append(log: log)
+    
+    var errorDescription: String {
+        
+        switch self {
+            case .standardError(let string):
+                return string
+            case .noInputTarget:
+                return "No document to get input.".localized
+            case .noOutputTarget:
+                return "No document to put output.".localized
+        }
     }
+    
 }

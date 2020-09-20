@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,59 +23,62 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 
-final class AppleScript: Script {
+final class AppleScript: Script, AppleEventReceivable {
     
     // MARK: Script Properties
     
-    let descriptor: ScriptDescriptor
+    let url: URL
+    let name: String
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(descriptor: ScriptDescriptor) {
+    init(url: URL, name: String) throws {
         
-        self.descriptor = descriptor
+        self.url = url
+        self.name = name
     }
     
     
     
     // MARK: Script Methods
     
-    /// run script
+    /// Execute the script.
     ///
-    /// - Throws: Error by `NSUserScriptTask`
-    func run(completionHandler: (() -> Void)? = nil) throws {
+    /// - Parameters:
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError` and any errors on `NSUserAppleScriptTask.init(url:)`
+    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
         
         try self.run(withAppleEvent: nil, completionHandler: completionHandler)
     }
     
     
-    /// Execute the AppleScript script by sending it the given Apple event.
+    /// Execute the script by sending it the given Apple event.
     ///
-    /// Any script errors will be written to the console panel.
-    ///
-    /// - Parameter event: The apple event.
-    ///
-    /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
+    /// - Parameters:
+    ///   - event: The apple event.
+    ///   - completionHandler: The completion handler block that returns a script error if any.
+    ///   - error: The `ScriptError` by the script.
+    /// - Throws: `ScriptFileError` and any errors on `NSUserAppleScriptTask.init(url:)`
+    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
         
-        guard self.descriptor.url.isReachable else {
-            throw ScriptFileError(kind: .existance, url: self.descriptor.url)
+        guard self.url.isReachable else {
+            throw ScriptFileError(kind: .existance, url: self.url)
         }
         
-        let task = try NSUserAppleScriptTask(url: self.descriptor.url)
-        let scriptName = self.descriptor.name
+        let task = try NSUserAppleScriptTask(url: self.url)
         
-        task.execute(withAppleEvent: event) { (result: NSAppleEventDescriptor?, error: Error?) in
-            if let error = error {
-                writeToConsole(message: error.localizedDescription, scriptName: scriptName)
-            }
+        task.execute(withAppleEvent: event) { (_, error) in
+            let scriptError = error.flatMap { ScriptError.standardError($0.localizedDescription) }
             
-            completionHandler?()
+            completionHandler(scriptError)
         }
     }
     

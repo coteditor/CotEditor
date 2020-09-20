@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private extension NSSound {
@@ -39,7 +40,7 @@ private enum BundleIdentifier {
 
 
 
-@NSApplicationMain
+@main
 final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
@@ -56,6 +57,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     // MARK: Private Properties
+    
+    private var menuUpdateObservers: Set<AnyCancellable> = []
     
     private lazy var preferencesWindowController = NSWindowController.instantiate(storyboard: "PreferencesWindow")
     
@@ -83,10 +86,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
-        // instantiate DocumentController
+        // instantiate shared instances
         _ = DocumentController.shared
-        
-        // wake text finder up
         _ = TextFinder.shared
         
         super.init()
@@ -111,16 +112,40 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
         self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
         
-        // build menus
-        self.buildEncodingMenu()
-        self.buildSyntaxMenu()
-        self.buildThemeMenu()
-        ScriptManager.shared.buildScriptMenu()
+        // sync menus with setting list updates
+        EncodingManager.shared.$encodings
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let menu = self?.encodingsMenu else { return }
+                EncodingManager.shared.updateChangeEncodingMenu(menu)
+            }
+            .store(in: &self.menuUpdateObservers)
         
-        // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: didUpdateSettingListNotification, object: ThemeManager.shared)
+        SyntaxManager.shared.$settingNames
+            .map { $0.map { NSMenuItem(title: $0, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "") } }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (items) in
+                guard let menu = self?.syntaxStylesMenu else { return }
+                
+                let recolorItem = menu.items.first { $0.action == #selector(SyntaxHolder.recolorAll) }
+                
+                menu.removeAllItems()
+                menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
+                menu.addItem(.separator())
+                menu.items += items
+                menu.addItem(.separator())
+                menu.addItem(recolorItem!)
+            }
+            .store(in: &self.menuUpdateObservers)
+        
+        ThemeManager.shared.$settingNames
+            .map { $0.map { NSMenuItem(title: $0, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "") } }
+            .receive(on: RunLoop.main)
+            .assign(to: \.items, on: self.themesMenu!)
+            .store(in: &self.menuUpdateObservers)
+        
+        // build menus
+        ScriptManager.shared.buildScriptMenu()
     }
     
     
@@ -146,7 +171,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         
         // setup touchbar
-        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
     }
     
     
@@ -300,15 +325,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         #if !SPARKLE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
-            html.replaceSubrange(html.lineRange(for: range), with: "")
+            html.removeSubrange(html.lineRange(for: range))
         }
         #endif
-        
-        // backward compatibility for macOS 10.14 that does not support `-apple-system*` colors (macOS 10.15)
-        if NSAppKitVersion.current < .macOS10_15, #available(macOS 10.14, *), NSApp.effectiveAppearance.isDark {
-            html = html.replacingOccurrences(of: "<body>", with: "<body style=\"color: hsla(0,0%,100%,.85)\">")
-            html = html.replacingOccurrences(of: "<h2>", with: "<h2 style=\"color: hsla(0,0%,100%,.55)\">")
-        }
         
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
         NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
@@ -339,10 +358,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open OSAScript dictionary in Script Editor
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
-        let appURL = Bundle.main.bundleURL
+        guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.ScriptEditor) else { return }
         
-        NSWorkspace.shared.open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
-                                additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+        let appURL = Bundle.main.bundleURL
+        let configuration = NSWorkspace.OpenConfiguration()
+        
+        NSWorkspace.shared.open([appURL], withApplicationAt: scriptEditorURL, configuration: configuration)
     }
     
     
@@ -391,57 +412,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// build encoding menu in the main menu
-    @objc private func buildEncodingMenu() {
-        
-        let menu = self.encodingsMenu!
-        
-        EncodingManager.shared.updateChangeEncodingMenu(menu)
-    }
-    
-    
-    /// build syntax style menu in the main menu
-    @objc private func buildSyntaxMenu() {
-        
-        let menu = self.syntaxStylesMenu!
-        
-        menu.removeAllItems()
-        
-        // add None
-        menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
-        menu.addItem(.separator())
-        
-        // add syntax styles
-        for styleName in SyntaxManager.shared.settingNames {
-            menu.addItem(withTitle: styleName, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
-        }
-        menu.addItem(.separator())
-        
-        // add item to recolor
-        let recolorAction = #selector(SyntaxHolder.recolorAll)
-        let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
-        let recoloritem = NSMenuItem(title: "Re-Color All".localized, action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
-        recoloritem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
-        menu.addItem(recoloritem)
-    }
-    
-    
-    /// build theme menu in the main menu
-    @objc private func buildThemeMenu() {
-        
-        let menu = self.themesMenu!
-        
-        menu.removeAllItems()
-        
-        for themeName in ThemeManager.shared.settingNames {
-            menu.addItem(withTitle: themeName, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "")
-        }
     }
     
 }

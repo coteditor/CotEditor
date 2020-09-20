@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 import CoreText.CTFont
 
@@ -42,7 +43,7 @@ final class LineNumberView: NSView {
         init(fontSize: CGFloat, scale: CGFloat) {
             
             // calculate font size for number
-            self.fontSize = (scale * LineNumberView.fontSizeFactor * fontSize).rounded(interval: 0.5)
+            self.fontSize = scale * fontSize
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
@@ -54,7 +55,7 @@ final class LineNumberView: NSView {
             
             // calculate margins
             self.padding = self.charWidth
-            self.tickLength = ceil(self.charWidth)
+            self.tickLength = ceil(fontSize / 3)
         }
         
     }
@@ -79,17 +80,17 @@ final class LineNumberView: NSView {
     private let minVerticalThickness: CGFloat = 32
     private let minHorizontalThickness: CGFloat = 20
     
-    private static let fontSizeFactor: CGFloat = 0.9
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
-    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
+    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
+    private static let highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
         
-        case normal = 0.75
-        case bold = 0.9
-        case stroke = 0.2
+        case normal = 0.6
+        case bold = 1.0
+        case stroke = 0.4
         
-        static let highContrastCoefficient: CGFloat = 0.5
+        static let highContrastCoefficient: CGFloat = 0.4
     }
     
     
@@ -98,17 +99,13 @@ final class LineNumberView: NSView {
     private var drawingInfo: DrawingInfo?
     private var thickness: CGFloat = 32
     
-    private var opacityObserver: NotificationObservation?
-    private var textObserver: NotificationObservation?
-    private var selectionObserver: NotificationObservation?
-    private var frameObserver: NotificationObservation?
-    private var scrollObserver: NotificationObservation?
-    private var lineHeightObserver: NSKeyValueObservation?
-    private var colorObserver: NSKeyValueObservation?
-    private var fontObserver: NSKeyValueObservation?
-    private var scaleObserver: NSKeyValueObservation?
+    private var textColor: NSColor = .textColor  { didSet { self.needsDisplay = true } }
+    private var backgroundColor: NSColor = .textBackgroundColor  { didSet { self.needsDisplay = true } }
     
-    private weak var draggingTimer: Timer?
+    private var opacityObserver: AnyCancellable?
+    private var textViewSubscriptions: Set<AnyCancellable> = []
+    
+    private var draggingInfo: DraggingInfo?
     
     @IBOutlet private weak var textView: NSTextView? {
         
@@ -123,16 +120,6 @@ final class LineNumberView: NSView {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.removeTextViewObservers()
-        
-        self.draggingTimer?.invalidate()
-    }
-    
-    
-    
     // MARK: View Methods
     
     /// view name for VoiceOver
@@ -169,54 +156,29 @@ final class LineNumberView: NSView {
         
         // remove observations before all observed objects are deallocated
         if newWindow == nil {
-            self.removeTextViewObservers()
+            assert(self.textView?.enclosingScrollView?.contentView != nil)
+            
+            self.textViewSubscriptions.removeAll()
         }
         
-        self.opacityObserver?.invalidate()
-        self.opacityObserver = nil
-    }
-    
-    
-    /// observe window opacity change
-    override func viewDidMoveToWindow() {
-        
-        super.viewDidMoveToWindow()
-        
-        // ignore when detached
-        guard let window = self.window else { return }
-        
-        // perform redraw on window opacity change
-        self.opacityObserver?.invalidate()
-        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        // redraw on window opacity change
+        self.opacityObserver = newWindow?.publisher(for: \.isOpaque)
+            .sink { [weak self] _ in self?.needsDisplay = true }
     }
     
     
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
-        NSGraphicsContext.saveGraphicsState()
-        
         // fill background
-        self.backgroundColor.setFill()
-        dirtyRect.fill()
-        
-        // draw divider (1px)
-        let dividerRect: NSRect
-        switch self.orientation {
-            case .horizontal:
-                dividerRect = NSRect(x: self.bounds.maxX - 1, y: dirtyRect.minY,
-                                     width: 1, height: dirtyRect.height)
-            case .vertical:
-                dividerRect = NSRect(x: dirtyRect.minX, y: self.bounds.minY,
-                                     width: dirtyRect.width, height: 1)
-            @unknown default: fatalError()
+        if self.isOpaque {
+            NSGraphicsContext.saveGraphicsState()
+            
+            self.backgroundColor.setFill()
+            dirtyRect.fill()
+            
+            NSGraphicsContext.restoreGraphicsState()
         }
-        self.foregroundColor(.stroke).setFill()
-        dividerRect.fill()
-        
-        NSGraphicsContext.restoreGraphicsState()
         
         self.drawNumbers(in: dirtyRect)
     }
@@ -239,29 +201,22 @@ final class LineNumberView: NSView {
     /// return foreground color by considering the current accesibility setting
     private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
-        let textColor = self.textView?.textColor ?? .textColor
         let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
             ? strength.rawValue + ColorStrength.highContrastCoefficient
             : strength.rawValue
         
-        guard fraction < 1 else { return textColor }
-        
-        return self.backgroundColor.blended(withFraction: fraction, of: textColor) ?? textColor
+        return fraction < 1
+            ? self.textColor.withAlphaComponent(1 - fraction)
+            : self.textColor
     }
     
     
-    /// return background color to fill
-    private var backgroundColor: NSColor {
-        
-        let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
-        
-        if self.isOpaque, let color = self.textView?.backgroundColor {
-            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
-        } else {
-            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
-        }
+    /// return line number font for selected lines by considering the current accesibility setting
+    private var boldLineNumberFont: CGFont {
+        return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? Self.highContrastBoldLineNumberFont
+            : Self.boldLineNumberFont
     }
-    
     
     /// draw line numbers
     private func drawNumbers(in rect: NSRect) {
@@ -296,18 +251,19 @@ final class LineNumberView: NSView {
         }
         
         // draw labels
-        textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
+        let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
+        textView.enumerateLineFragments(in: textView.visibleRect, options: options) { (lineRect, line, lineNumber) in
             let y = scale * -lineRect.minY
             
             switch line {
-                case .new(let lineNumber, let isSelected):
+                case .new(let isSelected):
                     // draw line number
                     if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
                         let digit = lineNumber.numberOfDigits
                         
                         // calculate base position
                         let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
+                            ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 3 * drawingInfo.tickLength)
                             : CGPoint(x: -drawingInfo.padding, y: y)
                         
                         // get glyphs and positions
@@ -320,7 +276,7 @@ final class LineNumberView: NSView {
                         // draw
                         if isSelected {
                             context.setFillColor(self.foregroundColor(.bold).cgColor)
-                            context.setFont(Self.boldLineNumberFont)
+                            context.setFont(self.boldLineNumberFont)
                         }
                         context.showGlyphs(glyphs, at: positions)
                         if isSelected {
@@ -337,10 +293,8 @@ final class LineNumberView: NSView {
                 
                 case .wrapped:
                     // draw wrapped mark (-)
-                    if !isVerticalText {
-                        let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
-                        context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
-                    }
+                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
+                    context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
             }
         }
         
@@ -376,7 +330,7 @@ final class LineNumberView: NSView {
                     return max(ceil(thickness), self.minVerticalThickness)
                 
                 case .vertical:
-                    let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
+                    let thickness = drawingInfo.fontSize + 4 * drawingInfo.tickLength
                     return max(ceil(thickness), self.minHorizontalThickness)
                 
                 @unknown default: fatalError()
@@ -393,81 +347,53 @@ final class LineNumberView: NSView {
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver?.invalidate()
-        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] _ in
-            // -> The digit of the line numbers affect thickness.
-            if self?.orientation == .horizontal {
-                self?.invalidateThickness()
+        assert(textView.enclosingScrollView?.contentView != nil)
+        
+        self.textViewSubscriptions.removeAll()
+        
+        NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                // -> The digit of the line numbers affect thickness.
+                if self?.orientation == .horizontal {
+                    self?.invalidateThickness()
+                }
+                self?.needsDisplay = true
             }
-            self?.needsDisplay = true
-        }
+            .store(in: &self.textViewSubscriptions)
         
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+            .sink { [weak self] _ in self?.needsDisplay = true }
+            .store(in: &self.textViewSubscriptions)
         
-        self.frameObserver?.invalidate()
-        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
+            .sink { [weak self] _ in self?.needsDisplay = true }
+            .store(in: &self.textViewSubscriptions)
         
-        self.scrollObserver?.invalidate()
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
-        }
+        NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
+            .sink { [weak self] _ in self?.needsDisplay = true }
+            .store(in: &self.textViewSubscriptions)
         
-        self.lineHeightObserver?.invalidate()
-        self.lineHeightObserver = textView.observe(\.defaultParagraphStyle?.lineHeightMultiple) { [weak self] (_, _)  in
-            self?.needsDisplay = true
-        }
+        textView.publisher(for: \.defaultParagraphStyle?.lineHeightMultiple)
+            .sink { [weak self] _ in self?.needsDisplay = true }
+            .store(in: &self.textViewSubscriptions)
         
-        self.colorObserver?.invalidate()
-        self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
-            self?.needsDisplay = true
-        }
+        textView.publisher(for: \.textColor, options: .initial)
+            .compactMap { $0 }
+            .sink { [weak self] in self?.textColor = $0 }
+            .store(in: &self.textViewSubscriptions)
         
-        self.fontObserver?.invalidate()
-        self.fontObserver = textView.observe(\.font) { [weak self] (_, _)  in
-            self?.invalidateDrawingInfo()
-        }
+        textView.publisher(for: \.backgroundColor, options: .initial)
+            .sink { [weak self] in self?.backgroundColor = $0 }
+            .store(in: &self.textViewSubscriptions)
         
-        self.scaleObserver?.invalidate()
-        self.scaleObserver = textView.observe(\.scale) { [weak self] (_, _)  in
-            self?.invalidateDrawingInfo()
-        }
-    }
-    
-    
-    /// remove observers observing textView
-    private func removeTextViewObservers() {
+        textView.publisher(for: \.font)
+            .sink { [weak self] _ in self?.invalidateDrawingInfo() }
+            .store(in: &self.textViewSubscriptions)
         
-        assert(self.textView != nil)
-        assert(self.textView?.enclosingScrollView?.contentView != nil || self.scrollObserver == nil)
-        
-        self.textObserver?.invalidate()
-        self.textObserver = nil
-        
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = nil
-        
-        self.frameObserver?.invalidate()
-        self.frameObserver = nil
-        
-        self.scrollObserver?.invalidate()
-        self.scrollObserver = nil
-        
-        self.lineHeightObserver?.invalidate()
-        self.lineHeightObserver = nil
-        
-        self.colorObserver?.invalidate()
-        self.colorObserver = nil
-        
-        self.fontObserver?.invalidate()
-        self.fontObserver = nil
-        
-        self.scaleObserver?.invalidate()
-        self.scaleObserver = nil
+        textView.publisher(for: \.scale)
+            .sink { [weak self] _ in self?.invalidateDrawingInfo() }
+            .store(in: &self.textViewSubscriptions)
     }
     
 }
@@ -506,18 +432,26 @@ private extension FloatingPoint {
 
 
 
-// MARK: - Line Selecting
-
-private struct DraggingInfo {
-    
-    let index: Int
-    let selectedRanges: [NSRange]
-}
-
+// MARK: - Controlling Text View
 
 extension LineNumberView {
     
+    fileprivate struct DraggingInfo {
+        
+        var index: Int
+        var selectedRanges: [NSRange]
+    }
+    
+    
+    
     // MARK: View Methods
+    
+    /// scroll parent textView with scroll event
+    override func scrollWheel(with event: NSEvent) {
+        
+        self.textView?.scrollWheel(with: event)
+    }
+    
     
     /// start selecting correspondent lines in text view with drag / click event
     override func mouseDown(with event: NSEvent) {
@@ -533,18 +467,24 @@ extension LineNumberView {
         
         let selectedRanges = textView.selectedRanges.map(\.rangeValue)
         
-        // repeat while dragging
-        self.draggingTimer = .scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(selectLines),
-                                             userInfo: DraggingInfo(index: index, selectedRanges: selectedRanges),
-                                             repeats: true)
-        self.draggingTimer?.fire()  // for single click event
+        self.draggingInfo = DraggingInfo(index: index, selectedRanges: selectedRanges)
+        
+        // for single click event
+        self.selectLines(with: event)
+    }
+    
+    
+    /// select lines while dragging event
+    override func mouseDragged(with event: NSEvent) {
+        
+        self.selectLines(with: event)
     }
     
     
     /// end selecting correspondent lines in text view with drag event
     override func mouseUp(with event: NSEvent) {
         
-        self.draggingTimer?.invalidate()
+        self.draggingInfo = nil
     }
     
     
@@ -552,27 +492,26 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// select lines while dragging event
-    @objc private func selectLines(_ timer: Timer) {
+    private func selectLines(with event: NSEvent) {
         
         guard
             let window = self.window,
             let textView = self.textView,
-            let draggingInfo = timer.userInfo as? DraggingInfo
+            let draggingInfo = self.draggingInfo
             else { return assertionFailure() }
         
         // scroll text view if needed
-        let pointInScreen = NSEvent.mouseLocation
-        let pointInWindow = window.convertPoint(fromScreen: pointInScreen)
-        let point = textView.convert(pointInWindow, from: nil)  // textView-based
+        let point = textView.convert(event.locationInWindow, from: nil)  // textView-based
         textView.scrollToVisible(NSRect(origin: point, size: .zero))
         
         // move focus to textView
         window.makeFirstResponder(textView)
         
         // select lines
-        let string = textView.string as NSString
+        let pointInScreen = window.convertPoint(toScreen: event.locationInWindow)
         let currentIndex = textView.characterIndex(for: pointInScreen)
         let clickedIndex = draggingInfo.index
+        let string = textView.string as NSString
         let currentLineRange = string.lineRange(at: currentIndex)
         let clickedLineRange = string.lineRange(at: clickedIndex)
         var range = currentLineRange.union(clickedLineRange)
@@ -580,7 +519,7 @@ extension LineNumberView {
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream
         
         // with Command key (add selection)
-        if NSEvent.modifierFlags.contains(.command) {
+        if event.modifierFlags.contains(.command) {
             var selectedRanges = [NSRange]()
             var intersects = false
             
@@ -614,16 +553,15 @@ extension LineNumberView {
         }
         
         // with Shift key (expand selection)
-        if NSEvent.modifierFlags.contains(.shift) {
+        if event.modifierFlags.contains(.shift) {
             let selectedRange = textView.selectedRange
+            
             if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
-                if inUpperSelection {  // clicked upper half section of selected range
-                    range = NSRange(currentIndex..<selectedRange.upperBound)
-                } else {
-                    range = selectedRange
-                    range.length -= selectedRange.upperBound - currentLineRange.upperBound
-                }
+                range = inUpperSelection  // clicked upper half section of selected range
+                    ? NSRange(currentIndex..<selectedRange.upperBound)
+                    : NSRange(selectedRange.lowerBound..<currentLineRange.upperBound)
+                
             } else {  // expand
                 range.formUnion(selectedRange)
             }

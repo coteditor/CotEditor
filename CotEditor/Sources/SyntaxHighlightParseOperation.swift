@@ -131,7 +131,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            let atomicRanges = Atomic<[NSRange]>([], attributes: .concurrent)
+            let atomicRanges = Atomic([NSRange](), attributes: .concurrent)
             
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !childProgress.isCancelled else { return }
@@ -146,8 +146,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
                 }
             }
             
-            highlights[syntaxType] = atomicRanges.value
-            childProgress.completedUnitCount = childProgress.totalUnitCount
+            highlights[syntaxType] = atomicRanges.wrappedValue
         }
         
         guard !self.isCancelled else { return [:] }

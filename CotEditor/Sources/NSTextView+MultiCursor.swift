@@ -156,7 +156,7 @@ extension MultiCursorEditing {
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         
         var locations: [Int] = []
-        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, glyphRange, stop) in
+        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, _, _) in
             let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
             let point = NSPoint(x: startPoint.x, y: rect.midY)
             
@@ -261,12 +261,9 @@ extension MultiCursorEditing {
         var origins = self.selectionOrigins
         var newOrigins: [Int] = []
         let ranges = self.insertionRanges.map { range -> NSRange in
-            let origin: Int?
-            if let index = origins.firstIndex(where: { range.upperBound == $0 || range.lowerBound == $0 }) {
-                origin = origins.remove(at: index)
-            } else {
-                origin = nil
-            }
+            let origin: Int? = origins
+                .firstIndex { range.upperBound == $0 || range.lowerBound == $0 }
+                .flatMap { origins.remove(at: $0) }
             
             let (cursor, newOrigin): (Int, Int) = {
                 switch (forward, origin) {

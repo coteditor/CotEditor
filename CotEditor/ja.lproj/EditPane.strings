@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,6 +39,10 @@
 "Abx-fM-gyc.title" = "引用符";
 /* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
 "nr1-0X-aBY.title" = "ダッシュ";
+/* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
+"noP-hx-YeQ.title" = "行末の空白を自動的に削除";
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "空白のみの行を含める";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */

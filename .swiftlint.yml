@@ -26,6 +26,7 @@ opt_in_rules:
   - file_header
   - first_where
   - flatmap_over_map_reduce
+  - ibinspectable_in_extension
   - identical_operands
   - joined_default_parameter
   - last_where
@@ -42,6 +43,7 @@ opt_in_rules:
   - overridden_super_call
   - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
+  - prefer_zero_over_explicit_init
   - private_outlet
   - prohibited_super_call
   - quick_discouraged_call
@@ -68,9 +70,8 @@ disabled_rules:
   - force_try
   - nesting
   - opening_brace
-  - pattern_matching_keywords
   - trailing_comma
-  - unused_closure_parameter
+  - unused_setter_value
   - weak_delegate
 
 private_outlet:
@@ -104,11 +105,11 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 80
-  error: 100
+  warning: 300
+  error: 500
 
 cyclomatic_complexity:
-  warning: 25
+  warning: 40
   error: 50
 
 large_tuple:
@@ -125,7 +126,6 @@ identifier_name:
     - x
     - y
     - shiftJIS_X0213
-    - version3_0
     - macOS10_15
 
 

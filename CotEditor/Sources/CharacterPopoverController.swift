@@ -23,21 +23,22 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class CharacterPopoverController: NSViewController {
     
     // MARK: Private Properties
     
-    private var closingCueObserver: NotificationObservation?
+    @objc private let glyph: String
+    @objc private let unicodeName: String
+    @objc private let unicodeBlockName: String?
+    @objc private let unicodeCategoryName: String?
+    @objc private let unicode: String
     
-    @objc private dynamic var glyph: String?
-    @objc private dynamic var unicodeName: String?
-    @objc private dynamic var unicodeBlockName: String?
-    @objc private dynamic var unicodeCategoryName: String?
-    @objc private dynamic var unicode: String = ""
+    @objc private let characterColor: NSColor
     
-    @objc private dynamic var characterColor: NSColor = .labelColor
+    private var closingCueObserver: AnyCancellable?
     
     
     
@@ -49,50 +50,16 @@ final class CharacterPopoverController: NSViewController {
     /// - Parameter info: The CharacterInfo instance to display.
     static func instantiate(for info: CharacterInfo) -> Self {
         
-        let identifier: NSStoryboard.SceneIdentifier? = info.isComplex ? "ComplexCharacterPopoverController" : nil
+        let storyboard = NSStoryboard(name: "CharacterPopover", bundle: nil)
+        let creator: ((NSCoder) -> Self?) = { (coder) in Self(coder: coder, characterInfo: info) }
         
-        let instance = self.instantiate(storyboard: "CharacterPopover", identifier: identifier)
-        instance.setup(characterInfo: info)
-        
-        return instance
+        return info.isComplex
+            ? storyboard.instantiateController(identifier: "ComplexCharacterPopoverController", creator: creator)
+            : storyboard.instantiateInitialController(creator: creator)!
     }
     
     
-    
-    // MARK: Public Methods
-    
-    /// Show the popover anchored to the specified view.
-    ///
-    /// - Parameters:
-    ///   - parentView: The view relative to which the popover should be positioned.
-    /// - Returns: A popover instance.
-    func showPopover(relativeTo positioningRect: NSRect, of parentView: NSView) {
-        
-        assert(self.glyph != nil)
-        
-        let popover = NSPopover()
-        popover.contentViewController = self
-        popover.delegate = self
-        popover.behavior = .semitransient
-        popover.show(relativeTo: positioningRect, of: parentView, preferredEdge: .minY)
-        
-        // auto-close popover if selection is changed
-        if let textView = parentView as? NSTextView {
-            self.closingCueObserver?.invalidate()
-            self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak popover] _ in
-                popover?.performClose(nil)
-            }
-        }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Initialize view with character info.
-    ///
-    /// - Parameter info: The CharacterInfo instance to display.
-    private func setup(characterInfo info: CharacterInfo) {
+    private init?(coder: NSCoder, characterInfo info: CharacterInfo) {
         
         let unicodes = info.string.unicodeScalars
         
@@ -126,6 +93,38 @@ final class CharacterPopoverController: NSViewController {
         
         self.unicode = codePoints.joined(separator: "\n")
         self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    /// Show the popover anchored to the specified view.
+    ///
+    /// - Parameters:
+    ///   - parentView: The view relative to which the popover should be positioned.
+    /// - Returns: A popover instance.
+    func showPopover(relativeTo positioningRect: NSRect, of parentView: NSView) {
+        
+        let popover = NSPopover()
+        popover.contentViewController = self
+        popover.delegate = self
+        popover.behavior = .semitransient
+        popover.show(relativeTo: positioningRect, of: parentView, preferredEdge: .minY)
+        
+        // auto-close popover if selection is changed
+        if let textView = parentView as? NSTextView {
+            self.closingCueObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+                .sink { [weak popover] _ in popover?.performClose(nil) }
+        }
     }
     
 }
@@ -140,7 +139,6 @@ extension CharacterPopoverController: NSPopoverDelegate {
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
         // remove selection change observer
-        self.closingCueObserver?.invalidate()
         self.closingCueObserver = nil
         
         guard let parentWindow = popover.contentViewController?.view.window?.parent else {
@@ -151,9 +149,8 @@ extension CharacterPopoverController: NSPopoverDelegate {
         // close popover when the window of the parent editor is closed
         // -> Otherwise, a zombie window appears again when clicking somewhere after closing the window,
         //    as NSPopover seems to retain the parent window somehow. (2020 macOS 10.15)
-        self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: parentWindow, queue: .main) { [weak popover] _ in
-            popover?.close()
-        }
+        self.closingCueObserver = NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: parentWindow)
+            .sink { [weak popover] _ in popover?.performClose(nil) }
         
         return true
     }

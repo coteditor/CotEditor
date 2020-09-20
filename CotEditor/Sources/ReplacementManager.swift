@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 
 final class ReplacementManager: SettingFileManaging {
@@ -37,11 +38,13 @@ final class ReplacementManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
+    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
+    
     static let directoryName: String = "Replacements"
     let filePathExtensions: [String] = DocumentType.replacement.extensions
     let settingFileType: SettingFileType = .replacement
     
-    private(set) var settingNames: [String] = []
+    @Published var settingNames: [String] = []
     let bundledSettingNames: [String] = []
     var cachedSettings: [String: Setting] = [:]
     
@@ -60,7 +63,7 @@ final class ReplacementManager: SettingFileManaging {
     // MARK: Public Methods
     
     /// save setting file
-    func save(setting: Setting, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
+    func save(setting: Setting, name: String) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -75,22 +78,25 @@ final class ReplacementManager: SettingFileManaging {
         
         self.cachedSettings[name] = setting
         
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: name)
-            
-            completionHandler()
-        }
+        let change: SettingChange = self.settingNames.contains(name)
+            ? .updated(from: name, to: name)
+            : .added(name)
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     
     /// create a new untitled setting
-    func createUntitledSetting(completionHandler: @escaping ((_ settingName: String) -> Void) = { _ in }) throws {
+    ///
+    /// - Returns: The setting name created.
+    @discardableResult
+    func createUntitledSetting() throws -> String {
         
         let name = self.savableSettingName(for: "Untitled".localized)
         
-        try self.save(setting: Setting(), name: name) {
-            completionHandler(name)
-        }
+        try self.save(setting: Setting(), name: name)
+        
+        return name
     }
     
     

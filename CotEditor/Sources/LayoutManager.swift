@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
@@ -31,7 +32,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     // MARK: Protocol Properties
     
     var showsControls = false
-    var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
+    var invisiblesDefaultsObserver: AnyCancellable?
     
     var ignoresDisplayValidation = false
     
@@ -80,7 +81,11 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     private var defaultBaselineOffset: CGFloat = 0
     private var boundingBoxForControlGlyph: NSRect = .zero
     
-    private var indentGuideObserver: UserDefaultsObservation?
+    private var indentGuideObserver: AnyCancellable?
+    
+    private static let unemphasizedSelectedContentBackgroundColor: NSColor = (ProcessInfo().operatingSystemVersion.majorVersion < 11)
+        ? .secondarySelectedControlColor
+        : .unemphasizedSelectedContentBackgroundColor
     
     
     
@@ -91,10 +96,11 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         
         super.init()
         
-        self.indentGuideObserver = UserDefaults.standard.observe(key: .showIndentGuides) { [weak self] _ in
-            guard let self = self, self.showsInvisibles else { return }
-            self.invalidateDisplay(forCharacterRange: self.attributedString().range)
-        }
+        self.indentGuideObserver = UserDefaults.standard.publisher(for: .showIndentGuides)
+            .sink { [weak self] _ in
+                guard let self = self, self.showsInvisibles else { return }
+                self.invalidateDisplay(forCharacterRange: self.attributedString().range)
+            }
         
         self.delegate = self
     }
@@ -149,9 +155,9 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
         // modify selected highlight color when the window is inactive
-        // -> Otherwise, `.secondarySelectedControlColor` will be used forcibly and text becomes unreadable
+        // -> Otherwise, `.unemphasizedSelectedContentBackgroundColor` will be used forcibly and text becomes unreadable
         //    when the window appearance and theme are inconsistent.
-        if color == .secondarySelectedControlColor,  // check if inactive
+        if color == Self.unemphasizedSelectedContentBackgroundColor,  // check if inactive
             let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
                                                    effectiveRange: nil, withoutAdditionalLayout: true),
             let theme = (textContainer.textView as? Themable)?.theme,

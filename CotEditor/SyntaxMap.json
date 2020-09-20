@@ -140,6 +140,17 @@
 
     ]
   },
+  "Dockerfile" : {
+    "extensions" : [
+
+    ],
+    "filenames" : [
+      "Dockerfile"
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "DTD" : {
     "extensions" : [
       "dtd"
@@ -530,7 +541,7 @@
       "rb"
     ],
     "filenames" : [
-
+      "Gemfile"
     ],
     "interpreters" : [
       "ruby"
@@ -578,6 +589,8 @@
     ],
     "filenames" : [
       ".profile",
+      ".bash_login",
+      ".bash_logout",
       ".bash_profile",
       ".bashrc",
       ".zlogin",

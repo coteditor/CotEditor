@@ -69,7 +69,7 @@ enum ScriptingEventType: String, Decodable {
 
 
 
-struct ScriptInfo: Decodable {
+private struct ScriptInfo: Decodable {
     
     var executionModel: ScriptingExecutionModel?
     var eventType: [ScriptingEventType]?
@@ -103,9 +103,7 @@ struct ScriptDescriptor {
     
     let url: URL
     let name: String
-    let shortcut: Shortcut
-    let ordering: Int?
-    let type: ScriptingFileType?
+    let type: ScriptingFileType
     let executionModel: ScriptingExecutionModel
     let eventTypes: [ScriptingEventType]
     
@@ -119,36 +117,16 @@ struct ScriptDescriptor {
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
     /// - Parameter url: The location of an user script.
-    init(at url: URL) {
+    init?(at url: URL, name: String) {
+        
+        guard let type = ScriptingFileType.allCases.first(where: { $0.extensions.contains(url.pathExtension) }) else { return nil }
         
         self.url = url
-        self.type = ScriptingFileType.allCases.first { $0.extensions.contains(url.pathExtension) }
-        var name = url.deletingPathExtension().lastPathComponent
-        let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
-        if shortcut.modifierMask.isEmpty {
-            self.shortcut = .none
-        } else {
-            self.shortcut = shortcut
-            
-            // remove the shortcut specification from the script name
-            name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
-        }
-        
-        if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
-            // remove the parenthesis at last
-            let orderingString = name[..<name.index(before: range.upperBound)]
-            self.ordering = Int(orderingString)
-            
-            // remove the ordering number from the script name
-            name.removeSubrange(range)
-        } else {
-            self.ordering = nil
-        }
-        
         self.name = name
+        self.type = type
         
         // load some settings Info.plist if exists
-        let info = try? ScriptInfo(scriptBundle: url)
+        let info = (self.type == .appleScript) ? (try? ScriptInfo(scriptBundle: url)) : nil
         self.executionModel = info?.executionModel ?? .unrestricted
         self.eventTypes = info?.eventType ?? []
     }
@@ -161,16 +139,24 @@ struct ScriptDescriptor {
     ///
     /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
-    func makeScript() -> Script? {
+    func makeScript() throws -> Script {
+        
+        return try self.scriptType.init(url: self.url, name: self.name)
+    }
+        
+    
+    
+    // MARK: Private Methods
+    
+    private var scriptType: Script.Type {
         
         switch self.type {
             case .appleScript:
                 switch self.executionModel {
-                    case .unrestricted: return AppleScript(descriptor: self)
-                    case .persistent: return PersistentOSAScript(descriptor: self)
-            }
-            case .unixScript: return UnixScript(descriptor: self)
-            case .none: return nil
+                    case .unrestricted: return AppleScript.self
+                    case .persistent: return PersistentOSAScript.self
+                }
+            case .unixScript: return UnixScript.self
         }
     }
     

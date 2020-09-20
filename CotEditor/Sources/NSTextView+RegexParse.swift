@@ -36,7 +36,7 @@ extension NSTextView {
         
         assert(Thread.isMainThread)
         
-        guard let layoutManager = self.layoutManager else { return assertionFailure() }
+        guard let layoutManager = self.layoutManager else { return }
         
         // clear the last highlight anyway
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)

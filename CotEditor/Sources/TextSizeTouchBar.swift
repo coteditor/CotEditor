@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private extension NSTouchBarItem.Identifier {
@@ -38,7 +39,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     // MARK: Private Properties
     
     private weak var textView: NSTextView?
-    private var scaleObserver: NSKeyValueObservation!
+    private var scaleObserver: AnyCancellable?
     
     
     
@@ -55,28 +56,12 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         self.delegate = self
         self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
-        
-        // observe scale for slider
-        self.scaleObserver = textView.observe(\.scale, options: .new) { [unowned self] (_, change) in
-            guard self.isVisible else { return }
-            guard
-                let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem,
-                let scale = change.newValue
-                else { return assertionFailure() }
-            
-            item.doubleValue = Double(scale)
-        }
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    deinit {
-        self.scaleObserver.invalidate()
     }
     
     
@@ -100,17 +85,28 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 item.doubleValue = Double(textView.scale)
                 item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
-                item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
-                item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
-                
-                if #available(macOS 10.15, *) {
-                    item.maximumSliderWidth = 300
+                let minimumValueImage: NSImage
+                if #available(macOS 11, *) {
+                    minimumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
+                        .withSymbolConfiguration(.init(scale: .small))!
                 } else {
-                    let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]",
-                                                                     metrics: nil,
-                                                                     views: ["slider": item.slider])
-                    NSLayoutConstraint.activate(constraints)
+                    minimumValueImage = #imageLiteral(resourceName: "SmallTextSizeTemplate")
                 }
+                item.minimumValueAccessory = NSSliderAccessory(image: minimumValueImage)
+                let maximumValueImage: NSImage
+                if #available(macOS 11, *) {
+                    maximumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "larger".localized)!
+                } else {
+                    maximumValueImage = #imageLiteral(resourceName: "LargeTextSizeTemplate")
+                }
+                item.maximumValueAccessory = NSSliderAccessory(image: maximumValueImage)
+                item.maximumSliderWidth = 300
+                
+                // observe scale
+                self.scaleObserver = textView.publisher(for: \.scale)
+                    .filter { _ in item.isVisible }
+                    .map { Double($0) }
+                    .assign(to: \.doubleValue, on: item)
                 
                 return item
             

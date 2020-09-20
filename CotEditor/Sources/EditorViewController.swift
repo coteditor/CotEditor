@@ -35,9 +35,11 @@ final class EditorViewController: NSSplitViewController {
         return self.textViewController?.textView
     }
     
-    var navigationBarController: NavigationBarController? {
+    var outlineItems: [OutlineItem]? {
         
-        return self.navigationBarItem?.viewController as? NavigationBarController
+        didSet {
+            self.navigationBarController?.outlineItems = outlineItems
+        }
     }
     
     
@@ -92,10 +94,12 @@ final class EditorViewController: NSSplitViewController {
         
         switch item.action {
             case #selector(selectPrevItemOfOutlineMenu):
-                return self.navigationBarController?.canSelectPrevItem ?? false
+                guard let textView = self.textView else { return false }
+                return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
             
             case #selector(selectNextItemOfOutlineMenu):
-                return self.navigationBarController?.canSelectNextItem ?? false
+                guard let textView = self.textView else { return false }
+                return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
             
             default: break
         }
@@ -154,24 +158,39 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
-    /// Select previous outline menu item (bridge action from menu bar).
+    /// Select the previous outline menu item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
-        self.navigationBarController?.selectPrevItemOfOutlineMenu(sender)
+        guard
+            let textView = self.textView,
+            let item = self.outlineItems?.previousItem(for: textView.selectedRange)
+        else { return }
+        
+        textView.select(range: item.range)
     }
     
     
-    /// Select next outline menu item (bridge action from menu bar).
+    /// Select the next outline menu item.
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
-        self.navigationBarController?.selectNextItemOfOutlineMenu(sender)
+        guard
+            let textView = self.textView,
+            let item = self.outlineItems?.nextItem(for: textView.selectedRange)
+        else { return }
+        
+        textView.select(range: item.range)
     }
     
     
     
     // MARK: Private Methods
     
-    /// Split view item to view controller.
+    private var navigationBarController: NavigationBarController? {
+        
+        return self.navigationBarItem?.viewController as? NavigationBarController
+    }
+    
+    
     private var textViewController: EditorTextViewController? {
         
         return self.textViewItem?.viewController as? EditorTextViewController

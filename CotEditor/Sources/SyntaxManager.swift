@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import Yams
 
@@ -60,20 +61,23 @@ final class SyntaxManager: SettingFileManaging {
     
     // MARK: Setting File Managing Properties
     
+    let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
+    
     static let directoryName: String = "Syntaxes"
     let filePathExtensions: [String] = ["yaml", "yml"]
     let settingFileType: SettingFileType = .syntaxStyle
     
-    private(set) var settingNames: [SettingName] = []
+    @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
+    @Atomic var cachedSettings: [SettingName: Setting] = [:]
     
     
     // MARK: Private Properties
     
     private let bundledMap: [SettingName: [String: [String]]]
-    private var mappingTables = Atomic<[SyntaxKey: [String: [SettingName]]]>([.extensions: [:],
-                                                                              .filenames: [:],
-                                                                              .interpreters: [:]])
+    @Atomic private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
+                                                                               .filenames: [:],
+                                                                               .interpreters: [:]]
     
     
     
@@ -109,7 +113,7 @@ final class SyntaxManager: SettingFileManaging {
     /// return style name corresponding to file name
     func settingName(documentFileName fileName: String) -> SettingName? {
         
-        let mappingTables = self.mappingTables.value
+        let mappingTables = self.mappingTables
         
         if let settingName = mappingTables[.filenames]?[fileName]?.first {
             return settingName
@@ -128,7 +132,7 @@ final class SyntaxManager: SettingFileManaging {
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-            let settingName = self.mappingTables.value[.interpreters]?[interpreter]?.first {
+            let settingName = self.mappingTables[.interpreters]?[interpreter]?.first {
             return settingName
         }
         
@@ -209,24 +213,22 @@ final class SyntaxManager: SettingFileManaging {
         }
         
         // invalidate current cache
-        self.cachedSettings[name] = nil
+        self.$cachedSettings.mutate { $0[name] = nil }
         if let oldName = oldName {
-            self.cachedSettings[oldName] = nil
+            self.$cachedSettings.mutate { $0[oldName] = nil }
         }
         
         // update internal cache
-        self.updateCache { [weak self] in
-            if let oldName = oldName {
-                self?.notifySettingUpdate(oldName: oldName, newName: name)
-            }
-        }
+        let change: SettingChange = oldName.flatMap { .updated(from: $0, to: name) } ?? .added(name)
+        self.updateSettingList(change: change)
+        self.didUpdateSetting.send(change)
     }
     
     
     /// conflicted maps
     var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
         
-        return self.mappingTables.value.mapValues { $0.filter { $0.value.count > 1 } }
+        return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
     }
     
     
@@ -273,28 +275,20 @@ final class SyntaxManager: SettingFileManaging {
             guard let url = self.urlForUsedSetting(name: name) else { return nil }
             
             let setting = try? self.loadSetting(at: url)
-            self.cachedSettings[name] = setting
+            self.$cachedSettings.mutate { $0[name] = setting }
             
             return setting
             }() else { return nil }
         
         // add to recent styles list
         let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
-        var recentStyleNames = UserDefaults.standard[.recentStyleNames] ?? []
+        var recentStyleNames = UserDefaults.standard[.recentStyleNames]
         recentStyleNames.removeFirst(name)
         recentStyleNames.insert(name, at: 0)
         UserDefaults.standard[.recentStyleNames] = Array(recentStyleNames.prefix(maximumRecentStyleCount))
         
         return setting
     }
-    
-    
-    var cachedSettings: [SettingName: Setting] {
-        
-        get { self._cachedSettings.value }
-        set { self._cachedSettings.mutate { $0 = newValue } }
-    }
-    private let _cachedSettings = Atomic<[SettingName: Setting]>([:])
     
     
     /// load setting from the file at given URL
@@ -326,7 +320,7 @@ final class SyntaxManager: SettingFileManaging {
         // sort styles alphabetically
         self.settingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
         // remove styles not exist
-        UserDefaults.standard[.recentStyleNames]?.removeAll { !self.settingNames.contains($0) }
+        UserDefaults.standard[.recentStyleNames].removeAll { !self.settingNames.contains($0) }
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
@@ -339,7 +333,7 @@ final class SyntaxManager: SettingFileManaging {
                 }
             }
         }
-        self.mappingTables.mutate { $0 = tables }
+        self.mappingTables = tables
     }
     
     
@@ -505,45 +499,6 @@ private extension SyntaxManager.StyleDictionary {
             
             default:
                 return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
-        }
-    }
-    
-}
-
-
-
-// MARK: - Migration
-
-extension SyntaxManager {
-    
-    /// convert CotEditor 1.x format (plist) syntax style definition to CotEditor 2.0 format (yaml) and save to user domain
-    func importLegacyStyle(fileURL: URL) throws {
-        
-        assert(fileURL.pathExtension == "plist")
-        
-        let coordinator = NSFileCoordinator()
-        
-        var data: Data?
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newReadingURL) in
-            data = try? Data(contentsOf: newReadingURL)
-        }
-        guard let plistData = data else { throw CocoaError.error(.fileReadUnknown, url: fileURL) }
-        
-        let plist = try PropertyListSerialization.propertyList(from: plistData, format: nil)
-        
-        guard let style = plist as? [String: Any] else { throw CocoaError.error(.fileReadUnsupportedScheme, url: fileURL) }
-        
-        // update style format
-        let newStyle: [String: Any] = style
-            .filter { $0.0 != "styleName" }   // remove lagacy "styleName" key
-            .mapKeys { $0.replacingOccurrences(of: "Array", with: "") }  // remove all `Array` suffix from dict keys
-        
-        let yamlString = try Yams.dump(object: newStyle)
-        
-        let styleName = self.settingName(from: fileURL)
-        let destURL = self.preparedURLForUserSetting(name: styleName)
-        coordinator.coordinate(writingItemAt: destURL, error: nil) { (newWritingURL) in
-            try? yamlString.write(to: newWritingURL, atomically: true, encoding: .utf8)
         }
     }
     

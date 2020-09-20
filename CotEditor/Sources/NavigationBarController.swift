@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class NavigationBarController: NSViewController {
@@ -32,27 +33,11 @@ final class NavigationBarController: NSViewController {
     
     weak var textView: NSTextView?
     
-    var outlineItems: [OutlineItem] = [] {
+    var outlineItems: [OutlineItem]? {
         
         didSet {
-            guard self.isViewShown, outlineItems != oldValue else { return }
-            
-            self.updateOutlineMenu()
-        }
-    }
-    
-    weak var outlineProgress: Progress? {
-        
-        didSet {
-            assert(Thread.isMainThread)
-            
-            self.outlineIndicator?.stopAnimation(nil)
-            self.outlineLoadingMessage?.isHidden = true
-            
-            if let progress = outlineProgress, !progress.isFinished {
-                self.indicatorTask.schedule()
-            } else {
-                self.indicatorTask.cancel()
+            if self.isViewShown {
+                self.updateOutlineMenu()
             }
         }
     }
@@ -60,48 +45,32 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Properties
     
-    private var orientationObserver: NSKeyValueObservation?
-    private var selectionObserver: NotificationObservation?
+    private var splitViewObservers: Set<AnyCancellable> = []
+    private var orientationObserver: AnyCancellable?
+    private var selectionObserver: AnyCancellable?
     
-    private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
-        guard
-            let progress = self?.outlineProgress, !progress.isFinished,
-            self?.outlineMenu?.isHidden ?? true
-            else { return }
-        
-        self?.outlineIndicator?.startAnimation(nil)
-        self?.outlineLoadingMessage?.isHidden = false
-    }
+    @objc private dynamic var showsCloseButton = false
+    @objc private dynamic var showsOutlineMenu = false
+    @objc private dynamic var isParsingOutline = false
     
     @IBOutlet private weak var leftButton: NSButton?
     @IBOutlet private weak var rightButton: NSButton?
     @IBOutlet private weak var outlineMenu: NSPopUpButton?
-    @IBOutlet private weak var outlineIndicator: NSProgressIndicator?
-    @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     @IBOutlet private weak var openSplitButton: NSButton?
-    @IBOutlet private weak var closeSplitButton: NSButton?
+    @IBOutlet private var editorSplitMenu: NSMenu?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.orientationObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        if let progress = self.outlineProgress, (!progress.isFinished || !progress.isCancelled) {
-            self.outlineIndicator?.startAnimation(nil)
-            self.outlineLoadingMessage?.isHidden = false
+        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
+            (self.view as? NSVisualEffectView)?.material = .windowBackground
         }
         
         // set accessibility
@@ -117,26 +86,31 @@ final class NavigationBarController: NSViewController {
         
         super.viewWillAppear()
         
-        guard let textView = self.textView else { return assertionFailure() }
+        guard
+            let splitViewController = self.splitViewController,
+            let textView = self.textView
+            else { return assertionFailure() }
         
-        self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-            self?.updateTextOrientation(to: textView.layoutOrientation)
-        }
+        splitViewController.$isVertical
+            .map { $0 ? #imageLiteral(resourceName: "split.add.vertical") : #imageLiteral(resourceName: "split.add") }
+            .assign(to: \.image, on: self.openSplitButton!)
+            .store(in: &self.splitViewObservers)
+        splitViewController.$canCloseSplitItem
+            .sink { [weak self] in self?.showsCloseButton = $0 }
+            .store(in: &self.splitViewObservers)
         
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] (notification) in
+        self.orientationObserver = textView.publisher(for: \.layoutOrientation, options: .initial)
+            .sink { [weak self] in self?.updateTextOrientation(to: $0) }
+        
+        self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+            .map { $0.object as! NSTextView }
+            .filter { !$0.hasMarkedText() }
             // avoid updating outline item selection before finishing outline parse
             // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
             //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-            guard
-                let textView = notification.object as? NSTextView,
-                !textView.hasMarkedText(),
-                let textStorage = textView.textStorage,
-                !textStorage.editedMask.contains(.editedCharacters)
-                else { return }
-            
-            self?.invalidateOutlineMenuSelection()
-        }
+            .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
+            .debounce(for: 0.05, scheduler: RunLoop.main)
+            .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
         
         self.updateOutlineMenu()
     }
@@ -146,10 +120,8 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.orientationObserver?.invalidate()
+        self.splitViewObservers.removeAll()
         self.orientationObserver = nil
-        
-        self.selectionObserver?.invalidate()
         self.selectionObserver = nil
     }
     
@@ -160,36 +132,18 @@ final class NavigationBarController: NSViewController {
     /// Can select the prev item in outline menu?
     var canSelectPrevItem: Bool {
         
-        guard let menu = self.outlineMenu else { return false }
+        guard let textView = self.textView else { return false }
         
-        return (menu.indexOfSelectedItem > 1)
+        return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
     }
     
     
     /// Can select the next item in outline menu?
     var canSelectNextItem: Bool {
         
-        guard let menu = self.outlineMenu else { return false }
+        guard let textView = self.textView else { return false }
         
-        return menu.itemArray[(menu.indexOfSelectedItem + 1)...].contains { $0.representedObject != nil }
-    }
-    
-    
-    /// Set closeSplitButton enabled or disabled.
-    var isCloseSplitButtonEnabled: Bool = false {
-        
-        didSet {
-            self.closeSplitButton!.isHidden = !isCloseSplitButtonEnabled
-        }
-    }
-    
-    
-    /// Set the image of the open split view button.
-    var isSplitOrientationVertical: Bool = false {
-        
-        didSet {
-            self.openSplitButton!.image = isSplitOrientationVertical ? #imageLiteral(resourceName: "OpenSplitVerticalTemplate") : #imageLiteral(resourceName: "OpenSplitTemplate")
-        }
+        return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
     }
     
     
@@ -200,39 +154,11 @@ final class NavigationBarController: NSViewController {
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard
-            let range = sender.representedObject as? NSRange,
-            let textView = self.textView
+            let textView = self.textView,
+            let range = sender.representedObject as? NSRange
             else { return assertionFailure() }
         
-        textView.selectedRange = range
-        textView.centerSelectionInVisibleArea(self)
-        textView.window?.makeFirstResponder(textView)
-    }
-    
-    
-    /// Select the previous outline menu item.
-    @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
-        
-        guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
-        
-        let index = popUp.itemArray[..<popUp.indexOfSelectedItem]
-            .lastIndex { $0.representedObject != nil } ?? 0
-        
-        popUp.menu!.performActionForItem(at: index)
-    }
-    
-    
-    /// Select the next outline menu item.
-    @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
-        
-        guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
-        
-        let index = popUp.itemArray[(popUp.indexOfSelectedItem + 1)...]
-            .firstIndex { $0.representedObject != nil }
-        
-        if let index = index {
-            popUp.menu!.performActionForItem(at: index)
-        }
+        textView.select(range: range)
     }
     
     
@@ -251,6 +177,16 @@ final class NavigationBarController: NSViewController {
     }()
     
     
+    /// The split view controller managing editor split.
+    private var splitViewController: SplitViewController? {
+        
+        guard let parent = self.parent else { return nil }
+        
+        return sequence(first: parent, next: \.parent)
+            .first { $0 is SplitViewController } as? SplitViewController
+    }
+    
+    
     private var prevButton: NSButton? {
         
         return (self.textView?.layoutOrientation == .vertical) ? self.rightButton : self.leftButton
@@ -266,40 +202,30 @@ final class NavigationBarController: NSViewController {
     /// Build outline menu from `outlineItems`.
     private func updateOutlineMenu() {
         
-        self.outlineMenu!.removeAllItems()
+        self.isParsingOutline = (self.outlineItems == nil)
+        self.showsOutlineMenu = (self.outlineItems?.isEmpty == false)
         
-        self.leftButton!.isHidden = self.outlineItems.isEmpty
-        self.rightButton!.isHidden = self.outlineItems.isEmpty
-        self.outlineMenu!.isHidden = self.outlineItems.isEmpty
+        guard let outlineItems = self.outlineItems else { return }
+        guard let outlineMenu = self.outlineMenu?.menu else { return assertionFailure() }
         
-        guard !self.outlineItems.isEmpty else { return }
-        
-        let menu = self.outlineMenu!.menu!
-        
-        // add headding item
-        let headdingItem = NSMenuItem()
-        headdingItem.title = "<Outline Menu>".localized
-        headdingItem.representedObject = NSRange(0..<0)
-        menu.addItem(headdingItem)
-        
-        // add outline items
-        for outlineItem in self.outlineItems {
-            switch outlineItem.title {
-                case .separator:
-                    menu.addItem(.separator())
-                    
-                    // add dummy item to avoid merging sequential separators into a single separator
-                    let menuItem = NSMenuItem()
-                    menuItem.view = NSView()
-                    menu.addItem(menuItem)
-                
-                default:
-                    let menuItem = NSMenuItem()
-                    menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
-                    menuItem.representedObject = outlineItem.range
-                    menu.addItem(menuItem)
+        outlineMenu.items = outlineItems
+            .flatMap { (outlineItem) -> [NSMenuItem] in
+                switch outlineItem.title {
+                    case .separator:
+                        // dummy item to avoid merging sequential separators into a single separator
+                        let dummyItem = NSMenuItem()
+                        dummyItem.view = NSView()
+                        
+                        return [.separator(), dummyItem]
+                        
+                    default:
+                        let menuItem = NSMenuItem()
+                        menuItem.attributedTitle = outlineItem.attributedTitle(for: outlineMenu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
+                        menuItem.representedObject = outlineItem.range
+                        
+                        return [menuItem]
+                }
             }
-        }
         
         self.invalidateOutlineMenuSelection()
     }
@@ -309,6 +235,7 @@ final class NavigationBarController: NSViewController {
     private func invalidateOutlineMenuSelection() {
         
         guard
+            self.showsOutlineMenu,
             let location = self.textView?.selectedRange.location,
             let popUp = self.outlineMenu, popUp.isEnabled
             else { return }
@@ -336,22 +263,40 @@ final class NavigationBarController: NSViewController {
         
         switch orientation {
             case .horizontal:
-                self.leftButton?.image = #imageLiteral(resourceName: "UpArrowTemplate")
-                self.rightButton?.image = #imageLiteral(resourceName: "DownArrowTemplate")
+                self.leftButton?.image = Chevron.up.image
+                self.rightButton?.image = Chevron.down.image
             case .vertical:
-                self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
-                self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
+                self.leftButton?.image = Chevron.left.image
+                self.rightButton?.image = Chevron.right.image
             @unknown default:
                 fatalError()
         }
         
-        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu)
+        self.prevButton?.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
+        self.prevButton?.target = self.parent
         self.prevButton?.toolTip = "Jump to previous outline item".localized
         self.prevButton?.isEnabled = self.canSelectPrevItem
         
-        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu)
+        self.nextButton?.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
+        self.nextButton?.target = self.parent
         self.nextButton?.toolTip = "Jump to next outline item".localized
         self.nextButton?.isEnabled = self.canSelectNextItem
     }
     
+}
+
+
+
+private enum Chevron: String {
+    
+    case left
+    case right
+    case up
+    case down
+    
+    
+    var image: NSImage {
+        
+        NSImage(symbolNamed: "chevron." + self.rawValue, accessibilityDescription: self.rawValue)!
+    }
 }

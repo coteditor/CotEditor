@@ -67,7 +67,7 @@ enum AppearanceMode: Int {
 
 @objc enum PrintColorMode: Int {
     
-    case blackWhite
+    case blackAndWhite
     case sameAsDocument
 }
 

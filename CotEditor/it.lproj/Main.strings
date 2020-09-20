@@ -247,6 +247,10 @@
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
 "788.title" = "Mostra caratteri invisibili";
+/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
+"Qqu-pI-Xz6.title" = "Mostra guide per l’indentazione";
+/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
+"749.title" = "Mostra guida pagina";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
 "mEh-BD-ZlV.title" = "Direzione scrittura";
@@ -307,11 +311,6 @@
 "323.title" = "Mostra numeri di riga";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "Mostra barra di stato";
-
-/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Mostra guide per l’indentazione";
-/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
-"749.title" = "Mostra guida pagina";
 
 /* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
 "793.title" = "Editor diviso";

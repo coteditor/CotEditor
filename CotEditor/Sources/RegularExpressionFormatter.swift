@@ -72,7 +72,7 @@ final class RegularExpressionFormatter: Formatter {
                             attributedString.replaceCharacters(in: NSRange(..<0), with: "⚠️ ")
                         }
                         return attributedString
-                }
+                    }
                 case .replacement: break
             }
             

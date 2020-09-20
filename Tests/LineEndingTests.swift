@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,10 +49,16 @@ final class LineEndingTests: XCTestCase {
         
         XCTAssertNil("".detectedLineEnding)
         XCTAssertNil("a".detectedLineEnding)
-        XCTAssertEqual("\n".detectedLineEnding, LineEnding.lf)
-        XCTAssertEqual("\r".detectedLineEnding, LineEnding.cr)
-        XCTAssertEqual("\r\n".detectedLineEnding, LineEnding.crlf)
-        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, LineEnding.crlf)  // just check the first new line
+        XCTAssertEqual("\n".detectedLineEnding, .lf)
+        XCTAssertEqual("\r".detectedLineEnding, .cr)
+        XCTAssertEqual("\r\n".detectedLineEnding, .crlf)
+        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, .crlf)  // just check the first new line
+    
+        let bom = "\u{feff}"
+        let string = "\(bom)\r\n"
+        XCTAssertEqual(string.count, 2)
+        XCTAssertEqual(string.immutable.count, 1)
+        XCTAssertEqual(string.detectedLineEnding, .crlf)
     }
     
     

@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -45,13 +45,9 @@
 "Ki4-3Y-AZL.title" = "Enregistrement :";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
-"SGo-FL-Pax.title" = "Activer l'enregistrement automatique et l'historique des versions";
+"SGo-FL-Pax.title" = "Activer l'enregistrement automatique et les versions";
 /* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "Fonctionnalité de macOS qui enregistre automatiquement vos fichiers pendant que vous les éditez. Si vous désactivez cette optoin, CotEditor créera quand même des sauvegardes en prévision d'éventuels crashs.";
-/* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "Tronquer les espaces en fin de ligne à l'enregistrement";
-/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Même les lignes composées uniquement d'espaces";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -86,6 +82,14 @@
 "ebJ-vk-RME.title" = "secondes";
 
 
+/* Class = "NSTextFieldCell"; title = "Command-line tool:"; ObjectID = "kQn-Uu-cqG"; */
+"kQn-Uu-cqG.title" = "Outil en ligne de commande :";
+/* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
+"ltN-wn-m8M.title" = "En savoir plus…";
+/* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
+"c48-xK-Ag1.title" = "Avec l'outil en ligne de commande 'cot', vous pouvez lancer CotEditor et ouvrir des fichiers depuis le Terminal.";
+
+
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "Mise à jour :";
 
@@ -93,7 +97,7 @@
 "3423.title" = "Vérifier les mises à jour automatiquement";
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
-"4aT-ka-sbv.title" = "Mettre à jour vers les versions préliminaires, quand disponible.";
+"4aT-ka-sbv.title" = "Mettre à jour vers les versions préliminaires, quand disponible";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
 "chR-VY-cuI.title" = "Lorsque vous utilisez une version préliminaire, vous recevrez toujours les nouvelles versions préliminaires, peu importe l'activation ou non de cette option.";

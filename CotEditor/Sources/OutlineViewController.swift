@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 /// outilneView column identifiers
@@ -46,10 +47,10 @@ final class OutlineViewController: NSViewController {
         }
     }
     
-    private var documentObserver: NotificationObservation?
-    private var syntaxStyleObserver: NotificationObservation?
-    private var selectionObserver: NotificationObservation?
-    private var fontSizeObserver: UserDefaultsObservation?
+    private var documentObserver: AnyCancellable?
+    private var syntaxStyleObserver: AnyCancellable?
+    private var selectionObserver: AnyCancellable?
+    private var fontSizeObserver: AnyCancellable?
     private var isOwnSelectionChange = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
@@ -67,8 +68,6 @@ final class OutlineViewController: NSViewController {
             
             self.observeDocument()
             self.observeSyntaxStyle()
-            
-            self.outlineItems = (representedObject as? Document)?.syntaxParser.outlineItems ?? []
         }
     }
     
@@ -88,39 +87,22 @@ final class OutlineViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.outlineItems = self.document?.syntaxParser.outlineItems ?? []
+        self.fontSizeObserver = UserDefaults.standard.publisher(for: .outlineViewFontSize, initial: true)
+            .sink { [weak self] _ in
+                self?.outlineView?.reloadData()
+                self?.invalidateCurrentLocation()
+            }
         
-        self.invalidateCurrentLocation()
-        
-        // make sure the last observer is invalidated before a new one is set to the property.
-        // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
-        //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
-        self.selectionObserver?.invalidate()
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [weak self] (notification) in
-            guard
-                let self = self,
-                let textView = notification.object as? NSTextView
-                else { return assertionFailure() }
-            
-            guard textView.window == self.view.window else { return }
-            
+        self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification)
+            .map { $0.object as! NSTextView }
+            .filter { [weak self] in $0.textStorage == self?.document?.textStorage }
+            .filter { !$0.hasMarkedText() }
             // avoid updating outline item selection before finishing outline parse
             // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
             //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
-            guard
-                !textView.hasMarkedText(),
-                let textStorage = textView.textStorage,
-                !textStorage.editedMask.contains(.editedCharacters)
-                else { return }
-            
-            self.invalidateCurrentLocation(textView: textView)
-        }
-        
-        self.fontSizeObserver?.invalidate()
-        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
-            self?.outlineView?.reloadData()
-            self?.invalidateCurrentLocation()
-        }
+            .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
+            .debounce(for: 0.05, scheduler: RunLoop.main)
+            .sink { [weak self] in self?.invalidateCurrentLocation(textView: $0) }
     }
     
     
@@ -128,10 +110,7 @@ final class OutlineViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.selectionObserver?.invalidate()
         self.selectionObserver = nil
-        
-        self.fontSizeObserver?.invalidate()
         self.fontSizeObserver = nil
     }
     
@@ -140,9 +119,9 @@ final class OutlineViewController: NSViewController {
     // MARK: Actions
     
     /// Item in outlineView was clicked.
-    @IBAction func selectOutlineItem(_ outlineView: NSOutlineView) {
+    @IBAction func selectOutlineItem(_ sender: NSOutlineView) {
         
-        self.selectOutlineItem(at: outlineView.clickedRow)
+        self.selectOutlineItem(at: sender.clickedRow)
     }
     
     
@@ -157,7 +136,7 @@ final class OutlineViewController: NSViewController {
     
     
     /// Paragraph style for outline items.
-    private var itemParagraphStyle: NSParagraphStyle = {
+    private let itemParagraphStyle: NSParagraphStyle = {
         
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingTail
@@ -183,41 +162,34 @@ final class OutlineViewController: NSViewController {
             else { return }
         
         textView.selectedRange = item.range
-        textView.scrollRangeToVisible(item.range)
-        textView.showFindIndicator(for: item.range)
+        textView.centerSelectionInVisibleArea(self)
     }
     
     
     /// Update document observation for syntax style
     private func observeDocument() {
         
-        self.documentObserver?.invalidate()
         self.documentObserver = nil
         
         guard let document = self.document else { return assertionFailure() }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] notification in
-            guard let self = self, let document = notification.object as? Document else { return assertionFailure() }
-            
-            self.observeSyntaxStyle()
-            self.outlineItems = document.syntaxParser.outlineItems
-        }
+        self.documentObserver = document.didChangeSyntaxStyle
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.observeSyntaxStyle() }
     }
     
     
     /// Update syntax style observation for outline menus
     private func observeSyntaxStyle() {
         
-        self.syntaxStyleObserver?.invalidate()
         self.syntaxStyleObserver = nil
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [weak self] notification in
-            guard let self = self, let parser = notification.object as? SyntaxParser else { return assertionFailure() }
-            
-            self.outlineItems = parser.outlineItems
-        }
+        self.syntaxStyleObserver = syntaxParser.$outlineItems
+            .compactMap { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in self?.outlineItems = $0 }
     }
     
     
@@ -226,14 +198,11 @@ final class OutlineViewController: NSViewController {
     /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
-        guard
-            self.isViewShown,
-            let outlineView = self.outlineView
-            else { return }
+        guard let outlineView = self.outlineView else { return }
         
         guard
             let textView = textView ?? self.document?.textView,
-            let row = self.outlineItems.indexOfItem(for: textView.selectedRange, allowsSeparator: false),
+            let row = self.outlineItems.indexOfItem(at: textView.selectedRange.location),
             outlineView.numberOfRows > row
             else { return outlineView.deselectAll(nil) }
         

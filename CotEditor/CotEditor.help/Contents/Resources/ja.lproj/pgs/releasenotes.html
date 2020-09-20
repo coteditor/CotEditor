@@ -24,6 +24,70 @@
 
 <article>
 <header>
+	<h1>CotEditor 4.0.0</h1>
+	<p>リリース: <time>2020-10</time></p>
+</header>
+
+
+<section>
+<h2>新機能</h2>
+
+<ul>
+	<li>macOS 11 Big Surに合わせたまったく新しいユーザインターフェイス<ul>
+		<li>アプrケーションアイコンをアップデート</li>
+		<li>書類ウインドウを再デザイン</li>
+	</ul></li>
+	<li>Apple Siliconをサポート</li>
+	<li>Dockerfileシンタックススタイルを追加</li>
+</ul>
+</section>
+
+
+<section>
+<h2>改良</h2>
+
+<ul>
+	<li>システム要件を<strong>macOS 10.15 Catalina以上</strong>に変更</li>
+	<li>書類ウインドウの改行コードおよびエンコーディングメニューをツールバーからステータスバーに移動</li>
+	<li>ツールバーおよびステータスバーのデフォルト表示項目を変更</li>
+	<li>デフォルトのテーマをDendrobatesからAnuraに変更</li>
+	<li>Unicodeコードポイントで文字入力をするときに入力UIがカーソルのすぐ上に出るように変更</li>
+	<li>「保存時に行末の空白を削除」オプションの空白を削除するタイミングを保存時から入力中（随時）に変更し、一般ペインにあった設定項目も編集ペインに移動</li>
+	<li>ナビゲーションバーにあるエディタを分割ボタンを右クリックするとエディタの分割方向が変更できるよう改良</li>
+	<li>エディタが分割されていなくても書類のエディタ分割方向が変更できるよう改良</li>
+	<li>環境設定の連携ペインを廃止し内容を一般ペインに移動</li>
+	<li>「前/次のアウトライン項目を選択」メニューコマンドがナビゲーションバーが隠れているときでも使えるよう改良</li>
+	<li>選択範囲を動かしている最中でも選択範囲をライブでカウント</li>
+	<li>行番号部分をスワイプしてもエディタをスクロールできるよう改良</li>
+	<li>RubyやPythonなどUnixスクリプトで書かれたCotEditorスクリプトが、以前はフォーマットペインで設定したファイルエンコーディング優先順位をもとに解釈されていたのをつねにUTF-8として解釈するよう変更</li>
+	<li>書類内容が空でウインドウを閉じる時確認ダイアログが表示されないときはウインドウの閉じるボタンに編集済みを示すドット記号が表示されないように変更</li>
+	<li>Swift, SVG, Rubyシンタックススタイルを更新</li>
+	<li>Shell Scriptシンタックススタイルを更新 (ansimitaさんに感謝!).</li>
+	<li>ページガイドの表示を切り替えるツールバーボタンを廃止</li>
+	<li>otEditor 1.xで使われていたplist形式の古いシンタックス定義ファイルを読み込む機能を廃止.</li>
+	<li><span class="trivial">trivial</span>: ツールバーアイコンのツールチップをより現状を表すように改良</li>
+	<li><span class="trivial">trivial</span>: 縦書きのときの行番号描画計算を最適化</li>
+	<li><span class="trivial">trivial</span>: 通常の横書きのときはnon-contiguous layoutをつねに有効に</li>
+	<li><span class="trivial">dev</span>: 開発環境をXcode 12.2 (Swift 5.3, macOS 11 SDK)に更新</li>
+	<li><span class="trivial">dev</span>: DifferenceKitパッケージをネイティブのCollectionDifferenceに置き換え</li>
+	<li><span class="trivial">dev</span>: Yamsを3.0.1から4.0.0に更新</li>
+</ul>
+</section>
+
+
+<section>
+<h2>修正</h2>
+
+<ul>
+	<li><span class="trivial">trivial</span>: 現在使われているシンタックス定義が削除されたときにツールバーのシンタックスメニューの選択状態を修正</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.9.6</h1>
 	<p>リリース: <time>2020-09-13</time></p>
 </header>

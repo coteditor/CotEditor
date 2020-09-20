@@ -88,7 +88,7 @@ final class URLDetectionOperation: AsynchronousOperation {
         var links: [(url: URL, range: NSRange)] = []
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
-        detector.enumerateMatches(in: self.string, options: [.reportProgress], range: self.string.range) { (result, flag, stop) in
+        detector.enumerateMatches(in: self.string, options: [.reportProgress], range: self.string.range) { (result, _, stop) in
             if self.isCancelled {
                 stop.pointee = true
             }

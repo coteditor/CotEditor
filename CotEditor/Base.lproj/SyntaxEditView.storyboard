@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -163,7 +163,7 @@
                                 </connections>
                             </textField>
                             <imageView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lO8-kQ-ymg">
-                                <rect key="frame" x="476" y="412" width="15" height="15"/>
+                                <rect key="frame" x="476" y="409" width="15" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="60M-wW-SyO"/>
                                     <constraint firstAttribute="height" constant="15" id="qlg-PM-Jx3"/>
@@ -185,21 +185,20 @@
                                 </connections>
                             </textField>
                             <scrollView verticalCompressionResistancePriority="250" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPV-Wi-w56" userLabel="Menu View">
-                                <rect key="frame" x="20" y="53" width="160" height="330"/>
+                                <rect key="frame" x="20" y="52" width="160" height="331"/>
                                 <clipView key="contentView" id="GoO-lR-3XF">
-                                    <rect key="frame" x="1" y="1" width="158" height="328"/>
+                                    <rect key="frame" x="1" y="1" width="158" height="329"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="1Wa-et-npE">
-                                            <rect key="frame" x="0.0" y="0.0" width="158" height="328"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="inset" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="1Wa-et-npE">
+                                            <rect key="frame" x="0.0" y="0.0" width="158" height="329"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="6" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="152" minWidth="40" maxWidth="1000" id="KTi-9b-zQV">
+                                                <tableColumn editable="NO" width="126" minWidth="40" maxWidth="1000" id="KTi-9b-zQV">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -210,12 +209,13 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="eHZ-mr-V8X">
-                                                            <rect key="frame" x="3" y="1" width="152" height="17"/>
+                                                        <tableCellView id="eHZ-mr-V8X">
+                                                            <rect key="frame" x="13" y="1" width="132" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dg7-ML-g7m" customClass="SeparatorTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="152" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="dg7-ML-g7m" customClass="SeparatorTextField" customModule="CotEditor" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="132" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Keywords" id="2yS-5b-mse">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -226,12 +226,6 @@
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="dg7-ML-g7m" secondAttribute="trailing" constant="2" id="CEQ-TW-aWr"/>
-                                                                <constraint firstAttribute="bottom" secondItem="dg7-ML-g7m" secondAttribute="bottom" id="Khx-hd-N4N"/>
-                                                                <constraint firstItem="dg7-ML-g7m" firstAttribute="top" secondItem="eHZ-mr-V8X" secondAttribute="top" id="PJ5-g6-M7W"/>
-                                                                <constraint firstItem="dg7-ML-g7m" firstAttribute="leading" secondItem="eHZ-mr-V8X" secondAttribute="leading" constant="2" id="nRH-bm-b4L"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="dg7-ML-g7m" id="gdF-U3-1P2"/>
                                                             </connections>
@@ -250,7 +244,7 @@
                                     <constraint firstAttribute="width" constant="160" id="zeJ-SS-aCI"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="0Hi-5q-qcM">
-                                    <rect key="frame" x="1" y="260" width="128" height="16"/>
+                                    <rect key="frame" x="1" y="314" width="158" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Tx7-4b-nDE">
@@ -258,7 +252,7 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8JS-kM-ddu">
-                                <rect key="frame" x="14" y="13" width="152" height="32"/>
+                                <rect key="frame" x="13" y="13" width="154" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="i12-7i-sAj"/>
                                 </constraints>
@@ -279,7 +273,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dje-ga-BFL">
-                                <rect key="frame" x="456" y="13" width="100" height="32"/>
+                                <rect key="frame" x="455" y="13" width="102" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="38I-Gj-bY2"/>
                                 </constraints>
@@ -295,7 +289,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="Kxb-9F-vML">
-                                <rect key="frame" x="556" y="13" width="100" height="32"/>
+                                <rect key="frame" x="555" y="13" width="102" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="mqf-0s-HfW"/>
                                 </constraints>
@@ -312,7 +306,7 @@ DQ
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="IvE-I1-v3u">
-                                <rect key="frame" x="188" y="53" width="462" height="330"/>
+                                <rect key="frame" x="188" y="52" width="462" height="331"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="Oh5-bc-slg"/>
                                 </constraints>
@@ -364,11 +358,11 @@ DQ
             <point key="canvasLocation" x="270" y="-199"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSInvalidDataFreestandingTemplate" width="14" height="14"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="evB-SF-2md"/>
         <segue reference="zM9-LR-mh8"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="NSInvalidDataFreestandingTemplate" width="15" height="15"/>
+    </resources>
 </document>
