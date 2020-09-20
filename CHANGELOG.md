@@ -7,7 +7,8 @@ Change Log
 
 ### Fixes
 
-- [beta] fix an issue in the navigation bar that the split editor button did not updated when change the split orientation.
+- [beta] Fix an issue in the navigation bar that the split editor button did not updated when change the split orientation.
+- [beta] Address an issue that the status bar rarely compressed vertically.
 
 
 
