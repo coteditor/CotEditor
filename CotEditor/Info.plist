@@ -1240,6 +1240,13 @@
 			<string>CotEditor Replacement Definition</string>
 			<key>UTTypeIconFile</key>
 			<string>ReplacementsIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>Replacement-image</string>
+				<key>UTTypeIconText</key>
+				<string>replace</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.CotEditor.replacement</string>
 			<key>UTTypeTagSpecification</key>
