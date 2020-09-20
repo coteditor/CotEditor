@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-4.0.0 (unreleased)
+4.0.0-beta.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] fix an issue in the navigation bar that the split editor button did not updated when change the split orientation.
+
+
+
+4.0.0-beta (442)
 --------------------------
 
 ### New Features
