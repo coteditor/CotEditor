@@ -1214,6 +1214,13 @@
 			<string>CotEditor Theme</string>
 			<key>UTTypeIconFile</key>
 			<string>ThemeIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string>Theme-image</string>
+				<key>UTTypeIconText</key>
+				<string>theme</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.CotEditor.theme</string>
 			<key>UTTypeTagSpecification</key>
