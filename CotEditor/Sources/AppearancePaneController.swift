@@ -102,8 +102,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // sync theme list change
         self.themeManagerObservers.removeAll()
         ThemeManager.shared.$settingNames
-            .receive(on: RunLoop.current)
-            .sink { [weak self] in self?.setupThemeList(names: $0) }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.updateThemeList() }
             .store(in: &self.themeManagerObservers)
         ThemeManager.shared.didUpdateSetting
             .sink { [weak self] _ in
@@ -402,33 +402,42 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
         
-        self.updateThemeSelection()
+        
+        let themeName = ThemeManager.shared.userDefaultSettingName
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
+        
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
     
     
     /// add theme
     @IBAction func addTheme(_ sender: Any?) {
         
-        guard let tableView = self.themeTableView else { return assertionFailure() }
+        let settingName: String
+        do {
+            settingName = try ThemeManager.shared.createUntitledSetting()
+        } catch {
+            self.presentError(error)
+            return
+        }
         
-        guard let settingName = try? ThemeManager.shared.createUntitledSetting() else { return }
-        
-        let row = ThemeManager.shared.settingNames.firstIndex(of: settingName) ?? 0
-        
-        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        self.updateThemeList(bySelecting: settingName)
     }
     
     
     /// duplicate selected theme
     @IBAction func duplicateTheme(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
-        
+        let baseName = self.targetThemeName(for: sender)
+        let settingName: String
         do {
-            try ThemeManager.shared.duplicateSetting(name: themeName)
+            settingName = try ThemeManager.shared.duplicateSetting(name: baseName)
         } catch {
             self.presentError(error)
+            return
         }
+        
+        self.updateThemeList(bySelecting: settingName)
     }
     
     
@@ -638,15 +647,22 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// update theme list
-    private func setupThemeList(names: [String]) {
+    private func updateThemeList(bySelecting selectingName: String? = nil) {
         
-        let themeName = ThemeManager.shared.userDefaultSettingName
+        let themeName = selectingName ?? ThemeManager.shared.userDefaultSettingName
         
-        self.themeNames = names
-        self.themeTableView?.reloadData()
+        self.themeNames = ThemeManager.shared.settingNames
+        
+        guard let tableView = self.themeTableView else { return }
+        
+        tableView.reloadData()
         
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
+        
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        if selectingName != nil {
+            tableView.scrollRowToVisible(row)
+        }
     }
     
     

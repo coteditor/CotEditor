@@ -276,7 +276,8 @@ extension SettingFileManaging {
     
     
     /// duplicate the setting with name
-    func duplicateSetting(name: String) throws {
+    @discardableResult
+    func duplicateSetting(name: String) throws -> String {
         
         let newName = self.savableSettingName(for: name, appendingCopySuffix: true)
         
@@ -293,6 +294,8 @@ extension SettingFileManaging {
         let change: SettingChange = .added(newName)
         self.updateSettingList(change: change)
         self.didUpdateSetting.send(change)
+        
+        return newName
     }
     
     
