@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UtY-fi-jOg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UtY-fi-jOg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -130,7 +130,7 @@
                                     <rect key="frame" x="1" y="1" width="538" height="158"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="c3e-u6-nJD" viewBased="YES" id="eYE-eu-OMg">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="c3e-u6-nJD" viewBased="YES" id="eYE-eu-OMg">
                                             <rect key="frame" x="0.0" y="0.0" width="538" height="135"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -153,8 +153,9 @@
                                                             <rect key="frame" x="1" y="1" width="182" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jIX-u0-ddX">
+                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jIX-u0-ddX">
                                                                     <rect key="frame" x="0.0" y="0.0" width="182" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="caT-Gh-1x2">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -170,12 +171,6 @@
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="jIX-u0-ddX" secondAttribute="bottom" id="1hS-3p-Qbq"/>
-                                                                <constraint firstItem="jIX-u0-ddX" firstAttribute="leading" secondItem="dXX-uc-NQC" secondAttribute="leading" constant="2" id="7gO-bV-aX2"/>
-                                                                <constraint firstAttribute="trailing" secondItem="jIX-u0-ddX" secondAttribute="trailing" constant="2" id="VM8-zL-M0F"/>
-                                                                <constraint firstItem="jIX-u0-ddX" firstAttribute="top" secondItem="dXX-uc-NQC" secondAttribute="top" id="mEp-PM-Cjh"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="jIX-u0-ddX" id="O7M-Jq-kw5"/>
                                                             </connections>
@@ -195,11 +190,12 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Nke-jc-fMr">
-                                                            <rect key="frame" x="185.5" y="1" width="156" height="17"/>
+                                                            <rect key="frame" x="186" y="1" width="156" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="IBU-1D-WII">
-                                                                    <rect key="frame" x="2" y="-1" width="152" height="20"/>
+                                                                <popUpButton id="IBU-1D-WII">
+                                                                    <rect key="frame" x="-3" y="-1" width="157" height="20"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                                     <popUpButtonCell key="cell" type="bevel" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="W3Z-PB-IUJ" id="eh9-Os-Ang">
                                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="menu"/>
@@ -225,11 +221,6 @@
                                                                     </connections>
                                                                 </popUpButton>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="IBU-1D-WII" secondAttribute="trailing" constant="2" id="67j-zF-zXB"/>
-                                                                <constraint firstItem="IBU-1D-WII" firstAttribute="leading" secondItem="Nke-jc-fMr" secondAttribute="leading" constant="2" id="9iW-VI-UOp"/>
-                                                                <constraint firstItem="IBU-1D-WII" firstAttribute="centerY" secondItem="Nke-jc-fMr" secondAttribute="centerY" id="H8J-no-blM"/>
-                                                            </constraints>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -249,8 +240,9 @@
                                                             <rect key="frame" x="345" y="1" width="191" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RRF-15-RQ7">
+                                                                <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="RRF-15-RQ7">
                                                                     <rect key="frame" x="0.0" y="0.0" width="191" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="25Y-1h-PMq">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -261,12 +253,6 @@
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="RRF-15-RQ7" secondAttribute="trailing" constant="2" id="XnM-7a-Xhs"/>
-                                                                <constraint firstItem="RRF-15-RQ7" firstAttribute="leading" secondItem="bjH-aA-F7G" secondAttribute="leading" constant="2" id="bvD-Nn-Yet"/>
-                                                                <constraint firstItem="RRF-15-RQ7" firstAttribute="top" secondItem="bjH-aA-F7G" secondAttribute="top" id="cc6-c9-0w0"/>
-                                                                <constraint firstAttribute="bottom" secondItem="RRF-15-RQ7" secondAttribute="bottom" id="jIq-mI-4X8"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="RRF-15-RQ7" id="osi-6o-PjU"/>
                                                             </connections>
@@ -351,7 +337,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
     </resources>
 </document>
