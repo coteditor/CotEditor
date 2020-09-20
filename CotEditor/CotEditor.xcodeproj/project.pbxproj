@@ -4100,10 +4100,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 442;
+				CURRENT_PROJECT_VERSION = 443;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = "4.0.0-beta";
+				MARKETING_VERSION = "4.0.0-beta.2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4115,10 +4115,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 442;
+				CURRENT_PROJECT_VERSION = 443;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = "4.0.0-beta";
+				MARKETING_VERSION = "4.0.0-beta.2";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4168,14 +4168,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 442;
+				CURRENT_PROJECT_VERSION = 443;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
-				MARKETING_VERSION = "4.0.0-beta";
+				MARKETING_VERSION = "4.0.0-beta.2";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -4188,14 +4188,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 442;
+				CURRENT_PROJECT_VERSION = 443;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
-				MARKETING_VERSION = "4.0.0-beta";
+				MARKETING_VERSION = "4.0.0-beta.2";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
