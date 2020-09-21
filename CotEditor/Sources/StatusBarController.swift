@@ -66,6 +66,11 @@ final class StatusBarController: NSViewController {
             (self.view as? NSVisualEffectView)?.material = .windowBackground
         }
         
+        // workaround for the dimmed initial text color
+        // (FB8721478, Xcode 12.2-beta + macOS 11)
+        self.encodingPopUpButton?.contentTintColor = .labelColor
+        self.lineEndingPopUpButton?.contentTintColor = .labelColor
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
