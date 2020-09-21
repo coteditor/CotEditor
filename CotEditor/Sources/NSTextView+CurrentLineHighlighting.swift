@@ -46,20 +46,22 @@ extension CurrentLineHighlighting {
             self.needsUpdateLineHighlight = false
         }
         
-        let rects = self.lineHighLightRects
+        let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
+        let radius = fontSize / 4
+        let paths = self.lineHighLightRects
             .filter { $0.intersects(dirtyRect) }
             .map { self.centerScanRect($0) }
-            .compactMap { $0.intersection(dirtyRect) }
+            .map { NSBezierPath(roundedRect: $0, xRadius: radius, yRadius: radius) }
         
         guard
-            !rects.isEmpty,
+            !paths.isEmpty,
             let color = self.lineHighLightColor
             else { return }
         
         NSGraphicsContext.saveGraphicsState()
         color.setFill()
-        for rect in rects {
-            rect.fill()
+        for path in paths {
+            path.fill()
         }
         NSGraphicsContext.restoreGraphicsState()
     }

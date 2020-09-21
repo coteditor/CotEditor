@@ -5,6 +5,10 @@ Change Log
 4.0.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Round the corners of current line highlight.
+
 ### Fixes
 
 - [beta] Fix an issue in the navigation bar that the split editor button did not updated when change the split orientation.
