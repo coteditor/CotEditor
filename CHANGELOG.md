@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Round the corners of current line highlight.
+- [beta][tirivial] Update titlebar color.
 
 ### Fixes
 
