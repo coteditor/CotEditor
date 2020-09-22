@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wry-M9-Gep">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wry-M9-Gep">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,12 +11,12 @@
         <scene sceneID="Ms1-wa-Rxd">
             <objects>
                 <viewController id="Wry-M9-Gep" customClass="OutlineViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQy-qv-3Fk">
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="DQy-qv-3Fk">
                         <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-gJ-Amp">
-                                <rect key="frame" x="10" y="104" width="48" height="15"/>
+                                <rect key="frame" x="10" y="145" width="48" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Outline" id="RyV-wo-tpY">
                                     <font key="font" metaFont="systemBold" size="12"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -24,19 +24,19 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdS-LF-zK0">
-                                <rect key="frame" x="12" y="12" width="196" height="84"/>
+                                <rect key="frame" x="12" y="12" width="196" height="125"/>
                                 <clipView key="contentView" id="kw3-JE-21n">
-                                    <rect key="frame" x="1" y="1" width="194" height="82"/>
+                                    <rect key="frame" x="1" y="1" width="194" height="123"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="meP-Ke-T4s" viewBased="YES" autoresizesOutlineColumn="YES" outlineTableColumn="CSX-H0-nFf" id="LBW-lW-4ux">
-                                            <rect key="frame" x="0.0" y="0.0" width="194" height="59"/>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="meP-Ke-T4s" viewBased="YES" autoresizesOutlineColumn="YES" outlineTableColumn="CSX-H0-nFf" id="LBW-lW-4ux">
+                                            <rect key="frame" x="0.0" y="0.0" width="194" height="100"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="6" height="3"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="title" width="188" minWidth="40" maxWidth="1000" id="CSX-H0-nFf">
+                                                <tableColumn identifier="title" width="182" minWidth="40" maxWidth="1000" id="CSX-H0-nFf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -91,7 +91,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="xqb-BN-UYB"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Vh9-uN-jKp">
-                                    <rect key="frame" x="1" y="341" width="194" height="16"/>
+                                    <rect key="frame" x="1" y="25" width="194" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="pN6-MO-ePX">
