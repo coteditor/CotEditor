@@ -72,10 +72,12 @@ final class InspectorTabView: NSTabView {
         backgroundView.material = .windowBackground
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backgroundView)
-        self.addConstraints(
-            NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", metrics: nil, views: ["view": backgroundView]) +
-            NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", metrics: nil, views: ["view": backgroundView])
-        )
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            self.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            self.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+        ])
         
         // add control parts
         self.addSubview(self.segmentedControl)

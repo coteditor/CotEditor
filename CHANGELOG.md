@@ -7,8 +7,8 @@ Change Log
 
 ### Improvements
 
-- [beta][Big Sur] Match the inspector background to desktop color.
 - Round the corners of current line highlight.
+- [beta][Big Sur] Match the inspector background to desktop color.
 - [beta][tirivial] Update titlebar color.
 
 ### Fixes
