@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- [beta] Fix an issue in the navigation bar that the split editor button did not updated when change the split orientation.
+- [beta] Fix an issue in the navigation bar that the split editor button did not update when changing the split orientation.
 - [beta] Fix an issue in the appearance pane and the multiple replacement panel that the newly added setting was not selected.
 - [beta] Address an issue that the status bar rarely compressed vertically.
 - [beta] Workaround an issue that the initial text color of the pop-up menus in the status bar dimmed.
