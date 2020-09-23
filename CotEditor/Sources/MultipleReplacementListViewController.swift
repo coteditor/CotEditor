@@ -75,8 +75,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         // observe replacement setting list change
         self.listUpdateObserver = ReplacementManager.shared.$settingNames
-            .receive(on: RunLoop.current)
-            .sink { [weak self] in self?.setupList(names: $0) }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in self?.updateSettingList() }
     }
     
     
@@ -149,26 +149,32 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     /// add setting
     @IBAction func addSetting(_ sender: Any?) {
         
-        guard let tableView = self.tableView else { return }
+        let settingName: String
+        do {
+            settingName = try ReplacementManager.shared.createUntitledSetting()
+        } catch {
+            self.presentError(error)
+            return
+        }
         
-        guard let settingName = try? ReplacementManager.shared.createUntitledSetting() else { return }
-        
-        let row = ReplacementManager.shared.settingNames.firstIndex(of: settingName) ?? 0
-        
-        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        self.updateSettingList(bySelecting: settingName)
     }
     
     
     /// duplicate selected setting
     @IBAction func duplicateSetting(_ sender: Any?) {
         
-        guard let settingName = self.targetSettingName(for: sender) else { return }
+        guard let baseName = self.targetSettingName(for: sender) else { return }
         
+        let settingName: String
         do {
-            try ReplacementManager.shared.duplicateSetting(name: settingName)
+            settingName = try ReplacementManager.shared.duplicateSetting(name: baseName)
         } catch {
             self.presentError(error)
+            return
         }
+        
+        self.updateSettingList(bySelecting: settingName)
     }
     
     
@@ -325,18 +331,23 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     
     /// update setting list
-    private func setupList(names: [String]) {
+    private func updateSettingList(bySelecting selectingName: String? = nil) {
         
-        let settingName = self.selectedSettingName
+        let settingName = selectingName ?? self.selectedSettingName
         
-        self.settingNames = names
+        self.settingNames = ReplacementManager.shared.settingNames
         
-        self.tableView?.reloadData()
+        guard let tableView = self.tableView else { return }
         
-        if let settingName = settingName,
-            let row = self.settingNames.firstIndex(of: settingName)
-        {
-            self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
+        tableView.reloadData()
+        
+        guard
+            let name = settingName,
+            let row = self.settingNames.firstIndex(of: name)
+            else { return }
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        if selectingName != nil {
+            tableView.scrollRowToVisible(row)
         }
     }
     

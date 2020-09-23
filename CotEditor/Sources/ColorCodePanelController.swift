@@ -117,7 +117,10 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         // make position of accessory view center
         if let superview = panel.accessoryView?.superview {
-            superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[accessory]|", metrics: nil, views: ["accessory": self.view]))
+            NSLayoutConstraint.activate([
+                superview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                superview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            ])
         }
         
         self.panel = panel

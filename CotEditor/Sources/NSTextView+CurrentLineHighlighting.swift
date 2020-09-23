@@ -46,20 +46,22 @@ extension CurrentLineHighlighting {
             self.needsUpdateLineHighlight = false
         }
         
-        let rects = self.lineHighLightRects
+        let fontSize = self.font?.pointSize ?? NSFont.systemFontSize
+        let radius = fontSize / 4
+        let paths = self.lineHighLightRects
             .filter { $0.intersects(dirtyRect) }
             .map { self.centerScanRect($0) }
-            .compactMap { $0.intersection(dirtyRect) }
+            .map { NSBezierPath(roundedRect: $0, xRadius: radius, yRadius: radius) }
         
         guard
-            !rects.isEmpty,
+            !paths.isEmpty,
             let color = self.lineHighLightColor
             else { return }
         
         NSGraphicsContext.saveGraphicsState()
         color.setFill()
-        for rect in rects {
-            rect.fill()
+        for path in paths {
+            path.fill()
         }
         NSGraphicsContext.restoreGraphicsState()
     }
@@ -73,12 +75,19 @@ extension CurrentLineHighlighting {
     /// - Returns: Rects for current line highlight.
     private func calcurateLineHighLightRects() -> [NSRect] {
         
-        return self.rangesForUserTextChange?
+        guard let editingRanges = self.rangesForUserTextChange else { return [] }
+        
+        return editingRanges
             .map(\.rangeValue)
-            .map { (self.string as NSString).lineContentsRange(for: $0) }
-            .unique
+            .map { (self.string as NSString).lineRange(for: $0) }
+            .reduce(into: [NSRange]()) { (ranges, range) in
+                if ranges.last?.touches(range) == true {
+                    ranges[ranges.count - 1].formUnion(range)
+                } else {
+                    ranges.append(range)
+                }
+            }
             .map { self.lineRect(for: $0) }
-            ?? []
     }
     
     

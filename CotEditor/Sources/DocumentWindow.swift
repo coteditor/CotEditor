@@ -123,7 +123,7 @@ final class DocumentWindow: NSWindow {
     /// make sure window title bar (incl. toolbar) is opaque
     private func invalidateTitlebarOpacity() {
         
-        guard let titlebarView = self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView else { return }
+        guard let titlebarView = self.standardWindowButton(.closeButton)?.superview else { return }
         
         // dirty manupulation to avoid the title bar being dyed in the window background color (2016-01).
         titlebarView.wantsLayer = !self.isOpaque

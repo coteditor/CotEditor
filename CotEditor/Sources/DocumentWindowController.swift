@@ -86,6 +86,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                                   UserDefaults.standard.publisher(for: .recentStyleNames).eraseToVoid())
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.buildSyntaxPopUpButton() }
+        
+        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
+            self.window?.styleMask.subtract(.fullSizeContentView)
+        }
     }
     
     

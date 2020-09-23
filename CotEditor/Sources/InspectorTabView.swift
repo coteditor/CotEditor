@@ -46,6 +46,7 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
+    private let separator: NSBox
     private let controlHeight: CGFloat = 28
     private let segmentWidth: CGFloat = 30
     
@@ -59,11 +60,29 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl = InspectorTabSegmentedControl()
         self.segmentedControl.segmentStyle = .texturedSquare
         
+        self.separator = NSBox()
+        self.separator.boxType = .separator
+        
         super.init(coder: coder)
         
         self.tabViewType = .noTabsNoBorder
         
+        // cover the entire area with an NSVisualEffectView as background
+        let backgroundView = NSVisualEffectView()
+        backgroundView.material = .windowBackground
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(backgroundView)
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+            self.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            self.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor),
+        ])
+        
+        // add control parts
         self.addSubview(self.segmentedControl)
+        self.addSubview(self.separator)
+        
     }
     
     
@@ -92,29 +111,8 @@ final class InspectorTabView: NSTabView {
             x: floor((self.frame.width - self.segmentedControl.frame.width) / 2),
             y: floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2) + self.topInset
         )
-    }
-    
-    
-    /// draw border below control
-    override func draw(_ dirtyRect: NSRect) {
         
-        NSGraphicsContext.saveGraphicsState()
-        
-        // draw background
-        if self.drawsBackground {
-            NSColor.windowBackgroundColor.setFill()
-            dirtyRect.fill()
-        } else {
-            super.draw(dirtyRect)
-        }
-        
-        let strokeRect = NSRect(x: dirtyRect.minX, y: self.topInset + self.controlHeight, width: dirtyRect.width, height: 1)
-        if strokeRect.intersects(dirtyRect) {
-            NSColor.separatorColor.setFill()
-            self.centerScanRect(strokeRect).fill()
-        }
-        
-        NSGraphicsContext.restoreGraphicsState()
+        self.separator.frame = NSRect(x: 0, y: self.topInset + self.controlHeight, width: self.frame.width, height: 1)
     }
     
     

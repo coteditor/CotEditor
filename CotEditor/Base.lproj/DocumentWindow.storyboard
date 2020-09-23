@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -82,7 +82,7 @@
             <objects>
                 <windowController id="0UB-Lz-R6c" customClass="DocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Untitled" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" toolbarStyle="unified" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -198,7 +198,7 @@
                 <splitViewController showSeguePresentationStyle="single" id="2gA-dj-5gh" customClass="DocumentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="tZe-bg-feG"/>
-                        <splitViewItem holdingPriority="750" id="lfq-9K-fZM"/>
+                        <splitViewItem holdingPriority="751" id="lfq-9K-fZM"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="0PU-mC-e2a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="660"/>
@@ -264,9 +264,10 @@
                                 </connections>
                             </textField>
                             <popUpButton toolTip="Line Endings" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-H9-iZR">
-                                <rect key="frame" x="544" y="2" width="52" height="18"/>
+                                <rect key="frame" x="539" y="0.0" width="57" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="Fo4-PE-eBJ"/>
+                                    <constraint firstAttribute="height" constant="21" id="i5y-f9-wPx"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="smallSquare" title="LF" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="YT7-vd-3ih" id="uXq-8L-T6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -296,7 +297,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
-                                <rect key="frame" x="411" y="2" width="128" height="18"/>
+                                <rect key="frame" x="406" y="0.0" width="133" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="gE6-7r-AUt"/>
                                 </constraints>
@@ -349,17 +350,19 @@
                             <constraint firstAttribute="bottom" secondItem="DDY-i5-DV6" secondAttribute="bottom" constant="4" id="0HQ-g5-OIm"/>
                             <constraint firstItem="EJU-9e-uCA" firstAttribute="centerY" secondItem="JZo-9i-3gf" secondAttribute="centerY" id="3zG-AS-1lX"/>
                             <constraint firstItem="7Sd-lb-J3U" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" constant="4" id="6I2-Wq-dRy"/>
-                            <constraint firstItem="CUv-So-9Og" firstAttribute="centerY" secondItem="JZo-9i-3gf" secondAttribute="centerY" id="DcF-iM-Hsy"/>
                             <constraint firstItem="EJU-9e-uCA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="v28-4g-3Pc" secondAttribute="trailing" constant="8" symbolic="YES" id="J7k-IJ-ITH"/>
+                            <constraint firstAttribute="bottom" secondItem="FNE-H9-iZR" secondAttribute="bottom" id="PGF-o4-y6f"/>
                             <constraint firstItem="DDY-i5-DV6" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" constant="4" id="RVq-Lk-drv"/>
                             <constraint firstItem="CUv-So-9Og" firstAttribute="leading" secondItem="7Sd-lb-J3U" secondAttribute="trailing" id="Rmj-41-sT7"/>
-                            <constraint firstItem="FNE-H9-iZR" firstAttribute="centerY" secondItem="JZo-9i-3gf" secondAttribute="centerY" id="XCA-bC-AAs"/>
                             <constraint firstItem="v28-4g-3Pc" firstAttribute="leading" secondItem="JZo-9i-3gf" secondAttribute="leading" constant="10" id="XGv-6S-ZAZ"/>
                             <constraint firstItem="FNE-H9-iZR" firstAttribute="leading" secondItem="DDY-i5-DV6" secondAttribute="trailing" id="Z71-dQ-3Os"/>
                             <constraint firstAttribute="trailing" secondItem="FNE-H9-iZR" secondAttribute="trailing" constant="4" id="ZBz-pD-I3x"/>
                             <constraint firstAttribute="bottom" secondItem="7Sd-lb-J3U" secondAttribute="bottom" constant="4" id="cph-Ly-dHn"/>
+                            <constraint firstItem="FNE-H9-iZR" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" id="iqg-5U-Tag"/>
                             <constraint firstItem="7Sd-lb-J3U" firstAttribute="leading" secondItem="EJU-9e-uCA" secondAttribute="trailing" constant="8" symbolic="YES" id="oeg-hS-hEI"/>
                             <constraint firstItem="v28-4g-3Pc" firstAttribute="centerY" secondItem="JZo-9i-3gf" secondAttribute="centerY" id="r4M-7l-VhS"/>
+                            <constraint firstItem="CUv-So-9Og" firstAttribute="top" secondItem="JZo-9i-3gf" secondAttribute="top" id="vAr-ky-9Sp"/>
+                            <constraint firstAttribute="bottom" secondItem="CUv-So-9Og" secondAttribute="bottom" id="vCi-dT-Fej"/>
                             <constraint firstItem="DDY-i5-DV6" firstAttribute="leading" secondItem="CUv-So-9Og" secondAttribute="trailing" constant="4" id="wGi-ca-Rpd"/>
                         </constraints>
                     </visualEffectView>
