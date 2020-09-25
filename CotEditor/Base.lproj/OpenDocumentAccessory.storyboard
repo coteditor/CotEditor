@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-MD-3B5">
-                                <rect key="frame" x="87" y="29" width="235" height="25"/>
+                                <rect key="frame" x="86" y="30" width="237" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="PQD-t5-lNm"/>
                                 </constraints>
@@ -34,7 +34,7 @@
                                 </connections>
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ODB-Ry-beC">
-                                <rect key="frame" x="87" y="8" width="129" height="18"/>
+                                <rect key="frame" x="87" y="9" width="133" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qkm-VD-lQC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-5f-V7p">
-                                <rect key="frame" x="18" y="35" width="65" height="16"/>
+                                <rect key="frame" x="18" y="36" width="65" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="Encoding:" usesSingleLineMode="YES" id="voE-Mi-XZu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

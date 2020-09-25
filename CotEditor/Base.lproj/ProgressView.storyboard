@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pOm-Jt-raG">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pOm-Jt-raG">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,17 +11,17 @@
             <objects>
                 <viewController id="pOm-Jt-raG" customClass="ProgressViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Gmd-ZI-UeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="420" height="78"/>
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="76"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <progressIndicator verticalHuggingPriority="750" maxValue="1" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="YTj-ob-Ly1">
-                                <rect key="frame" x="20" y="34" width="380" height="12"/>
+                                <rect key="frame" x="20" y="32" width="380" height="12"/>
                                 <connections>
                                     <binding destination="pOm-Jt-raG" name="isIndeterminate" keyPath="progress.indeterminate" id="zNb-ZJ-Fct"/>
                                 </connections>
                             </progressIndicator>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QRW-zP-YZ4">
-                                <rect key="frame" x="18" y="52" width="84" height="16"/>
+                                <rect key="frame" x="18" y="50" width="84" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Processing…" id="Ckd-Ag-fZZ">
                                     <font key="font" metaFont="systemMedium" size="13"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -32,7 +32,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-fK-qvF">
-                                <rect key="frame" x="18" y="14" width="124" height="14"/>
+                                <rect key="frame" x="18" y="13" width="124" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="04u-QX-U6h">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -40,7 +40,7 @@
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8F8-Xs-904">
-                                <rect key="frame" x="331" y="6" width="74" height="27"/>
+                                <rect key="frame" x="330" y="5" width="76" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="7RT-Zh-12G"/>
                                 </constraints>

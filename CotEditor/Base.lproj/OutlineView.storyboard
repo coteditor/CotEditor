@@ -12,25 +12,25 @@
             <objects>
                 <viewController id="Wry-M9-Gep" customClass="OutlineViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="DQy-qv-3Fk">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="220"/>
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="157"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-gJ-Amp">
-                                <rect key="frame" x="10" y="145" width="48" height="15"/>
+                                <rect key="frame" x="10" y="82" width="48" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Outline" id="RyV-wo-tpY">
                                     <font key="font" metaFont="systemBold" size="12"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdS-LF-zK0">
-                                <rect key="frame" x="12" y="12" width="196" height="125"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdS-LF-zK0">
+                                <rect key="frame" x="12" y="12" width="196" height="62"/>
                                 <clipView key="contentView" id="kw3-JE-21n">
-                                    <rect key="frame" x="1" y="1" width="194" height="123"/>
+                                    <rect key="frame" x="1" y="1" width="194" height="60"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="meP-Ke-T4s" viewBased="YES" autoresizesOutlineColumn="YES" outlineTableColumn="CSX-H0-nFf" id="LBW-lW-4ux">
-                                            <rect key="frame" x="0.0" y="0.0" width="194" height="100"/>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="meP-Ke-T4s" viewBased="YES" autoresizesOutlineColumn="YES" outlineTableColumn="CSX-H0-nFf" id="LBW-lW-4ux">
+                                            <rect key="frame" x="0.0" y="0.0" width="194" height="37"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="6" height="3"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -48,8 +48,8 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView misplaced="YES" id="nfz-SY-V76">
-                                                            <rect key="frame" x="3" y="1" width="188" height="14"/>
+                                                        <tableCellView id="nfz-SY-V76">
+                                                            <rect key="frame" x="3" y="1" width="188" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField identifier="title" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="F1F-V6-xxG" customClass="SeparatorTextField" customModule="CotEditor" customModuleProvider="target">

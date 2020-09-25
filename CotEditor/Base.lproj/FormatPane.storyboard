@@ -10,7 +10,7 @@
         <scene sceneID="Owo-g1-qK8">
             <objects>
                 <viewController id="Lgm-sL-YIF" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" id="8Od-1h-2eW">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="8Od-1h-2eW">
                         <rect key="frame" x="0.0" y="0.0" width="580" height="384"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -174,13 +174,13 @@
                                     <rect key="frame" x="1" y="1" width="280" height="135"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7X-aX-act">
+                                        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7X-aX-act">
                                             <rect key="frame" x="0.0" y="25" width="280" height="110"/>
-                                            <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Ci2-bX-cSr">
+                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Ci2-bX-cSr">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="110"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="UvE-MV-Lh2">
+                                                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="UvE-MV-Lh2">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="108"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
@@ -199,8 +199,8 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
-                                                                    <tableCellView misplaced="YES" id="9MN-yG-hHM">
-                                                                        <rect key="frame" x="1" y="1" width="277" height="17"/>
+                                                                    <tableCellView id="9MN-yG-hHM">
+                                                                        <rect key="frame" x="1" y="1" width="277" height="16"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
                                                                             <customView toolTip="This style is customized." translatesAutoresizingMaskIntoConstraints="NO" id="cbJ-XK-bnG" customClass="DotView" customModule="CotEditor" customModuleProvider="target">

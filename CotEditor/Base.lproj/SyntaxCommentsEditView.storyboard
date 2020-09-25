@@ -21,7 +21,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uOT-Vg-FZh" viewBased="YES" id="ace-Sg-2RE">
-                                            <rect key="frame" x="0.0" y="0.0" width="431" height="171"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="171"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -179,11 +179,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Wgn-aa-28Y">
-                                                            <rect key="frame" x="368" y="1" width="70" height="17"/>
+                                                            <rect key="frame" x="368" y="1" width="71" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="0iQ-u5-KRq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="71" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="72" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="note" usesSingleLineMode="YES" id="CWN-H0-LVV">
                                                                         <font key="font" metaFont="system"/>
@@ -219,7 +219,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="uOT-Vg-FZh">
-                                    <rect key="frame" x="0.0" y="0.0" width="431" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>

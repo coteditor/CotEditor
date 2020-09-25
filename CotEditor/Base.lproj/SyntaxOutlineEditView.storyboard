@@ -38,7 +38,7 @@
                                                     </buttonCell>
                                                     <prototypeCellViews>
                                                         <tableCellView id="bKk-ZD-1pf">
-                                                            <rect key="frame" x="1" y="1" width="32" height="17"/>
+                                                            <rect key="frame" x="11" y="1" width="32" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="ignoreCase" id="5AQ-mF-Gqr">
@@ -70,11 +70,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="MDh-Ha-Hyc">
-                                                            <rect key="frame" x="36" y="1" width="249" height="16"/>
+                                                            <rect key="frame" x="46" y="1" width="248" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="8NB-AU-ecw" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="249" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="248" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="RCz-qR-02w">
                                                                         <font key="font" metaFont="system"/>
@@ -105,11 +105,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gL1-K8-zYn">
-                                                            <rect key="frame" x="287.5" y="1" width="140" height="16"/>
+                                                            <rect key="frame" x="297.5" y="1" width="141" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="e1M-tw-2hv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="141" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="note" usesSingleLineMode="YES" id="NIK-yi-b5J">
                                                                         <font key="font" metaFont="system"/>

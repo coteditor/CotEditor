@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="Qki-Cn-AgK" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uRF-iT-6pD">
-                        <rect key="frame" x="0.0" y="0.0" width="580" height="421"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="423"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WD1-55-LD1">
                                 <rect key="frame" x="134" y="314" width="161" height="18"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KWJ-gB-0KX">
-                                <rect key="frame" x="134" y="381" width="185" height="25"/>
+                                <rect key="frame" x="133" y="380" width="187" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="6fV-wp-pso"/>
                                 </constraints>
@@ -111,7 +111,7 @@
                                 </connections>
                             </popUpButton>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4k-Qb-kRF">
-                                <rect key="frame" x="55" y="385" width="75" height="16"/>
+                                <rect key="frame" x="55" y="387" width="75" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Prefer tabs:" id="8zu-3V-Obg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -378,7 +378,7 @@
                                 </columns>
                                 <gridCells>
                                     <gridCell row="A5a-1R-KNS" column="k3e-ls-c6o" id="cIO-pn-eeQ">
-                                        <button key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7e-Di-3ya">
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W7e-Di-3ya">
                                             <rect key="frame" x="-2" y="43" width="90" height="18"/>
                                             <buttonCell key="cell" type="check" title="Line count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6jK-xX-8AH">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -390,8 +390,8 @@
                                         </button>
                                     </gridCell>
                                     <gridCell row="A5a-1R-KNS" column="hlS-CI-3S4" id="oOH-m3-6Mb">
-                                        <button key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTB-Ii-tsF">
-                                            <rect key="frame" x="133" y="43" width="97" height="18"/>
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XTB-Ii-tsF">
+                                            <rect key="frame" x="133" y="43" width="78" height="18"/>
                                             <buttonCell key="cell" type="check" title="Location" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ctl-Ps-V8Z">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -402,7 +402,7 @@
                                         </button>
                                     </gridCell>
                                     <gridCell row="A5a-1R-KNS" column="C5T-oh-dGs" id="XFO-3R-icF">
-                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O64-k1-YJA">
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O64-k1-YJA">
                                             <rect key="frame" x="240" y="43" width="75" height="18"/>
                                             <buttonCell key="cell" type="check" title="File size" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ikB-dS-c4S">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -414,7 +414,7 @@
                                         </button>
                                     </gridCell>
                                     <gridCell row="f5f-3D-cza" column="k3e-ls-c6o" id="Ky2-bw-Im8">
-                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-mj-n2O">
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-mj-n2O">
                                             <rect key="frame" x="-2" y="21" width="125" height="18"/>
                                             <buttonCell key="cell" type="check" title="Character count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sHZ-kO-Wvu">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -426,7 +426,7 @@
                                         </button>
                                     </gridCell>
                                     <gridCell row="f5f-3D-cza" column="hlS-CI-3S4" id="dIC-gG-pbZ">
-                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6wB-lm-God">
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6wB-lm-God">
                                             <rect key="frame" x="133" y="21" width="97" height="18"/>
                                             <buttonCell key="cell" type="check" title="Current line" bezelStyle="regularSquare" imagePosition="left" inset="2" id="JbR-gR-aiA">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -439,8 +439,8 @@
                                     </gridCell>
                                     <gridCell row="f5f-3D-cza" column="C5T-oh-dGs" id="Lfg-xp-XF3"/>
                                     <gridCell row="aTU-TR-NnE" column="k3e-ls-c6o" id="AwB-8O-vwM">
-                                        <button key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oLV-nM-Y3n">
-                                            <rect key="frame" x="-2" y="-1" width="125" height="18"/>
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oLV-nM-Y3n">
+                                            <rect key="frame" x="-2" y="-1" width="97" height="18"/>
                                             <buttonCell key="cell" type="check" title="Word count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hRw-gK-ONt">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -451,7 +451,7 @@
                                         </button>
                                     </gridCell>
                                     <gridCell row="aTU-TR-NnE" column="hlS-CI-3S4" id="Czg-oC-RJ8">
-                                        <button key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-vp-SAl">
+                                        <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FLk-vp-SAl">
                                             <rect key="frame" x="133" y="-1" width="73" height="18"/>
                                             <buttonCell key="cell" type="check" title="Column" bezelStyle="regularSquare" imagePosition="left" inset="2" id="SR0-Bx-Nh6">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

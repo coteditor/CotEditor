@@ -41,7 +41,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="wsF-JR-aIC">
-                                                            <rect key="frame" x="1" y="1" width="173" height="16"/>
+                                                            <rect key="frame" x="11" y="1" width="173" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="Ejc-Kq-tu5">
@@ -110,7 +110,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="aur-FD-dfa">
-                                                            <rect key="frame" x="1" y="1" width="244" height="16"/>
+                                                            <rect key="frame" x="11" y="1" width="244" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="TRj-8v-XOg">
@@ -145,7 +145,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="XhE-Mn-Zpf">
-                                    <rect key="frame" x="1" y="103" width="246" height="14"/>
+                                    <rect key="frame" x="1" y="103" width="247" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="u8f-WW-N5g">
@@ -181,11 +181,11 @@
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-4c-28w">
                                 <rect key="frame" x="8" y="37" width="178" height="89"/>
-                                <clipView key="contentView" ambiguous="YES" id="p3k-iS-RPJ">
+                                <clipView key="contentView" id="p3k-iS-RPJ">
                                     <rect key="frame" x="1" y="1" width="176" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
                                             <rect key="frame" x="0.0" y="0.0" width="176" height="87"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -206,7 +206,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="3Kn-Ux-Iql">
-                                                            <rect key="frame" x="1" y="1" width="173" height="16"/>
+                                                            <rect key="frame" x="11" y="1" width="173" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="l2X-H1-Cao">
@@ -241,7 +241,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="VlN-l9-969">
-                                    <rect key="frame" x="1" y="73" width="176" height="14"/>
+                                    <rect key="frame" x="1" y="74" width="176" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="dxm-ku-Wt8">
