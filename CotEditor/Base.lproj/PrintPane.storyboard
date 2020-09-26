@@ -10,7 +10,7 @@
         <scene sceneID="yRn-WR-08k">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="4if-cg-44c" customClass="PrintPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KkP-8S-iZE">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="KkP-8S-iZE">
                         <rect key="frame" x="0.0" y="0.0" width="570" height="387"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="wGW-VF-jXB">
