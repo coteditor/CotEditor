@@ -5,6 +5,10 @@ Change Log
 4.0.0-beta.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
+
 
 
 4.0.0-beta.2 (444)

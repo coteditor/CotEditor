@@ -433,6 +433,8 @@
 		2AA375451D403F110080C27C /* String+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */; };
 		2AA375471D40BDCB0080C27C /* LineEnding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA375461D40BDCB0080C27C /* LineEnding.swift */; };
 		2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA375461D40BDCB0080C27C /* LineEnding.swift */; };
+		2AA3C7A8251EBB810060D6DB /* SeparatorGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */; };
+		2AA3C7A9251EBB810060D6DB /* SeparatorGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */; };
 		2AA45A4B1D2E871900A1A401 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */; };
 		2AA45A4C1D2E871900A1A401 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */; };
 		2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A501D2E938500A1A401 /* NavigationBarController.swift */; };
@@ -1167,6 +1169,7 @@
 		2AA2E0161BFE14320087BDD6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Unicode.strings; sourceTree = "<group>"; };
 		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
 		2AA375461D40BDCB0080C27C /* LineEnding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEnding.swift; sourceTree = "<group>"; };
+		2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorGuideView.swift; sourceTree = "<group>"; };
 		2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
 		2AA45A501D2E938500A1A401 /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
@@ -1624,6 +1627,7 @@
 				2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */,
 				2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */,
 				2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */,
+				2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2946,6 +2950,7 @@
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2A63A9D824E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
+				2AA3C7A8251EBB810060D6DB /* SeparatorGuideView.swift in Sources */,
 				2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */,
@@ -3141,6 +3146,7 @@
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2AA106B02470F05F00979CB7 /* EncodingListViewController.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
+				2AA3C7A9251EBB810060D6DB /* SeparatorGuideView.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */,
