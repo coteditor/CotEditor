@@ -11,57 +11,69 @@
             <objects>
                 <viewController id="vOM-aK-O2P" customClass="OpenPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalCompressionResistancePriority="250" id="QJb-eU-19Y">
-                        <rect key="frame" x="0.0" y="0.0" width="408" height="63"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <popUpButton verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-MD-3B5">
-                                <rect key="frame" x="86" y="30" width="237" height="24"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="zFb-el-CmT">
+                                <rect key="frame" x="31" y="0.0" width="339" height="84"/>
+                                <subviews>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-MD-3B5">
+                                        <rect key="frame" x="86" y="40" width="237" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="PQD-t5-lNm"/>
+                                        </constraints>
+                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="CX5-Nm-64N">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="gyP-Eb-JHe">
+                                                <items>
+                                                    <menuItem title="Auto-Detect" id="SZF-BR-bZC"/>
+                                                    <menuItem isSeparatorItem="YES" id="4hX-Kc-MTt"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <binding destination="vOM-aK-O2P" name="selectedTag" keyPath="_selectedEncoding" id="wJo-QO-avg"/>
+                                        </connections>
+                                    </popUpButton>
+                                    <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-5f-V7p">
+                                        <rect key="frame" x="18" y="46" width="65" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="Encoding:" usesSingleLineMode="YES" id="voE-Mi-XZu">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="ODB-Ry-beC">
+                                        <rect key="frame" x="87" y="19" width="133" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qkm-VD-lQC">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="toggleShowsHidenFiles:" target="vOM-aK-O2P" id="mMa-7D-VwO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="PQD-t5-lNm"/>
+                                    <constraint firstAttribute="bottom" secondItem="ODB-Ry-beC" secondAttribute="bottom" constant="20" symbolic="YES" id="2HB-df-ou3"/>
+                                    <constraint firstItem="lFu-5f-V7p" firstAttribute="leading" secondItem="zFb-el-CmT" secondAttribute="leading" constant="20" symbolic="YES" id="7tu-h8-3c2"/>
+                                    <constraint firstItem="gw6-MD-3B5" firstAttribute="leading" secondItem="lFu-5f-V7p" secondAttribute="trailing" constant="8" symbolic="YES" id="IHe-9F-F17"/>
+                                    <constraint firstItem="gw6-MD-3B5" firstAttribute="top" secondItem="zFb-el-CmT" secondAttribute="top" constant="20" symbolic="YES" id="ZQk-QJ-QSP"/>
+                                    <constraint firstAttribute="trailing" secondItem="gw6-MD-3B5" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="g9C-V4-sxX"/>
+                                    <constraint firstItem="ODB-Ry-beC" firstAttribute="leading" secondItem="lFu-5f-V7p" secondAttribute="trailing" constant="8" symbolic="YES" id="m0b-Gn-5O7"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ODB-Ry-beC" secondAttribute="trailing" constant="20" symbolic="YES" id="rr3-E5-EdD"/>
+                                    <constraint firstItem="gw6-MD-3B5" firstAttribute="centerY" secondItem="lFu-5f-V7p" secondAttribute="centerY" id="s8s-k8-KHW"/>
+                                    <constraint firstItem="ODB-Ry-beC" firstAttribute="top" secondItem="gw6-MD-3B5" secondAttribute="bottom" constant="8" symbolic="YES" id="uz0-hz-4M2"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="CX5-Nm-64N">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="gyP-Eb-JHe">
-                                        <items>
-                                            <menuItem title="Auto-Detect" id="SZF-BR-bZC"/>
-                                            <menuItem isSeparatorItem="YES" id="4hX-Kc-MTt"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                                <connections>
-                                    <binding destination="vOM-aK-O2P" name="selectedTag" keyPath="_selectedEncoding" id="wJo-QO-avg"/>
-                                </connections>
-                            </popUpButton>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="ODB-Ry-beC">
-                                <rect key="frame" x="87" y="9" width="133" height="18"/>
-                                <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qkm-VD-lQC">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="toggleShowsHidenFiles:" target="vOM-aK-O2P" id="mMa-7D-VwO"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-5f-V7p">
-                                <rect key="frame" x="18" y="36" width="65" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" alignment="right" title="Encoding:" usesSingleLineMode="YES" id="voE-Mi-XZu">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gw6-MD-3B5" firstAttribute="centerY" secondItem="lFu-5f-V7p" secondAttribute="centerY" id="3q6-Fw-NXY"/>
-                            <constraint firstAttribute="bottom" secondItem="ODB-Ry-beC" secondAttribute="bottom" constant="10" id="G3c-hz-5Ag"/>
-                            <constraint firstItem="gw6-MD-3B5" firstAttribute="top" secondItem="QJb-eU-19Y" secondAttribute="top" constant="10" id="Ho4-tI-6xK"/>
-                            <constraint firstItem="gw6-MD-3B5" firstAttribute="leading" secondItem="lFu-5f-V7p" secondAttribute="trailing" constant="8" symbolic="YES" id="RGi-sk-4QO"/>
-                            <constraint firstItem="lFu-5f-V7p" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QJb-eU-19Y" secondAttribute="leading" constant="20" symbolic="YES" id="fk8-nw-43w"/>
-                            <constraint firstItem="gw6-MD-3B5" firstAttribute="centerX" secondItem="QJb-eU-19Y" secondAttribute="centerX" id="g6Q-G0-Xfa"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ODB-Ry-beC" secondAttribute="trailing" constant="20" symbolic="YES" id="hkW-70-4ns"/>
-                            <constraint firstItem="ODB-Ry-beC" firstAttribute="top" secondItem="gw6-MD-3B5" secondAttribute="bottom" constant="8" symbolic="YES" id="ic0-qc-hkp"/>
-                            <constraint firstItem="ODB-Ry-beC" firstAttribute="leading" secondItem="lFu-5f-V7p" secondAttribute="trailing" constant="8" symbolic="YES" id="sQr-9w-CwA"/>
+                            <constraint firstAttribute="bottom" secondItem="zFb-el-CmT" secondAttribute="bottom" id="85U-nJ-FrY"/>
+                            <constraint firstItem="zFb-el-CmT" firstAttribute="top" secondItem="QJb-eU-19Y" secondAttribute="top" id="OjN-ca-hUD"/>
+                            <constraint firstItem="zFb-el-CmT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QJb-eU-19Y" secondAttribute="leading" id="mzX-AW-sC6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zFb-el-CmT" secondAttribute="trailing" id="qY6-SD-a36"/>
+                            <constraint firstItem="zFb-el-CmT" firstAttribute="centerX" secondItem="QJb-eU-19Y" secondAttribute="centerX" id="v70-Y5-RYg"/>
                         </constraints>
                     </view>
                     <connections>
