@@ -5,6 +5,11 @@ Change Log
 4.0.0-beta.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Add new AppleScript/JXA commands `smarten quotes` and `straighten quotes` for selection object.
+
+
 ### Improvements
 
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
