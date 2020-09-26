@@ -321,6 +321,13 @@ final class TextSelection: NSObject {
     }
     
     
+    /// convert double hyphens to em dashes (—)
+    @objc func handleSmartenDashes(_ command: NSScriptCommand) {
+        
+        self.textView?.perform(Selector(("replaceDashesInSelection:")))
+    }
+    
+    
     /// Unicode normalization
     @objc func handleNormalizeUnicode(_ command: NSScriptCommand) {
         
