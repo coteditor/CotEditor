@@ -60,8 +60,8 @@ enum ScriptingEventType: String, Decodable {
     var eventID: AEEventID {
         
         switch self {
-            case .documentOpened: return AEEventID(code: "edod")
-            case .documentSaved: return AEEventID(code: "edsd")
+            case .documentOpened: return "edod"
+            case .documentSaved: return "edsd"
         }
     }
     

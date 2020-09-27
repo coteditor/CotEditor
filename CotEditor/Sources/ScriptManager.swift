@@ -252,7 +252,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Returns: A descriptor for an Apple Event by the `Document`.
     private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
         
-        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
+        let event = NSAppleEventDescriptor(eventClass: "cEd1",
                                            eventID: eventID,
                                            targetDescriptor: nil,
                                            returnID: AEReturnID(kAutoGenerateReturnID),
