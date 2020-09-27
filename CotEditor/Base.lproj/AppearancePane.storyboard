@@ -212,7 +212,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ywA-ws-Ayf">
-                                        <rect key="frame" x="243" y="81" width="48" height="18"/>
+                                        <rect key="frame" x="269" y="81" width="48" height="18"/>
                                         <buttonCell key="cell" type="check" title="Tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="XSb-uU-5QP">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -223,7 +223,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqX-jr-n2L">
-                                        <rect key="frame" x="343" y="81" width="64" height="18"/>
+                                        <rect key="frame" x="369" y="81" width="64" height="18"/>
                                         <buttonCell key="cell" type="check" title="Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="gcF-OM-SV0">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -233,8 +233,8 @@
                                             <binding destination="IE5-39-jAY" name="enabled" keyPath="values.showInvisibles" id="rwv-Cx-arZ"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iqn-kw-8py">
-                                        <rect key="frame" x="123" y="59" width="114" height="18"/>
+                                    <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="iqn-kw-8py">
+                                        <rect key="frame" x="123" y="59" width="140" height="18"/>
                                         <buttonCell key="cell" type="check" title="Other whitespaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bf2-rS-2zu">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -245,7 +245,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I05-Ks-5uR">
-                                        <rect key="frame" x="243" y="59" width="175" height="18"/>
+                                        <rect key="frame" x="269" y="59" width="175" height="18"/>
                                         <buttonCell key="cell" type="check" title="Other control characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sxg-F3-ely">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -327,7 +327,7 @@
                                     <constraint firstItem="x9R-2Y-F6b" firstAttribute="baseline" secondItem="xAb-JZ-6Pr" secondAttribute="baseline" id="GdT-01-AXJ"/>
                                     <constraint firstItem="rE0-DL-xRG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ADB-Wp-iDy" secondAttribute="leading" constant="20" symbolic="YES" id="K02-Ja-frV"/>
                                     <constraint firstItem="wT1-jD-6aC" firstAttribute="leading" secondItem="icl-ar-8yG" secondAttribute="trailing" constant="8" symbolic="YES" id="KoN-Fl-uJL"/>
-                                    <constraint firstItem="nqX-jr-n2L" firstAttribute="leading" secondItem="ywA-ws-Ayf" secondAttribute="leading" constant="100" id="MR5-HE-T9n"/>
+                                    <constraint firstItem="nqX-jr-n2L" firstAttribute="leading" secondItem="ywA-ws-Ayf" secondAttribute="leading" priority="750" constant="100" id="MR5-HE-T9n"/>
                                     <constraint firstItem="Yzg-b2-Ep1" firstAttribute="firstBaseline" secondItem="Cq3-kO-Ned" secondAttribute="firstBaseline" id="MhL-zn-iVf"/>
                                     <constraint firstItem="hws-J2-FDl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ADB-Wp-iDy" secondAttribute="leading" constant="20" symbolic="YES" id="Mw5-kn-leS"/>
                                     <constraint firstItem="icl-ar-8yG" firstAttribute="leading" secondItem="ADB-Wp-iDy" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="Nu0-Yn-XtG"/>
@@ -368,7 +368,7 @@
                                     <constraint firstItem="5XW-Ju-Ix5" firstAttribute="top" secondItem="I9r-vj-2gy" secondAttribute="bottom" constant="12" id="rSo-g5-EvR"/>
                                     <constraint firstItem="2y3-Ti-pue" firstAttribute="firstBaseline" secondItem="rE0-DL-xRG" secondAttribute="firstBaseline" id="s8V-H4-8Cq"/>
                                     <constraint firstItem="I9r-vj-2gy" firstAttribute="top" secondItem="wT1-jD-6aC" secondAttribute="bottom" constant="8" symbolic="YES" id="sUB-Yu-Aiy"/>
-                                    <constraint firstItem="ywA-ws-Ayf" firstAttribute="leading" secondItem="uyp-Xk-mRF" secondAttribute="leading" constant="120" id="t1p-KH-slc"/>
+                                    <constraint firstItem="ywA-ws-Ayf" firstAttribute="leading" secondItem="uyp-Xk-mRF" secondAttribute="leading" priority="750" constant="120" id="t1p-KH-slc"/>
                                     <constraint firstItem="I05-Ks-5uR" firstAttribute="leading" secondItem="ywA-ws-Ayf" secondAttribute="leading" id="thK-eg-i63"/>
                                     <constraint firstItem="4cD-mR-vJc" firstAttribute="firstBaseline" secondItem="I9r-vj-2gy" secondAttribute="firstBaseline" id="uyq-Ib-2OJ"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="inR-04-6SZ" secondAttribute="trailing" constant="20" symbolic="YES" id="v8f-48-TVN"/>
