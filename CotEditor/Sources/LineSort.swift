@@ -44,6 +44,10 @@ extension SortPattern {
     func sort(_ string: String, options: SortOptions = SortOptions()) -> String {
         
         let compareOptions = options.compareOptions
+        let numberFormatter: NumberFormatter? = compareOptions.contains(.numeric) ? .init() : nil
+        numberFormatter?.localizesFormat = options.isLocalized
+        numberFormatter?.usesGroupingSeparator = true
+        numberFormatter?.groupingSize = 3
         
         var lines = string.components(separatedBy: .newlines)
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
@@ -53,9 +57,19 @@ extension SortPattern {
             .sorted {
                 switch ($0.key, $1.key) {
                     case let (.some(key0), .some(key1)):
+                        // sort items by evaluating as numbers
+                        // -> This code still ignores numbers in the middle of keys.
+                        if let number0 = numberFormatter?.leadingDouble(from: key0),
+                           let number1 = numberFormatter?.leadingDouble(from: key1),
+                           number0 != number1
+                        {
+                            return number0 < number1
+                        }
                         return key0.compare(key1, options: compareOptions, locale: options.locale) == .orderedAscending
+                        
                     case (.none, .some):
                         return false
+                        
                     case (.some, .none), (.none, .none):
                         return true
                 }
