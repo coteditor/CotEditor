@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
+- [beta][dev] Update the build environment to Xcode 12.2 beta 2.
 
 
 
@@ -24,6 +25,7 @@ Change Log
 - Round the corners of current line highlight.
 - [beta][Big Sur] Match the inspector background to desktop color.
 - [beta][tirivial] Update titlebar color.
+
 
 ### Fixes
 
