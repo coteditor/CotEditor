@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -150,7 +150,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/BarTemplate"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/Bar"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="UkL-ES-LIb"/>
@@ -163,7 +163,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/ThickBarTemplate"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/ThickBar"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="WVs-Mi-1PJ"/>
@@ -176,7 +176,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/BlockTemplate"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/Block"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="Ai3-zA-evF"/>
@@ -1300,13 +1300,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Insertion Point/BarTemplate" width="8" height="11"/>
-        <image name="Insertion Point/BlockTemplate" width="8" height="11"/>
-        <image name="Insertion Point/ThickBarTemplate" width="8" height="11"/>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSFollowLinkFreestandingTemplate" width="15" height="15"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="Insertion Point/Bar" width="8" height="11"/>
+        <image name="Insertion Point/Block" width="8" height="11"/>
+        <image name="Insertion Point/ThickBar" width="8" height="11"/>
         <image name="info.circle" catalog="system" width="15" height="15"/>
     </resources>
 </document>
