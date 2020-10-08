@@ -13,7 +13,7 @@ Change Log
 ### Improvements
 
 - Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
-- Update Ruby, Swift and SVG syntax styles.
+- Update Python, Ruby, Swift and SVG syntax styles.
 
 
 ### Fixes
