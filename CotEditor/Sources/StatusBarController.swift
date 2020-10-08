@@ -189,7 +189,7 @@ final class StatusBarController: NSViewController {
             status.append(.formatted(label: "Column") + .formatted(state: result?.format(\.column)))
         }
         
-        let attrStatus = status.joined(separator: .init(string: "   ")).mutable
+        let attrStatus = status.joined(separator: "   ").mutable
         
         // truncate tail
         let paragraphStyle = NSParagraphStyle.default.mutable
