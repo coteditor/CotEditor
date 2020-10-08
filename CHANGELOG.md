@@ -8,11 +8,11 @@ Change Log
 ### New Features
 
 - Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for selection object.
-- On custom line sorting, evaluate numbers more intelligently when the “treat numbers as numeric value” option is enabled.
 
 
 ### Improvements
 
+- On sorting lines by pattern, evaluate numbers more intelligently when the “treat numbers as numeric value” option is enabled.
 - Update Python syntax style.
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
 - [beta][dev] Update the build environment to Xcode 12.2 beta 2.
