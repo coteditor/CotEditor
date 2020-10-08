@@ -90,7 +90,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         // observe theme change
         self.themeChangeObserver = ThemeManager.shared.didUpdateSetting
             .filter { [weak self] in $0.old == self?.theme?.name }
-            .compactMap { $0.new }
+            .compactMap(\.new)
             .sink { [weak self] in self?.setTheme(name: $0) }
         
         // observe cursor
