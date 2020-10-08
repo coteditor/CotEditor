@@ -237,7 +237,7 @@ final class UnixScript: Script {
                 document.selectedRange = NSRange(0..<0)
             
             case .pasteBoard:
-                NSPasteboard.general.declareTypes([.string], owner: nil)
+                NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(output, forType: .string)
         }
     }

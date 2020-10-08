@@ -670,8 +670,7 @@ private extension NSPasteboard {
             guard let string = newValue, !string.isEmpty else { return }
             
             let pasteboard = NSPasteboard(name: .find)
-            
-            pasteboard.declareTypes([.string], owner: nil)
+            pasteboard.clearContents()
             pasteboard.setString(string, forType: .string)
         }
     }
