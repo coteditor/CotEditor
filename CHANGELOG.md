@@ -13,6 +13,7 @@ Change Log
 
 ### Improvements
 
+- Update Python syntax style.
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
 - [beta][dev] Update the build environment to Xcode 12.2 beta 2.
 
