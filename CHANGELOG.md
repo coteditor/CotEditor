@@ -18,6 +18,11 @@ Change Log
 - [beta][dev] Update the build environment to Xcode 12.2 beta 2.
 
 
+### Fixes
+
+- [beta] Fix the multiple replacement panel layout on macOS 10.15.
+
+
 
 4.0.0-beta.2 (444)
 --------------------------
