@@ -20,6 +20,7 @@ Change Log
 
 ### Fixes
 
+- [beta] Fix an issue in the CotEditor scripting that the standard error output was not displayed on console.
 - [beta] Fix the multiple replacement panel layout on macOS 10.15.
 
 

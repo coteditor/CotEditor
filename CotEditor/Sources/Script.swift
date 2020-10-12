@@ -108,14 +108,14 @@ struct ScriptFileError: LocalizedError {
 
 
 
-enum ScriptError: LocalizedError {
+enum ScriptError: Error {
     
     case standardError(String)
     case noInputTarget
     case noOutputTarget
     
     
-    var errorDescription: String {
+    var localizedDescription: String {
         
         switch self {
             case .standardError(let string):
