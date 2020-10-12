@@ -17,7 +17,7 @@ Change Log
 - Avoid discarding the current input when a new item is added while another item is in editing in the syntax style editor.
 - Update Python syntax style.
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
-- [beta][trivial] Update the style of the add/remove buttons in the syntax style editor.
+- [beta][trivial] Update the style of the add/remove buttons.
 - [beta][dev] Update the build environment to Xcode 12.2 beta 2.
 
 

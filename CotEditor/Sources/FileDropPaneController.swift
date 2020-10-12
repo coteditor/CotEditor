@@ -24,14 +24,18 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
     
     // MARK: Private Properties
     
+    private var arrayObservers: Set<AnyCancellable> = []
+    
     @IBOutlet private var fileDropController: NSArrayController?
     @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
     @IBOutlet private weak var formatTextView: TokenTextView? {
         
@@ -50,6 +54,15 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // setup add/remove button
+        self.arrayObservers.removeAll()
+        self.fileDropController?.publisher(for: \.canAdd, options: .initial)
+            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 0) }
+            .store(in: &self.arrayObservers)
+        self.fileDropController?.publisher(for: \.canRemove, options: .initial)
+            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) }
+            .store(in: &self.arrayObservers)
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
@@ -149,24 +162,20 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Action Messages
     
-    /// add file drop setting
-    @IBAction func addSetting(_ sender: Any?) {
+    @IBAction func addRemove(_ sender: NSSegmentedControl) {
         
         self.endEditing()
         
-        self.fileDropController?.add(self)
-    }
-    
-    
-    /// remove selected file drop setting
-    @IBAction func removeSetting(_ sender: Any?) {
-        
-        guard let selectedRow = self.tableView?.selectedRow, selectedRow != -1 else { return }
-        
-        self.endEditing()
-        
-        // ask user for deletion
-        self.deleteSetting(at: selectedRow)
+        switch sender.selectedSegment {
+            case 0:  // add
+                self.fileDropController?.add(self)
+                
+            case 1:  // remove
+                self.deleteSelectedSetting()  // ask user for deletion
+                
+            default:
+                preconditionFailure()
+        }
     }
     
     
@@ -221,12 +230,15 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// ask if user really wants to delete the item
-    private func deleteSetting(at row: Int) {
+    private func deleteSelectedSetting() {
         
-        guard let objects = self.fileDropController?.arrangedObjects as? [[String: String]] else { return }
+        guard
+            let objects = self.fileDropController?.selectedObjects as? [[String: String]],
+            !objects.isEmpty
+            else { return }
         
         // obtain extension to delete for display
-        let fileExtension = objects[row][FileDropComposer.SettingKey.extensions] ?? ""
+        let fileExtension = objects.first?[FileDropComposer.SettingKey.extensions] ?? ""
         
         let alert = NSAlert()
         alert.messageText = String(format: "Are you sure you want to delete the file drop setting for “%@”?".localized, fileExtension)
@@ -237,15 +249,10 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             alert.buttons.last?.hasDestructiveAction = true
         }
         
-        alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
+        alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode) in
+            guard returnCode == .alertSecondButtonReturn else { return }
             
-            guard returnCode == .alertSecondButtonReturn else {  // cancelled
-                // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                self.tableView?.rowActionsVisible = false
-                return
-            }
-            
-            self.fileDropController?.remove(atArrangedObjectIndex: row)
+            self.fileDropController?.remove(self)
             self.saveSetting()
         }
     }
