@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for selection object.
+- Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
 
 
 ### Improvements
@@ -20,8 +20,16 @@ Change Log
 
 ### Fixes
 
-- [beta] Fix an issue in the CotEditor scripting that the standard error output was not displayed on console.
+- [beta] Fix an issue in the CotEditor scripting that the standard error output was not displayed on the console.
 - [beta] Fix the multiple replacement panel layout on macOS 10.15.
+
+
+### Known Issues
+
+- Checkmarks are not applied to the corresponding items in the menus for the collapsed toolbar items.
+- [Big Sur] Syntax highlight for the regular expression disappears when the text field becomes in editing (FB8719584).
+- [Big Sur] Screenshots in the help contents are not updated yet.
+- [Big Sur] Document icons are not updated yet for Big Sur style.
 
 
 
