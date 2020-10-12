@@ -436,6 +436,18 @@
 
     ]
   },
+  "Pascal" : {
+    "extensions" : [
+      "pas",
+      "pp"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Perl" : {
     "extensions" : [
       "pl",
