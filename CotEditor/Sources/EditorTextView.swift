@@ -1495,11 +1495,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard !urls.isEmpty else { return false }
         
-        let composer = FileDropComposer(definitions: UserDefaults.standard[.fileDropArray])
+        let fileDropItems = UserDefaults.standard[.fileDropArray].map { FileDropItem(dictionary: $0) }
         let documentURL = self.document?.fileURL
         let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxParser.style, !style.isNone else { return nil }
-            return style.name
+            guard let style = self.document?.syntaxParser.style else { return nil }
+            return style.isNone ? nil : style.name
         }()
         
         let replacementString = urls.reduce(into: "") { (string, url) in
@@ -1507,8 +1507,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 string += textClipping.string
                 return
             }
-            if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
-                string += dropText
+            
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: syntaxStyle) }) {
+                string += fileDropItem.dropText(forFileURL: url, documentURL: documentURL)
                 return
             }
             

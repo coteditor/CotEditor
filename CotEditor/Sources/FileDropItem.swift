@@ -1,5 +1,5 @@
 //
-//  FileDropComposer.swift
+//  FileDropItem.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,17 +26,91 @@
 import Foundation
 import AppKit.NSImageRep
 
-final class FileDropComposer {
+struct FileDropItem {
     
-    /// keys for dicts in DefaultKey.fileDropArray
-    enum SettingKey {
+    var format: String = ""
+    var extensions: [String] = [] {
         
-        static let extensions = "extensions"
-        static let formatString = "formatString"
-        static let scope = "scope"
-        static let description = "description"
+        didSet {
+            self.extensions = extensions
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty }
+        }
+    }
+    var scope: String?
+    var description: String?
+    
+    
+    
+    // MARK: Public Methods
+    
+    /// Test whether the given conditions are supported.
+    ///
+    /// - Parameters:
+    ///   - pathExtension: The file extension.
+    ///   - scope: The syntax style scope.
+    /// - Returns: `True` if the given values supported.
+    func supports(extension pathExtension: String?, scope: String?) -> Bool {
+        
+        guard self.scope == nil || self.scope == scope else { return false }
+        
+        return self.extensions.isEmpty
+            ? true
+            : self.extensions.contains { $0.lowercased() == pathExtension?.lowercased() }
     }
     
+}
+
+
+
+// MARK: Coding
+
+extension FileDropItem {
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case format = "formatString"
+        case extensions
+        case scope
+        case description
+    }
+    
+    
+    init(dictionary: [String: String]) {
+        
+        self.format = dictionary[CodingKeys.format.rawValue] ?? ""
+        
+        if let extensions = dictionary[CodingKeys.extensions.rawValue]?.components(separatedBy: ", ") {
+            self.extensions = extensions
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty }
+        }
+        if let scope = dictionary[CodingKeys.scope.rawValue], !scope.isEmpty {
+            self.scope = scope
+        }
+        self.description = dictionary[CodingKeys.description.rawValue] ?? ""
+    }
+    
+    
+    var dictionary: [String: String] {
+        
+        return [
+            CodingKeys.format: self.format,
+            CodingKeys.extensions: self.extensions.isEmpty ? nil : self.extensions.joined(separator: ", "),
+            CodingKeys.scope: self.scope,
+            CodingKeys.description: self.description,
+        ]
+        .mapKeys(\.rawValue)
+        .compactMapValues { $0 }
+    }
+    
+}
+
+
+
+// MARK: Composition
+
+extension FileDropItem {
     
     enum Token: String, TokenRepresentable {
         
@@ -89,51 +163,33 @@ final class FileDropComposer {
         }
         
     }
-    
-    
-    private let definitions: [[String: String]]
-    
-    
-    
-    // MARK: -
-    // MARK: Lifecycle
-    
-    init(definitions: [[String: String]]) {
-        
-        self.definitions = definitions
-    }
-    
+
     
     
     // MARK: Public Methods
     
-    /// create file drop text
+    /// Create file drop text.
     ///
     /// - Parameters:
     ///   - droppedFileURL: The file URL of dropped file to insert.
     ///   - documentURL: The file URL of the document or nil if it's not yet saved.
-    ///   - syntaxStyle: The document syntax style or nil if style is not specified.
     /// - Returns: The text to insert.
-    func dropText(forFileURL droppedFileURL: URL, documentURL: URL?, syntaxStyle: String?) -> String? {
-        
-        let pathExtension = droppedFileURL.pathExtension
-        
-        guard let template = self.template(forExtension: pathExtension, syntaxStyle: syntaxStyle) else { return nil }
+    func dropText(forFileURL droppedFileURL: URL, documentURL: URL?) -> String {
         
         // replace template
-        var dropText = template
+        var dropText = self.format
             .replacingOccurrences(of: Token.absolutePath.token, with: droppedFileURL.path)
             .replacingOccurrences(of: Token.relativePath.token, with: droppedFileURL.path(relativeTo: documentURL) ?? droppedFileURL.path)
             .replacingOccurrences(of: Token.filename.token, with: droppedFileURL.lastPathComponent)
             .replacingOccurrences(of: Token.filenameWithoutExtension.token, with: droppedFileURL.deletingPathExtension().lastPathComponent)
-            .replacingOccurrences(of: Token.fileExtension.token, with: pathExtension)
-            .replacingOccurrences(of: Token.fileExtensionLowercase.token, with: pathExtension.lowercased())
-            .replacingOccurrences(of: Token.fileExtensionUppercase.token, with: pathExtension.uppercased())
+            .replacingOccurrences(of: Token.fileExtension.token, with: droppedFileURL.pathExtension)
+            .replacingOccurrences(of: Token.fileExtensionLowercase.token, with: droppedFileURL.pathExtension.lowercased())
+            .replacingOccurrences(of: Token.fileExtensionUppercase.token, with: droppedFileURL.pathExtension.uppercased())
             .replacingOccurrences(of: Token.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
         // -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
-        if template.contains(Token.imageWidth.token) || template.contains(Token.imageHeight.token) {
+        if self.format.contains(Token.imageWidth.token) || self.format.contains(Token.imageHeight.token) {
             var imageRep: NSImageRep?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
                 imageRep = NSImageRep(contentsOf: newURL)
@@ -147,47 +203,12 @@ final class FileDropComposer {
         
         // get text content if needed
         // -> Replace this at last because the file content can contain other tokens.
-        if template.contains(Token.fileContent.token) {
+        if self.format.contains(Token.fileContent.token) {
             let content = try? String(contentsOf: droppedFileURL)
             dropText = dropText.replacingOccurrences(of: Token.fileContent.token, with: content ?? "")
         }
         
         return dropText
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// find matched template for path extension and scope
-    ///
-    /// - Parameters:
-    ///   - fileExtension: The extension of file to drop.
-    ///   - syntaxStyle: The document syntax style or nil if style is not specified.
-    /// - Returns: A matched template string for file drop or nil if not found.
-    private func template(forExtension fileExtension: String, syntaxStyle: String?) -> String? {
-        
-        guard !fileExtension.isEmpty else { return nil }
-        
-        let definition = self.definitions.first { definition in
-            // check scope
-            if let scope = definition[SettingKey.scope], !scope.isEmpty,
-                syntaxStyle != scope
-            {
-                return false
-            }
-            
-            // check extensions
-            if let extensions = definition[SettingKey.extensions]?.components(separatedBy: ", "),
-                !extensions.contains(where: { $0.compare(fileExtension, options: .caseInsensitive) == .orderedSame })
-            {
-                return false
-            }
-            
-            return true
-        }
-        
-        return definition?[SettingKey.formatString]
     }
     
 }

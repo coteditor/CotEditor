@@ -189,8 +189,8 @@
 		2A44321D219AC1F8008A0A6B /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A44321B219AC1F8008A0A6B /* PreferencesTabViewController.swift */; };
 		2A443220219AC235008A0A6B /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A44321E219AC235008A0A6B /* PreferencesWindow.storyboard */; };
 		2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
-		2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropComposer.swift */; };
-		2A4682B31D2F6B580005410E /* FileDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropComposer.swift */; };
+		2A4682B21D2F6B580005410E /* FileDropItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropItem.swift */; };
+		2A4682B31D2F6B580005410E /* FileDropItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropItem.swift */; };
 		2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E22093A2D40093E27F /* SyntaxParser.swift */; };
 		2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E22093A2D40093E27F /* SyntaxParser.swift */; };
 		2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E5209630510093E27F /* OutlineExtractor.swift */; };
@@ -525,6 +525,7 @@
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
 		2AC72E8125342726001D3CA0 /* SegmentedArrayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */; };
 		2AC72E8225342726001D3CA0 /* SegmentedArrayControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */; };
+		2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */; };
 		2ACA0C7121A18D6A00723073 /* SyntaxMappingConflictsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C6F21A18D6A00723073 /* SyntaxMappingConflictsView.storyboard */; };
 		2ACA0C7A21A1982300723073 /* EncodingListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C7821A1982300723073 /* EncodingListView.storyboard */; };
 		2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
@@ -997,7 +998,7 @@
 		2A443228219AC9E1008A0A6B /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
 		2A456C431A1EDCFC00395158 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A456C441A1EDD0400395158 /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/ReportTemplate.md; sourceTree = "<group>"; };
-		2A4682B11D2F6B580005410E /* FileDropComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropComposer.swift; sourceTree = "<group>"; };
+		2A4682B11D2F6B580005410E /* FileDropItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropItem.swift; sourceTree = "<group>"; };
 		2A4714E22093A2D40093E27F /* SyntaxParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxParser.swift; sourceTree = "<group>"; };
 		2A4714E5209630510093E27F /* OutlineExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineExtractor.swift; sourceTree = "<group>"; };
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
@@ -1272,6 +1273,7 @@
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedArrayControl.swift; sourceTree = "<group>"; };
+		2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropItemTests.swift; sourceTree = "<group>"; };
 		2ACA0C7021A18D6A00723073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxMappingConflictsView.storyboard; sourceTree = "<group>"; };
 		2ACA0C7321A1932F00723073 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxMappingConflictsView.strings; sourceTree = "<group>"; };
 		2ACA0C7421A1933200723073 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictsView.strings"; sourceTree = "<group>"; };
@@ -2033,7 +2035,7 @@
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
-				2A4682B11D2F6B580005410E /* FileDropComposer.swift */,
+				2A4682B11D2F6B580005410E /* FileDropItem.swift */,
 				2ABF49E2221A54AD00239278 /* TextClipping.swift */,
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
@@ -2230,6 +2232,7 @@
 				2A7135821CFFDC6600ADA555 /* FilePermissionTests.swift */,
 				2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */,
 				2A7B279824E435FE00F02304 /* OutlineTests.swift */,
+				2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */,
 				2A5EDDBC241B64EB00A07810 /* TextClippingTests.swift */,
 				2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */,
 				2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */,
@@ -2855,7 +2858,7 @@
 				2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A5DCE8A1D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
-				2A4682B31D2F6B580005410E /* FileDropComposer.swift in Sources */,
+				2A4682B31D2F6B580005410E /* FileDropItem.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
@@ -3071,6 +3074,7 @@
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
 				2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */,
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
+				2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */,
 				2A8EF014241F0A8A001BDBC0 /* StringLineProcessingTests.swift in Sources */,
 				2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */,
@@ -3156,7 +3160,7 @@
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2AA106B02470F05F00979CB7 /* EncodingListViewController.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
-				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
+				2A4682B21D2F6B580005410E /* FileDropItem.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,

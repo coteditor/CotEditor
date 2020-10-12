@@ -41,7 +41,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         didSet {
             // set tokenizer for format text view
-            formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
+            formatTextView!.tokenizer = FileDropItem.Token.tokenizer
         }
     }
     
@@ -66,15 +66,15 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
-            menu.items += FileDropComposer.Token.pathTokens
+            menu.items += FileDropItem.Token.pathTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
             
             menu.addItem(.separator())
-            menu.items += FileDropComposer.Token.textTokens
+            menu.items += FileDropItem.Token.textTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
             
             menu.addItem(.separator())
-            menu.items += FileDropComposer.Token.imageTokens
+            menu.items += FileDropItem.Token.imageTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
         }
     }
@@ -105,7 +105,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// extension field was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
-        guard control.identifier?.rawValue == FileDropComposer.SettingKey.extensions else { return true }
+        guard control.identifier?.rawValue == FileDropItem.CodingKeys.extensions.rawValue else { return true }
         
         // sanitize
         fieldEditor.string = Self.sanitize(extensionsString: fieldEditor.string)
@@ -137,7 +137,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         }
         
         // select item
-        if let scope = item[FileDropComposer.SettingKey.scope] {
+        if let scope = item[FileDropItem.CodingKeys.scope.rawValue] {
             menu.selectItem(withTitle: scope)
         } else {
             if let emptyItem = menu.itemArray.first(where: { !$0.isSeparatorItem && $0.title.isEmpty }) {
@@ -189,8 +189,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // sanitize
         let sanitized = content
-            .map { $0.filter { !($0.key == FileDropComposer.SettingKey.extensions && $0.value.isEmpty) } }
-            .filter { $0[FileDropComposer.SettingKey.extensions] != nil || $0[FileDropComposer.SettingKey.scope] != nil }
+            .map { $0.filter { !($0.key == FileDropItem.CodingKeys.extensions.rawValue && $0.value.isEmpty) } }
+            .filter { $0[FileDropItem.CodingKeys.extensions.rawValue] != nil || $0[FileDropItem.CodingKeys.scope.rawValue] != nil }
         
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
@@ -238,7 +238,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             else { return }
         
         // obtain extension to delete for display
-        let fileExtension = objects.first?[FileDropComposer.SettingKey.extensions] ?? ""
+        let fileExtension = objects.first?[FileDropItem.CodingKeys.extensions.rawValue] ?? ""
         
         let alert = NSAlert()
         alert.messageText = String(format: "Are you sure you want to delete the file drop setting for “%@”?".localized, fileExtension)
