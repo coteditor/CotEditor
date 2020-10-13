@@ -54,7 +54,7 @@
 "INI" = "INI";
 "Java source" = "Javaソース";
 "JavaScript" = "JavaScript";
-"JSON" = "JSON";
+"JSON document" = "JSON書類";
 "Julia script" = "Juliaスクリプト";
 "Kotlin source" = "Kotlinソース";
 "Lisp script" = "Lispスクリプト";
@@ -78,4 +78,4 @@
 "Verilog source" = "Verilogソース";
 "VHDL source" = "VHDLソース";
 "XML document" = "XML書類";
-"YAML" = "YAML";
+"YAML document" = "YAML書類";

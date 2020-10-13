@@ -539,7 +539,7 @@
 				<string>application/json</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>JSON</string>
+			<string>JSON document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -1111,11 +1111,15 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>YAMLIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>YAML</string>
+			<string>YAML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.yaml</string>
+			</array>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
