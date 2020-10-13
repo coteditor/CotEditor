@@ -699,6 +699,17 @@
 
     ]
   },
+  "VHDL" : {
+    "extensions" : [
+      "vhd"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "XML" : {
     "extensions" : [
       "xml",

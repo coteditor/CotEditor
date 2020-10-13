@@ -8,7 +8,7 @@ Change Log
 ### New Features
 
 - Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
-- Add syntax style for Pascal (Thanks to Beck Christian!).
+- Add syntax styles for Pascal (Thanks to Beck Christian!) and VHDL.
 
 
 ### Improvements

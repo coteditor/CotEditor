@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2018-2019 CotEditor Project
+ © 2018-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -75,5 +75,6 @@
 "Textile document" = "Documento Textile";
 "Tcl source" = "Fonte Tcl";
 "Verilog source" = "Fonte Verilog";
+"VHDL source" = "Fonte VHDL";
 "XML document" = "Documento XML";
 "YAML" = "YAML";
