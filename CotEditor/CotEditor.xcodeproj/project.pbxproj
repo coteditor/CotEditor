@@ -1083,7 +1083,6 @@
 		2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+CursorMovement.swift"; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A6F0E081B5500E100C2D03C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
 		2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Indenting.swift"; sourceTree = "<group>"; };
@@ -1451,7 +1450,7 @@
 		57ED31771FFD892A00F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = pt; path = pt.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		8D15AC360486D014006FF6A4 /* Info-Sparkle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Sparkle.plist"; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1919,8 +1918,7 @@
 		2A3F187D202D8773002F1CA7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2A6F0E081B5500E100C2D03C /* Info.plist */,
-				8D15AC360486D014006FF6A4 /* Info-Sparkle.plist */,
+				8D15AC360486D014006FF6A4 /* Info.plist */,
 				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
 				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
@@ -4196,7 +4194,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
-				INFOPLIST_FILE = "Info-Sparkle.plist";
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "4.0.0-beta.3";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
@@ -4216,7 +4214,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
-				INFOPLIST_FILE = "Info-Sparkle.plist";
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "4.0.0-beta.3";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
