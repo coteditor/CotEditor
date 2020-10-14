@@ -15,6 +15,7 @@ Change Log
 
 - On sorting lines by pattern, evaluate numbers more intelligently when the “treat numbers as numeric value” option is enabled.
 - Avoid discarding the current input when a new item is added while another item is in editing in the syntax style editor.
+- Put only the filename rather than the absolute path for the relative path insertion (`<<<RELATIVE-PATH>>>`) when the document file itself is dropped into the editor.
 - Update Python syntax style.
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
 - [beta][trivial] Update the style of the add/remove buttons.
