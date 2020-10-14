@@ -33,7 +33,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     static let shared = ScriptManager()
     
-    private(set) var currentScriptName: String?
+    @Atomic private(set) var currentScriptName: String?
     
     
     // MARK: Private Properties
