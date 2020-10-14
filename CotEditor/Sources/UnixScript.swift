@@ -157,10 +157,8 @@ final class UnixScript: Script {
                 .sink { [weak document, name = self.name] (output) in
                     do {
                         try Self.applyOutput(output, editor: document, type: outputType)
-                    } catch let error as ScriptError {
-                        ScriptManager.writeToConsole(message: error.localizedDescription, scriptName: name)
                     } catch {
-                        preconditionFailure()
+                        Console.shared.show(message: error.localizedDescription, title: name)
                     }
                 }
             

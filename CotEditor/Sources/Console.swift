@@ -27,7 +27,7 @@ import Cocoa
 
 final class Console {
     
-    struct Log {
+    fileprivate struct Log {
         
         var message: String
         var title: String?
@@ -47,10 +47,20 @@ final class Console {
     // MARK: -
     // MARK: Public Methods
     
-    /// append given message to the console
-    func append(log: Log) {
+    /// Append given message to the console.
+    ///
+    /// - Parameters:
+    ///   - message: The messege to show.
+    ///   - title: The title of the message.
+    func show(message: String, title: String?) {
         
-        (self.panelController.contentViewController as? ConsoleViewController)?.append(log: log)
+        let log = Console.Log(message: message, title: title)
+        let panelController = self.panelController
+        
+        DispatchQueue.main.async {
+            panelController.showWindow(nil)
+            (panelController.contentViewController as? ConsoleViewController)?.append(log: log)
+        }
     }
     
 }
@@ -120,7 +130,7 @@ final class ConsoleViewController: NSViewController {
     // MARK: Public Methods
     
     /// append given message to the console
-    func append(log: Console.Log) {
+    fileprivate func append(log: Console.Log) {
         
         guard let textView = self.textView else { return assertionFailure() }
         
