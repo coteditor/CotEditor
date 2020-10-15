@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PkK-eS-ZqL">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PkK-eS-ZqL">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,13 +15,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyR-V7-rSB">
-                                <rect key="frame" x="8" y="191" width="178" height="118"/>
+                                <rect key="frame" x="8" y="190" width="178" height="119"/>
                                 <clipView key="contentView" id="l1m-DS-Lqo">
-                                    <rect key="frame" x="1" y="1" width="176" height="116"/>
+                                    <rect key="frame" x="1" y="1" width="176" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="dA2-Cq-7bP">
-                                            <rect key="frame" x="0.0" y="0.0" width="176" height="116"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="dA2-Cq-7bP">
+                                            <rect key="frame" x="0.0" y="0.0" width="176" height="117"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -41,11 +41,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="wsF-JR-aIC">
-                                                            <rect key="frame" x="1" y="1" width="164" height="16"/>
+                                                            <rect key="frame" x="1" y="1" width="173" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="Ejc-Kq-tu5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="164" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="173" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="txt" usesSingleLineMode="YES" id="Vce-NT-Qem">
                                                                         <font key="font" metaFont="system"/>
@@ -84,13 +84,13 @@
                                 </scroller>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE9-v3-ohn">
-                                <rect key="frame" x="194" y="191" width="249" height="118"/>
+                                <rect key="frame" x="194" y="190" width="249" height="119"/>
                                 <clipView key="contentView" id="GTq-tY-QkB">
-                                    <rect key="frame" x="1" y="1" width="247" height="116"/>
+                                    <rect key="frame" x="1" y="1" width="247" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="Tx3-Ki-c38">
-                                            <rect key="frame" x="0.0" y="0.0" width="247" height="116"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="Tx3-Ki-c38">
+                                            <rect key="frame" x="0.0" y="0.0" width="247" height="117"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -110,11 +110,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="aur-FD-dfa">
-                                                            <rect key="frame" x="1" y="1" width="235" height="16"/>
+                                                            <rect key="frame" x="1" y="1" width="244" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="TRj-8v-XOg">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="235" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="244" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title=".hiddenFile" usesSingleLineMode="YES" id="o3p-wd-vXY">
                                                                         <font key="font" metaFont="system"/>
@@ -145,7 +145,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="XhE-Mn-Zpf">
-                                    <rect key="frame" x="1" y="103" width="247" height="14"/>
+                                    <rect key="frame" x="1" y="104" width="247" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="u8f-WW-N5g">
@@ -154,13 +154,13 @@
                                 </scroller>
                             </scrollView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasVerticalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O23-4c-28w">
-                                <rect key="frame" x="8" y="37" width="178" height="89"/>
+                                <rect key="frame" x="8" y="36" width="178" height="90"/>
                                 <clipView key="contentView" id="p3k-iS-RPJ">
-                                    <rect key="frame" x="1" y="1" width="176" height="87"/>
+                                    <rect key="frame" x="1" y="1" width="176" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
-                                            <rect key="frame" x="0.0" y="0.0" width="176" height="87"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
+                                            <rect key="frame" x="0.0" y="0.0" width="176" height="88"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -180,11 +180,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="3Kn-Ux-Iql">
-                                                            <rect key="frame" x="1" y="1" width="164" height="16"/>
+                                                            <rect key="frame" x="1" y="1" width="173" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="l2X-H1-Cao">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="164" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="173" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="txt" usesSingleLineMode="YES" id="x5Z-tz-rKt">
                                                                         <font key="font" metaFont="system"/>
@@ -215,7 +215,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="VlN-l9-969">
-                                    <rect key="frame" x="1" y="74" width="176" height="14"/>
+                                    <rect key="frame" x="1" y="75" width="176" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="dxm-ku-Wt8">
@@ -271,7 +271,7 @@
                                 </buttonCell>
                             </button>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SGL-qm-0hH" customClass="SegmentedArrayControl" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="6" y="160" width="55" height="24"/>
+                                <rect key="frame" x="5" y="160" width="55" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="gJJ-nV-bj3">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -284,7 +284,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dAF-hq-JRl" customClass="SegmentedArrayControl" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="192" y="160" width="55" height="24"/>
+                                <rect key="frame" x="191" y="160" width="55" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="A5V-w3-Q9K">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -297,7 +297,7 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fs8-t8-Kpc" customClass="SegmentedArrayControl" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="6" y="6" width="55" height="24"/>
+                                <rect key="frame" x="5" y="6" width="55" height="24"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="38R-UP-A9o">
                                     <font key="font" metaFont="system"/>
                                     <segments>
@@ -385,7 +385,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
     </resources>
 </document>
