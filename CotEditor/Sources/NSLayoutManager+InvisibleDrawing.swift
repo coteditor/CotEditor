@@ -93,10 +93,6 @@ extension InvisibleDrawing {
                 switch invisible {
                     case .newLine:
                         glyphWidth = 0
-                    case .fullwidthSpace where self.propertyForGlyph(at: glyphIndex).contains(.elastic):
-                        glyphWidth = self.attributedString()
-                            .attributedSubstring(from: NSRange(location: charIndex, length: 1))
-                            .boundingRect(with: .infinite, context: nil).width
                     case .otherControl:
                         // for non-zeroAdvancement controls, such as VERTICAL TABULATION
                         glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
