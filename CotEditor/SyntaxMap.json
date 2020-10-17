@@ -436,6 +436,18 @@
 
     ]
   },
+  "Pascal" : {
+    "extensions" : [
+      "pas",
+      "pp"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Perl" : {
     "extensions" : [
       "pl",
@@ -679,6 +691,17 @@
   "Verilog" : {
     "extensions" : [
       "v"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "VHDL" : {
+    "extensions" : [
+      "vhd"
     ],
     "filenames" : [
 

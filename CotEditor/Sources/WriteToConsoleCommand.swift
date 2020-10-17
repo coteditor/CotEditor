@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,11 +33,7 @@ final class WriteToConsoleCommand: NSScriptCommand {
             let message = self.directParameter as? String
             else { return false }
         
-        let title = ScriptManager.shared.currentScriptName
-        let log = Console.Log(message: message, title: title)
-        
-        Console.shared.panelController.showWindow(self)
-        Console.shared.append(log: log)
+        Console.shared.show(message: message, title: ScriptManager.shared.currentScriptName)
         
         return true
     }

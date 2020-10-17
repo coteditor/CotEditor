@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2019 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@
 "INI" = "INI";
 "Java source" = "Codice Java";
 "JavaScript" = "JavaScript";
-"JSON" = "JSON";
+"JSON document" = "Documento JSON";
 "Julia script" = "Script Julia";
 "Kotlin source" = "Codice Kotlin";
 "Lisp script" = "Script Lisp";
@@ -76,5 +76,6 @@
 "Textile document" = "Documento Textile";
 "Tcl source" = "Codice Tcl";
 "Verilog source" = "Codice Verilog";
+"VHDL source" = "Codice VHDL";
 "XML document" = "Documento XML";
-"YAML" = "YAML";
+"YAML document" = "Documento YAML";

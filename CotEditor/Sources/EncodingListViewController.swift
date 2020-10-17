@@ -70,7 +70,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
             
             case .utf8:
                 textField.attributedStringValue = [encoding.attributedName(),
-                                                   encoding.attributedName(withUTF8BOM: true)].joined(separator: .newLine)
+                                                   encoding.attributedName(withUTF8BOM: true)].joined(separator: "\n")
             
             default:
                 textField.attributedStringValue = encoding.attributedName()

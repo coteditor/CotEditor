@@ -24,20 +24,24 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
     
     // MARK: Private Properties
     
+    private var arrayObservers: Set<AnyCancellable> = []
+    
     @IBOutlet private var fileDropController: NSArrayController?
     @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
     @IBOutlet private weak var formatTextView: TokenTextView? {
         
         didSet {
             // set tokenizer for format text view
-            formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
+            formatTextView!.tokenizer = FileDropItem.Token.tokenizer
         }
     }
     
@@ -51,17 +55,26 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         super.viewDidLoad()
         
+        // setup add/remove button
+        self.arrayObservers.removeAll()
+        self.fileDropController?.publisher(for: \.canAdd, options: .initial)
+            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 0) }
+            .store(in: &self.arrayObservers)
+        self.fileDropController?.publisher(for: \.canRemove, options: .initial)
+            .sink { [weak self] in self?.addRemoveButton?.setEnabled($0, forSegment: 1) }
+            .store(in: &self.arrayObservers)
+        
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
-            menu.items += FileDropComposer.Token.pathTokens
+            menu.items += FileDropItem.Token.pathTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
             
             menu.addItem(.separator())
-            menu.items += FileDropComposer.Token.textTokens
+            menu.items += FileDropItem.Token.textTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
             
             menu.addItem(.separator())
-            menu.items += FileDropComposer.Token.imageTokens
+            menu.items += FileDropItem.Token.imageTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
         }
     }
@@ -92,7 +105,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// extension field was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
-        guard control.identifier?.rawValue == FileDropComposer.SettingKey.extensions else { return true }
+        guard control.identifier?.rawValue == FileDropItem.CodingKeys.extensions.rawValue else { return true }
         
         // sanitize
         fieldEditor.string = Self.sanitize(extensionsString: fieldEditor.string)
@@ -124,7 +137,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         }
         
         // select item
-        if let scope = item[FileDropComposer.SettingKey.scope] {
+        if let scope = item[FileDropItem.CodingKeys.scope.rawValue] {
             menu.selectItem(withTitle: scope)
         } else {
             if let emptyItem = menu.itemArray.first(where: { !$0.isSeparatorItem && $0.title.isEmpty }) {
@@ -149,24 +162,20 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     // MARK: Action Messages
     
-    /// add file drop setting
-    @IBAction func addSetting(_ sender: Any?) {
+    @IBAction func addRemove(_ sender: NSSegmentedControl) {
         
         self.endEditing()
         
-        self.fileDropController?.add(self)
-    }
-    
-    
-    /// remove selected file drop setting
-    @IBAction func removeSetting(_ sender: Any?) {
-        
-        guard let selectedRow = self.tableView?.selectedRow, selectedRow != -1 else { return }
-        
-        self.endEditing()
-        
-        // ask user for deletion
-        self.deleteSetting(at: selectedRow)
+        switch sender.selectedSegment {
+            case 0:  // add
+                self.fileDropController?.add(self)
+                
+            case 1:  // remove
+                self.deleteSelectedSetting()  // ask user for deletion
+                
+            default:
+                preconditionFailure()
+        }
     }
     
     
@@ -180,8 +189,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // sanitize
         let sanitized = content
-            .map { $0.filter { !($0.key == FileDropComposer.SettingKey.extensions && $0.value.isEmpty) } }
-            .filter { $0[FileDropComposer.SettingKey.extensions] != nil || $0[FileDropComposer.SettingKey.scope] != nil }
+            .map { $0.filter { !($0.key == FileDropItem.CodingKeys.extensions.rawValue && $0.value.isEmpty) } }
+            .filter { $0[FileDropItem.CodingKeys.extensions.rawValue] != nil || $0[FileDropItem.CodingKeys.scope.rawValue] != nil }
         
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
@@ -221,12 +230,15 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// ask if user really wants to delete the item
-    private func deleteSetting(at row: Int) {
+    private func deleteSelectedSetting() {
         
-        guard let objects = self.fileDropController?.arrangedObjects as? [[String: String]] else { return }
+        guard
+            let objects = self.fileDropController?.selectedObjects as? [[String: String]],
+            !objects.isEmpty
+            else { return }
         
         // obtain extension to delete for display
-        let fileExtension = objects[row][FileDropComposer.SettingKey.extensions] ?? ""
+        let fileExtension = objects.first?[FileDropItem.CodingKeys.extensions.rawValue] ?? ""
         
         let alert = NSAlert()
         alert.messageText = String(format: "Are you sure you want to delete the file drop setting for “%@”?".localized, fileExtension)
@@ -237,15 +249,10 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             alert.buttons.last?.hasDestructiveAction = true
         }
         
-        alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
+        alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode) in
+            guard returnCode == .alertSecondButtonReturn else { return }
             
-            guard returnCode == .alertSecondButtonReturn else {  // cancelled
-                // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                self.tableView?.rowActionsVisible = false
-                return
-            }
-            
-            self.fileDropController?.remove(atArrangedObjectIndex: row)
+            self.fileDropController?.remove(self)
             self.saveSetting()
         }
     }

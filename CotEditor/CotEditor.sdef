@@ -146,6 +146,15 @@
             <responds-to command="uncomment">
                 <cocoa method="handleUncomment:"/>
             </responds-to>
+            <responds-to command="smarten quotes">
+                <cocoa method="handleSmartenQuotes:"/>
+            </responds-to>
+            <responds-to command="straighten quotes">
+                <cocoa method="handleStraightenQuotes:"/>
+            </responds-to>
+            <responds-to command="smarten dashes">
+                <cocoa method="handleSmartenDashes:"/>
+            </responds-to>
             <responds-to command="normalize unicode">
                 <cocoa method="handleNormalizeUnicode:"/>
             </responds-to>
@@ -309,6 +318,21 @@
                 <type type="integer" list="yes"/>
             </parameter>
             <result type="text"/>
+        </command>
+        
+        <command name="smarten quotes" code="cEd1SmQt" description="Convert straight quotes to typographical quotes.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to normalize."/>
+        </command>
+        
+        <command name="straighten quotes" code="cEd1StQt" description="Convert typographical quotes to straight quotes.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to normalize."/>
+        </command>
+        
+        <command name="smarten dashes" code="cEd1SmDa" description="Convert double hyphens to dashes.">
+            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
+            <direct-parameter type="text selection" description="The selection to normalize."/>
         </command>
         
         <command name="normalize unicode" code="cEd1UNml" description="Normalize Unicode.">

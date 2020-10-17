@@ -2,6 +2,44 @@
 Change Log
 ==========================
 
+4.0.0-beta.3 (446)
+--------------------------
+
+### New Features
+
+- Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
+- Add syntax styles for Pascal (Thanks to Beck Christian!) and VHDL.
+
+
+### Improvements
+
+- On sorting lines by pattern, evaluate numbers more intelligently when the “treat numbers as numeric value” option is enabled.
+- Avoid discarding the current input when a new item is added while another item is in editing in the syntax style editor.
+- Put only the filename rather than the absolute path for the relative path insertion (`<<<RELATIVE-PATH>>>`) when the document file itself is dropped into the editor.
+- Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
+- Update Python syntax style.
+- [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
+- [beta] Update some toolbar icons.
+- [beta][trivial] Update the style of the add/remove buttons.
+- [beta][dev] Update the build environment to Xcode 12.2 beta 3.
+
+
+### Fixes
+
+- [beta] Fix an issue in the CotEditor scripting with UNIX scripts that the standard error output was not displayed on the console.
+- [beta] Fix an issue in the CotEditor scripting with UNIX scripts that the output was occasionally not applied.
+- [beta] Fix the multiple replacement panel layout on macOS 10.15.
+
+
+### Known Issues
+
+- Checkmarks are not applied to the corresponding items in the menus for the collapsed toolbar items.
+- [Big Sur] Syntax highlight for the regular expression disappears when the text field becomes in editing (FB8719584).
+- [Big Sur] Screenshots in the help contents are not updated yet.
+- [Big Sur] Document icons are not updated yet for Big Sur style.
+
+
+
 4.0.0-beta.2 (444)
 --------------------------
 
@@ -10,6 +48,7 @@ Change Log
 - Round the corners of current line highlight.
 - [beta][Big Sur] Match the inspector background to desktop color.
 - [beta][tirivial] Update titlebar color.
+
 
 ### Fixes
 

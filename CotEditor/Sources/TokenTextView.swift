@@ -178,7 +178,7 @@ extension TokenRepresentable {
         let item = NSMenuItem()
         item.target = target
         item.action = #selector(TokenTextView.insertVariable)
-        item.attributedTitle = [token, description].joined(separator: .newLine)
+        item.attributedTitle = [token, description].joined(separator: "\n")
         item.representedObject = self.token
         
         return item

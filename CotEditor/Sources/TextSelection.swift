@@ -26,41 +26,37 @@
 
 import Cocoa
 
-typealias OSACaseType = FourCharCode
-private extension OSACaseType {
+private enum OSACaseType: FourCharCode {
     
-    static let lowercase = FourCharCode(code: "cClw")
-    static let uppercase = FourCharCode(code: "cCup")
-    static let capitalized = FourCharCode(code: "cCcp")
+    case lowercase = "cClw"
+    case uppercase = "cCup"
+    case capitalized = "cCcp"
 }
 
 
-typealias OSAWidthType = FourCharCode
-private extension OSAWidthType {
+private enum OSAWidthType: FourCharCode {
     
-    static let full = FourCharCode(code: "rWfl")
-    static let half = FourCharCode(code: "rWhf")
+    case full = "rWfl"
+    case half = "rWhf"
 }
 
 
-typealias OSAKanaType = FourCharCode
-private extension OSAKanaType {
+private enum OSAKanaType: FourCharCode {
     
-    static let hiragana = FourCharCode(code: "cHgn")
-    static let katakana = FourCharCode(code: "cKkn")
+    case hiragana = "cHgn"
+    case katakana = "cKkn"
 }
 
 
-typealias OSAUnicodeNormalizationType = FourCharCode
-private extension OSAUnicodeNormalizationType {
+private enum OSAUnicodeNormalizationType: FourCharCode {
     
-    static let NFC = FourCharCode(code: "cNfc")
-    static let NFD = FourCharCode(code: "cNfd")
-    static let NFKC = FourCharCode(code: "cNkc")
-    static let NFKD = FourCharCode(code: "cNkd")
-    static let NFKCCF = FourCharCode(code: "cNcf")
-    static let modifiedNFC = FourCharCode(code: "cNmc")
-    static let modifiedNFD = FourCharCode(code: "cNfm")
+    case nfc = "cNfc"
+    case nfd = "cNfd"
+    case nfkc = "cNkc"
+    case nfkd = "cNkd"
+    case nfkcCF = "cNcf"
+    case modifiedNFC = "cNmc"
+    case modifiedNFD = "cNfm"
 }
 
 
@@ -256,17 +252,16 @@ final class TextSelection: NSObject {
         
         guard
             let argument = command.evaluatedArguments?["caseType"] as? UInt32,
+            let type = OSACaseType(rawValue: argument),
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument)
         switch type {
-            case OSACaseType.lowercase:
+            case .lowercase:
                 textView.lowercaseWord(command)
-            case OSACaseType.uppercase:
+            case .uppercase:
                 textView.uppercaseWord(command)
-            case OSACaseType.capitalized:
+            case .capitalized:
                 textView.capitalizeWord(command)
-            default: break
         }
     }
     
@@ -276,15 +271,14 @@ final class TextSelection: NSObject {
         
         guard
             let argument = command.evaluatedArguments?["widthType"] as? UInt32,
+            let type = OSAWidthType(rawValue: argument),
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument)
         switch type {
-            case OSAWidthType.half:
+            case .half:
                 textView.exchangeHalfwidthRoman(command)
-            case OSAWidthType.full:
+            case .full:
                 textView.exchangeFullwidthRoman(command)
-            default: break
         }
     }
     
@@ -294,16 +288,36 @@ final class TextSelection: NSObject {
         
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
+            let type = OSAKanaType(rawValue: argument),
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument)
         switch type {
-            case OSAKanaType.hiragana:
+            case .hiragana:
                 textView.exchangeHiragana(command)
-            case OSAKanaType.katakana:
+            case .katakana:
                 textView.exchangeKatakana(command)
-            default: break
         }
+    }
+    
+    
+    /// convert straight quotes to typographical pairs
+    @objc func handleSmartenQuotes(_ command: NSScriptCommand) {
+        
+        self.textView?.perform(Selector(("replaceQuotesInSelection:")))
+    }
+    
+    
+    /// convert typographical (curly) quotes to straight
+    @objc func handleStraightenQuotes(_ command: NSScriptCommand) {
+        
+        self.textView?.straightenQuotesInSelection(command)
+    }
+    
+    
+    /// convert double hyphens to em dashes (—)
+    @objc func handleSmartenDashes(_ command: NSScriptCommand) {
+        
+        self.textView?.perform(Selector(("replaceDashesInSelection:")))
     }
     
     
@@ -312,25 +326,24 @@ final class TextSelection: NSObject {
         
         guard
             let argument = command.evaluatedArguments?["unfType"] as? UInt32,
+            let type = OSAUnicodeNormalizationType(rawValue: argument),
             let textView = self.textView else { return }
         
-        let type = FourCharCode(argument)
         switch type {
-            case OSAUnicodeNormalizationType.NFC:
+            case .nfc:
                 textView.normalizeUnicodeWithNFC(command)
-            case OSAUnicodeNormalizationType.NFD:
+            case .nfd:
                 textView.normalizeUnicodeWithNFD(command)
-            case OSAUnicodeNormalizationType.NFKC:
+            case .nfkc:
                 textView.normalizeUnicodeWithNFKC(command)
-            case OSAUnicodeNormalizationType.NFKD:
+            case .nfkd:
                 textView.normalizeUnicodeWithNFKD(command)
-            case OSAUnicodeNormalizationType.NFKCCF:
+            case .nfkcCF:
                 textView.normalizeUnicodeWithNFKCCF(command)
-            case OSAUnicodeNormalizationType.modifiedNFC:
+            case .modifiedNFC:
                 textView.normalizeUnicodeWithModifiedNFC(command)
-            case OSAUnicodeNormalizationType.modifiedNFD:
+            case .modifiedNFD:
                 textView.normalizeUnicodeWithModifiedNFD(command)
-            default: break
         }
     }
     

@@ -23,16 +23,16 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-cd ../Frameworks
+cd ../Frameworks/Sparkle
 
 derivedData=$(mktemp -d "${TMPDIR}Sparkle.XXXXXX")
 
 # build Sparkle
 echo "📦 Building Sparkle"
-xcodebuild build -project Sparkle/Sparkle.xcodeproj -scheme 'Distribution' -derivedDataPath $derivedData -configuration 'Release'
+xcodebuild -scheme Distribution -configuration Release -derivedDataPath $derivedData build
 
 # copy results to Build/ directory
-mkdir -p Build
+mkdir -p ../Build
 items=(
     'org.sparkle-project.InstallerLauncher.xpc'
     'org.sparkle-project.InstallerConnection.xpc'
@@ -42,5 +42,6 @@ items=(
 for item in ${items[@]}; do
     file="${derivedData}/Build/Products/Release/${item}"
     echo "🚛 Copying ${item}..."
-    cp -R ${file}* Build/
+    rm -r ../Build/${item}
+    cp -R ${file}* ../Build
 done

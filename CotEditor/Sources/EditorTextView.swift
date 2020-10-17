@@ -1287,50 +1287,39 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard !self.selectedRange.isEmpty else { return NSSound.beep() }
         
-        let string = self.string
-        var selections = [NSAttributedString]()
-        var propertyList = [Int]()
         let lineEnding = self.document?.lineEnding ?? .lf
         
         // substring all selected attributed strings
-        let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        for selectedRange in selectedRanges {
-            let plainText = (string as NSString).substring(with: selectedRange)
-            let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
-            
-            // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
-            self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
-                guard let color = value as? NSColor else { return }
+        let selections: [NSAttributedString] = self.selectedRanges
+            .map(\.rangeValue)
+            .map { (selectedRange) in
+                let plainText = (self.string as NSString).substring(with: selectedRange)
+                let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
                 
-                let localRange = range.shifted(offset: -selectedRange.location)
-                
-                styledText.addAttribute(.foregroundColor, value: color, range: localRange)
-            }
-            
-            // apply document's line ending
-            if lineEnding != .lf {
-                for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
-                    let characterRange = NSRange(index...index, in: plainText)
+                // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
+                self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
+                    guard let color = value as? NSColor else { return }
                     
-                    styledText.replaceCharacters(in: characterRange, with: lineEnding.string)
+                    let localRange = range.shifted(offset: -selectedRange.location)
+                    
+                    styledText.addAttribute(.foregroundColor, value: color, range: localRange)
                 }
+                
+                // apply document's line ending
+                if lineEnding != .lf {
+                    for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
+                        let characterRange = NSRange(index...index, in: plainText)
+                        
+                        styledText.replaceCharacters(in: characterRange, with: lineEnding.string)
+                    }
+                }
+                
+                return styledText
             }
-            
-            selections.append(styledText)
-            propertyList.append(plainText.components(separatedBy: .newlines).count)
-        }
         
-        var pasteboardString = NSAttributedString()
-        
-        // join attributed strings
-        let attrLineEnding = NSAttributedString(string: lineEnding.string)
-        for selection in selections {
-            // join with newline string
-            if !pasteboardString.string.isEmpty {
-                pasteboardString += attrLineEnding
-            }
-            pasteboardString += selection
-        }
+        // prepare objects for rectangular selection
+        let pasteboardString = selections.joined(separator: lineEnding.string)
+        let propertyList = selections.map { $0.string.components(separatedBy: .newlines).count }
         
         // set to paste board
         let pboard = NSPasteboard.general
@@ -1506,11 +1495,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard !urls.isEmpty else { return false }
         
-        let composer = FileDropComposer(definitions: UserDefaults.standard[.fileDropArray])
+        let fileDropItems = UserDefaults.standard[.fileDropArray].map { FileDropItem(dictionary: $0) }
         let documentURL = self.document?.fileURL
         let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxParser.style, !style.isNone else { return nil }
-            return style.name
+            guard let style = self.document?.syntaxParser.style else { return nil }
+            return style.isNone ? nil : style.name
         }()
         
         let replacementString = urls.reduce(into: "") { (string, url) in
@@ -1518,8 +1507,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 string += textClipping.string
                 return
             }
-            if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
-                string += dropText
+            
+            if let fileDropItem = fileDropItems.first(where: { $0.supports(extension: url.pathExtension, scope: syntaxStyle) }) {
+                string += fileDropItem.dropText(forFileURL: url, documentURL: documentURL)
                 return
             }
             

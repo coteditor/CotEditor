@@ -33,7 +33,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     static let shared = ScriptManager()
     
-    private(set) var currentScriptName: String?
+    @Atomic private(set) var currentScriptName: String?
     
     
     // MARK: Private Properties
@@ -204,7 +204,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     self.currentScriptName = script.name
                     try script.run { [weak self] (error) in
                         if let error = error {
-                            Self.writeToConsole(message: error.localizedDescription, scriptName: script.name)
+                            Console.shared.show(message: error.localizedDescription, title: script.name)
                         }
                         if self?.currentScriptName == script.name {
                             self?.currentScriptName = nil
@@ -228,17 +228,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Methods
     
-    class func writeToConsole(message: String, scriptName: String) {
-        
-        let log = Console.Log(message: message, title: scriptName)
-        
-        DispatchQueue.main.async {
-            Console.shared.panelController.showWindow(nil)
-            Console.shared.append(log: log)
-        }
-    }
-    
-    
     /// Create an Apple Event caused by the given `Document`.
     ///
     /// - Bug:
@@ -252,7 +241,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Returns: A descriptor for an Apple Event by the `Document`.
     private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
         
-        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
+        let event = NSAppleEventDescriptor(eventClass: "cEd1",
                                            eventID: eventID,
                                            targetDescriptor: nil,
                                            returnID: AEReturnID(kAutoGenerateReturnID),
@@ -276,7 +265,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             do {
                 try script.run(withAppleEvent: event) { (error) in
                     if let error = error {
-                        Self.writeToConsole(message: error.localizedDescription, scriptName: script.name)
+                        Console.shared.show(message: error.localizedDescription, title: script.name)
                     }
                 }
             } catch {

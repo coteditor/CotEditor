@@ -147,19 +147,26 @@ final class UnixScript: Script {
         }
         
         // read output asynchronously for safe with huge output
-        let output = Atomic<String?>(nil)
         var outputObserver: AnyCancellable?
-        if outputType != nil {
+        if let outputType = outputType {
             outputObserver = NotificationCenter.default.publisher(for: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading)
                 .compactMap { $0.userInfo?[NSFileHandleNotificationDataItem] as? Data }
                 .compactMap { String(data: $0, encoding: .utf8) }
-                .assign(to: \.wrappedValue, on: output)
+                .first()
+                .receive(on: DispatchQueue.main)
+                .sink { [weak document, name = self.name] (output) in
+                    do {
+                        try Self.applyOutput(output, editor: document, type: outputType)
+                    } catch {
+                        Console.shared.show(message: error.localizedDescription, title: name)
+                    }
+                }
             
             outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
         }
         
         // execute
-        task.execute(withArguments: arguments) { [weak document] (error) in
+        task.execute(withArguments: arguments) { (error) in
             // on user cancellation
             if (error as? POSIXError)?.code == .ENOTBLK {
                 outputObserver?.cancel()
@@ -168,22 +175,10 @@ final class UnixScript: Script {
             
             // obtain standard error
             let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
-            let message = String(data: errorData, encoding: .utf8)
-            let scriptError = message.flatMap { $0.isEmpty ? nil : ScriptError.standardError($0) }
+            let errorString = String(data: errorData, encoding: .utf8)
+            let scriptError = errorString.flatMap { $0.isEmpty ? nil : ScriptError.standardError($0) }
             
-            DispatchQueue.main.async {
-                if let outputType = outputType, let output = output.wrappedValue {
-                    do {
-                        try Self.applyOutput(output, editor: document, type: outputType)
-                    } catch let error as ScriptError {
-                        return completionHandler(error)
-                    } catch {
-                        preconditionFailure()
-                    }
-                }
-                
-                completionHandler(scriptError)
-            }
+            completionHandler(scriptError)
         }
     }
     
@@ -237,7 +232,7 @@ final class UnixScript: Script {
                 document.selectedRange = NSRange(0..<0)
             
             case .pasteBoard:
-                NSPasteboard.general.declareTypes([.string], owner: nil)
+                NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(output, forType: .string)
         }
     }

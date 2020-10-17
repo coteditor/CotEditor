@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@
 "INI" = "INI";
 "Java source" = "Source Java";
 "JavaScript" = "JavaScript";
-"JSON" = "JSON";
+"JSON document" = "Document JSON";
 "Julia script" = "Script Julia";
 "Kotlin source" = "Source Kotlin";
 "Lisp script" = "Script Lisp";
@@ -76,5 +76,6 @@
 "Textile document" = "Document Textile";
 "Tcl source" = "Source Tcl";
 "Verilog source" = "Source Verilog";
+"VHDL source" = "Source VHDL";
 "XML document" = "Document XML";
-"YAML" = "YAML";
+"YAML document" = "Document YAML";

@@ -39,8 +39,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var opacityObserver: AnyCancellable?
-    private var sheetAvailabilityObserver: AnyCancellable?
+    private var progressIndicatorAvailabilityObserver: AnyCancellable?
     private var themeChangeObserver: AnyCancellable?
+    
+    @Published private var sheetAvailability = false
+    private var sheetAvailabilityObserver: AnyCancellable?
     
     private lazy var outlineParseTask = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
     private weak var syntaxHighlightProgress: Progress?
@@ -87,7 +90,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         // observe theme change
         self.themeChangeObserver = ThemeManager.shared.didUpdateSetting
             .filter { [weak self] in $0.old == self?.theme?.name }
-            .compactMap { $0.new }
+            .compactMap(\.new)
             .sink { [weak self] in self?.setTheme(name: $0) }
         
         // observe cursor
@@ -116,11 +119,26 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         super.viewWillAppear()
         
+        guard let window = self.view.window else { return assertionFailure() }
+        
         // observe opacity setting change
-        if let window = self.view.window as? DocumentWindow {
+        if let window = window as? DocumentWindow {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
                 .assign(to: \.backgroundAlpha, on: window)
         }
+        
+        // observe availability of sheet attachment for sytnax highlight indicator
+        let publishers = [NSWindow.didChangeOcclusionStateNotification,
+                          NSWindow.willBeginSheetNotification,
+                          NSWindow.didEndSheetNotification]
+            .map { NotificationCenter.default.publisher(for: $0, object: window) }
+        
+        self.sheetAvailabilityObserver = Publishers.MergeMany(publishers)
+            .map { $0.object as! NSWindow }
+            .merge(with: Just(window))  // set current state
+            .map { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
+            .removeDuplicates()
+            .sink { [weak self] in self?.sheetAvailability = $0 }
     }
     
     
@@ -129,6 +147,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         super.viewDidDisappear()
         
         self.opacityObserver = nil
+        self.sheetAvailabilityObserver = nil
     }
     
     
@@ -886,7 +905,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             range = nil
         }
         
-        guard let parser = self.syntaxParser else { return }
+        guard let parser = self.syntaxParser else { return assertionFailure() }
         
         // start parse
         let progress = parser.highlight(around: range)
@@ -897,52 +916,30 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         guard threshold > 0, highlightLength > threshold else { return }
         
         self.syntaxHighlightProgress = progress
-        if let progress = progress {
-            self.presentHighlightIndicator(progress: progress)
-        }
+        
+        guard progress != nil else { return }
+        
+        self.progressIndicatorAvailabilityObserver = self.$sheetAvailability
+            .filter { $0 }
+            .sink { [weak self] _ in self?.presentSyntaxHighlightProgress() }
     }
     
     
-    /// Show syntax highlight progress as sheet.
-    ///
-    /// - Parameter progress: The highlight progress
-    private func presentHighlightIndicator(progress: Progress) {
+    /// Show syntax highlight progress as a sheet.
+    private func presentSyntaxHighlightProgress() {
         
-        guard let window = self.view.window else {
-            return assertionFailure("Expected window to be non-nil.")
-        }
+        self.progressIndicatorAvailabilityObserver = nil
         
-        // display indicator first when window is visible
-        let presentBlock = { [weak self, weak progress] in
-            
-            self?.sheetAvailabilityObserver = nil
-            
-            guard
-                let self = self,
-                let progress = progress,
-                !progress.isFinished, !progress.isCancelled
-                else { return }
-            
-            let indicator = NSStoryboard(name: "CompactProgressView").instantiateInitialController { (coder) in
-                ProgressViewController(coder: coder, progress: progress, message: "Coloring text…".localized)
-            }!
-            
-            self.presentAsSheet(indicator)
-        }
+        guard
+            let progress = self.syntaxHighlightProgress,
+            !progress.isFinished, !progress.isCancelled
+            else { return }
         
-        if window.occlusionState.contains(.visible), window.attachedSheet == nil {
-            presentBlock()
-            
-        } else {
-            let publishers = [NSWindow.didChangeOcclusionStateNotification,
-                              NSWindow.didEndSheetNotification]
-                .map { NotificationCenter.default.publisher(for: $0, object: window) }
-            
-            self.sheetAvailabilityObserver = Publishers.MergeMany(publishers)
-                .map { $0.object as! NSWindow }
-                .filter { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
-                .sink { _ in presentBlock() }
-        }
+        let indicator = NSStoryboard(name: "CompactProgressView").instantiateInitialController { (coder) in
+            ProgressViewController(coder: coder, progress: progress, message: "Coloring text…".localized)
+        }!
+        
+        self.presentAsSheet(indicator)
     }
     
     

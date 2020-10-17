@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ import XCTest
 
 final class FourCharCodeTests: XCTestCase {
     
-    func testInitializerr() {
+    func testInitializer() {
         
-        XCTAssertEqual(FourCharCode(code: "TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
-        XCTAssertEqual(FourCharCode(code: "rtfd"), NSHFSTypeCodeFromFileType("'rtfd'"))
+        XCTAssertEqual(FourCharCode(stringLiteral: "TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
+        XCTAssertEqual("rtfd", NSHFSTypeCodeFromFileType("'rtfd'"))
     }
     
 }

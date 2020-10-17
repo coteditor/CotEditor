@@ -80,6 +80,11 @@ extension InvisibleDrawing {
             
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
+            var lineFragmentRange: NSRange = .notFound
+            let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineFragmentRange, withoutAdditionalLayout: true).origin
+            let glyphLocation = self.location(forGlyphAt: glyphIndex)
+            let symbolOrigin = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset - glyphHeight)
+            
             let path: NSBezierPath
             if let cache = pathCache[codeUnit] {
                 path = cache
@@ -88,15 +93,15 @@ extension InvisibleDrawing {
                 switch invisible {
                     case .newLine:
                         glyphWidth = 0
-                    case .fullwidthSpace where self.propertyForGlyph(at: glyphIndex).contains(.elastic):
-                        glyphWidth = self.attributedString()
-                            .attributedSubstring(from: NSRange(location: charIndex, length: 1))
-                            .boundingRect(with: .infinite, context: nil).width
                     case .otherControl:
                         // for non-zeroAdvancement controls, such as VERTICAL TABULATION
                         glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
                     default:
-                        glyphWidth = self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
+                        // -> Avoid invoking `.enclosingRectForGlyph(at:in:)` as much as possible
+                        //    that takes long time with long unwrapped lines.
+                        glyphWidth = lineFragmentRange.contains(glyphIndex + 1)
+                            ? self.location(forGlyphAt: glyphIndex + 1).x - glyphLocation.x
+                            : self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
                 }
                 
                 let size = CGSize(width: glyphWidth, height: glyphHeight)
@@ -107,10 +112,6 @@ extension InvisibleDrawing {
                     pathCache[codeUnit] = path
                 }
             }
-            
-            let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-            let glyphLocation = self.location(forGlyphAt: glyphIndex)
-            let symbolOrigin = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset - glyphHeight)
             
             path.transform(using: .init(translationByX: symbolOrigin.x, byY: symbolOrigin.y))
             path.fill()

@@ -439,6 +439,43 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 
 
 <section>
+<h3>スマート引用符</h3>
+
+<dl class="tree">
+	<dt><code class="command">smarten quotes</code></dt>
+	<dd>まっすぐな引用符をカールした引用符に変更する。<span class="added">CotEditor 4.0.0で追加</span></dd>
+
+	<dt><code class="command">straighten quotes</code></dt>
+	<dd>カールした引用符をまっすぐな引用符に変更する。<span class="added">CotEditor 4.0.0で追加</span></dd>
+</dl>
+
+<p>対象にできるのは`selection`オブジェクトだけです。</p>
+
+<figure>
+	<pre class="source"><code class="AppleScript">smarten quotes selection of front document</code></pre>
+	<figcaption>選択位置の引用符をカールしたものに変換する。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>スマートダッシュ</h3>
+
+<dl class="tree">
+	<dt><code class="command">smarten dashes</code></dt>
+	<dd>連続したハイフンをダッシュ記号に変更する。<span class="added">CotEditor 4.0.0で追加</span></dd>
+</dl>
+
+<p>対象にできるのは`selection`オブジェクトだけです。</p>
+
+<figure>
+	<pre class="source"><code class="AppleScript">smarten dashes selection of front document</code></pre>
+	<figcaption>選択位置の連続したハイフンをダッシュ記号に変換する。</figcaption>
+</figure>
+</section>
+
+
+<section>
 <h3>normalize unicode</h3>
 
 <dl class="tree">

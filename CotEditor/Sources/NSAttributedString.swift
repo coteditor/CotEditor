@@ -27,9 +27,6 @@ import Foundation.NSAttributedString
 
 extension NSAttributedString {
     
-    static let newLine = NSAttributedString(string: "\n")
-    
-    
     /// whole range
     var range: NSRange {
         
@@ -83,6 +80,16 @@ extension Sequence where Self.Element == NSAttributedString {
         }
         
         return result.copy() as! NSAttributedString
+    }
+    
+    
+    /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
+    ///
+    /// - Parameter separator: A string to insert between each of the elements in this sequence.
+    /// - Returns: A single, concatenated attributed string.
+    func joined(separator: String) -> Element {
+        
+        return self.joined(separator: .init(string: separator))
     }
     
 }

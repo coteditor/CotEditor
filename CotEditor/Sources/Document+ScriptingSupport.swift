@@ -26,12 +26,40 @@
 
 import Cocoa
 
-typealias OSALineEnding = FourCharCode
-private extension OSALineEnding {
+private enum OSALineEnding: FourCharCode {
     
-    static let lf = FourCharCode(code: "leLF")
-    static let cr = FourCharCode(code: "leCR")
-    static let crlf = FourCharCode(code: "leCL")
+    case lf = "leLF"
+    case cr = "leCR"
+    case crlf = "leCL"
+    
+    
+    var lineEnding: LineEnding {
+        
+        switch self {
+            case .lf:
+                return .lf
+            case .cr:
+                return .cr
+            case .crlf:
+                return .crlf
+        }
+    }
+    
+    
+    init?(lineEnding: LineEnding) {
+        
+        switch lineEnding {
+            case .lf:
+                self = .lf
+            case .cr:
+                self = .cr
+            case .crlf:
+                self = .crlf
+            default:
+                return nil
+        }
+    }
+    
 }
 
 
@@ -106,32 +134,13 @@ extension Document {
     @objc var lineEndingChar: FourCharCode {
         
         get {
-            switch self.lineEnding {
-                case .lf:
-                    return .lf
-                case .cr:
-                    return .cr
-                case .crlf:
-                    return .crlf
-                default:
-                    return .lf
-            }
+            return (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue
         }
         
         set {
-            let type: LineEnding = {
-                switch newValue {
-                    case .lf:
-                        return .lf
-                    case .cr:
-                        return .cr
-                    case .crlf:
-                        return .crlf
-                    default:
-                        return .lf
-                }
-            }()
-            self.changeLineEnding(to: type)
+            let lineEnding = OSALineEnding(rawValue: newValue)?.lineEnding
+            
+            self.changeLineEnding(to: lineEnding ?? .lf)
         }
     }
     

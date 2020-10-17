@@ -66,11 +66,6 @@ final class StatusBarController: NSViewController {
             (self.view as? NSVisualEffectView)?.material = .windowBackground
         }
         
-        // workaround for the dimmed initial text color
-        // (FB8721478, Xcode 12.2-beta + macOS 11)
-        self.encodingPopUpButton?.contentTintColor = .labelColor
-        self.lineEndingPopUpButton?.contentTintColor = .labelColor
-        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
@@ -189,7 +184,7 @@ final class StatusBarController: NSViewController {
             status.append(.formatted(label: "Column") + .formatted(state: result?.format(\.column)))
         }
         
-        let attrStatus = status.joined(separator: .init(string: "   ")).mutable
+        let attrStatus = status.joined(separator: "   ").mutable
         
         // truncate tail
         let paragraphStyle = NSParagraphStyle.default.mutable

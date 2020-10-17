@@ -230,7 +230,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 self.textStorageObserver = NotificationCenter.default
                     .publisher(for: NSTextStorage.didProcessEditingNotification, object: self.textStorage)
                     .map { $0.object as! NSTextStorage }
-                    .map { $0.string.isEmpty }
+                    .map(\.string.isEmpty)
                     .removeDuplicates()
                     .receive(on: RunLoop.main)
                     .assign(to: \.isWhitepaper, on: windowController)

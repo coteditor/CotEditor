@@ -38,7 +38,8 @@
 		<li>書類ウインドウを再デザイン</li>
 	</ul></li>
 	<li>Apple Siliconをサポート</li>
-	<li>Dockerfileシンタックススタイルを追加</li>
+	<li>新しいAppleScript/JXAコマンド<code>smarten quotes</code>, <code>straighten quotes</code>, <code>smarten dashes</code>を<code>selection</code>オブジェクトに追加</li>
+    <li>Pascal（Beck Christianさんに感謝!）, Dockerfile, VHDLのシンタックススタイルを追加</li>
 </ul>
 </section>
 
@@ -53,6 +54,7 @@
 	<li>デフォルトのテーマをDendrobatesからAnuraに変更</li>
 	<li>Unicodeコードポイントで文字入力をするときに入力UIがカーソルのすぐ上に出るように変更</li>
 	<li>「保存時に行末の空白を削除」オプションの空白を削除するタイミングを保存時から入力中（随時）に変更し、一般ペインにあった設定項目も編集ペインに移動</li>
+    <li>行を条件で並び替えで「数字を数値として扱う」オプションが有効なとき、キーに含まれる数値をより賢く解釈するよう改良</li>
 	<li>ナビゲーションバーにあるエディタを分割ボタンを右クリックするとエディタの分割方向が変更できるよう改良</li>
 	<li>エディタが分割されていなくても書類のエディタ分割方向が変更できるよう改良</li>
 	<li>環境設定の連携ペインを廃止し内容を一般ペインに移動</li>
@@ -61,11 +63,15 @@
 	<li>行番号部分をスワイプしてもエディタをスクロールできるよう改良</li>
 	<li>RubyやPythonなどUnixスクリプトで書かれたCotEditorスクリプトが、以前はフォーマットペインで設定したファイルエンコーディング優先順位をもとに解釈されていたのをつねにUTF-8として解釈するよう変更</li>
 	<li>書類内容が空でウインドウを閉じる時確認ダイアログが表示されないときはウインドウの閉じるボタンに編集済みを示すドット記号が表示されないように変更</li>
+	<li>シンタックススタイルエディタで他の項目を編集中に項目を追加したとき、編集中の入力が破棄されないように変更</li>
+	<li>とても長い行を折り返していないときの不可視文字描画によるパフォーマンス低下を改善</li>
 	<li>現在行ハイライトの角を丸く</li>
-	<li>Swift, SVG, Rubyシンタックススタイルを更新</li>
-	<li>Shell Scriptシンタックススタイルを更新 (ansimitaさんに感謝!).</li>
+	<li>編集している書類ファイル自身がエディタにドロップされたときも、相対パスのファイルドロップ設定 (<code>&lt;&lt;&lt;RELATIVE-PATH&gt;&gt;&gt;</code>) に対して絶対パスではなくファイル名だけを挿入</li>
+	<li>Swift, SVG, Python, Rubyシンタックススタイルを更新</li>
+	<li>Shell Scriptシンタックススタイルを更新 (ansimitaさんに感謝!)</li>
 	<li>ページガイドの表示を切り替えるツールバーボタンを廃止</li>
-	<li>otEditor 1.xで使われていたplist形式の古いシンタックス定義ファイルを読み込む機能を廃止.</li>
+	<li>CotEditor 1.xで使われていたplist形式の古いシンタックス定義ファイルを読み込む機能を廃止</li>
+	<li><span class="trivial">trivial</span>: 環境設定ウインドウのレイアウトを改良</li>
 	<li><span class="trivial">trivial</span>: ツールバーアイコンのツールチップをより現状を表すように改良</li>
 	<li><span class="trivial">trivial</span>: 縦書きのときの行番号描画計算を最適化</li>
 	<li><span class="trivial">trivial</span>: 通常の横書きのときはnon-contiguous layoutをつねに有効に</li>
@@ -80,7 +86,7 @@
 <h2>修正</h2>
 
 <ul>
-	<li><span class="trivial">trivial</span>: 現在使われているシンタックス定義が削除されたときにツールバーのシンタックスメニューの選択状態を修正</li>
+	<li><span class="trivial">trivial</span>: 現在使われているシンタックス定義が削除されたときのツールバーのシンタックスメニューの選択状態を修正</li>
 </ul>
 </section>
 </article>
@@ -4230,7 +4236,7 @@
 
 <ul>
 	<li>Mac App Store でリリースされるようになりました。</li>
-	<li><a href="https://kapeli.com/dash" rel="external" title="Dash for OS X - API Documentation Browser, Snippet Manager - Kapeli">Dash</a> API ドキュメントブラウザとの連携のための CotEditor スクリプトがリリースされました: <a href="https://github.com/coteditor/Dash-CotEditor-Plugin" rel="external" title="Dash CotEditor Plugin - GitHub">Dash CotEditor Plugin/GitHub</a>.</li>
+	<li><a href="https://kapeli.com/dash" rel="external" title="Dash for OS X - API Documentation Browser, Snippet Manager - Kapeli">Dash</a> API ドキュメントブラウザとの連携のための CotEditor スクリプトがリリースされました: <a href="https://github.com/coteditor/Dash-CotEditor-Plugin" rel="external" title="Dash CotEditor Plugin - GitHub">Dash CotEditor Plugin/GitHub</a></li>
 </ul>
 </section>
 </article>
