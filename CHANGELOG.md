@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.0.0-beta.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- Reduce the priority that CotEditor implicitly becomes the default application for specific file types.
+
+
+
 4.0.0-beta.3 (446)
 --------------------------
 
