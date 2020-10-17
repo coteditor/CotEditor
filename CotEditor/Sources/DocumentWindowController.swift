@@ -592,7 +592,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = "Emoji & Symbols".localized
                 item.toolTip = "Show Emoji & Symbols palette".localized
                 if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "face.smiling", accessibilityDescription: item.label)
+                    item.image = NSImage(named: "emoji")
                 } else {
                     item.image = #imageLiteral(resourceName: "Emoji")
                 }

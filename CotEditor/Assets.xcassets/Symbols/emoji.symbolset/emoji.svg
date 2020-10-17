@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3300" height="2200">
+ 
+ <g id="Notes">
+  <style>
+   text { fill: black; stroke: none;
+          font-family: -apple-system,&quot;SF Pro Display&quot;,&quot;SF Pro Text&quot;,Helvetica,sans-serif; }
+   .separator { fill: none; stroke: black; stroke-width: 0.5; }
+  </style>
+  
+  <rect height="2200" id="artboard" style="fill:white" width="3300"/>
+  
+  <g title="header" transform="translate(263 292)">
+   <line class="separator" x1="0" x2="2773"/>
+   
+   <g transform="translate(0 30)">
+    <text style="font-weight:bold;">Weight/Scale Variations</text>
+    
+    <g style="text-anchor:middle;">
+     <text x="296.711">Ultralight</text>
+     <text x="593.422">Thin</text>
+     <text x="890.13">Light</text>
+     <text x="1186.84">Regular</text>
+     <text x="1483.56">Medium</text>
+     <text x="1780.27">Semibold</text>
+     <text x="2076.98">Bold</text>
+     <text x="2373.69">Heavy</text>
+     <text x="2670.4">Black</text>
+    </g>
+   </g>
+  </g>
+  
+  <g title="footer" transform="translate(263 1903)">
+   <line class="separator" x1="0" x2="2773"/>
+   
+   <g transform="translate(2773 0)" style="text-anchor:end;">
+    <text id="template-version" y="30">Template v.2.0</text>
+    <text y="48">Requires Xcode 12 or greater</text>
+    <text y="66">Generated from face.smiling</text>
+    <text y="84">Typeset at 100 points</text>
+   </g>
+  </g>
+  
+  <g transform="translate(263 0)">
+   <text y="726">Small</text>
+   <text y="1156">Medium</text>
+   <text y="1586">Large</text>
+  </g>
+ </g>
+ 
+ <g id="Guides">
+  <style>
+   #H-reference      { fill:#27AAE1; stroke:none; }
+   [id^="Baseline"],
+   [id^="Capline"]   { fill:none; stroke:#27AAE1; stroke-width:0.5; }
+   [id$="-margin"]   { fill:none; stroke:#00AEEF; stroke-width:0.5; }
+  </style>
+  
+  <g id="H-reference" transform="translate(339 696)">
+   <path d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+  </g>
+  <line id="Baseline-S" x1="263" y1="696" x2="3036" y2="696"/>
+  <line id="Capline-S" x1="263" y1="625.5" x2="3036" y2="625.5"/>
+  <g id="H-reference" transform="translate(339 1126)">
+   <path class="st6" d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+  </g>
+  <line id="Baseline-M" x1="263" y1="1126" x2="3036" y2="1126"/>
+  <line id="Capline-M" x1="263" y1="1055.5" x2="3036" y2="1055.5"/>
+  <g id="H-reference" transform="translate(339 1556)">
+   <path d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+  </g>
+  <line id="Baseline-L" x1="263" y1="1556" x2="3036" y2="1556"/>
+  <line id="Capline-L" x1="263" y1="1485.5" x2="3036" y2="1485.5"/>
+  <line id="left-margin" x1="1391.3" x2="1391.3" y1="1030.79" y2="1150.12"/>
+  <line id="right-margin" x1="1508.39" x2="1508.39" y1="1030.79" y2="1150.12"/>
+ </g>
+ 
+ <g id="Symbols">
+  <g id="Regular-L" transform="translate(1449.845 1520.75) scale(1.29)">
+   <circle fill="none" stroke="black" stroke-width="8" r="48"/>
+   <ellipse rx="6" ry="7.5" cx= "15" cy="-10.5"/>
+   <ellipse rx="6" ry="7.5" cx="-15" cy="-10.5"/>
+   <path d="M-27.2,18.5C-21.9,29.8-12.9,35.4,0,35.4c13.1,0,22-5.7,27.3-16.9C18.1,20.9,8.9,22.2,0,22.2C-8.9,22.2-18.1,20.9-27.2,18.5z"/>
+   <path fill="none" stroke="black" stroke-width="5" stroke-linejoin="round" d="M0,35.4c-16.3,0-26.3-8.8-30.6-26.8c10.2,3,20.6,4.6,30.6,4.6c10.1,0,20.4-1.6,30.8-4.7C26.5,26.4,16.5,35.4,0,35.4z"/>
+  </g>
+  <g id="Regular-M" transform="translate(1449.845 1090.75)">
+   <circle fill="none" stroke="black" stroke-width="8" r="48"/>
+   <ellipse rx="6" ry="7.5" cx= "15" cy="-10.5"/>
+   <ellipse rx="6" ry="7.5" cx="-15" cy="-10.5"/>
+   <path d="M-27.2,18.5C-21.9,29.8-12.9,35.4,0,35.4c13.1,0,22-5.7,27.3-16.9C18.1,20.9,8.9,22.2,0,22.2C-8.9,22.2-18.1,20.9-27.2,18.5z"/>
+   <path fill="none" stroke="black" stroke-width="4.8" stroke-linejoin="round" d="M0,35.4c-16.3,0-26.3-8.8-30.6-26.8c10.2,3,20.6,4.6,30.6,4.6c10.1,0,20.4-1.6,30.8-4.7C26.5,26.4,16.5,35.4,0,35.4z"/>
+  </g>
+  <g id="Regular-S" transform="translate(1449.845 660.75) scale(0.783)">
+   <circle fill="none" stroke="black" stroke-width="8" r="48"/>
+   <ellipse rx="6" ry="7.5" cx= "15" cy="-10.5"/>
+   <ellipse rx="6" ry="7.5" cx="-15" cy="-10.5"/>
+   <path d="M-27.2,18.5C-21.9,29.8-12.9,35.4,0,35.4c13.1,0,22-5.7,27.3-16.9C18.1,20.9,8.9,22.2,0,22.2C-8.9,22.2-18.1,20.9-27.2,18.5z"/>
+   <path fill="none" stroke="black" stroke-width="4.6" stroke-linejoin="round" d="M0,35.4c-16.3,0-26.3-8.8-30.6-26.8c10.2,3,20.6,4.6,30.6,4.6c10.1,0,20.4-1.6,30.8-4.7C26.5,26.4,16.5,35.4,0,35.4z"/>
+  </g>
+ </g>
+</svg>

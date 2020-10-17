@@ -19,6 +19,7 @@ Change Log
 - Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
 - Update Python syntax style.
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
+- [beta] Update some toolbar icons.
 - [beta][trivial] Update the style of the add/remove buttons.
 - [beta][dev] Update the build environment to Xcode 12.2 beta 3.
 
