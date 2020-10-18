@@ -7,7 +7,6 @@ Change Log
 
 ### New Features
 
-- Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
 - Add syntax styles for Pascal (Thanks to Beck Christian!) and VHDL.
 
 
@@ -16,8 +15,6 @@ Change Log
 - On sorting lines by pattern, evaluate numbers more intelligently when the “treat numbers as numeric value” option is enabled.
 - Avoid discarding the current input when a new item is added while another item is in editing in the syntax style editor.
 - Put only the filename rather than the absolute path for the relative path insertion (`<<<RELATIVE-PATH>>>`) when the document file itself is dropped into the editor.
-- Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
-- Update Python syntax style.
 - [beta] Horizontally center the contents of the preferences panes (Thanks to zom-san!).
 - [beta] Update some toolbar icons.
 - [beta][trivial] Update the style of the add/remove buttons.
@@ -87,8 +84,6 @@ Change Log
 - Scroll editor by swiping the line number area.
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
 - Avoid showing the "edited" indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
-- Update Swift, SVG, and Ruby syntax styles.
-- Update Shell Script syntax style (thanks to ansimita!).
 - Remove the toolbar button to toggle page guide visibility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Improve tooltips of toolbar icons to reflect the current document state.
@@ -108,6 +103,25 @@ Change Log
 
 - Some of help contents are not updated yet.
 - Document icons are not updated yet for Big Sur style.
+
+
+3.9.7 (437)
+--------------------------
+
+### New Features
+
+- Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
+
+
+### Improvements
+
+- Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
+- Update Shell Script (thanks to ansimita!), Python, Ruby, Swift, and SVG syntax styles.
+
+
+### Fixes
+
+- Fix the jump button for the theme URL.
 
 
 
