@@ -14,6 +14,7 @@ Change Log
 
 - Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
 - Update Python, Ruby, Swift and SVG syntax styles.
+- Update Shell Script syntax style (thanks to ansimita!).
 
 
 ### Fixes
