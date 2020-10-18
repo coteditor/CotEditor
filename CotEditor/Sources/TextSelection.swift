@@ -307,6 +307,20 @@ final class TextSelection: NSObject {
     }
     
     
+    /// convert straight quotes to typographical pairs
+    @objc func handleSmartenQuotes(_ command: NSScriptCommand) {
+        
+        self.textView?.perform(Selector(("replaceQuotesInSelection:")))
+    }
+    
+    
+    /// convert typographical (curly) quotes to straight
+    @objc func handleStraightenQuotes(_ command: NSScriptCommand) {
+        
+        self.textView?.straightenQuotesInSelection(command)
+    }
+    
+    
     /// Unicode normalization
     @objc func handleNormalizeUnicode(_ command: NSScriptCommand) {
         

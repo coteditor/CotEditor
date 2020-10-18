@@ -5,6 +5,11 @@ Change Log
 3.9.7 (unreleased)
 --------------------------
 
+### New Features
+
+- Add new AppleScript/JXA commands `smarten quotes` and `straighten quotes` for `selection` object.
+
+
 ### Fixes
 
 - Fix the jump button for theme URL.
