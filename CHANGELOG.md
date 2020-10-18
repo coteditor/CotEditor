@@ -114,6 +114,7 @@ Change Log
 - Document icons are not updated yet for Big Sur style.
 
 
+
 3.9.7 (437)
 --------------------------
 
