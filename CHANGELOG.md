@@ -13,13 +13,12 @@ Change Log
 ### Improvements
 
 - Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
-- Update Python, Ruby, Swift and SVG syntax styles.
-- Update Shell Script syntax style (thanks to ansimita!).
+- Update Shell Script (thanks to ansimita!), Python, Ruby, Swift, and SVG syntax styles.
 
 
 ### Fixes
 
-- Fix the jump button for theme URL.
+- Fix the jump button for the theme URL.
 
 
 
