@@ -10,6 +10,11 @@ Change Log
 - Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
 
 
+### Improvements
+
+- Optimize the performance of invisible character drawing, especially with very-long unwrapped lines.
+
+
 ### Fixes
 
 - Fix the jump button for theme URL.
