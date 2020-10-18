@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add new AppleScript/JXA commands `smarten quotes` and `straighten quotes` for `selection` object.
+- Add new AppleScript/JXA commands `smarten quotes`, `straighten quotes`, and `smarten dashes` for `selection` object.
 
 
 ### Fixes
