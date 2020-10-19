@@ -8,7 +8,7 @@ Change Log
 ### Improvements
 
 - Reduce the priority that CotEditor implicitly becomes the default application for specific file types.
-- Update syntax style for Pascal (Thanks to cbnbg!).
+- [beta] Update syntax style for Pascal (Thanks to cbnbg!).
 
 
 
