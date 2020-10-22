@@ -40,7 +40,7 @@ final class Console {
     
     static let shared = Console()
     
-    let panelController = NSWindowController.instantiate(storyboard: "ConsolePanel")
+    private(set) lazy var panelController = NSWindowController.instantiate(storyboard: "ConsolePanel")
     
     
     
@@ -55,9 +55,10 @@ final class Console {
     func show(message: String, title: String?) {
         
         let log = Console.Log(message: message, title: title)
-        let panelController = self.panelController
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let panelController = self?.panelController else { return }
+            
             panelController.showWindow(nil)
             (panelController.contentViewController as? ConsoleViewController)?.append(log: log)
         }

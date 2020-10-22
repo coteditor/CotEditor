@@ -11,6 +11,11 @@ Change Log
 - [beta] Update syntax style for Pascal (Thanks to cbnbg!).
 
 
+### Fixes
+
+- [beta.3] Fix anissue on beta.3 that the application crahed when the console window is called first from a script.
+
+
 
 4.0.0-beta.3 (446)
 --------------------------
