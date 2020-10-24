@@ -736,6 +736,8 @@ extensions:
 filenames: []
 interpreters: []
 keywords:
+- beginString: abstract
+  ignoreCase: true
 - beginString: and
   ignoreCase: true
 - beginString: array
@@ -834,7 +836,11 @@ keywords:
   ignoreCase: true
 - beginString: out
   ignoreCase: true
+- beginString: override
+  ignoreCase: true
 - beginString: packed
+  ignoreCase: true
+- beginString: private
   ignoreCase: true
 - beginString: procedure
   ignoreCase: true
@@ -842,7 +848,15 @@ keywords:
   ignoreCase: true
 - beginString: property
   ignoreCase: true
+- beginString: protected
+  ignoreCase: true
+- beginString: public
+  ignoreCase: true
+- beginString: published
+  ignoreCase: true
 - beginString: raise
+  ignoreCase: true
+- beginString: read
   ignoreCase: true
 - beginString: record
   ignoreCase: true
@@ -880,17 +894,32 @@ keywords:
   ignoreCase: true
 - beginString: var
   ignoreCase: true
+- beginString: virtual
+  ignoreCase: true
 - beginString: while
   ignoreCase: true
 - beginString: with
+  ignoreCase: true
+- beginString: write
+  ignoreCase: true
 - beginString: xor
+  ignoreCase: true
 metadata:
   author: cbnbg
-  description: Pascal/Object Pascal
+  description: 'Pascal/Object Pascal
+
+
+    v1.1.0
+
+    - some optimizations to structures
+
+    - added some keywords
+
+    '
   distributionURL: https://coteditor.com
-  lastModified: '2020-10-10'
+  lastModified: '2020-10-18'
   license: Same as CotEditor
-  version: '1.0.0'
+  version: '1.1.0'
 numbers:
 - beginString: \b(\d+\.?\d*|\.\d+)(e[-+]\d+)?[dfm]?\b
   ignoreCase: true
@@ -909,14 +938,14 @@ outlineMenu:
   italic: true
   keyString: $1
   underline: true
-- beginString: (?:.*)function(.*)(?:\;|\()
+- beginString: ^([ \t]*)(?:[a-z]* )*function(.*)(?:\;|\()
   description: Function
   ignoreCase: true
-  keyString: $1
-- beginString: (?:.*)procedure(.*)(?:\;|\()
+  keyString: $2
+- beginString: ^([ \t]*)(?:[a-z]* )*procedure(.*)(?:\;|\()
   description: Procedure
   ignoreCase: true
-  keyString: $1
+  keyString: $2
 - beginString: \{(?:.*)\$(?:.*)(?:region)(?:.*)\'(.*)\'\}
   bold: true
   description: Region
@@ -924,27 +953,33 @@ outlineMenu:
   italic: true
   keyString: ($1)
   underline: false
-- beginString: \bimplementation\b
+- beginString: ^\s*(type)
   bold: true
-  description: Implementation
+  description: Type
   ignoreCase: true
   italic: true
-  keyString: '---- $0'
-- beginString: \buses\b
-  bold: true
-  description: Uses
-  ignoreCase: true
-  italic: true
-  keyString: '---- $0'
-- beginString: \binterface\b
+  keyString: '---- $1'
+- beginString: ^\s*(interface)
   bold: true
   description: Interface
   ignoreCase: true
   italic: true
-  keyString: '---- $0'
+  keyString: '---- $1'
+- beginString: ^\s*(uses)
+  bold: true
+  description: Uses
+  ignoreCase: true
+  italic: true
+  keyString: '---- $1'
+- beginString: ^\s*(implementation)
+  bold: true
+  description: Implementation
+  ignoreCase: true
+  italic: true
+  keyString: '---- $1'
 - beginString: (^\s*)(?:\T)(?:.*)(?<!\:)\=(?:.*)
   bold: true
-  description: Type
+  description: Types (start with T)
   ignoreCase: true
   italic: true
   keyString: type $0

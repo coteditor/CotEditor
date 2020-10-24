@@ -54,6 +54,7 @@ article > header h1 {
 article > header p {
 	color: -apple-system-secondary-label;
 	margin: 0;
+	text-indent: 0 !important;
 }
 article h2 {
 	font-size: 105%;

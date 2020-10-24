@@ -2,12 +2,28 @@
 Change Log
 ==========================
 
+4.0.0-beta.4 (448)
+--------------------------
+
+### Improvements
+
+- Reduce the priority that CotEditor implicitly becomes the default application for specific file types.
+- [beta] Update syntax style for Pascal (Thanks to cbnbg!).
+
+
+### Fixes
+
+- [beta.3] Fix an issue on beta.3 that the application crashed when the console window is called first from a script.
+- [beta.3] Fix an issue in the CotEditor scripting with UNIX scripts that the output was still occasionally not applied.
+
+
+
 4.0.0-beta.3 (446)
 --------------------------
 
 ### New Features
 
-- Add syntax styles for Pascal (Thanks to Beck Christian!) and VHDL.
+- Add syntax styles for Pascal (Thanks to cbnbg!) and VHDL.
 
 
 ### Improvements
@@ -103,6 +119,7 @@ Change Log
 
 - Some of help contents are not updated yet.
 - Document icons are not updated yet for Big Sur style.
+
 
 
 3.9.7 (437)

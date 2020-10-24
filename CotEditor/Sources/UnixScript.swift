@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Foundation
 import AppKit.NSDocument
 
@@ -106,7 +105,7 @@ final class UnixScript: Script {
         let input: String?
         if let inputType = InputType(scanning: script) {
             do {
-                input = try self.readInputString(type: inputType, editor: document)
+                input = try Self.readInput(type: inputType, editor: document)
             } catch let error as ScriptError {
                 return completionHandler(error)
             } catch {
@@ -133,44 +132,41 @@ final class UnixScript: Script {
         
         // set input data if available
         if let data = input?.data(using: .utf8) {
-            inPipe.fileHandleForWriting.writeabilityHandler = { (handle: FileHandle) in
+            inPipe.fileHandleForWriting.writeabilityHandler = { (handle) in
                 // write input data chunk by chunk
                 // -> to avoid freeze by a huge input data, whose length is more than 65,536 (2^16).
                 for chunk in data.components(length: 65_536) {
                     handle.write(chunk)
                 }
-                handle.closeFile()
-                
-                // inPipe must avoid releasing before `writeabilityHandler` is invocated
-                inPipe.fileHandleForWriting.writeabilityHandler = nil
             }
         }
         
         // read output asynchronously for safe with huge output
-        var outputObserver: AnyCancellable?
-        if let outputType = outputType {
-            outputObserver = NotificationCenter.default.publisher(for: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading)
-                .compactMap { $0.userInfo?[NSFileHandleNotificationDataItem] as? Data }
-                .compactMap { String(data: $0, encoding: .utf8) }
-                .first()
-                .receive(on: DispatchQueue.main)
-                .sink { [weak document, name = self.name] (output) in
+        var outputData = Data()
+        if outputType != nil {
+            outPipe.fileHandleForReading.readabilityHandler = { (handle) in
+                outputData.append(handle.availableData)
+            }
+        }
+        
+        // execute
+        task.execute(withArguments: arguments) { [weak document, name = self.name] (error) in
+            outPipe.fileHandleForReading.readabilityHandler = nil
+            
+            // on user cancellation
+            if (error as? POSIXError)?.code == .ENOTBLK {
+                return completionHandler(nil)
+            }
+            
+            // apply output
+            if let outputType = outputType, let output = String(data: outputData, encoding: .utf8) {
+                DispatchQueue.main.async {
                     do {
                         try Self.applyOutput(output, editor: document, type: outputType)
                     } catch {
                         Console.shared.show(message: error.localizedDescription, title: name)
                     }
                 }
-            
-            outPipe.fileHandleForReading.readToEndOfFileInBackgroundAndNotify()
-        }
-        
-        // execute
-        task.execute(withArguments: arguments) { (error) in
-            // on user cancellation
-            if (error as? POSIXError)?.code == .ENOTBLK {
-                outputObserver?.cancel()
-                return completionHandler(nil)
             }
             
             // obtain standard error
@@ -186,10 +182,14 @@ final class UnixScript: Script {
     
     // MARK: Private Methods
     
-    /// return document content conforming to the input type
+    /// Read the document content.
     ///
+    /// - Parameters:
+    ///   - type: The type of input target.
+    ///   - editor: The editor to read the input.
+    /// - Returns: The read string.
     /// - Throws: `ScriptError`
-    private func readInputString(type: InputType, editor: Editable?) throws -> String {
+    private static func readInput(type: InputType, editor: Editable?) throws -> String {
         
         guard let editor = editor else { throw ScriptError.noInputTarget }
         
@@ -202,8 +202,12 @@ final class UnixScript: Script {
     }
     
     
-    /// apply results conforming to the output type to the frontmost document
+    /// Apply script output to the desired target.
     ///
+    /// - Parameters:
+    ///   - output: The output string.
+    ///   - editor: The editor to write the output.
+    ///   - type: The type of output target.
     /// - Throws: `ScriptError`
     private static func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
