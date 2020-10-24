@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.0.0-beta.4 (unreleased)
+4.0.0-beta.4 (448)
 --------------------------
 
 ### Improvements
@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- [beta.3] Fix an issue on beta.3 that the application crahed when the console window is called first from a script.
+- [beta.3] Fix an issue on beta.3 that the application crashed when the console window is called first from a script.
 - [beta.3] Fix an issue in the CotEditor scripting with UNIX scripts that the output was still occasionally not applied.
 
 
