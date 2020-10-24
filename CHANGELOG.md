@@ -13,7 +13,8 @@ Change Log
 
 ### Fixes
 
-- [beta.3] Fix anissue on beta.3 that the application crahed when the console window is called first from a script.
+- [beta.3] Fix an issue on beta.3 that the application crahed when the console window is called first from a script.
+- [beta.3] Fix an issue in the CotEditor scripting with UNIX scripts that the output was still occasionally not applied.
 
 
 
