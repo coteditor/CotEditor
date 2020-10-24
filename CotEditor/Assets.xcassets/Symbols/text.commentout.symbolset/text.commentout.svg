@@ -2,12 +2,11 @@
 <!DOCTYPE svg
 PUBLIC "-//W3C//DTD SVG 1.1//EN"
        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="3300" height="2200">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="3300" height="2200">
  
  <g id="Notes">
   <style>
-   text { fill: black; stroke: none;
-          font-family: -apple-system,&quot;SF Pro Display&quot;,&quot;SF Pro Text&quot;,Helvetica,sans-serif; }
+   text { font-family: -apple-system, sans-serif; }
    .separator { fill: none; stroke: black; stroke-width: 0.5; }
   </style>
   
