@@ -5,6 +5,10 @@ Change Log
 4.0.0-beta.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- [trivial] Fix an issue that the i-beam for the combination of the vertical text orientation and a light theme cropped.
+
 
 
 4.0.0-beta.4 (448)

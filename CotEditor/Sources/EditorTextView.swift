@@ -1443,8 +1443,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// use legible white-based custom i-beam cursor for dark theme
     private func invalidateCursor() {
         
-        guard self.theme?.isDarkTheme == true else { return }
-        
         switch NSCursor.current {
             case .iBeamCursorForVerticalLayout:
                 NSCursor.lightIBeamCursorForVerticalLayout.set()
