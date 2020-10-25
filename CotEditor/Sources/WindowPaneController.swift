@@ -43,8 +43,6 @@ final class WindowPaneController: NSViewController {
     @IBOutlet private weak var rtlWritingDirectionButton: NSButton?
     @IBOutlet private weak var verticalWritingDirectionButton: NSButton?
     
-    @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
-    
     
     
     // MARK: -
@@ -90,14 +88,7 @@ final class WindowPaneController: NSViewController {
     
     
     
-    // MARK: Actions
-    
-    /// opaque setting did update
-    @IBAction func changeEditorOpaque(_ sender: NSControl) {
-        
-        self.editorOpaque = (sender.doubleValue == 1.0)
-    }
-    
+    // MARK: Action Messages
     
     /// A radio button of writingDirection was clicked
     @IBAction func updateWritingDirectionSetting(_ sender: NSControl) {
