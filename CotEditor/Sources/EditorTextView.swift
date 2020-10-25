@@ -346,6 +346,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.windowOpacityObserver = self.window?.publisher(for: \.isOpaque, options: .initial)
             .sink { [weak self] in
                 self?.drawsBackground = $0
+                self?.enclosingScrollView?.drawsBackground = $0
                 self?.lineHighLightColor = self?.lineHighLightColor?.withAlphaComponent($0 ? 1.0 : 0.7)
             }
     }
@@ -1402,6 +1403,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
+        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)

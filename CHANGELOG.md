@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [beta] Draw the background of the area scrolled over the editor also with the theme color.
 - [beta.4][Big Sur] Update the emoji toolbar icon for Dark mode.
 
 
