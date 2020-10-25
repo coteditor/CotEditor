@@ -64,7 +64,7 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"
   <line id="Baseline-S" x1="263" y1="696" x2="3036" y2="696"/>
   <line id="Capline-S" x1="263" y1="625.5" x2="3036" y2="625.5"/>
   <g id="H-reference" transform="translate(339 1126)">
-   <path class="st6" d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
+   <path d="M1,0h2.7L13-24.5h32.7L55.1,0h2.6L30.6-70.5h-2.5L1,0z M29.3-67.1L29.3-67.1l15.6,40.4h-31L29.3-67.1z"/>
   </g>
   <line id="Baseline-M" x1="263" y1="1126" x2="3036" y2="1126"/>
   <line id="Capline-M" x1="263" y1="1055.5" x2="3036" y2="1055.5"/>
