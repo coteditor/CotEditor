@@ -7,6 +7,16 @@
     {
       "filename" : "emoji.svg",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "emoji.dark.svg",
+      "idiom" : "universal"
     }
   ]
 }

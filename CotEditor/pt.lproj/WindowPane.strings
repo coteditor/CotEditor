@@ -93,5 +93,3 @@
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Opacidade do editor:";
-/* Class = "NSTextFieldCell"; title = "Non-opaque editor can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
-"gdC-8B-U5B.title" = "Um editor não opaco pode ficar lento em documentos muito grandes.";

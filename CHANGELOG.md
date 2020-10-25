@@ -2,6 +2,23 @@
 Change Log
 ==========================
 
+4.0.0-beta.5 (450)
+--------------------------
+
+### Improvements
+
+- [beta] Draw the background of the area scrolled over the editor also with the theme color.
+- [beta.4][Big Sur] Update the emoji toolbar icon for Dark mode.
+- [beta][trivial] Tweak preferences layout.
+
+
+### Fixes
+
+- [beta.4] Fix an issue in the CotEditor scripting with UNIX scripts that the same standard input could be sent repeatedly to the script.
+- [trivial] Fix an issue that the i-beam for the combination of the vertical text orientation and a light theme cropped (FB8445000).
+
+
+
 4.0.0-beta.4 (448)
 --------------------------
 
@@ -108,6 +125,7 @@ Change Log
 - [dev] Update the build environment to Xcode 12.2 (Swift 5.3, macOS 11 SDK).
 - [dev] Replace DifferenceKit package with native CollectionDifference.
 - [dev] Update Yams from 3.0.1 to 4.0.0.
+
 
 ### Fixes
 

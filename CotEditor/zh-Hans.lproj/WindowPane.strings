@@ -95,5 +95,3 @@
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "编辑器透明度：";
-/* Class = "NSTextFieldCell"; title = "Non-opaque editor can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
-"gdC-8B-U5B.title" = "透明编辑器可能会导致大型文档变慢。";

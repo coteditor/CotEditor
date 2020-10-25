@@ -279,11 +279,12 @@ extension LayoutManager: NSLayoutManagerDelegate {
         struct NonIndent { static let characterSet = CharacterSet(charactersIn: " \t").inverted }
         
         // check if the character is the first non-whitespace character after indent
-        let string = self.string
         let lineStartIndex = self.lineStartIndex(at: charIndex)
         let range = NSRange(location: lineStartIndex, length: charIndex - lineStartIndex)
         
-        return string.rangeOfCharacter(from: NonIndent.characterSet, range: range) != .notFound
+        guard !range.isEmpty else { return true }
+        
+        return self.string.rangeOfCharacter(from: NonIndent.characterSet, range: range) != .notFound
     }
     
     
