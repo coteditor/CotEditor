@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -205,7 +205,7 @@
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-bg-rl5" userLabel="Recent Searches">
-                                <rect key="frame" x="12" y="109" width="39" height="17"/>
+                                <rect key="frame" x="14" y="109" width="39" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="Bpd-iM-B9o"/>
                                     <constraint firstAttribute="width" constant="34" id="a1V-ce-Ane"/>
@@ -233,7 +233,7 @@
                                 <accessibility description="Recent Searches"/>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
-                                <rect key="frame" x="12" y="55" width="39" height="17"/>
+                                <rect key="frame" x="14" y="55" width="39" height="17"/>
                                 <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="5v5-WE-Zk4" userLabel="Recent Replacements">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -315,7 +315,7 @@
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="height" secondItem="8gM-hc-HhV" secondAttribute="height" id="Gro-HA-umC"/>
                             <constraint firstItem="ObJ-nS-x0g" firstAttribute="trailing" secondItem="8gM-hc-HhV" secondAttribute="trailing" constant="-5" id="He6-bE-vXU"/>
                             <constraint firstItem="GvT-tD-Cbk" firstAttribute="leading" secondItem="i2l-7Z-Zmf" secondAttribute="trailing" constant="12" symbolic="YES" id="Jwz-i1-df7"/>
-                            <constraint firstItem="3ZH-bg-rl5" firstAttribute="leading" secondItem="8gM-hc-HhV" secondAttribute="leading" constant="-3" id="L5a-x0-VYK"/>
+                            <constraint firstItem="3ZH-bg-rl5" firstAttribute="leading" secondItem="8gM-hc-HhV" secondAttribute="leading" constant="-1" id="L5a-x0-VYK"/>
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" constant="20" symbolic="YES" id="MYl-DK-DG4"/>
                             <constraint firstItem="8My-G5-daT" firstAttribute="leading" secondItem="D8F-V7-fpC" secondAttribute="leading" constant="20" symbolic="YES" id="Ofl-kG-Dd7"/>
                             <constraint firstItem="SSP-y6-YxI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hw7-zz-RG8" secondAttribute="trailing" constant="8" symbolic="YES" id="RjK-9l-DGD"/>
@@ -333,7 +333,7 @@
                             <constraint firstItem="tu7-IT-dA3" firstAttribute="top" secondItem="AIf-o5-KHg" secondAttribute="bottom" constant="8" symbolic="YES" id="irk-l9-9DA"/>
                             <constraint firstItem="i2l-7Z-Zmf" firstAttribute="centerY" secondItem="8My-G5-daT" secondAttribute="centerY" id="j2K-Mg-lKi"/>
                             <constraint firstItem="AIf-o5-KHg" firstAttribute="top" secondItem="Hw7-zz-RG8" secondAttribute="top" constant="-2" id="nB9-aQ-qq0"/>
-                            <constraint firstItem="AIf-o5-KHg" firstAttribute="leading" secondItem="Hw7-zz-RG8" secondAttribute="leading" constant="3" id="r87-HM-Zhd"/>
+                            <constraint firstItem="AIf-o5-KHg" firstAttribute="leading" secondItem="Hw7-zz-RG8" secondAttribute="leading" constant="1" id="r87-HM-Zhd"/>
                             <constraint firstItem="ObJ-nS-x0g" firstAttribute="leading" secondItem="Kkq-6q-C63" secondAttribute="trailing" constant="4" id="rDK-cZ-RuR"/>
                             <constraint firstAttribute="trailing" secondItem="AIf-o5-KHg" secondAttribute="trailing" constant="20" symbolic="YES" id="roH-xE-9hA"/>
                             <constraint firstAttribute="trailing" secondItem="ESq-ws-6H3" secondAttribute="trailing" constant="20" symbolic="YES" id="uYA-MO-c4g"/>
