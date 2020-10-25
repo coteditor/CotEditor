@@ -14,6 +14,7 @@ Change Log
 
 ### Fixes
 
+- [beta.4] Fix an issue in the CotEditor scripting with UNIX scripts that the same standard input could be sent repeatedly to the script.
 - [trivial] Fix an issue that the i-beam for the combination of the vertical text orientation and a light theme cropped (FB8445000).
 
 
