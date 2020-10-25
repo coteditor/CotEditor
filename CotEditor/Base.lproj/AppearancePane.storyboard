@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -82,9 +82,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XW-Ju-Ix5" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="105" y="184" width="48" height="21"/>
+                                        <rect key="frame" x="105" y="184" width="40" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="yke-nV-fMx"/>
+                                            <constraint firstAttribute="width" constant="40" id="yke-nV-fMx"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="1.2" drawsBackground="YES" usesSingleLineMode="YES" id="IyJ-IR-fVa">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" usesGroupingSeparator="NO" minimumIntegerDigits="1" maximumIntegerDigits="2" minimumFractionDigits="1" maximumFractionDigits="2" id="d5U-8W-wLX">
@@ -103,14 +103,14 @@
                                         </connections>
                                     </textField>
                                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XWT-pS-k8a">
-                                        <rect key="frame" x="154" y="181" width="19" height="28"/>
+                                        <rect key="frame" x="146" y="181" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" doubleValue="1" id="Mkv-St-JNh"/>
                                         <connections>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="cFx-Lt-8aa"/>
                                         </connections>
                                     </stepper>
                                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xDf-ra-dem">
-                                        <rect key="frame" x="172" y="187" width="38" height="16"/>
+                                        <rect key="frame" x="164" y="187" width="38" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="times" usesSingleLineMode="YES" id="VLD-jj-zzl">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -393,14 +393,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="179" height="254"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="3yq-Qd-FKt" viewBased="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Dt-hO9">
+                                                    <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="3yq-Qd-FKt" viewBased="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Dt-hO9">
                                                         <rect key="frame" x="0.0" y="0.0" width="179" height="226"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="4"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="themeName" width="147" minWidth="40" maxWidth="1000" id="Avf-y8-wXG">
+                                                            <tableColumn identifier="themeName" width="167" minWidth="40" maxWidth="1000" id="Avf-y8-wXG">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Theme">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -413,11 +413,11 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
                                                                     <tableCellView id="IKs-Gh-g0j">
-                                                                        <rect key="frame" x="11" y="2" width="156" height="16"/>
+                                                                        <rect key="frame" x="1" y="2" width="176" height="16"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                         <subviews>
                                                                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="jVT-ne-6NT">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="156" height="16"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="176" height="16"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Dendrobates" id="sRo-2c-Ydn">
                                                                                     <font key="font" metaFont="system"/>
@@ -462,7 +462,7 @@
                                             <rect key="frame" x="4" y="22" width="171" height="5"/>
                                         </box>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-Bf-yVl">
-                                            <rect key="frame" x="2" y="-1" width="24.5" height="27"/>
+                                            <rect key="frame" x="2" y="-0.5" width="24.5" height="27"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="23" id="U6N-28-bzY"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="tOH-dt-pv7"/>
@@ -1300,13 +1300,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Insertion Point/Bar" width="8" height="11"/>
+        <image name="Insertion Point/Block" width="8" height="11"/>
+        <image name="Insertion Point/ThickBar" width="8" height="11"/>
         <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSFollowLinkFreestandingTemplate" width="15" height="15"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
-        <image name="Insertion Point/Bar" width="8" height="11"/>
-        <image name="Insertion Point/Block" width="8" height="11"/>
-        <image name="Insertion Point/ThickBar" width="8" height="11"/>
         <image name="info.circle" catalog="system" width="15" height="15"/>
     </resources>
 </document>
