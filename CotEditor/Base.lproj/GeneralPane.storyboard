@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -421,7 +421,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.SUEnableAutomaticChecks" id="zsL-Zk-IP9"/>
+                                    <binding destination="pZi-vk-ErT" name="value" keyPath="values.SUEnableAutomaticChecks" id="Dkr-PR-bQz"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" tag="-1" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-dW-Eg4">
@@ -439,8 +439,8 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="ttU-LH-46v" name="enabled" keyPath="values.SUEnableAutomaticChecks" id="KJD-Ko-7KW"/>
-                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.checksUpdatesForBeta" id="Ics-fr-hma"/>
+                                    <binding destination="pZi-vk-ErT" name="enabled" keyPath="values.SUEnableAutomaticChecks" id="gib-XV-aD1"/>
+                                    <binding destination="pZi-vk-ErT" name="value" keyPath="values.checksUpdatesForBeta" id="2Zd-GD-6RA"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" tag="-2" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyM-Pb-Ay4">
@@ -476,6 +476,7 @@
                     </view>
                 </viewController>
                 <customObject id="VdO-pU-lPQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="pZi-vk-ErT"/>
             </objects>
             <point key="canvasLocation" x="174" y="765.5"/>
         </scene>

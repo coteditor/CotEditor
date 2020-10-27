@@ -5,6 +5,12 @@ Change Log
 4.0.0-beta.6 (unreleased)
 --------------------------
 
+### Fixes
+
+- [beta.3][non-AppStore ver.] Fix an issue in the General preference pane that the checkboxes for software update did not work.
+
+
+
 4.0.0-beta.5 (450)
 --------------------------
 
