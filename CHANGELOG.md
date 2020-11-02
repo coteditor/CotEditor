@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the hanging indent can be wrongly calculated when typing a word that requires user selection, such as Japanese.
 - [beta.3][non-AppStore ver.] Fix an issue in the General preference pane that the checkboxes for software update did not work.
 
 

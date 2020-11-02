@@ -50,6 +50,9 @@ final class TextContainer: NSTextContainer {
         didSet {
             self.typingAttributesObserver = textView?.publisher(for: \.typingAttributes, options: .initial)
                 .sink { [weak self] (typingAttributes) in
+                    // -> The font can differ from the specified text font while typing marked text.
+                    guard self?.textView?.hasMarkedText() != true else { return }
+                    
                     self?.indentAttributes = typingAttributes
                     self?.indentWidthCache.removeAll()
                 }
