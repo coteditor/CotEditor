@@ -635,7 +635,7 @@
 
 
 
-/* MARK: FileDropComposer */
+/* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
 "The relative path between the dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
