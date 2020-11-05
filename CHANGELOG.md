@@ -5,6 +5,11 @@ Change Log
 4.0.0-beta.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Add missing localizations for new texts for simplified Chinese and Italien.
+
+
 ### Fixes
 
 - Fix an issue that the hanging indent can be wrongly calculated when typing a word that requires user selection, such as Japanese.

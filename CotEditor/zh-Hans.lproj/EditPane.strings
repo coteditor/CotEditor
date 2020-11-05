@@ -41,7 +41,7 @@
 /* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
 "nr1-0X-aBY.title" = "破折号";
 /* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
-"noP-hx-YeQ.title" = "移除行尾空白";  // FIXME: changed
+"noP-hx-YeQ.title" = "自动去除末尾空格";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
 "Tma-Oh-F7v.title" = "包含只有空格的行";
 
