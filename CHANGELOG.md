@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [beta] Add missing localizations for new texts for simplified Chinese and Italien.
+- [beta] Add missing localizations for new texts.
 
 
 ### Fixes
