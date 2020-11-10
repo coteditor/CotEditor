@@ -175,7 +175,7 @@
 "Change syntax style" = "改变语法样式";
 // menu item title
 "Recently Used" = "最近使用";
-"Deleted" = "Deleted";  // FIXME: added (heading for deleted items)
+"Deleted" = "已删除";  // heading for deleted items
 
 "Inspector" = "检查器";
 // tooltip
@@ -217,8 +217,8 @@
 
 "Tab Style" = "Tab 样式";
 // tooltip
-"Disable expanding tabs to spaces" = "切换自动扩展 Tab";  // FIXME: added
-"Expand tabs to spaces automatically" = "切换自动扩展 Tab";  // FIXME: added
+"Disable expanding tabs to spaces" = "禁止将tab扩展为空格";
+"Expand tabs to spaces automatically" = "自动将tab扩展为空格";
 "Change tab width" = "更改 Tab 宽度";
 // menu
 "Tab Width" = "Tab 宽度";
@@ -635,7 +635,7 @@
 
 
 
-/* MARK: FileDropComposer */
+/* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
 "The relative path between the dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";

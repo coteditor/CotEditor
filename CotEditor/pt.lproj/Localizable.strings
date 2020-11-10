@@ -629,7 +629,7 @@
 
 
 
-/* MARK: FileDropComposer */
+/* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "O caminho absoluto do arquivo solto.";
 "The relative path between the dropped file and the document." = "O caminho relativo entre o arquivo solto e o documento.";

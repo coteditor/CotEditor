@@ -217,8 +217,8 @@
 
 "Tab Style" = "タブスタイル";
 // tooltip
-"Disable expanding tabs to spaces" = "自動タブ展開を無効に";  // FIXME: added
-"Expand tabs to spaces automatically" = "自動でタブをスペースに展開";  // FIXME: added
+"Disable expanding tabs to spaces" = "自動タブ展開を無効に";
+"Expand tabs to spaces automatically" = "自動でタブをスペースに展開";
 "Change tab width" = "タブ幅を変更";
 // menu
 "Tab Width" = "タブ幅";
@@ -635,7 +635,7 @@
 
 
 
-/* MARK: FileDropComposer */
+/* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
 "The relative path between the dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";

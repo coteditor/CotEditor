@@ -173,7 +173,7 @@
 "Change syntax style" = "Changer la syntaxe";
 // item in the menu
 "Recently Used" = "Récemment utilisés";
-"Deleted" = "Deleted";  // FIXME: added (heading for deleted items)
+"Deleted" = "Supprimés";  // heading for deleted items
 
 
 "Inspector" = "Inspecteur";
@@ -216,8 +216,8 @@
 
 "Tab Style" = "Style de tabulation";
 // tooltip
-"Disable expanding tabs to spaces" = "Désactiver l'extension automatique des tabulation";
-"Expand tabs to spaces automatically" = "Activer l'extension automatique des tabulation";
+"Disable expanding tabs to spaces" = "Désactiver l'utilisation d'espaces comme tabulation";
+"Expand tabs to spaces automatically" = "Utiliser des espaces comme tabulation";
 "Change tab width" = "Changer la largeur de tabulation";
 // menu
 "Tab Width" = "Largeur de tabulation";
@@ -634,7 +634,7 @@
 
 
 
-/* MARK: FileDropComposer */
+/* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Le chemin absolu du fichier déposé.";
 "The relative path between the dropped file and the document." = "Le chemin relatif du fichier déposé par rapport au document.";

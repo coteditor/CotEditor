@@ -2,6 +2,24 @@
 Change Log
 ==========================
 
+4.0.0-rc (452)
+--------------------------
+
+### Improvements
+
+- [beta] Add missing localizations for new texts.
+- [beta] Update screenshots in help.
+- [beta][dev] Update the build environment to Xcode 12.2 RC.
+
+
+### Fixes
+
+- Fix an issue that the hanging indent can be wrongly calculated when typing a word that requires user selection, such as Japanese.
+- [beta][Big Sur] Workaround an issue on Big Sur that the syntax highlight for the regular expression disappears when the text field becomes in editing (FB8719584).
+- [beta.3][non-AppStore ver.] Fix an issue in the General preference pane that the checkboxes for software update did not work.
+
+
+
 4.0.0-beta.5 (450)
 --------------------------
 
@@ -116,7 +134,7 @@ Change Log
 - Live update selection counts while moving the selection.
 - Scroll editor by swiping the line number area.
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
-- Avoid showing the "edited" indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
+- Avoid showing the “edited” indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
 - Remove the toolbar button to toggle page guide visibility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Improve tooltips of toolbar icons to reflect the current document state.

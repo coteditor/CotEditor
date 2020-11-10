@@ -12,7 +12,7 @@
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 10pt/1.5 -apple-system, sans-serif;
+	font: 10pt/1.6 -apple-system, sans-serif;
 	font-weight: 400;
 	color: -apple-system-label;
 }
@@ -231,10 +231,17 @@ table caption {
 }
 th,
 td {
+	line-height: 1.6;
 	border-top: 1px solid -apple-system-quaternary-label;
 	border-bottom: 1px solid -apple-system-quaternary-label;
 	margin: 0;
-	padding: 0.4em 0.5em;
+	padding: 0.4em 0.6em;
+}
+table tr > :first-child {
+	padding-left: 0;
+}
+table tr > :last-child {
+	padding-right: 0;
 }
 table thead tr th {
 	font-weight: 500;
@@ -330,4 +337,28 @@ span.invisible {
 	code.AppleScript {
 		color: hsl(230, 50%, 60%);
 	}
+}
+
+
+/* preferences */
+
+table.preferences thead tr > * {
+	font-weight: 600;
+	text-align: left;
+}
+table.preferences thead tr:first-child > * {
+	border-top: 2px solid -apple-system-quaternary-label;
+}
+table.preferences tbody {
+	font-size: 95%;
+}
+table.preferences tr:last-child > * {
+	border-bottom-color: -apple-system-quaternary-label;
+}
+table.preferences td dl > * {
+	margin-left: 0;
+}
+table.preferences td ul li strong {
+	font-weight: 500;
+	font-style: italic;
 }

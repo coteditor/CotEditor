@@ -118,7 +118,7 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "Die Datei scheint %@ zu sein.\n\nMöchtest du die Datei wirklich öffnen?";  // FIXME: is -> appears to be
+"The file appears to be %@.\n\nDo you really want to open the file?" = "Die Datei scheint %@ zu sein.\n\nMöchtest du die Datei wirklich öffnen?";
 
 // Large file alert
 "The file “%@” has a size of %@." = "Die Datei „%@“ hat eine Größe von %@.";
@@ -635,7 +635,7 @@
 
 
 
-/* MARK: FileDropComposer */
+/* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Der absolute Pfad der abgelegten Datei.";
 "The relative path between the dropped file and the document." = "Der relative Pfad zwischen der abgelegten Datei und dem Dokument.";
