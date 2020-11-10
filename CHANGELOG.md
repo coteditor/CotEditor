@@ -2,6 +2,13 @@
 Change Log
 ==========================
 
+4.0.0 (453)
+--------------------------
+
+- no change.
+
+
+
 4.0.0-rc (452)
 --------------------------
 
@@ -134,7 +141,7 @@ Change Log
 - Live update selection counts while moving the selection.
 - Scroll editor by swiping the line number area.
 - Previously, CotEditor scripts written in Unix scripts, such as Ruby or Python, were decoded using the user-preferred file-encoding set in the Format preferences pane for normal documents, now they are always interpreted as UTF-8.
-- Avoid showing the “edited” indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
+- Avoid showing the "edited" indicator in the close button of document windows when the document content is empty and therefore can close the window without the confirmation dialog.
 - Remove the toolbar button to toggle page guide visibility.
 - Remove feature to import legacy syntax style definition files of which format was used in CotEditor 1.x.
 - [trivial] Improve tooltips of toolbar icons to reflect the current document state.
