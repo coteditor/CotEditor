@@ -14,6 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the hanging indent can be wrongly calculated when typing a word that requires user selection, such as Japanese.
+- [beta][Big Sur] Workaround an issue on Big Sur that the syntax highlight for the regular expression disappears when the text field becomes in editing (FB8719584).
 - [beta.3][non-AppStore ver.] Fix an issue in the General preference pane that the checkboxes for software update did not work.
 
 
