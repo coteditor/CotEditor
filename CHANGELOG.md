@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [beta] Add missing localizations for new texts.
+- [beta] Update screenshots in help.
 - [beta][dev] Update the build environment to Xcode 12.2 RC.
 
 
