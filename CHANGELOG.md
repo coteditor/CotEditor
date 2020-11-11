@@ -5,7 +5,7 @@ Change Log
 4.0.1 (unreleased)
 --------------------------
 
-- not changed yet.
+- [dev] Update Yams package to 4.0.1.
 
 
 
