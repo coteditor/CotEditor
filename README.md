@@ -8,7 +8,7 @@ CotEditor is a lightweight plain-text editor for macOS.
 - __Web Site__: <https://coteditor.com>
 - __Mac App Store__: <https://itunes.apple.com/app/coteditor/id1024640650?ls=1>
 
-<img src="screenshot@2x.png" width="750"/>
+<img src="screenshot@2x.png" width="731"/>
 
 
 
