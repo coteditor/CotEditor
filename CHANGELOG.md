@@ -5,6 +5,9 @@ Change Log
 4.0.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Reset toolbar setting.
 - [dev] Update Yams package to 4.0.1.
 
 
