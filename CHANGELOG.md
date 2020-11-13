@@ -9,6 +9,12 @@ Change Log
 
 - [trivial] Reset toolbar setting.
 - [dev] Update Yams package to 4.0.1.
+- [dev] Update the build environment to Xcode 12.2.
+
+
+### Fixes
+
+- Fix an issue on the Big Sur that the navigation bar in the document window disappeared.
 
 
 
