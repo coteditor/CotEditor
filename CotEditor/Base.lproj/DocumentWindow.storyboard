@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -86,12 +86,12 @@
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" displayMode="iconOnly" sizeMode="regular" id="peS-bo-gb4" customClass="MonosizeToolbar" customModule="CotEditor" customModuleProvider="target">
+                        <toolbar key="toolbar" implicitIdentifier="7E7590E9-43BC-40F7-B967-07FA2780E47B" displayMode="iconOnly" sizeMode="regular" id="sSX-oQ-RNS" customClass="MonosizeToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems/>
                             <defaultToolbarItems/>
                             <connections>
-                                <outlet property="delegate" destination="0UB-Lz-R6c" id="Txl-48-iMP"/>
-                                <outlet property="window" destination="gE4-1J-3li" id="1aD-nb-0ey"/>
+                                <outlet property="delegate" destination="0UB-Lz-R6c" id="yOb-od-ptM"/>
+                                <outlet property="window" destination="gE4-1J-3li" id="4uv-vW-Vdy"/>
                             </connections>
                         </toolbar>
                         <connections>

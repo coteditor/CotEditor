@@ -39,7 +39,7 @@ extension NSTextView {
         guard let layoutManager = self.layoutManager else {
             return self.workaroundHighlightAsRegularExpressionPattern(mode: mode, enabled: enabled)
         }
-        assert(self.isFieldEditor && ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 11)
+        assert(!self.isFieldEditor || ProcessInfo.processInfo.operatingSystemVersion.majorVersion < 11)
         
         // clear the last highlight anyway
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
