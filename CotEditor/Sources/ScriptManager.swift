@@ -43,6 +43,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
+    private var terminationObserver: AnyCancellable?
     
     
     
@@ -73,11 +74,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         // observe script folder change
         NSFileCoordinator.addFilePresenter(self)
-    }
-    
-    
-    deinit {
-        NSFileCoordinator.removeFilePresenter(self)
+        self.terminationObserver = NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)
+            .sink { [unowned self] _ in NSFileCoordinator.removeFilePresenter(self) }
     }
     
     
