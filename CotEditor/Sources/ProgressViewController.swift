@@ -112,6 +112,7 @@ final class ProgressViewController: NSViewController {
         super.viewDidDisappear()
         
         self.progressSubscriptions.removeAll()
+        self.completionSubscriptions.removeAll()
     }
     
     
@@ -120,6 +121,8 @@ final class ProgressViewController: NSViewController {
     
     /// Change the state of progress to finished.
     func done() {
+        
+        self.completionSubscriptions.removeAll()
         
         if self.closesAutomatically {
             return self.dismiss(self)
