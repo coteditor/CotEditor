@@ -51,6 +51,8 @@ final class WebDocumentViewController: NSViewController {
 
             self.webView?.configuration.userContentController.addUserScript(script)
         #endif
+
+        self.webView?.setValue(false, forKey: "drawsBackground")
     }
     
     
