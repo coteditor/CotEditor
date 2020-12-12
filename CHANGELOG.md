@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [dev] Update Yams from 4.0.1 to 4.0.2.
+- [dev] Update Yams from 4.0.1 to 4.0.3.
 
 
 
