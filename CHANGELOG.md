@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Prevent flashing the acknowledgement window on the first launch in the Dark Mode.
 - [dev] Update Yams from 4.0.1 to 4.0.3.
 
 
