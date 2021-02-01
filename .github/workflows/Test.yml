@@ -18,7 +18,6 @@ jobs:
         git submodule update --init
     - name: Lint Swift
       run: |
-        brew install -f swiftlint || brew link --overwrite
         swiftlint
     - name: Unit Test
       run: |
