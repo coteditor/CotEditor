@@ -61,9 +61,10 @@ extension EditorTextView {
         switch identifier {
             case .shift:
                 let item = NSCustomTouchBarItem(identifier: identifier)
+                let leftImage = NSImage(symbolNamed: "increase.indent", accessibilityDescription: "Shift Left".localized)!
+                let rightImage = NSImage(symbolNamed: "decrease.indent", accessibilityDescription: "Shift Right".localized)!
                 item.customizationLabel = "Shift".localized(comment: "touch bar item")
-                item.view = NSSegmentedControl(images: [NSImage(named: "TouchBar Icons/ShiftLeft")!,
-                                                        NSImage(named: "TouchBar Icons/ShiftRight")!],
+                item.view = NSSegmentedControl(images: [leftImage, rightImage],
                                                trackingMode: .momentary,
                                                target: self, action: #selector(shift))
                 return item
@@ -71,7 +72,7 @@ extension EditorTextView {
             case .comment:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = "Comment".localized(comment: "touch bar item")
-                item.view = NSButton(image: NSImage(named: "TouchBar Icons/Comment")!, target: self, action: #selector(toggleComment))
+                item.view = NSButton(image: NSImage(named: "text.commentout")!, target: self, action: #selector(toggleComment))
                 return item
             
             case .textSize:
