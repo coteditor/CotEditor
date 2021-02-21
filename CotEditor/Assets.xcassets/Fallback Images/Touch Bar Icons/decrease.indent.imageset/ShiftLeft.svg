@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 30 30">
+ 
+ <g transform="translate(21,10.25)" stroke="black" stroke-width="1.5" stroke-linecap="round">
+  <line x2="8"/>
+  <line x2="6" y1="5" y2="5"/>
+  <line x2="6" y1="10" y2="10"/>
+ </g>
+ 
+ <path d="M9,12h6c0.6,0,1,0.4,1,1v4c0,0.5-0.4,1-1,1H9v2.9c0,1.1-0.6,1.4-1.5,0.6l-6.2-5.9c-0.4-0.4-0.4-1,0-1.4l6.3-6.1C8.3,7.4,9,7.7,9,8.8V12z"/>
+</svg>
