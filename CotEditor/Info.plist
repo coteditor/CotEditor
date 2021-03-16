@@ -63,6 +63,8 @@
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ThemeIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -85,6 +87,8 @@
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ReplacementsIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
