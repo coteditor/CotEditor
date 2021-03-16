@@ -24,7 +24,8 @@
 <h2>インストール</h2>
 <p><code>cot</code> コマンドは CotEditor.app 内の '<code>Contents/SharedSupport/bin/cot</code>' にバンドルされています。</p>
 <p>Terminal からシンボリックリンクを作成して、任意の場所にインストールすることができます（特にこだわりがない場合は '<code>/usr/local/bin/</code>' に作成することをお勧めします）。</p>
-<pre class="source"><code>ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
+<pre class="source"><code>mkdir /usr/local/bin/
+ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
 <p>そして、Terminal からアンインストールする場合は以下のようにします。</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>

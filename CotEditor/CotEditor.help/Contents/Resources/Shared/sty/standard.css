@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2020 CotEditor Project
+ © 2006-2021 CotEditor Project
 */
 
 
@@ -128,6 +128,7 @@ pre.source {
 	border-radius: 3px;
 	max-width: 50em;
 	padding: 0.2em 0.5em;
+	overflow: scroll;
 }
 
 ul {
