@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -233,7 +233,7 @@
 /* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
 "745.title" = "Anticrénelage";
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
-"viH-Eo-wKz.title" = "リガチャ";
+"viH-Eo-wKz.title" = "Ligatures";
 
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
 "djM-fI-MkN.title" = "Largeur de tabulation";
