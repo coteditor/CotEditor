@@ -16,6 +16,7 @@ Change Log
 ### Fixes
 
 - Fix French localization.
+- [trivial] Fix script icon in Help contents in Dark mode.
 
 
 
