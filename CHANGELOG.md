@@ -12,6 +12,7 @@ Change Log
 - Update Touch Bar icons.
 - Prevent flashing the acknowledgement window on the first launch in the Dark Mode.
 - [dev] Update Yams from 4.0.1 to 4.0.4.
+- [dev] Update the build environment to Xcode 12.4.
 
 ### Fixes
 
