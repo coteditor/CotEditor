@@ -4,10 +4,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.3.0"
+  version: "4.4.0"
   description: "Based on Swift 5.3"
   license: "Same as CotEditor"
-  lastModified: "2020-08-17"
+  lastModified: "2021-01-23"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
@@ -47,6 +47,7 @@ completions: []
 attributes:
 - beginString: "@autoclosure"
 - beginString: "@available"
+- beginString: "@asyncHandler"
 - beginString: "@Binding"
 - beginString: "@convention"
 - beginString: "@derivative"
@@ -357,6 +358,8 @@ keywords:
 - beginString: "assignment"
 - beginString: "associatedtype"
 - beginString: "associativity"
+- beginString: "async"
+- beginString: "await"
 - beginString: "break"
 - beginString: "case"
 - beginString: "catch"

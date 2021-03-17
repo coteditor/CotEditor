@@ -2,6 +2,26 @@
 Change Log
 ==========================
 
+4.0.2 (457)
+--------------------------
+
+### Improvements
+
+- Update LaTeX syntax style to support `\(x^2\)` style inline math equations.
+- Update Swift syntax style to add `async`, `await`, and `@asyncHandler`.
+- Update Touch Bar icons.
+- Prevent flashing the acknowledgment window on the first launch in the Dark Mode.
+- Improve stability.
+- [dev] Update Yams from 4.0.1 to 4.0.4.
+- [dev] Update the build environment to Xcode 12.4.
+
+### Fixes
+
+- Fix French localization.
+- [trivial] Fix script icon in Help contents in Dark mode.
+
+
+
 4.0.1 (455)
 --------------------------
 

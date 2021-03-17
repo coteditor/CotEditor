@@ -1340,7 +1340,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    ///input a backslash (\\)
+    /// input a backslash (\\)
     @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: .notFound)

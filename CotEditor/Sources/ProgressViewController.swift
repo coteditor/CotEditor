@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ final class ProgressViewController: NSViewController {
     
     @objc private dynamic let progress: Progress
     @objc private dynamic let message: String
-    let closesAutomatically: Bool
+    private let closesAutomatically: Bool
     
     private var progressSubscriptions: Set<AnyCancellable> = []
     private var completionSubscriptions: Set<AnyCancellable> = []
@@ -64,13 +64,13 @@ final class ProgressViewController: NSViewController {
         
         super.init(coder: coder)
         
-        progress.publisher(for: \.isFinished, options: .initial)
+        progress.publisher(for: \.isFinished)
             .filter { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.done() }
             .store(in: &self.completionSubscriptions)
         
-        progress.publisher(for: \.isCancelled, options: .initial)
+        progress.publisher(for: \.isCancelled)
             .filter { $0 }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.dismiss(nil) }
@@ -112,6 +112,7 @@ final class ProgressViewController: NSViewController {
         super.viewDidDisappear()
         
         self.progressSubscriptions.removeAll()
+        self.completionSubscriptions.removeAll()
     }
     
     
@@ -120,6 +121,8 @@ final class ProgressViewController: NSViewController {
     
     /// Change the state of progress to finished.
     func done() {
+        
+        self.completionSubscriptions.removeAll()
         
         if self.closesAutomatically {
             return self.dismiss(self)

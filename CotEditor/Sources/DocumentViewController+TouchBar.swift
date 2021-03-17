@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -76,13 +76,15 @@ extension DocumentViewController: NSTouchBarDelegate {
             case .indentGuides:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = "Indent Guides".localized(comment: "touch bar item")
-                item.view = NSButton(image: NSImage(named: "TouchBar Icons/IndentGuides")!, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
+                let image = NSImage(named: "text.indentguides")!
+                item.view = NSButton(image: image, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
                 return item
             
             case .wrapLines:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = "Wrap Lines".localized(comment: "touch bar item")
-                item.view = NSButton(image: NSImage(named: "TouchBar Icons/WrapLines")!, target: self, action: #selector(toggleLineWrapViaTouchBar))
+                let image = NSImage(named: "text.wrap")!
+                item.view = NSButton(image: image, target: self, action: #selector(toggleLineWrapViaTouchBar))
                 return item
             
             case .share:

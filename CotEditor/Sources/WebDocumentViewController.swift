@@ -28,14 +28,25 @@ import WebKit
 
 final class WebDocumentViewController: NSViewController {
     
+    // MARK: Private Properties
+    
+    private var loadingNavigation: WKNavigation?
+    
+    
+    
+    // MARK: -
     // MARK: View Controller Methods
     
     override var representedObject: Any? {
         
         didSet {
-            guard let url = representedObject as? URL else { return }
+            guard
+                let url = representedObject as? URL,
+                let webView = self.webView
+                else { return assertionFailure() }
             
-            self.webView?.loadFileURL(url, allowingReadAccessTo: url)
+            self.loadingNavigation = webView.loadFileURL(url, allowingReadAccessTo: url)
+            webView.isHidden = true
         }
     }
     
@@ -81,6 +92,15 @@ final class WebDocumentViewController: NSViewController {
 extension WebDocumentViewController: WKNavigationDelegate {
     
     // MARK: Navigation Delegate
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        // avoid flashing view on the first launch in Dark Mode
+        if navigation == self.loadingNavigation {
+            webView.animator().isHidden = false
+        }
+    }
+    
     
     /// open external link in default browser
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {

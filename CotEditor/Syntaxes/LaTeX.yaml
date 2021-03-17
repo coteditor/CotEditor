@@ -7,9 +7,9 @@ metadata:
   distributionURL: "https://coteditor.com"
   author: "Yuhei Kuratomi"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2020-12-13"
   description: "Maintained by CotEditor Project."
-  version: "2.0.1"
+  version: "2.0.2"
 outlineMenu:
 - beginString: "[\\\\¥]chapter\\*?\\{(.*)\\}"
   description: "chapter"
@@ -74,6 +74,8 @@ values:
   regularExpression: true
 - beginString: "\\$([^$\\n]+)\\$"
   regularExpression: true
+- beginString: "\\("
+  endString: "\\)"
 keywords:
 - beginString: "[\\\\¥]author\\{.*\\}"
   regularExpression: true

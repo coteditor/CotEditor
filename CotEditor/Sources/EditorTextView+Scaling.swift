@@ -33,11 +33,11 @@ extension EditorTextView {
     override func magnify(with event: NSEvent) {
         
         if event.phase.contains(.began) {
+            self.deferredMagnification = 0
             self.initialMagnificationScale = self.scale
         }
         
         var scale = self.scale * (1 + event.magnification)
-        let center = self.convert(event.locationInWindow, from: nil)
         
         // hold a bit at scale 1.0
         if (self.initialMagnificationScale > 1.0 && scale < 1.0) ||  // zoom-out
@@ -58,8 +58,11 @@ extension EditorTextView {
             scale = 1.0
         }
         
-        // haptic feedback on scale == 100%
-        if self.scale != 1.0, scale == 1.0 {
+        guard scale != self.scale else { return }
+        
+        let center = self.convert(event.locationInWindow, from: nil)
+        
+        if scale == 1.0 {
             NSHapticFeedbackManager.defaultPerformer.perform(.alignment, performanceTime: .default)
         }
         

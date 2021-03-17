@@ -77,6 +77,7 @@ extension DefaultSettings {
         CFStringEncodings.macCyrillic,         // Cyrillic (Mac OS)
         CFStringEncodings.isoLatinCyrillic,    // Cyrillic (ISO 8859-5)
         CFStringEncodings.windowsCyrillic,     // Cyrillic (Windows)
+        CFStringEncodings.dosRussian,          // Russian (DOS)
         CFStringEncodings.macCentralEurRoman,  // Central European (Mac OS)
         CFStringEncodings.macTurkish,          // Turkish (Mac OS)
         CFStringEncodings.macIcelandic,        // Icelandic (Mac OS)

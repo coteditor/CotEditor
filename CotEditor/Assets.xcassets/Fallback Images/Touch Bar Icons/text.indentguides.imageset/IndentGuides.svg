@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 30 30">
+ 
+ <g transform="translate(12,10.25)" stroke="black" stroke-width="1.5" stroke-linecap="round">
+  <line x2="13"/>
+  <line x1="6" x2="13" y1="5" y2="5"/>
+  <line x1="6" x2="13" y1="10" y2="10"/>
+ </g>
+ 
+ <rect width="2" height= "9" x="11" y="14"/>
+ <rect width="2" height="15" x= "5" y= "8"/>
+</svg>

@@ -63,6 +63,8 @@
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ThemeIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -85,6 +87,8 @@
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ReplacementsIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
@@ -1163,7 +1167,7 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2005-2009 nakamuxu
 © 2011, 2014 usami-k
-© 2013-2020 1024jp</string>
+© 2013-2021 1024jp</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
