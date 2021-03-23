@@ -5,6 +5,10 @@ Change Log
 4.0.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update Yams from 4.0.4 to 4.0.5.
+
 
 
 4.0.2 (457)
