@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ final class SeparatorTextField: NSTextField {
         var size = super.intrinsicContentSize
         
         if self.isSeparator {
-            size.height = ceil(size.height / 2)
+            size.height = (size.height / 2).rounded(.up)
         }
         
         return size

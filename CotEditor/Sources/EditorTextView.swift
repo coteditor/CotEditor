@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -1465,7 +1465,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let inset = rate * (visibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
-        let height = max(floor(inset / 2), Self.textContainerInset.height)
+        let height = max((inset / 2).rounded(.down), Self.textContainerInset.height)
         let diff = height - self.textContainerInset.height
         
         guard diff != 0 else { return }

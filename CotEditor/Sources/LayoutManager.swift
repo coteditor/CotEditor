@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -398,8 +398,8 @@ private extension CGPoint {
     /// - Returns: An adjusted point.
     func aligned(scale: CGFloat = 1) -> Self {
         
-        return Self(x: round(self.x * scale) / scale,
-                    y: round(self.y * scale) / scale)
+        return Self(x: (self.x * scale).rounded() / scale,
+                    y: (self.y * scale).rounded() / scale)
     }
     
 }
