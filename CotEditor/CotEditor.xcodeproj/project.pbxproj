@@ -1094,6 +1094,7 @@
 		2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyle.swift; sourceTree = "<group>"; };
 		2A706BE9244071FF000D3A64 /* buildSparkle.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = buildSparkle.sh; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FilePermissionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionTests.swift; sourceTree = "<group>"; };
+		2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-Sparkle.entitlements"; sourceTree = "<group>"; };
 		2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzyRangeTests.swift; sourceTree = "<group>"; };
 		2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DocumentViewController+TouchBar.swift"; sourceTree = "<group>"; };
 		2A71BC7D1DDC70A80085AE1C /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
@@ -1920,6 +1921,7 @@
 			children = (
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
+				2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */,
 				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
