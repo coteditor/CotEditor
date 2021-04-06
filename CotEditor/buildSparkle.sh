@@ -43,3 +43,12 @@ for item in ${items[@]}; do
     rm -r ../Build/${item}
     cp -R ${file}* ../Build
 done
+
+# remove duplicated items in Sparkle.framework
+cd ../Build
+rm -f Sparkle.framework/Autoupdate
+rm -f Sparkle.framework/Updater
+rm -f Sparkle.framework/Versions/A/Autoupdate
+rm -rf Sparkle.framework/Versions/A/Updater.app
+codesign -f -s "-" Sparkle.framework
+codesign --verify --deep Sparkle.framework
