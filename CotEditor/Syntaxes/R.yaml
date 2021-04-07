@@ -1,5 +1,5 @@
 extensions:
-- keyString: "r"
+- keyString: "R"
 filenames:
 - keyString: ".Rprofile"
 interpreters:
@@ -7,13 +7,17 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.2"
+  version: "1.2.0"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2021-04-07"
 outlineMenu:
 - beginString: "^[\\t ]*(\\S+)[\\t ]*<-[\\t ]*function"
   description: "function"
   keyString: "function: $1"
+- beginString: "^#+[\\t ]*(.*?)[\\t ]*(-|=|#){4,}"
+  description: "section"
+  keyString: "$1"
+  bold: true
 completions: []
 commands:
 - beginString: "abbreviate"
