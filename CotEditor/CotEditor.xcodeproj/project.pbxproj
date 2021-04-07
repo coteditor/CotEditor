@@ -2419,7 +2419,6 @@
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				2ACD68221D6B0F0100496B47 /* Embed Frameworks */,
 				2A9246F51FCD21E6008DBC30 /* Embed XPC Services */,
-				2A9247051FCD471B008DBC30 /* Codesign Sparkle */,
 				2ACD68151D6B0DCF00496B47 /* Copy dSYM Files */,
 			);
 			buildRules = (
@@ -2728,20 +2727,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./buildSparkle.sh\n";
-		};
-		2A9247051FCD471B008DBC30 /* Codesign Sparkle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Codesign Sparkle";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# check if codesigned\nif [ -z $CODE_SIGN_IDENTITY ] ; then\n    if [ $CONFIGURATION = \"Release\" ] ; then\n    echo \"CODE_SIGN_IDENTITY needs to be non-empty for codesigning XPCs!\"\n        exit 1\n    else\n        exit 0  # Codesigning is optional for non-release builds.\n    fi\nfi\n\npaths=(\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerLauncher.xpc\"\n)\nfor path in ${paths[@]}; do\n    codesign --verbose --force --deep -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$TARGET_BUILD_DIR/$path\"\ndone\n";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
