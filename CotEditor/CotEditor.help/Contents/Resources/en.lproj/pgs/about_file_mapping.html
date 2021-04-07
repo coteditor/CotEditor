@@ -29,8 +29,9 @@
 
 <ol>
 	<li>File extension<ul>
-		<li>Try determining syntax style from the file extension.</li>
+		<li>Try determining syntax style from the file extension. The case is basically ignored; however, case-matched ones are prioritized if multiple syntax styles are found</li>
 		<li>e.g.: .html → HTML</li>
+		<li>e.g.: .hTmL → HTML</li>
 		<li>e.g.: .py → Python</li>
 	</ul></li>
 	<li>Filename<ul>
