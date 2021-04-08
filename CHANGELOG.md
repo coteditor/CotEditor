@@ -10,7 +10,7 @@ Change Log
 - Detect syntax style from the file extension also case-insensitively.
 - Update R syntax style.
 - [non-AppStore ver.] Reduce the application size.
-- [dev] Update Yams from 4.0.4 to 4.0.5.
+- [dev] Update Yams from 4.0.4 to 4.0.6.
 
 
 
