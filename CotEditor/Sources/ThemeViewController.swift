@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ final class ThemeViewController: NSViewController {
         didSet {
             // add metadata beforehand for KVO by NSObjectController
             if theme?.metadata == nil {
-                theme?.metadata = Metadata()
+                theme?.metadata = Theme.Metadata()
             }
         }
     }
@@ -54,7 +54,7 @@ final class ThemeViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var storedMetadata: Metadata?
+    private var storedMetadata: Theme.Metadata?
     private var themeObserver: AnyCancellable?
     
     

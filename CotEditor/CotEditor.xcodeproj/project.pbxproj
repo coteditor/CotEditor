@@ -699,8 +699,6 @@
 		2AF861E42522E64E00A114BE /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF861E22522E64E00A114BE /* NumberFormatter.swift */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
-		2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9B23D208E24D50057DD21 /* Metadata.swift */; };
-		2AF9B23F208E24D50057DD21 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9B23D208E24D50057DD21 /* Metadata.swift */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
 		2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
 		2AFB30DF1E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */; };
@@ -1407,7 +1405,6 @@
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2AF861E22522E64E00A114BE /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
-		2AF9B23D208E24D50057DD21 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
@@ -2034,7 +2031,6 @@
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
 				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
-				2AF9B23D208E24D50057DD21 /* Metadata.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2876,7 +2872,6 @@
 				2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
-				2AF9B23F208E24D50057DD21 /* Metadata.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
 				2A3581991E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
@@ -3178,7 +3173,6 @@
 				2A1893AA1FFF422D00AD244F /* LineSort.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
-				2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */,
 				2A231A281E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
 				2A3581981E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
