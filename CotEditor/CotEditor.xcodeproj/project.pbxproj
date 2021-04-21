@@ -601,6 +601,8 @@
 		2ACDE2B62406B9C000FC31EC /* UnicodeInputView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */; };
 		2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
+		2ACF23AE26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
+		2ACF23AF26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
 		2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
 		2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
 		2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */; };
@@ -1315,6 +1317,7 @@
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
 		2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabSegmentedControl.swift; sourceTree = "<group>"; };
 		2ACDC0A51D17350A009B72D6 /* InspectorTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InspectorTabView.swift; sourceTree = "<group>"; };
+		2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme+SyntaxStyle.swift"; sourceTree = "<group>"; };
 		2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetachablePopoverViewController.swift; sourceTree = "<group>"; };
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
@@ -2023,6 +2026,7 @@
 				2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
+				2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */,
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
@@ -3003,6 +3007,7 @@
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
+				2ACF23AE26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */,
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
@@ -3304,6 +3309,7 @@
 				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */,
+				2ACF23AF26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */,
 				2A9082F21D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,

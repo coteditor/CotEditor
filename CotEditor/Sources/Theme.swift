@@ -182,25 +182,6 @@ final class Theme: NSObject {
         return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
     }
     
-    
-    /// color for syntax type defined in theme
-    func style(for type: SyntaxType) -> Style? {
-        
-        // The syntax keys and theme keys must be the same.
-        switch type {
-            case .keywords: return self.keywords
-            case .commands: return self.commands
-            case .types: return self.types
-            case .attributes: return self.attributes
-            case .variables: return self.variables
-            case .values: return self.values
-            case .numbers: return self.numbers
-            case .strings: return self.strings
-            case .characters: return self.characters
-            case .comments: return self.comments
-        }
-    }
-    
 }
 
 
