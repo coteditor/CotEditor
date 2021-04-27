@@ -52,7 +52,6 @@ opt_in_rules:
   - raw_value_for_camel_cased_codable_enum
   - reduce_into
   - redundant_nil_coalescing
-  - redundant_type_annotation
   - required_enum_case
   - single_test_class
   - sorted_first_last
