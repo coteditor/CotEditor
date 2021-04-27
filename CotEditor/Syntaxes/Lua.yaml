@@ -302,6 +302,8 @@ strings:
   endString: "\""
 - beginString: "'"
   endString: "'"
+- beginString: "[["
+  endString: "]]"
 keywords:
 - beginString: "and"
 - beginString: "break"
