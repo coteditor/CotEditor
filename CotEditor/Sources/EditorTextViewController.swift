@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,6 +104,16 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             menu.addItem(item)
         }
         
+        // add "Inspect Character" menu item if single character is selected
+        if let textView = self.textView,
+           (textView.string as NSString).substring(with: textView.selectedRange).compareCount(with: 1) == .equal
+        {
+            menu.insertItem(withTitle: "Inspect Character".localized,
+                            action: #selector(showSelectionInfo),
+                            keyEquivalent: "",
+                            at: 1)
+        }
+        
         return menu
     }
     
@@ -153,6 +163,30 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    /// display character information by popover
+    @IBAction func showSelectionInfo(_ sender: Any?) {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        var selectedString = (textView.string as NSString).substring(with: textView.selectedRange)
+        
+        // apply document's line ending
+        let documentLineEnding = textView.document?.lineEnding ?? .lf
+        if documentLineEnding != .lf, selectedString.detectedLineEnding == .lf {
+            selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
+        }
+        
+        guard let characterInfo = try? CharacterInfo(string: selectedString) else { return }
+        
+        let popoverController = CharacterPopoverController.instantiate(for: characterInfo)
+        let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
+        
+        textView.scrollRangeToVisible(textView.selectedRange)
+        textView.showFindIndicator(for: textView.selectedRange)
+        self.present(popoverController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: .minY, behavior: .semitransient)
+    }
+    
+    
     
     // MARK: Public Methods
     
@@ -160,6 +194,28 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         get { self.lineNumberView?.isHidden == false }
         set { self.lineNumberView?.isHidden = !newValue }
+    }
+    
+}
+
+
+
+extension EditorTextViewController: NSUserInterfaceValidations {
+    
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        switch item.action {
+            case #selector(showSelectionInfo):
+                guard let textView = self.textView else { return false }
+                return !textView.hasMultipleInsertions &&
+                    (textView.string as NSString).substring(with: textView.selectedRange).compareCount(with: 1) == .equal
+                
+            case nil:
+                return false
+                
+            default:
+                return true
+        }
     }
     
 }
