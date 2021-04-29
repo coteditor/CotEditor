@@ -77,7 +77,7 @@ final class CharacterPopoverController: NSViewController {
             var codePoint = unicode.codePoint
             
             if !isMultiple, let surrogates = unicode.surrogateCodePoints {
-                codePoint += " (" + surrogates.joined(separator: " ") + ")"
+                codePoint += " (\(surrogates.lead) \(surrogates.trail))"
             }
             
             // append Unicode name

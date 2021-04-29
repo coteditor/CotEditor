@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,7 +62,8 @@ final class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(unicode.codePoint, "U+1F600")
         XCTAssertTrue(unicode.isSurrogatePair)
-        XCTAssertEqual(unicode.surrogateCodePoints!, ["U+D83D", "U+DE00"])
+        XCTAssertEqual(unicode.surrogateCodePoints!.lead, "U+D83D")
+        XCTAssertEqual(unicode.surrogateCodePoints!.trail, "U+DE00")
         XCTAssertEqual(unicode.name, "GRINNING FACE")
         XCTAssertEqual(unicode.blockName, "Emoticons")
         XCTAssertNotNil(unicode.localizedBlockName)
