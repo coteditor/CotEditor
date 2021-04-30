@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Keep detached character inspecters even after the parent document is closed.
 - Detect syntax style from the file extension also case-insensitively.
 - Update R syntax style.
 - [non-AppStore ver.] Reduce the application size.
