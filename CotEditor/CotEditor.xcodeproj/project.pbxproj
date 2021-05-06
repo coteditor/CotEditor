@@ -29,6 +29,17 @@
 			name = Sparkle;
 			productName = "Sparkle XPCs";
 		};
+		2AB4083F2644BD8300C545DD /* Build Syntax Map */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2AB408402644BD8300C545DD /* Build configuration list for PBXAggregateTarget "Build Syntax Map" */;
+			buildPhases = (
+				2AB408432644BD8C00C545DD /* Run Script */,
+			);
+			dependencies = (
+			);
+			name = "Build Syntax Map";
+			productName = "Build Syntax Map";
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -728,6 +739,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2A6F0D4E1B5500E100C2D03C;
 			remoteInfo = CotEditor;
+		};
+		2AB408442644BDC100C545DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AB4083F2644BD8300C545DD;
+			remoteInfo = "Build Syntax Map";
+		};
+		2AB408462644BE0400C545DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2AB4083F2644BD8300C545DD;
+			remoteInfo = "Build Syntax Map";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2371,7 +2396,6 @@
 			buildPhases = (
 				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
-				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
@@ -2379,6 +2403,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2AB408452644BDC100C545DD /* PBXTargetDependency */,
 			);
 			name = CotEditor;
 			packageProductDependencies = (
@@ -2413,7 +2438,6 @@
 			buildPhases = (
 				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
 				8D15AC300486D014006FF6A4 /* Sources */,
-				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
@@ -2424,6 +2448,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2AB408472644BE0400C545DD /* PBXTargetDependency */,
 			);
 			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
@@ -2470,6 +2495,9 @@
 					2A9246E71FCD2004008DBC30 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+					};
+					2AB4083F2644BD8300C545DD = {
+						CreatedOnToolsVersion = 12.5;
 					};
 					2AC71DDE1BF0BDBC002E1434 = {
 						CreatedOnToolsVersion = 7.1;
@@ -2518,6 +2546,7 @@
 				8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */,
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3F18F6203270BE002F1CA7 /* UI Tests */,
+				2AB4083F2644BD8300C545DD /* Build Syntax Map */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
 				2A9246E71FCD2004008DBC30 /* Sparkle */,
 			);
@@ -2686,34 +2715,6 @@
 			shellPath = /bin/sh;
 			shellScript = "./updateHelpindex.sh\n";
 		};
-		2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build Syntax Map";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
-		};
-		2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build Syntax Map";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
-		};
 		2A9246EB1FCD2012008DBC30 /* Build Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2727,6 +2728,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./buildSparkle.sh\n";
+		};
+		2AB408432644BD8C00C545DD /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Syntaxes",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/SyntaxMap.json",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" ${SCRIPT_INPUT_FILE_0} > ${SCRIPT_OUTPUT_FILE_0}\n";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3345,6 +3366,16 @@
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
 			targetProxy = 2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */;
+		};
+		2AB408452644BDC100C545DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2AB4083F2644BD8300C545DD /* Build Syntax Map */;
+			targetProxy = 2AB408442644BDC100C545DD /* PBXContainerItemProxy */;
+		};
+		2AB408472644BE0400C545DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2AB4083F2644BD8300C545DD /* Build Syntax Map */;
+			targetProxy = 2AB408462644BE0400C545DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4137,6 +4168,20 @@
 			};
 			name = Release;
 		};
+		2AB408412644BD8300C545DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2AB408422644BD8300C545DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5454B92C243C8257009275BC /* Tests.xcconfig */;
@@ -4363,6 +4408,15 @@
 			buildConfigurations = (
 				2A9246E81FCD2005008DBC30 /* Debug */,
 				2A9246E91FCD2005008DBC30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2AB408402644BD8300C545DD /* Build configuration list for PBXAggregateTarget "Build Syntax Map" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AB408412644BD8300C545DD /* Debug */,
+				2AB408422644BD8300C545DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
