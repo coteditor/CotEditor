@@ -7,11 +7,12 @@ Change Log
 
 ### Improvements
 
-- Keep detached character inspecters even after the parent document is closed.
+- Keep detached character inspectors even after the parent document is closed.
 - Detect syntax style from the file extension also case-insensitively.
 - Update R syntax style.
 - [non-AppStore ver.] Reduce the application size.
 - [dev] Update Yams from 4.0.4 to 4.0.6.
+- [dev] Update the build environment to Xcode 12.5.
 
 
 
