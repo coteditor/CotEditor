@@ -633,7 +633,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .inspectorTrackingSeparator:
-                guard #available(macOS 11, *) else { fatalError() }
+                guard #available(macOS 11, *) else { return nil }
                 guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
