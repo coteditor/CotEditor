@@ -5,6 +5,10 @@ Change Log
 4.0.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update Lua syntax style
+
 
 
 4.0.3 (459)

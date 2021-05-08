@@ -4,9 +4,9 @@ filenames: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0.1"
+  version: "1.0.2"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2021-05-08"
 completions: []
 outlineMenu:
 - beginString: "([\\t ]*)(function +.+\\(.*?\\))"
@@ -302,6 +302,10 @@ strings:
   endString: "\""
 - beginString: "'"
   endString: "'"
+- beginString: "[(=*)["
+  endString: "]$1]"
+  regularExpression: true
+  hasBackReference: true
 keywords:
 - beginString: "and"
 - beginString: "break"
