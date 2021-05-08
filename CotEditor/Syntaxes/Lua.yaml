@@ -302,8 +302,8 @@ strings:
   endString: "\""
 - beginString: "'"
   endString: "'"
-- beginString: "[(=*)["
-  endString: "]$1]"
+- beginString: "\\[(=*)\\["
+  endString: "\\]$1\\]"
   regularExpression: true
   hasBackReference: true
 keywords:
