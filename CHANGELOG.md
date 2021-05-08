@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+4.0.3 (459)
+--------------------------
+
+### Improvements
+
+- Keep detached character inspectors even after the parent document is closed.
+- Detect syntax style from the file extension also case-insensitively.
+- Update R syntax style.
+- [non-AppStore ver.] Reduce the application size.
+- [dev] Update Yams from 4.0.4 to 4.0.6.
+- [dev] Update the build environment to Xcode 12.5.
+
+
+
 4.0.2 (457)
 --------------------------
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ extension NSTextView {
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
             .offset(by: self.textContainerOrigin)
         let scale = self.scale
-        let minX = floor(rect.minX * scale) / scale
+        let minX = (rect.minX * scale).rounded(.down) / scale
         
         return NSRect(x: minX, y: rect.minY, width: 1 / scale, height: rect.height)
     }

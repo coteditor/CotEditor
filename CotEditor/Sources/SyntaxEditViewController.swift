@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -182,7 +182,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
-            let metadata = self.style[DictionaryKey.metadata.rawValue] as? [String: Any],
+            let metadata = self.style[SyntaxKey.metadata.rawValue] as? [String: Any],
             let urlString = metadata[MetadataKey.distributionURL.rawValue] as? String,
             let url = URL(string: urlString)
             else { return NSSound.beep() }

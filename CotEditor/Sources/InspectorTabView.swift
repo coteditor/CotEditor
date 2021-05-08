@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,8 +108,8 @@ final class InspectorTabView: NSTabView {
         super.layout()
         
         self.segmentedControl.frame.origin = NSPoint(
-            x: floor((self.frame.width - self.segmentedControl.frame.width) / 2),
-            y: floor((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2) + self.topInset
+            x: ((self.frame.width - self.segmentedControl.frame.width) / 2).rounded(.down),
+            y: ((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2).rounded(.down) + self.topInset
         )
         
         self.separator.frame = NSRect(x: 0, y: self.topInset + self.controlHeight, width: self.frame.width, height: 1)

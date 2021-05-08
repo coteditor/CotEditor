@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ extension NSColor {
         
         return (0..<number)
             .map { CGFloat($0) / CGFloat(number) }
-            .map { modf(self.hueComponent + $0).1 }
+            .map { (self.hueComponent + $0).truncatingRemainder(dividingBy: 1) }
             .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }
     }
     

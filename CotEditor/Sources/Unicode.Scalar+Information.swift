@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,12 +33,12 @@ extension Unicode.Scalar {
     
     
     /// Code point pair in UTF-16 surrogate pair.
-    var surrogateCodePoints: [String]? {
+    var surrogateCodePoints: (lead: String, trail: String)? {
         
         guard self.isSurrogatePair else { return nil }
         
-        return [String(format: "U+%04X", UTF16.leadSurrogate(self)),
-                String(format: "U+%04X", UTF16.trailSurrogate(self))]
+        return (String(format: "U+%04X", UTF16.leadSurrogate(self)),
+                String(format: "U+%04X", UTF16.trailSurrogate(self)))
     }
     
     

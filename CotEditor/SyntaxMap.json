@@ -516,7 +516,7 @@
   },
   "R" : {
     "extensions" : [
-      "r"
+      "R"
     ],
     "filenames" : [
       ".Rprofile"

@@ -9,7 +9,7 @@
 #
 #  ------------------------------------------------------------------------------
 #
-#  © 2018-2020 1024jp
+#  © 2018-2021 1024jp
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -35,8 +35,6 @@ xcodebuild -scheme Distribution -configuration Release -derivedDataPath $derived
 mkdir -p ../Build
 items=(
     'org.sparkle-project.InstallerLauncher.xpc'
-    'org.sparkle-project.InstallerConnection.xpc'
-    'org.sparkle-project.InstallerStatus.xpc'
     'Sparkle.framework'
 )
 for item in ${items[@]}; do
@@ -45,3 +43,12 @@ for item in ${items[@]}; do
     rm -r ../Build/${item}
     cp -R ${file}* ../Build
 done
+
+# remove duplicated items in Sparkle.framework
+cd ../Build
+rm -f Sparkle.framework/Autoupdate
+rm -f Sparkle.framework/Updater
+rm -f Sparkle.framework/Versions/A/Autoupdate
+rm -rf Sparkle.framework/Versions/A/Updater.app
+codesign -f -s "-" Sparkle.framework
+codesign --verify --deep Sparkle.framework

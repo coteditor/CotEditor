@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,8 +120,20 @@ final class SyntaxManager: SettingFileManaging {
         }
         
         if let pathExtension = fileName.components(separatedBy: ".").last,
-            let settingName = mappingTables[.extensions]?[pathExtension]?.first {
-            return settingName
+           let extentionTable = mappingTables[.extensions]
+        {
+            if let settingName = extentionTable[pathExtension]?.first {
+                return settingName
+            }
+            
+            // check case-insensitively
+            let lowerPathExtension = pathExtension.lowercased()
+            if let sttingName = extentionTable
+                .first(where: { $0.key.lowercased() == lowerPathExtension })?
+                .value.first
+            {
+                return sttingName
+            }
         }
         
         return nil

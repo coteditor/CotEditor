@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Cocoa
 
 final class CharacterPopoverController: NSViewController {
@@ -37,8 +36,6 @@ final class CharacterPopoverController: NSViewController {
     @objc private let unicode: String
     
     @objc private let characterColor: NSColor
-    
-    private var closingCueObserver: AnyCancellable?
     
     
     
@@ -80,7 +77,7 @@ final class CharacterPopoverController: NSViewController {
             var codePoint = unicode.codePoint
             
             if !isMultiple, let surrogates = unicode.surrogateCodePoints {
-                codePoint += " (" + surrogates.joined(separator: " ") + ")"
+                codePoint += " (\(surrogates.lead) \(surrogates.trail))"
             }
             
             // append Unicode name
@@ -103,33 +100,9 @@ final class CharacterPopoverController: NSViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    // MARK: Public Methods
-    
-    /// Show the popover anchored to the specified view.
-    ///
-    /// - Parameters:
-    ///   - parentView: The view relative to which the popover should be positioned.
-    /// - Returns: A popover instance.
-    func showPopover(relativeTo positioningRect: NSRect, of parentView: NSView) {
-        
-        let popover = NSPopover()
-        popover.contentViewController = self
-        popover.delegate = self
-        popover.behavior = .semitransient
-        popover.show(relativeTo: positioningRect, of: parentView, preferredEdge: .minY)
-        
-        // auto-close popover if selection is changed
-        if let textView = parentView as? NSTextView {
-            self.closingCueObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
-                .sink { [weak popover] _ in popover?.performClose(nil) }
-        }
-    }
-    
 }
-
-
+    
+    
 
 // MARK: Delegate
 
@@ -137,20 +110,6 @@ extension CharacterPopoverController: NSPopoverDelegate {
     
     /// make popover detachable
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
-        
-        // remove selection change observer
-        self.closingCueObserver = nil
-        
-        guard let parentWindow = popover.contentViewController?.view.window?.parent else {
-            assertionFailure("Failed obtaining the parent window for character info popover.")
-            return false
-        }
-        
-        // close popover when the window of the parent editor is closed
-        // -> Otherwise, a zombie window appears again when clicking somewhere after closing the window,
-        //    as NSPopover seems to retain the parent window somehow. (2020 macOS 10.15)
-        self.closingCueObserver = NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: parentWindow)
-            .sink { [weak popover] _ in popover?.performClose(nil) }
         
         return true
     }

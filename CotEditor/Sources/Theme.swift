@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,6 +60,30 @@ final class Theme: NSObject {
             
             self.color = color
             self.usesSystemSetting = usesSystemSetting
+        }
+    }
+    
+    
+    final class Metadata: NSObject, Codable {
+        
+        @objc dynamic var author: String?
+        @objc dynamic var distributionURL: String?
+        @objc dynamic var license: String?
+        @objc dynamic var comment: String?
+        
+        
+        var isEmpty: Bool {
+            
+            return self.author == nil && self.distributionURL == nil && self.license == nil && self.comment == nil
+        }
+        
+        
+        enum CodingKeys: String, CodingKey {
+            
+            case author
+            case distributionURL
+            case license
+            case comment = "description"  // `description` conflicts with NSObject's method.
         }
     }
     
@@ -156,25 +180,6 @@ final class Theme: NSObject {
             else { return nil }
         
         return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
-    }
-    
-    
-    /// color for syntax type defined in theme
-    func style(for type: SyntaxType) -> Style? {
-        
-        // The syntax keys and theme keys must be the same.
-        switch type {
-            case .keywords: return self.keywords
-            case .commands: return self.commands
-            case .types: return self.types
-            case .attributes: return self.attributes
-            case .variables: return self.variables
-            case .values: return self.values
-            case .numbers: return self.numbers
-            case .strings: return self.strings
-            case .characters: return self.characters
-            case .comments: return self.comments
-        }
     }
     
 }

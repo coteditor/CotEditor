@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ final class LineNumberView: NSView {
             
             // calculate margins
             self.padding = self.charWidth
-            self.tickLength = ceil(fontSize / 3)
+            self.tickLength = (fontSize / 3).rounded(.up)
         }
         
     }
@@ -246,7 +246,7 @@ final class LineNumberView: NSView {
             case .horizontal:
                 context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
             case .vertical:
-                context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
+                context.translateBy(x: (relativePoint.x - lineBase).rounded(), y: 0)
             @unknown default: fatalError()
         }
         
@@ -263,7 +263,7 @@ final class LineNumberView: NSView {
                         
                         // calculate base position
                         let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 3 * drawingInfo.tickLength)
+                            ? CGPoint(x: (y + drawingInfo.charWidth * CGFloat(digit) / 2).rounded(.up), y: 3 * drawingInfo.tickLength)
                             : CGPoint(x: -drawingInfo.padding, y: y)
                         
                         // get glyphs and positions
@@ -287,7 +287,7 @@ final class LineNumberView: NSView {
                     
                     // draw tick
                     if isVerticalText {
-                        let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
+                        let rect = CGRect(x: y.rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
                         context.stroke(rect, width: 1)
                     }
                 
@@ -327,11 +327,11 @@ final class LineNumberView: NSView {
                 case .horizontal:
                     let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
                     let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
-                    return max(ceil(thickness), self.minVerticalThickness)
+                    return max(thickness.rounded(.up), self.minVerticalThickness)
                 
                 case .vertical:
                     let thickness = drawingInfo.fontSize + 4 * drawingInfo.tickLength
-                    return max(ceil(thickness), self.minHorizontalThickness)
+                    return max(thickness.rounded(.up), self.minHorizontalThickness)
                 
                 @unknown default: fatalError()
             }

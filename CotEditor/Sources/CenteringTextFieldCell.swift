@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ final class CenteringTextFieldCell: NSTextFieldCell {
         var titleRect = super.titleRect(forBounds: rect)
         let titleSize = self.attributedStringValue.size()
         
-        titleRect.origin.y = floor(rect.minY + (rect.height - titleSize.height) / 2)
+        titleRect.origin.y = (rect.minY + (rect.height - titleSize.height) / 2).rounded(.down)
         titleRect.size.height = rect.height - titleRect.origin.y
         
         return titleRect
