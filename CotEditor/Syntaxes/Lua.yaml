@@ -280,7 +280,9 @@ commands:
 - beginString: "xpcall"
 attributes: []
 characters: []
-comments: []
+comments:
+- beginString: "--\\[(=*)\\[.*\\]\\1\\]"
+  regularExpression: true
 values:
 - beginString: "(?<=math\\.)huge"
   regularExpression: true
@@ -302,10 +304,10 @@ strings:
   endString: "\""
 - beginString: "'"
   endString: "'"
-- beginString: "\\[(=*)\\["
-  endString: "\\]$1\\]"
+- beginString: "[["
+  endString: "]]"
+- beginString: "\\[(=*)\\[.*\\]\\1\\]"
   regularExpression: true
-  hasBackReference: true
 keywords:
 - beginString: "and"
 - beginString: "break"
