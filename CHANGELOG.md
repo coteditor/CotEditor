@@ -10,6 +10,11 @@ Change Log
 - Update Lua syntax style
 
 
+### Fixes
+
+- Fix an issue that the application did not terminate when all windows are closed.
+
+
 
 4.0.3 (459)
 --------------------------
