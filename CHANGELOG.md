@@ -8,7 +8,7 @@ Change Log
 ### Improvements
 
 - Update Lua syntax style
-- Update JavaScript and CoffeeScript syntax styles for more accurate literal number highlight.
+- Update JavaScript, PHP and CoffeeScript syntax styles for more accurate literal number highlight.
 
 
 ### Fixes
