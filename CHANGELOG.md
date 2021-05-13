@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Update Lua syntax style
+- Update JavaScript syntax style for more accurate literal number highlight.
 
 
 ### Fixes
