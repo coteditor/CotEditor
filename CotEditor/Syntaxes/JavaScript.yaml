@@ -1185,18 +1185,18 @@ types:
 - beginString: "WeakSet"
 - beginString: "Worker"
 numbers:
-- beginString: "\b0[bB][01][01_]*n?\b"
+- beginString: "\\b0[bB][01][01_]*n?\\b"
   regularExpression: true
   description: binary
-- beginString: "\b0[oO][0-7][0-7_]*n?\b"
+- beginString: "\\b0[oO][0-7][0-7_]*n?\\b"
   regularExpression: true
   description: octal
-- beginString: "\b0[xX][0-9a-fA-F][0-9a-fA-F_]*n?\b"
+- beginString: "\\b0[xX][0-9a-fA-F][0-9a-fA-F_]*n?\\b"
   regularExpression: true
   description: hexadecimal
-- beginString: "\b[0-9][0-9_]*(\.[0-9]*)?([eE][-+]?[1-9][0-9_]*)?\b"
+- beginString: "\\b[0-9][0-9_]*(\\.[0-9]*)?([eE][-+]?[1-9][0-9_]*)?\\b"
   regularExpression: true
-- beginString: "\b\.[0-9]*?([eE][-+]?[1-9][0-9_]*)?\b"
+- beginString: "\\b\\.[0-9]*?([eE][-+]?[1-9][0-9_]*)?\\b"
   regularExpression: true
 strings:
 - beginString: "\""
