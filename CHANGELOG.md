@@ -14,6 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application did not terminate when all windows are closed.
+- Fix literal number highlight with Ruby syntax style.
 
 
 

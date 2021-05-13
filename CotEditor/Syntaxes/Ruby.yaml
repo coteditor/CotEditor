@@ -7,10 +7,10 @@ interpreters:
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "https://coteditor.com"
-  version: "2.3.0"
+  version: "2.3.1"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2020-09-14"
+  lastModified: "2021-05-13"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"
@@ -258,7 +258,7 @@ numbers:
   ignoreCase: true
   regularExpression: true
   description: "hexadecimal"
-- beginString: "\\b[0-9][0-9_]*\\.[0-9_]+([eE][0+][0-9_]+)?r?i?\\b"
+- beginString: "\\b[0-9][0-9_]*\\.[0-9_]+([eE][-+]?[0-9_]+)?r?i?\\b"
   regularExpression: true
   description: "float"
 - beginString: "\\b[0-9][0-9_]*\\b"
