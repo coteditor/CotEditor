@@ -4,16 +4,16 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.4.0"
-  description: "Based on Swift 5.3"
+  version: "4.4.1"
+  description: "Based on Swift 5.4"
   license: "Same as CotEditor"
-  lastModified: "2021-01-23"
+  lastModified: "2021-05-15"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
   description: "MARK/TODO/FIXME"
   bold: true
-- beginString: "^([ \\t]*)(@IBAction )?(override )?(open|public|internal|private)?(class )?func[ \\t]*(\\w*)\\((.*)\\)"
+- beginString: "^([ \\t]*)(@IBAction\\s+)?(override\\s+)?((?:open|public|internal|private)\\s+)?(class\\s+)?func[ \\t]*(\\w*)\\((.*)\\)"
   keyString: "$1$2$3$4$5func $6($7)"
   description: "function"
 - beginString: "^([ \\t]*)(?:[a-z]* )*class[ \\t]+(\\w+)(?=[\\s:][^\\w])"
@@ -318,7 +318,7 @@ types:
 - beginString: "Zip2Generator"
 - beginString: "Zip2Sequence"
 numbers:
-- beginString: "(?<![0-9a-z_$])[-+]?([0-9][0-9._]*|\\.[0-9][0-9_]*)(e-?[0-9._]+)?\\b"
+- beginString: "(?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\\b"
   ignoreCase: true
   regularExpression: true
 - beginString: "\\b0b[01][01_]*\\b"

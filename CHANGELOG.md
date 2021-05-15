@@ -7,8 +7,9 @@ Change Log
 
 ### Improvements
 
-- Update Lua syntax style
-- Update JavaScript, PHP and CoffeeScript syntax styles for more accurate literal number highlight.
+- Update Lua syntax style.
+- Update Swift syntax style for more accurate outline extraction and literal number highlight.
+- Update JavaScript, PHP, and CoffeeScript syntax styles for more accurate literal number highlight.
 
 
 ### Fixes
