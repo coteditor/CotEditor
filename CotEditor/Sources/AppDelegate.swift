@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2020 1024jp
+//  © 2013-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -216,6 +216,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
         let dispatchGroup = DispatchGroup()
         var firstWindowOpened = false
+        var reply: NSApplication.DelegateReply = .success
         
         for filename in filenames {
             guard !self.application(sender, openFile: filename) else {
@@ -234,7 +235,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     NSApp.presentError(error)
                     
                     let cancelled = (error as? CocoaError)?.code == .userCancelled
-                    NSApp.reply(toOpenOrPrint: cancelled ? .cancel : .failure)
+                    reply = cancelled ? .cancel : .failure
                 }
                 
                 // on first window opened
@@ -246,12 +247,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        // reset tabbing setting
-        if isAutomaticTabbing {
-            // wait until finish
-            dispatchGroup.notify(queue: .main) {
+        // wait until finish
+        dispatchGroup.notify(queue: .main) {
+            // reset tabbing setting
+            if isAutomaticTabbing {
                 DocumentWindow.tabbingPreference = nil
             }
+            
+            NSApp.reply(toOpenOrPrint: reply)
         }
     }
     
