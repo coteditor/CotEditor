@@ -61,7 +61,7 @@ struct DefaultSettings {
         .splitViewVertical: false,
         .windowAlpha: 1.0,
         
-        .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
+        .fontName: (NSFont.monospacedSystemFont(ofSize: 0, weight: .regular)).fontName,
         .fontSize: NSFont.systemFontSize,
         .shouldAntialias: true,
         .ligature: true,
@@ -132,7 +132,7 @@ struct DefaultSettings {
                                  "", "", "", "", "", "", "", "", "", ""],
         
         .setPrintFont: false,
-        .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
+        .printFontName: (NSFont.monospacedSystemFont(ofSize: 0, weight: .regular)).fontName,
         .printFontSize: NSFont.systemFontSize,
         .printColorIndex: PrintColorMode.blackAndWhite.rawValue,
         .printLineNumIndex: PrintVisibilityMode.no.rawValue,
