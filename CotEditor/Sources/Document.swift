@@ -70,7 +70,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
-    private let autosaveIdentifier: String = UUID().uuidString
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var sytnaxUpdateObserver: AnyCancellable?
@@ -201,7 +200,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             // append an unique string to avoid overwriting another backup file with the same file name.
             let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
-            let fileName = baseFileName + " (" + self.autosaveIdentifier.prefix(maxIdentifierLength) + ")"
+            let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
             
             let autosavingURL = autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
             
