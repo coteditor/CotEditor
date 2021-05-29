@@ -194,7 +194,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // -> The default backup URL is the same directory as the fileURL.
             guard !Self.autosavesInPlace, let fileURL = fileURL else { return }
             
-            let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
+            let autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                    in: .userDomainMask,
+                                                                    appropriateFor: nil,
+                                                                    create: true)
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
                 .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
             

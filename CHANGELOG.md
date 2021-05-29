@@ -17,6 +17,7 @@ Change Log
 - Fix an issue that the application did not terminate when all windows are closed.
 - Fix an issue in the script menu that .scptd was handled as a folder.
 - Fix literal number highlight with Ruby syntax style.
+- Address an issue that annoying dialog was shown while typing when autosaving is disabled.
 
 
 
