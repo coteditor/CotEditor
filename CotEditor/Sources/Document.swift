@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         static let readingEncoding = "readingEncoding"
         static let syntaxStyle = "syntaxStyle"
-        static let autosaveIdentifier = "autosaveIdentifier"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
     }
@@ -71,7 +70,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
-    private var autosaveIdentifier: String = UUID().uuidString
+    private let autosaveIdentifier: String = UUID().uuidString
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var sytnaxUpdateObserver: AnyCancellable?
@@ -116,7 +115,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         super.encodeRestorableState(with: coder)
         
         coder.encode(Int(self.fileEncoding.encoding.rawValue), forKey: SerializationKey.readingEncoding)
-        coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
@@ -133,9 +131,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if String.availableStringEncodings.contains(encoding) {
                 self.readingEncoding = encoding
             }
-        }
-        if let identifier = coder.decodeObject(forKey: SerializationKey.autosaveIdentifier) as? String {
-            self.autosaveIdentifier = identifier
         }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
             if self.syntaxParser.style.name != styleName {
