@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2021 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -602,6 +602,7 @@
 "“%@” is already taken." = "„%@“ wird bereits verwendet.";
 "“%@” does not include the Command key." = "„%@“ enthält nicht die Command-Taste.";
 "“%@” includes the Command key." = "„%@“ enthält die Command-Taste.";
+"The Shift key can be used only with another modifier key." = "Die Shift-Taste kann nur mit einer anderen Modifikatortaste verwendet werden.";
 "Please choose another key." = "Bitte wähle eine andere Taste.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
 "Please combine with other keys." = "Bitte kombiniere sie mit anderen Tasten.";

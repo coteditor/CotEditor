@@ -17,6 +17,7 @@ Change Log
 
 - Fix an issue that the application did not terminate when all windows are closed.
 - Fix an issue in the script menu that a script bundle (.scptd) was handled not as a script but as a folder.
+- Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.
 - Fix literal number highlight with Ruby syntax style.
 - Address an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
 

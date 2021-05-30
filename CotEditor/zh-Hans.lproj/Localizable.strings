@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -602,6 +602,7 @@
 "“%@” is already taken." = "“%@”已在使用中。";
 "“%@” does not include the Command key." = "“%@”中没有包含 Command 键。";
 "“%@” includes the Command key." = "“%@”包含了 Command 键。";
+"The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";  // FIXME: added
 "Please choose another key." = "请选择其他按键。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 "Please combine with other keys." = "请与其他键组合使用。";
