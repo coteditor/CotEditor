@@ -10,7 +10,7 @@ Change Log
 - Update Lua syntax style.
 - Update Swift syntax style for more accurate outline extraction and literal number highlight.
 - Update JavaScript, PHP, and CoffeeScript syntax styles for more accurate literal number highlight.
-- Avoid escapoing non-ASCII characters to Unicode code points when exporting syntax styles to YAML files.
+- Avoid escaping non-ASCII characters to Unicode code points when exporting syntax styles to YAML files.
 
 
 ### Fixes
