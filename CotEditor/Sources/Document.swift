@@ -163,7 +163,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // pretend as if iCloud storage is disabled to let the system give up opening the open panel on launch (2018-02 macOS 10.13)
         if UserDefaults.standard[.noDocumentOnLaunchBehavior] != .openPanel,
-            NSAppleEventManager.shared().isOpenEvent
+           NSDocumentController.shared.documents.isEmpty
         {
             return false
         }
