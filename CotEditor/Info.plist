@@ -1211,9 +1211,9 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSSupportsAutomaticTermination</key>
-	<true/>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	<key>NSSupportsAutomaticTermination</key>
 	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
