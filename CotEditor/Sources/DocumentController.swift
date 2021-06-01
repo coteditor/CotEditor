@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,10 +36,6 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
-    private(set) lazy var autosaveDirectoryURL: URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                                   in: .userDomainMask,
-                                                                                   appropriateFor: nil,
-                                                                                   create: true)
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     

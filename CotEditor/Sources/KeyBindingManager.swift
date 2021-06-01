@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ struct InvalidKeySpecCharactersError: LocalizedError {
         case alreadyTaken
         case lackingCommandKey
         case unwantedCommandKey
+        case shiftOnlyModifier
     }
     
     let kind: ErrorKind
@@ -53,6 +54,9 @@ struct InvalidKeySpecCharactersError: LocalizedError {
             
             case .unwantedCommandKey:
                 return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
+                
+            case .shiftOnlyModifier:
+            return String(format: "The Shift key can be used only with another modifier key.".localized, self.shortcut.description)
         }
     }
     

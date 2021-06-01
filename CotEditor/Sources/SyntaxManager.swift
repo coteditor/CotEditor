@@ -220,7 +220,7 @@ final class SyntaxManager: SettingFileManaging {
             }
         } else {
             // save file to user domain
-            let yamlString = try Yams.dump(object: settingDictionary.yamlEncodable)
+            let yamlString = try Yams.dump(object: settingDictionary.yamlEncodable, allowUnicode: true)
             try yamlString.write(to: saveURL, atomically: true, encoding: .utf8)
         }
         

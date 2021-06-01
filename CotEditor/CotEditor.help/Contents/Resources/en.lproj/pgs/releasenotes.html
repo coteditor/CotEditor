@@ -24,6 +24,41 @@
 
 <article>
 <header>
+	<h1>CotEditor 4.0.4</h1>
+	<p>release: <time>2021-06-02</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Update Lua syntax style.</li>
+	<li>Update Swift syntax style for more accurate outline extraction and literal number highlight.</li>
+	<li>Update JavaScript, PHP, and CoffeeScript syntax styles for more accurate literal number highlight.</li>
+	<li>Avoid escaping non-ASCII characters to Unicode code points when exporting syntax styles to YAML files.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue that the application did not terminate when all windows are closed.</li>
+	<li>Fix an issue in the script menu that a script bundle (.scptd) was handled not as a script but as a folder.</li>
+	<li>Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.</li>
+	<li>Fix an issue that the application rarely showed the open dialog on launch even when the user setting for the startup behavior is not “show open dialog.”</li>
+	<li>Fix literal number highlight with Ruby syntax style.</li>
+	<li>Address an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 4.0.3</h1>
 	<p>release: <time>2021-05-08</time></p>
 </header>

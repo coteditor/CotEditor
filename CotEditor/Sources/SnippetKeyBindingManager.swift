@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -105,6 +105,11 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         // command key existance check
         if shortcut.modifierMask.contains(.command) {
             throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, shortcut: shortcut)
+        }
+        
+        // avoid shift-only modifier
+        if shortcut.modifierMask == .shift {
+            throw InvalidKeySpecCharactersError(kind: .shiftOnlyModifier, shortcut: shortcut)
         }
     }
     

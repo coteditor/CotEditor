@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         static let readingEncoding = "readingEncoding"
         static let syntaxStyle = "syntaxStyle"
-        static let autosaveIdentifier = "autosaveIdentifier"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
     }
@@ -71,7 +70,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
-    private var autosaveIdentifier: String = UUID().uuidString
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var sytnaxUpdateObserver: AnyCancellable?
@@ -116,7 +114,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         super.encodeRestorableState(with: coder)
         
         coder.encode(Int(self.fileEncoding.encoding.rawValue), forKey: SerializationKey.readingEncoding)
-        coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
@@ -133,9 +130,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if String.availableStringEncodings.contains(encoding) {
                 self.readingEncoding = encoding
             }
-        }
-        if let identifier = coder.decodeObject(forKey: SerializationKey.autosaveIdentifier) as? String {
-            self.autosaveIdentifier = identifier
         }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
             if self.syntaxParser.style.name != styleName {
@@ -169,7 +163,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // pretend as if iCloud storage is disabled to let the system give up opening the open panel on launch (2018-02 macOS 10.13)
         if UserDefaults.standard[.noDocumentOnLaunchBehavior] != .openPanel,
-            NSAppleEventManager.shared().isOpenEvent
+           NSDocumentController.shared.documents.isEmpty
         {
             return false
         }
@@ -200,13 +194,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // -> The default backup URL is the same directory as the fileURL.
             guard !Self.autosavesInPlace, let fileURL = fileURL else { return }
             
-            let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
+            let autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                    in: .userDomainMask,
+                                                                    appropriateFor: nil,
+                                                                    create: true)
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
                 .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
             
             // append an unique string to avoid overwriting another backup file with the same file name.
             let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
-            let fileName = baseFileName + " (" + self.autosaveIdentifier.prefix(maxIdentifierLength) + ")"
+            let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
             
             let autosavingURL = autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
             

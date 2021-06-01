@@ -10,10 +10,10 @@ interpreters:
 metadata:
   author: "kaz"
   distributionURL: "https://coteditor.com"
-  version: "2.5.2"
+  version: "2.5.3"
   description: "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
-  lastModified: "2019-11-11"
+  lastModified: "2021-05-13"
 outlineMenu:
 - beginString: "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])"
   description: "function"
@@ -6219,16 +6219,18 @@ types:
 - beginString: "string"
 - beginString: "void"
 numbers:
-- beginString: "\\b-?0b[01]+\\b"
+- beginString: "\\b-?0[bB][01]+(_[01]+)*\\b"
   regularExpression: true
   description: "binary"
-- beginString: "\\b-?0x[0-9a-f]+\\b"
-  ignoreCase: true
+- beginString: "\\b-?0[0-7]+(_[0-7]+)*\\b"
+  regularExpression: true
+  description: "octal"
+- beginString: "\\b-?0[xX][0-9a-fA-F]+(_[0-9a-fA-F]+)*\\b"
   regularExpression: true
   description: "hexadecimal"
-- beginString: "\\b-?\\d*\\.?\\d+\\b"
+- beginString: "\\b-?[0-9]+(_[0-9]+)*(\\.[0-9]+(_[0-9]+)*)?([eE][+-]?[0-9]+(_[0-9]+)*)?\\b"
   regularExpression: true
-  description: "decimal"
+  description: "float"
 strings:
 - beginString: "\""
   endString: "\""

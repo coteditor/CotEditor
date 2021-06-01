@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2019-2020 CotEditor Project
+ © 2019-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Le fichier “%@” ne semble pas être dans un format textuel.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "Le fichier est %@.\n\nVoulez-vous tout de même ouvrir ce fichier ?";  // FIXME: is -> appears to be
+"The file appears to be %@.\n\nDo you really want to open the file?" = "Le ficher semble être de type %@.\n\nVoulez-vous vraiment ouvrir le fichier ?";
 
 // Large file alert
 "The file “%@” has a size of %@." = "Le fichier “%@” a une taille de %@.";
@@ -601,6 +601,7 @@
 "“%@” is already taken." = "“%@” est déjà attribué.";
 "“%@” does not include the Command key." = "“%@” n'inclue pas la touche Commande.";
 "“%@” includes the Command key." = "“%@” inclue la touche Commande.";
+"The Shift key can be used only with another modifier key." = "La touche Maj ne peut être utilisée que avec une autre touche de modification.";
 "Please choose another key." = "Veuillez choisir une autre touche.";
 "Single type is invalid for a shortcut." = "Un raccourci clavier ne peut pas être composé que d'une seule touche.";
 "Please combine with other keys." = "Veuillez combiner avec d'autres touches.";

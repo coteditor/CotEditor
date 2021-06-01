@@ -38,7 +38,7 @@ How to Build
 For those people who just want to build and play with CotEditor locally.
 
 1. Run following commands to resolve dependencies.
-    - `git submodule update --init`
+    - `git submodule update --init --recursive`
 1. Open `CotEditor.xcworkspace` in Xcode.
 1. Change to ad-hoc build mode:
     1. Open `Configurations/CodeSigning.xcconfig`.
@@ -50,7 +50,7 @@ For those people who just want to build and play with CotEditor locally.
 ### Build for distribution (incl. Sparkle version)
 
 1. Run following commands to resolve dependencies.
-    - `git submodule update --init`
+    - `git submodule update --init --recursive`
 1. Open `CotEditor.xcworkspace` in Xcode.
 1. Run "Sparkle" scheme in CotEditor.xcworkspace
 1. Build "CotEditor" scheme in the workspace.

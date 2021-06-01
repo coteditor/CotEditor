@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -302,16 +302,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
             if name == .separator {  // separator
                 menu.addItem(.separator())
                 
-            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
-                let submenu = NSMenu(title: name)
-                self.addChildFileItem(in: url, to: submenu)
-                
-                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
-                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
-                item.submenu = submenu
-                menu.addItem(item)
-                
             } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
+                // -> Test script possibility before folder because a script can be a directory, e.g. .scptd.
                 for eventType in descriptor.eventTypes {
                     guard let script = script as? EventScript else { continue }
                     self.scriptHandlersTable[eventType, default: []].append(script)
@@ -323,6 +315,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.representedObject = script
                 item.target = self
                 item.toolTip = "“Option + click” to open script in editor.".localized
+                menu.addItem(item)
+                
+            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
+                let submenu = NSMenu(title: name)
+                self.addChildFileItem(in: url, to: submenu)
+                
+                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
+                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
+                item.submenu = submenu
                 menu.addItem(item)
             }
         }

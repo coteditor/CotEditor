@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";  // FIXME: is -> appears to be
+"The file appears to be %@.\n\nDo you really want to open the file?" = "该文件看起来是 %@。\n\n确定要打开该文件？";
 
 // Large file alert
 "The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";
@@ -602,6 +602,7 @@
 "“%@” is already taken." = "“%@”已在使用中。";
 "“%@” does not include the Command key." = "“%@”中没有包含 Command 键。";
 "“%@” includes the Command key." = "“%@”包含了 Command 键。";
+"The Shift key can be used only with another modifier key." = "Shift 只能配合其他修饰键使用。";
 "Please choose another key." = "请选择其他按键。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 "Please combine with other keys." = "请与其他键组合使用。";

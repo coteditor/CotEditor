@@ -1213,6 +1213,8 @@
 	</array>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
+	<key>NSSupportsAutomaticTermination</key>
+	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.coteditor.CotEditor</key>

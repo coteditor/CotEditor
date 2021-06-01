@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2020 1024jp
+//  © 2013-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -213,17 +213,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open multiple files at once
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         
-        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+        assert(Thread.isMainThread)
+        
+        let documentURLs = filenames.map { URL(fileURLWithPath: $0) }
+            .filter {
+                // ask installation if the file is CotEditor theme file
+                DocumentType.theme.extensions.contains($0.pathExtension)
+                    ? !self.askThemeInstallation(fileURL: $0)
+                    : true
+            }
+        
+        guard !documentURLs.isEmpty else { return NSApp.reply(toOpenOrPrint: .success) }
+        
+        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (documentURLs.count > 1)
         let dispatchGroup = DispatchGroup()
         var firstWindowOpened = false
+        var reply: NSApplication.DelegateReply = .success
         
-        for filename in filenames {
-            guard !self.application(sender, openFile: filename) else {
-                continue
-            }
-            
-            let url = URL(fileURLWithPath: filename)
-            
+        for url in documentURLs {
             dispatchGroup.enter()
             DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
                 defer {
@@ -234,7 +241,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     NSApp.presentError(error)
                     
                     let cancelled = (error as? CocoaError)?.code == .userCancelled
-                    NSApp.reply(toOpenOrPrint: cancelled ? .cancel : .failure)
+                    reply = cancelled ? .cancel : .failure
                 }
                 
                 // on first window opened
@@ -246,55 +253,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         
-        // reset tabbing setting
-        if isAutomaticTabbing {
-            // wait until finish
-            dispatchGroup.notify(queue: .main) {
+        // wait until finish
+        dispatchGroup.notify(queue: .main) {
+            // reset tabbing setting
+            if isAutomaticTabbing {
                 DocumentWindow.tabbingPreference = nil
             }
-        }
-    }
-    
-    
-    /// open file
-    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
-        
-        let url = URL(fileURLWithPath: filename)
-        
-        // perform install if the file is CotEditor theme file
-        guard DocumentType.theme.extensions.contains(url.pathExtension) else { return false }
-        
-        // ask whether theme file should be opened as a text file
-        let alert = NSAlert()
-        alert.messageText = String(format: "“%@” is a CotEditor theme file.".localized, url.lastPathComponent)
-        alert.informativeText = "Do you want to install this theme?".localized
-        alert.addButton(withTitle: "Install".localized)
-        alert.addButton(withTitle: "Open as Text File".localized)
-        
-        let returnCode = alert.runModal()
-        
-        guard returnCode == .alertFirstButtonReturn else { return false }  // = Open as Text File
-        
-        // import theme
-        do {
-            try ThemeManager.shared.importSetting(fileURL: url)
             
-        } catch {
-            // ask whether the old theme should be repleced with new one if the same name theme is already exists
-            let success = NSApp.presentError(error)
-            
-            guard success else { return true }  // cancelled
+            NSApp.reply(toOpenOrPrint: reply)
         }
-        
-        // feedback for success
-        let themeName = ThemeManager.shared.settingName(from: url)
-        let feedbackAlert = NSAlert()
-        feedbackAlert.messageText = String(format: "A new theme named “%@” has been successfully installed.".localized, themeName)
-        
-        NSSound.glass?.play()
-        feedbackAlert.runModal()
-        
-        return true
     }
     
     
@@ -412,6 +379,51 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// Ask user whether install the file as a CotEditor theme, or process as a text file.
+    ///
+    /// - Parameter url: The file URL to a theme file.
+    /// - Returns: Whether the given file was handled as a theme file.
+    private func askThemeInstallation(fileURL url: URL) -> Bool {
+        
+        assert(DocumentType.theme.extensions.contains(url.pathExtension))
+        
+        // ask whether theme file should be opened as a text file
+        let alert = NSAlert()
+        alert.messageText = String(format: "“%@” is a CotEditor theme file.".localized, url.lastPathComponent)
+        alert.informativeText = "Do you want to install this theme?".localized
+        alert.addButton(withTitle: "Install".localized)
+        alert.addButton(withTitle: "Open as Text File".localized)
+        
+        let returnCode = alert.runModal()
+        
+        guard returnCode == .alertFirstButtonReturn else { return false }  // = Open as Text File
+        
+        // import theme
+        do {
+            try ThemeManager.shared.importSetting(fileURL: url)
+            
+        } catch {
+            // ask whether the old theme should be repleced with new one if the same name theme is already exists
+            let success = NSApp.presentError(error)
+            
+            guard success else { return true }  // cancelled
+        }
+        
+        // feedback for success
+        let themeName = ThemeManager.shared.settingName(from: url)
+        let feedbackAlert = NSAlert()
+        feedbackAlert.messageText = String(format: "A new theme named “%@” has been successfully installed.".localized, themeName)
+        
+        NSSound.glass?.play()
+        feedbackAlert.runModal()
+        
+        return true
     }
     
 }
