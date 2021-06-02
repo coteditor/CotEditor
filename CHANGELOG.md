@@ -5,6 +5,10 @@ Change Log
 4.0.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the application did not terminate when all windows are closed.
+
 
 
 4.0.4 (461)
