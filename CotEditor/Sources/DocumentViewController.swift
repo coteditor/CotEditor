@@ -79,7 +79,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 .sink { [weak self] in self?.showsInvisibles = $0 },
             defaults.publisher(for: .showLineNumbers, initial: true)
                 .sink { [weak self] in self?.showsLineNumber = $0 },
-            defaults.publisher(for: .showGutterForLineNumbers, initial: false)
+            defaults.publisher(for: .showGutterForLineNumbers, initial: true)
                 .sink { [weak self] in self?.showsGutterForLineNumber = $0 },
             defaults.publisher(for: .wrapLines, initial: true)
                 .sink { [weak self] in self?.wrapsLines = $0 },

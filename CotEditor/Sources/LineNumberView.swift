@@ -191,8 +191,13 @@ final class LineNumberView: NSView {
                 ctx.setStrokeColor(guideColor.cgColor)
                 ctx.setLineWidth(0.5)
                 
-                ctx.move(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.minY))
-                ctx.addLine(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.maxY))
+                if orientation == .horizontal {
+                    ctx.move(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.maxY))
+                    ctx.addLine(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.minY))
+                } else {
+                    ctx.move(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.minY))
+                    ctx.addLine(to: CGPoint(x: dirtyRect.minX, y: dirtyRect.minY))
+                }
                 ctx.strokePath()
             }
             
