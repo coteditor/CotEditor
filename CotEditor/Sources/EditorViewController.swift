@@ -119,6 +119,14 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
+    /// Whether line number gutter is visible.
+    var showsGutterForLineNumber: Bool {
+        
+        get { self.textViewController?.showsGutterForLineNumber ?? false }
+        set { self.textViewController?.showsGutterForLineNumber = newValue }
+    }
+    
+    
     /// Whether navigation bar is visible.
     var showsNavigationBar: Bool {
         

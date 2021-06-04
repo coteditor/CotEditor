@@ -45,6 +45,7 @@ extension DefaultKeys {
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
+    static let showGutterForLineNumbers = DefaultKey<Bool>("showGutterForLineNumbers")
     static let showPageGuide = DefaultKey<Bool>("showPageGuide")
     static let pageGuideColumn = DefaultKey<Int>("pageGuideColumn")
     static let writingDirection = RawRepresentableDefaultKey<WritingDirection>("writingDirection")

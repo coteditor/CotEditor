@@ -984,7 +984,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             
             let guideRect = NSRect(x: isRTL ? self.bounds.width - x : x,
                                    y: dirtyRect.minY,
-                                   width: 1.0,
+                                   width: 0.5,
                                    height: dirtyRect.height)
             
             if guideRect.intersects(dirtyRect), let textColor = self.textColor {

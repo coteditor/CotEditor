@@ -302,6 +302,9 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 private extension NSLayoutManager {
     
+    typealias IndentGuideLine = (lineIndex: Int, lineRange: NSRange, indexes: [Int])
+    typealias IndentGuideUnit = (lineIndex: Int, columnIndex: Int, linePoints: [CGPoint])
+    
     /// Draw indent guides at every given indent width.
     ///
     /// - Parameters:
@@ -320,11 +323,14 @@ private extension NSLayoutManager {
         let characterRange = NSRange(location: lineStartIndex, length: charactersToShow.upperBound - lineStartIndex)
         
         // find indent indexes
-        var indentIndexes: [(lineRange: NSRange, indexes: [Int])] = []
-        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { (_, range, _, _) in
+        var indentIndexes: [IndentGuideLine] = []
+        var lineIndex = -1
+        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { (_, lineRange, _, _) in
+            
+            lineIndex += 1
             var indexes: [Int] = []
             var spaceCount = 0
-            loop: for characterIndex in range.lowerBound..<range.upperBound {
+            loop: for characterIndex in lineRange.lowerBound..<lineRange.upperBound {
                 let isIndentLevel = spaceCount.isMultiple(of: tabWidth) && spaceCount > 0
                 
                 switch string.character(at: characterIndex) {
@@ -343,20 +349,32 @@ private extension NSLayoutManager {
             
             guard !indexes.isEmpty else { return }
             
-            indentIndexes.append((range, indexes))
+            indentIndexes.append(
+                (
+                    lineIndex: lineIndex,
+                    lineRange: lineRange,
+                    indexes: indexes
+                )
+            )
         }
         
         guard !indentIndexes.isEmpty else { return }
         
-        NSGraphicsContext.saveGraphicsState()
+        guard let ctx = NSGraphicsContext.current?.cgContext else { return }
+        ctx.saveGState()
         
-        color.set()
+        // setup drawing for dashed lines
         let lineWidth: CGFloat = 0.5
+        ctx.setLineDash(phase: 0, lengths: [1.5, 1.5])
+        ctx.setLineWidth(lineWidth)
+        ctx.setStrokeColor(color.cgColor)
         let scaleFactor = NSGraphicsContext.current?.cgContext.ctm.a ?? 1
         
-        // draw guides logical line by logical line
-        for (lineRange, indexes) in indentIndexes {
-            // calculate vertical area to draw lines
+        // calculate guides for every logical line
+        var drawColumnIndexes = Set<Int>()
+        var drawGuideUnits = [IndentGuideUnit]()
+        for (lineIndex, lineRange, indexes) in indentIndexes {
+            // calculate vertical area for every logical line
             let glyphIndex = self.glyphIndexForCharacter(at: lineRange.location)
             var effectiveRange: NSRange = .notFound
             let lineFragment = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &effectiveRange)
@@ -371,20 +389,65 @@ private extension NSLayoutManager {
                 
                 return lastLineFragment.maxY - lineFragment.minY
             }()
-            let guideSize = NSSize(width: lineWidth, height: guideLength)
             
-            // draw lines
+            // calculate rect for every guide lines
+            let guideSize = NSSize(width: lineWidth, height: guideLength)
             for index in indexes {
                 let glyphIndex = self.glyphIndexForCharacter(at: index)
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                let guideOrigin = lineFragment.origin.offset(by: origin).offsetBy(dx: glyphLocation.x).aligned(scale: scaleFactor)
-                let guideRect = NSRect(origin: guideOrigin, size: guideSize)
                 
-                guideRect.fill()
+                let guideBegin = lineFragment.origin
+                    .offset(by: origin)
+                    .offsetBy(dx: glyphLocation.x)
+                    .aligned(scale: scaleFactor)
+                
+                let guideEnd = CGPoint(
+                    x: guideBegin.x,
+                    y: guideBegin.y + guideSize.height
+                )
+                
+                // prepare guide lines
+                let columnIndex = index - lineRange.location
+                drawColumnIndexes.insert(columnIndex)
+                drawGuideUnits.append((
+                    lineIndex: lineIndex,
+                    columnIndex: columnIndex,
+                    linePoints: [
+                        guideBegin,
+                        guideEnd
+                    ]
+                ))
+                
             }
         }
         
-        NSGraphicsContext.restoreGraphicsState()
+        // draw lines for every guide columns
+        for drawColumnIndex in drawColumnIndexes {
+            let alignedGuideUnits = drawGuideUnits.filter({ $0.columnIndex == drawColumnIndex })
+            var prevGuideUnit: IndentGuideUnit?
+            for guideUnit in alignedGuideUnits {
+                if prevGuideUnit == nil {
+                    // begin of the first guide line in this column
+                    ctx.move(to: guideUnit.linePoints.first!)
+                } else if let prevGuideComponent = prevGuideUnit {
+                    if guideUnit.lineIndex != prevGuideComponent.lineIndex + 1 {
+                        // end of the previous guide line
+                        ctx.addLine(to: prevGuideComponent.linePoints.last!)
+                        // begin of a new guide line in this column
+                        ctx.move(to: guideUnit.linePoints.first!)
+                    }
+                    if guideUnit == alignedGuideUnits.last! {
+                        // end of the last guide line in this column
+                        ctx.addLine(to: guideUnit.linePoints.last!)
+                    }
+                }
+                prevGuideUnit = guideUnit
+            }
+        }
+        
+        // stroke paths at once
+        ctx.strokePath()
+        ctx.restoreGState()
     }
     
 }
