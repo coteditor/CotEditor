@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application did not terminate when all windows are closed.
+- Address an issue that typing in a large document could be slow when the Autosave feature is disabled. 
 
 
 
