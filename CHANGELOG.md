@@ -5,6 +5,11 @@ Change Log
 4.0.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update JavaScript syntax style to improve regular expression highlight.
+
+
 ### Fixes
 
 - Fix an issue that the application did not terminate when all windows are closed.
