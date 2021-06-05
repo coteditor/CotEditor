@@ -192,7 +192,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         didSet {
             // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
             // -> The default backup URL is the same directory as the fileURL.
-            guard !Self.autosavesInPlace, let fileURL = fileURL else { return }
+            guard !Self.autosavesInPlace, let fileURL = fileURL, fileURL != oldValue else { return }
             
             let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
