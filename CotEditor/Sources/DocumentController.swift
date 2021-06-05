@@ -36,6 +36,10 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
+    private(set) lazy var autosaveDirectoryURL: URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                                   in: .userDomainMask,
+                                                                                   appropriateFor: nil,
+                                                                                   create: true)
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
