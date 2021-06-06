@@ -86,6 +86,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
+        // -> Setting `NSSupportsAutomaticTermination` in Info.plist
+        //    doesn't work somehow (2021-06)
+        ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
+        
         // instantiate shared instances
         _ = DocumentController.shared
         _ = TextFinder.shared
