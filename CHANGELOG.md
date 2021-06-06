@@ -14,7 +14,7 @@ Change Log
 
 - Fix an issue that the application did not terminate when all windows are closed.
 - Fix an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
-- Address an issue that typing in a large document could be slow when the Autosave feature is disabled. 
+- Address an issue that typing in a large document could be slow when the Autosave feature is disabled.
 
 
 
