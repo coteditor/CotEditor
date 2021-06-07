@@ -5,6 +5,9 @@ Change Log
 4.0.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- Minimize scrolling when focusing a text such as in text search and outline selection.
 
 
 
