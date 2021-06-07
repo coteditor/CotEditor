@@ -197,6 +197,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if !Self.autosavesInPlace, super.autosavedContentsFileURL == nil, let fileURL = self.fileURL {
                 // store directory URL to avoid finding Autosaved Information directory every time
                 struct AutosaveDirectory {
+                    
                     static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
                                                                   in: .userDomainMask,
                                                                   appropriateFor: nil,
