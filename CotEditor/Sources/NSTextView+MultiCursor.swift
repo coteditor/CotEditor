@@ -472,7 +472,7 @@ private extension UserDefaults {
 }
 
 
-private extension MultiCursorEditing where Self: NSTextView {
+private extension MultiCursorEditing {
     
     /// Enable insertion point blink timer to draw insertion points forcely.
     private func enableOwnInsertionPointTimer() {
