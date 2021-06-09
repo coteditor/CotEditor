@@ -10,6 +10,11 @@ Change Log
 - Minimize scrolling when focusing a text such as in text search and outline selection.
 
 
+### Fixes
+
+- Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque. 
+
+
 
 4.0.5 (463)
 --------------------------
