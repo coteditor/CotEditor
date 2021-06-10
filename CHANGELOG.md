@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Resume "Select word" on top of the document if the search reached the end.
 - Minimize scrolling when focusing on a text such as in text search and outline selection.
 
 
