@@ -13,6 +13,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
 - Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
 
 
