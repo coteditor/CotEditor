@@ -2,12 +2,35 @@
 Change Log
 ==========================
 
-4.0.5 (unreleased)
+4.0.6 (unreleased)
 --------------------------
+
+### Improvements
+
+- Resume "Select word" on top of the document if the search reached the end.
+- Minimize scrolling when focusing on a text such as in text search and outline selection.
+
+
+### Fixes
+
+- Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
+- Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
+
+
+
+4.0.5 (463)
+--------------------------
+
+### Improvements
+
+- Update JavaScript syntax style to improve regular expression highlight.
+
 
 ### Fixes
 
 - Fix an issue that the application did not terminate when all windows are closed.
+- Fix an issue that annoying dialog that alerts saving was failed could be shown while typing when autosaving is disabled.
+- Address an issue that typing in a large document could be slow when the Autosave feature is disabled.
 
 
 

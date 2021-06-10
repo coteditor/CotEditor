@@ -480,14 +480,26 @@ extension EditorTextView {
             self.selectedRanges = self.insertionRanges.map { self.wordRange(at: $0.location) } as [NSValue]
             
         } else {
+            let selectedRanges = self.selectedRanges.map(\.rangeValue)
+            
             // select next instance
-            guard let lastRange = self.selectedRanges.last as? NSRange else { return assertionFailure() }
+            guard let lastRange = selectedRanges.last else { return assertionFailure() }
             
             let string = self.string as NSString
             let selectedWord = string.substring(with: lastRange)
-            let nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
+            var nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
             
-            guard nextRange != .notFound else { return }
+            // resume from the top of the document
+            if nextRange == .notFound {
+                var location = 0
+                repeat {
+                    nextRange = string.range(of: selectedWord, range: NSRange(location..<lastRange.lowerBound))
+                    location = nextRange.upperBound
+                    
+                    guard nextRange != .notFound else { return }
+                    
+                } while selectedRanges.contains(where: { $0.intersects(nextRange) })
+            }
             
             self.selectedRanges.append(NSValue(range: nextRange))
             self.scrollRangeToVisible(nextRange)

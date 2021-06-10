@@ -187,29 +187,38 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    override var fileURL: URL? {
+    /// backup file URL for autosaveElsewhere
+    override var autosavedContentsFileURL: URL? {
         
-        didSet {
+        get {
             // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
-            // -> The default backup URL is the same directory as the fileURL.
-            guard !Self.autosavesInPlace, let fileURL = fileURL else { return }
-            
-            let autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                    in: .userDomainMask,
-                                                                    appropriateFor: nil,
-                                                                    create: true)
-            let baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
-            
-            // append an unique string to avoid overwriting another backup file with the same file name.
-            let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
-            let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
-            
-            let autosavingURL = autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.autosavedContentsFileURL = autosavingURL
+            // -> The default backup URL is the same directory as the fileURL
+            //    and it doesn't work with the modern Sandboxing system.
+            if !Self.autosavesInPlace, super.autosavedContentsFileURL == nil, let fileURL = self.fileURL {
+                // store directory URL to avoid finding Autosaved Information directory every time
+                struct AutosaveDirectory {
+                    
+                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                  in: .userDomainMask,
+                                                                  appropriateFor: nil,
+                                                                  create: true)
+                }
+                
+                let baseFileName = fileURL.deletingPathExtension().lastPathComponent
+                    .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
+                
+                // append an unique string to avoid overwriting another backup file with the same file name.
+                let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
+                let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
+                
+                super.autosavedContentsFileURL =  AutosaveDirectory.URL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
             }
+            
+            return super.autosavedContentsFileURL
+        }
+        
+        set {
+            super.autosavedContentsFileURL = newValue
         }
     }
     
