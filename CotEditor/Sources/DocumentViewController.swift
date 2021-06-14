@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,9 +72,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         }
         self.isStatusBarShown = defaults[.showStatusBar]
         self.showsNavigationBar = defaults[.showNavigationBar]
+        self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         self.defaultsObservers = [
-            defaults.publisher(for: .theme, initial: true)
-                .sink { [weak self] _ in self?.setTheme(name: ThemeManager.shared.userDefaultSettingName) },
+            defaults.publisher(for: .theme, initial: false)
+                .sink { [weak self] in self?.setTheme(name: $0) },
             defaults.publisher(for: .showInvisibles, initial: true)
                 .sink { [weak self] in self?.showsInvisibles = $0 },
             defaults.publisher(for: .showLineNumbers, initial: true)
@@ -91,6 +92,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         self.themeChangeObserver = ThemeManager.shared.didUpdateSetting
             .filter { [weak self] in $0.old == self?.theme?.name }
             .compactMap(\.new)
+            .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
             .sink { [weak self] in self?.setTheme(name: $0) }
         
         // observe cursor
@@ -193,7 +195,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 ? storedThemeName
                 : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
             
-            self.setTheme(name: themeName)
+            if themeName != self.theme?.name {
+                self.setTheme(name: themeName)
+            }
         }
         
         // manunally decode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)

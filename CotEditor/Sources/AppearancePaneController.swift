@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -560,24 +560,16 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let isBundled = ThemeManager.shared.isBundledSetting(name: name)
         
         // update default theme setting
-        if UserDefaults.standard[.theme] != name {
-            // do not store to UserDefautls if it's the default theme
-            if ThemeManager.shared.defaultSettingName == name {
-                UserDefaults.standard.restore(key: .theme)
-                UserDefaults.standard[.pinsThemeAppearance] = false
-            } else {
-                let isDarkTheme = ThemeManager.shared.isDark(name: name)
-                let isDarkAppearance: Bool = {
-                    switch UserDefaults.standard[.documentAppearance] {
-                        case .default: return NSAppearance.current.isDark
-                        case .light: return false
-                        case .dark: return true
-                    }
-                }()
-                UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
-                UserDefaults.standard[.theme] = name
+        let isDarkTheme = ThemeManager.shared.isDark(name: name)
+        let isDarkAppearance: Bool = {
+            switch UserDefaults.standard[.documentAppearance] {
+                case .default: return NSAppearance.current.isDark
+                case .light: return false
+                case .dark: return true
             }
-        }
+        }()
+        UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
+        UserDefaults.standard[.theme] = name
         
         self.themeViewController?.theme = theme
         self.themeViewController?.isBundled = isBundled
