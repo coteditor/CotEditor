@@ -389,6 +389,8 @@
 		2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
 		2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
 		2A8EF014241F0A8A001BDBC0 /* StringLineProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */; };
+		2A9003B9267715E600EC766F /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9003B8267715E500EC766F /* NSApplication.swift */; };
+		2A9003BA267715E600EC766F /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9003B8267715E500EC766F /* NSApplication.swift */; };
 		2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */; };
 		2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
 		2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
@@ -1163,6 +1165,7 @@
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncoding.swift; sourceTree = "<group>"; };
 		2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLineProcessingTests.swift; sourceTree = "<group>"; };
+		2A9003B8267715E500EC766F /* NSApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
 		2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCommentingTests.swift; sourceTree = "<group>"; };
 		2A9082E11D32456300228F50 /* NSTextView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Layout.swift"; sourceTree = "<group>"; };
 		2A9082E41D324D9A00228F50 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -1802,6 +1805,7 @@
 				2A71BC7D1DDC70A80085AE1C /* NSImage.swift */,
 				2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */,
 				2A10B6F421450A3B00B4205E /* NSAppearance.swift */,
+				2A9003B8267715E500EC766F /* NSApplication.swift */,
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */,
@@ -2911,6 +2915,7 @@
 				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
+				2A9003B9267715E600EC766F /* NSApplication.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
@@ -3213,6 +3218,7 @@
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
+				2A9003BA267715E600EC766F /* NSApplication.swift in Sources */,
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
