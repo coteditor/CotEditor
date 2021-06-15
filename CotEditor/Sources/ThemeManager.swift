@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,6 +107,22 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
+    /// Whether document windows currently use the dark appearance.
+    var usesDarkAppearance: Bool {
+        
+        switch UserDefaults.standard[.documentAppearance] {
+            case .default:
+                // -> NSApperance.current doesn't return the latest appearance when the system appearance
+                //    was changed after the app launch (macOS 10.14).
+                return NSApp.effectiveAppearance.isDark
+            case .light:
+                return false
+            case .dark:
+                return true
+        }
+    }
+    
+    
     /// save setting file
     func save(setting: Setting, name: String) throws {
         
@@ -198,25 +214,6 @@ final class ThemeManager: SettingFileManaging {
         // reset user default if not found
         if !self.settingNames.contains(UserDefaults.standard[.theme]) {
             UserDefaults.standard.restore(key: .theme)
-        }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Whether user prefers using dark mode window.
-    private var usesDarkAppearance: Bool {
-        
-        switch UserDefaults.standard[.documentAppearance] {
-            case .default:
-                // -> NSApperance.current doesn't return the latest appearance when the system appearance
-                //    was changed after the app launch (macOS 10.14).
-                return NSApp.effectiveAppearance.isDark
-            case .light:
-                return false
-            case .dark:
-                return true
         }
     }
     

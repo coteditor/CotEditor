@@ -561,14 +561,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // update default theme setting
         let isDarkTheme = ThemeManager.shared.isDark(name: name)
-        let isDarkAppearance: Bool = {
-            switch UserDefaults.standard[.documentAppearance] {
-                case .default: return NSAppearance.current.isDark
-                case .light: return false
-                case .dark: return true
-            }
-        }()
-        UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
+        let usesDarkAppearance = ThemeManager.shared.usesDarkAppearance
+        UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != usesDarkAppearance)
         UserDefaults.standard[.theme] = name
         
         self.themeViewController?.theme = theme
