@@ -36,6 +36,7 @@
 				2AB408432644BD8C00C545DD /* Run Script */,
 			);
 			dependencies = (
+				2A8544EA2678732B006EF01A /* PBXTargetDependency */,
 			);
 			name = "Build Syntax Map";
 			productName = "Build Syntax Map";
@@ -1147,6 +1148,7 @@
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SyntaxMapBuilder; path = ../SyntaxMapBuilder; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
 		2A86C47E2037312900B9357C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SaveDocumentAccessory.storyboard; sourceTree = "<group>"; };
 		2A86C4812037330200B9357C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
@@ -1869,6 +1871,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
+				2A8544E6267872E0006EF01A /* SyntaxMapBuilder */,
 				BEED9F89D1E364DD05CA42CB /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
@@ -3363,6 +3366,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2A8544EA2678732B006EF01A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2A8544E92678732B006EF01A /* SyntaxMapBuilder */;
+		};
 		2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
@@ -4476,6 +4483,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A8544E92678732B006EF01A /* SyntaxMapBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SyntaxMapBuilder;
+		};
 		2AA2C6FB24399A920017D1EC /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;

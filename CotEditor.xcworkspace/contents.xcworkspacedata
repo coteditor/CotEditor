@@ -10,9 +10,6 @@
    <FileRef
       location = "group:CotEditor/CotEditor.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:SyntaxMapBuilder">
-   </FileRef>
    <Group
       location = "container:CotEditor/CotEditor.help/Contents/Resources"
       name = "Release Notes">
