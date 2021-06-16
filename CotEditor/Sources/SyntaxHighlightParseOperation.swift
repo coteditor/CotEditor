@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -208,10 +208,11 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             if $0.range.isEmpty { return true }
             if $1.range.isEmpty { return false }
             
-            guard $0.role.rawValue == $1.role.rawValue else {
-                return $0.role.rawValue > $1.role.rawValue
+            if $0.range.length != $1.range.length {
+                return $0.range.length > $1.range.length
             }
-            return $0.range.length > $1.range.length
+            
+            return $0.role.rawValue > $1.role.rawValue
         }
         
         // scan quoted strings and comments in the parse range
