@@ -10,6 +10,7 @@ Change Log
 - Resume “Select word” on top of the document if the search reached the end.
 - Minimize scrolling when focusing on a text such as in text search and outline selection.
 - Improve the syntax highlighting algorythm around comments and quoted text.
+- Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
 - [trivial] Make the timing to trim trailing spaces shorter.
 
 
