@@ -8,8 +8,8 @@ Change Log
 ### Improvements
 
 - Resume “Select word” on top of the document if the search reached the end.
-- Minimize scrolling when focusing on a text such as in text search and outline selection.
-- Improve the syntax highlighting algorythm around comments and quoted text.
+- Minimize scrolling when focusing on a text such as text search and outline selection.
+- Improve the syntax highlighting algorithm around comments and quoted text.
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
 - [trivial] Make the timing to trim trailing spaces shorter.
 
@@ -17,7 +17,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the document theme did occasionally not change when switching the default theme to “Anura” in Dark Mode.
-- Fix an issue that disabling “Reopen windows from last session” option did not work if the Auto Save is disabled.
+- Fix an issue that disabling the “Reopen windows from last session” option did not work if the Auto Save is disabled.
 - Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
 - Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
 
