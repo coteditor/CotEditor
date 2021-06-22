@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "選択...";
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
-"3290.title" = "アンチエイリアス適用";
+"3290.title" = "アンチエイリアス";
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
 "g3S-3v-6ZA.title" = "リガチャ";
 

@@ -12,6 +12,7 @@ Change Log
 - Improve the syntax highlighting algorithm around comments and quoted text.
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
 - [trivial] Make the timing to trim trailing spaces shorter.
+- [trivial] Tweak Japanese localization in Preferences.
 
 
 ### Fixes
