@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Resume “Select word” on top of the document if the search reached the end.
+- Update the visual style of the multiple replacement window on macOS 11.
 - Minimize scrolling when focusing on a text such as text search and outline selection.
 - Improve the syntax highlighting algorithm around comments and quoted text.
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
