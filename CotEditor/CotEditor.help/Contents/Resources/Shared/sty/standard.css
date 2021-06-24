@@ -343,6 +343,19 @@ span.invisible {
 
 /* preferences */
 
+p img.appicon {
+	vertical-align: text-bottom;
+}
+
+table.preferences caption {
+	font-size: 110%;
+	font-weight: 600;
+	margin-top: 1em;
+}
+table.preferences th {
+	width: 18em;
+	white-space: normal;
+}
 table.preferences thead tr > * {
 	font-weight: 600;
 	text-align: left;
@@ -353,13 +366,25 @@ table.preferences thead tr:first-child > * {
 table.preferences tbody {
 	font-size: 95%;
 }
+table.preferences tbody tr > * {
+	padding-top: 0.8em;
+	padding-bottom: 0.8em;
+}
 table.preferences tr:last-child > * {
 	border-bottom-color: -apple-system-quaternary-label;
 }
 table.preferences td dl > * {
 	margin-left: 0;
 }
+table.preferences td ul  {
+	padding-left: 1.5em;
+	list-style-type: disc;
+}
 table.preferences td ul li strong {
 	font-weight: 500;
 	font-style: italic;
+}
+table.preferences td ul li strong:lang(ja) {
+	font-weight: 600;
+	font-style: normal;
 }

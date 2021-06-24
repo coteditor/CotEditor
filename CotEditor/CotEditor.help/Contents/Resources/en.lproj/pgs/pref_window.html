@@ -6,7 +6,7 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Window preferences</title>
+	<title>Change Window preferences</title>
 </head>
 
 <body>
@@ -17,54 +17,74 @@
 </ul></nav>
 
 
-<h1>Window preferences</h1>
+<h1>Change Window preferences</h1>
 
-<p>The Window preferences allow you to set the default window appearance such as widow size or line number display.<br />
-Changes you make here will take effect when you next create/open a document.</p>
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use Window preferences to customize the default window appearance such as widow size or line number display. To change these preferences, choose CotEditor &gt; Preferences, then click Window.</p>
 
-<dl>
-	<dt>Prefer Tabs</dt>
-	<dd>You can set whether documents are preferred to open as tabs. CotEditor respects your setting in the “Dock” system preferences if you set to “Respect System Setting.”</dd>
+<table class="preferences">
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Prefer Tabs</th>
+		<td>Choose when documents are opened in tabs instead of new windows:
+			<ul>
+				<li><strong>Respect System Setting</strong>: Respect your setting in the “Dock” system preferences.</li>
+				<li><strong>Always</strong>: Always in tabs as long as more than one document is already opened.</li>
+				<li><strong>Automatically</strong>: Only when you're working in full screen, or multiple documents are opened at once.</li>
+				<li><strong>Manually</strong>: Only when explicitly open in tabs.</li>
+			</ul></td>
+	</tr>
 	
-	<dt>Show</dt>
-	<dd>You can set the visibility of parts in the window.</dd>
-	<dd><dl>
-		<dt>Line numbers</dt>
-		<dd>With this option turned on, CotEditor shows line numbers on the left side of the window.</dd>
-		
-		<dt>Page guide</dt>
-		<dd>When this is turned on, a page guide (a vertical line) is displayed in the window's text editor area.</dd>
-		<dd><dl>
-			<dt>at column:</dt>
-			<dd>You can specify the column at which you want the page guide displayed. Note that the display position will differ according to your font setting.<br />
-			The default font type can be changed in the <a href="../pgs/pref_appearance.html">Appearance</a> pane.</dd>
-		</dl></dd>
-	</dl></dd>
+	<tr>
+		<th>Line numbers</th>
+		<td>Display line numbers on the left side of the editor.</td>
+	</tr>
 	
-	<dt>Writing direction</dt>
-	<dd>You can set the default writing direction in editors.</dd>
+	<tr>
+		<th>Page guide</th>
+		<td>Display a page guide line at a specific column in the text editor area. Note that the display position differs according to the text font. The default font can be changed in the <a href="../pgs/pref_appearance.html">Appearance</a> pane.</td>
+	</tr>
 	
-	<dt>Overscroll</dt>
-	<dd>You can set the amount of the extra space at the bottom of the editor to scroll past end of a document. By 0%, the scroll stops after reaching the end of the document; and by 100%, the scroll continues until only the last line is visible.</dd>
+	<tr>
+		<th>Writing direction</th>
+		<td>Choose the default writing direction in editors.</td>
+	</tr>
 	
-	<dt>Status bar shows</dt>
-	<dd>You can set the information to display in the status bar.</dd>
+	<tr>
+		<th>Overscroll</th>
+		<td>Choose the amount of the extra space at the bottom of the editor to scroll past the end of a document. By 0%, the scroll stops after reaching the end of the document; and by 100%, the scroll continues until only the last line is visible.</td>
+	</tr>
 	
-	<dt>Window size</dt>
-	<dd>You can set the default window size in pixel.</dd>
+	<tr>
+		<th>Status bar shows</th>
+		<td>Choose the information to display in the status bar, the area below the document window.</td>
+	</tr>
 	
-	<dt>Split editor</dt>
-	<dd>You can set the default orientation to split editors.</dd>
+	<tr>
+		<th>Window width/height</th>
+		<td>Set the default window size in pixel.</td>
+	</tr>
 	
-	<dt>Editor opacity</dt>
-	<dd>You can set the default editor opacity using the slider.</dd>
-</dl>
+	<tr>
+		<th>Split editor</th>
+		<td>Choose the default split orientation of editors.</td>
+	</tr>
+	
+	<tr>
+		<th>Editor opacity</th>
+		<td>Drag the slider or input the percentage to change the default editor opacity.</td>
+	</tr>
+</tbody>
+</table>
 
 
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="../pgs/pref_appearance.html">Appearance preferences</a></li>
+	<li><a href="../pgs/pref_appearance.html">Change Appearance preferences</a></li>
 	<li><a href="../xpgs/xpreferences.html">preferences</a></li>
 </ul>
 </section>

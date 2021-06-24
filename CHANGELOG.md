@@ -11,6 +11,7 @@ Change Log
 - Minimize scrolling when focusing on a text such as text search and outline selection.
 - Improve the syntax highlighting algorithm around comments and quoted text.
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
+- Update help contents for the preference panes.
 - [trivial] Make the timing to trim trailing spaces shorter.
 - [trivial] Tweak Japanese localization in Preferences.
 
