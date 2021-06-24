@@ -1229,7 +1229,7 @@
 			<key>UTTypeDescription</key>
 			<string>CotEditor Theme</string>
 			<key>UTTypeIconFile</key>
-			<string>ThemeIcon</string>
+			<string></string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBadgeName</key>
@@ -1255,7 +1255,7 @@
 			<key>UTTypeDescription</key>
 			<string>CotEditor Replacement Definition</string>
 			<key>UTTypeIconFile</key>
-			<string>ReplacementsIcon</string>
+			<string></string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBadgeName</key>
