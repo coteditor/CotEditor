@@ -126,10 +126,10 @@ final class Theme: NSObject {
         
         self.text = Style(color: .textColor)
         self.background = Style(color: .textBackgroundColor)
-        self.invisibles = Style(color: .tertiaryLabelColor)
+        self.invisibles = Style(color: .init(white: 0.7, alpha: 1))
         self.selection = SelectionStyle(color: .selectedTextBackgroundColor, usesSystemSetting: true)
         self.insertionPoint = Style(color: .textColor)
-        self.lineHighlight = Style(color: .quaternaryLabelColor)
+        self.lineHighlight = Style(color: .init(white: 0.95, alpha: 1))
         
         self.keywords = Style(color: .gray)
         self.commands = Style(color: .gray)
