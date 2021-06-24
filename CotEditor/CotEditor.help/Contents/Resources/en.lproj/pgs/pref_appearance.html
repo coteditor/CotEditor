@@ -6,7 +6,7 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Appearance preferences</title>
+	<title>Change Appearance preferences</title>
 </head>
 
 <body>
@@ -17,92 +17,111 @@
 </ul></nav>
 
 
-<h1>Appearance preferences</h1>
+<h1>Change Appearance preferences</h1>
 
-<p>The Appearance preferences let you set the appearance of documents, including font, line height and the colors.</p>
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use Apperance preferences to choose the appearance of documents, such as font, line height, and the colors. To change these preferences, choose CotEditor &gt; Preferences, then click Appearance.</p>
 
-<dl>
-	<dt>Font</dt>
-	<dd>You can set the font and size for the editor.</dd>
-	<dd><dl>
-		<dt>Anti-aliasing</dt>
-		<dd>With this option selected, CotEditor displays text anti-aliased.</dd>
-		<dt>Ligatures</dt>
-		<dd>With this option selected, the standard ligature rules are applied. Otherwise, all ligatures are disabled. Ligature is a typography feature joining specific characters as a single glyph.</dd>
-	</dl></dd>
+<table class="preferences">
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Font</th>
+		<td>The font and font size for the editor. To change the font or font size, click Select, then choose a different font or font size.</td>
+	</tr>
 	
-	<dt>Line height</dt>
-	<dd>You can adjust line height with a value indicating the number of lines. The range you can set is from 0.1 to 10.0 (lines).</dd>
+	<tr>
+		<th>Anti-aliasing</th>
+		<td>Display text in the editor anti-aliased. Anti-aliasing is a rendaring feature that smoothes jagged edges.</td>
+	</tr>
 	
-	<dt>Current line</dt>
-	<dd>You can set the appearance of current line in the text view.</dd>
-	<dd><dl>
-		<dt>Change background color</dt>
-		<dd>With this option turned on, the line in which caret exists will be highlighted with another background color.  The “Current Line” color in the selected theme will be used for this highlight.</dd>
-	</dl></dd>
+	<tr>
+		<th>Ligatures</th>
+		<td>Apply the standard ligature rules to the editor's text, or disable all ligatures. A ligature is a typographic feature joining specific characters as a single glyph.</td>
+	</tr>
 	
-	<dt>Cursor</dt>
-	<dd>You can change the cursor style in the main editor.</dd>
+	<tr>
+		<th>Line height</th>
+		<td>Line height with a value indicating the number of lines. The range must be from 0.1 to 10.0.</td>
+	</tr>
 	
-	<dt>Invisibles</dt>
-	<dd>You can visualize invisible characters — such as line endings, whitespaces, or control characters.</dd>
-	<dd><dl>
-		<dt>Show invisible characters</dt>
-		<dd>You can transform invisible characters into alternative symbols in order to make them viewable. See <a href="howto_display_invisibles.html">Displaying invisible characters</a> for about the available types of invisible characters.</dd>
-		<dt>Show indent guides</dt>
-		<dd>With this option turned on, guides are drawn for each indent width in the indent parts of the document.</dd>
-	</dl></dd>
+	<tr>
+		<th>Change background color</th>
+		<td>Highlight the lines in which cursors exist with another background color. The “Current Line” color in the selected theme will be used for this highlight.</td>
+	</tr>
 	
-	<dt>Appearance</dt>
-	<dd>You can set the document window appearance regardless of the system appearance state.</dd>
+	<tr>
+		<th>Cursor</th>
+		<td>The style of the cursor in the editor.</td>
+	</tr>
 	
-	<dt>Theme</dt>
-	<dd>You can manage the coloring themes for the text view.  See <a href="howto_customize_theme.html">About theme</a> for about theme customization.</dd>
+	<tr>
+		<th>Show invisible characters</th>
+		<td>Transform invisible characters — such as line endings, whitespaces, or control characters —  into alternative symbols in order to make them viewable. See <a href="howto_display_invisibles.html">Displaying invisible characters</a> for about the available types of invisible characters.</td>
+	</tr>
 	
-	<dd><dl>
-		<dt>Theme list</dt>
-		<dd>Select your default theme for the text view.</dd>
-		
-		<dt>New (+ icon)</dt>
-		<dd>Create a new theme.</dd>
-		
-		<dt>Delete (- icon)</dt>
-		<dd>Remove the selected theme. You cannot remove theme that are bundled with CotEditor.</dd>
-		
-		<dt>Other Actions (gear icon)</dt>
-		<dd><dl>
-			<dt>Duplicate “Theme Name”</dt>
+	<tr>
+		<th>Show indent guides</th>
+		<td>Draw guides for each indent width in the indent parts of the document.</td>
+	</tr>
+	
+	<tr>
+		<th>Appearance</th>
+		<td>Choose the document window appearance regardless of the system appearance state.</td>
+	</tr>
+	
+	<tr>
+		<th>Theme</th>
+		<td>Choose your default coloring theme for the editor, and manage the themes. See <a href="howto_customize_theme.html">About theme</a> for about theme customization.</td>
+	</tr>
+	
+	<tr>
+		<th>Theme list</th>
+		<td>Choose your default theme for the text view.</td>
+	</tr>
+	
+	<tr>
+		<th>Add +, Remove -</th>
+		<td>Create a new theme or remove the selected theme. The themes bundled with CotEditor can not be removed.</td>
+	</tr>
+	
+	<tr>
+		<th>Other Actions (gear)</th>
+		<td><dl>
+			<dt>Duplicate</dt>
 			<dd>Duplicate the selected theme in order to make your own one.</dd>
 			
-			<dt>Restore “Theme Name”</dt>
+			<dt>Restore</dt>
 			<dd>Restore the selected theme to default. This action is available only for bundled themes.</dd>
 			
-			<dt>Export “Theme Name”</dt>
-			<dd>Export the theme file made from the selected theme. You can use this exported file to use it on another computer. To use the exported file, do Import.</dd>
+			<dt>Export</dt>
+			<dd>Export the theme file made from the selected theme. With exported files, custom coloring themes can be used on another computer. To use the exported file, do Import.</dd>
 			
 			<dt>Import</dt>
-			<dd>This allows you to use a theme created on another computer. After selecting Import, choose the theme file to install.</dd>
-		</dl></dd>
+			<dd>This allows you to use a theme created on another computer. After selecting Import, choose the theme file to import.</dd>
+		</dl></td>
+	</tr>
 		
-		<dt>Theme edit view</dt>
-		<dd>You can edit the selected theme.</dd>
-		<dd><dl>
+	<tr>
+		<th>Theme editor</th>
+		<td>Edit the selected theme. Click the color wells to choose colors.<dl>
 			<dt>Basic</dt>
-			<dd>The configurations for basic coloring other than syntax coloring. Included are the colors of text, cursor, invisibles, background, current line, and selection. If “Use system color” check box for “Selection” is turned on, the user setting in the System Preferences &gt; General &gt; Highlight Color is used for the selection highlighting.</dd>
+			<dd>Basic text coloring other than syntax highlighting. If “Use system color” check box for the “Selection” is turned on, the user setting in the System Preferences &gt; General &gt; Highlight Color is used for the selection highlighting.</dd>
 			
 			<dt>Syntax</dt>
-			<dd>You can set the colors for syntax highlighting.<br />
-			The code elements colors are: Keywords, Commands, Types, Attributes, Variables, Values, Numbers, Strings, Characters, and Comments.<br />
-			&quot;Enable syntax highlighting&quot; in the <a href="../pgs/pref_format.html">Format preferences</a> should be checked to apply these colors.</dd>
-		</dl></dd>
-	</dl></dd>
-</dl>
+			<dd>The text colors for syntax highlighting. Turn on the “Enable syntax highlighting” optoin in the <a href="../pgs/pref_format.html">Format preferences</a> to apply these colors to documents.</dd>
+		</dl></td>
+	</tr>
+</tbody>
+</table>
 
 
 <section id="cf">
 	<h2>See also</h2>
 	<ul>
-		<li><a href="../pgs/pref_format.html">Format preferences</a></li>
+		<li><a href="../pgs/pref_format.html">Change Format preferences</a></li>
 		<li><a href="../pgs/howto_customize_theme.html">About themes</a></li>
 		<li><a href="../xpgs/xpreferences.html">preferences</a></li>
 	</ul>
