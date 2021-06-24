@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             textField.objectValue = oldShortcut?.description
             return
             
-        } catch { assertionFailure("Caught unknown error.") }
+        } catch { assertionFailure("Caught unknown error: \(error)") }
         
         // successfully update data
         item.shortcut = shortcut

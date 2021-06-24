@@ -56,7 +56,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
                                                                    in: .userDomainMask, appropriateFor: nil, create: true)
         } catch {
-            assertionFailure("cannot create the scripts folder: \(error.localizedDescription)")
+            assertionFailure("cannot create the scripts folder: \(error)")
             self.scriptsDirectoryURL = nil
         }
         
