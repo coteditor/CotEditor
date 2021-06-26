@@ -207,9 +207,9 @@ final class ThemeManager: SettingFileManaging {
         // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
             .map { self.settingName(from: $0) }
-            .sorted(options: [.localized, .caseInsensitive])
         
         self.settingNames = (self.bundledSettingNames + userSettingNames).unique
+            .sorted(options: [.localized, .caseInsensitive])
         
         // reset user default if not found
         if !self.settingNames.contains(UserDefaults.standard[.theme]) {

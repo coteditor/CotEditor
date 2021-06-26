@@ -14,6 +14,7 @@ Change Log
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
 - Update the bundled cot command to enable reading large piped text entirely.
 - Update help contents for the preference panes.
+- [trivial] Sort themes alphabetically regardless whether they are bundled or not.
 - [trivial] Make the timing to trim trailing spaces shorter.
 - [trivial] Tweak Japanese localization in Preferences.
 
