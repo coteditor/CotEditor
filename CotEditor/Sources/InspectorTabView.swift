@@ -82,7 +82,6 @@ final class InspectorTabView: NSTabView {
         // add control parts
         self.addSubview(self.segmentedControl)
         self.addSubview(self.separator)
-        
     }
     
     
@@ -105,14 +104,14 @@ final class InspectorTabView: NSTabView {
     /// update private control position
     override func layout() {
         
-        super.layout()
-        
         self.segmentedControl.frame.origin = NSPoint(
             x: ((self.frame.width - self.segmentedControl.frame.width) / 2).rounded(.down),
             y: ((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2).rounded(.down) + self.topInset
         )
         
         self.separator.frame = NSRect(x: 0, y: self.topInset + self.controlHeight, width: self.frame.width, height: 1)
+        
+        super.layout()
     }
     
     

@@ -23,6 +23,7 @@ Change Log
 - Fix an issue that the document theme did occasionally not change when switching the default theme to “Anura” in Dark Mode.
 - Fix an issue that disabling the “Reopen windows from last session” option did not work if the Auto Save is disabled.
 - Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
+- Fix an issue in the inspector that the content occasionally overlapped with the pane controller above if it is shown when the window opens.
 - Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
 
 
