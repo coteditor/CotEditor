@@ -12,13 +12,13 @@
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 10pt/1.6 -apple-system, sans-serif;
+	font: 13px/1.6 -apple-system, sans-serif;
 	font-weight: 400;
 	color: -apple-system-label;
 }
 body {
 	margin: 1em auto;
-	padding: 0 1em;
+	padding: 0 1em 1em;
 	max-width: 7in;
 }
 
@@ -26,7 +26,7 @@ a {
 	text-decoration: none;
 }
 a:link, a:visited {
-	color: hsl(211, 67%, 50%);
+	color: -apple-system-blue;
 }
 a:hover {
 	text-decoration: underline;
@@ -70,7 +70,7 @@ body > h1 {
 	font-size: 1.71rem;
 	line-height: 1.0;
 	font-weight: 400;
-	margin: 0 0 1.5em;
+	margin: 1.5em 0;
 }
 body > h1::before {
 	content: '';
@@ -273,36 +273,6 @@ tbody th:first-child {
 tt,
 pre {
 	font-family: 'Courier', 'Courier New', monospace;
-}
-
-
-/* header */
-body {
-	padding-top: 48px;
-}
-
-body > nav {
-	border-bottom: 1px solid hsl(0, 0%, 80%);
-	background: hsl(0, 0%, 96%);
-	
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
-}
-body > nav a {
-	color: -apple-system-secondary-label;
-}
-body > nav ul {
-	border: none;
-	background: transparent;
-	margin: 0;
-	padding: 0;
-}
-body > nav li {
-	display: inline-block;
-	margin: 0.2em 1em;
 }
 
 

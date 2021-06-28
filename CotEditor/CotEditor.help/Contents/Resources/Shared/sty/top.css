@@ -12,7 +12,7 @@
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 10pt/1.5 -apple-system, sans-serif;
+	font: 13px/1.5 -apple-system, sans-serif;
 	color: -apple-system-label;
 }
 body {
@@ -23,7 +23,7 @@ a {
 	text-decoration: none;
 }
 a:link, a:visited {
-	color: hsl(211, 67%, 50%);
+	color: -apple-system-blue;
 }
 a:hover {
 	text-decoration: underline;

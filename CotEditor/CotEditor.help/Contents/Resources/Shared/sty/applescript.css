@@ -18,10 +18,10 @@
 }
 
 .added {
-	color: hsl(80, 50%, 40%);
+	color: hsl(80, 60%, 35%);
 }
 .deprecated {
-	color: hsl(44, 75%, 33%);
+	color: -apple-system-brown;
 }
 dfn {
 	font-weight: bold;
@@ -65,7 +65,7 @@ dl.tree dl.subtree dt {
 }
 dl.tree dl.subtree dt::before {
 	content: '- ';
-	color: hsl(0, 0%, 50%);
+	color: -apple-system-secondary-label;
 }
 
 ul.tree, ul.tree ul {
@@ -77,11 +77,5 @@ ul.tree li {
 }
 ul.tree li li::before {
 	content: '- ';
-	color: hsl(0, 0%, 50%);
-}
-
-
-/* dark mode */
-
-@media (prefers-color-scheme: dark) {
+	color: -apple-system-secondary-label;
 }
