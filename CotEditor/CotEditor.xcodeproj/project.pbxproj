@@ -4206,7 +4206,7 @@
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "4.0.6-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Debug;
@@ -4226,7 +4226,7 @@
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "4.0.6-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Release;

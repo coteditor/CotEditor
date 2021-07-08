@@ -80,6 +80,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
                 .sink { [weak self] in self?.showsInvisibles = $0 },
             defaults.publisher(for: .showLineNumbers, initial: true)
                 .sink { [weak self] in self?.showsLineNumber = $0 },
+            defaults.publisher(for: .showGutterForLineNumbers, initial: true)
+                .sink { [weak self] in self?.showsGutterForLineNumber = $0 },
             defaults.publisher(for: .wrapLines, initial: true)
                 .sink { [weak self] in self?.wrapsLines = $0 },
             defaults.publisher(for: .showPageGuide, initial: true)
@@ -158,6 +160,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         return super.restorableStateKeyPaths + [
             #keyPath(showsLineNumber),
+            #keyPath(showsGutterForLineNumber),
             #keyPath(showsPageGuide),
             #keyPath(showsIndentGuides),
             #keyPath(showsInvisibles),
@@ -513,6 +516,17 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         didSet {
             for viewController in self.editorViewControllers {
                 viewController.showsLineNumber = showsLineNumber
+            }
+        }
+    }
+    
+    
+    /// visibility of line numbers gutter
+    @objc var showsGutterForLineNumber = false {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.showsGutterForLineNumber = showsGutterForLineNumber
             }
         }
     }
@@ -958,6 +972,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         editorViewController.textView?.showsPageGuide = self.showsPageGuide
         editorViewController.textView?.showsIndentGuides = self.showsIndentGuides
         editorViewController.showsNavigationBar = self.showsNavigationBar
+        editorViewController.showsGutterForLineNumber = self.showsGutterForLineNumber
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
         if let syntaxParser = self.syntaxParser {

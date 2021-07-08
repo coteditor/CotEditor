@@ -43,11 +43,13 @@
 "iw9-Ba-eD2.title" = "显示：";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行号";
+/* Class = "NSButtonCell"; title = "Gutter"; ObjectID = "uY8-8c-yDw"; */
+"uY8-8c-yDw.title" = "分隔线";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
 "3352.title" = "列位置页面指示：";
 
 /* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
-"RwN-73-I8c.title" = "书写方向:";
+"RwN-73-I8c.title" = "书写方向：";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
 "3Kb-bF-CW0.title" = "从左到右";
 /* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */

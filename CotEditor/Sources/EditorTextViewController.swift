@@ -196,6 +196,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         set { self.lineNumberView?.isHidden = !newValue }
     }
     
+    
+    var showsGutterForLineNumber: Bool {
+        
+        get { self.lineNumberView?.showsGutter ?? false }
+        set { self.lineNumberView?.showsGutter = newValue }
+    }
+    
 }
 
 

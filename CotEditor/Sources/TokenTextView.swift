@@ -43,6 +43,11 @@ final class TokenTextView: NSTextView {
     // MARK: -
     // MARK: Text View Methods
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        font = NSFont.monospacedSystemFont(ofSize: NSFont.systemFontSize(for: .small), weight: .regular)
+    }
+    
     override var string: String {
         
         didSet {

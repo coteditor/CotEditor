@@ -73,6 +73,13 @@ final class LineNumberView: NSView {
         }
     }
     
+    var showsGutter: Bool = false {
+        
+        didSet {
+            self.needsDisplay = true
+        }
+    }
+    
     
     // MARK: Constants
     
@@ -170,14 +177,31 @@ final class LineNumberView: NSView {
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
+        let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+        let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
+        
         // fill background
-        if self.isOpaque {
-            NSGraphicsContext.saveGraphicsState()
+        if self.isOpaque, let ctx = NSGraphicsContext.current?.cgContext {
+            ctx.saveGState()
             
-            self.backgroundColor.setFill()
-            dirtyRect.fill()
+            ctx.setFillColor(self.backgroundColor.cgColor)
+            ctx.fill(dirtyRect)
             
-            NSGraphicsContext.restoreGraphicsState()
+            if showsGutter {
+                ctx.setStrokeColor(guideColor.cgColor)
+                ctx.setLineWidth(0.5)
+                
+                if orientation == .horizontal {
+                    ctx.move(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.maxY))
+                    ctx.addLine(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.minY))
+                } else {
+                    ctx.move(to: CGPoint(x: dirtyRect.maxX, y: dirtyRect.minY))
+                    ctx.addLine(to: CGPoint(x: dirtyRect.minX, y: dirtyRect.minY))
+                }
+                ctx.strokePath()
+            }
+            
+            ctx.restoreGState()
         }
         
         self.drawNumbers(in: dirtyRect)
