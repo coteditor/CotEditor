@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   macOS:
-    runs-on: macos-11
+    runs-on: macOS-latest
 
     steps:
     - name: Show environments
