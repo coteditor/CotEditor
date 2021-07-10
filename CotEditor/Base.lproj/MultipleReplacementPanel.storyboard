@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -603,7 +603,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="SjX-xT-GVD"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="bevel" title="Action" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="3mW-VX-9wW" id="IwC-Jx-M4D">
+                                <popUpButtonCell key="cell" type="bevel" title="Action" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" id="IwC-Jx-M4D">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="5JP-FI-8cb">
@@ -635,6 +635,9 @@
                                                     <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="dJi-7f-h6N"/>
                                                 </connections>
                                             </menuItem>
+                                            <menuItem title="Share" id="XIe-MY-JEs" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem isSeparatorItem="YES" id="jIk-dY-Dto"/>
                                             <menuItem title="Import…" id="iZn-Pw-tgJ">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -649,6 +652,9 @@
                                                 </connections>
                                             </menuItem>
                                         </items>
+                                        <connections>
+                                            <outlet property="delegate" destination="y8N-kI-aI7" id="JDX-8i-2Hp"/>
+                                        </connections>
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -715,6 +721,9 @@
                                 <action selector="revealSettingInFinder:" target="y8N-kI-aI7" id="q39-5a-B8m"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Share" id="3hj-yI-UYg" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="xX2-1H-iy6"/>
                         <menuItem title="Import…" id="8TG-QH-hxz">
                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -723,6 +732,9 @@
                             </connections>
                         </menuItem>
                     </items>
+                    <connections>
+                        <outlet property="delegate" destination="y8N-kI-aI7" id="OGj-TH-DyN"/>
+                    </connections>
                 </menu>
             </objects>
             <point key="canvasLocation" x="-79.5" y="734"/>
@@ -905,6 +917,7 @@
                 </viewController>
                 <customObject id="7XB-QV-M9w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController objectClassName="CotEditor.MultipleReplacement.Settings.Object" id="SKd-Jw-BKV">
+                    <classReference key="objectClass" className="MultipleReplacement.Settings.Object" moduleName="CotEditor"/>
                     <connections>
                         <binding destination="AcD-dT-Fbp" name="contentObject" keyPath="representedObject" id="WAo-aQ-4In"/>
                     </connections>

@@ -261,6 +261,8 @@
 		2A5EDDBB241B649C00A07810 /* moof.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = 2A5EDDBA241B649C00A07810 /* moof.textClipping */; };
 		2A5EDDBD241B64EB00A07810 /* TextClippingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5EDDBC241B64EB00A07810 /* TextClippingTests.swift */; };
 		2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA31D152589001D83BC /* EditorView.storyboard */; };
+		2A62F3762699C2EA00AB3510 /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */; };
+		2A62F3772699C2EA00AB3510 /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */; };
 		2A63A9D824E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */; };
 		2A63A9D924E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */; };
 		2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */; };
@@ -1043,6 +1045,7 @@
 		2A5F7CAB1D157506001D83BC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A5F7CAC1D157509001D83BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2A5F7CAD1D15750B001D83BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
+		2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMenuItem.swift; sourceTree = "<group>"; };
 		2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinePopUpButton.swift; sourceTree = "<group>"; };
 		2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
 		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
@@ -1635,6 +1638,7 @@
 				2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */,
 				2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */,
 				2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */,
+				2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2840,6 +2844,7 @@
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2AD69B891D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
+				2A62F3762699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
@@ -3099,6 +3104,7 @@
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */,
+				2A62F3772699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,

@@ -52,6 +52,8 @@
 "Check for Updates…" = "アップデートを確認...";
 "What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
+"Share" = "共有";
+
 
 
 /* MARK: AppDelegate */

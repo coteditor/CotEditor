@@ -28,7 +28,7 @@ import Combine
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -149,15 +149,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
-        let representedSettingName: String? = {
-            guard isContextualMenu else {
-                return self.selectedThemeName
-            }
-            
-            guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
-            
-            return self.themeNames[safe: clickedRow]
-        }()
+        let representedSettingName = self.representedSettingName(for: menuItem.menu)
         menuItem.representedObject = representedSettingName
         
         let itemSelected = (representedSettingName != nil)
@@ -387,6 +379,19 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
+    // NSMenuDelegate
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        
+        // create share menu dynamically
+        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first {
+            let settingName = self.representedSettingName(for: menu) ?? self.selectedThemeName
+            
+            shareMenuItem.sharingItems = ThemeManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
+        }
+    }
+    
+    
     
     // MARK: Action Messages
     
@@ -550,6 +555,18 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             return menuItem.representedObject as! String
         }
         return self.selectedThemeName
+    }
+    
+    
+    private func representedSettingName(for menu: NSMenu?) -> String? {
+        
+        guard self.themeTableView?.menu == menu else {
+            return self.selectedThemeName
+        }
+        
+        guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        
+        return self.themeNames[safe: clickedRow]
     }
     
     

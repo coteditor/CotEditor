@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate {
     
     // MARK: Private Properties
     
@@ -102,18 +102,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
-        
-        let representedSettingName: String? = {
-            guard isContextualMenu else {
-                return self.selectedStyleName
-            }
-            
-            guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
-            
-            guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
-            
-            return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
-        }()
+        let representedSettingName = self.representedSettingName(for: menuItem.menu)
         
         // set style name as representedObject to menu items whose action is related to syntax style
         if NSStringFromSelector(menuItem.action!).contains("Syntax") {
@@ -265,6 +254,17 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         AudioServicesPlaySystemSound(.volumeMount)
         
         return true
+    }
+    
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        
+        // create share menu dynamically
+        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first {
+            let settingName = self.representedSettingName(for: menu) ?? self.selectedStyleName
+            
+            shareMenuItem.sharingItems = SyntaxManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
+        }
     }
     
     
@@ -492,6 +492,20 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             return menuItem.representedObject as! String
         }
         return self.selectedStyleName
+    }
+    
+    
+    private func representedSettingName(for menu: NSMenu?) -> String? {
+        
+        guard self.syntaxTableView?.menu == menu else {
+            return self.selectedStyleName
+        }
+        
+        guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        
+        guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
+        
+        return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
     }
     
     

@@ -52,6 +52,7 @@
 "Check for Updates…" = "Buscar Atualizações…";
 "What’s New in CotEditor %@" = "Novidades do CotEditor %@";  // %@ is version number
 
+"Share" = "Compartillhar";
 
 
 /* MARK: AppDelegate */

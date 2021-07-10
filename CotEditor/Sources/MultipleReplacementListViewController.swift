@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -87,16 +87,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.tableView?.menu)
-        
-        let representedSettingName: String? = {
-            guard isContextualMenu else {
-                return self.selectedSettingName
-            }
-            
-            guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
-            
-            return self.settingNames[safe: clickedRow]
-        }()
+        let representedSettingName = self.representedSettingName(for: menuItem.menu)
         menuItem.representedObject = representedSettingName
         
         let itemSelected = (representedSettingName != nil)
@@ -279,6 +270,18 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             return menuItem.representedObject as? String
         }
         return self.selectedSettingName
+    }
+    
+    
+    private func representedSettingName(for menu: NSMenu?) -> String? {
+        
+        guard self.tableView?.menu == menu else {
+            return self.selectedSettingName
+        }
+        
+        guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        
+        return self.settingNames[safe: clickedRow]
     }
     
     
@@ -498,6 +501,24 @@ extension MultipleReplacementListViewController: NSTextFieldDelegate {
         }
         
         return true
+    }
+    
+}
+
+
+
+// MARK: - Menu Delegate
+
+extension MultipleReplacementListViewController: NSMenuDelegate {
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        moof()
+        // create share menu dynamically
+        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first,
+           let settingName = self.representedSettingName(for: menu) ?? self.selectedSettingName
+        {
+            shareMenuItem.sharingItems = ReplacementManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
+        }
     }
     
 }

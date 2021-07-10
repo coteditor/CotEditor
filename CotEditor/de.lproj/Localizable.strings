@@ -51,6 +51,7 @@
 "Check for Updates…" = "Nach Updates suchen …";
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
+"Share" = "Teillen";
 
 
 /* MARK: AppDelegate */
@@ -265,7 +266,7 @@
 
 // tooltip
 // -> The toolbar label for "Share" is set automatically.
-"Share document file" = "Dokumentdatei bereitstellen";
+"Share document file" = "Dokumentdatei teillen";
 
 "Fonts" = "Schriften";
 // tooltip

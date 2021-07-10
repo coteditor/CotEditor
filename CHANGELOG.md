@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Add “Share” command to the menus for setting files, such as theme, syntax style, or  multi replacement definition.
 - Resume “Select word” on top of the document if the search reached the end.
 - Update the visual style of the multiple replacement window on macOS 11.
 - Minimize scrolling when focusing on a text such as text search and outline selection.

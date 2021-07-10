@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -423,10 +423,14 @@
                                                                                     <font key="font" metaFont="system"/>
                                                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                    <connections>
+                                                                                        <outlet property="menu" destination="M4k-Ev-Myg" id="zWN-Yl-PDh"/>
+                                                                                    </connections>
                                                                                 </textFieldCell>
                                                                                 <connections>
                                                                                     <binding destination="IKs-Gh-g0j" name="value" keyPath="objectValue" id="P0s-5L-KQc"/>
                                                                                     <outlet property="delegate" destination="WBM-EY-ENr" id="IXD-nD-kYW"/>
+                                                                                    <outlet property="menu" destination="M4k-Ev-Myg" id="fHh-J8-IRy"/>
                                                                                 </connections>
                                                                             </textField>
                                                                         </subviews>
@@ -521,6 +525,9 @@
                                                                 <action selector="exportTheme:" target="WBM-EY-ENr" id="TXi-66-Pnk"/>
                                                             </connections>
                                                         </menuItem>
+                                                        <menuItem title="Share" id="w4F-0P-Rgk" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                                        </menuItem>
                                                         <menuItem title="Reveal in Finder" alternate="YES" id="Qmf-WU-xe8">
                                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                             <connections>
@@ -540,6 +547,9 @@
                                                             </connections>
                                                         </menuItem>
                                                     </items>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="WBM-EY-ENr" id="ZpF-j0-Jgn"/>
+                                                    </connections>
                                                 </menu>
                                             </popUpButtonCell>
                                         </popUpButton>
@@ -677,6 +687,10 @@
                                 <action selector="exportTheme:" target="WBM-EY-ENr" id="Ioz-ZQ-bfh"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Share" id="pTV-O2-2db" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="Share" id="pVE-Of-yX6"/>
+                        </menuItem>
                         <menuItem title="Reveal in Finder" alternate="YES" id="UMs-gY-YHE">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                             <connections>
@@ -690,6 +704,9 @@
                             </connections>
                         </menuItem>
                     </items>
+                    <connections>
+                        <outlet property="delegate" destination="WBM-EY-ENr" id="ZxS-y0-EGn"/>
+                    </connections>
                 </menu>
                 <userDefaultsController representsSharedInstance="YES" id="IE5-39-jAY" userLabel="Shared User Defaults Controller"/>
             </objects>
@@ -1107,6 +1124,7 @@
                     </view>
                 </viewController>
                 <objectController objectClassName="CotEditor.Theme" id="fug-yh-kPG" userLabel="Theme Controller">
+                    <classReference key="objectClass" className="Theme" moduleName="CotEditor"/>
                     <connections>
                         <binding destination="z57-dm-qGO" name="contentObject" keyPath="theme" id="MEV-a1-Hdr"/>
                     </connections>
@@ -1291,6 +1309,7 @@
                 </viewController>
                 <customObject id="Oyw-bQ-ntc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController objectClassName="CotEditor.Metadata" id="0m3-ka-vdo" userLabel="Metadata Controller">
+                    <classReference key="objectClass" className="Metadata" moduleName="CotEditor"/>
                     <connections>
                         <binding destination="I23-rk-sjA" name="contentObject" keyPath="representedObject" id="hNn-At-yEF"/>
                     </connections>
