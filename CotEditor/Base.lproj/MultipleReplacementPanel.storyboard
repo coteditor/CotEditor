@@ -155,7 +155,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135.5" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="136" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
@@ -637,6 +637,9 @@
                                             </menuItem>
                                             <menuItem title="Share" id="XIe-MY-JEs" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                                <connections>
+                                                    <action selector="share:" target="y8N-kI-aI7" id="AFx-IJ-hLC"/>
+                                                </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="jIk-dY-Dto"/>
                                             <menuItem title="Import…" id="iZn-Pw-tgJ">
@@ -652,9 +655,6 @@
                                                 </connections>
                                             </menuItem>
                                         </items>
-                                        <connections>
-                                            <outlet property="delegate" destination="y8N-kI-aI7" id="JDX-8i-2Hp"/>
-                                        </connections>
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -723,6 +723,9 @@
                         </menuItem>
                         <menuItem title="Share" id="3hj-yI-UYg" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="share:" target="y8N-kI-aI7" id="XKt-5k-PZu"/>
+                            </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="xX2-1H-iy6"/>
                         <menuItem title="Import…" id="8TG-QH-hxz">
@@ -732,9 +735,6 @@
                             </connections>
                         </menuItem>
                     </items>
-                    <connections>
-                        <outlet property="delegate" destination="y8N-kI-aI7" id="OGj-TH-DyN"/>
-                    </connections>
                 </menu>
             </objects>
             <point key="canvasLocation" x="-79.5" y="734"/>

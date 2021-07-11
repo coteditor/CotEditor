@@ -327,6 +327,9 @@
                                                                 </menuItem>
                                                                 <menuItem title="Share" id="xRA-ND-YIE" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                                     <modifierMask key="keyEquivalentModifierMask"/>
+                                                                    <connections>
+                                                                        <action selector="share:" target="Lgm-sL-YIF" id="h0f-LI-F1V"/>
+                                                                    </connections>
                                                                 </menuItem>
                                                                 <menuItem title="Import…" id="1lj-x8-ouD">
                                                                     <connections>
@@ -346,9 +349,6 @@
                                                                     </connections>
                                                                 </menuItem>
                                                             </items>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="Lgm-sL-YIF" id="pWm-jF-wC4"/>
-                                                            </connections>
                                                         </menu>
                                                     </popUpButtonCell>
                                                 </popUpButton>
@@ -530,11 +530,11 @@
                         </menuItem>
                         <menuItem title="Share" id="Rh3-kc-Gte" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="share:" target="Lgm-sL-YIF" id="7Dc-3D-2Qd"/>
+                            </connections>
                         </menuItem>
                     </items>
-                    <connections>
-                        <outlet property="delegate" destination="Lgm-sL-YIF" id="4LL-Ec-6zf"/>
-                    </connections>
                 </menu>
             </objects>
             <point key="canvasLocation" x="-76" y="62.5"/>

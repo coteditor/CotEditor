@@ -38,7 +38,7 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
     
     // MARK: Private Properties
     
@@ -102,7 +102,17 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
-        let representedSettingName = self.representedSettingName(for: menuItem.menu)
+        let representedSettingName: String? = {
+            guard isContextualMenu else {
+                return self.selectedStyleName
+            }
+            
+            guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+            
+            guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
+            
+            return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
+        }()
         
         // set style name as representedObject to menu items whose action is related to syntax style
         if NSStringFromSelector(menuItem.action!).contains("Syntax") {
@@ -152,7 +162,12 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
                 }
                 return (!isBundled || isCustomized)
-            
+                
+            case #selector(share(_:)):
+                let url = SyntaxManager.shared.urlForUserSetting(name: representedSettingName ?? self.selectedStyleName)
+                (menuItem as? ShareMenuItem)?.sharingItems = url.flatMap { [$0] }
+                return url != nil
+                
             case nil:
                 return false
             
@@ -257,19 +272,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    func menuWillOpen(_ menu: NSMenu) {
-        
-        // create share menu dynamically
-        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first {
-            let settingName = self.representedSettingName(for: menu) ?? self.selectedStyleName
-            
-            shareMenuItem.sharingItems = SyntaxManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
-        }
-    }
-    
-    
     
     // MARK: Action Messages
+    
+    @IBAction func share(_ sender: Any?)  { assertionFailure("dummy action just for validation.") }
+    
     
     /// save also availability of UTF-8 BOM
     @IBAction func changeEncoding(_ sender: Any?) {
@@ -492,20 +499,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             return menuItem.representedObject as! String
         }
         return self.selectedStyleName
-    }
-    
-    
-    private func representedSettingName(for menu: NSMenu?) -> String? {
-        
-        guard self.syntaxTableView?.menu == menu else {
-            return self.selectedStyleName
-        }
-        
-        guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
-        
-        guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
-        
-        return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
     }
     
     

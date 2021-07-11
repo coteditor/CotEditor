@@ -57,12 +57,8 @@ final class ShareMenuItem: NSMenuItem {
     
     private func updateSubmenu() {
         
-        guard let items = self.sharingItems else {
-            self.isEnabled = false
-            return
-        }
+        guard let items = self.sharingItems else { return }
         
-        self.isEnabled = true
         self.submenu?.items = NSSharingService.sharingServices(forItems: items).map { service in
             let item = NSMenuItem(title: service.menuItemTitle, action: #selector(openSharingService), keyEquivalent: "")
             item.image = service.image
