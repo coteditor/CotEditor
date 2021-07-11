@@ -83,10 +83,6 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     
     private var indentGuideObserver: AnyCancellable?
     
-    private static let unemphasizedSelectedContentBackgroundColor: NSColor = (ProcessInfo().operatingSystemVersion.majorVersion < 11)
-        ? .secondarySelectedControlColor
-        : .unemphasizedSelectedContentBackgroundColor
-    
     
     
     // MARK: -
@@ -157,7 +153,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         // modify selected highlight color when the window is inactive
         // -> Otherwise, `.unemphasizedSelectedContentBackgroundColor` will be used forcibly and text becomes unreadable
         //    when the window appearance and theme are inconsistent.
-        if color == Self.unemphasizedSelectedContentBackgroundColor,  // check if inactive
+        if color == .unemphasizedSelectedContentBackgroundColor,  // check if inactive
             let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
                                                    effectiveRange: nil, withoutAdditionalLayout: true),
             let theme = (textContainer.textView as? Themable)?.theme,

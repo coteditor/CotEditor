@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,20 +85,10 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 item.doubleValue = Double(textView.scale)
                 item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
-                let minimumValueImage: NSImage
-                if #available(macOS 11, *) {
-                    minimumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
-                        .withSymbolConfiguration(.init(scale: .small))!
-                } else {
-                    minimumValueImage = #imageLiteral(resourceName: "SmallTextSizeTemplate")
-                }
+                let minimumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
+                    .withSymbolConfiguration(.init(scale: .small))!
                 item.minimumValueAccessory = NSSliderAccessory(image: minimumValueImage)
-                let maximumValueImage: NSImage
-                if #available(macOS 11, *) {
-                    maximumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "larger".localized)!
-                } else {
-                    maximumValueImage = #imageLiteral(resourceName: "LargeTextSizeTemplate")
-                }
+                let maximumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "larger".localized)!
                 item.maximumValueAccessory = NSSliderAccessory(image: maximumValueImage)
                 item.maximumSliderWidth = 300
                 

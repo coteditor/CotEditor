@@ -98,7 +98,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
             let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-            item.image = NSImage(symbolNamed: "applescript.fill", accessibilityDescription: "Scripts".localized)
+            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: "Scripts".localized)
             item.toolTip = "Scripts".localized
             item.submenu = scriptMenu
             menu.addItem(item)

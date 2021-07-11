@@ -34,12 +34,7 @@ final class MultipleReplacementPanelController: NSWindowController {
         super.windowDidLoad()
         
         self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("Multiple Replacement Panel")
-        
-        if #available(macOS 11, *) {
-            self.window?.titlebarAppearsTransparent = true
-        } else {
-            self.window?.styleMask.remove(.fullSizeContentView)
-        }
+        self.window?.titlebarAppearsTransparent = true
     }
     
 }

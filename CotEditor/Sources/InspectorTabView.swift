@@ -91,7 +91,7 @@ final class InspectorTabView: NSTabView {
     /// take off control space
     override var contentRect: NSRect {
         
-        let offset = self.topInset + self.controlHeight + 1  // +1 for border
+        let offset = self.safeAreaInsets.top + self.controlHeight + 1  // +1 for border
         
         var rect = self.bounds
         rect.origin.y = offset
@@ -106,10 +106,10 @@ final class InspectorTabView: NSTabView {
         
         self.segmentedControl.frame.origin = NSPoint(
             x: ((self.frame.width - self.segmentedControl.frame.width) / 2).rounded(.down),
-            y: ((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2).rounded(.down) + self.topInset
+            y: ((self.controlHeight - self.segmentedControl.intrinsicContentSize.height) / 2).rounded(.down) + self.safeAreaInsets.top
         )
         
-        self.separator.frame = NSRect(x: 0, y: self.topInset + self.controlHeight, width: self.frame.width, height: 1)
+        self.separator.frame = NSRect(x: 0, y: self.safeAreaInsets.top + self.controlHeight, width: self.frame.width, height: 1)
         
         super.layout()
     }
@@ -149,15 +149,6 @@ final class InspectorTabView: NSTabView {
     
     
     // MARK: Private Methods
-    
-    /// The height of the tab control and the top inset.
-    private var topInset: CGFloat {
-        
-        guard #available(macOS 11, *) else { return 0 }
-        
-        return self.safeAreaInsets.top
-    }
-    
     
     /// update selection of the private control
     private func invalidateControlSelection() {
@@ -202,8 +193,6 @@ final class InspectorTabView: NSTabView {
 private extension NSTabViewItem {
     
     var selectedImage: NSImage? {
-        
-        guard #available(macOS 11, *) else { return nil }
         
         return self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -245,9 +245,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         alert.informativeText = "Deleted setting can’t be restored.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
-        if #available(macOS 11, *) {
-            alert.buttons.last?.hasDestructiveAction = true
-        }
+        alert.buttons.last?.hasDestructiveAction = true
         
         alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode) in
             guard returnCode == .alertSecondButtonReturn else { return }
