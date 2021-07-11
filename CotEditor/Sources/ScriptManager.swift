@@ -56,8 +56,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
             self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
                                                                    in: .userDomainMask, appropriateFor: nil, create: true)
         } catch {
-            assertionFailure("cannot create the scripts folder: \(error)")
             self.scriptsDirectoryURL = nil
+            print("cannot create the scripts folder: \(error)")
         }
         
         self.presentedItemURL = self.scriptsDirectoryURL
@@ -121,7 +121,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.menuBuildingTask.cancel()
         self.scriptHandlersTable.removeAll()
         
-        guard let directoryURL = self.scriptsDirectoryURL else { return assertionFailure() }
+        guard let directoryURL = self.scriptsDirectoryURL else { return }
         
         let menu = MainMenu.script.menu!
         
