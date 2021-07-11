@@ -87,15 +87,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.tableView?.menu)
-        let representedSettingName: String? = {
-            guard isContextualMenu else {
-                return self.selectedSettingName
-            }
-            
-            guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
-            
-            return self.settingNames[safe: clickedRow]
-        }()
+        let representedSettingName = self.representedSettingName(for: menuItem.menu)
         menuItem.representedObject = representedSettingName
         
         let itemSelected = (representedSettingName != nil)
@@ -131,12 +123,6 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
                 }
                 
-            case #selector(share(_:)):
-                guard let settingName = representedSettingName ?? self.selectedSettingName else { return false }
-                let url = ReplacementManager.shared.urlForUserSetting(name: settingName)
-                (menuItem as? ShareMenuItem)?.sharingItems = url.flatMap { [$0] }
-                return url != nil
-                
             case nil:
                 return false
             
@@ -150,8 +136,6 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     
     // MARK: Action Messages
-    
-    @IBAction func share(_ sender: Any?)  { assertionFailure("dummy action just for validation.") }
     
     /// add setting
     @IBAction func addSetting(_ sender: Any?) {
@@ -286,6 +270,18 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             return menuItem.representedObject as? String
         }
         return self.selectedSettingName
+    }
+    
+    
+    private func representedSettingName(for menu: NSMenu?) -> String? {
+        
+        guard self.tableView?.menu == menu else {
+            return self.selectedSettingName
+        }
+        
+        guard let clickedRow = self.tableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        
+        return self.settingNames[safe: clickedRow]
     }
     
     
@@ -505,6 +501,24 @@ extension MultipleReplacementListViewController: NSTextFieldDelegate {
         }
         
         return true
+    }
+    
+}
+
+
+
+// MARK: - Menu Delegate
+
+extension MultipleReplacementListViewController: NSMenuDelegate {
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        moof()
+        // create share menu dynamically
+        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first,
+           let settingName = self.representedSettingName(for: menu) ?? self.selectedSettingName
+        {
+            shareMenuItem.sharingItems = ReplacementManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
+        }
     }
     
 }

@@ -527,9 +527,6 @@
                                                         </menuItem>
                                                         <menuItem title="Share" id="w4F-0P-Rgk" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                                            <connections>
-                                                                <action selector="share:" target="WBM-EY-ENr" id="VIz-w4-ONF"/>
-                                                            </connections>
                                                         </menuItem>
                                                         <menuItem title="Reveal in Finder" alternate="YES" id="Qmf-WU-xe8">
                                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
@@ -550,6 +547,9 @@
                                                             </connections>
                                                         </menuItem>
                                                     </items>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="WBM-EY-ENr" id="ZpF-j0-Jgn"/>
+                                                    </connections>
                                                 </menu>
                                             </popUpButtonCell>
                                         </popUpButton>
@@ -689,9 +689,7 @@
                         </menuItem>
                         <menuItem title="Share" id="pTV-O2-2db" customClass="ShareMenuItem" customModule="CotEditor" customModuleProvider="target">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="share:" target="WBM-EY-ENr" id="ApQ-IA-7FO"/>
-                            </connections>
+                            <menu key="submenu" title="Share" id="pVE-Of-yX6"/>
                         </menuItem>
                         <menuItem title="Reveal in Finder" alternate="YES" id="UMs-gY-YHE">
                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
@@ -706,6 +704,9 @@
                             </connections>
                         </menuItem>
                     </items>
+                    <connections>
+                        <outlet property="delegate" destination="WBM-EY-ENr" id="ZxS-y0-EGn"/>
+                    </connections>
                 </menu>
                 <userDefaultsController representsSharedInstance="YES" id="IE5-39-jAY" userLabel="Shared User Defaults Controller"/>
             </objects>
