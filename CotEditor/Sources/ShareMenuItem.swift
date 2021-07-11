@@ -57,12 +57,15 @@ final class ShareMenuItem: NSMenuItem {
     
     private func updateSubmenu() {
         
-        guard let items = self.sharingItems else {
-            self.isEnabled = false
-            return
+        defer {
+            // defer the operation to apply it _after_ the auto validation in the pop up button has done. (2021-07 on macOS 11)
+            DispatchQueue.main.async { [weak self] in
+                self?.isEnabled = self?.sharingItems != nil
+            }
         }
         
-        self.isEnabled = true
+        guard let items = self.sharingItems else { return }
+        
         self.submenu?.items = NSSharingService.sharingServices(forItems: items).map { service in
             let item = NSMenuItem(title: service.menuItemTitle, action: #selector(openSharingService), keyEquivalent: "")
             item.image = service.image
