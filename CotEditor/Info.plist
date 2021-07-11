@@ -57,16 +57,10 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cottheme</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ThemeIcon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>1</integer>
-			<key>CFBundleTypeMIMETypes</key>
-			<array/>
 			<key>CFBundleTypeName</key>
 			<string>CotEditor Theme</string>
 			<key>CFBundleTypeRole</key>
@@ -77,20 +71,12 @@
 			<array>
 				<string>com.coteditor.CotEditor.theme</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cotrpl</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ReplacementsIcon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>1</integer>
-			<key>CFBundleTypeMIMETypes</key>
-			<array/>
 			<key>CFBundleTypeName</key>
 			<string>CotEditor Replacement Definition</string>
 			<key>CFBundleTypeRole</key>
@@ -101,8 +87,6 @@
 			<array>
 				<string>com.coteditor.CotEditor.replacement</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -1161,7 +1145,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>${EXECUTABLE_NAME} needs user approval to control other applications with AppleScript.</string>
+	<string>${PRODUCT_NAME} needs user approval to control other applications with AppleScript.</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
@@ -1238,7 +1222,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.json</string>
+				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Theme</string>
@@ -1259,16 +1243,12 @@
 				<array>
 					<string>cottheme</string>
 				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/json</string>
-				</array>
 			</dict>
 		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.json</string>
+				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Replacement Definition</string>
@@ -1288,10 +1268,6 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>cotrpl</string>
-				</array>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/json</string>
 				</array>
 			</dict>
 		</dict>
