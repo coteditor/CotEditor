@@ -512,7 +512,7 @@ extension MultipleReplacementListViewController: NSTextFieldDelegate {
 extension MultipleReplacementListViewController: NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
-        moof()
+        
         // create share menu dynamically
         if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first,
            let settingName = self.representedSettingName(for: menu) ?? self.selectedSettingName
