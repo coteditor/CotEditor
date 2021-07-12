@@ -514,6 +514,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for viewController in self.editorViewControllers {
                 viewController.showsLineNumber = showsLineNumber
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -525,6 +526,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.wrapsLines = wrapsLines
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -536,6 +538,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.showsPageGuide = showsPageGuide
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -547,6 +550,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.showsIndentGuides = showsIndentGuides
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -558,6 +562,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.showsInvisibles = showsInvisibles
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -581,6 +586,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.setLayoutOrientation(orientation)
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -595,6 +601,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.baseWritingDirection = newValue
             }
+            self.invalidateRestorableState()
         }
     }
     
@@ -625,6 +632,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             for textView in self.editorViewControllers.compactMap(\.textView) {
                 textView.isAutomaticTabExpansionEnabled = newValue
             }
+            self.invalidateRestorableState()
         }
     }
     

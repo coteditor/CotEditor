@@ -52,6 +52,7 @@ final class DocumentWindow: NSWindow {
             
             self.invalidateShadow()
             self.contentView?.needsDisplay = true
+            self.invalidateRestorableState()
         }
     }
     

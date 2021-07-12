@@ -1207,6 +1207,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             guard tabWidth != oldValue else { return }
             
             self.invalidateDefaultParagraphStyle()
+            self.invalidateRestorableState()
         }
     }
     
