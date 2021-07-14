@@ -2744,13 +2744,14 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/../Frameworks/Sparkle",
 			);
 			name = "Build Sparkle";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./buildSparkle.sh\n";
+			shellScript = "./buildSparkle.sh ${SCRIPT_INPUT_FILE_0} ${DERIVED_FILES_DIR}\n";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;

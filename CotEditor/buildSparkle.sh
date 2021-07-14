@@ -23,9 +23,9 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-cd ../Frameworks/Sparkle
+cd $1
 
-derivedData=$(mktemp -d "${TMPDIR}Sparkle.XXXXXX")
+derivedData=$2
 
 # build Sparkle
 echo "📦 Building Sparkle"
