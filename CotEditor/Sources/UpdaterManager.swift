@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,10 +85,6 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     /// setup Sparkle
     func setup() {
         
-        guard let updater = self.controller.updater else {
-            return assertionFailure("No SPUUpdater instance could be obtained.")
-        }
-        
         // insert "Check for Updates…" menu item
         guard let applicationMenu = MainMenu.application.menu else {
             preconditionFailure("No menu could be found to attach update menu item.")
@@ -96,11 +92,11 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         let menuItem = NSMenuItem(title: "Check for Updates…".localized,
                                   action: #selector(SPUUpdater.checkForUpdates),
                                   keyEquivalent: "")
-        menuItem.target = updater
+        menuItem.target = self.controller.updater
         applicationMenu.insertItem(menuItem, at: 1)
         
         // lock update check interval to daily
-        updater.updateCheckInterval = TimeInterval(60 * 60 * 24)
+        self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)
     }
     
     
