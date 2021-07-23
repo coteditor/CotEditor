@@ -18,6 +18,7 @@ Change Log
 - [trivial] Sort themes alphabetically regardless whether they are bundled or not.
 - [trivial] Make the timing to trim trailing spaces shorter.
 - [trivial] Tweak Japanese localization in Preferences.
+- [trivial][non-AppStore ver.] Sign the application with EdDSA signature for update manager (Sparkle).
 
 
 ### Fixes

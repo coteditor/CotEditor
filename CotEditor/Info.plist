@@ -1217,6 +1217,8 @@
 	<true/>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+	<key>SUPublicEDKey</key>
+	<string>sY0VDoz2fbpnduoaVKlJBnlcBj/OFqQklEN/QlqDyWM=</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
