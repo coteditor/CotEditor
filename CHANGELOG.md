@@ -2,12 +2,12 @@
 Change Log
 ==========================
 
-4.0.6 (unreleased)
+4.0.6 (465)
 --------------------------
 
 ### Improvements
 
-- Add “Share” command to the menus for setting files, such as theme, syntax style, or  multi replacement definition.
+- Add “Share” command to the menus for setting files, such as theme, syntax style, or multi replacement definition.
 - Resume “Select word” on top of the document if the search reached the end.
 - Update the visual style of the multiple replacement window on macOS 11.
 - Minimize scrolling when focusing on a text such as text search and outline selection.
@@ -15,7 +15,7 @@ Change Log
 - Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
 - Update the bundled cot command to enable reading large piped text entirely.
 - Update help contents.
-- [trivial] Sort themes alphabetically regardless whether they are bundled or not.
+- [trivial] Sort themes alphabetically regardless of whether they are bundled or not.
 - [trivial] Make the timing to trim trailing spaces shorter.
 - [trivial] Tweak Japanese localization in Preferences.
 - [trivial][non-AppStore ver.] Sign the application with EdDSA signature for update manager (Sparkle).
