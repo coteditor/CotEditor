@@ -2716,7 +2716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" ${SCRIPT_INPUT_FILE_0} > ${SCRIPT_OUTPUT_FILE_0}\n";
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/SyntaxMapBuilder\" \"${SCRIPT_INPUT_FILE_0}\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 		};
 		2A53326426799B3B000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2736,7 +2736,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" ${SCRIPT_INPUT_FILE_0} > ${SCRIPT_OUTPUT_FILE_0}\n";
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/SyntaxMapBuilder\" \"${SCRIPT_INPUT_FILE_0}\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 		};
 		2A9246EB1FCD2012008DBC30 /* Build Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
