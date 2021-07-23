@@ -28,6 +28,7 @@ Change Log
 -  Fix an issue that the visual window state occasionally did not restore from the last session correctly.
 - Fix an issue in the inspector that the content occasionally overlapped with the pane controller above if it is shown when the window opens.
 - Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
+- Fix a typo in German localization.
 
 
 
@@ -1701,7 +1702,6 @@ no change.
 
 - Address an issue where the application could rarely crash on syntax highlighting.
 - Address an issue on Mojave where text view stacked under the line number view.
-- Fix a typo in Italian localization.
 
 
 
