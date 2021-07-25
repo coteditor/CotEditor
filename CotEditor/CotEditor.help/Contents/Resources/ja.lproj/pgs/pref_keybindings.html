@@ -6,37 +6,59 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>環境設定：キーバインド</title>
+	<title>「キーバインド」環境設定を変更する</title>
 </head>
 
 <body>
 <a name="pref_keybindings"></a>
 
-<nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditorヘルプ</a></li>
-</ul></nav>
+
+<h1>「キーバインド」環境設定を変更する</h1>
+
+<p>MacのCotEidtorアプリケーション<img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/>で、メニューに割り当てられているキーボードショートカットを変更、または任意のショートカットきーで入力できるテキストのスニペットを設定するには、「キーバインド」環境設定を使用します。これらの環境設定を変更するには、「CotEditor」＞「環境設定」と選択してから「キーバインド」をクリックします。</p>
 
 
-<h1>環境設定：キーバインド</h1>
+<table class="preferences">
+<caption>メニュー項目</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
 
-<p>メニューのいくつかの機能はキーボードショートカットでも行うことができます。CotEditorではメニューに割り当てられているキーボードショートカットを変更することができます。また、任意の文字列を入力するための「スニペットキーバインド」も設定できます。</p>
-<dl>
-	<dt>メニューキーバインド</dt>
-	<dd>メニューに割り当てられているキーバインドをお好みのキーボードショートカットに変更します。</dd>
-</dl>
-<ul>
-	<li>「メニューキーバインド」はコマンドキーが含まれて<strong>いる</strong>必要があります。</li>
-</ul>
-<dl>
-	<dt>スニペットキーバインド</dt>
-	<dd>CotEditor固有のテキスト挿入コマンドにお好みのキーボードショートカットを設定します。</dd>
-</dl>
-<ul>
-	<li>「スニペットキーバインド」はコマンドキーが含まれて<strong>いてはいけません</strong>。</li>
-	<li>「スニペットキーバインド」が設定できるのはCotEditor固有のテキスト挿入コマンドに限られます。Cocoa標準のキーバインドの変更など詳細は、下記のAppleの文書を参照してください。<br />
-		<a href="http://support.apple.com/kb/HT1343?viewlocale=ja_JP" rel="external" hreflang="ja">macOSのキーボードショートカット</a>（Appleサポート）</li>
-	<li>スニペットに<code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>という変数が含まれる場合は、スニペット挿入時に文字列<code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>は取り除かれ、代わりにその位置にカーソルが移動します。</li>
-</ul>
+<tbody>
+	<tr>
+		<th>ショートカットリスト</th>
+		<td>メニュー項目にあるコマンドに割り当てるお好みのキーボードショートカットを選択します。
+		
+			<p><strong>Note</strong>: メニュー項目のキーバインドはコマンドキーが含まれている必要があります。</p></td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<table class="preferences">
+<caption>スニペット</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>ショートカットリスト</th>
+		<td>CotEditor固有のテキスト挿入コマンド割り当てるお好みのキーボードショートカットを選択します。
+		
+			<p><strong>Note</strong>: スニペットのキーバインドはコマンドキーが含まれない必要があります。</p></td>
+	</tr>
+	<tr>
+		<th>挿入フォーマット</th>
+		<td>上のリストで選択したショートカットで挿入するテキストスニペットを設定します。スニペットに<code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>という変数が含まれる場合は、スニペット挿入時に文字列<code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>は取り除かれ、代わりにその位置にカーソルが移動します。</td>
+	</tr>
+</tbody>
+</table>
+
+
+<p>「スニペットキーバインド」が設定できるのはCotEditor固有のテキスト挿入コマンドに限られます。Cocoa標準のキーバインドの変更など詳細は、下記のAppleの文書を参照してください。</p>
+
 
 
 <section id="cf">

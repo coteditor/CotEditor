@@ -5,9 +5,9 @@ filenames: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "2.2.1"
+  version: "2.2.0"
   license: "Same as CotEditor"
-  lastModified: "2021-06-05"
+  lastModified: "2021-05-13"
 completions: []
 outlineMenu:
 - beginString: "^([\\t ]*)(function)([^{]*)\\{"
@@ -1025,9 +1025,7 @@ attributes:
 - beginString: "xmlStandalone"
 - beginString: "xmlVersion"
 characters:
-- beginString: "/"
-  endString: "/"
-- beginString: "/[gimy]+"
+- beginString: "/\\S+/[gimy]*\\b"
   regularExpression: true
 comments:
 - beginString: "^#\\!/.*"

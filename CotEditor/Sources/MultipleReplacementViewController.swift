@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -131,12 +131,12 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         self.endEditing()
         
-        guard let tableView = self.tableView else { return assertionFailure() }
-        
-        let row = tableView.selectedRowIndexes.last.flatMap { $0 + 1 } ?? self.definition.replacements.endIndex
+        let row = self.tableView?.selectedRowIndexes.last.flatMap { $0 + 1 } ?? self.definition.replacements.endIndex
         let replacements = [MultipleReplacement.Replacement()]
         
         self.insertReplacements(replacements, at: [row])
+        
+        guard let tableView = self.tableView else { return }
         
         // start editing automatically
         let column = tableView.column(withIdentifier: .findString)

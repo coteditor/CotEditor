@@ -75,7 +75,7 @@ extension NSTextView {
     func select(range: NSRange) {
         
         self.selectedRange = range
-        self.centerSelectionInVisibleArea(self)
+        self.scrollRangeToVisible(range)
         self.window?.makeFirstResponder(self)
     }
     

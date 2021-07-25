@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ final class GeneralPaneController: NSViewController {
             
             switch returnCode {
                 case .alertFirstButtonReturn:  // = Restart Now
-                    NSApp.relaunch(delay: 2.0)
+                    NSApp.relaunch()
                 case .alertSecondButtonReturn:  // = Later
                     break  // do nothing
                 case .alertThirdButtonReturn:  // = Cancel
@@ -162,28 +162,6 @@ final class GeneralPaneController: NSViewController {
         self.cltPathField?.isHidden = !status.installed
         self.cltPathField?.stringValue = String(format: "installed at %@".localized,
                                                 CommandLineToolManager.shared.linkURL.path)
-    }
-    
-}
-
-
-
-// MARK: Private Functions
-
-private extension NSApplication {
-    
-    /// relaunch application itself with delay
-    func relaunch(delay: TimeInterval = 0) {
-        
-        let escapedPath = Bundle.main.bundlePath.replacingOccurrences(of: "\"", with: "\\\"")
-        let command = String(format: "sleep %f; open \"%@\"", delay, escapedPath)
-        
-        let process = Process()
-        process.launchPath = "/bin/sh"
-        process.arguments = ["-c", command]
-        process.launch()
-        
-        self.terminate(nil)
     }
     
 }

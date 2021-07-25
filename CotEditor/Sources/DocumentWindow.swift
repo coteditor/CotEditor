@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,11 +46,13 @@ final class DocumentWindow: NSWindow {
         didSet {
             backgroundAlpha = backgroundAlpha.clamped(to: 0.2...1.0)
             
+            guard !self.styleMask.contains(.fullScreen) else { return }
+            
             self.isOpaque = (backgroundAlpha == 1.0)
-            self.backgroundColor = self.isOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(backgroundAlpha)
             
             self.invalidateShadow()
             self.contentView?.needsDisplay = true
+            self.invalidateRestorableState()
         }
     }
     
@@ -84,6 +86,8 @@ final class DocumentWindow: NSWindow {
             self.didChangeValue(for: \.isOpaque)
             
             guard isOpaque != oldValue else { return }
+            
+            self.backgroundColor = isOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(self.backgroundAlpha)
             
             self.invalidateTitlebarOpacity()
             

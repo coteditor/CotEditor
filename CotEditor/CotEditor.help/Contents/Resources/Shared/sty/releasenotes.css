@@ -8,7 +8,7 @@
  
  Created on 2014 by 1024jp
  
- © 2014-2020 CotEditor Project
+ © 2014-2021 CotEditor Project
 */
 
 
@@ -73,7 +73,7 @@ article h2 {
 	padding: 0 0.2em;
 }
 .trivial {
-	color: hsl(0, 0%, 60%);
+	color: -apple-system-secondary-label;
 }
 p.important {
 	display: inline-block;
@@ -82,28 +82,4 @@ p.important {
 	border: 1px solid hsl(203, 20%, 70%);
 	border-radius: 3px;
 	padding: 0.1em 0.5em;
-}
-
-/* highlights */
-.highlights {
-	font: 'Helvetica Neue';
-	border-top: 2px solid hsl(203, 20%, 90%);
-	border-bottom: 2px solid hsl(203, 20%, 90%);
-	padding: 1em 0;
-}
-.highlights h1 {
-	margin-bottom: 0.5em;
-}
-.highlights dt::before {
-	content: '✔︎';
-	color: hsl(90, 50%, 50%);
-	font-size: 140%;
-	vertical-align: -0.05em;
-	margin-right: 0.3em;
-}
-.highlights dt {
-	font-weight: bold;
-}
-.highlights dd {
-	margin-bottom: 1em;
 }

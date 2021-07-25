@@ -6,37 +6,56 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Key Bindings preferences</title>
+	<title>Change Key Bindings preferences</title>
 </head>
 
 <body>
 <a name="pref_keybindings"></a>
 
-<nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
-</ul></nav>
+
+<h1>Change Key Bindings preferences</h1>
+
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use Key Bindings preferences to customize keyboard shortcuts to execute menu item commands, and to store some text snippets you use frequently along with your preferred keyboard shortcuts. To change these preferences, choose CotEditor &gt; Preferences, then click Key Bindings.</p>
+
+<table class="preferences">
+<caption>Menu Items</caption>
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Shotcuts list</th>
+		<td>Change the key bindings for menu items.
+		
+			<p><strong>Note</strong>: The key bindings for menu items must include the Command key.</p></td>
+	</tr>
+</tbody>
+</table>
 
 
-<h1>Key Bindings preferences</h1>
 
-<p>Most of the CotEditor's menu items can be executed using keyboard shortcuts. CotEditor allows you to customize those key bindings. Also, CotEditor lets you store some text snippets you use frequently along with your preferred keyboard shortcuts.</p>
-<dl>
-	<dt>Menu Key Bindings</dt>
-	<dd>You can change the key bindings for CotEditor's menu items.</dd>
-</dl>
-<ul>
-	<li>The key bindings you set here must <strong>include</strong> Command key.</li>
-</ul>
-<dl>
-	<dt>Snippet Key Bindings</dt>
-	<dd>You can add text snippets along with your preferred keyboard shortcuts.</dd>
-</dl>
-<ul>
-	<li>The key bindings you set here must <strong>exclude</strong> Command key.</li>
-	<li>Here, you can set only the key bindings for CotEditor's own text handling commands. For more details about customizing the standard key bindings of Cocoa applications, see Apple's documentation (external link):<br />
-	<a href="https://support.apple.com/kb/HT1343" rel="external">macOS keyboard shortcuts</a></li>
-	<li>When a snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the word <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code> will be removed on insertion and move the cursor position there instead.</li>
-</ul>
+<table class="preferences">
+<caption>Snippets</caption>
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Shotcuts list</th>
+		<td>Set shortcut to insert your text snippet.
+		
+			<p><strong>Note</strong>: The key bindings for snippets must exclude the Command key.</p></td>
+	</tr>
+	<tr>
+		<th>Insertion formart</th>
+		<td>Set text snippet to insert with the shortcut selected in the list above. When a snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the word <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code> will be removed on insertion and move the cursor position there instead.</td>
+	</tr>
+</tbody>
+</table>
+
+<p>Here, you can set only the key bindings for CotEditor's own commands. For more details about customizing the standard key bindings of Cocoa applications, see Apple's documentation: <a href="https://support.apple.com/kb/HT1343" rel="external">macOS keyboard shortcuts</a></p>
 
 
 <section id="cf">

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import Combine
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -149,15 +149,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
-        let representedSettingName: String? = {
-            guard isContextualMenu else {
-                return self.selectedThemeName
-            }
-            
-            guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
-            
-            return self.themeNames[safe: clickedRow]
-        }()
+        let representedSettingName = self.representedSettingName(for: menuItem.menu)
         menuItem.representedObject = representedSettingName
         
         let itemSelected = (representedSettingName != nil)
@@ -387,6 +379,19 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
+    // NSMenuDelegate
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        
+        // create share menu dynamically
+        if let shareMenuItem = menu.items.compactMap({ $0 as? ShareMenuItem }).first {
+            let settingName = self.representedSettingName(for: menu) ?? self.selectedThemeName
+            
+            shareMenuItem.sharingItems = ThemeManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
+        }
+    }
+    
+    
     
     // MARK: Action Messages
     
@@ -553,6 +558,18 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
+    private func representedSettingName(for menu: NSMenu?) -> String? {
+        
+        guard self.themeTableView?.menu == menu else {
+            return self.selectedThemeName
+        }
+        
+        guard let clickedRow = self.themeTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
+        
+        return self.themeNames[safe: clickedRow]
+    }
+    
+    
     /// set given theme
     private func setTheme(name: String) {
         
@@ -560,24 +577,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let isBundled = ThemeManager.shared.isBundledSetting(name: name)
         
         // update default theme setting
-        if UserDefaults.standard[.theme] != name {
-            // do not store to UserDefautls if it's the default theme
-            if ThemeManager.shared.defaultSettingName == name {
-                UserDefaults.standard.restore(key: .theme)
-                UserDefaults.standard[.pinsThemeAppearance] = false
-            } else {
-                let isDarkTheme = ThemeManager.shared.isDark(name: name)
-                let isDarkAppearance: Bool = {
-                    switch UserDefaults.standard[.documentAppearance] {
-                        case .default: return NSAppearance.current.isDark
-                        case .light: return false
-                        case .dark: return true
-                    }
-                }()
-                UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
-                UserDefaults.standard[.theme] = name
-            }
-        }
+        let isDarkTheme = ThemeManager.shared.isDark(name: name)
+        let usesDarkAppearance = ThemeManager.shared.usesDarkAppearance
+        UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != usesDarkAppearance)
+        UserDefaults.standard[.theme] = name
         
         self.themeViewController?.theme = theme
         self.themeViewController?.isBundled = isBundled

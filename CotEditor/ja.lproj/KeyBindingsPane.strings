@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@
 "hXU-bV-zlt.headerCell.title" = "キー";
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
-"tuB-9O-QZH.title" = "挿入文字列のフォーマット:";
+"tuB-9O-QZH.title" = "挿入フォーマット:";
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
 "wC4-qj-3oD.title" = "変数を挿入";
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */

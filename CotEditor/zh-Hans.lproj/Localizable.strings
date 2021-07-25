@@ -52,6 +52,7 @@
 "Check for Updates…" = "检查更新…";
 "What’s New in CotEditor %@" = "CotEditor %@ 新特性";  // %@ is version number
 
+"Share" = "共享";
 
 
 /* MARK: AppDelegate */

@@ -1,14 +1,14 @@
 //
-//  MultipleReplacementPanelController.swift
+//  NSApplication.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2018-04-01.
+//  Created by 1024jp on 2021-06-14.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,23 +23,18 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
-final class MultipleReplacementPanelController: NSWindowController {
+extension NSApplication {
     
-    // MARK: Window Controller Methods
-    
-    override func windowDidLoad() {
+    /// Relaunch application itself.
+    func relaunch() {
         
-        super.windowDidLoad()
+        let escapedPath = Bundle.main.bundlePath.replacingOccurrences(of: "\"", with: "\\\"")
+        let command = String(format: "sleep 2; open \"%@\"", escapedPath)
         
-        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("Multiple Replacement Panel")
-        
-        if #available(macOS 11, *) {
-            self.window?.titlebarAppearsTransparent = true
-        } else {
-            self.window?.styleMask.remove(.fullSizeContentView)
-        }
+        Process.launchedProcess(launchPath: "/bin/sh", arguments: ["-c", command])
+        self.terminate(nil)
     }
     
 }

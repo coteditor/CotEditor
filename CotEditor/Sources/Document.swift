@@ -194,9 +194,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
             // -> The default backup URL is the same directory as the fileURL
             //    and it doesn't work with the modern Sandboxing system.
-            if !Self.autosavesInPlace, super.autosavedContentsFileURL == nil, let fileURL = self.fileURL {
+            if !Self.autosavesInPlace,
+               self.hasUnautosavedChanges,
+               super.autosavedContentsFileURL == nil,
+               let fileURL = self.fileURL
+            {
                 // store directory URL to avoid finding Autosaved Information directory every time
                 struct AutosaveDirectory {
+                    
                     static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
                                                                   in: .userDomainMask,
                                                                   appropriateFor: nil,

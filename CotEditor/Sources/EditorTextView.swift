@@ -482,7 +482,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // trim trailing whitespace if needed
         if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
-            self.trimTrailingWhitespaceTask.schedule(delay: .seconds(5))
+            self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
         }
         
         // retry completion if needed
@@ -1207,6 +1207,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             guard tabWidth != oldValue else { return }
             
             self.invalidateDefaultParagraphStyle()
+            self.invalidateRestorableState()
         }
     }
     

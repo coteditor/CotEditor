@@ -29,17 +29,6 @@
 			name = Sparkle;
 			productName = "Sparkle XPCs";
 		};
-		2AB4083F2644BD8300C545DD /* Build Syntax Map */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 2AB408402644BD8300C545DD /* Build configuration list for PBXAggregateTarget "Build Syntax Map" */;
-			buildPhases = (
-				2AB408432644BD8C00C545DD /* Run Script */,
-			);
-			dependencies = (
-			);
-			name = "Build Syntax Map";
-			productName = "Build Syntax Map";
-		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -272,6 +261,8 @@
 		2A5EDDBB241B649C00A07810 /* moof.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = 2A5EDDBA241B649C00A07810 /* moof.textClipping */; };
 		2A5EDDBD241B64EB00A07810 /* TextClippingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5EDDBC241B64EB00A07810 /* TextClippingTests.swift */; };
 		2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F7CA31D152589001D83BC /* EditorView.storyboard */; };
+		2A62F3762699C2EA00AB3510 /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */; };
+		2A62F3772699C2EA00AB3510 /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */; };
 		2A63A9D824E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */; };
 		2A63A9D924E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */; };
 		2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */; };
@@ -389,6 +380,8 @@
 		2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
 		2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
 		2A8EF014241F0A8A001BDBC0 /* StringLineProcessingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */; };
+		2A9003B9267715E600EC766F /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9003B8267715E500EC766F /* NSApplication.swift */; };
+		2A9003BA267715E600EC766F /* NSApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9003B8267715E500EC766F /* NSApplication.swift */; };
 		2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */; };
 		2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
 		2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
@@ -740,20 +733,6 @@
 			remoteGlobalIDString = 2A6F0D4E1B5500E100C2D03C;
 			remoteInfo = CotEditor;
 		};
-		2AB408442644BDC100C545DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2AB4083F2644BD8300C545DD;
-			remoteInfo = "Build Syntax Map";
-		};
-		2AB408462644BE0400C545DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2AB4083F2644BD8300C545DD;
-			remoteInfo = "Build Syntax Map";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1066,6 +1045,7 @@
 		2A5F7CAB1D157506001D83BC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A5F7CAC1D157509001D83BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2A5F7CAD1D15750B001D83BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
+		2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareMenuItem.swift; sourceTree = "<group>"; };
 		2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinePopUpButton.swift; sourceTree = "<group>"; };
 		2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
 		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
@@ -1145,6 +1125,7 @@
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SyntaxMapBuilder; path = ../SyntaxMapBuilder; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
 		2A86C47E2037312900B9357C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SaveDocumentAccessory.storyboard; sourceTree = "<group>"; };
 		2A86C4812037330200B9357C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
@@ -1163,6 +1144,7 @@
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncoding.swift; sourceTree = "<group>"; };
 		2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLineProcessingTests.swift; sourceTree = "<group>"; };
+		2A9003B8267715E500EC766F /* NSApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSApplication.swift; sourceTree = "<group>"; };
 		2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCommentingTests.swift; sourceTree = "<group>"; };
 		2A9082E11D32456300228F50 /* NSTextView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Layout.swift"; sourceTree = "<group>"; };
 		2A9082E41D324D9A00228F50 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
@@ -1656,6 +1638,7 @@
 				2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */,
 				2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */,
 				2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */,
+				2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1802,6 +1785,7 @@
 				2A71BC7D1DDC70A80085AE1C /* NSImage.swift */,
 				2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */,
 				2A10B6F421450A3B00B4205E /* NSAppearance.swift */,
+				2A9003B8267715E500EC766F /* NSApplication.swift */,
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */,
@@ -1865,6 +1849,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
+				2A8544E6267872E0006EF01A /* SyntaxMapBuilder */,
 				BEED9F89D1E364DD05CA42CB /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
@@ -2395,6 +2380,7 @@
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
 				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
+				2A53326126799AB4000DE73D /* Build Syntax Map */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
@@ -2403,7 +2389,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2AB408452644BDC100C545DD /* PBXTargetDependency */,
+				2A53326326799B08000DE73D /* PBXTargetDependency */,
 			);
 			name = CotEditor;
 			packageProductDependencies = (
@@ -2437,6 +2423,7 @@
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor -Sparkle" */;
 			buildPhases = (
 				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
+				2A53326426799B3B000DE73D /* Build Syntax Map */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
@@ -2448,7 +2435,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				2AB408472644BE0400C545DD /* PBXTargetDependency */,
+				2A53326626799CB8000DE73D /* PBXTargetDependency */,
 			);
 			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
@@ -2468,7 +2455,7 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
@@ -2495,9 +2482,6 @@
 					2A9246E71FCD2004008DBC30 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
-					};
-					2AB4083F2644BD8300C545DD = {
-						CreatedOnToolsVersion = 12.5;
 					};
 					2AC71DDE1BF0BDBC002E1434 = {
 						CreatedOnToolsVersion = 7.1;
@@ -2546,7 +2530,6 @@
 				8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */,
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3F18F6203270BE002F1CA7 /* UI Tests */,
-				2AB4083F2644BD8300C545DD /* Build Syntax Map */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
 				2A9246E71FCD2004008DBC30 /* Sparkle */,
 			);
@@ -2715,21 +2698,7 @@
 			shellPath = /bin/sh;
 			shellScript = "./updateHelpindex.sh\n";
 		};
-		2A9246EB1FCD2012008DBC30 /* Build Sparkle */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build Sparkle";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./buildSparkle.sh\n";
-		};
-		2AB408432644BD8C00C545DD /* Run Script */ = {
+		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2739,7 +2708,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Syntaxes",
 			);
-			name = "Run Script";
+			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -2747,7 +2716,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" ${SCRIPT_INPUT_FILE_0} > ${SCRIPT_OUTPUT_FILE_0}\n";
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/SyntaxMapBuilder\" \"${SCRIPT_INPUT_FILE_0}\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+		};
+		2A53326426799B3B000DE73D /* Build Syntax Map */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Syntaxes",
+			);
+			name = "Build Syntax Map";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/SyntaxMap.json",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILT_PRODUCTS_DIR}/SyntaxMapBuilder\" \"${SCRIPT_INPUT_FILE_0}\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+		};
+		2A9246EB1FCD2012008DBC30 /* Build Sparkle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../Frameworks/Sparkle",
+			);
+			name = "Build Sparkle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./buildSparkle.sh ${SCRIPT_INPUT_FILE_0} ${DERIVED_FILES_DIR}\n";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2911,6 +2915,7 @@
 				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
+				2A9003B9267715E600EC766F /* NSApplication.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
@@ -2987,6 +2992,7 @@
 				2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */,
 				2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */,
+				2A62F3762699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
 				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
@@ -3213,6 +3219,7 @@
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
+				2A9003BA267715E600EC766F /* NSApplication.swift in Sources */,
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
@@ -3289,6 +3296,7 @@
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */,
 				2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */,
+				2A62F3772699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
@@ -3357,6 +3365,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2A53326326799B08000DE73D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2A53326226799B08000DE73D /* SyntaxMapBuilder */;
+		};
+		2A53326626799CB8000DE73D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2A53326526799CB8000DE73D /* SyntaxMapBuilder */;
+		};
 		2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
@@ -3366,16 +3382,6 @@
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
 			targetProxy = 2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */;
-		};
-		2AB408452644BDC100C545DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2AB4083F2644BD8300C545DD /* Build Syntax Map */;
-			targetProxy = 2AB408442644BDC100C545DD /* PBXContainerItemProxy */;
-		};
-		2AB408472644BE0400C545DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2AB4083F2644BD8300C545DD /* Build Syntax Map */;
-			targetProxy = 2AB408462644BE0400C545DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4130,10 +4136,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 463;
+				CURRENT_PROJECT_VERSION = 465;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = 4.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4145,10 +4151,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 463;
+				CURRENT_PROJECT_VERSION = 465;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = 4.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4162,20 +4168,6 @@
 			name = Debug;
 		};
 		2A9246E91FCD2005008DBC30 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		2AB408412644BD8300C545DD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		2AB408422644BD8300C545DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4212,14 +4204,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 463;
+				CURRENT_PROJECT_VERSION = 465;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = 4.0.6;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -4232,14 +4224,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 463;
+				CURRENT_PROJECT_VERSION = 465;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 4.0.5;
+				MARKETING_VERSION = 4.0.6;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -4249,11 +4241,7 @@
 		8C71D95808640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
-				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
-				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -4314,11 +4302,7 @@
 		8C71D95908640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
-				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
-				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -4412,15 +4396,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AB408402644BD8300C545DD /* Build configuration list for PBXAggregateTarget "Build Syntax Map" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2AB408412644BD8300C545DD /* Debug */,
-				2AB408422644BD8300C545DD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2AC71DE81BF0BDBC002E1434 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4470,6 +4445,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A53326226799B08000DE73D /* SyntaxMapBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SyntaxMapBuilder;
+		};
+		2A53326526799CB8000DE73D /* SyntaxMapBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SyntaxMapBuilder;
+		};
 		2AA2C6FB24399A920017D1EC /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;

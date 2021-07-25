@@ -6,41 +6,52 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>File Drop preferences</title>
+	<title>Change File Drop preferences</title>
 </head>
 
 <body>
 <a name="pref_filedrop"></a>
 
-<nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
-</ul></nav>
+
+<h1>Change File Drop preferences</h1>
+
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use File Drop preferences to choose how to insert a preset text when you drop a file onto your document window. To change these preferences, choose CotEditor &gt; Preferences, then click File Drop.</p>
+
+<p>For example, you can automatically insert the <code>img</code> tag into your HTML document by dropping an image file from Finder. </p>
 
 
-<h1>File Drop preferences</h1>
 
-<p>File Drop allows you to insert a fixed text when you drop a file onto your document window. For example, you can automatically insert the <code>img</code> tag into your HTML document by dropping an image file from Finder.</p>
+<table class="preferences">
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
 
-<dl>
-	<dt>File Drop Definitions</dt>
-	<dd>Here, enter the conditons to perform the file drop.</dd>
-	<dd><table>
-		<tbody>
-			<tr><th>Extensions</th><td>The setting is performed only when a file with one of these extensions is dropped. If this field is empty (All), all files are eligible. No dot is required for file extensions. You can set multiple extensions by separating them by comma.</td></tr>
-			<tr><th>Synatx Style</th><td>The setting is performed only when a file is dropped to a document having this syntax style. If this field is empty (All), all documents are eligible.</td></tr>
-			<tr><th>Description</th><td>You can use this field to leave a comment about the row. Description doesn't affect to the file drop behavior. This can be left blank.</td></tr>
-		</tbody>
-	</table></dd>
+<tbody>
+	<tr>
+		<th>File Drop Definitions</th>
+		<td>Choose the conditons to perform the file drop.<ul>
+			<li><strong>Extensions</strong>: The setting is performed only when a file with one of these extensions is dropped. If this field is empty (All), all files are eligible. No dot is required for file extensions. You can set multiple extensions by separating them by a comma.</li>
+			<li><strong>Syntax Style</strong>: The setting is performed only when a file is dropped to a document having this syntax style. If this field is empty (All), all documents are eligible.</li>
+			<li><strong>Description</strong>: You can use this field to leave a comment about the row. This field doesn't affect the file drop behavior and can be left blank.</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>Insertion formart</th>
+		<td>Set the text to be inserted for the condition that is selected in the file drop definition list above.</td>
+	</tr>
 	
-	<dt>Insertion format</dt>
-	<dd>Here, format the string as you want it to be inserted for the condition that is selected in the file drop definition list above.</dd>
-	
-	<dt>Variables</dt>
-	<dd>You can use CotEditor's variables in an insertion format.</dd>
-	<dd><ul>
-		<li>Variablesare going to be replaced with the corresponding information of the dropped file. See “<a href="../pgs/about_filedrop.html">Variables for File Drop</a>” for each variable's details.</li>
-	</ul></dd>
-</dl>
+	<tr>
+		<th>Variables</th>
+		<td>You can use CotEditor's variables in an insertion format.
+			<ul>
+				<li>Variables are going to be replaced with the corresponding information of the dropped file. See “<a href="../pgs/about_filedrop.html">Variables for File Drop</a>” for each variable's details.</li>
+			</ul>
+		</td>
+	</tr>
+</tbody>
+</table>
+
 
 
 <section id="cf">

@@ -38,7 +38,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Properties
     
-    private let scriptsDirectoryURL: URL
+    private let scriptsDirectoryURL: URL?
     private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
     
     private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
@@ -52,20 +52,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private override init() {
         
-        // find Application Scripts folder
         do {
             self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
                                                                    in: .userDomainMask, appropriateFor: nil, create: true)
         } catch {
-            // fallback directory creation for in case the app is not Sandboxed
-            let bundleIdentifier = Bundle.main.bundleIdentifier!
-            let libraryURL = try! FileManager.default.url(for: .libraryDirectory,
-                                                          in: .userDomainMask, appropriateFor: nil, create: false)
-            self.scriptsDirectoryURL = libraryURL.appendingPathComponent("Application Scripts").appendingPathComponent(bundleIdentifier, isDirectory: true)
-            
-            if !self.scriptsDirectoryURL.isReachable {
-                try! FileManager.default.createDirectory(at: self.scriptsDirectoryURL, withIntermediateDirectories: true, attributes: nil)
-            }
+            self.scriptsDirectoryURL = nil
+            print("cannot create the scripts folder: \(error)")
         }
         
         self.presentedItemURL = self.scriptsDirectoryURL
@@ -129,11 +121,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
         self.menuBuildingTask.cancel()
         self.scriptHandlersTable.removeAll()
         
+        guard let directoryURL = self.scriptsDirectoryURL else { return }
+        
         let menu = MainMenu.script.menu!
         
         menu.removeAllItems()
         
-        self.addChildFileItem(in: self.scriptsDirectoryURL, to: menu)
+        self.addChildFileItem(in: directoryURL, to: menu)
         
         if !menu.items.isEmpty {
             menu.addItem(.separator())
@@ -219,7 +213,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// open Script menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
-        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: self.scriptsDirectoryURL.path)
+        guard let dicrectoryURL = self.scriptsDirectoryURL else { return }
+        
+        NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: dicrectoryURL.path)
     }
     
     

@@ -265,7 +265,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             self.isStyleNameValid = false
             self.message = "⚠️ " + error.localizedDescription + " " + error.recoverySuggestion!
             
-        } catch { assertionFailure("Caught unknown error.") }
+        } catch { assertionFailure("Caught unknown error: \(error)") }
         
         return self.isStyleNameValid
     }

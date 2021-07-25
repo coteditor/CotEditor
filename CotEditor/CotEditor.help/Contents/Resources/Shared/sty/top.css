@@ -6,49 +6,48 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2020 CotEditor Project
+ © 2006-2021 CotEditor Project
 */
 
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 10pt/1.5 -apple-system, sans-serif;
+	font: 13px/1.5 -apple-system, sans-serif;
 	color: -apple-system-label;
 }
 body {
 	margin: 1em auto;
-	padding: 0 1em;
-	max-width: 7in;
 }
 
 a {
 	text-decoration: none;
 }
 a:link, a:visited {
-	color: hsl(211, 67%, 50%);
+	color: -apple-system-blue;
 }
 a:hover {
 	text-decoration: underline;
 }
 
-section {
-	float: left;
-}
-section#leftbox {
-	width: 190px;
+header {
 	text-align: center;
-	padding: 28px 0;
-}
-section#rightbox {
-	width: 260px;
-	padding-left: 30px;
-	margin-left: 20px;
-	border-left: 1px solid -apple-system-quaternary-label;
+	padding: 26px 0;
+	background: linear-gradient(white, hsl(220,6%,95%));
 }
 
-#leftbox h1 {
-	font-size: 180%;
-	font-weight: 300;
+@media (prefers-color-scheme: dark) {
+	header {
+	background: linear-gradient(transparent, hsl(220,6%,10%));
+	}
+}
+main {
+	max-width: 7in;
+	margin: 1em auto;
+}
+
+header h1 {
+	font-size: 240%;
+	font-weight: 500;
 	margin: 0.5em 0;
 }
 

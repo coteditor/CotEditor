@@ -2,6 +2,37 @@
 Change Log
 ==========================
 
+4.0.6 (465)
+--------------------------
+
+### Improvements
+
+- Add “Share” command to the menus for setting files, such as theme, syntax style, or multi replacement definition.
+- Resume “Select word” on top of the document if the search reached the end.
+- Update the visual style of the multiple replacement window on macOS 11.
+- Minimize scrolling when focusing on a text such as text search and outline selection.
+- Improve the syntax highlighting algorithm around comments and quoted text.
+- Revert JavaScript syntax style update in CotEditor 4.0.5 that modifies regular expression highlight.
+- Update the bundled cot command to enable reading large piped text entirely.
+- Update help contents.
+- [trivial] Sort themes alphabetically regardless of whether they are bundled or not.
+- [trivial] Make the timing to trim trailing spaces shorter.
+- [trivial] Tweak Japanese localization in Preferences.
+- [trivial][non-AppStore ver.] Sign the application with EdDSA signature for update manager (Sparkle).
+
+
+### Fixes
+
+- Fix an issue that the document theme did occasionally not change when switching the default theme to “Anura” in Dark Mode.
+- Fix an issue that disabling the “Reopen windows from last session” option did not work if the Auto Save is disabled.
+- Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
+-  Fix an issue that the visual window state occasionally did not restore from the last session correctly.
+- Fix an issue in the inspector that the content occasionally overlapped with the pane controller above if it is shown when the window opens.
+- Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
+- Fix a typo in German localization.
+
+
+
 4.0.5 (463)
 --------------------------
 
@@ -1672,7 +1703,6 @@ no change.
 
 - Address an issue where the application could rarely crash on syntax highlighting.
 - Address an issue on Mojave where text view stacked under the line number view.
-- Fix a typo in Italian localization.
 
 
 

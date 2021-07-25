@@ -6,96 +6,94 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Format preferences</title>
+	<title>Change Format preferences</title>
 </head>
 
 <body>
 <a name="pref_format"></a>
 
-<nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
-</ul></nav>
+
+<h1>Change Format preferences</h1>
+
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use Format preferences to set the default format for documents such as line ending type and text encoding, and to manage syntax styles. To change these preferences, choose CotEditor &gt; Preferences, then click Format.</p>
 
 
-<h1>Format preferences</h1>
 
-<p>You can set the default format such as font type or text encoding for new documents.</p>
+<table class="preferences">
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
 
-<dl>
-	<dt>Line Endings</dt>
-	<dd>You can set line endings for your document.</dd>
-	<dd><dl>
-		<dt>Default line endings</dt>
-		<dd>You can set the default line ending style used when creating a new document. In addition, this line ending is used also when the opened document doesn't include any line endings.</dd>
-	</dl></dd>
-</dl>
+<tbody>
+	<tr>
+		<th>Default line endings</th>
+		<td>The default line ending style is used when creating a new document. This setting is used also when the opened document doesn't include any line endings.</td>
+	</tr>
 
-<hr/>
+	<tr>
+		<th>Default text encoding</th>
+		<td>The default text encoding is used when creating a new document.</td>
+	</tr>
 
-<dl>
-	<dt>Text Encoding</dt>
-	<dd>You can set text encoding for your document.</dd>
-	<dd><dl>
-		<dt>Default text encoding</dt>
-		<dd>You can set the default text encoding used when creating a new document.</dd>
-		
-		<dt>Priority of encodings</dt>
-		<dd>You can customize the priority of encodings and the policy of encoding detection when opening an existing file.</dd>
-		<dd><dl>
+	<tr>
+		<th>Priority of encodings</th>
+		<td>The priority of encodings and the policy of encoding detection when opening an existing file.
+		<dl>
 			<dt>Edit List</dt>
-			<dd>You can customize the order of encodings that appear in the File Encoding submenu of the Format menu and the File Encoding drop-down list on the toolbar. This order is also used for encoding detection. CotEditor tries each encoding from the top of the list. See <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding detection</a> for details.</dd>
-			
-			<dt>Refer to encoding declaration in document</dt>
-			<dd>When this option is selected, CotEditor respects the encoding declaration written in the document. See <a href="../pgs/about_autodetect_charset.html">Using encoding declarations for encoding detection</a> for details.</dd>
-		</dl></dd>
-		
-	</dl></dd>
-</dl>
+			<dd>Click Edit List to set the order of encodings that appear in the File Encoding submenu in the Format menu and the File Encoding drop-down list on the toolbar. This order is also used for encoding detection. CotEditor tries each encoding from the top of the list. See <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding detection</a> for details.</dd>
+		</dl></td>
+	</tr>
 
-<hr/>
+	<tr>
+		<th>Refer to encoding declaration<br/>in document</th>
+		<td>The encoding declaration written in the document is respected when detecting the text encoding of the document. See <a href="../pgs/about_autodetect_charset.html">Using encoding declarations for encoding detection</a> for details.</td>
+	</tr>
 
-<dl>
-	<dt>Syntax Style</dt>
-	<dd>You can set here about syntax coloring and set up your own syntax styles.</dd>
-	
-	<dd><dl>
-		<dt>Enable syntax coloring</dt>
-		<dd>When this option is on, CotEditor colors your document according to its kind. The outline menu in the navigation bar also follows this setting.</dd>
-		
-		<dt>Default syntax style</dt>
-		<dd>If there is no syntax style associated with the extension of the file you opened, the one you specified here will be used for coloring.<br />
-		This setting applies to a newly created document as well.</dd>
-		
-		<dt>Available syntax styles</dt>
-		<dd>Here, you can edit existing styles or add your own style. A small dot in front of style names represents that it is customized.<br/>
+	<tr>
+		<th>Enable syntax coloring</th>
+		<td>Documents are colored according to its kind. The outline menu in the navigation bar also follows this setting.</td>
+	</tr>
+
+	<tr>
+		<th>Default syntax style</th>
+		<td>If there is no syntax style associated with the extension of the file you opened, the one you specified here will be used for coloring.<br />
+		This setting applies to a newly created document as well.</td>
+	</tr>
+
+	<tr>
+		<th>Available syntax styles</th>
+		<td>The list of the existing syntax styles. A small dot in front of style names represents that it is customized.<br/>
 		See <a href="howto_customize_syntaxstyle.html">About syntax styles</a> for about editing style.</dd>
-		<dd><dl>
-			<dt>New (+ icon)</dt>
-			<dd>Create a new style.</dd>
-			
-			<dt>Delete (- icon)</dt>
-			<dd>Remove the selected style. You cannot remove styles that are bundled with CotEditor.</dd>
-			
+
+		<dl>
+			<dt>Add +, Remove -</dt>
+			<dd>Create a new style or remove the selected style. The styles bundled with CotEditor can not be removed.</dd>
+
 			<dt>Edit (pencil icon)</dt>
 			<dd>Edit the selected style.</dd>
-			
+
 			<dt>Other Actions (gear icon)</dt>
 			<dd><dl>
 				<dt>Duplicate “Style Name”</dt>
 				<dd>Duplicate the selected style in order to make your own one.</dd>
-				
+
 				<dt>Export “Style Name”</dt>
 				<dd>Export the style definition file made from the selected style. You can use this exported file to use it on another computer. To use the exported file, do Import.</dd>
-				
+
+				<dt>Share</dt>
+				<dd>Share the style definition file made from the selected style.</dd>
+
 				<dt>Import</dt>
 				<dd>This allows you to use a style created on another computer. After selecting Import, choose the exported style file to install.</dd>
-				
+
 				<dt>Show File Mapping Conflicts</dt>
-				<dd>Check if multiple styles are associated with an extension / a file name.</dd>
+				<dd>Check if multiple styles are associated with the same extension / file name.</dd>
 			</dl></dd>
-		</dl></dd>
-	</dl></dd>
-</dl>
+		</dl></td>
+	</tr>
+</tbody>
+</table>
+
 
 
 <section id="cf">
