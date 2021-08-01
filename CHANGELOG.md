@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.0.7 (unreleased)
+--------------------------
+
+### Improvements
+
+- Highlight named capture where highlight regular expression patterns such as in the find panel.
+
+
+
 4.0.6 (465)
 --------------------------
 
