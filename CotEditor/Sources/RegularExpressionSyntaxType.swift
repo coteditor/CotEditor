@@ -100,8 +100,8 @@ enum RegularExpressionSyntaxType {
                         ]
                     case .backReference:
                         return [
-                            escapeIgnorer + "\\$[0-9]",  // $0
-                            escapeIgnorer + "\\\\[1-9]",  // \1
+                            escapeIgnorer + "\\$[0-9]+",  // $0
+                            escapeIgnorer + "\\\\[1-9]+",  // \1
                             escapeIgnorer + "\\\\k<[a-zA-Z][a-zA-Z0-9]+>", // \k<name>
                         ]
                     case .symbol:
@@ -131,7 +131,7 @@ enum RegularExpressionSyntaxType {
                     case .character where unescapes:
                         return [escapeIgnorer + "\\\\[$0tnr\"'\\\\]"]
                     case .backReference:
-                        return [escapeIgnorer + "\\$[0-9]"]
+                        return [escapeIgnorer + "\\$[0-9]+"]
                     default:
                         return []
                 }
