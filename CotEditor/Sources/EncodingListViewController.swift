@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -186,14 +186,19 @@ private extension CFStringEncoding {
         
         assert(!withUTF8BOM || self == .utf8)
         
+        let paragraphSytle = NSParagraphStyle.default.mutable
+        paragraphSytle.lineBreakMode = .byTruncatingTail
+        
         // styled encoding name
         let encoding = String.Encoding(cfEncoding: self)
         let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: withUTF8BOM)
-        let attrEncodingName = NSAttributedString(string: fileEncoding.localizedName)
+        let attrEncodingName = NSAttributedString(string: fileEncoding.localizedName,
+                                                  attributes: [.paragraphStyle: paragraphSytle])
         
         let ianaName = (CFStringConvertEncodingToIANACharSetName(self) as String?) ?? "-"
         let attrIanaName = NSAttributedString(string: " : " + ianaName,
-                                              attributes: [.foregroundColor: NSColor.secondaryLabelColor])
+                                              attributes: [.foregroundColor: NSColor.secondaryLabelColor,
+                                                           .paragraphStyle: paragraphSytle])
         
         return attrEncodingName + attrIanaName
     }

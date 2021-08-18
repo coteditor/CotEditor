@@ -11,6 +11,11 @@ Change Log
 - [trivial] Tweak the help layout.
 
 
+### Fixes
+
+- Fix the layout of the encoding priority list. 
+
+
 
 4.0.6 (465)
 --------------------------
