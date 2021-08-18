@@ -43,6 +43,7 @@ header {
 main {
 	max-width: 7in;
 	margin: 1em auto;
+	padding: 0 1em;
 }
 
 header h1 {

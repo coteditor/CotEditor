@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Highlight named capture where highlight regular expression patterns such as in the find panel.
+- [trivial] Tweak the help layout.
 
 
 
