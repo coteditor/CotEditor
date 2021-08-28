@@ -52,6 +52,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         super.viewWillAppear()
         
         self.encodings = UserDefaults.standard[.encodingList]
+        self.tableView?.sizeToFit()
     }
     
     
