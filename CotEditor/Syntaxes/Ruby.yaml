@@ -1,5 +1,6 @@
 extensions:
 - keyString: "rb"
+- keyString: "erb"
 filenames:
 - keyString: "Gemfile"
 interpreters:
@@ -7,10 +8,10 @@ interpreters:
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "https://coteditor.com"
-  version: "2.3.1"
+  version: "2.4.0"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2021-05-13"
+  lastModified: "2021-08-28"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"

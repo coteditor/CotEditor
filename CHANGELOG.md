@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Highlight named capture where highlight regular expression patterns such as in the find panel.
+- Add “.erb” extension to Ruby syntax style.
 - [trivial] Tweak the help layout.
 
 
