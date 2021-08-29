@@ -2312,7 +2312,6 @@
 				2AAAE6E826DB87E000C5F0AC /* org.sparkle-project.InstallerLauncher.xpc */,
 			);
 			name = XPCs;
-			path = ../Frameworks/Build;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
