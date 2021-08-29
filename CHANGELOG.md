@@ -14,7 +14,7 @@ Change Log
 
 ### Fixes
 
-- Fix the layout of the encoding priority list. 
+- Fix the layout of the initial encoding priority list.
 
 
 
