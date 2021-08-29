@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Sparkle",
+        "repositoryURL": "https://github.com/sparkle-project/Sparkle",
+        "state": {
+          "branch": "2.x",
+          "revision": "515b8259bcd0defb08c28cdee8b697b045ffdeeb",
+          "version": null
+        }
+      },
+      {
         "package": "ColorCode",
         "repositoryURL": "https://github.com/1024jp/WFColorCode",
         "state": {

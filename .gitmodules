@@ -1,7 +1,3 @@
 [submodule "cot"]
 	path = cot
 	url = https://github.com/coteditor/cot.git
-[submodule "Frameworks/Sparkle"]
-	path = Frameworks/Sparkle
-	url = https://github.com/sparkle-project/Sparkle.git
-	branch = 2.x
