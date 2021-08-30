@@ -10,7 +10,8 @@ Change Log
 - Highlight named capture where highlight regular expression patterns such as in the find panel.
 - Add “.erb” extension to Ruby syntax style.
 - [trivial] Tweak the help layout.
-- [dev] Migrate Sparkle from submodule to SwiftPM.
+- [dev][non-AppStore ver.] Migrate Sparkle from submodule to SwiftPM.
+- [dev][non-AppStore ver.] Use sparkle:channel element in appcast.xml for prerelease check instead of appcast-beta.xml.
 
 
 ### Fixes

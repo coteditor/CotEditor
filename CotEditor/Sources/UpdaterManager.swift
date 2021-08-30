@@ -27,31 +27,9 @@ import Foundation
 import AppKit.NSMenuItem
 import Sparkle
 
-private enum AppCastURL {
+private enum AppCast {
     
-    case stable
-    case beta
-    
-    private static let host = "https://coteditor.com/"
-    
-    
-    /// URL for app cast
-    var url: String {
-        
-        return Self.host + self.filename
-    }
-    
-    
-    /// filename of app cast
-    private var filename: String {
-        
-        switch self {
-            case .stable:
-                return "appcast.xml"
-            case .beta:
-                return "appcast-beta.xml"
-        }
-    }
+    static let url = URL(string: "https://coteditor.com/appcast.xml")!
 }
 
 
@@ -95,22 +73,20 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         menuItem.target = self.controller.updater
         applicationMenu.insertItem(menuItem, at: 1)
         
-        // lock update check interval to daily
-        self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)
+        // set feed
+        self.controller.updater.setFeedURL(AppCast.url)
+        self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)  // daily
     }
     
     
     
     // MARK: Sparkle Updater Delegate
     
-    /// return AppCast file URL dinamically
-    func feedURLString(for updater: SPUUpdater) -> String? {
+    func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         
-        // force into checking beta if the currently runnning one is a beta.
         let checksBeta = (Bundle.main.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
-        let appCast: AppCastURL = checksBeta ? .beta : .stable
         
-        return appCast.url
+        return checksBeta ? ["prerelease"] : []
     }
     
 }
