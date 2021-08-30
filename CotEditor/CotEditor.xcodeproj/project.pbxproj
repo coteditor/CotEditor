@@ -4130,10 +4130,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CURRENT_PROJECT_VERSION = 466;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Frameworks/Build",
-				);
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "4.0.7-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
@@ -4150,10 +4146,6 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CURRENT_PROJECT_VERSION = 466;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Frameworks/Build",
-				);
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "4.0.7-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
