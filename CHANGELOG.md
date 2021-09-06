@@ -12,6 +12,7 @@ Change Log
 - Improve error messages for OSA Scripting.
 - [trivial] Tweak the help layout.
 - [dev][non-AppStore ver.] Migrate Sparkle from submodule to SwiftPM.
+- [dev][non-AppStore ver.] Update Sparkle to 2.0.0-beta.2.
 - [dev][non-AppStore ver.] Use sparkle:channel element in appcast.xml for prerelease check instead of appcast-beta.xml.
 
 
