@@ -264,7 +264,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dd>Converts the text encoding of the document.</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> (Unicode text)</dt>
-		<dd>The new encoding.</dd>
+		<dd>The new encoding, either in localized encoding name or an IANA charset name.</dd>
 
 		<dt><code>lossy</code> (boolean)</dt>
 		<dd>Whether to allow “lossy” conversion (might result in loss of character that couldn't be converted) or not.</dd>
@@ -290,7 +290,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dd>Reinterpret the document with the specified text encoding.</dd>
 	<dd><dl class="subtree">
 		<dt><code>as</code> (Unicode text)</dt>
-		<dd>The encoding for reinterpreting.</dd>
+		<dd>The encoding for reinterpreting, either in localized encoding name or an IANA charset name.</dd>
 	</dl></dd>
 	<dd><dl>
 		<dt>return value</dt>

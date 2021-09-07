@@ -9,6 +9,7 @@ Change Log
 
 - Highlight named capture where highlight regular expression patterns such as in the find panel.
 - Add “.erb” extension to Ruby syntax style.
+- Accept IANA charset names in `convert` and `reinterpret` commands for AppleScript.
 - Improve error messages for OSA Scripting.
 - [trivial] Tweak the help layout.
 - [dev][non-AppStore ver.] Migrate Sparkle from submodule to SwiftPM.

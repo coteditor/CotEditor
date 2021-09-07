@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -77,6 +77,15 @@ final class EncodingManager {
             .filter { $0 != kCFStringEncodingInvalidId }  // = separator
             .map { String.Encoding(cfEncoding: $0) }
             .first { encodingName == String.localizedName(of: $0) }
+    }
+    
+    /// returns corresponding NSStringEncoding from an IANA char set name
+    func encoding(ianaCharSetName: String) -> String.Encoding? {
+        
+        return DefaultSettings.encodings.lazy
+            .filter { $0 != kCFStringEncodingInvalidId }  // = separator
+            .map { String.Encoding(cfEncoding: $0) }
+            .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
     }
     
     
