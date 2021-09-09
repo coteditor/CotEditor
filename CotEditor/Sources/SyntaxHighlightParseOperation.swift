@@ -205,8 +205,12 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             if $0.range.location < $1.range.location { return true }
             if $0.range.location > $1.range.location { return false }
             
-            if $0.range.length > $1.range.length { return true }
-            if $0.range.length < $1.range.length { return false }
+            if $0.range.isEmpty { return true }
+            if $1.range.isEmpty { return false }
+            
+            if $0.range.length != $1.range.length {
+                return $0.range.length > $1.range.length
+            }
             
             return $0.role.rawValue > $1.role.rawValue
         }

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -220,8 +220,12 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.shared.encoding(name: encodingName)
-            else { return false }
+            let encoding = EncodingManager.shared.encoding(name: encodingName) ?? EncodingManager.shared.encoding(ianaCharSetName: encodingName)
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            command.scriptErrorString = "Invalid encoding name."
+            return false
+        }
         
         if encoding == self.fileEncoding.encoding {
             return true
@@ -233,6 +237,8 @@ extension Document {
         do {
             try self.changeEncoding(to: fileEncoding, lossy: lossy)
         } catch {
+            command.scriptErrorNumber = errOSAGeneralError
+            command.scriptErrorString = error.localizedDescription
             return false
         }
         
@@ -246,11 +252,18 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.shared.encoding(name: encodingName) else { return false }
+            let encoding = EncodingManager.shared.encoding(name: encodingName) ?? EncodingManager.shared.encoding(ianaCharSetName: encodingName)
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            command.scriptErrorString = "Invalid encoding name."
+            return false
+        }
         
         do {
             try self.reinterpret(encoding: encoding)
         } catch {
+            command.scriptErrorNumber = errOSAGeneralError
+            command.scriptErrorString = error.localizedDescription
             return false
         }
         
@@ -304,7 +317,11 @@ extension Document {
             let count: Int
             if options.contains(.regularExpression) {
                 let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? [.caseInsensitive] : []
-                guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else { return 0 }
+                guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else {
+                    command.scriptErrorNumber = errOSAGeneralError
+                    command.scriptErrorString = "Invalid regular expression."
+                    return 0
+                }
                 
                 count = regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
             } else {
@@ -326,10 +343,13 @@ extension Document {
             let replacedString: String
             if options.contains(.regularExpression) {
                 let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
-                guard
-                    let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)),
-                    let match = regex.firstMatch(in: string, options: .withoutAnchoringBounds, range: foundRange)
-                    else { return 0 }
+                guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else {
+                    command.scriptErrorNumber = errOSAGeneralError
+                    command.scriptErrorString = "Invalid regular expression."
+                    return 0
+                }
+                
+                guard let match = regex.firstMatch(in: string, options: .withoutAnchoringBounds, range: foundRange) else { return 0 }
                 
                 replacedString = regex.replacementString(for: match, in: string, offset: 0, template: replacementString)
             } else {
@@ -357,11 +377,19 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let rangeArray = arguments["range"] as? [Int], rangeArray.count == 2
-            else { return nil }
+        else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            command.scriptErrorString = "The range paramator must be a list of {location, length}."
+            return nil
+        }
         
         let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
         
-        guard let range = string.range(in: fuzzyRange) else { return nil }
+        guard let range = string.range(in: fuzzyRange) else {
+            command.scriptErrorNumber = OSAParameterMismatch
+            command.scriptErrorString = "Out of the range."
+            return nil
+        }
         
         return (self.string as NSString).substring(with: range)
     }

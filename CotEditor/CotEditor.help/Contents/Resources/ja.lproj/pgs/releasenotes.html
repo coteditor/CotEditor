@@ -13,12 +13,43 @@
 <body>
 <a name="releasenotes"></a>
 
-<nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditorヘルプ</a></li>
-</ul></nav>
-
 
 <h1>リリースノート</h1>
+
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.0.7</h1>
+		<p>リリース: <time>2021-09-10</time></p>
+	</header>
+	
+	
+	<section>
+		<h2>改良</h2>
+		
+		<ul>
+			<li>検索パネルの正規表現ハイライトでnamed captureもハイライトするよう改良</li>
+			<li>Rubyシンタックススタイルに拡張子.erbを追加</li>
+			<li>AppleScriptの<code>convert</code>と<code>reinterpret</code>コマンドがエンコード名としてIANA charset nameも受け付けるよう改良</li>
+			<li>OSAスクリプトのエラーメッセージを改良</li>
+			<li><span class="trivial">trivial</span>: ヘルプのレイアウトを調整</li>
+			<li><span class="trivial">開発</span> <span class="label">非AppStore版</span>: Sparkleフレームワークの管理をsubmoduleからSwiftPMに移行</li>
+			<li><span class="trivial">開発</span> <span class="label">非AppStore版</span>: Sparkleを2.0.0-beta.2に更新</li>
+			<li><span class="trivial">開発</span> <span class="label">非AppStore版</span>: プレリリース版の更新確認の際にappcast-beta.xmlではなくappcast.xmlの<code>sparkle:channel</code>要素を使うよう変更</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>修正</h2>
+		
+		<ul>
+			<li>4.0.6でのシンタックスハイライトの崩れを修正</li>
+			<li>エンコード優先度リストの初期レイアウトを修正</li>
+		</ul>
+	</section>
+</article>
 
 
 
@@ -57,7 +88,7 @@
 			<li>オートセーブを無効にしているとき「前回のウインドウを復帰」の無効化ができなかった不具合を修正</li>
 			<li>「開く」ダイアログで「不可視ファイルを表示」オプションを有効にしても.appパッケージの中が見られなかった不具合を修正</li>
 			<li>ウインドウ復元時に最後の状態が正しく復帰されないことがあった不具合を修正</li>
-			<li>ウインドウを開いたときにインスペクタが表示されていると、インスペクタの内容が上部のペイン切り替えを重なることがあった不具合を修正</li>
+			<li>ウインドウを開いたときにインスペクタが表示されていると、インスペクタの内容が上部のペイン切り替えに重なることがあった不具合を修正</li>
 			<li>エディタの不透明度設定が100%でないときに、フルスクリーンにするとナビゲーションバーの色がおかしくなることがあった不具合を修正</li>
 			<li>ドイツ語ローカライズを1カ所修正</li>
 		</ul>

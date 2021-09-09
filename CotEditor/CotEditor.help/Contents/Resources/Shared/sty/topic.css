@@ -6,16 +6,17 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2019 CotEditor Project
+ © 2006-2021 CotEditor Project
 */
 
 
 .topic {
-	padding: 1em;
+	padding: 1.5em 0;
 	min-height: 200px;
-	border: solid 1px -apple-system-container-border;
-	margin-bottom: 2em;
-	border-radius: 3px;
+	border-top: solid 1px -apple-system-container-border;
+}
+.topic:first-of-type {
+	margin-top: 3em;
 }
 
 .topic h2 {

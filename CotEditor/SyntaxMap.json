@@ -550,7 +550,8 @@
   },
   "Ruby" : {
     "extensions" : [
-      "rb"
+      "rb",
+      "erb"
     ],
     "filenames" : [
       "Gemfile"

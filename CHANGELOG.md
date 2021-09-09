@@ -2,6 +2,28 @@
 Change Log
 ==========================
 
+4.0.7 (467)
+--------------------------
+
+### Improvements
+
+- Highlight named capture where highlight regular expression patterns such as in the find panel.
+- Add “.erb” extension to Ruby syntax style.
+- Accept IANA charset names as the encoding name in `convert` and `reinterpret` commands for AppleScript.
+- Improve error messages for OSA Scripting.
+- [trivial] Tweak the help layout.
+- [dev][non-AppStore ver.] Migrate Sparkle framework management from submodule to SwiftPM.
+- [dev][non-AppStore ver.] Update Sparkle to 2.0.0-beta.2.
+- [dev][non-AppStore ver.] Use `sparkle:channel` element in appcast.xml for prerelease check instead of appcast-beta.xml.
+
+
+### Fixes
+
+- Fix syntax highlight regression on CotEditor 4.0.6.
+- Fix the layout of the initial encoding priority list.
+
+
+
 4.0.6 (465)
 --------------------------
 

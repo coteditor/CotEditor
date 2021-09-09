@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ enum RegularExpressionSyntaxType {
                         // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
                         return [
                             escapeIgnorer + "\\.",  // .
-                            escapeIgnorer + "\\\\" + "[^AbGZzQE1-9]",  // all escaped characters
+                            escapeIgnorer + "\\\\" + "[^AbGkZzQE1-9]",  // all escaped characters
                             escapeIgnorer + "\\\\" + "[sdDefnrsStwWX]",  // \s, \d, ...
                             escapeIgnorer + "\\\\" + "v",  // \v
                             escapeIgnorer + "\\\\" + "\\\\",  // \\
@@ -100,12 +100,13 @@ enum RegularExpressionSyntaxType {
                         ]
                     case .backReference:
                         return [
-                            escapeIgnorer + "\\$[0-9]",  // $0
-                            escapeIgnorer + "\\\\[1-9]",  // \1
+                            escapeIgnorer + "\\$[0-9]+",  // $0
+                            escapeIgnorer + "\\\\[1-9]+",  // \1
+                            escapeIgnorer + "\\\\k<[a-zA-Z][a-zA-Z0-9]+>", // \k<name>
                         ]
                     case .symbol:
                         return [
-                            escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?)",  // (?...
+                            escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?|<[a-zA-Z][a-zA-Z0-9]*>)",  // (?...
                             escapeIgnorer + "[()|]",  // () |
                             escapeIgnorer + "(\\[\\^?|\\])",  // [^ ]
                             escapeIgnorer + "\\\\[QE]",  // \Q ... \E
@@ -130,7 +131,7 @@ enum RegularExpressionSyntaxType {
                     case .character where unescapes:
                         return [escapeIgnorer + "\\\\[$0tnr\"'\\\\]"]
                     case .backReference:
-                        return [escapeIgnorer + "\\$[0-9]"]
+                        return [escapeIgnorer + "\\$[0-9]+"]
                     default:
                         return []
                 }

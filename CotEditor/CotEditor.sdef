@@ -197,7 +197,7 @@
             <parameter name="lossy" code="lOsy" type="boolean" description="Allows lossy conversion?">
                 <cocoa key="lossy"/>
             </parameter>
-            <parameter name="to" code="nEcd" type="text" description="The new encoding.">
+            <parameter name="to" code="nEcd" type="text" description="The new encoding, either in localized encoding name or an IANA charset name.">
                 <cocoa key="newEncoding"/>
             </parameter>
             <result type="boolean" description="Did the convertion succeed?"/>
@@ -227,7 +227,7 @@
         <command name="reinterpret" code="cEd1RIpt" description="Reinterpret the document text as new encoding.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to reinterpret encoding."/>
-            <parameter name="as" code="rEcd" type="text" description="The new encoding.">
+            <parameter name="as" code="rEcd" type="text" description="The new encoding, either in localized encoding name or an IANA charset name.">
                 <cocoa key="newEncoding"/>
             </parameter>
             <result type="boolean" description="Did the reinterpretation succeed?"/>
