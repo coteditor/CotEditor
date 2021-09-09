@@ -19,6 +19,7 @@ Change Log
 
 ### Fixes
 
+- Fix syntax highlight regression on CotEditor 4.0.6.
 - Fix the layout of the initial encoding priority list.
 
 
