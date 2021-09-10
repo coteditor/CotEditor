@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.0.7.1 (469)
+--------------------------
+
+### Fixes
+
+- [non-AppStore ver.] Fix the issue that CotEditor could not check update.
+
+
+
 4.0.7 (467)
 --------------------------
 
