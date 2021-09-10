@@ -2337,9 +2337,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
-				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
 				2A53326126799AB4000DE73D /* Build Syntax Map */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
+				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
@@ -2380,9 +2380,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor -Sparkle" */;
 			buildPhases = (
-				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
 				2A53326426799B3B000DE73D /* Build Syntax Map */,
 				8D15AC300486D014006FF6A4 /* Sources */,
+				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
