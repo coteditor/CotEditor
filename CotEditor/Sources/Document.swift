@@ -933,7 +933,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 return
             }
             
-            // ask whether just change the encoding or reinterpret docuemnt file
+            // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
             alert.messageText = "File encoding".localized
             alert.informativeText = String(format: "Do you want to convert or reinterpret this document using “%@”?".localized, fileEncoding.localizedName)
@@ -1078,7 +1078,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: "Keep CotEditor’s Edition".localized)
             alert.addButton(withTitle: "Update".localized)
             
-            // mark the alert as critical in order to interpret other sheets already attached
+            // mark the alert as critical in order to interrupt other sheets already attached
             guard let documentWindow = self.windowForSheet else {
                 activityCompletionHandler()
                 assertionFailure()
