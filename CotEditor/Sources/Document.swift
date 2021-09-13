@@ -775,7 +775,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
-            throw ReinterpretationError(kind: .noFile, encoding: encoding)
+            throw ReinterpretationError.noFile
         }
         
         // do nothing if given encoding is the same as current one
@@ -789,7 +789,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         } catch {
             self.readingEncoding = self.fileEncoding.encoding
             
-            throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
+            throw ReinterpretationError.reinterpretationFailed(fileURL: fileURL, encoding: encoding)
         }
     }
     
@@ -1136,34 +1136,28 @@ extension Document: Editable {
 
 // MARK: - Error
 
-private struct ReinterpretationError: LocalizedError {
+private enum ReinterpretationError: LocalizedError {
     
-    enum ErrorKind {
-        case noFile
-        case reinterpretationFailed(fileURL: URL)
-    }
-    
-    let kind: ErrorKind
-    let encoding: String.Encoding
-    
+    case noFile
+    case reinterpretationFailed(fileURL: URL, encoding: String.Encoding)
     
     
     var errorDescription: String? {
         
-        switch self.kind {
+        switch self {
             case .noFile:
                 return "The document doesn’t have a file to reinterpret.".localized
             
-            case .reinterpretationFailed(let fileURL):
+            case .reinterpretationFailed(let fileURL, let encoding):
                 return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
-                              fileURL.lastPathComponent, String.localizedName(of: self.encoding))
+                              fileURL.lastPathComponent, String.localizedName(of: encoding))
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        switch self.kind {
+        switch self {
             case .noFile:
                 return nil
             
