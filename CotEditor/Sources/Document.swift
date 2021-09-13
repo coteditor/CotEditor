@@ -895,7 +895,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change line ending with sender's tag
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
-        guard let lineEnding = LineEnding(index: sender.tag) else { return }
+        guard let lineEnding = LineEnding(index: sender.tag) else { return assertionFailure() }
         
         self.changeLineEnding(to: lineEnding)
     }
@@ -995,7 +995,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change syntax style
     @IBAction func changeSyntaxStyle(_ sender: AnyObject?) {
         
-        guard let name = sender?.title, name != self.syntaxParser.style.name else { return }
+        guard let name = sender?.title else { return assertionFailure() }
         
         self.setSyntaxStyle(name: name)
     }
