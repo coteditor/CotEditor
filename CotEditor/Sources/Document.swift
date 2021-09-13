@@ -1204,7 +1204,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         switch self.kind {
             case .lossySaving:
                 return ["Show Incompatible Characters".localized,
-                        "Save Available Strings".localized,
+                        "Save Available Text".localized,
                         "Cancel".localized]
             
             case .lossyConversion:

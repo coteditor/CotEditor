@@ -143,7 +143,7 @@
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
 "Do you want to continue processing?" = "Si desidera continuare l’elaborazione?";
-"Save Available Strings" = "Salva le stringhe disponibili";
+"Save Available Text" = "Salva le stringhe disponibili";
 "Show Incompatible Characters" = "Mostra caratteri incompatibili";
 
 // Encoding change with unsaved changes alert
