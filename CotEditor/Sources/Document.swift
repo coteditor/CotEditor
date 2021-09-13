@@ -373,15 +373,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to async-saving.
         
         let fileEncoding = self.fileEncoding
-        
-        // convert Yen sign in consideration of the current encoding
-        let string = self.string.convertingYenSign(for: fileEncoding.encoding)
+        let string = self.string.immutable
         
         // unblock the user interface, since fetching current document state has been done here
         self.unblockUserInteraction()
         
         // get data from string to save
-        guard var data = string.data(using: fileEncoding.encoding, allowLossyConversion: true) else {
+        guard var data = string.convertingYenSign(for: fileEncoding.encoding).data(using: fileEncoding.encoding, allowLossyConversion: true) else {
             throw CocoaError.error(.fileWriteInapplicableStringEncoding,
                                    userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
         }
