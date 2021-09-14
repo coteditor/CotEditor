@@ -5,6 +5,11 @@ Change Log
 4.0.8 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update the AppleScript guide in the help.
+
+
 ### Fixes
 
 - Fix an issue on the syntax style menu in the toolbar that the previous selection remained under specific conditions.
