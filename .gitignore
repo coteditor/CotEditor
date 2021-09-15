@@ -10,6 +10,3 @@ default.profraw
 # Swift Package Manager
 .build
 .swiftpm
-
-# Submodules
-Frameworks/Build
