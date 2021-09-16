@@ -5,6 +5,11 @@ Change Log
 4.1.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Introduce a new AppleScript command `jump`  to document objects.
+
+
 ### Improvements
 
 - Change the system requirement to __macOS 11 Big Sur and later__.

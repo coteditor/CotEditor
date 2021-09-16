@@ -159,7 +159,7 @@
 When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range will be from ‘location’ to the end.<br/>
 When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (i.e. the selection's end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
 <p>This specifying method is modelled after that of PHP's <code>substr</code>.</p>
-<p>The command for changing selection doesn't scroll the window. Use the <code>scroll to caret</code> command to make the selection remain in the view.</p>
+<p>The command for changing selection doesn't scroll the window. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
 </section>
 </section>
 
@@ -316,6 +316,40 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
 	<figcaption>Scrolls the frontmost window so that the caret or the selection can be seen.</figcaption>
 </figure>
+</section>
+
+
+
+<section>
+<h3>jump</h3>
+
+<dl class="tree">
+	<dt><code class="command">jump</code></dt>
+	<dd>Move the caret to the specified location. At least, either one of a parameter is required.</dd>
+	<dd><dl class="subtree">
+		<dt><code>to line</code> (int)</dt>
+		<dd>The number of the line to jump.</dd>
+
+		<dt>[<code>column</code> (int)]</dt>
+		<dd>The location in the line to jump.</dd>
+	</dl></dd>
+</dl>
+
+<h4>Availability</h4>
+
+<p>CotEditor 2.1.0+</p>
+
+
+<h4>Example</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">jump front document to line -1</code></pre>
+	<figcaption>Move the caret to the last line and scroll the editor so that the speficifed area can be seen.</figcaption>
+</figure>
+
+<h4>Discussion</h4>
+
+<p>If a negative value is provided, the line/column is counted from the end.</p>
 </section>
 
 

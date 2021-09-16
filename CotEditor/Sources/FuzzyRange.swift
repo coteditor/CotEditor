@@ -73,7 +73,7 @@ extension String {
     ///
     /// - Note:
     ///   A negative location accesses the element by counting backwards from the end.
-    ///   For example, `location == -1` is the last character.
+    ///   For example, `location == -1` is the location after the last character.
     ///
     ///   Likewise, a negative length can be used to select rest elements except the last one element.
     ///   e.g. Passing `FuzzyRange(location: 3, length: -1)` to a string that has 10 characters returns `NSRange(3..<9)`.
@@ -84,7 +84,7 @@ extension String {
     func range(in range: FuzzyRange) -> NSRange? {
         
         let wholeLength = self.length
-        let newLocation = (range.location >= 0) ? range.location : (wholeLength + range.location)
+        let newLocation = (range.location >= 0) ? range.location : (wholeLength + range.location + 1)
         let newLength = (range.length >= 0) ? range.length : (wholeLength - newLocation + range.length)
         
         guard
@@ -105,10 +105,12 @@ extension String {
     ///
     /// - Parameters:
     ///   - lineRange: The line range that allows also negative values.
+    ///   - includingLineEnding: Whether includes the last line ending to the return value.
     /// - Returns: A character range, or `nil` if the given value is out of range.
-    func rangeForLine(in lineRange: FuzzyRange) -> NSRange? {
+    func rangeForLine(in lineRange: FuzzyRange, includingLineEnding: Bool = true) -> NSRange? {
         
-        let regex = try! NSRegularExpression(pattern: "(?<=\\A|\\R).*(?:\\R|\\z)", options: .anchorsMatchLines)
+        let pattern = includingLineEnding ? "(?<=\\A|\\R).*(?:\\R|\\z)" : "(?<=\\A|\\R).*$"
+        let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         let lineRanges = regex.matches(in: self, range: self.nsRange).map(\.range)
         let count = lineRanges.count
         
@@ -133,6 +135,52 @@ extension String {
             else { return nil }
         
         return NSRange(firstLineRange.lowerBound..<lastLineRange.upperBound)
+    }
+    
+    
+    /// Return the cursor location for fuzzily specified line and column.
+    ///
+    /// - Note:
+    ///   `line` of the passed-in range is 1-based.
+    ///
+    /// - Parameters:
+    ///   - line: The number of the line that allows also negative values.
+    ///   - column: The number of the column that allows also negative values.
+    /// - Throws: FuzzyLocationError
+    /// - Returns: An NSRange-based cursor location.
+    func fuzzyLocation(line: Int, column: Int = 0) throws -> Int {
+        
+        let fuzzyLineRange = FuzzyRange(location: line == 0 ? 1 : line, length: 0)
+        guard let lineRange = self.rangeForLine(in: fuzzyLineRange, includingLineEnding: false) else {
+            throw FuzzyLocationError.invalidLine(line)
+        }
+        
+        let fuzzyColumnRange = FuzzyRange(location: column, length: 0)
+        guard let rangeInLine = (self as NSString).substring(with: lineRange).range(in: fuzzyColumnRange) else {
+            throw FuzzyLocationError.invalidColumn(column)
+        }
+        
+        return lineRange.location + rangeInLine.location
+    }
+    
+}
+
+
+
+enum FuzzyLocationError: Error {
+    
+    case invalidLine(Int)
+    case invalidColumn(Int)
+    
+    
+    var localizedDescription: String {
+        
+        switch self {
+            case .invalidLine(let line):
+                return "The line number \(line) is out of the range."
+            case .invalidColumn(let column):
+                return "The column number \(column) is out of the range."
+        }
     }
     
 }

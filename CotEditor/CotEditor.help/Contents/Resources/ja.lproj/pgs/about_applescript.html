@@ -158,7 +158,7 @@
 lengthが正である場合、指定される範囲はlocationから数えてlength文字数分となります。また、対象書類の文字列の長さを超えてlengthが入力された場合、末尾までが範囲となります。<br/>
 lengthが負である場合、指定される範囲は対象書類の文字列の後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置にキャレットが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
 <p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
-<p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするためには<code>scroll to caret</code>コマンドを使用してください。</p>
+<p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするためには<code>scroll to caret</code>コマンドか<code>jump</code>コマンドを使用してください。</p>
 </section>
 </section>
 
@@ -314,6 +314,43 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
 	<figcaption>キャレットまたは選択範囲が見えるようにスクロールする。</figcaption>
 </figure>
+</section>
+
+
+
+<section>
+<h3>jump</h3>
+
+<dl class="tree">
+	<dt><code class="command">jump</code></dt>
+	<dd>指定した行にキャレットを移動しその部分が見えるようにスクロールする。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to line</code> (int)</dt>
+		<dd>移動先の行番号</dd>
+
+		<dt>[<code>column</code> (int)]</dt>
+		<dd>移動先の（行内の）列番号</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.1.0以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">jump front document to line -1</code></pre>
+	<figcaption>最終行にキャレットを移動しその部分が見えるようにスクロールする。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>行番号や列番号に負の数が指定された場合は、最終行（文字）から数えた位置に移動する。</p>
 </section>
 
 
