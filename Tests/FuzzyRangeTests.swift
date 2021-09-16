@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,6 +61,9 @@ final class FuzzyRangeTests: XCTestCase {
         
         range = string.rangeForLine(in: FuzzyRange(location: 2, length: -2))!
         XCTAssertEqual((string as NSString).substring(with: range), "2\r\n")
+        
+        range = "1\n".rangeForLine(in: FuzzyRange(location: -1, length: 0))!
+        XCTAssertEqual(range, NSRange(location: 2, length: 0))
     }
     
     

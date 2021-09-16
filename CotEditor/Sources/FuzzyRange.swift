@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,7 +108,7 @@ extension String {
     /// - Returns: A character range, or `nil` if the given value is out of range.
     func rangeForLine(in lineRange: FuzzyRange) -> NSRange? {
         
-        let regex = try! NSRegularExpression(pattern: "^.*(?:\\R|\\z)", options: .anchorsMatchLines)
+        let regex = try! NSRegularExpression(pattern: "(?<=\\A|\\R).*(?:\\R|\\z)", options: .anchorsMatchLines)
         let lineRanges = regex.matches(in: self, range: self.nsRange).map(\.range)
         let count = lineRanges.count
         
