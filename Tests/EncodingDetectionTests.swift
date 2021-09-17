@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -83,14 +83,9 @@ final class EncodingDetectionTests: XCTestCase {
         let data = try self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
-        do {
-            _ = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
-        } catch let error as CocoaError {
-            XCTAssertEqual(error.code, .fileReadUnknownStringEncoding)
-        } catch _ {
-            XCTFail("Caught incorrect error.")
+        XCTAssertThrowsError(try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)) { error in
+            XCTAssertEqual(error as? CocoaError, CocoaError(.fileReadUnknownStringEncoding))
         }
-        
         XCTAssertNil(encoding)
     }
     
@@ -115,16 +110,11 @@ final class EncodingDetectionTests: XCTestCase {
         
         var encoding: String.Encoding?
         var string: String?
-        var didCatchError = false
-        do {
-            string = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
-        } catch let error as CocoaError where error.code == .fileReadUnknownStringEncoding {
-            didCatchError = true
-        } catch {
-            XCTFail(error.localizedDescription)
+        
+        XCTAssertThrowsError(string = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)) { error in
+            XCTAssertEqual(error as? CocoaError, CocoaError(.fileReadUnknownStringEncoding))
         }
         
-        XCTAssertTrue(didCatchError, "String+Encoding didn't throw error.")
         XCTAssertNil(string)
         XCTAssertNil(encoding)
         XCTAssertFalse(data.starts(with: Unicode.BOM.utf8.sequence))
