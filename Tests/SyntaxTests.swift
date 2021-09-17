@@ -29,7 +29,6 @@ import Combine
 import Yams
 @testable import CotEditor
 
-
 final class SyntaxTests: XCTestCase {
     
     private let styleDirectoryName = "Syntaxes"
