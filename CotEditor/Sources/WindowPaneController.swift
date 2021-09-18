@@ -34,8 +34,6 @@ final class WindowPaneController: NSViewController {
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
     
     @IBOutlet private weak var pageGuideColumnField: NSTextField?
-    @IBOutlet private weak var windowWidthField: NSTextField?
-    @IBOutlet private weak var windowHeightField: NSTextField?
     @IBOutlet private weak var overscrollField: NSTextField?
     @IBOutlet private weak var editorOpacityField: NSTextField?
     
@@ -54,8 +52,6 @@ final class WindowPaneController: NSViewController {
         
         // set initial values as fields' placeholder
         self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults()
-        self.windowWidthField?.bindNullPlaceholderToUserDefaults()
-        self.windowHeightField?.bindNullPlaceholderToUserDefaults()
         self.overscrollField?.bindNullPlaceholderToUserDefaults()
         self.editorOpacityField?.bindNullPlaceholderToUserDefaults()
     }

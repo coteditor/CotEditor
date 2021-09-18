@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Update the window size setting to use the last window size if the width/height setting in the preferences > Window is left blank (= auto).
 - Update the AppleScript guide in the help.
 - Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
 

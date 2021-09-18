@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2020 CotEditor Project
+ © 2016-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -92,6 +92,10 @@
 "Bj6-2A-Nxj.title" = "Orizzontale";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "Verticale";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
+"hye-gP-iep.ibShadowedIsNilPlaceholder" = "Auto";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
+"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "Auto";
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Opacità dell’editor:";
