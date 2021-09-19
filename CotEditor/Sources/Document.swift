@@ -565,6 +565,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func close() {
         
         self.syntaxParser.invalidateCurrentParse()
+        self.textStorageObserver?.cancel()
         
         super.close()
     }

@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that memory leaked if the autosaving is disabled.
 - Fix an issue on the syntax style menu in the toolbar that the previous selection remained under specific conditions.
 
 
