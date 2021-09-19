@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,24 +26,6 @@
 import AppKit
 
 extension NSImage {
-    
-    /// Return the system symbol image object with backward compatibility for macOS 10.15.
-    ///
-    /// Just like the Interface Builder, use bundled recoure image with the same name for unsupported systems.
-    ///
-    /// - Parameters:
-    ///   - name: The name of image both for SF Symbols and image resorce.
-    ///   - accessibilityDescription: The accessibility description.
-    @available(macOS, deprecated: 11)
-    convenience init?(symbolNamed name: String, accessibilityDescription: String?) {
-        
-        if #available(macOS 11, *)  {
-            self.init(systemSymbolName: name, accessibilityDescription: accessibilityDescription)
-        } else {
-            self.init(named: name)
-        }
-    }
-    
     
     /// Return a copy of the image tinted with the color.
     ///

@@ -69,7 +69,7 @@ extension DocumentViewController: NSTouchBarDelegate {
             case .invisibles:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = "Invisibles".localized(comment: "touch bar item")
-                let image = NSImage(symbolNamed: "paragraphsign", accessibilityDescription: "Invisibles".localized)!
+                let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: "Invisibles".localized)!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
                 return item
             

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,17 +36,6 @@ final class StatableToolbarItem: NSToolbarItem, StatableItem {
     
     // MARK: -
     // MARK: Toolbar Item Methods
-    
-    override init(itemIdentifier: NSToolbarItem.Identifier) {
-        
-        super.init(itemIdentifier: itemIdentifier)
-        
-        // Use active (green) icons for colored icons in toolbar config panel
-        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
-            self.state = .on
-        }
-    }
-    
     
     override var image: NSImage? {
         

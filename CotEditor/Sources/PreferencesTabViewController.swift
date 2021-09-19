@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,18 +47,6 @@ final class PreferencesTabViewController: NSTabViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // set fallback toolbar images for macOS 10.15
-        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
-            for item in self.tabViewItems {
-                guard
-                    let identifier = item.identifier as? String,
-                    let image = NSImage(named: "Preferences/" + identifier)
-                    else { continue }
-                
-                item.image = image
-            }
-        }
         
         // select last used pane
         if

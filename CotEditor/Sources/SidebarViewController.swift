@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -129,16 +129,13 @@ extension SidebarViewController: InspectorTabViewDelegate {
         
         switch tabViewItem {
             case self.documentInspectorTabViewItem:
-                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "doc_selected") }
                 return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 
             case self.outlineTabViewItem:
-                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "list.bullet.indent_selected") }
                 return nil  // -> bold version
                 
             case self.incompatibleCharactersTabViewItem:
-                guard #available(macOS 11, *) else { return #imageLiteral(resourceName: "exclamationmark.triangle_slected") }
                 return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 

@@ -293,9 +293,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
-        if #available(macOS 11, *) {
-            alert.buttons.last?.hasDestructiveAction = true
-        }
+        alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in

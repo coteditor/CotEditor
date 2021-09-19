@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,10 +61,6 @@ final class StatusBarController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
-            (self.view as? NSVisualEffectView)?.material = .windowBackground
-        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
