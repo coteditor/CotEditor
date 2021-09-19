@@ -99,7 +99,7 @@
                                             <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="K2m-gz-m7G"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-1v-RyO">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-1v-RyO" customClass="AccessibleStepper" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="340" y="287" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1000" doubleValue="1" id="jBa-nO-Be8"/>
                                         <connections>

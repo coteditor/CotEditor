@@ -149,6 +149,8 @@
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
 		2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
+		2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39F15626F74C2500B52876 /* AccessibleStepper.swift */; };
+		2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39F15626F74C2500B52876 /* AccessibleStepper.swift */; };
 		2A3A19DF2068A76600516DE4 /* MultipleReplacement+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* MultipleReplacement+TextView.swift */; };
 		2A3A19E02068A76600516DE4 /* MultipleReplacement+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* MultipleReplacement+TextView.swift */; };
 		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
@@ -916,6 +918,7 @@
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
 		2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTableViewDelegate.swift; sourceTree = "<group>"; };
+		2A39F15626F74C2500B52876 /* AccessibleStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleStepper.swift; sourceTree = "<group>"; };
 		2A3A19DE2068A76600516DE4 /* MultipleReplacement+TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement+TextView.swift"; sourceTree = "<group>"; };
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
@@ -1601,6 +1604,7 @@
 				2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */,
 				2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */,
 				2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */,
+				2A39F15626F74C2500B52876 /* AccessibleStepper.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2734,6 +2738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
@@ -3038,6 +3043,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */,
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,

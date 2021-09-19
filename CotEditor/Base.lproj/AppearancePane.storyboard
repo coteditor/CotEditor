@@ -104,7 +104,7 @@
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="XEu-TQ-rfy"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XWT-pS-k8a">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XWT-pS-k8a" customClass="AccessibleStepper" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="146" y="181" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" doubleValue="1" id="Mkv-St-JNh"/>
                                         <connections>
