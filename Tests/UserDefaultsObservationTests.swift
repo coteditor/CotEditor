@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2020 1024jp
+//  © 2019-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ final class UserDefaultsObservationTests: XCTestCase {
     private static let rawRepresentableKey = RawRepresentableDefaultKey<Clarus>("RawRepresentableTestKey")
     
     
-    override class func tearDown() {
+    override func tearDown() {
         
         super.tearDown()
         
