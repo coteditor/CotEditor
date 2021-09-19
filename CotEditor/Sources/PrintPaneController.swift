@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ final class PrintPaneController: NSViewController {
     
     // MARK: Private Properties
     
+    @IBOutlet private weak var usePrintFontButton: NSButton?
     @IBOutlet private weak var fontField: NSTextField?
     @IBOutlet private weak var colorPopupButton: NSPopUpButton?
     
@@ -45,6 +46,8 @@ final class PrintPaneController: NSViewController {
         
         self.setupFontFamilyNameAndSize()
         self.setupColorMenu()
+        
+        self.usePrintFontButton?.setAccessibilityLabel("Use print font".localized)
     }
     
     

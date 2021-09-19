@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +35,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="JXg-bX-b1p"/>
                                             <binding destination="IE5-39-jAY" name="fontFamilyName" keyPath="values.fontName" id="sxJ-3l-MkU"/>
                                         </connections>
                                     </textField>
@@ -49,6 +49,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="Rpq-MG-HTP"/>
                                             <action selector="showFonts:" target="WBM-EY-ENr" id="80p-Ig-zIc"/>
                                         </connections>
                                     </button>
@@ -99,6 +100,7 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="hws-J2-FDl" id="vTW-pg-qhb"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="XEu-TQ-rfy"/>
                                         </connections>
                                     </textField>
@@ -106,6 +108,7 @@
                                         <rect key="frame" x="146" y="181" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" doubleValue="1" id="Mkv-St-JNh"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="hws-J2-FDl" id="Ikk-4Y-EgE"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="cFx-Lt-8aa"/>
                                         </connections>
                                     </stepper>
@@ -788,6 +791,7 @@
                                 <rect key="frame" x="95" y="220" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="qAn-mW-nYM" id="64s-qP-SvT"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.insertionPoint.color" id="tbd-Yb-mvt"/>
                                 </connections>
                             </colorWell>
@@ -815,6 +819,7 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="mBZ-QU-vvv" id="0ic-VT-uKG"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.text.color" id="cGk-3E-ik7"/>
                                 </connections>
                             </colorWell>
@@ -822,6 +827,7 @@
                                 <rect key="frame" x="95" y="194" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="TKF-33-73c" id="epV-Ol-SSk"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.invisibles.color" id="VMj-de-rNq"/>
                                 </connections>
                             </colorWell>
@@ -829,6 +835,7 @@
                                 <rect key="frame" x="286" y="246" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="JD4-b2-5Lb" id="qqS-Ul-Tkv"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.background.color" id="oGX-n3-HQR"/>
                                 </connections>
                             </colorWell>
@@ -836,6 +843,7 @@
                                 <rect key="frame" x="286" y="220" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="f2f-d6-jlt" id="j8B-8D-TCR"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.lineHighlight.color" id="Byo-xO-Sg6"/>
                                 </connections>
                             </colorWell>
@@ -843,6 +851,7 @@
                                 <rect key="frame" x="286" y="194" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="DSW-GJ-cJL" id="5Bb-LD-x72"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.color" id="lBO-Am-0Hn"/>
                                     <binding destination="fug-yh-kPG" name="enabled" keyPath="selection.selection.usesSystemSetting" id="ImN-5g-xxj">
                                         <dictionary key="options">
@@ -887,6 +896,7 @@
                                 <rect key="frame" x="286" y="107" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Iu1-dd-heI" id="JNd-gb-XzI"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.numbers.color" id="VyB-RY-qAf"/>
                                 </connections>
                             </colorWell>
@@ -894,6 +904,7 @@
                                 <rect key="frame" x="286" y="55" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="yWa-sB-Ala" id="Fqj-Wc-zIY"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.characters.color" id="Bd9-mj-PC5"/>
                                 </connections>
                             </colorWell>
@@ -909,6 +920,7 @@
                                 <rect key="frame" x="286" y="81" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="ITJ-dM-gUs" id="hCY-cW-BBA"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.strings.color" id="ZMy-sF-XEN"/>
                                 </connections>
                             </colorWell>
@@ -916,6 +928,7 @@
                                 <rect key="frame" x="286" y="29" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="QrC-63-7c6" id="Hd1-xo-Z4I"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.comments.color" id="lvX-D6-lF7"/>
                                 </connections>
                             </colorWell>
@@ -923,6 +936,7 @@
                                 <rect key="frame" x="95" y="133" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Yza-AH-dWQ" id="Fgo-Zw-ckd"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.keywords.color" id="oPd-9r-UG5"/>
                                 </connections>
                             </colorWell>
@@ -930,6 +944,7 @@
                                 <rect key="frame" x="95" y="107" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="r0Y-ri-e5S" id="PsZ-3C-Mgh"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.commands.color" id="jXB-No-31B"/>
                                 </connections>
                             </colorWell>
@@ -937,6 +952,7 @@
                                 <rect key="frame" x="95" y="55" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="PkG-8c-DFp" id="Xr6-v5-igm"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.attributes.color" id="CGh-mo-nkX"/>
                                 </connections>
                             </colorWell>
@@ -952,6 +968,7 @@
                                 <rect key="frame" x="95" y="81" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="8QY-g0-UOv" id="ipx-Yq-8Aj"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.types.color" id="8Nt-M2-xdg"/>
                                 </connections>
                             </colorWell>
@@ -959,6 +976,7 @@
                                 <rect key="frame" x="95" y="29" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="zVV-lR-gIW" id="w8l-YB-Sdb"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.variables.color" id="Zyq-0d-YhR"/>
                                 </connections>
                             </colorWell>
@@ -974,6 +992,7 @@
                                 <rect key="frame" x="286" y="133" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="KeE-qE-PVX" id="zWw-KI-zKD"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.values.color" id="R51-9n-OL0"/>
                                 </connections>
                             </colorWell>
@@ -984,6 +1003,7 @@
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="DSW-GJ-cJL" id="50I-0j-RWs"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.usesSystemSetting" id="dXs-Zl-kBI"/>
                                 </connections>
                             </button>
@@ -1181,6 +1201,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="VKm-te-Na7" id="LiU-w1-bgu"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="j9I-tM-zAV">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1201,6 +1222,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="EuQ-JU-NCg" id="L4c-Cu-WqL"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="gQG-fz-8P8">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1221,6 +1243,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="jeC-Y2-BvF" id="UzQ-Xm-em9"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="Tyh-9m-mwD">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1245,6 +1268,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="qcm-er-Qpj" id="XJW-W4-O5A"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="BCZ-sJ-syP">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>

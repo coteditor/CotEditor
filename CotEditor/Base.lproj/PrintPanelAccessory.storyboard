@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,6 +57,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="6jK-7i-UaO" id="vow-0c-EOe"/>
                                             <binding destination="YLz-6z-SWq" name="selectedValue" keyPath="theme" id="09x-oH-G4n"/>
                                         </connections>
                                     </popUpButton>
@@ -75,6 +75,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="415" id="TlN-91-PJZ"/>
                                             <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="lineNumberMode" id="T1v-IJ-jYl"/>
                                         </connections>
                                     </popUpButton>
@@ -152,6 +153,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="257" id="9Lr-HN-REE"/>
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="OmC-ew-3w4"/>
                                             <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryHeaderContent" id="OC1-l1-jaV"/>
                                         </connections>
@@ -201,6 +203,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="296" id="e13-a0-GyI"/>
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="OnN-VH-8BV"/>
                                             <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryFooterContent" id="raJ-1y-Hyw"/>
                                         </connections>
@@ -225,6 +228,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="295" id="59e-7d-hD4"/>
                                             <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="primaryFooterContent" id="F79-PX-Tg6"/>
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="eSk-6s-EvS"/>
                                         </connections>
@@ -262,6 +266,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="256" id="y3P-Jr-G32"/>
                                             <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="primaryHeaderContent" id="aaV-1t-303"/>
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Yrf-uD-ceK"/>
                                         </connections>
@@ -299,6 +304,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="423" id="6fP-fj-7ul"/>
                                             <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="invisibleCharsMode" id="UkP-Ba-QDG"/>
                                         </connections>
                                     </popUpButton>

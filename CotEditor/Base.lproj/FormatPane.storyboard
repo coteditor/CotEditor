@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,6 +41,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="ofS-Q1-0g8" id="zpy-yy-myV"/>
                                             <binding destination="gLI-aU-mOo" name="selectedTag" keyPath="values.defaultLineEndCharCode" id="E7P-9H-f1z"/>
                                         </connections>
                                     </popUpButton>
@@ -68,6 +68,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="cPL-gk-JM6" id="ya6-xb-Ll0"/>
                                             <action selector="changeEncoding:" target="Lgm-sL-YIF" id="OTa-q8-5b6"/>
                                             <binding destination="gLI-aU-mOo" name="selectedTag" keyPath="values.encodingInNew" id="tSm-XX-6Gq"/>
                                         </connections>
@@ -82,6 +83,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="LQO-NI-fGx" id="3QR-Jo-t7t"/>
                                             <segue destination="mo3-YF-637" kind="sheet" id="Jxd-Th-IZG"/>
                                         </connections>
                                     </button>
@@ -136,6 +138,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Koi-2N-36K" id="D3h-KC-zY7"/>
                                             <binding destination="gLI-aU-mOo" name="selectedValue" keyPath="values.defaultColoringStyleName" id="SsV-R8-QZj"/>
                                         </connections>
                                     </popUpButton>

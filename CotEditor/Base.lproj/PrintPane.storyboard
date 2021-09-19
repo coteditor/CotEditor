@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,6 +29,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Hng-Zz-bj4" id="SYV-Ru-EXF"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedIndex" keyPath="values.printInvisibleCharIndex" id="f8S-hy-Fai"/>
                                         </connections>
                                     </popUpButton>
@@ -58,6 +58,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="eCM-3I-GbW" id="s9z-Ub-Ckb"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedIndex" keyPath="values.printLineNumIndex" id="ytS-yE-cCc"/>
                                         </connections>
                                     </popUpButton>
@@ -71,6 +72,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="oq9-0A-awj" id="Y30-WR-9PW"/>
                                             <action selector="showFonts:" target="4if-cg-44c" id="J6V-hf-lAe"/>
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.setPrintFont" id="3fb-0v-b4E"/>
                                         </connections>
@@ -202,6 +204,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="zj5-Gl-MJM" id="PaW-xF-IOW"/>
                                             <action selector="changePrintTheme:" target="4if-cg-44c" id="A5a-xe-Csv"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedIndex" keyPath="values.printColorIndex" id="q9v-9j-5y1"/>
                                         </connections>
@@ -253,6 +256,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Z7k-f7-A18" id="Ycj-mA-vkF"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedTag" keyPath="values.headerOneStringIndex" id="hSY-NT-BnU"/>
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="dYe-fb-X6b"/>
                                         </connections>
@@ -324,6 +328,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="ZdO-IF-ch7" id="XLq-R3-oO4"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedTag" keyPath="values.footerOneStringIndex" id="uqL-lS-qgT"/>
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printFooter" id="jYW-a6-u23"/>
                                         </connections>
@@ -383,6 +388,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="RcK-yz-5sk" id="C2p-iz-jqQ"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedTag" keyPath="values.headerTwoStringIndex" id="Xca-PK-dAb"/>
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printHeader" id="99J-1E-olp"/>
                                         </connections>
@@ -417,6 +423,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="opm-wY-WU2" id="nsN-7B-UZV"/>
                                             <binding destination="qsh-ze-KuJ" name="selectedTag" keyPath="values.footerTwoStringIndex" id="NMN-nO-F2N"/>
                                             <binding destination="qsh-ze-KuJ" name="enabled" keyPath="values.printFooter" id="Mdc-4k-vHY"/>
                                         </connections>
@@ -523,6 +530,7 @@
                     <connections>
                         <outlet property="colorPopupButton" destination="ito-FV-Lxm" id="X5I-oa-8Lz"/>
                         <outlet property="fontField" destination="Ia8-c8-PX3" id="K2S-7d-aja"/>
+                        <outlet property="usePrintFontButton" destination="09q-2f-wNl" id="Kxd-xO-Jj0"/>
                     </connections>
                 </viewController>
                 <customObject id="fQ8-xT-vOj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

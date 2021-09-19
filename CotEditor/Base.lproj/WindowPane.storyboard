@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,6 +44,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="w4k-Qb-kRF" id="GmU-q6-vva"/>
                                             <binding destination="NU0-2h-SUe" name="selectedTag" keyPath="values.windowTabbing" id="i48-2i-Toj"/>
                                         </connections>
                                     </popUpButton>
@@ -94,6 +94,7 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="WD1-55-LD1" id="l0R-1B-Dum"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.pageGuideColumn" id="t1H-0w-i0R"/>
                                             <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="K2m-gz-m7G"/>
                                         </connections>
@@ -102,6 +103,7 @@
                                         <rect key="frame" x="340" y="287" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1000" doubleValue="1" id="jBa-nO-Be8"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="WD1-55-LD1" id="sfY-2T-R0q"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.pageGuideColumn" id="keB-PP-HXG"/>
                                             <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="n2C-zV-02A"/>
                                         </connections>
@@ -168,6 +170,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="wv9-cn-NXQ" id="WXP-KX-n4o"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.overscrollRate" id="MRk-BP-vHS"/>
                                         </connections>
                                     </textField>
@@ -175,6 +178,7 @@
                                         <rect key="frame" x="185" y="231" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="1" id="YHE-bc-7kQ"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="wv9-cn-NXQ" id="uYs-Yo-oFw"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.overscrollRate" id="GjU-5o-PT5"/>
                                         </connections>
                                     </stepper>
@@ -310,6 +314,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="KaN-9u-fz0" id="jYt-LH-FjP"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowWidth" id="hye-gP-iep">
                                                 <dictionary key="options">
                                                     <string key="NSNullPlaceholder">Auto</string>
@@ -346,6 +351,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="dlN-sO-hCs" id="hku-bX-YrZ"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowHeight" id="UXj-fO-Vee">
                                                 <dictionary key="options">
                                                     <string key="NSNullPlaceholder">Auto</string>
@@ -411,6 +417,7 @@
                                             <font key="font" usesAppearanceFont="YES"/>
                                         </sliderCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Gi0-Gf-dth" id="cRA-v4-B7I"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowAlpha" id="ym4-HC-0p8"/>
                                         </connections>
                                     </slider>
@@ -430,6 +437,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Gi0-Gf-dth" id="v6i-KC-TAa"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowAlpha" id="AS4-pe-rZt"/>
                                         </connections>
                                     </textField>

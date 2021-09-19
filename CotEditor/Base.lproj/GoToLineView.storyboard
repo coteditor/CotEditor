@@ -31,6 +31,9 @@
                                     <allowedInputSourceLocales>
                                         <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                                     </allowedInputSourceLocales>
+                                    <connections>
+                                        <accessibilityConnection property="title" destination="I0q-j9-vwT" id="aEY-Bq-VQh"/>
+                                    </connections>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="Myb-sY-qpF" name="value" keyPath="location" id="yIX-ZF-8vP">
