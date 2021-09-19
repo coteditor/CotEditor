@@ -68,8 +68,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
         if let window = self.window, width > 0 || height > 0 {
-            let contentSize = NSSize(width: width > 0 ? width : window.frame.width,
-                                     height: height > 0 ? height : window.frame.height)
+            let contentSize = NSSize(width: width >= window.minSize.width ? width : window.frame.width,
+                                     height: height >= window.minSize.height ? height : window.frame.height)
             window.setContentSize(contentSize)
             (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         }
