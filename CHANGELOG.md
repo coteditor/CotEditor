@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Introduce a new AppleScript command `jump`  to document objects.
+- Introduce a new AppleScript command `jump` to document objects.
 
 
 ### Improvements
