@@ -102,7 +102,7 @@ enum RegularExpressionSyntaxType {
                         return [
                             escapeIgnorer + "\\$[0-9]+",  // $0
                             escapeIgnorer + "\\\\[1-9]+",  // \1
-                            escapeIgnorer + "\\\\k<[a-zA-Z][a-zA-Z0-9]+>", // \k<name>
+                            escapeIgnorer + "\\\\k<[a-zA-Z][a-zA-Z0-9]+>",  // \k<name>
                         ]
                     case .symbol:
                         return [

@@ -2,12 +2,22 @@
 Change Log
 ==========================
 
+4.0.8 (471)
+--------------------------
+
+### Fixes
+
+- Fix an issue that memory leaked if the autosaving is disabled.
+- Fix an issue on the syntax style menu in the toolbar that the previous selection remained under specific conditions.
+
+
+
 4.0.7-1 (469)
 --------------------------
 
 ### Fixes
 
-- [non-AppStore ver.] Fix the issue that CotEditor could not check updates.
+- [non-AppStore ver.] Fix an issue that CotEditor could not check updates.
 
 
 

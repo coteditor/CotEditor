@@ -211,6 +211,9 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         // remove deleted items
         popUpButton.menu?.items.removeAll { $0.tag == deletedTag }
         
+        // deselect current one
+        popUpButton.selectItem(at: -1)
+        
         if let item = popUpButton.item(withTitle: styleName) {
             popUpButton.select(item)
         

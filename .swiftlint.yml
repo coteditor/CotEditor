@@ -1,5 +1,5 @@
 deployment_target:
-  macOS_deployment_target: 10.13
+  macOS_deployment_target: 10.15
 
 excluded:
   - Frameworks
@@ -15,6 +15,7 @@ opt_in_rules:
   - contains_over_filter_count
   - contains_over_filter_is_empty
   - contains_over_first_not_nil
+  - discouraged_assert
   - discouraged_optional_boolean
   - empty_collection_literal
   - empty_string
