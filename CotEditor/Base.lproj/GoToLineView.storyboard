@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Myb-sY-qpF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Myb-sY-qpF">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="Myb-sY-qpF" customClass="GoToLineViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="c22-O7-iKe">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="89"/>
+                        <rect key="frame" x="0.0" y="0.0" width="224" height="141"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I0q-j9-vwT">
@@ -23,7 +23,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-zk-I26" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="58" y="48" width="142" height="21"/>
+                                <rect key="frame" x="58" y="48" width="146" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Line Number" drawsBackground="YES" id="F6K-QJ-Ox1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uvb-4S-TSI">
-                                <rect key="frame" x="81" y="13" width="76" height="32"/>
+                                <rect key="frame" x="85" y="13" width="76" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JUX-sh-0Ej">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -54,7 +54,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="njO-9y-ve9">
-                                <rect key="frame" x="155" y="13" width="52" height="32"/>
+                                <rect key="frame" x="159" y="13" width="52" height="32"/>
                                 <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cuJ-kD-yiJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -78,20 +78,22 @@ DQ
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="njO-9y-ve9" secondAttribute="trailing" constant="20" symbolic="YES" id="2xp-jz-IHO"/>
-                            <constraint firstAttribute="bottom" secondItem="NJS-4L-qUW" secondAttribute="bottom" constant="20" symbolic="YES" id="Bz1-Gv-rsW"/>
-                            <constraint firstItem="I0q-j9-vwT" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="LRQ-UD-iqg"/>
-                            <constraint firstAttribute="bottom" secondItem="uvb-4S-TSI" secondAttribute="bottom" constant="20" symbolic="YES" id="Rn7-w2-NZy"/>
-                            <constraint firstAttribute="bottom" secondItem="njO-9y-ve9" secondAttribute="bottom" constant="20" symbolic="YES" id="TE6-ht-Y9Z"/>
+                            <constraint firstItem="DMt-0X-EVj" firstAttribute="trailing" secondItem="njO-9y-ve9" secondAttribute="trailing" constant="20" symbolic="YES" id="2xp-jz-IHO"/>
+                            <constraint firstItem="DMt-0X-EVj" firstAttribute="bottom" secondItem="NJS-4L-qUW" secondAttribute="bottom" constant="20" symbolic="YES" id="Bz1-Gv-rsW"/>
+                            <constraint firstItem="I0q-j9-vwT" firstAttribute="leading" secondItem="DMt-0X-EVj" secondAttribute="leading" constant="20" symbolic="YES" id="LRQ-UD-iqg"/>
+                            <constraint firstItem="DMt-0X-EVj" firstAttribute="bottom" secondItem="uvb-4S-TSI" secondAttribute="bottom" constant="20" symbolic="YES" id="Rn7-w2-NZy"/>
+                            <constraint firstItem="DMt-0X-EVj" firstAttribute="bottom" secondItem="njO-9y-ve9" secondAttribute="bottom" constant="20" symbolic="YES" id="TE6-ht-Y9Z"/>
                             <constraint firstItem="njO-9y-ve9" firstAttribute="top" secondItem="mSI-zk-I26" secondAttribute="bottom" constant="8" symbolic="YES" id="UpT-9q-eUt"/>
                             <constraint firstItem="njO-9y-ve9" firstAttribute="leading" secondItem="uvb-4S-TSI" secondAttribute="trailing" constant="12" symbolic="YES" id="dEz-9n-LFB"/>
-                            <constraint firstItem="mSI-zk-I26" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="dPS-Vj-s3F"/>
+                            <constraint firstItem="mSI-zk-I26" firstAttribute="top" secondItem="DMt-0X-EVj" secondAttribute="top" constant="20" symbolic="YES" id="dPS-Vj-s3F"/>
                             <constraint firstItem="uvb-4S-TSI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NJS-4L-qUW" secondAttribute="trailing" constant="12" symbolic="YES" id="dy6-ND-hgR"/>
-                            <constraint firstItem="NJS-4L-qUW" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="jFH-jj-Wry"/>
+                            <constraint firstItem="NJS-4L-qUW" firstAttribute="leading" secondItem="DMt-0X-EVj" secondAttribute="leading" constant="20" symbolic="YES" id="jFH-jj-Wry"/>
                             <constraint firstItem="mSI-zk-I26" firstAttribute="baseline" secondItem="I0q-j9-vwT" secondAttribute="baseline" id="tyI-np-VUk"/>
                             <constraint firstItem="mSI-zk-I26" firstAttribute="leading" secondItem="I0q-j9-vwT" secondAttribute="trailing" constant="8" symbolic="YES" id="uWQ-hn-Qwo"/>
-                            <constraint firstAttribute="trailing" secondItem="mSI-zk-I26" secondAttribute="trailing" constant="20" symbolic="YES" id="uzR-Ys-SBx"/>
+                            <constraint firstItem="DMt-0X-EVj" firstAttribute="trailing" secondItem="mSI-zk-I26" secondAttribute="trailing" constant="20" symbolic="YES" id="uzR-Ys-SBx"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="DMt-0X-EVj"/>
+                        <viewLayoutGuide key="layoutMargins" id="Xam-6m-I7e"/>
                     </view>
                 </viewController>
                 <customObject id="qHk-4g-vVb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
