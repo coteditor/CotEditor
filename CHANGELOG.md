@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.0.8 (471)
+4.1.0 (unreleased)
 --------------------------
 
 ### Improvements
@@ -11,6 +11,10 @@ Change Log
 - Update the AppleScript guide in the help.
 - Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
 
+
+
+4.0.8 (471)
+--------------------------
 
 ### Fixes
 
