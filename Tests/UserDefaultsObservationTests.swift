@@ -37,6 +37,7 @@ final class UserDefaultsObservationTests: XCTestCase {
     
     
     private static let key = DefaultKey<Bool>("TestKey")
+    private static let initialEmssionkey = DefaultKey<Bool>("InitialEmissionKey")
     private static let optionalKey = DefaultKey<String?>("OptionalTestKey")
     private static let rawRepresentableKey = RawRepresentableDefaultKey<Clarus>("RawRepresentableTestKey")
     
@@ -46,6 +47,7 @@ final class UserDefaultsObservationTests: XCTestCase {
         super.tearDown()
         
         UserDefaults.standard.restore(key: Self.key)
+        UserDefaults.standard.restore(key: Self.initialEmssionkey)
         UserDefaults.standard.restore(key: Self.optionalKey)
         UserDefaults.standard.restore(key: Self.rawRepresentableKey)
     }
@@ -78,16 +80,16 @@ final class UserDefaultsObservationTests: XCTestCase {
         
         let expectation = self.expectation(description: "UserDefaults observation")
         
-        UserDefaults.standard[Self.key] = false
+        UserDefaults.standard[Self.initialEmssionkey] = false
         
-        let observer = UserDefaults.standard.publisher(for: Self.key, initial: true)
+        let observer = UserDefaults.standard.publisher(for: Self.initialEmssionkey, initial: true)
             .sink { (value) in
                 XCTAssertFalse(value)
                 expectation.fulfill()
             }
         
         observer.cancel()
-        UserDefaults.standard[Self.key] = true
+        UserDefaults.standard[Self.initialEmssionkey] = true
         
         self.wait(for: [expectation], timeout: .zero)
     }
