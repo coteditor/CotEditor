@@ -17,6 +17,7 @@ Change Log
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
 - Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
+- [non-AppStore ver.] Update Sparkle to 2.0.0-beta.3.
 
 
 
