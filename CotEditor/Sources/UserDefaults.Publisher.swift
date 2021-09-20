@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ extension UserDefaults {
     
     
     
-    struct Publisher<Value>: Combine.Publisher {
+    struct Publisher<Value: Equatable>: Combine.Publisher {
         
         typealias Output = Value
         typealias Failure = Never
@@ -76,7 +76,7 @@ extension UserDefaults {
 
 private extension UserDefaults.Publisher {
     
-    final class Subscription<Value, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
+    final class Subscription<Value: Equatable, S: Subscriber>: NSObject, Combine.Subscription where S.Input == Value {
         
         // MARK: Private Properties
         
@@ -84,6 +84,7 @@ private extension UserDefaults.Publisher {
         private var userDefaults: UserDefaults?
         private let key: DefaultKey<Value>
         private var demand: Subscribers.Demand = .none
+        private var lastValue: Value?
         
         
         
@@ -131,6 +132,7 @@ private extension UserDefaults.Publisher {
         override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
             
             guard
+                let change = change,
                 keyPath == self.key.rawValue,
                 object as? NSObject == self.userDefaults
                 else { return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }
@@ -142,11 +144,14 @@ private extension UserDefaults.Publisher {
             
             let newValue: Value
             do {
-                newValue = try self.key.newValue(from: change?[.newKey])
+                newValue = try self.key.newValue(from: change[.newKey])
             } catch {
                 return assertionFailure("UserDefaults.Publisher.Subscription could not obtain value for '.\(self.key)' key as \(Value.self).")
             }
             
+            guard newValue != self.lastValue else { return }  // workaround for the issue that KVO can be invoked multiple times with UserDefaults
+            
+            self.lastValue = newValue
             self.demand -= 1
             self.demand += subscriber.receive(newValue)
         }
