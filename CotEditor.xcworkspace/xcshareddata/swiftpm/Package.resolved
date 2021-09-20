@@ -5,9 +5,9 @@
         "package": "Sparkle",
         "repositoryURL": "https://github.com/sparkle-project/Sparkle",
         "state": {
-          "branch": "2.x",
+          "branch": null,
           "revision": "ed9fa9bfed015d5e3446a966c13bcda3d4537e08",
-          "version": null
+          "version": "2.0.0-beta.3"
         }
       },
       {
