@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import UniformTypeIdentifiers
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
@@ -493,17 +494,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
         // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
-        savePanel.allowedFileTypes = nil  // nil allows setting any extension
+        savePanel.allowsOtherFileTypes = true
+        savePanel.allowedContentTypes = []  // empty array allows setting any extension
         if
             let fileType = self.fileType,
-            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation)
+            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation),
+            let utType = UTType(filenameExtension: pathExtension)
         {
-            // set once allowedFileTypes, so that initial filename selection excludes the file extension
-            savePanel.allowedFileTypes = [pathExtension]
+            // set once allowedContentTypes, so that initial filename selection excludes the file extension
+            savePanel.allowedContentTypes = [utType]
             
             // disable it immediately in the next runloop to allow setting other extensions
             DispatchQueue.main.async {
-                savePanel.allowedFileTypes = nil
+                savePanel.allowedContentTypes = []
             }
         }
         
