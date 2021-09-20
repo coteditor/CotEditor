@@ -25,6 +25,7 @@
 //
 
 import Cocoa
+import UniformTypeIdentifiers
 
 protocol AdditionalDocumentPreparing: NSDocument {
     
@@ -142,7 +143,8 @@ final class DocumentController: NSDocumentController {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         do {
-            try self.checkOpeningSafetyOfDocument(at: url, typeName: typeName)
+            let type = UTType(typeName)!  // TODO: avoid force unwrap
+            try self.checkOpeningSafetyOfDocument(at: url, type: type)
             
         } catch {
             // ask user for opening file
@@ -291,22 +293,17 @@ final class DocumentController: NSDocumentController {
     ///
     /// - Parameters:
     ///   - url: The location of the new document object.
-    ///   - typeName: The type of the document.
+    ///   - type: The type of the document.
     /// - Throws: `DocumentReadError`
-    private func checkOpeningSafetyOfDocument(at url: URL, typeName: String) throws {
+    private func checkOpeningSafetyOfDocument(at url: URL, type: UTType) throws {
         
         // check if the file is possible binary
-        let cfTypeName = typeName as CFString
-        let binaryTypes = [kUTTypeImage,
-                           kUTTypeAudiovisualContent,
-                           kUTTypeGNUZipArchive,
-                           kUTTypeZipArchive,
-                           kUTTypeBzip2Archive]
-        if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }),
-            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics),  // SVG is plain-text (except SVGZ)
-            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
+        let binaryTypes: [UTType] = [.image, .audiovisualContent, .gzip, .zip, .bz2]
+        if binaryTypes.contains(where: type.conforms(to:)),
+           !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
+           url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
         {
-            throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)
+            throw DocumentReadError(kind: .binaryFile(type: type), url: url)
         }
         
         // check if the file is enorm large
@@ -328,7 +325,7 @@ final class DocumentController: NSDocumentController {
 private struct DocumentReadError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
-        case binaryFile(type: String)
+        case binaryFile(type: UTType)
         case tooLarge(size: Int)
     }
     
@@ -356,7 +353,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .binaryFile(let type):
-                let localizedTypeName = (UTTypeCopyDescription(type as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
+                let localizedTypeName = type.localizedDescription ?? "unknown file type"
                 return String(format: "The file appears to be %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
             
             case .tooLarge:
