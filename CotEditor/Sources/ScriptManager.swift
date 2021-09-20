@@ -142,27 +142,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Dispatch an Apple Event that notifies the given document was opened.
     ///
-    /// - Parameter document: The document that was opened.
-    func dispatchEvent(documentOpened document: Document) {
+    /// - Parameters:
+    ///   - eventType: The event trigger to perform script.
+    ///   - document: The target document.
+    func dispatch(event eventType: ScriptingEventType, document: Document) {
         
-        let eventType = ScriptingEventType.documentOpened
-        
-        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
-        
-        let event = self.createEvent(by: document, eventID: eventType.eventID)
-        
-        self.dispatch(event, handlers: scripts)
-    }
-    
-    
-    /// Dispatch an Apple Event that notifies the given document was opened.
-    ///
-    /// - Parameter document: The document that was opened.
-    func dispatchEvent(documentSaved document: Document) {
-        
-        let eventType = ScriptingEventType.documentSaved
-        
-        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
+        guard
+            let scripts = self.scriptHandlersTable[eventType],
+            !scripts.isEmpty
+        else { return }
         
         let event = self.createEvent(by: document, eventID: eventType.eventID)
         
