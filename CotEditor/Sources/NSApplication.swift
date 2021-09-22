@@ -34,7 +34,6 @@ extension NSApplication {
         let command = String(format: "sleep 2; open \"%@\"", escapedPath)
         
         Process.launchedProcess(launchPath: "/bin/sh", arguments: ["-c", command])
-        self.terminate(nil)
     }
     
 }

@@ -201,6 +201,16 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    override func closeAllDocuments(withDelegate delegate: Any?, didCloseAllSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        
+        let context = DelegateContext(delegate: delegate,
+                                      selector: didCloseAllSelector,
+                                      contextInfo: contextInfo)
+        
+        super.closeAllDocuments(withDelegate: self, didCloseAllSelector: #selector(documentController(_:didCloseAll:contextInfo:)), contextInfo: bridgeWrapped(context))
+    }
+    
+    
     /// return availability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
@@ -255,6 +265,14 @@ final class DocumentController: NSDocumentController {
     
     
     // MARK: Private Methods
+    
+    private struct DelegateContext {
+        
+        var delegate: Any?
+        var selector: Selector?
+        var contextInfo: UnsafeMutableRawPointer?
+    }
+    
     
     /// transient document to be replaced or nil
     private var transientDocumentToReplace: Document? {
@@ -314,6 +332,30 @@ final class DocumentController: NSDocumentController {
         {
             throw DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
         }
+    }
+    
+    
+    /// callback from document after calling `closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo)`.
+    @objc private func documentController(_ documentController: NSDocumentController, didCloseAll: Bool, contextInfo: UnsafeMutableRawPointer) {
+        
+        // cancel relaunching
+        if !didCloseAll {
+            (NSApp.delegate as? AppDelegate)?.needsRelaunch = false
+        }
+        
+        // manually invoke the original delegate method
+        guard
+            let context: DelegateContext = bridgeUnwrapped(contextInfo),
+            let delegate = context.delegate as? NSObject,
+            let selector = context.selector,
+            let objcClass = objc_getClass(delegate.className) as? AnyClass,
+            let method = class_getMethodImplementation(objcClass, selector)
+        else { return assertionFailure() }
+        
+        typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
+        let function = unsafeBitCast(method, to: Signature.self)
+        
+        function(delegate, selector, self, didCloseAll, context.contextInfo)
     }
     
 }

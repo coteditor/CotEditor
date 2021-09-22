@@ -126,7 +126,8 @@ final class GeneralPaneController: NSViewController {
             
             switch returnCode {
                 case .alertFirstButtonReturn:  // = Restart Now
-                    NSApp.relaunch()
+                    (NSApp.delegate as? AppDelegate)?.needsRelaunch = true
+                    NSApp.terminate(self)
                 case .alertSecondButtonReturn:  // = Later
                     break  // do nothing
                 case .alertThirdButtonReturn:  // = Cancel

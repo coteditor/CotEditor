@@ -56,6 +56,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    // MARK: Public Properties
+    
+    var needsRelaunch = false
+    
+    
     // MARK: Private Properties
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
@@ -179,6 +184,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        NSApp.reply(toApplicationShouldTerminate: true)
+        return .terminateLater
+    }
+    
     /// store last version before termination
     func applicationWillTerminate(_ notification: Notification) {
         
@@ -195,6 +205,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }()
         if isLatest {
             UserDefaults.standard[.lastVersion] = thisVersion
+        }
+        
+        if self.needsRelaunch {
+            NSApp.relaunch()
         }
     }
     
