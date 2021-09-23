@@ -203,9 +203,7 @@ final class DocumentController: NSDocumentController {
     
     override func closeAllDocuments(withDelegate delegate: Any?, didCloseAllSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        let context = DelegateContext(delegate: delegate,
-                                      selector: didCloseAllSelector,
-                                      contextInfo: contextInfo)
+        let context = DelegateContext(delegate: delegate, selector: didCloseAllSelector, contextInfo: contextInfo)
         
         super.closeAllDocuments(withDelegate: self, didCloseAllSelector: #selector(documentController(_:didCloseAll:contextInfo:)), contextInfo: bridgeWrapped(context))
     }
