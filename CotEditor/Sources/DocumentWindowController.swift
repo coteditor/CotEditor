@@ -347,14 +347,14 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let smallerItem = NSToolbarItem()
                 smallerItem.label = "Smaller".localized
                 smallerItem.toolTip = "Smaller".localized
-                smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
+                smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: smallerItem.label)!
                     .withSymbolConfiguration(.init(scale: .small))
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem()
                 biggerItem.label = "Bigger".localized
                 biggerItem.toolTip = "Bigger".localized
-                biggerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: "Bigger".localized)!
+                biggerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: biggerItem.label)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
