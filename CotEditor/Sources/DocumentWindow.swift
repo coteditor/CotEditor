@@ -117,7 +117,7 @@ final class DocumentWindow: NSWindow {
         
         super.encodeRestorableState(with: coder)
         
-        coder.encode(self.backgroundAlpha, forKey: #keyPath(backgroundAlpha))
+        coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
     }
     
     
