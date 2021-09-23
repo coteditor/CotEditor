@@ -82,7 +82,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 let item = NSSliderTouchBarItem(identifier: identifier)
                 item.target = self
                 item.action = #selector(textSizeSliderChanged)
-                item.doubleValue = Double(textView.scale)
+                item.doubleValue = textView.scale
                 item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
                 let minimumValueImage = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
@@ -128,7 +128,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     /// text size slider was moved
     @IBAction func textSizeSliderChanged(_ sliderItem: NSSliderTouchBarItem) {
         
-        let scale = CGFloat(sliderItem.doubleValue)
+        let scale = sliderItem.doubleValue
         
         self.textView?.setScaleKeepingVisibleArea(scale)
     }

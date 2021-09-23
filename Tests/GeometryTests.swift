@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,8 +61,8 @@ final class GeometryTests: XCTestCase {
     
     func testRound() {
         
-        XCTAssertEqual(CGFloat(2.555).rounded(to: 1), 2.6)
-        XCTAssertEqual(CGFloat(2.444).rounded(to: 2), 2.44)
+        XCTAssertEqual((2.555).rounded(to: 1), 2.6)
+        XCTAssertEqual((2.444).rounded(to: 2), 2.44)
     }
     
 }

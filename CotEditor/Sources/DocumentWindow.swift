@@ -107,7 +107,7 @@ final class DocumentWindow: NSWindow {
         super.restoreState(with: coder)
         
         if coder.containsValue(forKey: #keyPath(backgroundAlpha)) {
-            self.backgroundAlpha = CGFloat(coder.decodeDouble(forKey: #keyPath(backgroundAlpha)))
+            self.backgroundAlpha = coder.decodeDouble(forKey: #keyPath(backgroundAlpha))
         }
     }
     
@@ -117,7 +117,7 @@ final class DocumentWindow: NSWindow {
         
         super.encodeRestorableState(with: coder)
         
-        coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
+        coder.encode(self.backgroundAlpha, forKey: #keyPath(backgroundAlpha))
     }
     
     

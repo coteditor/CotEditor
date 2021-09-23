@@ -225,7 +225,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             if isVerticalText {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
-                NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
+                NSGraphicsContext.current?.cgContext.rotate(by: -.pi / 2)
             }
             
             let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []

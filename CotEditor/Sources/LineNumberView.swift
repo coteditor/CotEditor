@@ -77,8 +77,8 @@ final class LineNumberView: NSView {
     // MARK: Constants
     
     private let minNumberOfDigits = 3
-    private let minVerticalThickness: CGFloat = 32
-    private let minHorizontalThickness: CGFloat = 20
+    private let minVerticalThickness = 32.0
+    private let minHorizontalThickness = 20.0
     
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
@@ -90,14 +90,14 @@ final class LineNumberView: NSView {
         case bold = 1.0
         case stroke = 0.4
         
-        static let highContrastCoefficient: CGFloat = 0.4
+        static let highContrastCoefficient = 0.4
     }
     
     
     // MARK: Private Properties
     
     private var drawingInfo: DrawingInfo?
-    private var thickness: CGFloat = 32
+    private var thickness = 32.0
     
     private var textColor: NSColor = .textColor  { didSet { self.needsDisplay = true } }
     private var backgroundColor: NSColor = .textBackgroundColor  { didSet { self.needsDisplay = true } }
@@ -396,38 +396,6 @@ final class LineNumberView: NSView {
             .store(in: &self.textViewSubscriptions)
     }
     
-}
-
-
-
-// MARK: Private Helper Extensions
-
-private extension Int {
-    
-    /// number of digits
-    var numberOfDigits: Int {
-        
-        guard self > 0 else { return 1 }
-        
-        return Int(log10(Double(self))) + 1
-    }
-    
-    
-    /// number at the desired place
-    func number(at place: Int) -> Int {
-        
-        return (self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place)))
-    }
-    
-}
-
-
-private extension FloatingPoint {
-    
-    func rounded(interval: Self) -> Self {
-        
-        return (self / interval).rounded() * interval
-    }
 }
 
 
