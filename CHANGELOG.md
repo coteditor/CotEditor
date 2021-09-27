@@ -20,6 +20,7 @@ Change Log
 - Improve the animation by drag & drop in tables.
 - Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
 - Make sure the application relaunchs even other tasks interrupt before termination.
+- [trivial] Hide the file extension of setting files by export by default.
 - [dev] Update the build environment to Xcode 13 (Swift 5.5).
 - [non-AppStore ver.] Update Sparkle to 2.0.0-beta.3.
 

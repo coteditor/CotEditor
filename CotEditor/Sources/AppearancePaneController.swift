@@ -482,6 +482,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
+        savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
