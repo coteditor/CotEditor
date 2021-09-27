@@ -51,9 +51,9 @@ final class PreferencesTabViewController: NSTabViewController {
         // select last used pane
         if
             let identifier = UserDefaults.standard[.lastPreferencesPaneIdentifier],
-            let item = self.tabViewItems.enumerated().first(where: { ($0.element.identifier as? String) == identifier })
+            let index = self.tabViewItems.firstIndex(where: { $0.identifier as? String == identifier })
         {
-            self.selectedTabViewItemIndex = item.offset
+            self.selectedTabViewItemIndex = index
         }
     }
     
