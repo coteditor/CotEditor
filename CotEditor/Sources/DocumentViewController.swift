@@ -170,7 +170,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     
     /// store UI state
-    override func encodeRestorableState(with coder: NSCoder) {
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         if let themeName = self.theme?.name {
             coder.encode(themeName, forKey: "theme")
@@ -181,7 +181,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
         }
         
-        super.encodeRestorableState(with: coder)
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
     }
     
     

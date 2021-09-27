@@ -113,9 +113,9 @@ final class DocumentWindow: NSWindow {
     
     
     /// store UI state
-    override func encodeRestorableState(with coder: NSCoder) {
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        super.encodeRestorableState(with: coder)
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
     }
