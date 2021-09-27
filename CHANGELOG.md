@@ -17,6 +17,7 @@ Change Log
 - Update Swift syntax style to add keywords added in Swift 5.5.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
+- Improve the animation by drag & drop in tables.
 - Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
 - Make sure the application relaunchs even other tasks interrupt before termination.
 - [dev] Update the build environment to Xcode 13 (Swift 5.5).
