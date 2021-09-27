@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JDa-L5-c8m">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JDa-L5-c8m">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -74,7 +74,7 @@ DQ
                                                     <rect key="frame" x="1" y="1" width="344" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="L5C-W2-xOU" viewBased="YES" id="lbV-tL-3Mz">
+                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="L5C-W2-xOU" viewBased="YES" id="lbV-tL-3Mz">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="5" height="2"/>
@@ -242,7 +242,7 @@ DQ
                                                     <rect key="frame" x="1" y="1" width="344" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="D8z-xI-Vwg" viewBased="YES" id="U61-Pd-dD5">
+                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="D8z-xI-Vwg" viewBased="YES" id="U61-Pd-dD5">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="59"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="5" height="2"/>
@@ -410,7 +410,7 @@ DQ
                                                     <rect key="frame" x="1" y="1" width="344" height="82"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="6lG-BR-JvW" viewBased="YES" id="GkS-mi-CPd">
+                                                        <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="6lG-BR-JvW" viewBased="YES" id="GkS-mi-CPd">
                                                             <rect key="frame" x="0.0" y="0.0" width="344" height="57"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <size key="intercellSpacing" width="5" height="2"/>
@@ -605,6 +605,7 @@ DQ
                         <string>primaryStyle</string>
                         <string>doubledStyles</string>
                     </declaredKeys>
+                    <classReference key="objectClass" className="MappingConflict"/>
                     <connections>
                         <binding destination="JDa-L5-c8m" name="contentArray" keyPath="extensionConflicts" id="C7y-Fk-FOc"/>
                     </connections>
@@ -615,6 +616,7 @@ DQ
                         <string>primaryStyle</string>
                         <string>doubledStyles</string>
                     </declaredKeys>
+                    <classReference key="objectClass" className="MappingConflict"/>
                     <connections>
                         <binding destination="JDa-L5-c8m" name="contentArray" keyPath="filenameConflicts" id="8AJ-gA-tbi"/>
                     </connections>
@@ -625,6 +627,7 @@ DQ
                         <string>primaryStyle</string>
                         <string>doubledStyles</string>
                     </declaredKeys>
+                    <classReference key="objectClass" className="MappingConflict"/>
                     <connections>
                         <binding destination="JDa-L5-c8m" name="contentArray" keyPath="interpreterConflicts" id="Zi4-AB-RsY"/>
                     </connections>

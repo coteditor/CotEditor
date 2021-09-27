@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nX3-cC-y6b">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nX3-cC-y6b">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                                     <rect key="frame" x="1" y="1" width="194" height="177"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" usesAutomaticRowHeights="YES" headerView="Wcl-4n-a3G" viewBased="YES" id="k0y-Cz-Raz">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" usesAutomaticRowHeights="YES" headerView="Wcl-4n-a3G" viewBased="YES" id="k0y-Cz-Raz">
                                             <rect key="frame" x="0.0" y="0.0" width="194" height="154"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -218,6 +218,7 @@
                         <string>character</string>
                         <string>convertedCharacter</string>
                     </declaredKeys>
+                    <classReference key="objectClass" className="IncompatibleCharacter"/>
                     <connections>
                         <binding destination="nX3-cC-y6b" name="contentArray" keyPath="incompatibleCharacters" id="ddc-01-Rxt"/>
                     </connections>
