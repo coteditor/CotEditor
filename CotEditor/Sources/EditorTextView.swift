@@ -379,7 +379,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
         // -> This workaround must be applicable to EditorTextView because this method
-        //    seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
+        //    seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14, FB7399413)
 //        super.updateTextTouchBarItems()
     }
     
@@ -1045,7 +1045,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // reset text wrapping width
         if self.wrapsLines {
-            // -> Use scrollView's visibleRect to workaround bug in NSScrollView with the vertical layout (2020-04 macOS 10.14-).
+            // -> Use scrollView's visibleRect to workaround bug in NSScrollView with the vertical layout (2020-04 macOS 10.14-, FB5703371).
             let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
             self.frame.size[keyPath: keyPath] = visibleRect.width * self.scale

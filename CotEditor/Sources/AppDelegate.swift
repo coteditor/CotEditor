@@ -314,7 +314,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         #endif
         
-        // workaround for the issue on macOS 12 that external CSS file is not applied to the about HTML (FB9660152)
+        // workaround for the issue on macOS 12 that external CSS file is not applied to the about HTML (macOS 12, FB9660152)
         if ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 12 {
             let cssURL = Bundle.main.url(forResource: "Credits", withExtension: "css")!
             let css = try! String(contentsOf: cssURL)
