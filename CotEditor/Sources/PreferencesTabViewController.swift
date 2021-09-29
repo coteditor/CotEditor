@@ -27,11 +27,6 @@ import Cocoa
 
 final class PreferencesTabViewController: NSTabViewController {
     
-    private var lastFrameSize: NSSize?
-    
-    
-    
-    // MARK: -
     // MARK: Tab View Controller Methods
     
     override var selectedTabViewItemIndex: Int {
@@ -70,14 +65,6 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.tabView(tabView, willSelect: tabViewItem)
         
-        self.lastFrameSize = tabViewItem?.view?.frame.size
-    }
-    
-    
-    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-        
-        super.tabView(tabView, didSelect: tabViewItem)
-        
         guard let tabViewItem = tabViewItem else { return assertionFailure() }
         
         self.switchPane(to: tabViewItem)
@@ -90,7 +77,7 @@ final class PreferencesTabViewController: NSTabViewController {
     /// resize window to fit to new view
     private func switchPane(to tabViewItem: NSTabViewItem) {
         
-        guard let contentSize = self.lastFrameSize ?? tabViewItem.view?.frame.size else { return assertionFailure() }
+        guard let contentSize = tabViewItem.view?.frame.size else { return assertionFailure() }
         
         // initialize tabView's frame size
         guard let window = self.view.window else {
