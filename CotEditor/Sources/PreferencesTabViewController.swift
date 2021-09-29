@@ -115,7 +115,7 @@ final class PreferencesTabViewController: NSTabViewController {
 private extension NSWindow {
     
     /// calculate window frame for the given contentSize
-    func setFrame(for contentSize: NSSize, flag: Bool = false) {
+    func setFrame(for contentSize: NSSize, display flag: Bool = false) {
         
         let frameSize = self.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size
         let frame = NSRect(origin: self.frame.origin, size: frameSize)
