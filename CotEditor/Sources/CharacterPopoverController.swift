@@ -45,8 +45,9 @@ final class CharacterPopoverController: NSViewController {
     /// Instantinate proper view controller for the given character info.
     ///
     /// - Parameter info: The CharacterInfo instance to display.
-    static func instantiate(for info: CharacterInfo) -> Self {
+    static func instantiate(for character: Character) -> Self {
         
+        let info = CharacterInfo(character)
         let storyboard = NSStoryboard(name: "CharacterPopover", bundle: nil)
         let creator: ((NSCoder) -> Self?) = { (coder) in Self(coder: coder, characterInfo: info) }
         
@@ -58,9 +59,9 @@ final class CharacterPopoverController: NSViewController {
     
     private init?(coder: NSCoder, characterInfo info: CharacterInfo) {
         
-        let unicodes = info.string.unicodeScalars
+        let unicodes = info.character.unicodeScalars
         
-        self.glyph = info.pictureString ?? info.string
+        self.glyph = info.pictureString ?? String(info.character)
         self.unicodeName = info.localizedDescription
         self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
         self.unicodeCategoryName = {

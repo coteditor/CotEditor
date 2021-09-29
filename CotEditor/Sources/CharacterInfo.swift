@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-extension Unicode.Scalar {
+private extension Unicode.Scalar {
     
     enum EmojiVariationSelector {
         
@@ -40,6 +40,31 @@ extension Unicode.Scalar {
         static let type6 = Unicode.Scalar(0x1F3FF)!  // 🏿 Dark
     }
     
+    
+    var variantDescription: String? {
+        
+        guard self.properties.isVariationSelector else { return nil }
+        
+        switch self {
+            case EmojiVariationSelector.emoji:
+                return "Emoji Style"
+            case EmojiVariationSelector.text:
+                return "Text Style"
+            case SkinToneModifier.type12:
+                return "Skin Tone I-II"
+            case SkinToneModifier.type3:
+                return "Skin Tone III"
+            case SkinToneModifier.type4:
+                return "Skin Tone IV"
+            case SkinToneModifier.type5:
+                return "Skin Tone V"
+            case SkinToneModifier.type6:
+                return "Skin Tone VI"
+            default:
+                return "Variant"
+        }
+    }
+    
 }
 
 
@@ -48,17 +73,11 @@ extension Unicode.Scalar {
 
 struct CharacterInfo {
     
-    enum `Error`: Swift.Error {
-        
-        case notSingleCharacter
-    }
-    
-    
     // MARK: Public Properties
     
-    let string: String
-    let pictureString: String?
+    let character: Character
     let isComplex: Bool
+    let pictureString: String?
     let localizedDescription: String
     
     
@@ -66,43 +85,13 @@ struct CharacterInfo {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String) throws {
+    init(_ character: Character) {
         
-        guard string.compareCount(with: 1) == .equal else {
-            throw Error.notSingleCharacter
-        }
+        let unicodes = character.unicodeScalars
+        let isVariant = (unicodes.count == 2 && unicodes.last!.properties.isVariationSelector)
+        let isComplex = (unicodes.count > 1 && !isVariant)
         
-        let unicodes = string.unicodeScalars
-        
-        self.string = string
-        
-        // check variation selector
-        let additional: String? = {
-            guard unicodes.count == 2, let lastUnicode = unicodes.last else { return nil }
-            
-            switch lastUnicode {
-                case Unicode.Scalar.EmojiVariationSelector.emoji:
-                    return "Emoji Style"
-                case Unicode.Scalar.EmojiVariationSelector.text:
-                    return "Text Style"
-                case Unicode.Scalar.SkinToneModifier.type12:
-                    return "Skin Tone I-II"
-                case Unicode.Scalar.SkinToneModifier.type3:
-                    return "Skin Tone III"
-                case Unicode.Scalar.SkinToneModifier.type4:
-                    return "Skin Tone IV"
-                case Unicode.Scalar.SkinToneModifier.type5:
-                    return "Skin Tone V"
-                case Unicode.Scalar.SkinToneModifier.type6:
-                    return "Skin Tone VI"
-                case let unicode where unicode.properties.isVariationSelector:
-                    return "Variant"
-                default:
-                    return nil
-            }
-        }()
-        let isComplex = (unicodes.count > 1 && additional == nil)
-        
+        self.character = character
         self.isComplex = isComplex
         
         self.pictureString = unicodes.count == 1  // ignore CRLF
@@ -110,16 +99,14 @@ struct CharacterInfo {
             : nil
         
         self.localizedDescription = {
-            // number of characters message
             if isComplex {
                 return String(format: "<a letter consisting of %d characters>".localized(tableName: "Unicode"), unicodes.count)
             }
             
-            // unicode character name
-            guard var unicodeName = unicodes.first?.name else { return string }
+            guard var unicodeName = unicodes.first?.name else { return String(character) }
             
-            if let additional = additional {
-                unicodeName += " (" + additional.localized(tableName: "Unicode") + ")"
+            if isVariant, let variantDescription = unicodes.last?.variantDescription {
+                unicodeName += " (" + variantDescription.localized(tableName: "Unicode") + ")"
             }
             
             return unicodeName
@@ -134,7 +121,7 @@ extension CharacterInfo: CustomStringConvertible {
     
     var description: String {
         
-        return self.string
+        String(self.character)
     }
     
 }

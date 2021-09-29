@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ import Cocoa
 
 final class CharacterField: NSTextField {
     
+    fileprivate private(set) var drawsGuide = false
+    
+    
     // MARK: Text Field Methods
     
     override var intrinsicContentSize: NSSize {
@@ -44,7 +47,7 @@ final class CharacterField: NSTextField {
         
         super.mouseDown(with: event)
         
-        (self.cell as! CharacterFieldCell).drawsGuide.toggle()
+        self.drawsGuide.toggle()
         self.needsDisplay = true
     }
     #endif
@@ -54,9 +57,6 @@ final class CharacterField: NSTextField {
 
 
 final class CharacterFieldCell: NSTextFieldCell {
-    
-    fileprivate var drawsGuide = false
-    
     
     // MARK: Text Field Cell Methods
     
@@ -69,7 +69,7 @@ final class CharacterFieldCell: NSTextFieldCell {
         
         self.attributedStringValue.draw(at: drawingPoint)
         
-        if self.drawsGuide {
+        if (self.controlView as? CharacterField)?.drawsGuide == true {
             cellFrame.frame(withWidth: 0.2)
             centeringRect.frame(withWidth: 0.2)
         }

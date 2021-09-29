@@ -105,9 +105,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if let textView = self.textView,
-           (textView.string as NSString).substring(with: textView.selectedRange).compareCount(with: 1) == .equal
-        {
+        if self.textView?.selectsSingleCharacter == true {
             menu.insertItem(withTitle: "Inspect Character".localized,
                             action: #selector(showSelectionInfo),
                             keyEquivalent: "",
@@ -166,7 +164,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
+        guard let textView = self.textView, textView.selectsSingleCharacter else { return assertionFailure() }
         
         var selectedString = (textView.string as NSString).substring(with: textView.selectedRange)
         
@@ -176,9 +174,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
-        guard let characterInfo = try? CharacterInfo(string: selectedString) else { return }
+        guard let character = selectedString.first else { return }
         
-        let popoverController = CharacterPopoverController.instantiate(for: characterInfo)
+        let popoverController = CharacterPopoverController.instantiate(for: character)
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         
         textView.scrollRangeToVisible(textView.selectedRange)
@@ -206,9 +204,7 @@ extension EditorTextViewController: NSUserInterfaceValidations {
         
         switch item.action {
             case #selector(showSelectionInfo):
-                guard let textView = self.textView else { return false }
-                return !textView.hasMultipleInsertions &&
-                    (textView.string as NSString).substring(with: textView.selectedRange).compareCount(with: 1) == .equal
+                return self.textView?.selectsSingleCharacter == true
                 
             case nil:
                 return false
@@ -230,6 +226,19 @@ extension EditorTextViewController: NSFontChanging {
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         return [.collection, .face, .size]
+    }
+    
+}
+
+
+
+// MARK: -
+
+private extension MultiCursorEditing {
+    
+    var selectsSingleCharacter: Bool {
+        
+        return !self.hasMultipleInsertions && (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
     }
     
 }
