@@ -143,7 +143,7 @@ final class DocumentController: NSDocumentController {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
         do {
-            let type = UTType(typeName)!  // TODO: avoid force unwrap
+            let type = UTType(typeName)
             try self.checkOpeningSafetyOfDocument(at: url, type: type)
             
         } catch {
@@ -311,11 +311,14 @@ final class DocumentController: NSDocumentController {
     ///   - url: The location of the new document object.
     ///   - type: The type of the document.
     /// - Throws: `DocumentReadError`
-    private func checkOpeningSafetyOfDocument(at url: URL, type: UTType) throws {
+    private func checkOpeningSafetyOfDocument(at url: URL, type: UTType?) throws {
+        
+        assert(type != nil)
         
         // check if the file is possible binary
         let binaryTypes: [UTType] = [.image, .audiovisualContent, .gzip, .zip, .bz2]
-        if binaryTypes.contains(where: type.conforms(to:)),
+        if let type = type,
+           binaryTypes.contains(where: type.conforms(to:)),
            !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
         {
