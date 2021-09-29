@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///
-    /// Based on Unicode 13.0.0 (2019-07-10)
+    /// Based on Unicode 14.0.0 (2021-01-22)
     /// cf. <http://www.unicode.org/Public/UNIDATA/Blocks.txt>
     var blockName: String? {
         
@@ -52,6 +52,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x0800...0x083F: return "Samaritan"
             case 0x0840...0x085F: return "Mandaic"
             case 0x0860...0x086F: return "Syriac Supplement"
+            case 0x0870...0x089F: return "Arabic Extended-B"
             case 0x08A0...0x08FF: return "Arabic Extended-A"
             case 0x0900...0x097F: return "Devanagari"
             case 0x0980...0x09FF: return "Bengali"
@@ -215,7 +216,9 @@ extension Unicode.UTF32.CodeUnit {
             case 0x104B0...0x104FF: return "Osage"
             case 0x10500...0x1052F: return "Elbasan"
             case 0x10530...0x1056F: return "Caucasian Albanian"
+            case 0x10570...0x105BF: return "Vithkuqi"
             case 0x10600...0x1077F: return "Linear A"
+            case 0x10780...0x107BF: return "Latin Extended-F"
             case 0x10800...0x1083F: return "Cypriot Syllabary"
             case 0x10840...0x1085F: return "Imperial Aramaic"
             case 0x10860...0x1087F: return "Palmyrene"
@@ -240,6 +243,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x10E80...0x10EBF: return "Yezidi"
             case 0x10F00...0x10F2F: return "Old Sogdian"
             case 0x10F30...0x10F6F: return "Sogdian"
+            case 0x10F70...0x10FAF: return "Old Uyghur"
             case 0x10FB0...0x10FDF: return "Chorasmian"
             case 0x10FE0...0x10FFF: return "Elymaic"
             case 0x11000...0x1107F: return "Brahmi"
@@ -259,13 +263,14 @@ extension Unicode.UTF32.CodeUnit {
             case 0x11600...0x1165F: return "Modi"
             case 0x11660...0x1167F: return "Mongolian Supplement"
             case 0x11680...0x116CF: return "Takri"
-            case 0x11700...0x1173F: return "Ahom"
+            case 0x11700...0x1174F: return "Ahom"
             case 0x11800...0x1184F: return "Dogra"
             case 0x118A0...0x118FF: return "Warang Citi"
             case 0x11900...0x1195F: return "Dives Akuru"
             case 0x119A0...0x119FF: return "Nandinagari"
             case 0x11A00...0x11A4F: return "Zanabazar Square"
             case 0x11A50...0x11AAF: return "Soyombo"
+            case 0x11AB0...0x11ABF: return "Unified Canadian Aboriginal Syllabics Extended-A"
             case 0x11AC0...0x11AFF: return "Pau Cin Hau"
             case 0x11C00...0x11C6F: return "Bhaiksuki"
             case 0x11C70...0x11CBF: return "Marchen"
@@ -277,11 +282,13 @@ extension Unicode.UTF32.CodeUnit {
             case 0x12000...0x123FF: return "Cuneiform"
             case 0x12400...0x1247F: return "Cuneiform Numbers and Punctuation"
             case 0x12480...0x1254F: return "Early Dynastic Cuneiform"
+            case 0x12F90...0x12FFF: return "Cypro-Minoan"
             case 0x13000...0x1342F: return "Egyptian Hieroglyphs"
             case 0x13430...0x1343F: return "Egyptian Hieroglyph Format Controls"
             case 0x14400...0x1467F: return "Anatolian Hieroglyphs"
             case 0x16800...0x16A3F: return "Bamum Supplement"
             case 0x16A40...0x16A6F: return "Mro"
+            case 0x16A70...0x16ACF: return "Tangsa"
             case 0x16AD0...0x16AFF: return "Bassa Vah"
             case 0x16B00...0x16B8F: return "Pahawh Hmong"
             case 0x16E40...0x16E9F: return "Medefaidrin"
@@ -290,13 +297,15 @@ extension Unicode.UTF32.CodeUnit {
             case 0x17000...0x187FF: return "Tangut"
             case 0x18800...0x18AFF: return "Tangut Components"
             case 0x18B00...0x18CFF: return "Khitan Small Script"
-            case 0x18D00...0x18D8F: return "Tangut Supplement"
+            case 0x18D00...0x18D7F: return "Tangut Supplement"
+            case 0x1AFF0...0x1AFFF: return "Kana Extended-B"
             case 0x1B000...0x1B0FF: return "Kana Supplement"
             case 0x1B100...0x1B12F: return "Kana Extended-A"
             case 0x1B130...0x1B16F: return "Small Kana Extension"
             case 0x1B170...0x1B2FF: return "Nushu"
             case 0x1BC00...0x1BC9F: return "Duployan"
             case 0x1BCA0...0x1BCAF: return "Shorthand Format Controls"
+            case 0x1CF00...0x1CFCF: return "Znamenny Musical Notation"
             case 0x1D000...0x1D0FF: return "Byzantine Musical Symbols"
             case 0x1D100...0x1D1FF: return "Musical Symbols"
             case 0x1D200...0x1D24F: return "Ancient Greek Musical Notation"
@@ -305,9 +314,12 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1D360...0x1D37F: return "Counting Rod Numerals"
             case 0x1D400...0x1D7FF: return "Mathematical Alphanumeric Symbols"
             case 0x1D800...0x1DAAF: return "Sutton SignWriting"
+            case 0x1DF00...0x1DFFF: return "Latin Extended-G"
             case 0x1E000...0x1E02F: return "Glagolitic Supplement"
             case 0x1E100...0x1E14F: return "Nyiakeng Puachue Hmong"
+            case 0x1E290...0x1E2BF: return "Toto"
             case 0x1E2C0...0x1E2FF: return "Wancho"
+            case 0x1E7E0...0x1E7FF: return "Ethiopic Extended-B"
             case 0x1E800...0x1E8DF: return "Mende Kikakui"
             case 0x1E900...0x1E95F: return "Adlam"
             case 0x1EC70...0x1ECBF: return "Indic Siyaq Numbers"
@@ -341,7 +353,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0xF0000...0xFFFFF: return "Supplementary Private Use Area-A"
             case 0x100000...0x10FFFF: return "Supplementary Private Use Area-B"
             
-            default: return nil
+            default: return nil  // return nil instead of "No_Block"
         }
     }
     
