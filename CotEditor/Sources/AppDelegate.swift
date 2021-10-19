@@ -314,17 +314,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         #endif
         
-        // workaround for the issue on macOS 12 that external CSS file is not applied to the about HTML (macOS 12, FB9660152)
-        if ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 12 {
-            let cssURL = Bundle.main.url(forResource: "Credits", withExtension: "css")!
-            let css = try! String(contentsOf: cssURL)
-            if let range = html.range(of: "</head>") {
-                html.insert(contentsOf: "<style>\(css)</style>", at: range.lowerBound)
-            } else {
-                assertionFailure()
-            }
-        }
-        
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
         NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
