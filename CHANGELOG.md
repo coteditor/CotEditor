@@ -19,8 +19,8 @@ Change Log
 - Update the AppleScript guide in the help.
 - Improve the animation by drag & drop in tables.
 - Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
-- Make sure the application relaunchs even other tasks interrupt before termination.
-- Update the Unicode block name list for the charactor inspector from Unicode 13.0.0 to Unicode 4.0.0.
+- Make sure the application relaunches even other tasks interrupt before termination.
+- Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 4.0.0.
 - [trivial] Hide the file extension of setting files by export by default.
 - [dev] Update the build environment to Xcode 13.1 (Swift 5.5).
 - [non-AppStore ver.] Update Sparkle to 2.0.0-beta.3.
