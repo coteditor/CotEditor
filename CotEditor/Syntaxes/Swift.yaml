@@ -7,7 +7,7 @@ metadata:
   version: "4.5.0"
   description: "Based on Swift 5.5"
   license: "Same as CotEditor"
-  lastModified: "2021-09-23"
+  lastModified: "2021-10-23"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
@@ -403,6 +403,7 @@ keywords:
 - beginString: "lowerThan­"
 - beginString: "mutating"
 - beginString: "none"
+- beginString: "nonisolated"
 - beginString: "nonmutating"
 - beginString: "open"
 - beginString: "operator"
