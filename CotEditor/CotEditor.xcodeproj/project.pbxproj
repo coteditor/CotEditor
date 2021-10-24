@@ -660,6 +660,8 @@
 		2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D820450FE600830830 /* OutlineViewController.swift */; };
 		2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
 		2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
+		2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */; };
+		2AEB8B452726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */; };
 		2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */; };
 		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
@@ -1361,6 +1363,7 @@
 		2AE7A8E22045205D00830830 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OutlineView.strings; sourceTree = "<group>"; };
 		2AE7A8E42045205E00830830 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OutlineView.strings; sourceTree = "<group>"; };
 		2AEAA8222096380C001A175C /* HighlightExtractors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightExtractors.swift; sourceTree = "<group>"; };
+		2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterFormatter.swift; sourceTree = "<group>"; };
 		2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
@@ -1580,6 +1583,7 @@
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
+				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2833,6 +2837,7 @@
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
+				2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
@@ -3139,6 +3144,7 @@
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
+				2AEB8B452726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,

@@ -14,6 +14,7 @@ Change Log
 
 - Change the system requirement to __macOS 11 Big Sur and later__.
 - Update the window size setting to use the last window size if the width/height setting in the preferences > Window is left blank (= auto).
+- Display code points instead of blank field for control characters in the incompatible character table.
 - Update Swift syntax style to add keywords added in Swift 5.5.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
