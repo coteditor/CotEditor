@@ -190,7 +190,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // sanitize
         let sanitized = content
             .map { $0.filter { !($0.key == FileDropItem.CodingKeys.extensions.rawValue && $0.value.isEmpty) } }
-            .filter { $0[FileDropItem.CodingKeys.extensions.rawValue] != nil || $0[FileDropItem.CodingKeys.scope.rawValue] != nil }
+            .filter { $0[FileDropItem.CodingKeys.format.rawValue] != nil }
         
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)

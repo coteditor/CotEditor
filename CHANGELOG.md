@@ -5,6 +5,9 @@ Change Log
 4.0.9 (471)
 --------------------------
 
+### Fixes
+
+- Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.” 
 
 
 
