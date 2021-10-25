@@ -24,7 +24,7 @@ Change Log
 - Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 4.0.0.
 - [trivial] Hide the file extension of setting files by export by default.
 - [dev] Update the build environment to Xcode 13.1 (Swift 5.5).
-- [non-AppStore ver.] Update Sparkle to 2.0.0-beta.3.
+- [non-AppStore ver.] Update Sparkle to 2.0.0-beta.4.
 
 
 

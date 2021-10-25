@@ -452,7 +452,6 @@
 		2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */; };
 		2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */; };
 		2AAAE6E526DB82F800C5F0AC /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAAE6E426DB82F800C5F0AC /* Sparkle */; };
-		2AAAE6E926DB886F00C5F0AC /* org.sparkle-project.InstallerLauncher.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2AAAE6E826DB87E000C5F0AC /* org.sparkle-project.InstallerLauncher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
@@ -729,17 +728,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2A9246F51FCD21E6008DBC30 /* Embed XPC Services */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
-			dstSubfolderSpec = 16;
-			files = (
-				2AAAE6E926DB886F00C5F0AC /* org.sparkle-project.InstallerLauncher.xpc in Embed XPC Services */,
-			);
-			name = "Embed XPC Services";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1157,7 +1145,6 @@
 		2AA79C7721CB7251005AD6AD /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		2AA7E97C1DBAAC950083B7ED /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSplitView+Autosave.swift"; sourceTree = "<group>"; };
-		2AAAE6E826DB87E000C5F0AC /* org.sparkle-project.InstallerLauncher.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; name = "org.sparkle-project.InstallerLauncher.xpc"; path = "../../../SourcePackages/artifacts/Sparkle/XPCServices/org.sparkle-project.InstallerLauncher.xpc"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -1824,7 +1811,6 @@
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
 				2A8544E6267872E0006EF01A /* SyntaxMapBuilder */,
-				BEED9F89D1E364DD05CA42CB /* XPCs */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = CotEditor;
@@ -2318,14 +2304,6 @@
 			path = Configurations;
 			sourceTree = "<group>";
 		};
-		BEED9F89D1E364DD05CA42CB /* XPCs */ = {
-			isa = PBXGroup;
-			children = (
-				2AAAE6E826DB87E000C5F0AC /* org.sparkle-project.InstallerLauncher.xpc */,
-			);
-			name = XPCs;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2398,12 +2376,10 @@
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
-				2A9246F51FCD21E6008DBC30 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2A53326626799CB8000DE73D /* PBXTargetDependency */,
 			);
 			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
@@ -3324,10 +3300,6 @@
 		2A53326326799B08000DE73D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 2A53326226799B08000DE73D /* SyntaxMapBuilder */;
-		};
-		2A53326626799CB8000DE73D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2A53326526799CB8000DE73D /* SyntaxMapBuilder */;
 		};
 		2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4379,10 +4351,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		2A53326226799B08000DE73D /* SyntaxMapBuilder */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SyntaxMapBuilder;
-		};
-		2A53326526799CB8000DE73D /* SyntaxMapBuilder */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SyntaxMapBuilder;
 		};
