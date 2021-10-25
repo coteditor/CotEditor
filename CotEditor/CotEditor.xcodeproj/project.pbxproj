@@ -2380,6 +2380,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2AD543792726B996001000CA /* PBXTargetDependency */,
 			);
 			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
@@ -3310,6 +3311,10 @@
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
 			targetProxy = 2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */;
+		};
+		2AD543792726B996001000CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2AD543782726B996001000CA /* SyntaxMapBuilder */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4378,6 +4383,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */;
 			productName = ColorCode;
+		};
+		2AD543782726B996001000CA /* SyntaxMapBuilder */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SyntaxMapBuilder;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
