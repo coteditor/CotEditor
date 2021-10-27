@@ -27,6 +27,11 @@ Change Log
 - [non-AppStore ver.] Update Sparkle to 2.0.0-beta.4.
 
 
+### Fixes
+
+- Fix an issue on macOS 12 Monterey that the user custom color did not applied to the i-beam cursor for the vertical layout.
+
+
 
 4.0.8 (471)
 --------------------------

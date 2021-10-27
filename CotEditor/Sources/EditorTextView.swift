@@ -389,7 +389,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.cursorUpdate(with: event)
         
-        self.invalidateCursor()
+        NSCursor.current.fixIBeam()
     }
     
     
@@ -398,7 +398,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.mouseMoved(with: event)
         
-        self.invalidateCursor()
+        NSCursor.current.fixIBeam()
     }
     
     
@@ -1404,19 +1404,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
             self.enclosingScrollView?.lineScroll = lineHeight
-        }
-    }
-    
-    
-    /// use legible white-based custom i-beam cursor for dark theme
-    private func invalidateCursor() {
-        
-        switch NSCursor.current {
-            case .iBeamCursorForVerticalLayout:
-                NSCursor.lightIBeamCursorForVerticalLayout.set()
-            
-            default:
-                break
         }
     }
     

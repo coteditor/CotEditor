@@ -196,8 +196,8 @@
 		2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
 		2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
 		2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
-		2A48982D215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */; };
-		2A48982E215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */; };
+		2A48982D215B2BFD00A6CE8A /* NSCursor+Workaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Workaround.swift */; };
+		2A48982E215B2BFD00A6CE8A /* NSCursor+Workaround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Workaround.swift */; };
 		2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */; };
 		2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */; };
 		2A4CB9921D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */; };
@@ -967,7 +967,7 @@
 		2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringTextFieldCell.swift; sourceTree = "<group>"; };
 		2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSValidatedUserInterfaceItem.swift; sourceTree = "<group>"; };
 		2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+ValidationIgnorable.swift"; sourceTree = "<group>"; };
-		2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Dark.swift"; sourceTree = "<group>"; };
+		2A48982C215B2BFD00A6CE8A /* NSCursor+Workaround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Workaround.swift"; sourceTree = "<group>"; };
 		2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFindPanelTextView.swift; sourceTree = "<group>"; };
 		2A4CB9911D79F38A000D6ADA /* NSWindow+SmallSizeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+SmallSizeToolbar.swift"; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
@@ -1758,7 +1758,7 @@
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
-				2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */,
+				2A48982C215B2BFD00A6CE8A /* NSCursor+Workaround.swift */,
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
@@ -2850,7 +2850,7 @@
 				2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2ADD0AEC2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
-				2A48982E215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */,
+				2A48982E215B2BFD00A6CE8A /* NSCursor+Workaround.swift in Sources */,
 				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
@@ -3157,7 +3157,7 @@
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
-				2A48982D215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */,
+				2A48982D215B2BFD00A6CE8A /* NSCursor+Workaround.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
