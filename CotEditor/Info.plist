@@ -1115,8 +1115,6 @@
 	<string>$(PRODUCT_NAME).sdef</string>
 	<key>SUEnableJavaScript</key>
 	<true/>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 	<key>SUPublicEDKey</key>
 	<string>sY0VDoz2fbpnduoaVKlJBnlcBj/OFqQklEN/QlqDyWM=</string>
 	<key>SUEnableInstallerLauncherService</key>
