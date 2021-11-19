@@ -126,17 +126,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Window Delegate
     
-    func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
-        
-        // remove "Use small size" button before showing the customization sheet
-        if sheet.isToolbarConfigPanel {
-            sheet.removeSmallSizeToolbarButton()
-        }
-        
-        return rect
-    }
-    
-    
     func windowWillEnterFullScreen(_ notification: Notification) {
         
         self.window?.isOpaque = true
