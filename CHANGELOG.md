@@ -30,6 +30,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the writing direction could be changed to right to left although when the text orientation is vertical.
 - Fix an issue on macOS 12 Monterey that the user custom color did not applied to the i-beam cursor for the vertical layout.
 
 

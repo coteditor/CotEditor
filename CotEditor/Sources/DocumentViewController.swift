@@ -801,6 +801,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     /// make entire writing direction RTL
     @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
         
+        self.verticalLayoutOrientation = false
         self.writingDirection = .rightToLeft
     }
     

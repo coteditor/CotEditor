@@ -77,6 +77,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 else { return assertionFailure() }
                 
                 let index = writingDirection == .rightToLeft ? stackView.arrangedSubviews.count - 1 : 0
+                
+                guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
+                
                 stackView.removeArrangedSubview(lineNumberView)
                 stackView.insertArrangedSubview(lineNumberView, at: index)
                 stackView.needsLayout = true
