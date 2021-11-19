@@ -236,10 +236,21 @@ private extension NSToolbarItem.Identifier {
     static let inspector = Self(Self.prefix + "inspector")
     
     static let textSize = Self(Self.prefix + "textSize")
+    static let smaller = Self(Self.prefix + "smaller")
+    static let bigger = Self(Self.prefix + "bigger")
+    
     static let writingDirection = Self(Self.prefix + "writingDirection")
+    static let leftToRight = Self(Self.prefix + "leftToRight")
+    static let rightToLeft = Self(Self.prefix + "rightToLeft")
+    
     static let textOrientation = Self(Self.prefix + "textOrientation")
+    static let horizontalText = Self(Self.prefix + "horizontalText")
+    static let verticalText = Self(Self.prefix + "verticalText")
     
     static let indent = Self(Self.prefix + "indent")
+    static let shiftLeft = Self(Self.prefix + "shiftLeft")
+    static let shiftRight = Self(Self.prefix + "shiftRight")
+    
     static let comment = Self(Self.prefix + "comment")
     
     static let tabStyle = Self(Self.prefix + "tabStyle")
@@ -333,14 +344,14 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .textSize:
-                let smallerItem = NSToolbarItem()
+                let smallerItem = NSToolbarItem(itemIdentifier: .smaller)
                 smallerItem.label = "Smaller".localized
                 smallerItem.toolTip = "Smaller".localized
                 smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: smallerItem.label)!
                     .withSymbolConfiguration(.init(scale: .small))
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
-                let biggerItem = NSToolbarItem()
+                let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
                 biggerItem.label = "Bigger".localized
                 biggerItem.toolTip = "Bigger".localized
                 biggerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: biggerItem.label)!
@@ -356,13 +367,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .writingDirection:
-                let ltrItem = NSToolbarItem()
+                let ltrItem = NSToolbarItem(itemIdentifier: .leftToRight)
                 ltrItem.label = "Left to Right".localized
                 ltrItem.toolTip = "Left to Right".localized
                 ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
-                let rtlItem = NSToolbarItem()
+                let rtlItem = NSToolbarItem(itemIdentifier: .rightToLeft)
                 rtlItem.label = "Right to Left".localized
                 rtlItem.toolTip = "Right to Left".localized
                 rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
@@ -379,13 +390,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .textOrientation:
-                let horizontalItem = NSToolbarItem()
+                let horizontalItem = NSToolbarItem(itemIdentifier: .horizontalText)
                 horizontalItem.label = "Horizontal".localized
                 horizontalItem.toolTip = "Horizontal".localized
                 horizontalItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: horizontalItem.label)
                 horizontalItem.action = #selector(DocumentViewController.makeLayoutOrientationHorizontal)
                 
-                let verticalItem = NSToolbarItem()
+                let verticalItem = NSToolbarItem(itemIdentifier: .verticalText)
                 verticalItem.label = "Vertical".localized
                 verticalItem.toolTip = "Vertical".localized
                 verticalItem.image = NSImage(named: "text.verticalorientation")
@@ -402,13 +413,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .indent:
-                let leftItem = NSToolbarItem()
+                let leftItem = NSToolbarItem(itemIdentifier: .shiftLeft)
                 leftItem.label = "Shift Left".localized
                 leftItem.toolTip = "Shift lines to left".localized
                 leftItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: leftItem.label)
                 leftItem.action = #selector(EditorTextView.shiftLeft)
                 
-                let rightItem = NSToolbarItem()
+                let rightItem = NSToolbarItem(itemIdentifier: .shiftRight)
                 rightItem.label = "Shift Right".localized
                 rightItem.toolTip = "Shift lines to right".localized
                 rightItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: rightItem.label)
