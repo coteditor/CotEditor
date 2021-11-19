@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Introduce a new AppleScript command `jump` to document objects.
+- Place line number views in the right side in the editor if the writing direction is right-to-left.
 
 
 ### Improvements

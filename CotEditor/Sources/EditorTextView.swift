@@ -1128,11 +1128,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     override var baseWritingDirection: NSWritingDirection {
         
+        willSet {
+            self.willChangeValue(for: \.baseWritingDirection)
+        }
+        
         didSet {
             // update textContainer size (see comment in NSTextView.infiniteSize)
             if !self.wrapsLines {
                 self.textContainer?.size = self.infiniteSize
             }
+            
+            self.didChangeValue(for: \.baseWritingDirection)
         }
     }
     

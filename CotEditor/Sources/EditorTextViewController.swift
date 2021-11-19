@@ -37,6 +37,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Private Properties
     
     private var orientationObserver: AnyCancellable?
+    private var writingDirectionObserver: AnyCancellable?
     
     private var stackView: NSStackView?  { self.view as? NSStackView }
     
@@ -65,6 +66,21 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 }()
                 
                 self.lineNumberView?.orientation = orientation
+            }
+        
+        // let line number view position follow writing direction
+        self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
+            .removeDuplicates()
+            .sink { [weak self] (writingDirection) in
+                guard let stackView = self?.stackView,
+                      let lineNumberView = self?.lineNumberView
+                else { return assertionFailure() }
+                
+                let index = writingDirection == .rightToLeft ? stackView.arrangedSubviews.count - 1 : 0
+                stackView.removeArrangedSubview(lineNumberView)
+                stackView.insertArrangedSubview(lineNumberView, at: index)
+                stackView.needsLayout = true
+                stackView.layoutSubtreeIfNeeded()
             }
     }
     
