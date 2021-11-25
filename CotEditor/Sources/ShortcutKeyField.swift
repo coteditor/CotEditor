@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,12 +25,14 @@
 //
 
 import Cocoa
+import Combine
 
 final class ShortcutKeyField: NSTextField {
     
     // MARK: Private Properties
     
     private var keyDownMonitor: Any?
+    private var windowObserver: AnyCancellable?
     
     
     
@@ -86,6 +88,11 @@ final class ShortcutKeyField: NSTextField {
             return nil
         }
         
+        if let window = self.window {
+            self.windowObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification, object: window)
+                .sink { [unowned self] _ in window.endEditing(for: self) }
+        }
+        
         return true
     }
     
@@ -101,6 +108,8 @@ final class ShortcutKeyField: NSTextField {
             NSEvent.removeMonitor(monitor)
             self.keyDownMonitor = nil
         }
+        
+        self.windowObserver = nil
         
         super.textDidEndEditing(notification)
     }

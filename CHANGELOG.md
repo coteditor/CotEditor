@@ -24,6 +24,7 @@ Change Log
 - Make sure the application relaunches even other tasks interrupt before termination.
 - Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
 - [trivial] Hide the file extension of setting files by export by default.
+- [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
 - [dev] Update the build environment to Xcode 13.1 (Swift 5.5).
 - [non-AppStore ver.] Update Sparkle to 2.0.0-beta.5.
 
