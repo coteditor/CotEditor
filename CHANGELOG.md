@@ -7,7 +7,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.” 
+- Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.”
+- Fix an issue that shortcuts for snippet did not accept Shift with a non-letter character, such as Shift + Return.
 - Fix an issue that the writing direction could be changed to right to left although when the text orientation is vertical.
 
 
