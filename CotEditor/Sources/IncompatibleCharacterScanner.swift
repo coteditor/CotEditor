@@ -70,8 +70,23 @@ final class IncompatibleCharacterScanner {
         self.updateTask.cancel()
         
         guard let document = self.document else { return assertionFailure() }
+        guard document.hasIncompatibles else {
+            self.incompatibleCharacters = []
+            return
+        }
         
         self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.fileEncoding.encoding)
+    }
+    
+}
+
+
+
+private extension Document {
+    
+    var hasIncompatibles: Bool {
+        
+        !self.string.canBeConverted(to: self.fileEncoding.encoding)
     }
     
 }
