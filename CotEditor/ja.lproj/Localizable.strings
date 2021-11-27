@@ -329,6 +329,12 @@
 
 
 
+/* MARK: Inspector */
+// Incompatible characters
+"No incompatible characters were found." = "非互換文字は見つかりませんでした。";
+"Scanning incompatible characters…" = "非互換文字を走査中...";
+
+
 /* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "テキストを置換";

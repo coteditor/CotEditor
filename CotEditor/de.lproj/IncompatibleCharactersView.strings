@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2021 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,6 +34,3 @@
 "Nhb-U5-BOF.headerCell.title" = "Zeichen";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
 "weY-lf-jGz.headerCell.title" = "Zeile";
-
-/* Class = "NSTextFieldCell"; title = "No incompatible characters were found."; ObjectID = "wsL-BG-Ii8"; */
-"wsL-BG-Ii8.title" = "Keine inkompatiblen Zeichen gefunden.";

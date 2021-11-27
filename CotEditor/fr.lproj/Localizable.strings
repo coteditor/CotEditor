@@ -327,6 +327,13 @@
 
 
 
+/* MARK: Inspector */
+// Incompatible characters
+"No incompatible characters were found." = "Aucun caractère incompatible trouvé.";
+"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+
+
+
 /* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "Remplacer du Texte";

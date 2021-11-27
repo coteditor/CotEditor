@@ -33,6 +33,7 @@ final class IncompatibleCharacterScanner {
     var shouldScan = false
     
     @Published private(set) var incompatibleCharacters: [IncompatibleCharacter] = []  // line endings applied
+    @Published private(set) var isScanning = false
     
     
     // MARK: Private Properties
@@ -87,9 +88,11 @@ final class IncompatibleCharacterScanner {
             
             DispatchQueue.main.async {
                 self?.incompatibleCharacters = incompatibleCharacters
+                self?.isScanning = false
             }
         }
         
+        self.isScanning = true
         self.queue.addOperation(operation)
     }
     

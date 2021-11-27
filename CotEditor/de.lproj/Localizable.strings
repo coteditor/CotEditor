@@ -328,6 +328,13 @@
 
 
 
+/* MARK: Inspector */
+// Incompatible characters
+"No incompatible characters were found." = "Keine inkompatiblen Zeichen gefunden.";
+"Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";
+
+
+
 /* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "Text ersetzen";
