@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,6 +35,3 @@
 "Nhb-U5-BOF.headerCell.title" = "字符";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
 "weY-lf-jGz.headerCell.title" = "行";
-
-/* Class = "NSTextFieldCell"; title = "No incompatible characters were found."; ObjectID = "wsL-BG-Ii8"; */
-"wsL-BG-Ii8.title" = "没有找到不兼容字符";

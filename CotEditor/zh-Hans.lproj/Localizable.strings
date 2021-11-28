@@ -329,6 +329,13 @@
 
 
 
+/* MARK: Inspector */
+// Incompatible characters
+"No incompatible characters were found." = "没有找到不兼容字符";
+"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+
+
+
 /* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "替换文本";

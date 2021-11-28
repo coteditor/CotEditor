@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2020 1024jp
+//  © 2019-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -226,9 +226,11 @@ extension EditorTextView {
         guard currentRange != superRange else { return }
         
         // find selection direction
+        // -> use superRange for the origin to take the case into consideration
+        //    when the character next to the cursor is an invisible character
         let isLowerOrigin = (currentRange.lowerBound == superRange.lowerBound)
         let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
-        let origin = isLowerOrigin ? currentRange.lowerBound : currentRange.upperBound
+        let origin = isLowerOrigin ? superRange.lowerBound : superRange.upperBound
         
         //  skip modifying the selection in RTL text as it is too complex
         // -> Additional word boundaries may be not so nessessory in RTL text.

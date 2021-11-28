@@ -33,11 +33,13 @@ final class IncompatibleCharacterScanner {
     var shouldScan = false
     
     @Published private(set) var incompatibleCharacters: [IncompatibleCharacter] = []  // line endings applied
+    @Published private(set) var isScanning = false
     
     
     // MARK: Private Properties
     
     private weak var document: Document?
+    private lazy var queue = OperationQueue()
     
     private lazy var updateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
@@ -49,6 +51,11 @@ final class IncompatibleCharacterScanner {
     required init(document: Document) {
         
         self.document = document
+    }
+    
+    
+    deinit {
+        self.queue.cancelAllOperations()
     }
     
     
@@ -68,10 +75,36 @@ final class IncompatibleCharacterScanner {
     func scan() {
         
         self.updateTask.cancel()
+        self.queue.cancelAllOperations()
         
         guard let document = self.document else { return assertionFailure() }
+        guard document.hasIncompatibles else {
+            self.incompatibleCharacters = []
+            return
+        }
         
-        self.incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.fileEncoding.encoding)
+        let operation = BlockOperation { [weak self] in
+            let incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.fileEncoding.encoding)
+            
+            DispatchQueue.main.async {
+                self?.incompatibleCharacters = incompatibleCharacters
+                self?.isScanning = false
+            }
+        }
+        
+        self.isScanning = true
+        self.queue.addOperation(operation)
+    }
+    
+}
+
+
+
+private extension Document {
+    
+    var hasIncompatibles: Bool {
+        
+        !self.string.canBeConverted(to: self.fileEncoding.encoding)
     }
     
 }

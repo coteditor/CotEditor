@@ -45,13 +45,13 @@ final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArra
     
     var range: NSRange {
         
-        return NSRange(location: self.location, length: 1)
+        NSRange(location: self.location, length: self.character.utf16.count)
     }
     
     
     override var debugDescription: String {
         
-        return "<\(self): \(self.character) -\(self.location)>"
+        "<\(self): \(self.character) -\(self.location)>"
     }
     
 }
@@ -72,6 +72,10 @@ extension String {
             let convertedString = String(data: data, encoding: encoding)
             else { assertionFailure(); return [] }
         
+        if self.length == convertedString.length, self.length > 10_000 {
+            return self.quickIncompatibleFind(with: convertedString)
+        }
+        
         return convertedString.difference(from: self).removals
             .map { (change) in
                 guard case let .remove(offset, character, _) = change else { preconditionFailure() }
@@ -83,6 +87,24 @@ extension String {
                 
                 return IncompatibleCharacter(character: character,
                                              convertedCharacter: converted,
+                                             location: location,
+                                             lineNumber: self.lineNumber(at: location))
+            }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func quickIncompatibleFind(with convertedString: String) -> [IncompatibleCharacter] {
+        
+        zip(self, convertedString).enumerated()
+            .filter { $1.0 != $1.1 }
+            .map { (offset, characters) in
+                let location = self.index(self.startIndex, offsetBy: offset).utf16Offset(in: self)
+                
+                return IncompatibleCharacter(character: characters.0,
+                                             convertedCharacter: String(characters.1),
                                              location: location,
                                              lineNumber: self.lineNumber(at: location))
             }

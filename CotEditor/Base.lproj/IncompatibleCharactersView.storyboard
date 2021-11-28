@@ -182,6 +182,7 @@
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="nX3-cC-y6b" name="hidden" keyPath="incompatibleCharacters.@count" id="wC7-7S-FId"/>
+                                    <binding destination="nX3-cC-y6b" name="value" keyPath="message" id="xSa-zI-RXk"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLI-76-6zT">
