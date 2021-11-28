@@ -107,8 +107,8 @@ final class SnippetKeyBindingManager: KeyBindingManager {
             throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, shortcut: shortcut)
         }
         
-        // avoid shift-only modifier
-        if shortcut.modifierMask == .shift {
+        // avoid shift-only modifier with a letter
+        if shortcut.modifierMask == .shift, shortcut.keySpecChars.allSatisfy(\.isLetter) {
             throw InvalidKeySpecCharactersError(kind: .shiftOnlyModifier, shortcut: shortcut)
         }
     }

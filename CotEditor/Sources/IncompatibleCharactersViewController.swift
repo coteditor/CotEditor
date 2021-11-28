@@ -34,9 +34,10 @@ final class IncompatibleCharactersViewController: NSViewController {
     private var document: Document?  { self.representedObject as? Document }
     private var scanner: IncompatibleCharacterScanner?  { self.document?.incompatibleCharacterScanner }
     
+    @objc private dynamic var message: String?
     @objc private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
     
-    private var scannerObserver: AnyCancellable?
+    private var scannerObservers: [AnyCancellable] = []
     
     @IBOutlet private var incompatibleCharsController: NSArrayController?
     
@@ -83,6 +84,8 @@ final class IncompatibleCharactersViewController: NSViewController {
     override var representedObject: Any? {
         
         willSet {
+            self.scannerObservers.removeAll()
+            
             guard newValue is Document else {
                 assertionFailure("representedObject of \(self.className) must be an instance of \(Document.self)")
                 return
@@ -90,13 +93,25 @@ final class IncompatibleCharactersViewController: NSViewController {
         }
         
         didSet {
-            self.scanner?.shouldScan = self.isViewShown
-            self.scanner?.invalidate()
+            guard let scanner = self.scanner else { return }
             
-            self.scannerObserver = self.scanner?.$incompatibleCharacters
+            scanner.shouldScan = self.isViewShown
+            scanner.invalidate()
+            
+            scanner.$incompatibleCharacters
                 .removeDuplicates()
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) }
+                .store(in: &self.scannerObservers)
+            scanner.$isScanning
+                .map { $0
+                    ? "Scanning incompatible characters…"
+                    : scanner.incompatibleCharacters.isEmpty
+                    ? "No incompatible characters were found."
+                    : nil }
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] in self?.message = $0 }
+                .store(in: &self.scannerObservers)
         }
     }
     
