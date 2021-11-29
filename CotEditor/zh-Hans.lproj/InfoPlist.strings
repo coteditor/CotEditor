@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2021 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@
 "Ruby script" = "Ruby 脚本";
 "Rust script" = "Rust 脚本";
 "Scalable Vector Graphics" = "矢量图";
-"Scala script" = "Scala 脚本";
+"Scala source" = "Scala 源码";
 "Scheme script" = "Scheme 脚本";
 "Shell script" = "Shell 脚本";
 "SQL source" = "SQL 源码";

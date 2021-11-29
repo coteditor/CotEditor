@@ -755,7 +755,7 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>ScalaIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Scala script</string>
+			<string>Scala source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
