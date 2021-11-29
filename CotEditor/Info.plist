@@ -596,8 +596,8 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
-				<string>cgi</string>
 				<string>pm</string>
+				<string>cgi</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PerlIcon</string>
@@ -1209,7 +1209,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>org.lua.lua-source</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.lua.org</string>
+			<string>https://www.lua.org</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
