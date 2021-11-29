@@ -181,9 +181,12 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>hh</string>
+				<string>hp</string>
 				<string>hpp</string>
-				<string>h++</string>
 				<string>hxx</string>
+				<string>h++</string>
+				<string>ipp</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>C++Icon</string>

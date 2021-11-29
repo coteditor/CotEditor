@@ -17,6 +17,7 @@ Change Log
 - Update the window size setting to use the last window size if the width/height setting in the preferences > Window is left blank (= auto).
 - Display code points instead of blank field for control characters in the incompatible character table.
 - Update Swift syntax style to add keywords added in Swift 5.5.
+- Update C++ style to add more file extensions.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
 - Improve the animation by drag & drop in tables.
