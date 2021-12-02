@@ -73,8 +73,13 @@
       "cpp",
       "cxx",
       "cc",
+      "cp",
+      "hh",
+      "hp",
       "hpp",
-      "h++"
+      "hxx",
+      "h++",
+      "ipp"
     ],
     "filenames" : [
 
