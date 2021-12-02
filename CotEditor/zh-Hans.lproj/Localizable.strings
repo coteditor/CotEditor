@@ -105,6 +105,42 @@
 "Found %@ strings in “%@”." = "%@ 个字符串在“%@”中被找到。";
 
 
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "基本正则表达式语法";
+
+"Characters" = "字符";
+"any character" = "任意字符";
+"new line character" = "换行符";
+"tab character" = "tab 符号";
+"word character" = "单词字符";
+"whitespace character" = "空格字符";
+"non-whitespace character" = "非空格字符";
+"decimal number" = "数字";
+"any character in range A to Z" = "A 到 Z 范围内的任意字符";
+"any character not in range A to Z" = "不在 A 到 Z 范围内的任意字符";
+
+"Anchors" = "锚点";
+"beginning of the line" = "行首";
+"end of the line" = "行末";
+"word boundary" = "单词边界";
+
+"Quantifiers" = "数量";
+"1 or 0 times" = "1 次或 0 次";
+"0 or more times" = "0 次或更多";
+"1 or more times" = "1 次或更多";
+"at least n but not more than m times" = "至少 n 次但不超过 m 次";
+"at least n times" = "至少 n 次";
+"at least 0 but not more than n times" = "至少 0 次但不超过 n 次";
+"n times" = "n 次";
+
+"Extended Groups" = "扩展分组";
+"look-ahead" = "前向";
+"look-behind" = "后向";
+
+"Back Reference" = "回溯引用";
+"first match" = "首字匹配";
+
+
 
 /* MARK: Multiple Replacement View Controller */
 // Undo action names

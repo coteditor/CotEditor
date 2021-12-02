@@ -106,6 +106,42 @@
 "Found %@ strings in “%@”." = "“%2$@”内に%1$@件見つかりました。";
 
 
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "正規表現の基本文法";
+
+"Characters" = "文字";
+"any character" = "任意の1文字";
+"new line character" = "改行";
+"tab character" = "水平タブ";
+"word character" = "単語構成文字";
+"whitespace character" = "空白文字";
+"non-whitespace character" = "非空白文字";
+"decimal number" = "10進数字";
+"any character in range A to Z" = "AからZの中の任意の1文字";
+"any character not in range A to Z" = "AからZ以外の任意の1文字";
+
+"Anchors" = "アンカー";
+"beginning of the line" = "行頭";
+"end of the line" = "行末";
+"word boundary" = "非単語境界";
+
+"Quantifiers" = "量指定子";
+"1 or 0 times" = "1回または0回";
+"0 or more times" = "0回以上";
+"1 or more times" = "1回以上";
+"at least n but not more than m times" = "n回以上m回以下";
+"at least n times" = "n回以上";
+"at least 0 but not more than n times" = "0回以上n回以下";
+"n times" = "n回";
+
+"Extended Groups" = "拡張グループ";
+"look-ahead" = "先読み";
+"look-behind" = "戻り読み";
+
+"Back Reference" = "後方参照";
+"first match" = "最初の一致";
+
+
 
 /* MARK: Multiple Replacement View Controller */
 // Undo action names

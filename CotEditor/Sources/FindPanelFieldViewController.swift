@@ -25,10 +25,18 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
+    
+    private lazy var regularExpressionReferenceViewController: NSViewController = {
+        
+        let controller = DetachablePopoverViewController()
+        controller.view = NSHostingView(rootView: RegularExpressionReferenceView())
+        return controller
+    }()
     
     @objc private dynamic let textFinder = TextFinder.shared
     
@@ -168,6 +176,14 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         UserDefaults.standard.removeObject(forKey: DefaultKeys.replaceHistory.rawValue)
         self.updateReplaceHistoryMenu()
+    }
+    
+    
+    @IBAction func showRegularExpressionReference(_ sender: NSButton) {
+        
+        guard self.regularExpressionReferenceViewController.presentingViewController == nil else { return }
+        
+        self.present(self.regularExpressionReferenceViewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxY, behavior: .transient)
     }
     
     

@@ -103,6 +103,42 @@
 "Found %@ strings in “%@”." = "%@ chaînes trouvées dans “%@”.";
 
 
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "Syntaxe de base des expressions régulières";
+
+"Characters" = "Caractères";
+"any character" = "N'importe quel caractère";
+"new line character" = "Nouvelle ligne";
+"tab character" = "Tabulation";
+"word character" = "Mot";
+"whitespace character" = "Espace";
+"non-whitespace character" = "Pas un espace";
+"decimal number" = "Chiffre";
+"any character in range A to Z" = "Caractère entre A et Z";
+"any character not in range A to Z" = "Tout sauf un caractère entre A et Z";
+
+"Anchors" = "Ancrages";
+"beginning of the line" = "Début de la ligne";
+"end of the line" = "Fin de la ligne";
+"word boundary" = "Début ou fin de mot";
+
+"Quantifiers" = "Quantificateurs";
+"1 or 0 times" = "1 fois ou 0";
+"0 or more times" = "0 fois ou plus";
+"Woe-Vu-PcP.title" = "1 fois ou plus";
+"at least n but not more than m times" = "Au moins n mais pas plus de m fois";
+"at least n times" = "Au moins n fois";
+"at least 0 but not more than n times" = "Au moins 0 fois mais plus de n fois";
+"n times" = "n fois";
+
+"Extended Groups" = "Groupes étendus";
+"look-ahead" = "Test avant";
+"look-behind" = "Test arrière";
+
+"Back Reference" = "Références passées";
+"first match" = "Première correspondance";
+
+
 
 /* MARK: Multiple Replacement View Controller */
 // Undo action names

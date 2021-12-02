@@ -209,6 +209,8 @@
 		2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */; };
 		2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
+		2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
+		2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
 		2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */; };
 		2A5ADE841D2168FC00F6CE26 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Collection.swift */; };
 		2A5ADE851D2168FC00F6CE26 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Collection.swift */; };
@@ -521,7 +523,6 @@
 		2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC72EA1253478D5001D3CA0 /* FileDropItemTests.swift */; };
 		2ACA0C7121A18D6A00723073 /* SyntaxMappingConflictsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C6F21A18D6A00723073 /* SyntaxMappingConflictsView.storyboard */; };
 		2ACA0C7A21A1982300723073 /* EncodingListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C7821A1982300723073 /* EncodingListView.storyboard */; };
-		2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
 		2ACA0C8C21A29D4800723073 /* FindPreferencesView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */; };
 		2ACA0C9521A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */; };
 		2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
@@ -579,7 +580,6 @@
 		2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */; };
 		2ACDE2A92406B9C000FC31EC /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A44321E219AC235008A0A6B /* PreferencesWindow.storyboard */; };
 		2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
-		2ACDE2AB2406B9C000FC31EC /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
 		2ACDE2AC2406B9C000FC31EC /* SaveDocumentAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */; };
 		2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243C21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard */; };
 		2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
@@ -752,7 +752,6 @@
 /* Begin PBXFileReference section */
 		0D51D5672274EAD300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		0D51D5682274EAD400A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		0D51D5692274EAD500A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		0D51D56A2274EAD500A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		0D51D56B2274EAD600A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
 		0D51D56C2274EAD700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
@@ -971,6 +970,7 @@
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPath.swift; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
+		2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionReferenceView.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
 		2A5ADE831D2168FC00F6CE26 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+NamedColors.swift"; sourceTree = "<group>"; };
@@ -1241,12 +1241,6 @@
 		2ACA0C7E21A19A9500723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		2ACA0C7F21A19A9600723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		2ACA0C8021A19A9700723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EncodingListView.strings; sourceTree = "<group>"; };
-		2ACA0C8221A299BD00723073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RegexReferenceView.storyboard; sourceTree = "<group>"; };
-		2ACA0C8521A29A5E00723073 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
-		2ACA0C8621A29A5F00723073 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RegexReferenceView.strings"; sourceTree = "<group>"; };
-		2ACA0C8721A29A6000723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
-		2ACA0C8821A29A6200723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
-		2ACA0C8921A29A6300723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2ACA0C8B21A29D4800723073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPreferencesView.storyboard; sourceTree = "<group>"; };
 		2ACA0C8E21A29E4700723073 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2ACA0C8F21A29E4900723073 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
@@ -1691,7 +1685,6 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
-				2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */,
 				2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */,
 				2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */,
 			);
@@ -1822,6 +1815,7 @@
 				2A42825418FCC23400386899 /* Document Window */,
 				2A42825218FCC1C100386899 /* Text View */,
 				2A15832C18E3A29A00601026 /* Views */,
+				2A53F5692758912600ED16DF /* SwiftUI */,
 				2A476CAF1D09CA640088E37A /* Models */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				2A5ADE861D21690300F6CE26 /* Extensions */,
@@ -2000,6 +1994,14 @@
 				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		2A53F5692758912600ED16DF /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */,
+			);
+			name = SwiftUI;
 			sourceTree = "<group>";
 		};
 		2A5ADE861D21690300F6CE26 /* Extensions */ = {
@@ -2521,7 +2523,6 @@
 				2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */,
 				2ACDE2A92406B9C000FC31EC /* PreferencesWindow.storyboard in Resources */,
 				2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */,
-				2ACDE2AB2406B9C000FC31EC /* RegexReferenceView.storyboard in Resources */,
 				2ACDE2AC2406B9C000FC31EC /* SaveDocumentAccessory.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
@@ -2599,7 +2600,6 @@
 				2ACA0C9521A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */,
 				2A443220219AC235008A0A6B /* PreferencesWindow.storyboard in Resources */,
 				2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
-				2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */,
 				2A86C47F2037312900B9357C /* SaveDocumentAccessory.storyboard in Resources */,
 				2AB2243E21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */,
 				2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
@@ -2899,6 +2899,7 @@
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A1814BF21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
+				2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
 				2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A1814BC21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A3643E71E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
@@ -3205,6 +3206,7 @@
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A1814BE21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
+				2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */,
 				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
@@ -3835,20 +3837,6 @@
 				0D51D58A2274EAE400A5D747 /* fr */,
 			);
 			name = EncodingListView.storyboard;
-			sourceTree = "<group>";
-		};
-		2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ACA0C8221A299BD00723073 /* Base */,
-				2ACA0C8521A29A5E00723073 /* ja */,
-				2ACA0C8621A29A5F00723073 /* zh-Hans */,
-				2ACA0C8721A29A6000723073 /* de */,
-				2ACA0C8821A29A6200723073 /* it */,
-				2ACA0C8921A29A6300723073 /* pt */,
-				0D51D5692274EAD500A5D747 /* fr */,
-			);
-			name = RegexReferenceView.storyboard;
 			sourceTree = "<group>";
 		};
 		2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */ = {
