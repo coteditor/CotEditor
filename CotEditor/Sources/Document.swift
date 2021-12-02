@@ -511,7 +511,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set accessory view
-        self.savePanelAccessoryController = self.savePanelAccessoryController.storyboard!.instantiateInitialController() as! NSViewController
         self.savePanelAccessoryController.representedObject = self
         savePanel.accessoryView = self.savePanelAccessoryController.view
         
