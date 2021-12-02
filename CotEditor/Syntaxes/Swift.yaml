@@ -7,7 +7,7 @@ metadata:
   version: "4.5.0"
   description: "Based on Swift 5.5"
   license: "Same as CotEditor"
-  lastModified: "2021-10-23"
+  lastModified: "2021-12-01"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
@@ -45,6 +45,7 @@ outlineMenu:
   description: "struct"
 completions: []
 attributes:
+- beginString: "@AppStorage"
 - beginString: "@autoclosure"
 - beginString: "@available"
 - beginString: "@asyncHandler"
