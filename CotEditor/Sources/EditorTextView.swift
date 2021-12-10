@@ -89,7 +89,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     // MARK: Private Properties
     
-    private static let textContainerInset = NSSize(width: 0, height: 4)
+    private static let textContainerInset = NSSize(width: 4, height: 6)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     private lazy var braceHighlightTask = Debouncer { [weak self] in self?.highlightMatchingBrace() }
