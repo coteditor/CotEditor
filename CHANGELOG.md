@@ -28,7 +28,7 @@ Change Log
 - [trivial] Hide the file extension of setting files by export by default.
 - [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
 - [dev] Update the build environment to Xcode 13.2 (Swift 5.5).
-- [non-AppStore ver.] Update Sparkle to 2.0.0-beta.6.
+- [non-AppStore ver.] Update Sparkle to 2.0.0-rc.1.
 
 
 ### Fixes
