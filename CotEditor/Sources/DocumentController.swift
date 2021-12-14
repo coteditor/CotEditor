@@ -75,7 +75,8 @@ final class DocumentController: NSDocumentController {
     
     
     /// open document
-    override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
+
+    @MainActor override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // obtain transient document if exists
         self.transientDocumentLock.lock()
@@ -86,40 +87,37 @@ final class DocumentController: NSDocumentController {
         }
         self.transientDocumentLock.unlock()
         
-        super.openDocument(withContentsOf: url, display: false) { [unowned self] (document, documentWasAlreadyOpen, error) in
-            
-            assert(Thread.isMainThread)
-            
-            // invalidate encoding that was set in the open panel
-            self.accessorySelectedEncoding = nil
-            
-            if let transientDocument = transientDocument, let document = document as? Document {
-                self.replaceTransientDocument(transientDocument, with: document)
-                if displayDocument {
-                    document.makeWindowControllers()
-                    document.showWindows()
-                }
-                
-                // display all deferred documents since the transient document has been replaced
-                for deferredDocument in self.deferredDocuments {
-                    deferredDocument.makeWindowControllers()
-                    deferredDocument.showWindows()
-                }
-                self.deferredDocuments.removeAll()
-                
-            } else if displayDocument, let document = document {
-                if self.deferredDocuments.isEmpty {
-                    // display the document immediately, because the transient document has been replaced.
-                    document.makeWindowControllers()
-                    document.showWindows()
-                } else {
-                    // defer displaying this document, because the transient document has not yet been replaced.
-                    self.deferredDocuments.append(document)
-                }
+        let (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
+        
+        // invalidate encoding that was set in the open panel
+        self.accessorySelectedEncoding = nil
+        
+        if let transientDocument = transientDocument, let document = document as? Document {
+            self.replaceTransientDocument(transientDocument, with: document)
+            if displayDocument {
+                document.makeWindowControllers()
+                document.showWindows()
             }
             
-            completionHandler(document, documentWasAlreadyOpen, error)
+            // display all deferred documents since the transient document has been replaced
+            for deferredDocument in self.deferredDocuments {
+                deferredDocument.makeWindowControllers()
+                deferredDocument.showWindows()
+            }
+            self.deferredDocuments.removeAll()
+            
+        } else if displayDocument {
+            if self.deferredDocuments.isEmpty {
+                // display the document immediately, because the transient document has been replaced.
+                document.makeWindowControllers()
+                document.showWindows()
+            } else {
+                // defer displaying this document, because the transient document has not yet been replaced.
+                self.deferredDocuments.append(document)
+            }
         }
+        
+        return (document, documentWasAlreadyOpen)
     }
     
     
@@ -178,7 +176,7 @@ final class DocumentController: NSDocumentController {
     
     
     /// add encoding menu to open panel
-    override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
+    @MainActor override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
         
         let accessoryController = OpenPanelAccessoryController.instantiate(storyboard: "OpenDocumentAccessory")
         
@@ -190,14 +188,13 @@ final class DocumentController: NSDocumentController {
         openPanel.isAccessoryViewDisclosed = true
         
         // run non-modal open panel
-        super.beginOpenPanel(openPanel, forTypes: inTypes) { [unowned self] (result: Int) in
-            
-            if result == NSApplication.ModalResponse.OK.rawValue {
-                self.accessorySelectedEncoding = accessoryController.selectedEncoding
-            }
-            
-            completionHandler(result)
+        let result = await super.beginOpenPanel(openPanel, forTypes: inTypes)
+        
+        if result == NSApplication.ModalResponse.OK.rawValue {
+            self.accessorySelectedEncoding = accessoryController.selectedEncoding
         }
+        
+        return result
     }
     
     

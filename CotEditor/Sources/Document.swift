@@ -398,38 +398,28 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// save or autosave the document contents to a file
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
-        
-        assert(Thread.isMainThread)
+    @MainActor override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) async throws {
         
         // break undo grouping
         for layoutManager in self.textStorage.layoutManagers {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
-            defer {
-                completionHandler(error)
+        try await super.save(to: url, ofType: typeName, for: saveOperation)
+        
+        // apply syntax style that is inferred from the file name or the shebang
+        if saveOperation == .saveAsOperation {
+            if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+                ?? SyntaxManager.shared.settingName(documentContent: self.string)
+            // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+            //    But we don't care about that.
+            {
+                self.setSyntaxStyle(name: styleName)
             }
-            
-            guard error == nil else { return }
-            
-            assert(Thread.isMainThread)
-            
-            // apply syntax style that is inferred from the file name or the shebang
-            if saveOperation == .saveAsOperation {
-                if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
-                    // -> Due to the async-saving, self.string can be changed from the actual saved contents.
-                    //    But we don't care about that.
-                {
-                    self.setSyntaxStyle(name: styleName)
-                }
-            }
-            
-            if !saveOperation.isAutosaving {
-                ScriptManager.shared.dispatch(event: .documentSaved, document: self)
-            }
+        }
+        
+        if !saveOperation.isAutosaving {
+            ScriptManager.shared.dispatch(event: .documentSaved, document: self)
         }
     }
     
