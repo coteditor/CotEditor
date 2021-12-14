@@ -21,7 +21,7 @@ jobs:
         swiftlint
     - name: Unit Test
       env:
-        DEVELOPER_DIR: '/Applications/Xcode_13.1.app/Contents/Developer'
+        DEVELOPER_DIR: /Applications/Xcode_13.2.app
       run: |
         set -o pipefail
         xcodebuild test -workspace CotEditor.xcworkspace -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
