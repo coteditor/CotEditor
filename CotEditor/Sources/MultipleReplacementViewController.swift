@@ -172,7 +172,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         let inSelection = UserDefaults.standard[.findInSelection]
         self.definition.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
-            
             self?.resultMessage = resultMessage
         }
     }
@@ -187,7 +186,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         let inSelection = UserDefaults.standard[.findInSelection]
         self.definition.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
-            
             self?.resultMessage = resultMessage
         }
     }
