@@ -933,7 +933,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: "Cancel".localized)
             
             let documentWindow = self.windowForSheet!
-            alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
                 switch returnCode {
                     case .alertFirstButtonReturn:  // = Convert
                         do {

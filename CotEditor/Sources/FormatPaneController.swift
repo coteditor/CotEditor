@@ -351,8 +351,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             do {
                 try SyntaxManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
@@ -373,8 +373,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions
         
-        openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
                 self.importSyntaxStyle(fileURL: url)
@@ -528,9 +528,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in
-            
-            guard returnCode == .alertSecondButtonReturn else {  // cancelled
+        Task {
+            guard await alert.beginSheetModal(for: window) == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the style name
                 self.syntaxTableView?.rowActionsVisible = false
                 return
@@ -542,7 +541,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             } catch {
                 alert.window.orderOut(nil)
                 NSSound.beep()
-                NSAlert(error: error).beginSheetModal(for: window)
+                await NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
             

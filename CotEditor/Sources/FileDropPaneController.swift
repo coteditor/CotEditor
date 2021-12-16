@@ -247,8 +247,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         alert.addButton(withTitle: "Delete".localized)
         alert.buttons.last?.hasDestructiveAction = true
         
-        alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode) in
-            guard returnCode == .alertSecondButtonReturn else { return }
+        Task {
+            guard await alert.beginSheetModal(for: self.view.window!) == .alertSecondButtonReturn else { return }
             
             self.fileDropController?.remove(self)
             self.saveSetting()

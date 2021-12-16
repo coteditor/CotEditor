@@ -203,8 +203,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = ReplacementManager.shared.filePathExtensions
         
-        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             do {
                 try ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
@@ -225,10 +225,10 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ReplacementManager.shared.filePathExtension]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
-            self?.importSetting(fileURL: openPanel.url!)
+            self.importSetting(fileURL: openPanel.url!)
         }
     }
     
@@ -297,8 +297,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in
-            guard returnCode == .alertSecondButtonReturn else { return }  // cancelled
+        Task {
+            guard await alert.beginSheetModal(for: window) == .alertSecondButtonReturn else { return }  // cancelled
             
             do {
                 try ReplacementManager.shared.removeSetting(name: name)
@@ -306,7 +306,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             } catch {
                 alert.window.orderOut(nil)
                 NSSound.beep()
-                NSAlert(error: error).beginSheetModal(for: window)
+                await NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
             

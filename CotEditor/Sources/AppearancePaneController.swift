@@ -475,7 +475,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// export selected theme
-    @IBAction func exportTheme(_ sender: Any?) {
+    @IBAction @MainActor func exportTheme(_ sender: Any?) {
         
         let settingName = self.targetThemeName(for: sender)
         
@@ -487,8 +487,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             do {
                 try ThemeManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
@@ -500,7 +500,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// import theme file via open panel
-    @IBAction func importTheme(_ sender: Any?) {
+    @IBAction @MainActor func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Import".localized
@@ -509,8 +509,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
                 self.importTheme(fileURL: url)
@@ -602,11 +602,12 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in
+        Task {
+            let returnCode = await alert.beginSheetModal(for: window)
             
             guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                self?.themeTableView?.rowActionsVisible = false
+                self.themeTableView?.rowActionsVisible = false
                 return
             }
             
@@ -616,7 +617,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             } catch {
                 alert.window.orderOut(nil)
                 NSSound.beep()
-                NSAlert(error: error).beginSheetModal(for: window)
+                await NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
             

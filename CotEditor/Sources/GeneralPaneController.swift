@@ -113,7 +113,7 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Private Methods
     
-    private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
+    @MainActor private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
         
         let alert = NSAlert()
         alert.messageText = "The change will be applied first on the next launch.".localized
@@ -122,7 +122,8 @@ final class GeneralPaneController: NSViewController {
         alert.addButton(withTitle: "Later".localized)
         alert.addButton(withTitle: "Cancel".localized)
         
-        alert.beginSheetModal(for: self.view.window!) { returnCode in
+        Task {
+            let returnCode = await alert.beginSheetModal(for: self.view.window!)
             
             switch returnCode {
                 case .alertFirstButtonReturn:  // = Restart Now
