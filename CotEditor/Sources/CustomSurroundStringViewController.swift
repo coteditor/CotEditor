@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,8 +34,8 @@ final class CustomSurroundStringViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc dynamic var beginString: String = ""
-    @objc dynamic var endString: String = ""
+    @objc dynamic var beginString: String = UserDefaults.standard[.beginCustomSurroundString] ?? ""
+    @objc dynamic var endString: String = UserDefaults.standard[.endCustomSurroundString] ?? ""
     
     @IBOutlet private weak var beginStringField: NSTextField?
     @IBOutlet private weak var endStringField: NSTextField?
@@ -43,18 +43,6 @@ final class CustomSurroundStringViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.beginString = UserDefaults.standard[.beginCustomSurroundString] ?? ""
-        self.endString = UserDefaults.standard[.endCustomSurroundString] ?? ""
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// apply
