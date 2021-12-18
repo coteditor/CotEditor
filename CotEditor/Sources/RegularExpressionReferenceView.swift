@@ -130,17 +130,15 @@ struct RegularExpressionReferenceView: View {
                         HStack {
                             Text(definition.term)
                                 .fontWeight(.medium)
-                                .frame(width: width, alignment: .leading)
-                                .fixedSize()
-                                .background(WidthGetter(widthChanged: event))
-                            
+                                .frame(width: self.width, alignment: .leading)
+                                .background(WidthGetter(widthChanged: self.event))
                             Text(definition.description.localized)
-                                .fixedSize()
                         }
+                        .fixedSize()
                     }
-                }.onReceive(self.event) { (w) in
-                    if w > (self.width ?? 0) {
-                        self.width = w
+                }.onReceive(self.event) { width in
+                    if width > (self.width ?? 0) {
+                        self.width = width
                     }
                 }
                 
@@ -155,7 +153,7 @@ struct RegularExpressionReferenceView: View {
 }
 
 
-struct WidthGetter: View {
+private struct WidthGetter: View {
     
     let widthChanged: PassthroughSubject<CGFloat, Never>
     
