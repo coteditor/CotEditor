@@ -44,6 +44,8 @@ keywords:
 - beginString: "to"
 - beginString: "returns"
 - beginString: "rpc"
+- beginString: "true"
+- beginString: "false"
 types:
 - beginString: "double"
 - beginString: "float"
@@ -67,7 +69,6 @@ numbers:
 - beginString: "(?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\\b"
   ignoreCase: true
   regularExpression: true
-
 comments: []
 commentDelimiters:
   endDelimiter: "*/"
