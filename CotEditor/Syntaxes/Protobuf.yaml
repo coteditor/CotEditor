@@ -2,7 +2,28 @@ extensions:
 - keyString: "proto"
 filenames: []
 interpreters:
-- keyString: "protobuf"
+-keyString: "protoc"
+outlineMenu:
+- keyString: "$1$2 : $3"
+  beginString: "^([\\t ]*)(message)(.*?)(?=(\\{|$))"
+  description: "message"
+  bold: true
+  underline: true
+- keyString: "$1$2 : $3"
+  beginString: "^([\\t ]*)(enum)(.*?)(?=(\\{|$))"
+  description: "enum"
+  bold: true
+  underline: true
+- keyString: "$1$2 : $3"
+  beginString: "^([\\t ]*)(oneof)(.*?)(?=(\\{|$))"
+  description: "oneof"
+  bold: true
+  underline: true
+- keyString: "$1$2 : $3"
+  beginString: "^([\\t ]*)(service)(.*?)(?=(\\{|$))"
+  description: "service"
+  bold: true
+  underline: true
 keywords:
 - beginString: "package"
 - beginString: "option"
@@ -11,14 +32,18 @@ keywords:
 - beginString: "required"
 - beginString: "repeated"
 - beginString: "reserved"
+- beginString: "max"
 - beginString: "map"
 - beginString: "message"
 - beginString: "import"
 - beginString: "extend"
 - beginString: "oneof"
 - beginString: "syntax"
+- beginString: "service"
 - beginString: "public"
-
+- beginString: "to"
+- beginString: "returns"
+- beginString: "rpc"
 types:
 - beginString: "double"
 - beginString: "float"
@@ -35,9 +60,16 @@ types:
 - beginString: "bool"
 - beginString: "string"
 - beginString: "bytes"
+strings:
+- beginString: "\""
+  endString: "\""
+numbers:
+- beginString: "(?<![0-9a-z_$])-?[0-9][0-9._]*(e[-+]?[0-9._]+)?\\b"
+  ignoreCase: true
+  regularExpression: true
+
 comments: []
 commentDelimiters:
   endDelimiter: "*/"
   beginDelimiter: "/*"
   inlineDelimiter: "//"
-outlineMenu:
