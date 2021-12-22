@@ -1,0 +1,43 @@
+extensions:
+- keyString: "proto"
+filenames: []
+interpreters:
+- keyString: "protobuf"
+keywords:
+- beginString: "package"
+- beginString: "option"
+- beginString: "optional"
+- beginString: "enum"
+- beginString: "required"
+- beginString: "repeated"
+- beginString: "reserved"
+- beginString: "map"
+- beginString: "message"
+- beginString: "import"
+- beginString: "extend"
+- beginString: "oneof"
+- beginString: "syntax"
+- beginString: "public"
+
+types:
+- beginString: "double"
+- beginString: "float"
+- beginString: "int32"
+- beginString: "int64"
+- beginString: "uint32"
+- beginString: "uint64"
+- beginString: "sint32"
+- beginString: "sint64"
+- beginString: "fixed32"
+- beginString: "fixed64"
+- beginString: "sfixed32"
+- beginString: "sfixed64"
+- beginString: "bool"
+- beginString: "string"
+- beginString: "bytes"
+comments: []
+commentDelimiters:
+  endDelimiter: "*/"
+  beginDelimiter: "/*"
+  inlineDelimiter: "//"
+outlineMenu:
