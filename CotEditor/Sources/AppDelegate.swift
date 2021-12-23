@@ -185,9 +185,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        
         NSApp.reply(toApplicationShouldTerminate: true)
+        
         return .terminateLater
     }
+    
     
     /// store last version before termination
     func applicationWillTerminate(_ notification: Notification) {
