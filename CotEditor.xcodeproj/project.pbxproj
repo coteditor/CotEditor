@@ -1078,7 +1078,7 @@
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SyntaxMapBuilder; path = ../SyntaxMapBuilder; sourceTree = "<group>"; };
+		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMapBuilder; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
 		2A86C47E2037312900B9357C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SaveDocumentAccessory.storyboard; sourceTree = "<group>"; };
 		2A86C4812037330200B9357C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
@@ -1356,8 +1356,8 @@
 		2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Additions.swift"; sourceTree = "<group>"; };
 		2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperation.swift; sourceTree = "<group>"; };
 		2AF45E211E6C17700030CD60 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
-		2AF482D9279288CF00A86481 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
-		2AF482DA279288CF00A86481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		2AF482D9279288CF00A86481 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		2AF482DA279288CF00A86481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -1822,7 +1822,8 @@
 				2A15832B18E3A25C00601026 /* Utilities */,
 				2A5ADE861D21690300F6CE26 /* Extensions */,
 			);
-			path = Sources;
+			name = Sources;
+			path = CotEditor/Sources;
 			sourceTree = "<group>";
 		};
 		2A37F4AFFDCFA73011CA2CEA /* Scripts */ = {
@@ -1831,6 +1832,7 @@
 				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
 			);
 			name = Scripts;
+			path = CotEditor;
 			sourceTree = "<group>";
 		};
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
@@ -1853,6 +1855,7 @@
 				2A94FC781BE2256F00B454A8 /* cot */,
 			);
 			name = Resources;
+			path = CotEditor;
 			sourceTree = "<group>";
 		};
 		2A3A759719E77E4C001DAB88 /* Syntax Edit Sheet */ = {
@@ -1881,6 +1884,7 @@
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 			);
 			name = "Supporting Files";
+			path = CotEditor;
 			sourceTree = "<group>";
 		};
 		2A3F18F8203270BE002F1CA7 /* UI Tests */ = {
@@ -1888,8 +1892,7 @@
 			children = (
 				2A3F18F9203270BE002F1CA7 /* UITests.swift */,
 			);
-			name = "UI Tests";
-			path = "../UI Tests";
+			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
@@ -2152,8 +2155,7 @@
 				2ACC652F1C9802CB000574DC /* Extensions */,
 				2ACC65331C98055E000574DC /* Resources */,
 			);
-			name = Tests;
-			path = ../Tests;
+			path = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
@@ -2296,7 +2298,8 @@
 				5454B92C243C8257009275BC /* Tests.xcconfig */,
 				5454B92B243C8257009275BC /* UI-Tests.xcconfig */,
 			);
-			path = Configurations;
+			name = Configurations;
+			path = CotEditor/Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2630,7 +2633,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./updateHelpindex.sh\n";
+			shellScript = "cd CotEditor\n./updateHelpindex.sh\n";
 		};
 		2A53326126799AB4000DE73D /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2640,13 +2643,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Syntaxes",
+				"$(SRCROOT)/CotEditor/Syntaxes",
 			);
 			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/SyntaxMap.json",
+				"$(SRCROOT)/CotEditor/SyntaxMap.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2660,13 +2663,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Syntaxes",
+				"$(SRCROOT)/CotEditor/Syntaxes",
 			);
 			name = "Build Syntax Map";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/SyntaxMap.json",
+				"$(SRCROOT)/CotEditor/SyntaxMap.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2684,7 +2687,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\ncd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2ACC21B91E546CCF0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2698,7 +2701,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\ncd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4049,7 +4052,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CURRENT_PROJECT_VERSION = 474;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = CotEditor/Info.plist;
 				MARKETING_VERSION = "4.1.0-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -4064,7 +4067,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CURRENT_PROJECT_VERSION = 474;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = CotEditor/Info.plist;
 				MARKETING_VERSION = "4.1.0-alpha";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -4103,7 +4106,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CURRENT_PROJECT_VERSION = 474;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = CotEditor/Info.plist;
 				MARKETING_VERSION = "4.1.0-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
@@ -4119,7 +4122,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
 				CURRENT_PROJECT_VERSION = 474;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = CotEditor/Info.plist;
 				MARKETING_VERSION = "4.1.0-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
