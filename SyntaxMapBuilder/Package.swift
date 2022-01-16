@@ -1,11 +1,11 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.5
 
 import PackageDescription
 
 let package = Package(
     name: "SyntaxMapBuilder",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v11),
     ],
     products: [
         .executable(name: "SyntaxMapBuilder", targets: ["SyntaxMapBuilder"]),
@@ -14,7 +14,7 @@ let package = Package(
         .package(url: "https://github.com/jpsim/Yams", from: Version(4, 0, 0)),
     ],
     targets: [
-        .target(name: "SyntaxMapBuilder", dependencies: ["Yams"]),
+        .executableTarget(name: "SyntaxMapBuilder", dependencies: ["Yams"]),
         .testTarget(name: "SyntaxMapBuilderTests", dependencies: ["SyntaxMapBuilder"]),
     ],
     swiftLanguageVersions: [
