@@ -203,10 +203,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // store directory URL to avoid finding Autosaved Information directory every time
                 struct AutosaveDirectory {
                     
-                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                  in: .userDomainMask,
-                                                                  appropriateFor: nil,
-                                                                  create: true)
+                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 }
                 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
@@ -713,13 +710,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         switch menuItem.action {
             case #selector(changeEncoding(_:)):
                 menuItem.state = (menuItem.tag == self.fileEncoding.tag) ? .on : .off
-            
+                
             case #selector(changeLineEnding(_:)):
                 menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
-            
+                
             case #selector(changeSyntaxStyle(_:)):
                 menuItem.state = (menuItem.title == self.syntaxParser.style.name) ? .on : .off
-            
+                
             default: break
         }
         
@@ -943,7 +940,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         } catch {
                             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                         }
-                    
+                        
                     case .alertSecondButtonReturn:  // = Reinterpret
                         // ask user if document is edited
                         if self.isDocumentEdited {
@@ -974,7 +971,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         
                     case .alertThirdButtonReturn:  // = Cancel
                         completionHandler(false)
-                    
+                        
                     default: preconditionFailure()
                 }
             }
@@ -1150,7 +1147,7 @@ private enum ReinterpretationError: LocalizedError {
         switch self {
             case .noFile:
                 return nil
-            
+                
             case .reinterpretationFailed:
                 return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
         }
@@ -1184,7 +1181,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         switch self.kind {
             case .lossySaving:
                 return "Do you want to continue processing?".localized
-            
+                
             case .lossyConversion:
                 return "Do you want to change encoding and show incompatible characters?".localized
         }
@@ -1198,7 +1195,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 return ["Show Incompatible Characters".localized,
                         "Save Available Text".localized,
                         "Cancel".localized]
-            
+                
             case .lossyConversion:
                 return ["Change Encoding".localized,
                         "Cancel".localized]
