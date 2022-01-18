@@ -35,6 +35,7 @@ Change Log
 ### Fixes
 
 - Fix an issue on macOS 12 Monterey that the user custom color did not applied to the i-beam cursor for the vertical layout.
+- Fix an issue that some help buttons did not work (thanks to AlexNewson!).
 - Fix an issue that the editor's opacity change did not apply immediately.
 
 
