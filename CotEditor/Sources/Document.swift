@@ -395,15 +395,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// save or autosave the document contents to a file
-    @MainActor override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) async throws {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
         // break undo grouping
         for layoutManager in self.textStorage.layoutManagers {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        try await super.save(to: url, ofType: typeName, for: saveOperation)
-        
+        // workaround the issue that invoking the async version super blocks the save process
+        // with macOS 12.1 + Xcode 13.2.1 (2022-01).
+        super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
+            defer {
+                completionHandler(error)
+            }
+            if error != nil { return }
+            
         // apply syntax style that is inferred from the file name or the shebang
         if saveOperation == .saveAsOperation {
             if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
@@ -418,6 +424,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if !saveOperation.isAutosaving {
             ScriptManager.shared.dispatch(event: .documentSaved, document: self)
         }
+    }
     }
     
     
