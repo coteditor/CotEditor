@@ -35,7 +35,7 @@ final class Atomic<T> {
     
     // MARK: Private Properties
     
-    private let queue: DispatchQueue
+    private let queue = DispatchQueue(label: "com.coteditor.CotEdiotor.atomic." + String(describing: T.self))
     private var value: T
     
     
@@ -43,17 +43,10 @@ final class Atomic<T> {
     // MARK: -
     // MARK: Lifecycle
     
-    init(_ wrappedValue: T, attributes: DispatchQueue.Attributes = []) {
-        
-        self.queue = DispatchQueue(label: "com.coteditor.CotEdiotor.atomic." + String(describing: T.self), attributes: attributes)
-        self.value = wrappedValue
-    }
-    
-    
     /// Initializer for proeprtyWrapper.
-    convenience init(wrappedValue: T) {
+    init(wrappedValue: T) {
         
-        self.init(wrappedValue)
+        self.value = wrappedValue
     }
     
     
