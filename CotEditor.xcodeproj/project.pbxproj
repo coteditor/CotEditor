@@ -55,8 +55,6 @@
 		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A1125C623F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */; };
 		2A1125C723F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */; };
-		2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */; };
-		2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */; };
@@ -844,7 +842,6 @@
 		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
 		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
 		2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+URLDetectable.swift"; sourceTree = "<group>"; };
-		2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unicode.UTF32.CodeUnit+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextField.swift; sourceTree = "<group>"; };
@@ -1554,7 +1551,6 @@
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
-				2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
@@ -2724,7 +2720,6 @@
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AA056AD26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
-				2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
@@ -3031,7 +3026,6 @@
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AA056AE26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
-				2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
