@@ -1,5 +1,5 @@
 //
-//  SyntaxHighlightParseOperation.swift
+//  HighlightParser.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,9 +55,9 @@ private struct QuoteCommentItem {
 
 // MARK: -
 
-final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
+final class HighlightParser {
     
-    struct ParseDefinition {
+    struct Definition {
         
         var extractors: [SyntaxType: [HighlightExtractable]]
         var pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
@@ -69,15 +69,13 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     
     // MARK: Public Properties
     
-    let string: String
     let progress: Progress  // can be updated from a background thread
-    
-    private(set) var highlights: [SyntaxType: [NSRange]]?
     
     
     // MARK: Private Properties
     
-    private let definition: ParseDefinition
+    private let definition: Definition
+    private let string: String
     private let parseRange: NSRange
     
     
@@ -85,78 +83,55 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definition: ParseDefinition, string: String, range parseRange: NSRange) {
+    init(definition: Definition, string: String, range parseRange: NSRange) {
         
         self.definition = definition
         self.string = string
         self.parseRange = parseRange
         
-        // +3 for extractCommentsWithQuotes(), sanitizing, and highlighting
-        self.progress = Progress(totalUnitCount: Int64(definition.extractors.count + 3))
-        
-        super.init()
-        
-        self.progress.cancellationHandler = { [weak self] in
-            self?.cancel()
-        }
+        // +2 for extractCommentsWithQuotes(), sanitizing
+        self.progress = Progress(totalUnitCount: Int64(definition.extractors.count + 2))
     }
     
     
-    
-    // MARK: Operation Methods
-    
-    /// parse string in background and return extracted highlight ranges per syntax types
-    override func main() {
-        
-        self.highlights = self.extractHighlights()
-        
-        guard !self.isCancelled else { return }
-        
-        self.progress.localizedDescription = "Applying colors to text".localized
-    }
-    
-    
-    
-    // MARK: Private Methods
+    // MARK: Public Methods
     
     /// extract all highlight ranges in the parse range
-    private func extractHighlights() -> [SyntaxType: [NSRange]] {
+    func parse() async throws -> [SyntaxType: [NSRange]] {
         
+        let string = self.string
+        let parseRange = self.parseRange
         var highlights = [SyntaxType: [NSRange]]()
         
-        // extract standard highlight ranges
+        // extract standard highlight rangess
         for syntaxType in SyntaxType.allCases {
             guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
             self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
-            
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            let atomicRanges = Atomic([NSRange](), attributes: .concurrent)
             
-            DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
-                guard !childProgress.isCancelled else { return }
-                
-                let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange) { (stop) in
-                    stop = childProgress.isCancelled
+            highlights[syntaxType] = try await withThrowingTaskGroup(of: [NSRange].self) { group in
+                for extractor in extractors {
+                    group.addTask { try extractor.ranges(in: string, range: parseRange) }
                 }
                 
-                atomicRanges.asyncMutate {
-                    $0 += extractedRanges
+                var ranges: [NSRange] = []
+                for try await extractedRanges in group {
+                    ranges += extractedRanges
                     childProgress.completedUnitCount += 1
                 }
+                return ranges
             }
-            
-            highlights[syntaxType] = atomicRanges.wrappedValue
         }
         
-        guard !self.isCancelled else { return [:] }
+        guard !self.progress.isCancelled else { throw CancellationError() }
         
         // extract comments and quoted text
         self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
         highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
         self.progress.completedUnitCount += 1
         
-        guard !self.isCancelled else { return [:] }
+        guard !self.progress.isCancelled else { throw CancellationError() }
         
         // reduce complexity of highlights dictionary
         self.progress.localizedDescription = "Preparing coloring…".localized
@@ -166,6 +141,9 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         return highlights
     }
     
+    
+    
+    // MARK: Private Methods
     
     /// extract ranges of quoted texts as well as comments in the parse range
     private func extractCommentsWithQuotes() -> [SyntaxType: [NSRange]] {

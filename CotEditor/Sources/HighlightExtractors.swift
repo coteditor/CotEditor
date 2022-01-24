@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import Foundation
 
 protocol HighlightExtractable {
     
-    func ranges(in: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange]
+    func ranges(in: String, range: NSRange) throws -> [NSRange]
 }
 
 
@@ -70,7 +70,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
         var ranges = [NSRange]()
         
@@ -95,6 +95,8 @@ private struct BeginEndStringExtractor: HighlightExtractable {
                 
                 break
             }
+            
+            try Task.checkCancellation()
         }
         
         return ranges
@@ -120,9 +122,9 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
-        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
+        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
             .map(\.range)
     }
     
@@ -148,9 +150,9 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
-        return self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
+        try self.beginRegex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
             .map(\.range)
             .compactMap { beginRange in
                 let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],

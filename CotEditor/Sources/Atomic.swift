@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,15 +72,6 @@ final class Atomic<T> {
     func mutate(_ transform: (inout T) -> Void) {
         
         self.queue.sync {
-            transform(&self.value)
-        }
-    }
-    
-    
-    /// Thread-safe update of value without blocking the current thread.
-    func asyncMutate(_ transform: @escaping (inout T) -> Void) {
-        
-        self.queue.async(flags: .barrier) { [unowned self] in
             transform(&self.value)
         }
     }
