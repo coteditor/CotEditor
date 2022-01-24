@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021 1024jp
+//  © 2021-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -111,7 +111,7 @@ struct RegularExpressionReferenceView: View {
         var title: String
         var definitions: [Definition]
         
-        @State private var width: CGFloat? = nil
+        @State private var width: CGFloat?
         private let event = PassthroughSubject<CGFloat, Never>()
         
         

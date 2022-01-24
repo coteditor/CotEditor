@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -410,21 +410,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             }
             if error != nil { return }
             
-        // apply syntax style that is inferred from the file name or the shebang
-        if saveOperation == .saveAsOperation {
-            if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                ?? SyntaxManager.shared.settingName(documentContent: self.string)
-            // -> Due to the async-saving, self.string can be changed from the actual saved contents.
-            //    But we don't care about that.
-            {
-                self.setSyntaxStyle(name: styleName)
+            // apply syntax style that is inferred from the file name or the shebang
+            if saveOperation == .saveAsOperation {
+                if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
+                // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                //    But we don't care about that.
+                {
+                    self.setSyntaxStyle(name: styleName)
+                }
+            }
+            
+            if !saveOperation.isAutosaving {
+                ScriptManager.shared.dispatch(event: .documentSaved, document: self)
             }
         }
-        
-        if !saveOperation.isAutosaving {
-            ScriptManager.shared.dispatch(event: .documentSaved, document: self)
-        }
-    }
     }
     
     
@@ -1142,7 +1142,7 @@ private enum ReinterpretationError: LocalizedError {
             case .noFile:
                 return "The document doesn’t have a file to reinterpret.".localized
             
-            case .reinterpretationFailed(let fileURL, let encoding):
+            case let .reinterpretationFailed(fileURL, encoding):
                 return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
                               fileURL.lastPathComponent, String.localizedName(of: encoding))
         }

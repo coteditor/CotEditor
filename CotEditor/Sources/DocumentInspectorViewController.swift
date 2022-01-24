@@ -58,10 +58,10 @@ final class DocumentInspectorViewController: NSViewController {
     private var document: Document?  { self.representedObject as? Document }
     private var analyzer: DocumentAnalyzer?  { self.document?.analyzer }
     
-    @objc dynamic private(set) var fileInfo: FileInfo = .init()
-    @objc dynamic private(set) var encoding: String = "–"
-    @objc dynamic private(set) var lineEndings: String = "–"
-    @objc dynamic private(set) var editorInfo: EditorInfo = .init()
+    @objc private(set) dynamic var fileInfo: FileInfo = .init()
+    @objc private(set) dynamic var encoding: String = "–"
+    @objc private(set) dynamic var lineEndings: String = "–"
+    @objc private(set) dynamic var editorInfo: EditorInfo = .init()
     
     @IBOutlet private var dateFormatter: DateFormatter?
     @IBOutlet private var byteCountFormatter: ByteCountFormatter?
