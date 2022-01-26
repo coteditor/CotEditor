@@ -67,6 +67,7 @@ struct EditorCountResult: Equatable {
     var selectedCount = Count()
     var cursor = Cursor()
     var unicode: String?  // Unicode of selected single character (or surrogate-pair)
+    var character: Character?
     
     
     
@@ -152,8 +153,13 @@ final class EditorInfoCounter {
         
         if self.requiredInfo.contains(.unicode) {
             let selectedString = self.string[self.selectedRange]
-            if selectedString.unicodeScalars.compareCount(with: 1) == .equal {
-                result.unicode = selectedString.unicodeScalars.first?.codePoint
+            if selectedString.compareCount(with: 1) == .equal,
+               let character = selectedString.first
+            {
+                let character = (character == LineEnding.lf.rawValue)
+                    ? self.lineEnding.rawValue
+                    : character
+                result.unicode = character.unicodeScalars.map(\.codePoint).joined(separator: ",\n")
             }
         }
         
