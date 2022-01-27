@@ -68,6 +68,7 @@ final class DocumentInspectorViewController: NSViewController {
     @IBOutlet private var dateFormatter: DateFormatter?
     @IBOutlet private var byteCountFormatter: ByteCountFormatter?
     @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
+    @IBOutlet private var tokenFormatter: TokenFormatter?
     
     
     

@@ -36,6 +36,8 @@
 		2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */; };
 		2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */; };
 		2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */; };
+		2A0F3EC027A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
+		2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
 		2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
 		2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
 		2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F61FD19237002AB5AE /* KeyBinding.swift */; };
@@ -799,6 +801,7 @@
 		2A0D64A31D20FFB6006B4937 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenTextView.swift; sourceTree = "<group>"; };
 		2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatter.swift; sourceTree = "<group>"; };
 		2A10B6F421450A3B00B4205E /* NSAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppearance.swift; sourceTree = "<group>"; };
 		2A10C5F61FD19237002AB5AE /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
 		2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Selector+Codable.swift"; sourceTree = "<group>"; };
@@ -1553,6 +1556,7 @@
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
+				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2953,6 +2957,7 @@
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
+				2A0F3EC027A26D1200FB27A3 /* TokenFormatter.swift in Sources */,
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
@@ -3258,6 +3263,7 @@
 				2A9082F21D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
+				2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */,
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,

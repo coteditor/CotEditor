@@ -159,7 +159,7 @@ final class EditorInfoCounter {
                 let character = (character == LineEnding.lf.rawValue)
                     ? self.lineEnding.rawValue
                     : character
-                result.unicode = character.unicodeScalars.map(\.codePoint).joined(separator: ",\n")
+                result.unicode = character.unicodeScalars.map(\.codePoint).joined(separator: ", ")
             }
         }
         
