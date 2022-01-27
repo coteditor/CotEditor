@@ -70,6 +70,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="cy5-Cu-gLS" id="Eep-7C-V5j"/>
                                                 <binding destination="frz-9g-1DO" name="value" keyPath="selection.creationDate" id="0n8-OL-ojv">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
@@ -86,6 +87,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="V9i-j2-0Gw" id="Wz1-d2-DlX"/>
                                                 <binding destination="frz-9g-1DO" name="value" keyPath="selection.modificationDate" id="r3W-JM-h9l">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
@@ -118,6 +120,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="z96-M8-Jf1" id="HYD-Xs-wpM"/>
                                                 <binding destination="frz-9g-1DO" name="value" keyPath="selection.owner" id="GeV-8X-P1X">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
@@ -141,6 +144,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="R97-6F-fhj" id="eNe-Fv-8hO"/>
                                                 <binding destination="frz-9g-1DO" name="value" keyPath="selection.fileSize" id="fEO-TD-8lt">
                                                     <dictionary key="options">
                                                         <string key="NSNoSelectionPlaceholder">-</string>
@@ -167,6 +171,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="xjf-Nk-bVc" id="H2U-wS-rcp"/>
                                                 <binding destination="frz-9g-1DO" name="value" keyPath="selection.permission" id="igM-5I-vUh">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
@@ -203,6 +208,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="Eds-vr-C30" id="hBx-DF-DhZ"/>
                                                 <binding destination="NoI-km-aN6" name="value" keyPath="encoding" id="jjk-QT-KDQ"/>
                                             </connections>
                                         </textField>
@@ -222,6 +228,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="D7w-Hl-QZ3" id="aT3-RA-z21"/>
                                                 <binding destination="NoI-km-aN6" name="value" keyPath="lineEndings" id="GlT-4X-OMA"/>
                                             </connections>
                                         </textField>
@@ -265,6 +272,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="FtE-QH-05o" id="Ylm-Hw-Yzp"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.lines" id="aaV-tu-pJP"/>
                                             </connections>
                                         </textField>
@@ -284,6 +292,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="zO6-zt-3hX" id="oy3-RZ-ru1"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.chars" id="xBc-3c-nqL"/>
                                             </connections>
                                         </textField>
@@ -303,6 +312,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="Lx4-8L-owE" id="uE5-LE-Jnx"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.words" id="KQe-UB-12r"/>
                                             </connections>
                                         </textField>
@@ -322,6 +332,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="som-BJ-EXl" id="nhp-tF-qQ3"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.length" id="fVx-gX-01E"/>
                                             </connections>
                                         </textField>
@@ -341,6 +352,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="w9a-lK-7bb" id="qly-GW-0BL"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.location" id="bpr-Z9-pcF"/>
                                             </connections>
                                         </textField>
@@ -360,6 +372,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="ANk-BC-fJD" id="cwf-FX-0I4"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.line" id="5og-2S-7ZT"/>
                                             </connections>
                                         </textField>
@@ -379,6 +392,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="UJf-4P-eSh" id="usV-O8-Rmy"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.unicode" id="sru-km-SZJ">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">Not selected</string>
@@ -403,6 +417,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="paK-hv-1d8" id="BRm-k6-n0b"/>
                                                 <binding destination="KUC-8F-iAD" name="value" keyPath="selection.column" id="4s3-mg-crD"/>
                                             </connections>
                                         </textField>
@@ -425,6 +440,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="6WF-i2-FuC" id="gfq-6X-O7x"/>
                                                 <binding destination="frz-9g-1DO" name="value" keyPath="selection.url.path" id="IXM-Of-uQb">
                                                     <dictionary key="options">
                                                         <string key="NSNullPlaceholder">-</string>
@@ -608,7 +624,7 @@
                 <customFormatter id="Kne-Bi-Pd2" customClass="FilePermissionsFormatter" customModule="CotEditor" customModuleProvider="target"/>
                 <customFormatter id="Pa0-sr-GTs" customClass="TokenFormatter" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="45" y="132"/>
+            <point key="canvasLocation" x="45" y="131.5"/>
         </scene>
     </scenes>
 </document>
