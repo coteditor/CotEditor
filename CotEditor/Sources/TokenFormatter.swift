@@ -83,7 +83,7 @@ final private class TokenCell: NSTextAttachmentCell {
     
     override func cellBaselineOffset() -> NSPoint {
         
-        return NSPoint(x: 0, y: self.font?.descender ?? 0)
+        NSPoint(x: 0, y: self.font?.descender ?? 0)
     }
     
     
