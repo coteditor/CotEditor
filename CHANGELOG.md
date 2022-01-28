@@ -25,6 +25,7 @@ Change Log
 - Make sure the application relaunches even other tasks interrupt before termination.
 - Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.
 - Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
+- Improve some toolbar items to make their state distinguish even collapsed.
 - [trivial] Adjust the margin of the editor area.
 - [trivial] Hide the file extension of setting files by export by default.
 - [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
