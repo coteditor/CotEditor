@@ -36,6 +36,8 @@
 		2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */; };
 		2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */; };
 		2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */; };
+		2A0F3EC027A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
+		2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
 		2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
 		2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
 		2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F61FD19237002AB5AE /* KeyBinding.swift */; };
@@ -55,8 +57,6 @@
 		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A1125C623F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */; };
 		2A1125C723F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */; };
-		2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */; };
-		2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */; };
@@ -164,8 +164,6 @@
 		2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144BA201397D70061F653 /* DocumentInspectorView.storyboard */; };
 		2A41EC1A1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
 		2A41EC1B1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */; };
-		2A42579E1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */; };
-		2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */; };
 		2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257A61D22E0660086DAAD /* EncodingManager.swift */; };
 		2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257A61D22E0660086DAAD /* EncodingManager.swift */; };
 		2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */; };
@@ -190,6 +188,8 @@
 		2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CB01D09D0500088E37A /* FontExtensionTests.swift */; };
 		2A478F3F22BE743200AEA45E /* NSTextView+Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */; };
 		2A478F4022BE743200AEA45E /* NSTextView+Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */; };
+		2A47955E27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47955D27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift */; };
+		2A47955F27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47955D27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift */; };
 		2A479C821D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */; };
 		2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */; };
 		2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
@@ -466,8 +466,8 @@
 		2AAD61F11D2B0856008FE772 /* FuzzyRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */; };
 		2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
 		2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
-		2AAD61F81D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */; };
-		2AAD61F91D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */; };
+		2AAD61F81D2BA3F5008FE772 /* HighlightParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */; };
+		2AAD61F91D2BA3F5008FE772 /* HighlightParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */; };
 		2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AB2241421A7CDEF00F6201F /* SyntaxInfoEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241221A7CDEF00F6201F /* SyntaxInfoEditView.storyboard */; };
@@ -686,8 +686,8 @@
 		2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */; };
 		2AF1D85821B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */; };
 		2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */; };
-		2AF45E1E1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */; };
-		2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */; };
+		2AF45E1E1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */; };
+		2AF45E1F1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */; };
 		2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
 		2AF45E231E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
@@ -803,6 +803,7 @@
 		2A0D64A31D20FFB6006B4937 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenTextView.swift; sourceTree = "<group>"; };
 		2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatter.swift; sourceTree = "<group>"; };
 		2A10B6F421450A3B00B4205E /* NSAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppearance.swift; sourceTree = "<group>"; };
 		2A10C5F61FD19237002AB5AE /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
 		2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Selector+Codable.swift"; sourceTree = "<group>"; };
@@ -844,7 +845,6 @@
 		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
 		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
 		2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+URLDetectable.swift"; sourceTree = "<group>"; };
-		2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unicode.UTF32.CodeUnit+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextField.swift; sourceTree = "<group>"; };
@@ -938,7 +938,6 @@
 		2A4144CC2013A9230061F653 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/IncompatibleCharactersView.strings; sourceTree = "<group>"; };
 		2A4144CE2013A9250061F653 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/IncompatibleCharactersView.strings; sourceTree = "<group>"; };
 		2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+TouchBar.swift"; sourceTree = "<group>"; };
-		2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineParseOperation.swift; sourceTree = "<group>"; };
 		2A4257A61D22E0660086DAAD /* EncodingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingManager.swift; sourceTree = "<group>"; };
 		2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCodePanelController.swift; sourceTree = "<group>"; };
 		2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputViewController.swift; sourceTree = "<group>"; };
@@ -959,6 +958,7 @@
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		2A476CB01D09D0500088E37A /* FontExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Ligature.swift"; sourceTree = "<group>"; };
+		2A47955D27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkaroundOpacitySlider.swift; sourceTree = "<group>"; };
 		2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringTextFieldCell.swift; sourceTree = "<group>"; };
 		2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSValidatedUserInterfaceItem.swift; sourceTree = "<group>"; };
 		2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+ValidationIgnorable.swift"; sourceTree = "<group>"; };
@@ -1147,7 +1147,7 @@
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuzzyRange.swift; sourceTree = "<group>"; };
 		2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
-		2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightParseOperation.swift; sourceTree = "<group>"; };
+		2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightParser.swift; sourceTree = "<group>"; };
 		2AAD61FB1D2BD102008FE772 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		2AAFA57A1FFFCE2100E15768 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2AAFA57C1FFFCE2600E15768 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
@@ -1354,7 +1354,7 @@
 		2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCodeTests.swift; sourceTree = "<group>"; };
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSRegularExpression+Additions.swift"; sourceTree = "<group>"; };
-		2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperation.swift; sourceTree = "<group>"; };
+		2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorInfoCounter.swift; sourceTree = "<group>"; };
 		2AF45E211E6C17700030CD60 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
 		2AF482D9279288CF00A86481 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		2AF482DA279288CF00A86481 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1554,12 +1554,12 @@
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
-				2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
+				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1588,6 +1588,7 @@
 				2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */,
 				2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */,
 				2A39F15626F74C2500B52876 /* AccessibleStepper.swift */,
+				2A47955D27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1937,7 +1938,7 @@
 				2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */,
 				2A50AA61204D513500D10A10 /* DocumentFile.swift */,
 				2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */,
-				2AF45E1D1E6C0D920030CD60 /* EditorInfoCountOperation.swift */,
+				2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */,
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
@@ -2061,8 +2062,7 @@
 			children = (
 				2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */,
 				2A4714E22093A2D40093E27F /* SyntaxParser.swift */,
-				2A42579D1D229A8B0086DAAD /* OutlineParseOperation.swift */,
-				2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */,
+				2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */,
 				2A4714E5209630510093E27F /* OutlineExtractor.swift */,
 				2AEAA8222096380C001A175C /* HighlightExtractors.swift */,
 				2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */,
@@ -2687,7 +2687,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d /opt/homebrew/bin; then\n    PATH=/opt/homebrew/bin/:$PATH\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2ACC21B91E546CCF0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2701,7 +2701,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if test -d /opt/homebrew/bin; then\n    PATH=/opt/homebrew/bin/:$PATH\nfi\n\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2724,7 +2724,6 @@
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AA056AD26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
-				2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
@@ -2768,7 +2767,7 @@
 				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2AD69B891D3E4FCD00FBD998 /* Editable.swift in Sources */,
-				2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
+				2AF45E1F1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
@@ -2806,6 +2805,7 @@
 				2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */,
+				2AAD61F91D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
@@ -2885,7 +2885,6 @@
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
-				2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2A63A9D824E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
 				2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
@@ -2943,7 +2942,6 @@
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AB2243221A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
-				2AAD61F91D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */,
@@ -2963,6 +2961,7 @@
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
+				2A0F3EC027A26D1200FB27A3 /* TokenFormatter.swift in Sources */,
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
@@ -2978,6 +2977,7 @@
 				2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2A47955E27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift in Sources */,
 				2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3031,7 +3031,6 @@
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AA056AE26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
-				2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
@@ -3075,7 +3074,7 @@
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,
-				2AF45E1E1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
+				2AF45E1E1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
 				2A6FD9EA1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
@@ -3113,6 +3112,7 @@
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
+				2AAD61F81D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
@@ -3192,7 +3192,6 @@
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
-				2A42579E1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2A63A9D924E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
 				2AE7A8D920450FE600830830 /* OutlineViewController.swift in Sources */,
 				2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
@@ -3250,7 +3249,6 @@
 				2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2AB2243121A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
-				2AAD61F81D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */,
@@ -3270,6 +3268,7 @@
 				2A9082F21D32A9B500228F50 /* ThemeManager.swift in Sources */,
 				2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
+				2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */,
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
@@ -3286,6 +3285,7 @@
 				2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2A47955F27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

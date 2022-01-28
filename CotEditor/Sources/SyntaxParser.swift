@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,8 +58,8 @@ final class SyntaxParser {
     
     // MARK: Private Properties
     
-    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue", qos: .utility)
-    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue", qos: .userInitiated)
+    private var outlineParseTask: Task<Void, Error>?
+    private var highlightParseTask: Task<Void, Error>?
     
     private var highlightCache: Cache?  // results cache of the last whole string highlights
     
@@ -79,7 +79,7 @@ final class SyntaxParser {
         self.textEditingObserver = NotificationCenter.default.publisher(for: NSTextStorage.willProcessEditingNotification, object: textStorage)
             .map { $0.object as! NSTextStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
-            .sink { [weak self] _ in self?.syntaxHighlightParseOperationQueue.cancelAllOperations() }
+            .sink { [weak self] _ in self?.highlightParseTask?.cancel() }
     }
     
     
@@ -102,8 +102,8 @@ final class SyntaxParser {
     func invalidateCurrentParse() {
         
         self.highlightCache = nil
-        self.outlineParseOperationQueue.cancelAllOperations()
-        self.syntaxHighlightParseOperationQueue.cancelAllOperations()
+        self.outlineParseTask?.cancel()
+        self.highlightParseTask?.cancel()
     }
     
 }
@@ -126,19 +126,19 @@ extension SyntaxParser {
             return
         }
         
-        self.outlineItems = nil
-        
-        let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
-                                              string: self.textStorage.string.immutable,
-                                              range: self.textStorage.range)
-        operation.completionBlock = { [weak self, unowned operation] in
-            self?.outlineItems = !operation.isCancelled ? operation.results : []
-        }
-        
         // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
         //    since user cannot cancel it manually.
-        self.outlineParseOperationQueue.cancelAllOperations()
-        self.outlineParseOperationQueue.addOperation(operation)
+        self.outlineParseTask?.cancel()
+        self.outlineItems = nil
+        
+        let extractors = self.style.outlineExtractors
+        let string = self.textStorage.string.immutable
+        let range = self.textStorage.range
+        self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
+            self?.outlineItems = try extractors
+                .flatMap { try $0.items(in: string, range: range) }
+                .sorted(\.range.location)
+        }
     }
     
 }
@@ -154,7 +154,7 @@ extension SyntaxParser {
     /// - Parameters:
     ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
     /// - Returns: The progress of the async highlight task if performed.
-    func highlight(around editedRange: NSRange? = nil) -> Progress? {
+    @MainActor func highlight(around editedRange: NSRange? = nil) -> Progress? {
         
         assert(Thread.isMainThread)
         
@@ -248,36 +248,35 @@ extension SyntaxParser {
         assert(!highlightRange.isEmpty)
         assert(!self.style.isNone)
         
-        let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
-                                                                       pairedQuoteTypes: self.style.pairedQuoteTypes,
-                                                                       inlineCommentDelimiter: self.style.inlineCommentDelimiter,
-                                                                       blockCommentDelimiters: self.style.blockCommentDelimiters)
+        let definition = HighlightParser.Definition(extractors: self.style.highlightExtractors,
+                                                    pairedQuoteTypes: self.style.pairedQuoteTypes,
+                                                    inlineCommentDelimiter: self.style.inlineCommentDelimiter,
+                                                    blockCommentDelimiters: self.style.blockCommentDelimiters)
+        let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
         
-        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
-        
-        operation.completionBlock = { [weak self, weak operation, styleName = self.style.name] in
-            guard
-                let highlights = operation?.highlights,
-                let progress = operation?.progress,
-                !progress.isCancelled
-                else { return }
+        let task = Task.detached(priority: .userInitiated) { [weak self, styleName = self.style.name] in
+            let highlights = try await parser.parse()
             
-            DispatchQueue.main.async {
-                guard !progress.isCancelled else { return }
-                
-                if highlightRange == string.nsRange {
-                    self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
-                }
-                
+            try Task.checkCancellation()
+            
+            parser.progress.localizedDescription = "Applying colors to text".localized
+            
+            await MainActor.run { [weak self] in
                 self?.textStorage.apply(highlights: highlights, range: highlightRange)
-                
-                progress.completedUnitCount += 1
             }
+            
+            if highlightRange == string.nsRange {
+                self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
+            }
+            parser.progress.completedUnitCount += 1
         }
+        parser.progress.totalUnitCount += 1  // +1 for highlighting
+        parser.progress.cancellationHandler = { task.cancel() }
         
-        self.syntaxHighlightParseOperationQueue.addOperation(operation)
+        self.highlightParseTask?.cancel()
+        self.highlightParseTask = task
         
-        return operation.progress
+        return parser.progress
     }
     
 }
@@ -287,7 +286,7 @@ extension SyntaxParser {
 private extension NSTextStorage {
     
     /// apply highlights to the document
-    func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
+    @MainActor func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
         
         assert(Thread.isMainThread)
         
@@ -338,7 +337,7 @@ extension NSLayoutManager {
     ///
     /// - Parameter theme: The theme to apply.
     /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
-    func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
+    @MainActor func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
         
         assert(Thread.isMainThread)
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,14 +15,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="168" height="58"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK">
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK" customClass="WorkaroundOpacitySlider" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="32" y="4" width="104" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="IyE-hB-aRv"/>
                                 </constraints>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="nH9-7k-ekd"/>
                                 <connections>
-                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject.backgroundAlpha" id="6ud-qq-oFU"/>
+                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject.backgroundAlpha" id="vYd-Uj-7U5">
+                                        <dictionary key="options">
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </slider>
                             <customView toolTip="Opaque" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">

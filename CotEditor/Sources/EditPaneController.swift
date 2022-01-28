@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class EditPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private lazy dynamic var isValidCompletion: Bool = self.validateCompletionSetting()
+    @objc private dynamic lazy var isValidCompletion: Bool = self.validateCompletionSetting()
     
     @IBOutlet private weak var tabWidthField: NSTextField?
     @IBOutlet private weak var hangingIndentWidthField: NSTextField?

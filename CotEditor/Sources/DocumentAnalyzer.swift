@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ final class DocumentAnalyzer {
     
     // MARK: Public Properties
     
-    @Published private(set) var result: EditorCountResult?
+    @Published private(set) var result: EditorCountResult = .init()
     
     var shouldUpdate = false  // need to update all editor info
     var statusBarRequirements: EditorInfoTypes = []
@@ -43,8 +43,7 @@ final class DocumentAnalyzer {
     
     private var needsCountWholeText = true
     private lazy var updateTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
-    private let countOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.EditorInfoCountOperationQueue",
-                                                     qos: .userInitiated)
+    private var countTask: Task<Void, Error>?
     
     
     
@@ -58,7 +57,7 @@ final class DocumentAnalyzer {
     
     
     deinit {
-        self.countOperationQueue.cancelAllOperations()
+        self.countTask?.cancel()
     }
     
     
@@ -102,36 +101,31 @@ final class DocumentAnalyzer {
             self.requiredInfoTypes.isDisjoint(with: .cursors),
             textView.selectedRange.isEmpty
         {
-            self.result?.selectedCount = .init()
+            self.result.selectedCount = .init()
             return
         }
         
         let string = textView.string.immutable
         let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
-        let operation = EditorInfoCountOperation(string: string,
-                                                 lineEnding: document.lineEnding,
-                                                 selectedRange: selectedRange,
-                                                 requiredInfo: self.requiredInfoTypes,
-                                                 countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],
-                                                 countsWholeText: self.needsCountWholeText)
-        operation.qualityOfService = .utility
+        let countsWholeText = self.needsCountWholeText
+        let counter = EditorInfoCounter(string: string,
+                                        lineEnding: document.lineEnding,
+                                        selectedRange: selectedRange,
+                                        requiredInfo: self.requiredInfoTypes,
+                                        countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],
+                                        countsWholeText: countsWholeText)
         
-        operation.completionBlock = { [weak self, weak operation] in
-            guard let self = self, let operation = operation, !operation.isCancelled else { return }
+        self.countTask?.cancel()
+        self.countTask = Task { [unowned self] in
+            var result = try counter.count()
             
-            var result = operation.result
-            if operation.countsWholeText {
+            if countsWholeText {
                 self.needsCountWholeText = false
             } else {
-                result.count = self.result?.count ?? .init()
+                result.count = self.result.count
             }
             self.result = result
         }
-        
-        // cancel waiting operations to avoid stuck large operations
-        self.countOperationQueue.cancelAllOperations()
-        
-        self.countOperationQueue.addOperation(operation)
     }
     
 }

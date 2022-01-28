@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
     
-    private(set) lazy var urlDetectionQueue = OperationQueue(name: "com.coteditor.CotEditor.URLDetectionOperationQueue", qos: .utility)
+    var urlDetectionTask: Task<Void, Error>?
     
     
     // MARK: Private Properties
@@ -265,7 +265,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     deinit {
         self.insertionPointTimer?.cancel()
-        self.urlDetectionQueue.cancelAllOperations()
+        self.urlDetectionTask?.cancel()
     }
     
     
@@ -492,7 +492,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.completionTask.schedule(delay: .milliseconds(50))
         }
         
-        self.invalidateURLDetection()
+        if self.urlDetectionTask != nil {
+            self.detectLink()
+        }
     }
     
     
