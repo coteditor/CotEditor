@@ -1,0 +1,54 @@
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "0nP-0Q-Mgz"; */
+"0nP-0Q-Mgz.title" = "Etiket";
+
+/* Class = "NSView"; ibShadowedToolTip = "Opaque"; ObjectID = "8NN-KX-RmA"; */
+"8NN-KX-RmA.ibShadowedToolTip" = "Mat";
+
+/* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
+"Are-7I-6OR.title" = "Düzenleyici Matlığı";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "File Encoding"; ObjectID = "CUv-So-9Og"; */
+"CUv-So-9Og.ibShadowedToolTip" = "Dosya Kodlaması";
+
+/* Class = "NSView"; ibShadowedToolTip = "Transparent"; ObjectID = "EVo-Ee-gQ1"; */
+"EVo-Ee-gQ1.ibShadowedToolTip" = "Saydam";
+
+/* Class = "NSPopUpButton"; ibShadowedToolTip = "Line Endings"; ObjectID = "FNE-H9-iZR"; */
+"FNE-H9-iZR.ibShadowedToolTip" = "Satır Sonları";
+
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Uyumsuz Karakterler";
+
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "Belge Denetçisi";
+
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSMenuItem"; title = "Unicode (UTF-8)"; ObjectID = "fc5-iy-HpH"; */
+"fc5-iy-HpH.title" = "Unicode (UTF-8)";
+
+/* Class = "NSWindow"; title = "Untitled"; ObjectID = "gE4-1J-3li"; */
+"gE4-1J-3li.title" = "Adsız";
+
+/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
+"hyM-2j-hen.label" = "Anahat";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "-"; ObjectID = "mFj-hu-2co"; */
+"mFj-hu-2co.ibShadowedIsNilPlaceholder" = "-";
+
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
+"mS8-3F-93y.title" = "Satır Sonları";
+
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "q4F-Uw-VL4"; */
+"q4F-Uw-VL4.title" = "Dosya Kodlaması";
+
+/* Class = "NSTextFieldCell"; title = "64 MB"; ObjectID = "t1c-ZE-w5H"; */
+"t1c-ZE-w5H.title" = "64 MB";

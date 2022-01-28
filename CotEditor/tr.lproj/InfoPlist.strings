@@ -1,0 +1,81 @@
+/*
+ 
+ InfoPlist.strings (Japanese)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by 1024jp on 2015-01-01.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2021 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Descriptions for privacy authorization dialog
+"NSAppleEventsUsageDescription" = "CotEditor, başka uygulamaları AppleScript ile denetlemek için kullanıcı onayına gereksinim duyuyor.";  // "CotEditor needs user approval to control other applications with AppleScript."
+
+
+// Document Types
+"Text document" = "Metin belgesi";
+"Plain text" = "Düz metin";
+"CotEditor Theme" = "CotEditor teması";
+"CotEditor Replacement Definition" = "CotEditor değişiklik tanımı";
+"BibTeX" = "BibTeX";
+"Configuration" = "Yapılandırma";
+"C header" = "C üstbilgisi";
+"C source" = "C kaynağı";
+"C++ source" = "C++ kaynağı";
+"C++ header" = "C++ üstbilgisi";
+"C# source" = "C# kaynağı";
+"CoffeeScript" = "CoffeeScript";
+"Cascading Style Sheet" = "CSS";
+"D source" = "D kaynağı";
+"Dart script" = "Dart betiği";
+"Diff" = "Diff";
+"Document Type Definition" = "Belge türü tanımı";
+"Fortran Source" = "Fortran kaynağı";
+"Go script" = "Go betiği";
+"Haskell script" = "Haskell betiği";
+"HTML document" = "HTML belgesi";
+"INI" = "INI";
+"Java source" = "Java kaynağı";
+"JavaScript" = "JavaScript";
+"JSON document" = "JSON belgesi";
+"Julia script" = "Julia betiğe";
+"Kotlin source" = "Kotlin kaynağı";
+"Lisp script" = "Lisp betiği";
+"Lua script" = "Lua betiğe";
+"Markdown document" = "Markdown belgesi";
+"Perl script" = "Perl betiği";
+"PHP script" = "PHP betiği";
+"Python script" = "Python betiği";
+"reStructured Text document" = "reStructured Text belgesi";
+"Ruby script" = "Ruby betiği";
+"Rust script" = "Rust betiği";
+"Scalable Vector Graphics" = "SVG";
+"Scala source" = "Scala kaynağı";
+"Scheme script" = "Scheme betiği";
+"Shell script" = "Kabuk betiği";
+"SQL source" = "SQL kaynağı";
+"Swift source" = "Swift kaynağı";
+"TeX" = "TeX";
+"Textile document" = "Textile belgesi";
+"Tcl source" = "Tcl kaynağı";
+"Verilog source" = "Verilog kaynağı";
+"VHDL source" = "VHDL kaynağı";
+"XML document" = "XML belgesi";
+"YAML document" = "YAML belgesi";

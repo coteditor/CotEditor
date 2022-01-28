@@ -1,0 +1,707 @@
+/*
+ 
+ Localizable.strings (Japanese)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by nakamuxu on 2004-12-20.
+ 
+ ------------------------------------------------------------------------------
+ 
+ © 2004-2007 nakamuxu
+ © 2014-2021 1024jp
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Basic button titles
+"OK" = "Tamam";
+"Cancel" = "Vazgeç";
+
+
+// Appending words in parentheses
+" (%@)" = "（%@）";
+
+
+
+// Accessibility labels
+"inspector" = "denetçi";
+"outline" = "dış hat";
+"incompatible characters" = "uyumsuz karakterler";
+"status bar" = "durum çubuğu";
+"editor" = "düzenleyici";
+"navigation bar" = "dolaşım çubuğu";
+"line numbers" = "satır numaraları";
+"find result" = "arama sonucu";
+"Use print font" = "baskı yazıtipini kullan";
+
+
+
+// Main menu item titles
+"Check for Updates…" = "Güncellemeleri Denetle...";
+"What’s New in CotEditor %@" = "CotEditor %@ Sürümündeki Yenilikler";  // %@ is version number
+
+"Share" = "Paylaş";
+
+
+
+/* MARK: AppDelegate */
+// Importing theme
+"“%@” is a CotEditor theme file." = "“%@”, bir CotEditor tema dosyasıdır.";
+"Do you want to install this theme?" = "Bu temayı yüklemek istiyor musunuz?";
+"Install" = "Yükle";
+"Open as Text File" = "Metin Dosyası Olarak Aç";
+"A new theme named “%@” has been successfully installed." = "Yeni tema “%@” başarıyla yüklendi.";
+
+// Window title of issue report
+"Issue Report" = "Hata Bildir";
+
+
+
+/* MARK: Text Finder */
+"Replace" = "Değiştir";
+"Find All" = "Tümünü Bul";
+"Replace All" = "Tümünü Değiştir";
+"Highlight" = "Vurgula";
+"Searching in text…" = "Metinde aranıyor…";
+"%@ string found." = "%@ dizi bulundu.";
+"%@ strings found." = "%@ dizi bulundu.";
+"%@ string replaced." = "%@ dizi değiştirildi.";
+"%@ strings replaced." = "%@ dizi değiştirildi.";
+"Invalid regular expression" = "Geçersiz düzenli ifade";
+"Empty find string" = "Bulunacak dizi boş";
+"The option “in selection” is enabled, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
+"Input text to find." = "Bulunacak girdi metni";
+"Select the search scope in document or disable “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
+
+// accessibility announcement
+"Search wrapped." = "Arama baştan sürüyor";  // announced when the search restarted from the beginning.
+
+
+/* MARK: FindPanelController */
+"Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
+"Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
+"Not Found" = "Bulunamadı";
+"%@ found" = "%@ bulundu";  // %@ is number of founds
+"Not Replaced" = "Değiştirilmedi";
+"%@ replaced" = "%@ değiştirildi";  // %@ is number of replaced
+
+
+/* MARK: FindPanelResultViewController */
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
+"Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
+"Found %@ strings in “%@”." = "%2$@ içinde %1$@ dizi bulundu.";
+
+
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "Yalın Düzenli İfade Sözdizimi";
+
+"Characters" = "Karakterler";
+"any character" = "herhangi bir karakter";
+"new line character" = "yeni satır karakteri";
+"tab character" = "sekme karakteri";
+"word character" = "sözcük karakteri";
+"whitespace character" = "boşluk karakteri";
+"non-whitespace character" = "boşluk olmayan karakter";
+"decimal number" = "onluk sayı";
+"any character in range A to Z" = "A-Z erimindeki herhangi bir karakter";
+"any character not in range A to Z" = "A-Z eriminde bulunmayan herhangi bir karakter";
+
+"Anchors" = "Çapalar";
+"beginning of the line" = "satır başlangıcı";
+"end of the line" = "satır sonu";
+"word boundary" = "sözcük sınırı";
+
+"Quantifiers" = "Niceleyiciler";
+"1 or 0 times" = "1 veya 0 kez";
+"0 or more times" = "0 veya daha çok kez";
+"1 or more times" = "1 veya daha çok kez";
+"at least n but not more than m times" = "en az n; ancak m'den fazla değil";
+"at least n times" = "en az n kez";
+"at least 0 but not more than n times" = "en az 0; ancak n'den fazla değil";
+"n times" = "n kez";
+
+"Extended Groups" = "Genişletilmiş Gruplar";
+"look-ahead" = "öne bak";
+"look-behind" = "arkaya bak";
+
+"Back Reference" = "Geri Başvuru";
+"first match" = "ilk eşleşme";
+
+
+
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Kural Ekle";
+"Delete Rules" = "Kural Sil";
+"Edit Rule" = "Kural Düzenle";
+"Move Rules" = "Kural Taşı";
+
+
+
+/* MARK: Document Controller */
+// File open accessory's menu item title
+"Automatic" = "Otomatik";
+
+// Binary file alert
+"The file “%@” doesn’t appear to be text data." = "“%@” dosyası metin verisi gibi görünmüyor.";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "Dosya %@ gibi görünüyor.\n\nDosyayı gerçekten açmak istiyor musunuz?";
+
+// Large file alert
+"The file “%@” has a size of %@." = "“%@” dosyasının boyutu %@.";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "Bu kadar büyük bir dosyayı açmak uygulamayı yavaş veya tepkisiz yapabilir.\n\nDosyayı gerçekten açmak istiyor musunuz?";
+"Open" = "Aç";
+
+
+
+/* MARK: Document */
+// Undo action names
+"Encoding to “%@”" = "“%@” olarak kodlanıyor";
+"Line Endings to “%@”" = "Satır Sonları: “%@”";
+
+// Convert or reinterpret encoding alert
+"File encoding" = "Dosya Kodlaması";
+"Do you want to convert or reinterpret this document using “%@”?" = "Bu belgeyi “%@” kullanarak dönüştürmek veya yeniden yorumlamak istiyor musunuz?";
+"Convert" = "Dönüştür";
+"Reinterpret" = "Yeniden Yorumla";
+
+// Lossy encoding alert
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
+"Do you want to continue processing?" = "İşlemi sürdürmek istiyor musunuz?";
+"Save Available Text" = "Kullanılabilir Metni Kaydet";
+"Show Incompatible Characters" = "Uyumsuz Karakterleri Göster";
+
+// Encoding change with unsaved changes alert
+"The document has unsaved changes." = "Belgede kaydedilmemiş değişiklikler var.";
+"Do you want to discard the changes and reopen the document using “%@”?" = "Değişiklikleri atıp belgeyi、“%@” kullanarak yeniden açmak istiyor musunuz?";
+"Discard Changes" = "Değişiklikleri At";
+
+// Reinterpretation failed alert
+"The document doesn’t have a file to reinterpret." = "Belgede yeniden yorumlanacak bir dosya yok.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "“%1@” dosyası, “%2@” metin kodlaması kullanarak yeniden yorumlanamadı.";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "Dosya, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
+
+// incompatible characters alert
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
+"Do you want to change encoding and show incompatible characters?" = "Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";
+"Change Encoding" = "Kodlamayı Değiştir";
+
+// Modified by an external application alert
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor'da kaydedilmemiş değişiklikler var.";
+"The file has been modified by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditor'da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
+"Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
+"Update" = "Güncelle";
+
+
+
+/* MARK: Toolbar */
+"Syntax Style" = "Sözdizim Biçemi";
+// tooltip
+"Change syntax style" = "Sözdizim biçemini değiştirir";
+// menu item title
+"Recently Used" = "Son Kullanılan";
+"Deleted" = "Silinen";
+
+"Inspector" = "Denetçi";
+// tooltip
+"Show document information" = "Belge bilgisini gösterir";
+
+"Text Size" = "Metin Boyutu";
+"Smaller" = "Daha Küçük";
+"Bigger" = "Daha Büyük";
+// tooltip
+"Change text size" = "Metin boyutunu değiştirir";
+"Decrease text size" = "Metin boyutunu azaltır";
+"Increase text size" = "Metin boyutunu artırır";
+
+"Writing Direction" = "Yazım Yönü";
+"Left to Right" = "Soldan Sağa";
+"Right to Left" = "Sağdan Sola";
+// tooltip
+"Change writing direction" = "Yazım yönünü değiştirir";
+"Left to right" = "Soldan sağa yazar";
+"Right to left" = "Sağdan sola yazar";
+
+"Text Orientation" = "Metin Yönlendirmesi";
+"Horizontal" = "Yatay";
+"Vertical" = "Dikey";
+// tooltip
+"Toggle text orientation" = "Metin yönlendirmesini değiştirir";
+
+"Indent" = "Girintile";
+"Shift Left" = "Sola Kaydır";
+"Shift Right" = "Sağa Kaydır";
+// tooltip
+"Indent selection" = "Seçimi girintiler";
+"Shift lines to left" = "Satırları sola kaydırır";
+"Shift lines to right" = "Satırları sağa kaydırır";
+
+"Comment" = "Yorum Yap";
+// tooltip
+"Comment-out or uncomment selection" = "Seçimi yoruma dönüştürür veya kaldırır";
+
+"Tab Style" = "Sekme Biçemi";
+// tooltip
+"Disable expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırakır";
+"Expand tabs to spaces automatically" = "Sekmeleri kendiliğinden boşluklara dönüştürür";
+"Change tab width" = "Sekme genişliğini değiştirir";
+// menu
+"Tab Width" = "Sekme Genişliği";
+"Custom…" = "Özel…";
+
+"Wrap Lines" = "Satırları Kaydır";
+// tooltip
+"Unwrap lines" = "Satırları olduğu gibi bırakır";
+"Wrap lines" = "Satırları pencere kenarından geri döndürür";
+
+"Invisibles" = "Görünmez Karakterler";
+// tooltip
+"Hide invisible characters" = "Görünmez karakterleri gizle";
+"Show invisible characters" = "Görünmez karakterleri göster";
+
+"Indent Guides" = "Girintileme Kılavuzları";
+// tooltip
+"Hide indent guide lines" = "Girintileme kılavuz çizgilerini gizle";
+"Show indent guide lines" = "Girintileme kılavuz çizgilerini gizle";
+
+"Opacity" = "Matlık";
+// tooltip
+"Change editor’s opacity" = "Düzenleyici matlığını değiştir";
+
+"Spell Check" = "Yazım Denetimi";
+// tooltip
+"Show spelling and grammar" = "Yazım ve dilbilgisi denetimini gösterir";
+
+"Color Code" = "Renk Kodu";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "Renk kodu düzenleyicisini açar ve seçimi renk kodu olarak ayarlar";
+
+"Emoji & Symbols" = "Emoji ve Semboller";
+// tooltip
+"Show Emoji & Symbols palette" = "Emoji ve Semboller paletini gösterir";
+
+"Find" = "Bul";
+// tooltip
+"Show Find & Replace" = "Bul ve Değiştir'i gösterir";
+
+"Print" = "Yazdır";
+// tooltip
+"Print document" = "Belgeyi yazdırır";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "Belgeyi paylaşır";
+
+"Fonts" = "Yazıtipleri";
+// tooltip
+"Show Font Panel" = "Yazıtipleri panelini gösterir";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Document View
+"Invisibles" = "Görünmez Karakterler";
+"Indent Guides" = "Girintileme Kılavuzları";
+"Wrap Lines" = "Satırları Kaydır";
+
+// Touch bar item labels -Text View
+"Shift" = "Kaydır";
+"Comment" = "Yorum Yap";
+"Text Size" = "Metin Boyutu";
+"Actual Size" = "Gerçek Boyut";
+
+
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
+
+
+
+/* MARK: PrintAccessoryViewController */
+// Summary item names
+"Color" = "Renk";
+"Line Number" = "Satır Numarası";
+"Invisibles" = "Görünmez Karakterler";
+"Print Header" = "Üstbilgiyi Yazdır";
+"Primary Header" = "Birincil Üstbilgi";
+"Primary Header Alignment" = "Birincil Üstbilgi Hizalaması";
+"Secondary Header" = "İkincil Üstbilgi";
+"Secondary Header Alignment" = "İkincil Üstbilgi Hizalaması";
+"Print Footer" = "Altbilgiyi Yazdır";
+"Primary Footer" = "Birincil Altbilgi";
+"Primary Footer Alignment" = "Birincil Altbilgi Hizalaması";
+"Secondary Footer" = "İkincil Altbilgi";
+"Secondary Footer Alignment" = "İkincil Altbilgi Hizalaması";
+
+// Summary item values
+"On" = "Açık";
+"Off" = "Kapalı";
+"Don’t Print" = "Yazdırma!";
+"Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";
+"Black and White" = "Siyah ve Beyaz";
+"Print" = "Yazdır";
+"Syntax Name" = "Sözdizim Adı";
+"Document Name" = "Belge Adı";
+"File Path" = "Dosya Yolu";
+"Print Date" = "Yazdırma Tarihi";
+"Page Number" = "Sayfa Numarası";
+"Left" = "Sol";
+"Center" = "Orta";
+"Right" = "Sağ";
+
+
+
+/* MARK: Inspector */
+// Incompatible characters
+"No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";
+"Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
+
+
+/* MARK: EditorTextView */
+// Undo action names
+"Replace Text" = "Metin Değiştir";
+"Insert Text" = "Metin Ekle";
+"Insert Snippet" = "Kırpıntı Ekle";
+"Shift Right" = "Sağa Kaydır";
+"Shift Left" = "Sola Kaydır";
+"Convert Indentation" = "Girintilemeyi Dönüştür";
+"Comment Out" = "Yorum Yap";
+"Uncomment" = "Yorumu Kaldır";
+"To Snake Case" = "Yılan Biçime Dönüştür";
+"To Camel Case" = "Deve Biçime Dönüştür";
+"To Pascal Case" = "Paskal Biçime Dönüştür";
+"To Full-width" = "Tam Genişliğe Dönüştür";
+"To Half-width" = "Yarım Genişliğe Dönüştür";
+"To Full-width Roman" = "Latin Tam Genişliğe Dönüştür";
+"To Half-width Roman" = "Latin Yarım Genişliğe Dönüştür";
+"Hiragana to Katakana" = "Hiragana'dan Katakana'ya Dönüştür";
+"Katakana to Hiragana" = "Katakana'dan Hiragana'ya Dönüştür";
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Biçim Kıvır";
+"Modified NFC" = "Değiştirilmiş NFC";
+"Modified NFD" = "Değiştirilmiş NFD";
+"Inspect Character" = "Karakter Denetle";
+"Move Line" = "Satır Taşı";
+"Sort Lines" = "Satırları Sırala";
+"Reverse Lines" = "Satırları Tersine Çevir";
+"Delete Duplicate Lines" = "Çoğaltılan Satırları Sil";
+"Duplicate Line" = "Satır Yinele";
+"Delete Line" = "Satın Sil";
+"Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
+
+// Contextual menu items
+"Font" = "Yazıtipi";
+"Text" = "Metin";
+"Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
+"Select All" = "Tümünü Seç";
+"Straighten Quotes" = "Tırnakları Düzleştir";
+
+
+
+/* MARK: DocumentViewController */
+// Menu items
+"Hide Inspector" = "Denetçiyi Gizle";
+"Show Inspector" = "Denetçiyi Göster";
+"Hide Line Numbers" = "Satır Numaralarını Gizle";
+"Show Line Numbers" = "Satır Numaralarını Göster";
+"Hide Status Bar" = "Durum Çubuğunu Gizle";
+"Show Status Bar" = "Durum Çubuğunu Göster";
+"Hide Navigation Bar" = "Dolaşım Çubuğunu Gizle";
+"Show Navigation Bar" = "Dolaşım Çubuğunu Göster";
+"Hide Invisibles" = "Görünmez Karakterleri Gizle";
+"Show Invisibles" = "Görünmez Karakterleri Göster";
+"Hide Page Guide" = "Sayfa Kılavuzunu Gizle";
+"Show Page Guide" = "Sayfa Kılavuzunu Göster";
+"Hide Indent Guides" = "Girintileme Kılavuzunu Gizle";
+"Show Indent Guides" = "Girintileme Kılavuzunu Göster";
+"Unwrap Lines" = "Satırları Kaydırma!";
+"Wrap Lines" = "Satırları Kaydır";
+
+// Tooltip for "Show Invisibles" menu item
+"To show invisible characters, set them in Preferences" = "Görünmez karakterleri göstermek için ilgili ayarı Tercihler'den değiştirin";
+
+
+
+/* MARK: SplitViewController */
+// Menu items
+"Stack Editors Horizontally" = "Düzenleyicileri Yatay Yığ";
+"Stack Editors Vertically" = "Düzenleyicileri Dikey Yığ";
+
+
+
+/* MARK: StatusBarController */
+"Lines: " = "Satır: ";
+"Characters: " = "Karakter: ";
+"Length: " = "Uzunluk: ";
+"Words: " = "Sözcük: ";
+"Location: " = "Konum: ";
+"Line: " = "Satır: ";
+"Column: " = "Sütun: ";
+
+
+
+/* MARK: NavigationBarController */
+// Outline menu title
+"Jump to previous outline item" = "Bir önceki anahat ögesine atla";
+"Jump to next outline item" = "Bir sonraki anahat ögesine atla";
+"Extracting Outline…" = "Anahat çıkarılıyor…";
+
+
+
+/* MARK: SyntaxStyle */
+// Coloring indicator
+"Coloring text…" = "Metin renklendiriliyor…";
+"Please wait for a while." = "Lütfen bir süre bekleyin.";
+"Extracting %@…" = "Çıkarılma konumu: %@…";
+"Preparing coloring…" = "Renklendirme hazırlanıyor";
+"Applying colors to text" = "Metne renkler uygulanıyor";
+"keywords" = "anahtar sözcükler";
+"commands" = "komutlar";
+"types" = "türler";
+"attributes" = "öznitelikler";
+"variables" = "değişkenler";
+"values" = "değerler";
+"numbers" = "sayılar";
+"strings" = "diziler";
+"characters" = "karakterler";
+"comments" = "yorumlar";
+"comments and quoted texts" = "yorumlar ve tırnaklı metinler";
+
+
+
+/* MARK: ColorCodePanelController */
+// Undo action name
+"Insert Color Code" = "Renk Kodu Ekle";
+// Color list name
+"Stylesheet Keywords" = "Stil Sayfası Anahtar Sözcükleri";
+
+
+// General pane
+// Autosave setting update alert
+"The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
+"Do you want to restart CotEditor now?" = "CotEditor'ü şimdi yeniden başlatmak istiyor musunuz?";
+"Restart Now" = "Şimdi Yeniden Başlat";
+"Later" = "Daha Sonra";
+// command-line tool
+"installed at %@" = "%@ konumuna yüklendi";
+
+
+// Appearance pane
+// Contextual menu items
+"Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
+"Duplicate “%@”" = "“%@” Ögesini Çoğalt";
+"Restore “%@”" = "“%@” Ögesini Geri Yükle";
+"Reveal “%@” in Finder" = "“%@” Ögesini Finder'da Göster";
+// Theme deletion alert
+"Are you sure you want to delete “%@” theme?" = "“%@” temasını silmek istediğinize emin misiniz?";
+"This action cannot be undone." = "Bu eylem geri alınamaz.";
+
+// Swipe to delete (also used in the Format pane)
+"Delete" = "Sil";
+"Restore" = "Geri Yükle";
+
+
+// Format pane
+// Installed syntax styles action menu items
+"Duplicate “%@”…" = "“%@” Ögesini Çoğalt";
+"Export “%@”…" = "“%@” Ögesini Dışa Aktar";
+"Reveal “%@” in Finder" = "“%@” Ögesini Finder'da Göster";
+
+
+// File Drop pane
+// File drop setting deletion alert
+"Are you sure you want to delete the file drop setting for “%@”?" = "“%@” için dosya bırakma ayarını silmek istediğinize emin misiniz?";
+"Deleted setting can’t be restored." = "Silinen ayar geri yüklenemez.";
+
+
+// Print pane
+"Theme" = "Tema";
+
+
+// Integration pane
+// Warnings on Integration pane
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Geçerli 'cot' sembolik bağı, çalışan CotEditor'ü hedeflemiyor.";
+"The current 'cot' symbolic link may target an invalid path." = "Geçerli 'cot' sembolik bağı, geçersiz bir yolu hedefleyebilir.";
+
+
+
+/* MARK: SyntaxEditViewController */
+// Menu items
+"Keywords" = "Anahtar Sözcükler";
+"Commands" = "Komutlar";
+"Types" = "Türler";
+"Attributes" = "Öznitelikler";
+"Variables" = "Değişkenler";
+"Values" = "Değerler";
+"Numbers" = "Sayılar";
+"Strings" = "Diziler";
+"Characters" = "Karakterler";
+"Comments" = "Yorumlar";
+"Outline Menu" = "Anahat Menüsü";
+"Completion List" = "Tamamlama Listesi";
+"File Mapping" = "Dosya Eşlemleme";
+"Style Info" = "Biçem Bilgisi";
+"Syntax Validation" = "Sözdizim Doğrulama";
+
+// Syntax style validation results
+"No error found." = "Hata bulunamadı.";
+"An error found!" = "Bir hata bulundu!";
+"%i errors found!" = "%i hata bulundu!";
+"outline menu" = "anahat menüsü";
+
+
+
+/* MARK: SettingFileManager */
+"“%@” couldn’t be deleted." = "“%@”, silinemedi.";
+"“%@” couldn’t be imported." = "“%@”, içe aktarılamadı.";
+"No original file for “%@” was found." = "“%@” için özgün dosya bulunamadı.";
+
+// Setting filename warnings
+"Please choose another name." = "Lütfen başka bir ad seçin.";
+"Name can’t be empty." = "Ad boş bırakılamaz.";
+"You can’t use a name that contains “/”." = "“/” içeren bir ad kullanamazsınız.";
+"You can’t use a name that begins with a dot “.”." = "“.” ile başlayan bir ad kullanamazsınız.";
+"The name “%@” is already taken." = "“%@” adı halihazırda kullanılıyor.";
+
+
+
+/* MARK: SyntaxManager */
+// Style name
+"None" = "Hiçbiri";
+
+// Selected syntax style name was original
+"Bundled styles can’t be renamed." = "Uygulama ile gelen biçemler yeniden adlandırılamaz.";
+
+// Suffix of copied syntax coloring style
+"copy" = "kopyası";
+
+// Delete syntax style alert
+"Are you sure you want to delete “%@” syntax style?" = "“%@” sözdizim biçemini silmek istediğinize emin misiniz?";
+"Deleted style can’t be restored." = "Silinen biçemler geri yüklenemez.";
+"Delete" = "Sil";
+"Replace" = "Değiştir";
+
+// Import syntax style file choose openPanel button
+"Import" = "İçe Aktar";
+// Importing same name style alert
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "“%@” adlı yeni bir biçem yüklenecek; ancak aynı adlı başka bir biçem halihazırda var.";
+"Do you want to replace it?\nReplaced style can’t be restored." = "Yeni biçemle değiştirmek istiyor musunuz?\nDeğiştirilen biçem geri yüklenemez.";
+
+// Export syntax style file savePanel label
+"Export As:" = "Farklı Dışa Aktar:";
+
+// Syntax validation
+"Block comment needs both begin delimiter and end delimiter." = "Blok yorumlar hem başlangıç hem bitiş sınırlayıcısı gerektirir.";
+"Begin string" = "Başlangıç dizisi";
+"End string" = "Bitiş dizisi";
+"Regular expression" = "Düzenli ifade";
+"The same word is registered multiple times." = "Aynı sözcük birden çok kez kayıt edilmiş.";
+"Regular Expression: " = "Düzenli İfade: ";
+
+
+
+/* MARK: ThemeManager */
+// Theme names
+"Untitled" = "Adsız";
+"Customized Theme" = "Özelleştirilmiş Tema";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "“%@” adlı yeni bir tema yüklenecek; ancak aynı adlı başka bir tema halihazırda var.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Yeni temayla değiştirmek istiyor musunuz?\nDeğiştirilen tema geri yüklenemez.";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか？\n削除した定義は元に戻せません。";
+
+
+
+/* MARK: KeyBindingManager */
+// Label for text menu keybindings action
+"Insert Text %li" = "%li Metnini Ekle";
+
+// Keyboard key name
+"Space" = "Boşluk";
+
+// Warning messages
+"“%@” is already taken." = "“%@” halihazırda alınmış.";
+"“%@” does not include the Command key." = "“%@”, Command düğmesini içermiyor.";
+"“%@” includes the Command key." = "“%@”, Command düğmesini içeriyor.";
+"The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";
+"Please choose another key." = "Lütfen başka bir düğme seçin.";
+"Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
+"Please combine with other keys." = "Lütfen başka düğmeler ile ikileyin.";
+
+
+
+/* MARK: ScriptManager */
+// Menu items
+"Open Scripts Folder" = "Betikler Klasörünü Aç";
+
+// Script menu item tooltips
+"“Option + click” to open script in editor." = "“Option + tık”, betiği düzenleyicide açar.";
+
+
+
+/* MARK: Script */
+
+// No script target document errors
+"No document to get input." = "Girdi alınacak bir belge yok.";
+"No document to put output." = "Çıktı koyulacak bir belge yok.";
+
+// Script file error description
+"The script “%@” does not exist." = "“%@” betiği mevcut değil.";
+"The script file “%@” couldn’t be opened." = "“%@” betik dosyası açılamadı.";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "“%@” betiği çalıştırılamıyor; çünkü çalıştırmak için yeterli izinlere iye değilsiniz.";
+"The script “%@” couldn’t be read." = "“%@” betiği okunamadı.";
+
+// Script file error recovery suggestions
+"Check the script file." = "Betik dosyasını denetleyin.";
+"Check the permission of the script file." = "Betik dosyasının izinlerini denetleyin.";
+
+
+
+/* MARK: FileDropItem */
+// Descriptions about variables in the file drop feature
+"The dropped file absolute path." = "Bırakılan dosya mutlak yolu.";
+"The relative path between the dropped file and the document." = "Bırakılan dosya ve belge arasındaki göreli yol.";
+"The dropped file’s name including extension (if exists)." = "Bırakılan dosyanın varsa uzantısı dahil adı.";
+"The dropped file’s name without extension." = "Bırakılan dosyanın uzantısı hariç adı.";
+"The dropped file’s extension." = "Bırakılan dosyanın uzantısı.";
+"The dropped file’s extension (converted to lowercase)." = "Bırakılan dosyanın uzantısı (küçük harfe dönüştürülmüş).";
+"The dropped file’s extension (converted to uppercase)." = "Bırakılan dosyanın uzantısı (BÜYÜK harfe dönüştürülmüş).";
+"The parent directory name of dropped file." = "Bırakılan dosyanın üst dizininin adı.";
+"(If the dropped file is an image) image width." = "(Bırakılan dosya resim dosyasıysa) resim eni.";
+"(If the dropped file is an image) image height." = "(Bırakılan dosya resim dosyasıysa) resim boyu.";
+"(If the dropped file is a text file) file content." = "(Bırakılan dosya metin dosyasıysa) dosya içeriği.";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu";
+
+
+/* String extension */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "BOM ile %@";

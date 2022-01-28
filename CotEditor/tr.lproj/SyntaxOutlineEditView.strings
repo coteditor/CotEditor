@@ -1,0 +1,36 @@
+
+/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
+"00X-sB-42F.title" = "Altı çizili";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerCell.title" = "BY";
+
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerToolTip" = "Harf Biçimini Yok Say (BÜYÜK/küçük harf duyarsız)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
+"6hB-wJ-niI.headerCell.title" = "Açıklama";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jyv-nG-ZJJ"; */
+"Jyv-nG-ZJJ.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "note"; ObjectID = "NIK-yi-b5J"; */
+"NIK-yi-b5J.title" = "not";
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Anahat menü ögelerini çıkarmak için düzenli ifade";
+
+/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
+"fUz-0u-0D4.title" = "Eğik";
+
+/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
+"iub-mE-wGf.title" = "Kalın";
+
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Menü başlığı dizgisi";
+
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "(boş, tüm diziyle eşleşir)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "Düzenli İfade Dizisi";

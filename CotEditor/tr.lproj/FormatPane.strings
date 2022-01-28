@@ -1,0 +1,117 @@
+
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
+"12.title" = "Windows (CRLF)";
+
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
+"14.title" = "Klasik Mac OS (CR)";
+
+/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
+"15.title" = "macOS / Unix (LF)";
+
+/* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
+"3273.title" = "Öntanımlı satır sonları:";
+
+/* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
+"3275.title" = "Listeyi Düzenle…";
+
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Kodlama önceliği:";
+
+/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
+"3278.title" = "Öntanımlı metin kodlaması:";
+
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Belgedeki kodlama beyanına başvur";
+
+/* Class = "NSTextFieldCell"; title = "(Including outline menu)"; ObjectID = "3325"; */
+"3325.title" = "(Anahat menüsü dahil)";
+
+/* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
+"3326.title" = "Sözdizim vurgulamasını etkinleştir";
+
+/* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
+"3329.title" = "Öntanımlı sözdizim biçemi:";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
+"1lj-x8-ouD.title" = "İçe Aktar…";
+
+/* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
+"371-P0-KPK.title" = "Düzenle…";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "3aD-Fv-G8H"; */
+"3aD-Fv-G8H.title" = "Geri Yükle";
+
+/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
+"5oN-VC-ot9.title" = "Çoğalt…";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "7hV-jt-xSx"; */
+"7hV-jt-xSx.title" = "Table View Cell";
+
+/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "A7t-Ca-nZi"; */
+"A7t-Ca-nZi.title" = "Çoğalt…";
+
+/* Class = "NSMenuItem"; title = " "; ObjectID = "ALs-fV-C5A"; */
+"ALs-fV-C5A.title" = " ";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
+"AkE-0P-0FC.title" = "Finder'da Göster";
+
+/* Class = "NSMenuItem"; title = " "; ObjectID = "DiC-wB-BHi"; */
+"DiC-wB-BHi.title" = " ";
+
+/* Class = "NSMenuItem"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
+"FhP-Hj-cWE.title" = "Tüm Biçemleri Yeniden Yükle";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "FjK-rw-YKz"; */
+"FjK-rw-YKz.title" = "Kutu";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "Boş biçem ekle";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "IDp-GN-Aet"; */
+"IDp-GN-Aet.title" = "Dışa Aktar…";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
+"NDE-r5-xAF.title" = "Sil";
+
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "Düzenle";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "Seçili biçemi düzenle";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
+"Qwp-u8-Urf.title" = "Dışa Aktar…";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "Rh3-kc-Gte"; */
+"Rh3-kc-Gte.title" = "Paylaş";
+
+/* Class = "NSTableColumn"; headerCell.title = "Style Name"; ObjectID = "Tsu-pA-ACl"; */
+"Tsu-pA-ACl.headerCell.title" = "Biçem Adı";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
+"Zox-Ve-mru.title" = "Geri Yükle";
+
+/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "Bu biçem özelleştirilmiş.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "Seçili biçemi kaldır";
+
+/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
+"hyN-4W-57i.title" = "Dosya Eşlemleme Çakışmalarını Göster";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "oKF-f1-aVQ"; */
+"oKF-f1-aVQ.title" = "Text Cell";
+
+/* Class = "NSMenuItem"; title = "Syntax Action"; ObjectID = "sRJ-x0-fo7"; */
+"sRJ-x0-fo7.title" = "Sözdizim Eylemi";
+
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Kullanılabilir sözdizim biçemleri:";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "vs5-Ck-0Cf"; */
+"vs5-Ck-0Cf.title" = "Finder'da Göster";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "xRA-ND-YIE"; */
+"xRA-ND-YIE.title" = "Paylaş";

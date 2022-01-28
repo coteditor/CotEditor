@@ -1,0 +1,21 @@
+
+/* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
+"2AE-nU-rdc.headerCell.title" = "Dönüştürülen";
+
+/* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
+"Nhb-U5-BOF.headerCell.title" = "Karakter";
+
+/* Class = "NSTextFieldCell"; title = "bar"; ObjectID = "Ntt-M1-b4I"; */
+"Ntt-M1-b4I.title" = "çubuk";
+
+/* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
+"W1c-aP-XZa.title" = "Uyumsuz Karakterler";
+
+/* Class = "NSTextFieldCell"; title = "128"; ObjectID = "v00-eq-cAi"; */
+"v00-eq-cAi.title" = "128";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
+"weY-lf-jGz.headerCell.title" = "Satır";
+
+/* Class = "NSTextFieldCell"; title = "No incompatible characters were found."; ObjectID = "wsL-BG-Ii8"; */
+"wsL-BG-Ii8.title" = "Uyumsuz karakter bulunamadı.";

@@ -1,0 +1,66 @@
+
+/* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
+"5oj-ch-YiX.title" = "Unicode sözcük sınırlarını kullan";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
+"A5O-jt-o7T.ibShadowedToolTip" = "Arama, karakter biçimlerindeki genişlik ayrımlarını yok sayar (örn. ａ = a).";
+
+/* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "Dl6-kv-hhz"; */
+"Dl6-kv-hhz.title" = "Gelişmiş Bul Seçenekleri";
+
+/* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
+"Jug-Dk-JMZ.title" = "Genişlik ayrımlarını yok say";
+
+/* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
+"KBq-zH-H2M.title" = "İlerleme iletişim kutusunu kendiliğinden kapat";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */
+"KG4-LQ-sen.ibShadowedToolTip" = "Tam karakter eşliği";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
+"Lhw-9C-lgB.ibShadowedToolTip" = "^ ve $ karakterlerinin satır başı ve sonu ile eşleşmesine izin ver (çoklu satır).";
+
+/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "Na3-Ur-cf8"; */
+"Na3-Ur-cf8.title" = "Yalnızca tam sözcükle eşleş";
+
+/* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "OUc-5d-N7I"; */
+"OUc-5d-N7I.title" = "Aksan imlerini yok say";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
+"PLV-vr-cdI.ibShadowedToolTip" = "Değişim dizisinde meta karakterlerini ters eğik çizgi ile kaçırma";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
+"VMh-Tq-bq0.ibShadowedToolTip" = "Sözcük sınırlarını belirtmek için Unicode TR#29 kullan";
+
+/* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
+"XBp-LE-3Ry.title" = "Değişim sonrası bir sonraki eşleşmeyi seç";
+
+/* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "Xa9-i4-ELR"; */
+"Xa9-i4-ELR.title" = "Düzenli İfade Araması";
+
+/* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
+"YXU-NA-BZb.title" = "Çapalar satırlarla eşleşir";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritical marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
+"YYY-qb-T00.ibShadowedToolTip" = "Arama, aksan imlerini yok sayar (örn. ö = o).";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
+"c11-J5-UXF.ibShadowedToolTip" = ". karakterinin yenisatır karakteri dahil herhangi bir karakteri eşlemesine izin ver (tek satır).";
+
+/* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
+"d1L-6X-N8c.title" = "Metin Araması";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "eqE-mg-d9b"; */
+"eqE-mg-d9b.ibShadowedToolTip" = "Arama sonuçlarını tam sonuçlarla sınırla.";
+
+/* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
+"mY4-am-wla.title" = "Karakterleri açıkça birbirlerinden ayırt et";
+
+/* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
+"nqr-AM-oJQ.title" = "Nokta, satır ayırıcılarıyla eşleşir";
+
+/* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
+"o7S-uI-urg.title" = "Aramayı başa sar";
+
+/* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
+"rTR-zE-Wff.title" = "Değişim dizisini kaçırma";
