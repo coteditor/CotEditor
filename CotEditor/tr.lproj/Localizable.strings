@@ -470,7 +470,7 @@
 // Coloring indicator
 "Coloring text…" = "Metin renklendiriliyor…";
 "Please wait for a while." = "Lütfen bir süre bekleyin.";
-"Extracting %@…" = "Çıkarılma konumu: %@…";
+"Extracting %@…" = "%@ çıkarılıyor…";
 "Preparing coloring…" = "Renklendirme hazırlanıyor";
 "Applying colors to text" = "Metne renkler uygulanıyor";
 "keywords" = "anahtar sözcükler";
