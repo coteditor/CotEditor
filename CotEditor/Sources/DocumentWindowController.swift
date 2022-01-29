@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2021 1024jp
+//  © 2013-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -450,9 +450,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                     .map { (width) in
                         let item = NSMenuItem(title: String(width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
+                        item.indentationLevel = 1
                         return item
                     }
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
+                menu.items.last?.indentationLevel = 1
+                menu.addItem(.separator())
+                menu.addItem(withTitle: "Auto-Expand Tabs".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
@@ -461,6 +465,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.stateImages[.off] = NSImage(named: "tab.right")
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                 
                 return item
                 
@@ -472,6 +477,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.stateImages[.on] = NSImage(named: "text.unwrap")
                 item.stateImages[.off] = NSImage(named: "text.wrap")
                 item.action = #selector(DocumentViewController.toggleLineWrap)
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
             case .invisibles:
@@ -482,6 +488,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
                 item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
             case .indentGuides:
@@ -492,6 +499,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.stateImages[.on] = NSImage(named: "text.indentguides.hide")
                 item.stateImages[.off] = NSImage(named: "text.indentguides")
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
             case .opacity:
