@@ -280,17 +280,17 @@
                                             <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="LF" state="on" id="YT7-vd-3ih">
+                                            <menuItem title="LF" state="on" toolTip="macOS / Unix" id="YT7-vd-3ih">
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7EH-WW-zdr"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="CR" tag="1" id="J48-tF-WBo">
+                                            <menuItem title="CR" tag="1" toolTip="Classic Mac OS" id="J48-tF-WBo">
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7Dk-av-Fn2"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="CRLF" tag="2" id="Zo1-Cc-YBm">
+                                            <menuItem title="CRLF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="2Dg-7M-9om"/>
                                                 </connections>

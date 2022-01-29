@@ -35,6 +35,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Codificação padrão:";
+
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
 "3277.title" = "Prioridade de codificações:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */

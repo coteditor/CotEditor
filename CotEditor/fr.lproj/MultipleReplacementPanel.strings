@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -149,7 +149,7 @@
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */
 "lVk-We-BSj.title" = "Ignorer les différences de chasse";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "6W5-EH-kOg"; */
-"6W5-EH-kOg.ibShadowedToolTip" = "Ignore les différences de forme des caractères（par exemple : ａ = a).";
+"6W5-EH-kOg.ibShadowedToolTip" = "Ignore les différences de forme des caractères (par exemple : ａ = a).";
 
 
 /* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "eCk-TH-lBA"; */

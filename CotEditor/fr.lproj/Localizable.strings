@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2019-2021 CotEditor Project
+ © 2019-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 
 
 // Appending words in parentheses
-" (%@)" = "（%@）";
+" (%@)" = " (%@)";
 
 
 

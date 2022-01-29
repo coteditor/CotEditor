@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@
 "ZYM-tb-Csx.title" = "Raccourcis clavier pour les commandes du menu";
 
 /* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
-"Dl2-3y-7EJ.title" = "（sauf le menu Script）";
+"Dl2-3y-7EJ.title" = "(sauf le menu Script)";
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Pour changer une association, sélectionnez la, cliquez sur la colonne Raccourci, puis effectuez le raccourci désiré sur le clavier.";
