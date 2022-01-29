@@ -12,7 +12,7 @@
 "3393.title" = "Delete Separator";
 
 /* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
-"3394.title" = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.";
+"3394.title" = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritised.";
 
 /* Class = "NSTextFieldCell"; title = "Drag encodings to change the order:"; ObjectID = "3395"; */
 "3395.title" = "Drag encodings to change the order:";
