@@ -450,9 +450,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                     .map { (width) in
                         let item = NSMenuItem(title: String(width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
+                        item.indentationLevel = 1
                         return item
                     }
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
+                menu.items.last?.indentationLevel = 1
+                menu.addItem(.separator())
+                menu.addItem(withTitle: "Auto-Expand Tabs".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
@@ -461,6 +465,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.stateImages[.off] = NSImage(named: "tab.right")
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                 
                 return item
                 
