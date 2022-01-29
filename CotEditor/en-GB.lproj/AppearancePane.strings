@@ -6,7 +6,7 @@
 "3290.title" = "Anti-aliasing";
 
 /* Class = "NSButtonCell"; title = "Use system color"; ObjectID = "0ZP-Zp-oBu"; */
-"0ZP-Zp-oBu.title" = "Use system color";
+"0ZP-Zp-oBu.title" = "Use system colour";
 
 /* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
 "1Cg-21-kjr.title" = "Dark";
@@ -135,7 +135,7 @@
 "apQ-au-gOC.title" = "Match System";
 
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
-"ba7-dE-zXz.title" = "Change background color";
+"ba7-dE-zXz.title" = "Change background colour";
 
 /* Class = "NSTextFieldCell"; title = "Values:"; ObjectID = "cVK-ET-QiD"; */
 "cVK-ET-QiD.title" = "Values:";

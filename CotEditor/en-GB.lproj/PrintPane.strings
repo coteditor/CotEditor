@@ -111,7 +111,7 @@
 "3385.title" = "Select…";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
-"3388.title" = "Color:";
+"3388.title" = "Colour:";
 
 /* Class = "NSSegmentedCell"; 90p-SJ-bXq.ibShadowedToolTips[0] = "Align Left"; ObjectID = "90p-SJ-bXq"; */
 "90p-SJ-bXq.ibShadowedToolTips[0]" = "Align Left";

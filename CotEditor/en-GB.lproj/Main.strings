@@ -195,7 +195,7 @@
 "455.title" = "Shift Left";
 
 /* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
-"458.title" = "Re-Color All";
+"458.title" = "Re-Colour All";
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
 "538.title" = "Find";
@@ -276,7 +276,7 @@
 "633.title" = "Input Yen Mark";
 
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
-"641.title" = "Edit Color Code…";
+"641.title" = "Edit Colour Code…";
 
 /* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
 "653.title" = "Console";
