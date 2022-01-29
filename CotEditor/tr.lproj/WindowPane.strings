@@ -1,108 +1,98 @@
-
-/* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
-"3352.title" = "Sütundaki sayfa kılavuzu:";
-
-/* Class = "NSTextFieldCell"; title = "100%"; ObjectID = "0kZ-bJ-cKp"; */
-"0kZ-bJ-cKp.title" = "%100";
-
-/* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
-"10Z-Xd-CLV.title" = "Kendiliğinden";
-
-/* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
-"3Kb-bF-CW0.title" = "Soldan sağa";
-
-/* Class = "NSButtonCell"; title = "Line count"; ObjectID = "6jK-xX-8AH"; */
-"6jK-xX-8AH.title" = "Satır sayısı";
-
-/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "Fazla kaydırma:";
-
-/* Class = "NSTextFieldCell"; placeholderString = "Auto"; ObjectID = "7iv-Gh-RFp"; */
-"7iv-Gh-RFp.placeholderString" = "Otom.";
+//
+//  WindowPane.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 /* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
 "8zu-3V-Obg.title" = "Sekmeleri yeğle:";
 
-/* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
-"A9U-Sx-or3.title" = "Satır numaraları";
-
-/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
-"Bj6-2A-Nxj.title" = "Yatay";
-
-/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
-"Ge8-vU-lyg.title" = "Dikey";
-
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "Sistem Ayarını Koru";
-
-/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "Pencere genişliği:";
-
-/* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
-"JbR-gR-aiA.title" = "Geçerli satır";
-
+/* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
+"o1f-vR-aFm.title" = "Hiçbir zaman";  // The same as the popup menu selection in the System Preferences > "General"
+/* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
+"10Z-Xd-CLV.title" = "Kendiliğinden";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
-"OJs-2q-bg5.title" = "Her zaman";
+"OJs-2q-bg5.title" = "Her zaman";  // The same as the popup menu selection in the System Preferences > "General"
 
-/* Class = "NSTextFieldCell"; title = "Writing direction:"; ObjectID = "RwN-73-I8c"; */
-"RwN-73-I8c.title" = "Yazım yönü:";
-
-/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
-"SR0-Bx-Nh6.title" = "Sütun";
-
-/* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
-"USo-8p-Edc.title" = "Sağdan sola";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
-"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "Otomatik";
-
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
-"VCx-PO-Fnr.title" = "pks";
-
-/* Class = "NSTextFieldCell"; title = "0%"; ObjectID = "Vyw-D2-F9o"; */
-"Vyw-D2-F9o.title" = "%0";
-
-/* Class = "NSTextFieldCell"; title = "80"; ObjectID = "WaZ-sf-cKh"; */
-"WaZ-sf-cKh.title" = "80";
-
-/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "Yükseklik:";
-
-/* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */
-"ctl-Ps-V8Z.title" = "Konum";
-
-/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
-"dug-hV-7hj.title" = "Bölünmüş düzenleyici:";
-
-/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
-"gSx-LA-TPc.title" = "Düzenleyici matlığı:";
-
-/* Class = "NSButtonCell"; title = "Word count"; ObjectID = "hRw-gK-ONt"; */
-"hRw-gK-ONt.title" = "Sözcük sayımı";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
-"hye-gP-iep.ibShadowedIsNilPlaceholder" = "Otomatik";
-
-/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
-"ikB-dS-c4S.title" = "Dosya boyutu";
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
 "iw9-Ba-eD2.title" = "Göster:";
+/* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
+"A9U-Sx-or3.title" = "Satır numaraları";
+/* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
+"3352.title" = "Sütundaki sayfa kılavuzu:";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Auto"; ObjectID = "jlA-J9-dCP"; */
-"jlA-J9-dCP.placeholderString" = "Otomatik";
+/* Class = "NSTextFieldCell"; title = "Writing direction:"; ObjectID = "RwN-73-I8c"; */
+"RwN-73-I8c.title" = "Yazım yönü:";
+/* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
+"3Kb-bF-CW0.title" = "Soldan sağa";
+/* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
+"USo-8p-Edc.title" = "Sağdan sola";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
+"Ge8-vU-lyg.title" = "Dikey";
+
+/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
+"7Nz-lv-JZb.title" = "Fazla kaydırma:";
+
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
 "kjP-FS-fyd.title" = "Durum çubuğu şunları gösterir:";
-
-/* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "Hiçbir zaman";
-
+/* Class = "NSButtonCell"; title = "Line count"; ObjectID = "6jK-xX-8AH"; */
+"6jK-xX-8AH.title" = "Satır sayısı";
 /* Class = "NSButtonCell"; title = "Character count"; ObjectID = "sHZ-kO-Wvu"; */
 "sHZ-kO-Wvu.title" = "Karakter sayısı";
+/* Class = "NSButtonCell"; title = "Word count"; ObjectID = "hRw-gK-ONt"; */
+"hRw-gK-ONt.title" = "Sözcük sayımı";
+/* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */
+"ctl-Ps-V8Z.title" = "Konum";
+/* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
+"JbR-gR-aiA.title" = "Geçerli satır";
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
+"SR0-Bx-Nh6.title" = "Sütun";
+/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
+"ikB-dS-c4S.title" = "Dosya boyutu";
 
-/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
-"sQC-O4-YON.title" = "Dikey";
 
+/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "Pencere genişliği:";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
 "u8r-OW-Z1O.title" = "pks";
+/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "Yükseklik:";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
+"VCx-PO-Fnr.title" = "pks";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
+"hye-gP-iep.ibShadowedIsNilPlaceholder" = "Otom.";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
+"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "Otom.";
+
+/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
+"dug-hV-7hj.title" = "Bölünmüş düzenleyici:";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
+"sQC-O4-YON.title" = "Dikey";
+/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
+"Bj6-2A-Nxj.title" = "Yatay";
+
+/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
+"gSx-LA-TPc.title" = "Düzenleyici matlığı:";

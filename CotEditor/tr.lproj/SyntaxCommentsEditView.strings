@@ -1,66 +1,66 @@
-
-/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "1an-HZ-pD7"; */
-"1an-HZ-pD7.headerCell.title" = "Dizi Başı";
-
-/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "4qu-tU-wgL"; */
-"4qu-tU-wgL.placeholderString" = "Tanımlanmamış";
-
-/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "508-hG-5PG"; */
-"508-hG-5PG.title" = "Şununla başlayan:";
-
-/* Class = "NSTextFieldCell"; title = "End with:"; ObjectID = "5bm-Fa-IZj"; */
-"5bm-Fa-IZj.title" = "Şununla biten:";
-
-/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Bla-xg-t6E"; */
-"Bla-xg-t6E.headerCell.title" = "Açıklama";
-
-/* Class = "NSTextFieldCell"; title = "note"; ObjectID = "CWN-H0-LVV"; */
-"CWN-H0-LVV.title" = "not";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "Pcv-9r-6km"; */
-"Pcv-9r-6km.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
-
-/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "TSS-rl-L2D"; */
-"TSS-rl-L2D.placeholderString" = "Tanımlanmamış";
-
-/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "XJa-sc-hM6"; */
-"XJa-sc-hM6.headerCell.title" = "Dizi Sonu";
-
-/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "XJj-U2-0se"; */
-"XJj-U2-0se.headerCell.title" = "Dİ";
-
-/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "XJj-U2-0se"; */
-"XJj-U2-0se.headerToolTip" = "Düzenli İfade";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "a3u-7k-1dd"; */
-"a3u-7k-1dd.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+//
+//  SyntaxCommentsEditView.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 /* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "b3O-ZW-iIp"; */
 "b3O-ZW-iIp.title" = "Satır içi yorum:";
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "xWF-yX-yz5"; */
+"xWF-yX-yz5.title" = "Şununla başlayan:";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "4qu-tU-wgL"; */
+"4qu-tU-wgL.placeholderString" = "Tanımlanmamış";
 
 /* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "bUT-iW-c0x"; */
 "bUT-iW-c0x.title" = "Blok yorum:";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "dwo-oN-tBR"; */
-"dwo-oN-tBR.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
-
-/* Class = "NSTextFieldCell"; title = "end"; ObjectID = "ike-P3-f5j"; */
-"ike-P3-f5j.title" = "bitiş";
-
-/* Class = "NSTextFieldCell"; title = "begin"; ObjectID = "kSc-q8-TSC"; */
-"kSc-q8-TSC.title" = "başlangıç";
-
+/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "508-hG-5PG"; */
+"508-hG-5PG.title" = "Şununla başlayan:";
+/* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "TSS-rl-L2D"; */
+"TSS-rl-L2D.placeholderString" = "Tanımlanmamış";
+/* Class = "NSTextFieldCell"; title = "End with:"; ObjectID = "5bm-Fa-IZj"; */
+"5bm-Fa-IZj.title" = "Şununla biten:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "lMx-HP-1U1"; */
 "lMx-HP-1U1.placeholderString" = "Tanımlanmamış";
 
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "Pcv-9r-6km"; */
+"Pcv-9r-6km.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "a3u-7k-1dd"; */
+"a3u-7k-1dd.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "dwo-oN-tBR"; */
+"dwo-oN-tBR.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "1an-HZ-pD7"; */
+"1an-HZ-pD7.headerCell.title" = "Dizi Başı";
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "XJa-sc-hM6"; */
+"XJa-sc-hM6.headerCell.title" = "Dizi Sonu";
+/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "XJj-U2-0se"; */
+"XJj-U2-0se.headerCell.title" = "Dİ";
+/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "XJj-U2-0se"; */
+"XJj-U2-0se.headerToolTip" = "Düzenli İfade";
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "oI5-31-pDw"; */
 "oI5-31-pDw.headerCell.title" = "BY";
-
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "oI5-31-pDw"; */
 "oI5-31-pDw.headerToolTip" = "Harf Biçimini Yok Say (BÜYÜK/küçük harf duyarsız)";
-
-/* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "xWF-yX-yz5"; */
-"xWF-yX-yz5.title" = "Şununla başlayan:";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xae-A2-skh"; */
-"xae-A2-skh.title" = "Text Cell";
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Bla-xg-t6E"; */
+"Bla-xg-t6E.headerCell.title" = "Açıklama";

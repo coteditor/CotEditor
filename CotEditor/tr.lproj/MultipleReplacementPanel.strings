@@ -1,207 +1,175 @@
-
-/* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
-"0ca-Jy-pHT.title" = "Tüm Tanımları Yeniden Yükle";
-
-/* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "1sB-Qy-Kw8"; */
-"1sB-Qy-Kw8.title" = "Değişim dizisini kaçırma";
-
-/* Class = "NSMenuItem"; title = "Share"; ObjectID = "3hj-yI-UYg"; */
-"3hj-yI-UYg.title" = "Paylaş";
-
-/* Class = "NSMenuItem"; title = "Action"; ObjectID = "3mW-VX-9wW"; */
-"3mW-VX-9wW.title" = "Eylem";
-
-/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "Seçimde Bul";
-
-/* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "Değişimi bu kuralları yukarıdan aşağı sırada kullanarak gerçekleştir:";
-
-/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
-"5mf-DX-YT5.title" = "Dışa Aktar…";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "6HK-St-iDw"; */
-"6HK-St-iDw.ibShadowedToolTip" = "Sözcük sınırlarını belirtmek için Unicode TR#29 kullan";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "6W5-EH-kOg"; */
-"6W5-EH-kOg.ibShadowedToolTip" = "Arama, karakter biçimlerindeki genişlik ayrımlarını yok sayar (örn. ａ = a).";
-
-/* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "8PD-6z-H5u"; */
-"8PD-6z-H5u.title" = "Unicode sözcük sınırlarını kullan";
-
-/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
-"8TG-QH-hxz.title" = "İçe Aktar…";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "Değişim kurallarının tüm eşleşmelerini vurgula";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
-"9pO-Jw-K7x.ibShadowedToolTip" = "Arama, aksan imlerini yok sayar (örn. ö = o).";
-
-/* Class = "NSTextFieldCell"; title = "cow"; ObjectID = "DD9-M3-I3n"; */
-"DD9-M3-I3n.title" = "inek";
-
-/* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "ECw-cb-2hw"; */
-"ECw-cb-2hw.title" = "Nokta, satır ayırıcıları ile eşleşir";
-
-/* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "GU2-Em-4lt"; */
-"GU2-Em-4lt.title" = "Metin Araması";
-
-/* Class = "NSTextFieldCell"; title = "5 replaced"; ObjectID = "HU0-YI-OIX"; */
-"HU0-YI-OIX.title" = "5 değiştirildi";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
-"I23-3I-yq5.ibShadowedToolTip" = "Aramada harf biçimini yok saymak için seçin.";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "JiF-TN-azJ"; */
-"JiF-TN-azJ.ibShadowedToolTip" = "Tam karakter eşliği.";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "K6l-q4-Yed"; */
-"K6l-q4-Yed.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
-"KGb-Yh-gXR.title" = "Yeniden Adlandır";
-
-/* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
-"KTe-1r-oHM.headerToolTip" = "Etkinleştir";
-
-/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
-"LI2-Hh-D6g.title" = "Tümünü Değiştir";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "LVQ-fp-RdP"; */
-"LVQ-fp-RdP.title" = "Text Cell";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
-"Lk4-Ym-IrV.ibShadowedToolTip" = "Düzenli ifade ile aramak için seçin.";
-
-/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
-"M9A-ds-FNR.title" = "Sil";
-
-/* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "MJB-08-ddn"; */
-"MJB-08-ddn.title" = "Çapalar satırlarla eşleşir";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "MvV-de-6ru"; */
-"MvV-de-6ru.ibShadowedToolTip" = "^ ve $ karakterlerinin satır başı ve sonu ile eşleşmesine izin ver (çoklu satır).";
-
-/* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "NTu-fa-URI"; */
-"NTu-fa-URI.title" = "Gelişmiş Bul Seçenekleri";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
-"Nth-za-4Ad.ibShadowedToolTip" = "Tüm eşleşmeleri değişim kurallarına göre değiştir.";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Bu değişim kuralını etkinleştirmek için seçin.";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "QRo-Az-lq4"; */
-"QRo-Az-lq4.ibShadowedToolTip" = "Değişim dizisinde meta karakterlerini ters eğik çizgi ile kaçırma.";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "RZp-5N-6CY"; */
-"RZp-5N-6CY.title" = "Text Cell";
-
-/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
-"Rhy-iE-CIC.headerCell.title" = "Açıklama";
-
-/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerCell.title" = "Dİ";
-
-/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerToolTip" = "Düzenli İfade";
-
-/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "WWu-mC-MCz"; */
-"WWu-mC-MCz.title" = "Aksan imlerini yok say";
-
-/* Class = "NSMenuItem"; title = "Share"; ObjectID = "XIe-MY-JEs"; */
-"XIe-MY-JEs.title" = "Paylaş";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Y0I-oA-C5P"; */
-"Y0I-oA-C5P.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
-"ah0-d7-MIb.title" = "Yeni Tanım";
-
-/* Class = "NSTextFieldCell"; title = "Setting Name"; ObjectID = "cXu-L5-hWg"; */
-"cXu-L5-hWg.title" = "Ayar Adı";
-
-/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
-"cZ9-i9-VsM.title" = "Yeniden Adlandır";
-
-/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerCell.title" = "BY";
-
-/* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerToolTip" = "Harf Biçimlerini Yok Say";
-
-/* Class = "NSTextFieldCell"; title = "dog"; ObjectID = "dIq-un-bYZ"; */
-"dIq-un-bYZ.title" = "köpek";
-
-/* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "eCk-TH-lBA"; */
-"eCk-TH-lBA.title" = "Düzenli İfade Araması";
-
-/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
-"fN1-Tr-8T8.title" = "Dışa Aktar…";
-
-/* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
-"gRf-KM-GZo.title" = "Geçersiz kurallar atlanacaktır.";
-
-/* Class = "NSTextFieldCell"; title = "Lorem"; ObjectID = "gsY-y4-MMs"; */
-"gsY-y4-MMs.title" = "Lorem";
-
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Gelişmiş seçenekler";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "Gelişmiş seçenekleri ayarla";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "i9a-Ka-WUD"; */
-"i9a-Ka-WUD.title" = "Text Cell";
-
-/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
-"iZn-Pw-tgJ.title" = "İçe Aktar…";
-
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "Vurgula";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Match only whole word"; ObjectID = "lEO-tC-9zj"; */
-"lEO-tC-9zj.ibShadowedToolTip" = "Yalnızca tam sözcükle eşleş";
-
-/* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */
-"lVk-We-BSj.title" = "Genişlik ayrımlarını yok say";
-
-/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "mF9-q3-LmX"; */
-"mF9-q3-LmX.title" = "Çoğalt";
-
-/* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
-"nRC-aM-NZ2.headerCell.title" = "Şununla Değiştir";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "p1M-ap-Sov"; */
-"p1M-ap-Sov.ibShadowedToolTip" = ". karakterinin yenisatır karakteri dahil herhangi bir karakteri eşlemesine izin ver (tek satır).";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
-"pfM-xk-MrN.ibShadowedToolTip" = "Yalnızca seçimde metin değiştirmek için seçin.";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "qgJ-we-Z8n"; */
-"qgJ-we-Z8n.title" = "Text Cell";
+//
+//  MultipleReplacementPanel.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 /* Class = "NSWindow"; title = "Multiple Replace"; ObjectID = "rFC-87-Fxd"; */
 "rFC-87-Fxd.title" = "Çoklu Değiştir";
 
-/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "Finder'da Göster";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "sc4-zq-7sR"; */
-"sc4-zq-7sR.title" = "Text Cell";
 
+// MARK: Content list
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "mF9-q3-LmX"; */
+"mF9-q3-LmX.title" = "Çoğalt";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
+"cZ9-i9-VsM.title" = "Yeniden Adlandır";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
+"fN1-Tr-8T8.title" = "Dışa Aktar…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
 "tLz-9S-3we.title" = "Finder'da Göster";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
+"iZn-Pw-tgJ.title" = "İçe Aktar…";
+/* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
+"0ca-Jy-pHT.title" = "Tüm Tanımları Yeniden Yükle";
 
-/* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "tv3-0Q-m6B"; */
-"tv3-0Q-m6B.title" = "Karakterleri açıkça birbirinden ayırt et";
-
-/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "u12-3x-Oy6"; */
-"u12-3x-Oy6.title" = "Yalnızca tam sözcükleri eşleştir";
-
+/* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
+"ah0-d7-MIb.title" = "Yeni Tanım";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "zRC-iK-Noh"; */
 "zRC-iK-Noh.title" = "Çoğalt";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
+"KGb-Yh-gXR.title" = "Yeniden Adlandır";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
+"M9A-ds-FNR.title" = "Sil";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
+"5mf-DX-YT5.title" = "Dışa Aktar…";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
+"sYx-dd-JiV.title" = "Finder'da Göster";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
+"8TG-QH-hxz.title" = "İçe Aktar…";
+
+
+
+// MARK: Editor View
+
+/* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
+"5Ey-vx-5Sm.title" = "Değişimi bu kuralları yukarıdan aşağı sırada kullanarak gerçekleştir:";
+
+
+/* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
+"KTe-1r-oHM.headerToolTip" = "Etkinleştir";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
+"PuQ-No-wC1.ibShadowedToolTip" = "Bu değişim kuralını etkinleştirmek için seçin.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
 "zee-UW-TVR.headerCell.title" = "Bul";
+
+/* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
+"nRC-aM-NZ2.headerCell.title" = "Şununla Değiştir";
+
+/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
+"VtR-Qz-MBf.headerCell.title" = "Dİ";
+/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "VtR-Qz-MBf"; */
+"VtR-Qz-MBf.headerToolTip" = "Düzenli İfade";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
+"d3o-yf-jB4.headerCell.title" = "BY";
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
+"d3o-yf-jB4.headerToolTip" = "Harf Biçimlerini Yok Say";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
+"Rhy-iE-CIC.headerCell.title" = "Açıklama";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
+"Lk4-Ym-IrV.ibShadowedToolTip" = "Düzenli ifade ile aramak için seçin.";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
+"I23-3I-yq5.ibShadowedToolTip" = "Aramada harf biçimini yok saymak için seçin.";
+
+
+/* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
+"gRf-KM-GZo.title" = "Geçersiz kurallar atlanacaktır.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "Gelişmiş seçenekleri ayarla";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Gelişmiş seçenekler";
+
+/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
+"4lm-Fu-Fcf.title" = "Seçimde Bul";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
+"pfM-xk-MrN.ibShadowedToolTip" = "Yalnızca seçimde metin değiştirmek için seçin.";
+
+/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
+"kdu-Ni-M64.title" = "Vurgula";
+/* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
+"99C-Bz-ySi.ibShadowedToolTip" = "Değişim kurallarının tüm eşleşmelerini vurgula";
+
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
+"LI2-Hh-D6g.title" = "Tümünü Değiştir";
+/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
+"Nth-za-4Ad.ibShadowedToolTip" = "Tüm eşleşmeleri değişim kurallarına göre değiştir.";
+
+
+
+// MARK: Advanced Find Options
+
+/* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "NTu-fa-URI"; */
+"NTu-fa-URI.title" = "Gelişmiş Bul Seçenekleri";
+
+/* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "GU2-Em-4lt"; */
+"GU2-Em-4lt.title" = "Metin Araması";
+
+/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "u12-3x-Oy6"; */
+"u12-3x-Oy6.title" = "Yalnızca tam sözcükleri eşleştir";
+/* Class = "NSButton"; ibShadowedToolTip = "Match only whole word"; ObjectID = "lEO-tC-9zj"; */
+"lEO-tC-9zj.ibShadowedToolTip" = "Yalnızca tam sözcükle eşleş";
+
+/* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "tv3-0Q-m6B"; */
+"tv3-0Q-m6B.title" = "Karakterleri açıkça birbirinden ayırt et";
+/* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "JiF-TN-azJ"; */
+"JiF-TN-azJ.ibShadowedToolTip" = "Tam karakter eşliği.";
+
+/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "WWu-mC-MCz"; */
+"WWu-mC-MCz.title" = "Aksan imlerini yok say";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
+"9pO-Jw-K7x.ibShadowedToolTip" = "Arama, aksan imlerini yok sayar (örn. ö = o).";
+
+/* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */
+"lVk-We-BSj.title" = "Genişlik ayrımlarını yok say";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "6W5-EH-kOg"; */
+"6W5-EH-kOg.ibShadowedToolTip" = "Arama, karakter biçimlerindeki genişlik ayrımlarını yok sayar (örn. ａ = a).";
+
+
+/* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "eCk-TH-lBA"; */
+"eCk-TH-lBA.title" = "Düzenli İfade Araması";
+
+/* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "ECw-cb-2hw"; */
+"ECw-cb-2hw.title" = "Nokta, satır ayırıcıları ile eşleşir";
+/* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "p1M-ap-Sov"; */
+"p1M-ap-Sov.ibShadowedToolTip" = ". karakterinin yenisatır karakteri dahil herhangi bir karakteri eşlemesine izin ver (tek satır).";
+
+/* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "MJB-08-ddn"; */
+"MJB-08-ddn.title" = "Çapalar satırlarla eşleşir";
+/* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "MvV-de-6ru"; */
+"MvV-de-6ru.ibShadowedToolTip" = "^ ve $ karakterlerinin satır başı ve sonu ile eşleşmesine izin ver (çoklu satır).";
+
+/* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "8PD-6z-H5u"; */
+"8PD-6z-H5u.title" = "Unicode sözcük sınırlarını kullan";
+/* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "6HK-St-iDw"; */
+"6HK-St-iDw.ibShadowedToolTip" = "Sözcük sınırlarını belirtmek için Unicode TR#29 kullan";
+
+/* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "1sB-Qy-Kw8"; */
+"1sB-Qy-Kw8.title" = "Değişim dizisini kaçırma";
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "QRo-Az-lq4"; */
+"QRo-Az-lq4.ibShadowedToolTip" = "Değişim dizisinde meta karakterlerini ters eğik çizgi ile kaçırma.";
