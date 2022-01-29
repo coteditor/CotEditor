@@ -36,10 +36,11 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the current line number becomes 0 when the cursor is placed at the beginning of the document (thanks to Alex Newson!).
 - Fix an issue on macOS 12 Monterey that the user custom color did not applied to the i-beam cursor for the vertical layout.
 - Fix an issue in the document inspector that the character info section wrongly indicated the code point as `U+000A` for any kind of line eindings, even for CR (`U+000D`) and CRLF.
 - Fin an issue that the slider in the editor opacity toolbar item did not work when collapsed.
-- Fix an issue that some help buttons did not work (thanks to AlexNewson!).
+- Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix an issue that the editor's opacity change did not apply immediately.
 
 
