@@ -80,7 +80,7 @@
 /* Class = "NSTextFieldCell"; title = "Code Points"; ObjectID = "kna-yU-liB"; */
 "kna-yU-liB.title" = "Points de code";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
-"786-4C-69e.ibShadowedIsNilPlaceholder" = "Pas de sélection";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
+"sru-km-SZJ.ibShadowedIsNilPlaceholder" = "Pas de sélection";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
 "2ZU-Mi-aJz.ibShadowedToolTip" = "Sélectionnez un et un seul caractère pour afficher ses informations Unicode.";
