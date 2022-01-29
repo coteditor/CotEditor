@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kEF-7D-yxK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kEF-7D-yxK">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,7 +31,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4xv-p6-zQj">
-                                <rect key="frame" x="13" y="13" width="128" height="32"/>
+                                <rect key="frame" x="113" y="13" width="78" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xm5-Ft-kfG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -43,7 +44,10 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Wp-Ho-fpu">
-                                <rect key="frame" x="139" y="13" width="128" height="32"/>
+                                <rect key="frame" x="189" y="13" width="78" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="m6d-dZ-Lhn"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9Pu-Ep-7fQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -106,7 +110,7 @@ DQ
                             <constraint firstItem="Dnl-uB-u5M" firstAttribute="leading" secondItem="obh-7w-P4P" secondAttribute="trailing" constant="8" symbolic="YES" id="Xau-1X-3pe"/>
                             <constraint firstItem="Dnl-uB-u5M" firstAttribute="width" secondItem="vdD-2e-kYr" secondAttribute="width" id="bgm-M8-MGS"/>
                             <constraint firstItem="vdD-2e-kYr" firstAttribute="baseline" secondItem="dTZ-8D-7FW" secondAttribute="baseline" id="c4Y-VT-5dz"/>
-                            <constraint firstItem="4xv-p6-zQj" firstAttribute="leading" secondItem="qm0-mj-ZRs" secondAttribute="leading" constant="20" symbolic="YES" id="cC5-oF-8AI"/>
+                            <constraint firstItem="4xv-p6-zQj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qm0-mj-ZRs" secondAttribute="leading" constant="20" symbolic="YES" id="cC5-oF-8AI"/>
                             <constraint firstItem="2r3-Dy-uaU" firstAttribute="top" secondItem="qm0-mj-ZRs" secondAttribute="top" constant="20" symbolic="YES" id="dbz-Y7-Lqe"/>
                             <constraint firstItem="Dnl-uB-u5M" firstAttribute="baseline" secondItem="obh-7w-P4P" secondAttribute="baseline" id="fDj-gb-kwa"/>
                             <constraint firstItem="7Wp-Ho-fpu" firstAttribute="leading" secondItem="4xv-p6-zQj" secondAttribute="trailing" constant="12" symbolic="YES" id="kL9-1x-CHg"/>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Myb-sY-qpF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Myb-sY-qpF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -44,7 +45,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uvb-4S-TSI">
-                                <rect key="frame" x="85" y="13" width="76" height="32"/>
+                                <rect key="frame" x="57" y="13" width="78" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JUX-sh-0Ej">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -57,7 +58,10 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="njO-9y-ve9">
-                                <rect key="frame" x="159" y="13" width="52" height="32"/>
+                                <rect key="frame" x="133" y="13" width="78" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="fi2-Sm-u8f"/>
+                                </constraints>
                                 <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cuJ-kD-yiJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -84,6 +88,7 @@ DQ
                             <constraint firstItem="DMt-0X-EVj" firstAttribute="trailing" secondItem="njO-9y-ve9" secondAttribute="trailing" constant="20" symbolic="YES" id="2xp-jz-IHO"/>
                             <constraint firstItem="DMt-0X-EVj" firstAttribute="bottom" secondItem="NJS-4L-qUW" secondAttribute="bottom" constant="20" symbolic="YES" id="Bz1-Gv-rsW"/>
                             <constraint firstItem="I0q-j9-vwT" firstAttribute="leading" secondItem="DMt-0X-EVj" secondAttribute="leading" constant="20" symbolic="YES" id="LRQ-UD-iqg"/>
+                            <constraint firstItem="njO-9y-ve9" firstAttribute="width" secondItem="uvb-4S-TSI" secondAttribute="width" id="OHq-Ey-yuF"/>
                             <constraint firstItem="DMt-0X-EVj" firstAttribute="bottom" secondItem="uvb-4S-TSI" secondAttribute="bottom" constant="20" symbolic="YES" id="Rn7-w2-NZy"/>
                             <constraint firstItem="DMt-0X-EVj" firstAttribute="bottom" secondItem="njO-9y-ve9" secondAttribute="bottom" constant="20" symbolic="YES" id="TE6-ht-Y9Z"/>
                             <constraint firstItem="njO-9y-ve9" firstAttribute="top" secondItem="mSI-zk-I26" secondAttribute="bottom" constant="8" symbolic="YES" id="UpT-9q-eUt"/>

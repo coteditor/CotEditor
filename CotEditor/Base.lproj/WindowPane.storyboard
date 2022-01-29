@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -300,9 +301,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfv-mJ-E2k" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="136" y="96" width="48" height="21"/>
+                                        <rect key="frame" x="136" y="96" width="64" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="Kua-Lj-geS"/>
+                                            <constraint firstAttribute="width" constant="64" id="Kua-Lj-geS"/>
                                         </constraints>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" placeholderString="Auto" drawsBackground="YES" id="jlA-J9-dCP">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="yn0-hn-qBW">
@@ -324,7 +325,7 @@
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-el-9xy">
-                                        <rect key="frame" x="186" y="99" width="19" height="16"/>
+                                        <rect key="frame" x="202" y="99" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="VCx-PO-Fnr">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -332,7 +333,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
-                                        <rect key="frame" x="217" y="99" width="46" height="16"/>
+                                        <rect key="frame" x="233" y="99" width="46" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="height:" id="Zhk-Nt-kiD">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -340,7 +341,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XGK-jf-PNq" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="269" y="96" width="48" height="21"/>
+                                        <rect key="frame" x="285" y="96" width="64" height="21"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" placeholderString="Auto" drawsBackground="YES" id="7iv-Gh-RFp">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="sUS-DS-EEI">
                                                 <real key="minimum" value="100"/>
@@ -361,7 +362,7 @@
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-qH-I9N">
-                                        <rect key="frame" x="319" y="99" width="19" height="16"/>
+                                        <rect key="frame" x="351" y="99" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="u8r-OW-Z1O">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
