@@ -105,9 +105,9 @@ final class IncompatibleCharactersViewController: NSViewController {
                 .store(in: &self.scannerObservers)
             scanner.$isScanning
                 .map { $0
-                    ? "Scanning incompatible characters…"
+                    ? "Scanning incompatible characters…".localized
                     : scanner.incompatibleCharacters.isEmpty
-                    ? "No incompatible characters were found."
+                    ? "No incompatible characters were found.".localized
                     : nil
                 }
                 .receive(on: DispatchQueue.main)
