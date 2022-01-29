@@ -41,9 +41,6 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "-"; ObjectID = "GeV-8X-P1X"; */
 "GeV-8X-P1X.ibShadowedIsNilPlaceholder" = "-";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "Gog-5a-Rts"; */
-"Gog-5a-Rts.ibShadowedIsNilPlaceholder" = "Seçili karakter yok";
-
 /* Class = "NSTextFieldCell"; title = "420 (-rw-r--r--)"; ObjectID = "GuE-7g-f3W"; */
 "GuE-7g-f3W.title" = "420 (-rw-r--r--)";
 
@@ -116,7 +113,7 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "-"; ObjectID = "igM-5I-vUh"; */
 "igM-5I-vUh.ibShadowedIsNilPlaceholder" = "-";
 
-/* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
+/* Class = "NSTextFieldCell"; title = "Code Points"; ObjectID = "kna-yU-liB"; */
 "kna-yU-liB.title" = "Kod Noktaları";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
@@ -124,6 +121,9 @@
 
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "-"; ObjectID = "r3W-JM-h9l"; */
 "r3W-JM-h9l.ibShadowedIsNilPlaceholder" = "-";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
+"sru-km-SZJ.ibShadowedIsNilPlaceholder" = "Seçili karakter yok";
 
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
 "tZ6-05-eKf.title" = "Sözcük";
