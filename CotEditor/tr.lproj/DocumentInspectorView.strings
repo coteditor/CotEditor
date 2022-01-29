@@ -81,7 +81,7 @@
 /* Class = "NSTextFieldCell"; title = "Code Points"; ObjectID = "kna-yU-liB"; */
 "kna-yU-liB.title" = "Kod Noktaları";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "Gog-5a-Rts"; */
-"Gog-5a-Rts.ibShadowedIsNilPlaceholder" = "Seçili karakter yok";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
+"sru-km-SZJ.ibShadowedIsNilPlaceholder" = "Seçili karakter yok";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
 "2ZU-Mi-aJz.ibShadowedToolTip" = "Unicode bilgisini göstermek için tek bir karakter seçin.";
