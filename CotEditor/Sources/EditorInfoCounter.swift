@@ -225,7 +225,7 @@ final class EditorInfoCounter {
         try Task.checkCancellation()
         
         if self.requiredInfo.contains(.line) {
-            cursor.line = string.numberOfLines
+            cursor.line = max(string.numberOfLines, 1)
         }
         
         try Task.checkCancellation()
