@@ -231,10 +231,10 @@
 "598.title" = "NFKC";
 
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
-"599.title" = "Unicode Normalizations";
+"599.title" = "Unicode Normalisations";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode Normalizations";
+"600.title" = "Unicode Normalisations";
 
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition"; ObjectID = "601"; */
 "601.ibShadowedToolTip" = "Canonical Decomposition";
@@ -465,7 +465,7 @@
 "M1N-Fg-Bo4.title" = "CotEditor Scripting Guide";
 
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "Unofficial NFD-based normalization form used in HFS+";
+"NU7-EI-1Ct.ibShadowedToolTip" = "Unofficial NFD-based normalisation form used in HFS+";
 
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
 "NU7-EI-1Ct.title" = "Modified NFD (HFS+)";
@@ -633,7 +633,7 @@
 "mEh-BD-ZlV.title" = "Writing Direction";
 
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Unofficial NFC-based normalization form corresponding to Modified NFD";
+"n6C-Km-BM9.ibShadowedToolTip" = "Unofficial NFC-based normalisation form corresponding to Modified NFD";
 
 /* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
 "n6C-Km-BM9.title" = "Modified NFC (HFS+)";
