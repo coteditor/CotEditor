@@ -1,711 +1,597 @@
+//
+//  Main.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
-/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
-"5.title" = "Tümünü Öne Getir";
+// MARK: Dock Menu
 
-/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
-"19.title" = "Pencere";
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
+"qTb-gl-0V3.title" = "Yeni";
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
+"I1W-t0-8TD.title" = "Aç…";
 
-/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
-"23.title" = "Simge Durumuna Küçült";
 
-/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
-"24.title" = "Pencere";
 
-/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "29"; */
-"29.title" = "Ana Menü";
+// MARK: CotEditor
 
 /* Class = "NSMenuItem"; title = "CotEditor"; ObjectID = "56"; */
 "56.title" = "CotEditor";
-
 /* Class = "NSMenu"; title = "CotEditor"; ObjectID = "57"; */
 "57.title" = "CotEditor";
 
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
 "58.title" = "CotEditor Hakkında";
 
-/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
-"72.title" = "Aç…";
+/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
+"129.title" = "Tercihler…";
 
-/* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
-"73.title" = "Kapat";
+/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
+"130.title" = "Servisler";
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
+"131.title" = "Servisler";
 
-/* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
-"75.title" = "Kaydet";
+/* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
+"134.title" = "CotEditor'ü Gizle";
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
+"145.title" = "Diğerlerini Gizle";
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
+"150.title" = "Tümünü Göster";
 
-/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
-"77.title" = "Sayfa Yapısı…";
+/* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
+"136.title" = "CotEditor'den Çık";
 
-/* Class = "NSMenuItem"; title = "Print…"; ObjectID = "78"; */
-"78.title" = "Yazdır…";
 
-/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "80"; */
-"80.title" = "Farklı Kaydet…";
 
+// MARK: File
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
+"83.title" = "Dosya";
 /* Class = "NSMenu"; title = "File"; ObjectID = "81"; */
 "81.title" = "Dosya";
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "82"; */
 "82.title" = "Yeni";
+/* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
+"cTV-Rh-597.title" = "Yeni Pencere";
+/* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
+"WCp-4v-OPR.title" = "Yeni Sekme";
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
+"72.title" = "Aç…";
+/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
+"124.title" = "Son Kullanılanı Aç";
+/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
+"125.title" = "Son Kullanılanı Aç";
 
-/* Class = "NSMenuItem"; title = "File"; ObjectID = "83"; */
-"83.title" = "Dosya";
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
+"73.title" = "Kapat";
+/* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
+"75.title" = "Kaydet";
+/* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "80"; */
+"80.title" = "Farklı Kaydet…";
+
+/* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
+"112.title" = "Kaydedilene Geri Dön";
+
+/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
+"77.title" = "Sayfa Yapısı…";
+/* Class = "NSMenuItem"; title = "Print…"; ObjectID = "78"; */
+"78.title" = "Yazdır…";
+
+
+// MARK: Edit
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
+"163.title" = "Düzen";
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "169"; */
+"169.title" = "Düzen";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "158"; */
+"158.title" = "Geri Al";
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "173"; */
+"173.title" = "Yinele";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "160"; */
+"160.title" = "Kes";
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
+"157.title" = "Kopyala";
+/* Class = "NSMenuItem"; title = "Copy as Rich Text"; ObjectID = "j3t-7l-xSy"; */
+"j3t-7l-xSy.title" = "Zengin Metin Olarak Kopyala";
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
+"171.title" = "Yapıştır";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
+"164.title" = "Sil";
+/* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
+"Qa9-dA-CF1.title" = "Tamamla";
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
+"172.title" = "Tümünü Seç";
+/* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
+"Cwp-ys-LJc.title" = "Satır Seç";
+/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
+"0HX-j9-5jF.title" = "Sözcük Seç";
+
+/* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
+"631.title" = "Ters Eğik Çizgi Gir";
+/* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
+"633.title" = "Yen İmi Gir";
+/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Unicode Kod Noktası Olarak Gir…";
+
+/* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
+"2QI-XD-7pJ.title" = "Yazım ve Dilbilgisi Denetimi";
+/* Class = "NSMenu"; title = "Spelling"; ObjectID = "rKZ-vK-0OH"; */
+"rKZ-vK-0OH.title" = "Yazım Denetimi";
+/* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "uXu-vF-RqZ"; */
+"uXu-vF-RqZ.title" = "Yazım Denetimi ve Dilbilgisini Göster";
+/* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hIk-Nu-0X3"; */
+"hIk-Nu-0X3.title" = "Belgeyi Şimdi Denetle";
+/* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "9ny-sN-pmO"; */
+"9ny-sN-pmO.title" = "Yazarken Yazım Denetimi Yap";
+/* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "5eg-wx-S4p"; */
+"5eg-wx-S4p.title" = "Yazım ve Dilbilgisi Denetimi Yap";
+/* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "kQ8-FM-Cgx"; */
+"kQ8-FM-Cgx.title" = "Yazım Hatalarını Kendiliğinden Düzelt";
+
+/* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "yN3-iT-4Lq"; */
+"yN3-iT-4Lq.title" = "Değişimler";
+/* Class = "NSMenu"; title = "Substitutions"; ObjectID = "2wy-A5-6kZ"; */
+"2wy-A5-6kZ.title" = "Değişimler";
+/* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
+"7NX-1r-Wq7.title" = "Tırnakları Değiştir";
+/* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
+"9gl-1h-Yit.title" = "Tırnakları Düzleştir";
+/* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
+"hMS-qd-BCS.title" = "Tireleri Değiştir";
+/* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
+"ue7-85-H8l.title" = "Metin Değişimi";
+/* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
+"gqI-2M-XIx.title" = "Değişimleri Göster";
+/* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
+"QKD-ue-EQp.title" = "Akıllı Kopyala/Yapıştır";
+/* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
+"sza-9T-f4h.title" = "Akıllı Tırnaklar";
+/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
+"cIp-rb-QPk.title" = "Akıllı Tireler";
+/* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
+"PSn-PG-o9k.title" = "Metin Değişimi";
+
+/* Class = "NSMenuItem"; title = "Speech"; ObjectID = "gBe-fO-wVv"; */
+"gBe-fO-wVv.title" = "Konuşma";
+/* Class = "NSMenu"; title = "Speech"; ObjectID = "HZ8-G2-f8d"; */
+"HZ8-G2-f8d.title" = "Konuşma";
+/* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "4mJ-DV-Qjz"; */
+"4mJ-DV-Qjz.title" = "Konuşmayı Başlat";
+/* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "2rV-Ut-h4x"; */
+"2rV-Ut-h4x.title" = "Konuşmayı Durdur";
+
+
+
+// MARK: Format
+
+/* Class = "NSMenuItem"; title = "Format"; ObjectID = "247"; */
+"247.title" = "Biçim";
+/* Class = "NSMenu"; title = "Format"; ObjectID = "246"; */
+"246.title" = "Biçim";
+
+/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "294"; */
+"294.title" = "Satır Sonları";
+/* Class = "NSMenu"; title = "Line Endings"; ObjectID = "296"; */
+"296.title" = "Satır Sonları";
+/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "295"; */
+"295.title" = "macOS / Unix (LF)";
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "297"; */
+"297.title" = "Klasik Mac OS (CR)";
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
+"298.title" = "Windows (CRLF)";
+
+/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
+"299.title" = "Dosya Kodlaması";
+/* Class = "NSMenu"; title = "File Encoding"; ObjectID = "300"; */
+"300.title" = "Dosya Kodlaması";
+
+/* Class = "NSMenuItem"; title = "Syntax Style"; ObjectID = "302"; */
+"302.title" = "Sözdizim Biçemi";
+/* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
+"304.title" = "Sözdizim Biçemi";
+/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
+"458.title" = "Tümünü Yeniden Renklendir";
+
+/* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
+"410.title" = "Yazıtipi";
+/* Class = "NSMenu"; title = "Font"; ObjectID = "418"; */
+"418.title" = "Yazıtipi";
+
+/* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
+"424.title" = "Yazıtiplerini Göster";
+/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
+"405.title" = "Daha Büyük";
+/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
+"404.title" = "Daha Küçük";
+/* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
+"574.title" = "Saptanmışlara Dön";
+/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
+"745.title" = "Harf Yumuşatma";
+/* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
+"viH-Eo-wKz.title" = "Birleşik Harfler";
+
+/* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
+"djM-fI-MkN.title" = "Sekme Genişliği";
+/* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
+"xAm-b4-9CY.title" = "Sekme Genişliği";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
+"gMO-5n-fiJ.title" = "Özel…";
+/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+"hsG-8k-OKX.title" = "Sekmeleri Kendiliğinden Genişlet";
+
+/* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
+"788.title" = "Görünmez Karakterleri Göster";
+/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
+"Qqu-pI-Xz6.title" = "Girintileme Kılavuzlarını Göster";
+/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
+"749.title" = "Sayfa Kılavuzunu Göster";
+
+/* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
+"mEh-BD-ZlV.title" = "Yazım Yönü";
+/* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
+"hxr-2A-KYT.title" = "Yazım Yönü";
+/* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
+"6eV-nI-heo.title" = "Yönlendirme";
+/* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
+"jQ7-hG-AjA.title" = "Yatay";
+/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
+"bTd-nG-jjc.title" = "Dikey";
+/* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */
+"ICu-yD-nVi.title" = "Yön";
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
+"7pw-5S-ekC.title" = "Soldan Sağa";
+/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
+"clG-Ph-Iyz.title" = "Sağdan Sola";
+
+/* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
+"286.title" = "Satırları Kaydır";
+
+/* Class = "NSMenuItem"; title = "Theme"; ObjectID = "8z7-Jc-agP"; */
+"8z7-Jc-agP.title" = "Tema";
+/* Class = "NSMenu"; title = "Theme"; ObjectID = "165-HJ-Xty"; */
+"165-HJ-Xty.title" = "Tema";
+
+
+
+// MARK: View
+
+/* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
+"322.title" = "Görüntü";
+/* Class = "NSMenu"; title = "View"; ObjectID = "324"; */
+"324.title" = "Görüntü";
+
+/* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
+"612.title" = "Araç Çubuğunu Gizle";
+/* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
+"613.title" = "Araç Çubuğunu Özelleştir…";
+
+
+/* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
+"sYa-2o-iPk.title" = "Denetçi";
+/* Class = "NSMenu"; title = "Inspector"; ObjectID = "10j-rd-fWr"; */
+"10j-rd-fWr.title" = "Denetçi";
+/* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
+"564.title" = "Belge Denetçisi";
+/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
+"Gch-XD-tRl.title" = "Anahat";
+/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
+"679.title" = "Uyumsuz Karakterler";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "Denetçiyi Göster";
+
+/* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
+"681.title" = "Dolaşım Çubuğunu Göster";
+/* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
+"323.title" = "Satır Numaralarını Göster";
+/* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
+"325.title" = "Durum Çubuğunu Göster";
+
+/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
+"793.title" = "Bölünmüş Düzenleyici";
+/* Class = "NSMenuItem"; title = "Focus on Next Split Editor"; ObjectID = "794"; */
+"794.title" = "Odak Bir Sonraki Bölünmüş Düzenleyicide";
+/* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
+"795.title" = "Odak Bir Önceki Bölünmüş Düzenleyicide";
+/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
+"u46-te-4c4.title" = "Düzenleyicileri Dikey Yığ";
+/* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
+"796.title" = "Bölünmüş Düzenleyiciyi Kapat";
+
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "Düzenleyici Matlığını Değiştir…";
+
+/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "2da-fK-Nkg"; */
+"2da-fK-Nkg.title" = "Tam Ekrana Geç";
+
+
+
+// MARK: Text
+
+/* Class = "NSMenu"; title = "Text"; ObjectID = "578"; */
+"578.title" = "Metin";
+/* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
+"579.title" = "Metin";
+
+/* Class = "NSMenu"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
+"EYa-d3-sUR.title" = "Yorum";
+/* Class = "NSMenuItem"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
+"yph-qH-qNE.title" = "Yorum";
+/* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
+"LLy-Yx-tXI.title" = "Yorum Yapmayı Aç/Kapat";
+/* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
+"F6P-7N-LSf.title" = "İç Yorum";
+/* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
+"U5v-4k-2tq.title" = "Blok Yorum Yap";
+/* Class = "NSMenuItem"; title = "Uncomment"; ObjectID = "dob-yj-jf3"; */
+"dob-yj-jf3.title" = "Yorumu Kaldır";
+
+/* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
+"4h9-iu-ehP.title" = "Girintilendirme";
+/* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
+"YOd-Hk-eIa.title" = "Girintileme";
+/* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
+"454.title" = "Sağa Kaydır";
+/* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
+"455.title" = "Sola Kaydır";
+/* Class = "NSMenuItem"; title = "Convert Indentation to Spaces"; ObjectID = "EOT-3u-f0a"; */
+"EOT-3u-f0a.title" = "Girintilemeyi Boşluklara Dönüştür";
+/* Class = "NSMenuItem"; title = "Convert Indentation to Tabs"; ObjectID = "q32-Jm-eR3"; */
+"q32-Jm-eR3.title" = "Girintilemeyi Sekmelere Dönüştür";
+
+/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
+"Kb8-QD-tYZ.title" = "Satırlar";
+/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
+"BSD-be-CV9.title" = "Satırlar";
+/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
+"4t7-IA-1r3.title" = "Yukarı Taşı";
+/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
+"J59-OR-kzC.title" = "Aşağı Taşı";
+/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
+"OQl-Uo-yfn.title" = "Sırala";
+/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
+"lNH-Mh-pIE.title" = "Dizgiye Göre Sırala…";
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
+"xhf-NR-D2Q.title" = "Ters";
+/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
+"bjv-m0-tZq.title" = "Çoğaltılanları Sil";
+/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
+"m48-5E-yia.title" = "Satırı Çoğalt";
+/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
+"sFn-3j-pY5.title" = "Satır Sil";
+
+/* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
+"9dv-Zb-W60.title" = "Seçimi Şununla Sar";
+/* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
+"AUq-CT-rPl.title" = "Seçimi Şununla Sar";
+/* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
+"Srp-eD-10Q.title" = "Tek Tırnak";
+/* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
+"O8z-C9-ECD.title" = "Çift Tırnak";
+/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+"G3o-1h-GwR.title" = "Parantez";
+/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "Kıvrımlı Ayraç";
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Köşeli Ayraç";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
+"3VX-DL-PgT.title" = "Özel…";
+
+/* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
+"hBJ-Ge-278.title" = "Sondaki Boşlukları Sil";
+
+/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
+"GXo-ds-ygp.title" = "Dönüşümler";
+/* Class = "NSMenu"; title = "Transformations"; ObjectID = "b36-nH-7po"; */
+"b36-nH-7po.title" = "Dönüşümler";
+
+/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
+"RX2-gg-n33.title" = "Büyük Harf Yap";
+/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
+"ZrR-aL-1eB.title" = "Küçük Harf Yap";
+/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
+"LC4-lg-eO0.title" = "Büyük Harfe Dönüştür";
+
+/* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
+"F0I-F4-srF.title" = "Yılan Biçimi Yap";
+/* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
+"nlp-Gj-W9G.title" = "Deve Biçimi Yap";
+/* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
+"x1F-KX-2de.title" = "Paskal Biçimi Yap";
+
+/* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
+"dVK-1s-xJq.title" = "Yarım Genişlikten Tam Genişliğe";
+/* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
+"Skr-vI-7VN.title" = "Tam Genişlikten Yarım Genişliğe";
+/* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
+"586.title" = "ASCII'den Tam Genişlik ASCII'ye";
+/* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
+"588.title" = "Tam Genişlik ASCII'den ASCII'ye";
+
+/* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
+"XWV-by-mnw.title" = "Japonca Metin";
+/* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
+"592.title" = "Hiragana'dan Katakana'ya";
+/* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
+"594.title" = "Katakana'dan Hiragana'ya";
+
+/* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
+"600.title" = "Unicode Olağanlaştırmaları";
+/* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
+"599.title" = "Unicode Olağanlaştırmaları";
+
+/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
+"601.title" = "NFD";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition"; ObjectID = "601"; */
+"601.ibShadowedToolTip" = "Kurallara Uygun Kompozisyon";
+/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
+"602.title" = "NFC";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
+"602.ibShadowedToolTip" = "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon";
+/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
+"603.title" = "NFKD";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition"; ObjectID = "603"; */
+"603.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu";
+/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
+"598.title" = "NFKC";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
+"598.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon";
+/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
+"zuR-3K-9fs.title" = "NFKC Biçim Kıvırması";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
+"zuR-3K-9fs.ibShadowedToolTip" = "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor";
+/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
+"NU7-EI-1Ct.title" = "Değiştirilmiş NFD (HFS+)";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
+"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+'da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır";
+/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
+"n6C-Km-BM9.title" = "Değiştirilmiş NFC (HFS+)";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
+"n6C-Km-BM9.ibShadowedToolTip" = "Değiştirilmiş NFD'ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi";
+
+/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
+"663.title" = "Kodlama Adı Gir";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Insert encoding name as IANA charset name"; ObjectID = "663"; */
+"663.ibShadowedToolTip" = "Kodlama adını IANA karakter kümesi adı olarak gir";
+
+/* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
+"ToR-yH-ahH.title" = "Karakter Denetle";
+/* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
+"641.title" = "Renk Kodu Düzenle…";
+
+
+
+// MARK: Find
+
+/* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
+"538.title" = "Bul";
+/* Class = "NSMenu"; title = "Find"; ObjectID = "kGA-vM-cdL"; */
+"kGA-vM-cdL.title" = "Bul";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "eP6-ss-sUG"; */
+"eP6-ss-sUG.title" = "Bul…";
+/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
+"NwE-Cf-L9F.title" = "Sonrakini Bul";
+/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
+"wiV-Hh-7xU.title" = "Öncekini Bul";
+/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
+"l33-Nz-UAw.title" = "Seçili Metni Bul";
+/* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
+"HgR-ke-6gq.title" = "Tümünü Bul";
+/* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
+"ULf-cT-Xvb.title" = "Tüm Bulunan Eşleşmeleri Seç";
+/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
+"hTx-ef-3T2.title" = "Bulmak için Seçimi Kullan";
+/* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
+"kwa-lu-0Fz.title" = "Değiştirmek için Seçimi Kullan";
+/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
+"p4A-mE-Ve3.title" = "Seçime Atla";
+
+/* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
+"bnD-BP-sPi.title" = "Değiştir";
+/* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
+"KrV-3z-r5B.title" = "Değiştir ve Sonrakini Bul";
+/* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
+"5HV-xo-NTK.title" = "Tümünü Değiştir";
+/* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
+"o7K-sI-KJA.title" = "Çoklu Değiştir…";
+
+/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
+"JAO-3o-fRo.title" = "Vurgula";
+/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
+"5is-7G-OVT.title" = "Vurgulamayı Kaldır";
+
+/* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
+"9Lf-39-x5S.title" = "Bir Önceki Anahat Ögesini Seç";
+/* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
+"PWZ-Om-OhX.title" = "Sonraki Anahat Ögesini Seç";
+
+/* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
+"eIc-Sj-2mO.title" = "Satıra Git…";
+
+
+
+// MARK: Window
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "19"; */
+"19.title" = "Pencere";
+/* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
+"24.title" = "Pencere";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
+"23.title" = "Simge Durumuna Küçült";
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
+"203.title" = "Büyüt/Küçült";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
+"5.title" = "Tümünü Öne Getir";
+
+/* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
+"653.title" = "Konsol";
+
+
+
+// MARK: Script
+
+/* Class = "NSMenu"; title = "Script"; ObjectID = "616"; */
+"616.title" = "Betik";
+/* Class = "NSMenuItem"; title = "Script"; ObjectID = "617"; */
+"617.title" = "Betik";
+
+
+
+// MARK: Help
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "103"; */
 "103.title" = "Yardım";
-
 /* Class = "NSMenu"; title = "Help"; ObjectID = "106"; */
 "106.title" = "Yardım";
 
 /* Class = "NSMenuItem"; title = "CotEditor Help"; ObjectID = "111"; */
 "111.title" = "CotEditor Yardımı";
 
-/* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
-"112.title" = "Kaydedilene Geri Dön";
-
-/* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
-"124.title" = "Son Kullanılanı Aç";
-
-/* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
-"125.title" = "Son Kullanılanı Aç";
-
-/* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "126"; */
-"126.title" = "Menüyü Temizle";
-
-/* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
-"129.title" = "Tercihler…";
-
-/* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
-"130.title" = "Servisler";
-
-/* Class = "NSMenuItem"; title = "Services"; ObjectID = "131"; */
-"131.title" = "Servisler";
-
-/* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "CotEditor'ü Gizle";
-
-/* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
-"136.title" = "CotEditor'den Çık";
-
-/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
-"145.title" = "Diğerlerini Gizle";
-
-/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
-"150.title" = "Tümünü Göster";
-
-/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "157"; */
-"157.title" = "Kopyala";
-
-/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "158"; */
-"158.title" = "Geri Al";
-
-/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "160"; */
-"160.title" = "Kes";
-
-/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "163"; */
-"163.title" = "Düzen";
-
-/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
-"164.title" = "Sil";
-
-/* Class = "NSMenu"; title = "Edit"; ObjectID = "169"; */
-"169.title" = "Düzen";
-
-/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
-"171.title" = "Yapıştır";
-
-/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "172"; */
-"172.title" = "Tümünü Seç";
-
-/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "173"; */
-"173.title" = "Yinele";
-
-/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
-"203.title" = "Büyüt/Küçült";
-
-/* Class = "NSMenu"; title = "Format"; ObjectID = "246"; */
-"246.title" = "Biçim";
-
-/* Class = "NSMenuItem"; title = "Format"; ObjectID = "247"; */
-"247.title" = "Biçim";
-
-/* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
-"286.title" = "Satırları Kaydır";
-
-/* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "294"; */
-"294.title" = "Satır Sonları";
-
-/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "295"; */
-"295.title" = "macOS / Unix (LF)";
-
-/* Class = "NSMenu"; title = "Line Endings"; ObjectID = "296"; */
-"296.title" = "Satır Sonları";
-
-/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "297"; */
-"297.title" = "Klasik Mac OS (CR)";
-
-/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
-"298.title" = "Windows (CRLF)";
-
-/* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
-"299.title" = "Dosya Kodlaması";
-
-/* Class = "NSMenu"; title = "File Encoding"; ObjectID = "300"; */
-"300.title" = "Dosya Kodlaması";
-
-/* Class = "NSMenuItem"; title = "Syntax Style"; ObjectID = "302"; */
-"302.title" = "Sözdizim Biçemi";
-
-/* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
-"304.title" = "Sözdizim Biçemi";
-
-/* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
-"322.title" = "Görüntü";
-
-/* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
-"323.title" = "Satır Numaralarını Göster";
-
-/* Class = "NSMenu"; title = "View"; ObjectID = "324"; */
-"324.title" = "Görüntü";
-
-/* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
-"325.title" = "Durum Çubuğunu Göster";
-
-/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "Düzenleyici Matlığını Değiştir…";
-
-/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
-"404.title" = "Daha Küçük";
-
-/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
-"405.title" = "Daha Büyük";
-
-/* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
-"410.title" = "Yazıtipi";
-
-/* Class = "NSMenu"; title = "Font"; ObjectID = "418"; */
-"418.title" = "Yazıtipi";
-
-/* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
-"424.title" = "Yazıtiplerini Göster";
-
-/* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
-"454.title" = "Sağa Kaydır";
-
-/* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
-"455.title" = "Sola Kaydır";
-
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
-"458.title" = "Tümünü Yeniden Renklendir";
-
-/* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
-"538.title" = "Bul";
-
-/* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
-"564.title" = "Belge Denetçisi";
-
-/* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
-"574.title" = "Saptanmışlara Dön";
-
-/* Class = "NSMenu"; title = "Text"; ObjectID = "578"; */
-"578.title" = "Metin";
-
-/* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
-"579.title" = "Metin";
-
-/* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
-"586.title" = "ASCII'den Tam Genişlik ASCII'ye";
-
-/* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
-"588.title" = "Tam Genişlik ASCII'den ASCII'ye";
-
-/* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
-"592.title" = "Hiragana'dan Katakana'ya";
-
-/* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
-"594.title" = "Katakana'dan Hiragana'ya";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
-"598.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon";
-
-/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
-"598.title" = "NFKC";
-
-/* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
-"599.title" = "Unicode Olağanlaştırmaları";
-
-/* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode Olağanlaştırmaları";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition"; ObjectID = "601"; */
-"601.ibShadowedToolTip" = "Kurallara Uygun Kompozisyon";
-
-/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
-"601.title" = "NFD";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
-"602.ibShadowedToolTip" = "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon";
-
-/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
-"602.title" = "NFC";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition"; ObjectID = "603"; */
-"603.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu";
-
-/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
-"603.title" = "NFKD";
-
-/* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
-"612.title" = "Araç Çubuğunu Gizle";
-
-/* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "Araç Çubuğunu Özelleştir…";
-
-/* Class = "NSMenu"; title = "Script"; ObjectID = "616"; */
-"616.title" = "Betik";
-
-/* Class = "NSMenuItem"; title = "Script"; ObjectID = "617"; */
-"617.title" = "Betik";
-
+/* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
+"M1N-Fg-Bo4.title" = "CotEditor Betik Yazım Kılavuzu";
+/* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
+"OLa-Mb-rXS.title" = "CotEditor Betik Yazım Kılavuzu";
+/* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
+"u2o-8v-WPL.title" = "Betik Yazımı Hakkında";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
 "620.title" = "AppleScript Sözlüğü";
 
-/* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
-"631.title" = "Ters Eğik Çizgi Gir";
-
-/* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
-"633.title" = "Yen İmi Gir";
-
-/* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
-"641.title" = "Renk Kodu Düzenle…";
-
-/* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
-"653.title" = "Konsol";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Insert encoding name as IANA charset name"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "Kodlama adını IANA karakter kümesi adı olarak gir";
-
-/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
-"663.title" = "Kodlama Adı Gir";
-
-/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "Uyumsuz Karakterler";
-
-/* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
-"681.title" = "Dolaşım Çubuğunu Göster";
-
-/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
-"745.title" = "Harf Yumuşatma";
-
-/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
-"749.title" = "Sayfa Kılavuzunu Göster";
-
-/* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
-"788.title" = "Görünmez Karakterleri Göster";
-
-/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
-"793.title" = "Bölünmüş Düzenleyici";
-
-/* Class = "NSMenuItem"; title = "Focus on Next Split Editor"; ObjectID = "794"; */
-"794.title" = "Odak Bir Sonraki Bölünmüş Düzenleyicide";
-
-/* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
-"795.title" = "Odak Bir Önceki Bölünmüş Düzenleyicide";
-
-/* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
-"796.title" = "Bölünmüş Düzenleyiciyi Kapat";
-
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "Sürüm Notları";
-
+/* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
+"DCW-Ij-540.title" = "CotEditor'deki Yenilikler";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Teşekkürler";
 
-/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
-"0HX-j9-5jF.title" = "Sözcük Seç";
-
-/* Class = "NSMenu"; title = "Inspector"; ObjectID = "10j-rd-fWr"; */
-"10j-rd-fWr.title" = "Denetçi";
-
-/* Class = "NSMenu"; title = "Theme"; ObjectID = "165-HJ-Xty"; */
-"165-HJ-Xty.title" = "Tema";
-
-/* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
-"2QI-XD-7pJ.title" = "Yazım ve Dilbilgisi Denetimi";
-
-/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "2da-fK-Nkg"; */
-"2da-fK-Nkg.title" = "Tam Ekrana Geç";
-
-/* Class = "NSMenuItem"; title = "Stop Speaking"; ObjectID = "2rV-Ut-h4x"; */
-"2rV-Ut-h4x.title" = "Konuşmayı Durdur";
-
-/* Class = "NSMenu"; title = "Substitutions"; ObjectID = "2wy-A5-6kZ"; */
-"2wy-A5-6kZ.title" = "Değişimler";
-
-/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
-"3VX-DL-PgT.title" = "Özel…";
-
-/* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
-"4h9-iu-ehP.title" = "Girintilendirme";
-
-/* Class = "NSMenuItem"; title = "Start Speaking"; ObjectID = "4mJ-DV-Qjz"; */
-"4mJ-DV-Qjz.title" = "Konuşmayı Başlat";
-
-/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
-"4t7-IA-1r3.title" = "Yukarı Taşı";
-
-/* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
-"5HV-xo-NTK.title" = "Tümünü Değiştir";
-
-/* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "5eg-wx-S4p"; */
-"5eg-wx-S4p.title" = "Yazım ve Dilbilgisi Denetimi Yap";
-
-/* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Vurgulamayı Kaldır";
-
-/* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
-"6eV-nI-heo.title" = "Yönlendirme";
-
-/* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
-"7NX-1r-Wq7.title" = "Tırnakları Değiştir";
-
-/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
-"7pw-5S-ekC.title" = "Soldan Sağa";
-
-/* Class = "NSMenuItem"; title = "3"; ObjectID = "8hL-SQ-WlX"; */
-"8hL-SQ-WlX.title" = "3";
-
-/* Class = "NSMenuItem"; title = "Theme"; ObjectID = "8z7-Jc-agP"; */
-"8z7-Jc-agP.title" = "Tema";
-
-/* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
-"9Lf-39-x5S.title" = "Bir Önceki Anahat Ögesini Seç";
-
-/* Class = "NSMenuItem"; title = "Surround Selection With"; ObjectID = "9dv-Zb-W60"; */
-"9dv-Zb-W60.title" = "Seçimi Şununla Sar";
-
-/* Class = "NSMenuItem"; title = "8"; ObjectID = "9e0-Q5-Oqh"; */
-"9e0-Q5-Oqh.title" = "8";
-
-/* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
-"9gl-1h-Yit.title" = "Tırnakları Düzleştir";
-
-/* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "9ny-sN-pmO"; */
-"9ny-sN-pmO.title" = "Yazarken Yazım Denetimi Yap";
-
-/* Class = "NSMenu"; title = "Surround Selection With"; ObjectID = "AUq-CT-rPl"; */
-"AUq-CT-rPl.title" = "Seçimi Şununla Sar";
-
-/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
-"BSD-be-CV9.title" = "Satırlar";
-
-/* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
-"Bk3-xx-uft.title" = "Hata Bildir";
-
-/* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
-"Cwp-ys-LJc.title" = "Satır Seç";
-
-/* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor'deki Yenilikler";
-
-/* Class = "NSMenuItem"; title = "Convert Indentation to Spaces"; ObjectID = "EOT-3u-f0a"; */
-"EOT-3u-f0a.title" = "Girintilemeyi Boşluklara Dönüştür";
-
-/* Class = "NSMenu"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
-"EYa-d3-sUR.title" = "Yorum";
-
-/* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
-"F0I-F4-srF.title" = "Yılan Biçimi Yap";
-
-/* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
-"F6P-7N-LSf.title" = "İç Yorum";
-
-/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "Parantez";
-
-/* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
-"GXo-ds-ygp.title" = "Dönüşümler";
-
-/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
-"Gch-XD-tRl.title" = "Anahat";
-
-/* Class = "NSMenu"; title = "Speech"; ObjectID = "HZ8-G2-f8d"; */
-"HZ8-G2-f8d.title" = "Konuşma";
-
-/* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
-"HgR-ke-6gq.title" = "Tümünü Bul";
-
-/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
-"I1W-t0-8TD.title" = "Aç…";
-
-/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
-"I2p-KB-gxR.title" = "Denetçiyi Göster";
-
-/* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */
-"ICu-yD-nVi.title" = "Yön";
-
-/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
-"J59-OR-kzC.title" = "Aşağı Taşı";
-
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "Vurgula";
-
-/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
-"Kb8-QD-tYZ.title" = "Satırlar";
-
-/* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
-"KrV-3z-r5B.title" = "Değiştir ve Sonrakini Bul";
-
-/* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Büyük Harfe Dönüştür";
-
-/* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "Yorum Yapmayı Aç/Kapat";
-
-/* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "CotEditor Betik Yazım Kılavuzu";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+'da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır";
-
-/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "Değiştirilmiş NFD (HFS+)";
-
-/* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
-"NwE-Cf-L9F.title" = "Sonrakini Bul";
-
-/* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
-"O8z-C9-ECD.title" = "Çift Tırnak";
-
-/* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "CotEditor Betik Yazım Kılavuzu";
-
-/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
-"OQl-Uo-yfn.title" = "Sırala";
-
-/* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
-"PSn-PG-o9k.title" = "Metin Değişimi";
-
-/* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
-"PWZ-Om-OhX.title" = "Sonraki Anahat Ögesini Seç";
-
-/* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
-"QKD-ue-EQp.title" = "Akıllı Kopyala/Yapıştır";
-
-/* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
-"Qa9-dA-CF1.title" = "Tamamla";
-
-/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Girintileme Kılavuzlarını Göster";
-
-/* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
-"RX2-gg-n33.title" = "Büyük Harf Yap";
-
-/* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
-"Skr-vI-7VN.title" = "Tam Genişlikten Yarım Genişliğe";
-
-/* Class = "NSMenuItem"; title = "Single Quotes"; ObjectID = "Srp-eD-10Q"; */
-"Srp-eD-10Q.title" = "Tek Tırnak";
-
-/* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
-"ToR-yH-ahH.title" = "Karakter Denetle";
-
-/* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
-"U5v-4k-2tq.title" = "Blok Yorum Yap";
-
-/* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
-"ULf-cT-Xvb.title" = "Tüm Bulunan Eşleşmeleri Seç";
-
-/* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
-"WCp-4v-OPR.title" = "Yeni Sekme";
-
-/* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
-"XWV-by-mnw.title" = "Japonca Metin";
-
-/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "Kıvrımlı Ayraç";
-
-/* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
-"YOd-Hk-eIa.title" = "Girintileme";
-
-/* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
-"ZrR-aL-1eB.title" = "Küçük Harf Yap";
-
-/* Class = "NSMenu"; title = "Transformations"; ObjectID = "b36-nH-7po"; */
-"b36-nH-7po.title" = "Dönüşümler";
-
-/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
-"bTd-nG-jjc.title" = "Dikey";
-
-/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
-"bjv-m0-tZq.title" = "Çoğaltılanları Sil";
-
-/* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
-"bnD-BP-sPi.title" = "Değiştir";
-
-/* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
-"cIp-rb-QPk.title" = "Akıllı Tireler";
-
-/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "Köşeli Ayraç";
-
-/* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
-"cTV-Rh-597.title" = "Yeni Pencere";
-
-/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
-"clG-Ph-Iyz.title" = "Sağdan Sola";
-
-/* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
-"dVK-1s-xJq.title" = "Yarım Genişlikten Tam Genişliğe";
-
-/* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
-"djM-fI-MkN.title" = "Sekme Genişliği";
-
-/* Class = "NSMenuItem"; title = "Uncomment"; ObjectID = "dob-yj-jf3"; */
-"dob-yj-jf3.title" = "Yorumu Kaldır";
-
-/* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
-"eIc-Sj-2mO.title" = "Satıra Git…";
-
-/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "eP6-ss-sUG"; */
-"eP6-ss-sUG.title" = "Bul…";
-
-/* Class = "NSMenuItem"; title = "4"; ObjectID = "fwb-zD-hBp"; */
-"fwb-zD-hBp.title" = "4";
-
-/* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
-"g34-YV-E6o.title" = "CotEditor Web Sitesi";
-
-/* Class = "NSMenuItem"; title = "Speech"; ObjectID = "gBe-fO-wVv"; */
-"gBe-fO-wVv.title" = "Konuşma";
-
-/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
-"gMO-5n-fiJ.title" = "Özel…";
-
-/* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
-"gqI-2M-XIx.title" = "Değişimleri Göster";
-
-/* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
-"hBJ-Ge-278.title" = "Sondaki Boşlukları Sil";
-
-/* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hIk-Nu-0X3"; */
-"hIk-Nu-0X3.title" = "Belgeyi Şimdi Denetle";
-
-/* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
-"hMS-qd-BCS.title" = "Tireleri Değiştir";
-
-/* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "Bulmak için Seçimi Kullan";
-
-/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
-"hsG-8k-OKX.title" = "Sekmeleri Kendiliğinden Genişlet";
-
-/* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
-"hxr-2A-KYT.title" = "Yazım Yönü";
-
 /* Class = "NSMenuItem"; title = "Create Issue Report"; ObjectID = "iHn-Ed-A8u"; */
 "iHn-Ed-A8u.title" = "Hata Raporu Oluştur";
-
-/* Class = "NSMenuItem"; title = "Copy as Rich Text"; ObjectID = "j3t-7l-xSy"; */
-"j3t-7l-xSy.title" = "Zengin Metin Olarak Kopyala";
-
-/* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
-"jQ7-hG-AjA.title" = "Yatay";
-
-/* Class = "NSMenu"; title = "Find"; ObjectID = "kGA-vM-cdL"; */
-"kGA-vM-cdL.title" = "Bul";
-
-/* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "kQ8-FM-Cgx"; */
-"kQ8-FM-Cgx.title" = "Yazım Hatalarını Kendiliğinden Düzelt";
-
-/* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "Değiştirmek için Seçimi Kullan";
-
-/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
-"l33-Nz-UAw.title" = "Seçili Metni Bul";
-
-/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
-"lNH-Mh-pIE.title" = "Dizgiye Göre Sırala…";
-
-/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
-"m48-5E-yia.title" = "Satırı Çoğalt";
-
-/* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
-"mEh-BD-ZlV.title" = "Yazım Yönü";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Değiştirilmiş NFD'ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi";
-
-/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "Değiştirilmiş NFC (HFS+)";
-
-/* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
-"nlp-Gj-W9G.title" = "Deve Biçimi Yap";
-
-/* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "Çoklu Değiştir…";
-
-/* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
-"p4A-mE-Ve3.title" = "Seçime Atla";
-
-/* Class = "NSMenuItem"; title = "Convert Indentation to Tabs"; ObjectID = "q32-Jm-eR3"; */
-"q32-Jm-eR3.title" = "Girintilemeyi Sekmelere Dönüştür";
-
-/* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
-"qTb-gl-0V3.title" = "Yeni";
-
-/* Class = "NSMenuItem"; title = "2"; ObjectID = "qs3-we-YzU"; */
-"qs3-we-YzU.title" = "2";
-
-/* Class = "NSMenu"; title = "Spelling"; ObjectID = "rKZ-vK-0OH"; */
-"rKZ-vK-0OH.title" = "Yazım Denetimi";
-
-/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
-"sFn-3j-pY5.title" = "Satır Sil";
-
-/* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
-"sYa-2o-iPk.title" = "Denetçi";
-
-/* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
-"sza-9T-f4h.title" = "Akıllı Tırnaklar";
-
-/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Unicode Kod Noktası Olarak Gir…";
-
-/* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
-"u2o-8v-WPL.title" = "Betik Yazımı Hakkında";
-
-/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
-"u46-te-4c4.title" = "Düzenleyicileri Dikey Yığ";
-
-/* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "uXu-vF-RqZ"; */
-"uXu-vF-RqZ.title" = "Yazım Denetimi ve Dilbilgisini Göster";
-
-/* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
-"ue7-85-H8l.title" = "Metin Değişimi";
-
-/* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
-"viH-Eo-wKz.title" = "Birleşik Harfler";
-
-/* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
-"wiV-Hh-7xU.title" = "Öncekini Bul";
-
-/* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
-"x1F-KX-2de.title" = "Paskal Biçimi Yap";
-
-/* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
-"xAm-b4-9CY.title" = "Sekme Genişliği";
-
-/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
-"xhf-NR-D2Q.title" = "Ters";
-
-/* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "yN3-iT-4Lq"; */
-"yN3-iT-4Lq.title" = "Değişimler";
-
-/* Class = "NSMenuItem"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
-"yph-qH-qNE.title" = "Yorum";
-
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor";
-
-/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.title" = "NFKC Biçim Kıvırması";
+/* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
+"Bk3-xx-uft.title" = "Hata Bildir";
+/* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
+"g34-YV-E6o.title" = "CotEditor Web Sitesi";

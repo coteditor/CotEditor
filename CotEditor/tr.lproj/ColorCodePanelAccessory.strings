@@ -1,33 +1,47 @@
+//
+//  ColorCodePanelAccessory.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
-/* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
-"6bH-jm-mNR.title" = "CSS RGB";
+/* Class = "IBBindingConnection"; ObjectID = "qSi-En-4LR"; */
+"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "renk kodu";  /* color code */
+"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "seçim yok";  /* no selection */
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "Ekle";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "JAw-oC-vv2"; */
-"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "renk kodu";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "JAw-oC-vv2"; */
-"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "seçim yok";
-
-/* Class = "NSTextFieldCell"; title = "#ffffff"; ObjectID = "MFc-gP-VZL"; */
-"MFc-gP-VZL.title" = "#ffffff";
-
-/* Class = "NSMenuItem"; title = "CSS HSL"; ObjectID = "TnX-U4-Fkz"; */
-"TnX-U4-Fkz.title" = "CSS HSL";
-
-/* Class = "NSMenuItem"; title = "CSS RGBa"; ObjectID = "cxo-sm-Sx5"; */
-"cxo-sm-Sx5.title" = "CSS RGBa";
-
-/* Class = "NSMenuItem"; title = "CSS Keyword"; ObjectID = "dY5-ZH-n6l"; */
-"dY5-ZH-n6l.title" = "CSS Anahtar Sözcük";
-
-/* Class = "NSMenuItem"; title = "CSS HSLa"; ObjectID = "k4U-AQ-5ws"; */
-"k4U-AQ-5ws.title" = "CSS HSLa";
-
 /* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "Onaltılık";
-
 /* Class = "NSMenuItem"; title = "Hex (short)"; ObjectID = "wEc-KD-y7s"; */
 "wEc-KD-y7s.title" = "Onaltılık (kısa)";
+/* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
+"6bH-jm-mNR.title" = "CSS RGB";
+/* Class = "NSMenuItem"; title = "CSS RGBa"; ObjectID = "cxo-sm-Sx5"; */
+"cxo-sm-Sx5.title" = "CSS RGBa";
+/* Class = "NSMenuItem"; title = "CSS HSL"; ObjectID = "TnX-U4-Fkz"; */
+"TnX-U4-Fkz.title" = "CSS HSL";
+/* Class = "NSMenuItem"; title = "CSS HSLa"; ObjectID = "k4U-AQ-5ws"; */
+"k4U-AQ-5ws.title" = "CSS HSLa";
+/* Class = "NSMenuItem"; title = "CSS Keyword"; ObjectID = "dY5-ZH-n6l"; */
+"dY5-ZH-n6l.title" = "CSS Anahtar Sözcük";

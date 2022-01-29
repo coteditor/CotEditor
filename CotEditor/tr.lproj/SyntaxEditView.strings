@@ -1,78 +1,37 @@
-
-/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
-"985.title" = "Tamam";
-
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
-"986.title" = "Vazgeç";
+//
+//  SyntaxEditView.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 /* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
 "987.title" = "Biçem Adı:";
-
 /* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
 "988.placeholderString" = "Biçem Adı";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
 "1020.title" = "Saptanmışlara Dön";
-
-/* Class = "NSTextFieldCell"; title = "Keywords"; ObjectID = "2yS-5b-mse"; */
-"2yS-5b-mse.title" = "Anahtar Sözcükler";
-
-/* Class = "NSTabViewItem"; label = "Types"; ObjectID = "9BI-tq-pk1"; */
-"9BI-tq-pk1.label" = "Türler";
-
-/* Class = "NSTabViewItem"; label = "Variables"; ObjectID = "Egv-zN-8g0"; */
-"Egv-zN-8g0.label" = "Değişkenler";
-
-/* Class = "NSTabViewItem"; label = "Characters"; ObjectID = "QAb-cv-ACH"; */
-"QAb-cv-ACH.label" = "Karakterler";
-
-/* Class = "NSTabViewItem"; label = "Numbers"; ObjectID = "Vjv-S9-4f4"; */
-"Vjv-S9-4f4.label" = "Sayılar";
-
-/* Class = "NSTabViewItem"; label = "-"; ObjectID = "WmN-tw-W91"; */
-"WmN-tw-W91.label" = "-";
-
-/* Class = "NSTabViewItem"; label = "Strings"; ObjectID = "Zi6-hI-i1f"; */
-"Zi6-hI-i1f.label" = "Diziler";
-
-/* Class = "NSViewController"; title = "DUMMY"; ObjectID = "aQl-En-Wbe"; */
-"aQl-En-Wbe.title" = "KUKLA";
-
-/* Class = "NSTabViewItem"; label = "-"; ObjectID = "cmd-Pi-Czf"; */
-"cmd-Pi-Czf.label" = "-";
-
-/* Class = "NSTextFieldCell"; title = "message"; ObjectID = "d7M-En-Qx0"; */
-"d7M-En-Qx0.title" = "ileti";
-
-/* Class = "NSTabViewItem"; label = "Values"; ObjectID = "fgN-Dc-ahn"; */
-"fgN-Dc-ahn.label" = "Değerler";
-
-/* Class = "NSTabViewItem"; label = "Outline Menu"; ObjectID = "h3G-VQ-reZ"; */
-"h3G-VQ-reZ.label" = "Anahat Menüsü";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hXg-gA-Vm1"; */
-"hXg-gA-Vm1.title" = "Text Cell";
-
-/* Class = "NSTabViewItem"; label = "Completion List"; ObjectID = "hkH-bj-kzN"; */
-"hkH-bj-kzN.label" = "Tamamlama Listesi";
-
-/* Class = "NSTabViewItem"; label = "Style Info"; ObjectID = "ijG-Rs-ukM"; */
-"ijG-Rs-ukM.label" = "Biçem Bilgisi";
-
-/* Class = "NSTabViewItem"; label = "Syntax Validation"; ObjectID = "kO4-FK-nNc"; */
-"kO4-FK-nNc.label" = "Sözdizim Doğrulaması";
-
-/* Class = "NSTabViewItem"; label = "Comments"; ObjectID = "pPI-Zd-YoY"; */
-"pPI-Zd-YoY.label" = "Yorumlar";
-
-/* Class = "NSTabViewItem"; label = "Attributes"; ObjectID = "sGO-8m-mUV"; */
-"sGO-8m-mUV.label" = "Öznitelikler";
-
-/* Class = "NSTabViewItem"; label = "Commands"; ObjectID = "tfF-J0-u6p"; */
-"tfF-J0-u6p.label" = "Komutlar";
-
-/* Class = "NSTabViewItem"; label = "Keywords"; ObjectID = "uqx-or-XYz"; */
-"uqx-or-XYz.label" = "Anahtar Sözcükler";
-
-/* Class = "NSTabViewItem"; label = "File Mapping"; ObjectID = "zFQ-sy-EQR"; */
-"zFQ-sy-EQR.label" = "Dosya Eşlemleme";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
+"986.title" = "Vazgeç";
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
+"985.title" = "Tamam";

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,16 +26,26 @@
  
  */
 
-
 /* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "6eS-Hj-xoA"; */
 "6eS-Hj-xoA.title" = "Estensioni";
 /* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "QjK-XG-E4X"; */
 "QjK-XG-E4X.title" = "(senza punti)";
 
+/* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "IIL-M3-S2o"; */
+"IIL-M3-S2o.headerCell.title" = "Estensione";
+
+
 /* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
 "IAe-3F-qcV.title" = "Nomi dei file";
+
+/* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "jwM-Gn-44e"; */
+"jwM-Gn-44e.headerCell.title" = "Nome dei file";
+
 
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
 "Axx-Oq-E9U.title" = "Interpreti";
 /* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
 "dIj-Z5-J2j.title" = "Gli interpreti vengono utilizzati per determinare lo stile della sintassi dalla struttura del documento.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "I6J-y5-MxO"; */
+"I6J-y5-MxO.headerCell.title" = "Interprete";

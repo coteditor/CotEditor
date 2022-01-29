@@ -51,8 +51,8 @@ Currently, we already have maintainers for:
 - Japanese
 - Simplified Chinese
 - Italian
-- (Brazilian) Portuguese
 - French
+- Turkish
 
 #### Localization for App Store
 
