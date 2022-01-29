@@ -1,0 +1,36 @@
+
+/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
+"00X-sB-42F.title" = "Underline";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerCell.title" = "IC";
+
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerToolTip" = "Ignore Case (case-insensitive)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
+"6hB-wJ-niI.headerCell.title" = "Description";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jyv-nG-ZJJ"; */
+"Jyv-nG-ZJJ.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "note"; ObjectID = "NIK-yi-b5J"; */
+"NIK-yi-b5J.title" = "note";
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Regular expressions to extract outline menu items";
+
+/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
+"fUz-0u-0D4.title" = "Italic";
+
+/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
+"iub-mE-wGf.title" = "Bold";
+
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Menu title pattern";
+
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "(blank matches the whole string)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "Regular Expression String";

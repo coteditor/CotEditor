@@ -1,0 +1,12 @@
+
+/* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "CSX-H0-nFf"; */
+"CSX-H0-nFf.headerCell.title" = "Title";
+
+/* Class = "NSTextFieldCell"; title = "Outline"; ObjectID = "RyV-wo-tpY"; */
+"RyV-wo-tpY.title" = "Outline";
+
+/* Class = "NSTextFieldCell"; title = "Item Title"; ObjectID = "opH-Sc-iu8"; */
+"opH-Sc-iu8.title" = "Item Title";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "rwF-t2-tPJ"; */
+"rwF-t2-tPJ.title" = "Text Cell";

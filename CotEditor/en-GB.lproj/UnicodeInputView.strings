@@ -1,0 +1,18 @@
+
+/* Class = "NSTextFieldCell"; placeholderString = "U+1F600"; ObjectID = "I9d-jJ-Vcw"; */
+"I9d-jJ-Vcw.placeholderString" = "U+1F600";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "⬚"; ObjectID = "M9N-Kb-So8"; */
+"M9N-Kb-So8.ibShadowedIsNilPlaceholder" = "⬚";
+
+/* Class = "NSTextFieldCell"; title = "GRINNING FACE"; ObjectID = "V4O-fd-2lB"; */
+"V4O-fd-2lB.title" = "GRINNING FACE";
+
+/* Class = "NSTextFieldCell"; title = "😀"; ObjectID = "aZZ-AV-vPj"; */
+"aZZ-AV-vPj.title" = "😀";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "U+1F600"; ObjectID = "ar8-Ee-obn"; */
+"ar8-Ee-obn.ibShadowedIsNilPlaceholder" = "U+1F600";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "rz0-Df-N9T"; */
+"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "Invalid code";

@@ -1,0 +1,243 @@
+
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
+"3289.title" = "Select…";
+
+/* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
+"3290.title" = "Anti-aliasing";
+
+/* Class = "NSButtonCell"; title = "Use system color"; ObjectID = "0ZP-Zp-oBu"; */
+"0ZP-Zp-oBu.title" = "Use system color";
+
+/* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
+"1Cg-21-kjr.title" = "Dark";
+
+/* Class = "NSTextFieldCell"; title = "Numbers:"; ObjectID = "3wF-uc-Tfq"; */
+"3wF-uc-Tfq.title" = "Numbers:";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
+"4B4-mq-8Fs.title" = "Export…";
+
+/* Class = "NSMenuItem"; title = "Theme Action"; ObjectID = "4m4-1Z-aml"; */
+"4m4-1Z-aml.title" = "Theme Action";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
+"52n-xG-4ZL.title" = "Import…";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "5Eu-k1-cjE"; */
+"5Eu-k1-cjE.title" = "Duplicate";
+
+/* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
+"6KG-3a-ZuU.title" = "Appearance:";
+
+/* Class = "NSMenuItem"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
+"7Yp-bg-3l6.title" = "Reload All Themes";
+
+/* Class = "NSTextFieldCell"; title = "Commands:"; ObjectID = "81x-je-JUf"; */
+"81x-je-JUf.title" = "Commands:";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "8h0-Xi-AHB"; */
+"8h0-Xi-AHB.title" = "Rename";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "8ur-1G-I4N"; */
+"8ur-1G-I4N.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
+"8zj-4c-Hg4.ibShadowedToolTip" = "Show theme file info";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
+"9LW-xw-HBP.title" = "Duplicate";
+
+/* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
+"AIG-rr-79V.title" = "Comments:";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "AVc-Ci-UnL"; */
+"AVc-Ci-UnL.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
+"Avf-y8-wXG.headerCell.title" = "Theme";
+
+/* Class = "NSBox"; title = "Theme"; ObjectID = "B3l-Yn-4KT"; */
+"B3l-Yn-4KT.title" = "Theme";
+
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
+"Bf2-rS-2zu.title" = "Other whitespaces";
+
+/* Class = "NSTextFieldCell"; title = "Syntax"; ObjectID = "F64-8o-JYC"; */
+"F64-8o-JYC.title" = "Syntax";
+
+/* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
+"FwU-oj-kwc.title" = "Light";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
+"IGx-p1-FHi.title" = "Invisibles:";
+
+/* Class = "NSTextFieldCell"; title = "Types:"; ObjectID = "ILi-Jt-MUc"; */
+"ILi-Jt-MUc.title" = "Types:";
+
+/* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
+"IU8-bd-gBv.title" = "Keywords:";
+
+/* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "Inh-Ci-NGp"; */
+"Inh-Ci-NGp.title" = "Description:";
+
+/* Class = "NSTextFieldCell"; title = "1.2"; ObjectID = "IyJ-IR-fVa"; */
+"IyJ-IR-fVa.title" = "1.2";
+
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
+"Ljk-ky-fQH.title" = "Cursor:";
+
+/* Class = "NSTextFieldCell"; title = "anonymous"; ObjectID = "MAg-7o-hDl"; */
+"MAg-7o-hDl.title" = "anonymous";
+
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
+"NIq-Tj-KWB.title" = "Cursor:";
+
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
+"Ont-7L-Uf5.title" = "Line ending";
+
+/* Class = "NSTextFieldCell"; title = "Selection:"; ObjectID = "PbY-c2-p4V"; */
+"PbY-c2-p4V.title" = "Selection:";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "Qmf-WU-xe8"; */
+"Qmf-WU-xe8.title" = "Reveal in Finder";
+
+/* Class = "NSTextFieldCell"; title = "Attributes:"; ObjectID = "RQL-fz-3aq"; */
+"RQL-fz-3aq.title" = "Attributes:";
+
+/* Class = "NSTextFieldCell"; title = "https://coteditor.com"; ObjectID = "U6d-j3-yKM"; */
+"U6d-j3-yKM.title" = "https://coteditor.com";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
+"UMs-gY-YHE.title" = "Reveal in Finder";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
+"Usu-Br-G0a.ibShadowedToolTip" = "Jump to URL";
+
+/* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
+"VLD-jj-zzl.title" = "times";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
+"WNG-Ai-RdG.title" = "Delete";
+
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
+"XSb-uU-5QP.title" = "Tab";
+
+/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
+"YG7-Y7-xzs.title" = "Block";
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "Font:";
+
+/* Class = "NSTextFieldCell"; title = "Variables:"; ObjectID = "ZIr-1E-qZJ"; */
+"ZIr-1E-qZJ.title" = "Variables:";
+
+/* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
+"apQ-au-gOC.title" = "Match System";
+
+/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
+"ba7-dE-zXz.title" = "Change background color";
+
+/* Class = "NSTextFieldCell"; title = "Values:"; ObjectID = "cVK-ET-QiD"; */
+"cVK-ET-QiD.title" = "Values:";
+
+/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
+"cnD-9F-CR4.title" = "Bar";
+
+/* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
+"csp-Hi-hb1.title" = "Show indent guides";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dK4-Cd-J4F"; */
+"dK4-Cd-J4F.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Apache ver.2"; ObjectID = "eUj-rB-Rp0"; */
+"eUj-rB-Rp0.title" = "Apache ver.2";
+
+/* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
+"g3S-3v-6ZA.title" = "Ligatures";
+
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "Space";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
+"gcs-B8-kPL.title" = "Import…";
+
+/* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
+"gqy-Io-eUU.title" = "Show invisible characters";
+
+/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "hbk-iX-4VK"; */
+"hbk-iX-4VK.title" = "Characters:";
+
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "iy5-9x-zGF"; */
+"iy5-9x-zGF.title" = "License:";
+
+/* Class = "NSTextFieldCell"; title = "This is an example line."; ObjectID = "jLL-7h-zGt"; */
+"jLL-7h-zGt.title" = "This is an example line.";
+
+/* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "jbY-IC-CRS"; */
+"jbY-IC-CRS.title" = "Author:";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "kFt-8v-8ZZ"; */
+"kFt-8v-8ZZ.title" = "Restore";
+
+/* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "kvy-vf-yva"; */
+"kvy-vf-yva.title" = "Text:";
+
+/* Class = "NSTextFieldCell"; title = "Strings:"; ObjectID = "n04-r3-95l"; */
+"n04-r3-95l.title" = "Strings:";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "Rename";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
+"oAZ-6U-Ba8.title" = "Invisibles:";
+
+/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
+"oKu-Fu-hRU.title" = "Current line:";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "pTV-O2-2db"; */
+"pTV-O2-2db.title" = "Share";
+
+/* Class = "NSMenu"; title = "Share"; ObjectID = "pVE-Of-yX6"; */
+"pVE-Of-yX6.title" = "Share";
+
+/* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
+"r1c-v3-qW1.title" = "Line height:";
+
+/* Class = "NSButtonCell"; title = "Thick bar"; ObjectID = "rM6-JW-wau"; */
+"rM6-JW-wau.title" = "Thick bar";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "rpX-lj-tHS"; */
+"rpX-lj-tHS.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
+"sJb-7g-2FN.title" = "New Theme";
+
+/* Class = "NSTextFieldCell"; title = "Dendrobates"; ObjectID = "sRo-2c-Ydn"; */
+"sRo-2c-Ydn.title" = "Dendrobates";
+
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "Other control characters";
+
+/* Class = "NSTextFieldCell"; title = "Font Name 12"; ObjectID = "toV-fU-j7j"; */
+"toV-fU-j7j.title" = "Font Name 12";
+
+/* Class = "NSTextFieldCell"; title = "Background:"; ObjectID = "tvj-DS-DVt"; */
+"tvj-DS-DVt.title" = "Background:";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
+"ueG-D7-DSV.title" = "Export…";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */
+"vTP-Fc-iBF.title" = "Restore";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "w4F-0P-Rgk"; */
+"w4F-0P-Rgk.title" = "Share";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "wN3-ao-X42"; */
+"wN3-ao-X42.ibShadowedIsNilPlaceholder" = "Not defined";
+
+/* Class = "NSTextFieldCell"; title = "URL:"; ObjectID = "xyY-jQ-kpJ"; */
+"xyY-jQ-kpJ.title" = "URL:";
+
+/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "yMW-lO-ILw"; */
+"yMW-lO-ILw.title" = "Current Line:";

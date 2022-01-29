@@ -1,0 +1,99 @@
+
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "1021"; */
+"1021.title" = "Close";
+
+/* Class = "NSTextFieldCell"; title = "Syntax Style Mapping Conflicts"; ObjectID = "1022"; */
+"1022.title" = "Syntax Style Mapping Conflicts";
+
+/* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
+"31z-NP-PkW.title" = "Extension:";
+
+/* Class = "NSTextFieldCell"; title = "Apache"; ObjectID = "3em-12-eHV"; */
+"3em-12-eHV.title" = "Apache";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "896-MN-g6X"; */
+"896-MN-g6X.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9AU-Mn-rNN"; */
+"9AU-Mn-rNN.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "HTML5"; ObjectID = "9aK-03-3sU"; */
+"9aK-03-3sU.title" = "HTML5";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "9xu-VH-XK9"; */
+"9xu-VH-XK9.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Ahx-qe-JZo"; */
+"Ahx-qe-JZo.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "DCi-HG-D1O"; */
+"DCi-HG-D1O.headerCell.title" = "Used Style";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "FsE-oM-8Rr"; */
+"FsE-oM-8Rr.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Ive-WY-RW9"; */
+"Ive-WY-RW9.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Python"; ObjectID = "L66-8A-XS8"; */
+"L66-8A-XS8.title" = "Python";
+
+/* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
+"Msi-ee-MNF.title" = "Filename:";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OUw-gj-rr5"; */
+"OUw-gj-rr5.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "html"; ObjectID = "Wwn-gi-e14"; */
+"Wwn-gi-e14.title" = "html";
+
+/* Class = "NSTextFieldCell"; title = "Customized Apache"; ObjectID = "Xew-cA-R0j"; */
+"Xew-cA-R0j.title" = "Customized Apache";
+
+/* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
+"YGO-sx-UT0.headerCell.title" = "Filename";
+
+/* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "cz8-8b-5qL"; */
+"cz8-8b-5qL.headerCell.title" = "Used Style";
+
+/* Class = "NSTextFieldCell"; title = "HTML"; ObjectID = "fJa-97-ni9"; */
+"fJa-97-ni9.title" = "HTML";
+
+/* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
+"gnp-H7-p1W.title" = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style.";
+
+/* Class = "NSTextFieldCell"; title = "Interpreter:"; ObjectID = "kam-EA-6Bv"; */
+"kam-EA-6Bv.title" = "Interpreter:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "lyj-6e-zZV"; */
+"lyj-6e-zZV.headerCell.title" = "Duplicated Styles";
+
+/* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "nge-9Z-A9D"; */
+"nge-9Z-A9D.headerCell.title" = "Duplicated Styles";
+
+/* Class = "NSTextFieldCell"; title = "Python3"; ObjectID = "non-DP-azd"; */
+"non-DP-azd.title" = "Python3";
+
+/* Class = "NSTextFieldCell"; title = "python3"; ObjectID = "oW5-lT-rCx"; */
+"oW5-lT-rCx.title" = "python3";
+
+/* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "oen-KK-QCa"; */
+"oen-KK-QCa.headerCell.title" = "Used Style";
+
+/* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "qkj-mf-TAf"; */
+"qkj-mf-TAf.headerCell.title" = "Extension";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "t7M-gn-VKO"; */
+"t7M-gn-VKO.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "vBH-h4-kc0"; */
+"vBH-h4-kc0.headerCell.title" = "Interpreter";
+
+/* Class = "NSTextFieldCell"; title = ".htaccess"; ObjectID = "vc3-6e-Rgx"; */
+"vc3-6e-Rgx.title" = ".htaccess";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "xvb-jb-yfM"; */
+"xvb-jb-yfM.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "zSH-kc-yV3"; */
+"zSH-kc-yV3.headerCell.title" = "Duplicated Styles";

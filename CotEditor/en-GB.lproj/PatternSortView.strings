@@ -1,0 +1,84 @@
+
+/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
+"Ase-N7-QHB.title" = "Regular expression";
+
+/* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
+"CLj-6v-R1R.title" = "Delimiter:";
+
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
+"GS5-w5-IIt.title" = "Ignore Case";
+
+/* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
+"HE1-PS-8J3.title" = "Position:";
+
+/* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
+"I06-xc-WQt.title" = "Sample:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Regular Expression"; ObjectID = "Ia7-Mb-FNn"; */
+"Ia7-Mb-FNn.placeholderString" = "Regular Expression";
+
+/* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
+"Lr8-mD-svg.title" = "Ignore case";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
+"Lw7-xg-639.title" = "Cancel";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = ","; ObjectID = "OTK-ZM-0gt"; */
+"OTK-ZM-0gt.ibShadowedIsNilPlaceholder" = ",";
+
+/* Class = "NSTextFieldCell"; title = "Dog, 🐕, 1"; ObjectID = "UjO-61-yKu"; */
+"UjO-61-yKu.title" = "Dog, 🐕, 1";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
+"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "Regular Expression";
+
+/* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
+"W2m-Jf-7Yj.ibShadowedToolTip" = "Sample line to check which part in a line will be used for sort comparison.";
+
+/* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
+"ara-FL-nKk.title" = "Sort";
+
+/* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
+"bKb-oj-ekR.title" = "Sort key:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "1"; ObjectID = "ctG-i5-ZyH"; */
+"ctG-i5-ZyH.placeholderString" = "1";
+
+/* Class = "NSTextFieldCell"; title = "1"; ObjectID = "ctG-i5-ZyH"; */
+"ctG-i5-ZyH.title" = "1";
+
+/* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
+"d12-uy-VE0.title" = "Pattern:";
+
+/* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
+"eio-Wb-V6q.title" = "Sort option:";
+
+/* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
+"eys-fy-HVq.title" = "Use captured group:";
+
+/* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
+"h1K-Og-3x3.title" = "In decending order";
+
+/* Class = "NSTextFieldCell"; title = "1"; ObjectID = "mgE-cD-Ufj"; */
+"mgE-cD-Ufj.title" = "1";
+
+/* Class = "NSTextFieldCell"; placeholderString = ","; ObjectID = "nM6-5J-N8Z"; */
+"nM6-5J-N8Z.placeholderString" = ",";
+
+/* Class = "NSTextFieldCell"; title = ","; ObjectID = "nM6-5J-N8Z"; */
+"nM6-5J-N8Z.title" = ",";
+
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
+"pKE-GY-bD6.title" = "Column";
+
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Entire line";
+
+/* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
+"uUe-tD-Z8s.title" = "Keep the first line at the top";
+
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
+"x72-Sd-pMB.title" = "Respect language rules";
+
+/* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
+"yXD-KA-8KI.title" = "Treat numbers as numeric value";

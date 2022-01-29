@@ -1,0 +1,78 @@
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */
+"985.title" = "OK";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
+"986.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
+"987.title" = "Style Name:";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
+"988.placeholderString" = "Style Name";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
+"1020.title" = "Restore Defaults";
+
+/* Class = "NSTextFieldCell"; title = "Keywords"; ObjectID = "2yS-5b-mse"; */
+"2yS-5b-mse.title" = "Keywords";
+
+/* Class = "NSTabViewItem"; label = "Types"; ObjectID = "9BI-tq-pk1"; */
+"9BI-tq-pk1.label" = "Types";
+
+/* Class = "NSTabViewItem"; label = "Variables"; ObjectID = "Egv-zN-8g0"; */
+"Egv-zN-8g0.label" = "Variables";
+
+/* Class = "NSTabViewItem"; label = "Characters"; ObjectID = "QAb-cv-ACH"; */
+"QAb-cv-ACH.label" = "Characters";
+
+/* Class = "NSTabViewItem"; label = "Numbers"; ObjectID = "Vjv-S9-4f4"; */
+"Vjv-S9-4f4.label" = "Numbers";
+
+/* Class = "NSTabViewItem"; label = "-"; ObjectID = "WmN-tw-W91"; */
+"WmN-tw-W91.label" = "-";
+
+/* Class = "NSTabViewItem"; label = "Strings"; ObjectID = "Zi6-hI-i1f"; */
+"Zi6-hI-i1f.label" = "Strings";
+
+/* Class = "NSViewController"; title = "DUMMY"; ObjectID = "aQl-En-Wbe"; */
+"aQl-En-Wbe.title" = "DUMMY";
+
+/* Class = "NSTabViewItem"; label = "-"; ObjectID = "cmd-Pi-Czf"; */
+"cmd-Pi-Czf.label" = "-";
+
+/* Class = "NSTextFieldCell"; title = "message"; ObjectID = "d7M-En-Qx0"; */
+"d7M-En-Qx0.title" = "message";
+
+/* Class = "NSTabViewItem"; label = "Values"; ObjectID = "fgN-Dc-ahn"; */
+"fgN-Dc-ahn.label" = "Values";
+
+/* Class = "NSTabViewItem"; label = "Outline Menu"; ObjectID = "h3G-VQ-reZ"; */
+"h3G-VQ-reZ.label" = "Outline Menu";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "hXg-gA-Vm1"; */
+"hXg-gA-Vm1.title" = "Text Cell";
+
+/* Class = "NSTabViewItem"; label = "Completion List"; ObjectID = "hkH-bj-kzN"; */
+"hkH-bj-kzN.label" = "Completion List";
+
+/* Class = "NSTabViewItem"; label = "Style Info"; ObjectID = "ijG-Rs-ukM"; */
+"ijG-Rs-ukM.label" = "Style Info";
+
+/* Class = "NSTabViewItem"; label = "Syntax Validation"; ObjectID = "kO4-FK-nNc"; */
+"kO4-FK-nNc.label" = "Syntax Validation";
+
+/* Class = "NSTabViewItem"; label = "Comments"; ObjectID = "pPI-Zd-YoY"; */
+"pPI-Zd-YoY.label" = "Comments";
+
+/* Class = "NSTabViewItem"; label = "Attributes"; ObjectID = "sGO-8m-mUV"; */
+"sGO-8m-mUV.label" = "Attributes";
+
+/* Class = "NSTabViewItem"; label = "Commands"; ObjectID = "tfF-J0-u6p"; */
+"tfF-J0-u6p.label" = "Commands";
+
+/* Class = "NSTabViewItem"; label = "Keywords"; ObjectID = "uqx-or-XYz"; */
+"uqx-or-XYz.label" = "Keywords";
+
+/* Class = "NSTabViewItem"; label = "File Mapping"; ObjectID = "zFQ-sy-EQR"; */
+"zFQ-sy-EQR.label" = "File Mapping";
