@@ -132,7 +132,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="w8q-3P-Q1e">
-                                                                            <rect key="frame" x="91" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="90.5" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="bkQ-4g-uet">
@@ -300,7 +300,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="FdF-7h-gtp">
-                                                                            <rect key="frame" x="91" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="90.5" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Qt3-S7-Bpi">
@@ -468,7 +468,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="SjR-UH-naJ">
-                                                                            <rect key="frame" x="93" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="92.5" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="85I-66-i9l">

@@ -150,9 +150,9 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQS-x1-ISf">
-                                <rect key="frame" x="45" y="13" width="144" height="32"/>
+                                <rect key="frame" x="45" y="13" width="135" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="V5n-Ja-2mA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="V5n-Ja-2mA"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="3396">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
