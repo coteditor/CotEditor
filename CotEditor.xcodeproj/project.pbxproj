@@ -751,7 +751,6 @@
 
 /* Begin PBXFileReference section */
 		08C28F7F279CBE2C0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Main.strings; sourceTree = "<group>"; };
-		08C28F80279CBE2C0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/WebDocumentWindow.strings; sourceTree = "<group>"; };
 		08C28F81279CBE2C0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
 		08C28F82279CBE2D0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/GeneralPane.strings; sourceTree = "<group>"; };
 		08C28F83279CBE2D0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/WindowPane.strings; sourceTree = "<group>"; };
@@ -3722,7 +3721,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A97849E2034561B00482647 /* Base */,
-				08C28F80279CBE2C0016693E /* tr */,
 			);
 			name = WebDocumentWindow.storyboard;
 			sourceTree = "<group>";
@@ -4152,7 +4150,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				MARKETING_VERSION = "4.1.0-alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bitigchi.CotEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Debug;
@@ -4168,7 +4166,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CotEditor/Info.plist;
 				MARKETING_VERSION = "4.1.0-alpha";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bitigchi.CotEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
 			name = Release;

@@ -60,7 +60,7 @@
 "941.title" = "Hiçbiri";
 
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
-"946.title" = "Yazdırma!";
+"946.title" = "Yazdırma";
 
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
 "947.title" = "Belge Ayarlarıyla Aynı";
@@ -69,7 +69,7 @@
 "948.title" = "Yazdır";
 
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
-"952.title" = "Yazdırma!";
+"952.title" = "Yazdırma";
 
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
 "953.title" = "Belge Ayarlarıyla Aynı";
