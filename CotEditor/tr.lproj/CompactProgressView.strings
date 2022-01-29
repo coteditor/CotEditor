@@ -1,0 +1,9 @@
+
+/* Class = "NSButton"; ibShadowedToolTip = "Cancel operation."; ObjectID = "Jua-5O-j1x"; */
+"Jua-5O-j1x.ibShadowedToolTip" = "İşlemden vazgeç";
+
+/* Class = "NSTextFieldCell"; title = "Please wait for a while."; ObjectID = "Ofw-jF-u35"; */
+"Ofw-jF-u35.title" = "Lütfen biraz bekleyin.";
+
+/* Class = "NSTextFieldCell"; title = "Processing…"; ObjectID = "htr-NC-LBz"; */
+"htr-NC-LBz.title" = "İşleniyor…";

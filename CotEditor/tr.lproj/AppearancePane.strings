@@ -1,0 +1,246 @@
+
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
+"3289.title" = "Seç…";
+
+/* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
+"3290.title" = "Kenar düzleştirme";
+
+/* Class = "NSButtonCell"; title = "Use system color"; ObjectID = "0ZP-Zp-oBu"; */
+"0ZP-Zp-oBu.title" = "Sistem rengini kullan";
+
+/* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
+"1Cg-21-kjr.title" = "Koyu";
+
+/* Class = "NSTextFieldCell"; title = "Numbers:"; ObjectID = "3wF-uc-Tfq"; */
+"3wF-uc-Tfq.title" = "Sayılar:";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
+"4B4-mq-8Fs.title" = "Dışa Aktar…";
+
+/* Class = "NSMenuItem"; title = "Theme Action"; ObjectID = "4m4-1Z-aml"; */
+"4m4-1Z-aml.title" = "Tema Eylemi";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
+"52n-xG-4ZL.title" = "İçe Aktar…";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "5Eu-k1-cjE"; */
+"5Eu-k1-cjE.title" = "Çoğalt";
+
+/* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
+"6KG-3a-ZuU.title" = "Görünüm:";
+
+/* Class = "NSMenuItem"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
+"7Yp-bg-3l6.title" = "Tüm Temaları Yeniden Yükle";
+
+/* Class = "NSTextFieldCell"; title = "Commands:"; ObjectID = "81x-je-JUf"; */
+"81x-je-JUf.title" = "Komutlar:";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "8h0-Xi-AHB"; */
+"8h0-Xi-AHB.title" = "Yeniden Adlandır";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "8ur-1G-I4N"; */
+"8ur-1G-I4N.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
+"8zj-4c-Hg4.ibShadowedToolTip" = "Tema dosyası bilgisini göster";
+
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
+"9LW-xw-HBP.title" = "Çoğalt";
+
+/* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
+"AIG-rr-79V.title" = "Yorumlar:";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "AVc-Ci-UnL"; */
+"AVc-Ci-UnL.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+
+/* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
+"Avf-y8-wXG.headerCell.title" = "Tema";
+
+/* Class = "NSBox"; title = "Theme"; ObjectID = "B3l-Yn-4KT"; */
+"B3l-Yn-4KT.title" = "Tema";
+
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
+"Bf2-rS-2zu.title" = "Diğer boşluklar";
+
+/* Class = "NSTextFieldCell"; title = "Syntax"; ObjectID = "F64-8o-JYC"; */
+"F64-8o-JYC.title" = "Sözdizim";
+
+/* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
+"FwU-oj-kwc.title" = "Açık";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
+"IGx-p1-FHi.title" = "Görünmez Karakterler:";
+
+/* Class = "NSTextFieldCell"; title = "Types:"; ObjectID = "ILi-Jt-MUc"; */
+"ILi-Jt-MUc.title" = "Türler:";
+
+/* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
+"IU8-bd-gBv.title" = "Anahtar Sözcükler:";
+
+/* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "Inh-Ci-NGp"; */
+"Inh-Ci-NGp.title" = "Açıklama:";
+
+/* Class = "NSTextFieldCell"; title = "1.2"; ObjectID = "IyJ-IR-fVa"; */
+"IyJ-IR-fVa.title" = "1.2";
+
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
+"Ljk-ky-fQH.title" = "İmleç:";
+
+/* Class = "NSTextFieldCell"; title = "anonymous"; ObjectID = "MAg-7o-hDl"; */
+"MAg-7o-hDl.title" = "anonim";
+
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
+"NIq-Tj-KWB.title" = "İmleç:";
+
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
+"Ont-7L-Uf5.title" = "Satır sonu";
+
+/* Class = "NSTextFieldCell"; title = "Selection:"; ObjectID = "PbY-c2-p4V"; */
+"PbY-c2-p4V.title" = "Seçim:";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "Qmf-WU-xe8"; */
+"Qmf-WU-xe8.title" = "Finder'da Göster";
+
+/* Class = "NSTextFieldCell"; title = "Attributes:"; ObjectID = "RQL-fz-3aq"; */
+"RQL-fz-3aq.title" = "Öznitelikler:";
+
+/* Class = "NSTextFieldCell"; title = "https://coteditor.com"; ObjectID = "U6d-j3-yKM"; */
+"U6d-j3-yKM.title" = "https://coteditor.com";
+
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
+"UMs-gY-YHE.title" = "Finder'da Göster";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
+"Usu-Br-G0a.ibShadowedToolTip" = "URL'ye Atla";
+
+/* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
+"VLD-jj-zzl.title" = "kere";
+
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
+"WNG-Ai-RdG.title" = "Sil";
+
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
+"XSb-uU-5QP.title" = "Sekme";
+
+/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
+"YG7-Y7-xzs.title" = "Blok";
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "Yazıtipi:";
+
+/* Class = "NSTextFieldCell"; title = "Variables:"; ObjectID = "ZIr-1E-qZJ"; */
+"ZIr-1E-qZJ.title" = "Değişkenler:";
+
+/* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
+"apQ-au-gOC.title" = "Sistemle Eşleştir";
+
+/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
+"ba7-dE-zXz.title" = "Arka plan rengini değiştir";
+
+/* Class = "NSTextFieldCell"; title = "Values:"; ObjectID = "cVK-ET-QiD"; */
+"cVK-ET-QiD.title" = "Değerler:";
+
+/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
+"cnD-9F-CR4.title" = "Çubuk";
+
+/* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
+"csp-Hi-hb1.title" = "Girintileme kılavuzlarını göster";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "dK4-Cd-J4F"; */
+"dK4-Cd-J4F.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Apache ver.2"; ObjectID = "eUj-rB-Rp0"; */
+"eUj-rB-Rp0.title" = "Apache sürüm 2";
+
+/* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
+"g3S-3v-6ZA.title" = "Birleşik Harfler";
+
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "Boşluk";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
+"gcs-B8-kPL.title" = "İçe Aktar…";
+
+/* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
+"gqy-Io-eUU.title" = "Görünmez karakterleri göster";
+
+/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "hbk-iX-4VK"; */
+"hbk-iX-4VK.title" = "Karakterler:";
+
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "iy5-9x-zGF"; */
+"iy5-9x-zGF.title" = "Lisans:";
+
+/* Class = "NSTextFieldCell"; title = "This is an example line."; ObjectID = "jLL-7h-zGt"; */
+"jLL-7h-zGt.title" = "Bu, örnek bir satırdır.";
+
+/* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "jbY-IC-CRS"; */
+"jbY-IC-CRS.title" = "Yazar:";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "kFt-8v-8ZZ"; */
+"kFt-8v-8ZZ.title" = "Geri Yükle";
+
+/* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "kvy-vf-yva"; */
+"kvy-vf-yva.title" = "Metin:";
+
+/* Class = "NSTextFieldCell"; title = "Strings:"; ObjectID = "n04-r3-95l"; */
+"n04-r3-95l.title" = "Diziler:";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "nMR-L3-OOw"; */
+"nMR-L3-OOw.title" = "Kutu";
+
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "Yeniden Adlandır";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
+"oAZ-6U-Ba8.title" = "Görünmez karakterler:";
+
+/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
+"oKu-Fu-hRU.title" = "Geçerli satır";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "pTV-O2-2db"; */
+"pTV-O2-2db.title" = "Paylaş";
+
+/* Class = "NSMenu"; title = "Share"; ObjectID = "pVE-Of-yX6"; */
+"pVE-Of-yX6.title" = "Paylaş";
+
+/* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
+"r1c-v3-qW1.title" = "Satır yüksekliği:";
+
+/* Class = "NSButtonCell"; title = "Thick bar"; ObjectID = "rM6-JW-wau"; */
+"rM6-JW-wau.title" = "Kalın çubuk";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "rpX-lj-tHS"; */
+"rpX-lj-tHS.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+
+/* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
+"sJb-7g-2FN.title" = "Yeni Tema";
+
+/* Class = "NSTextFieldCell"; title = "Dendrobates"; ObjectID = "sRo-2c-Ydn"; */
+"sRo-2c-Ydn.title" = "Ağaççıl Kurbağalar";
+
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "Diğer denetim karakterleri";
+
+/* Class = "NSTextFieldCell"; title = "Font Name 12"; ObjectID = "toV-fU-j7j"; */
+"toV-fU-j7j.title" = "Yazıtipi Adı 12";
+
+/* Class = "NSTextFieldCell"; title = "Background:"; ObjectID = "tvj-DS-DVt"; */
+"tvj-DS-DVt.title" = "Arka Plan:";
+
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
+"ueG-D7-DSV.title" = "Dışa Aktar…";
+
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */
+"vTP-Fc-iBF.title" = "Geri Yükle";
+
+/* Class = "NSMenuItem"; title = "Share"; ObjectID = "w4F-0P-Rgk"; */
+"w4F-0P-Rgk.title" = "Paylaş";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "wN3-ao-X42"; */
+"wN3-ao-X42.ibShadowedIsNilPlaceholder" = "Tanımlanmamış";
+
+/* Class = "NSTextFieldCell"; title = "URL:"; ObjectID = "xyY-jQ-kpJ"; */
+"xyY-jQ-kpJ.title" = "URL:";
+
+/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "yMW-lO-ILw"; */
+"yMW-lO-ILw.title" = "Geçerli Satır:";

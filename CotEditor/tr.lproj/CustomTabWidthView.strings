@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "Vkm-Ud-cTc"; */
+"Vkm-Ud-cTc.title" = "Tamam";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "bJM-c0-iOi"; */
+"bJM-c0-iOi.title" = "Vazgeç";
+
+/* Class = "NSTextFieldCell"; placeholderString = "4"; ObjectID = "nvF-iA-4j6"; */
+"nvF-iA-4j6.placeholderString" = "4";
+
+/* Class = "NSTextFieldCell"; title = "Tab width:"; ObjectID = "ql5-25-UDJ"; */
+"ql5-25-UDJ.title" = "Sekme genişliği:";

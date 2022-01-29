@@ -1,0 +1,12 @@
+
+/* Class = "NSWindow"; title = "Console"; ObjectID = "6"; */
+"6.title" = "Konsol";
+
+/* Class = "NSToolbarItem"; label = "Clear Log"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.label" = "Günlüğü Temizle";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Clear Log"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.paletteLabel" = "Günlüğü Temizle";
+
+/* Class = "NSToolbarItem"; toolTip = "Clear error log"; ObjectID = "Yei-b2-m1J"; */
+"Yei-b2-m1J.toolTip" = "Hata günlüğünü temizle";

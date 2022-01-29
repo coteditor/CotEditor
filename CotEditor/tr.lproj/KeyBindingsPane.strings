@@ -1,0 +1,72 @@
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
+"0Du-JI-ZN7.title" = "Saptanmışlara Dön";
+
+/* Class = "NSTextFieldCell"; title = "Action Name"; ObjectID = "0Uo-2F-m2T"; */
+"0Uo-2F-m2T.title" = "Eylem Adı";
+
+/* Class = "NSTextFieldCell"; title = "'Foo' includes the Command key. Please choose another key."; ObjectID = "4cq-fK-Hff"; */
+"4cq-fK-Hff.title" = "'Foo', Command düğmesini içerir. Lütfen başka bir düğme seçin.";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
+"5zd-aF-0zL.title" = "Buradaki düğmeler Command düğmesini dışarıda bırakmalıdır.";
+
+/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
+"9kQ-W2-4kw.title" = "Kırpıntılar";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
+"CyK-OL-qHa.title" = "Saptanmışlara Dön";
+
+/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
+"Dl2-3y-7EJ.title" = "(Betik menüsü hariç)";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "Bir bağıntıyı değiştirmek için onu seçin, düğme sütununa tıklayın ve düğmeleri girin.";
+
+/* Class = "NSTextFieldCell"; title = "'Foo' doesn’t include Command Key. Please choose another key."; ObjectID = "PAH-9l-L5p"; */
+"PAH-9l-L5p.title" = "'Foo', Command düğmesini içermiyor. Lütfen başka bir düğme seçin.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
+"PSD-Um-TfH.headerCell.title" = "Düğme";
+
+/* Class = "NSTextFieldCell"; title = "⌘N"; ObjectID = "T1C-pj-eFu"; */
+"T1C-pj-eFu.title" = "⌘N";
+
+/* Class = "NSTextFieldCell"; title = "Insert Text 0"; ObjectID = "Tyt-Cd-biz"; */
+"Tyt-Cd-biz.title" = "0 Metnini Ekle";
+
+/* Class = "NSTextFieldCell"; title = "⇧↩"; ObjectID = "X9M-VG-4QE"; */
+"X9M-VG-4QE.title" = "⇧↩";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
+"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Eylem Seç";
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
+"ZYM-tb-Csx.title" = "Menü ögeleri kestirmeleri";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "Bir bağıntıyı değiştirmek için onu seçin, düğme sütununa tıklayın ve bağıntıyı girin.";
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
+"eMZ-Mx-JSK.title" = "Önayarlı metin girimi için kestirmeler";
+
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
+"hXU-bV-zlt.headerCell.title" = "Düğme";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Eylem";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
+"qGe-Et-FB2.title" = "Buradaki düğmeler Command düğmesini içermelidir.";
+
+/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
+"sBQ-LT-Rwm.title" = "Menü Ögeleri";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
+"sz5-hl-bZK.headerCell.title" = "Eylem";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
+"tuB-9O-QZH.title" = "Ekleme Biçimi:";
+
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
+"wC4-qj-3oD.title" = "Değişken Ekle";

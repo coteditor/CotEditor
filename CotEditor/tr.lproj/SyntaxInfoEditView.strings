@@ -1,0 +1,21 @@
+
+/* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "4bM-8L-klg"; */
+"4bM-8L-klg.title" = "Açıklama:";
+
+/* Class = "NSTextFieldCell"; title = "Version:"; ObjectID = "7gc-K7-WrS"; */
+"7gc-K7-WrS.title" = "Sürüm:";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "KlI-NS-4x6"; */
+"KlI-NS-4x6.ibShadowedToolTip" = "URL'ye Atla";
+
+/* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "aL3-Pf-XDB"; */
+"aL3-Pf-XDB.title" = "Yazar:";
+
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "qBg-TV-NzD"; */
+"qBg-TV-NzD.title" = "Lisans:";
+
+/* Class = "NSTextFieldCell"; title = "Distribution URL:"; ObjectID = "vOw-3n-nuT"; */
+"vOw-3n-nuT.title" = "Dağıtım URL'si:";
+
+/* Class = "NSTextFieldCell"; title = "Last modified:"; ObjectID = "wrI-z3-8T0"; */
+"wrI-z3-8T0.title" = "Son değiştirilme:";

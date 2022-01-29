@@ -1,0 +1,9 @@
+
+/* Class = "NSMenuItem"; title = "Auto-Detect"; ObjectID = "SZF-BR-bZC"; */
+"SZF-BR-bZC.title" = "Kendilğinden algıla";
+
+/* Class = "NSButtonCell"; title = "Show hidden files"; ObjectID = "qkm-VD-lQC"; */
+"qkm-VD-lQC.title" = "Gizli dosyaları göster";
+
+/* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "voE-Mi-XZu"; */
+"voE-Mi-XZu.title" = "Kodlama:";
