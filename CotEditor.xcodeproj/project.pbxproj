@@ -1370,6 +1370,7 @@
 		2AE439D320A1280500EED807 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
 		2AE439D520A1280700EED807 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
 		2AE439D720A1280800EED807 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
+		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
@@ -1840,6 +1841,7 @@
 			isa = PBXGroup;
 			children = (
 				2AF482DA279288CF00A86481 /* README.md */,
+				2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */,
 				2AF482D9279288CF00A86481 /* CHANGELOG.md */,
 				5454B927243C8166009275BC /* Configurations */,
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
