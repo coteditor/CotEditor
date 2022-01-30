@@ -45,7 +45,7 @@
 "Brahmi" = "Brahmi";
 "Enclosed Alphanumerics" = "Etrafı Çevrilmiş Alfasayısallar";
 "Linear B Syllabary" = "Lineer B Heceleri";
-"Arabic Math Alphabetic Symbols" = "Arapça Alfabetik Matematik Sembolleri";
+"Arabic Mathematical Alphabetic Symbols" = "Arapça Alfabetik Matematik Sembolleri";  // "Math" -> "Mathematical"
 "Ugaritic" = "Ugarit";
 "Bamum Supplement" = "Bamum Eki";
 "Alphabetic Presentation Forms" = "Alfabetik Gösterim Formları";
@@ -144,7 +144,7 @@
 "Optical Character Recognition" = "Optik Karakter Tanıma";
 "Hangul Jamo Extended-A" = "Genişletilmiş Hangıl Jamo A";
 "Geometric Shapes Extended" = "Genişletilmiş Geometrik Şekiller";
-"Supplemental Math Operators" = "Ek Matematik İşleçleri";
+"Supplemental Mathematical Operators" = "Ek Matematik İşleçleri";  // "Math" -> "Mathematical"
 "Common Indic Number Forms" = "Yaygın Hintçe Sayı Formları";
 "Enclosed Alphanumeric Supplement" = "Etrafı Çevrilmiş Alfasayısallar Eki";
 "Kaithi" = "Kaithi";
@@ -158,9 +158,9 @@
 "CJK Unified Ideographs Ext. D" = "CJK Birleştirilmiş İdeogramları Ek D";
 "Caucasian Albanian" = "Kafkas Albanyası";
 "Tifinagh" = "Tifinagh";
-"Miscellaneous Symbols And Pictographs" = "Çeşitli Semboller ve Piktograflar";
+"Miscellaneous Symbols and Pictographs" = "Çeşitli Semboller ve Piktograflar";  // "And" -> "and"
 "Meetei Mayek Extensions" = "Meetei Mayek Genişletmeleri";
-"Miscellaneous Math Symbols-B" = "Çeşitli Matematik Sembolleri-B";
+"Miscellaneous Mathematical Symbols-B" = "Çeşitli Matematik Sembolleri-B";  // "Math" -> "Mathematical"
 "Mahajani" = "Mahajani";
 "Yi Radicals" = "Yi Kökleri";
 "Lydian" = "Lidya";
@@ -176,7 +176,7 @@
 "Letterlike Symbols" = "Harf Gibi Semboller";
 "Sinhala" = "Sinhal Dili";
 "Supplemental Punctuation" = "Ek Noktalamalar";
-"Math Alphanumeric Symbols" = "Matematik Alfasayısal Sembolleri";
+"Mathematical Alphanumeric Symbols" = "Matematik Alfasayısal Sembolleri";  // "Math" -> "Mathematical"
 "Cypriot Syllabary" = "Kıbrıs Heceleri";
 "Gurmukhi" = "Gurmukhi";
 "Gothic" = "Gotik";
@@ -193,7 +193,7 @@
 "Runic" = "Runik";
 "Enclosed CJK Letters and Months" = "Etrafı Çevrilmiş CJK Harfleri ve Ayları";
 "Byzantine Musical Symbols" = "Bizans Müzik Sembolleri";
-"N’Ko" = "N’Ko";
+"NKo" = "NKo";  // remove ’
 "CJK Strokes" = "CJK Çizgileri";
 "Latin Extended-E" = "Genişletilmiş Latin-E";
 "Miscellaneous Symbols" = "Çeşitli Semboller";
@@ -276,7 +276,7 @@
 "Cherokee Supplement" = "Çeroki Eki";
 "Miscellaneous Symbols and Arrows" = "Çeşitli Semboller ve Oklar";
 "Old North Arabian" = "Eski Kuzey Arabistan Dili";
-"Transport And Map Symbols" = "Ulaşım ve Harita Sembolleri";
+"Transport and Map Symbols" = "Ulaşım ve Harita Sembolleri";  // "And" -> "and"
 "Lao" = "Laos Dili";
 "Multani" = "Multani";
 "Hangul Jamo Extended-B" = "Genişletilmiş Hangıl Jamo B";
@@ -292,7 +292,7 @@
 "Oriya" = "Oriya";
 "Latin Extended Additional" = "Genişletilmiş Latin Eki";
 "Georgian" = "Gürcüce";
-"Miscellaneous Math Symbols-A" = "Çeşitli Matematik Sembolleri-A";
+"Miscellaneous Mathematical Symbols-A" = "Çeşitli Matematik Sembolleri-A";  // "Math" -> "Mathematical"
 "Combining Half Marks" = "Birleştirici Yarı İşaretler";
 "Counting Rod Numerals" = "Sayma Çubukları Rakamları";
 "Ahom" = "Ahom";
