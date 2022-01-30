@@ -6,7 +6,7 @@
 "19.title" = "Window";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
-"23.title" = "Minimize";
+"23.title" = "Minimise";
 
 /* Class = "NSMenu"; title = "Window"; ObjectID = "24"; */
 "24.title" = "Window";
@@ -258,7 +258,7 @@
 "612.title" = "Hide Toolbar";
 
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "Customize Toolbar…";
+"613.title" = "Customise Toolbar…";
 
 /* Class = "NSMenu"; title = "Script"; ObjectID = "616"; */
 "616.title" = "Script";
@@ -456,7 +456,7 @@
 "KrV-3z-r5B.title" = "Replace and Find Next";
 
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Capitalize";
+"LC4-lg-eO0.title" = "Capitalise";
 
 /* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
 "LLy-Yx-tXI.title" = "Toggle Comment";
