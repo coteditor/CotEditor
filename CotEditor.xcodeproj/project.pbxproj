@@ -1495,8 +1495,6 @@
 		98EAE83B27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Credits.html"; sourceTree = "<group>"; };
 		98EAE83C27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		98EAE83D27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "en-GB"; path = "en-GB.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
-		98EAE83E27A5D7DB00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = "en-GB"; path = "en-GB.lproj/Credits.css"; sourceTree = "<group>"; };
-		98EAE83F27A5D7DB00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = "en-GB"; path = "en-GB.lproj/Acknowledgments.css"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4155,7 +4153,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AE73EC7203520E000D8903B /* Base */,
-				98EAE83F27A5D7DB00C6D571 /* en-GB */,
 			);
 			name = Acknowledgments.css;
 			sourceTree = "<group>";
@@ -4164,7 +4161,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AE73ECB2035223100D8903B /* Base */,
-				98EAE83E27A5D7DB00C6D571 /* en-GB */,
 			);
 			name = Credits.css;
 			sourceTree = "<group>";
