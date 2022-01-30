@@ -420,7 +420,7 @@
 "F6P-7N-LSf.title" = "Inline Comment";
 
 /* Class = "NSMenuItem"; title = "Parentheses"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "Parentheses";
+"G3o-1h-GwR.title" = "Round Brackets";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "Transformations";
@@ -546,7 +546,7 @@
 "cIp-rb-QPk.title" = "Smart Dashes";
 
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "Brackets";
+"cTU-2P-7Tp.title" = "Square Brackets";
 
 /* Class = "NSMenuItem"; title = "New Window"; ObjectID = "cTV-Rh-597"; */
 "cTV-Rh-597.title" = "New Window";
