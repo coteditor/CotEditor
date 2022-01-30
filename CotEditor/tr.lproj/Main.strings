@@ -150,7 +150,7 @@
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "5eg-wx-S4p"; */
 "5eg-wx-S4p.title" = "Yazım ve Dilbilgisi Denetimi Yap";
 /* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "kQ8-FM-Cgx"; */
-"kQ8-FM-Cgx.title" = "Yazım Hatalarını Kendiliğinden Düzelt";
+"kQ8-FM-Cgx.title" = "Yazım Hatalarını Otomatik Düzelt";
 
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "yN3-iT-4Lq"; */
 "yN3-iT-4Lq.title" = "Değişimler";
@@ -350,7 +350,7 @@
 "dob-yj-jf3.title" = "Yorumu Kaldır";
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
-"4h9-iu-ehP.title" = "Girintilendirme";
+"4h9-iu-ehP.title" = "Girintileme";
 /* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
 "YOd-Hk-eIa.title" = "Girintileme";
 /* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */

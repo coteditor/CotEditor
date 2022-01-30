@@ -1068,7 +1068,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             let alert = NSAlert()
             alert.messageText = messageText.localized
-            alert.informativeText = "Do you want to keep CotEditor’s edition or update to the modified edition?".localized
+            alert.informativeText = "Do you want to keep CotEditor’s edition or update it to the modified edition?".localized
             alert.addButton(withTitle: "Keep CotEditor’s Edition".localized)
             alert.addButton(withTitle: "Update".localized)
             

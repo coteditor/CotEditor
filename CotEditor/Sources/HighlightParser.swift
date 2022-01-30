@@ -134,7 +134,7 @@ final class HighlightParser {
         guard !self.progress.isCancelled else { throw CancellationError() }
         
         // reduce complexity of highlights dictionary
-        self.progress.localizedDescription = "Preparing coloring…".localized
+        self.progress.localizedDescription = "Preparing to color…".localized
         highlights.sanitize(progress: self.progress)
         self.progress.completedUnitCount += 1
         

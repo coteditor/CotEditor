@@ -24,12 +24,12 @@
 //  limitations under the License.
 
 /* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
-"8zu-3V-Obg.title" = "Sekmeleri yeğle:";
+"8zu-3V-Obg.title" = "Sekmeleri tercih et:";
 
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "Sistem Ayarını Koru";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "Hiçbir zaman";  // The same as the popup menu selection in the System Preferences > "General"
+"o1f-vR-aFm.title" = "her zaman";  // The same as the popup menu selection in the System Preferences > "General"
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "Kendiliğinden";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */

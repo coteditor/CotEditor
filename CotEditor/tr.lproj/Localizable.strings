@@ -82,7 +82,7 @@
 "Empty find string" = "Bulunacak dizi boş";
 "The option “in selection” is enabled, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
 "Input text to find." = "Bulunacak girdi metni";
-"Select the search scope in document or disable “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
+"Select the search scope in the document or disable the “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
 
 // accessibility announcement
 "Search wrapped." = "Arama baştan sürüyor";  // announced when the search restarted from the beginning.
@@ -200,7 +200,7 @@
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor'da kaydedilmemiş değişiklikler var.";
 "The file has been modified by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditor'da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor'da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
 
@@ -469,7 +469,7 @@
 "Coloring text…" = "Metin renklendiriliyor…";
 "Please wait for a while." = "Lütfen bir süre bekleyin.";
 "Extracting %@…" = "%@ çıkarılıyor…";
-"Preparing coloring…" = "Renklendirme hazırlanıyor";
+"Preparing to color…" = "Renklendirme hazırlanıyor";
 "Applying colors to text" = "Metne renkler uygulanıyor";
 "keywords" = "anahtar sözcükler";
 "commands" = "komutlar";

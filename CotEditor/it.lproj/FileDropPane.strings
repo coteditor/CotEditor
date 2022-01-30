@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -45,10 +45,10 @@
 /* Class = "NSMenuItem"; title = "All"; ObjectID = "W3Z-PB-IUJ"; */
 "W3Z-PB-IUJ.title" = "Tutti";  // displays if no scope syntax style is specified
 
-/* Class = "NSButtonCell"; ibShadowedToolTip = "Add"; ObjectID = "457"; */
-"457.ibShadowedToolTip" = "Aggiungi";
-/* Class = "NSButtonCell"; ibShadowedToolTip = "Delete"; ObjectID = "458"; */
-"458.ibShadowedToolTip" = "Rimuovi";
+/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[0] = "Add"; ObjectID = "oXA-8G-UhH"; */
+"oXA-8G-UhH.ibShadowedToolTips[0]" = "Aggiungi";
+/* Class = "NSSegmentedCell"; oXA-8G-UhH.ibShadowedToolTips[1] = "Delete"; ObjectID = "oXA-8G-UhH"; */
+"oXA-8G-UhH.ibShadowedToolTips[1]" = "Rimuovi";
 
 
 /* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "3332"; */

@@ -52,7 +52,6 @@
 /* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
 "YG7-Y7-xzs.title" = "Blok";
 
-
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "Görünmez karakterler:";
 /* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
@@ -71,7 +70,7 @@
 "csp-Hi-hb1.title" = "Girintileme kılavuzlarını göster";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
-"6KG-3a-ZuU.title" = "Görünüm:";
+"6KG-3a-ZuU.title" = "Görünüş:";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
 "apQ-au-gOC.title" = "Sistemle Eşleştir";
 /* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */

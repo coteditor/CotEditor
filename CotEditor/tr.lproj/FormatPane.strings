@@ -34,7 +34,6 @@
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
 "12.title" = "Windows (CRLF)";
 
-
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Öntanımlı metin kodlaması:";
 
@@ -45,12 +44,10 @@
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
 "3280.title" = "Belgedeki kodlama beyanına başvur";
 
-
-
-/* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
-"3326.title" = "Sözdizim vurgulamasını etkinleştir";
 /* Class = "NSTextFieldCell"; title = "(Including outline menu)"; ObjectID = "3325"; */
 "3325.title" = "(Anahat menüsü dahil)";
+/* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
+"3326.title" = "Sözdizim vurgulamasını etkinleştir";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Öntanımlı sözdizim biçemi:";
@@ -69,7 +66,6 @@
 "Q0c-oI-um3.ibShadowedToolTip" = "Seçili biçemi düzenle";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibExternalAccessibilityDescription" = "Düzenle";
-
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
 "1lj-x8-ouD.title" = "İçe Aktar…";

@@ -83,7 +83,7 @@
 "Empty find string" = "Empty find string";
 "The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";
 "Input text to find." = "Input text to find.";
-"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";
+"Select the search scope in the document or disable the “in selection” option." = "Select the search scope in the document or disable the “in selection” option.";
 
 // accessibility announcement
 "Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.
@@ -201,7 +201,7 @@
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "The file has been modified by another application. There are also unsaved changes in CotEditor.";
 "The file has been modified by another application." = "The file has been modified by another application.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Do you want to keep CotEditor’s edition or update to the modified edition?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Do you want to keep CotEditor’s edition or update it to the modified edition?";
 "Keep CotEditor’s Edition" = "Keep CotEditor’s Edition";
 "Update" = "Update";
 
@@ -470,7 +470,7 @@
 "Coloring text…" = "Colouring text…";
 "Please wait for a while." = "Please wait for a while.";
 "Extracting %@…" = "Extracting %@…";
-"Preparing coloring…" = "Preparing colouring…";
+"Preparing to color…" = "Preparing to colour…";
 "Applying colors to text" = "Applying colours to text";
 "keywords" = "keywords";
 "commands" = "commands";

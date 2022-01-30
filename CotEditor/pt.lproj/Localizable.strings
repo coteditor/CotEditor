@@ -83,7 +83,7 @@
 "Empty find string" = "String de busca vazia";
 "The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
 "Input text to find." = "Digite o texto a buscar.";
-"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";  // FIXME: added
+"Select the search scope in the document or disable the “in selection” option." = "Select the search scope in the document or disable the “in selection” option.";  // FIXME: added
 
 // accessibility announcement
 "Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
@@ -201,7 +201,7 @@
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "O arquivo foi modificado por outro aplicativo. Também há alterações não salvas no CotEditor.";
 "The file has been modified by another application." = "O arquivo foi modificado por outro aplicativo.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?";
 "Keep CotEditor’s Edition" = "Manter Edição do CotEditor";
 "Update" = "Atualizar";
 
@@ -472,7 +472,7 @@
 "Coloring text…" = "Colorindo texto…";
 "Please wait for a while." = "Aguarde um momento.";
 "Extracting %@…" = "Extraindo %@…";
-"Preparing coloring…" = "Preparando a coloração…";  // FIXME: machine-translated (native check required)
+"Preparing to color…" = "Preparando a coloração…";  // FIXME: machine-translated (native check required)
 "Applying colors to text" = "Aplicando cores ao texto";
 "keywords" = "palavras-chave";
 "commands" = "comandos";
