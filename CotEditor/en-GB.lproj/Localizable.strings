@@ -285,9 +285,9 @@
 // tooltip
 "Show spelling and grammar" = "Show spelling and grammar";
 
-"Color Code" = "Color Code";
+"Color Code" = "Colour Code";
 // tooltip
-"Open Color Code Editor and set selection as color code" = "Open Color Code Editor and set selection as color code";
+"Open Color Code Editor and set selection as color code" = "Open Colour Code Editor and set selection as colour code";
 
 "Emoji & Symbols" = "Emoji & Symbols";
 // tooltip
@@ -333,7 +333,7 @@
 
 /* MARK: PrintAccessoryViewController */
 // Summary item names
-"Color" = "Color";
+"Color" = "Colour";
 "Line Number" = "Line Number";
 "Invisibles" = "Invisibles";
 "Print Header" = "Print Header";
@@ -360,7 +360,7 @@
 "Print Date" = "Print Date";
 "Page Number" = "Page Number";
 "Left" = "Left";
-"Center" = "Center";
+"Center" = "Centre";
 "Right" = "Right";
 
 
@@ -467,11 +467,11 @@
 
 /* MARK: SyntaxStyle */
 // Coloring indicator
-"Coloring text…" = "Coloring text…";
+"Coloring text…" = "Colouring text…";
 "Please wait for a while." = "Please wait for a while.";
 "Extracting %@…" = "Extracting %@…";
-"Preparing coloring…" = "Preparing coloring…";
-"Applying colors to text" = "Applying colors to text";
+"Preparing coloring…" = "Preparing colouring…";
+"Applying colors to text" = "Applying colours to text";
 "keywords" = "keywords";
 "commands" = "commands";
 "types" = "types";
@@ -488,7 +488,7 @@
 
 /* MARK: ColorCodePanelController */
 // Undo action name
-"Insert Color Code" = "Insert Color Code";
+"Insert Color Code" = "Insert Colour Code";
 // Color list name
 "Stylesheet Keywords" = "Stylesheet Keywords";
 
@@ -620,7 +620,7 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "Untitled";
-"Customized Theme" = "Customized Theme";
+"Customized Theme" = "Customised Theme";
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "A new theme named “%@” will be installed, but a custom theme with the same name already exists.";
