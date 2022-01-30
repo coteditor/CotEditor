@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -448,10 +448,10 @@
                                 </constraints>
                             </customView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N1E-uH-II1">
-                                <rect key="frame" x="20" y="326" width="520" height="5"/>
+                                <rect key="frame" x="20" y="326" width="530" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-bI-CJS">
-                                <rect key="frame" x="20" y="224" width="520" height="5"/>
+                                <rect key="frame" x="20" y="224" width="530" height="5"/>
                             </box>
                             <button identifier="pref_format" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-4V-mYI">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
@@ -475,8 +475,8 @@
                             <constraint firstItem="Qm2-4V-mYI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FjK-rw-YKz" secondAttribute="trailing" constant="20" id="fdV-uZ-AHa"/>
                             <constraint firstItem="hJ2-kD-hQi" firstAttribute="centerY" secondItem="N1E-uH-II1" secondAttribute="centerY" id="mlc-JB-lGU"/>
                             <constraint firstAttribute="trailing" secondItem="Qm2-4V-mYI" secondAttribute="trailing" constant="20" symbolic="YES" id="ool-vv-cxn"/>
-                            <constraint firstAttribute="trailing" secondItem="QgD-bI-CJS" secondAttribute="trailing" constant="30" id="ozr-k1-CMC"/>
-                            <constraint firstAttribute="trailing" secondItem="N1E-uH-II1" secondAttribute="trailing" constant="30" id="r8f-De-tjn"/>
+                            <constraint firstAttribute="trailing" secondItem="QgD-bI-CJS" secondAttribute="trailing" constant="20" symbolic="YES" id="ozr-k1-CMC"/>
+                            <constraint firstAttribute="trailing" secondItem="N1E-uH-II1" secondAttribute="trailing" constant="20" symbolic="YES" id="r8f-De-tjn"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1uW-kK-NRh" secondAttribute="trailing" id="tIf-82-bSD"/>
                             <constraint firstItem="zq7-jF-Cc9" firstAttribute="centerY" secondItem="QgD-bI-CJS" secondAttribute="centerY" id="uxp-jE-PHx"/>
                         </constraints>
