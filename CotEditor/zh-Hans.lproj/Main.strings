@@ -393,7 +393,7 @@
 "Srp-eD-10Q.title" = "单引号";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "双引号";
-/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+/* Class = "NSMenuItem"; title = "Parentheses"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "圆括号";  // ()
 /* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "大括号";  // {}

@@ -388,7 +388,7 @@
 "Srp-eD-10Q.title" = "Aspas Simples";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "Aspas Duplas";
-/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+/* Class = "NSMenuItem"; title = "Parentheses"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "Parênteses";  // ()
 /* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "Chaves";  // {}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -772,9 +772,9 @@ CA
                                                             <action selector="surroundSelectionWithDoubleQuotes:" target="Ady-hI-5gd" id="rqZ-qN-jAw"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Parenthesis" keyEquivalent="(" id="G3o-1h-GwR">
+                                                    <menuItem title="Parentheses" keyEquivalent="(" id="G3o-1h-GwR">
                                                         <connections>
-                                                            <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
+                                                            <action selector="surroundSelectionWithParentheses:" target="Ady-hI-5gd" id="gvU-WD-OLA"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Braces" id="Xoq-43-C1z">
@@ -1197,6 +1197,6 @@ CA
         </scene>
     </scenes>
     <resources>
-        <image name="applescript.fill" catalog="system" width="14" height="19"/>
+        <image name="applescript.fill" catalog="system" width="14" height="18"/>
     </resources>
 </document>
