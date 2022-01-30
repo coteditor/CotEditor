@@ -1,0 +1,33 @@
+
+/* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "6eS-Hj-xoA"; */
+"6eS-Hj-xoA.title" = "Extensions";
+
+/* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
+"Axx-Oq-E9U.title" = "Interpreters";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "I6J-y5-MxO"; */
+"I6J-y5-MxO.headerCell.title" = "Interpreter";
+
+/* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
+"IAe-3F-qcV.title" = "Filenames";
+
+/* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "IIL-M3-S2o"; */
+"IIL-M3-S2o.headerCell.title" = "Extension";
+
+/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "QjK-XG-E4X"; */
+"QjK-XG-E4X.title" = "(without dots)";
+
+/* Class = "NSTextFieldCell"; title = "txt"; ObjectID = "Vce-NT-Qem"; */
+"Vce-NT-Qem.title" = "txt";
+
+/* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
+"dIj-Z5-J2j.title" = "The interpreters are used to determine the syntax style from the shebang in the document.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "jwM-Gn-44e"; */
+"jwM-Gn-44e.headerCell.title" = "Filename";
+
+/* Class = "NSTextFieldCell"; title = ".hiddenFile"; ObjectID = "o3p-wd-vXY"; */
+"o3p-wd-vXY.title" = ".hiddenFile";
+
+/* Class = "NSTextFieldCell"; title = "txt"; ObjectID = "x5Z-tz-rKt"; */
+"x5Z-tz-rKt.title" = "txt";

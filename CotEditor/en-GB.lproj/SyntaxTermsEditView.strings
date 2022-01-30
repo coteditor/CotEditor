@@ -1,0 +1,42 @@
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "0ah-vG-2QL"; */
+"0ah-vG-2QL.headerCell.title" = "Description";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "4Ah-4u-fCr"; */
+"4Ah-4u-fCr.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "note"; ObjectID = "7cu-Qy-cgF"; */
+"7cu-Qy-cgF.title" = "note";
+
+/* Class = "NSTextFieldCell"; title = "begin"; ObjectID = "Byh-ZD-px4"; */
+"Byh-ZD-px4.title" = "begin";
+
+/* Class = "NSButtonCell"; title = "Check"; ObjectID = "KHS-OV-BeS"; */
+"KHS-OV-BeS.title" = "Check";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OfA-fU-q72"; */
+"OfA-fU-q72.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "QJ2-Qf-Fyb"; */
+"QJ2-Qf-Fyb.headerCell.title" = "Begin String";
+
+/* Class = "NSButtonCell"; title = "Check"; ObjectID = "dm6-ya-Lqh"; */
+"dm6-ya-Lqh.title" = "Check";
+
+/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "hjj-zA-Yr9"; */
+"hjj-zA-Yr9.headerCell.title" = "RE";
+
+/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "hjj-zA-Yr9"; */
+"hjj-zA-Yr9.headerToolTip" = "Regular Expression";
+
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "i4u-kF-59v"; */
+"i4u-kF-59v.headerCell.title" = "End String";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "lGo-Dt-HY5"; */
+"lGo-Dt-HY5.title" = "Text Cell";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "qJN-3P-dIu"; */
+"qJN-3P-dIu.headerCell.title" = "IC";
+
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "qJN-3P-dIu"; */
+"qJN-3P-dIu.headerToolTip" = "Ignore Case (case-insensitive)";

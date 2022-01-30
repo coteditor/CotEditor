@@ -1,0 +1,24 @@
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3390"; */
+"3390.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "3391"; */
+"3391.title" = "OK";
+
+/* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
+"3392.title" = "Add Separator";
+
+/* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
+"3393.title" = "Delete Separator";
+
+/* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
+"3394.title" = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritised.";
+
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order:"; ObjectID = "3395"; */
+"3395.title" = "Drag encodings to change the order:";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
+"3396.title" = "Restore Defaults";
+
+/* Class = "NSTextFieldCell"; title = "ENCODING NAME"; ObjectID = "Yzo-ia-Vea"; */
+"Yzo-ia-Vea.title" = "ENCODING NAME";

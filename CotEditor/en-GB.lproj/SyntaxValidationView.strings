@@ -1,0 +1,30 @@
+
+/* Class = "NSTextFieldCell"; title = ":"; ObjectID = "3Ek-Hr-eIx"; */
+"3Ek-Hr-eIx.title" = ":";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "(%{value1}@)"; ObjectID = "4Hy-lm-mHN"; */
+"4Hy-lm-mHN.ibShadowedDisplayPattern" = "(%{value1}@)";
+
+/* Class = "NSTextFieldCell"; title = "^foobar$"; ObjectID = "8nz-I2-dL1"; */
+"8nz-I2-dL1.title" = "^foobar$";
+
+/* Class = "NSTextFieldCell"; title = "Type"; ObjectID = "FZs-ra-kr1"; */
+"FZs-ra-kr1.title" = "Type";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "IKy-ee-cEi"; */
+"IKy-ee-cEi.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "(Begin String)"; ObjectID = "aWr-K6-iuS"; */
+"aWr-K6-iuS.title" = "(Begin String)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Type"; ObjectID = "hFj-1b-cNy"; */
+"hFj-1b-cNy.headerCell.title" = "Type";
+
+/* Class = "NSTextFieldCell"; title = "⚠️"; ObjectID = "rVB-57-xcy"; */
+"rVB-57-xcy.title" = "⚠️";
+
+/* Class = "NSTextFieldCell"; title = "Failure reason."; ObjectID = "wMe-Bz-f7x"; */
+"wMe-Bz-f7x.title" = "Failure reason.";
+
+/* Class = "NSTextFieldCell"; title = "VALIDATION MESSAGE"; ObjectID = "xyN-YF-VuY"; */
+"xyN-YF-VuY.title" = "VALIDATION MESSAGE";

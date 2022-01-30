@@ -1,0 +1,15 @@
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "9Pu-Ep-7fQ"; */
+"9Pu-Ep-7fQ.title" = "OK";
+
+/* Class = "NSTextFieldCell"; title = "Begin:"; ObjectID = "Gyd-g5-olo"; */
+"Gyd-g5-olo.title" = "Begin:";
+
+/* Class = "NSTextFieldCell"; title = "End:"; ObjectID = "I9c-rv-hHo"; */
+"I9c-rv-hHo.title" = "End:";
+
+/* Class = "NSTextFieldCell"; title = "Surround With:"; ObjectID = "rgF-DI-5tb"; */
+"rgF-DI-5tb.title" = "Surround With:";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "xm5-Ft-kfG"; */
+"xm5-Ft-kfG.title" = "Cancel";
