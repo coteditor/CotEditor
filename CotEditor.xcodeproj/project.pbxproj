@@ -1450,7 +1450,6 @@
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98EAE81027A5D7D600C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
-		98EAE81127A5D7D600C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/WebDocumentWindow.strings"; sourceTree = "<group>"; };
 		98EAE81227A5D7D600C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PreferencesWindow.strings"; sourceTree = "<group>"; };
 		98EAE81327A5D7D700C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/GeneralPane.strings"; sourceTree = "<group>"; };
 		98EAE81427A5D7D700C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/WindowPane.strings"; sourceTree = "<group>"; };
@@ -1489,7 +1488,6 @@
 		98EAE83527A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CustomTabWidthView.strings"; sourceTree = "<group>"; };
 		98EAE83627A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
 		98EAE83727A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/UnicodeInputView.strings"; sourceTree = "<group>"; };
-		98EAE83827A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/HUDView.strings"; sourceTree = "<group>"; };
 		98EAE83927A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
 		98EAE83A27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ColorCodePanelAccessory.strings"; sourceTree = "<group>"; };
 		98EAE83B27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Credits.html"; sourceTree = "<group>"; };
@@ -3792,7 +3790,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A97849E2034561B00482647 /* Base */,
-				98EAE81127A5D7D600C6D571 /* en-GB */,
 			);
 			name = WebDocumentWindow.storyboard;
 			sourceTree = "<group>";
@@ -3943,7 +3940,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ABC828721A950AC008F9229 /* Base */,
-				98EAE83827A5D7DA00C6D571 /* en-GB */,
 			);
 			name = HUDView.storyboard;
 			sourceTree = "<group>";
