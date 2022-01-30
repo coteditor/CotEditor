@@ -53,6 +53,7 @@ Currently, we already have maintainers for:
 - Italian
 - French
 - Turkish
+- English (UK)
 
 #### Localization for App Store
 

@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add Turkish localization (thanks to Emir SARI!).
+- Add Turkish (thanks to Emir SARI!) and British English (thanks to Alex Newson!) localizations.
 - Introduce a new AppleScript command `jump` to document objects.
 - Place line number views in the right side in the editor if the writing direction is right-to-left.
 
