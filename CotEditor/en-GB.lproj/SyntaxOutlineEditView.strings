@@ -1,36 +1,50 @@
+//
+//  SyntaxOutlineEditView.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Alex Newson on 2022-01-30.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
-/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
-"00X-sB-42F.title" = "Underline";
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "Regular Expression String";
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Regular expressions to extract outline menu items";
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerCell.title" = "IC";
-
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerToolTip" = "Ignore Case (case-insensitive)";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "Description";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Jyv-nG-ZJJ"; */
-"Jyv-nG-ZJJ.title" = "Text Cell";
-
-/* Class = "NSTextFieldCell"; title = "note"; ObjectID = "NIK-yi-b5J"; */
-"NIK-yi-b5J.title" = "note";
-
-/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "Regular expressions to extract outline menu items";
-
-/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
-"fUz-0u-0D4.title" = "Italic";
-
-/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
-"iub-mE-wGf.title" = "Bold";
-
 /* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
 "nnO-qN-dYF.title" = "Menu title pattern";
-
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "(blank matches the whole string)";
 
-/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
-"vRg-cd-Ib2.headerCell.title" = "Regular Expression String";
+/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
+"iub-mE-wGf.title" = "Bold";
+/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
+"fUz-0u-0D4.title" = "Italic";
+/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
+"00X-sB-42F.title" = "Underline";

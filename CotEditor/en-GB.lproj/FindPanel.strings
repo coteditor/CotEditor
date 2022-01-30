@@ -1,138 +1,125 @@
+//
+//  FindPanel.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Alex Newson on 2022-01-30.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "Find String: %{value1}@";
-
-/* Class = "NSTextFieldCell"; title = "Not Replaced"; ObjectID = "2sg-74-GwO"; */
-"2sg-74-GwO.title" = "Not Replaced";
-
-/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
-"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Recent Searches";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
-"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Find";
-
-/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "Ignore Case";
-
-/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
-"5gU-5y-iLn.title" = "Replace All";
-
-/* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "Recent Replacements";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
-"8My-G5-daT.ibShadowedToolTip" = "Select to search with regular expression.";
-
-/* Class = "NSTextFieldCell"; title = "16"; ObjectID = "8w9-f5-haz"; */
-"8w9-f5-haz.title" = "16";
-
-/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "In Selection";
-
-/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
-"CPd-0W-bKv.headerCell.title" = "Line";
-
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "ESB-UB-grB"; */
-"ESB-UB-grB.title" = "Text Cell";
-
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Advanced options";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Set advanced options";
-
-/* Class = "NSTextFieldCell"; title = "Not Found"; ObjectID = "Ghf-cy-qgo"; */
-"Ghf-cy-qgo.title" = "Not Found";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
-"GvT-tD-Cbk.ibShadowedToolTip" = "Select to ignore character case on search.";
-
-/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
-"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Recent Replacements";
-
-/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
-"OCv-Y5-8XR.ibShadowedToolTip" = "List all matches.";
-
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
-"ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Clear";
-
-/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
-"PJ8-wp-pdK.headerCell.title" = "Found String";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
-"RR6-rj-B8P.ibShadowedToolTip" = "Replace all matches with the replacement text.";
-
-/* Class = "NSTextFieldCell"; title = "Clarus says moof!"; ObjectID = "RSI-QP-jZ1"; */
-"RSI-QP-jZ1.title" = "Clarus says moof!";
-
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
-"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Replace";
-
-/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
-"W4Z-S2-wvv.title" = "Replace";
-
-/* Class = "NSTextFieldCell"; title = "Found 4 strings in “Document.txt”."; ObjectID = "WJu-qO-b0n"; */
-"WJu-qO-b0n.title" = "Found 4 strings in “Document.txt”.";
+// Find Panel
 
 /* Class = "NSWindow"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "Find & Replace";
 
-/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
-"XLZ-92-VVF.title" = "Find All";
 
-/* Class = "NSView"; ibExternalAccessibilityDescription = "Find result"; ObjectID = "XqS-F4-g0U"; */
-"XqS-F4-g0U.ibExternalAccessibilityDescription" = "Find result";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
+"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Find";
+/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibShadowedToolTip" = "Type the text to search for.";
+/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibExternalAccessibilityDescription" = "Find";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
+"ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Clear";
 
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
+"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Replace";
+/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibShadowedToolTip" = "Type the text to replace the found text.";
+/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibExternalAccessibilityDescription" = "Replace";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "Y5M-CG-n0V"; */
 "Y5M-CG-n0V.ibExternalAccessibilityDescription" = "Clear";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "Regular Expression";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
+"8My-G5-daT.ibShadowedToolTip" = "Select to search with regular expression.";
 
-/* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "Recent Searches";
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
+"4wg-Cz-ozb.title" = "Ignore Case";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
+"GvT-tD-Cbk.ibShadowedToolTip" = "Select to ignore character case on search.";
 
-/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "fQe-7L-GIE"; */
-"fQe-7L-GIE.title" = "Text Cell";
-
-/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
-"hxw-DS-gxQ.ibExternalAccessibilityDescription" = "Find";
-
-/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
-"hxw-DS-gxQ.ibShadowedToolTip" = "Type the text to search for.";
+/* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
+"9bc-9Q-fhd.title" = "In Selection";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
+"tu7-IT-dA3.ibShadowedToolTip" = "Select to search text only from selection.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
 "i2l-7Z-Zmf.ibShadowedToolTip" = "Show quick reference for regular expression syntax.";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
-"oC1-bN-UeN.ibShadowedToolTip" = "Close find result.";
 
-/* Class = "NSMenuItem"; title = "DUMMY"; ObjectID = "oXp-Kg-hET"; */
-"oXp-Kg-hET.title" = "DUMMY";
+// Buttons
 
-/* Class = "NSMenuItem"; title = "DUMMY"; ObjectID = "pDj-vD-VPN"; */
-"pDj-vD-VPN.title" = "DUMMY";
+/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
+"XLZ-92-VVF.title" = "Find All";
+/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
+"OCv-Y5-8XR.ibShadowedToolTip" = "List all matches.";
 
-/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
-"qiQ-tb-XCa.ibExternalAccessibilityDescription" = "Replace";
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
+"5gU-5y-iLn.title" = "Replace All";
+/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
+"RR6-rj-B8P.ibShadowedToolTip" = "Replace all matches with the replacement text.";
 
-/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
-"qiQ-tb-XCa.ibShadowedToolTip" = "Type the text to replace the found text.";
-
-/* Class = "NSTextFieldCell"; title = "Find string: Clarus"; ObjectID = "t1S-wd-olE"; */
-"t1S-wd-olE.title" = "Find string: Clarus";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
-"tu7-IT-dA3.ibShadowedToolTip" = "Select to search text only from selection.";
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
+"W4Z-S2-wvv.title" = "Replace";
+// Note: The tooltip for "Replace button is set the in FindPanelController.
 
 /* Class = "NSSegmentedCell"; u6p-Hz-aK5.ibShadowedToolTips[0] = "Find previous match."; ObjectID = "u6p-Hz-aK5"; */
 "u6p-Hz-aK5.ibShadowedToolTips[0]" = "Find previous match.";
-
 /* Class = "NSSegmentedCell"; u6p-Hz-aK5.ibShadowedToolTips[1] = "Find next match."; ObjectID = "u6p-Hz-aK5"; */
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "Find next match.";
 
+/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Recent Searches";
+/* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
+"cdV-rY-hCN.title" = "Recent Searches";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "Clear Recent Searches";
 
+/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Recent Replacements";
+/* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
+"7cw-iQ-0LM.title" = "Recent Replacements";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Clear Recent Replacements";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Set advanced options";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Advanced options";
+
+
+// Find Result
+
+/* Class = "NSButton"; ibShadowedToolTip = "Close find result."; ObjectID = "oC1-bN-UeN"; */
+"oC1-bN-UeN.ibShadowedToolTip" = "Close find result.";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "Find String: %{value1}@";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
+"CPd-0W-bKv.headerCell.title" = "Line";
+/* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
+"PJ8-wp-pdK.headerCell.title" = "Found String";
+
+
+/* Class = "NSView"; ibExternalAccessibilityDescription = "Find result"; ObjectID = "XqS-F4-g0U"; */
+"XqS-F4-g0U.ibExternalAccessibilityDescription" = "Find result";

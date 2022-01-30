@@ -42,7 +42,7 @@ Especially, follow the terms of the following applications.
 
 #### Submitting a new localization
 
-Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `de.lproj/` directory because they are always up-to-date and well organized.
+Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `CotEditor/en-GB.lproj/` directory because they are always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
 Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized, so that you can keep all your localized strings up to date.
