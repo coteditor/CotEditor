@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2021 1024jp
+ © 2014-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -382,15 +382,6 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"To Snake Case" = "スネークケースに";
-"To Camel Case" = "キャメルケースに";
-"To Snake Case" = "パスカルケースに";
-"To Full-width" = "全角に";
-"To Half-width" = "半角に";
-"To Full-width Roman" = "全角英数に";
-"To Half-width Roman" = "半角英数に";
-"Hiragana to Katakana" = "ひらがなをカタカナに";
-"Katakana to Hiragana" = "カタカナをひらがなに";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";

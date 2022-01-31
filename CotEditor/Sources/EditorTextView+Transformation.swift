@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,21 +56,21 @@ extension EditorTextView {
     /// transform to snake case
     @IBAction func snakecaseWord(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Snake Case") { $0.snakecased }
+        self.transformSelection { $0.snakecased }
     }
     
     
     /// transform to snake case
     @IBAction func camelcaseWord(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Camel Case") { $0.camelcased }
+        self.transformSelection { $0.camelcased }
     }
     
     
     /// transform to snake case
     @IBAction func pascalcaseWord(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Pascal Case") { $0.pascalcased }
+        self.transformSelection { $0.pascalcased }
     }
     
     
@@ -80,7 +80,7 @@ extension EditorTextView {
     /// transform all full-width-available half-width characters in selection to full-width
     @IBAction func exchangeFullwidth(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Full-width".localized) {
+        self.transformSelection {
             $0.applyingTransform(.fullwidthToHalfwidth, reverse: true) ?? $0
         }
     }
@@ -89,7 +89,7 @@ extension EditorTextView {
     /// transform all full-width characters in selection to half-width
     @IBAction func exchangeHalfwidth(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Half-width".localized) {
+        self.transformSelection {
             $0.applyingTransform(.fullwidthToHalfwidth, reverse: false) ?? $0
         }
     }
@@ -98,7 +98,7 @@ extension EditorTextView {
     /// transform half-width roman characters in selection to full-width
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Full-width Roman".localized) {
+        self.transformSelection {
             $0.fullwidthRoman()
         }
     }
@@ -107,7 +107,7 @@ extension EditorTextView {
     /// transform full-width roman characters in selection to half-width
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
-        self.transformSelection(actionName: "To Half-width Roman".localized) {
+        self.transformSelection {
             $0.fullwidthRoman(reverse: true)
         }
     }
@@ -116,7 +116,7 @@ extension EditorTextView {
     /// transform Hiragana in selection to Katakana
     @IBAction func exchangeKatakana(_ sender: Any?) {
         
-        self.transformSelection(actionName: "Hiragana to Katakana".localized) {
+        self.transformSelection {
             $0.applyingTransform(.hiraganaToKatakana, reverse: false) ?? $0
         }
     }
@@ -125,7 +125,7 @@ extension EditorTextView {
     /// transform Katakana in selection to Hiragana
     @IBAction func exchangeHiragana(_ sender: Any?) {
         
-        self.transformSelection(actionName: "Katakana to Hiragana".localized) {
+        self.transformSelection {
             $0.applyingTransform(.hiraganaToKatakana, reverse: true) ?? $0
         }
     }

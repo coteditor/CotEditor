@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2021 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -383,15 +383,6 @@
 "Convert Indentation" = "Converti rientro";
 "Comment Out" = "Trasforma in commento";
 "Uncomment" = "De-commenta";
-"To Snake Case" = "Notazione a serpente";
-"To Camel Case" = "Notazione a cammello";
-"To Pascal Case" = "Notazione Pascal";
-"To Full-width" = "A tutta larghezza";
-"To Half-width" = "A mezza larghezza";
-"To Full-width Roman" = "Caratteri Romani a tutta ampiezza";
-"To Half-width Roman" = "Caratteri Romani a mezza ampiezza";
-"Hiragana to Katakana" = "Da Hiragana a Katakana";
-"Katakana to Hiragana" = "Da Katakana a Hiragana";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";

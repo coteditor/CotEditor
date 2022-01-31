@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2021 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -382,15 +382,6 @@
 "Convert Indentation" = "转换缩进";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
-"To Snake Case" = "至蛇形式";
-"To Camel Case" = "至小驼峰式";
-"To Pascal Case" = "至大驼峰式";
-"To Full-width" = "转为全角";
-"To Half-width" = "转为半角";
-"To Full-width Roman" = "转为全角罗马字";
-"To Half-width Roman" = "转为半角罗马字";
-"Hiragana to Katakana" = "平假名到片假名";
-"Katakana to Hiragana" = "片假名到平假名";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";

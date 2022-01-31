@@ -380,15 +380,6 @@
 "Convert Indentation" = "Girintilemeyi Dönüştür";
 "Comment Out" = "Yorum Yap";
 "Uncomment" = "Yorumu Kaldır";
-"To Snake Case" = "Yılan Biçime Dönüştür";
-"To Camel Case" = "Deve Biçime Dönüştür";
-"To Pascal Case" = "Paskal Biçime Dönüştür";
-"To Full-width" = "Tam Genişliğe Dönüştür";
-"To Half-width" = "Yarım Genişliğe Dönüştür";
-"To Full-width Roman" = "Latin Tam Genişliğe Dönüştür";
-"To Half-width Roman" = "Latin Yarım Genişliğe Dönüştür";
-"Hiragana to Katakana" = "Hiragana'dan Katakana'ya Dönüştür";
-"Katakana to Hiragana" = "Katakana'dan Hiragana'ya Dönüştür";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";

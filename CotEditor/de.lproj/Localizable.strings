@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2021 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -382,15 +382,6 @@
 "Convert Indentation" = "Einzug konvertieren";
 "Comment Out" = "Auskommentieren";
 "Uncomment" = "Unkommentieren";
-"To Snake Case" = "Zu Snakecase";
-"To Camel Case" = "Zu Camelcase";
-"To Pascal Case" = "Zu Pascalcase";
-"To Full-width" = "Zu vollbreiten Zeichen";
-"To Half-width" = "Zu halbbreiten Zeichen";
-"To Full-width Roman" = "Zu vollbreiten Zeichen";
-"To Half-width Roman" = "Zu halbbreiten Zeichen";
-"Hiragana to Katakana" = "Hiragana zu Katakana";
-"Katakana to Hiragana" = "Katakana zu Hiragana";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";

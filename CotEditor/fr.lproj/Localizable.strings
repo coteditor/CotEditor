@@ -381,15 +381,6 @@
 "Convert Indentation" = "Convertir l'Indentation";
 "Comment Out" = "Commenter";
 "Uncomment" = "Décommenter";
-"To Snake Case" = "En Snake Case";
-"To Camel Case" = "En Camel Case";
-"To Pascal Case" = "En Pascal Case";
-"To Full-width" = "En plaine chasse";
-"To Half-width" = "En demi-chasse";
-"To Full-width Roman" = "En Roman pleine chasse";
-"To Half-width Roman" = "En Roman demi-chasse";
-"Hiragana to Katakana" = "Hiragana vers Katakana";
-"Katakana to Hiragana" = "Katakana vers Hiragana";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
