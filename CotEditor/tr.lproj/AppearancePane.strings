@@ -70,7 +70,7 @@
 "csp-Hi-hb1.title" = "Girintileme kılavuzlarını göster";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
-"6KG-3a-ZuU.title" = "Görüntü:";
+"6KG-3a-ZuU.title" = "Görünüş:";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
 "apQ-au-gOC.title" = "Sistemle Eşleştir";
 /* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
