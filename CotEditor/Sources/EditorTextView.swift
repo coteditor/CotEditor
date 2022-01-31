@@ -481,7 +481,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.needsUpdateLineHighlight = true
         
         // trim trailing whitespace if needed
-        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+        if UserDefaults.standard[.autoTrimsTrailingWhitespace],
+           self.document?.isLocked != true
+        {
             self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
         }
         

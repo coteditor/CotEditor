@@ -9,14 +9,14 @@ Change Log
 
 - Add Turkish (thanks to Emir SARI!) and British English (thanks to Alex Newson!) localizations.
 - Introduce a new AppleScript command `jump` to document objects.
-- Place line number views in the right side in the editor if the writing direction is right-to-left.
+- Place line number views on the right side in the editor if the writing direction is right-to-left.
 
 
 ### Improvements
 
 - Change the system requirement to __macOS 11 Big Sur and later__.
 - Update the window size setting to use the last window size if the width/height setting in the preferences > Window is left blank (= auto).
-- Display code points instead of blank field for control characters in the incompatible character table.
+- Display code points instead of left blank in the incompatible character table for control characters.
 - Update Swift syntax style to add keywords added in Swift 5.5.
 - Update C++ style to add more file extensions.
 - Improve VoiceOver accessibility.
@@ -38,12 +38,13 @@ Change Log
 ### Fixes
 
 - Fix an issue that the current line number becomes 0 when the cursor is placed at the beginning of the document (thanks to Alex Newson!).
-- Fix an issue on macOS 12 Monterey that the user custom color did not applied to the i-beam cursor for the vertical layout.
-- Fix an issue in the document inspector that the character info section wrongly indicated the code point as `U+000A` for any kind of line eindings, even for CR (`U+000D`) and CRLF.
-- Fin an issue that the slider in the editor opacity toolbar item did not work when collapsed.
+- Fix an issue on macOS 12 Monterey that the user custom color did not apply to the i-beam cursor for the vertical layout.
+- Fix an issue in the document inspector that the character info section wrongly indicated the code point as `U+000A` for any kind of line endings, even for CR (`U+000D`) and CRLF.
+- Fix an issue that the dialog urging duplication to edit locked files displayed repeatedly under specific conditions.
+- Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.
 - Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix an issue that the editor's opacity change did not apply immediately.
-- Fix some localized strings.
+- Fix and minor update on localized strings.
 
 
 
