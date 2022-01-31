@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -91,4 +91,4 @@
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
 "Qwp-u8-Urf.title" = "导出…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
-"AkE-0P-0FC.title" = "在 Finder 中显示";
+"AkE-0P-0FC.title" = "在访达中显示";

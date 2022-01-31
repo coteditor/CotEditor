@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2020 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@
 /* Class = "NSButtonCell"; title = "Automatically trim trailing whitespace"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Retirer automatiquement les espaces en fin de ligne";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Même les lignes composées uniquement d'espaces";
+"Tma-Oh-F7v.title" = "Même les lignes composées uniquement d’espaces";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
@@ -56,7 +56,7 @@
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
 "as9-us-CuG.title" = "espaces";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
-"Cte-hW-0M3.title" = "Détecter le style d'indentation à l'ouverture du document";
+"Cte-hW-0M3.title" = "Détecter le style d’indentation à l’ouverture du document";
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "Indenter la sélection avec la touche Tabulation";
 
@@ -64,7 +64,7 @@
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
 "P1I-gs-RgX.title" = "Renvoi à la ligne :";
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
-"3274.title" = "Renvoyer les lignes qui dépassent la largeur de l'éditeur";
+"3274.title" = "Renvoyer les lignes qui dépassent la largeur de l’éditeur";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
 "mCq-92-2sT.title" = "Indenter les lignes renvoyées avec :";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */

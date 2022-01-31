@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2020 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
-"708.title" = "Imprimer l'en-tête";
+"708.title" = "Imprimer l’en-tête";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
 "706.title" = "Principal :";
@@ -66,7 +66,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "203"; */
 "203.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "206"; */
-"206.title" = "Date d'impression";
+"206.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "200"; */
 "200.title" = "Numéro de page";
 
@@ -88,7 +88,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "307"; */
 "307.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "311"; */
-"311.title" = "Date d'impression";
+"311.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "310"; */
 "310.title" = "Numéro de page";
 
@@ -114,7 +114,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "315"; */
 "315.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "319"; */
-"319.title" = "Date d'impression";
+"319.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "318"; */
 "318.title" = "Numéro de page";
 
@@ -136,7 +136,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "323"; */
 "323.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "327"; */
-"327.title" = "Date d'impression";
+"327.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "326"; */
 "326.title" = "Numéro de page";
 

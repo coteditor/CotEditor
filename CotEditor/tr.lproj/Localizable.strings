@@ -48,7 +48,7 @@
 
 
 // Main menu item titles
-"Check for Updates…" = "Güncellemeleri Denetle...";
+"Check for Updates…" = "Güncellemeleri Denetle…";
 "What’s New in CotEditor %@" = "CotEditor %@ Sürümündeki Yenilikler";  // %@ is version number
 
 "Share" = "Paylaş";
@@ -274,7 +274,7 @@
 "Indent Guides" = "Girintileme Kılavuzları";
 // tooltip
 "Hide indent guide lines" = "Girintileme kılavuz çizgilerini gizle";
-"Show indent guide lines" = "Girintileme kılavuz çizgilerini gizle";
+"Show indent guide lines" = "Girintileme kılavuz çizgilerini göster";
 
 "Opacity" = "Matlık";
 // tooltip
@@ -304,9 +304,9 @@
 // -> The toolbar label for "Share" is set automatically.
 "Share document file" = "Belgeyi paylaşır";
 
-"Fonts" = "Yazıtipleri";
+"Fonts" = "Fontlar";
 // tooltip
-"Show Font Panel" = "Yazıtipleri panelini gösterir";
+"Show Font Panel" = "Font Bölümünü Göster";
 
 
 
@@ -498,7 +498,7 @@
 "Rename “%@”" = "“%@” Ögesini Yeniden Adlandır";
 "Duplicate “%@”" = "“%@” Ögesini Çoğalt";
 "Restore “%@”" = "“%@” Ögesini Geri Yükle";
-"Reveal “%@” in Finder" = "“%@” Ögesini Finder'da Göster";
+"Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@” temasını silmek istediğinize emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
@@ -512,7 +512,7 @@
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@” Ögesini Çoğalt";
 "Export “%@”…" = "“%@” Ögesini Dışa Aktar";
-"Reveal “%@” in Finder" = "“%@” Ögesini Finder'da Göster";
+"Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 
 
 // File Drop pane
@@ -620,8 +620,8 @@
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか？\n削除した定義は元に戻せません。";
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: not localized
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: not localized
 
 
 

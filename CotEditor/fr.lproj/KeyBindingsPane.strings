@@ -51,7 +51,7 @@
 "PSD-Um-TfH.headerCell.title" = "Raccourci";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
-"CyK-OL-qHa.title" = "Restaurer les raccourcis par défaut";
+"CyK-OL-qHa.title" = "Réglages par défaut";
 
 
 
@@ -75,7 +75,7 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
 "wC4-qj-3oD.title" = "Insérer une variable";
 /* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
-"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Sélectionnez l'action";
+"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Sélectionnez l’action";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
-"0Du-JI-ZN7.title" = "Restaurer les raccourcis par défaut";
+"0Du-JI-ZN7.title" = "Réglages par défaut";

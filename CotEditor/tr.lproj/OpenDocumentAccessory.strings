@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
-/* Class = "NSButtonCell"; title = "Show hidden files"; ObjectID = "qkm-VD-lQC"; */
-"qkm-VD-lQC.title" = "Gizli dosyaları göster";
-
 /* Class = "NSTextFieldCell"; title = "Encoding:"; ObjectID = "voE-Mi-XZu"; */
 "voE-Mi-XZu.title" = "Kodlama:";
+
+/* Class = "NSButtonCell"; title = "Show hidden files"; ObjectID = "qkm-VD-lQC"; */
+"qkm-VD-lQC.title" = "Gizli dosyaları göster";

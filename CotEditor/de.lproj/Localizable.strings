@@ -52,7 +52,7 @@
 "Check for Updates…" = "Nach Updates suchen …";
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
-"Share" = "Teillen";
+"Share" = "Teilen";
 
 
 /* MARK: AppDelegate */
@@ -200,7 +200,7 @@
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Möchtest du CotEditors Version behalten oder auf die geänderte Version aktualisieren?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Möchtest du die Version des CotEditors behalten oder auf die geänderte Version aktualisieren?";
 "Keep CotEditor’s Edition" = "CotEditors Version behalten";
 "Update" = "Aktualisieren";
 
@@ -647,7 +647,7 @@
 
 /* MARK: ScriptManager */
 // Menu items
-"Open Scripts Folder" = "Skript-Ordner öffnen";
+"Open Scripts Folder" = "Skriptordner öffnen";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "„Option + Klicken“, um das Skript im Editor zu öffnen.";

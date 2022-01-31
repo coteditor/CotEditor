@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2021 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,16 +26,16 @@
  
  */
 
-"<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
+"<a letter consisting of %d characters>" = "<包含有%d个字符>";
 
 // Variation selectors
 "Emoji Style" = "表情文字格式";
 "Text Style" = "文本文字格式";
-"Skin Tone I-II" = "色调 I-II";
-"Skin Tone III" = "色调 III";
-"Skin Tone IV" = "色调 IV";
-"Skin Tone V" = "色调 V";
-"Skin Tone VI" = "色调 VI";
+"Skin Tone I-II" = "色调I-II";
+"Skin Tone III" = "色调III";
+"Skin Tone IV" = "色调IV";
+"Skin Tone V" = "色 V";
+"Skin Tone VI" = "色调VI";
 "Variant" = "异体字";
 
 

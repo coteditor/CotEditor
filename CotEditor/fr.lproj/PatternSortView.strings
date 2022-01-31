@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@
 /* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
 "I06-xc-WQt.title" = "Echantillon :";
 /* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
-"W2m-Jf-7Yj.ibShadowedToolTip" = "Ligne d'exemple pour vérifier quelle section sera utilisée pour la comparaison.";
+"W2m-Jf-7Yj.ibShadowedToolTip" = "Ligne d’exemple pour vérifier quelle section sera utilisée pour la comparaison.";
 
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Clé de tri :";

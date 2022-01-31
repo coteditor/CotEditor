@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014 1024jp
+ © 2014-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,5 +26,5 @@
  
  */
 
-"New CotEditor Document with Selection" = "使用选中内容创建新的 CotEditor 文档";
-"Open File in CotEditor" = "在 CotEditor 中打开文件";
+"New CotEditor Document with Selection" = "使用选中内容创建新的CotEditor文档";
+"Open File in CotEditor" = "在CotEditor中打开文件";

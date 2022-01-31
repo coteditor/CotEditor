@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -244,7 +244,7 @@
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Tabulatoren automatisch expandieren";
 
-/* Class = "NSMenuItem"; title = "Show Invisibless"; ObjectID = "788"; */
+/* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
 "788.title" = "Steuerzeichen einblenden";
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
 "Qqu-pI-Xz6.title" = "Einzugshilfslinien einblenden";
@@ -495,7 +495,7 @@
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "eP6-ss-sUG"; */
 "eP6-ss-sUG.title" = "Suchen …";
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
-"NwE-Cf-L9F.title" = "Weitersuchen";
+"NwE-Cf-L9F.title" = "Weitersuchen (vorwärts)";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
 "wiV-Hh-7xU.title" = "Weitersuchen (rückwärts)";
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
@@ -506,11 +506,11 @@
 "ULf-cT-Xvb.title" = "Alle Übereinstimmungen auswählen";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "Auswahl als Suchbegriff verwenden";
+"hTx-ef-3T2.title" = "Auswahl für Suche übernehmen";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "Auswahl als Ersatzbegriff verwenden";
+"kwa-lu-0Fz.title" = "Auswahl für Ersetzen übernehmen";
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
-"p4A-mE-Ve3.title" = "Zur Auswahl springen";
+"p4A-mE-Ve3.title" = "Auswahl anzeigen";
 
 /* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
 "bnD-BP-sPi.title" = "Ersetzen";
@@ -585,9 +585,9 @@
 "620.title" = "AppleScript-Bibliothek";
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
-"822.title" = "Veröffentlichungshinweise";
+"822.title" = "Versionshinweise";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "Was ist neu in CotEditor";
+"DCW-Ij-540.title" = "Neu in CotEditor";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Anmerkungen";
 

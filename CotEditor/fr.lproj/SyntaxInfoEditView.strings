@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,4 +39,4 @@
 "4bM-8L-klg.title" = "Description :";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "KlI-NS-4x6"; */
-"KlI-NS-4x6.ibShadowedToolTip" = "Ouvrir l'URL";
+"KlI-NS-4x6.ibShadowedToolTip" = "Ouvrir l’URL";

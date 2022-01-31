@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -56,12 +56,12 @@
 /* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "忽略变音符号";
 /* Class = "NSButton"; ibShadowedToolTip = "Search Ignore diacritical marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
-"YYY-qb-T00.ibShadowedToolTip" = "忽略变音符号进行查找 (例如 ö = o)。";
+"YYY-qb-T00.ibShadowedToolTip" = "忽略变音符号进行查找 (例如ö = o)。";
 
 /* Class = "NSButtonCell"; title = "Ignores width differences"; ObjectID = "Jug-Dk-JMZ"; */
 "Jug-Dk-JMZ.title" = "忽略字符宽度";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
-"A5O-jt-o7T.ibShadowedToolTip" = "忽略字符形式的宽度进行查找 (例如 ａ = a)。";
+"A5O-jt-o7T.ibShadowedToolTip" = "忽略字符形式的宽度进行查找 (例如ａ = a)。";
 
 
 // Regular Expression
@@ -72,17 +72,17 @@
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "使点匹配换行";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
-"c11-J5-UXF.ibShadowedToolTip" = "允许 . 匹配包括 (单行) 换行符在内的任意字符。";
+"c11-J5-UXF.ibShadowedToolTip" = "允许.匹配包括 (单行) 换行符在内的任意字符。";
 
 /* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
 "YXU-NA-BZb.title" = "使锚点匹配行";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
-"Lhw-9C-lgB.ibShadowedToolTip" = "允许 ^ 和 $ 匹配 (多行的) 行首和行尾。";
+"Lhw-9C-lgB.ibShadowedToolTip" = "允许^和$匹配 (多行的) 行首和行尾。";
 
 /* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
-"5oj-ch-YiX.title" = "使用 Unicode 字词边界";
+"5oj-ch-YiX.title" = "使用Unicode字词边界";
 /* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
-"VMh-Tq-bq0.ibShadowedToolTip" = "使用 Unicode TR#29 指定字词边界";
+"VMh-Tq-bq0.ibShadowedToolTip" = "使用Unicode TR#29指定字词边界";
 
 /* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
 "rTR-zE-Wff.title" = "解码替换字符串";

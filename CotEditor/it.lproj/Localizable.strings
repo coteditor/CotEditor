@@ -649,7 +649,7 @@ tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 
 /* MARK: ScriptManager */
 // Menu items
-"Open Scripts Folder" = "Apri la cartella degli script";
+"Open Scripts Folder" = "Apri cartella script";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "“Alt/Opt + Click” per aprire nell’editor degli script.";
