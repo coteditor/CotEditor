@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2020 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,14 +26,14 @@
  */
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
-"BUj-TD-scp.ibShadowedToolTip" = "Aller à l'élément de structure suivant";
+"BUj-TD-scp.ibShadowedToolTip" = "Aller à l’élément de structure suivant";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
-"MlW-Dz-FOk.ibShadowedToolTip" = "Aller à l'élément de structure précédent";
+"MlW-Dz-FOk.ibShadowedToolTip" = "Aller à l’élément de structure précédent";
 
 
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
-"Bmo-XE-CCn.ibShadowedToolTip" = "Fermer l'éditeur divisé";
+"Bmo-XE-CCn.ibShadowedToolTip" = "Fermer l’éditeur divisé";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
-"syK-XU-x2I.ibShadowedToolTip" = "Diviser l'éditeur";
+"syK-XU-x2I.ibShadowedToolTip" = "Diviser l’éditeur";

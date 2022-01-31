@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 "1022.title" = "语法样式映射冲突";
 
 /* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "下列文件映射规则被注册了多种格式。CotEditor 自动使用第一个格式。可以通过编辑每个语法格式来解决冲突。";
+"gnp-H7-p1W.title" = "下列文件映射规则被注册了多种格式。CotEditor自动使用第一个格式。可以通过编辑每个语法格式来解决冲突。";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */

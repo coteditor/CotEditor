@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@
 "Hue-bU-8wr.title" = "选中要绑定的项目并单击按键列来改变绑定";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
-"qGe-Et-FB2.title" = "快捷键中必须包含 Command 键。";
+"qGe-Et-FB2.title" = "快捷键中必须包含Command键。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
 "jNh-nd-VRd.headerCell.title" = "动作";
@@ -64,7 +64,7 @@
 "a9m-M2-rgC.title" = "选中要绑定的项目并单击按键列来改变绑定";
 
 /* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
-"5zd-aF-0zL.title" = "快捷键中不能包含 Command 键。";
+"5zd-aF-0zL.title" = "快捷键中不能包含Command键。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "动作";

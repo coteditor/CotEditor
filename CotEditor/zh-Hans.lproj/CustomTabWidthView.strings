@@ -9,7 +9,7 @@
 //
 //  ------------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Tab width:"; ObjectID = "ql5-25-UDJ"; */
-"ql5-25-UDJ.title" = "Tab 宽度：";
+"ql5-25-UDJ.title" = "Tab宽度：";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "bJM-c0-iOi"; */
 "bJM-c0-iOi.title" = "取消";

@@ -83,4 +83,4 @@
 /* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
 "sru-km-SZJ.ibShadowedIsNilPlaceholder" = "未选中";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
-"2ZU-Mi-aJz.ibShadowedToolTip" = "选中一个字符以显示 Unicode 信息。";
+"2ZU-Mi-aJz.ibShadowedToolTip" = "选中一个字符以显示Unicode信息。";

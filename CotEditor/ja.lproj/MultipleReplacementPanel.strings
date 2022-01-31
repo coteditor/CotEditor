@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
 "cZ9-i9-VsM.title" = "名前を変更";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
-"fN1-Tr-8T8.title" = "書き出し...";
+"fN1-Tr-8T8.title" = "書き出し…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
-"tLz-9S-3we.title" = "Finderで表示";
+"tLz-9S-3we.title" = "Finderに表示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
-"iZn-Pw-tgJ.title" = "読み込み...";
+"iZn-Pw-tgJ.title" = "読み込み…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
 "0ca-Jy-pHT.title" = "すべての定義を再読み込み";
 
@@ -52,11 +52,11 @@
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
 "M9A-ds-FNR.title" = "削除";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
-"5mf-DX-YT5.title" = "書き出し...";
+"5mf-DX-YT5.title" = "書き出し…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "Finderで表示";
+"sYx-dd-JiV.title" = "Finderに表示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
-"8TG-QH-hxz.title" = "読み込み...";
+"8TG-QH-hxz.title" = "読み込み…";
 
 
 

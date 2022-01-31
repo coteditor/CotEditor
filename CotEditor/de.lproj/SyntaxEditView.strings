@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@
 "988.placeholderString" = "Stilname";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "1020"; */
-"1020.title" = "Auf Standard zurücksetzen";
+"1020.title" = "Standard wiederherstellen";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "986"; */
 "986.title" = "Abbrechen";
 /* Class = "NSButtonCell"; title = "OK"; ObjectID = "985"; */

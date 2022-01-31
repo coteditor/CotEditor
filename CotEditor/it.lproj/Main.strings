@@ -415,7 +415,7 @@
 /* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
 "ZrR-aL-1eB.title" = "Scrivi in lettere minuscole";
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Usa maiuscole";
+"LC4-lg-eO0.title" = "Iniziali maiuscole";
 
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
 "F0I-F4-srF.title" = "Usa notazione a serpente";

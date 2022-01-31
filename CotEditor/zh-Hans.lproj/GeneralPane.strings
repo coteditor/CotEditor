@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,14 +48,14 @@
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "开启带有版本的自动保存";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "在您编辑文件时自动覆盖保存文件的系统特性。即使被禁用，CotEditor 也会在程序崩溃时为您自动保存备份。";
+"sOa-Ea-zt9.title" = "在您编辑文件时自动覆盖保存文件的系统特性。即使被禁用，CotEditor也会在程序崩溃时为您自动保存备份。";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "当文档被其他应用更改时：";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
-"sBH-MX-cTd.title" = "保留 CotEditor 的版本";
+"sBH-MX-cTd.title" = "保留CotEditor的版本";
 /* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "IkZ-EO-BSv"; */
 "IkZ-EO-BSv.title" = "询问如何更新";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
@@ -88,7 +88,7 @@
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "了解更多…";
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "cot 命令行工具可以让您使用命令行来启动 CotEditor 并打开文件。";
+"c48-xK-Ag1.title" = "cot 命令行工具可以让您使用命令行来启动CotEditor并打开文件。";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

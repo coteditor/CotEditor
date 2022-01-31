@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
 "fN1-Tr-8T8.title" = "导入…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
-"tLz-9S-3we.title" = "在 Finder 中显示";
+"tLz-9S-3we.title" = "在访达中显示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
 "iZn-Pw-tgJ.title" = "导出…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
@@ -55,7 +55,7 @@
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
 "5mf-DX-YT5.title" = "导入…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "在 Finder 中显示";
+"sYx-dd-JiV.title" = "在访达中显示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
 "8TG-QH-hxz.title" = "导出…";
 
@@ -143,12 +143,12 @@
 /* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "WWu-mC-MCz"; */
 "WWu-mC-MCz.title" = "忽略变音符号";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
-"9pO-Jw-K7x.ibShadowedToolTip" = "忽略变音符号进行查找 (例如 ö = o)。";
+"9pO-Jw-K7x.ibShadowedToolTip" = "忽略变音符号进行查找 (例如ö = o)。";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */
 "lVk-We-BSj.title" = "忽略字符宽度";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (ex. ａ = a)."; ObjectID = "6W5-EH-kOg"; */
-"6W5-EH-kOg.ibShadowedToolTip" = "忽略字符形式的宽度进行查找 (例如 ａ = a)。";
+"6W5-EH-kOg.ibShadowedToolTip" = "忽略字符形式的宽度进行查找 (例如ａ = a)。";
 
 
 /* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "eCk-TH-lBA"; */
@@ -157,17 +157,17 @@
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "ECw-cb-2hw"; */
 "ECw-cb-2hw.title" = "使点匹配换行";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "p1M-ap-Sov"; */
-"p1M-ap-Sov.ibShadowedToolTip" = "允许 . 匹配包括 (单行) 换行符在内的任意字符。";
+"p1M-ap-Sov.ibShadowedToolTip" = "允许.匹配包括 (单行) 换行符在内的任意字符。";
 
 /* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "MJB-08-ddn"; */
 "MJB-08-ddn.title" = "使锚点匹配行";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "MvV-de-6ru"; */
-"MvV-de-6ru.ibShadowedToolTip" = "允许 ^ 和 $ 匹配 (多行的) 行首和行尾。";
+"MvV-de-6ru.ibShadowedToolTip" = "允许^和$匹配 (多行的) 行首和行尾。";
 
 /* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "8PD-6z-H5u"; */
-"8PD-6z-H5u.title" = "使用 Unicode 字词边界";
+"8PD-6z-H5u.title" = "使用Unicode字词边界";
 /* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "6HK-St-iDw"; */
-"6HK-St-iDw.ibShadowedToolTip" = "使用 Unicode TR#29 指定字词边界";
+"6HK-St-iDw.ibShadowedToolTip" = "使用Unicode TR#29指定字词边界";
 
 /* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "1sB-Qy-Kw8"; */
 "1sB-Qy-Kw8.title" = "解码替换字符串";

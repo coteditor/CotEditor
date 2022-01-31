@@ -408,18 +408,18 @@
 "b36-nH-7po.title" = "Transformations";
 
 /* Class = "NSMenuItem"; title = "Make Upper Case"; ObjectID = "RX2-gg-n33"; */
-"RX2-gg-n33.title" = "Make Upper Case";
+"RX2-gg-n33.title" = "Make Uppercase";
 /* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
-"ZrR-aL-1eB.title" = "Make Lower Case";
+"ZrR-aL-1eB.title" = "Make Lowercase";
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
 "LC4-lg-eO0.title" = "Capitalise";
 
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
-"F0I-F4-srF.title" = "Make Snake Case";
+"F0I-F4-srF.title" = "Make Snakecase";
 /* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
-"nlp-Gj-W9G.title" = "Make Camel Case";
+"nlp-Gj-W9G.title" = "Make Camelcase";
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
-"x1F-KX-2de.title" = "Make Pascal Case";
+"x1F-KX-2de.title" = "Make Pascalcase";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Half-width to Full-width";

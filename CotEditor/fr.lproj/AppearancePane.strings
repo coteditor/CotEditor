@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@
 /* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Autres caractères de contrôle";
 /* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
-"csp-Hi-hb1.title" = "Afficher les guides d'indentation";
+"csp-Hi-hb1.title" = "Afficher les guides d’indentation";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Mode d’apparence :";
@@ -180,4 +180,4 @@
 "r9S-sB-zfs.ibShadowedIsNilPlaceholder" = "Non défini";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
-"Usu-Br-G0a.ibShadowedToolTip" = "Ouvrir l'URL";
+"Usu-Br-G0a.ibShadowedToolTip" = "Ouvrir l’URL";

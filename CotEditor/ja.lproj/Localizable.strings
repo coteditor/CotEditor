@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2021 1024jp
+ © 2014-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@
 
 
 // Main menu item titles
-"Check for Updates…" = "アップデートを確認...";
+"Check for Updates…" = "アップデートを確認…";
 "What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
 "Share" = "共有";
@@ -75,7 +75,7 @@
 "Find All" = "すべて検索";
 "Replace All" = "すべて置換";
 "Highlight" = "ハイライト";
-"Searching in text…" = "テキストを検索しています...";
+"Searching in text…" = "テキストを検索しています…";
 "%@ string found." = "%@件見つかりました。";
 "%@ strings found." = "%@件見つかりました。";
 "%@ string replaced." = "%@件置換しました。";
@@ -180,7 +180,7 @@
 
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
-"Do you want to continue processing?" = "保存作業を続けますか?";
+"Do you want to continue processing?" = "保存を続けますか?";
 "Save Available Text" = "有効なテキストを保存";
 "Show Incompatible Characters" = "非互換文字を表示";
 
@@ -261,7 +261,7 @@
 "Change tab width" = "タブ幅を変更";
 // menu
 "Tab Width" = "タブ幅";
-"Custom…" = "カスタム...";
+"Custom…" = "カスタム…";
 
 "Wrap Lines" = "行を折り返す";
 // tooltip
@@ -369,7 +369,7 @@
 /* MARK: Inspector */
 // Incompatible characters
 "No incompatible characters were found." = "非互換文字は見つかりませんでした。";
-"Scanning incompatible characters…" = "非互換文字を走査中...";
+"Scanning incompatible characters…" = "非互換文字を走査中…";
 
 
 /* MARK: EditorTextView */
@@ -382,15 +382,6 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"To Snake Case" = "スネークケースに";
-"To Camel Case" = "キャメルケースに";
-"To Snake Case" = "パスカルケースに";
-"To Full-width" = "全角に";
-"To Half-width" = "半角に";
-"To Full-width Roman" = "全角英数に";
-"To Half-width Roman" = "半角英数に";
-"Hiragana to Katakana" = "ひらがなをカタカナに";
-"Katakana to Hiragana" = "カタカナをひらがなに";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
@@ -462,16 +453,16 @@
 // Outline menu title
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
-"Extracting Outline…" = "アウトラインを抽出中...";
+"Extracting Outline…" = "アウトラインを抽出中…";
 
 
 
 /* MARK: SyntaxStyle */
 // Coloring indicator
-"Coloring text…" = "テキストのカラーリング中...";
-"Please wait for a while." = "しばらくお待ちください...";
-"Extracting %@…" = "%@を抽出中...";
-"Preparing to color…" = "カラーリングの準備中...";
+"Coloring text…" = "テキストのカラーリング中…";
+"Please wait for a while." = "しばらくお待ちください…";
+"Extracting %@…" = "%@を抽出中…";
+"Preparing to color…" = "カラーリングの準備中…";
 "Applying colors to text" = "テキストにカラーを適用中";
 "keywords" = "キーワード";
 "commands" = "コマンド";
@@ -509,7 +500,7 @@
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
-"Reveal “%@” in Finder" = "“%@”をFinderで表示";
+"Reveal “%@” in Finder" = "“%@”をFinderに表示";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
@@ -521,9 +512,9 @@
 
 // Format pane
 // Installed syntax styles action menu items
-"Duplicate “%@”…" = "“%@”を複製...";
-"Export “%@”…" = "“%@”を書き出し...";
-"Reveal “%@” in Finder" = "“%@”をFinderで表示";
+"Duplicate “%@”…" = "“%@”を複製…";
+"Export “%@”…" = "“%@”を書き出し…";
+"Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
 
 // File Drop pane
@@ -632,7 +623,7 @@
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
 "A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか？\n削除した定義は元に戻せません。";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか?\n削除した定義は元に戻せません。";
 
 
 
@@ -645,9 +636,9 @@
 
 // Warning messages
 "“%@” is already taken." = "“%@”はすでに使用されています。";
-"“%@” does not include the Command key." = "“%@”にはコマンドキーが含まれていません。";
-"“%@” includes the Command key." = "“%@”はコマンドキーを含んでいます。";
-"The Shift key can be used only with another modifier key." = "シフトキーは他の修飾キーと合わせて使う必要があります。";
+"“%@” does not include the Command key." = "“%@”にはCommandが含まれていません。";
+"“%@” includes the Command key." = "“%@”はCommandを含んでいます。";
+"The Shift key can be used only with another modifier key." = "Shiftキーは他の修飾キーと合わせて使う必要があります。";
 "Please choose another key." = "別のキーを選んでください。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
 "Please combine with other keys." = "別のキーと組み合わせてください。";
@@ -672,7 +663,7 @@
 // Script file error description
 "The script “%@” does not exist." = "スクリプト“%@”は存在しません。";
 "The script file “%@” couldn’t be opened." = "スクリプトファイル“%@”を開けませんでした。";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "実行権がないため、スクリプト„%@“を実行できません。";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "実行権がないため、スクリプト“%@”を実行できません。";
 "The script “%@” couldn’t be read." = "スクリプト“%@”を読み込めませんでした。";
 
 // Script file error recovery suggestions

@@ -94,7 +94,7 @@
 "112.title" = "Kaydedilene Geri Dön";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
-"77.title" = "Sayfa Yapısı…";
+"77.title" = "Sayfa Düzeni…";
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "78"; */
 "78.title" = "Yazdır…";
 
@@ -222,7 +222,7 @@
 "418.title" = "Yazıtipi";
 
 /* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
-"424.title" = "Yazıtiplerini Göster";
+"424.title" = "Fontları Göster";
 /* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "405"; */
 "405.title" = "Daha Büyük";
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "404"; */
@@ -413,7 +413,7 @@
 /* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
 "ZrR-aL-1eB.title" = "Küçük Harf Yap";
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Büyük Harfe Dönüştür";
+"LC4-lg-eO0.title" = "Baş Harfleri Büyük Yap";
 
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
 "F0I-F4-srF.title" = "Yılan Biçimi Yap";
@@ -504,11 +504,11 @@
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
 "ULf-cT-Xvb.title" = "Tüm Bulunan Eşleşmeleri Seç";
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "Bulmak için Seçimi Kullan";
+"hTx-ef-3T2.title" = "Bul İçin Seçimi Kullan";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "Değiştirmek için Seçimi Kullan";
+"kwa-lu-0Fz.title" = "Değiştirmek için Seçimi Kullan";  // FIXME: require native check for the first word to balance with the command above, "Bul İçin Seçimi Kullan".
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
-"p4A-mE-Ve3.title" = "Seçime Atla";
+"p4A-mE-Ve3.title" = "Seçime Git";
 
 /* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
 "bnD-BP-sPi.title" = "Değiştir";
@@ -522,7 +522,7 @@
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Vurgula";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Vurgulamayı Kaldır";
+"5is-7G-OVT.title" = "Vurgulanmamış";
 
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "Bir Önceki Anahat Ögesini Seç";
