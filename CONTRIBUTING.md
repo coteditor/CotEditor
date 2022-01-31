@@ -26,9 +26,9 @@ By adding code, please follow our coding style guide below.
 
 ### Localization
 
-Fixing/updating existing localizations is always welcome. The project team may add `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
+Fixing/updating existing localizations is always welcome. The project team adds `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
 
-If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the xib file to layout your localized terms correctly.
+If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the storyboard file to layout your localized terms correctly.
 
 #### Good references for localization
 
@@ -39,6 +39,10 @@ Especially, follow the terms of the following applications.
 - Menu item titles in TextEdit.app
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
+
+We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kisikawa katsumi to find macOS-friendly expressions.
+You also need to take care of how Apple handles punctuation characters and symbols. Regarding quotation marks, they normally prefer the typographer's ones.
+
 
 #### Submitting a new localization
 
