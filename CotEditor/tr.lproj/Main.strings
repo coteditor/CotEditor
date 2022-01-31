@@ -506,7 +506,7 @@
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Bul İçin Seçimi Kullan";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "Değiştirmek için Seçimi Kullan";  // FIXME: require native check for the first word to balance with the command above, "Bul İçin Seçimi Kullan".
+"kwa-lu-0Fz.title" = "Değişim İçin Seçimi Kullan";
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
 "p4A-mE-Ve3.title" = "Seçime Git";
 
