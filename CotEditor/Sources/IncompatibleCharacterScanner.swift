@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ final class IncompatibleCharacterScanner {
     private weak var document: Document?
     private lazy var queue = OperationQueue()
     
-    private lazy var updateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
+    private lazy var updateDebouncer = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
     
     
@@ -67,14 +67,14 @@ final class IncompatibleCharacterScanner {
         
         guard self.shouldScan else { return }
         
-        self.updateTask.schedule()
+        self.updateDebouncer.schedule()
     }
     
     
     /// scan immediately
     func scan() {
         
-        self.updateTask.cancel()
+        self.updateDebouncer.cancel()
         self.queue.cancelAllOperations()
         
         guard let document = self.document else { return assertionFailure() }

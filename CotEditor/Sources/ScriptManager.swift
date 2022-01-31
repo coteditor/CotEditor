@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private let scriptsDirectoryURL: URL?
     private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
     
-    private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
+    private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
     private var terminationObserver: AnyCancellable?
     
@@ -83,13 +83,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     func presentedSubitemDidChange(at url: URL) {
         
         if NSApp.isActive {
-            self.menuBuildingTask.schedule()
+            self.menuBuildingDebouncer.schedule()
             
         } else {
             self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp)
                 .receive(on: DispatchQueue.main)
                 .first()
-                .sink { [weak self] _ in self?.menuBuildingTask.perform() }
+                .sink { [weak self] _ in self?.menuBuildingDebouncer.perform() }
         }
     }
     
@@ -118,7 +118,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         assert(Thread.isMainThread)
         
-        self.menuBuildingTask.cancel()
+        self.menuBuildingDebouncer.cancel()
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }

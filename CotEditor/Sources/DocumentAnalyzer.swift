@@ -42,7 +42,7 @@ final class DocumentAnalyzer {
     private weak var document: Document?  // weak to avoid cycle retain
     
     private var needsCountWholeText = true
-    private lazy var updateTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
+    private lazy var updateDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
     private var countTask: Task<Void, Error>?
     
     
@@ -73,7 +73,7 @@ final class DocumentAnalyzer {
         
         guard !self.requiredInfoTypes.isEmpty else { return }
         
-        self.updateTask.schedule(delay: onlySelection ? .milliseconds(10) : nil)
+        self.updateDebouncer.schedule(delay: onlySelection ? .milliseconds(10) : nil)
     }
     
     

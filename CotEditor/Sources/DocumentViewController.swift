@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     @Published private var sheetAvailability = false
     private var sheetAvailabilityObserver: AnyCancellable?
     
-    private lazy var outlineParseTask = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
+    private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
     private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
@@ -228,7 +228,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax for highlighting and outline menu
-            self.outlineParseTask.perform()
+            self.outlineParseDebouncer.perform()
             self.invalidateSyntaxHighlight()
             
             // detect indent style
@@ -415,7 +415,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         
         self.document?.analyzer.invalidate()
         self.document?.incompatibleCharacterScanner.invalidate()
-        self.outlineParseTask.schedule()
+        self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         DispatchQueue.main.async { [weak self] in
@@ -446,7 +446,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             viewController.apply(style: syntaxParser.style)
         }
         
-        self.outlineParseTask.perform()
+        self.outlineParseDebouncer.perform()
         self.invalidateSyntaxHighlight()
     }
     

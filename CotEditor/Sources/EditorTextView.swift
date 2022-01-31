@@ -92,7 +92,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private static let textContainerInset = NSSize(width: 4, height: 6)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
-    private lazy var braceHighlightTask = Debouncer { [weak self] in self?.highlightMatchingBrace() }
+    private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -100,15 +100,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private var mouseDownPoint: NSPoint = .zero
     
-    private lazy var overscrollResizingTask = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
+    private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer { [weak self] in self?.highlightInstance() }
+    private lazy var instanceHighlightDebouncer = Debouncer { [weak self] in self?.highlightInstance() }
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
+    private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
     
@@ -358,7 +358,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setFrameSize(newSize)
         
         if !self.inLiveResize {
-            self.overscrollResizingTask.schedule()
+            self.overscrollResizingDebouncer.schedule()
         }
         
         self.needsUpdateLineHighlight = true
@@ -370,7 +370,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.viewDidEndLiveResize()
         
-        self.overscrollResizingTask.schedule()
+        self.overscrollResizingDebouncer.schedule()
     }
     
     
@@ -489,7 +489,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
         if self.needsRecompletion {
             self.needsRecompletion = false
-            self.completionTask.schedule(delay: .milliseconds(50))
+            self.completionDebouncer.schedule(delay: .milliseconds(50))
         }
         
         if self.urlDetectionTask != nil {
@@ -586,7 +586,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // auto completion
         if UserDefaults.standard[.autoComplete] {
             let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
-            self.completionTask.schedule(delay: .seconds(delay))
+            self.completionDebouncer.schedule(delay: .seconds(delay))
         }
     }
     
@@ -788,7 +788,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
-                self.braceHighlightTask.schedule()
+                self.braceHighlightDebouncer.schedule()
             }
             
             // invalidate current instances highlight
@@ -797,7 +797,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 }
                 let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-                self.instanceHighlightTask.schedule(delay: .seconds(delay))
+                self.instanceHighlightDebouncer.schedule(delay: .seconds(delay))
             }
         }
         
@@ -1643,7 +1643,7 @@ extension EditorTextView {
     /// display completion candidate and list
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
-        self.completionTask.cancel()
+        self.completionDebouncer.cancel()
         
         self.isShowingCompletion = !flag
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2021 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     // MARK: Private Properties
     
     private var definition = MultipleReplacement()
-    private lazy var updateNotificationTask = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
+    private lazy var updateNotificationDebouncer = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
     
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
@@ -67,7 +67,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         super.viewDidDisappear()
         
-        self.updateNotificationTask.fireNow()
+        self.updateNotificationDebouncer.fireNow()
         self.resultMessage = nil
     }
     
@@ -95,7 +95,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
             
             self.definition.settings = object.settings
             self.tableView?.reloadData()  // update regex highlight for replacement string
-            self.updateNotificationTask.schedule()
+            self.updateNotificationDebouncer.schedule()
         }
     }
     
@@ -107,7 +107,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         guard super.commitEditing() else { return false }
         
         self.endEditing()
-        self.updateNotificationTask.fireNow()
+        self.updateNotificationDebouncer.fireNow()
         
         return true
     }
@@ -268,7 +268,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         }
         
         // notify modification
-        self.updateNotificationTask.schedule()
+        self.updateNotificationDebouncer.schedule()
     }
     
     
@@ -296,7 +296,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         self.definition.replacements.remove(in: rowIndexes)
         
         // notify modification
-        self.updateNotificationTask.schedule()
+        self.updateNotificationDebouncer.schedule()
     }
     
     
@@ -331,7 +331,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         }
         
         // notify modification
-        self.updateNotificationTask.schedule()
+        self.updateNotificationDebouncer.schedule()
     }
     
     
@@ -369,7 +369,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         }
         
         // notify modification
-        self.updateNotificationTask.schedule()
+        self.updateNotificationDebouncer.schedule()
     }
     
 }
