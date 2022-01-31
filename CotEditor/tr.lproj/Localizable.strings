@@ -460,7 +460,7 @@
 "Coloring text…" = "Metin renklendiriliyor…";
 "Please wait for a while." = "Lütfen bir süre bekleyin.";
 "Extracting %@…" = "%@ çıkarılıyor…";
-"Preparing to color…" = "Renklendirme hazırlanıyor";
+"Preparing to color…" = "Renklendirmeye hazırlanıyor…";
 "Applying colors to text" = "Metne renkler uygulanıyor";
 "keywords" = "anahtar sözcükler";
 "commands" = "komutlar";
@@ -620,8 +620,8 @@
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: not localized
-"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: not localized
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "“%@” adında yeni bir değişim tanımı yüklenecek; ancak aynı adlı başka bir tanım halihazırda mevcut.";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Değiştirmek istiyor musunuz?\nDeğiştirilen tanım geri yüklenemez.";
 
 
 
