@@ -44,7 +44,7 @@ extension Definition {
         Self(term: "\\s", description: "whitespace character"),
         Self(term: "\\S", description: "non-whitespace character"),
         Self(term: "\\d", description: "decimal number"),
-        Self(term: "[A-Z]]", description: "any character in range A to Z"),
+        Self(term: "[A-Z]", description: "any character in range A to Z"),
         Self(term: "[^A-Z]", description: "any character not in range A to Z"),
     ]
     
