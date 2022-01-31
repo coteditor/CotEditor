@@ -117,6 +117,8 @@ extension SyntaxParser {
     /// Parse outline.
     func invalidateOutline() {
         
+        self.outlineParseTask?.cancel()
+        
         guard
             self.canParse,
             !self.style.outlineExtractors.isEmpty,
@@ -126,9 +128,6 @@ extension SyntaxParser {
             return
         }
         
-        // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
-        //    since user cannot cancel it manually.
-        self.outlineParseTask?.cancel()
         self.outlineItems = nil
         
         let extractors = self.style.outlineExtractors
