@@ -40,7 +40,7 @@ Especially, follow the terms of the following applications.
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kisikawa katsumi to find macOS-friendly expressions.
+We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa katsumi to find macOS-friendly expressions.
 You also need to take care of how Apple handles punctuation characters and symbols. Regarding quotation marks, they normally prefer the typographer's ones.
 
 
