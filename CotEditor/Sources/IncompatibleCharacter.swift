@@ -63,7 +63,9 @@ final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArra
 extension String {
     
     /// list-up characters cannot be converted to the passed-in encoding
-    func scanIncompatibleCharacters(for encoding: String.Encoding) -> [IncompatibleCharacter] {
+    ///
+    /// - Throws: Task.CancellationError
+    func scanIncompatibleCharacters(for encoding: String.Encoding) throws -> [IncompatibleCharacter] {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         
@@ -72,13 +74,17 @@ extension String {
             let convertedString = String(data: data, encoding: encoding)
             else { assertionFailure(); return [] }
         
+        try Task.checkCancellation()
+        
         if self.length == convertedString.length, self.length > 10_000 {
-            return self.quickIncompatibleFind(with: convertedString)
+            return try self.quickIncompatibleFind(with: convertedString)
         }
         
-        return convertedString.difference(from: self).removals
+        return try convertedString.difference(from: self).removals.lazy
             .map { (change) in
                 guard case let .remove(offset, character, _) = change else { preconditionFailure() }
+                
+                try Task.checkCancellation()
                 
                 let converted: String? = String(character)
                     .data(using: encoding, allowLossyConversion: true)
@@ -96,12 +102,14 @@ extension String {
     
     // MARK: Private Methods
     
-    private func quickIncompatibleFind(with convertedString: String) -> [IncompatibleCharacter] {
+    private func quickIncompatibleFind(with convertedString: String) throws -> [IncompatibleCharacter] {
         
-        zip(self, convertedString).enumerated()
+        try zip(self, convertedString).enumerated().lazy
             .filter { $1.0 != $1.1 }
             .map { (offset, characters) in
                 let location = self.index(self.startIndex, offsetBy: offset).utf16Offset(in: self)
+                
+                try Task.checkCancellation()
                 
                 return IncompatibleCharacter(character: characters.0,
                                              convertedCharacter: String(characters.1),
