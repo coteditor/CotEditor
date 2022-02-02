@@ -20,6 +20,74 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.1.0</h1>
+		<p>リリース: <time>2022-02</time></p>
+	</header>
+	
+	
+	<section>
+		<h2>新機能</h2>
+		
+		<ul>
+			<li>トルコ語（Emir SARIさんに感謝）とイギリス英語（Alex Newsonさんに感謝）のローカライゼーションを追加</li>
+			<li>新しいAppleScriptコマンド<code>jump</code>をdocumentオブジェクトに追加</li>
+			<li>文章の方向が右から左のときには行番号ビューも右側に配置</li>
+			<li>シンタックス定義Protocol Bufferを追加</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>改良</h2>
+		
+		<ul>
+			<li>システム要件を<strong>macOS 11 Big Sur以上</strong>に変更</li>
+			<li>環境設定 &gt; ウインドウのウインドウ幅/高さ欄を空欄（＝自動）にすると最後の書類ウインドウサイズを引き継ぐように</li>
+			<li>非互換文字リストで制御文字が非互換のときに空欄でなくその制御文字のコードポイントを表示</li>
+			<li>Swiftシンタックススタイルを更新してSwift 5.5で追加されたキーワードを追加</li>
+			<li>C++シンタックスタイルを更新していくつかの拡張子を追加</li>
+			<li>Markdownシンタックススタイルを更新してシンタックス解析を高速化</li>
+			<li>「行に移動」コマンドやAppleScriptで負の行数を指定したときに最後の空行を計算に含めるよう仕様を変更</li>
+			<li>書類インスペクタの選択文字情報欄を改良し、選択している文字を構成するすべてのコードポイントを列挙することで複数のUnicode文字から成る文字にも対応</li>
+			<li>文字インスペクタに表示されるUnicodeブロック名のリストをUnicode 13.0.0からUnicode 14.0.0に更新</li>
+			<li>ツールバー項目が折り畳まれているときでも項目の状態がわかるように</li>
+			<li>アプリケーションを再起動するときに他の作業で中断されてもその後に再起動を実行</li>
+			<li>VoiceOverアクセシビリティを改善</li>
+			<li>ヘルプのAppleScriptガイドを更新</li>
+			<li>表内の行のドラッグ&amp;ドロップでのアニメーションを改良</li>
+			<li>いつかの箇所の書類解析を最適化</li>
+			<li><span class="trivial">trivial</span>: エディタの余白を調整</li>
+			<li><span class="trivial">trivial</span>: 設定ファイルの書き出しのときはデフォルトで拡張子を隠す</li>
+			<li><span class="trivial">trivial</span>: 別のウインドウが最前面に来たときに入力中のキーバインド変更をキャンセル</li>
+			<li><span class="trivial">開発</span>: 開発環境をXcode 13.2 (Swift 5.5)に更新</li>
+			<li><span class="trivial">開発</span>: xcworkspaceを削除</li>
+			<li><span class="label">非AppStore版</span>:  Sparkleを2.0.0に更新</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>修正</h2>
+		
+		<ul>
+			<li>カーソルが1行目の行頭に来たときに現在の行が0と表示された不具合を修正（Alex Newsonさんに感謝）</li>
+			<li>macOS 12 Montereyのカスタムカーソル色が縦書きのiビームカーソルに反映されなかった不具合を修正</li>
+			<li>書類インスペクタで改行コードがCR (<code>U+000D</code>)やCRLFのときも改行コードを選択すると選択した文字のコードポイントとして<code>U+000A</code>（LF）が表示された不具合を修正</li>
+			<li>ロックされた書類を編集しようとしたときに複製を促すダイアログが特定の条件下でその後も繰り返し表示されることがあった不具合を修正</li>
+			<li>ツールバー項目が折り畳まれているとエディタの不透明度のスライダが機能していなかった不具合を修正</li>
+			<li>エディタの不透明度の変更がすぐに反映されなかった不具合を修正</li>
+			<li>いくつかのヘルプボタンが機能していなかった不具合を修正（Alex Newsonさんに感謝）</li>
+			<li>ローカライズ表現の修正と調整</li>
+			<li><code>cot</code>コマンドがPython 3でも動くよう修正</li>
+			<li>文字入力中にシンタックスハイライトがチカチカすることがあった不具合を改善</li>
+		</ul>
+	</section>
+</article>
+
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.0.9</h1>
 		<p>リリース: <time>2021-11-28</time></p>
 	</header>
@@ -237,8 +305,8 @@
 	<li>大文字小文字が一致しなくても合致する拡張子があるときはシンタックススタイルを適用</li>
 	<li>Rシンタックススタイルを更新</li>
 	<li><span class="label">非AppStore版</span>: アプリケーションサイズを減量</li>
-	<li><span class="trivial">dev</span>: Yamsを4.0.4から4.0.6に更新</li>
-	<li><span class="trivial">dev</span>: 開発環境をXcode 12.5に更新</li>
+	<li><span class="trivial">開発</span>: Yamsを4.0.4から4.0.6に更新</li>
+	<li><span class="trivial">開発</span>: 開発環境をXcode 12.5に更新</li>
 </ul>
 </section>
 </article>
@@ -261,8 +329,8 @@
 	<li>Touch Barのアイコンを更新</li>
 	<li>ダークモードで謝辞ウインドウ表示したときのチラツキを抑止</li>
 	<li>安定性を向上</li>
-	<li><span class="trivial">dev</span>: Yamsを4.0.1から4.0.4に更新</li>
-	<li><span class="trivial">dev</span>: 開発環境をXcode 12.4に更新</li>
+	<li><span class="trivial">開発</span>: Yamsを4.0.1から4.0.4に更新</li>
+	<li><span class="trivial">開発</span>: 開発環境をXcode 12.4に更新</li>
 </ul>
 </section>
 
@@ -291,7 +359,7 @@
 
 <ul>
 	<li><span class="trivial">trivial</span>: ツールバーの設定をリセット</li>
-	<li><span class="trivial">dev</span>: Yamsを4.0.1に更新</li>
+	<li><span class="trivial">開発</span>: Yamsを4.0.1に更新</li>
 </ul>
 </section>
 
@@ -357,9 +425,9 @@
 	<li><span class="trivial">trivial</span>: ツールバーアイコンのツールチップをより現状を表すように改良</li>
 	<li><span class="trivial">trivial</span>: 縦書きのときの行番号描画計算を最適化</li>
 	<li><span class="trivial">trivial</span>: 通常の横書きのときはnon-contiguous layoutをつねに有効に</li>
-	<li><span class="trivial">dev</span>: 開発環境をXcode 12.2 (Swift 5.3, macOS 11 SDK)に更新</li>
-	<li><span class="trivial">dev</span>: DifferenceKitパッケージをネイティブのCollectionDifferenceに置き換え</li>
-	<li><span class="trivial">dev</span>: Yamsを3.0.1から4.0.0に更新</li>
+	<li><span class="trivial">開発</span>: 開発環境をXcode 12.2 (Swift 5.3, macOS 11 SDK)に更新</li>
+	<li><span class="trivial">開発</span>: DifferenceKitパッケージをネイティブのCollectionDifferenceに置き換え</li>
+	<li><span class="trivial">開発</span>: Yamsを3.0.1から4.0.0に更新</li>
 </ul>
 </section>
 

@@ -16,19 +16,20 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 11 Big Sur and later__.
-- Update the window size setting to use the last window size if the width/height setting in the preferences > Window is left blank (= auto).
+- Update the window size setting to use the document last window size if the width/height setting in the preferences > Window is left blank (= auto).
 - Display code points instead of left blank in the incompatible character table for control characters.
 - Update Swift syntax style to add keywords added in Swift 5.5.
-- Update C++ style to add more file extensions.
+- Update C++ syntax style to add more file extensions.
 - Update Markdown syntax style for faster syntax parsing.
+- Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
+- Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.
+- Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
+- Make sure the application relaunches even other tasks interrupt before termination.
+- Improve some toolbar items to make their state distinguish even collapsed.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
 - Improve the animation by drag & drop in tables.
-- Change the behavior to include the last line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
-- Make sure the application relaunches even other tasks interrupt before termination.
-- Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.
-- Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
-- Improve some toolbar items to make their state distinguish even collapsed.
+- Optimize several document parse.
 - [trivial] Adjust the margin of the editor area.
 - [trivial] Hide the file extension of setting files by export by default.
 - [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
@@ -44,8 +45,8 @@ Change Log
 - Fix an issue in the document inspector that the character info section wrongly indicated the code point as `U+000A` for any kind of line endings, even for CR (`U+000D`) and CRLF.
 - Fix an issue that the dialog urging duplication to edit locked files displayed repeatedly under specific conditions.
 - Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.
-- Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix an issue that the editor's opacity change did not apply immediately.
+- Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix and minor update on localized strings.
 - Fix `cot` command to work also with Python 3.
 - Address an issue that the syntax highlight could flash while typing.
