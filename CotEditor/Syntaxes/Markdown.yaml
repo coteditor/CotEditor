@@ -120,11 +120,11 @@ commentDelimiters:
   beginDelimiter: "<!--"
 completions: []
 outlineMenu:
-- beginString: "(.+)(?=\\n\\-+[\\t ]*$)"
+- beginString: "^(.+)(?=\\n\\-+[\\t ]*$)"
   keyString: "    $1"
   description: "h2"
   bold: true
-- beginString: "(.+)(?=\\n\\=+[\\t ]*$)"
+- beginString: "^(.+)(?=\\n\\=+[\\t ]*$)"
   keyString: "$1"
   description: "h1"
   bold: true
