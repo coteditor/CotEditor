@@ -512,7 +512,7 @@
 
     ],
     "interpreters" : [
-
+      "protoc"
     ]
   },
   "Python" : {
