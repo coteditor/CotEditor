@@ -45,7 +45,7 @@
 "navigation bar" = "导航栏";
 "line numbers" = "行号";
 "find result" = "查找结果";
-"Use print font" = "Use print font";  // FIXME: added
+"Use print font" = "使用打印字体";
 
 
 
@@ -368,7 +368,7 @@
 /* MARK: Inspector */
 // Incompatible characters
 "No incompatible characters were found." = "没有找到不兼容字符";
-"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Scanning incompatible characters…" = "扫描不兼容字符…";
 
 
 
