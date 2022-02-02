@@ -61,7 +61,7 @@ struct OutlineExtractor {
     /// - Parameters:
     ///   - string: The string to parse.
     ///   - parseRange: The range of the string to parse.
-    /// - Throws: `Task.CancellationError()`
+    /// - Throws: `CancellationError`
     /// - Returns: An array of `OutlineItem`.
     func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
         

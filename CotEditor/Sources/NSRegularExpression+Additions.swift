@@ -33,7 +33,7 @@ extension NSRegularExpression {
     ///   - string: The string to search.
     ///   - options: The matching options to use.
     ///   - range: The range of the string to search.
-    /// - Throws: `Task.CancellationError()`
+    /// - Throws: `CancellationError`
     /// - Returns: An array of all the matches.
     func cancellableMatches(in string: String, options: MatchingOptions, range: NSRange) throws -> [NSTextCheckingResult] {
         
