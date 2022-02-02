@@ -47,6 +47,7 @@ Change Log
 - Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix an issue that the editor's opacity change did not apply immediately.
 - Fix and minor update on localized strings.
+- Fix `cot` command to work also with Python 3.
 - Address an issue that the syntax highlight could flash while typing.
 
 
