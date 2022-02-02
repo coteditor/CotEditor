@@ -45,7 +45,7 @@
 "navigation bar" = "barra de navegação";
 "line numbers" = "números das linhas";
 "find result" = "resultados da busca";
-"Use print font" = "Use print font";  // TODO: added
+"Use print font" = "Use print font";  // FIXME: added
 
 
 
