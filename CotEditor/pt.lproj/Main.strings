@@ -238,6 +238,14 @@
 "djM-fI-MkN.title" = "Largura da Tabulação";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Largura da Tabulação";
+/* Class = "NSMenuItem"; title = "2"; ObjectID = "qs3-we-YzU"; */
+"qs3-we-YzU.title" = "2";
+/* Class = "NSMenuItem"; title = "3"; ObjectID = "8hL-SQ-WlX"; */
+"8hL-SQ-WlX.title" = "3";
+/* Class = "NSMenuItem"; title = "4"; ObjectID = "fwb-zD-hBp"; */
+"fwb-zD-hBp.title" = "4";
+/* Class = "NSMenuItem"; title = "8"; ObjectID = "9e0-Q5-Oqh"; */
+"9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "Personalizar…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */

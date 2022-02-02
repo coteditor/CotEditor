@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
-            let title = String(format: "Insert Text %li".localized, index)
+            let title = String.localizedStringWithFormat("Insert Text %li".localized, index)
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
