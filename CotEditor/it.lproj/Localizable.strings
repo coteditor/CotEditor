@@ -45,7 +45,7 @@
 "navigation bar" = "barra di navigazione";
 "line numbers" = "numeri di riga";
 "find result" = "risultati di ricerca";
-"Use print font" = "Use print font";  // FIXME: added
+"Use print font" = "Usa font di stampa";
 
 
 
@@ -369,7 +369,7 @@
 /* MARK: Inspector */
 // Incompatible characters
 "No incompatible characters were found." = "Nessun carattere incompatibile trovato.";
-"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
 
 
 
