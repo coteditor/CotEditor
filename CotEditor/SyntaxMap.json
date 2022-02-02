@@ -504,6 +504,17 @@
 
     ]
   },
+  "Protocol Buffer" : {
+    "extensions" : [
+      "proto"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Python" : {
     "extensions" : [
       "py",
