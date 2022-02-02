@@ -19,6 +19,7 @@ Change Log
 - Display code points instead of left blank in the incompatible character table for control characters.
 - Update Swift syntax style to add keywords added in Swift 5.5.
 - Update C++ style to add more file extensions.
+- Update Markdown syntax style for faster syntax parsing.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
 - Improve the animation by drag & drop in tables.
@@ -45,6 +46,7 @@ Change Log
 - Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix an issue that the editor's opacity change did not apply immediately.
 - Fix and minor update on localized strings.
+- Address an issue that the syntax highlight could flash while typing.
 
 
 
