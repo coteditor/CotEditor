@@ -366,9 +366,9 @@
 
 /* MARK: Inspector */
 // Outline
-"Recent Filters" = "Recent Filters";  // FIXME: added
-"Clear Recents" = "Clear Recents";  // FIXME: added
-"No Recent Filter" = "No Recent Filter";  // FIXME: added
+"Recent Filters" = "Son Filtreler";
+"Clear Recents" = "Son Filtreleri Temizle";
+"No Recent Filter" = "Son Filtre Yok";
 
 // Incompatible characters
 "No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";
