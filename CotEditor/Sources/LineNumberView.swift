@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -492,8 +492,8 @@ extension LineNumberView {
             var intersects = false
             
             for selectedRange in draggingInfo.selectedRanges {
-                if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
-                    let range1 = NSRange(selectedRange.location..<range.location)
+                if selectedRange.lowerBound <= range.lowerBound, range.upperBound <= selectedRange.upperBound {  // exclude
+                    let range1 = NSRange(selectedRange.lowerBound..<range.lowerBound)
                     let range2 = NSRange(range.upperBound..<selectedRange.upperBound)
                     
                     if !range1.isEmpty {
@@ -525,7 +525,7 @@ extension LineNumberView {
             let selectedRange = textView.selectedRange
             
             if selectedRange.contains(currentIndex) {  // reduce
-                let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
+                let inUpperSelection = (currentIndex - selectedRange.lowerBound) < selectedRange.length / 2
                 range = inUpperSelection  // clicked upper half section of selected range
                     ? NSRange(currentIndex..<selectedRange.upperBound)
                     : NSRange(selectedRange.lowerBound..<currentLineRange.upperBound)
