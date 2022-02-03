@@ -102,7 +102,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSM-iY-aHb">
+                            <searchField wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSM-iY-aHb" customClass="FilterField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="12" y="12" width="196" height="19"/>
                                 <searchFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" placeholderString="Filter" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" recentsAutosaveName="OutlineSearch" id="GmM-uR-pQ8">
                                     <font key="font" metaFont="smallSystem"/>

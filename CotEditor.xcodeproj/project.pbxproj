@@ -28,6 +28,8 @@
 		2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
 		2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
 		2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
+		2A0A602B27ABD74500725B70 /* FilterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0A602A27ABD74500725B70 /* FilterField.swift */; };
+		2A0A602C27ABD74500725B70 /* FilterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0A602A27ABD74500725B70 /* FilterField.swift */; };
 		2A0AEA062124A83B00E4EC3D /* SelectionColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */; };
 		2A0AEA072124A83B00E4EC3D /* SelectionColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */; };
 		2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */; };
@@ -847,6 +849,7 @@
 		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
 		2A08C889228E72DC002DC184 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/Credits.html; sourceTree = "<group>"; };
+		2A0A602A27ABD74500725B70 /* FilterField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterField.swift; sourceTree = "<group>"; };
 		2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionColorWell.swift; sourceTree = "<group>"; };
 		2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTouchBar.swift; sourceTree = "<group>"; };
 		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
@@ -1679,6 +1682,7 @@
 				2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */,
 				2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */,
 				2A1814BD21CFC9CF00602214 /* RegexTextField.swift */,
+				2A0A602A27ABD74500725B70 /* FilterField.swift */,
 				2A10D1471E7477D30027192A /* StyledButton.swift */,
 				2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */,
 				2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */,
@@ -2894,6 +2898,7 @@
 				2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
+				2A0A602B27ABD74500725B70 /* FilterField.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
@@ -3203,6 +3208,7 @@
 				2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */,
 				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
+				2A0A602C27ABD74500725B70 /* FilterField.swift in Sources */,
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */,

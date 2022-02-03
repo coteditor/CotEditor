@@ -1,0 +1,13 @@
+{
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "symbols" : [
+    {
+      "filename" : "filter.chevron.fill.svg",
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
+    }
+  ]
+}

@@ -80,23 +80,6 @@ final class OutlineViewController: NSViewController {
         
         super.viewDidLoad()
         
-        // set up filter field
-        if let buttonCell = (self.searchField?.cell as? NSSearchFieldCell)?.searchButtonCell {
-            buttonCell.image = NSImage(named: "filter.chevron")
-            buttonCell.imageScaling = .scaleProportionallyDown
-        }
-        let searchMenu = NSMenu(title: "Recent Filters".localized)
-        searchMenu.addItem(withTitle: "Recents Filters".localized, action: nil, keyEquivalent: "")
-            .tag = NSSearchField.recentsTitleMenuItemTag
-        searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
-            .tag = NSSearchField.recentsMenuItemTag
-        searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: "Clear Recents".localized, action: nil, keyEquivalent: "")
-            .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: "No Recent Filter".localized, action: nil, keyEquivalent: "")
-            .tag = NSSearchField.noRecentsMenuItemTag
-        self.searchField?.searchMenuTemplate = searchMenu
-        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
