@@ -439,6 +439,8 @@
 		2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
 		2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
+		2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
+		2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
 		2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA761351D45634400031AAF /* String+Counting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA761341D45634400031AAF /* String+Counting.swift */; };
@@ -1181,6 +1183,7 @@
 		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
 		2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RoundedBackground.swift"; sourceTree = "<group>"; };
+		2AA5BCF924FFB21C00618F83 /* String+Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Match.swift"; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
 		2AA761391D457BD500031AAF /* String+Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Indentation.swift"; sourceTree = "<group>"; };
@@ -1862,6 +1865,7 @@
 				2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
 				2AA761341D45634400031AAF /* String+Counting.swift */,
+				2AA5BCF924FFB21C00618F83 /* String+Match.swift */,
 				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
 				2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */,
 				2A733E8820BBB4AC0090D7CB /* String+Case.swift */,
@@ -3033,6 +3037,7 @@
 				2A9BF3C81D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */,
 				2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A887A9120FA1D19002BFA34 /* String+Localization.swift in Sources */,
+				2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */,
 				2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2AEDB4201D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A10D1491E7477D30027192A /* StyledButton.swift in Sources */,
@@ -3340,6 +3345,7 @@
 				2A9BF3C71D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */,
 				2AA7613A1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A887A9020FA1D19002BFA34 /* String+Localization.swift in Sources */,
+				2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */,
 				2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A10D1481E7477D30027192A /* StyledButton.swift in Sources */,
