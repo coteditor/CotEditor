@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,4 +28,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Outline"; ObjectID = "RyV-wo-tpY"; */
 "RyV-wo-tpY.title" = "大纲";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "GmM-uR-pQ8"; */
+"GmM-uR-pQ8.placeholderString" = "滤波器";
 

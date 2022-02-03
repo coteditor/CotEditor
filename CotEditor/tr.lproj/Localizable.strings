@@ -365,6 +365,11 @@
 
 
 /* MARK: Inspector */
+// Outline
+"Recent Filters" = "Recent Filters";  // FIXME: added
+"Clear Recents" = "Clear Recents";  // FIXME: added
+"No Recent Filter" = "No Recent Filter";  // FIXME: added
+
 // Incompatible characters
 "No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
