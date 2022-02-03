@@ -439,6 +439,8 @@
 		2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
 		2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
+		2AA5BCF724FFACD000618F83 /* NSFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF624FFACD000618F83 /* NSFontManager.swift */; };
+		2AA5BCF824FFACD000618F83 /* NSFontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF624FFACD000618F83 /* NSFontManager.swift */; };
 		2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
 		2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
 		2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
@@ -1183,6 +1185,7 @@
 		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
 		2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RoundedBackground.swift"; sourceTree = "<group>"; };
+		2AA5BCF624FFACD000618F83 /* NSFontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSFontManager.swift; sourceTree = "<group>"; };
 		2AA5BCF924FFB21C00618F83 /* String+Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Match.swift"; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
@@ -1828,6 +1831,7 @@
 				2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */,
+				2AA5BCF624FFACD000618F83 /* NSFontManager.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */,
 				2A71BC7D1DDC70A80085AE1C /* NSImage.swift */,
 				2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */,
@@ -2951,6 +2955,7 @@
 				2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
+				2AA5BCF724FFACD000618F83 /* NSFontManager.swift in Sources */,
 				2A71BC7F1DDC70A80085AE1C /* NSImage.swift in Sources */,
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
@@ -3259,6 +3264,7 @@
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
+				2AA5BCF824FFACD000618F83 /* NSFontManager.swift in Sources */,
 				2A71BC7E1DDC70A80085AE1C /* NSImage.swift in Sources */,
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
