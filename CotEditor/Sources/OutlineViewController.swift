@@ -129,6 +129,13 @@ final class OutlineViewController: NSViewController {
     }
     
     
+    /// Search field text did update.
+    @IBAction func searchFieldDidUpdate(_ sender: NSSearchField) {
+        
+        self.filterItems(with: sender.stringValue)
+    }
+    
+    
     
     // MARK: Private Methods
     
@@ -224,6 +231,15 @@ final class OutlineViewController: NSViewController {
         self.isOwnSelectionChange = false
     }
     
+    
+    /// Filter outline items in table.
+    ///
+    /// - Parameter searchString: The string to search.
+    private func filterItems(with searchString: String) {
+        
+        self.filteredOutlineItems = self.outlineItems.filterItems(with: searchString)
+    }
+    
 }
 
 
@@ -310,24 +326,6 @@ extension OutlineViewController: NSOutlineViewDataSource {
         }
     }
     
-}
-
-
-
-extension OutlineViewController: NSSearchFieldDelegate {
-    
-    func controlTextDidChange(_ obj: Notification) {
-        
-        guard let searchField = obj.object as? NSSearchField else { return }
-        
-        self.filterItems(with: searchField.stringValue)
-    }
-    
-    
-    private func filterItems(with searchString: String) {
-        
-        self.filteredOutlineItems = self.outlineItems.filterItems(with: searchString)
-    }
 }
 
 
