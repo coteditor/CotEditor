@@ -366,6 +366,11 @@
 
 
 /* MARK: Inspector */
+// Outline
+"Recent Filters" = "Zuletzt gefiltert";
+"Clear Recents" = "Filter löschen";
+"No Recent Filter" = "Keine letzten Filtereinträge";
+
 // Incompatible characters
 "No incompatible characters were found." = "Keine inkompatiblen Zeichen gefunden.";
 "Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";

@@ -294,6 +294,20 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(trimmedIgnoringEmptyLines, expectedTrimmedIgnoringEmptyLines)
     }
     
+    
+    func testAbbreviatedMatch() {
+        
+        let string = "The fox jumps over the lazy dogcow."
+        
+        XCTAssertNil(string.abbreviatedMatch(with: "quick"))
+        
+        XCTAssertEqual(string.abbreviatedMatch(with: "dogcow")?.score, 6)
+        XCTAssertEqual(string.abbreviatedMatch(with: "dogcow")?.ranges.count, 6)
+        
+        XCTAssertEqual(string.abbreviatedMatch(with: "ow")?.score, 29)
+        XCTAssertEqual(string.abbreviatedMatch(with: "ow")?.ranges.count, 2)
+    }
+    
 }
 
 

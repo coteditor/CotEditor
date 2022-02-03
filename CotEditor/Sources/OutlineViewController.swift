@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,10 +42,13 @@ final class OutlineViewController: NSViewController {
         didSet {
             guard outlineItems != oldValue, self.isViewShown else { return }
             
+            self.filterItems(with: self.filterString)
             self.outlineView?.reloadData()
             self.invalidateCurrentLocation()
         }
     }
+    
+    private var filteredOutlineItems: [OutlineItem] = [] { didSet { self.outlineView?.reloadData() } }
     
     private var documentObserver: AnyCancellable?
     private var syntaxStyleObserver: AnyCancellable?
@@ -54,6 +57,7 @@ final class OutlineViewController: NSViewController {
     private var isOwnSelectionChange = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
+    @IBOutlet private weak var searchField: NSSearchField?
     
     
     
@@ -75,6 +79,23 @@ final class OutlineViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // set up filter field
+        if let buttonCell = (self.searchField?.cell as? NSSearchFieldCell)?.searchButtonCell {
+            buttonCell.image = NSImage(named: "filter.chevron")
+            buttonCell.imageScaling = .scaleProportionallyDown
+        }
+        let searchMenu = NSMenu(title: "Recent Filters".localized)
+        searchMenu.addItem(withTitle: "Recents Filters".localized, action: nil, keyEquivalent: "")
+            .tag = NSSearchField.recentsTitleMenuItemTag
+        searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
+            .tag = NSSearchField.recentsMenuItemTag
+        searchMenu.addItem(.separator())
+        searchMenu.addItem(withTitle: "Clear Recents".localized, action: nil, keyEquivalent: "")
+            .tag = NSSearchField.clearRecentsMenuItemTag
+        searchMenu.addItem(withTitle: "No Recent Filter".localized, action: nil, keyEquivalent: "")
+            .tag = NSSearchField.noRecentsMenuItemTag
+        self.searchField?.searchMenuTemplate = searchMenu
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -135,6 +156,13 @@ final class OutlineViewController: NSViewController {
     }
     
     
+    /// User input string for filtering.
+    private var filterString: String {
+        
+        self.searchField?.stringValue ?? ""
+    }
+    
+    
     /// Paragraph style for outline items.
     private let itemParagraphStyle: NSParagraphStyle = {
         
@@ -151,7 +179,7 @@ final class OutlineViewController: NSViewController {
     private func selectOutlineItem(at row: Int) {
         
         guard
-            let item = self.outlineItems[safe: row],
+            let item = self.filterString.isEmpty ? self.outlineItems[safe: row] : self.filteredOutlineItems[safe: row],
             item.title != .separator
             else { return }
         
@@ -198,6 +226,7 @@ final class OutlineViewController: NSViewController {
     /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
+        guard self.filterString.isEmpty else { return }
         guard let outlineView = self.outlineView else { return }
         
         guard
@@ -209,6 +238,7 @@ final class OutlineViewController: NSViewController {
         self.isOwnSelectionChange = true
         outlineView.selectRowIndexes([row], byExtendingSelection: false)
         outlineView.scrollRowToVisible(row)
+        self.isOwnSelectionChange = false
     }
     
 }
@@ -219,10 +249,6 @@ extension OutlineViewController: NSOutlineViewDelegate {
     
     /// selection changed
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        
-        defer {
-            self.isOwnSelectionChange = false
-        }
         
         guard
             !self.isOwnSelectionChange,
@@ -248,6 +274,8 @@ extension OutlineViewController: NSOutlineViewDataSource {
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
+        if !self.filterString.isEmpty { return self.filteredOutlineItems.count }
+        
         return self.outlineItems.count
     }
     
@@ -261,6 +289,8 @@ extension OutlineViewController: NSOutlineViewDataSource {
     
     /// return child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+        
+        if !self.filterString.isEmpty { return self.filteredOutlineItems[index] }
         
         return self.outlineItems[index]
     }
@@ -278,14 +308,43 @@ extension OutlineViewController: NSOutlineViewDataSource {
             case .title:
                 let fontSize = UserDefaults.standard[.outlineViewFontSize]
                 let font = outlineView.font.flatMap { NSFont(name: $0.fontName, size: fontSize) } ?? .systemFont(ofSize: fontSize)
+                let attrTitle = outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
                 
-                return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
-            
+                guard let ranges = outlineItem.filteredRanges else { return attrTitle }
+                
+                let mutableAttrTitle = attrTitle.mutable
+                let boldFont = NSFontManager.shared.convertWeight(level: 2, of: font)
+                let attributes: [NSAttributedString.Key: Any] = [.font: boldFont,
+                                                                 .backgroundColor: NSColor.findHighlightColor]
+                for range in ranges {
+                    mutableAttrTitle.addAttributes(attributes, range: range)
+                }
+                
+                return mutableAttrTitle
+                
             default:
                 preconditionFailure()
         }
     }
     
+}
+
+
+
+extension OutlineViewController: NSSearchFieldDelegate {
+    
+    func controlTextDidChange(_ obj: Notification) {
+        
+        guard let searchField = obj.object as? NSSearchField else { return }
+        
+        self.filterItems(with: searchField.stringValue)
+    }
+    
+    
+    private func filterItems(with searchString: String) {
+        
+        self.filteredOutlineItems = self.outlineItems.filterItems(with: searchString)
+    }
 }
 
 

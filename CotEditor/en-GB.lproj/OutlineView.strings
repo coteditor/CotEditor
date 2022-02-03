@@ -28,3 +28,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Outline"; ObjectID = "RyV-wo-tpY"; */
 "RyV-wo-tpY.title" = "Outline";
+
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "GmM-uR-pQ8"; */
+"GmM-uR-pQ8.placeholderString" = "Filter";

@@ -366,6 +366,11 @@
 
 
 /* MARK: Inspector */
+// Outline
+"Recent Filters" = "Recent Filters";  // FIXME: added
+"Clear Recents" = "Clear Recents";  // FIXME: added
+"No Recent Filter" = "No Recent Filter";  // FIXME: added
+
 // Incompatible characters
 "No incompatible characters were found." = "没有找到不兼容字符";
 "Scanning incompatible characters…" = "扫描不兼容字符…";
