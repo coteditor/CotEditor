@@ -144,6 +144,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
+    /// Show the menu items of the outline menu.
     func openOutlineMenu() {
         
         guard let popUpButton = self.outlineMenu else { return }

@@ -161,11 +161,13 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
+    /// Show the menu items of the outline menu in the navigation bar.
     @IBAction func openOutlineMenu(_ sender: Any) {
         
         self.showsNavigationBar = true
         self.navigationBarController?.openOutlineMenu()
     }
+    
     
     /// Select the previous outline menu item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
