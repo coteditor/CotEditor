@@ -535,7 +535,7 @@
 "5is-7G-OVT.title" = "ハイライトを解除";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
-"PmT-ho-UU7.title" = "アウトラインメニューを開く"
+"PmT-ho-UU7.title" = "アウトラインメニューを開く";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "前のアウトライン項目を選択";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
