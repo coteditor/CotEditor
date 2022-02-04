@@ -144,6 +144,14 @@ final class NavigationBarController: NSViewController {
     }
     
     
+    func openOutlineMenu() {
+        
+        guard let popUpButton = self.outlineMenu else { return }
+        
+        popUpButton.menu?.popUp(positioning: nil, at: .zero, in: popUpButton)
+    }
+    
+    
     
     // MARK: Action Messages
     

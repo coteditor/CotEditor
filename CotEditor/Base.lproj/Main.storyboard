@@ -1039,6 +1039,12 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE"/>
+                                        <menuItem title="Open Outline Menu" id="PmT-ho-UU7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openOutlineMenu:" target="Ady-hI-5gd" id="oKV-sL-8gF"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Select Previous Outline Item" keyEquivalent="" id="9Lf-39-x5S">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
