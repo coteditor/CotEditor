@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -87,17 +87,12 @@ struct Shortcut: Hashable {
     
     init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
-        self.modifierMask = {
-            let modifierMask = modifierMask.intersection([.control, .option, .shift, .command])
-            
-            // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
-            if keyEquivalent.last?.isUppercase == true {
-                return modifierMask.union(.shift)
-            }
-            
-            return modifierMask
-        }()
+        // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
+        let needsShift = keyEquivalent.last?.isUppercase == true
         
+        self.modifierMask = modifierMask
+            .intersection([.control, .option, .shift, .command])
+            .union(needsShift ? .shift : [])
         self.keyEquivalent = keyEquivalent
     }
     
@@ -133,7 +128,7 @@ struct Shortcut: Hashable {
     /// whether the shortcut key is empty
     var isEmpty: Bool {
         
-        return self.keyEquivalent.isEmpty && self.modifierMask.isEmpty
+        return self.modifierMask.isEmpty && self.keyEquivalent.isEmpty
     }
     
     

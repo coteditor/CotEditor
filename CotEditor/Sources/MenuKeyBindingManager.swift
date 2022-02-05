@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -134,9 +134,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         let shortcut = self.shortcut(for: action, defaults: false)
         
-        guard !shortcut.keyEquivalent.isEmpty, !shortcut.modifierMask.isEmpty else { return .none }
-        
-        return shortcut
+        return shortcut.isValid ? shortcut : .none
     }
     
     
@@ -261,7 +259,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let shortcut = self.shortcut(for: action)
                 
                 // apply only if both keyEquivalent and modifierMask exist
-                guard !shortcut.keyEquivalent.isEmpty, !shortcut.modifierMask.isEmpty else { return }
+                guard shortcut.isValid else { return }
                 
                 menuItem.keyEquivalent = shortcut.keyEquivalent
                 menuItem.keyEquivalentModifierMask = shortcut.modifierMask
