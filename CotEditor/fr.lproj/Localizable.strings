@@ -44,7 +44,7 @@
 "navigation bar" = "barre de navigation";
 "line numbers" = "numéros de ligne";
 "find result" = "résultat de la recherche";
-"Use print font" = "Use print font";  // FIXME: added
+"Use print font" = "Utiliser la police d'impression";  // FIXME: machine translated
 
 
 
@@ -366,13 +366,13 @@
 
 /* MARK: Inspector */
 // Outline
-"Recent Filters" = "Recent Filters";  // FIXME: added
-"Clear Recents" = "Clear Recents";  // FIXME: added
-"No Recent Filter" = "No Recent Filter";  // FIXME: added
+"Recent Filters" = "Filtres récents";  // FIXME: machine translated
+"Clear Recents" = "Effacer les éléments récents";  // FIXME: machine translated
+"No Recent Filter" = "Aucun filtre récent";  // FIXME: machine translated
 
 // Incompatible characters
 "No incompatible characters were found." = "Aucun caractère incompatible trouvé.";
-"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Scanning incompatible characters…" = "Numérisation des caractères incompatibles …";  // FIXME: machine translated
 
 
 
