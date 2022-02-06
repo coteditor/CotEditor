@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2021 1024jp
+//  © 2013-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -259,10 +259,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 
                 if let error = error {
-                    NSApp.presentError(error)
-                    
                     let cancelled = (error as? CocoaError)?.code == .userCancelled
                     reply = cancelled ? .cancel : .failure
+                    
+                    // ask user for opening file
+                    if !cancelled {
+                        DispatchQueue.main.async {
+                            NSApp.presentError(error)
+                        }
+                    }
                 }
                 
                 // on first window opened
