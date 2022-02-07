@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,7 +104,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
                 return node.name
             
             case .keySpecChars:
-                guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut, shortcut.isValid else { return nil }
+                guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut else { return nil }
                 return shortcut.isValid ? shortcut.description : nil
             
             default:
@@ -163,12 +163,12 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         // cancel input
         guard
             input != "\u{1b}",  // = ESC key  -> treat esc key as cancel
-            input != item.shortcut?.description  // not edited
-            else {
-                // reset text field display
-                textField.objectValue = oldShortcut?.description
-                return
-            }
+            input != oldShortcut?.description  // not edited
+        else {
+            // reset text field display
+            textField.objectValue = oldShortcut?.description
+            return
+        }
         
         let shortcut = Shortcut(keySpecChars: input)
         

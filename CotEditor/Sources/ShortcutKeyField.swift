@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,33 +54,35 @@ final class ShortcutKeyField: NSTextField {
         // hide insertion point
         (self.currentEditor() as? NSTextView)?.insertionPointColor = .clear
         
-        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event: NSEvent) -> NSEvent? in
-            guard
-                var charsIgnoringModifiers = event.charactersIgnoringModifiers,
-                let char = charsIgnoringModifiers.unicodeScalars.first
-                else { return event }
+        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event) -> NSEvent? in
             
-            // correct Backspace and Delete keys
-            //  -> "backspace" key:        the key above "return"
-            //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
+            guard let charactersIgnoringModifiers = event.charactersIgnoringModifiers else { return event }
+            
+            // correct Backspace and Forward Delete keys
+            //  -> Backspace:      The key above the Return.
+            //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
+            // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
+            let keyEquivalent: String
             switch event.specialKey {
                 case NSEvent.SpecialKey.delete:
-                    charsIgnoringModifiers = String(NSEvent.SpecialKey.backspace.unicodeScalar)
+                    keyEquivalent = String(NSEvent.SpecialKey.backspace.unicodeScalar)
                 case NSEvent.SpecialKey.deleteForward:
-                    charsIgnoringModifiers = String(NSEvent.SpecialKey.delete.unicodeScalar)
-                default: break
+                    keyEquivalent = String(NSEvent.SpecialKey.delete.unicodeScalar)
+                default:
+                    keyEquivalent = charactersIgnoringModifiers
             }
             
             // remove unwanted Shift
-            let ignoringShiftSet = CharacterSet(charactersIn: "`~!@#$%^&()_{}|\":<>?=/*-+.'")
-            let ignoringMask: NSEvent.ModifierFlags = ignoringShiftSet.contains(char) ? .shift : []
-            let modifierMask = event.modifierFlags.subtracting(ignoringMask).intersection([.control, .option, .shift, .command])
+            let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
+            let modifierMask = event.modifierFlags
+                .intersection([.control, .option, .shift, .command])
+                .subtracting(ignoresShift ? .shift : [])
             
             // set input shortcut string to field
             // -> The single .delete works as delete.
             self.objectValue = (event.specialKey == .delete && modifierMask.isEmpty)
                 ? nil
-                : Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
+                : Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent).keySpecChars
             
             // end editing
             self.window?.endEditing(for: nil)
