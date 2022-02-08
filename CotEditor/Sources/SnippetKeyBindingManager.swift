@@ -120,7 +120,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// return snippet string for key binding if exists
     func snippet(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String?) -> Snippet? {
         
-        guard  let keyEquivalent = keyEquivalent else { return nil }
+        guard let keyEquivalent = keyEquivalent else { return nil }
         
         // selector string for the key press
         let shortcut = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
