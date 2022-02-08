@@ -105,16 +105,6 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Methods
     
-    /// scan key bindings in main menu and store them as default values
-    ///
-    /// This method should be called before main menu is modified.
-    func scanDefaultMenuKeyBindings() {
-        
-        // do nothing
-        // -> Actually, `defaultMenuKeyBindings` is already scanned in `init`.
-    }
-    
-    
     /// re-apply keyboard short cut to all menu items
     func applyKeyBindingsToMainMenu() {
         
@@ -158,6 +148,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         if menuItem.isSeparatorItem ||
             menuItem.isAlternate ||
             menuItem.isHidden ||
+            menuItem.keyEquivalentModifierMask.contains(.function) ||
             menuItem.title.isEmpty {
             return false
         }
@@ -166,9 +157,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             switch tag {
                 case .services,
-                     .recentDocumentsDirectory,
-                     .sharingService,
-                     .scriptDirectory:
+                     .recentDocumentsDirectory:
                     return false
             }
         }
@@ -182,22 +171,32 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(DocumentViewController.changeTabWidth),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
-                 #selector(NSWindow.makeKeyAndOrderFront),
+                 #selector(NSDocument.saveAs),
+                 #selector(NSApplication.showHelp),
                  #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
-                return false
-            
-            // window tabbing actions
-            // -> Because they cannot be set correctly.
-            case #selector(NSWindow.selectNextTab),
-                 #selector(NSWindow.selectPreviousTab),
-                 #selector(NSWindow.moveTabToNewWindow),
-                 #selector(NSWindow.mergeAllWindows):
                 return false
             
             default: break
         }
         
         return true
+    }
+    
+    
+    /// Allow modifying only menu items existed at launch .
+    ///
+    /// - Parameter menuItem: The menu item to check.
+    /// - Returns: Whether the given menu item can be modified by users.
+    private func allowsModifying(_ menuItem: NSMenuItem) -> Bool {
+        
+        guard Self.allowsModifying(menuItem) else { return false }
+        
+        switch menuItem.action {
+            case #selector(NSMenu.submenuAction), .none:
+                return true
+            case let .some(action):
+                return self.defaultKeyBindings.map(\.action).contains(action)
+        }
     }
     
     
@@ -216,9 +215,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
                                         keyEquivalent: menuItem.keyEquivalent)
                 
-                guard shortcut.isValid else { return [] }
-                
-                return [KeyBinding(action: action, shortcut: shortcut)]
+                return [KeyBinding(action: action, shortcut: shortcut.isValid ? shortcut : nil)]
             }
     }
     
@@ -227,7 +224,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func clearMenuKeyBindingRecurrently(menu: NSMenu) {
         
         menu.items
-            .filter(Self.allowsModifying)
+            .filter(self.allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     return self.clearMenuKeyBindingRecurrently(menu: submenu)
@@ -243,7 +240,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func applyMenuKeyBindingRecurrently(menu: NSMenu) {
         
         menu.items
-            .filter(Self.allowsModifying)
+            .filter(self.allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     return self.applyMenuKeyBindingRecurrently(menu: submenu)
@@ -266,7 +263,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         menu.items
-            .filter(Self.allowsModifying)
+            .filter(self.allowsModifying)
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
                     let node = NamedTreeNode(name: menuItem.title)

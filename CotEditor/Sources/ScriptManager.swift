@@ -306,7 +306,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 self.addChildFileItem(in: url, to: submenu)
                 
                 let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
-                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 item.submenu = submenu
                 menu.addItem(item)
             }

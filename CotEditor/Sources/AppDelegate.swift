@@ -113,9 +113,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         super.awakeFromNib()
         
-        // store key bindings in MainMenu.xib before menu is modified
-        MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
-        
         // append the current version number to "What’s New" menu item
         let shortVersionRange = Bundle.main.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
         let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
