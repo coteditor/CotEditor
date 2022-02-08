@@ -371,6 +371,7 @@
 "Recent Filters" = "最近のフィルタ";
 "Clear Recents" = "フィルタ履歴を消去";
 "No Recent Filter" = "フィルタ履歴がありません";
+"No Filter Results" = "フィルタ結果なし";
 
 // Incompatible characters
 "No incompatible characters were found." = "非互換文字は見つかりませんでした。";

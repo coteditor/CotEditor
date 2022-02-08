@@ -369,6 +369,7 @@
 "Recent Filters" = "Filtres récents";  // FIXME: machine translated
 "Clear Recents" = "Effacer les éléments récents";  // FIXME: machine translated
 "No Recent Filter" = "Aucun filtre récent";  // FIXME: machine translated
+"No Filter Results" = "Aucun résultat de filtre";  // FIXME: machine translated
 
 // Incompatible characters
 "No incompatible characters were found." = "Aucun caractère incompatible trouvé.";

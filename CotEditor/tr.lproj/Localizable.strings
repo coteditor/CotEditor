@@ -369,6 +369,7 @@
 "Recent Filters" = "Son Filtreler";
 "Clear Recents" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
+"No Filter Results" = "No Filter Results";  // FIXME: added
 
 // Incompatible characters
 "No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";

@@ -370,6 +370,7 @@
 "Recent Filters" = "Zuletzt gefiltert";
 "Clear Recents" = "Filter löschen";
 "No Recent Filter" = "Keine letzten Filtereinträge";
+"No Filter Results" = "Keine Filtertreffer";
 
 // Incompatible characters
 "No incompatible characters were found." = "Keine inkompatiblen Zeichen gefunden.";

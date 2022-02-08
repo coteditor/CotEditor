@@ -371,6 +371,7 @@
 "Recent Filters" = "Recent Filters";  // FIXME: added
 "Clear Recents" = "Clear Recents";  // FIXME: added
 "No Recent Filter" = "No Recent Filter";  // FIXME: added
+"No Filter Results" = "No Filter Results";  // FIXME: added
 
 // Incompatible characters
 "No incompatible characters were found." = "Nessun carattere incompatibile trovato.";

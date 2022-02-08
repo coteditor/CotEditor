@@ -370,6 +370,7 @@
 "Recent Filters" = "最近的过滤";
 "Clear Recents" = "清除最近记录";
 "No Recent Filter" = "没有最近的过滤";
+"No Filter Results" = "无过滤结果";
 
 // Incompatible characters
 "No incompatible characters were found." = "没有找到不兼容字符";
