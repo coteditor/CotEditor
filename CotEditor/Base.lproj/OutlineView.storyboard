@@ -13,7 +13,6 @@
                 <viewController id="Wry-M9-Gep" customClass="OutlineViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="DQy-qv-3Fk">
                         <rect key="frame" x="0.0" y="0.0" width="220" height="320"/>
-                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-gJ-Amp">
                                 <rect key="frame" x="10" y="245" width="48" height="15"/>
@@ -30,13 +29,13 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="meP-Ke-T4s" viewBased="YES" autoresizesOutlineColumn="YES" outlineTableColumn="CSX-H0-nFf" id="LBW-lW-4ux">
-                                            <rect key="frame" x="0.0" y="0.0" width="194" height="173"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="206" height="173"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="8" height="4"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="title" width="182" minWidth="100" maxWidth="1000" id="CSX-H0-nFf">
+                                                <tableColumn identifier="title" width="194" minWidth="100" maxWidth="1000" id="CSX-H0-nFf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -89,7 +88,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="xqb-BN-UYB"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Vh9-uN-jKp">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Vh9-uN-jKp">
                                     <rect key="frame" x="1" y="181" width="194" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -98,7 +97,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="meP-Ke-T4s">
-                                    <rect key="frame" x="0.0" y="0.0" width="194" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="206" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -113,7 +112,7 @@
                                     <action selector="searchFieldDidUpdate:" target="Wry-M9-Gep" id="8Ai-wf-mk4"/>
                                 </connections>
                             </searchField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="moj-vY-NGR">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="moj-vY-NGR">
                                 <rect key="frame" x="56" y="130" width="108" height="16"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" alignment="center" title="No Filter Results" id="98k-V7-rfu">
                                     <font key="font" metaFont="system"/>
@@ -135,13 +134,13 @@
                             <constraint firstItem="nSM-iY-aHb" firstAttribute="leading" secondItem="JmM-qV-6D4" secondAttribute="leading" constant="12" id="AQQ-wK-57x"/>
                             <constraint firstItem="JmM-qV-6D4" firstAttribute="trailing" secondItem="nSM-iY-aHb" secondAttribute="trailing" constant="12" id="KAC-my-FkO"/>
                             <constraint firstItem="nSM-iY-aHb" firstAttribute="top" secondItem="sdS-LF-zK0" secondAttribute="bottom" constant="8" symbolic="YES" id="NEG-gA-yN8"/>
-                            <constraint firstItem="Mor-ug-mQK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="moj-vY-NGR" secondAttribute="trailing" constant="12" id="Nql-WG-YyB"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="moj-vY-NGR" secondAttribute="trailing" constant="12" id="Nql-WG-YyB"/>
                             <constraint firstItem="moj-vY-NGR" firstAttribute="centerX" secondItem="sdS-LF-zK0" secondAttribute="centerX" id="VEd-oO-190"/>
                             <constraint firstItem="w9Z-gJ-Amp" firstAttribute="top" secondItem="JmM-qV-6D4" secondAttribute="top" constant="8" id="XMM-ho-3L6"/>
                             <constraint firstItem="sdS-LF-zK0" firstAttribute="leading" secondItem="JmM-qV-6D4" secondAttribute="leading" constant="12" id="XaZ-Pz-RxG"/>
                             <constraint firstItem="w9Z-gJ-Amp" firstAttribute="leading" secondItem="JmM-qV-6D4" secondAttribute="leading" constant="12" id="f5I-Dp-Sqh"/>
                             <constraint firstItem="JmM-qV-6D4" firstAttribute="trailing" secondItem="sdS-LF-zK0" secondAttribute="trailing" constant="12" id="iIm-zW-8W4"/>
-                            <constraint firstItem="moj-vY-NGR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mor-ug-mQK" secondAttribute="leading" constant="12" id="iy3-up-SGr"/>
+                            <constraint firstItem="moj-vY-NGR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DQy-qv-3Fk" secondAttribute="leading" constant="12" id="iy3-up-SGr"/>
                             <constraint firstItem="moj-vY-NGR" firstAttribute="centerY" secondItem="sdS-LF-zK0" secondAttribute="centerY" id="ur6-Hw-exI"/>
                             <constraint firstItem="sdS-LF-zK0" firstAttribute="top" secondItem="w9Z-gJ-Amp" secondAttribute="bottom" constant="8" symbolic="YES" id="uzb-KU-oYK"/>
                             <constraint firstItem="JmM-qV-6D4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w9Z-gJ-Amp" secondAttribute="trailing" constant="12" id="yzP-e0-vAT"/>
