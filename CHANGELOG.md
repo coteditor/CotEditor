@@ -35,6 +35,7 @@ Change Log
 - [trivial] Adjust the margin of the editor area.
 - [trivial] Hide the file extension of setting files by export by default.
 - [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
+- [trivial] Update some symbols for shortcut keys in the key binding settings.
 - [dev] Update the build environment to Xcode 13.2 (Swift 5.5).
 - [dev] Remove xcworkspace.
 - [non-AppStore ver.] Update Sparkle to 2.0.0.

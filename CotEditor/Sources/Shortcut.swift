@@ -157,31 +157,42 @@ struct Shortcut: Hashable {
     // MARK: Private Methods
     
     /// modifier keys string to display
-    private var printableModifierMask: String {
+    private var modifierMaskSymbols: [String] {
         
-        return ModifierKey.allCases
+        ModifierKey.allCases
             .filter { self.modifierMask.contains($0.mask) }
             .map(\.symbol)
-            .joined()
     }
     
     
     /// key equivalent to display
-    private var printableKeyEquivalent: String {
+    private var keyEquivalentSymbol: String {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
-        return Shortcut.printableKeyEquivalents[scalar] ?? self.keyEquivalent.uppercased()
+        return Shortcut.keyEquivalentSymbols[scalar] ?? self.keyEquivalent.uppercased()
     }
     
     
     /// table for characters that cannot be displayed as is with their printable substitutions
-    private static let printableKeyEquivalents: [Unicode.Scalar: String] = [
+    private static let keyEquivalentSymbols: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .upArrow: "↑",
         .downArrow: "↓",
         .leftArrow: "←",
         .rightArrow: "→",
+        .delete: "⌦",
+        .backspace: "⌫",
+        .home: "↖",
+        .end: "↘",
+        .pageUp: "⇞",
+        .pageDown: "⇟",
+        .clearLine: "⌧",
+        .carriageReturn: "↩",
+        .enter: "⌅",
+        .tab: "⇥",
+        .backTab: "⇤",
+        .escape: "⎋",
         .f1: "F1",
         .f2: "F2",
         .f3: "F3",
@@ -198,20 +209,11 @@ struct Shortcut: Hashable {
         .f14: "F14",
         .f15: "F15",
         .f16: "F16",
-        .delete: "⌦",
-        .home: "↖",
-        .end: "↘",
-        .pageUp: "⇞",
-        .pageDown: "⇟",
-        .clearLine: "⌧",
+        .f17: "F17",
+        .f18: "F18",
+        .f19: "F19",
         .help: "Help",
         .space: "Space".localized(comment: "keyboard key name"),
-        .tab: "⇥",
-        .carriageReturn: "↩",
-        .backspace: "⌫",  //  (delete backward)
-        .enter: "⌅",
-        .backTab: "⇤",
-        .escape: "⎋",
     ].mapKeys(\.unicodeScalar)
     
 }
@@ -228,7 +230,7 @@ extension Shortcut: CustomStringConvertible {
     /// shortcut string to display
     var description: String {
         
-        return self.printableModifierMask + self.printableKeyEquivalent
+        (self.modifierMaskSymbols + [self.keyEquivalentSymbol]).joined(separator: .thinSpace)
     }
     
 }
