@@ -190,8 +190,8 @@ struct Shortcut: Hashable {
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
         return Self.keyEquivalentSFSymbols[scalar]
-        ?? Self.keyEquivalentSymbols[scalar]
-        ?? self.keyEquivalent.uppercased()
+            ?? Self.keyEquivalentSymbols[scalar]
+            ?? self.keyEquivalent.uppercased()
     }
     
     
