@@ -128,7 +128,6 @@ extension BidirectionalCollection where Element == OutlineItem {
         self.compactMap { (item) in
             item.title.abbreviatedMatch(with: searchString).flatMap { (item: item, result: $0) }
         }
-        .sorted(\.result.score)
         .map {
             var item = $0.item
             item.filteredRanges = $0.result.ranges.map { NSRange($0, in: item.title) }
