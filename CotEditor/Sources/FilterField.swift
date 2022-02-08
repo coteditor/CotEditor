@@ -78,6 +78,17 @@ final class FilterField: NSSearchField {
     }
     
     
+    override func sendAction(_ action: Selector?, to target: Any?) -> Bool {
+        
+        // invoked when the search string was set by selecting recent history menu
+        defer {
+            self.validateImage()
+        }
+        
+        return super.sendAction(action, to: target)
+    }
+    
+    
     
     // MARK: Private Methods
     
