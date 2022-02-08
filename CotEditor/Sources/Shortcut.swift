@@ -52,6 +52,10 @@ enum ModifierKey: CaseIterable {
     /// printable symbol
     var symbol: String {
         
+        if let symbol = self.sfSymbol {
+            return symbol
+        }
+        
         switch self {
             case .control: return "^"
             case .option:  return "⌥"
@@ -69,6 +73,17 @@ enum ModifierKey: CaseIterable {
             case .option:  return "~"
             case .shift:   return "$"
             case .command: return "@"
+        }
+    }
+    
+    
+    private var sfSymbol: String? {
+        
+        switch self {
+            case .control: return "􀆍"
+            case .option:  return "􀆕"
+            case .shift:   return "􀆝"
+            case .command: return "􀆔"
         }
     }
     
@@ -170,11 +185,35 @@ struct Shortcut: Hashable {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
-        return Shortcut.keyEquivalentSymbols[scalar] ?? self.keyEquivalent.uppercased()
+        return Self.keyEquivalentSFSymbols[scalar]
+        ?? Self.keyEquivalentSymbols[scalar]
+        ?? self.keyEquivalent.uppercased()
     }
     
     
-    /// table for characters that cannot be displayed as is with their printable substitutions
+    /// Key equivalent symbols that have SF Symbol alternatives.
+    private static let keyEquivalentSFSymbols: [Unicode.Scalar: String] = [
+        NSEvent.SpecialKey
+        .upArrow: "􀄤",
+        .downArrow: "􀄥",
+        .leftArrow: "􀄦",
+        .rightArrow: "􀄧",
+        .delete: "􁂒",
+        .backspace: "􁂈",
+        .home: "􀄿",
+        .end: "􀅀",
+        .pageUp: "􀄨",
+        .pageDown: "􀄩",
+        .clearLine: "􀆙",
+        .carriageReturn: "􀅇",
+        .enter: "􀆎",
+        .tab: "􁂎",
+        .backTab: "􁂊",
+        .escape: "􀆧",
+    ].mapKeys(\.unicodeScalar)
+    
+    
+    /// table for key equivalent that have special symbols to display.
     private static let keyEquivalentSymbols: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .upArrow: "↑",
