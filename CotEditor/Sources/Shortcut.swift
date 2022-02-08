@@ -38,6 +38,12 @@ enum ModifierKey: CaseIterable {
     case command
     
     
+    static var mask: NSEvent.ModifierFlags {
+        
+        self.allCases.reduce(.init()) { $0.union($1.mask) }
+    }
+    
+    
     var mask: NSEvent.ModifierFlags {
         
         switch self {
@@ -106,7 +112,7 @@ struct Shortcut: Hashable {
         let needsShift = keyEquivalent.last?.isUppercase == true
         
         self.modifierMask = modifierMask
-            .intersection([.control, .option, .shift, .command])
+            .intersection(ModifierKey.mask)
             .union(needsShift ? .shift : [])
         self.keyEquivalent = keyEquivalent
     }
@@ -143,7 +149,7 @@ struct Shortcut: Hashable {
     /// whether the shortcut key is empty
     var isEmpty: Bool {
         
-        return self.modifierMask.isEmpty && self.keyEquivalent.isEmpty
+        self.modifierMask.isEmpty && self.keyEquivalent.isEmpty
     }
     
     
@@ -152,9 +158,7 @@ struct Shortcut: Hashable {
     /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {
         
-        let keys = ModifierKey.allCases.filter { self.modifierMask.contains($0.mask) }
-        
-        return self.keyEquivalent.count == 1 && !keys.isEmpty
+        !self.modifierMask.isEmpty && self.keyEquivalent.count == 1
     }
     
     

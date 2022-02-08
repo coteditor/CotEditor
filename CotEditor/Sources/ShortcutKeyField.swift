@@ -75,7 +75,7 @@ final class ShortcutKeyField: NSTextField {
             // remove unwanted Shift
             let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
             let modifierMask = event.modifierFlags
-                .intersection([.control, .option, .shift, .command])
+                .intersection(ModifierKey.mask)
                 .subtracting(ignoresShift ? .shift : [])
             
             // set input shortcut string to field

@@ -48,7 +48,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
             fatalError("MenuKeyBindingManager should be initialized after Main.storyboard is loaded.")
         }
         
-        _defaultKeyBindings = Self.scanMenuKeyBindingRecurrently(menu: mainMenu)
+        _defaultKeyBindings = Set(Self.scanMenuKeyBindingRecurrently(menu: mainMenu))
         
         super.init()
     }
@@ -145,9 +145,9 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func shortcut(for action: Selector, defaults usesDefaults: Bool) -> Shortcut {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
-        let definition = keyBindings.first { $0.action == action }
+        let keyBinding = keyBindings.first { $0.action == action }
         
-        return definition?.shortcut ?? .none
+        return keyBinding?.shortcut ?? .none
     }
     
     
@@ -202,13 +202,13 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// scan all key bindings as well as selector name in passed-in menu
-    private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> Set<KeyBinding> {
+    private class func scanMenuKeyBindingRecurrently(menu: NSMenu) -> [KeyBinding] {
         
-        let keyBindings: [KeyBinding] = menu.items.lazy
-            .filter(self.allowsModifying)
-            .map { menuItem -> [KeyBinding] in
+        menu.items
+            .filter(Self.allowsModifying)
+            .flatMap { menuItem -> [KeyBinding] in
                 if let submenu = menuItem.submenu {
-                    return self.scanMenuKeyBindingRecurrently(menu: submenu).sorted()
+                    return self.scanMenuKeyBindingRecurrently(menu: submenu)
                 }
                 
                 guard let action = menuItem.action else { return [] }
@@ -220,21 +220,17 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 return [KeyBinding(action: action, shortcut: shortcut)]
             }
-            .flatMap { $0 }
-        
-        return Set(keyBindings)
     }
     
     
     /// clear keyboard shortcuts in the passed-in menu
     private func clearMenuKeyBindingRecurrently(menu: NSMenu) {
         
-        menu.items.lazy
+        menu.items
             .filter(Self.allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
-                    self.clearMenuKeyBindingRecurrently(menu: submenu)
-                    return
+                    return self.clearMenuKeyBindingRecurrently(menu: submenu)
                 }
                 
                 menuItem.keyEquivalent = ""
@@ -246,12 +242,11 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// apply current keyboard short cut settings to the passed-in menu
     private func applyMenuKeyBindingRecurrently(menu: NSMenu) {
         
-        menu.items.lazy
+        menu.items
             .filter(Self.allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
-                    self.applyMenuKeyBindingRecurrently(menu: submenu)
-                    return
+                    return self.applyMenuKeyBindingRecurrently(menu: submenu)
                 }
                 
                 guard let action = menuItem.action else { return }
@@ -270,7 +265,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// read key bindings from the menu and create an array data for outlineView in preferences
     private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [NSTreeNode] {
         
-        return menu.items.lazy
+        menu.items
             .filter(Self.allowsModifying)
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {

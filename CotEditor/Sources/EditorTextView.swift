@@ -448,8 +448,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // perform snippet insertion if not in the middle of Japanese input
         if !self.hasMarkedText(),
-            let snippet = SnippetKeyBindingManager.shared.snippet(keyEquivalent: event.charactersIgnoringModifiers,
-                                                                  modifierMask: event.modifierFlags)
+            let snippet = SnippetKeyBindingManager.shared.snippet(modifierMask: event.modifierFlags,
+                                                                  keyEquivalent: event.charactersIgnoringModifiers)
         {
             self.insert(snippet: snippet)
             self.centerSelectionInVisibleArea(self)
