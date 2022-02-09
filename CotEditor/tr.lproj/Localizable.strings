@@ -644,7 +644,6 @@
 "“%@” does not include the Command key." = "“%@”, Command düğmesini içermiyor.";
 "“%@” includes the Command key." = "“%@”, Command düğmesini içeriyor.";
 "The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";
-"Please choose another key." = "Lütfen başka bir düğme seçin.";
 "Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
 "Please combine with other keys." = "Lütfen başka düğmeler ile ikileyin.";
 

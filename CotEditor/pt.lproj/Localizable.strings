@@ -640,7 +640,6 @@
 "“%@” does not include the Command key." = "“%@” não inclui a tecla Comando.";
 "“%@” includes the Command key." = "“%@” inclui a tecla Comando.";
 "The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";  // FIXME: added
-"Please choose another key." = "Escolha outra tecla.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
 "Please combine with other keys." = "Combine-a com outra tecla.";
 

@@ -645,7 +645,6 @@
 "“%@” does not include the Command key." = "“%@” does not include the Command key.";
 "“%@” includes the Command key." = "“%@” includes the Command key.";
 "The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";
-"Please choose another key." = "Please choose another key.";
 "Single type is invalid for a shortcut." = "Single type is invalid for a shortcut.";
 "Please combine with other keys." = "Please combine with other keys.";
 
