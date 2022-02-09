@@ -333,6 +333,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "Renk";
+"Print Background" = "Arka Planları Yazdır";
 "Line Number" = "Satır Numarası";
 "Invisibles" = "Görünmez Karakterler";
 "Print Header" = "Üstbilgiyi Yazdır";

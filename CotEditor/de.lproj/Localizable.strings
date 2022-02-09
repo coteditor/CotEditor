@@ -334,6 +334,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "Farbe";
+"Print Background" = "Hintergrund drucken";
 "Line Number" = "Zeilennummern";
 "Invisibles" = "Steuerzeichen";
 "Print Header" = "Kopfzeilen drucken";

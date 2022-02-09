@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,11 +11,11 @@
             <objects>
                 <viewController id="YLz-6z-SWq" customClass="PrintPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="cDb-GN-YmZ">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="295"/>
+                        <rect key="frame" x="0.0" y="0.0" width="380" height="321"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="fxi-LM-NOF">
-                                <rect key="frame" x="23" y="0.0" width="335" height="295"/>
+                                <rect key="frame" x="23" y="0.0" width="335" height="321"/>
                                 <subviews>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
                                         <rect key="frame" x="252" y="105" width="75" height="24"/>
@@ -42,7 +43,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="585">
-                                        <rect key="frame" x="103" y="251" width="214" height="25"/>
+                                        <rect key="frame" x="103" y="277" width="214" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="ywH-Ua-doT"/>
                                         </constraints>
@@ -282,14 +283,6 @@
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="xh6-XP-QYT"/>
                                         </connections>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
-                                        <rect key="frame" x="59" y="258" width="41" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Color:" usesSingleLineMode="YES" id="eXI-55-yQO">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="424">
                                         <rect key="frame" x="103" y="191" width="214" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Don’t Print" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="428" id="719">
@@ -363,6 +356,24 @@
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Le4-Dr-4g2"/>
                                         </connections>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lzA-os-Qem">
+                                        <rect key="frame" x="104" y="256" width="130" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Print background" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Jff-bZ-Xbm">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <binding destination="YLz-6z-SWq" name="value" keyPath="printsBackground" id="tV0-gL-oid"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
+                                        <rect key="frame" x="59" y="284" width="41" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Color:" usesSingleLineMode="YES" id="eXI-55-yQO">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="0Xa-fP-Dxf"/>
@@ -371,7 +382,9 @@
                                     <constraint firstItem="423" firstAttribute="trailing" secondItem="415" secondAttribute="trailing" id="3qa-Xc-sXf"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="416" secondAttribute="trailing" constant="10" id="3wv-wY-oSG"/>
                                     <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="257" secondAttribute="centerY" id="4Ax-A2-9LP"/>
+                                    <constraint firstItem="lzA-os-Qem" firstAttribute="leading" secondItem="6jK-7i-UaO" secondAttribute="trailing" constant="8" symbolic="YES" id="4VZ-ut-1M7"/>
                                     <constraint firstItem="423" firstAttribute="trailing" secondItem="257" secondAttribute="trailing" id="4yT-b1-2Dg"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lzA-os-Qem" secondAttribute="trailing" constant="20" symbolic="YES" id="6go-QG-AHV"/>
                                     <constraint firstItem="304" firstAttribute="top" secondItem="257" secondAttribute="bottom" constant="16" id="7kj-HZ-ZTy"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="304" secondAttribute="trailing" constant="10" id="8H1-n9-rGW"/>
                                     <constraint firstItem="256" firstAttribute="centerY" secondItem="ErI-yf-OgH" secondAttribute="centerY" id="8rK-vk-luL"/>
@@ -398,6 +411,7 @@
                                     <constraint firstItem="415" firstAttribute="leading" secondItem="fxi-LM-NOF" secondAttribute="leading" constant="10" id="Raa-6b-RVc"/>
                                     <constraint firstItem="423" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fxi-LM-NOF" secondAttribute="leading" constant="10" id="TFV-o1-y7A"/>
                                     <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="Upf-L2-Xa3"/>
+                                    <constraint firstItem="416" firstAttribute="top" secondItem="lzA-os-Qem" secondAttribute="bottom" constant="12" id="WKY-bY-XYO"/>
                                     <constraint firstItem="416" firstAttribute="centerY" secondItem="415" secondAttribute="centerY" id="WtH-6E-p5h"/>
                                     <constraint firstItem="256" firstAttribute="centerY" secondItem="198" secondAttribute="centerY" id="XT8-8k-eJ6"/>
                                     <constraint firstItem="585" firstAttribute="leading" secondItem="6jK-7i-UaO" secondAttribute="trailing" constant="8" symbolic="YES" id="a1q-ka-nFa"/>
@@ -411,6 +425,7 @@
                                     <constraint firstItem="4T8-80-2uO" firstAttribute="leading" secondItem="321" secondAttribute="trailing" constant="8" symbolic="YES" id="g8C-kQ-9gV"/>
                                     <constraint firstItem="305" firstAttribute="leading" secondItem="257" secondAttribute="trailing" constant="8" symbolic="YES" id="hVA-5g-nI1"/>
                                     <constraint firstItem="423" firstAttribute="trailing" secondItem="295" secondAttribute="trailing" id="hfS-hK-Eug"/>
+                                    <constraint firstItem="lzA-os-Qem" firstAttribute="top" secondItem="585" secondAttribute="bottom" constant="8" symbolic="YES" id="hui-Kb-cib"/>
                                     <constraint firstItem="304" firstAttribute="leading" secondItem="fxi-LM-NOF" secondAttribute="leading" constant="10" id="jaN-zQ-LR2"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ff5-dQ-geo" secondAttribute="trailing" constant="10" id="kin-QS-HGn"/>
                                     <constraint firstItem="256" firstAttribute="leading" secondItem="fxi-LM-NOF" secondAttribute="leading" priority="750" constant="10" id="lx5-5a-WM2"/>
@@ -422,7 +437,6 @@
                                     <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="tcl-Gw-6qA"/>
                                     <constraint firstItem="321" firstAttribute="centerY" secondItem="4T8-80-2uO" secondAttribute="centerY" id="uGt-Yc-yLD"/>
                                     <constraint firstAttribute="trailing" secondItem="ErI-yf-OgH" secondAttribute="trailing" priority="750" constant="10" id="uiH-aM-mUh"/>
-                                    <constraint firstItem="416" firstAttribute="top" secondItem="585" secondAttribute="bottom" constant="10" symbolic="YES" id="vnz-ir-fHz"/>
                                     <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="wH5-Hi-ICZ"/>
                                     <constraint firstItem="8wl-aM-d8K" firstAttribute="leading" secondItem="305" secondAttribute="trailing" constant="8" symbolic="YES" id="wVb-xi-faB"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4T8-80-2uO" secondAttribute="trailing" constant="10" id="zJ7-YE-aOw"/>
@@ -443,12 +457,12 @@
                 </viewController>
                 <customObject id="1l0-w4-WHu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="129" y="1"/>
+            <point key="canvasLocation" x="129" y="49.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="arrow.center.to.line" width="14" height="10"/>
-        <image name="arrow.left.to.line" catalog="system" width="15" height="12"/>
-        <image name="arrow.right.to.line" catalog="system" width="15" height="12"/>
+        <image name="arrow.left.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.right.to.line" catalog="system" width="17" height="12"/>
     </resources>
 </document>

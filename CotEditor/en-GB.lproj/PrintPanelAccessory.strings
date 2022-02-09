@@ -29,6 +29,8 @@
 "590.title" = "Black and White";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "Same as Document’s Setting";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
+"Jff-bZ-Xbm.title" = "Print background";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "Line Numbers:";

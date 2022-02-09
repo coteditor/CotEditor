@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Add a feature to filter outline items in the outline pane.
+- Add an option not to draw the background color on printing.
 - Add “Open Outline Menu” command to the Find menu.
 - Add Turkish (thanks to Emir SARI!) and British English (thanks to Alex Newson!) localizations.
 - Introduce a new AppleScript command `jump` to document objects.

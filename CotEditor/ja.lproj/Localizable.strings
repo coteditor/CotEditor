@@ -335,6 +335,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "カラー";
+"Print Background" = "背景をプリント";
 "Line Number" = "行番号";
 "Invisibles" = "不可視文字";
 "Print Header" = "ヘッダをプリント";

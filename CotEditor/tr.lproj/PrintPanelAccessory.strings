@@ -30,6 +30,8 @@
 "590.title" = "Siyah ve Beyaz";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "Belge Ayarlarıyla Aynı";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
+"Jff-bZ-Xbm.title" = "Arka planları yazdır";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "Satır Numaraları:";

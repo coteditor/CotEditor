@@ -303,6 +303,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             }
         }()
         
+        // set whether draws background
+        self.drawsBackground = settings[.printsBackground] as? Bool ?? true
+        
         // create theme
         assert(settings[.theme] != nil)
         let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite

@@ -28,6 +28,7 @@ import Cocoa
 extension NSPrintInfo.AttributeKey {
     
     static let theme = Self("CEThemeName")
+    static let printsBackground = Self("CEPrintBackground")
     static let lineNumber = Self("CEPrintLineNumber")
     static let invisibles = Self("CEPrintInvisibles")
     static let printsHeader = Self("CEPrintHeader")
@@ -89,6 +90,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                         return defaults[.printTheme] ?? ThemeName.blackAndWhite
                 }
             }()
+            self.printsBackground = defaults[.printBackground]
             self.lineNumberMode = defaults[.printLineNumIndex]
             self.invisibleCharsMode = defaults[.printInvisibleCharIndex]
             
@@ -122,6 +124,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     func keyPathsForValuesAffectingPreview() -> Set<String> {
         
         return [#keyPath(theme),
+                #keyPath(printsBackground),
                 #keyPath(lineNumberMode),
                 #keyPath(invisibleCharsMode),
                 
@@ -147,6 +150,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         return [
             localizedSummaryItem(name: "Color", description: self.theme),
+            localizedSummaryItem(name: "Print Background", description: self.printsBackground ? "On" : "Off"),
             localizedSummaryItem(name: "Line Number", description: self.lineNumberMode.description),
             localizedSummaryItem(name: "Invisibles", description: self.invisibleCharsMode.description),
             
@@ -227,6 +231,13 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         get { self.settingValue(forKey: .theme) ?? ThemeName.blackAndWhite }
         set { self.setSettingValue(newValue, forKey: .theme) }
+    }
+    
+    /// whether prints background color
+    @objc dynamic var printsBackground: Bool {
+        
+        get { self.settingValue(forKey: .printsBackground) ?? true }
+        set { self.setSettingValue(newValue, forKey: .printsBackground) }
     }
     
     

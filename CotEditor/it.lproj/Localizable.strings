@@ -335,6 +335,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "Colore";
+"Print Background" = "Stampa sfondi";
 "Line Number" = "Numero riga";
 "Invisibles" = "Caratteri invisibili";
 "Print Header" = "Stampa intestazione";
