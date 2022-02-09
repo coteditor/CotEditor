@@ -645,7 +645,7 @@
 "“%@” is already taken." = "“%@”はすでに使用されています。";
 "“%@” does not include the Command key." = "“%@”にはCommandが含まれていません。";
 "“%@” includes the Command key." = "“%@”はCommandを含んでいます。";
-"The Shift key can be used only with another modifier key." = "Shiftキーは他の修飾キーと合わせて使う必要があります。";
+"The Shift key can be used only with another modifier key." = "Shiftキーはほかの修飾キーと合わせて使う必要があります。";
 "Please choose another key." = "別のキーを選んでください。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
 "Please combine with other keys." = "別のキーと組み合わせてください。";
