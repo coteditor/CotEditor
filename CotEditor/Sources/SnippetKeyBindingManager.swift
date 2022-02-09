@@ -108,7 +108,8 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         }
         
         // avoid shift-only modifier with a letter
-        if shortcut.modifierMask == .shift, shortcut.keySpecChars.allSatisfy(\.isLetter) {
+        // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
+        if shortcut.modifierMask == .shift, shortcut.keyEquivalent.contains(where: \.isLetter) {
             throw InvalidKeySpecCharactersError(kind: .shiftOnlyModifier, shortcut: shortcut)
         }
     }

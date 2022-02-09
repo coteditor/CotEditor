@@ -51,6 +51,7 @@ Change Log
 - Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.
 - Fix an issue that the editor's opacity change did not apply immediately.
 - Fix an issue that some uncustomizable menu commands were provided in the Key Bindings preference pane.
+- Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.
 - Fix an issue that some help buttons did not work (thanks to Alex Newson!).
 - Fix and minor update on localized strings.
 - Fix `cot` command to work also with Python 3.
