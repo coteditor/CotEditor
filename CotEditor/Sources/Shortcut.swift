@@ -105,6 +105,14 @@ struct Shortcut: Hashable {
     
     static let none = Shortcut(modifierMask: [], keyEquivalent: "")
     
+    /// Some special keys allowed to asign without modifier keys.
+    private static let singleKeys: [NSEvent.SpecialKey] = [
+        .home,
+        .end,
+        .pageUp,
+        .pageDown,
+    ]
+    
     
     init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
@@ -188,7 +196,11 @@ struct Shortcut: Hashable {
     /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {
         
-        !self.modifierMask.isEmpty && self.keyEquivalent.count == 1
+        if Self.singleKeys.map(\.unicodeScalar).map(String.init).contains(self.keyEquivalent) {
+            return true
+        }
+        
+        return !self.modifierMask.isEmpty && self.keyEquivalent.count == 1
     }
     
     

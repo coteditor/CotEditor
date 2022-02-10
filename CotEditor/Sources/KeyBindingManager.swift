@@ -165,7 +165,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     }
     
     
-    /// validate new key spec chars are settable
+    /// Validate new shortcut are settable.
     ///
     /// - Throws: `InvalidShortcutError`
     final func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
@@ -173,17 +173,17 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         // blank key is always valid
         if shortcut.isEmpty { return }
         
-        // single key is invalid
-        guard !shortcut.modifierMask.isEmpty, !shortcut.keyEquivalent.isEmpty else {
-            throw InvalidShortcutError(kind: .singleType, shortcut: shortcut)
-        }
-        
         // avoid shift-only modifier with a letter
         // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
         if shortcut.modifierMask == .shift,
            shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
         {
             throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: shortcut)
+        }
+        
+        // single key is invalid
+        guard shortcut.isValid else {
+            throw InvalidShortcutError(kind: .singleType, shortcut: shortcut)
         }
         
         // duplication check
