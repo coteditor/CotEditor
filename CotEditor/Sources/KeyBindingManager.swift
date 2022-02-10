@@ -26,7 +26,7 @@
 
 import Cocoa
 
-struct InvalidKeySpecCharactersError: LocalizedError {
+struct InvalidShortcutError: LocalizedError {
     
     enum ErrorKind {
         case singleType
@@ -175,7 +175,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     
     /// validate new key spec chars are settable
     ///
-    /// - Throws: `InvalidKeySpecCharactersError`
+    /// - Throws: `InvalidShortcutError`
     func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
         
         // blank key is always valid
@@ -183,12 +183,12 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         
         // single key is invalid
         guard !shortcut.modifierMask.isEmpty, !shortcut.keyEquivalent.isEmpty else {
-            throw InvalidKeySpecCharactersError(kind: .singleType, shortcut: shortcut)
+            throw InvalidShortcutError(kind: .singleType, shortcut: shortcut)
         }
         
         // duplication check
         guard shortcut == oldShortcut || !self.keyBindings.contains(where: { $0.shortcut == shortcut }) else {
-            throw InvalidKeySpecCharactersError(kind: .alreadyTaken, shortcut: shortcut)
+            throw InvalidShortcutError(kind: .alreadyTaken, shortcut: shortcut)
         }
     }
     

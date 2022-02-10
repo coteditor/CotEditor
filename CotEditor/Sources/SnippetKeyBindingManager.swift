@@ -104,7 +104,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         // command key existance check
         if shortcut.modifierMask.contains(.command) {
-            throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, shortcut: shortcut)
+            throw InvalidShortcutError(kind: .unwantedCommandKey, shortcut: shortcut)
         }
         
         // avoid shift-only modifier with a letter
@@ -112,7 +112,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         if shortcut.modifierMask == .shift,
            shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
         {
-            throw InvalidKeySpecCharactersError(kind: .shiftOnlyModifier, shortcut: shortcut)
+            throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: shortcut)
         }
     }
     

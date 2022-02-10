@@ -175,7 +175,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         do {
             try self.manager.validate(shortcut: shortcut, oldShortcut: oldShortcut)
             
-        } catch let error as InvalidKeySpecCharactersError {
+        } catch let error as InvalidShortcutError {
             self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
             textField.objectValue = oldShortcut?.keySpecChars  // reset view with previous key
             NSSound.beep()
