@@ -55,36 +55,10 @@ final class ShortcutKeyField: NSTextField {
         (self.currentEditor() as? NSTextView)?.insertionPointColor = .clear
         
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event) -> NSEvent? in
+            guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
             
-            guard let charactersIgnoringModifiers = event.charactersIgnoringModifiers else { return event }
-            
-            // correct Backspace and Forward Delete keys
-            //  -> Backspace:      The key above the Return.
-            //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
-            // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
-            let keyEquivalent: String
-            switch event.specialKey {
-                case NSEvent.SpecialKey.delete:
-                    keyEquivalent = String(NSEvent.SpecialKey.backspace.unicodeScalar)
-                case NSEvent.SpecialKey.deleteForward:
-                    keyEquivalent = String(NSEvent.SpecialKey.delete.unicodeScalar)
-                default:
-                    keyEquivalent = charactersIgnoringModifiers
-            }
-            
-            // remove unwanted Shift
-            let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
-            let modifierMask = event.modifierFlags
-                .intersection(ModifierKey.mask)
-                .subtracting(ignoresShift ? .shift : [])
-            
-            // set input shortcut string to field
             // -> The single .delete works as delete.
-            self.objectValue = (event.specialKey == .delete && modifierMask.isEmpty)
-                ? nil
-                : Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent).keySpecChars
-            
-            // end editing
+            self.objectValue = (event.specialKey == .delete && shortcut.modifierMask.isEmpty) ? nil : shortcut.keySpecChars
             self.window?.endEditing(for: nil)
             
             return nil

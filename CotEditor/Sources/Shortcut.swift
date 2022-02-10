@@ -134,6 +134,36 @@ struct Shortcut: Hashable {
     }
     
     
+    init?(keyDownEvent event: NSEvent) {
+        
+        assert(event.type == .keyDown)
+        
+        guard let charactersIgnoringModifiers = event.charactersIgnoringModifiers else { return nil }
+        
+        // correct Backspace and Forward Delete keys
+        //  -> Backspace:      The key above the Return.
+        //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
+        // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
+        let keyEquivalent: String
+        switch event.specialKey {
+            case NSEvent.SpecialKey.delete:
+                keyEquivalent = String(NSEvent.SpecialKey.backspace.unicodeScalar)
+            case NSEvent.SpecialKey.deleteForward:
+                keyEquivalent = String(NSEvent.SpecialKey.delete.unicodeScalar)
+            default:
+                keyEquivalent = charactersIgnoringModifiers
+        }
+        
+        // remove unwanted Shift
+        let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
+        let modifierMask = event.modifierFlags
+            .intersection(ModifierKey.mask)
+            .subtracting(ignoresShift ? .shift : [])
+        
+        self.init(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
+    }
+    
+    
     /// unique string to store in plist
     var keySpecChars: String {
         

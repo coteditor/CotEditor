@@ -109,7 +109,9 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         // avoid shift-only modifier with a letter
         // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
-        if shortcut.modifierMask == .shift, shortcut.keyEquivalent.contains(where: \.isLetter) {
+        if shortcut.modifierMask == .shift,
+           shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
+        {
             throw InvalidKeySpecCharactersError(kind: .shiftOnlyModifier, shortcut: shortcut)
         }
     }
@@ -119,12 +121,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     // MARK: Public Methods
     
     /// return snippet string for key binding if exists
-    func snippet(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String?) -> Snippet? {
-        
-        guard let keyEquivalent = keyEquivalent else { return nil }
-        
-        // selector string for the key press
-        let shortcut = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
+    func snippet(shortcut: Shortcut) -> Snippet? {
         
         guard
             let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }),
