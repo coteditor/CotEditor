@@ -97,7 +97,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         // command key existance check
         if !shortcut.isEmpty, !shortcut.modifierMask.contains(.command) {
-            throw InvalidKeySpecCharactersError(kind: .lackingCommandKey, shortcut: shortcut)
+            throw InvalidShortcutError(kind: .lackingCommandKey, shortcut: shortcut)
         }
     }
     
