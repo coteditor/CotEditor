@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -46,4 +46,4 @@
 /* Class = "NSMenuItem"; title = "CSS HSLa"; ObjectID = "k4U-AQ-5ws"; */
 "k4U-AQ-5ws.title" = "CSS HSLa";
 /* Class = "NSMenuItem"; title = "CSS Keyword"; ObjectID = "dY5-ZH-n6l"; */
-"dY5-ZH-n6l.title" = "CSS 关键字";
+"dY5-ZH-n6l.title" = "CSS关键字";

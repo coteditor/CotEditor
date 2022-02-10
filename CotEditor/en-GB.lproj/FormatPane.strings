@@ -1,0 +1,90 @@
+//
+//  FormatPane.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Alex Newson on 2022-01-30.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
+"3273.title" = "Default line endings:";
+
+/* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
+"15.title" = "macOS / Unix (LF)";
+/* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
+"14.title" = "Classic Mac OS (CR)";
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "12"; */
+"12.title" = "Windows (CRLF)";
+
+/* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
+"3278.title" = "Default text encoding:";
+
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Priority of encodings:";
+/* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
+"3275.title" = "Edit List…";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Refer to encoding declaration in document";
+
+/* Class = "NSTextFieldCell"; title = "(Including outline menu)"; ObjectID = "3325"; */
+"3325.title" = "(Including outline menu)";
+/* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
+"3326.title" = "Enable syntax highlighting";
+
+/* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
+"3329.title" = "Default syntax style:";
+
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Available syntax styles:";
+
+/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+"cbJ-XK-bnG.ibShadowedToolTip" = "This style is customised.";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
+"dI1-Dk-Mce.ibShadowedToolTip" = "Remove selected style";
+/* Class = "NSButton"; ibShadowedToolTip = "Add empty style"; ObjectID = "Hma-8v-2gu"; */
+"Hma-8v-2gu.ibShadowedToolTip" = "Add empty style";
+/* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibShadowedToolTip" = "Edit selected style";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "Edit";
+
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
+"1lj-x8-ouD.title" = "Import…";
+/* Class = "NSMenuItem"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
+"FhP-Hj-cWE.title" = "Reload All Styles";
+/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
+"hyN-4W-57i.title" = "Show File Mapping Conflicts";
+
+
+/* contextual menu */
+
+/* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
+"371-P0-KPK.title" = "Edit…";
+/* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
+"5oN-VC-ot9.title" = "Duplicate…";
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
+"Zox-Ve-mru.title" = "Restore";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
+"NDE-r5-xAF.title" = "Delete";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
+"Qwp-u8-Urf.title" = "Export…";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
+"AkE-0P-0FC.title" = "Reveal in Finder";

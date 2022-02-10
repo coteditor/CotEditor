@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2020 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@
 "1353.title" = "Bianco e nero";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Come da documento";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+"P53-bb-aGF.title" = "Stampa sfondi";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "Numeri righe:";

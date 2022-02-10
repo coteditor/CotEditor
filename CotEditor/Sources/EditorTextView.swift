@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,15 +84,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
     
-    private(set) lazy var urlDetectionQueue = OperationQueue(name: "com.coteditor.CotEditor.URLDetectionOperationQueue", qos: .utility)
+    var urlDetectionTask: Task<Void, Error>?
     
     
     // MARK: Private Properties
     
-    private static let textContainerInset = NSSize(width: 0, height: 4)
+    private static let textContainerInset = NSSize(width: 4, height: 6)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
-    private lazy var braceHighlightTask = Debouncer { [weak self] in self?.highlightMatchingBrace() }
+    private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -100,15 +100,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private var mouseDownPoint: NSPoint = .zero
     
-    private lazy var overscrollResizingTask = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
+    private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer { [weak self] in self?.highlightInstance() }
+    private lazy var instanceHighlightDebouncer = Debouncer { [weak self] in self?.highlightInstance() }
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
+    private lazy var completionDebouncer = Debouncer { [weak self] in self?.performCompletion() }
     
     private lazy var trimTrailingWhitespaceTask = Debouncer { [weak self] in self?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines], keepingEditingPoint: true) }
     
@@ -265,7 +265,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     deinit {
         self.insertionPointTimer?.cancel()
-        self.urlDetectionQueue.cancelAllOperations()
+        self.urlDetectionTask?.cancel()
     }
     
     
@@ -284,9 +284,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     /// store UI state
-    override func encodeRestorableState(with coder: NSCoder) {
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        super.encodeRestorableState(with: coder)
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(self.insertionLocations, forKey: SerializationKey.insertionLocations)
     }
@@ -358,7 +358,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setFrameSize(newSize)
         
         if !self.inLiveResize {
-            self.overscrollResizingTask.schedule()
+            self.overscrollResizingDebouncer.schedule()
         }
         
         self.needsUpdateLineHighlight = true
@@ -370,7 +370,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.viewDidEndLiveResize()
         
-        self.overscrollResizingTask.schedule()
+        self.overscrollResizingDebouncer.schedule()
     }
     
     
@@ -379,7 +379,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
         // -> This workaround must be applicable to EditorTextView because this method
-        //    seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
+        //    seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14, FB7399413)
 //        super.updateTextTouchBarItems()
     }
     
@@ -389,7 +389,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.cursorUpdate(with: event)
         
-        self.invalidateCursor()
+        NSCursor.current.fixIBeam()
     }
     
     
@@ -398,7 +398,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.mouseMoved(with: event)
         
-        self.invalidateCursor()
+        NSCursor.current.fixIBeam()
     }
     
     
@@ -448,8 +448,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // perform snippet insertion if not in the middle of Japanese input
         if !self.hasMarkedText(),
-            let snippet = SnippetKeyBindingManager.shared.snippet(keyEquivalent: event.charactersIgnoringModifiers,
-                                                                  modifierMask: event.modifierFlags)
+           let shortcut = Shortcut(keyDownEvent: event),
+           let snippet = SnippetKeyBindingManager.shared.snippet(shortcut: shortcut)
         {
             self.insert(snippet: snippet)
             self.centerSelectionInVisibleArea(self)
@@ -481,7 +481,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.needsUpdateLineHighlight = true
         
         // trim trailing whitespace if needed
-        if UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+        if UserDefaults.standard[.autoTrimsTrailingWhitespace],
+           self.document?.isLocked != true
+        {
             self.trimTrailingWhitespaceTask.schedule(delay: .seconds(3))
         }
         
@@ -489,10 +491,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
         if self.needsRecompletion {
             self.needsRecompletion = false
-            self.completionTask.schedule(delay: .milliseconds(50))
+            self.completionDebouncer.schedule(delay: .milliseconds(50))
         }
         
-        self.invalidateURLDetection()
+        if self.urlDetectionTask != nil {
+            self.detectLink()
+        }
     }
     
     
@@ -584,7 +588,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // auto completion
         if UserDefaults.standard[.autoComplete] {
             let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
-            self.completionTask.schedule(delay: .seconds(delay))
+            self.completionDebouncer.schedule(delay: .seconds(delay))
         }
     }
     
@@ -786,7 +790,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
-                self.braceHighlightTask.schedule()
+                self.braceHighlightDebouncer.schedule()
             }
             
             // invalidate current instances highlight
@@ -795,7 +799,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 }
                 let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-                self.instanceHighlightTask.schedule(delay: .seconds(delay))
+                self.instanceHighlightDebouncer.schedule(delay: .seconds(delay))
             }
         }
         
@@ -1045,7 +1049,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // reset text wrapping width
         if self.wrapsLines {
-            // -> Use scrollView's visibleRect to workaround bug in NSScrollView with the vertical layout (2020-04 macOS 10.14-).
+            // -> Use scrollView's visibleRect to workaround bug in NSScrollView with the vertical layout (2020-04 macOS 10.14-, FB5703371).
             let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
             self.frame.size[keyPath: keyPath] = visibleRect.width * self.scale
@@ -1128,11 +1132,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     override var baseWritingDirection: NSWritingDirection {
         
+        willSet {
+            self.willChangeValue(for: \.baseWritingDirection)
+        }
+        
         didSet {
             // update textContainer size (see comment in NSTextView.infiniteSize)
             if !self.wrapsLines {
                 self.textContainer?.size = self.infiniteSize
             }
+            
+            self.didChangeValue(for: \.baseWritingDirection)
         }
     }
     
@@ -1408,19 +1418,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// use legible white-based custom i-beam cursor for dark theme
-    private func invalidateCursor() {
-        
-        switch NSCursor.current {
-            case .iBeamCursorForVerticalLayout:
-                NSCursor.lightIBeamCursorForVerticalLayout.set()
-            
-            default:
-                break
-        }
-    }
-    
-    
     /// calculate overscrolling amount
     private func invalidateOverscrollRate() {
         
@@ -1648,7 +1645,7 @@ extension EditorTextView {
     /// display completion candidate and list
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
-        self.completionTask.cancel()
+        self.completionDebouncer.cancel()
         
         self.isShowingCompletion = !flag
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,10 +57,15 @@ struct OutlineExtractor {
     }
     
     
-    /// extract outline items in given string
-    func items(in string: String, range parseRange: NSRange, using block: (_ stop: inout Bool) -> Void) -> [OutlineItem] {
+    /// Extract outline items in given string.
+    /// - Parameters:
+    ///   - string: The string to parse.
+    ///   - parseRange: The range of the string to parse.
+    /// - Throws: `CancellationError`
+    /// - Returns: An array of `OutlineItem`.
+    func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
         
-        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange, using: block).map { result in
+        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).map { result in
             
             // separator item
             if self.template == .separator {

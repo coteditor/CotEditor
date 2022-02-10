@@ -1,0 +1,45 @@
+//
+//  PreferencesWinidow.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Alex Newson on 2022-01-30.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "KjF-xP-N55"; */
+"KjF-xP-N55.title" = "Preferences";
+
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
+"CNJ-6L-fga.label" = "General";
+/* Class = "NSTabViewItem"; label = "Window"; ObjectID = "5fL-58-BrZ"; */
+"5fL-58-BrZ.label" = "Window";
+/* Class = "NSTabViewItem"; label = "Appearance"; ObjectID = "icK-P1-6ta"; */
+"icK-P1-6ta.label" = "Appearance";
+/* Class = "NSTabViewItem"; label = "Edit"; ObjectID = "sh3-xI-elX"; */
+"sh3-xI-elX.label" = "Edit";
+/* Class = "NSTabViewItem"; label = "Format"; ObjectID = "frU-Pc-xZT"; */
+"frU-Pc-xZT.label" = "Format";
+/* Class = "NSTabViewItem"; label = "File Drop"; ObjectID = "aO6-oS-ZGt"; */
+"aO6-oS-ZGt.label" = "File Drop";
+/* Class = "NSTabViewItem"; label = "Key Bindings"; ObjectID = "b8q-WN-1ls"; */
+"b8q-WN-1ls.label" = "Key Bindings";
+/* Class = "NSTabViewItem"; label = "Print"; ObjectID = "UuB-iq-kOt"; */
+"UuB-iq-kOt.label" = "Print";

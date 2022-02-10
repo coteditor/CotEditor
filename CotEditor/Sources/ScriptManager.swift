@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private let scriptsDirectoryURL: URL?
     private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
     
-    private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
+    private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
     private var terminationObserver: AnyCancellable?
     
@@ -83,13 +83,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     func presentedSubitemDidChange(at url: URL) {
         
         if NSApp.isActive {
-            self.menuBuildingTask.schedule()
+            self.menuBuildingDebouncer.schedule()
             
         } else {
             self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp)
                 .receive(on: DispatchQueue.main)
                 .first()
-                .sink { [weak self] _ in self?.menuBuildingTask.perform() }
+                .sink { [weak self] _ in self?.menuBuildingDebouncer.perform() }
         }
     }
     
@@ -118,7 +118,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         assert(Thread.isMainThread)
         
-        self.menuBuildingTask.cancel()
+        self.menuBuildingDebouncer.cancel()
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
@@ -142,27 +142,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Dispatch an Apple Event that notifies the given document was opened.
     ///
-    /// - Parameter document: The document that was opened.
-    func dispatchEvent(documentOpened document: Document) {
+    /// - Parameters:
+    ///   - eventType: The event trigger to perform script.
+    ///   - document: The target document.
+    func dispatch(event eventType: ScriptingEventType, document: Document) {
         
-        let eventType = ScriptingEventType.documentOpened
-        
-        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
-        
-        let event = self.createEvent(by: document, eventID: eventType.eventID)
-        
-        self.dispatch(event, handlers: scripts)
-    }
-    
-    
-    /// Dispatch an Apple Event that notifies the given document was opened.
-    ///
-    /// - Parameter document: The document that was opened.
-    func dispatchEvent(documentSaved document: Document) {
-        
-        let eventType = ScriptingEventType.documentSaved
-        
-        guard let scripts = self.scriptHandlersTable[eventType], !scripts.isEmpty else { return }
+        guard
+            let scripts = self.scriptHandlersTable[eventType],
+            !scripts.isEmpty
+        else { return }
         
         let event = self.createEvent(by: document, eventID: eventType.eventID)
         
@@ -318,7 +306,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 self.addChildFileItem(in: url, to: submenu)
                 
                 let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
-                item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
                 item.submenu = submenu
                 menu.addItem(item)
             }

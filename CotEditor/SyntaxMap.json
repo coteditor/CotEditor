@@ -73,8 +73,13 @@
       "cpp",
       "cxx",
       "cc",
+      "cp",
+      "hh",
+      "hp",
       "hpp",
-      "h++"
+      "hxx",
+      "h++",
+      "ipp"
     ],
     "filenames" : [
 
@@ -497,6 +502,17 @@
     ],
     "interpreters" : [
 
+    ]
+  },
+  "Protocol Buffer" : {
+    "extensions" : [
+      "proto"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "protoc"
     ]
   },
   "Python" : {

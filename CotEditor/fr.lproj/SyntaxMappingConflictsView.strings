@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Syntax Style Mapping Conflicts"; ObjectID = "1022"; */
-"1022.title" = "Conflits d'associations entre syntaxes";
+"1022.title" = "Conflits d’associations entre syntaxes";
 
 /* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
 "gnp-H7-p1W.title" = "Les associations de fichiers suivantes sont définies dans plusieurs syntaxes. Dans ce cas, CotEditor utilisera la première syntaxe. Pour résoudre les conflits, éditez chaque syntaxe.";

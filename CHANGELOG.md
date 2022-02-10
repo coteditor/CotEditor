@@ -2,6 +2,65 @@
 Change Log
 ==========================
 
+4.1.0-beta (475)
+--------------------------
+
+### New Features
+
+- Add a feature to filter outline items in the outline pane.
+- Add an option not to draw the background color on printing.
+- Add “Open Outline Menu” command to the Find menu.
+- Add Turkish (thanks to Emir SARI!) and British English (thanks to Alex Newson!) localizations.
+- Introduce a new AppleScript command `jump` to document objects.
+- Place line number views on the right side in the editor if the writing direction is right-to-left.
+- Add syntax style for Protocol Buffer.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 11 Big Sur and later__.
+- Update the window size setting to use the document last window size if the width/height setting in the preferences > Window is left blank (= auto).
+- Allow the menu key bindings to assign a shortcut without the Command key.
+- Display code points instead of left blank in the incompatible character table for control characters.
+- Update Swift syntax style to add keywords added in Swift 5.5.
+- Update C++ syntax style to add more file extensions.
+- Update Markdown syntax style for faster syntax parsing.
+- Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.
+- Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.
+- Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
+- Make sure the application relaunches even other tasks interrupt before termination.
+- Improve some toolbar items to make their state distinguish even collapsed.
+- Display the command name in the error message when the input shortcut for key bindings is already taken by another command.
+- Improve VoiceOver accessibility.
+- Update the AppleScript guide in the help.
+- Improve the animation by drag & drop in tables.
+- Optimize several document parse.
+- [trivial] Adjust the margin of the editor area.
+- [trivial] Hide the file extension of setting files by export by default.
+- [trivial] Finish key binding input in Key Bindings pane when another window becomes frontmost.
+- [trivial] Update some symbols for shortcut keys in the key binding settings.
+- [dev] Update the build environment to Xcode 13.2 (Swift 5.5).
+- [dev] Remove xcworkspace.
+- [non-AppStore ver.] Update Sparkle to 2.0.0.
+
+
+### Fixes
+
+- Fix an issue that the current line number becomes 0 when the cursor is placed at the beginning of the document (thanks to Alex Newson!).
+- Fix an issue on macOS 12 Monterey that the user custom color did not apply to the i-beam cursor for the vertical layout.
+- Fix an issue in the document inspector that the character info section wrongly indicated the code point as `U+000A` for any kind of line endings, even for CR (`U+000D`) and CRLF.
+- Fix an issue that the dialog urging duplication to edit locked files displayed repeatedly under specific conditions.
+- Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.
+- Fix an issue that the editor's opacity change did not apply immediately.
+- Fix an issue that some uncustomizable menu commands were provided in the Key Bindings preference pane.
+- Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.
+- Fix an issue that some help buttons did not work (thanks to Alex Newson!).
+- Fix and minor update on localized strings.
+- Fix `cot` command to work also with Python 3.
+- Address an issue that the syntax highlight could flash while typing.
+
+
+
 4.0.9 (473)
 --------------------------
 
@@ -80,7 +139,7 @@ Change Log
 - Fix an issue that the document theme did occasionally not change when switching the default theme to “Anura” in Dark Mode.
 - Fix an issue that disabling the “Reopen windows from last session” option did not work if the Auto Save is disabled.
 - Fix an issue on the latest systems that the open dialog could not see inside .app packages although when selecting the “Show hidden files” checkbox.
--  Fix an issue that the visual window state occasionally did not restore from the last session correctly.
+- Fix an issue that the visual window state occasionally did not restore from the last session correctly.
 - Fix an issue in the inspector that the content occasionally overlapped with the pane controller above if it is shown when the window opens.
 - Fix an issue that the navigation bar tinted wrongly when the document window is in fullscreen and the editor is non-opaque.
 - Fix a typo in German localization.

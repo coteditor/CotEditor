@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,12 +27,13 @@
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="gyP-Eb-JHe">
                                                 <items>
-                                                    <menuItem title="Auto-Detect" id="SZF-BR-bZC"/>
+                                                    <menuItem title="Automatic" id="SZF-BR-bZC"/>
                                                     <menuItem isSeparatorItem="YES" id="4hX-Kc-MTt"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="lFu-5f-V7p" id="rac-yB-1hr"/>
                                             <binding destination="vOM-aK-O2P" name="selectedTag" keyPath="_selectedEncoding" id="wJo-QO-avg"/>
                                         </connections>
                                     </popUpButton>

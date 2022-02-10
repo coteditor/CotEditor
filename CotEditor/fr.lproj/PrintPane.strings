@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2020 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,6 +38,8 @@
 "1353.title" = "Noir et blanc";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Identique aux paramètres du document";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+"P53-bb-aGF.title" = "Imprimer l’arrière-plan";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "Numéros de ligne :";
@@ -60,7 +62,7 @@
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
-"3368.title" = "Imprimer l'en-tête";
+"3368.title" = "Imprimer l’en-tête";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
 "3369.title" = "Principal :";
@@ -74,7 +76,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
 "897.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
-"898.title" = "Date d'impression";
+"898.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
 "893.title" = "Numéro de page";
 
@@ -96,7 +98,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
 "903.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
-"904.title" = "Date d'impression";
+"904.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
 "905.title" = "Numéro de page";
 
@@ -122,7 +124,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
 "938.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
-"939.title" = "Date d'impression";
+"939.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
 "940.title" = "Numéro de page";
 
@@ -144,7 +146,7 @@
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
 "930.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
-"931.title" = "Date d'impression";
+"931.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
 "932.title" = "Numéro de page";
 

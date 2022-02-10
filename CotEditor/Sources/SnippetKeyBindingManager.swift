@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,11 +79,11 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
-            let title = String(format: "Insert Text %li".localized, index)
+            let title = String.localizedStringWithFormat("Insert Text %li".localized, index)
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
-            let item = KeyBindingItem(action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
+            let item = KeyBindingItem(name: title, action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
             
             return NamedTreeNode(name: title, representedObject: item)
         }
@@ -97,36 +97,11 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// validate new key spec chars are settable
-    override func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
-        
-        try super.validate(shortcut: shortcut, oldShortcut: oldShortcut)
-        
-        // command key existance check
-        if shortcut.modifierMask.contains(.command) {
-            throw InvalidKeySpecCharactersError(kind: .unwantedCommandKey, shortcut: shortcut)
-        }
-        
-        // avoid shift-only modifier with a letter
-        if shortcut.modifierMask == .shift, shortcut.keySpecChars.allSatisfy(\.isLetter) {
-            throw InvalidKeySpecCharactersError(kind: .shiftOnlyModifier, shortcut: shortcut)
-        }
-    }
-    
-    
     
     // MARK: Public Methods
     
     /// return snippet string for key binding if exists
-    func snippet(keyEquivalent: String?, modifierMask: NSEvent.ModifierFlags) -> Snippet? {
-        
-        guard
-            let keyEquivalent = keyEquivalent,
-            !modifierMask.contains(.deviceIndependentFlagsMask)  // check modifier key is pressed  (just in case)
-            else { return nil }
-        
-        // selector string for the key press
-        let shortcut = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
+    func snippet(shortcut: Shortcut) -> Snippet? {
         
         guard
             let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }),

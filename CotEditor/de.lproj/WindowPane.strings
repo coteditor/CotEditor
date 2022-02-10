@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,11 +31,11 @@
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "Systemeinstellung befolgen";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "Nie";  // The same as the popup menu selection in the System Preferences > "Dock"
+"o1f-vR-aFm.title" = "Nie";  // The same as the popup menu selection in the System Preferences > "General"
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "Automatisch";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
-"OJs-2q-bg5.title" = "Immer";  // The same as the popup menu selection in the System Preferences > "Dock"
+"OJs-2q-bg5.title" = "Immer";  // The same as the popup menu selection in the System Preferences > "General"
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
@@ -84,6 +84,10 @@
 "Zhk-Nt-kiD.title" = "-höhe:";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
 "VCx-PO-Fnr.title" = "px";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
+"hye-gP-iep.ibShadowedIsNilPlaceholder" = "Auto";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
+"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "Auto";
 
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
 "dug-hV-7hj.title" = "Editor teilen:";

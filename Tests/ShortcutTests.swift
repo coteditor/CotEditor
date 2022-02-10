@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@ final class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").keySpecChars, "^$")
         XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isValid)
         XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isEmpty)
+        XCTAssertTrue(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a").isValid)
+        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "ab").isValid)
         XCTAssertTrue(Shortcut.none.isEmpty)
     }
     
@@ -52,18 +54,18 @@ final class ShortcutTests: XCTestCase {
     }
     
     
-    func testPrintableShortcutKey () {
+    func testShortcutSymbols () {
         
         // test modifier symbols
-        XCTAssertEqual(Shortcut(keySpecChars: "^$a").description, "^⇧A")
-        XCTAssertEqual(Shortcut(keySpecChars: "~@b").description, "⌥⌘B")
+        XCTAssertEqual(Shortcut(keySpecChars: "^$a").description, "􀆍 􀆝 A")
+        XCTAssertEqual(Shortcut(keySpecChars: "~@b").description, "􀆕 􀆔 B")
         
         // test unprintable keys
         let f10 = String(UnicodeScalar(NSF10FunctionKey)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + f10).description, "⌘F10")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + f10).description, "􀆔 F10")
         
         let delete = String(UnicodeScalar(NSDeleteCharacter)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "⌘⌦")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "􀆔 􁂒")
     }
     
 }

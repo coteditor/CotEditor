@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -77,10 +77,10 @@
 /* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
 "H2Z-jU-biZ.title" = "Zeichen";
 
-/* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
-"kna-yU-liB.title" = "Unicode";
+/* Class = "NSTextFieldCell"; title = "Code Points"; ObjectID = "kna-yU-liB"; */
+"kna-yU-liB.title" = "Codepunkten";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
-"786-4C-69e.ibShadowedIsNilPlaceholder" = "Nicht ausgewählt";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
+"sru-km-SZJ.ibShadowedIsNilPlaceholder" = "Nicht ausgewählt";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
 "2ZU-Mi-aJz.ibShadowedToolTip" = "Wähle ein einzelnes Zeichen aus, um Unicode-Information einzublenden";

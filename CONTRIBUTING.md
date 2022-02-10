@@ -26,9 +26,9 @@ By adding code, please follow our coding style guide below.
 
 ### Localization
 
-Fixing/updating existing localizations is always welcome. The project team may add `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
+Fixing/updating existing localizations is always welcome. The project team adds `FIXME:` tag as a comment in the localized strings files if there are updated strings to be localized.
 
-If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the xib file to layout your localized terms correctly.
+If your localization makes the Autolayout destroy, try first making the sentence shorter. However, if it's impossible, then just tell us about it with a screenshot when you make a pull-request. We'll update the storyboard file to layout your localized terms correctly.
 
 #### Good references for localization
 
@@ -40,9 +40,13 @@ Especially, follow the terms of the following applications.
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
+We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa katsumi to find macOS-friendly expressions.
+You also need to take care of how Apple handles punctuation characters and symbols. Regarding quotation marks, they normally prefer the typographer's ones.
+
+
 #### Submitting a new localization
 
-Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `de.lproj/` directory because they are always up-to-date and well organized.
+Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `CotEditor/en-GB.lproj/` directory because they are always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
 Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized, so that you can keep all your localized strings up to date.
@@ -51,8 +55,9 @@ Currently, we already have maintainers for:
 - Japanese
 - Simplified Chinese
 - Italian
-- (Brazilian) Portuguese
 - French
+- Turkish
+- English (UK)
 
 #### Localization for App Store
 

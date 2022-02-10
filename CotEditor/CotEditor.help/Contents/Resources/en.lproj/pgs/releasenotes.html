@@ -20,6 +20,82 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.1.0</h1>
+		<p>release: <time>2022-02</time></p>
+	</header>
+	
+	
+	<section>
+		<h2>New Features</h2>
+		
+		<ul>
+			<li>Add a feature to filter outline items in the outline pane.</li>
+			<li>Add an option not to draw the background color on printing.</li>
+			<li>Add “Open Outline Menu” command to the Find menu.</li>
+			<li>Add Turkish (thanks to Emir SARI!) and British English (thanks to Alex Newson!) localizations.</li>
+			<li>Introduce a new AppleScript command <code>jump</code> to document objects.</li>
+			<li>Place line number views on the right side in the editor if the writing direction is right-to-left.</li>
+			<li>Add syntax style for Protocol Buffer.</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>Improvements</h2>
+		
+		<ul>
+			<li>Change the system requirement to <strong>macOS 11 Big Sur and later</strong>.</li>
+			<li>Update the window size setting to use the last document window size if the width/height setting in the preferences &gt; Window is left blank (= auto).</li>
+			<li>Allow the menu key bindings to assign a shortcut without the Command key.</li>
+			<li>Display code points instead of left blank in the incompatible character table for control characters.</li>
+			<li>Update Swift syntax style to add keywords added in Swift 5.5.</li>
+			<li>Update C++ syntax style to add more file extensions.</li>
+			<li>Update Markdown syntax style for faster syntax parsing.</li>
+			<li>Change the behavior to include the last empty line in the calculation when specifying lines with a negative value in the Go to Line command or via AppleScript.</li>
+			<li>Improve the character info section in the document inspector to display the list of code points for the selected character instead of displaying only when a single Unicode character is selected.</li>
+			<li>Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.</li>
+			<li>Make sure the application relaunches even other tasks interrupt before termination.</li>
+			<li>Improve some toolbar items to make their state distinguish even collapsed.</li>
+			<li>Display the command name in the error message when the input shortcut for key bindings is already taken by another command.</li>
+			<li>Improve VoiceOver accessibility.</li>
+			<li>Update the AppleScript guide in the help.</li>
+			<li>Improve the animation by drag &amp; drop in tables.</li>
+			<li>Optimize several document parse.</li>
+			<li><span class="trivial">trivial</span>: Adjust the margin of the editor area.</li>
+			<li><span class="trivial">trivial</span>: Hide the file extension of setting files by export by default.</li>
+			<li><span class="trivial">trivial</span>: Finish key binding input in Key Bindings pane when another window becomes frontmost.</li>
+			<li><span class="trivial">trivial</span>: Update some symbols for shortcut keys in the key binding settings.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.2 (Swift 5.5).</li>
+			<li><span class="trivial">dev</span>: Remove xcworkspace.</li>
+			<li><span class="label">non-AppStore ver.</span>: Update Sparkle to 2.0.0.</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>Fixes</h2>
+		
+		<ul>
+			<li>Fix an issue that the current line number becomes 0 when the cursor is placed at the beginning of the document (thanks to Alex Newson!).</li>
+			<li>Fix an issue on macOS 12 Monterey that the user custom color did not apply to the i-beam cursor for the vertical layout.</li>
+			<li>Fix an issue in the document inspector that the character info section wrongly indicated the code point as <code>U+000A</code> for any kind of line endings, even for CR (<code>U+000D</code>) and CRLF.</li>
+			<li>Fix an issue that the dialog urging duplication to edit locked files displayed repeatedly under specific conditions.</li>
+			<li>Fix an issue that the slider in the editor opacity toolbar item did not work when collapsed.</li>
+			<li>Fix an issue that the editor's opacity change did not apply immediately.</li>
+			<li>Fix an issue that some uncustomizable menu commands were provided in the Key Bindings preference pane.</li>
+			<li>Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.</li>
+			<li>Fix an issue that some help buttons did not work (thanks to Alex Newson!).</li>
+			<li>Fix and minor update on localized strings.</li>
+			<li>Fix <code>cot</code> command to work also with Python 3.</li>
+			<li>Address an issue that the syntax highlight could flash while typing.</li>
+		</ul>
+	</section>
+</article>
+
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.0.9</h1>
 		<p>release: <time>2021-11-28</time></p>
 	</header>

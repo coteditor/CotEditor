@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import Cocoa
 extension NSPrintInfo.AttributeKey {
     
     static let theme = Self("CEThemeName")
+    static let printsBackground = Self("CEPrintBackground")
     static let lineNumber = Self("CEPrintLineNumber")
     static let invisibles = Self("CEPrintInvisibles")
     static let printsHeader = Self("CEPrintHeader")
@@ -89,6 +90,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                         return defaults[.printTheme] ?? ThemeName.blackAndWhite
                 }
             }()
+            self.printsBackground = defaults[.printBackground]
             self.lineNumberMode = defaults[.printLineNumIndex]
             self.invisibleCharsMode = defaults[.printInvisibleCharIndex]
             
@@ -122,6 +124,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     func keyPathsForValuesAffectingPreview() -> Set<String> {
         
         return [#keyPath(theme),
+                #keyPath(printsBackground),
                 #keyPath(lineNumberMode),
                 #keyPath(invisibleCharsMode),
                 
@@ -147,6 +150,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         return [
             localizedSummaryItem(name: "Color", description: self.theme),
+            localizedSummaryItem(name: "Print Background", description: self.printsBackground ? "On" : "Off"),
             localizedSummaryItem(name: "Line Number", description: self.lineNumberMode.description),
             localizedSummaryItem(name: "Invisibles", description: self.invisibleCharsMode.description),
             
@@ -213,9 +217,9 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// KVO compatible getter for Cocoa print setting
-    private func settingValue(forKey key: NSPrintInfo.AttributeKey) -> Any? {
+    private func settingValue<Value>(forKey key: NSPrintInfo.AttributeKey) -> Value? {
         
-        return self.printInfo?.dictionary().value(forKey: key.rawValue)
+        self.printInfo?.dictionary().value(forKey: key.rawValue) as? Value
     }
     
     
@@ -225,15 +229,22 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// print theme
     @objc dynamic var theme: String {
         
-        get { self.settingValue(forKey: .theme) as? String ?? ThemeName.blackAndWhite }
+        get { self.settingValue(forKey: .theme) ?? ThemeName.blackAndWhite }
         set { self.setSettingValue(newValue, forKey: .theme) }
+    }
+    
+    /// whether prints background color
+    @objc dynamic var printsBackground: Bool {
+        
+        get { self.settingValue(forKey: .printsBackground) ?? true }
+        set { self.setSettingValue(newValue, forKey: .printsBackground) }
     }
     
     
     /// whether draws line number
     @objc dynamic var lineNumberMode: PrintVisibilityMode {
         
-        get { PrintVisibilityMode(self.settingValue(forKey: .lineNumber) as? Int) }
+        get { PrintVisibilityMode(self.settingValue(forKey: .lineNumber)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .lineNumber) }
     }
     
@@ -241,7 +252,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// whether draws invisible characters
     @objc dynamic var invisibleCharsMode: PrintVisibilityMode {
         
-        get { PrintVisibilityMode(self.settingValue(forKey: .invisibles) as? Int) }
+        get { PrintVisibilityMode(self.settingValue(forKey: .invisibles)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .invisibles) }
     }
     
@@ -249,7 +260,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// whether prints header
     @objc dynamic var printsHeader: Bool {
         
-        get { (self.settingValue(forKey: .printsHeader) as? Bool) ?? false }
+        get { self.settingValue(forKey: .printsHeader) ?? false }
         set { self.setSettingValue(newValue, forKey: .printsHeader) }
     }
     
@@ -257,7 +268,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// primary header item content type
     @objc dynamic var primaryHeaderContent: PrintInfoType {
         
-        get { PrintInfoType(self.settingValue(forKey: .primaryHeaderContent) as? Int) }
+        get { PrintInfoType(self.settingValue(forKey: .primaryHeaderContent)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderContent) }
     }
     
@@ -265,7 +276,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// primary header item align
     @objc dynamic var primaryHeaderAlignment: AlignmentType {
         
-        get { AlignmentType(self.settingValue(forKey: .primaryHeaderAlignment) as? Int) }
+        get { AlignmentType(self.settingValue(forKey: .primaryHeaderAlignment)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderAlignment) }
     }
     
@@ -273,7 +284,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// secondary header item content type
     @objc dynamic var secondaryHeaderContent: PrintInfoType {
         
-        get { PrintInfoType(self.settingValue(forKey: .secondaryHeaderContent) as? Int) }
+        get { PrintInfoType(self.settingValue(forKey: .secondaryHeaderContent)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderContent) }
     }
     
@@ -281,7 +292,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// secondary header item align
     @objc dynamic var secondaryHeaderAlignment: AlignmentType {
         
-        get { AlignmentType(self.settingValue(forKey: .secondaryHeaderAlignment) as? Int) }
+        get { AlignmentType(self.settingValue(forKey: .secondaryHeaderAlignment)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderAlignment) }
     }
     
@@ -289,7 +300,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// whether prints footer
     @objc dynamic var printsFooter: Bool {
         
-        get { (self.settingValue(forKey: .printsFooter) as? Bool) ?? false }
+        get { self.settingValue(forKey: .printsFooter) ?? false }
         set { self.setSettingValue(newValue, forKey: .printsFooter) }
     }
     
@@ -297,7 +308,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// primary footer item content type
     @objc dynamic var primaryFooterContent: PrintInfoType {
         
-        get { PrintInfoType(self.settingValue(forKey: .primaryFooterContent) as? Int) }
+        get { PrintInfoType(self.settingValue(forKey: .primaryFooterContent)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .primaryFooterContent) }
     }
     
@@ -305,7 +316,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// primary footer item align
     @objc dynamic var primaryFooterAlignment: AlignmentType {
         
-        get { AlignmentType(self.settingValue(forKey: .primaryFooterAlignment) as? Int) }
+        get { AlignmentType(self.settingValue(forKey: .primaryFooterAlignment)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .primaryFooterAlignment) }
     }
     
@@ -313,7 +324,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// secondary footer item content type
     @objc dynamic var secondaryFooterContent: PrintInfoType {
         
-        get { PrintInfoType(self.settingValue(forKey: .secondaryFooterContent) as? Int) }
+        get { PrintInfoType(self.settingValue(forKey: .secondaryFooterContent)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterContent) }
     }
     
@@ -321,7 +332,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// secondary footer item align
     @objc dynamic var secondaryFooterAlignment: AlignmentType {
         
-        get { AlignmentType(self.settingValue(forKey: .secondaryFooterAlignment) as? Int) }
+        get { AlignmentType(self.settingValue(forKey: .secondaryFooterAlignment)) }
         set { self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterAlignment)
         }
     }

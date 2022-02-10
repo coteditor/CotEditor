@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -116,6 +116,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 self.themeViewController?.theme = latestTheme
             }
             .store(in: &self.themeManagerObservers)
+        self.themeTableView?.scrollToBeginningOfDocument(nil)
     }
     
     
@@ -475,19 +476,20 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// export selected theme
-    @IBAction func exportTheme(_ sender: Any?) {
+    @IBAction @MainActor func exportTheme(_ sender: Any?) {
         
         let settingName = self.targetThemeName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
+        savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             do {
                 try ThemeManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
@@ -499,7 +501,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// import theme file via open panel
-    @IBAction func importTheme(_ sender: Any?) {
+    @IBAction @MainActor func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Import".localized
@@ -508,8 +510,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
-            guard result == .OK else { return }
+        Task {
+            guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
             
             for url in openPanel.urls {
                 self.importTheme(fileURL: url)
@@ -598,16 +600,15 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
-        if #available(macOS 11, *) {
-            alert.buttons.last?.hasDestructiveAction = true
-        }
+        alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in
+        Task {
+            let returnCode = await alert.beginSheetModal(for: window)
             
             guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                self?.themeTableView?.rowActionsVisible = false
+                self.themeTableView?.rowActionsVisible = false
                 return
             }
             
@@ -617,7 +618,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             } catch {
                 alert.window.orderOut(nil)
                 NSSound.beep()
-                NSAlert(error: error).beginSheetModal(for: window)
+                await NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
             

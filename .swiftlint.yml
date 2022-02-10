@@ -1,5 +1,5 @@
 deployment_target:
-  macOS_deployment_target: 10.15
+  macOS_deployment_target: 11
 
 excluded:
   - Frameworks
@@ -9,12 +9,14 @@ opt_in_rules:
   - anyobject_protocol
   - array_init
   - attributes
+  - capture_variable
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
   - contains_over_filter_count
   - contains_over_filter_is_empty
   - contains_over_first_not_nil
+  - discarded_notification_center_observer
   - discouraged_assert
   - discouraged_optional_boolean
   - empty_collection_literal
@@ -25,6 +27,7 @@ opt_in_rules:
   - extension_access_modifier
   - fallthrough
   - file_header
+  - file_name_no_space
   - first_where
   - flatmap_over_map_reduce
   - ibinspectable_in_extension
@@ -71,8 +74,6 @@ disabled_rules:
   - nesting
   - opening_brace
   - trailing_comma
-  - unused_setter_value
-  - weak_delegate
 
 private_outlet:
   allow_private_set: true
@@ -81,7 +82,7 @@ trailing_whitespace:
   ignores_empty_lines: true
 
 switch_case_alignment:
-    indented_cases: true
+  indented_cases: true
 
 attributes:
   always_on_same_line: ["@IBAction", "@objc"]

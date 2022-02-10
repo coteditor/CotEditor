@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -36,6 +36,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="JXg-bX-b1p"/>
                                             <binding destination="IE5-39-jAY" name="fontFamilyName" keyPath="values.fontName" id="sxJ-3l-MkU"/>
                                         </connections>
                                     </textField>
@@ -49,6 +50,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="Rpq-MG-HTP"/>
                                             <action selector="showFonts:" target="WBM-EY-ENr" id="80p-Ig-zIc"/>
                                         </connections>
                                     </button>
@@ -99,13 +101,15 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="hws-J2-FDl" id="vTW-pg-qhb"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="XEu-TQ-rfy"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XWT-pS-k8a">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XWT-pS-k8a" customClass="AccessibleStepper" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="146" y="181" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" minValue="0.10000000000000001" maxValue="10" doubleValue="1" id="Mkv-St-JNh"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="hws-J2-FDl" id="Ikk-4Y-EgE"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="cFx-Lt-8aa"/>
                                         </connections>
                                     </stepper>
@@ -580,7 +584,7 @@
                                 <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <box autoresizesSubviews="NO" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nMR-L3-OOw">
+                            <box autoresizesSubviews="NO" boxType="custom" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nMR-L3-OOw">
                                 <rect key="frame" x="200" y="52" width="350" height="280"/>
                                 <view key="contentView" id="XwV-Se-xeY">
                                     <rect key="frame" x="1" y="1" width="348" height="278"/>
@@ -722,7 +726,7 @@
                         <subviews>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yza-AH-dWQ">
                                 <rect key="frame" x="22" y="136" width="67" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Keywords:" id="IU8-bd-gBv">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Keywords:" id="IU8-bd-gBv">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -730,7 +734,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PkG-8c-DFp">
                                 <rect key="frame" x="21" y="58" width="68" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Attributes:" id="RQL-fz-3aq">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Attributes:" id="RQL-fz-3aq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -738,7 +742,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVV-lR-gIW">
                                 <rect key="frame" x="25" y="32" width="64" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Variables:" id="ZIr-1E-qZJ">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Variables:" id="ZIr-1E-qZJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -746,31 +750,31 @@
                             </textField>
                             <textField horizontalHuggingPriority="751" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r0Y-ri-e5S">
                                 <rect key="frame" x="12" y="110" width="77" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Commands:" id="81x-je-JUf">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Commands:" id="81x-je-JUf">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iu1-dd-heI">
-                                <rect key="frame" x="217" y="110" width="63" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Numbers:" id="3wF-uc-Tfq">
+                                <rect key="frame" x="221" y="110" width="63" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Numbers:" id="3wF-uc-Tfq">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWa-sB-Ala">
-                                <rect key="frame" x="205" y="58" width="75" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Characters:" id="hbk-iX-4VK">
+                                <rect key="frame" x="209" y="58" width="75" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Characters:" id="hbk-iX-4VK">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QrC-63-7c6">
-                                <rect key="frame" x="206" y="32" width="74" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Comments:" id="AIG-rr-79V">
+                                <rect key="frame" x="210" y="32" width="74" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Comments:" id="AIG-rr-79V">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -778,22 +782,23 @@
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAn-mW-nYM">
                                 <rect key="frame" x="40" y="223" width="49" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Cursor:" id="Ljk-ky-fQH">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Cursor:" id="Ljk-ky-fQH">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="MTv-9U-AKe">
-                                <rect key="frame" x="95" y="220" width="44" height="22"/>
+                                <rect key="frame" x="95" y="220" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="qAn-mW-nYM" id="64s-qP-SvT"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.insertionPoint.color" id="tbd-Yb-mvt"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKF-33-73c">
                                 <rect key="frame" x="25" y="197" width="64" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Invisibles:" id="IGx-p1-FHi">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" id="IGx-p1-FHi">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -801,48 +806,53 @@
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mBZ-QU-vvv">
                                 <rect key="frame" x="55" y="249" width="34" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Text:" id="kvy-vf-yva">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Text:" id="kvy-vf-yva">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="YYD-xa-M68">
-                                <rect key="frame" x="95" y="246" width="44" height="22"/>
+                                <rect key="frame" x="95" y="246" width="40" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="3w8-JA-kw5"/>
-                                    <constraint firstAttribute="width" constant="44" id="5cI-By-dT0"/>
+                                    <constraint firstAttribute="width" constant="40" id="5cI-By-dT0"/>
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="mBZ-QU-vvv" id="0ic-VT-uKG"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.text.color" id="cGk-3E-ik7"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="GF9-4S-gLx">
-                                <rect key="frame" x="95" y="194" width="44" height="22"/>
+                                <rect key="frame" x="95" y="194" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="TKF-33-73c" id="epV-Ol-SSk"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.invisibles.color" id="VMj-de-rNq"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UgX-sS-Fcp">
-                                <rect key="frame" x="286" y="246" width="44" height="22"/>
+                                <rect key="frame" x="290" y="246" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="JD4-b2-5Lb" id="qqS-Ul-Tkv"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.background.color" id="oGX-n3-HQR"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gmI-f2-jT4">
-                                <rect key="frame" x="286" y="220" width="44" height="22"/>
+                                <rect key="frame" x="290" y="220" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="f2f-d6-jlt" id="j8B-8D-TCR"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.lineHighlight.color" id="Byo-xO-Sg6"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lph-a7-WhS" customClass="SelectionColorWell" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="286" y="194" width="44" height="22"/>
+                                <rect key="frame" x="290" y="194" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="DSW-GJ-cJL" id="5Bb-LD-x72"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.color" id="lBO-Am-0Hn"/>
                                     <binding destination="fug-yh-kPG" name="enabled" keyPath="selection.selection.usesSystemSetting" id="ImN-5g-xxj">
                                         <dictionary key="options">
@@ -852,24 +862,24 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JD4-b2-5Lb">
-                                <rect key="frame" x="199" y="249" width="81" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Background:" id="tvj-DS-DVt">
+                                <rect key="frame" x="203" y="249" width="81" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Background:" id="tvj-DS-DVt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f2f-d6-jlt">
-                                <rect key="frame" x="197" y="223" width="83" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Current Line:" id="yMW-lO-ILw">
+                                <rect key="frame" x="201" y="223" width="83" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Current Line:" id="yMW-lO-ILw">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DSW-GJ-cJL">
-                                <rect key="frame" x="215" y="197" width="65" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Selection:" id="PbY-c2-p4V">
+                                <rect key="frame" x="219" y="197" width="65" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Selection:" id="PbY-c2-p4V">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -884,96 +894,106 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="m2v-Lx-2AN">
-                                <rect key="frame" x="286" y="107" width="44" height="22"/>
+                                <rect key="frame" x="290" y="107" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Iu1-dd-heI" id="JNd-gb-XzI"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.numbers.color" id="VyB-RY-qAf"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-uU-ZVc">
-                                <rect key="frame" x="286" y="55" width="44" height="22"/>
+                                <rect key="frame" x="290" y="55" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="yWa-sB-Ala" id="Fqj-Wc-zIY"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.characters.color" id="Bd9-mj-PC5"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ITJ-dM-gUs">
-                                <rect key="frame" x="229" y="84" width="51" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Strings:" id="n04-r3-95l">
+                                <rect key="frame" x="233" y="84" width="51" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Strings:" id="n04-r3-95l">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Lb4-EB-Ihl">
-                                <rect key="frame" x="286" y="81" width="44" height="22"/>
+                                <rect key="frame" x="290" y="81" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="ITJ-dM-gUs" id="hCY-cW-BBA"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.strings.color" id="ZMy-sF-XEN"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i2u-jb-gDm">
-                                <rect key="frame" x="286" y="29" width="44" height="22"/>
+                                <rect key="frame" x="290" y="29" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="QrC-63-7c6" id="Hd1-xo-Z4I"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.comments.color" id="lvX-D6-lF7"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="mOJ-0i-G0x">
-                                <rect key="frame" x="95" y="133" width="44" height="22"/>
+                                <rect key="frame" x="95" y="133" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Yza-AH-dWQ" id="Fgo-Zw-ckd"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.keywords.color" id="oPd-9r-UG5"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="FcM-kz-UdO">
-                                <rect key="frame" x="95" y="107" width="44" height="22"/>
+                                <rect key="frame" x="95" y="107" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="r0Y-ri-e5S" id="PsZ-3C-Mgh"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.commands.color" id="jXB-No-31B"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="3oY-wN-WmV">
-                                <rect key="frame" x="95" y="55" width="44" height="22"/>
+                                <rect key="frame" x="95" y="55" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="PkG-8c-DFp" id="Xr6-v5-igm"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.attributes.color" id="CGh-mo-nkX"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8QY-g0-UOv">
                                 <rect key="frame" x="44" y="84" width="45" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Types:" id="ILi-Jt-MUc">
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Types:" id="ILi-Jt-MUc">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="qAi-YR-6Uq">
-                                <rect key="frame" x="95" y="81" width="44" height="22"/>
+                                <rect key="frame" x="95" y="81" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="8QY-g0-UOv" id="ipx-Yq-8Aj"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.types.color" id="8Nt-M2-xdg"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TM9-hz-gN9">
-                                <rect key="frame" x="95" y="29" width="44" height="22"/>
+                                <rect key="frame" x="95" y="29" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="zVV-lR-gIW" id="w8l-YB-Sdb"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.variables.color" id="Zyq-0d-YhR"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-qE-PVX">
-                                <rect key="frame" x="232" y="136" width="48" height="16"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Values:" id="cVK-ET-QiD">
+                                <rect key="frame" x="236" y="136" width="48" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Values:" id="cVK-ET-QiD">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="zro-cN-SiM">
-                                <rect key="frame" x="286" y="133" width="44" height="22"/>
+                                <rect key="frame" x="290" y="133" width="40" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="KeE-qE-PVX" id="zWw-KI-zKD"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.values.color" id="R51-9n-OL0"/>
                                 </connections>
                             </colorWell>
@@ -984,6 +1004,7 @@
                                     <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="DSW-GJ-cJL" id="50I-0j-RWs"/>
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.usesSystemSetting" id="dXs-Zl-kBI"/>
                                 </connections>
                             </button>
@@ -1181,6 +1202,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="VKm-te-Na7" id="LiU-w1-bgu"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="j9I-tM-zAV">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1201,6 +1223,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="EuQ-JU-NCg" id="L4c-Cu-WqL"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="gQG-fz-8P8">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1221,6 +1244,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="jeC-Y2-BvF" id="UzQ-Xm-em9"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="Tyh-9m-mwD">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1245,6 +1269,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="qcm-er-Qpj" id="XJW-W4-O5A"/>
                                     <binding destination="I23-rk-sjA" name="editable" keyPath="isBundled" id="BCZ-sJ-syP">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>

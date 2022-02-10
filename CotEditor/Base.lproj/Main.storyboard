@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -28,6 +28,7 @@
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="143"/>
                                         <menuItem title="Services" tag="999" id="131">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Services" systemMenu="services" id="130"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="144"/>
@@ -43,6 +44,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show All" id="150">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="kIn-Hg-MXT"/>
                                             </connections>
@@ -81,9 +83,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open Recent" tag="2999" id="124">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                                 <items>
                                                     <menuItem title="Clear Menu" id="126">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="clearRecentDocuments:" target="Ady-hI-5gd" id="O8Z-Cs-pcM"/>
                                                         </connections>
@@ -162,6 +166,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Delete" id="164">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="delete:" target="Ady-hI-5gd" id="Ftk-bU-BQH"/>
                                             </connections>
@@ -334,19 +339,23 @@ Gw
                                 <menu key="submenu" title="Format" id="246">
                                     <items>
                                         <menuItem title="Line Endings" tag="100" id="294">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Line Endings" id="296">
                                                 <items>
                                                     <menuItem title="macOS / Unix (LF)" id="295">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="aRB-qc-Kfq"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Classic Mac OS (CR)" tag="1" id="297">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="9Kc-CI-vbM"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Windows (CRLF)" tag="2" id="298">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="qZo-Oc-YV1"/>
                                                         </connections>
@@ -355,9 +364,11 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem title="File Encoding" id="299">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="File Encoding" id="300"/>
                                         </menuItem>
                                         <menuItem title="Syntax Style" id="302">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Syntax Style" id="304">
                                                 <items>
                                                     <menuItem isSeparatorItem="YES" id="kdb-Ik-s27"/>
@@ -372,6 +383,7 @@ Gw
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="453"/>
                                         <menuItem title="Font" id="410">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Font" systemMenu="font" id="418">
                                                 <items>
                                                     <menuItem title="Show Fonts" id="424">
@@ -398,11 +410,13 @@ Gw
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="746"/>
                                                     <menuItem title="Anti-aliasing" id="745">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleAntialias:" target="Ady-hI-5gd" id="TW0-Ns-jgv"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Ligatures" id="viH-Eo-wKz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleLigatures:" target="Ady-hI-5gd" id="rpC-YT-9Zh"/>
                                                         </connections>
@@ -411,6 +425,7 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem title="Theme" id="8z7-Jc-agP">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9GY-M7-uHl"/>
@@ -450,6 +465,7 @@ Gw
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
                                                     <menuItem title="Auto-Expand Tabs" id="hsG-8k-OKX">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleAutoTabExpand:" target="Ady-hI-5gd" id="OC3-9y-dRT"/>
                                                         </connections>
@@ -458,6 +474,7 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem title="Show Invisibles" id="788">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleInvisibleChars:" target="Ady-hI-5gd" id="HlM-Aw-tfM"/>
                                             </connections>
@@ -469,6 +486,7 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show Page Guide" id="749">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
                                             </connections>
@@ -513,6 +531,7 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem title="Wrap Lines" id="286">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleLineWrap:" target="Ady-hI-5gd" id="6Yy-Bp-Aq9"/>
                                             </connections>
@@ -530,6 +549,7 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Customize Toolbar…" id="613">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
                                             </connections>
@@ -567,11 +587,13 @@ Gw
                                             </menu>
                                         </menuItem>
                                         <menuItem title="Show Navigation Bar" id="681">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show Line Numbers" id="323">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
                                             </connections>
@@ -772,9 +794,9 @@ CA
                                                             <action selector="surroundSelectionWithDoubleQuotes:" target="Ady-hI-5gd" id="rqZ-qN-jAw"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Parenthesis" keyEquivalent="(" id="G3o-1h-GwR">
+                                                    <menuItem title="Parentheses" keyEquivalent="(" id="G3o-1h-GwR">
                                                         <connections>
-                                                            <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
+                                                            <action selector="surroundSelectionWithParentheses:" target="Ady-hI-5gd" id="gvU-WD-OLA"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Braces" id="Xoq-43-C1z">
@@ -861,12 +883,14 @@ CA
                                                     </menuItem>
                                                     <menuItem title="ASCII to Full-width ASCII" id="586">
                                                         <attributedString key="attributedTitle"/>
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Full-width ASCII to ASCII" id="588">
                                                         <attributedString key="attributedTitle"/>
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
                                                         </connections>
@@ -876,11 +900,13 @@ CA
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
                                                     <menuItem title="Hiragana to Katakana" indentationLevel="1" id="592">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeKatakana:" target="Ady-hI-5gd" id="pfD-db-6kI"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Katakana to Hiragana" indentationLevel="1" id="594">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeHiragana:" target="Ady-hI-5gd" id="cKm-Ib-McK"/>
                                                         </connections>
@@ -892,37 +918,44 @@ CA
                                             <menu key="submenu" title="Unicode Normalizations" id="600">
                                                 <items>
                                                     <menuItem title="NFD" toolTip="Canonical Decomposition" id="601">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFD:" target="Ady-hI-5gd" id="1bP-fy-Ixy"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="NFC" tag="1" toolTip="Canonical Decomposition, followed by Canonical Composition" id="602">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFC:" target="Ady-hI-5gd" id="pmf-yf-jYo"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="NFKD" tag="2" toolTip="Compatibility Decomposition" id="603">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKD:" target="Ady-hI-5gd" id="O9c-JY-XaD"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="NFKC" tag="3" toolTip="Compatibility Decomposition, followed by Canonical Composition" id="598">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKC:" target="Ady-hI-5gd" id="ltN-cG-DDT"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="NFKC Casefold" tag="4" toolTip="Applying NFKC, CaseFolding, and removal of default-ignorable code points" id="zuR-3K-9fs">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKCCF:" target="Ady-hI-5gd" id="iSp-un-Dje"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="OlS-1E-EU6"/>
                                                     <menuItem title="Modified NFD (HFS+)" tag="4" toolTip="Unofficial NFD-based normalization form used in HFS+" id="NU7-EI-1Ct">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithModifiedNFD:" target="Ady-hI-5gd" id="u6J-AC-xDH"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Modified NFC (HFS+)" tag="4" toolTip="Unofficial NFC-based normalization form corresponding to Modified NFD" id="n6C-Km-BM9">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithModifiedNFC:" target="Ady-hI-5gd" id="ZQc-l2-VW9"/>
                                                         </connections>
@@ -932,6 +965,7 @@ CA
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="597"/>
                                         <menuItem title="Insert Encoding Name" toolTip="Insert encoding name as IANA charset name" id="663">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="insertIANACharSetName:" target="Ady-hI-5gd" id="0Sd-vf-sc8"/>
                                             </connections>
@@ -971,6 +1005,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Find Selected Text" tag="3" id="l33-Nz-UAw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="findSelectedText:" target="Ady-hI-5gd" id="EJ6-ZU-h8d"/>
                                             </connections>
@@ -1004,6 +1039,7 @@ CA
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="RmP-uk-9Kf"/>
                                         <menuItem title="Replace" tag="7" id="bnD-BP-sPi">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="replace:" target="Ady-hI-5gd" id="ULb-2e-SWj"/>
                                             </connections>
@@ -1039,6 +1075,12 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE"/>
+                                        <menuItem title="Open Outline Menu" id="PmT-ho-UU7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openOutlineMenu:" target="Ady-hI-5gd" id="oKV-sL-8gF"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Select Previous Outline Item" keyEquivalent="" id="9Lf-39-x5S">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
@@ -1069,12 +1111,14 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Zoom" id="203">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="uUW-DZ-rJM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="92"/>
                                         <menuItem title="Bring All to Front" id="5">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="arrangeInFront:" target="Ady-hI-5gd" id="FKC-fQ-0UJ"/>
                                             </connections>
@@ -1197,6 +1241,6 @@ CA
         </scene>
     </scenes>
     <resources>
-        <image name="applescript.fill" catalog="system" width="14" height="19"/>
+        <image name="applescript.fill" catalog="system" width="14" height="18"/>
     </resources>
 </document>

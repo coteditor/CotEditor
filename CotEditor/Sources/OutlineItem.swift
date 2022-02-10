@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ struct OutlineItem: Equatable {
     var title: String
     var range: NSRange
     var style: Style = []
+    fileprivate(set) var filteredRanges: [NSRange]?
     
     
     var isSeparator: Bool {
@@ -115,6 +116,23 @@ extension BidirectionalCollection where Element == OutlineItem {
             else { return nil }
         
         return self[self.index(after: currentIndex)...].first { !$0.isSeparator }
+    }
+    
+    
+    /// Filter matched outline items abbreviatedly.
+    ///
+    /// - Parameter searchString: The string to search.
+    /// - Returns: Mached items.
+    func filterItems(with searchString: String) -> [OutlineItem] {
+        
+        self.compactMap { (item) in
+            item.title.abbreviatedMatch(with: searchString).flatMap { (item: item, result: $0) }
+        }
+        .map {
+            var item = $0.item
+            item.filteredRanges = $0.result.ranges.map { NSRange($0, in: item.title) }
+            return item
+        }
     }
     
 }

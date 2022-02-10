@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,10 +29,10 @@ import XCTest
 
 final class IncompatibleCharacterTests: XCTestCase {
     
-    func testIncompatibleCharacterScan() {
+    func testIncompatibleCharacterScan() throws {
         
         let string = "abc\\ \n ¥ \n ~"
-        let incompatibles = string.scanIncompatibleCharacters(for: .plainShiftJIS)
+        let incompatibles = try string.scanIncompatibleCharacters(for: .plainShiftJIS)
         
         XCTAssertEqual(incompatibles.count, 2)
         
@@ -52,10 +52,10 @@ final class IncompatibleCharacterTests: XCTestCase {
     }
     
     
-    func testSequencialIncompatibleCharactersScan() {
+    func testSequencialIncompatibleCharactersScan() throws {
         
         let string = "~~"
-        let incompatibles = string.scanIncompatibleCharacters(for: .plainShiftJIS)
+        let incompatibles = try string.scanIncompatibleCharacters(for: .plainShiftJIS)
         
         XCTAssertEqual(incompatibles.count, 2)
         
@@ -68,10 +68,10 @@ final class IncompatibleCharacterTests: XCTestCase {
     }
     
     
-    func testIncompatibleCharacterScanWithLengthShift() {
+    func testIncompatibleCharacterScanWithLengthShift() throws {
         
         let string = "family 👨‍👨‍👦 with 🐕"
-        let incompatibles = string.scanIncompatibleCharacters(for: .japaneseEUC)
+        let incompatibles = try string.scanIncompatibleCharacters(for: .japaneseEUC)
         
         XCTAssertEqual(incompatibles.count, 2)
         

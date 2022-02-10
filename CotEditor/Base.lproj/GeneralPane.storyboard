@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -142,6 +141,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="ihY-NN-wRt" id="p2E-k2-trD"/>
                                     <action selector="updateWindowRestorationSetting:" target="JG1-NR-KT5" id="wFT-hT-Aiq"/>
                                     <binding destination="ttU-LH-46v" name="value" keyPath="values.NSQuitAlwaysKeepsWindows" id="b0b-6h-dGr"/>
                                 </connections>
@@ -197,6 +197,7 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="NjY-HB-hDH" id="0aF-7O-TPv"/>
                                     <binding destination="ttU-LH-46v" name="selectedTag" keyPath="values.noDocumentOnLaunchBehavior" id="wWs-3z-fa0"/>
                                 </connections>
                             </popUpButton>
@@ -255,6 +256,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="vvR-Ur-0ju" id="MI5-fC-2c3"/>
                                     <binding destination="ttU-LH-46v" name="enabled" keyPath="values.highlightSelectionInstance" id="vzs-GE-XG8"/>
                                     <binding destination="ttU-LH-46v" name="value" keyPath="values.selectionInstanceHighlightDelay" id="MLG-G2-euM"/>
                                 </connections>
@@ -266,6 +268,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="qM1-WW-xuQ" id="QbY-LW-g87"/>
                                     <action selector="openHelpAnchor:" target="70K-YY-h4D" id="zKd-aN-e7G"/>
                                 </connections>
                             </button>

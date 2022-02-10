@@ -112,50 +112,44 @@ final class CharacterInfoTests: XCTestCase {
     
     // MARK: - CharacterInfo Tests
     
-    func testMultiCharString() {
+    func testSingleCharWithVSInfo() {
         
-        XCTAssertThrowsError(try CharacterInfo(string: "foo"))
-    }
-    
-    
-    func testSingleCharWithVSInfo() throws {
+        let charInfo = CharacterInfo("☺︎")
         
-        let charInfo = try CharacterInfo(string: "☺︎")
-        
-        XCTAssertEqual(charInfo.string, "☺︎")
+        XCTAssertEqual(charInfo.character, "☺︎")
         XCTAssertFalse(charInfo.isComplex)
-        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.codePoint), ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.name!), ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+263A", "U+FE0E"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name!), ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
         XCTAssertEqual(charInfo.localizedDescription, "WHITE SMILING FACE (Text Style)")
     }
     
     
-    func testCombiningCharacterInfo() throws {
+    func testCombiningCharacterInfo() {
         
-        let charInfo = try CharacterInfo(string: "1️⃣")
+        let charInfo = CharacterInfo("1️⃣")
         
         XCTAssertTrue(charInfo.isComplex)
-        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.codePoint), ["U+0031", "U+FE0F", "U+20E3"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+0031", "U+FE0F", "U+20E3"])
         XCTAssertEqual(charInfo.localizedDescription, "<a letter consisting of 3 characters>")
     }
     
     
-    func testNationalIndicatorInfo() throws {
+    func testNationalIndicatorInfo() {
         
-        let charInfo = try CharacterInfo(string: "🇯🇵")
+        let charInfo = CharacterInfo("🇯🇵")
         
         XCTAssertTrue(charInfo.isComplex)
-        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.codePoint), ["U+1F1EF", "U+1F1F5"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+1F1EF", "U+1F1F5"])
     }
     
     
-    func testControlCharacterInfo() throws {
+    func testControlCharacterInfo() {
         
-        let charInfo = try CharacterInfo(string: " ")
+        let charInfo = CharacterInfo(" ")
         
-        XCTAssertEqual(charInfo.string, " ")
+        XCTAssertEqual(charInfo.character, " ")
         XCTAssertEqual(charInfo.pictureString, "␠")
-        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.name!), ["SPACE"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name!), ["SPACE"])
     }
     
 }

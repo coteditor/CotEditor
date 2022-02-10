@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -158,13 +157,15 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="6o6-2H-ikQ" id="h1l-do-DqY"/>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.tabWidth" id="of5-C6-LVu"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fr0-Ug-Vp1">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fr0-Ug-Vp1" customClass="AccessibleStepper" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="245" y="312" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="W2Q-vb-HQ5"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="6o6-2H-ikQ" id="g4K-fN-JXe"/>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.tabWidth" id="gzU-DM-P9h"/>
                                         </connections>
                                     </stepper>
@@ -245,14 +246,16 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="t2q-cV-mtM" id="FfZ-ng-zjT"/>
                                             <binding destination="TDG-Hm-YNe" name="enabled" keyPath="values.enableHangingIndent" id="X5U-kz-54w"/>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.hangingIndentWidth" id="qGo-sO-VoW"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-EQ-t3D">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-EQ-t3D" customClass="AccessibleStepper" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="339" y="212" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" maxValue="99" doubleValue="1" id="6ko-38-tQ2"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="t2q-cV-mtM" id="WrC-bB-euV"/>
                                             <binding destination="TDG-Hm-YNe" name="enabled" keyPath="values.enableHangingIndent" id="qD8-zx-r7S"/>
                                             <binding destination="TDG-Hm-YNe" name="value" keyPath="values.hangingIndentWidth" id="cyO-fk-mC5"/>
                                         </connections>

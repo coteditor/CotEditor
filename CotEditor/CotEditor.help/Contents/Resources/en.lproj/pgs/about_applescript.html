@@ -21,7 +21,7 @@
 <p>It has own AppleScript dictionary so that you can look up all the classes or commands available with CotEditor. To open the dictionary:</p>
 
 <ul>
-	<li>Choose Help &gt; CotEditor Scripting Manual &gt; AppleScript Dictionary.</li>
+	<li>Choose Help &gt; CotEditor Scripting Guide &gt; AppleScript Dictionary.</li>
 </ul>
 
 
@@ -29,19 +29,35 @@
 <h2>Classes</h2>
 <p>The original classes and properties that are defined in CotEditor.</p>
 
-<dl class="tree">
-	<dt>Application</dt>
-	<dd>The CotEditor application.</dd>
+<section>
+<h3>Application</h3>
 
-	<dt>Window</dt>
-	<dd>A CotEditor window.</dd>
+<p>The CotEditor application.</p>
+</section>
+
+
+<section>
+<h3>Window</h3>
+
+<p>A CotEditor window.</p>
+
+<dl class="tree">
+	<dt>Properties</dt>
 	<dd><dl class="subtree">
 		<dt><code>view opacity</code></dt>
 		<dd><del>The opacity of the view. (real, from ‘0.2’ to ‘1.0’)</del> <span class="deprecated">deprecated on CotEditor 3.5</span></dd>
 	</dl></dd>
+</dl>
+</section>
 
-	<dt>Document</dt>
-	<dd>CotEditor document.</dd>
+
+<section>
+<h3>Document</h3>
+
+<p>A CotEditor document.</p>
+
+<dl class="tree">
+	<dt>Properties</dt>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
 		<dd>The contents of the document. (text)</dd>
@@ -79,9 +95,17 @@
 		<dt><del><code>line spacing</code></del></dt>
 		<dd><del>The spacing between lines. (real, from ‘0.0’ to ‘10.0’)</del> <span class="deprecated">deprecated on CotEditor 2.6</span></dd>
 	</dl></dd>
+</dl>
+</section>
 
-	<dt>Selection-object</dt>
-	<dd>The current selection.</dd>
+
+<section>
+<h3>Selection-object</h3>
+
+<p>The current selection.</p>
+
+<dl class="tree">
+	<dt>Properties</dt>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
 		<dd>The contents of the selection.</dd>
@@ -95,7 +119,7 @@
 </dl>
 
 
-<h3>Sample codes for <code>selection</code></h3>
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">contents of selection of document 1</code></pre>
@@ -127,13 +151,16 @@
 	<figcaption>Select from the 15th last character to the last but one (no scrolling).</figcaption>
 </figure>
 
+<h4>Discussion</h4>
+
 <p>The <code>selection</code> property doesn't work by itself. Use this property with others such as <code>contents</code>.</p>
 
 <p>When ‘location’ is a negative value, the selection range starts from the ‘location’-th last character.<br/>
 When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range will be from ‘location’ to the end.<br/>
 When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (i.e. the selection's end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
 <p>This specifying method is modelled after that of PHP's <code>substr</code>.</p>
-<p>The command for changing selection doesn't scroll the window. Use the <code>scroll to caret</code> command to make the selection remain in the view.</p>
+<p>The command for changing selection doesn't scroll the window. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
+</section>
 </section>
 
 
@@ -147,9 +174,18 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 
 <dl class="tree">
 	<dt><code class="command">write to console</code></dt>
-	<dd>Display a string on CotEditor's console window. <span class="added">new on CotEditor 3.2.0</span></dd>
+	<dd>Display a string on CotEditor's console window.</dd>
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘document’ object</dd>
+	</dl></dd>
 </dl>
 
+<h4>Availability</h4>
+
+<p>CotEditor 3.2.0+</p>
+
+<h4>Example</h4>
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
 	<figcaption>Display the massege &quot;Script failed.&quot; on the CotEditor's console.</figcaption>
@@ -179,19 +215,29 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 		<dd>Perform backwards search or not.</dd>
 	</dl></dd>
 	<dd><dl>
-		<dt>return value</dt>
+		<dt>Return value</dt>
 		<dd>boolean</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘document’ object</dd>
 	</dl></dd>
 </dl>
 
-<p>The search starts from the current selection (caret position).<br/>
-For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there are no matching string after the current selection, then <code>false</code> is returned.</p>
-<p>The regular expression search cannot search backwards. If both options were specified at the same time, <code>RE</code> takes precedence and <code>backwards</code> is ignored.</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">find front document for &quot;Apple&quot; with ignore case</code></pre>
 	<figcaption>Searches “Apple” with ignoring case, starting from the current selection to the end of the frontmost document, and returns the result.</figcaption>
 </figure>
+
+
+<h4>Discussion</h4>
+
+<p>The search starts from the current selection (caret position).<br/>
+For example, when not using the <code>wrap</code> or <code>backwards</code> options and when there are no matching string after the current selection, then <code>false</code> is returned.</p>
+<p>The regular expression search cannot search backwards. If both options were specified at the same time, <code>RE</code> takes precedence and <code>backwards</code> is ignored.</p>
 </section>
 
 
@@ -224,19 +270,29 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dd>Perform backwards search or not.</dd>
 	</dl></dd>
 	<dd><dl>
-		<dt>return value</dt>
+		<dt>Return value</dt>
 		<dd>int</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘document’ object</dd>
 	</dl></dd>
 </dl>
 
-<p>As in the case of the <code>find</code> command, the search starts from the current selection (caret position). Use the <code>all</code> option for searching the whole document.</p>
-<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching string, the caret doesn't move.</p>
-<p>The regular expression search cannot search backwards. If both options were specified at the same time, the <code>backwards</code> option is ignored.</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">replace front document for &quot;Apple&quot; to &quot;Orange&quot; with all and ignore case</code></pre>
 	<figcaption>Searches “Apple” with ignoring case in the frontmost document, replaces the matching strings with “Orange” and returns the number of replacements.</figcaption>
 </figure>
+
+
+<h4>Discussion</h4>
+
+<p>As in the case of the <code>find</code> command, the search starts from the current selection (caret position). Use the <code>all</code> option for searching the whole document.</p>
+<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching string, the caret doesn't move.</p>
+<p>The regular expression search cannot search backwards. If both options were specified at the same time, the <code>backwards</code> option is ignored.</p>
 </section>
 
 
@@ -247,12 +303,53 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <dl class="tree">
 	<dt><code class="command">scroll to caret</code></dt>
 	<dd>Scrolls the window so that the caret or the selection can be seen.</dd>
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘document’ object</dd>
+	</dl></dd>
 </dl>
+
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
 	<figcaption>Scrolls the frontmost window so that the caret or the selection can be seen.</figcaption>
 </figure>
+</section>
+
+
+
+<section>
+<h3>jump</h3>
+
+<dl class="tree">
+	<dt><code class="command">jump</code></dt>
+	<dd>Move the caret to the specified location. At least, either one of a parameter is required.</dd>
+	<dd><dl class="subtree">
+		<dt><code>to line</code> (int)</dt>
+		<dd>The number of the line to jump.</dd>
+
+		<dt>[<code>column</code> (int)]</dt>
+		<dd>The location in the line to jump.</dd>
+	</dl></dd>
+</dl>
+
+<h4>Availability</h4>
+
+<p>CotEditor 2.1.0+</p>
+
+
+<h4>Example</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">jump front document to line -1</code></pre>
+	<figcaption>Move the caret to the last line and scroll the editor so that the speficifed area can be seen.</figcaption>
+</figure>
+
+<h4>Discussion</h4>
+
+<p>If a negative value is provided, the line/column is counted from the end.</p>
 </section>
 
 
@@ -270,15 +367,26 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dd>Whether to allow “lossy” conversion (might result in loss of character that couldn't be converted) or not.</dd>
 	</dl></dd>
 	<dd><dl>
-		<dt>return value</dt>
+		<dt>Return value</dt>
 		<dd>boolean</dd>
 	</dl></dd>
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘document’ object</dd>
+	</dl></dd>
 </dl>
+
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; without lossy</code></pre>
 	<figcaption>Converts the text encoding of the frontmost window to UTF-8, returns the result.</figcaption>
 </figure>
+
+<h4>Discussion</h4>
+
+<p>From CotEditor 4.0.7 on, the new encoding name accepts also IANA charset names.</p>
 </section>
 
 
@@ -293,18 +401,30 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dd>The encoding for reinterpreting, either in localized encoding name or an IANA charset name.</dd>
 	</dl></dd>
 	<dd><dl>
-		<dt>return value</dt>
+		<dt>Return value</dt>
 		<dd>boolean</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘document’ object</dd>
 	</dl></dd>
 </dl>
 
-<p>Returns <code>false</code> if the file has never been saved.</p>
-<p>Changes that are not yet saved will be lost.</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">reinterpret front document as &quot;Japanese (EUC)&quot;</code></pre>
 	<figcaption>Reinterprets the document with EUC-JP, returns the result.</figcaption>
 </figure>
+
+
+<h4>Discussion</h4>
+
+<p>Returns <code>false</code> if the file has never been saved.</p>
+<p>Changes that are not yet saved will be lost.</p>
+
+<p>From CotEditor 4.0.7 on, the new encoding name accepts also IANA charset names.</p>
 </section>
 
 
@@ -317,7 +437,15 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 	<dt><code class="command">shift right</code></dt>
 	<dd>Shifts the current line right.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
+
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">shift right selection of front document</code></pre>
@@ -335,14 +463,29 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 	<dt><code class="command">uncomment</code></dt>
 	<dd>Remove comment delimiters from selected text if possible.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>These commands do nothing if not possible for example in cases where no delimiters are set in the current syntax style or no comment delimiters to remove are available.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 2.0.1+</p>
+
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">comment out selection of front document</code></pre>
 	<figcaption>Comment out the selected text.</figcaption>
 </figure>
+
+
+<h4>Discussion</h4>
+
+<p>These commands do nothing if not possible for example in cases where no delimiters are set in the current syntax style or no comment delimiters to remove are available.</p>
 </section>
 
 
@@ -357,18 +500,29 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dd>The range.</dd>
 	</dl></dd>
 	<dd><dl>
-		<dt>return value</dt>
+		<dt>Return value</dt>
 		<dd>Unicode text</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
 	</dl></dd>
 </dl>
 
-<p>Returns an empty string if the specified range was invalid.</p>
-<p>This command does not change the specified range.</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">string front document in {0, 10}</code></pre>
 	<figcaption>Returns the first ten letters of the document.</figcaption>
 </figure>
+
+
+<h4>Discussion</h4>
+
+<p>Returns an empty string if the specified range was invalid.</p>
+<p>This command does not change the specified range.</p>
 </section>
 
 
@@ -382,9 +536,15 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dt><code>to</code> <code>upper</code>/<code>lower</code>/<code>capitalized</code></dt>
 		<dd>The case type to change.</dd>
 	</dl></dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">change case selection of front document to upper</code></pre>
@@ -403,13 +563,18 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dt><code>to</code> <code>half</code>/<code>full</code></dt>
 		<dd>The text width to change.</dd>
 	</dl></dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">change roman width selection of front document to full</code></pre>
-	<figcaption>Converts ascii characters in the selection to their full-width equivalents.</figcaption>
+	<figcaption>Converts ASCII characters in the selection to their full-width equivalents.</figcaption>
 </figure>
 </section>
 
@@ -424,9 +589,14 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dt><code>to</code> <code>hiragana</code>/<code>katakana</code></dt>
 		<dd>The Japanese character mode to change.</dd>
 	</dl></dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">change kana selection of front document to katakana</code></pre>
@@ -440,13 +610,22 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">smarten quotes</code></dt>
-	<dd>Convert straight quotes in the selected text to typographical quotes if exists. <span class="added">new on CotEditor 3.9.7</span></dd>
+	<dd>Convert straight quotes in the selected text to typographical quotes if exists.</dd>
 
 	<dt><code class="command">straighten quotes</code></dt>
-	<dd>Convert typographical quotes in the selected text to straight quotes if exists. <span class="added">new on CotEditor 3.9.7</span></dd>
+	<dd>Convert typographical quotes in the selected text to straight quotes if exists.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 3.9.7+</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">smarten quotes selection of front document</code></pre>
@@ -459,11 +638,20 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <h3>smart dashes</h3>
 
 <dl class="tree">
-	<dt><code class="command">smarten quotes</code></dt>
-	<dd>Convert straight double hyphens in the selected text to dashes if exists.<span class="added">new on CotEditor 3.9.7</span></dd>
+	<dt><code class="command">smarten dashes</code></dt>
+	<dd>Convert double hyphens in the selected text to dashes if exists.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 3.9.7+</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">smarten dashes selection of front document</code></pre>
@@ -482,9 +670,18 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dt><code>to</code> <code>NFKC</code>/<code>NFD</code>/<code>NFC</code>/<code>NFKD</code>/<code>NFKC Casefold</code>/<code>Modified NFC</code>/<code>Modified NFD</code></dt>
 		<dd>The normalized forms of Unicode text.</dd>
 	</dl></dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 2.0.0+</p>
+
+<h4>Example</h4>
 
 <figure>
 	<pre class="source"><code class="AppleScript">normalize unicode selection of front document to NFC</code></pre>
@@ -498,13 +695,20 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">move line up</code></dt>
-	<dd>Swap selected lines with the line just above. <span class="added">new on CotEditor 2.3.0</span></dd>
+	<dd>Swap selected lines with the line just above.</dd>
 
 	<dt><code class="command">move line down</code></dt>
-	<dd>Swap selected lines with the line just below. <span class="added">new on CotEditor 2.3.0</span></dd>
+	<dd>Swap selected lines with the line just below.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 2.3.0+</p>
 </section>
 
 
@@ -513,13 +717,20 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">sort lines</code></dt>
-	<dd>Sort selected lines ascending. <span class="added">new on CotEditor 2.3.0</span></dd>
+	<dd>Sort selected lines ascending.</dd>
 
 	<dt><code class="command">reverse lines</code></dt>
-	<dd>Reverse selected lines. <span class="added">new on CotEditor 2.3.0</span></dd>
+	<dd>Reverse selected lines.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 2.3.0+</p>
 </section>
 
 
@@ -528,10 +739,17 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">delete duplicate line</code></dt>
-	<dd>Delete duplicate lines in selection. <span class="added">new on CotEditor 2.3.0</span></dd>
+	<dd>Delete duplicate lines in selection.</dd>
+	
+	<dd><dl>
+		<dt>target</dt>
+		<dd>‘selection’ object</dd>
+	</dl></dd>
 </dl>
 
-<p>Works only for ‘selection’ objects.</p>
+<h4>Availability</h4>
+
+<p>CotEditor 2.3.0+</p>
 </section>
 </section>
 

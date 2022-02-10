@@ -41,12 +41,12 @@ extension NSColor {
     /// - Returns: A CGColor instance.
     func cgColor(for appearance: NSAppearance) -> CGColor {
         
-        guard NSAppearance.current != appearance else { return self.cgColor }
+        guard NSAppearance.currentDrawing() != appearance else { return self.cgColor }
         
-        let currentAppearance = NSAppearance.current
-        NSAppearance.current = appearance
-        let cgColor = self.cgColor
-        NSAppearance.current = currentAppearance
+        var cgColor: CGColor = .clear
+        appearance.performAsCurrentDrawingAppearance {
+            cgColor = self.cgColor
+        }
         
         return cgColor
     }

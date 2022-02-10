@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018-2020 CotEditor Project
+// © 2018-2022 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@
 "590.title" = "Preto e Branco";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "Usar Ajustes do Documento";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
+"Jff-bZ-Xbm.title" = "Imprimir fundos";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "Números das Linhas:";

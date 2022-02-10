@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@
 "57.title" = "CotEditor";
 
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
-"58.title" = "关于 CotEditor";
+"58.title" = "关于CotEditor";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
 "129.title" = "偏好设置…";
@@ -54,14 +54,14 @@
 "131.title" = "服务";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "隐藏 CotEditor";
+"134.title" = "隐藏CotEditor";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "隐藏其他";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "全部显示";
 
 /* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
-"136.title" = "退出 CotEditor";
+"136.title" = "退出CotEditor";
 
 
 
@@ -138,7 +138,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "输入日元符号";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "用 Unicode 输入…";
+"tWx-pj-3PL.title" = "用Unicode输入…";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "拼写和语法";
@@ -238,15 +238,23 @@
 "viH-Eo-wKz.title" = "连字";
 
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
-"djM-fI-MkN.title" = "Tab 宽度";
+"djM-fI-MkN.title" = "Tab宽度";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
-"xAm-b4-9CY.title" = "Tab 宽度";
+"xAm-b4-9CY.title" = "Tab宽度";
+/* Class = "NSMenuItem"; title = "2"; ObjectID = "qs3-we-YzU"; */
+"qs3-we-YzU.title" = "2";
+/* Class = "NSMenuItem"; title = "3"; ObjectID = "8hL-SQ-WlX"; */
+"8hL-SQ-WlX.title" = "3";
+/* Class = "NSMenuItem"; title = "4"; ObjectID = "fwb-zD-hBp"; */
+"fwb-zD-hBp.title" = "4";
+/* Class = "NSMenuItem"; title = "8"; ObjectID = "9e0-Q5-Oqh"; */
+"9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "自定义…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
-"hsG-8k-OKX.title" = "Tab 转为空格";
+"hsG-8k-OKX.title" = "Tab转为空格";
 
-/* Class = "NSMenuItem"; title = "Show Invisibless"; ObjectID = "788"; */
+/* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
 "788.title" = "显示不可见元素";
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
 "Qqu-pI-Xz6.title" = "显示缩进指示";
@@ -393,7 +401,7 @@
 "Srp-eD-10Q.title" = "单引号";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "双引号";
-/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+/* Class = "NSMenuItem"; title = "Parentheses"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "圆括号";  // ()
 /* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "大括号";  // {}
@@ -429,9 +437,9 @@
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
 "Skr-vI-7VN.title" = "全宽到半宽";
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
-"586.title" = "ASCII 到全宽 ASCII";
+"586.title" = "ASCII到全宽ASCII";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
-"588.title" = "全宽 ASCII 到 ASCII";
+"588.title" = "全宽ASCII到ASCII";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
 "XWV-by-mnw.title" = "日文文本";
@@ -441,9 +449,9 @@
 "594.title" = "片假名到平假名";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode 标准化";
+"600.title" = "Unicode标准化";
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
-"599.title" = "Unicode 标准化";
+"599.title" = "Unicode标准化";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
@@ -464,20 +472,20 @@
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
 /* Class = "NSMenuItem"; title = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "正在 NFKC, CaseFolding, 并移除默认可忽略编码点";
+"zuR-3K-9fs.ibShadowedToolTip" = "正在NFKC, CaseFolding, 并移除默认可忽略编码点";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "修改 NFD (HFS+)";
+"NU7-EI-1Ct.title" = "修改NFD (HFS+)";
 /* Class = "NSMenuItem"; title = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "在 HFS+ 中使用了非官方的基于 NFD 的标准化形式。";
+"NU7-EI-1Ct.ibShadowedToolTip" = "在HFS+中使用了非官方的基于NFD的标准化形式。";
 /* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "修改 NFC (HFS+)";
+"n6C-Km-BM9.title" = "修改NFC (HFS+)";
 /* Class = "NSMenuItem"; title = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "非官方的基于 NFD 的标准化形式与修改后的 NFD 对应";
+"n6C-Km-BM9.ibShadowedToolTip" = "非官方的基于NFD的标准化形式与修改后的NFD对应";
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "插入编码名字";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "插入作为 IANA 字符集的编码名字";
+"663.ibShadowedToolTip" = "插入作为IANA字符集的编码名字";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "检视文字";
@@ -527,6 +535,8 @@
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "取消高亮";
 
+/* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
+"PmT-ho-UU7.title" = "打开大纲菜单";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "选择上一个大纲项目";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
@@ -574,21 +584,21 @@
 "106.title" = "帮助";
 
 /* Class = "NSMenuItem"; title = "CotEditor Help"; ObjectID = "111"; */
-"111.title" = "CotEditor 帮助";
+"111.title" = "CotEditor帮助";
 
 /* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "CotEditor 脚本手册";
+"M1N-Fg-Bo4.title" = "CotEditor脚本手册";
 /* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "CotEditor 脚本手册";
+"OLa-Mb-rXS.title" = "CotEditor脚本手册";
 /* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "关于脚本";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
-"620.title" = "AppleScript 字典";
+"620.title" = "AppleScript字典";
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
-"822.title" = "发行说明";
+"822.title" = "发布说明";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 新特性";
+"DCW-Ij-540.title" = "CotEditor新特性";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "致谢";
 
@@ -597,4 +607,4 @@
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "报告问题";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
-"g34-YV-E6o.title" = "CotEditor 网站";
+"g34-YV-E6o.title" = "CotEditor网站";

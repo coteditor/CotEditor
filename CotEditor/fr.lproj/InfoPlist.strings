@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2020 CotEditor Project
+ © 2015-2021 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -67,9 +67,9 @@
 "Ruby script" = "Script Ruby";
 "Rust script" = "Script Rust";
 "Scalable Vector Graphics" = "SVG";
-"Scala script" = "Script Scala";
+"Scala source" = "Script Scala";
 "Scheme script" = "Script Scheme";
-"Shell script" = "Script Shell";
+"Shell script" = "Source Shell";
 "SQL source" = "Script SQL";
 "Swift source" = "Source Swift";
 "TeX" = "TeX";

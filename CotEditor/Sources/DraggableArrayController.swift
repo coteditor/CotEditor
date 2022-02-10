@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,32 +25,19 @@
 
 import Cocoa
 
-private extension NSPasteboard.PasteboardType {
-    
-    static let rows = NSPasteboard.PasteboardType("rows")
-}
-
-
 final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     
     // MARK: Table Data Source Protocol
     
     /// start dragging
-    func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
         
-        // register dragged type
-        tableView.registerForDraggedTypes([.rows])
-        pboard.declareTypes([.rows], owner: self)
+        tableView.registerForDraggedTypes([.string])
         
-        // select rows to drag
-        tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
+        let item = NSPasteboardItem()
+        item.setString(String(row), forType: .string)
         
-        // store row index info to pasteboard
-        guard let rows = try? NSKeyedArchiver.archivedData(withRootObject: rowIndexes, requiringSecureCoding: true) else { return false }
-        
-        pboard.setData(rows, forType: .rows)
-        
-        return true
+        return item
     }
     
     
@@ -74,11 +61,15 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return false }
         
-        // obtain original rows from paste board
-        guard
-            let data = info.draggingPasteboard.data(forType: .rows),
-            let sourceRows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
-            else { return false }
+        // obtain original rows from pasteboard
+        var sourceRows = IndexSet()
+        info.enumerateDraggingItems(options: .concurrent, for: tableView, classes: [NSPasteboardItem.self]) { (item, _, _) in
+            guard let string = (item.item as? NSPasteboardItem)?.string(forType: .string),
+                  let row = Int(string)
+            else { return }
+            
+            sourceRows.insert(row)
+        }
         
         let draggingItems = (self.arrangedObjects as AnyObject).objects(at: sourceRows)
         
@@ -88,17 +79,25 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // update
         NSAnimationContext.runAnimationGroup({ _ in
             // update UI
+            var sourceOffset = 0
+            var destinationOffset = 0
+            
             tableView.beginUpdates()
-            tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])
-            tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
+            for sourceRow in sourceRows {
+                if sourceRow < row {
+                    tableView.moveRow(at: sourceRow + sourceOffset, to: row - 1)
+                    sourceOffset -= 1
+                } else {
+                    tableView.moveRow(at: sourceRow, to: row + destinationOffset)
+                    destinationOffset += 1
+                }
+            }
             tableView.endUpdates()
+            
         }, completionHandler: {
             // update data
             self.remove(atArrangedObjectIndexes: sourceRows)
             self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
-            
-            // update UI
-            tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
         })
         
         return true

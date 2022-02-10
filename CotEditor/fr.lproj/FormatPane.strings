@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2020 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,13 +43,13 @@
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Editer la liste…";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
-"3280.title" = "Se référer à l'encodage déclaré dans le document";
+"3280.title" = "Se référer à l’encodage déclaré dans le document";
 
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "Activer la coloration syntaxique";
 /* Class = "NSTextFieldCell"; title = "(Including outline menu)"; ObjectID = "3325"; */
-"3325.title" = "（inclue le menu de structure）";
+"3325.title" = "(inclue le menu de structure)";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Syntaxes par défaut :";
@@ -75,7 +75,7 @@
 /* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
 "FhP-Hj-cWE.title" = "Recharger toutes les syntaxes";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
-"hyN-4W-57i.title" = "Montrer les conflits d'associations de fichiers";
+"hyN-4W-57i.title" = "Montrer les conflits d’associations de fichiers";
 
 
 /* contextual menu */

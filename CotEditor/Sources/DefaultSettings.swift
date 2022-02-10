@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@ struct DefaultSettings {
         .showStatusBarLine: true,
         .showStatusBarColumn: false,
         .showStatusBarFileSize: true,
-        .windowWidth: 600.0,
-        .windowHeight: 620.0,
+//        .windowWidth: 600.0,
+//        .windowHeight: 620.0,
         .splitViewVertical: false,
         .windowAlpha: 1.0,
         
@@ -135,6 +135,7 @@ struct DefaultSettings {
         .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
         .printFontSize: NSFont.systemFontSize,
         .printColorIndex: PrintColorMode.blackAndWhite.rawValue,
+        .printBackground: false,
         .printLineNumIndex: PrintVisibilityMode.no.rawValue,
         .printInvisibleCharIndex: PrintVisibilityMode.no.rawValue,
         .printHeader: true,

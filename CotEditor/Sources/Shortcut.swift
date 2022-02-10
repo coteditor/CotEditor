@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,6 +38,12 @@ enum ModifierKey: CaseIterable {
     case command
     
     
+    static var mask: NSEvent.ModifierFlags {
+        
+        self.allCases.reduce(.init()) { $0.union($1.mask) }
+    }
+    
+    
     var mask: NSEvent.ModifierFlags {
         
         switch self {
@@ -51,6 +57,10 @@ enum ModifierKey: CaseIterable {
     
     /// printable symbol
     var symbol: String {
+        
+        if let symbol = self.sfSymbol {
+            return symbol
+        }
         
         switch self {
             case .control: return "^"
@@ -72,6 +82,17 @@ enum ModifierKey: CaseIterable {
         }
     }
     
+    
+    private var sfSymbol: String? {
+        
+        switch self {
+            case .control: return "􀆍"
+            case .option:  return "􀆕"
+            case .shift:   return "􀆝"
+            case .command: return "􀆔"
+        }
+    }
+    
 }
 
 
@@ -84,20 +105,23 @@ struct Shortcut: Hashable {
     
     static let none = Shortcut(modifierMask: [], keyEquivalent: "")
     
+    /// Some special keys allowed to asign without modifier keys.
+    private static let singleKeys: [NSEvent.SpecialKey] = [
+        .home,
+        .end,
+        .pageUp,
+        .pageDown,
+    ]
+    
     
     init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
-        self.modifierMask = {
-            let modifierMask = modifierMask.intersection([.control, .option, .shift, .command])
-            
-            // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
-            if keyEquivalent.last?.isUppercase == true {
-                return modifierMask.union(.shift)
-            }
-            
-            return modifierMask
-        }()
+        // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
+        let needsShift = keyEquivalent.last?.isUppercase == true
         
+        self.modifierMask = modifierMask
+            .intersection(ModifierKey.mask)
+            .union(needsShift ? .shift : [])
         self.keyEquivalent = keyEquivalent
     }
     
@@ -118,6 +142,36 @@ struct Shortcut: Hashable {
     }
     
     
+    init?(keyDownEvent event: NSEvent) {
+        
+        assert(event.type == .keyDown)
+        
+        guard let charactersIgnoringModifiers = event.charactersIgnoringModifiers else { return nil }
+        
+        // correct Backspace and Forward Delete keys
+        //  -> Backspace:      The key above the Return.
+        //     Forward Delete: The key with printed "Delete" where next to the ten key pad.
+        // cf. https://developer.apple.com/documentation/appkit/nsmenuitem/1514842-keyequivalent
+        let keyEquivalent: String
+        switch event.specialKey {
+            case NSEvent.SpecialKey.delete:
+                keyEquivalent = String(NSEvent.SpecialKey.backspace.unicodeScalar)
+            case NSEvent.SpecialKey.deleteForward:
+                keyEquivalent = String(NSEvent.SpecialKey.delete.unicodeScalar)
+            default:
+                keyEquivalent = charactersIgnoringModifiers
+        }
+        
+        // remove unwanted Shift
+        let ignoresShift = "`~!@#$%^&()_{}|\":<>?=/*-+.'".contains(keyEquivalent)
+        let modifierMask = event.modifierFlags
+            .intersection(ModifierKey.mask)
+            .subtracting(ignoresShift ? .shift : [])
+        
+        self.init(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
+    }
+    
+    
     /// unique string to store in plist
     var keySpecChars: String {
         
@@ -133,7 +187,7 @@ struct Shortcut: Hashable {
     /// whether the shortcut key is empty
     var isEmpty: Bool {
         
-        return self.keyEquivalent.isEmpty && self.modifierMask.isEmpty
+        self.modifierMask.isEmpty && self.keyEquivalent.isEmpty
     }
     
     
@@ -142,9 +196,11 @@ struct Shortcut: Hashable {
     /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {
         
-        let keys = ModifierKey.allCases.filter { self.modifierMask.contains($0.mask) }
+        if Self.singleKeys.map(\.unicodeScalar).map(String.init).contains(self.keyEquivalent) {
+            return true
+        }
         
-        return self.keyEquivalent.count == 1 && !keys.isEmpty
+        return !self.modifierMask.isEmpty && self.keyEquivalent.count == 1
     }
     
     
@@ -162,31 +218,66 @@ struct Shortcut: Hashable {
     // MARK: Private Methods
     
     /// modifier keys string to display
-    private var printableModifierMask: String {
+    private var modifierMaskSymbols: [String] {
         
-        return ModifierKey.allCases
+        ModifierKey.allCases
             .filter { self.modifierMask.contains($0.mask) }
             .map(\.symbol)
-            .joined()
     }
     
     
     /// key equivalent to display
-    private var printableKeyEquivalent: String {
+    private var keyEquivalentSymbol: String {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
         
-        return Shortcut.printableKeyEquivalents[scalar] ?? self.keyEquivalent.uppercased()
+        return Self.keyEquivalentSFSymbols[scalar]
+            ?? Self.keyEquivalentSymbols[scalar]
+            ?? self.keyEquivalent.uppercased()
     }
     
     
-    /// table for characters that cannot be displayed as is with their printable substitutions
-    private static let printableKeyEquivalents: [Unicode.Scalar: String] = [
+    /// Key equivalent symbols that have SF Symbol alternatives.
+    private static let keyEquivalentSFSymbols: [Unicode.Scalar: String] = [
+        NSEvent.SpecialKey
+        .upArrow: "􀄤",
+        .downArrow: "􀄥",
+        .leftArrow: "􀄦",
+        .rightArrow: "􀄧",
+        .delete: "􁂒",
+        .backspace: "􁂈",
+        .home: "􀄿",
+        .end: "􀅀",
+        .pageUp: "􀄨",
+        .pageDown: "􀄩",
+        .clearLine: "􀆙",
+        .carriageReturn: "􀅇",
+        .enter: "􀆎",
+        .tab: "􁂎",
+        .backTab: "􁂊",
+        .escape: "􀆧",
+    ].mapKeys(\.unicodeScalar)
+    
+    
+    /// table for key equivalent that have special symbols to display.
+    private static let keyEquivalentSymbols: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .upArrow: "↑",
         .downArrow: "↓",
         .leftArrow: "←",
         .rightArrow: "→",
+        .delete: "⌦",
+        .backspace: "⌫",
+        .home: "↖",
+        .end: "↘",
+        .pageUp: "⇞",
+        .pageDown: "⇟",
+        .clearLine: "⌧",
+        .carriageReturn: "↩",
+        .enter: "⌅",
+        .tab: "⇥",
+        .backTab: "⇤",
+        .escape: "⎋",
         .f1: "F1",
         .f2: "F2",
         .f3: "F3",
@@ -203,20 +294,11 @@ struct Shortcut: Hashable {
         .f14: "F14",
         .f15: "F15",
         .f16: "F16",
-        .delete: "⌦",
-        .home: "↖",
-        .end: "↘",
-        .pageUp: "⇞",
-        .pageDown: "⇟",
-        .clearLine: "⌧",
+        .f17: "F17",
+        .f18: "F18",
+        .f19: "F19",
         .help: "Help",
         .space: "Space".localized(comment: "keyboard key name"),
-        .tab: "⇥",
-        .carriageReturn: "↩",
-        .backspace: "⌫",  //  (delete backward)
-        .enter: "⌅",
-        .backTab: "⇤",
-        .escape: "⎋",
     ].mapKeys(\.unicodeScalar)
     
 }
@@ -233,7 +315,7 @@ extension Shortcut: CustomStringConvertible {
     /// shortcut string to display
     var description: String {
         
-        return self.printableModifierMask + self.printableKeyEquivalent
+        (self.modifierMaskSymbols + [self.keyEquivalentSymbol]).joined(separator: .thinSpace)
     }
     
 }

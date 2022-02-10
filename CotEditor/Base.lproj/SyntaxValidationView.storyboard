@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0x1-oE-Hn6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0x1-oE-Hn6">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,7 +38,7 @@
                                     <rect key="frame" x="1" y="1" width="432" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="kiS-FF-tvd">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" multipleSelection="NO" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="kiS-FF-tvd">
                                             <rect key="frame" x="0.0" y="0.0" width="432" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="4"/>
@@ -187,6 +187,7 @@
                 </viewController>
                 <customObject id="Oke-qj-VSe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController objectClassName="SyntaxStyleValidator.StyleError" editable="NO" avoidsEmptySelection="NO" id="D6H-P7-Yf6">
+                    <classReference key="objectClass" className="StyleError" moduleName="SyntaxStyleValidator"/>
                     <connections>
                         <binding destination="0x1-oE-Hn6" name="contentArray" keyPath="errors" id="Co2-l6-78K"/>
                     </connections>

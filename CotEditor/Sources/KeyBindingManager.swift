@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,13 +26,11 @@
 
 import Cocoa
 
-struct InvalidKeySpecCharactersError: LocalizedError {
+struct InvalidShortcutError: LocalizedError {
     
     enum ErrorKind {
         case singleType
-        case alreadyTaken
-        case lackingCommandKey
-        case unwantedCommandKey
+        case alreadyTaken(name: String)
         case shiftOnlyModifier
     }
     
@@ -46,17 +44,11 @@ struct InvalidKeySpecCharactersError: LocalizedError {
             case .singleType:
                 return "Single type is invalid for a shortcut.".localized
             
-            case .alreadyTaken:
-                return String(format: "“%@” is already taken.".localized, self.shortcut.description)
-            
-            case .lackingCommandKey:
-                return String(format: "“%@” does not include the Command key.".localized, self.shortcut.description)
-            
-            case .unwantedCommandKey:
-                return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
+            case let .alreadyTaken(name):
+                return String(format: "“%@” is already taken by the “%@” command.".localized, self.shortcut.description, name)
                 
             case .shiftOnlyModifier:
-            return String(format: "The Shift key can be used only with another modifier key.".localized, self.shortcut.description)
+                return "The Shift key can be used only with another modifier key.".localized
         }
     }
     
@@ -173,22 +165,34 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     }
     
     
-    /// validate new key spec chars are settable
+    /// Validate new shortcut are settable.
     ///
-    /// - Throws: `InvalidKeySpecCharactersError`
-    func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
+    /// - Throws: `InvalidShortcutError`
+    final func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
         
         // blank key is always valid
         if shortcut.isEmpty { return }
         
+        // avoid shift-only modifier with a letter
+        // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
+        if shortcut.modifierMask == .shift,
+           shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
+        {
+            throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: shortcut)
+        }
+        
         // single key is invalid
-        guard !shortcut.modifierMask.isEmpty, !shortcut.keyEquivalent.isEmpty else {
-            throw InvalidKeySpecCharactersError(kind: .singleType, shortcut: shortcut)
+        guard shortcut.isValid else {
+            throw InvalidShortcutError(kind: .singleType, shortcut: shortcut)
         }
         
         // duplication check
-        guard shortcut == oldShortcut || !self.keyBindings.contains(where: { $0.shortcut == shortcut }) else {
-            throw InvalidKeySpecCharactersError(kind: .alreadyTaken, shortcut: shortcut)
+        if shortcut != oldShortcut,
+           let duplicatedShortcut = [MenuKeyBindingManager.shared, SnippetKeyBindingManager.shared]
+            .flatMap(\.keyBindings).first(where: { $0.shortcut == shortcut })
+        {
+            let name = duplicatedShortcut.name.trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))
+            throw InvalidShortcutError(kind: .alreadyTaken(name: name), shortcut: shortcut)
         }
     }
     
@@ -210,7 +214,7 @@ private extension Collection where Element == NSTreeNode {
                 let shortcut = keyItem.shortcut
                 else { return [] }
             
-            return [KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
+            return [KeyBinding(name: keyItem.name, action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
         }
         
         return Set(keyBindings)

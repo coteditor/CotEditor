@@ -371,6 +371,35 @@ extension Document {
     }
     
     
+    /// handle the Jump AppleScript command by moving the cursor to the specified line and scrolling the text view to make it visible
+    @objc func handleJump(_ command: NSScriptCommand) {
+        
+        guard
+            let arguments = command.evaluatedArguments,
+            let line = arguments["line"] as? Int
+        else {
+            command.scriptErrorNumber = OSAMissingParameter
+            return
+        }
+        
+        let column = arguments["column"] as? Int ?? 0
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let location: Int
+        do {
+            location = try textView.string.fuzzyLocation(line: line, column: column)
+        } catch {
+            command.scriptErrorNumber = OSAParameterMismatch
+            command.scriptErrorString = "Invalid parameter. " + error.localizedDescription
+            return
+        }
+        
+        textView.selectedRange = NSRange(location: location, length: 0)
+        textView.centerSelectionInVisibleArea(nil)
+    }
+    
+    
     /// return sting in the specified range
     @objc func handleString(_ command: NSScriptCommand) -> String? {
         

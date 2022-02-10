@@ -37,6 +37,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Private Properties
     
     private var orientationObserver: AnyCancellable?
+    private var writingDirectionObserver: AnyCancellable?
     
     private var stackView: NSStackView?  { self.view as? NSStackView }
     
@@ -65,6 +66,24 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 }()
                 
                 self.lineNumberView?.orientation = orientation
+            }
+        
+        // let line number view position follow writing direction
+        self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
+            .removeDuplicates()
+            .sink { [weak self] (writingDirection) in
+                guard let stackView = self?.stackView,
+                      let lineNumberView = self?.lineNumberView
+                else { return assertionFailure() }
+                
+                let index = writingDirection == .rightToLeft ? stackView.arrangedSubviews.count - 1 : 0
+                
+                guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
+                
+                stackView.removeArrangedSubview(lineNumberView)
+                stackView.insertArrangedSubview(lineNumberView, at: index)
+                stackView.needsLayout = true
+                stackView.layoutSubtreeIfNeeded()
             }
     }
     
@@ -98,16 +117,14 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
             let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-            item.image = NSImage(symbolNamed: "applescript.fill", accessibilityDescription: "Scripts".localized)
+            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: "Scripts".localized)
             item.toolTip = "Scripts".localized
             item.submenu = scriptMenu
             menu.addItem(item)
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if let textView = self.textView,
-           (textView.string as NSString).substring(with: textView.selectedRange).compareCount(with: 1) == .equal
-        {
+        if self.textView?.selectsSingleCharacter == true {
             menu.insertItem(withTitle: "Inspect Character".localized,
                             action: #selector(showSelectionInfo),
                             keyEquivalent: "",
@@ -166,7 +183,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
-        guard let textView = self.textView else { return assertionFailure() }
+        guard let textView = self.textView, textView.selectsSingleCharacter else { return assertionFailure() }
         
         var selectedString = (textView.string as NSString).substring(with: textView.selectedRange)
         
@@ -176,9 +193,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
-        guard let characterInfo = try? CharacterInfo(string: selectedString) else { return }
+        guard let character = selectedString.first else { return }
         
-        let popoverController = CharacterPopoverController.instantiate(for: characterInfo)
+        let popoverController = CharacterPopoverController.instantiate(for: character)
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         
         textView.scrollRangeToVisible(textView.selectedRange)
@@ -206,9 +223,7 @@ extension EditorTextViewController: NSUserInterfaceValidations {
         
         switch item.action {
             case #selector(showSelectionInfo):
-                guard let textView = self.textView else { return false }
-                return !textView.hasMultipleInsertions &&
-                    (textView.string as NSString).substring(with: textView.selectedRange).compareCount(with: 1) == .equal
+                return self.textView?.selectsSingleCharacter == true
                 
             case nil:
                 return false
@@ -230,6 +245,19 @@ extension EditorTextViewController: NSFontChanging {
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
         return [.collection, .face, .size]
+    }
+    
+}
+
+
+
+// MARK: -
+
+private extension MultiCursorEditing {
+    
+    var selectsSingleCharacter: Bool {
+        
+        return !self.hasMultipleInsertions && (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
     }
     
 }

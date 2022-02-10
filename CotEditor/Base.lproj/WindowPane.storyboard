@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -45,6 +45,7 @@
                                             </menu>
                                         </popUpButtonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="w4k-Qb-kRF" id="GmU-q6-vva"/>
                                             <binding destination="NU0-2h-SUe" name="selectedTag" keyPath="values.windowTabbing" id="i48-2i-Toj"/>
                                         </connections>
                                     </popUpButton>
@@ -94,14 +95,16 @@
                                             </allowedInputSourceLocales>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="WD1-55-LD1" id="l0R-1B-Dum"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.pageGuideColumn" id="t1H-0w-i0R"/>
                                             <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="K2m-gz-m7G"/>
                                         </connections>
                                     </textField>
-                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-1v-RyO">
+                                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-1v-RyO" customClass="AccessibleStepper" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="340" y="287" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="1000" doubleValue="1" id="jBa-nO-Be8"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="WD1-55-LD1" id="sfY-2T-R0q"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.pageGuideColumn" id="keB-PP-HXG"/>
                                             <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showPageGuide" id="n2C-zV-02A"/>
                                         </connections>
@@ -168,6 +171,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="wv9-cn-NXQ" id="WXP-KX-n4o"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.overscrollRate" id="MRk-BP-vHS"/>
                                         </connections>
                                     </textField>
@@ -175,6 +179,7 @@
                                         <rect key="frame" x="185" y="231" width="19" height="28"/>
                                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.10000000000000001" maxValue="1" id="YHE-bc-7kQ"/>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="wv9-cn-NXQ" id="uYs-Yo-oFw"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.overscrollRate" id="GjU-5o-PT5"/>
                                         </connections>
                                     </stepper>
@@ -296,11 +301,11 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hfv-mJ-E2k" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="136" y="96" width="48" height="21"/>
+                                        <rect key="frame" x="136" y="96" width="64" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="Kua-Lj-geS"/>
+                                            <constraint firstAttribute="width" constant="64" id="Kua-Lj-geS"/>
                                         </constraints>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="600" drawsBackground="YES" id="jlA-J9-dCP">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" placeholderString="Auto" drawsBackground="YES" id="jlA-J9-dCP">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="yn0-hn-qBW">
                                                 <real key="minimum" value="100"/>
                                                 <real key="maximum" value="10000"/>
@@ -310,12 +315,17 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowWidth" id="yOz-FG-Pt3"/>
+                                            <accessibilityConnection property="title" destination="KaN-9u-fz0" id="jYt-LH-FjP"/>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowWidth" id="hye-gP-iep">
+                                                <dictionary key="options">
+                                                    <string key="NSNullPlaceholder">Auto</string>
+                                                </dictionary>
+                                            </binding>
                                             <outlet property="formatter" destination="yn0-hn-qBW" id="WLI-uH-iqt"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-el-9xy">
-                                        <rect key="frame" x="186" y="99" width="19" height="16"/>
+                                        <rect key="frame" x="202" y="99" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="VCx-PO-Fnr">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -323,7 +333,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
-                                        <rect key="frame" x="217" y="99" width="46" height="16"/>
+                                        <rect key="frame" x="233" y="99" width="46" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="height:" id="Zhk-Nt-kiD">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -331,8 +341,8 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XGK-jf-PNq" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="269" y="96" width="48" height="21"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="800" drawsBackground="YES" id="7iv-Gh-RFp">
+                                        <rect key="frame" x="285" y="96" width="64" height="21"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" placeholderString="Auto" drawsBackground="YES" id="7iv-Gh-RFp">
                                             <numberFormatter key="formatter" formatterBehavior="custom10_4" allowsFloats="NO" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="sUS-DS-EEI">
                                                 <real key="minimum" value="100"/>
                                                 <real key="maximum" value="10000"/>
@@ -342,12 +352,17 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
-                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowHeight" id="PFq-x1-E1n"/>
+                                            <accessibilityConnection property="title" destination="dlN-sO-hCs" id="hku-bX-YrZ"/>
+                                            <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowHeight" id="UXj-fO-Vee">
+                                                <dictionary key="options">
+                                                    <string key="NSNullPlaceholder">Auto</string>
+                                                </dictionary>
+                                            </binding>
                                             <outlet property="formatter" destination="yn0-hn-qBW" id="npc-OR-G5j"/>
                                         </connections>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-qH-I9N">
-                                        <rect key="frame" x="319" y="99" width="19" height="16"/>
+                                        <rect key="frame" x="351" y="99" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="u8r-OW-Z1O">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -403,6 +418,7 @@
                                             <font key="font" usesAppearanceFont="YES"/>
                                         </sliderCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Gi0-Gf-dth" id="cRA-v4-B7I"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowAlpha" id="ym4-HC-0p8"/>
                                         </connections>
                                     </slider>
@@ -422,6 +438,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="Gi0-Gf-dth" id="v6i-KC-TAa"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.windowAlpha" id="AS4-pe-rZt"/>
                                         </connections>
                                     </textField>
@@ -649,8 +666,6 @@
                         <outlet property="rtlWritingDirectionButton" destination="dbp-Ze-2O4" id="TVj-8c-4oD"/>
                         <outlet property="tabbingOptionMenu" destination="bjF-G8-yrZ" id="wAy-fz-8OU"/>
                         <outlet property="verticalWritingDirectionButton" destination="wjb-yR-EWC" id="e7U-OD-MkT"/>
-                        <outlet property="windowHeightField" destination="XGK-jf-PNq" id="q9Q-q5-Hn9"/>
-                        <outlet property="windowWidthField" destination="hfv-mJ-E2k" id="8tw-zT-Lw5"/>
                     </connections>
                 </viewController>
                 <customObject id="Vhg-R8-9Sf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

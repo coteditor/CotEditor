@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@
 "590.title" = "白黒";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "書類の設定と同じ";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
+"Jff-bZ-Xbm.title" = "背景をプリント";
 
 /* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
 "716.title" = "行番号:";

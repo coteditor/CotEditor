@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
 "qTb-gl-0V3.title" = "新規";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
-"I1W-t0-8TD.title" = "開く...";
+"I1W-t0-8TD.title" = "開く…";
 
 
 
@@ -45,7 +45,7 @@
 "58.title" = "CotEditorについて";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
-"129.title" = "環境設定...";
+"129.title" = "環境設定…";
 
 /* Class = "NSMenu"; title = "Services"; ObjectID = "130"; */
 "130.title" = "サービス";
@@ -78,7 +78,7 @@
 /* Class = "NSMenuItem"; title = "New Tab"; ObjectID = "WCp-4v-OPR"; */
 "WCp-4v-OPR.title" = "新規タブ";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
-"72.title" = "開く...";
+"72.title" = "開く…";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "最近使った項目を開く";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
@@ -89,14 +89,14 @@
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
 "75.title" = "保存";
 /* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "80"; */
-"80.title" = "別名で保存...";
+"80.title" = "別名で保存…";
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
 "112.title" = "最後に保存した状態に戻す";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
-"77.title" = "ページ設定...";
+"77.title" = "ページ設定…";
 /* Class = "NSMenuItem"; title = "Print…"; ObjectID = "78"; */
-"78.title" = "プリント...";
+"78.title" = "プリント…";
 
 
 
@@ -136,7 +136,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "半角円マークを入力";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Unicodeコードポイントで入力...";
+"tWx-pj-3PL.title" = "Unicodeコードポイントで入力…";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "スペルと文法";
@@ -239,8 +239,16 @@
 "djM-fI-MkN.title" = "タブ幅";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "タブ幅";
+/* Class = "NSMenuItem"; title = "2"; ObjectID = "qs3-we-YzU"; */
+"qs3-we-YzU.title" = "2";
+/* Class = "NSMenuItem"; title = "3"; ObjectID = "8hL-SQ-WlX"; */
+"8hL-SQ-WlX.title" = "3";
+/* Class = "NSMenuItem"; title = "4"; ObjectID = "fwb-zD-hBp"; */
+"fwb-zD-hBp.title" = "4";
+/* Class = "NSMenuItem"; title = "8"; ObjectID = "9e0-Q5-Oqh"; */
+"9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
-"gMO-5n-fiJ.title" = "カスタム...";
+"gMO-5n-fiJ.title" = "カスタム…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "タブを自動でスペースに展開";
 
@@ -323,7 +331,7 @@
 "796.title" = "分割エディタを閉じる";
 
 /* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "エディタの不透明度...";
+"367.title" = "エディタの不透明度…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "4mh-0E-3RJ.title" = "フルスクリーンにする";
@@ -374,7 +382,7 @@
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
 "OQl-Uo-yfn.title" = "並び替え";
 /* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
-"lNH-Mh-pIE.title" = "条件で並び替え...";
+"lNH-Mh-pIE.title" = "条件で並び替え…";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "反転";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
@@ -392,14 +400,14 @@
 "Srp-eD-10Q.title" = "一重引用符";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "二重引用符";
-/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+/* Class = "NSMenuItem"; title = "Parentheses"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "丸括弧";  // ()
 /* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "波括弧";  // {}
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
 "cTU-2P-7Tp.title" = "角括弧";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
-"3VX-DL-PgT.title" = "カスタム...";
+"3VX-DL-PgT.title" = "カスタム…";
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "行末の空白を削除";
@@ -481,7 +489,7 @@
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "文字情報を表示";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
-"641.title" = "カラーコードを編集...";
+"641.title" = "カラーコードを編集…";
 
 
 
@@ -493,7 +501,7 @@
 "kGA-vM-cdL.title" = "検索";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "eP6-ss-sUG"; */
-"eP6-ss-sUG.title" = "検索...";
+"eP6-ss-sUG.title" = "検索…";
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
 "NwE-Cf-L9F.title" = "次を検索";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
@@ -519,20 +527,22 @@
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "すべて置換";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "複数置換...";
+"o7K-sI-KJA.title" = "複数置換…";
 
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "ハイライト";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "ハイライトを解除";
 
+/* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
+"PmT-ho-UU7.title" = "アウトラインメニューを開く";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "前のアウトライン項目を選択";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
 "PWZ-Om-OhX.title" = "次のアウトライン項目を選択";
 
 /* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
-"eIc-Sj-2mO.title" = "行に移動...";
+"eIc-Sj-2mO.title" = "行に移動…";
 
 
 

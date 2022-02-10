@@ -145,18 +145,3 @@ extension CGRect {
     }
     
 }
-
-
-
-// MARK: CGFloat
-
-extension CGFloat {
-    
-    /// round to decimal places value
-    func rounded(to places: Int) -> CGFloat {
-        
-        let divisor = pow(10.0, CGFloat(places))
-        return (self * divisor).rounded() / divisor
-    }
-    
-}

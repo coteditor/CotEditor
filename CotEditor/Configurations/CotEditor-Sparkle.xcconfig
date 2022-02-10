@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2021 CotEditor Project
+//  © 2020-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,6 @@
 
 #include "CotEditor.xcconfig"
 
-CODE_SIGN_ENTITLEMENTS = $(PRODUCT_NAME)-Sparkle.entitlements
+CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME)-Sparkle.entitlements
 
 // TODO: Migrate the other build settings.

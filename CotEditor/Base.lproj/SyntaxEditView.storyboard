@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -252,9 +252,9 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8JS-kM-ddu">
-                                <rect key="frame" x="13" y="13" width="154" height="32"/>
+                                <rect key="frame" x="13" y="13" width="135" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="i12-7i-sAj"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="i12-7i-sAj"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1020">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -273,9 +273,9 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dje-ga-BFL">
-                                <rect key="frame" x="455" y="13" width="102" height="32"/>
+                                <rect key="frame" x="503" y="13" width="78" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="38I-Gj-bY2"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="38I-Gj-bY2"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="986">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -289,9 +289,9 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="Kxb-9F-vML">
-                                <rect key="frame" x="555" y="13" width="102" height="32"/>
+                                <rect key="frame" x="579" y="13" width="78" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="mqf-0s-HfW"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="mqf-0s-HfW"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="985">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -350,6 +350,7 @@ DQ
                 </viewController>
                 <customObject id="6nz-MY-aFy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController objectClassName="NSString" id="GFH-ie-6ky">
+                    <classReference key="objectClass" className="NSString"/>
                     <connections>
                         <binding destination="8Mx-zQ-ItP" name="contentArray" keyPath="menuTitles" id="Iyc-Af-9ek"/>
                     </connections>

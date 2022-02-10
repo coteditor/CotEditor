@@ -25,8 +25,6 @@
 				<string>public.data</string>
 				<string>public.source-code</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -51,14 +49,10 @@
 			<array>
 				<string>public.plain-text</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>ThemeIcon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>1</integer>
 			<key>CFBundleTypeName</key>
@@ -73,8 +67,6 @@
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>ReplacementsIcon</string>
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>1</integer>
 			<key>CFBundleTypeName</key>
@@ -101,8 +93,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -119,8 +109,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -143,8 +131,6 @@
 			<array>
 				<string>public.c-header</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -165,8 +151,6 @@
 			<array>
 				<string>public.c-source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -191,17 +175,18 @@
 			<array>
 				<string>public.c-plus-plus-source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>hh</string>
+				<string>hp</string>
 				<string>hpp</string>
-				<string>h++</string>
 				<string>hxx</string>
+				<string>h++</string>
+				<string>ipp</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>C++Icon</string>
@@ -215,8 +200,6 @@
 			<array>
 				<string>public.c-plus-plus-header</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -233,8 +216,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -255,8 +236,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -281,8 +260,6 @@
 			<array>
 				<string>public.css</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -299,8 +276,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -317,8 +292,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -337,8 +310,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -357,8 +328,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -380,8 +349,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -398,8 +365,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -419,8 +384,6 @@
 			<string>Alternate</string>
 			<key>LSTypeIsPackage</key>
 			<false/>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -444,8 +407,6 @@
 			<array>
 				<string>public.html</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -462,8 +423,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -484,8 +443,6 @@
 			<array>
 				<string>com.sun.java-source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -510,8 +467,6 @@
 			<array>
 				<string>com.netscape.javascript-source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -536,8 +491,6 @@
 			<array>
 				<string>public.json</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -554,8 +507,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -577,8 +528,6 @@
 			<array>
 				<string>org.kotlinlang.source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -596,8 +545,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -618,8 +565,6 @@
 			<array>
 				<string>org.lua.lua-source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -644,8 +589,6 @@
 			<array>
 				<string>net.daringfireball.markdown</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -653,8 +596,8 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
-				<string>cgi</string>
 				<string>pm</string>
+				<string>cgi</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>PerlIcon</string>
@@ -672,8 +615,6 @@
 			<array>
 				<string>public.perl-script</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -699,8 +640,6 @@
 			<array>
 				<string>public.php-script</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -726,8 +665,6 @@
 			<array>
 				<string>public.python-script</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -745,8 +682,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -771,8 +706,6 @@
 			<array>
 				<string>public.ruby-script</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -790,8 +723,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -816,8 +747,6 @@
 			<array>
 				<string>public.svg-image</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -829,13 +758,11 @@
 			<key>CFBundleTypeIconFile</key>
 			<string>ScalaIcon</string>
 			<key>CFBundleTypeName</key>
-			<string>Scala script</string>
+			<string>Scala source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -853,8 +780,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -875,8 +800,6 @@
 			<array>
 				<string>public.shell-script</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -899,8 +822,6 @@
 			<array>
 				<string>org.iso.sql</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -921,8 +842,6 @@
 			<array>
 				<string>public.swift-source</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -941,8 +860,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -959,8 +876,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -977,8 +892,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -995,8 +908,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -1013,8 +924,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -1033,8 +942,6 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -1085,8 +992,6 @@
 			<array>
 				<string>public.xml</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -1108,8 +1013,6 @@
 			<array>
 				<string>public.yaml</string>
 			</array>
-			<key>LSTypeIsPackage</key>
-			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -1119,7 +1022,7 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>CotEditor.help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>com.coteditor.CotEditor.help</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER).help</string>
 	<key>CFBundleIconName</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
@@ -1151,11 +1054,9 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2005-2009 nakamuxu
 © 2011, 2014 usami-k
-© 2013-2021 1024jp</string>
+© 2013-2022 1024jp</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 	<key>NSServices</key>
 	<array>
 		<dict>
@@ -1213,10 +1114,10 @@
 	</dict>
 	<key>OSAScriptingDefinition</key>
 	<string>$(PRODUCT_NAME).sdef</string>
+	<key>SUEnableInstallerLauncherService</key>
+	<true/>
 	<key>SUEnableJavaScript</key>
 	<true/>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 	<key>SUPublicEDKey</key>
 	<string>sY0VDoz2fbpnduoaVKlJBnlcBj/OFqQklEN/QlqDyWM=</string>
 	<key>UTExportedTypeDeclarations</key>
@@ -1228,8 +1129,6 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Theme</string>
-			<key>UTTypeIconFile</key>
-			<string>ThemeIcon</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBadgeName</key>
@@ -1254,8 +1153,6 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Replacement Definition</string>
-			<key>UTTypeIconFile</key>
-			<string>ReplacementsIcon</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBadgeName</key>
@@ -1310,7 +1207,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>org.lua.lua-source</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.lua.org</string>
+			<string>https://www.lua.org</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

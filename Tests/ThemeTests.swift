@@ -27,7 +27,6 @@
 import XCTest
 @testable import CotEditor
 
-
 final class ThemeTests: XCTestCase {
     
     private let themeDirectoryName = "Themes"

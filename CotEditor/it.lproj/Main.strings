@@ -240,6 +240,14 @@
 "djM-fI-MkN.title" = "Larghezza Tab";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Larghezza Tab";
+/* Class = "NSMenuItem"; title = "2"; ObjectID = "qs3-we-YzU"; */
+"qs3-we-YzU.title" = "2";
+/* Class = "NSMenuItem"; title = "3"; ObjectID = "8hL-SQ-WlX"; */
+"8hL-SQ-WlX.title" = "3";
+/* Class = "NSMenuItem"; title = "4"; ObjectID = "fwb-zD-hBp"; */
+"fwb-zD-hBp.title" = "4";
+/* Class = "NSMenuItem"; title = "8"; ObjectID = "9e0-Q5-Oqh"; */
+"9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "Personalizzato…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
@@ -393,7 +401,7 @@
 "Srp-eD-10Q.title" = "Virgolette singole";
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "Virgolette doppie";
-/* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
+/* Class = "NSMenuItem"; title = "Parentheses"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "Parentesi";  // ()
 /* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "Parentesi graffe";  // {}
@@ -415,7 +423,7 @@
 /* Class = "NSMenuItem"; title = "Make Lower Case"; ObjectID = "ZrR-aL-1eB"; */
 "ZrR-aL-1eB.title" = "Scrivi in lettere minuscole";
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
-"LC4-lg-eO0.title" = "Usa maiuscole";
+"LC4-lg-eO0.title" = "Iniziali maiuscole";
 
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
 "F0I-F4-srF.title" = "Usa notazione a serpente";
@@ -527,6 +535,8 @@
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "Rimuovi evidenziazione";
 
+/* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
+"PmT-ho-UU7.title" = "Apri il menu Outline";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "Seleziona elemento Outline precedente";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2021 1024jp
+//  © 2013-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return URL(string: self.rawValue)!
         }
     }
+    
+    
+    // MARK: Public Properties
+    
+    var needsRelaunch = false
     
     
     // MARK: Private Properties
@@ -107,9 +112,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        
-        // store key bindings in MainMenu.xib before menu is modified
-        MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
         
         // append the current version number to "What’s New" menu item
         let shortVersionRange = Bundle.main.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
@@ -196,6 +198,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if isLatest {
             UserDefaults.standard[.lastVersion] = thisVersion
         }
+        
+        if self.needsRelaunch {
+            NSApp.relaunch()
+        }
     }
     
     
@@ -242,10 +248,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 
                 if let error = error {
-                    NSApp.presentError(error)
-                    
                     let cancelled = (error as? CocoaError)?.code == .userCancelled
                     reply = cancelled ? .cancel : .failure
+                    
+                    // ask user for opening file
+                    if !cancelled {
+                        DispatchQueue.main.async {
+                            NSApp.presentError(error)
+                        }
+                    }
                 }
                 
                 // on first window opened

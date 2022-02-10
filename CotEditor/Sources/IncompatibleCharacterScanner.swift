@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,9 +39,9 @@ final class IncompatibleCharacterScanner {
     // MARK: Private Properties
     
     private weak var document: Document?
-    private lazy var queue = OperationQueue()
     
-    private lazy var updateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
+    private var task: Task<Void, Error>?
+    private lazy var updateDebouncer = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
     
     
@@ -55,56 +55,43 @@ final class IncompatibleCharacterScanner {
     
     
     deinit {
-        self.queue.cancelAllOperations()
+        self.task?.cancel()
     }
     
     
     
     // MARK: Public Methods
     
-    /// set update timer
+    /// Scan only when needed.
     func invalidate() {
         
         guard self.shouldScan else { return }
         
-        self.updateTask.schedule()
+        self.updateDebouncer.schedule()
     }
     
     
-    /// scan immediately
+    /// Scan immediately.
     func scan() {
         
-        self.updateTask.cancel()
-        self.queue.cancelAllOperations()
+        self.updateDebouncer.cancel()
+        self.task?.cancel()
         
         guard let document = self.document else { return assertionFailure() }
-        guard document.hasIncompatibles else {
+        
+        let string = document.string
+        let encoding = document.fileEncoding.encoding
+        
+        guard !string.canBeConverted(to: encoding) else {
             self.incompatibleCharacters = []
             return
         }
         
-        let operation = BlockOperation { [weak self] in
-            let incompatibleCharacters = document.string.scanIncompatibleCharacters(for: document.fileEncoding.encoding)
-            
-            DispatchQueue.main.async {
-                self?.incompatibleCharacters = incompatibleCharacters
-                self?.isScanning = false
-            }
-        }
-        
         self.isScanning = true
-        self.queue.addOperation(operation)
-    }
-    
-}
-
-
-
-private extension Document {
-    
-    var hasIncompatibles: Bool {
-        
-        !self.string.canBeConverted(to: self.fileEncoding.encoding)
+        self.task = Task { [weak self] in
+            defer { self?.isScanning = false }
+            self?.incompatibleCharacters = try string.scanIncompatibleCharacters(for: encoding)
+        }
     }
     
 }

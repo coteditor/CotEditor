@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -77,8 +77,8 @@ final class LineNumberView: NSView {
     // MARK: Constants
     
     private let minNumberOfDigits = 3
-    private let minVerticalThickness: CGFloat = 32
-    private let minHorizontalThickness: CGFloat = 20
+    private let minVerticalThickness = 32.0
+    private let minHorizontalThickness = 20.0
     
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
@@ -90,14 +90,14 @@ final class LineNumberView: NSView {
         case bold = 1.0
         case stroke = 0.4
         
-        static let highContrastCoefficient: CGFloat = 0.4
+        static let highContrastCoefficient = 0.4
     }
     
     
     // MARK: Private Properties
     
     private var drawingInfo: DrawingInfo?
-    private var thickness: CGFloat = 32
+    private var thickness = 32.0
     
     private var textColor: NSColor = .textColor  { didSet { self.needsDisplay = true } }
     private var backgroundColor: NSColor = .textBackgroundColor  { didSet { self.needsDisplay = true } }
@@ -400,38 +400,6 @@ final class LineNumberView: NSView {
 
 
 
-// MARK: Private Helper Extensions
-
-private extension Int {
-    
-    /// number of digits
-    var numberOfDigits: Int {
-        
-        guard self > 0 else { return 1 }
-        
-        return Int(log10(Double(self))) + 1
-    }
-    
-    
-    /// number at the desired place
-    func number(at place: Int) -> Int {
-        
-        return (self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place)))
-    }
-    
-}
-
-
-private extension FloatingPoint {
-    
-    func rounded(interval: Self) -> Self {
-        
-        return (self / interval).rounded() * interval
-    }
-}
-
-
-
 // MARK: - Controlling Text View
 
 extension LineNumberView {
@@ -524,8 +492,8 @@ extension LineNumberView {
             var intersects = false
             
             for selectedRange in draggingInfo.selectedRanges {
-                if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
-                    let range1 = NSRange(selectedRange.location..<range.location)
+                if selectedRange.lowerBound <= range.lowerBound, range.upperBound <= selectedRange.upperBound {  // exclude
+                    let range1 = NSRange(selectedRange.lowerBound..<range.lowerBound)
                     let range2 = NSRange(range.upperBound..<selectedRange.upperBound)
                     
                     if !range1.isEmpty {
@@ -557,7 +525,7 @@ extension LineNumberView {
             let selectedRange = textView.selectedRange
             
             if selectedRange.contains(currentIndex) {  // reduce
-                let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
+                let inUpperSelection = (currentIndex - selectedRange.lowerBound) < selectedRange.length / 2
                 range = inUpperSelection  // clicked upper half section of selected range
                     ? NSRange(currentIndex..<selectedRange.upperBound)
                     : NSRange(selectedRange.lowerBound..<currentLineRange.upperBound)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,9 +50,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yq3-Cq-5Km">
-                                <rect key="frame" x="377" y="13" width="102" height="32"/>
+                                <rect key="frame" x="401" y="13" width="78" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="sWn-Qf-20l"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="sWn-Qf-20l"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Sort" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ara-FL-nKk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -66,7 +66,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGp-tE-DiD">
-                                <rect key="frame" x="277" y="13" width="102" height="32"/>
+                                <rect key="frame" x="325" y="13" width="78" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lw7-xg-639">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -277,6 +277,7 @@ Gw
                         <string>keepsFirstLine</string>
                         <string>decending</string>
                     </declaredKeys>
+                    <classReference key="objectClass" className="SortOptions" moduleName="CotEditor"/>
                     <connections>
                         <binding destination="uia-jw-3Md" name="contentObject" keyPath="sortOptions" id="yaI-Pq-5NJ"/>
                     </connections>
@@ -338,6 +339,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="WfQ-XO-PFW" id="obQ-BW-7gz"/>
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.delimiter" id="OTK-ZM-0gt">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -378,6 +380,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="ikb-3W-LqX" id="dVr-Pj-4gw"/>
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="caP-7H-HMG">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -405,6 +408,7 @@ Gw
                 </viewController>
                 <customObject id="NIL-gR-8nU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController objectClassName="CotEditor.CSVSortPattern" automaticallyPreparesContent="YES" id="dZu-1R-AIV">
+                    <classReference key="objectClass" className="CSVSortPattern" moduleName="CotEditor"/>
                     <connections>
                         <binding destination="SbM-Fx-692" name="contentObject" keyPath="representedObject" id="kdg-Oq-Vgs"/>
                     </connections>
@@ -428,6 +432,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="AxG-SI-oKl" id="zih-Yf-dDy"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.searchPattern" id="Un0-F8-2q0">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -525,6 +530,7 @@ Gw
                 </viewController>
                 <customObject id="eiC-1S-Jf3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController objectClassName="CotEditor.RegularExpressionSortPattern" automaticallyPreparesContent="YES" id="bCX-ZR-9aZ">
+                    <classReference key="objectClass" className="RegularExpressionSortPattern" moduleName="CotEditor"/>
                     <connections>
                         <binding destination="mza-P2-Q5P" name="contentObject" keyPath="representedObject" id="2TG-VR-Nu4"/>
                     </connections>

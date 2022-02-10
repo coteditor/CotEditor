@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Style Name:"; ObjectID = "987"; */
-"987.title" = "语法名:";
+"987.title" = "语法名：";
 /* Class = "NSTextFieldCell"; placeholderString = "Style Name"; ObjectID = "988"; */
 "988.placeholderString" = "语法名";
 

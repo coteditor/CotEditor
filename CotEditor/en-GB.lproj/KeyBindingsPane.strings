@@ -1,0 +1,82 @@
+//
+//  KeyBindingsPane.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Alex Newson on 2022-01-30.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
+"sBQ-LT-Rwm.title" = "Menu Items";
+/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
+"9kQ-W2-4kw.title" = "Snippets";
+
+
+
+
+
+
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
+"ZYM-tb-Csx.title" = "Shortcuts for menu items";
+
+/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
+"Dl2-3y-7EJ.title" = "(excluding Script menu)";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "To change a binding, select it, click the key column, and then type the keys.";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
+"qGe-Et-FB2.title" = "The keys here must include the Command key.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Action";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
+"PSD-Um-TfH.headerCell.title" = "Key";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
+"CyK-OL-qHa.title" = "Restore Defaults";
+
+/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
+"5zd-aF-0zL.title" = "The keys here must exclude the Command key.";
+
+
+
+
+/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
+"eMZ-Mx-JSK.title" = "Shortcuts for preset text insertion";
+
+/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "To change a binding, select it, click the key column, and then type the keys.";
+
+/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
+"sz5-hl-bZK.headerCell.title" = "Action";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
+"hXU-bV-zlt.headerCell.title" = "Key";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
+"tuB-9O-QZH.title" = "Insertion Format:";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
+"wC4-qj-3oD.title" = "Insert Variable";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
+"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Select Action";
+
+/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
+"0Du-JI-ZN7.title" = "Restore Defaults";

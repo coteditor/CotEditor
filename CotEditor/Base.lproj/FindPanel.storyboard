@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -201,7 +201,7 @@
                                     <font key="font" metaFont="miniSystem"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="EHa-wl-4gS" kind="popover" popoverAnchorView="i2l-7Z-Zmf" popoverBehavior="t" preferredEdge="maxY" id="k5A-DB-ULq"/>
+                                    <action selector="showRegularExpressionReference:" target="fdE-8e-ywb" id="kzg-8w-xL7"/>
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-bg-rl5" userLabel="Recent Searches">
@@ -365,14 +365,6 @@
                 <customObject id="RCr-zH-1qK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1184" y="503"/>
-        </scene>
-        <!--RegexReferenceView-->
-        <scene sceneID="JHc-Ro-gvI">
-            <objects>
-                <controllerPlaceholder storyboardName="RegexReferenceView" id="EHa-wl-4gS" sceneMemberID="viewController"/>
-                <customObject id="yvX-k1-Q2J" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1185" y="444"/>
         </scene>
         <!--Find Panel Result View Controller-->
         <scene sceneID="Emr-ob-ZO3">
@@ -629,7 +621,7 @@
         <image name="NSGoLeftTemplate" width="10" height="14"/>
         <image name="NSGoRightTemplate" width="10" height="14"/>
         <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
-        <image name="magnifyingglass" catalog="system" width="15" height="15"/>
+        <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>
 </document>

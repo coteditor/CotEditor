@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,6 +38,8 @@
 "1353.title" = "Schwarz/Weiß";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Wie Dokument";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+"P53-bb-aGF.title" = "Hintergrund drucken";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "Zeilennummern:";

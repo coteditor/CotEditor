@@ -1,0 +1,43 @@
+//
+//  SyntaxTermsEditView.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+
+/* Class = "NSTableColumn"; headerCell.title = "Begin String"; ObjectID = "QJ2-Qf-Fyb"; */
+"QJ2-Qf-Fyb.headerCell.title" = "Dizi Başı";
+
+/* Class = "NSTableColumn"; headerCell.title = "End String"; ObjectID = "i4u-kF-59v"; */
+"i4u-kF-59v.headerCell.title" = "Dizi Sonu";
+
+/* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "hjj-zA-Yr9"; */
+"hjj-zA-Yr9.headerCell.title" = "Dİ";
+/* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "hjj-zA-Yr9"; */
+"hjj-zA-Yr9.headerToolTip" = "Düzenli İfade";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "qJN-3P-dIu"; */
+"qJN-3P-dIu.headerCell.title" = "BY";
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "qJN-3P-dIu"; */
+"qJN-3P-dIu.headerToolTip" = "Harf Biçimini Yok Say (BÜYÜK/küçük harf duyarsız)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "0ah-vG-2QL"; */
+"0ah-vG-2QL.headerCell.title" = "Açıklama";

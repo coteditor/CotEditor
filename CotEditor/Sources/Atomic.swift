@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ final class Atomic<T> {
     
     // MARK: Private Properties
     
-    private let queue: DispatchQueue
+    private let queue = DispatchQueue(label: "com.coteditor.CotEdiotor.atomic." + String(describing: T.self))
     private var value: T
     
     
@@ -43,17 +43,10 @@ final class Atomic<T> {
     // MARK: -
     // MARK: Lifecycle
     
-    init(_ wrappedValue: T, attributes: DispatchQueue.Attributes = []) {
-        
-        self.queue = DispatchQueue(label: "com.coteditor.CotEdiotor.atomic." + String(describing: T.self), attributes: attributes)
-        self.value = wrappedValue
-    }
-    
-    
     /// Initializer for proeprtyWrapper.
-    convenience init(wrappedValue: T) {
+    init(wrappedValue: T) {
         
-        self.init(wrappedValue)
+        self.value = wrappedValue
     }
     
     
@@ -72,15 +65,6 @@ final class Atomic<T> {
     func mutate(_ transform: (inout T) -> Void) {
         
         self.queue.sync {
-            transform(&self.value)
-        }
-    }
-    
-    
-    /// Thread-safe update of value without blocking the current thread.
-    func asyncMutate(_ transform: @escaping (inout T) -> Void) {
-        
-        self.queue.async(flags: .barrier) { [unowned self] in
             transform(&self.value)
         }
     }

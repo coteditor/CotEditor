@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2020 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
 "3277.title" = "エンコーディングの優先順位:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
-"3275.title" = "リストを編集...";
+"3275.title" = "リストを編集…";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
 "3280.title" = "書類のエンコーディング宣言を参照";
 
@@ -71,7 +71,7 @@
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
-"1lj-x8-ouD.title" = "読み込み...";
+"1lj-x8-ouD.title" = "読み込み…";
 /* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
 "FhP-Hj-cWE.title" = "すべてのスタイルを再読み込み";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
@@ -80,14 +80,14 @@
 
 /* contextual menu */
 /* Class = "NSMenuItem"; title = "Edit…"; ObjectID = "371-P0-KPK"; */
-"371-P0-KPK.title" = "編集...";
+"371-P0-KPK.title" = "編集…";
 /* Class = "NSMenuItem"; title = "Duplicate…"; ObjectID = "5oN-VC-ot9"; */
-"5oN-VC-ot9.title" = "複製...";
+"5oN-VC-ot9.title" = "複製…";
 /* Class = "NSMenuItem"; title = "Restore"; ObjectID = "Zox-Ve-mru"; */
 "Zox-Ve-mru.title" = "元に戻す";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
 "NDE-r5-xAF.title" = "削除";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
-"Qwp-u8-Urf.title" = "書き出し...";
+"Qwp-u8-Urf.title" = "書き出し…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
-"AkE-0P-0FC.title" = "Finderで表示";
+"AkE-0P-0FC.title" = "Finderに表示";

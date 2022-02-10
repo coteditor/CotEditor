@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -93,6 +93,9 @@ final class EditorViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(openOutlineMenu):
+                return self.outlineItems?.isEmpty == false
+                
             case #selector(selectPrevItemOfOutlineMenu):
                 guard let textView = self.textView else { return false }
                 return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
@@ -157,6 +160,14 @@ final class EditorViewController: NSSplitViewController {
     
     
     // MARK: Action Messages
+    
+    /// Show the menu items of the outline menu in the navigation bar.
+    @IBAction func openOutlineMenu(_ sender: Any) {
+        
+        self.showsNavigationBar = true
+        self.navigationBarController?.openOutlineMenu()
+    }
+    
     
     /// Select the previous outline menu item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {

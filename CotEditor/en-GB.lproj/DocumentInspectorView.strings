@@ -1,0 +1,86 @@
+//
+//  DocumentInspectorView.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Alex Newson on 2022-01-30.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Document File"; ObjectID = "5tP-OA-Ujw"; */
+"5tP-OA-Ujw.title" = "Document File";
+
+
+/* Class = "NSTextFieldCell"; title = "Created"; ObjectID = "hgp-Cc-KHJ"; */
+"hgp-Cc-KHJ.title" = "Created";
+/* Class = "NSTextFieldCell"; title = "Modified"; ObjectID = "BtZ-Pl-H7s"; */
+"BtZ-Pl-H7s.title" = "Modified";
+/* Class = "NSTextFieldCell"; title = "Size"; ObjectID = "uZa-Q9-nHs"; */
+"uZa-Q9-nHs.title" = "Size";
+/* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "AjV-U0-lC7"; */
+"AjV-U0-lC7.title" = "Owner";
+/* Class = "NSTextFieldCell"; title = "Permissions"; ObjectID = "N0Y-nO-k3L"; */
+"N0Y-nO-k3L.title" = "Permissions";
+/* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
+"zwU-xo-iZu.title" = "Full Path";
+
+
+/* Class = "NSTextFieldCell"; title = "Text Settings"; ObjectID = "8KW-Mc-cRX"; */
+"8KW-Mc-cRX.title" = "Text Settings";
+
+/* Class = "NSTextFieldCell"; title = "Encoding"; ObjectID = "B5F-j1-X4E"; */
+"B5F-j1-X4E.title" = "Encoding";
+/* Class = "NSTextFieldCell"; title = "Line Endings"; ObjectID = "XBS-xa-s3p"; */
+"XBS-xa-s3p.title" = "Line Endings";
+
+
+/* Class = "NSTextFieldCell"; title = "Count"; ObjectID = "cbf-0f-9rd"; */
+"cbf-0f-9rd.title" = "Count";
+
+/* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
+"yRM-Y0-4Oq.title" = "Lines";
+/* Class = "NSTextFieldCell"; title = "Characters"; ObjectID = "e1m-Uo-4UK"; */
+"e1m-Uo-4UK.title" = "Characters";
+/* Class = "NSTextFieldCell"; title = "Length"; ObjectID = "H0d-Eg-DcW"; */
+"H0d-Eg-DcW.title" = "Length";
+/* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
+"tZ6-05-eKf.title" = "Words";
+
+
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "ERr-yA-dIa"; */
+"ERr-yA-dIa.title" = "Location";
+
+/* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
+"nXT-Oq-0l6.title" = "Location";
+/* Class = "NSTextFieldCell"; title = "Current Line"; ObjectID = "f9g-dQ-g3K"; */
+"f9g-dQ-g3K.title" = "Current Line";
+/* Class = "NSTextFieldCell"; title = "Column"; ObjectID = "Wwr-gI-HPc"; */
+"Wwr-gI-HPc.title" = "Column";
+
+
+/* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
+"H2Z-jU-biZ.title" = "Character";
+
+/* Class = "NSTextFieldCell"; title = "Code Points"; ObjectID = "kna-yU-liB"; */
+"kna-yU-liB.title" = "Code Points";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
+"sru-km-SZJ.ibShadowedIsNilPlaceholder" = "Not selected";
+/* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
+"2ZU-Mi-aJz.ibShadowedToolTip" = "Select a single character to show Unicode information.";

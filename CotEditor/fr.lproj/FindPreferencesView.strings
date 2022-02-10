@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
 "Jug-Dk-JMZ.title" = "Ignorer les différences de chasse";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
-"A5O-jt-o7T.ibShadowedToolTip" = "Ignore les différences de forme des caractères（par exemple : ａ = a).";
+"A5O-jt-o7T.ibShadowedToolTip" = "Ignore les différences de forme des caractères (par exemple : ａ = a).";
 
 
 // Regular Expression
@@ -72,12 +72,12 @@
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "Le point capture les séparateurs de ligne";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
-"c11-J5-UXF.ibShadowedToolTip" = "Le caractère . capture n'importe quel caractère, y compris les caractères de nouvelle ligne.";
+"c11-J5-UXF.ibShadowedToolTip" = "Le caractère . capture n’importe quel caractère, y compris les caractères de nouvelle ligne.";
 
 /* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
 "YXU-NA-BZb.title" = "Ancrage de ligne";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
-"Lhw-9C-lgB.ibShadowedToolTip" = "Les caractères ^ et $ capturent respectivement le début et la fin d'une ligne.";
+"Lhw-9C-lgB.ibShadowedToolTip" = "Les caractères ^ et $ capturent respectivement le début et la fin d’une ligne.";
 
 /* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
 "5oj-ch-YiX.title" = "Utiliser les Word Boundaries Unicode";
@@ -87,4 +87,4 @@
 /* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
 "rTR-zE-Wff.title" = "Dé-échapper le texte de remplacement";
 /* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
-"PLV-vr-cdI.ibShadowedToolTip" = "Dé-échappe les métacaractères précédés d'un antislash dans le texte de remplacement.";
+"PLV-vr-cdI.ibShadowedToolTip" = "Dé-échappe les métacaractères précédés d’un antislash dans le texte de remplacement.";

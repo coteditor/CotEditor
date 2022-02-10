@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,14 +15,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="168" height="58"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK">
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK" customClass="WorkaroundOpacitySlider" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="32" y="4" width="104" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="IyE-hB-aRv"/>
                                 </constraints>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="nH9-7k-ekd"/>
                                 <connections>
-                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject.backgroundAlpha" id="6ud-qq-oFU"/>
+                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject.backgroundAlpha" id="vYd-Uj-7U5">
+                                        <dictionary key="options">
+                                            <bool key="NSValidatesImmediately" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </slider>
                             <customView toolTip="Opaque" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
@@ -86,12 +90,11 @@
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <toolbar key="toolbar" implicitIdentifier="7E7590E9-43BC-40F7-B967-07FA2780E47B" displayMode="iconOnly" sizeMode="regular" id="sSX-oQ-RNS" customClass="MonosizeToolbar" customModule="CotEditor" customModuleProvider="target">
+                        <toolbar key="toolbar" implicitIdentifier="7E7590E9-43BC-40F7-B967-07FA2780E47B" displayMode="iconOnly" sizeMode="regular" id="sSX-oQ-RNS">
                             <allowedToolbarItems/>
                             <defaultToolbarItems/>
                             <connections>
                                 <outlet property="delegate" destination="0UB-Lz-R6c" id="yOb-od-ptM"/>
-                                <outlet property="window" destination="gE4-1J-3li" id="4uv-vW-Vdy"/>
                             </connections>
                         </toolbar>
                         <connections>
@@ -277,17 +280,17 @@
                                             <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="LF" state="on" id="YT7-vd-3ih">
+                                            <menuItem title="LF" state="on" toolTip="macOS / Unix" id="YT7-vd-3ih">
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7EH-WW-zdr"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="CR" tag="1" id="J48-tF-WBo">
+                                            <menuItem title="CR" tag="1" toolTip="Classic Mac OS" id="J48-tF-WBo">
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7Dk-av-Fn2"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="CRLF" tag="2" id="Zo1-Cc-YBm">
+                                            <menuItem title="CRLF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="2Dg-7M-9om"/>
                                                 </connections>

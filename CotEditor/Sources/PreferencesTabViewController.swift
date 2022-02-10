@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,11 +27,6 @@ import Cocoa
 
 final class PreferencesTabViewController: NSTabViewController {
     
-    private var lastFrameSize: NSSize?
-    
-    
-    
-    // MARK: -
     // MARK: Tab View Controller Methods
     
     override var selectedTabViewItemIndex: Int {
@@ -48,24 +43,12 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.viewDidLoad()
         
-        // set fallback toolbar images for macOS 10.15
-        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
-            for item in self.tabViewItems {
-                guard
-                    let identifier = item.identifier as? String,
-                    let image = NSImage(named: "Preferences/" + identifier)
-                    else { continue }
-                
-                item.image = image
-            }
-        }
-        
         // select last used pane
         if
             let identifier = UserDefaults.standard[.lastPreferencesPaneIdentifier],
-            let item = self.tabViewItems.enumerated().first(where: { ($0.element.identifier as? String) == identifier })
+            let index = self.tabViewItems.firstIndex(where: { $0.identifier as? String == identifier })
         {
-            self.selectedTabViewItemIndex = item.offset
+            self.selectedTabViewItemIndex = index
         }
     }
     
@@ -82,14 +65,6 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.tabView(tabView, willSelect: tabViewItem)
         
-        self.lastFrameSize = tabViewItem?.view?.frame.size
-    }
-    
-    
-    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-        
-        super.tabView(tabView, didSelect: tabViewItem)
-        
         guard let tabViewItem = tabViewItem else { return assertionFailure() }
         
         self.switchPane(to: tabViewItem)
@@ -102,7 +77,7 @@ final class PreferencesTabViewController: NSTabViewController {
     /// resize window to fit to new view
     private func switchPane(to tabViewItem: NSTabViewItem) {
         
-        guard let contentSize = self.lastFrameSize ?? tabViewItem.view?.frame.size else { return assertionFailure() }
+        guard let contentSize = tabViewItem.view?.frame.size else { return assertionFailure() }
         
         // initialize tabView's frame size
         guard let window = self.view.window else {
@@ -127,7 +102,7 @@ final class PreferencesTabViewController: NSTabViewController {
 private extension NSWindow {
     
     /// calculate window frame for the given contentSize
-    func setFrame(for contentSize: NSSize, flag: Bool = false) {
+    func setFrame(for contentSize: NSSize, display flag: Bool = false) {
         
         let frameSize = self.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size
         let frame = NSRect(origin: self.frame.origin, size: frameSize)

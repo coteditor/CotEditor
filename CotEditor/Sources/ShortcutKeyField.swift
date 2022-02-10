@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,12 +25,14 @@
 //
 
 import Cocoa
+import Combine
 
 final class ShortcutKeyField: NSTextField {
     
     // MARK: Private Properties
     
     private var keyDownMonitor: Any?
+    private var windowObserver: AnyCancellable?
     
     
     
@@ -52,38 +54,19 @@ final class ShortcutKeyField: NSTextField {
         // hide insertion point
         (self.currentEditor() as? NSTextView)?.insertionPointColor = .clear
         
-        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event: NSEvent) -> NSEvent? in
-            guard
-                var charsIgnoringModifiers = event.charactersIgnoringModifiers,
-                let char = charsIgnoringModifiers.unicodeScalars.first
-                else { return event }
+        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event) -> NSEvent? in
+            guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
             
-            // correct Backspace and Delete keys
-            //  -> "backspace" key:        the key above "return"
-            //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
-            switch event.specialKey {
-                case NSEvent.SpecialKey.delete:
-                    charsIgnoringModifiers = String(NSEvent.SpecialKey.backspace.unicodeScalar)
-                case NSEvent.SpecialKey.deleteForward:
-                    charsIgnoringModifiers = String(NSEvent.SpecialKey.delete.unicodeScalar)
-                default: break
-            }
-            
-            // remove unwanted Shift
-            let ignoringShiftSet = CharacterSet(charactersIn: "`~!@#$%^&()_{}|\":<>?=/*-+.'")
-            let ignoringMask: NSEvent.ModifierFlags = ignoringShiftSet.contains(char) ? .shift : []
-            let modifierMask = event.modifierFlags.subtracting(ignoringMask).intersection([.control, .option, .shift, .command])
-            
-            // set input shortcut string to field
             // -> The single .delete works as delete.
-            self.objectValue = (event.specialKey == .delete && modifierMask.isEmpty)
-                ? nil
-                : Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
-            
-            // end editing
+            self.objectValue = (event.specialKey == .delete && shortcut.modifierMask.isEmpty) ? nil : shortcut.keySpecChars
             self.window?.endEditing(for: nil)
             
             return nil
+        }
+        
+        if let window = self.window {
+            self.windowObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification, object: window)
+                .sink { [unowned self] _ in window.endEditing(for: self) }
         }
         
         return true
@@ -101,6 +84,8 @@ final class ShortcutKeyField: NSTextField {
             NSEvent.removeMonitor(monitor)
             self.keyDownMonitor = nil
         }
+        
+        self.windowObserver = nil
         
         super.textDidEndEditing(notification)
     }

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2021 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -45,19 +45,20 @@
 "navigation bar" = "导航栏";
 "line numbers" = "行号";
 "find result" = "查找结果";
+"Use print font" = "使用打印字体";
 
 
 
 // Main menu item titles
 "Check for Updates…" = "检查更新…";
-"What’s New in CotEditor %@" = "CotEditor %@ 新特性";  // %@ is version number
+"What’s New in CotEditor %@" = "CotEditor %@新特性";  // %@ is version number
 
 "Share" = "共享";
 
 
 /* MARK: AppDelegate */
 // Importing theme
-"“%@” is a CotEditor theme file." = "“%@”是 CotEditor 主题文件";
+"“%@” is a CotEditor theme file." = "“%@”是CotEditor主题文件";
 "Do you want to install this theme?" = "是否安装主题？";
 "Install" = "安装";
 "Open as Text File" = "以文本方式打开";
@@ -73,16 +74,16 @@
 "Find All" = "查找全部";
 "Replace All" = "替换全部";
 "Highlight" = "高亮";
-"Searching in text…" = "正在文本中搜索...";
-"%@ string found." = "找到 %@ 个匹配";
-"%@ strings found." = "找到 %@ 个匹配";
-"%@ string replaced." = "已替换 %@ 个匹配";
-"%@ strings replaced." = "已替换 %@ 个匹配";
+"Searching in text…" = "正在文本中搜索…";
+"%@ string found." = "找到%@个匹配";
+"%@ strings found." = "找到%@个匹配";
+"%@ string replaced." = "已替换%@个匹配";
+"%@ strings replaced." = "已替换%@个匹配";
 "Invalid regular expression" = "无效的正则表达式";
 "Empty find string" = "空的搜索字符串";
 "The option “in selection” is enabled, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
 "Input text to find." = "输入文本以查找。";
-"Select the search scope in document or disable “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
+"Select the search scope in the document or disable the “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
 
 // accessibility announcement
 "Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
@@ -92,9 +93,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
-"%@ found" = "找到 %@ 项";  // %@ is number of founds
+"%@ found" = "找到%@项";  // %@ is number of founds
 "Not Replaced" = "没有进行替换";
-"%@ replaced" = "%@ 处被替换";  // %@ is number of replaced
+"%@ replaced" = "%@处被替换";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
@@ -102,6 +103,42 @@
 "No strings found in “%@”." = "在“%@”中没有找到字符串。";
 "Found one string in “%@”." = "在“%@”中找到一个字符串。";
 "Found %@ strings in “%@”." = "%@ 个字符串在“%@”中被找到。";
+
+
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "基本正则表达式语法";
+
+"Characters" = "字符";
+"any character" = "任意字符";
+"new line character" = "换行符";
+"tab character" = "tab符号";
+"word character" = "单词字符";
+"whitespace character" = "空格字符";
+"non-whitespace character" = "非空格字符";
+"decimal number" = "数字";
+"any character in range A to Z" = "A到Z范围内的任意字符";
+"any character not in range A to Z" = "不在A到Z范围内的任意字符";
+
+"Anchors" = "锚点";
+"beginning of the line" = "行首";
+"end of the line" = "行末";
+"word boundary" = "单词边界";
+
+"Quantifiers" = "数量";
+"1 or 0 times" = "1次或0次";
+"0 or more times" = "0次或更多";
+"1 or more times" = "1次或更多";
+"at least n but not more than m times" = "至少n次但不超过m次";
+"at least n times" = "至少n次";
+"at least 0 but not more than n times" = "至少0次但不超过n次";
+"n times" = "n次";
+
+"Extended Groups" = "扩展分组";
+"look-ahead" = "前向";
+"look-behind" = "后向";
+
+"Back Reference" = "回溯引用";
+"first match" = "首字匹配";
 
 
 
@@ -119,11 +156,11 @@
 "Automatic" = "自动";
 
 // Binary file alert
-"The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "该文件看起来是 %@。\n\n确定要打开该文件？";
+"The file “%@” doesn’t appear to be text data." = "文件“%@”不是文本数据";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "该文件看起来是%@。\n\n确定要打开该文件？";
 
 // Large file alert
-"The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";
+"The file “%@” has a size of %@." = "“%@”文件尺寸为%@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打开大型文件可能导致应用速度变慢。\n\n确定要打开该文件？";
 "Open" = "打开";
 
@@ -143,7 +180,7 @@
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to continue processing?" = "继续进行处理吗？";
-"Save Available Strings" = "保存有效字符串";
+"Save Available Text" = "保存有效文本";
 "Show Incompatible Characters" = "显示不兼容字符";
 
 // Encoding change with unsaved changes alert
@@ -162,10 +199,10 @@
 "Change Encoding" = "更改编码";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor 中还有未保存的变更。";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
 "The file has been modified by another application." = "文件被其他应用更改。";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "保留 CotEditor 的版本还是更新至被编辑过的版本？";
-"Keep CotEditor’s Edition" = "保留 CotEditor 编辑的内容";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本还是更新至被编辑过的版本？";
+"Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";
 
 
@@ -220,9 +257,9 @@
 // tooltip
 "Disable expanding tabs to spaces" = "禁止将tab扩展为空格";
 "Expand tabs to spaces automatically" = "自动将tab扩展为空格";
-"Change tab width" = "更改 Tab 宽度";
+"Change tab width" = "更改Tab宽度";
 // menu
-"Tab Width" = "Tab 宽度";
+"Tab Width" = "Tab宽度";
 "Custom…" = "自定义…";
 
 "Wrap Lines" = "换行";
@@ -297,6 +334,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "颜色";
+"Print Background" = "打印背景";
 "Line Number" = "行号";
 "Invisibles" = "不可见元素";
 "Print Header" = "打印页眉";
@@ -329,9 +367,15 @@
 
 
 /* MARK: Inspector */
+// Outline
+"Recent Filters" = "最近的过滤";
+"Clear Recents" = "清除最近记录";
+"No Recent Filter" = "没有最近的过滤";
+"No Filter Results" = "无过滤结果";
+
 // Incompatible characters
 "No incompatible characters were found." = "没有找到不兼容字符";
-"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Scanning incompatible characters…" = "扫描不兼容字符…";
 
 
 
@@ -345,22 +389,13 @@
 "Convert Indentation" = "转换缩进";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
-"To Snake Case" = "至蛇形式";
-"To Camel Case" = "至小驼峰式";
-"To Pascal Case" = "至大驼峰式";
-"To Full-width" = "转为全角";
-"To Half-width" = "转为半角";
-"To Full-width Roman" = "转为全角罗马字";
-"To Half-width Roman" = "转为半角罗马字";
-"Hiragana to Katakana" = "平假名到片假名";
-"Katakana to Hiragana" = "片假名到平假名";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修改 NFC";
-"Modified NFD" = "修改 NFD";
+"Modified NFC" = "修改NFC";
+"Modified NFD" = "修改NFD";
 "Inspect Character" = "显示字符";
 "Move Line" = "移动行";
 "Sort Lines" = "排序行";
@@ -431,10 +466,10 @@
 
 /* MARK: SyntaxStyle */
 // Coloring indicator
-"Coloring text…" = "文本着色中...";
-"Please wait for a while." = "请稍等片刻...";
-"Extracting %@…" = "%@ 解压中...";
-"Preparing coloring…" = "准备着色中...";
+"Coloring text…" = "文本着色中…";
+"Please wait for a while." = "请稍等片刻…";
+"Extracting %@…" = "%@ 解压中…";
+"Preparing to color…" = "准备着色中…";
 "Applying colors to text" = "在文本上使用颜色";
 "keywords" = "关键字";
 "commands" = "命令";
@@ -460,7 +495,7 @@
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "变更将在下次启动时生效。";
-"Do you want to restart CotEditor now?" = "现在就重启 CotEditor 吗？";
+"Do you want to restart CotEditor now?" = "现在就重启CotEditor吗？";
 "Restart Now" = "现在重启";
 "Later" = "稍后";
 // command-line tool
@@ -472,7 +507,7 @@
 "Rename “%@”" = "给“%@”重新命名";
 "Duplicate “%@”" = "拷贝“%@”";
 "Restore “%@”" = "还原“%@”";
-"Reveal “%@” in Finder" = "在 Finder 中显示“%@”";
+"Reveal “%@” in Finder" = "在访达中显示“%@”";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
 "This action cannot be undone." = "此操作不能撤销。";
@@ -486,7 +521,7 @@
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";
-"Reveal “%@” in Finder" = "在 Finder 中显示“%@”";
+"Reveal “%@” in Finder" = "在访达中显示“%@”";
 
 
 // File Drop pane
@@ -501,8 +536,8 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的 'cot' 符号链接没有指向正在运行的 CotEditor。";
-"The current 'cot' symbolic link may target an invalid path." = "当前的 'cot' 符号链接可能指向无效路径。";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "当前的cot符号链接没有指向正在运行的CotEditor。";
+"The current 'cot' symbolic link may target an invalid path." = "当前的cot符号链接可能指向无效路径。";
 
 
 
@@ -526,8 +561,8 @@
 
 // Syntax style validation results
 "No error found." = "没有发现错误";
-"An error found!" = "发现 1 个错误";
-"%i errors found!" = "发现 %i 个错误";
+"An error found!" = "发现1个错误";
+"%i errors found!" = "发现%i个错误";
 "outline menu" = "大纲菜单";
 
 
@@ -535,7 +570,7 @@
 /* MARK: SettingFileManager */
 "“%@” couldn’t be deleted." = "“%@”无法删除。";
 "“%@” couldn’t be imported." = "“%@”无法导入。";
-"No original file for “%@” was found." = "无法找到 “%@” 的源文件。";
+"No original file for “%@” was found." = "无法找到“%@”的源文件。";
 
 // Setting filename warnings
 "Please choose another name." = "请输入其他名称。";
@@ -594,24 +629,21 @@
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名称为 “%@” 的新替换定义将被安装，但是已经存在相同名称的定义。";
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名称为“%@”的新替换定义将被安装，但是已经存在相同名称的定义。";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替换该定义吗？\n被替换的定义无法恢复。";
 
 
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "插入文本 %li";
+"Insert Text %li" = "插入文本%li";
 
 // Keyboard key name
 "Space" = "空格键";
 
 // Warning messages
-"“%@” is already taken." = "“%@”已在使用中。";
-"“%@” does not include the Command key." = "“%@”中没有包含 Command 键。";
-"“%@” includes the Command key." = "“%@”包含了 Command 键。";
-"The Shift key can be used only with another modifier key." = "Shift 只能配合其他修饰键使用。";
-"Please choose another key." = "请选择其他按键。";
+"“%@” is already taken by the “%@” command." = "“%@”已在使用中。";  // FIXME: updated
+"The Shift key can be used only with another modifier key." = "Shift键只能配合其他修饰键使用。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 "Please combine with other keys." = "请与其他键组合使用。";
 
@@ -619,10 +651,10 @@
 
 /* MARK: ScriptManager */
 // Menu items
-"Open Scripts Folder" = "打开脚本文件夹";
+"Open Scripts Folder" = "打开Scripts文件夹";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "使用 “Option + 单击” 在编辑器中打开脚本。";
+"“Option + click” to open script in editor." = "使用“Option+单击”在编辑器中打开脚本。";
 
 
 

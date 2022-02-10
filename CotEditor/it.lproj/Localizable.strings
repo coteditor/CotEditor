@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2021 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@
 "navigation bar" = "barra di navigazione";
 "line numbers" = "numeri di riga";
 "find result" = "risultati di ricerca";
+"Use print font" = "Usa font di stampa";
 
 
 
@@ -82,7 +83,7 @@
 "Empty find string" = "Stringa di ricerca vuota";
 "The option “in selection” is enabled, although nothing is selected." = "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla.";
 "Input text to find." = "Inserire il testo da cercare.";
-"Select the search scope in document or disable “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
+"Select the search scope in the document or disable the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
 
 // accessibility announcement
 "Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
@@ -102,6 +103,42 @@
 "No strings found in “%@”." = "Nessuna stringa trovata in “%@”.";
 "Found one string in “%@”." = "Trovata una stringa in “%@”.";
 "Found %@ strings in “%@”." = "Trovate %@ stringhe in %@”.";
+
+
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "Sintassi di un’espressione regolare di base";
+
+"Characters" = "Caratteri";
+"any character" = "Qualsiasi carattere";
+"new line character" = "Carattere a capo (nuova riga)";
+"tab character" = "Carattere Tabulazione";
+"word character" = "Carattere parola";
+"whitespace character" = "Carattere spazio bianco";
+"non-whitespace character" = "Carattere non spazio bianco";
+"decimal number" = "Decimale";
+"any character in range A to Z" = "Qualsiasi carattere dalla A alla Z";
+"any character not in range A to Z" = "Qualsiasi carattere non nell’intervallo A-Z";
+
+"Anchors" = "Ancore";
+"beginning of the line" = "Inizio riga";
+"end of the line" = "Fine riga";
+"word boundary" = "Limiti delle parole";
+
+"Quantifiers" = "Quantificatore";
+"1 or 0 times" = "Una o zero volte";
+"0 or more times" = "Zero o più volte";
+"1 or more times" = "Una o più volte";
+"at least n but not more than m times" = "Almeno n volte ma non più di m volte";
+"at least n times" = "Almeno n volte";
+"at least 0 but not more than n times" = "Almeno 0 volte ma non più di n volte";
+"n times" = "n volte";
+
+"Extended Groups" = "Gruppi estesi";
+"look-ahead" = "guarda avanti";
+"look-behind" = "guarda indietro";
+
+"Back Reference" = "Back Reference";
+"first match" = "primo risultato";
 
 
 
@@ -143,7 +180,7 @@
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
 "Do you want to continue processing?" = "Si desidera continuare l’elaborazione?";
-"Save Available Strings" = "Salva le stringhe disponibili";
+"Save Available Text" = "Salva le stringhe disponibili";
 "Show Incompatible Characters" = "Mostra caratteri incompatibili";
 
 // Encoding change with unsaved changes alert
@@ -164,7 +201,7 @@
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Il file è stato modificato da un’altra applicazione. Ci sono anche delle modifiche non salvate in CotEditor.";
 "The file has been modified by another application." = "Il file è stato modificato da un’altra applicazione.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Si desidera mantenere la versione di CotEditor oppure aggiornarla a quella modificata?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Si desidera mantenere la versione di CotEditor oppure aggiornarla a quella modificata?";
 "Keep CotEditor’s Edition" = "Mantieni la versione di CotEditor";
 "Update" = "Aggiorna";
 
@@ -298,6 +335,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "Colore";
+"Print Background" = "Stampa sfondi";
 "Line Number" = "Numero riga";
 "Invisibles" = "Caratteri invisibili";
 "Print Header" = "Stampa intestazione";
@@ -330,9 +368,15 @@
 
 
 /* MARK: Inspector */
+// Outline
+"Recent Filters" = "Recent Filters";  // FIXME: added
+"Clear Recents" = "Clear Recents";  // FIXME: added
+"No Recent Filter" = "No Recent Filter";  // FIXME: added
+"No Filter Results" = "No Filter Results";  // FIXME: added
+
 // Incompatible characters
 "No incompatible characters were found." = "Nessun carattere incompatibile trovato.";
-"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
 
 
 
@@ -346,15 +390,6 @@
 "Convert Indentation" = "Converti rientro";
 "Comment Out" = "Trasforma in commento";
 "Uncomment" = "De-commenta";
-"To Snake Case" = "Notazione a serpente";
-"To Camel Case" = "Notazione a cammello";
-"To Pascal Case" = "Notazione Pascal";
-"To Full-width" = "A tutta larghezza";
-"To Half-width" = "A mezza larghezza";
-"To Full-width Roman" = "Caratteri Romani a tutta ampiezza";
-"To Half-width Roman" = "Caratteri Romani a mezza ampiezza";
-"Hiragana to Katakana" = "Da Hiragana a Katakana";
-"Katakana to Hiragana" = "Da Katakana a Hiragana";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
@@ -415,7 +450,7 @@
 "Lines: " = "Righe: ";
 "Characters: " = "Caratteri: ";
 "Length: " = "Lunghezza: ";
-"Words: " = "Parole";
+"Words: " = "Parole: ";
 "Location: " = "Posizione: ";
 "Line: " = "Riga: ";
 "Column: " = "Colonna: ";
@@ -435,7 +470,7 @@
 "Coloring text…" = "Colorando testo…";
 "Please wait for a while." = "Si prega di attendere.";
 "Extracting %@…" = "Estrazione di %@…";
-"Preparing coloring…" = "Preparo la colorazione…";
+"Preparing to color…" = "Preparo la colorazione…";
 "Applying colors to text" = "Applicazione dei colori al testo";
 "keywords" = "Parole chiave";
 "commands" = "Comandi";
@@ -608,12 +643,9 @@
 "Space" = "Spazio";
 
 // Warning messages
-"“%@” is already taken." = "Il tasto “%@” è giù utilizzato.";
-"“%@” does not include the Command key." = "La combinazione “%@” non include il tasto Command.";
-"“%@” includes the Command key." = "La combinazione “%@” include il tasto Command.";
+"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";  // FIXME: updated
 "The Shift key can be used only with another modifier key." = "Il
 tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
-"Please choose another key." = "Si prega di sceglierne un altro.";
 "Single type is invalid for a shortcut." = "Un solo tasto non è una scorciatoia valida.";
 "Please combine with other keys." = "Si prega di abbinarlo ad altri tasti.";
 
@@ -621,7 +653,7 @@ tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 
 /* MARK: ScriptManager */
 // Menu items
-"Open Scripts Folder" = "Apri la cartella degli script";
+"Open Scripts Folder" = "Apri cartella script";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "“Alt/Opt + Click” per aprire nell’editor degli script.";

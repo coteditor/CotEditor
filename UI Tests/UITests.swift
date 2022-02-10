@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -69,6 +69,15 @@ final class UITests: XCTestCase {
         }
         sleep(1)
         XCTAssert(documentWindow.exists)
+    }
+    
+    
+    func testLaunchPerformance() throws {
+        
+        // This measures how long it takes to launch your application.
+        self.measure(metrics: [XCTApplicationLaunchMetric()]) {
+            XCUIApplication().launch()
+        }
     }
     
 }

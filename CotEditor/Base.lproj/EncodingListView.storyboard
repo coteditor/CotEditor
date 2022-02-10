@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JC2-8h-XKM">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JC2-8h-XKM">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,17 +11,17 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="JC2-8h-XKM" customClass="EncodingListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yF2-dV-tho">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="355"/>
+                        <rect key="frame" x="0.0" y="0.0" width="498" height="355"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP8-0O-9z3">
-                                <rect key="frame" x="20" y="96" width="284" height="215"/>
+                                <rect key="frame" x="20" y="96" width="342" height="215"/>
                                 <clipView key="contentView" id="0qH-ED-MMi">
-                                    <rect key="frame" x="1" y="1" width="282" height="213"/>
+                                    <rect key="frame" x="1" y="1" width="340" height="213"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="sEh-f6-spz">
-                                            <rect key="frame" x="0.0" y="0.0" width="282" height="213"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="340" height="213"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -79,7 +79,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="wpM-UK-y4B">
-                                    <rect key="frame" x="1" y="200" width="282" height="16"/>
+                                    <rect key="frame" x="1" y="198" width="298" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="UMo-eW-a7g">
@@ -87,9 +87,9 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aiv-GS-dcz">
-                                <rect key="frame" x="225" y="13" width="102" height="32"/>
+                                <rect key="frame" x="331" y="13" width="78" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="gZx-T8-VBs"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="gZx-T8-VBs"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3390">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -103,9 +103,9 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-EP-XJr">
-                                <rect key="frame" x="325" y="13" width="102" height="32"/>
+                                <rect key="frame" x="407" y="13" width="78" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="WRu-xh-GUj"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="WRu-xh-GUj"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" tag="100" inset="2" id="3391">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -119,7 +119,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uwq-dp-HCe">
-                                <rect key="frame" x="306" y="288" width="120" height="27"/>
+                                <rect key="frame" x="364" y="288" width="120" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" id="UBd-i0-3Pw"/>
                                 </constraints>
@@ -132,7 +132,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5od-lM-Mgb">
-                                <rect key="frame" x="306" y="262" width="120" height="27"/>
+                                <rect key="frame" x="364" y="262" width="120" height="27"/>
                                 <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3393">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
@@ -150,9 +150,9 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQS-x1-ISf">
-                                <rect key="frame" x="45" y="13" width="144" height="32"/>
+                                <rect key="frame" x="45" y="13" width="135" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="V5n-Ja-2mA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="V5n-Ja-2mA"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="3396">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -176,7 +176,7 @@ DQ
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz">
-                                <rect key="frame" x="18" y="60" width="404" height="28"/>
+                                <rect key="frame" x="18" y="60" width="462" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
                                     <font key="font" metaFont="message" size="11"/>
                                     <string key="title">This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.</string>
@@ -221,6 +221,7 @@ DQ
                 </viewController>
                 <customObject id="Fyr-Bn-fM9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController objectClassName="NSNumber" id="HYH-gP-Jrd" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
+                    <classReference key="objectClass" className="NSNumber"/>
                     <connections>
                         <binding destination="JC2-8h-XKM" name="contentArray" keyPath="encodings" id="UXw-dY-5yI">
                             <dictionary key="options">

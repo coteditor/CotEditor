@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,12 +29,12 @@ import XCTest
 final class OutlineTests: XCTestCase {
 
     private let items: [OutlineItem] = [
-        OutlineItem(title: "a", range: NSRange(location: 10, length: 5)),         // 0
+        OutlineItem(title: "dog", range: NSRange(location: 10, length: 5)),         // 0
         OutlineItem(title: .separator, range: NSRange(location: 20, length: 5)),
         OutlineItem(title: .separator, range: NSRange(location: 30, length: 5)),
-        OutlineItem(title: "b", range: NSRange(location: 40, length: 5)),         // 3
+        OutlineItem(title: "dogcow", range: NSRange(location: 40, length: 5)),      // 3
         OutlineItem(title: .separator, range: NSRange(location: 50, length: 5)),
-        OutlineItem(title: "c", range: NSRange(location: 60, length: 5)),         // 5
+        OutlineItem(title: "cow", range: NSRange(location: 60, length: 5)),         // 5
         OutlineItem(title: .separator, range: NSRange(location: 70, length: 5)),
     ]
     
@@ -77,6 +77,15 @@ final class OutlineTests: XCTestCase {
         XCTAssertEqual(self.items.nextItem(for: NSRange(40..<40)), items[5])
         XCTAssertNil(self.items.nextItem(for: NSRange(60..<60)))
         XCTAssertNil(self.items.nextItem(for: NSRange(40..<61)))
+    }
+    
+    
+    func testFilter() throws {
+        
+        XCTAssertEqual(self.items.filterItems(with: "").count, 0)
+        XCTAssertEqual(self.items.filterItems(with: "cat").count, 0)
+        XCTAssertEqual(self.items.filterItems(with: "dog").count, 2)
+        XCTAssertEqual(self.items.filterItems(with: "dow").count, 1)
     }
 
 }

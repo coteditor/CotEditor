@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ final class TextFind {
                 case .emptyFindString:
                     return "Input text to find.".localized
                 case .emptyInSelectionSearch:
-                    return "Select the search scope in document or disable “in selection” option.".localized
+                    return "Select the search scope in the document or disable the “in selection” option.".localized
             }
         }
         

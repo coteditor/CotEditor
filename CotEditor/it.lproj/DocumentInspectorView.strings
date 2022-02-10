@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2020 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -78,10 +78,10 @@
 /* Class = "NSTextFieldCell"; title = "Character"; ObjectID = "H2Z-jU-biZ"; */
 "H2Z-jU-biZ.title" = "Carattere";
 
-/* Class = "NSTextFieldCell"; title = "Unicode"; ObjectID = "kna-yU-liB"; */
-"kna-yU-liB.title" = "Unicode";
+/* Class = "NSTextFieldCell"; title = "Code Points"; ObjectID = "kna-yU-liB"; */
+"kna-yU-liB.title" = "Punti di Codice";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "786-4C-69e"; */
-"786-4C-69e.ibShadowedIsNilPlaceholder" = "Nessuna selezione";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not selected"; ObjectID = "sru-km-SZJ"; */
+"sru-km-SZJ.ibShadowedIsNilPlaceholder" = "Nessuna selezione";
 /* Class = "NSTextField"; ibShadowedToolTip = "Select a single character to show Unicode information."; ObjectID = "2ZU-Mi-aJz"; */
 "2ZU-Mi-aJz.ibShadowedToolTip" = "Selezionare un solo carattere per visualizzarne le informazioni Unicode";

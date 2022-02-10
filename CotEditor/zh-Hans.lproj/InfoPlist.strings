@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,55 +27,55 @@
  */
 
 // Descriptions for privacy authorization dialog
-"NSAppleEventsUsageDescription" = "CotEditor 需要用户授权使用 AppleScript 控制其他应用。";  // "CotEditor needs user approval to control other applications with AppleScript."
+"NSAppleEventsUsageDescription" = "CotEditor需要用户授权使用AppleScript控制其他应用。";  // "CotEditor needs user approval to control other applications with AppleScript."
 
 // Document Types
 "Text document" = "文本文档";
 "Plain text" = "纯文本";
-"CotEditor Theme" = "CotEditor 主题";
-"CotEditor Replacement Definition" = "CotEditor 替换定义";
+"CotEditor Theme" = "CotEditor主题";
+"CotEditor Replacement Definition" = "CotEditor替换定义";
 "BibTeX" = "BibTeX";
 "Configuration" = "配置文件";
-"C header" = "C 头文件";
-"C source" = "C 源码";
-"C++ source" = "C++ 源码";
-"C++ header" = "C++ 头文件";
-"C# source" = "C# 源码";
+"C header" = "C头文件";
+"C source" = "C源码";
+"C++ source" = "C++源码";
+"C++ header" = "C++头文件";
+"C# source" = "C#源码";
 "CoffeeScript" = "CoffeeScript";
-"Cascading Style Sheet" = "CSS 文件";
-"D source" = "D 源码";
-"Dart script" = "Dart 脚本";
+"Cascading Style Sheet" = "CSS文件";
+"D source" = "D源码";
+"Dart script" = "Dart脚本";
 "Diff" = "Diff";
 "Document Type Definition" = "文档类型定义";
-"Fortran Source" = "Fortran 源码";
+"Fortran Source" = "Fortran源码";
 "Go script" = "Go 脚本";
-"Haskell script" = "Haskell 脚本";
-"HTML document" = "HTML 文档";
+"Haskell script" = "Haskell脚本";
+"HTML document" = "HTML文档";
 "INI" = "INI";
-"Java source" = "Java 源码";
+"Java source" = "Java源码";
 "JavaScript" = "JavaScript";
-"JSON document" = "JSON 文档";
-"Julia script" = "Julia 脚本";
-"Kotlin source" = "Kotlin 源码";
-"Lisp script" = "Lisp 脚本";
-"Lua script" = "Lua 脚本";
-"Markdown document" = "Markdown 文档";
-"Perl script" = "Perl 脚本";
-"PHP script" = "PHP 脚本";
-"Python script" = "Python 脚本";
-"reStructured Text document" = "reStructured 文本文档";
-"Ruby script" = "Ruby 脚本";
-"Rust script" = "Rust 脚本";
+"JSON document" = "JSON文档";
+"Julia script" = "Julia脚本";
+"Kotlin source" = "Kotlin源码";
+"Lisp script" = "Lisp脚本";
+"Lua script" = "Lua脚本";
+"Markdown document" = "Markdown文档";
+"Perl script" = "Perl脚本";
+"PHP script" = "PHP脚本";
+"Python script" = "Python脚本";
+"reStructured Text document" = "reStructured文本文档";
+"Ruby script" = "Ruby脚本";
+"Rust script" = "Rust脚本";
 "Scalable Vector Graphics" = "矢量图";
-"Scala script" = "Scala 脚本";
-"Scheme script" = "Scheme 脚本";
-"Shell script" = "Shell 脚本";
-"SQL source" = "SQL 源码";
-"Swift source" = "Swift 源码";
+"Scala source" = "Scala源码";
+"Scheme script" = "Scheme脚本";
+"Shell script" = "Shell脚本";
+"SQL source" = "SQL源码";
+"Swift source" = "Swift源码";
 "TeX" = "TeX";
-"Textile document" = "Textile 文档";
-"Tcl source" = "Tcl 源码";
-"Verilog source" = "Verilog 源码";
-"VHDL source" = "VHDL 源码";
-"XML document" = "XML 文档";
-"YAML document" = "YAML 文档";
+"Textile document" = "Textile文档";
+"Tcl source" = "Tcl源码";
+"Verilog source" = "Verilog源码";
+"VHDL source" = "VHDL源码";
+"XML document" = "XML文档";
+"YAML document" = "YAML文档";

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2021 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@
 "editor" = "Editor";
 "line numbers" = "Zeilennummern";
 "find result" = "Suchergebnis";
+"Use print font" = "Schrift für drucken benutzen";
 
 
 
@@ -51,7 +52,7 @@
 "Check for Updates…" = "Nach Updates suchen …";
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
-"Share" = "Teillen";
+"Share" = "Teilen";
 
 
 /* MARK: AppDelegate */
@@ -81,7 +82,7 @@
 "Empty find string" = "Leerer Suchbegriff";
 "The option “in selection” is enabled, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
 "Input text to find." = "Gib den zu findenden Text ein.";
-"Select the search scope in document or disable “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
+"Select the search scope in the document or disable the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
 
 // accessibility announcement
 "Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
@@ -101,6 +102,42 @@
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
 "Found %@ strings in “%@”." = "%@ Zeichenketten „%@” in gefunden.";
+
+
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "Grundlegende Grammatik regulärer Ausdrücke";
+
+"Characters" = "Zeichen";
+"any character" = "beliebiges Zeichen";
+"new line character" = "Zeilenende (New Line)";
+"tab character" = "Tabulator-Zeichen";
+"word character" = "Buchstabe";
+"whitespace character" = "Whitespace";
+"non-whitespace character" = "kein Whitespace";
+"decimal number" = "Ziffer";
+"any character in range A to Z" = "irgendein Zeichen im Bereich A bis Z";
+"any character not in range A to Z" = "irgendein Zeichen nicht im Bereich A bis Z";
+
+"Anchors" = "Anker";
+"beginning of the line" = "Anfang der Zeile";
+"end of the line" = "Ende der Zeile";
+"word boundary" = "Wortgrenze";
+
+"Quantifiers" = "Quantoren";
+"1 or 0 times" = "null- oder einmal";
+"0 or more times" = "null- oder mehrmals";
+"1 or more times" = "einmal oder mehrmals";
+"at least n but not more than m times" = "mindestens n-mal und maximal m-mal";
+"at least n times" = "mindestens n-mal";
+"at least 0 but not more than n times" = "mindestens nullmal und maximal n-mal";
+"n times" = "n-mal";
+
+"Extended Groups" = "Erweiterte Gruppen";
+"look-ahead" = "look-ahead";
+"look-behind" = "look-behind";
+
+"Back Reference" = "Rückwärtsreferenz";
+"first match" = "erste Übereinstimmung";
 
 
 
@@ -142,7 +179,7 @@
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "Beim Speichern in „%@“ müssen einige Zeichen möglicherweise geändert oder gelöscht werden.";
 "Do you want to continue processing?" = "Möchtest du mit der Bearbeitung fortfahren?";
-"Save Available Strings" = " Verfügbare Zeichenkette speichern";
+"Save Available Text" = " Verfügbaren Text speichern";
 "Show Incompatible Characters" = "Inkompatible Zeichen einblenden";
 
 // Encoding change with unsaved changes alert
@@ -163,7 +200,7 @@
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Möchtest du CotEditors Version behalten oder auf die geänderte Version aktualisieren?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Möchtest du die Version des CotEditors behalten oder auf die geänderte Version aktualisieren?";
 "Keep CotEditor’s Edition" = "CotEditors Version behalten";
 "Update" = "Aktualisieren";
 
@@ -297,6 +334,7 @@
 /* MARK: PrintAccessoryViewController */
 // Summary item names
 "Color" = "Farbe";
+"Print Background" = "Hintergrund drucken";
 "Line Number" = "Zeilennummern";
 "Invisibles" = "Steuerzeichen";
 "Print Header" = "Kopfzeilen drucken";
@@ -329,6 +367,12 @@
 
 
 /* MARK: Inspector */
+// Outline
+"Recent Filters" = "Zuletzt gefiltert";
+"Clear Recents" = "Filter löschen";
+"No Recent Filter" = "Keine letzten Filtereinträge";
+"No Filter Results" = "Keine Filtertreffer";
+
 // Incompatible characters
 "No incompatible characters were found." = "Keine inkompatiblen Zeichen gefunden.";
 "Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";
@@ -345,15 +389,6 @@
 "Convert Indentation" = "Einzug konvertieren";
 "Comment Out" = "Auskommentieren";
 "Uncomment" = "Unkommentieren";
-"To Snake Case" = "Zu Snakecase";
-"To Camel Case" = "Zu Camelcase";
-"To Pascal Case" = "Zu Pascalcase";
-"To Full-width" = "Zu vollbreiten Zeichen";
-"To Half-width" = "Zu halbbreiten Zeichen";
-"To Full-width Roman" = "Zu vollbreiten Zeichen";
-"To Half-width Roman" = "Zu halbbreiten Zeichen";
-"Hiragana to Katakana" = "Hiragana zu Katakana";
-"Katakana to Hiragana" = "Katakana zu Hiragana";
 "NFD" = "NFD";
 "NFC" = "NFC";
 "NFKD" = "NFKD";
@@ -434,7 +469,7 @@
 "Coloring text…" = "Text färben …";
 "Please wait for a while." = "Bitte etwas Geduld.";
 "Extracting %@…" = "%@ extrahieren …";
-"Preparing coloring…" = "Färbung vorbereiten…";
+"Preparing to color…" = "Färbung vorbereiten…";
 "Applying colors to text" = "Farben auf den Text anwenden";
 "keywords" = "Schlüsselwörter";
 "commands" = "Befehle";
@@ -607,11 +642,8 @@
 "Space" = "Leertaste";
 
 // Warning messages
-"“%@” is already taken." = "„%@“ wird bereits verwendet.";
-"“%@” does not include the Command key." = "„%@“ enthält nicht die Command-Taste.";
-"“%@” includes the Command key." = "„%@“ enthält die Command-Taste.";
+"“%@” is already taken by the “%@” command." = "„%@“ wird bereits　vom „%@“-Befehl verwendet.";
 "The Shift key can be used only with another modifier key." = "Die Shift-Taste kann nur mit einer anderen Modifikatortaste verwendet werden.";
-"Please choose another key." = "Bitte wähle eine andere Taste.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
 "Please combine with other keys." = "Bitte kombiniere sie mit anderen Tasten.";
 
@@ -619,7 +651,7 @@
 
 /* MARK: ScriptManager */
 // Menu items
-"Open Scripts Folder" = "Skript-Ordner öffnen";
+"Open Scripts Folder" = "Skriptordner öffnen";
 
 // Script menu item tooltips
 "“Option + click” to open script in editor." = "„Option + Klicken“, um das Skript im Editor zu öffnen.";

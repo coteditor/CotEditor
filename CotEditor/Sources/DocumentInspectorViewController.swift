@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,9 +43,11 @@ final class EditorInfo: NSObject {
     @objc dynamic var chars: String?
     @objc dynamic var words: String?
     @objc dynamic var length: String?    // character length as UTF-16 string
+    
     @objc dynamic var location: String?  // caret location from the beginning of document
     @objc dynamic var line: String?      // current line
     @objc dynamic var column: String?    // caret location from the beginning of line
+    
     @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
 }
 
@@ -58,14 +60,15 @@ final class DocumentInspectorViewController: NSViewController {
     private var document: Document?  { self.representedObject as? Document }
     private var analyzer: DocumentAnalyzer?  { self.document?.analyzer }
     
-    @objc dynamic private(set) var fileInfo: FileInfo = .init()
-    @objc dynamic private(set) var encoding: String = "–"
-    @objc dynamic private(set) var lineEndings: String = "–"
-    @objc dynamic private(set) var editorInfo: EditorInfo = .init()
+    @objc private(set) dynamic var fileInfo: FileInfo = .init()
+    @objc private(set) dynamic var encoding: String = "–"
+    @objc private(set) dynamic var lineEndings: String = "–"
+    @objc private(set) dynamic var editorInfo: EditorInfo = .init()
     
     @IBOutlet private var dateFormatter: DateFormatter?
     @IBOutlet private var byteCountFormatter: ByteCountFormatter?
     @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
+    @IBOutlet private var tokenFormatter: TokenFormatter?
     
     
     
@@ -164,14 +167,14 @@ final class DocumentInspectorViewController: NSViewController {
         document.analyzer.$result
             .receive(on: DispatchQueue.main)
             .sink { [info = self.editorInfo] (result) in
-                info.length = result?.format(\.length)
-                info.chars = result?.format(\.characters)
-                info.lines = result?.format(\.lines)
-                info.words = result?.format(\.words)
-                info.location = result?.format(\.location)
-                info.line = result?.format(\.line)
-                info.column = result?.format(\.column)
-                info.unicode = result?.unicode
+                info.length = result.format(\.length)
+                info.chars = result.format(\.characters)
+                info.lines = result.format(\.lines)
+                info.words = result.format(\.words)
+                info.location = result.format(\.location)
+                info.line = result.format(\.line)
+                info.column = result.format(\.column)
+                info.unicode = result.unicode
             }
             .store(in: &self.documentObservers)
     }

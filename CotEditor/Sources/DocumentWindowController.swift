@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2020 1024jp
+//  © 2013-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,9 +65,13 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.windowFrameAutosaveName = "Document Window"
         
         // set window size
-        let contentSize = NSSize(width: UserDefaults.standard[.windowWidth],
-                                 height: UserDefaults.standard[.windowHeight])
-        self.window!.setContentSize(contentSize)
+        let width = UserDefaults.standard[.windowWidth]
+        let height = UserDefaults.standard[.windowHeight]
+        if let window = self.window, width > 0 || height > 0 {
+            let contentSize = NSSize(width: width >= window.minSize.width ? width : window.frame.width,
+                                     height: height >= window.minSize.height ? height : window.frame.height)
+            window.setContentSize(contentSize)
+        }
         (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         
         // observe appearance setting change
@@ -86,10 +90,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                                   UserDefaults.standard.publisher(for: .recentStyleNames).eraseToVoid())
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.buildSyntaxPopUpButton() }
-        
-        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
-            self.window?.styleMask.subtract(.fullSizeContentView)
-        }
     }
     
     
@@ -125,17 +125,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: Window Delegate
-    
-    func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
-        
-        // remove "Use small size" button before showing the customization sheet
-        if sheet.isToolbarConfigPanel {
-            sheet.removeSmallSizeToolbarButton()
-        }
-        
-        return rect
-    }
-    
     
     func windowWillEnterFullScreen(_ notification: Notification) {
         
@@ -247,10 +236,21 @@ private extension NSToolbarItem.Identifier {
     static let inspector = Self(Self.prefix + "inspector")
     
     static let textSize = Self(Self.prefix + "textSize")
+    static let smaller = Self(Self.prefix + "smaller")
+    static let bigger = Self(Self.prefix + "bigger")
+    
     static let writingDirection = Self(Self.prefix + "writingDirection")
+    static let leftToRight = Self(Self.prefix + "leftToRight")
+    static let rightToLeft = Self(Self.prefix + "rightToLeft")
+    
     static let textOrientation = Self(Self.prefix + "textOrientation")
+    static let horizontalText = Self(Self.prefix + "horizontalText")
+    static let verticalText = Self(Self.prefix + "verticalText")
     
     static let indent = Self(Self.prefix + "indent")
+    static let shiftLeft = Self(Self.prefix + "shiftLeft")
+    static let shiftRight = Self(Self.prefix + "shiftRight")
+    
     static let comment = Self(Self.prefix + "comment")
     
     static let tabStyle = Self(Self.prefix + "tabStyle")
@@ -273,14 +273,6 @@ private extension NSToolbarItem.Identifier {
 extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-        
-        guard #available(macOS 11, *) else {
-            return [
-                .syntaxStyle,
-                .flexibleSpace,
-                .inspector,
-            ]
-        }
         
         return [
             .syntaxStyle,
@@ -346,31 +338,23 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Inspector".localized
                 item.toolTip = "Show document information".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "Inspector")
-                }
+                item.image = NSImage(systemSymbolName: "info.circle", accessibilityDescription: item.label)
                 item.action = #selector(WindowContentViewController.toggleInspector)
                 item.visibilityPriority = .high
                 return item
                 
             case .textSize:
-                let smallerItem = NSToolbarItem()
+                let smallerItem = NSToolbarItem(itemIdentifier: .smaller)
                 smallerItem.label = "Smaller".localized
                 smallerItem.toolTip = "Smaller".localized
-                if #available(macOS 11, *) {
-                    smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: "Smaller".localized)!
-                        .withSymbolConfiguration(.init(scale: .small))
-                } else {
-                    smallerItem.image = NSImage(named: "a.small")
-                }
+                smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: smallerItem.label)!
+                    .withSymbolConfiguration(.init(scale: .small))
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
-                let biggerItem = NSToolbarItem()
+                let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
                 biggerItem.label = "Bigger".localized
                 biggerItem.toolTip = "Bigger".localized
-                biggerItem.image = NSImage(symbolNamed: "a", accessibilityDescription: "Bigger".localized)!
+                biggerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: biggerItem.label)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -383,16 +367,16 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .writingDirection:
-                let ltrItem = NSToolbarItem()
+                let ltrItem = NSToolbarItem(itemIdentifier: .leftToRight)
                 ltrItem.label = "Left to Right".localized
                 ltrItem.toolTip = "Left to Right".localized
-                ltrItem.image = NSImage(symbolNamed: "text.alignleft", accessibilityDescription: ltrItem.label)
+                ltrItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: ltrItem.label)
                 ltrItem.action = #selector(DocumentViewController.makeWritingDirectionLeftToRight)
                 
-                let rtlItem = NSToolbarItem()
+                let rtlItem = NSToolbarItem(itemIdentifier: .rightToLeft)
                 rtlItem.label = "Right to Left".localized
                 rtlItem.toolTip = "Right to Left".localized
-                rtlItem.image = NSImage(symbolNamed: "text.alignright", accessibilityDescription: rtlItem.label)
+                rtlItem.image = NSImage(systemSymbolName: "text.alignright", accessibilityDescription: rtlItem.label)
                 rtlItem.action = #selector(DocumentViewController.makeWritingDirectionRightToLeft)
                 
                 let item = ToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -406,13 +390,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .textOrientation:
-                let horizontalItem = NSToolbarItem()
+                let horizontalItem = NSToolbarItem(itemIdentifier: .horizontalText)
                 horizontalItem.label = "Horizontal".localized
                 horizontalItem.toolTip = "Horizontal".localized
-                horizontalItem.image = NSImage(symbolNamed: "text.alignleft", accessibilityDescription: horizontalItem.label)
+                horizontalItem.image = NSImage(systemSymbolName: "text.alignleft", accessibilityDescription: horizontalItem.label)
                 horizontalItem.action = #selector(DocumentViewController.makeLayoutOrientationHorizontal)
                 
-                let verticalItem = NSToolbarItem()
+                let verticalItem = NSToolbarItem(itemIdentifier: .verticalText)
                 verticalItem.label = "Vertical".localized
                 verticalItem.toolTip = "Vertical".localized
                 verticalItem.image = NSImage(named: "text.verticalorientation")
@@ -429,24 +413,16 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .indent:
-                let leftItem = NSToolbarItem()
+                let leftItem = NSToolbarItem(itemIdentifier: .shiftLeft)
                 leftItem.label = "Shift Left".localized
                 leftItem.toolTip = "Shift lines to left".localized
-                if #available(macOS 11, *) {
-                    leftItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: leftItem.label)
-                } else {
-                    leftItem.image = #imageLiteral(resourceName: "ShiftLeft")
-                }
+                leftItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: leftItem.label)
                 leftItem.action = #selector(EditorTextView.shiftLeft)
                 
-                let rightItem = NSToolbarItem()
+                let rightItem = NSToolbarItem(itemIdentifier: .shiftRight)
                 rightItem.label = "Shift Right".localized
                 rightItem.toolTip = "Shift lines to right".localized
-                if #available(macOS 11, *) {
-                    rightItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: rightItem.label)
-                } else {
-                    rightItem.image = #imageLiteral(resourceName: "ShiftRight")
-                }
+                rightItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: rightItem.label)
                 rightItem.action = #selector(EditorTextView.shiftRight)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -463,11 +439,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Comment".localized
                 item.toolTip = "Comment-out or uncomment selection".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(named: "text.commentout")
-                } else {
-                    item.image = #imageLiteral(resourceName: "Comment")
-                }
+                item.image = NSImage(named: "text.commentout")
                 item.action = #selector(EditorTextView.toggleComment)
                 return item
                 
@@ -476,24 +448,24 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
-                        let item = NSMenuItem(title: String(width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                        let item = NSMenuItem(title: String.localizedStringWithFormat("%li", width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
+                        item.indentationLevel = 1
                         return item
                     }
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
+                menu.items.last?.indentationLevel = 1
+                menu.addItem(.separator())
+                menu.addItem(withTitle: "Auto-Expand Tabs".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
                 item.toolTip = "Expand tabs to spaces automatically".localized
-                if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(named: "tab.right.split")
-                    item.stateImages[.off] = NSImage(named: "tab.right")
-                } else {
-                    item.stateImages[.on] = #imageLiteral(resourceName: "TabStyle_On")
-                    item.stateImages[.off] = #imageLiteral(resourceName: "TabStyle_Off")
-                }
+                item.stateImages[.on] = NSImage(named: "tab.right.split")
+                item.stateImages[.off] = NSImage(named: "tab.right")
                 item.action = #selector(DocumentViewController.toggleAutoTabExpand)
                 item.menu = menu
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                 
                 return item
                 
@@ -502,14 +474,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
                 item.toolTip = "Wrap lines".localized
-                if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(named: "text.unwrap")
-                    item.stateImages[.off] = NSImage(named: "text.wrap")
-                } else {
-                    item.stateImages[.on] = #imageLiteral(resourceName: "WrapLines_On")
-                    item.stateImages[.off] = #imageLiteral(resourceName: "WrapLines_Off")
-                }
+                item.stateImages[.on] = NSImage(named: "text.unwrap")
+                item.stateImages[.off] = NSImage(named: "text.wrap")
                 item.action = #selector(DocumentViewController.toggleLineWrap)
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
             case .invisibles:
@@ -517,14 +485,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Invisibles".localized
                 item.toolTip = "Show invisible characters".localized
-                if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
-                    item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
-                } else {
-                    item.stateImages[.on] = #imageLiteral(resourceName: "Invisibles_On")
-                    item.stateImages[.off] = #imageLiteral(resourceName: "Invisibles_Off")
-                }
+                item.stateImages[.on] = NSImage(named: "paragraphsign.slash")
+                item.stateImages[.off] = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: item.label)
                 item.action = #selector(DocumentViewController.toggleInvisibleChars)
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
             case .indentGuides:
@@ -532,14 +496,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Indent Guides".localized
                 item.toolTip = "Hide indent guide lines".localized
-                if #available(macOS 11, *) {
-                    item.stateImages[.on] = NSImage(named: "text.indentguides.hide")
-                    item.stateImages[.off] = NSImage(named: "text.indentguides")
-                } else {
-                    item.stateImages[.on] = #imageLiteral(resourceName: "IndentGuides_On")
-                    item.stateImages[.off] = #imageLiteral(resourceName: "IndentGuides_Off")
-                }
+                item.stateImages[.on] = NSImage(named: "text.indentguides.hide")
+                item.stateImages[.off] = NSImage(named: "text.indentguides")
                 item.action = #selector(DocumentViewController.toggleIndentGuides)
+                item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
             case .opacity:
@@ -552,11 +512,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Opacity".localized
                 item.toolTip = "Change editor’s opacity".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(named: "uiwindow.opacity")
-                } else {
-                    item.image = #imageLiteral(resourceName: "Opacity")
-                }
+                item.image = NSImage(named: "uiwindow.opacity")
                 item.target = self
                 item.showsIndicator = false
                 item.menu = NSMenu()
@@ -568,11 +524,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Spell Check".localized
                 item.toolTip = "Show spelling and grammar".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(named: "abc.checkmark")
-                } else {
-                    item.image = #imageLiteral(resourceName: "SpellCheck")
-                }
+                item.image = NSImage(named: "abc.checkmark")
                 item.action = #selector(NSTextView.showGuessPanel)
                 return item
                 
@@ -581,11 +533,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Color Code".localized
                 item.toolTip = "Open Color Code Editor and set selection as color code".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(systemSymbolName: "eyedropper.halffull", accessibilityDescription: item.label)
-                } else {
-                    item.image = #imageLiteral(resourceName: "ColorCode")
-                }
+                item.image = NSImage(systemSymbolName: "eyedropper.halffull", accessibilityDescription: item.label)
                 item.action = #selector(EditorTextView.editColorCode)
                 return item
                 
@@ -594,11 +542,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Emoji & Symbols".localized
                 item.toolTip = "Show Emoji & Symbols palette".localized
-                if #available(macOS 11, *) {
-                    item.image = NSImage(named: "emoji")
-                } else {
-                    item.image = #imageLiteral(resourceName: "Emoji")
-                }
+                item.image = NSImage(named: "emoji")
                 item.action = #selector(NSApplication.orderFrontCharacterPalette)
                 return item
                 
@@ -607,7 +551,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Fonts".localized
                 item.toolTip = "Show Font Panel".localized
-                item.image = NSImage(symbolNamed: "textformat", accessibilityDescription: item.label)
+                item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
                 item.action = #selector(NSFontManager.orderFrontFontPanel)
                 return item
                 
@@ -616,7 +560,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Find".localized
                 item.toolTip = "Show “Find and Replace”".localized
-                item.image = NSImage(symbolNamed: "magnifyingglass", accessibilityDescription: item.label)
+                item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(TextFinder.showFindPanel)
                 return item
                 
@@ -625,7 +569,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.isBordered = true
                 item.label = "Print".localized
                 item.toolTip = "Print".localized
-                item.image = NSImage(symbolNamed: "printer", accessibilityDescription: item.label)
+                item.image = NSImage(systemSymbolName: "printer", accessibilityDescription: item.label)
                 item.action = #selector(NSDocument.printDocument)
                 return item
                 
@@ -636,7 +580,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .inspectorTrackingSeparator:
-                guard #available(macOS 11, *) else { return nil }
                 guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item

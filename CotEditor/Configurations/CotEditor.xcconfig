@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 CotEditor Project
+//  © 2020-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@
 
 // TODO: Migrate the other build settings.
 
-CODE_SIGN_ENTITLEMENTS = $(PRODUCT_NAME).entitlements
+CODE_SIGN_ENTITLEMENTS = CotEditor/$(PRODUCT_NAME).entitlements
 
 // Code signing may need to override any predefined values.
 // Therefore, it should be included at the end.

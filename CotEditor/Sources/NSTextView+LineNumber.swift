@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,11 +81,11 @@ extension NSTextView {
         let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
         
         // count up lines until the interested area
-        let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
+        let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.lowerBound)
         var lineNumber = self.lineNumber(at: firstIndex)
         
         // enumerate visible line numbers
-        var glyphIndex = glyphRangeToDraw.location
+        var glyphIndex = glyphRangeToDraw.lowerBound
         while glyphIndex < glyphRangeToDraw.upperBound {  // process logical lines
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = self.lineRange(at: characterIndex)
@@ -96,11 +96,11 @@ extension NSTextView {
                     layoutManager.extraLineFragmentRect.isEmpty)
             glyphIndex = lineGlyphRange.upperBound
             
-            var wrappedLineGlyphIndex = max(lineGlyphRange.location, glyphRangeToDraw.lowerBound)
+            var wrappedLineGlyphIndex = max(lineGlyphRange.lowerBound, glyphRangeToDraw.lowerBound)
             while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
-                let isWrapped = range.location != lineGlyphRange.location
+                let isWrapped = range.lowerBound != lineGlyphRange.lowerBound
                 
                 if options.contains(.bySkippingWrappedLine), isWrapped { break }
                 
@@ -120,7 +120,7 @@ extension NSTextView {
             else { return }
         
         let lastLineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
-        let isSelected = (selectedRanges.last?.location == string.length)
+        let isSelected = (selectedRanges.last?.lowerBound == string.length)
         
         body(layoutManager.extraLineFragmentRect, .new(isSelected), lastLineNumber)
     }

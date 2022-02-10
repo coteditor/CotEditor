@@ -94,6 +94,9 @@
             <responds-to command="scroll to caret">
                 <cocoa method="handleScroll:"/>
             </responds-to>
+            <responds-to command="jump">
+                <cocoa method="handleJump:"/>
+            </responds-to>
             <responds-to command="string">
                 <cocoa method="handleString:"/>
             </responds-to>
@@ -263,6 +266,17 @@
         <command name="scroll to caret" code="cEd1SCrl" description="Scroll document to caret or selected text.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to scroll its caret."/>
+        </command>
+        
+        <command name="jump" code="cEd1Jump" description="Move the caret to the specified location. At least, either one of a parameter is required.">
+            <access-group identifier="*"/>
+            <direct-parameter type="document" description="The document to move."/>
+            <parameter name="to line" code="line" type="integer" description="The number of the line to go. If a negative value is provided, the line is counted from the end of the document.">
+                <cocoa key="line"/>
+            </parameter>
+            <parameter name="column" code="colm" type="integer" optional="yes" description="The location in the line to jump. If a negative value is provided, the column is counted from the end of the line.">
+                <cocoa key="column"/>
+            </parameter>
         </command>
         
         <command name="shift left" code="cEd1SLef" description="Shift selected lines to left.">

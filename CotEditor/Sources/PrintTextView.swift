@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     var documentShowsLineNumber = false
     var documentShowsInvisibles = false
     
-    private(set) lazy var urlDetectionQueue = OperationQueue()
+    var urlDetectionTask: Task<Void, Error>?
     
     
     // MARK: Private Properties
@@ -115,7 +115,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     deinit {
         self.layoutManager?.delegate = nil
-        self.urlDetectionQueue.cancelAllOperations()
+        self.urlDetectionTask?.cancel()
     }
     
     
@@ -225,7 +225,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             if isVerticalText {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
-                NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
+                NSGraphicsContext.current?.cgContext.rotate(by: -.pi / 2)
             }
             
             let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
@@ -302,6 +302,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                     return true
             }
         }()
+        
+        // set whether draws background
+        self.drawsBackground = settings[.printsBackground] as? Bool ?? true
         
         // create theme
         assert(settings[.theme] != nil)

@@ -1,0 +1,50 @@
+//
+//  SyntaxOutlineEditView.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "Düzenli İfade Dizisi";
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Anahat menü ögelerini çıkarmak için düzenli ifade";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerCell.title" = "BY";
+/* Class = "NSTableColumn"; headerToolTip = "Ignore Case (case-insensitive)"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerToolTip" = "Harf Biçimini Yok Say (BÜYÜK/küçük harf duyarsız)";
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
+"6hB-wJ-niI.headerCell.title" = "Açıklama";
+
+/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Menü başlığı dizgisi";
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "(boş, tüm diziyle eşleşir)";
+
+/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
+"iub-mE-wGf.title" = "Kalın";
+/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
+"fUz-0u-0D4.title" = "Eğik";
+/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
+"00X-sB-42F.title" = "Altı çizili";

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,12 +39,11 @@ enum MainMenu: Int {
     case help
     
     
+    // not to list up in the "Menu Key Bindings" setting
     enum MenuItemTag: Int {
         
-        case services = 999  // not to list up in "Menu Key Bindings" setting
-        case recentDocumentsDirectory = 2999  // not to list up in "Menu Key Bindings" setting
-        case sharingService = 1999
-        case scriptDirectory = 8999  // not to list up in "Menu Key Bindings" setting
+        case services = 999
+        case recentDocumentsDirectory = 2999
     }
     
     

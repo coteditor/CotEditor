@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pyW-Gr-FLf">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pyW-Gr-FLf">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17503.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,6 +31,9 @@
                                         <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                                     </allowedInputSourceLocales>
                                 </textFieldCell>
+                                <connections>
+                                    <accessibilityConnection property="title" destination="sYB-kv-GmJ" id="5z7-Bl-vvk"/>
+                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sYB-kv-GmJ">
                                 <rect key="frame" x="35" y="51" width="67" height="16"/>
@@ -41,7 +44,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="892-mq-gWy">
-                                <rect key="frame" x="13" y="13" width="78" height="32"/>
+                                <rect key="frame" x="25" y="13" width="78" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bJM-c0-iOi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -75,14 +78,14 @@ DQ
                             <constraint firstAttribute="bottom" secondItem="892-mq-gWy" secondAttribute="bottom" constant="20" symbolic="YES" id="2p5-iu-hpb"/>
                             <constraint firstAttribute="trailing" secondItem="nhc-Zt-Uwr" secondAttribute="trailing" constant="20" symbolic="YES" id="6Fe-i0-rUt"/>
                             <constraint firstItem="nhc-Zt-Uwr" firstAttribute="width" secondItem="892-mq-gWy" secondAttribute="width" id="IZq-5Y-ddj"/>
-                            <constraint firstItem="nhc-Zt-Uwr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="892-mq-gWy" secondAttribute="trailing" constant="12" symbolic="YES" id="KPs-bT-gub"/>
+                            <constraint firstItem="nhc-Zt-Uwr" firstAttribute="leading" secondItem="892-mq-gWy" secondAttribute="trailing" constant="12" symbolic="YES" id="KPs-bT-gub"/>
                             <constraint firstItem="sYB-kv-GmJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="G7X-lO-X6e" secondAttribute="leading" constant="20" symbolic="YES" id="ST2-18-IAb"/>
                             <constraint firstAttribute="trailing" secondItem="W3f-KG-c6f" secondAttribute="trailing" constant="20" symbolic="YES" id="bvi-FB-Ykx"/>
                             <constraint firstItem="W3f-KG-c6f" firstAttribute="baseline" secondItem="sYB-kv-GmJ" secondAttribute="baseline" id="bwj-fX-QrH"/>
                             <constraint firstItem="W3f-KG-c6f" firstAttribute="top" secondItem="G7X-lO-X6e" secondAttribute="top" constant="20" symbolic="YES" id="huM-MR-Wdl"/>
                             <constraint firstItem="nhc-Zt-Uwr" firstAttribute="top" secondItem="W3f-KG-c6f" secondAttribute="bottom" constant="8" symbolic="YES" id="kCO-ka-HLn"/>
                             <constraint firstItem="W3f-KG-c6f" firstAttribute="leading" secondItem="sYB-kv-GmJ" secondAttribute="trailing" constant="8" symbolic="YES" id="wGp-c3-uNu"/>
-                            <constraint firstItem="892-mq-gWy" firstAttribute="leading" secondItem="G7X-lO-X6e" secondAttribute="leading" constant="20" symbolic="YES" id="xU3-jk-L9F"/>
+                            <constraint firstItem="892-mq-gWy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="G7X-lO-X6e" secondAttribute="leading" constant="20" symbolic="YES" id="xU3-jk-L9F"/>
                         </constraints>
                     </view>
                     <connections>

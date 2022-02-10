@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,10 +25,18 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
+    
+    private lazy var regularExpressionReferenceViewController: NSViewController = {
+        
+        let controller = DetachablePopoverViewController()
+        controller.view = NSHostingView(rootView: RegularExpressionReferenceView())
+        return controller
+    }()
     
     @objc private dynamic let textFinder = TextFinder.shared
     
@@ -60,7 +68,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
         self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
             .sink { [weak self, weak scroller] (scrollerStyle) in
-                var inset: CGFloat = 5
+                var inset = 5.0
                 if scrollerStyle == .legacy, let scroller = scroller {
                     inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
                 }
@@ -168,6 +176,14 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         UserDefaults.standard.removeObject(forKey: DefaultKeys.replaceHistory.rawValue)
         self.updateReplaceHistoryMenu()
+    }
+    
+    
+    @IBAction func showRegularExpressionReference(_ sender: NSButton) {
+        
+        guard self.regularExpressionReferenceViewController.presentingViewController == nil else { return }
+        
+        self.present(self.regularExpressionReferenceViewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxY, behavior: .transient)
     }
     
     

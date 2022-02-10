@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2021 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,10 +68,6 @@ final class NavigationBarController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        if ProcessInfo().operatingSystemVersion.majorVersion < 11 {
-            (self.view as? NSVisualEffectView)?.material = .windowBackground
-        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -145,6 +141,15 @@ final class NavigationBarController: NSViewController {
         guard let textView = self.textView else { return false }
         
         return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
+    }
+    
+    
+    /// Show the menu items of the outline menu.
+    func openOutlineMenu() {
+        
+        guard let popUpButton = self.outlineMenu else { return }
+        
+        popUpButton.menu?.popUp(positioning: nil, at: .zero, in: popUpButton)
     }
     
     
@@ -298,6 +303,6 @@ private enum Chevron: String {
     
     var image: NSImage {
         
-        NSImage(symbolNamed: "chevron." + self.rawValue, accessibilityDescription: self.rawValue)!
+        NSImage(systemSymbolName: "chevron." + self.rawValue, accessibilityDescription: self.rawValue)!
     }
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,8 @@
 //
 
 extension String {
+    
+    static let thinSpace = "\u{2009}"
     
     /// constant string representing a separator
     static let separator = "-"

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@
 "PSD-Um-TfH.headerCell.title" = "Taste";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
-"CyK-OL-qHa.title" = "Auf Standard zurücksetzen";
+"CyK-OL-qHa.title" = "Standard wiederherstellen";
 
 
 
@@ -78,4 +78,4 @@
 "Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Wähle eine Aktion.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
-"0Du-JI-ZN7.title" = "Auf Standard zurücksetzen";
+"0Du-JI-ZN7.title" = "Standard wiederherstellen";

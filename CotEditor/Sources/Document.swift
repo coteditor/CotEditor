@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import UniformTypeIdentifiers
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
@@ -109,9 +110,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// store internal document state
-    override func encodeRestorableState(with coder: NSCoder) {
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        super.encodeRestorableState(with: coder)
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(Int(self.fileEncoding.encoding.rawValue), forKey: SerializationKey.readingEncoding)
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
@@ -202,10 +203,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // store directory URL to avoid finding Autosaved Information directory every time
                 struct AutosaveDirectory {
                     
-                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                  in: .userDomainMask,
-                                                                  appropriateFor: nil,
-                                                                  create: true)
+                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 }
                 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
@@ -373,15 +371,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to async-saving.
         
         let fileEncoding = self.fileEncoding
-        
-        // convert Yen sign in consideration of the current encoding
-        let string = self.string.convertingYenSign(for: fileEncoding.encoding)
+        let string = self.string.immutable
         
         // unblock the user interface, since fetching current document state has been done here
         self.unblockUserInteraction()
         
         // get data from string to save
-        guard var data = string.data(using: fileEncoding.encoding, allowLossyConversion: true) else {
+        guard var data = string.convertingYenSign(for: fileEncoding.encoding).data(using: fileEncoding.encoding, allowLossyConversion: true) else {
             throw CocoaError.error(.fileWriteInapplicableStringEncoding,
                                    userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
         }
@@ -401,35 +397,32 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// save or autosave the document contents to a file
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
-        assert(Thread.isMainThread)
-        
         // break undo grouping
         for layoutManager in self.textStorage.layoutManagers {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        super.save(to: url, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
+        // workaround the issue that invoking the async version super blocks the save process
+        // with macOS 12.1 + Xcode 13.2.1 (2022-01).
+        super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
             defer {
                 completionHandler(error)
             }
-            
-            guard error == nil else { return }
-            
-            assert(Thread.isMainThread)
+            if error != nil { return }
             
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
                     ?? SyntaxManager.shared.settingName(documentContent: self.string)
-                    // -> Due to the async-saving, self.string can be changed from the actual saved contents.
-                    //    But we don't care about that.
+                // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                //    But we don't care about that.
                 {
                     self.setSyntaxStyle(name: styleName)
                 }
             }
             
             if !saveOperation.isAutosaving {
-                ScriptManager.shared.dispatchEvent(documentSaved: self)
+                ScriptManager.shared.dispatch(event: .documentSaved, document: self)
             }
         }
     }
@@ -495,22 +488,23 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
         // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
-        savePanel.allowedFileTypes = nil  // nil allows setting any extension
+        savePanel.allowsOtherFileTypes = true
+        savePanel.allowedContentTypes = []  // empty array allows setting any extension
         if
             let fileType = self.fileType,
-            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation)
+            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation),
+            let utType = UTType(filenameExtension: pathExtension)
         {
-            // set once allowedFileTypes, so that initial filename selection excludes the file extension
-            savePanel.allowedFileTypes = [pathExtension]
+            // set once allowedContentTypes, so that initial filename selection excludes the file extension
+            savePanel.allowedContentTypes = [utType]
             
             // disable it immediately in the next runloop to allow setting other extensions
             DispatchQueue.main.async {
-                savePanel.allowedFileTypes = nil
+                savePanel.allowedContentTypes = []
             }
         }
         
         // set accessory view
-        self.savePanelAccessoryController = self.savePanelAccessoryController.storyboard!.instantiateInitialController() as! NSViewController
         self.savePanelAccessoryController.representedObject = self
         savePanel.accessoryView = self.savePanelAccessoryController.view
         
@@ -723,13 +717,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         switch menuItem.action {
             case #selector(changeEncoding(_:)):
                 menuItem.state = (menuItem.tag == self.fileEncoding.tag) ? .on : .off
-            
+                
             case #selector(changeLineEnding(_:)):
                 menuItem.state = (menuItem.tag == self.lineEnding.index) ? .on : .off
-            
+                
             case #selector(changeSyntaxStyle(_:)):
                 menuItem.state = (menuItem.title == self.syntaxParser.style.name) ? .on : .off
-            
+                
             default: break
         }
         
@@ -743,7 +737,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to concurrent-opening.
         // -> This method won't be invoked on Resume. (2015-01-26)
         
-        ScriptManager.shared.dispatchEvent(documentOpened: self)
+        ScriptManager.shared.dispatch(event: .documentOpened, document: self)
     }
     
     
@@ -776,7 +770,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
-            throw ReinterpretationError(kind: .noFile, encoding: encoding)
+            throw ReinterpretationError.noFile
         }
         
         // do nothing if given encoding is the same as current one
@@ -790,7 +784,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         } catch {
             self.readingEncoding = self.fileEncoding.encoding
             
-            throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
+            throw ReinterpretationError.reinterpretationFailed(fileURL: fileURL, encoding: encoding)
         }
     }
     
@@ -896,7 +890,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change line ending with sender's tag
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
-        guard let lineEnding = LineEnding(index: sender.tag) else { return }
+        guard let lineEnding = LineEnding(index: sender.tag) else { return assertionFailure() }
         
         self.changeLineEnding(to: lineEnding)
     }
@@ -943,7 +937,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: "Cancel".localized)
             
             let documentWindow = self.windowForSheet!
-            alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
+            Task {
+                let returnCode = await alert.beginSheetModal(for: documentWindow)
                 switch returnCode {
                     case .alertFirstButtonReturn:  // = Convert
                         do {
@@ -952,7 +947,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         } catch {
                             self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                         }
-                    
+                        
                     case .alertSecondButtonReturn:  // = Reinterpret
                         // ask user if document is edited
                         if self.isDocumentEdited {
@@ -961,9 +956,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                             alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, fileEncoding.localizedName)
                             alert.addButton(withTitle: "Cancel".localized)
                             alert.addButton(withTitle: "Discard Changes".localized)
-                            if #available(macOS 11, *) {
-                                alert.buttons.last?.hasDestructiveAction = true
-                            }
+                            alert.buttons.last?.hasDestructiveAction = true
                             
                             documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                             let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
@@ -985,7 +978,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         
                     case .alertThirdButtonReturn:  // = Cancel
                         completionHandler(false)
-                    
+                        
                     default: preconditionFailure()
                 }
             }
@@ -996,7 +989,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change syntax style
     @IBAction func changeSyntaxStyle(_ sender: AnyObject?) {
         
-        guard let name = sender?.title, name != self.syntaxParser.style.name else { return }
+        guard let name = sender?.title else { return assertionFailure() }
         
         self.setSyntaxStyle(name: name)
     }
@@ -1075,7 +1068,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             let alert = NSAlert()
             alert.messageText = messageText.localized
-            alert.informativeText = "Do you want to keep CotEditor’s edition or update to the modified edition?".localized
+            alert.informativeText = "Do you want to keep CotEditor’s edition or update it to the modified edition?".localized
             alert.addButton(withTitle: "Keep CotEditor’s Edition".localized)
             alert.addButton(withTitle: "Update".localized)
             
@@ -1137,37 +1130,31 @@ extension Document: Editable {
 
 // MARK: - Error
 
-private struct ReinterpretationError: LocalizedError {
+private enum ReinterpretationError: LocalizedError {
     
-    enum ErrorKind {
-        case noFile
-        case reinterpretationFailed(fileURL: URL)
-    }
-    
-    let kind: ErrorKind
-    let encoding: String.Encoding
-    
+    case noFile
+    case reinterpretationFailed(fileURL: URL, encoding: String.Encoding)
     
     
     var errorDescription: String? {
         
-        switch self.kind {
+        switch self {
             case .noFile:
                 return "The document doesn’t have a file to reinterpret.".localized
             
-            case .reinterpretationFailed(let fileURL):
+            case let .reinterpretationFailed(fileURL, encoding):
                 return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
-                              fileURL.lastPathComponent, String.localizedName(of: self.encoding))
+                              fileURL.lastPathComponent, String.localizedName(of: encoding))
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        switch self.kind {
+        switch self {
             case .noFile:
                 return nil
-            
+                
             case .reinterpretationFailed:
                 return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
         }
@@ -1201,7 +1188,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         switch self.kind {
             case .lossySaving:
                 return "Do you want to continue processing?".localized
-            
+                
             case .lossyConversion:
                 return "Do you want to change encoding and show incompatible characters?".localized
         }
@@ -1213,9 +1200,9 @@ private struct EncodingError: LocalizedError, RecoverableError {
         switch self.kind {
             case .lossySaving:
                 return ["Show Incompatible Characters".localized,
-                        "Save Available Strings".localized,
+                        "Save Available Text".localized,
                         "Cancel".localized]
-            
+                
             case .lossyConversion:
                 return ["Change Encoding".localized,
                         "Cancel".localized]

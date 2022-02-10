@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,6 +50,8 @@ final class DocumentWindow: NSWindow {
             
             self.isOpaque = (backgroundAlpha == 1.0)
             
+            self.backgroundColor = self.isOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(backgroundAlpha)
+            
             self.invalidateShadow()
             self.contentView?.needsDisplay = true
             self.invalidateRestorableState()
@@ -87,8 +89,6 @@ final class DocumentWindow: NSWindow {
             
             guard isOpaque != oldValue else { return }
             
-            self.backgroundColor = isOpaque ? nil : self.contentBackgroundColor.withAlphaComponent(self.backgroundAlpha)
-            
             self.invalidateTitlebarOpacity()
             
             if isOpaque {
@@ -113,9 +113,9 @@ final class DocumentWindow: NSWindow {
     
     
     /// store UI state
-    override func encodeRestorableState(with coder: NSCoder) {
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        super.encodeRestorableState(with: coder)
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
     }
