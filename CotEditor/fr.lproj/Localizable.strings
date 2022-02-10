@@ -641,7 +641,7 @@
 "Space" = "Espace";
 
 // Warning messages
-"“%@” is already taken." = "« %@ » est déjà attribué.";
+"“%@” is already taken by the “%@” command." = "« %@ » est déjà attribué.";  // FIXME: updated
 "“%@” does not include the Command key." = "« %@ » n’inclue pas la touche Commande.";
 "“%@” includes the Command key." = "« %@ » inclue la touche Commande.";
 "The Shift key can be used only with another modifier key." = "La touche Maj ne peut être utilisée que avec une autre touche de modification.";

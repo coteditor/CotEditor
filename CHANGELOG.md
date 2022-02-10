@@ -29,6 +29,7 @@ Change Log
 - Update the Unicode block name list for the character inspector from Unicode 13.0.0 to Unicode 14.0.0.
 - Make sure the application relaunches even other tasks interrupt before termination.
 - Improve some toolbar items to make their state distinguish even collapsed.
+- Display the command name in the error message when the input shortcut for key bindings is already taken by another command.
 - Improve VoiceOver accessibility.
 - Update the AppleScript guide in the help.
 - Improve the animation by drag & drop in tables.

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ struct InvalidShortcutError: LocalizedError {
     
     enum ErrorKind {
         case singleType
-        case alreadyTaken
+        case alreadyTaken(name: String)
         case lackingCommandKey
         case unwantedCommandKey
         case shiftOnlyModifier
@@ -46,8 +46,8 @@ struct InvalidShortcutError: LocalizedError {
             case .singleType:
                 return "Single type is invalid for a shortcut.".localized
             
-            case .alreadyTaken:
-                return String(format: "“%@” is already taken.".localized, self.shortcut.description)
+            case let .alreadyTaken(name):
+                return String(format: "“%@” is already taken by the “%@” command.".localized, self.shortcut.description, name)
             
             case .lackingCommandKey:
                 return String(format: "“%@” does not include the Command key.".localized, self.shortcut.description)
@@ -56,7 +56,7 @@ struct InvalidShortcutError: LocalizedError {
                 return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
                 
             case .shiftOnlyModifier:
-            return String(format: "The Shift key can be used only with another modifier key.".localized, self.shortcut.description)
+                return "The Shift key can be used only with another modifier key.".localized
         }
     }
     
@@ -187,8 +187,11 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         }
         
         // duplication check
-        guard shortcut == oldShortcut || !self.keyBindings.contains(where: { $0.shortcut == shortcut }) else {
-            throw InvalidShortcutError(kind: .alreadyTaken, shortcut: shortcut)
+        if shortcut != oldShortcut,
+           let duplicatedShortcut = self.keyBindings.first(where: { $0.shortcut == shortcut })
+        {
+            let name = duplicatedShortcut.name.trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))
+            throw InvalidShortcutError(kind: .alreadyTaken(name: name), shortcut: shortcut)
         }
     }
     
@@ -210,7 +213,7 @@ private extension Collection where Element == NSTreeNode {
                 let shortcut = keyItem.shortcut
                 else { return [] }
             
-            return [KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
+            return [KeyBinding(name: keyItem.name, action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
         }
         
         return Set(keyBindings)

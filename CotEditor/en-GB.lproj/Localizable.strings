@@ -641,7 +641,7 @@
 "Space" = "Space";
 
 // Warning messages
-"“%@” is already taken." = "“%@” is already taken.";
+"“%@” is already taken by the “%@” command." = "“%@” is already taken by the “%@” command.";
 "“%@” does not include the Command key." = "“%@” does not include the Command key.";
 "“%@” includes the Command key." = "“%@” includes the Command key.";
 "The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";

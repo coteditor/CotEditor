@@ -640,7 +640,7 @@
 "Space" = "Boşluk";
 
 // Warning messages
-"“%@” is already taken." = "“%@” halihazırda alınmış.";
+"“%@” is already taken by the “%@” command." = "“%@” halihazırda alınmış.";  // FIXME: updated
 "“%@” does not include the Command key." = "“%@”, Command düğmesini içermiyor.";
 "“%@” includes the Command key." = "“%@”, Command düğmesini içeriyor.";
 "The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";

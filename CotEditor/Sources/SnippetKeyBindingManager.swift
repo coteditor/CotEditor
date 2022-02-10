@@ -83,7 +83,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
-            let item = KeyBindingItem(action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
+            let item = KeyBindingItem(name: title, action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
             
             return NamedTreeNode(name: title, representedObject: item)
         }

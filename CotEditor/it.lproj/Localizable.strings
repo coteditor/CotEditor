@@ -643,7 +643,7 @@
 "Space" = "Spazio";
 
 // Warning messages
-"“%@” is already taken." = "Il tasto “%@” è giù utilizzato.";
+"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";  // FIXME: updated
 "“%@” does not include the Command key." = "La combinazione “%@” non include il tasto Command.";
 "“%@” includes the Command key." = "La combinazione “%@” include il tasto Command.";
 "The Shift key can be used only with another modifier key." = "Il

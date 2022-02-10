@@ -215,7 +215,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
                                         keyEquivalent: menuItem.keyEquivalent)
                 
-                return [KeyBinding(action: action, shortcut: shortcut.isValid ? shortcut : nil)]
+                return [KeyBinding(name: menuItem.title, action: action, shortcut: shortcut.isValid ? shortcut : nil)]
             }
     }
     
@@ -282,7 +282,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                     ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
+                let item = KeyBindingItem(name: menu.title, action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
                 return NamedTreeNode(name: menuItem.title, representedObject: item)
             }

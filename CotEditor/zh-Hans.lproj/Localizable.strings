@@ -642,7 +642,7 @@
 "Space" = "空格键";
 
 // Warning messages
-"“%@” is already taken." = "“%@”已在使用中。";
+"“%@” is already taken by the “%@” command." = "“%@”已在使用中。";  // FIXME: updated
 "“%@” does not include the Command key." = "“%@”中没有包含Command键。";
 "“%@” includes the Command key." = "“%@”包含了Command键。";
 "The Shift key can be used only with another modifier key." = "Shift键只能配合其他修饰键使用。";
