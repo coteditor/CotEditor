@@ -637,8 +637,6 @@
 
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@” já está sendo usado.";  // FIXME: updated
-"“%@” does not include the Command key." = "“%@” não inclui a tecla Comando.";
-"“%@” includes the Command key." = "“%@” inclui a tecla Comando.";
 "The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";  // FIXME: added
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
 "Please combine with other keys." = "Combine-a com outra tecla.";

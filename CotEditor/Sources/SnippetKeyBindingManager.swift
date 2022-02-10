@@ -97,26 +97,6 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// validate new key spec chars are settable
-    override func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
-        
-        try super.validate(shortcut: shortcut, oldShortcut: oldShortcut)
-        
-        // command key existance check
-        if shortcut.modifierMask.contains(.command) {
-            throw InvalidShortcutError(kind: .unwantedCommandKey, shortcut: shortcut)
-        }
-        
-        // avoid shift-only modifier with a letter
-        // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
-        if shortcut.modifierMask == .shift,
-           shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
-        {
-            throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: shortcut)
-        }
-    }
-    
-    
     
     // MARK: Public Methods
     
