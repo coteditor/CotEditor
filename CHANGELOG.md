@@ -20,6 +20,7 @@ Change Log
 
 - Change the system requirement to __macOS 11 Big Sur and later__.
 - Update the window size setting to use the document last window size if the width/height setting in the preferences > Window is left blank (= auto).
+- Allow the menu key bindings to assign a shortcut without the Command key.
 - Display code points instead of left blank in the incompatible character table for control characters.
 - Update Swift syntax style to add keywords added in Swift 5.5.
 - Update C++ syntax style to add more file extensions.

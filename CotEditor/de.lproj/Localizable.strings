@@ -643,8 +643,6 @@
 
 // Warning messages
 "“%@” is already taken by the “%@” command." = "„%@“ wird bereits　vom „%@“-Befehl verwendet.";
-"“%@” does not include the Command key." = "„%@“ enthält nicht die Command-Taste.";
-"“%@” includes the Command key." = "„%@“ enthält die Command-Taste.";
 "The Shift key can be used only with another modifier key." = "Die Shift-Taste kann nur mit einer anderen Modifikatortaste verwendet werden.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
 "Please combine with other keys." = "Bitte kombiniere sie mit anderen Tasten.";
