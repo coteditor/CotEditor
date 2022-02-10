@@ -31,8 +31,6 @@ struct InvalidShortcutError: LocalizedError {
     enum ErrorKind {
         case singleType
         case alreadyTaken(name: String)
-        case lackingCommandKey
-        case unwantedCommandKey
         case shiftOnlyModifier
     }
     
@@ -48,12 +46,6 @@ struct InvalidShortcutError: LocalizedError {
             
             case let .alreadyTaken(name):
                 return String(format: "“%@” is already taken by the “%@” command.".localized, self.shortcut.description, name)
-            
-            case .lackingCommandKey:
-                return String(format: "“%@” does not include the Command key.".localized, self.shortcut.description)
-            
-            case .unwantedCommandKey:
-                return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
                 
             case .shiftOnlyModifier:
                 return "The Shift key can be used only with another modifier key.".localized
@@ -176,7 +168,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     /// validate new key spec chars are settable
     ///
     /// - Throws: `InvalidShortcutError`
-    func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
+    final func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
         
         // blank key is always valid
         if shortcut.isEmpty { return }
@@ -186,9 +178,18 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
             throw InvalidShortcutError(kind: .singleType, shortcut: shortcut)
         }
         
+        // avoid shift-only modifier with a letter
+        // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
+        if shortcut.modifierMask == .shift,
+           shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
+        {
+            throw InvalidShortcutError(kind: .shiftOnlyModifier, shortcut: shortcut)
+        }
+        
         // duplication check
         if shortcut != oldShortcut,
-           let duplicatedShortcut = self.keyBindings.first(where: { $0.shortcut == shortcut })
+           let duplicatedShortcut = [MenuKeyBindingManager.shared, SnippetKeyBindingManager.shared]
+            .flatMap(\.keyBindings).first(where: { $0.shortcut == shortcut })
         {
             let name = duplicatedShortcut.name.trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))
             throw InvalidShortcutError(kind: .alreadyTaken(name: name), shortcut: shortcut)

@@ -90,18 +90,6 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// validate new key spec chars are settable
-    override func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
-        
-        try super.validate(shortcut: shortcut, oldShortcut: oldShortcut)
-        
-        // command key existance check
-        if !shortcut.isEmpty, !shortcut.modifierMask.contains(.command) {
-            throw InvalidShortcutError(kind: .lackingCommandKey, shortcut: shortcut)
-        }
-    }
-    
-    
     
     // MARK: Public Methods
     
