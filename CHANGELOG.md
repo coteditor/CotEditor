@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Indtroduce a new read-only AppleScript paramater `has BOM` to document objects and a new option `BOM` to the `convert` command.
+- Introduce a new read-only AppleScript parameter `has BOM` to document objects and a new option `BOM` to the `convert` command.
 
 
 
