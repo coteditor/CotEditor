@@ -5,6 +5,10 @@ Change Log
 4.1.0-beta.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Indtroduce a new read-only AppleScript paramater `has BOM` to document objects and a new option `BOM` to the `convert` command.
+
 
 
 4.1.0-beta (475)

@@ -76,6 +76,9 @@
 		<dt><code>IANA charset</code></dt>
 		<dd>エンコーディングのIANA charset名（Unicode text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
 
+		<dt><code>has BOM</code></dt>
+		<dd>エンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></dd>
+
 		<dt><code>line ending</code></dt>
 		<dd>改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code>）</dd>
 
@@ -364,8 +367,11 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>新しいエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
 
-		<dt><code>lossy</code> (boolean)</dt>
+		<dt>[<code>lossy</code>] (boolean)</dt>
 		<dd>エンコーディング適用によって一部の文字列が失われても良いか</dd>
+
+		<dt>[<code>BOM</code>] (boolean)</dt>
+		<dd>エンコーディングにBOMを付けるかどうか <span class="added">(CotEditor 4.1で追加)</span></dd>
 	</dl></dd>
 	<dd><dl>
 		<dt>返り値</dt>
@@ -381,8 +387,8 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 <h4>例</h4>
 
 <figure>
-	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; without lossy</code></pre>
-	<figcaption>UTF-8に変換し、変換できたかどうかを返す。</figcaption>
+	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; with BOM without lossy</code></pre>
+	<figcaption>Unicode (UTF-8)BOM付きに変換し、変換できたかどうかを返す。</figcaption>
 </figure>
 
 <h4>詳細</h4>

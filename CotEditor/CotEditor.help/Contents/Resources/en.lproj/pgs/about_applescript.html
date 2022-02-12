@@ -77,6 +77,9 @@
 		<dt><code>IANA charset</code></dt>
 		<dd>The IANA charset name of the document. (Unicode text, e.g.<code>Shift_JIS</code>, <code>EUC-JP</code>)</dd>
 
+		<dt><code>has BOM</code></dt>
+		<dd>Has the file encoding a BOM (byte order mark)? (boolean) <span class="added">new on CotEditor 4.1</span></dd>
+
 		<dt><code>line ending</code></dt>
 		<dd>The line ending code of the document. (<code>CR</code> / <code>LF</code> / <code>CRLF</code>)</dd>
 
@@ -363,8 +366,11 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>The new encoding, either in localized encoding name or an IANA charset name.</dd>
 
-		<dt><code>lossy</code> (boolean)</dt>
+		<dt>[<code>lossy</code>] (boolean)</dt>
 		<dd>Whether to allow “lossy” conversion (might result in loss of character that couldn't be converted) or not.</dd>
+
+		<dt>[<code>BOM</code>] (boolean)</dt>
+		<dd>Whether to add a BOM (byte order mark). <span class="added">(added on CotEditor 4.1)</span></dd>
 	</dl></dd>
 	<dd><dl>
 		<dt>Return value</dt>
@@ -380,8 +386,8 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <h4>Example</h4>
 
 <figure>
-	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; without lossy</code></pre>
-	<figcaption>Converts the text encoding of the frontmost window to UTF-8, returns the result.</figcaption>
+	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; with BOM without lossy</code></pre>
+	<figcaption>Converts the text encoding of the frontmost window to Unicode (UTF-8) with BOM, returns the result.</figcaption>
 </figure>
 
 <h4>Discussion</h4>

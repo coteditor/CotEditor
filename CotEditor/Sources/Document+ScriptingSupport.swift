@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -159,6 +159,14 @@ extension Document {
     }
     
     
+    @objc var hasBOM: Bool {
+        
+        self.fileEncoding.withUTF8BOM ||
+        self.fileEncoding.encoding == .utf16 ||
+        self.fileEncoding.encoding == .utf32
+    }
+    
+    
     /// syntax style name (Unicode text)
     @objc var coloringStyle: String {
         
@@ -227,11 +235,13 @@ extension Document {
             return false
         }
         
-        if encoding == self.fileEncoding.encoding {
+        let withBOM = arguments["BOM"] as? Bool ?? false
+        let fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: withBOM)
+        
+        if fileEncoding == self.fileEncoding {
             return true
         }
         
-        let fileEncoding = FileEncoding(encoding: encoding)
         let lossy = (arguments["lossy"] as? Bool) ?? false
         
         do {
