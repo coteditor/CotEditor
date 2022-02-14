@@ -68,11 +68,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
         if let window = self.window, width > 0 || height > 0 {
-            let contentSize = NSSize(width: width >= window.minSize.width ? width : window.frame.width,
-                                     height: height >= window.minSize.height ? height : window.frame.height)
-            window.setContentSize(contentSize)
+            let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
+                                   height: height > window.minSize.height ? height : window.frame.height)
+            window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
-        (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)

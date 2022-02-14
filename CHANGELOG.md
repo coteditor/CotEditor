@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the initial position of the side pane was occasionally stacked under the window toolbar.
+- [beta] Fix initial window size.
 
 
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -115,6 +115,7 @@ final class SidebarViewController: NSTabViewController {
             
             if self.isViewLoaded {  // avoid storing initial state (set in the storyboard)
                 UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
+                self.invalidateRestorableState()
             }
         }
     }
