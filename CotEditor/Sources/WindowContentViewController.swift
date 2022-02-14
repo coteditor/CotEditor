@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,8 +28,17 @@ import Cocoa
 
 final class WindowContentViewController: NSSplitViewController {
     
+    // MARK: Enums
+    
+    private enum SerializationKey {
+        
+        static let isSidebarShown = "isSidebarShown"
+    }
+    
+    
     // MARK: Private Properties
     
+    private var sidebarObserver: AnyCancellable?
     private var sidebarSelectionObserver: AnyCancellable?
     
     @IBOutlet private weak var documentViewItem: NSSplitViewItem?
@@ -45,8 +54,12 @@ final class WindowContentViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
+        self.restoreAutosavingState()
+        
         // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
         self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+        self.sidebarObserver = self.sidebarViewItem?.publisher(for: \.isCollapsed, options: .initial)
+            .sink { [weak self] _ in self?.invalidateRestorableState() }
         
         // synchronize sidebar pane among window tabs
         self.sidebarSelectionObserver = self.sidebarViewController?.publisher(for: \.selectedTabViewItemIndex)
@@ -54,6 +67,26 @@ final class WindowContentViewController: NSSplitViewController {
                 self?.siblings.filter { $0 != self }
                     .forEach { $0.sidebarViewController?.selectedTabViewItemIndex = tabViewIndex }
             }
+    }
+    
+    
+    /// restore UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if coder.containsValue(forKey: SerializationKey.isSidebarShown) {
+            self.isSidebarShown = coder.decodeBool(forKey: SerializationKey.isSidebarShown)
+        }
+    }
+    
+    
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+        
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        coder.encode(self.isSidebarShown, forKey: SerializationKey.isSidebarShown)
     }
     
     
@@ -124,28 +157,6 @@ final class WindowContentViewController: NSSplitViewController {
     func showSidebarPane(index: SidebarViewController.TabIndex) {
         
         self.setSidebarShown(true, index: index, animate: true)
-    }
-    
-    
-    /// rsestore visibility of inspector but keeping the window width
-    func restoreAutosavingState() {
-        
-        assert(self.sidebarViewItem!.isCollapsed)
-        assert(self.sidebarViewItem == self.splitViewItems[1])
-        assert(self.isViewLoaded)
-        assert(!self.view.window!.isVisible)
-        
-        guard let sidebarViewItem = self.sidebarViewItem else { return assertionFailure() }
-        guard self.splitView.autosavingSubviewStates?[safe: 1]?.isCollapsed == false else { return }
-        
-        let originalSize = self.view.frame.size
-        
-        sidebarViewItem.isCollapsed = false
-        
-        // adjust contentView shape
-        let newWidth = originalSize.width + sidebarViewItem.viewController.view.frame.width
-        self.view.window?.setContentSize(NSSize(width: newWidth, height: originalSize.height))
-        self.splitView.setPosition(originalSize.width, ofDividerAt: 0)
     }
     
     

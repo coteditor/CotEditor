@@ -369,10 +369,10 @@
 
 /* MARK: Inspector */
 // Outline
-"Recent Filters" = "Recent Filters";  // FIXME: added
-"Clear Recents" = "Clear Recents";  // FIXME: added
-"No Recent Filter" = "No Recent Filter";  // FIXME: added
-"No Filter Results" = "No Filter Results";  // FIXME: added
+"Recent Filters" = "Filtri recenti";  // FIXME: machine-translated (native check required)
+"Clear Recents" = "Cancella recenti";  // FIXME: machine-translated (native check required)
+"No Recent Filter" = "Nessun filtro recente";  // FIXME: machine-translated (native check required)
+"No Filter Results" = "Nessun risultato del filtro";  // FIXME: machine-translated (native check required)
 
 // Incompatible characters
 "No incompatible characters were found." = "Nessun carattere incompatibile trovato.";

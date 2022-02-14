@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,26 @@
 
 import AppKit
 
-extension NSSplitView {
+extension NSSplitViewController {
+    
+    /// rsestore visibility of inspector
+    func restoreAutosavingState() {
+        
+        assert(self.isViewLoaded)
+        assert(self.view.window == nil)
+        
+        guard let states = self.splitView.autosavingSubviewStates else { return }
+        
+        for (index, state) in states.enumerated() {
+            self.splitViewItems[safe: index]?.isCollapsed = state.isCollapsed
+            self.splitView.setPosition(state.frame.maxX, ofDividerAt: index)
+        }
+    }
+    
+}
+
+
+private extension NSSplitView {
     
     struct AutosavingSubviewState {
         
@@ -40,7 +59,9 @@ extension NSSplitView {
         guard
             let autosaveName = self.autosaveName,
             let subviewFrames = UserDefaults.standard.stringArray(forKey: "NSSplitView Subview Frames " + autosaveName)
-            else { return nil }
+        else { return nil }
+        
+        assert(subviewFrames.count == self.arrangedSubviews.count)
         
         return subviewFrames.map { string in
             let components = string.components(separatedBy: ", ")

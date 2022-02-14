@@ -59,6 +59,9 @@
             <property name="IANA charset" code="iacs" type="text" access="r" description="The IANA charset name of the document.">
                 <cocoa key="IANACharSetName"/>
             </property>
+            <property name="has BOM" code="hBOM" type="boolean" access="r" description="Is the file encoding of the document has BOM (byte order mark)?">
+                <cocoa key="hasBOM"/>
+            </property>
             <property name="length" code="slen" type="integer" access="r" description="The number of characters in the document."/>
             <property name="line ending" code="lend" type="line ending character" access="rw" description="The line ending type of the document.">
                 <cocoa key="lineEndingChar"/>
@@ -197,8 +200,11 @@
         <command name="convert" code="cEd1CVrt" description="Convert the document text to new encoding.">
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
             <direct-parameter type="document" description="The document to convert encoding."/>
-            <parameter name="lossy" code="lOsy" type="boolean" description="Allows lossy conversion?">
+            <parameter name="lossy" code="lOsy" type="boolean" description="Allows lossy conversion?" optional="yes">
                 <cocoa key="lossy"/>
+            </parameter>
+            <parameter name="BOM" code="wBOM" type="boolean" description="Has the new encoding a BOM (byte order mark)?" optional="yes">
+                <cocoa key="BOM"/>
             </parameter>
             <parameter name="to" code="nEcd" type="text" description="The new encoding, either in localized encoding name or an IANA charset name.">
                 <cocoa key="newEncoding"/>

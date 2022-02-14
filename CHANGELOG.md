@@ -2,6 +2,21 @@
 Change Log
 ==========================
 
+4.1.0 (677)
+--------------------------
+
+### New Features
+
+- Introduce a new read-only AppleScript parameter `has BOM` to document objects and a new option `BOM` to the `convert` command.
+
+
+### Fixes
+
+- Fix an issue that the initial position of the side pane was occasionally stacked under the window toolbar.
+- [beta] Fix initial window size.
+
+
+
 4.1.0-beta (475)
 --------------------------
 

@@ -44,7 +44,7 @@
 "navigation bar" = "barre de navigation";
 "line numbers" = "numéros de ligne";
 "find result" = "résultat de la recherche";
-"Use print font" = "Utiliser la police d'impression";  // FIXME: machine translated
+"Use print font" = "Utiliser une police pour l’impression";
 
 
 
@@ -367,14 +367,14 @@
 
 /* MARK: Inspector */
 // Outline
-"Recent Filters" = "Filtres récents";  // FIXME: machine translated
-"Clear Recents" = "Effacer les éléments récents";  // FIXME: machine translated
-"No Recent Filter" = "Aucun filtre récent";  // FIXME: machine translated
-"No Filter Results" = "Aucun résultat de filtre";  // FIXME: machine translated
+"Recent Filters" = "Filtres récents";
+"Clear Recents" = "Effacer l’historique";
+"No Recent Filter" = "Aucun filtre récent";
+"No Filter Results" = "Aucun filtre trouvé";
 
 // Incompatible characters
 "No incompatible characters were found." = "Aucun caractère incompatible trouvé.";
-"Scanning incompatible characters…" = "Numérisation des caractères incompatibles …";  // FIXME: machine translated
+"Scanning incompatible characters…" = "Recherche de caractères incompatibles …";
 
 
 
@@ -641,7 +641,7 @@
 "Space" = "Espace";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "« %@ » est déjà attribué.";  // FIXME: updated
+"“%@” is already taken by the “%@” command." = "« %@ » est déjà assigné à la commande « %@ ».";
 "The Shift key can be used only with another modifier key." = "La touche Maj ne peut être utilisée que avec une autre touche de modification.";
 "Single type is invalid for a shortcut." = "Un raccourci clavier ne peut pas être composé que d’une seule touche.";
 "Please combine with other keys." = "Veuillez combiner avec d’autres touches.";

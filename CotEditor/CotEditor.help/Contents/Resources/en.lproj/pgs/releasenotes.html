@@ -21,7 +21,7 @@
 <article>
 	<header>
 		<h1>CotEditor 4.1.0</h1>
-		<p>release: <time>2022-02</time></p>
+		<p>release: <time>2022-02-15</time></p>
 	</header>
 	
 	
@@ -34,6 +34,7 @@
 			<li>Add “Open Outline Menu” command to the Find menu.</li>
 			<li>Add Turkish (thanks to Emir SARI!) and British English (thanks to Alex Newson!) localizations.</li>
 			<li>Introduce a new AppleScript command <code>jump</code> to document objects.</li>
+			<li>Introduce a new read-only AppleScript parameter <code>has BOM</code> to document objects and a new option <code>BOM</code> to the <code>convert</code> command.</li>
 			<li>Place line number views on the right side in the editor if the writing direction is right-to-left.</li>
 			<li>Add syntax style for Protocol Buffer.</li>
 		</ul>
@@ -84,6 +85,7 @@
 			<li>Fix an issue that the editor's opacity change did not apply immediately.</li>
 			<li>Fix an issue that some uncustomizable menu commands were provided in the Key Bindings preference pane.</li>
 			<li>Fix an issue in the snippet key bindings that shortcuts with only Shift key for modifier keys were accepted though does not work correctly.</li>
+			<li>Fix an issue that the initial position of the side pane was occasionally stacked under the window toolbar.</li>
 			<li>Fix an issue that some help buttons did not work (thanks to Alex Newson!).</li>
 			<li>Fix and minor update on localized strings.</li>
 			<li>Fix <code>cot</code> command to work also with Python 3.</li>

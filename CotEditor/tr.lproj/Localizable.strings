@@ -370,7 +370,7 @@
 "Recent Filters" = "Son Filtreler";
 "Clear Recents" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
-"No Filter Results" = "No Filter Results";  // FIXME: added
+"No Filter Results" = "Filtre Sonucu Yok";
 
 // Incompatible characters
 "No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";
@@ -640,7 +640,7 @@
 "Space" = "Boşluk";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@” halihazırda alınmış.";  // FIXME: updated
+"“%@” is already taken by the “%@” command." = "“%@”, halihazırda “%@ komutu tarafından alınmış.";
 "The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";
 "Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
 "Please combine with other keys." = "Lütfen başka düğmeler ile ikileyin.";
