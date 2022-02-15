@@ -25,9 +25,9 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
-"C9y-bs-mE1.title" = "Yazıtipi:";
+"C9y-bs-mE1.title" = "Font:";
 /* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "Belge Yazıtipiyle Aynı";
+"PfG-m4-gpq.title" = "Belge Fontuyla Aynı";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "Seç…";
 

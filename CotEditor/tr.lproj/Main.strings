@@ -217,9 +217,9 @@
 "458.title" = "Tümünü Yeniden Renklendir";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
-"410.title" = "Yazıtipi";
+"410.title" = "Font";
 /* Class = "NSMenu"; title = "Font"; ObjectID = "418"; */
-"418.title" = "Yazıtipi";
+"418.title" = "Font";
 
 /* Class = "NSMenuItem"; title = "Show Fonts"; ObjectID = "424"; */
 "424.title" = "Fontları Göster";

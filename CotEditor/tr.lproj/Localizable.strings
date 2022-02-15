@@ -43,7 +43,7 @@
 "navigation bar" = "dolaşım çubuğu";
 "line numbers" = "satır numaraları";
 "find result" = "arama sonucu";
-"Use print font" = "baskı yazıtipini kullan";
+"Use print font" = "Baskı fontunu kullan";
 
 
 
@@ -209,62 +209,62 @@
 /* MARK: Toolbar */
 "Syntax Style" = "Sözdizim Biçemi";
 // tooltip
-"Change syntax style" = "Sözdizim biçemini değiştirir";
+"Change syntax style" = "Sözdizim biçemini değiştir";
 // menu item title
 "Recently Used" = "Son Kullanılan";
 "Deleted" = "Silinen";
 
 "Inspector" = "Denetçi";
 // tooltip
-"Show document information" = "Belge bilgisini gösterir";
+"Show document information" = "Belge bilgisini göster";
 
 "Text Size" = "Metin Boyutu";
 "Smaller" = "Daha Küçük";
 "Bigger" = "Daha Büyük";
 // tooltip
-"Change text size" = "Metin boyutunu değiştirir";
-"Decrease text size" = "Metin boyutunu azaltır";
-"Increase text size" = "Metin boyutunu artırır";
+"Change text size" = "Metin boyutunu değiştir";
+"Decrease text size" = "Metin boyutunu azalt";
+"Increase text size" = "Metin boyutunu artır";
 
 "Writing Direction" = "Yazım Yönü";
 "Left to Right" = "Soldan Sağa";
 "Right to Left" = "Sağdan Sola";
 // tooltip
-"Change writing direction" = "Yazım yönünü değiştirir";
-"Left to right" = "Soldan sağa yazar";
-"Right to left" = "Sağdan sola yazar";
+"Change writing direction" = "Yazım yönünü değiştir";
+"Left to right" = "Soldan sağa yaz";
+"Right to left" = "Sağdan sola yaz";
 
 "Text Orientation" = "Metin Yönlendirmesi";
 "Horizontal" = "Yatay";
 "Vertical" = "Dikey";
 // tooltip
-"Toggle text orientation" = "Metin yönlendirmesini değiştirir";
+"Toggle text orientation" = "Metin yönlendirmesini değiştir";
 
 "Indent" = "Girintile";
 "Shift Left" = "Sola Kaydır";
 "Shift Right" = "Sağa Kaydır";
 // tooltip
-"Indent selection" = "Seçimi girintiler";
-"Shift lines to left" = "Satırları sola kaydırır";
-"Shift lines to right" = "Satırları sağa kaydırır";
+"Indent selection" = "Seçimi girintile";
+"Shift lines to left" = "Satırları sola kaydır";
+"Shift lines to right" = "Satırları sağa kaydır";
 
 "Comment" = "Yorum Yap";
 // tooltip
-"Comment-out or uncomment selection" = "Seçimi yoruma dönüştürür veya kaldırır";
+"Comment-out or uncomment selection" = "Seçimi yoruma dönüştürür veya kaldır";
 
 "Tab Style" = "Sekme Biçemi";
 // tooltip
-"Disable expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırakır";
-"Expand tabs to spaces automatically" = "Sekmeleri kendiliğinden boşluklara dönüştürür";
-"Change tab width" = "Sekme genişliğini değiştirir";
+"Disable expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırak";
+"Expand tabs to spaces automatically" = "Sekmeleri kendiliğinden boşluklara dönüştür";
+"Change tab width" = "Sekme genişliğini değiştir";
 // menu
 "Tab Width" = "Sekme Genişliği";
 "Custom…" = "Özel…";
 
 "Wrap Lines" = "Satırları Kaydır";
 // tooltip
-"Unwrap lines" = "Satırları olduğu gibi bırakır";
-"Wrap lines" = "Satırları pencere kenarından geri döndürür";
+"Unwrap lines" = "Satırları olduğu gibi bırak";
+"Wrap lines" = "Satırları pencere kenarından geri döndür";
 
 "Invisibles" = "Görünmez Karakterler";
 // tooltip
@@ -282,27 +282,27 @@
 
 "Spell Check" = "Yazım Denetimi";
 // tooltip
-"Show spelling and grammar" = "Yazım ve dilbilgisi denetimini gösterir";
+"Show spelling and grammar" = "Yazım ve dilbilgisi denetimini göster";
 
 "Color Code" = "Renk Kodu";
 // tooltip
-"Open Color Code Editor and set selection as color code" = "Renk kodu düzenleyicisini açar ve seçimi renk kodu olarak ayarlar";
+"Open Color Code Editor and set selection as color code" = "Renk kodu düzenleyicisini açar ve seçimi renk kodu olarak ayarla";
 
 "Emoji & Symbols" = "Emoji ve Semboller";
 // tooltip
-"Show Emoji & Symbols palette" = "Emoji ve Semboller paletini gösterir";
+"Show Emoji & Symbols palette" = "Emoji ve Semboller paletini göster";
 
 "Find" = "Bul";
 // tooltip
-"Show Find & Replace" = "Bul ve Değiştir'i gösterir";
+"Show Find & Replace" = "Bul ve Değiştir'i göster";
 
 "Print" = "Yazdır";
 // tooltip
-"Print document" = "Belgeyi yazdırır";
+"Print document" = "Belgeyi yazdır";
 
 // tooltip
 // -> The toolbar label for "Share" is set automatically.
-"Share document file" = "Belgeyi paylaşır";
+"Share document file" = "Belgeyi paylaş";
 
 "Fonts" = "Fontlar";
 // tooltip
@@ -404,7 +404,7 @@
 "Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
 
 // Contextual menu items
-"Font" = "Yazıtipi";
+"Font" = "Font";
 "Text" = "Metin";
 "Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
 "Select All" = "Tümünü Seç";
