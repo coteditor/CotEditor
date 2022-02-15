@@ -267,9 +267,9 @@
                                 </connections>
                             </textField>
                             <popUpButton toolTip="Line Endings" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-H9-iZR">
-                                <rect key="frame" x="539" y="0.0" width="57" height="21"/>
+                                <rect key="frame" x="543" y="0.0" width="53" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="52" id="Fo4-PE-eBJ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="Fo4-PE-eBJ"/>
                                     <constraint firstAttribute="height" constant="21" id="i5y-f9-wPx"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="smallSquare" title="LF" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="YT7-vd-3ih" id="uXq-8L-T6d">
@@ -300,7 +300,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton toolTip="File Encoding" translatesAutoresizingMaskIntoConstraints="NO" id="CUv-So-9Og">
-                                <rect key="frame" x="406" y="0.0" width="133" height="21"/>
+                                <rect key="frame" x="410" y="0.0" width="133" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="128" id="gE6-7r-AUt"/>
                                 </constraints>
@@ -322,13 +322,13 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="DDY-i5-DV6">
-                                <rect key="frame" x="541" y="4" width="5" height="13"/>
+                                <rect key="frame" x="545" y="4" width="5" height="13"/>
                             </box>
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-lb-J3U">
-                                <rect key="frame" x="408" y="4" width="5" height="13"/>
+                                <rect key="frame" x="412" y="4" width="5" height="13"/>
                             </box>
                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="365" y="4" width="39" height="14"/>
+                                <rect key="frame" x="369" y="4" width="39" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="64 MB" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <byteCountFormatter key="formatter" allowsNonnumericFormatting="NO" adaptive="NO" id="esZ-c3-dIT"/>
                                     <font key="font" metaFont="smallSystem"/>
