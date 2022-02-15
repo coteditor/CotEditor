@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [trivial] Improve Turkish localization (thanks to Emir SARI!).
+- Improve Turkish localization (thanks to Emir SARI!).
 
 
 ### Fixes
