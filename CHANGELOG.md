@@ -5,6 +5,10 @@ Change Log
 4.1.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Improve Turkish localization (thanks to Emir SARI!).
+
 
 
 4.1.0 (677)
