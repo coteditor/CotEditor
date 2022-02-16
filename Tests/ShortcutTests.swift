@@ -57,15 +57,15 @@ final class ShortcutTests: XCTestCase {
     func testShortcutSymbols () {
         
         // test modifier symbols
-        XCTAssertEqual(Shortcut(keySpecChars: "^$a").description, "􀆍 􀆝 A")
-        XCTAssertEqual(Shortcut(keySpecChars: "~@b").description, "􀆕 􀆔 B")
+        XCTAssertEqual(Shortcut(keySpecChars: "^$a").description, "^ ⇧ A")
+        XCTAssertEqual(Shortcut(keySpecChars: "~@b").description, "⌥ ⌘ B")
         
         // test unprintable keys
         let f10 = String(UnicodeScalar(NSF10FunctionKey)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + f10).description, "􀆔 F10")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + f10).description, "⌘ F10")
         
         let delete = String(UnicodeScalar(NSDeleteCharacter)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "􀆔 􁂒")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "⌘ ⌦")
     }
     
 }

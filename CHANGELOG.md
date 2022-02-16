@@ -2,7 +2,21 @@
 Change Log
 ==========================
 
-4.1.0 (677)
+4.1.1 (479)
+--------------------------
+
+### Improvements
+
+- Improve Turkish localization (thanks to Emir SARI!).
+
+
+### Fixes
+
+- Fix an issue that the shortcut symbols in the Key Bindings preference pane did not display properly.
+
+
+
+4.1.0 (477)
 --------------------------
 
 ### New Features
