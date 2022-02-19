@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [dev] Update Yams from 4.0.6 to 5.0.0.
+- [non-AppStore ver.] Update Sparkle to 2.1.0.
 
 
 
