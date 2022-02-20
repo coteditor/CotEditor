@@ -11,6 +11,11 @@ Change Log
 - [non-AppStore ver.] Update Sparkle to 2.1.0.
 
 
+### Fixes
+
+- Fix an issue that the editor scrolls oddly by typing the Space key if the “Link URLs in document” option is enabled.
+
+
 
 4.1.1 (479)
 --------------------------

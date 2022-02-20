@@ -494,6 +494,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.completionDebouncer.schedule(delay: .milliseconds(50))
         }
         
+        // retry the manual url detection for the entire text
+        // -> The detection for the typed line will be automatically done by NSTextView.
         if self.urlDetectionTask != nil {
             self.detectLink()
         }
