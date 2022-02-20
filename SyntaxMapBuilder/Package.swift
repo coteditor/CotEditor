@@ -11,7 +11,7 @@ let package = Package(
         .executable(name: "SyntaxMapBuilder", targets: ["SyntaxMapBuilder"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/jpsim/Yams", from: Version(4, 0, 0)),
+        .package(url: "https://github.com/jpsim/Yams", from: Version(5, 0, 0)),
     ],
     targets: [
         .executableTarget(name: "SyntaxMapBuilder", dependencies: ["Yams"]),

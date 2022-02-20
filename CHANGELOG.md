@@ -2,6 +2,21 @@
 Change Log
 ==========================
 
+4.1.2 (481)
+--------------------------
+
+### Improvements
+
+- [dev] Update Yams from 4.0.6 to 5.0.0.
+- [non-AppStore ver.] Update Sparkle to 2.1.0.
+
+
+### Fixes
+
+- Fix an issue that the editor scrolls oddly by typing the Space key if the “Link URLs in document” option is enabled.
+
+
+
 4.1.1 (479)
 --------------------------
 

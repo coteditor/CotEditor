@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,6 +51,27 @@ extension NSAttributedString {
         result.append(rhs)
         
         lhs = result.copy() as! NSAttributedString
+    }
+    
+    
+    /// Check if at least one attribute for the given attribute key exists.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of the attribute key to check.
+    ///   - range: The range where to check. When `nil`, search the entire range.
+    /// - Returns: Whether the attribute for the given attribute key exists.
+    func hasAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
+        
+        guard self.length > 0 else { return false }
+        
+        let range = range ?? self.range
+        
+        assert(range.upperBound <= self.length)
+        
+        var effectiveRange: NSRange = .notFound
+        let value = self.attribute(attrName, at: range.location, longestEffectiveRange: &effectiveRange, in: range)
+        
+        return value != nil || effectiveRange.upperBound < range.upperBound
     }
     
 }

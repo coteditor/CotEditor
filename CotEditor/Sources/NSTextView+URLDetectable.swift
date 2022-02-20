@@ -43,6 +43,11 @@ extension URLDetectable {
         
         self.urlDetectionTask?.cancel()
         self.urlDetectionTask = Task.detached(priority: .userInitiated) {
+            defer {
+                // remove the task itself when completed in order to use the `.urlDetectionTask` property as the task completion flag.
+                self.urlDetectionTask = nil
+            }
+            
             var links: [(url: URL, range: NSRange)] = []
             let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
             
@@ -56,8 +61,10 @@ extension URLDetectable {
             }
             try Task.checkCancellation()
             
-            Task { @MainActor [links] in
+            await MainActor.run { [links] in
                 assert(textStorage.string.length == string.length, "textStorage was edited after starting URL detection")
+                
+                if links.isEmpty, !textStorage.hasAttribute(.link) { return }
                 
                 textStorage.beginEditing()
                 textStorage.removeAttribute(.link, range: textStorage.range)
