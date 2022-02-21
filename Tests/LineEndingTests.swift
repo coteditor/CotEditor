@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,6 +52,7 @@ final class LineEndingTests: XCTestCase {
         XCTAssertEqual("\n".detectedLineEnding, .lf)
         XCTAssertEqual("\r".detectedLineEnding, .cr)
         XCTAssertEqual("\r\n".detectedLineEnding, .crlf)
+        XCTAssertEqual("abc\u{2029}def".detectedLineEnding, .paragraphSeparator)
         XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, .crlf)  // just check the first new line
     
         let bom = "\u{feff}"
@@ -73,7 +74,7 @@ final class LineEndingTests: XCTestCase {
     
     func testReplacement() {
         
-        XCTAssertEqual("foo\r\nbar".replacingLineEndings(with: .cr), "foo\rbar")
+        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
     }
     
     

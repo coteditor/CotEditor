@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,20 +25,33 @@
 
 import Foundation
 
-enum LineEnding: Character {
+enum LineEnding: Character, CaseIterable {
     
     case lf = "\n"
     case cr = "\r"
     case crlf = "\r\n"
+    case nel = "\u{0085}"
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
-    static let basic: [LineEnding] = [.cr, .cr, .crlf]
+    static let basicCases: [LineEnding] = [.lf, .cr, .crlf]
     
     
     var string: String {
         
-        return String(self.rawValue)
+        String(self.rawValue)
+    }
+    
+    
+    var length: Int {
+        
+        self.rawValue.unicodeScalars.count
+    }
+    
+    
+    var index: Int {
+        
+        Self.allCases.firstIndex(of: self)!
     }
     
     
@@ -51,6 +64,8 @@ enum LineEnding: Character {
                 return "CR"
             case .crlf:
                 return "CRLF"
+            case .nel:
+                return "NEL"
             case .lineSeparator:
                 return "LS"
             case .paragraphSeparator:
@@ -68,17 +83,13 @@ enum LineEnding: Character {
                 return "Classic Mac OS (CR)".localized
             case .crlf:
                 return "Windows (CRLF)".localized
+            case .nel:
+                return "Unicode Next Line (NEL)".localized
             case .lineSeparator:
-                return "Unix Line Separator".localized
+                return "Unicode Line Separator (LS)".localized
             case .paragraphSeparator:
-                return "Unix Paragraph Separator".localized
+                return "Unicode Paragraph Separator (PS)".localized
         }
-    }
-    
-    
-    var length: Int {
-        
-        return self.rawValue.unicodeScalars.count
     }
     
 }
@@ -89,7 +100,7 @@ enum LineEnding: Character {
 
 private extension LineEnding {
     
-    static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
+    static let regexPattern = "\\r\\n|[\\n\\r\\u0085\\u2028\\u2029]"
 }
 
 
