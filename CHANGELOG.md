@@ -5,6 +5,10 @@ Change Log
 4.1.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update Markdown syntax style for faster syntax parsing.
+
 
 
 4.1.2 (481)
