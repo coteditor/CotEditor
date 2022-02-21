@@ -98,9 +98,19 @@ enum LineEnding: Character, CaseIterable {
 
 // MARK: -
 
-private extension LineEnding {
+private extension BidirectionalCollection where Element == LineEnding {
     
-    static let regexPattern = "\\r\\n|[\\n\\r\\u0085\\u2028\\u2029]"
+    var regexPattern: String {
+        
+        assert(!self.isEmpty)
+        assert(self.count == self.unique.count)
+        
+        let multiples = self.filter { $0.length > 1 }
+        let singles = self.filter { $0.length == 1 }
+        
+        return (multiples + singles).map(\.string).joined(separator: "|")
+    }
+    
 }
 
 
@@ -109,7 +119,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// The first line ending type.
     var detectedLineEnding: LineEnding? {
         
-        guard let range = self.range(of: LineEnding.regexPattern, options: .regularExpression) else { return nil }
+        guard let range = self.range(of: LineEnding.allCases.regexPattern, options: .regularExpression) else { return nil }
         
         // -> Swift treats "\r\n" also as a single character.
         let character = self[range.lowerBound]
@@ -125,10 +135,10 @@ extension StringProtocol where Self.Index == String.Index {
         // cf. https://bugs.swift.org/browse/SR-10896
         guard self.first != "\u{FEFF}" || self.compareCount(with: 16) == .greater else {
             let startIndex = self.index(after: self.startIndex)
-            return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
+            return self[startIndex...].replacingOccurrences(of: LineEnding.allCases.regexPattern, with: "", options: .regularExpression).count + 1
         }
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count
+        return self.replacingOccurrences(of: LineEnding.allCases.regexPattern, with: "", options: .regularExpression).count
     }
     
     
@@ -138,7 +148,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// - Returns: String replacing line ending characers.
     func replacingLineEndings(with lineEnding: LineEnding) -> String {
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: lineEnding.string, options: .regularExpression)
+        return self.replacingOccurrences(of: LineEnding.allCases.regexPattern, with: lineEnding.string, options: .regularExpression)
     }
     
     
