@@ -5,6 +5,9 @@ Change Log
 4.1.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Unix line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either by pressing the Option key or the line endings of the opened document is one of these).
 
 
 4.1.2 (481)
