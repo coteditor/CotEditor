@@ -362,12 +362,21 @@ Gw
                                                     </menuItem>
                                                     <menuItem title="Unicode Next Line (NEL)" tag="3" hidden="YES" id="pUE-eY-9RI">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
+                                                        </attributedString>
                                                     </menuItem>
                                                     <menuItem title="Unicode Line Separator (LS)" tag="4" hidden="YES" id="ins-89-nu3">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
+                                                        </attributedString>
                                                     </menuItem>
                                                     <menuItem title="Unicode Paragraph Separator (PS)" tag="5" hidden="YES" id="Zz9-5c-bS1">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
+                                                        </attributedString>
                                                     </menuItem>
                                                 </items>
                                             </menu>

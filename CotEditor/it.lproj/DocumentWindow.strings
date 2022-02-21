@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2020 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -55,6 +55,12 @@
 "J48-tF-WBo.title" = "CR";
 /* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
 "Zo1-Cc-YBm.title" = "CRLF";
+/* Class = "NSMenuItem"; title = "NEL"; ObjectID = "T5S-w3-Q1V"; */
+"T5S-w3-Q1V.title" = "NEL";
+/* Class = "NSMenuItem"; title = "LS"; ObjectID = "ayd-8d-C4Y"; */
+"ayd-8d-C4Y.title" = "LS";
+/* Class = "NSMenuItem"; title = "PS"; ObjectID = "YIk-KP-44u"; */
+"YIk-KP-44u.title" = "PS";
 
 /* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
 "FNE-H9-iZR.ibShadowedToolTip" = "Fine riga";
@@ -64,3 +70,9 @@
 "J48-tF-WBo.ibShadowedToolTip" = "Mac OS classico";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
 "Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Next Line"; ObjectID = "T5S-w3-Q1V"; */
+"T5S-w3-Q1V.ibShadowedToolTip" = "Unix next line";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Line Separator"; ObjectID = "ayd-8d-C4Y"; */
+"ayd-8d-C4Y.ibShadowedToolTip" = "Unix line separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Paragraph Separator"; ObjectID = "YIk-KP-44u"; */
+"YIk-KP-44u.ibShadowedToolTip" = "Unix paragraph separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
