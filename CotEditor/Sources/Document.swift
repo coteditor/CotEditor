@@ -91,7 +91,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let encoding = String.availableStringEncodings.contains(defaultEncoding) ? defaultEncoding : .utf8
         self.fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: (encoding == .utf8) && UserDefaults.standard[.saveUTF8BOM])
         
-        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
+        self.lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         
@@ -890,7 +890,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change line ending with sender's tag
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
-        guard let lineEnding = LineEnding(index: sender.tag) else { return assertionFailure() }
+        guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
         
         self.changeLineEnding(to: lineEnding)
     }

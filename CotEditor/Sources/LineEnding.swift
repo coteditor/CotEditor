@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum LineEnding: Character {
+enum LineEnding: Character, CaseIterable {
     
     case lf = "\n"
     case cr = "\r"
@@ -34,7 +34,7 @@ enum LineEnding: Character {
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
-    static let basic: [LineEnding] = [.lf, .cr, .crlf]
+    static let basicCases: [LineEnding] = [.lf, .cr, .crlf]
     
     
     var string: String {
@@ -46,6 +46,12 @@ enum LineEnding: Character {
     var length: Int {
         
         self.rawValue.unicodeScalars.count
+    }
+    
+    
+    var index: Int {
+        
+        Self.allCases.firstIndex(of: self)!
     }
     
     
