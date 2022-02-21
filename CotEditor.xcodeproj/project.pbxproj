@@ -160,6 +160,8 @@
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
+		2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
 		2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F18F9203270BE002F1CA7 /* UITests.swift */; };
 		2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */; };
 		2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
@@ -963,6 +965,7 @@
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplacementPanel.storyboard; sourceTree = "<group>"; };
+		2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalMenu.swift; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3F18F9203270BE002F1CA7 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -1689,6 +1692,7 @@
 				2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */,
 				2AA3C7A7251EBB810060D6DB /* SeparatorGuideView.swift */,
 				2A62F3752699C2EA00AB3510 /* ShareMenuItem.swift */,
+				2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */,
 				2A39F15626F74C2500B52876 /* AccessibleStepper.swift */,
 				2A47955D27A3F9C6006751E0 /* WorkaroundOpacitySlider.swift */,
 			);
@@ -2989,6 +2993,7 @@
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
+				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
@@ -3298,6 +3303,7 @@
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
+				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
