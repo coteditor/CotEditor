@@ -10,6 +10,12 @@ Change Log
 - Unix line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either by pressing the Option key or the line endings of the opened document is one of these).
 
 
+### Improvements
+
+- Update Markdown syntax style for faster syntax parsing.
+
+
+
 4.1.2 (481)
 --------------------------
 
