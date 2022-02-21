@@ -30,6 +30,7 @@ enum LineEnding: Character {
     case lf = "\n"
     case cr = "\r"
     case crlf = "\r\n"
+    case nel = "\u{0085}"
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
@@ -57,6 +58,8 @@ enum LineEnding: Character {
                 return "CR"
             case .crlf:
                 return "CRLF"
+            case .nel:
+                return "NEL"
             case .lineSeparator:
                 return "LS"
             case .paragraphSeparator:
@@ -74,10 +77,12 @@ enum LineEnding: Character {
                 return "Classic Mac OS (CR)".localized
             case .crlf:
                 return "Windows (CRLF)".localized
+            case .nel:
+                return "Unicode Next Line (NEL)".localized
             case .lineSeparator:
-                return "Unix Line Separator".localized
+                return "Unicode Line Separator (LS)".localized
             case .paragraphSeparator:
-                return "Unix Paragraph Separator".localized
+                return "Unicode Paragraph Separator (PS)".localized
         }
     }
     
@@ -89,7 +94,7 @@ enum LineEnding: Character {
 
 private extension LineEnding {
     
-    static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
+    static let regexPattern = "\\r\\n|[\\n\\r\\u0085\\u2028\\u2029]"
 }
 
 
