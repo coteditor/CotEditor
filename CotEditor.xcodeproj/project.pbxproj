@@ -162,6 +162,9 @@
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
 		2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
+		2A3E61C227C4657800C6E5B6 /* OrderedCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61C127C4657800C6E5B6 /* OrderedCounter.swift */; };
+		2A3E61C327C4657800C6E5B6 /* OrderedCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61C127C4657800C6E5B6 /* OrderedCounter.swift */; };
+		2A3E61C527C485CF00C6E5B6 /* OrderedCounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61C427C485CF00C6E5B6 /* OrderedCounterTests.swift */; };
 		2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F18F9203270BE002F1CA7 /* UITests.swift */; };
 		2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */; };
 		2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
@@ -966,6 +969,8 @@
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplacementPanel.storyboard; sourceTree = "<group>"; };
 		2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalMenu.swift; sourceTree = "<group>"; };
+		2A3E61C127C4657800C6E5B6 /* OrderedCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedCounter.swift; sourceTree = "<group>"; };
+		2A3E61C427C485CF00C6E5B6 /* OrderedCounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedCounterTests.swift; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3F18F9203270BE002F1CA7 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -1655,6 +1660,7 @@
 				2A1A4EAE24FB7BEF00B50AA0 /* UserDefaults */,
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
 				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
+				2A3E61C127C4657800C6E5B6 /* OrderedCounter.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
@@ -2308,6 +2314,7 @@
 				2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */,
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
+				2A3E61C427C485CF00C6E5B6 /* OrderedCounterTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2994,6 +3001,7 @@
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
+				2A3E61C227C4657800C6E5B6 /* OrderedCounter.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
@@ -3100,6 +3108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */,
+				2A3E61C527C485CF00C6E5B6 /* OrderedCounterTests.swift in Sources */,
 				2AED46731E43942300751C45 /* TextFindTests.swift in Sources */,
 				2A5EDDBD241B64EB00A07810 /* TextClippingTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,
@@ -3304,6 +3313,7 @@
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
+				2A3E61C327C4657800C6E5B6 /* OrderedCounter.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
