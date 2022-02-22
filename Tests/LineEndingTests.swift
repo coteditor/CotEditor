@@ -52,8 +52,9 @@ final class LineEndingTests: XCTestCase {
         XCTAssertEqual("\n".detectedLineEnding, .lf)
         XCTAssertEqual("\r".detectedLineEnding, .cr)
         XCTAssertEqual("\r\n".detectedLineEnding, .crlf)
+        XCTAssertEqual("\u{85}".detectedLineEnding, .nel)
         XCTAssertEqual("abc\u{2029}def".detectedLineEnding, .paragraphSeparator)
-        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, .crlf)  // just check the first new line
+        XCTAssertEqual("\rfoo\r\nbar\nbuz\u{2029}moin\r\n".detectedLineEnding, .crlf)  // most used new line must be detected
     
         let bom = "\u{feff}"
         let string = "\(bom)\r\n"
@@ -75,6 +76,7 @@ final class LineEndingTests: XCTestCase {
     func testReplacement() {
         
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
+        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings([.lf], with: .cr), "foo\r\nbar\r")
     }
     
     

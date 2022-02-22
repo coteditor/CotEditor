@@ -98,6 +98,23 @@ enum LineEnding: Character, CaseIterable {
 
 // MARK: -
 
+private extension LineEnding {
+    
+    var regexPattern: String {
+        
+        switch self {
+            case .lf:
+                return "(?<!\r)\n"
+            case .cr:
+                return "\r(?!\n)"
+            default:
+                return self.string
+        }
+    }
+    
+}
+
+
 private extension BidirectionalCollection where Element == LineEnding {
     
     var regexPattern: String {
@@ -108,7 +125,9 @@ private extension BidirectionalCollection where Element == LineEnding {
         let multiples = self.filter { $0.length > 1 }
         let singles = self.filter { $0.length == 1 }
         
-        return (multiples + singles).map(\.string).joined(separator: "|")
+        return (multiples + singles)
+            .map { multiples.isEmpty ? $0.regexPattern : $0.string }
+            .joined(separator: "|")
     }
     
 }
@@ -116,15 +135,28 @@ private extension BidirectionalCollection where Element == LineEnding {
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// The first line ending type.
+    /// The dominated line ending type.
     var detectedLineEnding: LineEnding? {
         
-        guard let range = self.range(of: LineEnding.allCases.regexPattern, options: .regularExpression) else { return nil }
+        guard !self.isEmpty else { return nil }
         
-        // -> Swift treats "\r\n" also as a single character.
-        let character = self[range.lowerBound]
+        let maxCount = 3
+        var counter = OrderedCounter<LineEnding>()
+        self.enumerateSubstrings(in: self.startIndex..., options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
+            guard
+                !enclosingRange.isEmpty,
+                let lastCharacter = self[safe: substringRange.upperBound],
+                let lineEnding = LineEnding(rawValue: lastCharacter)
+            else { return }
+            
+            counter.append(lineEnding)
+            
+            if counter.count(lineEnding) >= maxCount {
+                stop = true
+            }
+        }
         
-        return LineEnding(rawValue: character)
+        return counter.firstMaxElement
     }
     
     
@@ -142,13 +174,17 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// String replacing all kind of line ending characters in the the receiver with the desired line ending.
+    /// Return a new string in which all specified line ending characters in the receiver are replaced by another given line endings.
     ///
-    /// - Parameter lineEnding: The line ending type to replace with.
+    /// - Parameters:
+    ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
+    ///     - lineEnding: The line ending type with which to replace target.
     /// - Returns: String replacing line ending characers.
-    func replacingLineEndings(with lineEnding: LineEnding) -> String {
+    func replacingLineEndings(_ lineEndings: [LineEnding]? = nil, with lineEnding: LineEnding) -> String {
         
-        return self.replacingOccurrences(of: LineEnding.allCases.regexPattern, with: lineEnding.string, options: .regularExpression)
+        let lineEndings = lineEndings ?? LineEnding.allCases
+        
+        return self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
     }
     
     
