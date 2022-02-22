@@ -192,22 +192,33 @@ extension StringProtocol where Self.Index == String.Index {
     /// by assuming the receiver has `fromLineEnding` regardless of actual ones if specified.
     ///
     /// - Important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
-    func convert(range: NSRange, from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding) -> NSRange {
+    func convert(range: NSRange, from fromLineEnding: LineEnding, to toLineEnding: LineEnding) -> NSRange {
         
-        guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
+        self.convert(ranges: [range], from: fromLineEnding, to: toLineEnding)[0]
+    }
+    
+    
+    /// Convert passed-in ranges as if line endings are changed from `fromLineEnding` to `toLineEnding`
+    /// by assuming the receiver has `fromLineEnding` regardless of actual ones if specified.
+    func convert(ranges: [NSRange], from fromLineEnding: LineEnding, to toLineEnding: LineEnding) -> [NSRange] {
         
-        let delta = toLineEnding.length - currentLineEnding.length
+        assert(!ranges.contains(.notFound))
         
-        guard delta != 0 else { return range }
+        let delta = toLineEnding.length - fromLineEnding.length
         
-        let string = self.replacingLineEndings(with: currentLineEnding)
-        let regex = try! NSRegularExpression(pattern: currentLineEnding.string)
-        let locationRange = NSRange(location: 0, length: range.location)
+        guard delta != 0, !ranges.isEmpty else { return ranges }
         
-        let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
-        let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)
+        let upperBound = ranges.map(\.upperBound).max()!
+        let lineEndingRanges = (self.replacingLineEndings(with: fromLineEnding) as NSString)
+            .ranges(of: fromLineEnding.string, range: NSRange(location: 0, length: upperBound))
         
-        return NSRange(location: range.location + locationDelta, length: range.length + lengthDelta)
+        return ranges.map { range in
+            let locationCount = lineEndingRanges.countPrefix { $0.lowerBound < range.lowerBound }
+            let lengthCount = lineEndingRanges[locationCount...].countPrefix { $0.upperBound <= range.upperBound }
+            
+            return NSRange(location: range.location + locationCount * delta,
+                           length: range.length + lengthCount * delta)
+        }
     }
     
 }

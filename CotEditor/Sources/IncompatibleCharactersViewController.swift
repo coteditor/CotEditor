@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -164,15 +164,15 @@ final class IncompatibleCharactersViewController: NSViewController {
 private extension NSTextStorage {
     
     /// change background color of pased-in ranges
-    func markup(ranges: [NSRange], lineEnding: LineEnding = .lf) {
+    func markup(ranges: [NSRange], lineEnding: LineEnding) {
         
         guard !ranges.isEmpty else { return }
         
-        guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
-        
-        let viewRanges = ranges.map { self.string.convert(range: $0, from: lineEnding, to: .lf) }
+        let viewRanges = self.string.convert(ranges: ranges, from: lineEnding, to: .lf)
         
         for manager in self.layoutManagers {
+            guard let color = manager.firstTextView?.textColor?.withAlphaComponent(0.2) else { continue }
+            
             for viewRange in viewRanges {
                 manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)
             }
