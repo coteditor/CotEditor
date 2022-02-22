@@ -1658,6 +1658,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1A4EAE24FB7BEF00B50AA0 /* UserDefaults */,
+				2A3E61C627C4962B00C6E5B6 /* Formatters */,
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
 				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
 				2A3E61C127C4657800C6E5B6 /* OrderedCounter.swift */,
@@ -1666,10 +1667,6 @@
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
-				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
-				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
-				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
-				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1986,6 +1983,17 @@
 				2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */,
 			);
 			name = "Syntax Edit Sheet";
+			sourceTree = "<group>";
+		};
+		2A3E61C627C4962B00C6E5B6 /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
+				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
+				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
+				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
+			);
+			name = Formatters;
 			sourceTree = "<group>";
 		};
 		2A3F187D202D8773002F1CA7 /* Supporting Files */ = {
