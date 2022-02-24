@@ -11,6 +11,11 @@ Change Log
 - Update Markdown, and SVG syntax styles for faster syntax parsing.
 
 
+### Fixes
+
+- Fix an issue that the text copied from the editor has always LF line endings regardless the actual document's line ending setting.
+
+
 
 4.1.2 (481)
 --------------------------
