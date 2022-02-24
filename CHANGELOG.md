@@ -18,6 +18,11 @@ Change Log
 - Detect the line ending in documents more intelligently.
 
 
+### Fixes
+
+- Fix an issue that the text copied from the editor has always LF line endings regardless the actual document's line ending setting.
+
+
 
 4.1.2 (481)
 --------------------------
