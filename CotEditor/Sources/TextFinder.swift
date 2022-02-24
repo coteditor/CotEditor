@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -602,25 +602,19 @@ private final class LineCounter: LineRangeCacheable {
 
 private extension UserDefaults {
     
-    private static let MaxHistorySize = 20
+    private static let maximumRecents = 20
     
     
-    /// append given string to history with the user defaults key
-    func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
+    /// Add a new value to history as the latest item with the user defaults key.
+    ///
+    /// - Parameters:
+    ///   - value: The value to add.
+    ///   - key: The default key to add the value.
+    func appendHistory<T>(_ value: T, forKey key: DefaultKey<[T]>) where T: Equatable {
         
-        assert(key == .findHistory || key == .replaceHistory)
+        guard (value as? String)?.isEmpty != true else { return }
         
-        guard !string.isEmpty else { return }
-        
-        // append new string to history
-        var history = self[key]
-        history.removeFirst(string)  // remove duplicated item
-        history.append(string)
-        if history.count > UserDefaults.MaxHistorySize {  // remove overflow
-            history.removeFirst(history.count - UserDefaults.MaxHistorySize)
-        }
-        
-        self[key] = history
+        self[key].appendUnique(value, maximum: Self.maximumRecents)
     }
     
 }

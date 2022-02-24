@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,6 +37,22 @@ extension RangeReplaceableCollection where Element: Equatable {
         self.remove(at: index)
         
         return index
+    }
+    
+    
+    /// Add a new element to the end of the collection by keeping all the collection's elements unique.
+    ///
+    /// - Parameters:
+    ///   - element: The element to append.
+    ///   - maximum: The muximum number of the elements to keep in the collection. The overflowed elements will be removed.
+    mutating func appendUnique(_ element: Element, maximum: Int) {
+        
+        self.removeAll { $0 == element }
+        self.append(element)
+        
+        if self.count > maximum {
+            self.removeFirst(self.count - maximum)
+        }
     }
     
 }
@@ -77,7 +93,7 @@ extension Sequence where Element: Equatable {
     /// An array consists of unique elements of receiver keeping ordering.
     var unique: [Element] {
         
-        return self.reduce(into: []) { (unique, element) in
+        self.reduce(into: []) { (unique, element) in
             guard !unique.contains(element) else { return }
             
             unique.append(element)

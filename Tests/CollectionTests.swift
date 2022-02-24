@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,6 +35,24 @@ final class CollectionTests: XCTestCase {
         let subdata = data.components(length: 3)
         
         XCTAssertEqual(subdata, [Data([0, 1, 2]), Data([3, 4, 5]), Data([6])])
+    }
+    
+    
+    func testAppendUnique() {
+        
+        var array = [0, 1, 2, 3, 4]
+        
+        array.appendUnique(0, maximum: 5)
+        XCTAssertEqual(array, [1, 2, 3, 4, 0])
+        
+        array.appendUnique(6, maximum: 5)
+        XCTAssertEqual(array, [2, 3, 4, 0, 6])
+        
+        array.appendUnique(7, maximum: 6)
+        XCTAssertEqual(array, [2, 3, 4, 0, 6, 7])
+        
+        array.appendUnique(6, maximum: 3)
+        XCTAssertEqual(array, [0, 7, 6])
     }
     
     
