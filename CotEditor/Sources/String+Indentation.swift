@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ extension String {
     func rangeOfIndent(at location: Int) -> NSRange {
         
         let lineRange = (self as NSString).lineRange(at: location)
-        let range = (self as NSString).range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
+        let range = (self as NSString).range(of: "^[ \\t]++", options: .regularExpression, range: lineRange)
         
         guard range.location != NSNotFound else {
             return NSRange(location: location, length: 0)
@@ -141,7 +141,7 @@ extension String {
         
         let lineRange = self.lineRange(at: index)
         
-        return self.range(of: "^[ \\t]+", options: .regularExpression, range: lineRange) ?? index..<index
+        return self.range(of: "^[ \\t]++", options: .regularExpression, range: lineRange) ?? index..<index
     }
     
     
@@ -161,7 +161,7 @@ extension String {
         let lineStartIndex = (self as NSString).lineStartIndex(at: range.location)
         let forwardRange = NSRange(lineStartIndex..<range.location)
         
-        guard (self as NSString).range(of: "^ +$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
+        guard (self as NSString).range(of: "^ ++$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
         let column = self.column(of: range.location, tabWidth: tabWidth)
         let targetLength = tabWidth - (column % tabWidth)
