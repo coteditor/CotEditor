@@ -3,10 +3,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.5"
+  version: "1.2.6"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
-  lastModified: "2020-09-15"
+  lastModified: "2022-02-24"
 outlineMenu:
 - beginString: "(?<= )id=\"([^\"]+?)\""
   description: "id"
@@ -311,561 +311,561 @@ commands:
 - beginString: "\\?(?=>)"
   regularExpression: true
 attributes:
-- beginString: "(?<=xlink:)actuate\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)actuate\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)arcrole\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)arcrole\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)base\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)base\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)href\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)href\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)lang\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)lang\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)role\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)role\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)show\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)show\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)space\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)space\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)title\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)title\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xlink:)type\\b(?=[^<>]*>)"
+- beginString: "(?<=xlink:)type\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xml:)lang\\b(?=[^<>]*>)"
+- beginString: "(?<=xml:)lang\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xml:)space\\b(?=[^<>]*>)"
+- beginString: "(?<=xml:)space\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xmlns:)a\\b(?=[^<>]*>)"
+- beginString: "(?<=xmlns:)a\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xmlns:)cc\\b(?=[^<>]*>)"
+- beginString: "(?<=xmlns:)cc\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xmlns:)dc\\b(?=[^<>]*>)"
+- beginString: "(?<=xmlns:)dc\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xmlns:)rdf\\b(?=[^<>]*>)"
+- beginString: "(?<=xmlns:)rdf\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xmlns:)svg\\b(?=[^<>]*>)"
+- beginString: "(?<=xmlns:)svg\\s*+(?==)"
   regularExpression: true
-- beginString: "(?<=xmlns:)xlink\\b(?=[^<>]*>)"
+- beginString: "(?<=xmlns:)xlink\\s*+(?==)"
   regularExpression: true
-- beginString: "\\saccent-height\\b(?=[^<>]*>)"
+- beginString: "\\saccent-height\\s*+(?==)"
   regularExpression: true
-- beginString: "\\saccumulate\\b(?=[^<>]*>)"
+- beginString: "\\saccumulate\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sadditive\\b(?=[^<>]*>)"
+- beginString: "\\sadditive\\s*+(?==)"
   regularExpression: true
-- beginString: "\\salignment-baseline\\b(?=[^<>]*>)"
+- beginString: "\\salignment-baseline\\s*+(?==)"
   regularExpression: true
-- beginString: "\\salphabetic\\b(?=[^<>]*>)"
+- beginString: "\\salphabetic\\s*+(?==)"
   regularExpression: true
-- beginString: "\\samplitude\\b(?=[^<>]*>)"
+- beginString: "\\samplitude\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sarabic-form\\b(?=[^<>]*>)"
+- beginString: "\\sarabic-form\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sascent\\b(?=[^<>]*>)"
+- beginString: "\\sascent\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sattributeName\\b(?=[^<>]*>)"
+- beginString: "\\sattributeName\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sattributeType\\b(?=[^<>]*>)"
+- beginString: "\\sattributeType\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sazimuth\\b(?=[^<>]*>)"
+- beginString: "\\sazimuth\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sbaseFrequency\\b(?=[^<>]*>)"
+- beginString: "\\sbaseFrequency\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sbaseline-shift\\b(?=[^<>]*>)"
+- beginString: "\\sbaseline-shift\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sbaseProfile\\b(?=[^<>]*>)"
+- beginString: "\\sbaseProfile\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sbbox\\b(?=[^<>]*>)"
+- beginString: "\\sbbox\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sbegin\\b(?=[^<>]*>)"
+- beginString: "\\sbegin\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sbias\\b(?=[^<>]*>)"
+- beginString: "\\sbias\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sby\\b(?=[^<>]*>)"
+- beginString: "\\sby\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scalcMode\\b(?=[^<>]*>)"
+- beginString: "\\scalcMode\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scap-height\\b(?=[^<>]*>)"
+- beginString: "\\scap-height\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sclass\\b(?=[^<>]*>)"
+- beginString: "\\sclass\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sclip-path\\b(?=[^<>]*>)"
+- beginString: "\\sclip-path\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sclip-rule\\b(?=[^<>]*>)"
+- beginString: "\\sclip-rule\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sclip\\b(?=[^<>]*>)"
+- beginString: "\\sclip\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sclipPathUnits\\b(?=[^<>]*>)"
+- beginString: "\\sclipPathUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scolor-interpolation-filters\\b(?=[^<>]*>)"
+- beginString: "\\scolor-interpolation-filters\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scolor-interpolation\\b(?=[^<>]*>)"
+- beginString: "\\scolor-interpolation\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scolor-profile\\b(?=[^<>]*>)"
+- beginString: "\\scolor-profile\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scolor-rendering\\b(?=[^<>]*>)"
+- beginString: "\\scolor-rendering\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scolor\\b(?=[^<>]*>)"
+- beginString: "\\scolor\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scontentScriptType\\b(?=[^<>]*>)"
+- beginString: "\\scontentScriptType\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scontentStyleType\\b(?=[^<>]*>)"
+- beginString: "\\scontentStyleType\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scursor\\b(?=[^<>]*>)"
+- beginString: "\\scursor\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scx\\b(?=[^<>]*>)"
+- beginString: "\\scx\\s*+(?==)"
   regularExpression: true
-- beginString: "\\scy\\b(?=[^<>]*>)"
+- beginString: "\\scy\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sd\\b(?=[^<>]*>)"
+- beginString: "\\sd\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdescent\\b(?=[^<>]*>)"
+- beginString: "\\sdescent\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdiffuseConstant\\b(?=[^<>]*>)"
+- beginString: "\\sdiffuseConstant\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdirection\\b(?=[^<>]*>)"
+- beginString: "\\sdirection\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdisplay\\b(?=[^<>]*>)"
+- beginString: "\\sdisplay\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdivisor\\b(?=[^<>]*>)"
+- beginString: "\\sdivisor\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdominant-baseline\\b(?=[^<>]*>)"
+- beginString: "\\sdominant-baseline\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdur\\b(?=[^<>]*>)"
+- beginString: "\\sdur\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdx\\b(?=[^<>]*>)"
+- beginString: "\\sdx\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sdy\\b(?=[^<>]*>)"
+- beginString: "\\sdy\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sedgeMode\\b(?=[^<>]*>)"
+- beginString: "\\sedgeMode\\s*+(?==)"
   regularExpression: true
-- beginString: "\\selevation\\b(?=[^<>]*>)"
+- beginString: "\\selevation\\s*+(?==)"
   regularExpression: true
-- beginString: "\\senable-background\\b(?=[^<>]*>)"
+- beginString: "\\senable-background\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sencoding\\b(?=[^<>]*>)"
+- beginString: "\\sencoding\\s*+(?==)"
   regularExpression: true
-- beginString: "\\send\\b(?=[^<>]*>)"
+- beginString: "\\send\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sexponent\\b(?=[^<>]*>)"
+- beginString: "\\sexponent\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sexternalResourcesRequired\\b(?=[^<>]*>)"
+- beginString: "\\sexternalResourcesRequired\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfill-opacity\\b(?=[^<>]*>)"
+- beginString: "\\sfill-opacity\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfill-rule\\b(?=[^<>]*>)"
+- beginString: "\\sfill-rule\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfill\\b(?=[^<>]*>)"
+- beginString: "\\sfill\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfilter\\b(?=[^<>]*>)"
+- beginString: "\\sfilter\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfilterRes\\b(?=[^<>]*>)"
+- beginString: "\\sfilterRes\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfilterUnits\\b(?=[^<>]*>)"
+- beginString: "\\sfilterUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sflood-color\\b(?=[^<>]*>)"
+- beginString: "\\sflood-color\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sflood-opacity\\b(?=[^<>]*>)"
+- beginString: "\\sflood-opacity\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-family\\b(?=[^<>]*>)"
+- beginString: "\\sfont-family\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-size-adjust\\b(?=[^<>]*>)"
+- beginString: "\\sfont-size-adjust\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-size\\b(?=[^<>]*>)"
+- beginString: "\\sfont-size\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-stretch\\b(?=[^<>]*>)"
+- beginString: "\\sfont-stretch\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-style\\b(?=[^<>]*>)"
+- beginString: "\\sfont-style\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-variant\\b(?=[^<>]*>)"
+- beginString: "\\sfont-variant\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfont-weight\\b(?=[^<>]*>)"
+- beginString: "\\sfont-weight\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sformat\\b(?=[^<>]*>)"
+- beginString: "\\sformat\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfrom\\b(?=[^<>]*>)"
+- beginString: "\\sfrom\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfx\\b(?=[^<>]*>)"
+- beginString: "\\sfx\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sfy\\b(?=[^<>]*>)"
+- beginString: "\\sfy\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sg1\\b(?=[^<>]*>)"
+- beginString: "\\sg1\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sg2\\b(?=[^<>]*>)"
+- beginString: "\\sg2\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sglyph-name\\b(?=[^<>]*>)"
+- beginString: "\\sglyph-name\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sglyph-orientation-horizontal\\b(?=[^<>]*>)"
+- beginString: "\\sglyph-orientation-horizontal\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sglyph-orientation-vertical\\b(?=[^<>]*>)"
+- beginString: "\\sglyph-orientation-vertical\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sglyphRef\\b(?=[^<>]*>)"
+- beginString: "\\sglyphRef\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sgradientTransform\\b(?=[^<>]*>)"
+- beginString: "\\sgradientTransform\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sgradientUnits\\b(?=[^<>]*>)"
+- beginString: "\\sgradientUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\shanging\\b(?=[^<>]*>)"
+- beginString: "\\shanging\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sheight\\b(?=[^<>]*>)"
+- beginString: "\\sheight\\s*+(?==)"
   regularExpression: true
-- beginString: "\\shoriz-adv-x\\b(?=[^<>]*>)"
+- beginString: "\\shoriz-adv-x\\s*+(?==)"
   regularExpression: true
-- beginString: "\\shoriz-origin-x\\b(?=[^<>]*>)"
+- beginString: "\\shoriz-origin-x\\s*+(?==)"
   regularExpression: true
-- beginString: "\\shoriz-origin-y\\b(?=[^<>]*>)"
+- beginString: "\\shoriz-origin-y\\s*+(?==)"
   regularExpression: true
-- beginString: "\\shref\\b(?=[^<>]*>)"
+- beginString: "\\shref\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sid\\b(?=[^<>]*>)"
+- beginString: "\\sid\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sideographic\\b(?=[^<>]*>)"
+- beginString: "\\sideographic\\s*+(?==)"
   regularExpression: true
-- beginString: "\\simage-rendering\\b(?=[^<>]*>)"
+- beginString: "\\simage-rendering\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sin2\\b(?=[^<>]*>)"
+- beginString: "\\sin2\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sin\\b(?=[^<>]*>)"
+- beginString: "\\sin\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sintercept\\b(?=[^<>]*>)"
+- beginString: "\\sintercept\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sk1\\b(?=[^<>]*>)"
+- beginString: "\\sk1\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sk2\\b(?=[^<>]*>)"
+- beginString: "\\sk2\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sk3\\b(?=[^<>]*>)"
+- beginString: "\\sk3\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sk4\\b(?=[^<>]*>)"
+- beginString: "\\sk4\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sk\\b(?=[^<>]*>)"
+- beginString: "\\sk\\s*+(?==)"
   regularExpression: true
-- beginString: "\\skernelMatrix\\b(?=[^<>]*>)"
+- beginString: "\\skernelMatrix\\s*+(?==)"
   regularExpression: true
-- beginString: "\\skernelUnitLength\\b(?=[^<>]*>)"
+- beginString: "\\skernelUnitLength\\s*+(?==)"
   regularExpression: true
-- beginString: "\\skerning\\b(?=[^<>]*>)"
+- beginString: "\\skerning\\s*+(?==)"
   regularExpression: true
-- beginString: "\\skeyPoints\\b(?=[^<>]*>)"
+- beginString: "\\skeyPoints\\s*+(?==)"
   regularExpression: true
-- beginString: "\\skeySplines\\b(?=[^<>]*>)"
+- beginString: "\\skeySplines\\s*+(?==)"
   regularExpression: true
-- beginString: "\\skeyTimes\\b(?=[^<>]*>)"
+- beginString: "\\skeyTimes\\s*+(?==)"
   regularExpression: true
-- beginString: "\\slang\\b(?=[^<>]*>)"
+- beginString: "\\slang\\s*+(?==)"
   regularExpression: true
-- beginString: "\\slengthAdjust\\b(?=[^<>]*>)"
+- beginString: "\\slengthAdjust\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sletter-spacing\\b(?=[^<>]*>)"
+- beginString: "\\sletter-spacing\\s*+(?==)"
   regularExpression: true
-- beginString: "\\slighting-color\\b(?=[^<>]*>)"
+- beginString: "\\slighting-color\\s*+(?==)"
   regularExpression: true
-- beginString: "\\slimitingConeAngle\\b(?=[^<>]*>)"
+- beginString: "\\slimitingConeAngle\\s*+(?==)"
   regularExpression: true
-- beginString: "\\slocal\\b(?=[^<>]*>)"
+- beginString: "\\slocal\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smarker-end\\b(?=[^<>]*>)"
+- beginString: "\\smarker-end\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smarker-mid\\b(?=[^<>]*>)"
+- beginString: "\\smarker-mid\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smarker-start\\b(?=[^<>]*>)"
+- beginString: "\\smarker-start\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smarkerHeight\\b(?=[^<>]*>)"
+- beginString: "\\smarkerHeight\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smarkerUnits\\b(?=[^<>]*>)"
+- beginString: "\\smarkerUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smarkerWidth\\b(?=[^<>]*>)"
+- beginString: "\\smarkerWidth\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smask\\b(?=[^<>]*>)"
+- beginString: "\\smask\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smaskContentUnits\\b(?=[^<>]*>)"
+- beginString: "\\smaskContentUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smaskUnits\\b(?=[^<>]*>)"
+- beginString: "\\smaskUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smathematical\\b(?=[^<>]*>)"
+- beginString: "\\smathematical\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smax\\b(?=[^<>]*>)"
+- beginString: "\\smax\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smedia\\b(?=[^<>]*>)"
+- beginString: "\\smedia\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smethod\\b(?=[^<>]*>)"
+- beginString: "\\smethod\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smin\\b(?=[^<>]*>)"
+- beginString: "\\smin\\s*+(?==)"
   regularExpression: true
-- beginString: "\\smode\\b(?=[^<>]*>)"
+- beginString: "\\smode\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sname\\b(?=[^<>]*>)"
+- beginString: "\\sname\\s*+(?==)"
   regularExpression: true
-- beginString: "\\snumOctaves\\b(?=[^<>]*>)"
+- beginString: "\\snumOctaves\\s*+(?==)"
   regularExpression: true
-- beginString: "\\soffset\\b(?=[^<>]*>)"
+- beginString: "\\soffset\\s*+(?==)"
   regularExpression: true
-- beginString: "\\soffsetx\\b(?=[^<>]*>)"
+- beginString: "\\soffsetx\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonabort\\b(?=[^<>]*>)"
+- beginString: "\\sonabort\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonactivate\\b(?=[^<>]*>)"
+- beginString: "\\sonactivate\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonbegin\\b(?=[^<>]*>)"
+- beginString: "\\sonbegin\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonclick\\b(?=[^<>]*>)"
+- beginString: "\\sonclick\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonend\\b(?=[^<>]*>)"
+- beginString: "\\sonend\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonerror\\b(?=[^<>]*>)"
+- beginString: "\\sonerror\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonfocusin\\b(?=[^<>]*>)"
+- beginString: "\\sonfocusin\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonfocusout\\b(?=[^<>]*>)"
+- beginString: "\\sonfocusout\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonload\\b(?=[^<>]*>)"
+- beginString: "\\sonload\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonmousedown\\b(?=[^<>]*>)"
+- beginString: "\\sonmousedown\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonmousemove\\b(?=[^<>]*>)"
+- beginString: "\\sonmousemove\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonmouseout\\b(?=[^<>]*>)"
+- beginString: "\\sonmouseout\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonmouseover\\b(?=[^<>]*>)"
+- beginString: "\\sonmouseover\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonmouseup\\b(?=[^<>]*>)"
+- beginString: "\\sonmouseup\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonrepeat\\b(?=[^<>]*>)"
+- beginString: "\\sonrepeat\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonresize\\b(?=[^<>]*>)"
+- beginString: "\\sonresize\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonscroll\\b(?=[^<>]*>)"
+- beginString: "\\sonscroll\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonunload\\b(?=[^<>]*>)"
+- beginString: "\\sonunload\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sonzoom\\b(?=[^<>]*>)"
+- beginString: "\\sonzoom\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sopacity\\b(?=[^<>]*>)"
+- beginString: "\\sopacity\\s*+(?==)"
   regularExpression: true
-- beginString: "\\soperator\\b(?=[^<>]*>)"
+- beginString: "\\soperator\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sorder\\b(?=[^<>]*>)"
+- beginString: "\\sorder\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sorient\\b(?=[^<>]*>)"
+- beginString: "\\sorient\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sorientation\\b(?=[^<>]*>)"
+- beginString: "\\sorientation\\s*+(?==)"
   regularExpression: true
-- beginString: "\\soverflow\\b(?=[^<>]*>)"
+- beginString: "\\soverflow\\s*+(?==)"
   regularExpression: true
-- beginString: "\\soverline-position\\b(?=[^<>]*>)"
+- beginString: "\\soverline-position\\s*+(?==)"
   regularExpression: true
-- beginString: "\\soverline-thickness\\b(?=[^<>]*>)"
+- beginString: "\\soverline-thickness\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spanose-1\\b(?=[^<>]*>)"
+- beginString: "\\spanose-1\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spath\\b(?=[^<>]*>)"
+- beginString: "\\spath\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spathLength\\b(?=[^<>]*>)"
+- beginString: "\\spathLength\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spatternContentUnits\\b(?=[^<>]*>)"
+- beginString: "\\spatternContentUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spatternTransform\\b(?=[^<>]*>)"
+- beginString: "\\spatternTransform\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spatternUnits\\b(?=[^<>]*>)"
+- beginString: "\\spatternUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spointer-events\\b(?=[^<>]*>)"
+- beginString: "\\spointer-events\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spoints\\b(?=[^<>]*>)"
+- beginString: "\\spoints\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spointsAtX\\b(?=[^<>]*>)"
+- beginString: "\\spointsAtX\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spointsAtY\\b(?=[^<>]*>)"
+- beginString: "\\spointsAtY\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spointsAtZ\\b(?=[^<>]*>)"
+- beginString: "\\spointsAtZ\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spreserveAlpha\\b(?=[^<>]*>)"
+- beginString: "\\spreserveAlpha\\s*+(?==)"
   regularExpression: true
-- beginString: "\\spreserveAspectRatio\\b(?=[^<>]*>)"
+- beginString: "\\spreserveAspectRatio\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sprimitiveUnits\\b(?=[^<>]*>)"
+- beginString: "\\sprimitiveUnits\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sr\\b(?=[^<>]*>)"
+- beginString: "\\sr\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sradius\\b(?=[^<>]*>)"
+- beginString: "\\sradius\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srefX\\b(?=[^<>]*>)"
+- beginString: "\\srefX\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srefY\\b(?=[^<>]*>)"
+- beginString: "\\srefY\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srendering-intent\\b(?=[^<>]*>)"
+- beginString: "\\srendering-intent\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srepeatCount\\b(?=[^<>]*>)"
+- beginString: "\\srepeatCount\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srepeatDur\\b(?=[^<>]*>)"
+- beginString: "\\srepeatDur\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srequiredExtensions\\b(?=[^<>]*>)"
+- beginString: "\\srequiredExtensions\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srequiredFeatures\\b(?=[^<>]*>)"
+- beginString: "\\srequiredFeatures\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srestart\\b(?=[^<>]*>)"
+- beginString: "\\srestart\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sresult\\b(?=[^<>]*>)"
+- beginString: "\\sresult\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srotate\\b(?=[^<>]*>)"
+- beginString: "\\srotate\\s*+(?==)"
   regularExpression: true
-- beginString: "\\srx\\b(?=[^<>]*>)"
+- beginString: "\\srx\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sry\\b(?=[^<>]*>)"
+- beginString: "\\sry\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sscale\\b(?=[^<>]*>)"
+- beginString: "\\sscale\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sseed\\b(?=[^<>]*>)"
+- beginString: "\\sseed\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sshape-rendering\\b(?=[^<>]*>)"
+- beginString: "\\sshape-rendering\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sslope\\b(?=[^<>]*>)"
+- beginString: "\\sslope\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sspacing\\b(?=[^<>]*>)"
+- beginString: "\\sspacing\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sspecularConstant\\b(?=[^<>]*>)"
+- beginString: "\\sspecularConstant\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sspecularExponent\\b(?=[^<>]*>)"
+- beginString: "\\sspecularExponent\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sspreadMethod\\b(?=[^<>]*>)"
+- beginString: "\\sspreadMethod\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstandalone\\b(?=[^<>]*>)"
+- beginString: "\\sstandalone\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstartOffset\\b(?=[^<>]*>)"
+- beginString: "\\sstartOffset\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstdDeviation\\b(?=[^<>]*>)"
+- beginString: "\\sstdDeviation\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstemh\\b(?=[^<>]*>)"
+- beginString: "\\sstemh\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstemv\\b(?=[^<>]*>)"
+- beginString: "\\sstemv\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstitchTiles\\b(?=[^<>]*>)"
+- beginString: "\\sstitchTiles\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstop-color\\b(?=[^<>]*>)"
+- beginString: "\\sstop-color\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstop-opacity\\b(?=[^<>]*>)"
+- beginString: "\\sstop-opacity\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstrikethrough-position\\b(?=[^<>]*>)"
+- beginString: "\\sstrikethrough-position\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstrikethrough-thickness\\b(?=[^<>]*>)"
+- beginString: "\\sstrikethrough-thickness\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstring\\b(?=[^<>]*>)"
+- beginString: "\\sstring\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-dasharray\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-dasharray\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-dashoffset\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-dashoffset\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-linecap\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-linecap\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-linejoin\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-linejoin\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-miterlimit\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-miterlimit\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-opacity\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-opacity\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke-width\\b(?=[^<>]*>)"
+- beginString: "\\sstroke-width\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstroke\\b(?=[^<>]*>)"
+- beginString: "\\sstroke\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sstyle\\b(?=[^<>]*>)"
+- beginString: "\\sstyle\\s*+(?==)"
   regularExpression: true
-- beginString: "\\ssurfaceScale\\b(?=[^<>]*>)"
+- beginString: "\\ssurfaceScale\\s*+(?==)"
   regularExpression: true
-- beginString: "\\ssystemLanguage\\b(?=[^<>]*>)"
+- beginString: "\\ssystemLanguage\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stableValues\\b(?=[^<>]*>)"
+- beginString: "\\stableValues\\s*+(?==)"
   regularExpression: true
-- beginString: "\\starget\\b(?=[^<>]*>)"
+- beginString: "\\starget\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stargetX\\b(?=[^<>]*>)"
+- beginString: "\\stargetX\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stargetY\\b(?=[^<>]*>)"
+- beginString: "\\stargetY\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stext-anchor\\b(?=[^<>]*>)"
+- beginString: "\\stext-anchor\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stext-decoration\\b(?=[^<>]*>)"
+- beginString: "\\stext-decoration\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stext-rendering\\b(?=[^<>]*>)"
+- beginString: "\\stext-rendering\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stextLength\\b(?=[^<>]*>)"
+- beginString: "\\stextLength\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stitle\\b(?=[^<>]*>)"
+- beginString: "\\stitle\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sto\\b(?=[^<>]*>)"
+- beginString: "\\sto\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stransform\\b(?=[^<>]*>)"
+- beginString: "\\stransform\\s*+(?==)"
   regularExpression: true
-- beginString: "\\stype\\b(?=[^<>]*>)"
+- beginString: "\\stype\\s*+(?==)"
   regularExpression: true
-- beginString: "\\su1\\b(?=[^<>]*>)"
+- beginString: "\\su1\\s*+(?==)"
   regularExpression: true
-- beginString: "\\su2\\b(?=[^<>]*>)"
+- beginString: "\\su2\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sunderline-position\\b(?=[^<>]*>)"
+- beginString: "\\sunderline-position\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sunderline-thickness\\b(?=[^<>]*>)"
+- beginString: "\\sunderline-thickness\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sunicode-bidi\\b(?=[^<>]*>)"
+- beginString: "\\sunicode-bidi\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sunicode-range\\b(?=[^<>]*>)"
+- beginString: "\\sunicode-range\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sunicode\\b(?=[^<>]*>)"
+- beginString: "\\sunicode\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sunits-per-em\\b(?=[^<>]*>)"
+- beginString: "\\sunits-per-em\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sv-alphabetic\\b(?=[^<>]*>)"
+- beginString: "\\sv-alphabetic\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sv-hanging\\b(?=[^<>]*>)"
+- beginString: "\\sv-hanging\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sv-ideographic\\b(?=[^<>]*>)"
+- beginString: "\\sv-ideographic\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sv-mathematical\\b(?=[^<>]*>)"
+- beginString: "\\sv-mathematical\\s*+(?==)"
   regularExpression: true
-- beginString: "\\svalues\\b(?=[^<>]*>)"
+- beginString: "\\svalues\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sversion\\b(?=[^<>]*>)"
+- beginString: "\\sversion\\s*+(?==)"
   regularExpression: true
-- beginString: "\\svert-adv-y\\b(?=[^<>]*>)"
+- beginString: "\\svert-adv-y\\s*+(?==)"
   regularExpression: true
-- beginString: "\\svert-origin-x\\b(?=[^<>]*>)"
+- beginString: "\\svert-origin-x\\s*+(?==)"
   regularExpression: true
-- beginString: "\\svert-origin-y\\b(?=[^<>]*>)"
+- beginString: "\\svert-origin-y\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sviewBox\\b(?=[^<>]*>)"
+- beginString: "\\sviewBox\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sviewTarget\\b(?=[^<>]*>)"
+- beginString: "\\sviewTarget\\s*+(?==)"
   regularExpression: true
-- beginString: "\\svisibility\\b(?=[^<>]*>)"
+- beginString: "\\svisibility\\s*+(?==)"
   regularExpression: true
-- beginString: "\\swidth\\b(?=[^<>]*>)"
+- beginString: "\\swidth\\s*+(?==)"
   regularExpression: true
-- beginString: "\\swidths\\b(?=[^<>]*>)"
+- beginString: "\\swidths\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sword-spacing\\b(?=[^<>]*>)"
+- beginString: "\\sword-spacing\\s*+(?==)"
   regularExpression: true
-- beginString: "\\swriting-mode\\b(?=[^<>]*>)"
+- beginString: "\\swriting-mode\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sx-height\\b(?=[^<>]*>)"
+- beginString: "\\sx-height\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sx1\\b(?=[^<>]*>)"
+- beginString: "\\sx1\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sx2\\b(?=[^<>]*>)"
+- beginString: "\\sx2\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sx\\b(?=[^<>]*>)"
+- beginString: "\\sx\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sxChannelSelector\\b(?=[^<>]*>)"
+- beginString: "\\sxChannelSelector\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sxmlns\\b(?=[^<>]*>)"
+- beginString: "\\sxmlns\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sy1\\b(?=[^<>]*>)"
+- beginString: "\\sy1\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sy2\\b(?=[^<>]*>)"
+- beginString: "\\sy2\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sy\\b(?=[^<>]*>)"
+- beginString: "\\sy\\s*+(?==)"
   regularExpression: true
-- beginString: "\\syChannelSelector\\b(?=[^<>]*>)"
+- beginString: "\\syChannelSelector\\s*+(?==)"
   regularExpression: true
-- beginString: "\\sz\\b(?=[^<>]*>)"
+- beginString: "\\sz\\s*+(?==)"
   regularExpression: true
-- beginString: "\\szoomAndPan\\b(?=[^<>]*>)"
+- beginString: "\\szoomAndPan\\s*+(?==)"
   regularExpression: true
 characters:
 - beginString: "&#[0-9]+;"
