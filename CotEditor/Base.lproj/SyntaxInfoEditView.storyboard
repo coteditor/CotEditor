@@ -83,10 +83,7 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
-                                            <real key="value" value="0.0"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="rightPadding">
+                                        <userDefinedRuntimeAttribute type="number" keyPath="trailingPadding">
                                             <real key="value" value="18"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
