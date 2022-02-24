@@ -12,7 +12,7 @@ Change Log
 
 ### Improvements
 
-- Update Markdown syntax style for faster syntax parsing.
+- Update Markdown, and SVG syntax styles for faster syntax parsing.
 - Detect the line ending in documents more intelligently.
 
 
