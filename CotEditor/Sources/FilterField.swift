@@ -47,7 +47,7 @@ final class FilterField: NSSearchField {
         self.validateImage()
         
         let searchMenu = NSMenu(title: "Recent Filters".localized)
-        searchMenu.addItem(withTitle: "Recents Filters".localized, action: nil, keyEquivalent: "")
+        searchMenu.addItem(withTitle: "Recent Filters".localized, action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
