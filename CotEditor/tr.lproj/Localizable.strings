@@ -368,7 +368,7 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Son Filtreler";
-"Clear Recents" = "Son Filtreleri Temizle";
+"Clear Recent Filters" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
 "No Filter Results" = "Filtre Sonucu Yok";
 

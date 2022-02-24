@@ -368,7 +368,7 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Filtres récents";
-"Clear Recents" = "Effacer l’historique";
+"Clear Recent Filters" = "Effacer l’historique";
 "No Recent Filter" = "Aucun filtre récent";
 "No Filter Results" = "Aucun filtre trouvé";
 

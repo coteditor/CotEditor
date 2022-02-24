@@ -370,7 +370,7 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Filtri recenti";  // FIXME: machine-translated (native check required)
-"Clear Recents" = "Cancella recenti";  // FIXME: machine-translated (native check required)
+"Clear Recent Filters" = "Cancella recenti";  // FIXME: machine-translated (native check required)
 "No Recent Filter" = "Nessun filtro recente";  // FIXME: machine-translated (native check required)
 "No Filter Results" = "Nessun risultato del filtro";  // FIXME: machine-translated (native check required)
 

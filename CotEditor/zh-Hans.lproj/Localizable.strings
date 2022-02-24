@@ -369,7 +369,7 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "最近的过滤";
-"Clear Recents" = "清除最近记录";
+"Clear Recent Filters" = "清除最近记录";
 "No Recent Filter" = "没有最近的过滤";
 "No Filter Results" = "无过滤结果";
 

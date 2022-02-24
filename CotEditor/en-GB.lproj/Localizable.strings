@@ -369,7 +369,7 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Recent Filters";
-"Clear Recents" = "Clear Recents";
+"Clear Recent Filters" = "Clear Recent Filters";
 "No Recent Filter" = "No Recent Filter";
 "No Filter Results" = "No Filter Results";
 
