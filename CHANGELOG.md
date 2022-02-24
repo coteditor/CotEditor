@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Update JSON syntax style to fix coloring.
 - Update Markdown, and SVG syntax styles for faster syntax parsing.
 
 
