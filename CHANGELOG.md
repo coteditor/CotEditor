@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the line endings of the opened document are one of these).
+- Add recent history to the Unicode input.
 
 
 ### Improvements

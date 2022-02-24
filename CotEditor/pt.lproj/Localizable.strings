@@ -493,6 +493,16 @@
 "Stylesheet Keywords" = "Palavras-chave da Folha de Estilo";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recentes";
+"Clear Recents" = "Limpar Recentes";
+"Invalid code" = "Codice non valido";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "A alteração será aplicada quando o aplicativo for reaberto.";

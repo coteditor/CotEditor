@@ -492,6 +492,16 @@
 "Stylesheet Keywords" = "CSS-Schlüsselwörter";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Zuletzt benutzt";
+"Clear Recents" = "Verlauf löschen";
+"Invalid code" = "Ungültiger Code";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";

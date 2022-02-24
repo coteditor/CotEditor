@@ -490,6 +490,16 @@
 "Stylesheet Keywords" = "Stil Sayfası Anahtar Sözcükleri";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Son Kullanılanlar";
+"Clear Recents" = "Son Kullanılanları Sil";
+"Invalid code" = "Geçersiz Kod";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";

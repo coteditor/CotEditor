@@ -492,6 +492,16 @@
 "Stylesheet Keywords" = "スタイルシートキーワード";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "最近の項目";
+"Clear Recents" = "履歴を消去";
+"Invalid code" = "無効なコード";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";

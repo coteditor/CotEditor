@@ -169,6 +169,7 @@ extension DefaultKeys {
     static let selectedMultipleReplacementSettingName = DefaultKey<String?>("selectedMultipleReplacementSettingName")
     static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
+    static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
     
     // hidden settings
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")

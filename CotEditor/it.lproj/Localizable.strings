@@ -493,6 +493,16 @@
 "Stylesheet Keywords" = "Parole chiave CSS";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recenti";
+"Clear Recents" = "Cancella recenti";
+"Invalid code" = "Invalid code";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "La modifica verrà applicata al prossimo avvio.";

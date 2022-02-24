@@ -491,6 +491,16 @@
 "Stylesheet Keywords" = "Stylesheet Keywords";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recents";
+"Clear Recents" = "Clear Recents";
+"Invalid code" = "Invalid code";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "The change will be applied first on the next launch.";

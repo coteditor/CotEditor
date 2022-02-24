@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,6 +44,17 @@ final class UnicodeInputViewController: NSViewController {
     
     
     // MARK: -
+    // MARK: View Controller Methods
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.view.window?.initialFirstResponder = self.view.subviews.first { ($0 as? NSTextField)?.isEditable == true }
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// Input Unicode character to the parent text view.
@@ -55,6 +66,25 @@ final class UnicodeInputViewController: NSViewController {
         
         self.completionHandler?(character)
         self.codePoint = ""
+        
+        if let codePoint = character.unicodeScalars.first?.codePoint {
+            UserDefaults.standard[.unicodeHistory].appendUnique(codePoint, maximum: 10)
+        }
+    }
+    
+    
+    /// Insert a code point to the field
+    @IBAction func insertCodePoint(_ sender: NSMenuItem) {
+        
+        guard let codePoint = sender.representedObject as? String else { return assertionFailure() }
+        
+        self.codePoint = codePoint
+    }
+    
+    
+    @IBAction func clearRecents(_ sender: Any?) {
+        
+        UserDefaults.standard[.unicodeHistory].removeAll()
     }
     
     
@@ -73,6 +103,41 @@ final class UnicodeInputViewController: NSViewController {
         self.unicodeName = longChar?.unicodeName
     }
 
+}
+
+
+extension UnicodeInputViewController: NSMenuDelegate {
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        menu.items.removeAll()
+        menu.addItem(.init())  // dummy item
+        menu.addItem(withTitle: "Recents".localized, action: nil, keyEquivalent: "")
+            .isEnabled = false
+        
+        guard !UserDefaults.standard[.unicodeHistory].isEmpty else { return }
+        
+        menu.items += UserDefaults.standard[.unicodeHistory]
+            .compactMap(UTF32.CodeUnit.init(codePoint:))
+            .compactMap(UnicodeScalar.init)
+            .map {
+                let item = NSMenuItem()
+                item.attributedTitle = [
+                    NSAttributedString(string: $0.codePoint),
+                    NSAttributedString(string: $0.name ?? "Invalid code".localized,
+                                       attributes: [.foregroundColor: NSColor.secondaryLabelColor,
+                                                    .font: NSFont.menuFont(ofSize: NSFont.smallSystemFontSize)])]
+                    .joined(separator: "\t")
+                item.representedObject = $0.codePoint
+                item.action = #selector(insertCodePoint)
+                item.target = self
+                return item
+            }
+            .reversed()
+        menu.addItem(.separator())
+        menu.addItem(withTitle: "Clear Recents".localized, action: #selector(clearRecents), keyEquivalent: "")
+    }
+    
 }
 
 

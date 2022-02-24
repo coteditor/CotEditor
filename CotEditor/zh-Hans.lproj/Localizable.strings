@@ -492,6 +492,16 @@
 "Stylesheet Keywords" = "样式表关键字";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "最近";
+"Clear Recents" = "清除最近使用的项目";
+"Invalid code" = "无效的代码";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "变更将在下次启动时生效。";
