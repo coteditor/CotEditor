@@ -96,7 +96,7 @@ extension EditorTextView {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        guard let editingInfo = self.string.duplicateLine(in: selectedRanges) else { return }
+        guard let editingInfo = self.string.duplicateLine(in: selectedRanges, lineEnding: "\n") else { return }
         
         self.edit(with: editingInfo, actionName: "Duplicate Line".localized)
     }
@@ -208,9 +208,8 @@ extension String {
             var upperLineString = string.substring(with: upperLineRange)
             
             // last line
-            if !lineString.hasSuffix("\n") {
-                lineString += "\n"
-                upperLineString = upperLineString.trimmingCharacters(in: .newlines)
+            if lineString.last?.isNewline != true, let lineEnding = upperLineString.popLast() {
+                lineString.append(lineEnding)
             }
             
             // swap
@@ -256,9 +255,8 @@ extension String {
             var lowerLineString = string.substring(with: lowerLineRange)
             
             // last line
-            if !lowerLineString.hasSuffix("\n") {
-                lineString = lineString.trimmingCharacters(in: .newlines)
-                lowerLineString += "\n"
+            if lowerLineString.last?.isNewline != true, let lineEnding = lineString.popLast() {
+                lowerLineString.append(lineEnding)
             }
             
             // swap
@@ -269,7 +267,9 @@ extension String {
             // move selected ranges in the line to move
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    let offset = lineString.hasSuffix("\n") ? lowerLineRange.length : lowerLineRange.length + 1
+                    let offset = (lineString.last?.isNewline == true)
+                        ? lowerLineRange.length
+                        : lowerLineRange.length + lowerLineString.last!.utf16.count
                     selectedRanges.append(intersectionRange.shifted(offset: offset))
                     
                 } else if editRange.touches(selectedRange.location) {
@@ -289,16 +289,18 @@ extension String {
     func sortLinesAscending(in range: NSRange) -> EditingInfo? {
         
         let string = self as NSString
-        let lineRange = string.lineContentsRange(for: range)
+        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
         
         // do nothing with single line
-        guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
+        guard lineEndingRange != .notFound else { return nil }
         
+        let lineEnding = string.substring(with: lineEndingRange)
+        let lineRange = string.lineContentsRange(for: range)
         let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
             .sorted(options: [.localized, .caseInsensitive])
-            .joined(separator: "\n")
+            .joined(separator: lineEnding)
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
@@ -308,16 +310,18 @@ extension String {
     func reverseLines(in range: NSRange) -> EditingInfo? {
         
         let string = self as NSString
-        let lineRange = string.lineContentsRange(for: range)
+        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
         
         // do nothing with single line
-        guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
+        guard lineEndingRange != .notFound else { return nil }
         
+        let lineEnding = string.substring(with: lineEndingRange)
+        let lineRange = string.lineContentsRange(for: range)
         let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
             .reversed()
-            .joined(separator: "\n")
+            .joined(separator: lineEnding)
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
@@ -354,7 +358,7 @@ extension String {
     
     
     /// duplicate selected lines below
-    func duplicateLine(in ranges: [NSRange]) -> EditingInfo? {
+    func duplicateLine(in ranges: [NSRange], lineEnding: Character) -> EditingInfo? {
         
         let string = self as NSString
         var replacementStrings = [String]()
@@ -381,8 +385,8 @@ extension String {
             var lineString = string.substring(with: lineRange)
             
             // add line break if it's the last line
-            if !lineString.hasSuffix("\n") {
-                lineString += "\n"
+            if lineString.last?.isNewline != true {
+                lineString.append(lineEnding)
             }
             
             replacementStrings.append(lineString)

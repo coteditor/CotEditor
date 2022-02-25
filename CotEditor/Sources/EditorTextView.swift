@@ -1314,7 +1314,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 
                 // apply document's line ending
                 if lineEnding != .lf {
-                    for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
+                    for (index, character) in zip(plainText.indices, plainText).reversed() where character.isNewline {  // process backwards
                         let characterRange = NSRange(index...index, in: plainText)
                         
                         styledText.replaceCharacters(in: characterRange, with: lineEnding.string)

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -178,17 +178,17 @@ final class StringLineProcessingTests: XCTestCase {
             """
         var info: String.EditingInfo?
         
-        info = string.duplicateLine(in: [NSRange(4, 1)])
+        info = string.duplicateLine(in: [NSRange(4, 1)], lineEnding: "\n")
         XCTAssertEqual(info?.strings, ["bbbb\n"])
         XCTAssertEqual(info?.ranges, [NSRange(3, 0)])
         XCTAssertEqual(info?.selectedRanges, [NSRange(9, 1)])
         
-        info = string.duplicateLine(in: [NSRange(4, 1), NSRange(6, 4)])
+        info = string.duplicateLine(in: [NSRange(4, 1), NSRange(6, 4)], lineEnding: "\n")
         XCTAssertEqual(info?.strings, ["bbbb\nccc\n"])
         XCTAssertEqual(info?.ranges, [NSRange(3, 0)])
         XCTAssertEqual(info?.selectedRanges, [NSRange(13, 1), NSRange(15, 4)])
         
-        info = string.duplicateLine(in: [NSRange(4, 1), NSRange(6, 1), NSRange(10, 0)])
+        info = string.duplicateLine(in: [NSRange(4, 1), NSRange(6, 1), NSRange(10, 0)], lineEnding: "\n")
         XCTAssertEqual(info?.strings, ["bbbb\n", "ccc\n"])
         XCTAssertEqual(info?.ranges, [NSRange(3, 0), NSRange(8, 0)])
         XCTAssertEqual(info?.selectedRanges, [NSRange(9, 1), NSRange(11, 1), NSRange(19, 0)])
