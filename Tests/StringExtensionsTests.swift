@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -215,6 +215,12 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("foo\nbar\n".lineContentsRanges(), [NSRange(0..<3), NSRange(4..<7)])
         XCTAssertEqual("foo\r\nbar".lineContentsRanges(), [NSRange(0..<3), NSRange(5..<8)])
         XCTAssertEqual("foo\r\r\rbar".lineContentsRanges().count, 4)
+    }
+    
+    
+    func testFirstLineEnding() {
+        
+        XCTAssertEqual("foo\r\nbar".firstLineEnding, "\r\n")
     }
     
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,6 +58,18 @@ extension String {
 
 
 extension StringProtocol where Self.Index == String.Index {
+    
+    /// The first appeared line ending character.
+    var firstLineEnding: Character? {
+        
+        guard
+            !self.isEmpty,
+            let range = self.range(of: "\\R", options: .regularExpression)
+        else { return nil }
+        
+        return self[range.lowerBound]
+    }
+    
     
     /// Range of the line containing a given index.
     ///
