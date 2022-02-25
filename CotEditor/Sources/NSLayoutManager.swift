@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ extension NSLayoutManager {
         var range = self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
         
         // strip the last line ending character
-        let lineEndingRange = (self.attributedString().string as NSString).rangeOfCharacter(from: .newlines, options: .backwards, range: range)
+        let lineEndingRange = (self.attributedString().string as NSString).range(of: "\\R", options: [.regularExpression, .backwards], range: range)
         range.length -= lineEndingRange.length
         
         return range
