@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -92,7 +92,7 @@ struct OutlineExtractor {
             }
             
             // replace line breaks
-            title = title.replacingOccurrences(of: "\n", with: " ")
+            title = title.replacingOccurrences(of: "\\R", with: " ", options: .regularExpression)
             
             return OutlineItem(title: title, range: result.range, style: self.style)
         }
