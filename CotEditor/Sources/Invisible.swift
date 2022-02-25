@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,10 @@ enum Invisible {
         
         switch codeUnit {
             case 0x000A,  // LINE FEED (Cc) a.k.a. \n
-                 0x000D:  // CARRIAGE RETURN (Cc)
+                 0x000D,  // CARRIAGE RETURN (Cc) a.k.a. \r
+                 0x0085,  // NEW LINE (Cc)
+                 0x2028,  // LINE SEPARATOR (Zl)
+                 0x2029:  // PARAGRAPH SEPARATOR (Zp)
                 self = .newLine
             case 0x0009:  // HORIZONTAL TABULATION (Cc) a.k.a. \t
                 self = .tab
