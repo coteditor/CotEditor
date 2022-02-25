@@ -70,14 +70,17 @@ extension InvisibleDrawing {
         
         // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+        var lastCodeUnit: unichar?
         for charIndex in characterRange.lowerBound..<characterRange.upperBound {
             let codeUnit = string.character(at: charIndex)
             
             guard
                 let invisible = Invisible(codeUnit: codeUnit),
-                types.contains(invisible)
+                types.contains(invisible),
+                !(codeUnit == 0xA && lastCodeUnit == 0xD)  // skip LF for CRLF
                 else { continue }
             
+            lastCodeUnit = codeUnit
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
             var lineFragmentRange: NSRange = .notFound
