@@ -112,11 +112,11 @@ struct ScriptDescriptor {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Create a descriptor that represents an user script at given URL.
+    /// Create a descriptor that represents a user script at given URL.
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
-    /// - Parameter url: The location of an user script.
+    /// - Parameter url: The location of a user script.
     init?(at url: URL, name: String) {
         
         guard let type = ScriptingFileType.allCases.first(where: { $0.extensions.contains(url.pathExtension) }) else { return nil }
@@ -135,7 +135,7 @@ struct ScriptDescriptor {
     
     // MARK: Public Methods
     
-    /// Create and return an user script instance.
+    /// Create and return a user script instance.
     ///
     /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.

@@ -174,7 +174,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         if shortcut.isEmpty { return }
         
         // avoid shift-only modifier with a letter
-        // -> typing Shift + letter inserting a uppercase letter instead of invoking a shortcut
+        // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
         if shortcut.modifierMask == .shift,
            shortcut.keyEquivalent.contains(where: { $0.isLetter || $0.isNumber })
         {

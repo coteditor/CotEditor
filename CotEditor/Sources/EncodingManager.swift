@@ -70,7 +70,7 @@ final class EncodingManager {
     
     // MARK: Public Methods
     
-    /// returns corresponding NSStringEncoding from a encoding name
+    /// returns corresponding NSStringEncoding from an encoding name
     func encoding(name encodingName: String) -> String.Encoding? {
         
         return DefaultSettings.encodings.lazy

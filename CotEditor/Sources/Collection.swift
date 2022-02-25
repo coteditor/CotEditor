@@ -118,7 +118,7 @@ extension Dictionary {
     
     /// Return a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
     ///
-    /// - Parameter keyPath:  The keyPath to the value to transform key. Every transformed key must be unique.
+    /// - Parameter keyPath: The keyPath to the value to transform key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
     func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
         
@@ -181,7 +181,7 @@ extension Sequence {
     }
     
     
-    /// Count up elements by enumerating collection until a element shows up that doesn't satisfy the given predicate.
+    /// Count up elements by enumerating collection until encountering the element that doesn't satisfy the given predicate.
     ///
     /// - Parameters:
     ///    - predicate: A closure that takes an element of the sequence as its argument

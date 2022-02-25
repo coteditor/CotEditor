@@ -406,7 +406,7 @@ extension NSTextView {
     }
     
     
-    /// Find the location for a insertion point where one (visual) line above to the given insertion point location.
+    /// Find the location for the insertion point where one (visual) line above to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
@@ -426,7 +426,7 @@ extension NSTextView {
     }
     
     
-    /// Find the location for a insertion point where one (visual) line below to the given insertion point location.
+    /// Find the location for the insertion point where one (visual) line below to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.

@@ -95,7 +95,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
     /// - Parameters:
     ///   - segment: The index of the segment whose image you want to get.
     ///   - selected: The selection state of the segment.
-    /// - Returns: A image for the  segment.
+    /// - Returns: An image for the segment.
     private func image(forSegment segment: Int, selected: Bool) -> NSImage? {
         
         guard let cache = self.images[segment] else {
