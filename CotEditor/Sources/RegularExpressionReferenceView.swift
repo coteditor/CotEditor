@@ -38,7 +38,7 @@ extension Definition {
     
     static let characters = [
         Self(term: ".", description: "any character"),
-        Self(term: "\\n", description: "new line character"),
+        Self(term: "\\R", description: "new line character"),
         Self(term: "\\t", description: "tab character"),
         Self(term: "\\w", description: "word character"),
         Self(term: "\\s", description: "whitespace character"),

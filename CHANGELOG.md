@@ -16,6 +16,7 @@ Change Log
 - Update JSON syntax style to fix coloring.
 - Update Markdown, and SVG syntax styles for faster syntax parsing.
 - Detect the line ending in documents more intelligently.
+- [trivial] Replace `\n` with `\R` for the new line meta chracter in the regular expression reference.
 
 
 ### Fixes
