@@ -84,7 +84,7 @@ extension NSTextView {
     @discardableResult
     func surroundSelections(begin: String, end: String) -> Bool {
         
-        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return false }
+        guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return false }
         
         let string = self.string as NSString
         

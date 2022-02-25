@@ -605,10 +605,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         // insert soft tab
-        if
-            self.isAutomaticTabExpansionEnabled,
-            let insertionRanges = self.rangesForUserTextChange as? [NSRange]
-        {
+        if self.isAutomaticTabExpansionEnabled {
+            let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
             let softTabs = insertionRanges
                 .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
             
@@ -642,7 +640,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             else { return super.insertNewline(sender) }
         
         let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
+        let ranges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
@@ -1081,7 +1079,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if pboard.name == .general,
             pboard.types?.contains(.multipleTextSelection) == false,
             let string = pboard.string(forType: .string),
-            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             ranges.count > 1,
             string.rangeOfCharacter(from: .newlines) == nil
         {
@@ -1092,7 +1090,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if pboard.name == .general,
             let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
             let string = pboard.string(forType: .string),
-            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             ranges.count > 1
         {
             let lines = string.components(separatedBy: .newlines)

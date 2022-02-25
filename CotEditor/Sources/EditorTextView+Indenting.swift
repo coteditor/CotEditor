@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -103,7 +103,7 @@ extension Indenting {
         
         guard
             self.tabWidth > 0,
-            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
+            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
             else { return false }
         
         // get indent target
@@ -138,7 +138,7 @@ extension Indenting {
         
         guard
             self.tabWidth > 0,
-            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
+            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
             else { return false }
         
         // get indent target

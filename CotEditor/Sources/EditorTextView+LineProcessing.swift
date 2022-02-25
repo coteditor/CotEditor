@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ extension EditorTextView {
     @IBAction func moveLineUp(_ sender: Any?) {
         
         guard
-            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             let editingInfo = self.string.moveLineUp(in: ranges)
             else { return NSSound.beep() }
         
@@ -45,7 +45,7 @@ extension EditorTextView {
     @IBAction func moveLineDown(_ sender: Any?) {
         
         guard
-            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             let editingInfo = self.string.moveLineDown(in: ranges)
             else { return NSSound.beep() }
         
@@ -80,7 +80,7 @@ extension EditorTextView {
     /// delete duplicate lines in selection
     @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
-        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
         // process whole document if no text selected
         let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : selectedRanges
@@ -94,7 +94,7 @@ extension EditorTextView {
     /// duplicate selected lines below
     @IBAction func duplicateLine(_ sender: Any?) {
         
-        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
         guard let editingInfo = self.string.duplicateLine(in: selectedRanges) else { return }
         
@@ -105,7 +105,7 @@ extension EditorTextView {
     /// remove selected lines
     @IBAction func deleteLine(_ sender: Any?) {
         
-        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
         guard let editingInfo = self.string.deleteLine(in: selectedRanges) else { return }
         
