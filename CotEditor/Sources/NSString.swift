@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,7 +120,11 @@ extension NSString {
         
         guard location > 0 else { return 0 }
         
-        return self.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
+        // avoid returing index between CRLF
+        let index = location - 1
+        let offset = (self.character(at: index) == 0x000A && self.character(at: index - 1) == 0x000D) ? 1 : 0
+        
+        return self.rangeOfComposedCharacterSequence(at: index - offset).lowerBound
     }
     
     
@@ -132,9 +136,13 @@ extension NSString {
     ///            or `location` when the given `location` is the last.
     func index(after location: Int) -> Int {
         
-        guard location < self.length else { return self.length }
+        guard location < self.length - 1 else { return self.length }
         
-        return self.rangeOfComposedCharacterSequence(at: location).upperBound
+        // avoid returing index between CRLF
+        let index = location
+        let offset = (self.character(at: index) == 0x000D && self.character(at: index + 1) == 0x000A) ? 1 : 0
+        
+        return self.rangeOfComposedCharacterSequence(at: index + offset).upperBound
     }
     
     

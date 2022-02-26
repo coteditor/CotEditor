@@ -168,7 +168,7 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testBeforeAfterIndex() {
+    func testBeforeIndex() {
         
         XCTAssertEqual(("00" as NSString).index(before: 0), 0)
         XCTAssertEqual(("00" as NSString).index(before: 1), 0)
@@ -178,11 +178,30 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 5), 1)
         XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 6), 5)
         
+        XCTAssertEqual(("0\r\n0" as NSString).index(before: 3), 1)
+        XCTAssertEqual(("0\r\n0" as NSString).index(before: 2), 1)
+        XCTAssertEqual(("0\r\n0" as NSString).index(before: 1), 0)
+        XCTAssertEqual(("0\n" as NSString).index(before: 1), 0)
+        XCTAssertEqual(("0\n" as NSString).index(before: 2), 1)
+    }
+    
+    
+    func testAfterIndex() {
+        
         XCTAssertEqual(("00" as NSString).index(after: 0), 1)
         XCTAssertEqual(("00" as NSString).index(after: 1), 2)
         XCTAssertEqual(("00" as NSString).index(after: 2), 2)
         XCTAssertEqual(("0🇦🇦0" as NSString).index(after: 0), 1)
         XCTAssertEqual(("0🇦🇦0" as NSString).index(after: 1), 5)
+        
+        XCTAssertEqual(("0\r\n0" as NSString).index(after: 1), 3)
+        XCTAssertEqual(("0\r\n0" as NSString).index(after: 2), 3)
+        XCTAssertEqual(("0\r\n0" as NSString).index(after: 3), 4)
+        XCTAssertEqual(("0\r" as NSString).index(after: 1), 2)
+        XCTAssertEqual(("0\r" as NSString).index(after: 2), 2)
+        
+        // composed character does not care CRLF
+        XCTAssertEqual(("\r\n" as NSString).rangeOfComposedCharacterSequence(at: 1), NSRange(1..<2))
     }
     
     
