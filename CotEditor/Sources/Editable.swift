@@ -76,27 +76,38 @@ extension Editable {
     
     
     /// insert string at desire location and select inserted range
-    func insert(string: String, at location: InsertionLocation = .replaceSelection) {
+    func insert(string: String, at location: InsertionLocation) {
         
         guard let textView = self.textView else { return assertionFailure() }
+        
+        textView.insert(string: string, at: location)
+    }
+    
+}
+
+
+private extension NSTextView {
+    
+    /// Insert string at desire location and select inserted range.
+    func insert(string: String, at location: InsertionLocation) {
         
         let replacementRange: NSRange = {
             switch location {
                 case .replaceSelection:
-                    return textView.selectedRange
+                    return self.selectedRange
                 case .afterSelection:
-                    return NSRange(location: textView.selectedRange.upperBound, length: 0)
+                    return NSRange(location: self.selectedRange.upperBound, length: 0)
                 case .replaceAll:
-                    return textView.string.nsRange
+                    return self.string.nsRange
                 case .afterAll:
-                    return NSRange(location: (textView.string as NSString).length, length: 0)
+                    return NSRange(location: (self.string as NSString).length, length: 0)
             }
         }()
         
         let selectedRange = NSRange(location: replacementRange.location, length: (string as NSString).length)
         
-        textView.replace(with: string, range: replacementRange, selectedRange: selectedRange,
-                         actionName: "Insert Text".localized)
+        self.replace(with: string, range: replacementRange, selectedRange: selectedRange,
+                     actionName: "Insert Text".localized)
     }
     
 }

@@ -104,7 +104,7 @@ final class TextSelection: NSObject {
             let textStorage = NSTextStorage(string: string)
             
             textStorage.observeDirectEditing { [weak self] (editedString) in
-                self?.document?.insert(string: editedString)
+                self?.document?.insert(string: editedString, at: .replaceSelection)
             }
             
             return textStorage
@@ -121,7 +121,7 @@ final class TextSelection: NSObject {
                 }
             }() else { return }
             
-            self.document?.insert(string: string)
+            self.document?.insert(string: string, at: .replaceSelection)
         }
     }
     

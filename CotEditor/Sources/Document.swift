@@ -1000,7 +1000,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
         
-        self.insert(string: string)
+        self.insert(string: string, at: .replaceSelection)
     }
     
     
