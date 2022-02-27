@@ -22,6 +22,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the text copied from the editor has always LF line endings regardless the actual document's line ending setting.
+- Fix an issue that when the option swapping ¥ and \ keys is enabled, those characters are swapped even when inputting with unicode code point.
 
 
 

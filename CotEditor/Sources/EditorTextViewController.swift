@@ -168,8 +168,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard let textView = self.textView else { return assertionFailure() }
         
         let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
-        inputViewController.completionHandler = { [weak textView] (character) in
-            textView?.insertText(String(character), replacementRange: .notFound)
+        inputViewController.completionHandler = { [unowned textView] (character) in
+            textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
