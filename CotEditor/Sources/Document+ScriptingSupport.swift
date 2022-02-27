@@ -437,7 +437,7 @@ extension Document {
         
         let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
         
-        guard let range = string.range(in: fuzzyRange) else {
+        guard let range = self.string.range(in: fuzzyRange) else {
             command.scriptErrorNumber = OSAParameterMismatch
             command.scriptErrorString = "Out of the range."
             return nil
