@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Use `python3` insead of `python` for running `cot` command so that macOS 12.3 and later can use Python installed via the system's command line tools.
 - Update JSON syntax style to fix coloring.
 - Update Markdown, and SVG syntax styles for faster syntax parsing.
 
