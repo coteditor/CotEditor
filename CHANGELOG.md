@@ -13,10 +13,19 @@ Change Log
 
 ### Improvements
 
-- Update JSON syntax style to fix coloring.
-- Update Markdown, and SVG syntax styles for faster syntax parsing.
 - Detect the line ending in documents more intelligently.
 - [trivial] Replace `\n` with `\R` for the new line meta chracter in the regular expression reference.
+
+
+
+4.1.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- Use `python3` insead of `python` for running `cot` command so that macOS 12.3 and later can use Python installed via the system's command line tools.
+- Update JSON syntax style to fix coloring.
+- Update Markdown, and SVG syntax styles for faster syntax parsing.
 
 
 ### Fixes
