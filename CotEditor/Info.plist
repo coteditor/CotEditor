@@ -1114,8 +1114,6 @@
 	<string>$(PRODUCT_NAME).sdef</string>
 	<key>SUEnableInstallerLauncherService</key>
 	<true/>
-	<key>SUEnableJavaScript</key>
-	<true/>
 	<key>SUPublicEDKey</key>
 	<string>sY0VDoz2fbpnduoaVKlJBnlcBj/OFqQklEN/QlqDyWM=</string>
 	<key>UTExportedTypeDeclarations</key>
