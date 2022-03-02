@@ -4,10 +4,10 @@ filenames: []
 metadata:
   author: "CotEditor Project"
   distributionURL: "https://coteditor.com"
-  version: "2.1.0"
+  version: "2.2.0"
   description: "Support CSS3 partly."
   license: "Same as CotEditor"
-  lastModified: "2020-02-14"
+  lastModified: "2022-03-02"
 completions: []
 outlineMenu:
 - beginString: "\\@(media|page)\\b(.+?)(?=($|\\{))"
@@ -18,7 +18,9 @@ commands:
 - beginString: "@-o-keyframes"
 - beginString: "@-webkit-keyframes"
 - beginString: "@charset"
+- beginString: "@color-profile"
 - beginString: "@counter-style"
+- beginString: "@document"
 - beginString: "@font-face"
 - beginString: "@font-feature-values"
 - beginString: "@import"
@@ -35,9 +37,36 @@ attributes:
   regularExpression: true
 - beginString: "::?first-line"
   regularExpression: true
+- beginString: "::?first-letter"
+  regularExpression: true
+- beginString: "::backdrop"
+  regularExpression: true
+- beginString: "::cue-region"
+  regularExpression: true
+- beginString: "::cue"
+  regularExpression: true
+- beginString: "::placeholder"
+  regularExpression: true
+- beginString: "::selection"
+  regularExpression: true
+- beginString: "::slotted\\("
+  endString: "\\)"
+  regularExpression: true
+- beginString: "::target-text"
+  regularExpression: true
 - beginString: ":active"
   regularExpression: true
+- beginString: ":any-link"
+  regularExpression: true
+- beginString: ":autofill"
+  regularExpression: true
+- beginString: ":blank"
+  regularExpression: true
 - beginString: ":checked"
+  regularExpression: true
+- beginString: ":default"
+  regularExpression: true
+- beginString: ":defined"
   regularExpression: true
 - beginString: ":disabled"
   regularExpression: true
@@ -45,19 +74,40 @@ attributes:
   regularExpression: true
 - beginString: ":enabled"
   regularExpression: true
+- beginString: ":first"
+  regularExpression: true
 - beginString: ":first-child"
   regularExpression: true
 - beginString: ":first-of-type"
   regularExpression: true
+- beginString: ":fullscreen"
+  regularExpression: true
 - beginString: ":focus"
   regularExpression: true
+- beginString: ":focus-visible"
+  regularExpression: true
+- beginString: ":focus-within"
+  regularExpression: true
+- beginString: ":host(\\(\\w+\\))?"
+  regularExpression: true
 - beginString: ":hover"
+  regularExpression: true
+- beginString: ":indeterminate"
+  regularExpression: true
+- beginString: ":in-range"
+  regularExpression: true
+- beginString: ":invalid"
+  regularExpression: true
+- beginString: ":is\\("
+  endString: "\\)"
   regularExpression: true
 - beginString: ":lang\\(\\w+\\)"
   regularExpression: true
 - beginString: ":last-child"
   regularExpression: true
 - beginString: ":last-of-type"
+  regularExpression: true
+- beginString: ":left"
   regularExpression: true
 - beginString: ":link"
   regularExpression: true
@@ -76,11 +126,38 @@ attributes:
   regularExpression: true
 - beginString: ":only-of-type"
   regularExpression: true
+- beginString: ":optional"
+  regularExpression: true
+- beginString: ":out-of-range"
+  regularExpression: true
+- beginString: ":picture-in-picture"
+  regularExpression: true
+- beginString: ":placeholder-shown"
+  regularExpression: true
+- beginString: ":paused"
+  regularExpression: true
+- beginString: ":playing"
+  regularExpression: true
+- beginString: ":read-only"
+  regularExpression: true
+- beginString: ":read-write"
+  regularExpression: true
+- beginString: ":required"
+  regularExpression: true
+- beginString: ":right"
+  regularExpression: true
 - beginString: ":root"
+  regularExpression: true
+- beginString: ":scope"
   regularExpression: true
 - beginString: ":target"
   regularExpression: true
+- beginString: ":valid"
+  regularExpression: true
 - beginString: ":visited"
+  regularExpression: true
+- beginString: ":where\\("
+  endString: "\\)"
   regularExpression: true
 - beginString: "["
   endString: "]"
@@ -666,6 +743,7 @@ keywords:
 - beginString: "\\s--[a-z_][a-z0-9_]+\\s*(?=:)"
   ignoreCase: true
   regularExpression: true
+- beginString: "accent-color"
 - beginString: "align-content"
 - beginString: "align-items"
 - beginString: "align-self"
@@ -678,6 +756,8 @@ keywords:
 - beginString: "animation-name"
 - beginString: "animation-play-state"
 - beginString: "animation-timing-function"
+- beginString: "appearance"
+- beginString: "aspect-ratio"
 - beginString: "backface-visibility"
 - beginString: "background"
 - beginString: "background-attachment"
@@ -731,9 +811,8 @@ keywords:
 - beginString: "caption-side"
 - beginString: "caret-color"
 - beginString: "clear"
-- beginString: "clip"
+- beginString: "clip-path"
 - beginString: "color"
-- beginString: "color-interpolation-filters"
 - beginString: "column-count"
 - beginString: "column-fill"
 - beginString: "column-gap"
@@ -745,6 +824,7 @@ keywords:
 - beginString: "column-width"
 - beginString: "columns"
 - beginString: "content"
+- beginString: "content-visibility"
 - beginString: "counter-increment"
 - beginString: "counter-reset"
 - beginString: "cue"
@@ -770,6 +850,7 @@ keywords:
 - beginString: "font-feature-settings"
 - beginString: "font-kerning"
 - beginString: "font-language-override"
+- beginString: "font-optical-sizing"
 - beginString: "font-size"
 - beginString: "font-size-adjust"
 - beginString: "font-stretch"
@@ -782,7 +863,9 @@ keywords:
 - beginString: "font-variant-ligatures"
 - beginString: "font-variant-numeric"
 - beginString: "font-variant-position"
+- beginString: "font-variation-settings"
 - beginString: "font-weight"
+- beginString: "gap"
 - beginString: "grid"
 - beginString: "grid-area"
 - beginString: "grid-auto-columns"
@@ -803,28 +886,34 @@ keywords:
 - beginString: "grid-template-rows"
 - beginString: "hanging-punctuation"
 - beginString: "height"
+- beginString: "hyphenate-character"
 - beginString: "hyphens"
 - beginString: "icon"
 - beginString: "image-orientation"
 - beginString: "image-rendering"
 - beginString: "image-resolution"
-- beginString: "ime-mode"
+- beginString: "inline-size"
 - beginString: "isolation"
 - beginString: "justify-content"
+- beginString: "justify-items"
+- beginString: "justify-self"
 - beginString: "left"
 - beginString: "letter-spacing"
 - beginString: "line-break"
 - beginString: "line-height"
+- beginString: "line-height-step"
 - beginString: "list-style"
 - beginString: "list-style-image"
 - beginString: "list-style-position"
 - beginString: "list-style-type"
-- beginString: "liting-color"
 - beginString: "margin"
 - beginString: "margin-bottom"
 - beginString: "margin-left"
 - beginString: "margin-right"
 - beginString: "margin-top"
+- beginString: "mask"
+- beginString: "mask-border"
+- beginString: "mask-type"
 - beginString: "marquee-direction"
 - beginString: "marquee-play-count"
 - beginString: "marquee-speed"
@@ -850,10 +939,19 @@ keywords:
 - beginString: "outline-style"
 - beginString: "outline-width"
 - beginString: "overflow"
+- beginString: "overflow-anchor"
+- beginString: "overflow-block"
+- beginString: "overflow-clip-margin"
+- beginString: "overflow-inline"
 - beginString: "overflow-style"
 - beginString: "overflow-wrap"
 - beginString: "overflow-x"
 - beginString: "overflow-y"
+- beginString: "overscroll-behavior"
+- beginString: "overscroll-behavior-block"
+- beginString: "overscroll-behavior-inline"
+- beginString: "overscroll-behavior-x"
+- beginString: "overscroll-behavior-y"
 - beginString: "padding"
 - beginString: "padding-bottom"
 - beginString: "padding-left"
@@ -867,15 +965,41 @@ keywords:
 - beginString: "pause-before"
 - beginString: "perspective"
 - beginString: "perspective-origin"
+- beginString: "place-content"
+- beginString: "place-items"
+- beginString: "place-self"
 - beginString: "pointer-events"
 - beginString: "position"
+- beginString: "print-color-adjust"
 - beginString: "quotes"
 - beginString: "reset"
 - beginString: "reset-after"
 - beginString: "reset-before"
 - beginString: "resize"
 - beginString: "right"
+- beginString: "rotate"
+- beginString: "row-gap"
+- beginString: "ruby-again"
+- beginString: "ruby-position"
+- beginString: "scale"
 - beginString: "scroll-behavior"
+- beginString: "scroll-margin-bottom"
+- beginString: "scroll-margin-inline"
+- beginString: "scroll-margin-inline-start"
+- beginString: "scroll-margin-left"
+- beginString: "scroll-margin-right"
+- beginString: "scroll-margin-top"
+- beginString: "scroll-padding"
+- beginString: "scroll-padding-block-end"
+- beginString: "scroll-padding-block-start"
+- beginString: "scroll-padding-botom"
+- beginString: "scroll-padding-inline"
+- beginString: "scroll-padding-inline-end"
+- beginString: "scroll-padding-inline-start"
+- beginString: "scroll-padding-left"
+- beginString: "scroll-snap-type"
+- beginString: "scrollbar-color"
+- beginString: "scrollbar-width"
 - beginString: "shape-image-threshold"
 - beginString: "shape-margin"
 - beginString: "shape-outside"
@@ -912,6 +1036,7 @@ keywords:
 - beginString: "transition-duration"
 - beginString: "transition-property"
 - beginString: "transition-timing-function"
+- beginString: "translate"
 - beginString: "unicode-bidi"
 - beginString: "unicode-range"
 - beginString: "user-select"
@@ -928,6 +1053,7 @@ keywords:
 - beginString: "white-space"
 - beginString: "widows"
 - beginString: "width"
+- beginString: "will-change"
 - beginString: "word-break"
 - beginString: "word-spacing"
 - beginString: "word-wrap"

@@ -20,6 +20,38 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.1.3</h1>
+		<p>release: <time>2022-03-05</time></p>
+	</header>
+	
+	
+	<section>
+		<h2>Improvements</h2>
+		
+		<ul>
+			<li>Use <code>python3</code> instead of <code>python</code> for running the <code>cot</code> command so that macOS 12.3 and later can use the Python installed via the Apple's developer tools (From macOS 12.3 on, cot command requires additional install of python3).</li>
+			<li>Update CSS syntax style to add more coloring keywords.</li>
+			<li>Update Python syntax style to add keywords added in Python 3.10</li>
+			<li>Update Markdown and SVG syntax styles for faster syntax parsing.</li>
+			<li>Update JSON syntax style to fix coloring.</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>Fixes</h2>
+		
+		<ul>
+			<li>Fix an issue that the text copied from the editor has always LF line endings regardless of the actual document's line ending setting.</li>
+			<li>Fix an issue that when the option swapping ¥ and \ keys is enabled, those characters are swapped even when inputting them with Unicode code point.</li>
+		</ul>
+	</section>
+</article>
+
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.1.2</h1>
 		<p>release: <time>2022-02-20</time></p>
 	</header>

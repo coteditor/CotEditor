@@ -23,15 +23,17 @@ Change Log
 
 ### Improvements
 
-- Use `python3` insead of `python` for running `cot` command so that macOS 12.3 and later can use Python installed via the system's command line tools.
+- Use `python3` instead of `python` for running the `cot` command so that macOS 12.3 and later can use the Python installed with the Apple's developer tools (From macOS 12.3 on, cot command requires additional install of python3).
+- Update CSS syntax style to add more coloring keywords.
+- Update Python syntax style to add keywords added in Python 3.10.
+- Update Markdown and SVG syntax styles for faster syntax parsing.
 - Update JSON syntax style to fix coloring.
-- Update Markdown, and SVG syntax styles for faster syntax parsing.
 
 
 ### Fixes
 
-- Fix an issue that the text copied from the editor has always LF line endings regardless the actual document's line ending setting.
-- Fix an issue that when the option swapping ¥ and \ keys is enabled, those characters are swapped even when inputting with unicode code point.
+- Fix an issue that the text copied from the editor has always LF line endings regardless of the actual document's line ending setting.
+- Fix an issue that when the option swapping ¥ and \ keys is enabled, those characters are swapped even when inputting them with Unicode code point.
 
 
 
