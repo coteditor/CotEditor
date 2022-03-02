@@ -18,15 +18,28 @@
 
 <h2>インストール</h2>
 <p><code>cot</code>コマンドはCotEditor.app内の'<code>Contents/SharedSupport/bin/cot</code>'にバンドルされています。</p>
-<p>Terminalからシンボリックリンクを作成して、任意の場所にインストールすることができます（特にこだわりがない場合は'<code>/usr/local/bin/</code>'に作成することをお勧めします）。</p>
+<p>Terminalからシンボリックリンクを作成して、任意の場所にインストールすることができます。特にこだわりがない場合は'<code>/usr/local/bin/</code>'にシンボリックリンク作成することをお勧めします。</p>
+
+<p>推奨する場所にシンボリックリンクを作成するには、Terminalで以下の行を実行します。</p>
 <pre class="source"><code>mkdir /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
 
-<p>また、Terminalからアンインストールする場合は以下のようにします。</p>
-<pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 <h3>セキュリティ認証</h3>
-<p>macOS 10.14から、ほかのアプリケーションから<code>cot</code>コマンドで CotEditor を操作するために、ユーザ認証が必要となりました。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム環境設定」&gt;「セキュリティとプライバシー」&gt;「プライバシー」&gt;「オートメーション」で、ターミナルなど利用するクライアントの下にある<strong>CotEditor</strong>（また、<code>--wait</code>オプションのためには<strong>System Events</strong>も）のチェックボックスを有効にしてください。</p>
+<p>macOSでほかのアプリケーションから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム環境設定」&gt;「セキュリティとプライバシー」&gt;「プライバシー」&gt;「オートメーション」で、ターミナルなど利用するクライアントの下にある<strong>CotEditor</strong>（また、<code>--wait</code>オプションのためには<strong>System Events</strong>も）のチェックボックスを有効にしてください。</p>
+
+
+<h3>Python 3のインストール</h3>
+<p>cotコマンドはPython 3で実装されています。しかし、PythonはmacOS 12.3からシステムには同梱されなくなったため、cotコマンドを使うにはユーザは自身で<code>python3</code>をインストールする必要があります。</p>
+<p>Appleが提供する開発ツールには<code>python3</code>は同梱されています。下記のコマンドをTerminalで実行するとAppleのコマンドライン・デベロッパツールをインストールできます。もちろん他の方法で<code>python3</code>をインストールした場合は、そちらが使えます。</p>
+
+<pre class="source"><code>xcode-select --install</code></pre>
+
+
+<h2>アンインストール</h2>
+
+<p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールする場合はTerminalから以下を実行します。</p>
+<pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 
 <h2>オプション</h2>
