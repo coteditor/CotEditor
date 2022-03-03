@@ -10,10 +10,12 @@ attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0"
+  version: "1.1.0"
   license: "Same as CotEditor"
-  lastModified: "2014-09-24"
-characters: []
+  lastModified: "2022-03-03"
+characters:
+- beginString: "\\\\u[0-9a-f]{4}\\b"
+  regularExpression: true
 comments: []
 values:
 - beginString: "false"
@@ -100,13 +102,15 @@ types:
 - beginString: "year"
   ignoreCase: true
 numbers:
-- beginString: "\\b\\d+\\b"
+- beginString: "\\b[0-9]++\\b"
   regularExpression: true
-- beginString: "\\d*\\.\\d+(e[-+?\\d+])?"
+- beginString: "\\b0x[0-9a-fA-F]++\\b"
   regularExpression: true
-- beginString: "\\d+\\.(\\d+(e[-+]?\\d+)?)?"
+- beginString: "[0-9]*+\\.[0-9]++(e[-+]?[0-9]++)?"
   regularExpression: true
-- beginString: "\\d+e[-+]?\\d+"
+- beginString: "[0-9]++\\.[0-9]*+(e[-+]?[0-9]++)?"
+  regularExpression: true
+- beginString: "[0-9]++e[-+]?[0-9]++"
   regularExpression: true
 strings:
 - beginString: "'"
