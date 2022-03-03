@@ -112,30 +112,28 @@ final class HighlightParser {
             
             highlights[syntaxType] = try await withThrowingTaskGroup(of: [NSRange].self) { group in
                 for extractor in extractors {
-                    group.addTask { try extractor.ranges(in: string, range: parseRange) }
+                    group.addTask { try await extractor.ranges(in: string, range: parseRange) }
                 }
                 
-                var ranges: [NSRange] = []
-                for try await extractedRanges in group {
-                    ranges += extractedRanges
+                return try await group.reduce(into: [NSRange]()) {
+                    $0 += $1
                     childProgress.completedUnitCount += 1
                 }
-                return ranges
             }
         }
         
-        guard !self.progress.isCancelled else { throw CancellationError() }
+        try Task.checkCancellation()
         
         // extract comments and quoted text
         self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
         highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
         self.progress.completedUnitCount += 1
         
-        guard !self.progress.isCancelled else { throw CancellationError() }
+        try Task.checkCancellation()
         
         // reduce complexity of highlights dictionary
         self.progress.localizedDescription = "Preparing to color…".localized
-        highlights.sanitize(progress: self.progress)
+        try highlights.sanitize()
         self.progress.completedUnitCount += 1
         
         return highlights
@@ -243,26 +241,23 @@ private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     /// Adding temporary attribute to a layoutManager in the main thread is quite sluggish,
     /// so we want to remove useless highlighting ranges as many as possible beforehand.
     ///
-    /// - Parameter progress: The progress instance to give a change to cancel
-    mutating func sanitize(progress: Progress) {
+    /// - Throws: CancellationError
+    mutating func sanitize() throws {
         
-        var registeredIndexes = IndexSet()
-        
-        self = SyntaxType.allCases.reversed()
+        self = try SyntaxType.allCases.reversed()
             .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
-                guard let ranges = self[type], !progress.isCancelled else { return }
+                guard let ranges = self[type] else { return }
+                
+                try Task.checkCancellation()
                 
                 let indexes = ranges
-                    .compactMap { Range($0) }
+                    .compactMap(Range.init)
                     .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
-                    .subtracting(registeredIndexes)
                 
-                guard !indexes.isEmpty else { return }
-                
-                registeredIndexes.formUnion(indexes)
-                dict[type] = indexes
+                dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
             }
-            .mapValues { $0.rangeView.map { NSRange($0) } }
+            .filter { !$0.value.isEmpty }
+            .mapValues { $0.rangeView.map(NSRange.init) }
     }
     
 }

@@ -35,22 +35,36 @@ extension NSRegularExpression {
     ///   - range: The range of the string to search.
     /// - Throws: `CancellationError`
     /// - Returns: An array of all the matches.
-    func cancellableMatches(in string: String, options: MatchingOptions, range: NSRange) throws -> [NSTextCheckingResult] {
+    func matches(in string: String, options: MatchingOptions = [], range: NSRange) async throws -> [NSTextCheckingResult] {
         
-        var matches: [NSTextCheckingResult] = []
-        self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
-            if Task.isCancelled {
-                stopPointer.pointee = ObjCBool(true)
-                return
+        var task: Task<Void, Never>?
+        let onCancel = { task?.cancel() }
+        
+        return try await withTaskCancellationHandler {
+            try await withUnsafeThrowingContinuation { continuation in
+                task = .detached {
+                    guard !Task.isCancelled else { return continuation.resume(throwing: CancellationError()) }
+                    
+                    var matches: [NSTextCheckingResult] = []
+                    self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
+                        if Task.isCancelled {
+                            stopPointer.pointee = ObjCBool(true)
+                            return
+                        }
+                        
+                        if let match = match {
+                            matches.append(match)
+                        }
+                    }
+                    
+                    guard !Task.isCancelled else { return continuation.resume(throwing: CancellationError()) }
+                    
+                    continuation.resume(returning: matches)
+                }
             }
-            
-            if let match = match {
-                matches.append(match)
-            }
+        } onCancel: {
+            onCancel()
         }
-        try Task.checkCancellation()
-        
-        return matches
     }
     
 }
