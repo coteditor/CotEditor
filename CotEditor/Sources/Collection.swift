@@ -177,7 +177,7 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate.
     func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        return try self.reduce(0) { try predicate($1) ? $0 + 1 : $0 }
+        return try self.filter(predicate).count
     }
     
     
