@@ -37,33 +37,34 @@ extension NSRegularExpression {
     /// - Returns: An array of all the matches.
     func matches(in string: String, options: MatchingOptions = [], range: NSRange) async throws -> [NSTextCheckingResult] {
         
-        var task: Task<Void, Never>?
-        let onCancel = { task?.cancel() }
-        
-        return try await withTaskCancellationHandler {
+        let task: Task<[NSTextCheckingResult], Error> = .detached {
             try await withUnsafeThrowingContinuation { continuation in
-                task = .detached {
-                    guard !Task.isCancelled else { return continuation.resume(throwing: CancellationError()) }
-                    
-                    var matches: [NSTextCheckingResult] = []
-                    self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
-                        if Task.isCancelled {
-                            stopPointer.pointee = ObjCBool(true)
-                            return
-                        }
-                        
-                        if let match = match {
-                            matches.append(match)
-                        }
+                guard !Task.isCancelled else { return continuation.resume(throwing: CancellationError()) }
+                
+                var matches: [NSTextCheckingResult] = []
+                self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
+                    if Task.isCancelled {
+                        stopPointer.pointee = ObjCBool(true)
+                        return
                     }
                     
-                    guard !Task.isCancelled else { return continuation.resume(throwing: CancellationError()) }
-                    
+                    if let match = match {
+                        matches.append(match)
+                    }
+                }
+                
+                if Task.isCancelled {
+                    continuation.resume(throwing: CancellationError())
+                } else {
                     continuation.resume(returning: matches)
                 }
             }
+        }
+        
+        return try await withTaskCancellationHandler {
+            try await task.value
         } onCancel: {
-            onCancel()
+            task.cancel()
         }
     }
     
