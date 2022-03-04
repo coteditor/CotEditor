@@ -7,8 +7,8 @@ Change Log
 
 ### Improvements
 
-- Use `python3` instead of `python` for running the `cot` command so that macOS 12.3 and later can use the Python installed with the Apple's developer tools (From macOS 12.3 on, cot command requires additional install of python3).
-- Optimize the performance of syntax highlighing.
+- Use `python3` instead of `python` for running the `cot` command so that macOS 12.3 and later can use the Python installed with the Apple's developer tools (From macOS 12.3 on, cot command requires an additional install of python3).
+- Optimize the performance of syntax highlighting.
 - Update CSS and SQL syntax styles to add more coloring keywords.
 - Update Python syntax style to add keywords added in Python 3.10.
 - Update Markdown and SVG syntax styles for faster syntax parsing.
