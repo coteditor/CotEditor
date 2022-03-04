@@ -138,25 +138,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// The dominated line ending type.
     var detectedLineEnding: LineEnding? {
         
-        guard !self.isEmpty else { return nil }
-        
-        let maxCount = 3
-        var counter = OrderedCounter<LineEnding>()
-        self.enumerateSubstrings(in: self.startIndex..., options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
-            guard
-                !enclosingRange.isEmpty,
-                let lastCharacter = self[safe: substringRange.upperBound],
-                let lineEnding = LineEnding(rawValue: lastCharacter)
-            else { return }
-            
-            counter.append(lineEnding)
-            
-            if counter.count(lineEnding) >= maxCount {
-                stop = true
-            }
-        }
-        
-        return counter.firstMaxElement
+        self.countLineEndings(maximum: 3).firstMaxElement
     }
     
     
@@ -185,6 +167,34 @@ extension StringProtocol where Self.Index == String.Index {
         let lineEndings = lineEndings ?? LineEnding.allCases
         
         return self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
+    }
+    
+    
+    /// Count the line endings in the receiver from the beginning.
+    ///
+    /// - Parameter maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
+    /// - Returns: A counter object.
+    private func countLineEndings(maximum: Int? = nil) -> OrderedCounter<LineEnding> {
+        
+        var counter = OrderedCounter<LineEnding>()
+        
+        guard !self.isEmpty else { return counter }
+        
+        self.enumerateSubstrings(in: self.startIndex..., options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
+            guard
+                !enclosingRange.isEmpty,
+                let lastCharacter = self[safe: substringRange.upperBound],
+                let lineEnding = LineEnding(rawValue: lastCharacter)
+            else { return }
+            
+            counter.append(lineEnding)
+            
+            if let maximum = maximum, counter.count(lineEnding) >= maximum {
+                stop = true
+            }
+        }
+        
+        return counter
     }
     
     

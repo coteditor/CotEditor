@@ -60,4 +60,12 @@ final class OrderedCounterTests: XCTestCase {
         XCTAssertEqual(counter.count, 6)
     }
     
+    
+    func testSet() throws {
+        
+        let counter = OrderedCounter([0, 1, 2, 3, 2])
+        
+        XCTAssertEqual(counter.set, [0, 1, 2, 3])
+    }
+    
 }

@@ -25,21 +25,37 @@
 
 struct OrderedCounter<Element: Hashable> {
     
-    private var items: [Element] = []
+    private var elements: [Element] = []
     private var counter: [Element: Int] = [:]
+    
+    
+    init() { }
+    
+    
+    init<S: Sequence>(_ elements: S) where S.Element == Element {
+        
+        self.append(contentsOf: elements)
+    }
     
     
     /// A Boolean value indicating whether the collection is empty.
     var isEmpty: Bool {
         
-        self.items.isEmpty
+        self.elements.isEmpty
     }
     
     
     /// The number of elements in the counter.
     var count: Int {
         
-        self.items.count
+        self.elements.count
+    }
+    
+    
+    /// The set of elements.
+    var set: Set<Element> {
+        
+        Set(self.counter.keys)
     }
     
     
@@ -52,16 +68,28 @@ struct OrderedCounter<Element: Hashable> {
         
         let maxElements = self.counter.filter { $0.value == maxCount }.keys
         
-        return self.items.first { maxElements.contains($0) }
+        return self.elements.first { maxElements.contains($0) }
     }
     
     
     /// Add a new element at the end of the counter.
+    ///
     /// - Parameter element: The element to append.
     mutating func append(_ element: Element) {
         
-        self.items.append(element)
+        self.elements.append(element)
         self.counter[element, default: 0] += 1
+    }
+    
+    
+    /// Add new elements at the end of the counter.
+    ///
+    /// - Parameter elements: The elements to append.
+    mutating func append<S: Sequence>(contentsOf elements: S) where S.Element == Element {
+        
+        for element in elements {
+            self.append(element)
+        }
     }
     
     
