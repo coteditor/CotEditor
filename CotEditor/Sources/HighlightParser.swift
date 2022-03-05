@@ -60,7 +60,7 @@ final class HighlightParser {
     struct Definition {
         
         var extractors: [SyntaxType: [HighlightExtractable]]
-        var pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
+        var nestablePaires: [String: SyntaxType]  // such as quotes to extract with comment
         var inlineCommentDelimiter: String?
         var blockCommentDelimiters: Pair<String>?
     }
@@ -126,7 +126,7 @@ final class HighlightParser {
         
         // extract comments and quoted text
         self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
-        highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
+        highlights.merge(self.extractCommentsWithNestablePaires()) { $0 + $1 }
         self.progress.completedUnitCount += 1
         
         try Task.checkCancellation()
@@ -144,7 +144,7 @@ final class HighlightParser {
     // MARK: Private Methods
     
     /// extract ranges of quoted texts as well as comments in the parse range
-    private func extractCommentsWithQuotes() -> [SyntaxType: [NSRange]] {
+    private func extractCommentsWithNestablePaires() -> [SyntaxType: [NSRange]] {
         
         let string = self.string as NSString
         var positions = [QuoteCommentItem]()
@@ -168,7 +168,7 @@ final class HighlightParser {
                 }
         }
         
-        for (quote, type) in self.definition.pairedQuoteTypes {
+        for (quote, type) in self.definition.nestablePaires {
             positions += string.ranges(of: quote, range: self.parseRange)
                 .map { QuoteCommentItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
         }

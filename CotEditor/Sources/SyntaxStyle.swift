@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -142,7 +142,7 @@ struct SyntaxStyle {
     let blockCommentDelimiters: Pair<String>?
     let completionWords: [String]
     
-    let pairedQuoteTypes: [String: SyntaxType]
+    let nestablePaires: [String: SyntaxType]
     private let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
     private let outlineDefinitions: [OutlineDefinition]
     
@@ -163,7 +163,7 @@ struct SyntaxStyle {
         self.blockCommentDelimiters = nil
         self.completionWords = []
         
-        self.pairedQuoteTypes = [:]
+        self.nestablePaires = [:]
         self.highlightDefinitions = [:]
         self.outlineDefinitions = []
     }
@@ -204,9 +204,9 @@ struct SyntaxStyle {
             dict[type] = definitions
         }
         
-        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
+        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithNestablePaires`
         // also combine simple word definitions into single regex definition
-        var quoteTypes = [String: SyntaxType]()
+        var nestablePaires = [String: SyntaxType]()
         self.highlightDefinitions = definitionDictionary.reduce(into: [:]) { (dict, item) in
             
             var highlightDefinitions = [HighlightDefinition]()
@@ -214,13 +214,14 @@ struct SyntaxStyle {
             var caseInsensitiveWords = [String]()
             
             for definition in item.value {
-                // extract quotes
-                if !definition.isRegularExpression, definition.beginString == definition.endString,
+                // extract paired delimiters such as quotes
+                if !definition.isRegularExpression,
+                    definition.beginString == definition.endString,
                     definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                     Set(definition.beginString).count == 1,  // consists of the same characters
-                    !quoteTypes.keys.contains(definition.beginString)  // not registered yet
+                    !nestablePaires.keys.contains(definition.beginString)  // not registered yet
                 {
-                    quoteTypes[definition.beginString] = item.key
+                    nestablePaires[definition.beginString] = item.key
                     
                     // remove from the normal highlight definition list
                     continue
@@ -251,7 +252,7 @@ struct SyntaxStyle {
             
             dict[item.key] = highlightDefinitions
         }
-        self.pairedQuoteTypes = quoteTypes
+        self.nestablePaires = nestablePaires
         
         // create word-completion data set
         self.completionWords = {
@@ -283,7 +284,7 @@ struct SyntaxStyle {
     /// whether receiver has any syntax highlight defintion
     var hasHighlightDefinition: Bool {
         
-        return (!self.highlightDefinitions.isEmpty || !self.pairedQuoteTypes.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
+        return (!self.highlightDefinitions.isEmpty || !self.nestablePaires.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
     }
     
 }
@@ -298,7 +299,7 @@ extension SyntaxStyle: Equatable {
             lhs.extensions == rhs.extensions &&
             lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
             lhs.blockCommentDelimiters == rhs.blockCommentDelimiters &&
-            lhs.pairedQuoteTypes == rhs.pairedQuoteTypes &&
+            lhs.nestablePaires == rhs.nestablePaires &&
             lhs.outlineDefinitions == rhs.outlineDefinitions &&
             lhs.highlightDefinitions == rhs.highlightDefinitions
     }

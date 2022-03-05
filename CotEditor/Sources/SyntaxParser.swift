@@ -253,7 +253,7 @@ extension SyntaxParser {
         assert(!self.style.isNone)
         
         let definition = HighlightParser.Definition(extractors: self.style.highlightExtractors,
-                                                    pairedQuoteTypes: self.style.pairedQuoteTypes,
+                                                    nestablePaires: self.style.nestablePaires,
                                                     inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                     blockCommentDelimiters: self.style.blockCommentDelimiters)
         let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
