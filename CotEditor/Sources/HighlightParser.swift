@@ -26,7 +26,7 @@
 
 import Foundation
 
-private struct QuoteCommentItem {
+private struct NestableItem {
     
     let type: SyntaxType
     let token: Token
@@ -147,30 +147,30 @@ final class HighlightParser {
     private func extractCommentsWithNestablePaires() -> [SyntaxType: [NSRange]] {
         
         let string = self.string as NSString
-        var positions = [QuoteCommentItem]()
+        var positions = [NestableItem]()
         
         if let delimiters = self.definition.blockCommentDelimiters {
             positions += string.ranges(of: delimiters.begin, range: self.parseRange)
-                .map { QuoteCommentItem(type: .comments, token: .blockComment, role: .begin, range: $0) }
+                .map { NestableItem(type: .comments, token: .blockComment, role: .begin, range: $0) }
             positions += string.ranges(of: delimiters.end, range: self.parseRange)
-                .map { QuoteCommentItem(type: .comments, token: .blockComment, role: .end, range: $0) }
+                .map { NestableItem(type: .comments, token: .blockComment, role: .end, range: $0) }
         }
         
         if let delimiter = self.definition.inlineCommentDelimiter {
             positions += string.ranges(of: delimiter, range: self.parseRange)
-                .flatMap { range -> [QuoteCommentItem] in
+                .flatMap { range -> [NestableItem] in
                     var lineEnd = 0
                     string.getLineStart(nil, end: &lineEnd, contentsEnd: nil, for: range)
                     let endRange = NSRange(location: lineEnd, length: 0)
                     
-                    return [QuoteCommentItem(type: .comments, token: .inlineComment, role: .begin, range: range),
-                            QuoteCommentItem(type: .comments, token: .inlineComment, role: .end, range: endRange)]
+                    return [NestableItem(type: .comments, token: .inlineComment, role: .begin, range: range),
+                            NestableItem(type: .comments, token: .inlineComment, role: .end, range: endRange)]
                 }
         }
         
         for (quote, type) in self.definition.nestablePaires {
             positions += string.ranges(of: quote, range: self.parseRange)
-                .map { QuoteCommentItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
+                .map { NestableItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
         }
         
         // remove escaped ones
@@ -194,7 +194,7 @@ final class HighlightParser {
         // scan quoted strings and comments in the parse range
         var highlights = [SyntaxType: [NSRange]]()
         var seekLocation = self.parseRange.location
-        var searchingItem: QuoteCommentItem?
+        var searchingItem: NestableItem?
         
         for position in positions {
             // search next begin delimiter
