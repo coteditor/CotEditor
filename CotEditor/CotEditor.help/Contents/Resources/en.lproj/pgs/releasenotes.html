@@ -20,8 +20,41 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.1.3</h1>
+		<p>release: <time>2022-03-05</time></p>
+	</header>
+	
+	
+	<section>
+		<h2>Improvements</h2>
+		
+		<ul>
+			<li>Use <code>python3</code> instead of <code>python</code> for running the <code>cot</code> command so that macOS 12.3 and later can use the Python installed via the Apple's developer tools (From macOS 12.3 on, cot command requires an additional install of python3).</li>
+			<li>Optimize the performance of syntax highlighting.</li>
+			<li>Update CSS and SQL syntax styles to add more coloring keywords.</li>
+			<li>Update Python syntax style to add keywords added in Python 3.10</li>
+			<li>Update Markdown and SVG syntax styles for faster syntax parsing.</li>
+			<li>Update JSON syntax style to fix coloring.</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>Fixes</h2>
+		
+		<ul>
+			<li>Fix an issue that the text copied from the editor has always LF line endings regardless of the actual document's line ending setting.</li>
+			<li>Fix an issue that when the option swapping ¥ and \ keys is enabled, those characters are swapped even when inputting them with Unicode code point.</li>
+		</ul>
+	</section>
+</article>
+
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.1.2</h1>
-		<p>release: <time>2022-02-21</time></p>
+		<p>release: <time>2022-02-20</time></p>
 	</header>
 	
 	
@@ -4591,7 +4624,7 @@
 	<li>Deprecate the feature opening/saving files that user doesn't have the permission, due to Sandbox requirement.</li>
 	<li>Remove bundled <code>cot</code> command-line tool, due to the Mac App Store guidelines.
 	<ul>
-		<li>To use <code>cot</code> command with CotEditor 2.2.0 and later, download the new command-line tool from <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> and install manually. You cannot use the previous one with CotEditor 2.2.0.</li>
+		<li>To use <code>cot</code> command with CotEditor 2.2.0 and later, download the new command-line tool from <a href="https://coteditor.com/cot">http://coteditor.com/cot</a> and install manually. You cannot use the previous one with CotEditor 2.2.0.</li>
 	</ul></li>
 	<li>Improve side inspector UI.</li>
 	<li>Improve syntax highlighting:
@@ -4639,14 +4672,14 @@
 	<li>Adjust highlight color for find panel.</li>
 	<li>Tweak message terms.</li>
 	<li>Remove sample scripts.<ul>
-		<li>You can get them online on <a href="http://coteditor.com/archives">Archives</a> page.</li>
+		<li>You can get them online on <a href="https://coteditor.com/archives">Archives</a> page.</li>
 	</ul></li>
 	<li>Update documents.</li>
 	<li>Update build environment to OS X El Capitan + Xcode 7 (SDK 10.11).</li>
 	<li>Change source code license from the GNU General Public License version 2 to the Apache License version 2.0.</li>
 	<li><span class="label">non-AppStore ver.</span>: Disable auto-update feature.
 	<ul>
-		<li>Since the <a href="http://sparkle-project.org" rel="external">Sparkle</a> framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a notification window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the <a href="http://appstore.com/mac/CotEditor">Mac App Store version</a>.</li>
+		<li>Since the <a href="https://sparkle-project.org" rel="external">Sparkle</a> framework which is a software update framework we use doesn't support Sandboxed apps yet, the auto-update feature within CotEditor should be once disabled. The new behavior is: a notification window will be shown when a new release is available (as before), then you need to update CotEditor manually getting the new version from our web-site. Or, just migrate to the <a href="https://itunes.apple.com/app/coteditor/id1024640650?ls=1">Mac App Store version</a>.</li>
 	</ul></li>
 	<li><span class="label">non-AppStore ver.</span>: Add option to check pre-release versions.
 	<ul>
@@ -5373,7 +5406,7 @@
 
 <ul>
 	<li>Twitter account for CotEditor was created. Follow <a href="https://twitter.com/CotEditor" rel="external">@CotEditor</a> to get our latest news.</li>
-	<li>Web page address was changed to <a href="http://coteditor.com" rel="external">coteditor.com</a>.</li>
+	<li>Web page address was changed to <a href="https://coteditor.com" rel="external">coteditor.com</a>.</li>
 	<li>You can find additional syntax styles to install on <a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">GitHub Wiki</a>.</li>
 </ul>
 </section>

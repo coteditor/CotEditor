@@ -40,7 +40,7 @@ enum ModifierKey: CaseIterable {
     
     static var mask: NSEvent.ModifierFlags {
         
-        self.allCases.reduce(.init()) { $0.union($1.mask) }
+        self.allCases.reduce(into: []) { $0.formUnion($1.mask) }
     }
     
     

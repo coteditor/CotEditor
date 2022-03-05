@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -221,6 +221,7 @@ final class NavigationBarController: NSViewController {
                         // dummy item to avoid merging sequential separators into a single separator
                         let dummyItem = NSMenuItem()
                         dummyItem.view = NSView()
+                        dummyItem.setAccessibilityElement(false)
                         
                         return [.separator(), dummyItem]
                         

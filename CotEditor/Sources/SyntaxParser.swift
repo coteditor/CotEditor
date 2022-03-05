@@ -134,9 +134,14 @@ extension SyntaxParser {
         let string = self.textStorage.string.immutable
         let range = self.textStorage.range
         self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
-            self?.outlineItems = try extractors
-                .flatMap { try $0.items(in: string, range: range) }
-                .sorted(\.range.location)
+            self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
+                for extractor in extractors {
+                    group.addTask { try await extractor.items(in: string, range: range) }
+                }
+                
+                return try await group.reduce(into: []) { $0 += $1 }
+                    .sorted(\.range.location)
+            }
         }
     }
     

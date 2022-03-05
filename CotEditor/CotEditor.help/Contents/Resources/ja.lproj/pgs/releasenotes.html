@@ -20,8 +20,8 @@
 
 <article>
 	<header>
-		<h1>CotEditor 4.1.2</h1>
-		<p>リリース: <time>2022-02-21</time></p>
+		<h1>CotEditor 4.1.3</h1>
+		<p>リリース: <time>2022-03-05</time></p>
 	</header>
 	
 	
@@ -29,7 +29,40 @@
 		<h2>改良</h2>
 		
 		<ul>
-	<li><span class="trivial">開発</span>: Yamsを4.0.6から5.0.0に更新</li>
+			<li>macOS 12.3以降でAppleが提供する開発ツールのPythonが引き続き利用できるように、cotコマンドの実行の<code>python</code>から<code>python3</code>に変更（macOS 12.3以降では、cotコマンドの利用にユーザによるpython3のインストールが必要です）</li>
+			<li>シンタックスハイライトのパフォーマンスを最適化</li>
+			<li>CSSとSQLシンタックススタイルを更新しカラーリングキーワードをさらに追加</li>
+			<li>Pythonシンタックススタイルを更新しPython 3.10で追加されたキーワードを追加</li>
+			<li>MarkdownとSVGシンタックススタイルを更新しシンタックス解析を高速化</li>
+			<li>JSONシンタックススタイルを更新しカラーリングを修正</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>修正</h2>
+		
+		<ul>
+			<li>エディタからコピーしたテキストの改行コードが書類の設定にかかわらず常にLFになっていた不具合を修正</li>
+			<li>¥と\のキーを入れ替えるオプションが有効にしていると、Unicodeコードポイントで挿入した¥と\まで入れ替えられていた不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.1.2</h1>
+		<p>リリース: <time>2022-02-20</time></p>
+	</header>
+	
+	
+	<section>
+		<h2>改良</h2>
+		
+		<ul>
+			<li><span class="trivial">開発</span>: Yamsを4.0.6から5.0.0に更新</li>
 			<li><span class="label">非AppStore版</span>: Sparkleを2.0.0から2.1.0に更新</li>
 		</ul>
 	</section>
@@ -4597,7 +4630,7 @@
 	<li>サンドボックス化にともない、ユーザにパーミッションがないファイルでもオープン／上書きができる機能 (authopen) を廃止</li>
 	<li>Mac App Store ガイドラインに沿うため、<code>cot</code> コマンドラインツールの同梱の廃止
 	<ul>
-		<li>CotEditor 2.2.0 およびそれ以降で <code>cot</code> コマンドを使うためには、新しいコマンドラインツールを <a href="http://coteditor.com/cot">http://coteditor.com/cot</a> からダウンロードして、手動でインストールを行ってください。過去のコマンドラインツールは CotEditor 2.2.0 に対応していません。</li>
+		<li>CotEditor 2.2.0 およびそれ以降で <code>cot</code> コマンドを使うためには、新しいコマンドラインツールを <a href="https://coteditor.com/cot">http://coteditor.com/cot</a> からダウンロードして、手動でインストールを行ってください。過去のコマンドラインツールは CotEditor 2.2.0 に対応していません。</li>
 	</ul></li>
 	<li>サイドインスペクタのユーザインターフェイスを改良</li>
 	<li>シンタックスハイライトの改善：
@@ -4644,14 +4677,14 @@
 	<li>検索時のハイライト色の調整</li>
 	<li>表記の調整</li>
 	<li>サンプルスクリプトを削除<ul>
-		<li>今後はオンラインの <a href="http://coteditor.com/archives.ja">アーカイブ</a> ページで入手することができます。</li>
+		<li>今後はオンラインの <a href="https://coteditor.com/archives.ja">アーカイブ</a> ページで入手することができます。</li>
 	</ul></li>
 	<li>ドキュメントの更新</li>
 	<li>ビルド環境を OS X El Capitan + Xcode 7 (SDK 10.11) に変更</li>
 	<li>ソースコードのライセンスを GNU General Public License version 2 から Apache Lisence version 2.0 に変更</li>
 	<li><span class="label">非 AppStore 版のみ</span>: 自動更新機能の廃止
 	<ul>
-		<li>CotEditor の自動更新に使われている <a href="http://sparkle-project.org" rel="external">Sparkle</a> というフレームワークがまだサンドボックスに対応していないため、CotEditor 内での自動更新機能は一旦廃止されました。今後は、新しいバージョンがリリースされたときは（以前と同様に）通知ウインドウが表示されるので、その後サイトから新しいバージョンをダウンロードして手動でアップデートを行ってください。もしくは、<a href="http://appstore.com/mac/CotEditor">Mac App Store 版</a>に切り替えてください。</li>
+		<li>CotEditor の自動更新に使われている <a href="https://sparkle-project.org" rel="external">Sparkle</a> というフレームワークがまだサンドボックスに対応していないため、CotEditor 内での自動更新機能は一旦廃止されました。今後は、新しいバージョンがリリースされたときは（以前と同様に）通知ウインドウが表示されるので、その後サイトから新しいバージョンをダウンロードして手動でアップデートを行ってください。もしくは、<a href="https://itunes.apple.com/app/coteditor/id1024640650?ls=1">Mac App Store 版</a>に切り替えてください。</li>
 	</ul></li>
 	<li><span class="label">非 AppStore 版のみ</span>: プレリリース版を更新対象に含めるオプションを追加
 	<ul>
@@ -5378,7 +5411,7 @@
 
 <ul>
 	<li>CotEditor の Twitter アカウントができました：<a href="https://twitter.com/CotEditor" rel="external">@CotEditor</a></li>
-	<li>公式サイトの URL が <a href="http://coteditor.com" rel="external">coteditor.com</a> に変更されました。</li>
+	<li>公式サイトの URL が <a href="https://coteditor.com" rel="external">coteditor.com</a> に変更されました。</li>
 	<li><a href="https://github.com/coteditor/CotEditor/wiki/Additional-Syntax-Styles" rel="external">GitHub Wiki</a> で追加インストールできるシンタックス定義を見つけることができます。</li>
 </ul>
 </section>
@@ -5397,7 +5430,7 @@
 <ul>
 	<li>印刷時ヘッダ／フッダを表示させると1ページ以内に収まる書類でも白紙の2ページ目が印刷されてしまう不具合を修正</li>
 	<li>サイズの大きいファイルをシンタックスカラーリング付きで正常に印刷ができない不具合を修正</li>
-	<li>ファイルサイズ表示がファイルの更新に追従していなかった不具合を修正（<a href="http://aki-null.net" rel="external">aki-null.net</a> の aki さんに感謝！）</li>
+	<li>ファイルサイズ表示がファイルの更新に追従していなかった不具合を修正（<a href="https://aki-null.net" rel="external">aki-null.net</a> の aki さんに感謝！）</li>
 	<li>全角空白が自動インデントの対象から漏れていた不具合を修正</li>
 	<li>環境設定ウインドウからのビューの不透明度の変更が行番号ビューに反映されない不具合を修正</li>
 	<li>ビューの不透明度などいくつかの設定値において、特定のウインドウのみに設定を変更した値が解除されてしまうことがある不具合を修正</li>
@@ -5448,7 +5481,7 @@
 <section>
 <h2>改良</h2>
 <ul>
-	<li>いくつかの設定やメニュー項目のラベル表記を変更（<a href="http://zumuya.com" rel="external">zumuya</a> の zom さんに感謝！）</li>
+	<li>いくつかの設定やメニュー項目のラベル表記を変更（<a href="https://zumuya.com" rel="external">zumuya</a> の zom さんに感謝！）</li>
 	<li>より多くの環境設定の項目において変更を現在の書類にも反映するように変更</li>
 	<li>ステータスバーを表示しているときの処理の軽減</li>
 	<li>ドキュメントを更新</li>
@@ -5803,7 +5836,7 @@
 <h2>改良</h2>
 
 <ul>
-	<li>検索パネルでReturnキーを押して次を検索した際に、パネルを閉じないように変更（従来のようにパネルを閉じるにはShift+Returnキーを押す）（<a href="http://aki-null.net" rel="external">aki-null.net</a> の aki さんに感謝！）</li>
+	<li>検索パネルでReturnキーを押して次を検索した際に、パネルを閉じないように変更（従来のようにパネルを閉じるにはShift+Returnキーを押す）（<a href="https://aki-null.net" rel="external">aki-null.net</a> の aki さんに感謝！）</li>
 	<li>10.7向けのバイナリを作成（10.4/10.5/10.6向けと10.7向けの2つを別々にビルド）</li>
 </ul>
 </section>
@@ -5972,7 +6005,7 @@
 <h2>改良</h2>
 
 <ul>
-	<li>前バージョンで追加した「文章単語をダブルクリックで選択時に “:” も単語の区切りとして扱う」機能を廃止（選択後にShiftキー押下とマウスクリックで選択範囲を拡大するときの挙動を制御できないため）（<a href="http://d.hatena.ne.jp/mr_konn/" rel="external">はてな使ったら負けだと思っている</a> の konn さんに感謝！）</li>
+	<li>前バージョンで追加した「文章単語をダブルクリックで選択時に “:” も単語の区切りとして扱う」機能を廃止（選択後にShiftキー押下とマウスクリックで選択範囲を拡大するときの挙動を制御できないため）（<a href="https://d.hatena.ne.jp/mr_konn/" rel="external">はてな使ったら負けだと思っている</a> の konn さんに感謝！）</li>
 	<li>10.5以上で実行しているときの編集中のカラーリングの精度を向上（10.4以下では変化ありません）</li>
 	<li>RegexKitLite を 2.2 に更新</li>
 	<li>開発環境を更新</li>
