@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2021 CotEditor Project
+ © 2006-2022 CotEditor Project
 */
 
 
@@ -183,6 +183,25 @@ p.point {
 	border: 1px solid hsl(213, 25%, 80%);
 	background-color: hsl(213, 25%, 96%);
 }
+p.addition {
+	position: relative;
+	text-indent: 0;
+	padding: 0.3em 0.6em;
+	border-radius: 0.5em;
+	background: hsl(213, 50%, 97%);
+}
+p.addition::after {
+	content: '';
+	position: absolute;
+	top: -1.8em;
+	left: 4em;
+	margin-left: -1em;
+	border: 1em solid transparent;
+	border-bottom: 15px solid hsl(213, 50%, 97%);
+}
+p.addition > span:first-child {
+	color: hsl(201, 25%, 55%);
+}
 
 em, strong {
 	font-weight: 600;
@@ -204,8 +223,8 @@ img.snapshot {
 }
 
 dt {
-    font-weight: 600;
-    margin-left: 0.5em;
+	font-weight: 600;
+	margin-left: 0.5em;
 }
 dd {
 	margin-left: 2.5em;
@@ -250,10 +269,10 @@ table thead tr th {
 table thead tr:first-child > * {
 	border-top: none;
 }
-table  tr:first-child > * {
+table tr:first-child > * {
 	border-top-color: -apple-system-secondary-label;
 }
-table  tr:last-child > * {
+table tr:last-child > * {
 	border-bottom-color: -apple-system-secondary-label;
 }
 th {
@@ -346,7 +365,7 @@ table.preferences tr:last-child > * {
 table.preferences td dl > * {
 	margin-left: 0;
 }
-table.preferences td ul  {
+table.preferences td ul {
 	padding-left: 1.5em;
 	list-style-type: disc;
 }
