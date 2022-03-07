@@ -127,16 +127,17 @@ final class IncompatibleCharactersViewController: NSViewController {
             tableView.clickedRow > -1,  // invalid click
             let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
             let selectedIncompatible = incompatibles[safe: tableView.clickedRow],
-            let editor = self.document else { return }
+            let editor = self.document
+        else { return }
         
         editor.selectedRange = selectedIncompatible.range
         
         // focus result
         // -> Use textView's `selectedRange` since `range` is incompatible with CRLF.
-        if let textView = editor.textView {
-            textView.scrollRangeToVisible(textView.selectedRange)
-            textView.showFindIndicator(for: textView.selectedRange)
-        }
+        guard let textView = editor.textView else { return }
+        
+        textView.scrollRangeToVisible(textView.selectedRange)
+        textView.showFindIndicator(for: textView.selectedRange)
     }
     
     

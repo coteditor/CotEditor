@@ -97,10 +97,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // standardize line endings to LF
         // -> Line endings replacement on file read is processed in `Document.read(from:ofType:).
         if let replacementString = replacementString,  // = only attributes changed
-            !replacementString.isEmpty,  // = text deleted
-            textView.undoManager?.isUndoing != true,  // = undo
-            let lineEnding = replacementString.detectedLineEnding,  // = no line endings
-            lineEnding != .lf
+           !replacementString.isEmpty,  // = text deleted
+           textView.undoManager?.isUndoing != true,  // = undo
+           let lineEnding = replacementString.detectedLineEnding,  // = no line endings
+           lineEnding != .lf
         {
             return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
                                      range: affectedCharRange,
@@ -183,7 +183,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
-        guard let textView = self.textView, textView.selectsSingleCharacter else { return assertionFailure() }
+        guard
+            let textView = self.textView,
+            textView.selectsSingleCharacter
+        else { return assertionFailure() }
         
         var selectedString = (textView.string as NSString).substring(with: textView.selectedRange)
         
