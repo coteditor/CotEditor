@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 final class NumberTextField: NSTextField {
     
@@ -34,22 +34,6 @@ final class NumberTextField: NSTextField {
         if let monospacedDigit = self.font?.monospacedDigit {
             self.font = monospacedDigit
         }
-    }
-    
-}
-
-
-
-private extension NSFont {
-    
-    var monospacedDigit: NSFont? {
-        
-        let monospaceSetting: [NSFontDescriptor.FeatureKey: Any] = [.typeIdentifier: kNumberSpacingType,
-                                                                    .selectorIdentifier: kMonospacedNumbersSelector]
-            .mapValues { $0 as AnyObject }
-        let fontDescriptor = self.fontDescriptor.addingAttributes([.featureSettings: [monospaceSetting]])
-        
-        return NSFont(descriptor: fontDescriptor, size: self.pointSize)
     }
     
 }

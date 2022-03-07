@@ -117,17 +117,24 @@ extension UnicodeInputViewController: NSMenuDelegate {
         
         guard !UserDefaults.standard[.unicodeHistory].isEmpty else { return }
         
+        let font = menu.font?.monospacedDigit ?? NSFont.menuFont(ofSize: 0)
+        let paragraphStyle = NSParagraphStyle.default.mutable
+        paragraphStyle.tabStops = []
+        paragraphStyle.defaultTabInterval = 8 * font.width(of: "0")
+        
         menu.items += UserDefaults.standard[.unicodeHistory]
             .compactMap(UTF32.CodeUnit.init(codePoint:))
             .compactMap(UnicodeScalar.init)
             .map {
                 let item = NSMenuItem()
                 item.attributedTitle = [
-                    NSAttributedString(string: $0.codePoint),
+                    NSAttributedString(string: $0.codePoint + "\t",
+                                       attributes: [.font: font,
+                                                    .paragraphStyle: paragraphStyle]),
                     NSAttributedString(string: $0.name ?? "Invalid code".localized,
                                        attributes: [.foregroundColor: NSColor.secondaryLabelColor,
-                                                    .font: NSFont.menuFont(ofSize: NSFont.smallSystemFontSize)])]
-                    .joined(separator: "\t")
+                                                    .font: NSFont.menuFont(ofSize: NSFont.smallSystemFontSize)]),
+                ].joined()
                 item.representedObject = $0.codePoint
                 item.action = #selector(insertCodePoint)
                 item.target = self
