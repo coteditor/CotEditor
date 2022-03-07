@@ -380,7 +380,7 @@ extension Document {
             }
             
             self.selectedRange = foundRange
-            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument.
+            self.insert(string: replacedString, at: .replaceSelection)
             
             return 1
         }
