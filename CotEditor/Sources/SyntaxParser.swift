@@ -265,9 +265,7 @@ extension SyntaxParser {
             
             parser.progress.localizedDescription = "Applying colors to text".localized
             
-            await MainActor.run { [weak self] in
-                self?.textStorage.apply(highlights: highlights, range: highlightRange)
-            }
+            await self?.textStorage.apply(highlights: highlights, range: highlightRange)
             
             if highlightRange == string.nsRange {
                 self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
