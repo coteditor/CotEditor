@@ -58,6 +58,7 @@ struct OutlineExtractor {
     
     
     /// Extract outline items in given string.
+    ///
     /// - Parameters:
     ///   - string: The string to parse.
     ///   - parseRange: The range of the string to parse.
@@ -65,33 +66,31 @@ struct OutlineExtractor {
     /// - Returns: An array of `OutlineItem`.
     func items(in string: String, range parseRange: NSRange) async throws -> [OutlineItem] {
         
-        try await self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).map { result in
+        try await self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
             
             // separator item
             if self.template == .separator {
                 return OutlineItem(title: self.template, range: result.range)
             }
             
-            // menu item title
+            // menu item
             var title: String
             
             if self.template.isEmpty {
-                // no pattern definition
                 title = (string as NSString).substring(with: result.range)
                 
             } else {
-                // replace matched string with template
-                title = self.regex.replacementString(for: result, in: string, offset: 0, template: self.template)
-                
-                // replace $LN with line number of the beginning of the matched range
-                if title.contains("$LN") {
+                let template: String
+                if self.template.contains("$LN") {
                     let lineNumber = string.lineNumber(at: result.range.location)
-                    
-                    title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN", with: String(lineNumber), options: .regularExpression)
+                    template = self.template.replacingOccurrences(of: "$LN", with: String(lineNumber), options: .literal)
+                } else {
+                    template = self.template
                 }
+                
+                title = self.regex.replacementString(for: result, in: string, offset: 0, template: template)
             }
             
-            // replace line breaks
             title = title.replacingOccurrences(of: "\\R", with: " ", options: .regularExpression)
             
             return OutlineItem(title: title, range: result.range, style: self.style)
