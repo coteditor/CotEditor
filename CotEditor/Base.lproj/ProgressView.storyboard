@@ -31,7 +31,7 @@
                                     <binding destination="pOm-Jt-raG" name="value" keyPath="message" id="vta-EJ-3xT"/>
                                 </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-fK-qvF">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-fK-qvF" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="18" y="14" width="124" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="04u-QX-U6h">
                                     <font key="font" metaFont="smallSystem"/>
