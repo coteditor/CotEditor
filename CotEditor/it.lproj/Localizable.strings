@@ -471,7 +471,7 @@
 "Please wait for a while." = "Si prega di attendere.";
 "Extracting %@…" = "Estrazione di %@…";
 "Preparing to color…" = "Preparo la colorazione…";
-"Applying colors to text" = "Applicazione dei colori al testo";
+"Applying colors to text…" = "Applicazione dei colori al testo…";
 "keywords" = "Parole chiave";
 "commands" = "Comandi";
 "types" = "Tipi";
