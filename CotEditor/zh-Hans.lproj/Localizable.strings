@@ -468,8 +468,7 @@
 // Coloring indicator
 "Coloring text…" = "文本着色中…";
 "Please wait for a while." = "请稍等片刻…";
-"Extracting %@…" = "%@ 解压中…";
-"Preparing to color…" = "准备着色中…";
+"Parsing document…" = "Parsing document…";  // FIXME: updated
 "Applying colors to text…" = "在文本上使用颜色…";
 "keywords" = "关键字";
 "commands" = "命令";
@@ -481,7 +480,6 @@
 "strings" = "字符串";
 "characters" = "字符";
 "comments" = "注释";
-"comments and quoted texts" = "注释和引用文本";
 
 
 

@@ -467,8 +467,7 @@
 // Coloring indicator
 "Coloring text…" = "Colouring text…";
 "Please wait for a while." = "Please wait for a while.";
-"Extracting %@…" = "Extracting %@…";
-"Preparing to color…" = "Preparing to colour…";
+"Parsing document…" = "Parsing document…";
 "Applying colors to text…" = "Applying colours to text…";
 "keywords" = "keywords";
 "commands" = "commands";
@@ -480,7 +479,6 @@
 "strings" = "strings";
 "characters" = "characters";
 "comments" = "comments";
-"comments and quoted texts" = "comments and quoted texts";
 
 
 
