@@ -263,7 +263,7 @@ extension SyntaxParser {
             
             try Task.checkCancellation()
             
-            parser.progress.localizedDescription = "Applying colors to text".localized
+            parser.progress.localizedDescription = "Applying colors to text…".localized
             
             await self?.textStorage.apply(highlights: highlights, range: highlightRange)
             

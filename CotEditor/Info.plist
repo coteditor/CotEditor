@@ -369,6 +369,10 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.haskell.haskell-source</string>
+			</array>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>hs</string>

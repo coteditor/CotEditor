@@ -469,8 +469,8 @@
 "Coloring text…" = "Text färben …";
 "Please wait for a while." = "Bitte etwas Geduld.";
 "Extracting %@…" = "%@ extrahieren …";
-"Preparing to color…" = "Färbung vorbereiten…";
-"Applying colors to text" = "Farben auf den Text anwenden";
+"Preparing to color…" = "Färbung vorbereiten …";
+"Applying colors to text…" = "Farben auf den Text anwenden …";
 "keywords" = "Schlüsselwörter";
 "commands" = "Befehle";
 "types" = "Typen";

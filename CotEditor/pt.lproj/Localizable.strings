@@ -471,7 +471,7 @@
 "Please wait for a while." = "Aguarde um momento.";
 "Extracting %@…" = "Extraindo %@…";
 "Preparing to color…" = "Preparando a coloração…";  // FIXME: machine-translated (native check required)
-"Applying colors to text" = "Aplicando cores ao texto";
+"Applying colors to text…" = "Aplicando cores ao texto…";
 "keywords" = "palavras-chave";
 "commands" = "comandos";
 "types" = "tipos";

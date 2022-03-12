@@ -18,6 +18,15 @@ Change Log
 
 
 
+4.1.4 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue that the application could not open Haskell files.
+
+
+
 4.1.3 (483)
 --------------------------
 

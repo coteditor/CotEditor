@@ -470,7 +470,7 @@
 "Please wait for a while." = "请稍等片刻…";
 "Extracting %@…" = "%@ 解压中…";
 "Preparing to color…" = "准备着色中…";
-"Applying colors to text" = "在文本上使用颜色";
+"Applying colors to text…" = "在文本上使用颜色…";
 "keywords" = "关键字";
 "commands" = "命令";
 "types" = "类型";

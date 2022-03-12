@@ -468,7 +468,7 @@
 "Please wait for a while." = "Lütfen bir süre bekleyin.";
 "Extracting %@…" = "%@ çıkarılıyor…";
 "Preparing to color…" = "Renklendirmeye hazırlanıyor…";
-"Applying colors to text" = "Metne renkler uygulanıyor";
+"Applying colors to text…" = "Metne renkler uygulanıyor…";
 "keywords" = "anahtar sözcükler";
 "commands" = "komutlar";
 "types" = "türler";
