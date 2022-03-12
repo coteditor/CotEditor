@@ -949,7 +949,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             else { return }
         
         let indicator = NSStoryboard(name: "CompactProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: "Coloring text…".localized)
+            ProgressViewController(coder: coder, progress: progress, message: "Coloring text…".localized, appliesDescriptionImmediately: true)
         }!
         
         self.presentAsSheet(indicator)
