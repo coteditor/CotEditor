@@ -5,6 +5,11 @@ Change Log
 4.1.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Improve syntax highlighting indicator.
+
+
 ### Fixes
 
 - Fix an issue that the application could not open Haskell files.
