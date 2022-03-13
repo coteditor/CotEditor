@@ -467,8 +467,7 @@
 // Coloring indicator
 "Coloring text…" = "Coloration du texte…";
 "Please wait for a while." = "Veuillez patienter quelques instants.";
-"Extracting %@…" = "Extraction de %@…";
-"Preparing to color…" = "Préparation de la coloration syntaxique…";
+"Parsing document…" = "Parsing document…";  // FIXME: updated
 "Applying colors to text…" = "Application des couleurs au texte…";
 "keywords" = "mots-clés";
 "commands" = "commandes";
@@ -480,7 +479,6 @@
 "strings" = "chaînes de caractères";
 "characters" = "caractères";
 "comments" = "commentaires";
-"comments and quoted texts" = "commentaires et textes entre guillemets";
 
 
 

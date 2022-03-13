@@ -468,8 +468,7 @@
 // Coloring indicator
 "Coloring text…" = "Text färben …";
 "Please wait for a while." = "Bitte etwas Geduld.";
-"Extracting %@…" = "%@ extrahieren …";
-"Preparing to color…" = "Färbung vorbereiten …";
+"Parsing document…" = "Dokument parsen …";
 "Applying colors to text…" = "Farben auf den Text anwenden …";
 "keywords" = "Schlüsselwörter";
 "commands" = "Befehle";
@@ -481,7 +480,6 @@
 "strings" = "Zeichenketten";
 "characters" = "Zeichen";
 "comments" = "Kommentare";
-"comments and quoted texts" = "Kommentare und zitierte Texte";
 
 
 

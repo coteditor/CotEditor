@@ -89,52 +89,46 @@ final class HighlightParser {
         self.string = string
         self.parseRange = parseRange
         
-        // +2 for extractCommentsWithQuotes(), sanitizing
-        self.progress = Progress(totalUnitCount: Int64(definition.extractors.count + 2))
+        // +1 for extractCommentsWithNestablePaires() and +10 for sanitizing
+        let extractorCount = definition.extractors.values.map(\.count).reduce(0, +)
+        self.progress = Progress(totalUnitCount: Int64(extractorCount) + 1 + 10)
     }
     
     
     // MARK: Public Methods
     
-    /// extract all highlight ranges in the parse range
+    /// Extract all highlight ranges in the parse range.
+    ///
+    /// - Returns: A dictionary of ranges to highlight per syntax types.
+    /// - Throws: CancellationError.
     func parse() async throws -> [SyntaxType: [NSRange]] {
         
-        let string = self.string
-        let parseRange = self.parseRange
-        var highlights = [SyntaxType: [NSRange]]()
-        
-        // extract standard highlight rangess
-        for syntaxType in SyntaxType.allCases {
-            guard let extractors = self.definition.extractors[syntaxType] else { continue }
-            
-            self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
-            let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            
-            highlights[syntaxType] = try await withThrowingTaskGroup(of: [NSRange].self) { group in
+        var highlights: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { [unowned self] group in
+            // extract standard highlight ranges
+            for (type, extractors) in self.definition.extractors {
                 for extractor in extractors {
-                    group.addTask { try await extractor.ranges(in: string, range: parseRange) }
+                    group.addTask {
+                        [type: try await extractor.ranges(in: self.string, range: self.parseRange)]
+                    }
                 }
-                
-                return try await group.reduce(into: [NSRange]()) {
-                    $0 += $1
-                    childProgress.completedUnitCount += 1
-                }
+            }
+            
+            // extract comments and nestable paires
+            group.addTask {
+                try self.extractCommentsWithNestablePaires()
+            }
+            
+            return try await group.reduce(into: .init()) {
+                $0.merge($1) { $0 + $1 }
+                self.progress.completedUnitCount += 1
             }
         }
         
         try Task.checkCancellation()
         
-        // extract comments and quoted text
-        self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
-        highlights.merge(self.extractCommentsWithNestablePaires()) { $0 + $1 }
-        self.progress.completedUnitCount += 1
-        
-        try Task.checkCancellation()
-        
         // reduce complexity of highlights dictionary
-        self.progress.localizedDescription = "Preparing to color…".localized
         try highlights.sanitize()
-        self.progress.completedUnitCount += 1
+        self.progress.completedUnitCount += 10
         
         return highlights
     }
@@ -143,8 +137,10 @@ final class HighlightParser {
     
     // MARK: Private Methods
     
-    /// extract ranges of quoted texts as well as comments in the parse range
-    private func extractCommentsWithNestablePaires() -> [SyntaxType: [NSRange]] {
+    /// Extract ranges of comments and paired characters such as quotes in the parse range.
+    ///
+    /// - Throws: CancellationError.
+    private func extractCommentsWithNestablePaires() throws -> [SyntaxType: [NSRange]] {
         
         let string = self.string as NSString
         var positions = [NestableItem]()
@@ -155,6 +151,8 @@ final class HighlightParser {
             positions += string.ranges(of: delimiters.end, range: self.parseRange)
                 .map { NestableItem(type: .comments, token: .blockComment, role: .end, range: $0) }
         }
+        
+        try Task.checkCancellation()
         
         if let delimiter = self.definition.inlineCommentDelimiter {
             positions += string.ranges(of: delimiter, range: self.parseRange)
@@ -168,10 +166,14 @@ final class HighlightParser {
                 }
         }
         
+        try Task.checkCancellation()
+        
         for (quote, type) in self.definition.nestablePaires {
             positions += string.ranges(of: quote, range: self.parseRange)
                 .map { NestableItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
         }
+        
+        try Task.checkCancellation()
         
         // remove escaped ones
         positions.removeAll { self.string.isCharacterEscaped(at: $0.range.location) }
@@ -190,6 +192,8 @@ final class HighlightParser {
             
             return $0.role.rawValue > $1.role.rawValue
         }
+        
+        try Task.checkCancellation()
         
         // scan quoted strings and comments in the parse range
         var highlights = [SyntaxType: [NSRange]]()

@@ -468,8 +468,7 @@
 // Coloring indicator
 "Coloring text…" = "テキストのカラーリング中…";
 "Please wait for a while." = "しばらくお待ちください…";
-"Extracting %@…" = "%@を抽出中…";
-"Preparing to color…" = "カラーリングの準備中…";
+"Parsing document…" = "書類を解析中…";
 "Applying colors to text…" = "テキストにカラーを適用中…";
 "keywords" = "キーワード";
 "commands" = "コマンド";
@@ -481,7 +480,6 @@
 "strings" = "文字列";
 "characters" = "文字";
 "comments" = "コメント";
-"comments and quoted texts" = "コメントと引用符で囲まれたテキスト";
 
 
 

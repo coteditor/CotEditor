@@ -14,6 +14,7 @@ Change Log
 ### Improvements
 
 - Detect the line ending in documents more intelligently.
+- Optimize syntax parsing.
 - [trivial] Replace `\n` with `\R` for the new line meta character in the regular expression reference.
 
 
