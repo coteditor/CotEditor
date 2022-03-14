@@ -383,20 +383,16 @@ final class SyntaxManager: SettingFileManaging {
 
 private extension StringProtocol where Self.Index == String.Index {
     
-    /// try extracting used language from the shebang line
+    /// Extract interepreter from the shebang line.
     func scanInterpreterInShebang() -> String? {
         
+        guard self.hasPrefix("#!") else { return nil }
+        
         // get first line
-        var firstLine: String?
-        self.enumerateLines { (line, stop) in
-            firstLine = line
-            stop = true
-        }
-        
-        guard var shebang = firstLine, shebang.hasPrefix("#!") else { return nil }
-        
-        // remove #! symbol
-        shebang = shebang.replacingOccurrences(of: "^#! *", with: "", options: .regularExpression)
+        let firstLineRange = self.lineContentsRange(at: self.startIndex)
+        let shebang = self[firstLineRange]
+            .dropFirst("#!".count)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
         
         // find interpreter
         let components = shebang.components(separatedBy: " ")
