@@ -175,7 +175,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     self.currentScriptName = script.name
                     try script.run { [weak self] (error) in
                         if let error = error {
-                            Console.shared.show(message: error.localizedDescription, title: script.name)
+                            Task { @MainActor in
+                                Console.shared.show(message: error.localizedDescription, title: script.name)
+                            }
                         }
                         if self?.currentScriptName == script.name {
                             self?.currentScriptName = nil
@@ -238,7 +240,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
             do {
                 try script.run(withAppleEvent: event) { (error) in
                     if let error = error {
-                        Console.shared.show(message: error.localizedDescription, title: script.name)
+                        Task { @MainActor in
+                            Console.shared.show(message: error.localizedDescription, title: script.name)
+                        }
                     }
                 }
             } catch {
