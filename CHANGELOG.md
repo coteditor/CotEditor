@@ -17,6 +17,7 @@ Change Log
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - [trivial] Replace `\n` with `\R` for the new line meta character in the regular expression reference.
+- [trivial] Tweak Anura theme.
 
 
 
