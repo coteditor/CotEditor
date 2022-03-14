@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -325,7 +325,7 @@ final class SyntaxManager: SettingFileManaging {
             // create file mapping data
             dict[settingName] = style.filter { mappingKeys.contains($0.key) }
                 .mapValues { $0 as? [[String: String]] ?? [] }
-                .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+                .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString] } }
         }
         let map = self.bundledMap.merging(userMap) { (_, new) in new }
         

@@ -92,6 +92,21 @@ final class CollectionTests: XCTestCase {
     }
     
     
+    func testRawRepresentable() {
+        
+        enum TestKey: String {
+            case dog, cat, cow
+        }
+        var dict = ["dog": "🐶", "cat": "🐱"]
+        
+        XCTAssertEqual(dict[TestKey.dog], dict[TestKey.dog.rawValue])
+        XCTAssertNil(dict[TestKey.cow])
+        
+        dict[TestKey.cow] = "🐮"
+        XCTAssertEqual(dict[TestKey.cow], "🐮")
+    }
+    
+    
     func testSorting() {
         
         for _ in 0..<10 {

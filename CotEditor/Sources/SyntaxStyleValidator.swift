@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -194,9 +194,9 @@ final class SyntaxStyleValidator {
         }
         
         // validate block comment delimiter pair
-        if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
-            let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
-            let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter.rawValue]
+        if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters] as? [String: String] {
+            let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter]
+            let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter]
             let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
             if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {

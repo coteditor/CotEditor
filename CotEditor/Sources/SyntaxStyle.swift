@@ -45,14 +45,14 @@ struct HighlightDefinition: Equatable {
     
     init(dictionary: [String: Any]) throws {
         
-        guard let beginString = dictionary[SyntaxDefinitionKey.beginString.rawValue] as? String else { throw Error.invalidFormat }
+        guard let beginString = dictionary[SyntaxDefinitionKey.beginString] as? String else { throw Error.invalidFormat }
         
         self.beginString = beginString
-        if let endString = dictionary[SyntaxDefinitionKey.endString.rawValue] as? String, !endString.isEmpty {
+        if let endString = dictionary[SyntaxDefinitionKey.endString] as? String, !endString.isEmpty {
             self.endString = endString
         }
-        self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
-        self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
+        self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression] as? Bool) ?? false
+        self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase] as? Bool) ?? false
     }
     
 }
@@ -114,14 +114,14 @@ struct OutlineDefinition: Equatable {
     
     init(dictionary: [String: Any]) throws {
         
-        guard let pattern = dictionary[CodingKeys.pattern.rawValue] as? String else { throw Error.invalidFormat }
+        guard let pattern = dictionary[CodingKeys.pattern] as? String else { throw Error.invalidFormat }
         
         self.pattern = pattern
-        self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
-        self.ignoreCase = dictionary[CodingKeys.ignoreCase.rawValue] as? Bool ?? false
-        self.bold = dictionary[CodingKeys.bold.rawValue] as? Bool ?? false
-        self.italic = dictionary[CodingKeys.italic.rawValue] as? Bool ?? false
-        self.underline = dictionary[CodingKeys.underline.rawValue] as? Bool ?? false
+        self.template = dictionary[CodingKeys.template] as? String ?? ""
+        self.ignoreCase = dictionary[CodingKeys.ignoreCase] as? Bool ?? false
+        self.bold = dictionary[CodingKeys.bold] as? Bool ?? false
+        self.italic = dictionary[CodingKeys.italic] as? Bool ?? false
+        self.underline = dictionary[CodingKeys.underline] as? Bool ?? false
     }
     
 }
@@ -174,18 +174,18 @@ struct SyntaxStyle {
         self.name = name
         self.isNone = false
         
-        self.extensions = (dictionary[SyntaxKey.extensions.rawValue] as? [[String: String]])?
-            .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } ?? []
+        self.extensions = (dictionary[SyntaxKey.extensions] as? [[String: String]])?
+            .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []
         
         // set comment delimiters
         var inlineCommentDelimiter: String?
         var blockCommentDelimiters: Pair<String>?
-        if let delimiters = dictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
-            if let delimiter = delimiters[DelimiterKey.inlineDelimiter.rawValue], !delimiter.isEmpty {
+        if let delimiters = dictionary[SyntaxKey.commentDelimiters] as? [String: String] {
+            if let delimiter = delimiters[DelimiterKey.inlineDelimiter], !delimiter.isEmpty {
                 inlineCommentDelimiter = delimiter
             }
-            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter.rawValue],
-                let endDelimiter = delimiters[DelimiterKey.endDelimiter.rawValue],
+            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter],
+                let endDelimiter = delimiters[DelimiterKey.endDelimiter],
                 !beginDelimiter.isEmpty, !endDelimiter.isEmpty
             {
                 blockCommentDelimiters = Pair<String>(beginDelimiter, endDelimiter)
@@ -256,10 +256,10 @@ struct SyntaxStyle {
         
         // create word-completion data set
         self.completionWords = {
-            if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
+            if let completionDicts = dictionary[SyntaxKey.completions] as? [[String: Any]], !completionDicts.isEmpty {
                 // create from completion definition
                 return completionDicts
-                    .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
+                    .compactMap { $0[SyntaxDefinitionKey.keyString] as? String }
                     .filter { !$0.isEmpty }
                     .sorted()
             } else {
@@ -273,7 +273,7 @@ struct SyntaxStyle {
         }()
         
         // parse outline definitions
-        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?.lazy
+        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu] as? [[String: Any]])?.lazy
             .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
     }
     

@@ -470,7 +470,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // give the execute permission if user requested
         if self.isExecutable, !saveOperation.isAutosaving {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
-            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions | S_IXUSR
+            attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
         }
         
         return attributes

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -183,7 +183,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         // get swiped style
         let arrangedObjects = self.stylesController!.arrangedObjects as! [[String: Any]]
-        let styleName = arrangedObjects[row][StyleKey.name.rawValue] as! String
+        let styleName = arrangedObjects[row][StyleKey.name] as! String
         
         // check whether style is deletable
         let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
@@ -481,7 +481,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
             return UserDefaults.standard[.syntaxStyle]
         }
-        return styleInfo[StyleKey.name.rawValue] as! String
+        return styleInfo[StyleKey.name] as! String
     }
     
     
@@ -505,7 +505,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
         
-        return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
+        return arrangedObjects[clickedRow][StyleKey.name] as? String
     }
     
     

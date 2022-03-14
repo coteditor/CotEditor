@@ -125,6 +125,17 @@ extension Dictionary {
         return self.mapKeys { $0[keyPath: keyPath] }
     }
     
+    
+    /// Syntax suger to use RawRepresentable keys in dictionaries whose key is the actual raw value.
+    ///
+    /// - Parameter key: The raw representable whose raw value is the one of the receiver's key.
+    /// - Returns: The value corresponding to the given key.
+    subscript<K>(_ key: K) -> Value? where K: RawRepresentable, K.RawValue == Key  {
+        
+        get { self[key.rawValue] }
+        set { self[key.rawValue] = newValue }
+    }
+    
 }
 
 
