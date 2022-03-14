@@ -42,7 +42,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: Private Properties
     
-    private var results = [TextFindResult]()
+    private var results: [TextFindResult] = []
     @objc private dynamic var findString: String?
     @objc private dynamic var resultMessage: String?
     

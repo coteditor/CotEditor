@@ -143,7 +143,7 @@ final class HighlightParser {
     private func extractCommentsWithNestablePaires() throws -> [SyntaxType: [NSRange]] {
         
         let string = self.string as NSString
-        var positions = [NestableItem]()
+        var positions: [NestableItem] = []
         
         if let delimiters = self.definition.blockCommentDelimiters {
             positions += string.ranges(of: delimiters.begin, range: self.parseRange)
@@ -196,7 +196,7 @@ final class HighlightParser {
         try Task.checkCancellation()
         
         // scan quoted strings and comments in the parse range
-        var highlights = [SyntaxType: [NSRange]]()
+        var highlights: [SyntaxType: [NSRange]] = [:]
         var seekLocation = self.parseRange.location
         var searchingItem: NestableItem?
         

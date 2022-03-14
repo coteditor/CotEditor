@@ -72,7 +72,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     
     func ranges(in string: String, range: NSRange) async throws -> [NSRange] {
         
-        var ranges = [NSRange]()
+        var ranges: [NSRange] = []
         
         var location = range.lowerBound
         while location != NSNotFound {

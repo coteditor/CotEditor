@@ -32,7 +32,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Private Properties
     
-    private var themeNames = [String]()
+    private var themeNames: [String] = []
     private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     

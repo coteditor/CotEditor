@@ -43,7 +43,7 @@ final class DocumentController: NSDocumentController {
     // MARK: Private Properties
     
     private let transientDocumentLock = NSLock()
-    private var deferredDocuments = [NSDocument]()
+    private var deferredDocuments: [NSDocument] = []
     
     
     

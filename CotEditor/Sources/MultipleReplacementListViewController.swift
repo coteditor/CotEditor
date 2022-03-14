@@ -31,7 +31,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     // MARK: Private Properties
     
-    private var settingNames = [String]()
+    private var settingNames: [String] = []
     
     private var listUpdateObserver: AnyCancellable?
     

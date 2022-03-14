@@ -206,12 +206,12 @@ struct SyntaxStyle {
         
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithNestablePaires`
         // also combine simple word definitions into single regex definition
-        var nestablePaires = [String: SyntaxType]()
+        var nestablePaires: [String: SyntaxType] = [:]
         self.highlightDefinitions = definitionDictionary.reduce(into: [:]) { (dict, item) in
             
-            var highlightDefinitions = [HighlightDefinition]()
-            var words = [String]()
-            var caseInsensitiveWords = [String]()
+            var highlightDefinitions: [HighlightDefinition] = []
+            var words: [String] = []
+            var caseInsensitiveWords: [String] = []
             
             for definition in item.value {
                 // extract paired delimiters such as quotes

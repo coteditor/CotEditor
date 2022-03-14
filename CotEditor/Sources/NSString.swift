@@ -156,7 +156,7 @@ extension NSString {
     func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange? = nil) -> [NSRange] {
         
         let searchRange = searchRange ?? self.range
-        var ranges = [NSRange]()
+        var ranges: [NSRange] = []
         
         var location = searchRange.location
         while location != NSNotFound {

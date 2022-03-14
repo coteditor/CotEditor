@@ -266,7 +266,7 @@ private final class SnippetItem: NSObject {
 
 final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
-    @objc private dynamic var snippets = [SnippetItem]()
+    @objc private dynamic var snippets: [SnippetItem] = []
     
     @IBOutlet private var snippetArrayController: NSArrayController?
     @IBOutlet private weak var formatTextView: TokenTextView?

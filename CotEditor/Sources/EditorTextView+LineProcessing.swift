@@ -199,7 +199,7 @@ extension String {
         
         var string = self as NSString
         var replacementRange = NSRange()
-        var selectedRanges = [NSRange]()
+        var selectedRanges: [NSRange] = []
         
         // swap lines
         for lineRange in lineRanges {
@@ -246,7 +246,7 @@ extension String {
         
         var string = self as NSString
         var replacementRange = NSRange()
-        var selectedRanges = [NSRange]()
+        var selectedRanges: [NSRange] = []
         
         // swap lines
         for lineRange in lineRanges.reversed() {
@@ -337,8 +337,8 @@ extension String {
             .unique
             .sorted(\.location)
         
-        var replacementRanges = [NSRange]()
-        var uniqueLines = [String]()
+        var replacementRanges: [NSRange] = []
+        var uniqueLines: [String] = []
         for lineContentRange in lineContentRanges {
             let line = string.substring(with: lineContentRange)
             
@@ -361,9 +361,9 @@ extension String {
     func duplicateLine(in ranges: [NSRange], lineEnding: Character) -> EditingInfo? {
         
         let string = self as NSString
-        var replacementStrings = [String]()
-        var replacementRanges = [NSRange]()
-        var selectedRanges = [NSRange]()
+        var replacementStrings: [String] = []
+        var replacementRanges: [NSRange] = []
+        var selectedRanges: [NSRange] = []
         
         // group the ranges sharing the same lines
         let rangeGroups: [[NSRange]] = ranges.sorted(\.location)

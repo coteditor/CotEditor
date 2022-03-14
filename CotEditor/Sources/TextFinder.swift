@@ -210,7 +210,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
-        var matchedRanges = [NSRange]()
+        var matchedRanges: [NSRange] = []
         textFind.findAll { (matches: [NSRange], _) in
             matchedRanges.append(matches[0])
         }
@@ -496,8 +496,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
-            var highlights = [HighlightItem]()
-            var results = [TextFindResult]()  // not used if showsList is false
+            var highlights: [HighlightItem] = []
+            var results: [TextFindResult] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {

@@ -488,7 +488,7 @@ extension LineNumberView {
         
         // with Command key (add selection)
         if event.modifierFlags.contains(.command) {
-            var selectedRanges = [NSRange]()
+            var selectedRanges: [NSRange] = []
             var intersects = false
             
             for selectedRange in draggingInfo.selectedRanges {

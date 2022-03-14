@@ -117,7 +117,7 @@ final class SyntaxStyleValidator {
     /// check regular expression syntax and duplicatioin and return errors
     static func validate(_ styleDictionary: SyntaxManager.StyleDictionary) -> [StyleError] {
         
-        var results = [StyleError]()
+        var results: [StyleError] = []
         
         let syntaxDictKeys = SyntaxType.allCases.map(\.rawValue) + [SyntaxKey.outlineMenu.rawValue]
         

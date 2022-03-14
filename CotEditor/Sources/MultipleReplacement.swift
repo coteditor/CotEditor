@@ -90,7 +90,7 @@ extension MultipleReplacement {
     /// - Returns: The found ranges. This method will return first all search finished.
     func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
-        var result = [NSRange]()
+        var result: [NSRange] = []
         
         guard !string.isEmpty else { return result }
         

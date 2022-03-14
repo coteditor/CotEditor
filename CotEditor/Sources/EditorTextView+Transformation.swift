@@ -226,9 +226,9 @@ private extension NSTextView {
         }
         
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        var strings = [String]()
-        var appliedRanges = [NSRange]()
-        var newSelectedRanges = [NSRange]()
+        var strings: [String] = []
+        var appliedRanges: [NSRange] = []
+        var newSelectedRanges: [NSRange] = []
         var deltaLocation = 0
         
         for range in selectedRanges where !range.isEmpty {
