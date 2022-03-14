@@ -57,7 +57,7 @@ struct OutlineExtractor {
     }
     
     
-    /// Extract outline items in given string.
+    /// Extract outline items in the given string.
     ///
     /// - Parameters:
     ///   - string: The string to parse.
@@ -68,30 +68,16 @@ struct OutlineExtractor {
         
         try await self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
             
-            // separator item
+            // separator
             if self.template == .separator {
                 return OutlineItem(title: self.template, range: result.range)
             }
             
-            // menu item
-            var title: String
-            
-            if self.template.isEmpty {
-                title = (string as NSString).substring(with: result.range)
-                
-            } else {
-                let template: String
-                if self.template.contains("$LN") {
-                    let lineNumber = string.lineNumber(at: result.range.location)
-                    template = self.template.replacingOccurrences(of: "$LN", with: String(lineNumber), options: .literal)
-                } else {
-                    template = self.template
-                }
-                
-                title = self.regex.replacementString(for: result, in: string, offset: 0, template: template)
-            }
-            
-            title = title.replacingOccurrences(of: "\\R", with: " ", options: .regularExpression)
+            // standard outline
+            let title = (self.template.isEmpty
+                         ? (string as NSString).substring(with: result.range)
+                         : self.regex.replacementString(for: result, in: string, offset: 0, template: self.template))
+                .replacingOccurrences(of: "\\R", with: " ", options: .regularExpression)
             
             return OutlineItem(title: title, range: result.range, style: self.style)
         }
