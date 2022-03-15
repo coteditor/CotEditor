@@ -147,7 +147,7 @@ struct SyntaxStyle {
     private let outlineDefinitions: [OutlineDefinition]
     
     private(set) lazy var outlineExtractors: [OutlineExtractor] = self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
-    private(set) lazy var highlightExtractors: [SyntaxType: [HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor() } }
+    private(set) lazy var highlightExtractors: [SyntaxType: [any HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor() } }
     
     
     

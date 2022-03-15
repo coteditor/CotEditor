@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -154,7 +154,7 @@ final class DocumentController: NSDocumentController {
         // make document
         let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
-        (document as? AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
+        (document as? any AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
         
         return document
     }

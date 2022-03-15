@@ -52,7 +52,7 @@ extension NSTextView {
     /// - Returns: The number of lines (1-based).
     func lineNumber(at location: Int) -> Int {
         
-        return (self.layoutManager as? LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
+        return (self.layoutManager as? any LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
     }
     
     
@@ -137,7 +137,7 @@ extension NSTextView {
     /// - Returns: The number of lines (1-based).
     private func lineRange(at location: Int) -> NSRange {
         
-        return (self.layoutManager as? LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
+        return (self.layoutManager as? any LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
     }
     
 }

@@ -142,7 +142,7 @@ struct ScriptDescriptor {
     ///
     /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
-    func makeScript() throws -> Script {
+    func makeScript() throws -> any Script {
         
         return try self.scriptType.init(url: self.url, name: self.name)
     }

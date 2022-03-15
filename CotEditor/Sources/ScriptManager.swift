@@ -39,7 +39,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Properties
     
     private let scriptsDirectoryURL: URL?
-    private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
@@ -241,7 +241,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - event: The Apple Event to be dispatched.
     ///   - scripts: AppleScripts handling the given Apple Event.
-    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [EventScript]) {
+    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [any EventScript]) {
         
         for script in scripts {
             do {
@@ -289,7 +289,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
                 // -> Test script possibility before folder because a script can be a directory, e.g. .scptd.
                 for eventType in descriptor.eventTypes {
-                    guard let script = script as? EventScript else { continue }
+                    guard let script = script as? any EventScript else { continue }
                     self.scriptHandlersTable[eventType, default: []].append(script)
                 }
                 

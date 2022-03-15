@@ -305,7 +305,7 @@ private extension NSTextStorage {
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
             guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
             
-            let theme = (layoutManager.firstTextView as? Themable)?.theme
+            let theme = (layoutManager.firstTextView as? any Themable)?.theme
             
             layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)

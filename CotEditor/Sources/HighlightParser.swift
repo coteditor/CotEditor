@@ -59,7 +59,7 @@ final class HighlightParser {
     
     struct Definition {
         
-        var extractors: [SyntaxType: [HighlightExtractable]]
+        var extractors: [SyntaxType: [any HighlightExtractable]]
         var nestablePaires: [String: SyntaxType]  // such as quotes to extract with comment
         var inlineCommentDelimiter: String?
         var blockCommentDelimiters: Pair<String>?
