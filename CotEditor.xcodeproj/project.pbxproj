@@ -710,6 +710,9 @@
 		2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */; };
 		2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */; };
 		2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */; };
+		2AFD218A27E0434100E83E88 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218927E0434100E83E88 /* UTType.swift */; };
+		2AFD218B27E0434100E83E88 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218927E0434100E83E88 /* UTType.swift */; };
+		2AFD218D27E0442B00E83E88 /* UTTypeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */; };
 		2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
@@ -1432,6 +1435,8 @@
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
+		2AFD218927E0434100E83E88 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
+		2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTTypeExtensionTests.swift; sourceTree = "<group>"; };
 		2AFE848522AE71130001C4ED /* TextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1895,6 +1900,7 @@
 				2AF861E22522E64E00A114BE /* NumberFormatter.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
 				2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */,
+				2AFD218927E0434100E83E88 /* UTType.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -2292,6 +2298,7 @@
 				2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */,
 				2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */,
 				2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */,
+				2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */,
 				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
 				2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */,
 				2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */,
@@ -3103,6 +3110,7 @@
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A1A4EAC24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2A222C3024FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
+				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
@@ -3121,6 +3129,7 @@
 				2A5EDDBD241B64EB00A07810 /* TextClippingTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
+				2AFD218D27E0442B00E83E88 /* UTTypeExtensionTests.swift in Sources */,
 				2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2A64A2362387754000646BE4 /* UserDefaultsObservationTests.swift in Sources */,
@@ -3416,6 +3425,7 @@
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
+				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
