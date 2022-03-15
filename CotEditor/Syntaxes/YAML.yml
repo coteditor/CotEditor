@@ -38,8 +38,9 @@ values:
   ignoreCase: true
 - beginString: "off"
   ignoreCase: true
-- beginString: "on"
+- beginString: (?<=:)\s*on\b
   ignoreCase: true
+  regularExpression: true
 - beginString: "true"
   ignoreCase: true
 - beginString: "yes"
