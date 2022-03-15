@@ -4,9 +4,9 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.0"
+  version: "1.2.1"
   license: "Same as CotEditor"
-  lastModified: "2018-09-05"
+  lastModified: "2022-03-15"
 outlineMenu:
 - beginString: "^([^\\n -].*?):"
   keyString: "$1:"
@@ -38,8 +38,9 @@ values:
   ignoreCase: true
 - beginString: "off"
   ignoreCase: true
-- beginString: "on"
+- beginString: (?<=:)\s*on\b
   ignoreCase: true
+  regularExpression: true
 - beginString: "true"
   ignoreCase: true
 - beginString: "yes"
