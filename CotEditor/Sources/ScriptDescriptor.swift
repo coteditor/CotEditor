@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,18 +24,18 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 enum ScriptingFileType: CaseIterable {
     
     case appleScript
     case unixScript
     
-    
-    var extensions: [String] {
+    var fileTypes: [UTType] {
         
         switch self {
-            case .appleScript: return ["applescript", "scpt", "scptd"]
-            case .unixScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
+            case .appleScript: return [.appleScript, .osaScript, .osaScriptBundle]  // .applescript, .scpt, .scptd
+            case .unixScript: return [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .swiftSource]
         }
     }
     
@@ -119,7 +119,10 @@ struct ScriptDescriptor {
     /// - Parameter url: The location of a user script.
     init?(at url: URL, name: String) {
         
-        guard let type = ScriptingFileType.allCases.first(where: { $0.extensions.contains(url.pathExtension) }) else { return nil }
+        guard
+            let contentType = try? url.resourceValues(forKeys: [.contentTypeKey]).contentType,
+            let type = ScriptingFileType.allCases.first(where: { $0.fileTypes.contains { $0.conforms(to: contentType) } })
+        else { return nil }
         
         self.url = url
         self.name = name
