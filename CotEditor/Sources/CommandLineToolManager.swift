@@ -60,8 +60,7 @@ final class CommandLineToolManager {
         self.preferredLinkURL = URL(fileURLWithPath: "/usr/local/bin/cot")
         self.preferredLinkTargetURL = try! FileManager.default
             .url(for: .applicationDirectory, in: .localDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent(bundle.bundleName)
-            .appendingPathExtension("app")
+            .appendingPathComponent(bundle.bundleName, conformingTo: .application)
         
         // check only preferred link location
         self.linkURL = self.preferredLinkURL

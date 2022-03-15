@@ -123,7 +123,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     /// file URL to save custom key bindings file
     final var keyBindingSettingFileURL: URL {
         
-        return self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName).appendingPathExtension("plist")
+        return self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName, conformingTo: .propertyList)
     }
     
     
