@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Update Swift syntax style to add keywords added in Swift 5.6.
 - [trivial] Improve syntax highlighting indicator.
 
 
