@@ -28,7 +28,9 @@ Change Log
 
 ### Improvements
 
+- Update Swift syntax style to add keywords added in Swift 5.6.
 - [trivial] Improve syntax highlighting indicator.
+- [dev] Update the build environment to Xcode 13.3 (Swift 5.6).
 
 
 ### Fixes
