@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
     // find syntax style files
     let directoryURL = URL(fileURLWithPath: directoryPath, isDirectory: true)
     let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
-        .filter { $0.pathExtension == "yaml" }
+        .filter { $0.pathExtension == "yml" }
     
     // build syntaxMap from syntax style files
     let decoder = YAMLDecoder()
