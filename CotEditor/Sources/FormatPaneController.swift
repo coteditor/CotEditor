@@ -345,7 +345,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
-        savePanel.isExtensionHidden = true
+        savePanel.isExtensionHidden = false
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedContentTypes = [SyntaxManager.shared.fileType]
