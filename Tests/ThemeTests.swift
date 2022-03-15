@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 //
 
 import XCTest
+import UniformTypeIdentifiers
 @testable import CotEditor
 
 final class ThemeTests: XCTestCase {
@@ -72,7 +73,7 @@ final class ThemeTests: XCTestCase {
         let enumerator = FileManager.default.enumerator(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
         
         for case let url as URL in enumerator {
-            guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
+            guard UTType.cotTheme.filenameExtensions.contains(url.pathExtension) else { continue }
             
             _ = try Theme.theme(contentsOf: url)
         }
@@ -86,7 +87,7 @@ private extension ThemeTests {
     
     func loadThemeWithName(_ name: String) throws -> Theme? {
         
-        let url = self.bundle.url(forResource: name, withExtension: DocumentType.theme.extensions[0], subdirectory: themeDirectoryName)
+        let url = self.bundle.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: themeDirectoryName)
         
         return try Theme.theme(contentsOf: url!)
     }

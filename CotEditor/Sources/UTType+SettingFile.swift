@@ -1,14 +1,14 @@
 //
-//  DocumentType.swift
+//  UTType+SettingFile.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-06-23.
+//  Created by 1024jp on 2022-03-15.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,12 +23,10 @@
 //  limitations under the License.
 //
 
-struct DocumentType {
+import UniformTypeIdentifiers
+
+extension UTType {
     
-    var utType: String
-    var extensions: [String]
-    
-    
-    static let theme = Self(utType: "com.coteditor.CotEditor.theme", extensions: ["cottheme"])
-    static let replacement = Self(utType: "com.coteditor.CotEditor.replacement", extensions: ["cotrpl"])
+    static let cotTheme = UTType("com.coteditor.CotEditor.theme")!
+    static let cotReplacement = UTType("com.coteditor.CotEditor.replacement")!
 }

@@ -26,6 +26,7 @@
 
 import Combine
 import Foundation
+import UniformTypeIdentifiers
 import Yams
 
 @objc protocol SyntaxHolder: AnyObject {
@@ -64,8 +65,7 @@ final class SyntaxManager: SettingFileManaging {
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Syntaxes"
-    let filePathExtensions: [String] = ["yml", "yaml"]
-    let settingFileType: SettingFileType = .syntaxStyle
+    let fileType: UTType = .yaml
     
     @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]

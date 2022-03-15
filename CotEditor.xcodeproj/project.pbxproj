@@ -392,8 +392,8 @@
 		2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082F11D32A9B500228F50 /* ThemeManager.swift */; };
 		2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */; };
 		2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */; };
-		2A91C31B1D1BFE47007CF8BE /* DocumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31A1D1BFE47007CF8BE /* DocumentType.swift */; };
-		2A91C31C1D1BFE47007CF8BE /* DocumentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31A1D1BFE47007CF8BE /* DocumentType.swift */; };
+		2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */; };
+		2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */; };
 		2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */; };
 		2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */; };
 		2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */; };
@@ -1168,7 +1168,7 @@
 		2A9082EE1D325ED900228F50 /* GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		2A9082F11D32A9B500228F50 /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		2A91C3171D1BE91E007CF8BE /* DefaultSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSettings.swift; sourceTree = "<group>"; };
-		2A91C31A1D1BFE47007CF8BE /* DocumentType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentType.swift; sourceTree = "<group>"; };
+		2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UTType+SettingFile.swift"; sourceTree = "<group>"; };
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
 		2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropPaneController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
@@ -1655,6 +1655,7 @@
 				2AACB1DA1D19B1440073775B /* Key Binding Managers */,
 				2A8DA9431D286C53003D0C4B /* ScriptManager.swift */,
 				2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */,
+				2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -1724,7 +1725,6 @@
 			isa = PBXGroup;
 			children = (
 				2AC2462D1D1BC70C00E46CFA /* AppDelegate.swift */,
-				2A91C31A1D1BFE47007CF8BE /* DocumentType.swift */,
 				2A8961911DB76A3400E9E0EC /* MainMenu.swift */,
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
@@ -2891,7 +2891,6 @@
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
-				2A91C31C1D1BFE47007CF8BE /* DocumentType.swift in Sources */,
 				2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
@@ -3111,6 +3110,7 @@
 				2A1A4EAC24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2A222C3024FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
 				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
+				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
@@ -3207,7 +3207,6 @@
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
-				2A91C31B1D1BFE47007CF8BE /* DocumentType.swift in Sources */,
 				2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
@@ -3426,6 +3425,7 @@
 				2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
 				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
+				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,

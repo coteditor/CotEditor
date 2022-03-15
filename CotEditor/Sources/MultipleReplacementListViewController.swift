@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2021 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 import Combine
 import Cocoa
 import AudioToolbox
+import UniformTypeIdentifiers
 
 final class MultipleReplacementListViewController: NSViewController, NSMenuItemValidation, MultipleReplacementPanelViewControlling {
     
@@ -201,7 +202,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = ReplacementManager.shared.filePathExtensions
+        savePanel.allowedContentTypes = [ReplacementManager.shared.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -223,7 +224,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [ReplacementManager.shared.filePathExtension]
+        openPanel.allowedContentTypes = [ReplacementManager.shared.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -409,7 +410,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
+                                                   .urlReadingContentsConformToTypes: [UTType.cotReplacement.identifier]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -428,7 +429,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
-                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
+                                                    .urlReadingContentsConformToTypes: [UTType.cotReplacement.identifier]])
         { [weak self] (draggingItem, _, _) in
             
             guard let fileURL = draggingItem.item as? URL else { return }

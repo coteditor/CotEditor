@@ -27,6 +27,7 @@
 import Combine
 import Cocoa
 import AudioToolbox
+import UniformTypeIdentifiers
 
 final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
     
@@ -239,7 +240,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
+                                                   .urlReadingContentsConformToTypes: [UTType.cotTheme.identifier]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -258,7 +259,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
-                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
+                                                    .urlReadingContentsConformToTypes: [UTType.cotTheme.identifier]])
         { [unowned self] (draggingItem, _, _) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
@@ -486,7 +487,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
+        savePanel.allowedContentTypes = [ThemeManager.shared.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -508,7 +509,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
+        openPanel.allowedContentTypes = [ThemeManager.shared.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }

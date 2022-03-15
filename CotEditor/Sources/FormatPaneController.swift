@@ -219,10 +219,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         // get file URLs from pasteboard
         let pboard = info.draggingPasteboard
-        let urls = pboard.readObjects(forClasses: [NSURL.self],
-                                      options: [.urlReadingFileURLsOnly: true])?
+        let urls = pboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true])?
             .compactMap { $0 as? URL }
-            .filter { SyntaxManager.shared.filePathExtensions.contains($0.pathExtension) } ?? []
+            .filter { $0.conforms(to: SyntaxManager.shared.fileType) } ?? []
         
         guard !urls.isEmpty else { return [] }
         
@@ -245,7 +244,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             guard
                 let fileURL = draggingItem.item as? URL,
-                SyntaxManager.shared.filePathExtensions.contains(fileURL.pathExtension)
+                fileURL.conforms(to: SyntaxManager.shared.fileType)
                 else { return }
             
             self.importSyntaxStyle(fileURL: fileURL)
@@ -349,7 +348,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
+        savePanel.allowedContentTypes = [SyntaxManager.shared.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -371,7 +370,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions
+        openPanel.allowedContentTypes = [SyntaxManager.shared.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }

@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import UniformTypeIdentifiers
 
 private extension NSSound {
     
@@ -228,9 +229,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let documentURLs = filenames.map { URL(fileURLWithPath: $0) }
             .filter {
                 // ask installation if the file is CotEditor theme file
-                DocumentType.theme.extensions.contains($0.pathExtension)
-                    ? !self.askThemeInstallation(fileURL: $0)
-                    : true
+                $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(fileURL: $0) : true
             }
         
         guard !documentURLs.isEmpty else { return NSApp.reply(toOpenOrPrint: .success) }
@@ -406,7 +405,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// - Returns: Whether the given file was handled as a theme file.
     private func askThemeInstallation(fileURL url: URL) -> Bool {
         
-        assert(DocumentType.theme.extensions.contains(url.pathExtension))
+        assert(url.conforms(to: .cotTheme))
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
