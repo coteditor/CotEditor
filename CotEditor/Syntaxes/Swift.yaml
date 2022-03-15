@@ -160,6 +160,7 @@ types:
 - beginString: "Character"
 - beginString: "ClosedInterval"
 - beginString: "Codable"
+- beginString: "CodingKey"
 - beginString: "CodingKeyRepresentable"
 - beginString: "CollectionOfOne"
 - beginString: "CollectionType"
@@ -344,7 +345,6 @@ strings:
 - beginString: "##\""
   endString: "\"##"
 keywords:
-- beginString: "_"
 - beginString: "#available"
 - beginString: "#colorLiteral"
 - beginString: "#column"
@@ -362,6 +362,7 @@ keywords:
 - beginString: "#line"
 - beginString: "#selector"
 - beginString: "#sourceLocation"
+- beginString: "#unavailable"
 - beginString: "#warning"
 - beginString: "any"
 - beginString: "as"
