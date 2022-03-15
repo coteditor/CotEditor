@@ -6,16 +6,16 @@ filenames:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.4.0"
+  version: "1.4.1"
   license: "Same as CotEditor"
-  lastModified: "2016-05-10"
+  lastModified: "2022-02-26"
 outlineMenu:
 - beginString: "^([ \\t]*)\\[(.+)\\]"
   keyString: "$1$2"
   description: "section"
 completions: []
 keywords:
-- beginString: "^[ \\t]*\\w[^=:\\n]*(?=[=:])"
+- beginString: "^[ \\t]*\\w[^=:\\R]*(?=[=:])"
   regularExpression: true
 commands: []
 types:

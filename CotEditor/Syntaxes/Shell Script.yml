@@ -21,9 +21,9 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "3.2.1"
+  version: "3.2.2"
   license: "Same as CotEditor"
-  lastModified: "2019-12-08"
+  lastModified: "2022-02-26"
 keywords:
 - beginString: "break"
 - beginString: "breaksw"
@@ -256,16 +256,16 @@ numbers:
 strings:
 - beginString: "\""
   endString: "\""
-- beginString: "<<-?[\\t ]*(\\S+)\\s(?:.|\\n)*?\\n\\1$"
+- beginString: "<<-?[\\t ]*(\\S+)\\s(?:.|\\R)*?\\R\\1$"
   regularExpression: true
 characters:
 - beginString: "'"
   endString: "'"
-- beginString: "<<-?[\\t ]*\"(\\S+)\"\\s(?:.|\\n)*?\\n\\1$"
+- beginString: "<<-?[\\t ]*\"(\\S+)\"\\s(?:.|\\R)*?\\R\\1$"
   regularExpression: true
-- beginString: "<<-?[\\t ]*'(\\S+)'\\s(?:.|\\n)*?\\n\\1$"
+- beginString: "<<-?[\\t ]*'(\\S+)'\\s(?:.|\\R)*?\\R\\1$"
   regularExpression: true
-- beginString: "<<-?[\\t ]*\\\\(\\S+)\\s(?:.|\\n)*?\\n\\1$"
+- beginString: "<<-?[\\t ]*\\\\(\\S+)\\s(?:.|\\R)*?\\R\\1$"
   regularExpression: true
 comments: []
 commentDelimiters:
@@ -273,6 +273,6 @@ commentDelimiters:
 outlineMenu:
 - beginString: "^(#.+)$"
   keyString: "$1"
-- beginString: "^([\\t ]*)(.*)\\(\\)[\\n\\t ]*\\{"
+- beginString: "^([\\t ]*)(.*)\\(\\)[\\R\\t ]*\\{"
   keyString: "$1$2 ()"
 completions: []

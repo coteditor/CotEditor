@@ -6,10 +6,10 @@ interpreters:
 - keyString: "perl"
 metadata:
   distributionURL: "https://coteditor.com"
-  version: "2.2.1"
+  version: "2.2.2"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2022-02-26"
 outlineMenu:
 - beginString: "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{"
   ignoreCase: true
@@ -237,7 +237,7 @@ commands:
 characters:
 - beginString: "'"
   endString: "'"
-- beginString: "(?s)<<\\s*'([0-9a-zA-Z_]+)'\\s*;.+?\\n\\1\\n"
+- beginString: "(?s)<<\\s*'([0-9a-zA-Z_]+)'\\s*;.+?\\R\\1\\R"
   regularExpression: true
 - beginString: "\\bq/"
   endString: "/"
@@ -396,9 +396,9 @@ numbers:
 strings:
 - beginString: "\""
   endString: "\""
-- beginString: "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\n\\1\\n"
+- beginString: "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\R\\1\\R"
   regularExpression: true
-- beginString: "/[^\\n/]*/[^\\n/]*/[a-z]*"
+- beginString: "/[^\\R/]*/[^\\R/]*/[a-z]*"
   regularExpression: true
 - beginString: "qq/"
   endString: "/"

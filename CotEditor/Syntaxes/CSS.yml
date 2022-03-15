@@ -4,7 +4,7 @@ filenames: []
 metadata:
   author: "CotEditor Project"
   distributionURL: "https://coteditor.com"
-  version: "2.2.0"
+  version: "2.2.1"
   description: "Support CSS3 partly."
   license: "Same as CotEditor"
   lastModified: "2022-03-02"
@@ -716,10 +716,10 @@ values:
 types:
 - beginString: "!important"
 numbers:
-- beginString: "#[0-9a-f]{3}(?=[ \\n\\t\\);,])"
+- beginString: "#[0-9a-f]{3}(?=[ \\R\\t\\);,])"
   ignoreCase: true
   regularExpression: true
-- beginString: "#[0-9a-f]{6}(?=[ \\n\\t\\);,])"
+- beginString: "#[0-9a-f]{6}(?=[ \\R\\t\\);,])"
   ignoreCase: true
   regularExpression: true
 - beginString: "(?<![a-zA-Z0-9\\._\\-\\+])\\-?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\\w)"
