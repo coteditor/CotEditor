@@ -93,6 +93,9 @@ final class SyntaxManager: SettingFileManaging {
         self.bundledMap = map
         self.bundledSettingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
         
+        // sanitize user setting file extensions
+        try? self.sanitizeUserSettings()
+        
         // cache user styles
         self.checkUserSettings()
     }
@@ -351,6 +354,22 @@ final class SyntaxManager: SettingFileManaging {
     
     
     // MARK: Private Methods
+    
+    /// Standardize the file extensions of user setting files.
+    ///
+    /// - Note: The file extension for syntax definition files are changed from `.yaml` to `.yml` in CotEditor 4.2.0 released in 2022.
+    private func sanitizeUserSettings() throws {
+        
+        let urls = self.userSettingFileURLs.filter { $0.pathExtension == "yaml" }
+        
+        guard !urls.isEmpty else { return }
+        
+        for url in urls {
+            let newURL = url.deletingPathExtension().appendingPathExtension(for: .yaml)
+            
+            try FileManager.default.moveItem(at: url, to: newURL)
+        }
+    }
     
     /// Load StyleDictionary at file URL.
     ///

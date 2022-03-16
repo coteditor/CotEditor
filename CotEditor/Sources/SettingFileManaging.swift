@@ -165,9 +165,9 @@ extension SettingFileManaging {
     /// return a setting file URL in the user's Application Support domain or nil if not exists
     func urlForUserSetting(name: String) -> URL? {
         
-        let url = self.preparedURLForUserSetting(name: name)
+        guard self.settingNames.contains(name) else { return nil }
         
-        return url.isReachable ? url : nil
+        return self.userSettingFileURLs.first { self.settingName(from: $0) == name }
     }
     
     
