@@ -466,7 +466,7 @@
 // Coloring indicator
 "Coloring text…" = "Metin renklendiriliyor…";
 "Please wait for a while." = "Lütfen bir süre bekleyin.";
-"Parsing document…" = "Parsing document…";  // FIXME: updated
+"Parsing document…" = "Belge ayrıştırılıyor…";
 "Applying colors to text…" = "Metne renkler uygulanıyor…";
 "keywords" = "anahtar sözcükler";
 "commands" = "komutlar";

@@ -31,7 +31,7 @@
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
 "3290.title" = "Kenar düzleştirme";
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
-"g3S-3v-6ZA.title" = "Birleşik Harfler";
+"g3S-3v-6ZA.title" = "Birleşik harfler";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Satır yüksekliği:";
@@ -72,7 +72,7 @@
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Görünüş:";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
-"apQ-au-gOC.title" = "Sistemle Eşleştir";
+"apQ-au-gOC.title" = "Sistemle eşleştir";
 /* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
 "FwU-oj-kwc.title" = "Açık";
 /* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
