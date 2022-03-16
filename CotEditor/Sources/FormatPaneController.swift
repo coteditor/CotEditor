@@ -27,6 +27,7 @@
 import Combine
 import Cocoa
 import AudioToolbox
+import UniformTypeIdentifiers
 
 /// keys for styles controller
 private enum StyleKey: String {
@@ -38,12 +39,13 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate {
-    
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSMenuDelegate {
+
     // MARK: Private Properties
     
     private var encodingChangeObserver: AnyCancellable?
     private var syntaxStyleChangeObserver: AnyCancellable?
+    private lazy var fileProviderQueue = OperationQueue()
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -66,6 +68,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
         self.syntaxTableView?.registerForDraggedTypes([.URL])
+        self.syntaxTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
     }
     
     
@@ -253,6 +256,43 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         AudioServicesPlaySystemSound(.volumeMount)
         
         return true
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        
+        guard
+            let arrangedObjects = self.stylesController?.arrangedObjects as? [[String: Any]],
+            let settingName = arrangedObjects[safe: row]?[StyleKey.name] as? String
+        else { return nil }
+        
+        let provider = NSFilePromiseProvider(fileType: UTType.yaml.identifier, delegate: self)
+        provider.userInfo = settingName
+        
+        return provider
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
+        
+        (filePromiseProvider.userInfo as! String) + "." + UTType.yaml.preferredFilenameExtension!
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL) async throws {
+        
+        guard
+            let settingName = filePromiseProvider.userInfo as? String,
+            let sourceURL = SyntaxManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        try FileManager.default.copyItem(at: sourceURL, to: url)
+    }
+    
+    
+    func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
+        
+        self.fileProviderQueue
     }
     
     

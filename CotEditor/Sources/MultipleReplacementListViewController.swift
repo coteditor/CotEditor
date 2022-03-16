@@ -35,6 +35,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     private var settingNames: [String] = []
     
     private var listUpdateObserver: AnyCancellable?
+    private lazy var fileProviderQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -51,6 +52,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         // register droppable types
         self.tableView?.registerForDraggedTypes([.fileURL])
+        self.tableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
         // create blank if empty
         if ReplacementManager.shared.settingNames.isEmpty {
@@ -440,8 +442,45 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         return true
     }
     
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        
+        let provider = NSFilePromiseProvider(fileType: UTType.cotReplacement.identifier, delegate: self)
+        provider.userInfo = self.settingNames[row]
+        
+        return provider
+    }
+    
 }
 
+
+// MARK: - File Promise Provider Delegate
+
+extension MultipleReplacementListViewController: NSFilePromiseProviderDelegate {
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
+        
+        (filePromiseProvider.userInfo as! String) + "." + UTType.cotReplacement.preferredFilenameExtension!
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL) async throws {
+        
+        guard
+            let settingName = filePromiseProvider.userInfo as? String,
+            let sourceURL = ReplacementManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        try FileManager.default.copyItem(at: sourceURL, to: url)
+    }
+    
+    
+    func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
+        
+        self.fileProviderQueue
+    }
+    
+}
 
 
 // MARK: - TableView Delegate

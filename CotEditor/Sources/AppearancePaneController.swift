@@ -29,7 +29,7 @@ import Cocoa
 import AudioToolbox
 import UniformTypeIdentifiers
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -38,6 +38,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic var isBundled = false
     
     private var themeManagerObservers: Set<AnyCancellable> = []
+    private lazy var fileProviderQueue = OperationQueue()
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
@@ -65,6 +66,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // register droppable types
         self.themeTableView?.registerForDraggedTypes([.URL])
+        self.themeTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
         // set initial value as field's placeholder
         self.lineHeightField?.bindNullPlaceholderToUserDefaults()
@@ -270,6 +272,41 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         AudioServicesPlaySystemSound(.volumeMount)
         
         return true
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        
+        let provider = NSFilePromiseProvider(fileType: UTType.cotTheme.identifier, delegate: self)
+        provider.userInfo = self.themeNames[row]
+        
+        return provider
+    }
+    
+    
+    
+    // MARK: File Promise Provider Delegate
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
+        
+        (filePromiseProvider.userInfo as! String) + "." + UTType.cotTheme.preferredFilenameExtension!
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL) async throws {
+        
+        guard
+            let settingName = filePromiseProvider.userInfo as? String,
+            let sourceURL = ThemeManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        try FileManager.default.copyItem(at: sourceURL, to: url)
+    }
+    
+    
+    func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
+        
+        self.fileProviderQueue
     }
     
     
