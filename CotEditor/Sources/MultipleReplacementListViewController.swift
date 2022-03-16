@@ -35,7 +35,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     private var settingNames: [String] = []
     
     private var listUpdateObserver: AnyCancellable?
-    private lazy var fileProviderQueue = OperationQueue()
+    private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -416,10 +416,10 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
-        // highlight text view itself
+        // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
-        // show number of setting files
+        // show number of acceptable files
         info.numberOfValidItemsForDrop = urls.count
         
         return .copy
@@ -477,7 +477,7 @@ extension MultipleReplacementListViewController: NSFilePromiseProviderDelegate {
     
     func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
         
-        self.fileProviderQueue
+        self.filePromiseQueue
     }
     
 }

@@ -45,7 +45,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     private var encodingChangeObserver: AnyCancellable?
     private var syntaxStyleChangeObserver: AnyCancellable?
-    private lazy var fileProviderQueue = OperationQueue()
+    private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -222,13 +222,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         // get file URLs from pasteboard
         let pboard = info.draggingPasteboard
-        let urls = pboard.readObjects(forClasses: [NSURL.self], options: [.urlReadingFileURLsOnly: true])?
-            .compactMap { $0 as? URL }
-            .filter { $0.conforms(to: SyntaxManager.shared.fileType) } ?? []
+        let objects = pboard.readObjects(forClasses: [NSURL.self],
+                                         options: [.urlReadingFileURLsOnly: true,
+                                                   .urlReadingContentsConformToTypes: [UTType.yaml.identifier]])
         
-        guard !urls.isEmpty else { return [] }
+        guard let urls = objects, !urls.isEmpty else { return [] }
         
-        // highlight text view itself
+        // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
@@ -292,7 +292,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
         
-        self.fileProviderQueue
+        self.filePromiseQueue
     }
     
     

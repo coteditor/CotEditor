@@ -38,7 +38,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic var isBundled = false
     
     private var themeManagerObservers: Set<AnyCancellable> = []
-    private lazy var fileProviderQueue = OperationQueue()
+    private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
@@ -246,7 +246,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
-        // highlight text view itself
+        // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
@@ -306,7 +306,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
         
-        self.fileProviderQueue
+        self.filePromiseQueue
     }
     
     
