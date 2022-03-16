@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,11 +60,8 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     
     /// Execute the script.
     ///
-    /// - Parameters:
-    ///   - completionHandler: The completion handler block that returns a script error if any.
-    ///   - error: The `ScriptError` by the script.
-    /// - Throws: `ScriptFileError`
-    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
+    /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
+    func run() async throws {
         
         guard self.url.isReachable else {
             throw ScriptFileError(kind: .existance, url: self.url)
@@ -73,8 +70,9 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
         var errorInfo: NSDictionary? = NSDictionary()
         self.script.executeAndReturnError(&errorInfo)
         
-        let scriptError = (errorInfo?[NSLocalizedDescriptionKey] as? String).flatMap { ScriptError.standardError($0) }
-        completionHandler(scriptError)
+        if let errorDescription = errorInfo?[NSLocalizedDescriptionKey] as? String {
+            throw ScriptError.standardError(errorDescription)
+        }
     }
     
     
@@ -82,13 +80,11 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     ///
     /// - Parameters:
     ///   - event: The apple event.
-    ///   - completionHandler: The completion handler block that returns a script error if any.
-    ///   - error: The `ScriptError` by the script.
-    /// - Throws: `ScriptFileError`
-    func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
+    /// - Throws:`ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
+    func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         
         guard let event = event else {
-            return try self.run(completionHandler: completionHandler)
+            return try await self.run()
         }
         
         guard self.url.isReachable else {
@@ -98,8 +94,9 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
         var errorInfo: NSDictionary?
         self.script.executeAppleEvent(event, error: &errorInfo)
         
-        let scriptError = (errorInfo?[NSLocalizedDescriptionKey] as? String).flatMap { ScriptError.standardError($0) }
-        completionHandler(scriptError)
+        if let errorDescription = errorInfo?[NSLocalizedDescriptionKey] as? String {
+            throw ScriptError.standardError(errorDescription)
+        }
     }
     
 }

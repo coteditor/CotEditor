@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,11 +81,8 @@ final class UnixScript: Script {
     
     /// Execute the script.
     ///
-    /// - Parameters:
-    ///   - completionHandler: The completion handler block that returns a script error if any.
-    ///   - error: The `ScriptError` by the script.
-    /// - Throws: `ScriptFileError`
-    func run(completionHandler: @escaping ((_ error: ScriptError?) -> Void)) throws {
+    /// - Throws: `ScriptError` by the script,`ScriptFileError`, or any errors on script loading.
+    func run() async throws {
         
         // check script file
         guard self.url.isReachable else {
@@ -99,18 +96,12 @@ final class UnixScript: Script {
         }
         
         // fetch target document
-        weak var document = NSDocumentController.shared.currentDocument as? NSDocument & Editable
+        weak var document = await NSDocumentController.shared.currentDocument as? NSDocument & Editable
         
         // read input
         let input: String?
         if let inputType = InputType(scanning: script) {
-            do {
-                input = try Self.readInput(type: inputType, editor: document)
-            } catch let error as ScriptError {
-                return completionHandler(error)
-            } catch {
-                preconditionFailure()
-            }
+            input = try await self.readInput(type: inputType, editor: document)
         } else {
             input = nil
         }
@@ -119,7 +110,7 @@ final class UnixScript: Script {
         let outputType = OutputType(scanning: script)
         
         // prepare file path as argument if available
-        let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
+        let arguments: [String] = await [document?.fileURL?.path].compactMap { $0 }
         
         // create task
         let task = try NSUserUnixTask(url: self.url)
@@ -153,31 +144,29 @@ final class UnixScript: Script {
         }
         
         // execute
-        task.execute(withArguments: arguments) { [weak document, name = self.name] (error) in
-            outPipe.fileHandleForReading.readabilityHandler = nil
-            
-            // on user cancellation
-            if (error as? POSIXError)?.code == .ENOTBLK {
-                return completionHandler(nil)
+        do {
+            try await task.execute(withArguments: arguments)
+        } catch where (error as? POSIXError)?.code == .ENOTBLK {  // on user cancellation
+            return
+        } catch {
+            throw error
+        }
+        
+        outPipe.fileHandleForReading.readabilityHandler = nil
+        
+        // apply output
+        if let outputType = outputType, let output = String(data: outputData, encoding: .utf8) {
+            do {
+                try await self.applyOutput(output, type: outputType, editor: document)
+            } catch {
+                await Console.shared.show(message: error.localizedDescription, title: name)
             }
-            
-            // apply output
-            if let outputType = outputType, let output = String(data: outputData, encoding: .utf8) {
-                DispatchQueue.main.async {
-                    do {
-                        try Self.applyOutput(output, editor: document, type: outputType)
-                    } catch {
-                        Console.shared.show(message: error.localizedDescription, title: name)
-                    }
-                }
-            }
-            
-            // obtain standard error
-            let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
-            let errorString = String(data: errorData, encoding: .utf8)
-            let scriptError = errorString.flatMap { $0.isEmpty ? nil : ScriptError.standardError($0) }
-            
-            completionHandler(scriptError)
+        }
+        
+        // obtain standard error
+        let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
+        if let errorString = String(data: errorData, encoding: .utf8), !errorString.isEmpty {
+            throw ScriptError.standardError(errorString)
         }
     }
     
@@ -192,7 +181,7 @@ final class UnixScript: Script {
     ///   - editor: The editor to read the input.
     /// - Returns: The read string.
     /// - Throws: `ScriptError`
-    private static func readInput(type: InputType, editor: Editable?) throws -> String {
+    @MainActor private func readInput(type: InputType, editor: Editable?) throws -> String {
         
         guard let editor = editor else { throw ScriptError.noInputTarget }
         
@@ -209,12 +198,10 @@ final class UnixScript: Script {
     ///
     /// - Parameters:
     ///   - output: The output string.
-    ///   - editor: The editor to write the output.
     ///   - type: The type of output target.
+    ///   - editor: The editor to write the output.
     /// - Throws: `ScriptError`
-    private static func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
-        
-        assert(Thread.isMainThread)
+    @MainActor private func applyOutput(_ output: String, type: OutputType, editor: Editable?) throws {
         
         switch type {
             case .replaceSelection:
