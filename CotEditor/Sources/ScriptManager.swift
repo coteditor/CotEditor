@@ -43,7 +43,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
-    private var terminationObserver: AnyCancellable?
     
     
     
@@ -53,21 +52,21 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private override init() {
         
         do {
-            self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
-                                                                   in: .userDomainMask, appropriateFor: nil, create: true)
+            self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         } catch {
             self.scriptsDirectoryURL = nil
             print("cannot create the scripts folder: \(error)")
         }
         
-        self.presentedItemURL = self.scriptsDirectoryURL
-        
         super.init()
         
         // observe script folder change
         NSFileCoordinator.addFilePresenter(self)
-        self.terminationObserver = NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)
-            .sink { [unowned self] _ in NSFileCoordinator.removeFilePresenter(self) }
+    }
+    
+    
+    deinit {
+        NSFileCoordinator.removeFilePresenter(self)
     }
     
     
@@ -76,7 +75,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     let presentedItemOperationQueue: OperationQueue = .main
     
-    let presentedItemURL: URL?
+    var presentedItemURL: URL?  { self.scriptsDirectoryURL }
     
     
     /// script folder did change
@@ -164,7 +163,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// launch script (invoked by menu item)
     @IBAction func launchScript(_ sender: NSMenuItem) {
         
-        guard let script = sender.representedObject as? Script else { return assertionFailure() }
+        guard let script = sender.representedObject as? any Script else { return assertionFailure() }
         
         do {
             // change behavior if modifier key is pressed

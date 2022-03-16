@@ -234,7 +234,7 @@ final class UnixScript: Script {
                 editor.insert(string: output, at: .afterAll)
             
             case .newDocument:
-                let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Editable
+                let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! any Editable
                 document.insert(string: output, at: .replaceAll)
                 document.selectedRange = NSRange(0..<0)
             
