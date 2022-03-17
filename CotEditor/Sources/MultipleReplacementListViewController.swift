@@ -410,6 +410,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
+            info.draggingSource as? NSTableView != tableView,  // avoid self D&D
             let count = info.filePromiseReceivers(with: .cotReplacement, for: tableView)?.count
                      ?? info.fileURLs(with: .cotReplacement, for: tableView)?.count
         else { return [] }

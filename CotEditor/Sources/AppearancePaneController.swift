@@ -239,7 +239,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        guard let count = info.filePromiseReceivers(with: .cotTheme, for: tableView)?.count
+        guard
+            info.draggingSource as? NSTableView != tableView,  // avoid self D&D
+            let count = info.filePromiseReceivers(with: .cotTheme, for: tableView)?.count
                        ?? info.fileURLs(with: .cotTheme, for: tableView)?.count
         else { return [] }
         
