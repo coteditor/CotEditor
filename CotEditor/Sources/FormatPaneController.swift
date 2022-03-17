@@ -67,7 +67,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
-        self.syntaxTableView?.registerForDraggedTypes([.URL])
+        
+        // register drag & drop types
+        self.syntaxTableView?.registerForDraggedTypes([.fileURL])
         self.syntaxTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
     }
     
@@ -220,37 +222,25 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard
-        let objects = pboard.readObjects(forClasses: [NSURL.self],
-                                         options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [UTType.yaml.identifier]])
-        
-        guard let urls = objects, !urls.isEmpty else { return [] }
+        guard let fileURLs = info.fileURLs(with: .yaml, for: tableView) else { return [] }
         
         // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
-        info.numberOfValidItemsForDrop = urls.count
+        info.numberOfValidItemsForDrop = fileURLs.count
         
         return .copy
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
-                                    searchOptions: [.urlReadingFileURLsOnly: true])
-        { [unowned self] (draggingItem, _, _) in
-            
-            guard
-                let fileURL = draggingItem.item as? URL,
-                fileURL.conforms(to: SyntaxManager.shared.fileType)
-                else { return }
-            
-            self.importSyntaxStyle(fileURL: fileURL)
+        if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
+            for fileURL in fileURLs {
+                self.importSyntaxStyle(fileURL: fileURL)
+            }
         }
         
         AudioServicesPlaySystemSound(.volumeMount)

@@ -403,6 +403,8 @@
 		2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
 		2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
+		2A9B134E27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */; };
+		2A9B134F27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C71D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */; };
@@ -1174,6 +1176,7 @@
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
 		2A97849E2034561B00482647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WebDocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+InvisibleDrawing.swift"; sourceTree = "<group>"; };
+		2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDraggingInfo.swift; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
 		2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FullwidthTransform.swift"; sourceTree = "<group>"; };
 		2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
@@ -1865,6 +1868,7 @@
 				2A48982C215B2BFD00A6CE8A /* NSCursor+Workaround.swift */,
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
+				2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */,
 				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
 			);
 			name = AppKit;
@@ -2857,6 +2861,7 @@
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AA056AD26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
+				2A9B134E27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
@@ -3354,6 +3359,7 @@
 				2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */,
+				2A9B134F27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2AC72E8225342726001D3CA0 /* SegmentedArrayControl.swift in Sources */,
