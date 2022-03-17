@@ -136,7 +136,7 @@ extension SyntaxParser {
         self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
             self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
-                    group.addTask { try await extractor.items(in: string, range: range) }
+                    _ = group.addTaskUnlessCancelled { try await extractor.items(in: string, range: range) }
                 }
                 
                 return try await group.reduce(into: []) { $0 += $1 }

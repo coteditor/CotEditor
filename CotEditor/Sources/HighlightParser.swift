@@ -107,14 +107,14 @@ final class HighlightParser {
             // extract standard highlight ranges
             for (type, extractors) in self.definition.extractors {
                 for extractor in extractors {
-                    group.addTask {
+                    _ = group.addTaskUnlessCancelled {
                         [type: try await extractor.ranges(in: self.string, range: self.parseRange)]
                     }
                 }
             }
             
             // extract comments and nestable paires
-            group.addTask {
+            _ = group.addTaskUnlessCancelled {
                 try self.extractCommentsWithNestablePaires()
             }
             
