@@ -69,7 +69,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.syntaxTableView?.target = self
         
         // register drag & drop types
-        self.syntaxTableView?.registerForDraggedTypes([.fileURL])
+        let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        self.syntaxTableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
         self.syntaxTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
     }
     
@@ -222,13 +223,16 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        guard let fileURLs = info.fileURLs(with: .yaml, for: tableView) else { return [] }
+        guard
+            let count = info.filePromiseReceivers(with: .yaml, for: tableView)?.count
+                     ?? info.fileURLs(with: .yaml, for: tableView)?.count
+        else { return [] }
         
         // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
-        info.numberOfValidItemsForDrop = fileURLs.count
+        info.numberOfValidItemsForDrop = count
         
         return .copy
     }
@@ -237,10 +241,26 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
+        if let receivers = info.filePromiseReceivers(with: .yaml, for: tableView) {
+            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
+            
+            for receiver in receivers {
+                receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
+                    if let error = error {
+                        self?.presentError(error)
+                        return
+                    }
+                    self?.importSyntaxStyle(fileURL: fileURL)
+                }
+            }
+            
+        } else if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
             for fileURL in fileURLs {
                 self.importSyntaxStyle(fileURL: fileURL)
             }
+            
+        } else {
+            return false
         }
         
         AudioServicesPlaySystemSound(.volumeMount)

@@ -51,7 +51,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         self.mainViewController?.delegate = self
         
         // register drag & drop types
-        self.tableView?.registerForDraggedTypes([.fileURL])
+        let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
         self.tableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
         // create blank if empty
@@ -408,13 +409,16 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        guard let fileURLs = info.fileURLs(with: .cotReplacement, for: tableView) else { return [] }
+        guard
+            let count = info.filePromiseReceivers(with: .cotReplacement, for: tableView)?.count
+                     ?? info.fileURLs(with: .cotReplacement, for: tableView)?.count
+        else { return [] }
         
         // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
-        info.numberOfValidItemsForDrop = fileURLs.count
+        info.numberOfValidItemsForDrop = count
         
         return .copy
     }
@@ -423,10 +427,26 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        if let fileURLs = info.fileURLs(with: .cotReplacement, for: tableView) {
+        if let receivers = info.filePromiseReceivers(with: .cotReplacement, for: tableView) {
+            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
+            
+            for receiver in receivers {
+                receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
+                    if let error = error {
+                        self?.presentError(error)
+                        return
+                    }
+                    self?.importSetting(fileURL: fileURL)
+                }
+            }
+            
+        } else if let fileURLs = info.fileURLs(with: .cotReplacement, for: tableView) {
             for fileURL in fileURLs {
                 self.importSetting(fileURL: fileURL)
             }
+            
+        } else {
+            return false
         }
         
         return true

@@ -65,7 +65,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewDidLoad()
         
         // register drag & drop types
-        self.themeTableView?.registerForDraggedTypes([.fileURL])
+        let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        self.themeTableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
         self.themeTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
         // set initial value as field's placeholder
@@ -238,13 +239,15 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        guard let fileURLs = info.fileURLs(with: .cotTheme, for: tableView) else { return [] }
+        guard let count = info.filePromiseReceivers(with: .cotTheme, for: tableView)?.count
+                       ?? info.fileURLs(with: .cotTheme, for: tableView)?.count
+        else { return [] }
         
         // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
-        info.numberOfValidItemsForDrop = fileURLs.count
+        info.numberOfValidItemsForDrop = count
         
         return .copy
     }
@@ -253,10 +256,26 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        if let fileURLs = info.fileURLs(with: .cotTheme, for: tableView) {
+        if let receivers = info.filePromiseReceivers(with: .cotTheme, for: tableView) {
+            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
+            
+            for receiver in receivers {
+                receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
+                    if let error = error {
+                        self?.presentError(error)
+                        return
+                    }
+                    self?.importTheme(fileURL: fileURL)
+                }
+            }
+            
+        } else if let fileURLs = info.fileURLs(with: .cotTheme, for: tableView) {
             for fileURL in fileURLs {
                 self.importTheme(fileURL: fileURL)
             }
+            
+        } else {
+            return false
         }
         
         AudioServicesPlaySystemSound(.volumeMount)

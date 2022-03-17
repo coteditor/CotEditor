@@ -28,6 +28,29 @@ import UniformTypeIdentifiers
 
 extension NSDraggingInfo {
     
+    /// Obtain NSFilePromiseReceiver type dragging items.
+    ///
+    /// - Parameters:
+    ///   - type: The UTType to restrict the results.
+    ///   - view: The view used as the base coordinate system for the NSDraggingItem instances.
+    /// - Returns: An array fo NSFilePromiseReceiver.
+    func filePromiseReceivers(with type: UTType, for view: NSView? = nil) -> [NSFilePromiseReceiver]? {
+        
+        var receivers: [NSFilePromiseReceiver] = []
+        self.enumerateDraggingItems(for: view, classes: [NSFilePromiseReceiver.self])
+        { (draggingItem, _, _) in
+            guard
+                let receiver = draggingItem.item as? NSFilePromiseReceiver,
+                receiver.fileTypes.compactMap(UTType.init).contains(where: { $0.conforms(to: type) })
+            else { return }
+            
+            receivers.append(receiver)
+        }
+        
+        return receivers.isEmpty ? nil : receivers
+    }
+    
+    
     /// Obtain file URL type dragging items.
     ///
     /// - Parameters:
