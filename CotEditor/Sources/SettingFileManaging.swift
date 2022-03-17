@@ -185,10 +185,10 @@ extension SettingFileManaging {
     }
     
     
-    /// whether the setting name is one of the bundled settings that is customized by user
-    func isCustomizedBundledSetting(name: String) -> Bool {
+    /// whether the setting name is customized by the user
+    func isCustomizedSetting(name: String) -> Bool {
         
-        return self.isBundledSetting(name: name) && (self.urlForUserSetting(name: name) != nil)
+        return self.urlForUserSetting(name: name) != nil
     }
     
     
@@ -221,8 +221,8 @@ extension SettingFileManaging {
             throw InvalidNameError.startWithDot
         }
         
-        if let duplicatedSettingName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw InvalidNameError.duplicated(name: duplicatedSettingName)
+        if self.settingNames.contains(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw InvalidNameError.duplicated(name: settingName)
         }
     }
     

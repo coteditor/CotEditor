@@ -55,8 +55,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             self.style.setDictionary(style)
             
             if case .edit(let name) = mode {
-                self.isBundledStyle = manager.isBundledSetting(name: name)
-                self.isRestoreble = manager.isCustomizedBundledSetting(name: name)
+                let isBundled = manager.isBundledSetting(name: name)
+                let isCustomized = manager.isCustomizedSetting(name: name)
+                
+                self.isBundledStyle = isBundled
+                self.isRestoreble = isBundled && isCustomized
             }
         }
     }

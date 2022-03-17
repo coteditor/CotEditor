@@ -162,7 +162,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let isCustomized: Bool
         if let representedSettingName = representedSettingName {
             isBundled = ThemeManager.shared.isBundledSetting(name: representedSettingName)
-            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedSettingName)
+            isCustomized = ThemeManager.shared.isCustomizedSetting(name: representedSettingName)
         } else {
             (isBundled, isCustomized) = (false, false)
         }
@@ -193,20 +193,20 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     menuItem.title = String(format: "Restore “%@”".localized, name)
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
-                return isCustomized
+                return isBundled && isCustomized
             
             case #selector(exportTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Export “%@”…".localized, name)
                 }
                 menuItem.isHidden = !itemSelected
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case #selector(revealThemeInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
                 }
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case nil:
                 return false
@@ -369,14 +369,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // get swiped theme
         let themeName = self.themeNames[row]
         
-        // check whether theme is deletable
-        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
-        let isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: themeName)
-        
         // do nothing on undeletable theme
-        guard !isBundled || isCustomized else { return [] }
+        guard ThemeManager.shared.isCustomizedSetting(name: themeName) else { return [] }
         
-        if isCustomized {
+        if ThemeManager.shared.isBundledSetting(name: themeName) {
             // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,

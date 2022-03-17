@@ -120,7 +120,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let isCustomized: Bool
         if let representedSettingName = representedSettingName {
             isBundled = SyntaxManager.shared.isBundledSetting(name: representedSettingName)
-            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedSettingName)
+            isCustomized = SyntaxManager.shared.isCustomizedSetting(name: representedSettingName)
         } else {
             (isBundled, isCustomized) = (false, false)
         }
@@ -144,20 +144,20 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                     menuItem.title = String(format: "Restore “%@”".localized, name)
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
-                return isCustomized
+                return isBundled && isCustomized
             
             case #selector(exportSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Export “%@”…".localized, name)
                 }
                 menuItem.isHidden = !itemSelected
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
                 }
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case nil:
                 return false
@@ -191,14 +191,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let arrangedObjects = self.stylesController!.arrangedObjects as! [[String: Any]]
         let styleName = arrangedObjects[row][StyleKey.name] as! String
         
-        // check whether style is deletable
-        let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
-        let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
-        
         // do nothing on undeletable style
-        guard !isBundled || isCustomized else { return [] }
+        guard SyntaxManager.shared.isCustomizedSetting(name: styleName) else { return [] }
         
-        if isCustomized {
+        if SyntaxManager.shared.isBundledSetting(name: styleName) {
             // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
@@ -496,12 +492,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleNames = SyntaxManager.shared.settingNames
         
-        let styleStates: [[String: Any]] = styleNames.map { styleName in
-            let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
-            let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
-            
-            return [StyleKey.name.rawValue: styleName,
-                    StyleKey.state.rawValue: (!isBundled || isCustomized)]
+        let styleStates: [[String: Any]] = styleNames.map {
+            [StyleKey.name.rawValue: $0,
+             StyleKey.state.rawValue: SyntaxManager.shared.isCustomizedSetting(name: $0)]
         }
         
         // update installed style list table
