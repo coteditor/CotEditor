@@ -405,6 +405,9 @@
 		2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
 		2A9B134E27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */; };
 		2A9B134F27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */; };
+		2A9B134927E2C90F009954A4 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134827E2C90F009954A4 /* FileManager.swift */; };
+		2A9B134A27E2C90F009954A4 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134827E2C90F009954A4 /* FileManager.swift */; };
+		2A9B134C27E2CE86009954A4 /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134B27E2CE86009954A4 /* FileManagerTests.swift */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C71D38325200E3D3E2 /* String+FullwidthTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */; };
@@ -1177,6 +1180,8 @@
 		2A97849E2034561B00482647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WebDocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+InvisibleDrawing.swift"; sourceTree = "<group>"; };
 		2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDraggingInfo.swift; sourceTree = "<group>"; };
+		2A9B134827E2C90F009954A4 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		2A9B134B27E2CE86009954A4 /* FileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTests.swift; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
 		2A9BF3C61D38325200E3D3E2 /* String+FullwidthTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FullwidthTransform.swift"; sourceTree = "<group>"; };
 		2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
@@ -1904,6 +1909,7 @@
 				2AF861E22522E64E00A114BE /* NumberFormatter.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
 				2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */,
+				2A9B134827E2C90F009954A4 /* FileManager.swift */,
 				2AFD218927E0434100E83E88 /* UTType.swift */,
 			);
 			name = Foundation;
@@ -2308,6 +2314,7 @@
 				2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */,
 				2A643BB2245172EB00B2AD54 /* NSBezierPathTests.swift */,
 				2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */,
+				2A9B134B27E2CE86009954A4 /* FileManagerTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2922,6 +2929,7 @@
 				2A4682B31D2F6B580005410E /* FileDropItem.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */,
+				2A9B134927E2C90F009954A4 /* FileManager.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2A0A602B27ABD74500725B70 /* FilterField.swift in Sources */,
@@ -3138,6 +3146,7 @@
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
 				2A719F6623CD92370026F877 /* FuzzyRangeTests.swift in Sources */,
 				2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */,
+				2A9B134C27E2CE86009954A4 /* FileManagerTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
@@ -3236,6 +3245,7 @@
 				2A4682B21D2F6B580005410E /* FileDropItem.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */,
+				2A9B134A27E2C90F009954A4 /* FileManager.swift in Sources */,
 				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2A0A602C27ABD74500725B70 /* FilterField.swift in Sources */,
