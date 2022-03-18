@@ -112,30 +112,22 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Build the Script menu.
+    /// Build the Script menu and scan script handlers.
     func buildScriptMenu() {
         
         assert(Thread.isMainThread)
         
         self.menuBuildingDebouncer.cancel()
+        self.applicationObserver = nil
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        let menu = MainMenu.script.menu!
-        
-        menu.removeAllItems()
-        
-        self.addChildFileItem(in: directoryURL, to: menu)
-        
-        if !menu.items.isEmpty {
-            menu.addItem(.separator())
-        }
-        
         let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
-        menu.addItem(openMenuItem)
+        
+        MainMenu.script.menu?.items = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
     }
     
     
@@ -256,59 +248,58 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Read files recursively and add to the given menu as menu items.
+    /// Read files recursively and create menu items.
     ///
     /// - Parameters:
     ///   - directoryURL: The directory where to find files recursively.
-    ///   - menu: The menu to add read files.
-    private func addChildFileItem(in directoryURL: URL, to menu: NSMenu) {
+    /// - Returns: Menu items represents scripts.
+    private func scriptMenuItems(in directoryURL: URL) -> [NSMenuItem] {
         
-        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
-                                                                      includingPropertiesForKeys: [.fileResourceTypeKey],
-                                                                      options: [.skipsHiddenFiles])
+        guard let urls = try? FileManager.default
+            .contentsOfDirectory(at: directoryURL,
+                                 includingPropertiesForKeys: [.contentTypeKey, .isDirectoryKey, .isExecutableKey],
+                                 options: [.skipsHiddenFiles])
+        else { return [] }
+        
+        return urls
+            .filter { !$0.lastPathComponent.hasPrefix("_") }  // ignore files/folders of which name starts with "_"
             .sorted(\.lastPathComponent)
-            else { return }
-        
-        for url in urls {
-            // ignore files/folders of which name starts with "_"
-            if url.lastPathComponent.hasPrefix("_") { continue }
-            
-            var name = url.deletingPathExtension().lastPathComponent
-                .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
-            
-            var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
-            shortcut = shortcut.isValid ? shortcut : .none
-            if shortcut != .none {
-                name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
-            }
-            
-            if name == .separator {  // separator
-                menu.addItem(.separator())
+            .compactMap { url in
+                var name = url.deletingPathExtension().lastPathComponent
+                    .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
                 
-            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
-                // -> Test script possibility before folder because a script can be a directory, e.g. .scptd.
-                for eventType in descriptor.eventTypes {
-                    guard let script = script as? any EventScript else { continue }
-                    self.scriptHandlersTable[eventType, default: []].append(script)
+                var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+                shortcut = shortcut.isValid ? shortcut : .none
+                if shortcut != .none {
+                    name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
                 }
                 
-                let item = NSMenuItem(title: name, action: #selector(launchScript),
-                                      keyEquivalent: shortcut.keyEquivalent)
-                item.keyEquivalentModifierMask = shortcut.modifierMask
-                item.representedObject = script
-                item.target = self
-                item.toolTip = "“Option + click” to open script in editor.".localized
-                menu.addItem(item)
+                if name == .separator {  // separator
+                    return .separator()
+                    
+                } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
+                    // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
+                    for eventType in descriptor.eventTypes {
+                        guard let script = script as? any EventScript else { continue }
+                        self.scriptHandlersTable[eventType, default: []].append(script)
+                    }
+                    
+                    let item = NSMenuItem(title: name, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
+                    item.keyEquivalentModifierMask = shortcut.modifierMask
+                    item.representedObject = script
+                    item.target = self
+                    item.toolTip = "“Option + click” to open script in editor.".localized
+                    return item
+                    
+                } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
+                    let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
+                    item.submenu = NSMenu(title: name)
+                    item.submenu!.items = self.scriptMenuItems(in: url)
+                    return item
+                }
                 
-            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
-                let submenu = NSMenu(title: name)
-                self.addChildFileItem(in: url, to: submenu)
-                
-                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
-                item.submenu = submenu
-                menu.addItem(item)
+                return nil
             }
-        }
     }
     
 }
