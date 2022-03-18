@@ -115,9 +115,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        let shortVersionRange = Bundle.main.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
-        let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
-        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
+        let shortVersion = Bundle.main.shortVersion
+        let shortVersionRange = shortVersion.range(of: "^[0-9]++\\.[0-9]++", options: .regularExpression)!
+        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
+                                              String(shortVersion[shortVersionRange]))
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -188,15 +189,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // store the latest version
         // -> The bundle version (build number) must be Int.
         let thisVersion = Bundle.main.bundleVersion
-        let isLatest: Bool = {
-            guard
-                let lastVersionString = UserDefaults.standard[.lastVersion],
-                let lastVersion = Int(lastVersionString)
-                else { return true }
-            
-            return Int(thisVersion)! >= lastVersion
-        }()
-        if isLatest {
+        let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
+        if lastVersion == nil || Int(thisVersion)! > lastVersion! {
             UserDefaults.standard[.lastVersion] = thisVersion
         }
         
