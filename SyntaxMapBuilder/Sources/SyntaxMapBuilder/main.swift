@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 import Yams
 
 private struct SyntaxStyle: Codable {
@@ -43,8 +44,8 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
     
     // find syntax style files
     let directoryURL = URL(fileURLWithPath: directoryPath, isDirectory: true)
-    let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
-        .filter { $0.pathExtension == "yml" }
+    let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [.contentTypeKey])
+        .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType?.conforms(to: .yaml) == true }
     
     // build syntaxMap from syntax style files
     let decoder = YAMLDecoder()
