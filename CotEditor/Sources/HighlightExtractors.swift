@@ -33,7 +33,7 @@ protocol HighlightExtractable {
 
 extension HighlightDefinition {
     
-    func extractor() throws -> HighlightExtractable {
+    func extractor() throws -> any HighlightExtractable {
         
         switch (self.isRegularExpression, self.endString) {
             case (true, .some(let endString)):

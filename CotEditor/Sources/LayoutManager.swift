@@ -156,7 +156,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         if color == .unemphasizedSelectedContentBackgroundColor,  // check if inactive
             let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
                                                    effectiveRange: nil, withoutAdditionalLayout: true),
-            let theme = (textContainer.textView as? Themable)?.theme,
+            let theme = (textContainer.textView as? any Themable)?.theme,
             let secondarySelectionColor = theme.secondarySelectionColor
         {
             secondarySelectionColor.setFill()
