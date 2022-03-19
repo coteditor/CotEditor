@@ -145,7 +145,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         let event = self.createEvent(by: document, eventID: eventType.eventID)
         
-        self.dispatch(event, handlers: scripts)
+        Task.detached { [weak self] in
+            await self?.dispatch(event, handlers: scripts)
+        }
     }
     
     
@@ -157,34 +159,32 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let script = sender.representedObject as? any Script else { return assertionFailure() }
         
-        do {
-            // change behavior if modifier key is pressed
-            switch NSEvent.modifierFlags {
-                case [.option]:  // open
-                    guard NSWorkspace.shared.open(script.url) else {
-                        throw ScriptFileError(kind: .open, url: script.url)
-                    }
-                
-                case [.option, .shift]:  // reveal
-                    guard script.url.isReachable else {
-                        throw ScriptFileError(kind: .existance, url: script.url)
-                    }
-                    NSWorkspace.shared.activateFileViewerSelecting([script.url])
-                
-                default:  // execute
-                    self.currentScriptName = script.name
-                    try script.run { [weak self] (error) in
-                        if let error = error {
-                            Console.shared.show(message: error.localizedDescription, title: script.name)
+        Task.detached {
+            do {
+                // change behavior if modifier key is pressed
+                switch NSEvent.modifierFlags {
+                    case [.option]:  // open
+                        guard NSWorkspace.shared.open(script.url) else {
+                            throw ScriptFileError(kind: .open, url: script.url)
                         }
-                        if self?.currentScriptName == script.name {
-                            self?.currentScriptName = nil
+                        
+                    case [.option, .shift]:  // reveal
+                        guard script.url.isReachable else {
+                            throw ScriptFileError(kind: .existance, url: script.url)
                         }
-                    }
+                        NSWorkspace.shared.activateFileViewerSelecting([script.url])
+                        
+                    default:  // execute
+                        self.currentScriptName = script.name
+                        try await script.run()
+                        if self.currentScriptName == script.name {
+                            self.currentScriptName = nil
+                        }
+                }
+                
+            } catch {
+                await self.presentError(error, scriptName: script.name)
             }
-            
-        } catch {
-            NSApp.presentError(error)
         }
     }
     
@@ -200,6 +200,22 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     // MARK: Private Methods
+    
+    /// Present the given error in the ordenery way by taking the error type in the concideration.
+    ///
+    /// - Parameters:
+    ///   - error: The error to present.
+    ///   - scriptName: The name of script.
+    @MainActor private func presentError(_ error: Error, scriptName: String? = nil) {
+        
+        switch error {
+            case let error as ScriptError:
+                Console.shared.show(message: error.localizedDescription, title: scriptName)
+            default:
+                NSApp.presentError(error)
+        }
+    }
+    
     
     /// Create an Apple Event caused by the given `Document`.
     ///
@@ -232,17 +248,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - event: The Apple Event to be dispatched.
     ///   - scripts: AppleScripts handling the given Apple Event.
-    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [any EventScript]) {
+    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [any EventScript]) async {
         
-        for script in scripts {
-            do {
-                try script.run(withAppleEvent: event) { (error) in
-                    if let error = error {
-                        Console.shared.show(message: error.localizedDescription, title: script.name)
+        await withTaskGroup(of: Void.self) { group in
+            for script in scripts {
+                group.addTask {
+                    do {
+                        try await script.run(withAppleEvent: event)
+                    } catch {
+                        await self.presentError(error, scriptName: script.name)
                     }
                 }
-            } catch {
-                NSApp.presentError(error)
             }
         }
     }
