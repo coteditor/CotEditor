@@ -588,6 +588,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] need to set string after setting other properties
         printView.string = self.textStorage.string
+        if let selectedRanges = self.textView?.selectedRanges {
+            printView.selectedRanges = selectedRanges
+        }
         
         // detect URLs manually (2019-05 macOS 10.14).
         // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
@@ -606,6 +609,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // setup print panel
         printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
         printOperation.printPanel.options.formUnion([.showsPaperSize, .showsOrientation, .showsScaling])
+        if printView.selectedRanges.count == 1, !printView.selectedRange.isEmpty {
+            printOperation.printPanel.options.formUnion(.showsPrintSelection)
+        }
         
         return printOperation
     }

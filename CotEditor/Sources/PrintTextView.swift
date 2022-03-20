@@ -87,7 +87,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // setup textView components
         let textStorage = NSTextStorage()
-        let layoutManager = LayoutManager()
+        let layoutManager = PrintLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
         
@@ -234,7 +234,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             }
             
             let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
-            self.enumerateLineFragments(in: dirtyRect, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
+            let range = ((self.layoutManager as? PrintLayoutManager)?.showsSelectionOnly == true) ? self.selectedRange : nil
+            self.enumerateLineFragments(in: dirtyRect, for: range, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
                 let numberString: String = {
                     switch line {
                         case .new:
@@ -277,9 +278,13 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private func applyPrintSettings() {
         
         guard
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any]
+            let layoutManager = self.layoutManager as? PrintLayoutManager,
+            let printInfo = NSPrintOperation.current?.printInfo,
+            let settings = printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any]
             else { return assertionFailure() }
+        
+        // set scope to print
+        layoutManager.showsSelectionOnly = printInfo.isSelectionOnly
         
         // check whether print line numbers
         self.printsLineNumber = {
@@ -319,10 +324,15 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         guard self.theme?.name != theme?.name else { return }
         
         // set theme
+        // -> The following two procedures are important to change .textColor in the preview properly
+        //    while printing only the selection (2022-03 macOS 12):
+        //    1. Set .textColor after setting .backgroundColor.
+        //    2. Ensure glyphs.
         self.theme = theme
-        self.textColor = theme?.text.color ?? .textColor
         self.backgroundColor = theme?.background.color ?? .textBackgroundColor  // expensive task
+        self.textColor = theme?.text.color ?? .textColor
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
+        layoutManager.ensureGlyphs(forCharacterRange: self.string.nsRange)
         
         // perform syntax highlight
         let progress = self.syntaxParser.highlight()
@@ -456,6 +466,51 @@ private extension NSLayoutManager {
         
         // cause layout by asking a question which has to determine where the glyph is
         self.textContainer(forGlyphAt: self.numberOfGlyphs - 1, effectiveRange: nil)
+    }
+    
+}
+
+
+
+// MARK: -
+
+private final class PrintLayoutManager: LayoutManager {
+    
+    var showsSelectionOnly = false {
+        
+        didSet {
+            guard showsSelectionOnly != oldValue else { return }
+            
+            let range = self.attributedString().range
+            self.invalidateGlyphs(forCharacterRange: range, changeInLength: 0, actualCharacterRange: nil)
+            self.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)  // important for vertical orientation
+            self.ensureGlyphs(forCharacterRange: range)
+            self.ensureLayout(forCharacterRange: range)
+        }
+    }
+    
+    
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes: UnsafePointer<Int>, font: NSFont, forGlyphRange glyphRange: NSRange) -> Int {
+        
+        // hide unselected glyphs if set so
+        guard
+            self.showsSelectionOnly,
+            let selectedRange = layoutManager.firstTextView?.selectedRange,
+            self.attributedString().length != selectedRange.length
+        else { return 0 }  // return 0 for the default processing
+        
+        let glyphIndexesToHide = (0..<glyphRange.length).filter { !selectedRange.contains(characterIndexes[$0]) }
+        
+        guard !glyphIndexesToHide.isEmpty else { return 0 }
+        
+        let newProperties = UnsafeMutablePointer(mutating: properties)
+        for index in glyphIndexesToHide {
+            newProperties[index].insert(.null)
+        }
+        
+        layoutManager.setGlyphs(glyphs, properties: newProperties, characterIndexes: characterIndexes, font: font, forGlyphRange: glyphRange)
+        
+        return glyphRange.length
     }
     
 }
