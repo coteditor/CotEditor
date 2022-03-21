@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add an option “Selection” to the “Pages” section in the print dialog to print only the selected text in the document.
+- Add an option “Selection” to the “Pages” section in the Print dialog to print only the selected text in the document.
 - Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the line endings of the opened document are one of these).
 - Add recent history to the Unicode input.
 - Export setting files, such as themes or multiple replacements, to Finder just by dragging and dropping the setting name.
@@ -17,7 +17,7 @@ Change Log
 ### Improvements
 
 - Detect the line ending in documents more intelligently.
-- Adjust vertical position of line numbers in printing.
+- Adjust the vertical position of line numbers on printing.
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Prefer using .yml for syntax definition files over .yaml.
