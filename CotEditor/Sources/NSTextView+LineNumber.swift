@@ -105,9 +105,9 @@ extension NSTextView {
             
             var wrappedLineGlyphIndex = max(lineGlyphRange.lowerBound, glyphRangeToDraw.lowerBound)
             while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
-                var range = NSRange.notFound
-                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
-                let isWrapped = range.lowerBound != lineGlyphRange.lowerBound
+                var fragmentGlyphRange = NSRange.notFound
+                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &fragmentGlyphRange, withoutAdditionalLayout: true)
+                let isWrapped = fragmentGlyphRange.lowerBound != lineGlyphRange.lowerBound
                 
                 if options.contains(.bySkippingWrappedLine), isWrapped { break }
                 
@@ -115,7 +115,7 @@ extension NSTextView {
                 
                 body(lineRect, line, lineNumber)
                 
-                wrappedLineGlyphIndex = range.upperBound
+                wrappedLineGlyphIndex = fragmentGlyphRange.upperBound
             }
             lineNumber += 1
         }
