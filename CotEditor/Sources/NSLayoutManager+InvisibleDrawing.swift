@@ -83,6 +83,9 @@ extension InvisibleDrawing {
             lastCodeUnit = codeUnit
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
+            // skip folded text
+            guard !self.propertyForGlyph(at: glyphIndex).contains(.null) else { continue }
+            
             var lineFragmentRange: NSRange = .notFound
             let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineFragmentRange, withoutAdditionalLayout: true).origin
             let glyphLocation = self.location(forGlyphAt: glyphIndex)

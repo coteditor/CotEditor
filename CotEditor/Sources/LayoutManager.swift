@@ -27,7 +27,7 @@
 import Combine
 import Cocoa
 
-final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
+class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
     
     // MARK: Protocol Properties
     
