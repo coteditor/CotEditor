@@ -209,16 +209,21 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // draw line numbers if needed
         if self.printsLineNumber {
+            guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
+            
             // prepare text attributes for line numbers
-            let fontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
-            let attrs: [NSAttributedString.Key: Any] = [.font: NSFont.lineNumberFont(ofSize: fontSize),
+            let numberFontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
+            let numberFont = NSFont.lineNumberFont(ofSize: numberFontSize)
+            let attrs: [NSAttributedString.Key: Any] = [.font: numberFont,
                                                         .foregroundColor: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
-            let charSize = NSAttributedString(string: "8", attributes: attrs).size()
+            let numberSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
             let horizontalOrigin = self.textContainerOrigin.x + self.lineFragmentPadding - self.lineNumberPadding
+            let baselineOffset = layoutManager.baselineOffset(for: self.layoutOrientation)
+            let numberAscender = numberFont.ascender
             
             // vertical text
             let isVerticalText = self.layoutOrientation == .vertical
@@ -244,14 +249,14 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 }()
                 
                 // adjust position to draw
-                let width = CGFloat(numberString.count) * charSize.width
-                var point = NSPoint(x: horizontalOrigin, y: lineRect.midY)
+                let width = CGFloat(numberString.count) * numberSize.width
+                let point: NSPoint
                 if isVerticalText {
-                    point = NSPoint(x: -point.y - width / 2,
-                                    y: point.x - charSize.height)
+                    point = NSPoint(x: -lineRect.midY - width / 2,
+                                    y: horizontalOrigin - numberSize.height)
                 } else {
-                    point.x -= width  // align right
-                    point.y -= charSize.height / 2
+                    point = NSPoint(x: horizontalOrigin - width,  // - width to align to right
+                                    y: lineRect.maxY + baselineOffset - numberAscender)
                 }
                 
                 // draw number

@@ -16,6 +16,7 @@ Change Log
 ### Improvements
 
 - Detect the line ending in documents more intelligently.
+- Adjust vertical position of line numbers in printing.
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Prefer using .yml for syntax definition files over .yaml.
