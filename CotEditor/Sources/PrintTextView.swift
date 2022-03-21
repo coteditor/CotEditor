@@ -257,7 +257,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                                     y: horizontalOrigin - numberSize.height)
                 } else {
                     point = NSPoint(x: horizontalOrigin - width,  // - width to align to right
-                                    y: lineRect.maxY + baselineOffset - numberAscender)
+                                    y: lineRect.minY + baselineOffset - numberAscender)
                 }
                 
                 // draw number
