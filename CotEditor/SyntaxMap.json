@@ -292,7 +292,8 @@
   },
   "Java" : {
     "extensions" : [
-      "java"
+      "java",
+      "jav"
     ],
     "filenames" : [
 
