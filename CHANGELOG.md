@@ -16,6 +16,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application could not open Haskell files.
+- Fix a potential crash when opening files via Services.
 
 
 
