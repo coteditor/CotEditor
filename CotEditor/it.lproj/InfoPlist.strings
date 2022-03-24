@@ -34,7 +34,7 @@
 "Plain text" = "Testo semplice";
 "CotEditor Theme" = "Tema CotEditor";
 "CotEditor Replacement Definition" = "Definizione sostituzioni di CotEditor";
-"BibTeX" = "BibTeX";
+"BibTeX bibliography" = "Bibliografia BibTeX";  // FIXME: updated (require native check)
 "Configuration" = "Configurazione";
 "C header" = " Intestazione C";
 "C source" = "Codice C";

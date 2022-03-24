@@ -34,7 +34,7 @@
 "Plain text" = "プレーンテキスト";
 "CotEditor Theme" = "CotEditorテーマ";
 "CotEditor Replacement Definition" = "CotEditor置換定義";
-"BibTeX" = "BibTeX";
+"BibTeX bibliography" = "BibTeX文献目録";
 "Configuration" = "Configuration";
 "C header" = "Cヘッダ";
 "C source" = "Cソース";

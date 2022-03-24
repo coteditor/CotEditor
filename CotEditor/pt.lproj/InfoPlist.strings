@@ -33,7 +33,7 @@
 "Text document" = "Documento de texto";
 "Plain text" = "Texto simples";
 "CotEditor Theme" = "Tema do CotEditor";
-"BibTeX" = "BibTeX";
+"BibTeX bibliography" = "Bibliografia BibTeX";  // FIXME: updated (require native check)
 "Configuration" = "Configuração";
 "C header" = "Cabeçalho C";
 "C source" = "Fonte C";

@@ -33,7 +33,7 @@
 "Plain text" = "Reiner Text";
 "CotEditor Theme" = "CotEditor-Thema";
 "CotEditor Replacement Definition" = "CotEditor-Ersetzungsdefinition";
-"BibTeX" = "BibTeX";
+"BibTeX bibliography" = "BibTeX-Bibliographie";
 "Configuration" = "Konfiguration";
 "C header" = "C-Header-Code";
 "C source" = "C-Quellcode";
