@@ -15,6 +15,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the file extension proposed in the save dialog for untitled document did not reflect the latest syntax style.
 - Fix an issue that the application could not open Haskell files.
 - Fix a potential crash when opening files via Services.
 

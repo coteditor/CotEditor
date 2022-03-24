@@ -252,7 +252,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// return preferred file extension corresponding to the current syntax style
     override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
-        if let pathExtension = self.fileURL?.pathExtension {
+        if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
         }
         
