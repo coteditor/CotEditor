@@ -9,7 +9,7 @@ Change Log
 
 - Update Swift syntax style to add keywords added in Swift 5.6.
 - Update YAML syntax style for better coloring.
-- [trivial] Improve syntax highlighting indicator.
+- [trivial] Improve progress message for the Find/Replace All.
 - [dev] Update the build environment to Xcode 13.3 (Swift 5.6).
 
 
