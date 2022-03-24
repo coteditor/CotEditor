@@ -40,12 +40,10 @@
 "C++ source" = "C++ kaynağı";
 "C++ header" = "C++ üstbilgisi";
 "C# source" = "C# kaynağı";
-"CoffeeScript" = "CoffeeScript";
 "Cascading Style Sheet" = "CSS";
 "D source" = "D kaynağı";
 "Dart script" = "Dart betiği";
 "Diff" = "Diff";
-"Document Type Definition" = "Belge türü tanımı";
 "Fortran Source" = "Fortran kaynağı";
 "Go script" = "Go betiği";
 "Haskell script" = "Haskell betiği";
@@ -73,7 +71,6 @@
 "Swift source" = "Swift kaynağı";
 "TeX" = "TeX";
 "Textile document" = "Textile belgesi";
-"Tcl source" = "Tcl kaynağı";
 "Verilog source" = "Verilog kaynağı";
 "VHDL source" = "VHDL kaynağı";
 "XML document" = "XML belgesi";

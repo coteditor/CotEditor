@@ -41,12 +41,10 @@
 "C++ source" = "C++源码";
 "C++ header" = "C++头文件";
 "C# source" = "C#源码";
-"CoffeeScript" = "CoffeeScript";
 "Cascading Style Sheet" = "CSS文件";
 "D source" = "D源码";
 "Dart script" = "Dart脚本";
 "Diff" = "Diff";
-"Document Type Definition" = "文档类型定义";
 "Fortran Source" = "Fortran源码";
 "Go script" = "Go 脚本";
 "Haskell script" = "Haskell脚本";
@@ -74,7 +72,6 @@
 "Swift source" = "Swift源码";
 "TeX" = "TeX";
 "Textile document" = "Textile文档";
-"Tcl source" = "Tcl源码";
 "Verilog source" = "Verilog源码";
 "VHDL source" = "VHDL源码";
 "XML document" = "XML文档";

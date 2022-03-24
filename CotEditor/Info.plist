@@ -181,26 +181,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>coffee</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>CoffeeScriptIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/coffeescript</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>CoffeeScript</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
-		</dict>
-		<dict>
 			<key>CFBundleTypeName</key>
 			<string>Cascading Style Sheet</string>
 			<key>CFBundleTypeRole</key>
@@ -257,22 +237,6 @@
 			<string>DiffIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Diff</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>dtd</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>XMLIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Document Type Definition</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -690,22 +654,6 @@
 			<string>TextileIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Textile document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>tcl</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TclIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Tcl source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
