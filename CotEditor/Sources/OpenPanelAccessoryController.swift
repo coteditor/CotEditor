@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@
 import Cocoa
 
 final class OpenPanelAccessoryController: NSViewController {
+    
+    // MARK: Public Properties
     
     weak var openPanel: NSOpenPanel?  // keep open panel for hidden file visivility toggle
     
@@ -45,7 +47,13 @@ final class OpenPanelAccessoryController: NSViewController {
         
         super.viewDidLoad()
         
-        self.buildEncodingPopupButton()
+        // build encoding menu
+        let menu = self.encodingMenu!.menu!
+        let autoDetectItem = NSMenuItem(title: "Automatic".localized, action: nil, keyEquivalent: "")
+        autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
+        menu.items = [autoDetectItem, .separator()] + EncodingManager.shared.createEncodingMenuItems()
+        
+        self.selectedEncoding = .autoDetection
     }
     
     
@@ -53,7 +61,7 @@ final class OpenPanelAccessoryController: NSViewController {
     // MARK: Public Methods
     
     /// encoding selected by user
-    var selectedEncoding: String.Encoding {
+    private(set) var selectedEncoding: String.Encoding {
         
         get { String.Encoding(rawValue: self._selectedEncoding) }
         set { self._selectedEncoding = newValue.rawValue }
@@ -64,7 +72,7 @@ final class OpenPanelAccessoryController: NSViewController {
     // MARK: Action Messages
     
     /// toggle visivility of hidden files
-    @IBAction func toggleShowsHidenFiles(_ sender: NSButton) {
+    @IBAction func toggleShowsHiddenFiles(_ sender: NSButton) {
         
         guard let openPanel = self.openPanel else { return assertionFailure() }
         
@@ -74,26 +82,6 @@ final class OpenPanelAccessoryController: NSViewController {
         openPanel.treatsFilePackagesAsDirectories = showsHiddenFiles
         
         openPanel.validateVisibleColumns()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// update encoding menu
-    func buildEncodingPopupButton() {
-        
-        let menu = self.encodingMenu!.menu!
-        
-        menu.removeAllItems()
-        
-        let autoDetectItem = NSMenuItem(title: "Automatic".localized, action: nil, keyEquivalent: "")
-        autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
-        menu.addItem(autoDetectItem)
-        menu.addItem(.separator())
-        menu.items += EncodingManager.shared.createEncodingMenuItems()
-        
-        self.selectedEncoding = .autoDetection
     }
     
 }

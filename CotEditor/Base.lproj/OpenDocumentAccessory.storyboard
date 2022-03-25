@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,12 +25,7 @@
                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="CX5-Nm-64N">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
-                                            <menu key="menu" id="gyP-Eb-JHe">
-                                                <items>
-                                                    <menuItem title="Automatic" id="SZF-BR-bZC"/>
-                                                    <menuItem isSeparatorItem="YES" id="4hX-Kc-MTt"/>
-                                                </items>
-                                            </menu>
+                                            <menu key="menu" id="gyP-Eb-JHe"/>
                                         </popUpButtonCell>
                                         <connections>
                                             <accessibilityConnection property="title" destination="lFu-5f-V7p" id="rac-yB-1hr"/>
@@ -52,7 +47,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="toggleShowsHidenFiles:" target="vOM-aK-O2P" id="mMa-7D-VwO"/>
+                                            <action selector="toggleShowsHiddenFiles:" target="vOM-aK-O2P" id="6Ay-Z1-N6g"/>
                                         </connections>
                                     </button>
                                 </subviews>
