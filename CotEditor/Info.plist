@@ -383,8 +383,8 @@
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
-			<key>LSTypeIsPackage</key>
-			<false/>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
