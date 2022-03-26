@@ -7,6 +7,8 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Plain text</string>
 			<key>CFBundleTypeRole</key>
@@ -64,6 +66,8 @@
 			</array>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>BibTeX bibliography</string>
 			<key>CFBundleTypeRole</key>
@@ -78,6 +82,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Configuration</string>
 			<key>CFBundleTypeRole</key>
@@ -92,6 +98,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C header</string>
 			<key>CFBundleTypeRole</key>
@@ -106,6 +114,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C source</string>
 			<key>CFBundleTypeRole</key>
@@ -120,6 +130,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C++ source</string>
 			<key>CFBundleTypeRole</key>
@@ -134,6 +146,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C++ header</string>
 			<key>CFBundleTypeRole</key>
@@ -148,6 +162,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C# source</string>
 			<key>CFBundleTypeRole</key>
@@ -162,6 +178,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Cascading Style Sheet</string>
 			<key>CFBundleTypeRole</key>
@@ -176,6 +194,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>D source</string>
 			<key>CFBundleTypeRole</key>
@@ -190,6 +210,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Dart script</string>
 			<key>CFBundleTypeRole</key>
@@ -204,6 +226,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Diff</string>
 			<key>CFBundleTypeRole</key>
@@ -218,6 +242,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Fortran Source</string>
 			<key>CFBundleTypeRole</key>
@@ -232,6 +258,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Go script</string>
 			<key>CFBundleTypeRole</key>
@@ -246,6 +274,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Haskell script</string>
 			<key>CFBundleTypeRole</key>
@@ -260,6 +290,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>HTML document</string>
 			<key>CFBundleTypeRole</key>
@@ -274,6 +306,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>INI</string>
 			<key>CFBundleTypeRole</key>
@@ -288,6 +322,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Java source</string>
 			<key>CFBundleTypeRole</key>
@@ -302,6 +338,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>JavaScript</string>
 			<key>CFBundleTypeRole</key>
@@ -316,6 +354,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>JSON document</string>
 			<key>CFBundleTypeRole</key>
@@ -330,6 +370,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Julia script</string>
 			<key>CFBundleTypeRole</key>
@@ -344,6 +386,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Kotlin source</string>
 			<key>CFBundleTypeRole</key>
@@ -358,6 +402,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Lisp script</string>
 			<key>CFBundleTypeRole</key>
@@ -372,6 +418,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Lua script</string>
 			<key>CFBundleTypeRole</key>
@@ -386,6 +434,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Markdown document</string>
 			<key>CFBundleTypeRole</key>
@@ -400,6 +450,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Perl script</string>
 			<key>CFBundleTypeRole</key>
@@ -414,6 +466,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>PHP script</string>
 			<key>CFBundleTypeRole</key>
@@ -428,6 +482,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Python script</string>
 			<key>CFBundleTypeRole</key>
@@ -442,6 +498,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>reStructured Text document</string>
 			<key>CFBundleTypeRole</key>
@@ -456,6 +514,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Ruby script</string>
 			<key>CFBundleTypeRole</key>
@@ -470,6 +530,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Rust script</string>
 			<key>CFBundleTypeRole</key>
@@ -484,6 +546,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Scalable Vector Graphics</string>
 			<key>CFBundleTypeRole</key>
@@ -498,6 +562,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Scala source</string>
 			<key>CFBundleTypeRole</key>
@@ -512,6 +578,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Scheme script</string>
 			<key>CFBundleTypeRole</key>
@@ -526,6 +594,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Shell script</string>
 			<key>CFBundleTypeRole</key>
@@ -540,6 +610,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>SQL source</string>
 			<key>CFBundleTypeRole</key>
@@ -554,6 +626,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Swift source</string>
 			<key>CFBundleTypeRole</key>
@@ -568,6 +642,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>TeX</string>
 			<key>CFBundleTypeRole</key>
@@ -582,6 +658,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Textile document</string>
 			<key>CFBundleTypeRole</key>
@@ -596,6 +674,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>TOML</string>
 			<key>CFBundleTypeRole</key>
@@ -610,6 +690,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Verilog source</string>
 			<key>CFBundleTypeRole</key>
@@ -624,6 +706,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>VHDL source</string>
 			<key>CFBundleTypeRole</key>
@@ -638,6 +722,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>XML document</string>
 			<key>CFBundleTypeRole</key>
@@ -652,6 +738,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>YAML document</string>
 			<key>CFBundleTypeRole</key>
@@ -822,8 +910,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Configuration</string>
-			<key>UTTypeIconFile</key>
-			<string>ConfigIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>config</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.conf</string>
 			<key>UTTypeTagSpecification</key>
@@ -841,8 +934,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Lisp script</string>
-			<key>UTTypeIconFile</key>
-			<string>LispIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Lambda-fill</string>
+				<key>UTTypeIconText</key>
+				<string>lisp</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.lisp</string>
 			<key>UTTypeTagSpecification</key>
@@ -861,8 +959,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Scheme script</string>
-			<key>UTTypeIconFile</key>
-			<string>SchemeIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Lambda-fill</string>
+				<key>UTTypeIconText</key>
+				<string>scheme</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.scheme</string>
 			<key>UTTypeTagSpecification</key>
@@ -881,8 +984,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Verilog source</string>
-			<key>UTTypeIconFile</key>
-			<string>VerilogIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Verilog-fill</string>
+				<key>UTTypeIconText</key>
+				<string>verilog</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.verilog</string>
 			<key>UTTypeTagSpecification</key>
@@ -924,8 +1032,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>C header</string>
-			<key>UTTypeIconFile</key>
-			<string>CIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>h</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-header</string>
 			<key>UTTypeTagSpecification</key>
@@ -943,8 +1056,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>C source</string>
-			<key>UTTypeIconFile</key>
-			<string>CIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>c</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -962,8 +1080,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>C++ header</string>
-			<key>UTTypeIconFile</key>
-			<string>C++Icon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>h++</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-plus-plus-header</string>
 			<key>UTTypeTagSpecification</key>
@@ -986,8 +1109,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>C++ source</string>
-			<key>UTTypeIconFile</key>
-			<string>C++Icon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>c++</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-plus-plus-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1009,8 +1137,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Cascading Style Sheet</string>
-			<key>UTTypeIconFile</key>
-			<string>CSSIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Number-fill</string>
+				<key>UTTypeIconText</key>
+				<string>CSS</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.css</string>
 			<key>UTTypeTagSpecification</key>
@@ -1032,8 +1165,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Fortran source</string>
-			<key>UTTypeIconFile</key>
-			<string>FortranIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>F-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Fortran</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.fortran-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1056,8 +1194,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>HTML document</string>
-			<key>UTTypeIconFile</key>
-			<string>HTMLIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>AngleBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>HTML</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.html</string>
 			<key>UTTypeTagSpecification</key>
@@ -1080,8 +1223,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>JSON document</string>
-			<key>UTTypeIconFile</key>
-			<string>JSONIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>JSON</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.json</string>
 			<key>UTTypeTagSpecification</key>
@@ -1103,8 +1251,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Diff</string>
-			<key>UTTypeIconFile</key>
-			<string>DiffIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Diff-fill</string>
+				<key>UTTypeIconText</key>
+				<string>diff</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.patch-file</string>
 			<key>UTTypeTagSpecification</key>
@@ -1124,8 +1277,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Perl script</string>
-			<key>UTTypeIconFile</key>
-			<string>PerlIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Perl-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Perl</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.perl-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1144,8 +1302,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>PHP script</string>
-			<key>UTTypeIconFile</key>
-			<string>PHPIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>AngleBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>PHP</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.php-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1168,8 +1331,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Plain text</string>
-			<key>UTTypeIconFile</key>
-			<string>GenericDocumentIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Text-fill</string>
+				<key>UTTypeIconText</key>
+				<string>text</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.plain-text</string>
 			<key>UTTypeTagSpecification</key>
@@ -1191,8 +1359,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Python script</string>
-			<key>UTTypeIconFile</key>
-			<string>PythonIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Python-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Python</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.python-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1211,8 +1384,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Ruby script</string>
-			<key>UTTypeIconFile</key>
-			<string>RubyIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Ruby-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Ruby</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.ruby-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1230,8 +1408,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Shell script</string>
-			<key>UTTypeIconFile</key>
-			<string>ShellIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Shell-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Shell</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.shell-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1250,8 +1433,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Scalable Vector Graphics</string>
-			<key>UTTypeIconFile</key>
-			<string>SVGIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>SVG-fill</string>
+				<key>UTTypeIconText</key>
+				<string>SVG</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.svg-image</string>
 			<key>UTTypeTagSpecification</key>
@@ -1273,8 +1461,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Swift source</string>
-			<key>UTTypeIconFile</key>
-			<string>SwiftIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Swift-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Swift</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.swift-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1292,8 +1485,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>TeX</string>
-			<key>UTTypeIconFile</key>
-			<string>TeXIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>TeX-fill</string>
+				<key>UTTypeIconText</key>
+				<string>TeX</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.tex</string>
 			<key>UTTypeTagSpecification</key>
@@ -1313,8 +1511,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>TOML</string>
-			<key>UTTypeIconFile</key>
-			<string>TOMLIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>TOML-fill</string>
+				<key>UTTypeIconText</key>
+				<string>TOML</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.toml</string>
 			<key>UTTypeReferenceURL</key>
@@ -1338,8 +1541,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>XML</string>
-			<key>UTTypeIconFile</key>
-			<string>XMLIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>AngleBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>XML</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.xml</string>
 			<key>UTTypeTagSpecification</key>
@@ -1365,8 +1573,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>YAML document</string>
-			<key>UTTypeIconFile</key>
-			<string>YAMLIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>YAML</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>public.yaml</string>
 			<key>UTTypeTagSpecification</key>
@@ -1389,8 +1602,18 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>C# source</string>
-			<key>UTTypeIconFile</key>
-			<string>C#Icon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>C#</string>
+			</dict>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconText</key>
+				<string>C#</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.microsoft.c-sharp</string>
 			<key>UTTypeTagSpecification</key>
@@ -1408,8 +1631,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>INI</string>
-			<key>UTTypeIconFile</key>
-			<string>INIIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>ini</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.microsoft.ini</string>
 			<key>UTTypeTagSpecification</key>
@@ -1427,8 +1655,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>JavaScript</string>
-			<key>UTTypeIconFile</key>
-			<string>JavaScriptIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>js</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.netscape.javascript-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1446,8 +1679,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Java source</string>
-			<key>UTTypeIconFile</key>
-			<string>JavaIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CoffeeCup-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Java</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.sun.java-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1466,8 +1704,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Textile document</string>
-			<key>UTTypeIconFile</key>
-			<string>TextileIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Text-fill</string>
+				<key>UTTypeIconText</key>
+				<string>textile</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.textpattern.textile</string>
 			<key>UTTypeTagSpecification</key>
@@ -1485,8 +1728,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Dart script</string>
-			<key>UTTypeIconFile</key>
-			<string>DartIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Dart-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Dart</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>dev.dart.dart-script</string>
 			<key>UTTypeReferenceURL</key>
@@ -1506,8 +1754,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Markdown document</string>
-			<key>UTTypeIconFile</key>
-			<string>MarkdownIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Markdown-fill</string>
+				<key>UTTypeIconText</key>
+				<string>md</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>net.daringfireball.markdown</string>
 			<key>UTTypeReferenceURL</key>
@@ -1531,8 +1784,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>D source</string>
-			<key>UTTypeIconFile</key>
-			<string>DIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>D-fill</string>
+				<key>UTTypeIconText</key>
+				<string>D</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.dlang.d-source</string>
 			<key>UTTypeReferenceURL</key>
@@ -1552,8 +1810,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Go script</string>
-			<key>UTTypeIconFile</key>
-			<string>GoIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Go-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Go</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.golang.go-script</string>
 			<key>UTTypeReferenceURL</key>
@@ -1573,8 +1836,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Haskell script</string>
-			<key>UTTypeIconFile</key>
-			<string>HaskellIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Haskell-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Haskell</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.haskell.haskell-script</string>
 			<key>UTTypeReferenceURL</key>
@@ -1595,8 +1863,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>SQL source</string>
-			<key>UTTypeIconFile</key>
-			<string>SQLIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>SQL-fill</string>
+				<key>UTTypeIconText</key>
+				<string>SQL</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.iso.sql</string>
 			<key>UTTypeTagSpecification</key>
@@ -1618,8 +1891,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Julia script</string>
-			<key>UTTypeIconFile</key>
-			<string>JuliaIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Julia-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Julia</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.julia.julia-script</string>
 			<key>UTTypeReferenceURL</key>
@@ -1639,8 +1917,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Kotlin script</string>
-			<key>UTTypeIconFile</key>
-			<string>KotlinIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Kotlin-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Kotlin</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.kotlinlang.source</string>
 			<key>UTTypeReferenceURL</key>
@@ -1661,8 +1944,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Lua script</string>
-			<key>UTTypeIconFile</key>
-			<string>LuaIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Lua-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Lua</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.lua.lua-source</string>
 			<key>UTTypeReferenceURL</key>
@@ -1682,8 +1970,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>reStructured Text document</string>
-			<key>UTTypeIconFile</key>
-			<string>reSTIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Text-fill</string>
+				<key>UTTypeIconText</key>
+				<string>reST</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.python.restructuredtext</string>
 			<key>UTTypeReferenceURL</key>
@@ -1704,8 +1997,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Rust script</string>
-			<key>UTTypeIconFile</key>
-			<string>RustIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Rust</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.rust-lang.rust-script</string>
 			<key>UTTypeReferenceURL</key>
@@ -1726,8 +2024,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Scala source</string>
-			<key>UTTypeIconFile</key>
-			<string>ScalaIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Scala-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Scala</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.scala-lang.scala-source</string>
 			<key>UTTypeReferenceURL</key>
@@ -1747,8 +2050,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>BibTeX bibliography</string>
-			<key>UTTypeIconFile</key>
-			<string>BibTeXIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>TeX-fill</string>
+				<key>UTTypeIconText</key>
+				<string>TeX</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.tug.bibtex.bib</string>
 			<key>UTTypeReferenceURL</key>

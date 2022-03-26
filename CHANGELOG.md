@@ -16,6 +16,7 @@ Change Log
 
 ### Improvements
 
+- Update document icons.
 - Detect the line ending in documents more intelligently.
 - Adjust the vertical position of line numbers on printing.
 - Optimize syntax parsing.
