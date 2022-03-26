@@ -150,18 +150,16 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C#Icon</string>
 			<key>CFBundleTypeName</key>
 			<string>C# source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.c-sharp</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -208,20 +206,16 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>diff</string>
-				<string>patch</string>
-				<string>dif</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DiffIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Diff</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.patch-file</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -453,19 +447,16 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rst</string>
-				<string>rest</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>reSTIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>reStructured Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.python.restructuredtext</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -599,34 +590,30 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>textile</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TextileIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Textile document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.textpattern.textile</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>toml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TOMLIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>TOML</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.toml</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -1027,6 +1014,27 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Diff</string>
+			<key>UTTypeIconFile</key>
+			<string>DiffIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.patch-file</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>diff</string>
+					<string>patch</string>
+					<string>dif</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.shell-script</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -1216,6 +1224,31 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>TOML</string>
+			<key>UTTypeIconFile</key>
+			<string>TOMLIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.toml</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://github.com/toml-lang/toml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>toml</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/toml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
@@ -1261,6 +1294,25 @@
 				<key>public.mime-type</key>
 				<array>
 					<string>application/x-yaml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>C# source</string>
+			<key>UTTypeIconFile</key>
+			<string>C#Icon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.microsoft.c-sharp</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cs</string>
 				</array>
 			</dict>
 		</dict>
@@ -1319,6 +1371,25 @@
 				<array>
 					<string>java</string>
 					<string>jav</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Textile document</string>
+			<key>UTTypeIconFile</key>
+			<string>TextileIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.textpattern.textile</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>textile</string>
 				</array>
 			</dict>
 		</dict>
@@ -1516,6 +1587,28 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>lua</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>reStructured Text document</string>
+			<key>UTTypeIconFile</key>
+			<string>reSTIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.python.restructuredtext</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://docutils.sourceforge.io/rst.html</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>rest</string>
+					<string>rst</string>
 				</array>
 			</dict>
 		</dict>
