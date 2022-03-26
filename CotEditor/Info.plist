@@ -78,18 +78,16 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>conf</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ConfigIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Configuration</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.conf</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -360,19 +358,16 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lisp</string>
-				<string>lsp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>LispIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Lisp script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.lisp</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -517,19 +512,16 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>scm</string>
-				<string>ss</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SchemeIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Scheme script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.scheme</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -618,36 +610,30 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>v</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>VerilogIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Verilog source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.verilog</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>vhd</string>
-			</array>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-vhdl</string>
-			</array>
 			<key>CFBundleTypeName</key>
 			<string>VHDL source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.vhdl</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
@@ -826,6 +812,105 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>cotrpl</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Configuration</string>
+			<key>UTTypeIconFile</key>
+			<string>ConfigIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.conf</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>conf</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Lisp script</string>
+			<key>UTTypeIconFile</key>
+			<string>LispIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.lisp</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>lisp</string>
+					<string>lsp</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Scheme script</string>
+			<key>UTTypeIconFile</key>
+			<string>SchemeIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.scheme</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>scm</string>
+					<string>ss</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Verilog source</string>
+			<key>UTTypeIconFile</key>
+			<string>VerilogIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.verilog</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>v</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>VHDL source</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.vhdl</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>vhd</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/x-vhdl</string>
 				</array>
 			</dict>
 		</dict>
