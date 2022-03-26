@@ -860,8 +860,6 @@
 			<string>C header</string>
 			<key>UTTypeIconFile</key>
 			<string>CIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-header</string>
 			<key>UTTypeTagSpecification</key>
@@ -881,8 +879,6 @@
 			<string>C source</string>
 			<key>UTTypeIconFile</key>
 			<string>CIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -902,8 +898,6 @@
 			<string>C++ header</string>
 			<key>UTTypeIconFile</key>
 			<string>C++Icon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-plus-plus-header</string>
 			<key>UTTypeTagSpecification</key>
@@ -928,8 +922,6 @@
 			<string>C++ source</string>
 			<key>UTTypeIconFile</key>
 			<string>C++Icon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.c-plus-plus-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -953,19 +945,17 @@
 			<string>Cascading Style Sheet</string>
 			<key>UTTypeIconFile</key>
 			<string>CSSIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.css</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>text/css</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>css</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/css</string>
 				</array>
 			</dict>
 		</dict>
@@ -978,8 +968,6 @@
 			<string>Fortran source</string>
 			<key>UTTypeIconFile</key>
 			<string>FortranIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.fortran-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1004,20 +992,18 @@
 			<string>HTML document</string>
 			<key>UTTypeIconFile</key>
 			<string>HTMLIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.html</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>text/html</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>html</string>
 					<string>htm</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/html</string>
 				</array>
 			</dict>
 		</dict>
@@ -1030,19 +1016,17 @@
 			<string>JSON document</string>
 			<key>UTTypeIconFile</key>
 			<string>JSONIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.json</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/json</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>json</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/json</string>
 				</array>
 			</dict>
 		</dict>
@@ -1055,8 +1039,6 @@
 			<string>Perl script</string>
 			<key>UTTypeIconFile</key>
 			<string>PerlIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.perl-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1077,8 +1059,6 @@
 			<string>PHP script</string>
 			<key>UTTypeIconFile</key>
 			<string>PHPIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.php-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1103,8 +1083,6 @@
 			<string>Python script</string>
 			<key>UTTypeIconFile</key>
 			<string>PythonIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.python-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1125,8 +1103,6 @@
 			<string>Ruby script</string>
 			<key>UTTypeIconFile</key>
 			<string>RubyIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.ruby-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1146,8 +1122,6 @@
 			<string>Shell script</string>
 			<key>UTTypeIconFile</key>
 			<string>ShellIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.shell-script</string>
 			<key>UTTypeTagSpecification</key>
@@ -1168,19 +1142,17 @@
 			<string>Scalable Vector Graphics</string>
 			<key>UTTypeIconFile</key>
 			<string>SVGIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.svg-image</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>image/svg+xml</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>svg</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>image/svg+xml</string>
 				</array>
 			</dict>
 		</dict>
@@ -1193,8 +1165,6 @@
 			<string>Swift source</string>
 			<key>UTTypeIconFile</key>
 			<string>SwiftIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.swift-source</string>
 			<key>UTTypeTagSpecification</key>
@@ -1214,8 +1184,6 @@
 			<string>TeX</string>
 			<key>UTTypeIconFile</key>
 			<string>TeXIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.tex</string>
 			<key>UTTypeTagSpecification</key>
@@ -1237,16 +1205,10 @@
 			<string>XML</string>
 			<key>UTTypeIconFile</key>
 			<string>XMLIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.xml</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>text/xml</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>xml</string>
@@ -1254,6 +1216,10 @@
 					<string>dtd</string>
 					<string>xslt</string>
 					<string>xsd</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/xml</string>
 				</array>
 			</dict>
 		</dict>
@@ -1266,20 +1232,18 @@
 			<string>YAML document</string>
 			<key>UTTypeIconFile</key>
 			<string>YAMLIcon</string>
-			<key>UTTypeIcons</key>
-			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>public.yaml</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
-				<key>public.mime-type</key>
-				<array>
-					<string>application/x-yaml</string>
-				</array>
 				<key>public.filename-extension</key>
 				<array>
 					<string>yml</string>
 					<string>yaml</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/x-yaml</string>
 				</array>
 			</dict>
 		</dict>
