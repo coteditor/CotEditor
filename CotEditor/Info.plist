@@ -7,8 +7,6 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeIconFile</key>
-			<string>GenericDocumentIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Plain text</string>
 			<key>CFBundleTypeRole</key>
@@ -23,10 +21,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array/>
-			<key>CFBundleTypeIconFile</key>
-			<string>GenericDocumentIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Text document</string>
 			<key>CFBundleTypeRole</key>
@@ -1071,6 +1065,29 @@
 					<string>php5</string>
 					<string>phps</string>
 					<string>phtml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Plain text</string>
+			<key>UTTypeIconFile</key>
+			<string>GenericDocumentIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.plain-text</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>txt</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/plain</string>
 				</array>
 			</dict>
 		</dict>
