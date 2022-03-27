@@ -575,7 +575,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .share:
                 let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
                 item.toolTip = "Share document file".localized
-                item.delegate = self.document as? NSSharingServicePickerToolbarItemDelegate
+                item.delegate = self.document as? any NSSharingServicePickerToolbarItemDelegate
                 return item
                 
             case .inspectorTrackingSeparator:
