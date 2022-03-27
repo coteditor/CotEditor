@@ -339,7 +339,7 @@ final class SyntaxManager: SettingFileManaging {
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
-        let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
+        self.mappingTables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = settingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
                 guard let items = map[settingName]?[key.rawValue] else { return }
                 
@@ -348,7 +348,6 @@ final class SyntaxManager: SettingFileManaging {
                 }
             }
         }
-        self.mappingTables = tables
     }
     
     
