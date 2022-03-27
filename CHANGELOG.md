@@ -5,6 +5,11 @@ Change Log
 4.1.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Add a temporal highlight for the current match in the editor (thanks to Ethan Wong!).
+
+
 ### Fixes
 
 - Fix an issue that the incompatible character pane did not show the message “No incompatible characters were found.” when all of the existing incompatible characters are cleared.
