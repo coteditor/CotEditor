@@ -33,21 +33,22 @@ protocol HighlightExtractable {
 
 extension HighlightDefinition {
     
-    func extractor() throws -> any HighlightExtractable {
+    var extractor: any HighlightExtractable {
         
-        switch (self.isRegularExpression, self.endString) {
-            case (true, .some(let endString)):
-                return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
-            
-            case (true, .none):
-                return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
-            
-            case (false, .some(let endString)):
-                return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
-            
-            case (false, .none):
-                preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
-            
+        get throws {
+            switch (self.isRegularExpression, self.endString) {
+                case (true, .some(let endString)):
+                    return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
+                    
+                case (true, .none):
+                    return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
+                    
+                case (false, .some(let endString)):
+                    return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
+                    
+                case (false, .none):
+                    preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
+            }
         }
     }
     
