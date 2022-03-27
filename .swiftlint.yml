@@ -35,7 +35,6 @@ opt_in_rules:
   - joined_default_parameter
   - last_where
   - legacy_multiple
-  - legacy_random
   - let_var_whitespace
   - lower_acl_than_parent
   - missing_docs
