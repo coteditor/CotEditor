@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             .sink { [weak self, weak scroller] (scrollerStyle) in
                 var inset = 5.0
                 if scrollerStyle == .legacy, let scroller = scroller {
-                    inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
+                    inset += scroller.thickness
                 }
                 
                 self?.findClearButtonConstraint?.constant = -inset
