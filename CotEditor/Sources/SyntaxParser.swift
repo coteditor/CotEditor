@@ -263,7 +263,8 @@ extension SyntaxParser {
             
             try Task.checkCancellation()
             
-            parser.progress.localizedDescription = "Applying colors to text".localized
+            parser.progress.localizedDescription = "Applying colors to text…".localized
+            try await Task.sleep(nanoseconds: 10_000_000)  // wait 0.01 seconds for GUI update
             
             await MainActor.run { [weak self] in
                 self?.textStorage.apply(highlights: highlights, range: highlightRange)

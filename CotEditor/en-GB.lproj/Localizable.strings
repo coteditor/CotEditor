@@ -469,7 +469,7 @@
 "Please wait for a while." = "Please wait for a while.";
 "Extracting %@…" = "Extracting %@…";
 "Preparing to color…" = "Preparing to colour…";
-"Applying colors to text" = "Applying colours to text";
+"Applying colors to text…" = "Applying colours to text…";
 "keywords" = "keywords";
 "commands" = "commands";
 "types" = "types";

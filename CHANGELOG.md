@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+4.1.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- Update Swift syntax style to add keywords added in Swift 5.6.
+- Update YAML syntax style for better coloring.
+- [trivial] Improve progress message for the Find/Replace All.
+- [dev] Update the build environment to Xcode 13.3 (Swift 5.6).
+
+
+### Fixes
+
+- Fix an issue that the file extension proposed in the save dialog for untitled document did not reflect the latest syntax style.
+- Fix an issue that the application could not open Haskell files.
+- Fix a potential crash when opening files via Services.
+
+
+
 4.1.3 (483)
 --------------------------
 

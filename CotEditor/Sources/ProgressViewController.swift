@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ final class ProgressViewController: NSViewController {
     @objc private dynamic let progress: Progress
     @objc private dynamic let message: String
     private let closesAutomatically: Bool
+    private let appliesDescriptionImmediately: Bool
     
     private var progressSubscriptions: Set<AnyCancellable> = []
     private var completionSubscriptions: Set<AnyCancellable> = []
@@ -53,7 +54,8 @@ final class ProgressViewController: NSViewController {
     ///   - progress: The progress instance to indicate.
     ///   - message: The text to display as the message label of the indicator.
     ///   - closesAutomatically: Whether dismiss the view when the progress is finished.
-    init?(coder: NSCoder, progress: Progress, message: String, closesAutomatically: Bool = true) {
+    ///   - appliesDescriptionImmediately: Whether throttle the update of the description field.
+    init?(coder: NSCoder, progress: Progress, message: String, closesAutomatically: Bool = true, appliesDescriptionImmediately: Bool = false) {
         
         assert(!progress.isCancelled)
         assert(!progress.isFinished)
@@ -61,6 +63,7 @@ final class ProgressViewController: NSViewController {
         self.progress = progress
         self.message = message
         self.closesAutomatically = closesAutomatically
+        self.appliesDescriptionImmediately = appliesDescriptionImmediately
         
         super.init(coder: coder)
         
@@ -101,7 +104,7 @@ final class ProgressViewController: NSViewController {
             .store(in: &self.progressSubscriptions)
         
         self.progress.publisher(for: \.localizedDescription, options: .initial)
-            .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
+            .throttle(for: self.appliesDescriptionImmediately ? 0 : 0.1, scheduler: DispatchQueue.main, latest: true)
             .assign(to: \.stringValue, on: descriptionField)
             .store(in: &self.progressSubscriptions)
     }

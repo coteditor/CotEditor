@@ -470,7 +470,7 @@
 "Please wait for a while." = "しばらくお待ちください…";
 "Extracting %@…" = "%@を抽出中…";
 "Preparing to color…" = "カラーリングの準備中…";
-"Applying colors to text" = "テキストにカラーを適用中";
+"Applying colors to text…" = "テキストにカラーを適用中…";
 "keywords" = "キーワード";
 "commands" = "コマンド";
 "types" = "タイプ";

@@ -252,7 +252,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// return preferred file extension corresponding to the current syntax style
     override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
-        if let pathExtension = self.fileURL?.pathExtension {
+        if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
         }
         
@@ -487,15 +487,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// prepare save panel
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
-        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
+        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 12)
         savePanel.allowsOtherFileTypes = true
         savePanel.allowedContentTypes = []  // empty array allows setting any extension
-        if
-            let fileType = self.fileType,
-            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation),
-            let utType = UTType(filenameExtension: pathExtension)
+        
+        if let fileType = self.fileType,
+           let filenameExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation),
+           let utType = UTType(filenameExtension: filenameExtension)
         {
-            // set once allowedContentTypes, so that initial filename selection excludes the file extension
+            // set once allowedContentTypes, so that the initial filename selection excludes the file extension
             savePanel.allowedContentTypes = [utType]
             
             // disable it immediately in the next runloop to allow setting other extensions
@@ -508,7 +508,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.savePanelAccessoryController.representedObject = self
         savePanel.accessoryView = self.savePanelAccessoryController.view
         
-        return super.prepareSavePanel(savePanel)
+        return true
     }
     
     

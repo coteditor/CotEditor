@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,11 +57,16 @@ final class ServicesProvider: NSObject {
         
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }
         
-        for fileURL in fileURLs {
-            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
-                if let error = error {
-                    errorPointer.pointee = error.localizedDescription as NSString
-                    NSApp.presentError(error)
+        Task {
+            await withTaskGroup(of: Void.self) { group in
+                for fileURL in fileURLs {
+                    group.addTask {
+                        do {
+                            try await NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true)
+                        } catch {
+                            await NSApp.presentError(error)
+                        }
+                    }
                 }
             }
         }

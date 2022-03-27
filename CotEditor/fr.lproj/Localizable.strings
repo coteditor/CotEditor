@@ -469,7 +469,7 @@
 "Please wait for a while." = "Veuillez patienter quelques instants.";
 "Extracting %@…" = "Extraction de %@…";
 "Preparing to color…" = "Préparation de la coloration syntaxique…";
-"Applying colors to text" = "Application des couleurs au texte";
+"Applying colors to text…" = "Application des couleurs au texte…";
 "keywords" = "mots-clés";
 "commands" = "commandes";
 "types" = "types";
