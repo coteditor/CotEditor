@@ -96,6 +96,10 @@
 		2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAB24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift */; };
 		2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
 		2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */; };
+		2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABC9A27F056E60054795D /* BidiScrollView.swift */; };
+		2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABC9A27F056E60054795D /* BidiScrollView.swift */; };
+		2A1ABCA527F079120054795D /* BidiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA427F079120054795D /* BidiScroller.swift */; };
+		2A1ABCA627F079120054795D /* BidiScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA427F079120054795D /* BidiScroller.swift */; };
 		2A1ABCA827F07CED0054795D /* NSScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA727F07CED0054795D /* NSScroller.swift */; };
 		2A1ABCA927F07CED0054795D /* NSScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1ABCA727F07CED0054795D /* NSScroller.swift */; };
 		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
@@ -939,6 +943,8 @@
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1A4EAB24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+DefaultKey.swift"; sourceTree = "<group>"; };
 		2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Combine.swift; sourceTree = "<group>"; };
+		2A1ABC9A27F056E60054795D /* BidiScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidiScrollView.swift; sourceTree = "<group>"; };
+		2A1ABCA427F079120054795D /* BidiScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidiScroller.swift; sourceTree = "<group>"; };
 		2A1ABCA727F07CED0054795D /* NSScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSScroller.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
@@ -1692,6 +1698,7 @@
 			isa = PBXGroup;
 			children = (
 				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
+				2A1ABCA327F0785B0054795D /* Bidi Scroll View */,
 				2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */,
 				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
 				2AC3845220C929950003F213 /* OpacitySampleView.swift */,
@@ -1764,6 +1771,15 @@
 				2A1A4EAF24FB9D9300B50AA0 /* Combine.swift */,
 			);
 			name = Swift;
+			sourceTree = "<group>";
+		};
+		2A1ABCA327F0785B0054795D /* Bidi Scroll View */ = {
+			isa = PBXGroup;
+			children = (
+				2A1ABC9A27F056E60054795D /* BidiScrollView.swift */,
+				2A1ABCA427F079120054795D /* BidiScroller.swift */,
+			);
+			name = "Bidi Scroll View";
 			sourceTree = "<group>";
 		};
 		2A2184121D0426E800522EF5 /* Window */ = {
@@ -2873,6 +2889,8 @@
 				2AA056AD26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
+				2A1ABCA527F079120054795D /* BidiScroller.swift in Sources */,
+				2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
@@ -3191,6 +3209,8 @@
 				2AA056AE26FCA171000E0CB2 /* Arithmetrics.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
+				2A1ABCA627F079120054795D /* BidiScroller.swift in Sources */,
+				2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C821D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,
