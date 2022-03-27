@@ -25,7 +25,9 @@
 
 import AppKit
 
-/// Thanks to [MKKRightToLeftScrollView](https://github.com/aiaf/MKKRightToLeftScrollView)!
+/// A scroll view that allows switching the vertical scroller position regardless of the user interface layout direction.
+///
+/// The implementation referred a lot to <https://github.com/aiaf/MKKRightToLeftScrollView>. Thank you!
 final class BidiScrollView: NSScrollView {
     
     // MARK: Public Properties
@@ -80,9 +82,12 @@ extension NSEdgeInsets: Equatable {
     static let zero = NSEdgeInsetsZero
     
     
-    public static func == (lhs: NSEdgeInsets, rhs: NSEdgeInsets) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         
-        lhs.left == rhs.left && lhs.top == rhs.top && lhs.right == rhs.right && lhs.bottom == rhs.bottom
+        lhs.left == rhs.left &&
+        lhs.top == rhs.top &&
+        lhs.right == rhs.right &&
+        lhs.bottom == rhs.bottom
     }
     
 }

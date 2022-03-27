@@ -27,19 +27,6 @@ import AppKit
 
 final class BidiScroller: NSScroller {
     
-    // MARK: Lifecycle
-    
-    convenience init(inheritingFrom scroller: NSScroller) {
-        
-        self.init(frame: scroller.frame)
-        
-        self.scrollerStyle = scroller.scrollerStyle
-        self.controlSize = scroller.controlSize
-        self.knobStyle = scroller.knobStyle
-    }
-    
-    
-    
     // MARK: Scroller methods
     
     override class var isCompatibleWithOverlayScrollers: Bool { true }
@@ -124,7 +111,6 @@ final class BidiScroller: NSScroller {
             if scrollView.hasVerticalScroller, let scroller = scrollView.verticalScroller, !scroller.isHidden {
                 return inset + scroller.thickness
             }
-            
         } else {
             return inset + scrollView.borderType.width
         }
@@ -133,6 +119,9 @@ final class BidiScroller: NSScroller {
     }
     
     
+    /// Horizontally flip the drawing cordinate when the scroller direction is right-to-left.
+    ///
+    /// - Parameter part: The scroller part drawing in.
     private func flipHorizontalCoordinatesInRightToLeftLayout(for part: NSScroller.Part) {
         
         guard self.isVertical, self.scrollView?.scrollerDirection == .rightToLeft else { return }
@@ -149,6 +138,7 @@ final class BidiScroller: NSScroller {
 
 private extension NSBorderType {
     
+    /// Border width.
     var width: CGFloat {
         
         switch self {
@@ -156,7 +146,7 @@ private extension NSBorderType {
             case .lineBorder:   return 1
             case .bezelBorder:  return 1
             case .grooveBorder: return 2
-            @unknown default: assertionFailure(); return 0
+            @unknown default: return 0
         }
     }
     
