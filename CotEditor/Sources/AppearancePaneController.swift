@@ -37,6 +37,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     
+    private var fontObserver: AnyCancellable?
     private var themeManagerObservers: Set<AnyCancellable> = []
     private lazy var filePromiseQueue = OperationQueue()
     
@@ -81,7 +82,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewWillAppear()
         
-        self.setupFontFamilyNameAndSize()
+        self.fontObserver = UserDefaults.standard.publisher(for: .fontSize, initial: true)
+            .sink { [weak self] _ in self?.setupFontFamilyNameAndSize() }
         
         // select one of cursor type radio buttons
         switch UserDefaults.standard[.cursorType] {
@@ -129,6 +131,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidDisappear()
         
+        self.fontObserver = nil
         self.themeManagerObservers.removeAll()
         
     }
