@@ -19,6 +19,7 @@ Change Log
 - Update document icons.
 - Detect the line ending in documents more intelligently.
 - Adjust the vertical position of line numbers on printing.
+- Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
 - Add steppers to the font setting controls.
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.

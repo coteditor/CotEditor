@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -76,6 +76,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                       let lineNumberView = self?.lineNumberView
                 else { return assertionFailure() }
                 
+                // set scroller location
+                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = (writingDirection == .rightToLeft) ? .rightToLeft : .leftToRight
+                
+                // set line number view location
                 let index = writingDirection == .rightToLeft ? stackView.arrangedSubviews.count - 1 : 0
                 
                 guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
