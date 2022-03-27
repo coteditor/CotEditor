@@ -47,6 +47,7 @@ final class ThemeTests: XCTestCase {
         XCTAssertEqual(theme.background.color, NSColor.white.usingColorSpace(.genericRGB))
         XCTAssertEqual(theme.lineHighlight.color.brightnessComponent, 0.94, accuracy: 0.01)
         XCTAssertNil(theme.secondarySelectionColor)
+        XCTAssertFalse(theme.isDarkTheme)
         
         for type in SyntaxType.allCases {
             XCTAssertGreaterThan(theme.style(for: type)!.color.hueComponent, 0)
@@ -69,13 +70,14 @@ final class ThemeTests: XCTestCase {
     /// test if all of bundled themes are valid
     func testBundledThemes() throws {
         
-        let themeDirectoryURL = self.bundle.url(forResource: themeDirectoryName, withExtension: nil)!
-        let enumerator = FileManager.default.enumerator(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
+        let themeDirectoryURL = self.bundle.url(forResource: self.themeDirectoryName, withExtension: nil)!
+        let urls = try FileManager.default.contentsOfDirectory(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
+            .filter { UTType.cotTheme.preferredFilenameExtension == $0.pathExtension }
         
-        for case let url as URL in enumerator {
-            guard UTType.cotTheme.filenameExtensions.contains(url.pathExtension) else { continue }
-            
-            _ = try Theme.theme(contentsOf: url)
+        XCTAssertFalse(urls.isEmpty)
+        
+        for url in urls {
+            XCTAssertNoThrow(try Theme.theme(contentsOf: url))
         }
     }
     
@@ -87,7 +89,7 @@ private extension ThemeTests {
     
     func loadThemeWithName(_ name: String) throws -> Theme? {
         
-        let url = self.bundle.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: themeDirectoryName)
+        let url = self.bundle.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
         
         return try Theme.theme(contentsOf: url!)
     }
