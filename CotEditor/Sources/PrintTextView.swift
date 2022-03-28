@@ -60,8 +60,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private let lineHeight: CGFloat
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
-    private let dateFormatter: DateFormatter
     private var lastPaperContentSize: NSSize = .zero
+    private lazy var dateFormatter: DateFormatter = .init()
     
     private var asyncHighlightObserver: AnyCancellable?
     
@@ -72,10 +72,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     init() {
         
-        // prepare date formatter
-        self.dateFormatter = DateFormatter()
-        self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
-        
         self.tabWidth = UserDefaults.standard[.tabWidth]
         self.lineHeight = UserDefaults.standard[.lineHeight]
         
@@ -84,6 +80,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         textContainer.widthTracksTextView = true
         textContainer.isHangingIndentEnabled = UserDefaults.standard[.enablesHangingIndent]
         textContainer.hangingIndentWidth = UserDefaults.standard[.hangingIndentWidth]
+        textContainer.lineFragmentPadding = self.lineFragmentPadding
+        // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
         
         // setup textView components
         let textStorage = NSTextStorage()
@@ -92,10 +90,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         layoutManager.addTextContainer(textContainer)
         
         super.init(frame: .zero, textContainer: textContainer)
-        
-        // specify text container padding
-        // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
-        self.textContainer!.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
         self.isHorizontallyResizable = false
@@ -438,6 +432,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 return filePath
             
             case .printDate:
+                self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
                 return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
             
             case .pageNumber:
