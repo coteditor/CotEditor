@@ -148,23 +148,37 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// localized descriptions for print settings
     func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
-        return [
-            localizedSummaryItem(name: "Color", description: self.theme),
-            localizedSummaryItem(name: "Print Background", description: self.printsBackground ? "On" : "Off"),
-            localizedSummaryItem(name: "Line Number", description: self.lineNumberMode.description),
-            localizedSummaryItem(name: "Invisibles", description: self.invisibleCharsMode.description),
+        [
+            [.itemName: "Color".localized,
+             .itemDescription: self.theme.localized],
+            [.itemName: "Print Background".localized,
+             .itemDescription: self.printsBackground ? "On".localized : "Off".localized],
+            [.itemName: "Line Number".localized,
+             .itemDescription: self.lineNumberMode.localizedDescription],
+            [.itemName: "Invisibles".localized,
+             .itemDescription: self.invisibleCharsMode.localizedDescription],
             
-            localizedSummaryItem(name: "Print Header", description: self.printsHeader ? "On" : "Off"),
-            localizedSummaryItem(name: "Primary Header", description: self.primaryHeaderContent.description),
-            localizedSummaryItem(name: "Primary Header Alignment", description: self.primaryHeaderContent.description),
-            localizedSummaryItem(name: "Primary Header", description: self.secondaryHeaderContent.description),
-            localizedSummaryItem(name: "Primary Header Alignment", description: self.secondaryHeaderAlignment.description),
+            [.itemName: "Print Header".localized,
+             .itemDescription: self.printsHeader ? "On" .localized: "Off".localized],
+            [.itemName: "Primary Header".localized,
+             .itemDescription: self.primaryHeaderContent.localizedDescription],
+            [.itemName: "Primary Header Alignment".localized,
+             .itemDescription: self.primaryHeaderContent.localizedDescription],
+            [.itemName: "Primary Header".localized,
+             .itemDescription: self.secondaryHeaderContent.localizedDescription],
+            [.itemName: "Primary Header Alignment".localized,
+             .itemDescription: self.secondaryHeaderAlignment.localizedDescription],
             
-            localizedSummaryItem(name: "Print Footer", description: self.printsFooter ? "On" : "Off"),
-            localizedSummaryItem(name: "Primary Footer", description: self.primaryFooterContent.description),
-            localizedSummaryItem(name: "Primary Footer Alignment", description: self.primaryFooterAlignment.description),
-            localizedSummaryItem(name: "Primary Footer", description: self.secondaryFooterContent.description),
-            localizedSummaryItem(name: "Primary Footer Alignment", description: self.secondaryFooterAlignment.description),
+            [.itemName: "Print Footer".localized,
+             .itemDescription: self.printsFooter ? "On".localized : "Off".localized],
+            [.itemName: "Primary Footer".localized,
+             .itemDescription: self.primaryFooterContent.localizedDescription],
+            [.itemName: "Primary Footer Alignment".localized,
+             .itemDescription: self.primaryFooterAlignment.localizedDescription],
+            [.itemName: "Primary Footer".localized,
+             .itemDescription: self.secondaryFooterContent.localizedDescription],
+            [.itemName: "Primary Footer Alignment".localized,
+             .itemDescription: self.secondaryFooterAlignment.localizedDescription],
         ]
     }
     
@@ -340,25 +354,17 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
 }
 
 
-/// create dictionary for localizedSummaryItems
-private func localizedSummaryItem(name: String, description: String) -> [NSPrintPanel.AccessorySummaryKey: String] {
-    
-    return [.itemName: name.localized,
-            .itemDescription: description.localized]
-}
-
-
 private extension PrintVisibilityMode {
     
-    var description: String {
+    var localizedDescription: String {
         
         switch self {
             case .no:
-                return "Don’t Print"
+                return "Don’t Print".localized
             case .sameAsDocument:
-                return "Same as Document’s Setting"
+                return "Same as Document’s Setting".localized
             case .yes:
-                return "Print"
+                return "Print".localized
         }
     }
 }
@@ -366,21 +372,21 @@ private extension PrintVisibilityMode {
 
 private extension PrintInfoType {
     
-    var description: String {
+    var localizedDescription: String {
         
         switch self {
             case .none:
-                return "None"
+                return "None".localized
             case .syntaxName:
-                return "Syntax Name"
+                return "Syntax Name".localized
             case .documentName:
-                return "Document Name"
+                return "Document Name".localized
             case .filePath:
-                return "File Path"
+                return "File Path".localized
             case .printDate:
-                return "Print Date"
+                return "Print Date".localized
             case .pageNumber:
-                return "Page Number"
+                return "Page Number".localized
         }
     }
 }
@@ -388,15 +394,15 @@ private extension PrintInfoType {
 
 private extension AlignmentType {
     
-    var description: String {
+    var localizedDescription: String {
         
         switch self {
             case .left:
-                return "Left"
+                return "Left".localized
             case .center:
-                return "Center"
+                return "Center".localized
             case .right:
-                return "Right"
+                return "Right".localized
         }
     }
 }
