@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,6 +35,14 @@ extension NSPrintInfo {
         size.height -= self.topMargin + self.bottomMargin
         
         return size.scaled(to: 1 / self.scalingFactor)
+    }
+    
+    
+    /// KVO compatible accessor for Cocoa print setting.
+    subscript<Value>(key: NSPrintInfo.AttributeKey) -> Value? {
+        
+        get { self.dictionary().value(forKey: key.rawValue) as? Value }
+        set { self.dictionary().setValue(newValue, forKey: key.rawValue) }
     }
     
 }

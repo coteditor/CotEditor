@@ -279,16 +279,15 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         guard
             let layoutManager = self.layoutManager as? PrintLayoutManager,
-            let printInfo = NSPrintOperation.current?.printInfo,
-            let settings = printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any]
-            else { return assertionFailure() }
+            let printInfo = NSPrintOperation.current?.printInfo
+        else { return assertionFailure() }
         
         // set scope to print
         layoutManager.showsSelectionOnly = printInfo.isSelectionOnly
         
         // check whether print line numbers
         self.printsLineNumber = {
-            switch PrintVisibilityMode(settings[.lineNumber] as? Int) {
+            switch PrintVisibilityMode(printInfo[.lineNumber]) {
                 case .no:
                     return false
                 case .sameAsDocument:
@@ -303,7 +302,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            switch PrintVisibilityMode(settings[.invisibles] as? Int) {
+            switch PrintVisibilityMode(printInfo[.invisibles]) {
                 case .no:
                     return false
                 case .sameAsDocument:
@@ -314,11 +313,10 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }()
         
         // set whether draws background
-        self.drawsBackground = settings[.printsBackground] as? Bool ?? true
+        self.drawsBackground = printInfo[.printsBackground] ?? true
         
         // create theme
-        assert(settings[.theme] != nil)
-        let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
+        let themeName = printInfo[.theme] ?? ThemeName.blackAndWhite
         let theme = ThemeManager.shared.setting(name: themeName)  // nil for Black and White
         
         guard self.theme?.name != theme?.name else { return }
@@ -356,14 +354,14 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         let keys = location.keys
         
         guard
-            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            (settings[keys.needsDraw] as? Bool) ?? false
-            else { return NSAttributedString() }
+            let printInfo = NSPrintOperation.current?.printInfo,
+            printInfo[keys.needsDraw] == true
+        else { return NSAttributedString() }
         
-        let primaryInfoType = PrintInfoType(settings[keys.primaryContent] as? Int)
-        let primaryAlignment = AlignmentType(settings[keys.primaryAlignment] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[keys.secondaryContent] as? Int)
-        let secondaryAlignment = AlignmentType(settings[keys.secondaryAlignment] as? Int)
+        let primaryInfoType = PrintInfoType(printInfo[keys.primaryContent])
+        let primaryAlignment = AlignmentType(printInfo[keys.primaryAlignment])
+        let secondaryInfoType = PrintInfoType(printInfo[keys.secondaryContent])
+        let secondaryAlignment = AlignmentType(printInfo[keys.secondaryAlignment])
         
         let primaryString = self.printInfoString(type: primaryInfoType)
         let secondaryString = self.printInfoString(type: secondaryInfoType)
