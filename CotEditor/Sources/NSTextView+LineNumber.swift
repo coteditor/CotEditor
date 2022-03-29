@@ -107,7 +107,7 @@ extension NSTextView {
             while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
                 var fragmentGlyphRange = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &fragmentGlyphRange, withoutAdditionalLayout: true)
-                let isWrapped = fragmentGlyphRange.lowerBound != lineGlyphRange.lowerBound
+                let isWrapped = fragmentGlyphRange.lowerBound > lineGlyphRange.lowerBound
                 
                 if options.contains(.bySkippingWrappedLine), isWrapped { break }
                 

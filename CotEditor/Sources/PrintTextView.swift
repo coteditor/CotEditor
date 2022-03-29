@@ -506,6 +506,20 @@ private final class PrintLayoutManager: LayoutManager {
         return glyphRange.length
     }
     
+    
+    override func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
+        
+        // zero width for folded characters
+        if self.showsSelectionOnly,
+           let selectedRange = layoutManager.firstTextView?.selectedRange,
+            !selectedRange.contains(charIndex)
+        {
+            return .zeroAdvancement
+        }
+        
+        return super.layoutManager(layoutManager, shouldUse: action, forControlCharacterAt: charIndex)
+    }
+    
 }
 
 
