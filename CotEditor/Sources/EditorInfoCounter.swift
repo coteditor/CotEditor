@@ -102,7 +102,6 @@ final class EditorInfoCounter {
     // MARK: Private Properties
     
     private let string: String
-    private let lineEnding: LineEnding
     private let selectedRange: Range<String.Index>
     
     private let requiredInfo: EditorInfoTypes
@@ -114,13 +113,12 @@ final class EditorInfoCounter {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool, countsWholeText: Bool) {
+    init(string: String, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool, countsWholeText: Bool) {
         
         assert(selectedRange.upperBound <= string.endIndex)
         assert(!(string as NSString).className.contains("MutableString"))
         
         self.string = string
-        self.lineEnding = lineEnding
         self.selectedRange = selectedRange
         self.requiredInfo = requiredInfo
         self.countsLineEnding = countsLineEnding
@@ -156,9 +154,6 @@ final class EditorInfoCounter {
             if selectedString.compareCount(with: 1) == .equal,
                let character = selectedString.first
             {
-                let character = (character == LineEnding.lf.rawValue)
-                    ? self.lineEnding.rawValue
-                    : character
                 result.unicode = character.unicodeScalars.map(\.codePoint).joined(separator: ", ")
             }
         }
@@ -177,9 +172,7 @@ final class EditorInfoCounter {
         try Task.checkCancellation()
         
         if self.requiredInfo.contains(.length) {
-            count.length = (self.lineEnding.length == 1)
-                ? string.utf16.count
-                : string.replacingLineEndings(with: self.lineEnding).utf16.count
+            count.length = string.utf16.count
         }
         
         try Task.checkCancellation()

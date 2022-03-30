@@ -91,8 +91,7 @@ final class DocumentAnalyzer {
     private func updateEditorInfo() {
         
         guard
-            let document = self.document,
-            let textView = document.viewController?.focusedTextView,
+            let textView = self.document?.viewController?.focusedTextView,
             !textView.hasMarkedText()
             else { return }
         
@@ -109,7 +108,6 @@ final class DocumentAnalyzer {
         let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
         let countsWholeText = self.needsCountWholeText
         let counter = EditorInfoCounter(string: string,
-                                        lineEnding: document.lineEnding,
                                         selectedRange: selectedRange,
                                         requiredInfo: self.requiredInfoTypes,
                                         countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],

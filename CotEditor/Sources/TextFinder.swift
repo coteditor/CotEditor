@@ -376,7 +376,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// find string of which line endings are standardized to LF
     private var sanitizedFindString: String {
         
-        return self.findString.replacingLineEndings(with: .lf)
+        let lineEnding = (self.client as? EditorTextView)?.lineEnding ?? .lf
+        
+        return self.findString.replacingLineEndings(with: lineEnding)
     }
     
     

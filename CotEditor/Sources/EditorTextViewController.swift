@@ -36,6 +36,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
+    private var isApprovedTextChange = false
+    
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
     
@@ -98,15 +100,19 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// text will be edited
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
+        // skip line ending sanitization
+        if self.isApprovedTextChange { return true }
+        
         // standardize line endings to LF
         // -> Line endings replacement on file read is processed in `Document.read(from:ofType:).
         if let replacementString = replacementString,  // = only attributes changed
            !replacementString.isEmpty,  // = text deleted
            textView.undoManager?.isUndoing != true,  // = undo
            let lineEnding = replacementString.detectedLineEnding,  // = no line endings
-           lineEnding != .lf
+           let editorLineEnding = (textView as? EditorTextView)?.lineEnding,
+           lineEnding != editorLineEnding
         {
-            return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
+            return !textView.replace(with: replacementString.replacingLineEndings(with: editorLineEnding),
                                      range: affectedCharRange,
                                      selectedRange: nil)
         }
@@ -172,7 +178,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard let textView = self.textView else { return assertionFailure() }
         
         let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
-        inputViewController.completionHandler = { [unowned textView] (character) in
+        inputViewController.completionHandler = { [weak self, unowned textView] (character) in
+            // flag to skip line ending sanitization
+            self?.isApprovedTextChange = true
+            defer { self?.isApprovedTextChange = false }
+            
             textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }
         
@@ -189,18 +199,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard
             let textView = self.textView,
-            textView.selectsSingleCharacter
+            textView.selectsSingleCharacter,
+            let character = (textView.string as NSString).substring(with: textView.selectedRange).first
         else { return assertionFailure() }
-        
-        var selectedString = (textView.string as NSString).substring(with: textView.selectedRange)
-        
-        // apply document's line ending
-        let documentLineEnding = textView.document?.lineEnding ?? .lf
-        if documentLineEnding != .lf, selectedString.detectedLineEnding == .lf {
-            selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
-        }
-        
-        guard let character = selectedString.first else { return }
         
         let popoverController = CharacterPopoverController.instantiate(for: character)
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero

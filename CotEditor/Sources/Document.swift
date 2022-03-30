@@ -348,18 +348,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.fileEncoding = file.fileEncoding
         self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
         
-        // standardize line endings to LF
-        // -> Line endings replacement by other text modifications is processed in
-        //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
-        let string = file.string.replacingLineEndings(with: .lf)
-        
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: file.string)
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: file.string)
             self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
@@ -750,18 +745,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// Return whole string in the current text storage which document's line endings are already applied to.
-    ///
-    /// - Note: The internal text storage has always LF for its line ending.
+    /// Return whole string in the current text storage.
     var string: String {
         
-        let editorString = self.textStorage.string.immutable  // line ending is always LF
-        
-        if self.lineEnding == .lf {
-            return editorString
-        }
-        
-        return editorString.replacingLineEndings(with: self.lineEnding)
+        self.textStorage.string
     }
     
     
@@ -841,6 +828,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // update line ending
+        self.textStorage.replaceLineEndings([self.lineEnding], with: lineEnding)
         self.lineEnding = lineEnding
         
         // update UI

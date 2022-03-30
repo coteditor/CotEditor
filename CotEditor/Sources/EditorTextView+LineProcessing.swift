@@ -96,7 +96,7 @@ extension EditorTextView {
         
         guard let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        guard let editingInfo = self.string.duplicateLine(in: selectedRanges, lineEnding: "\n") else { return }
+        guard let editingInfo = self.string.duplicateLine(in: selectedRanges, lineEnding: self.lineEnding.rawValue) else { return }
         
         self.edit(with: editingInfo, actionName: "Duplicate Line".localized)
     }

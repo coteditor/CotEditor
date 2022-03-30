@@ -637,7 +637,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard
             self.isEditable,
             self.isAutomaticIndentEnabled
-            else { return super.insertNewline(sender) }
+            else { return self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange) }
         
         let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
         let ranges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
@@ -667,23 +667,24 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 
                 // expand block
                 if lastCharacter == "{", nextCharacter == "}" {
-                    indent += "\n" + indentBase
+                    indent += self.lineEnding.string + indentBase
                 }
                 
                 return (range, indent, insertion)
             }
         
-        super.insertNewline(sender)
+        // insert newline
+        self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange)
         
         // auto indent
         var locations: [Int] = []
         var offset = 0
         for (range, indent, insertion) in indents {
-            let location = range.lowerBound + 1 + offset  // +1 for new line character
+            let location = range.lowerBound + self.lineEnding.length + offset
             
             super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
             
-            offset += -range.length + 1 + indent.count
+            offset += -range.length + self.lineEnding.length + indent.count
             locations.append(location + insertion)
         }
         self.setSelectedRangesWithUndo(locations.map { NSRange(location: $0, length: 0) })
@@ -1102,7 +1103,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                         groupRanges.append(groupRanges.count..<(groupRanges.count + groupCount))
                     }
                 }
-                .map { lines[$0].joined(separator: "\n") }
+                .map { lines[$0].joined(separator: self.lineEnding.string) }
             let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
             let strings = multipleTexts + blanks
             
@@ -1110,23 +1111,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         return super.readSelection(from: pboard, type: type)
-    }
-    
-    
-    /// convert line endings in pasteboard to document's line ending
-    override func writeSelection(to pboard: NSPasteboard, types: [NSPasteboard.PasteboardType]) -> Bool {
-        
-        let success = super.writeSelection(to: pboard, types: types)
-        
-        guard let lineEnding = self.document?.lineEnding, lineEnding != .lf else { return success }
-        
-        for type in types {
-            guard let string = pboard.string(forType: type) else { continue }
-            
-            pboard.setString(string.replacingLineEndings(with: lineEnding), forType: type)
-        }
-        
-        return success
     }
     
     
@@ -1200,10 +1184,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     // MARK: Public Accessors
     
-    /// document object representing the text view contents
-    var document: Document? {
+    var lineEnding: LineEnding {
         
-        self.window?.windowController?.document as? Document
+        self.document?.lineEnding ?? .lf
     }
     
     
@@ -1294,8 +1277,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard !self.selectedRange.isEmpty else { return NSSound.beep() }
         
-        let lineEnding = self.document?.lineEnding ?? .lf
-        
         // substring all selected attributed strings
         let selections: [NSAttributedString] = self.selectedRanges
             .map(\.rangeValue)
@@ -1312,20 +1293,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     styledText.addAttribute(.foregroundColor, value: color, range: localRange)
                 }
                 
-                // apply document's line ending
-                if lineEnding != .lf {
-                    for (index, character) in zip(plainText.indices, plainText).reversed() where character.isNewline {  // process backwards
-                        let characterRange = NSRange(index...index, in: plainText)
-                        
-                        styledText.replaceCharacters(in: characterRange, with: lineEnding.string)
-                    }
-                }
-                
                 return styledText
             }
         
         // prepare objects for rectangular selection
-        let pasteboardString = selections.joined(separator: lineEnding.string)
+        let pasteboardString = selections.joined(separator: self.lineEnding.string)
         let propertyList = selections.map { $0.string.components(separatedBy: .newlines).count }
         
         // set to paste board
@@ -1355,6 +1327,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     // MARK: Private Methods
+    
+    /// document object representing the text view contents
+    private var document: Document? {
+        
+        self.window?.windowController?.document as? Document
+    }
+    
     
     /// update coloring settings
     private func applyTheme() {
