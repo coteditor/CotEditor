@@ -977,6 +977,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         // copy textView states
         if let baseTextView = baseViewController?.textView, let textView = editorViewController.textView {
             textView.font = baseTextView.font
+            textView.usesAntialias = baseTextView.usesAntialias
+            textView.ligature = baseTextView.ligature
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
