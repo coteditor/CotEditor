@@ -46,6 +46,9 @@
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
 "q4F-Uw-VL4.title" = "Codierung";
 
+
+/* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
+"EJU-9e-uCA.ibShadowedToolTip" = "Dateigröße";
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
 "mS8-3F-93y.title" = "Zeilenenden";
 /* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */

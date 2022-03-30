@@ -59,6 +59,9 @@
 /* Class = "NSMenuItem"; title = "PS"; ObjectID = "YIk-KP-44u"; */
 "YIk-KP-44u.title" = "PS";
 
+
+/* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
+"EJU-9e-uCA.ibShadowedToolTip" = "Dosya Boyutu";
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
 "mS8-3F-93y.title" = "Satır Sonları";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */

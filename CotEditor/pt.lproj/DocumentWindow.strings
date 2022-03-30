@@ -60,6 +60,9 @@
 /* Class = "NSMenuItem"; title = "PS"; ObjectID = "YIk-KP-44u"; */
 "YIk-KP-44u.title" = "PS";
 
+
+/* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
+"EJU-9e-uCA.ibShadowedToolTip" = "Tamanho do arquivo";
 /* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
 "FNE-H9-iZR.ibShadowedToolTip" = "Finais de linha";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
