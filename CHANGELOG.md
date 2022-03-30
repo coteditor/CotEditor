@@ -24,11 +24,26 @@ Change Log
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Prefer using .yml for syntax definition files over .yaml.
-- Add a temporal highlight for the current match in the editor (thanks to Ethan Wong!).
 - Remove original document icons for CoffeeScript and Tcl. 
 - [trivial] Accept script files for the Script menu with an uppercased file extension.
 - [trivial] Replace `\n` with `\R` for the new line meta character in the regular expression reference.
 - [trivial] Tweak Anura theme.
+
+
+
+4.1.5 (unreleased)
+--------------------------
+
+### Improvements
+
+- Add a temporal highlight for the current match in the editor (thanks to Ethan Wong!).
+- Update HTML syntax style for better highlighting with `'` character.
+
+
+### Fixes
+
+- Fix an issue that the split view did not inherit the font style and the writing direction.
+- Fix an issue that the incompatible character pane did not show the message “No incompatible characters were found.” when all of the existing incompatible characters are cleared.
 
 
 
