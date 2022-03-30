@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Add a temporal highlight for the current match in the editor (thanks to Ethan Wong!).
+- Update HTML syntax style for better highlighting with `'` character.
 
 
 ### Fixes
