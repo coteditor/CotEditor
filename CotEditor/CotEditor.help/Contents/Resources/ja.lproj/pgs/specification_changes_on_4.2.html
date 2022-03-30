@@ -1,0 +1,57 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="仕様変更,スクリプトフォルダ,サンドボックス,line ending,改行"/>
+	<title>CotEditor 4.2での仕様変更</title>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+</head>
+
+<body>
+
+<a name="specification_changes"></a>
+<h1>CotEditor 4.2での仕様変更</h1>
+
+<p>CotEditorはバージョン4.2.0から改行コードの扱いが変更されました。バージョン4.2.0以前では内部的には改行コードはすべてLF (<code>U+000A</code>)として扱っていましたが、バージョン4.2.0以降は書類の実際の改行コードをそのまま扱います。そのため、とくに以前のバージョンを使っていたユーザはこの変更を意識し、いくつかの設定で変更が必要になる場合があります。</p>
+
+
+<h2>正規表現パターンでの改行コード</h2>
+
+<p>従来のCotEditorは内部的にすべて改行コードをLFで処理していたため、書類の実際の改行コードに関わらず<code>\n</code>を改行を認識する正規表現パターンとして利用できました。CotEditor 4.2.0以降では<code>\n</code>は改行コードにLFを用いる書類でしか改行にマッチしなくなります。従来のように書類に改行コードの如何に関わらず改行にマッチさせたい場合は<code>\n</code>でなく<code>\R</code>を用いてください。</p>
+
+<p class="addition"><code>\R</code>は、CotEditorが使用している<a href="about_regex.html">ICU正規表現エンジン</a>において、改行を表現する文字全般にマッチするメタ文字です。<code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, および<code>U+000D</code> <code>U+000A</code>の組み合わせ (CRLF)を改行コードとして認識します。</p>
+
+<p>一方で、実際の書類で使われている改行コードにマッチするようになるため、「CRを改行コードとして使用している書類に紛れているLFを検索する」といった使い方ができるようになります。</p>
+
+
+<h2>保存している設定での改行の取り扱い</h2>
+<p>改行コードとしてLFのみを想定したスクリプト処理や正規表現パターンは、CotEditor 4.2.0以降LF以外の改行コードを持つ書類で意図した挙動をしなくなる可能性があります。これらユーザ設定はユーザ自身が設定を変更する必要があります。</p>
+
+<p>CotEidtorで改行が関わるユーザ設定としては、以下の設定項目が該当します：</p>
+<ul>
+	<li><a href="./howto_multiple_replace.html">複数置換設定</a>の置換定義</li>
+	<li>シンタックススタイルの<a href="about_syntaxstyle.html">カスタム定義</a></li>
+	<li>スクリプトメニューに保存している<a href="about_scripting.html">スクリプト</a>内での書類の改行コードの取り扱い</li>
+</ul>
+
+
+<h2>検索と置換での改行</h2>
+
+<p>正規表現を用いない通常の文字列での検索と置換では、検索/置換文字列内に改行が含まれる場合、その改行は検索対象のも書類で用いられている改行コードと同一の改行コードであると想定して使用されます。</p>
+<p>これは、たとえば、改行コードCRを含む文字列を（正規表現でない）検索文字列として使用して改行コードLFの書類を検索した場合、検索文字列の改行はすべてLFとして使用される、ということです。改行コードを厳密に扱いたい場合は、正規表現を利用してください。</p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/whats_new_in_4.2.html">CotEditor 4.2の新機能</a></li>
+	<li><a href="../pgs/releasenotes.html">リリースノート</a></li>
+	<li><a href="../xpgs/xsoftware.html">CotEditorについて</a></li>
+</ul>
+</section>
+
+</body>
+</html>
