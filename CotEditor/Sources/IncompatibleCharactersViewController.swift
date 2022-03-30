@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,14 +104,8 @@ final class IncompatibleCharactersViewController: NSViewController {
                 .sink { [weak self] in self?.didUpdateIncompatibleCharacters($0) }
                 .store(in: &self.scannerObservers)
             scanner.$isScanning
-                .map { $0
-                    ? "Scanning incompatible characters…".localized
-                    : scanner.incompatibleCharacters.isEmpty
-                    ? "No incompatible characters were found.".localized
-                    : nil
-                }
                 .receive(on: DispatchQueue.main)
-                .sink { [weak self] in self?.message = $0 }
+                .sink { [weak self] in self?.updateMessage(isScanning: $0) }
                 .store(in: &self.scannerObservers)
         }
     }
@@ -143,7 +137,7 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     // MARK: Private Methods
     
-    private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
+    @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
         
         guard let document = self.document else { return }
         
@@ -153,8 +147,19 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         self.incompatibleCharacters = incompatibleCharacters
         
+        self.updateMessage(isScanning: false)
         document.textStorage.markup(ranges: incompatibleCharacters.map(\.range),
                                     lineEnding: document.lineEnding)
+    }
+    
+    
+    /// Update the state message on the table.
+    @MainActor private func updateMessage(isScanning: Bool) {
+        
+        self.message = isScanning ? "Scanning incompatible characters…".localized
+                                  : (self.incompatibleCharacters.isEmpty
+                                     ? "No incompatible characters were found.".localized
+                                     : nil)
     }
     
 }

@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.1.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue that the incompatible character pane did not show the message “No incompatible characters were found.” when all of the existing incompatible characters are cleared.
+
+
+
 4.1.4 (485)
 --------------------------
 
