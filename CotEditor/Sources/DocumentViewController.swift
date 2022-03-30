@@ -964,6 +964,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
         editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
+        editorViewController.textView?.baseWritingDirection = self.writingDirection
         editorViewController.textView?.showsPageGuide = self.showsPageGuide
         editorViewController.textView?.showsIndentGuides = self.showsIndentGuides
         editorViewController.showsNavigationBar = self.showsNavigationBar
@@ -978,7 +979,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
-            textView.baseWritingDirection = baseTextView.baseWritingDirection
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
     }
