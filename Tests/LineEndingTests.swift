@@ -73,6 +73,34 @@ final class LineEndingTests: XCTestCase {
     }
     
     
+    func testLineEndingRanges() {
+        
+        let string = "\rfoo\r\nbar \n \nb \n\r uz\u{2029}moin\r\n"
+        let expected: [LineEnding: [NSRange]] = [
+            .lf: [NSRange(location: 10, length: 1),
+                  NSRange(location: 12, length: 1),
+                  NSRange(location: 15, length: 1)],
+            .cr: [NSRange(location: 0, length: 1),
+                  NSRange(location: 16, length: 1)],
+            .crlf: [NSRange(location: 4, length: 2),
+                    NSRange(location: 25, length: 2)],
+            .paragraphSeparator: [NSRange(location: 20, length: 1)],
+        ]
+        
+        XCTAssertNil("".lineEndingRanges())
+        XCTAssertNil("abc".lineEndingRanges())
+        XCTAssertEqual(string.lineEndingRanges(), expected)
+        
+        let expectedPartly: [LineEnding: [NSRange]] = [
+            .lf: [NSRange(location: 10, length: 1),
+                  NSRange(location: 12, length: 1)],
+            .cr: [NSRange(location: 0, length: 1)],
+            .crlf: [NSRange(location: 4, length: 2)],
+        ]
+        XCTAssertEqual(string.lineEndingRanges(maximum: 2), expectedPartly)
+    }
+    
+    
     func testReplacement() {
         
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")

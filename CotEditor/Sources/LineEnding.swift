@@ -135,13 +135,6 @@ private extension BidirectionalCollection where Element == LineEnding {
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// The dominated line ending type.
-    var detectedLineEnding: LineEnding? {
-        
-        self.countLineEndings(maximum: 3).firstMaxElement
-    }
-    
-    
     /// Count characters in the receiver but except all kinds of line endings.
     var countExceptLineEnding: Int {
         
@@ -169,35 +162,61 @@ extension StringProtocol where Self.Index == String.Index {
         return self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
     }
     
+}
+
+
+
+extension String {
     
-    /// Count the line endings in the receiver from the beginning.
+    /// The dominated line ending type.
+    var detectedLineEnding: LineEnding? {
+        
+        self.lineEndingRanges(maximum: 3)?
+            .sorted(\.value.first!.location)
+            .max { $0.value.count < $1.value.count }?
+            .key
+    }
+    
+    
+    /// Collect ranges of all line endings per line ending type from the beginning.
     ///
     /// - Parameter maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
-    /// - Returns: A counter object.
-    private func countLineEndings(maximum: Int? = nil) -> OrderedCounter<LineEnding> {
+    /// - Returns: Ranges of line endings.
+    func lineEndingRanges(maximum: Int? = nil) -> [LineEnding: [NSRange]]? {
         
-        var counter = OrderedCounter<LineEnding>()
+        assert(maximum ?? .max > 0)
         
-        guard !self.isEmpty else { return counter }
+        guard self.length > 0 else { return nil }
         
-        self.enumerateSubstrings(in: self.startIndex..., options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
+        var lineEndingRanges: [LineEnding: [NSRange]] = [:]
+        let string = self as NSString
+        
+        string.enumerateSubstrings(in: string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
+            guard !enclosingRange.isEmpty else { return }
+            
+            let lineEndingRange = NSRange(substringRange.upperBound..<enclosingRange.upperBound)
+            
             guard
-                !enclosingRange.isEmpty,
-                let lastCharacter = self[safe: substringRange.upperBound],
+                !lineEndingRange.isEmpty,
+                let lastCharacter = string.substring(with: lineEndingRange).first,  // line ending must be a single character
                 let lineEnding = LineEnding(rawValue: lastCharacter)
             else { return }
             
-            counter.append(lineEnding)
+            lineEndingRanges[lineEnding, default: []].append(lineEndingRange)
             
-            if let maximum = maximum, counter.count(lineEnding) >= maximum {
-                stop = true
+            if let maximum = maximum,
+               let count = lineEndingRanges[lineEnding]?.count,
+                count >= maximum
+            {
+                stop.pointee = ObjCBool(true)
             }
         }
         
-        return counter
+        return lineEndingRanges.isEmpty ? nil : lineEndingRanges
     }
     
 }
+
 
 
 extension NSMutableAttributedString {
