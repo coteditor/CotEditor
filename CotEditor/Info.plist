@@ -987,7 +987,7 @@
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
-				<string>Verilog-fill</string>
+				<string>Circuit-fill</string>
 				<key>UTTypeIconText</key>
 				<string>verilog</string>
 			</dict>
@@ -1008,6 +1008,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>VHDL source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Circuit-fill</string>
+				<key>UTTypeIconText</key>
+				<string>VHDL</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.coteditor.vhdl</string>
 			<key>UTTypeTagSpecification</key>
@@ -1606,11 +1613,6 @@
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
 				<string>CurlyBrackets-fill</string>
-				<key>UTTypeIconText</key>
-				<string>C#</string>
-			</dict>
-			<key>UTTypeIcons</key>
-			<dict>
 				<key>UTTypeIconText</key>
 				<string>C#</string>
 			</dict>
