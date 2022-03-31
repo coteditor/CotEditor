@@ -10,11 +10,11 @@ commands: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.3.2"
+  version: "1.3.3"
   license: "Same as CotEditor"
-  lastModified: "2022-02-24"
+  lastModified: "2022-02-26"
 characters:
-- beginString: "\"[^\\n\"]++\"\\s*+(?=:)"
+- beginString: "\"[^\\R\"]++\"\\s*+(?=:)"
   regularExpression: true
   description: "Key"
 comments: []
@@ -23,7 +23,7 @@ values:
 - beginString: "null"
 - beginString: "true"
 numbers:
-- beginString: "(?<=[:,\\[])[\\n\\t ]*-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
+- beginString: "(?<=[:,\\[])[\\R\\t ]*-?[0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?\\b"
   regularExpression: true
 strings:
 - beginString: "\""

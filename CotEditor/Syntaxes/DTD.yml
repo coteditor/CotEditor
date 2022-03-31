@@ -13,9 +13,9 @@ attributes:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0.1"
+  version: "1.0.2"
   license: "Same as CotEditor"
-  lastModified: "2015-11-29"
+  lastModified: "2022-02-26"
 characters:
 - beginString: "%[^&%\"]+;(?=[^<>]*[\\[>])"
   regularExpression: true
@@ -67,9 +67,9 @@ strings:
 - beginString: "(?<=NDATA)\\s+[[:alnum:]_\\-.]+(?=\\s*>)"
   regularExpression: true
 keywords:
-- beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\n\\t />])"
+- beginString: "(?<=</?)[[:alnum:]_\\-.:]+(?=[\\R\\t />])"
   regularExpression: true
-- beginString: "(?<=[\\n\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\n\\t )|,]?[^<>\\[]*[>\\[])"
+- beginString: "(?<=[\\R\\t (|,])[[:alnum:]_\\-.:%]+(?=[\\R\\t )|,]?[^<>\\[]*[>\\[])"
   regularExpression: true
 variables:
 - beginString: "(?<!ATTLIST)\\s+[O\\-]\\s+[O\\-](?=\\s[^<>]*>)"

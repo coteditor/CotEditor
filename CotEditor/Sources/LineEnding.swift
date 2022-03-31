@@ -197,38 +197,21 @@ extension StringProtocol where Self.Index == String.Index {
         return counter
     }
     
+}
+
+
+extension NSMutableAttributedString {
     
-    /// Convert passed-in range as if line endings are changed from `fromLineEnding` to `toLineEnding`
-    /// by assuming the receiver has `fromLineEnding` regardless of actual ones if specified.
+    /// Replace all line ending characters in the receiver with another given line endings.
     ///
-    /// - Important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
-    func convert(range: NSRange, from fromLineEnding: LineEnding, to toLineEnding: LineEnding) -> NSRange {
+    /// - Parameters:
+    ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
+    ///     - newLineEnding: The line ending type with which to replace target.
+    func replaceLineEndings(_ lineEndings: [LineEnding]?, with newLineEnding: LineEnding) {
         
-        self.convert(ranges: [range], from: fromLineEnding, to: toLineEnding)[0]
-    }
-    
-    
-    /// Convert passed-in ranges as if line endings are changed from `fromLineEnding` to `toLineEnding`
-    /// by assuming the receiver has `fromLineEnding` regardless of actual ones if specified.
-    func convert(ranges: [NSRange], from fromLineEnding: LineEnding, to toLineEnding: LineEnding) -> [NSRange] {
+        let lineEndings = lineEndings ?? LineEnding.allCases
         
-        assert(!ranges.contains(.notFound))
-        
-        let delta = toLineEnding.length - fromLineEnding.length
-        
-        guard delta != 0, !ranges.isEmpty else { return ranges }
-        
-        let upperBound = ranges.map(\.upperBound).max()!
-        let lineEndingRanges = (self.replacingLineEndings(with: fromLineEnding) as NSString)
-            .ranges(of: fromLineEnding.string, range: NSRange(location: 0, length: upperBound))
-        
-        return ranges.map { range in
-            let locationCount = lineEndingRanges.countPrefix { $0.lowerBound < range.lowerBound }
-            let lengthCount = lineEndingRanges[locationCount...].countPrefix { $0.upperBound <= range.upperBound }
-            
-            return NSRange(location: range.location + locationCount * delta,
-                           length: range.length + lengthCount * delta)
-        }
+        self.mutableString.replaceOccurrences(of: lineEndings.regexPattern, with: newLineEnding.string, options: .regularExpression, range: self.range)
     }
     
 }

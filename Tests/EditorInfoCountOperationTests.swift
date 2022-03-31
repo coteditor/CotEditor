@@ -39,7 +39,6 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(0..<3), in: self.testString)!
         let counter = EditorInfoCounter(
             string: self.testString,
-            lineEnding: .lf,
             selectedRange: selectedRange,
             requiredInfo: [],
             countsLineEnding: true,
@@ -63,7 +62,6 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
         let counter = EditorInfoCounter(
             string: self.testString,
-            lineEnding: .lf,
             selectedRange: selectedRange,
             requiredInfo: .all,
             countsLineEnding: true,
@@ -92,7 +90,6 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
         let counter = EditorInfoCounter(
             string: self.testString,
-            lineEnding: .lf,
             selectedRange: selectedRange,
             requiredInfo: .all,
             countsLineEnding: true,
@@ -118,11 +115,10 @@ final class EditorInfoCountOperationTests: XCTestCase {
     
     func testCRLF() throws {
         
-        let string = "a\nb"
-        let selectedRange = Range(NSRange(1..<3), in: string)!
+        let string = "a\r\nb"
+        let selectedRange = Range(NSRange(1..<4), in: string)!
         let counter = EditorInfoCounter(
             string: string,
-            lineEnding: .crlf,
             selectedRange: selectedRange,
             requiredInfo: .all,
             countsLineEnding: true,
@@ -152,7 +148,6 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(1..<3), in: string)!
         let counter = EditorInfoCounter(
             string: string,
-            lineEnding: .crlf,
             selectedRange: selectedRange,
             requiredInfo: .all,
             countsLineEnding: false,
@@ -160,12 +155,12 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 4)
+        XCTAssertEqual(result.count.length, 3)
         XCTAssertEqual(result.count.characters, 2)
         XCTAssertEqual(result.count.lines, 2)
         XCTAssertEqual(result.count.words, 2)
         
-        XCTAssertEqual(result.selectedCount.length, 3)
+        XCTAssertEqual(result.selectedCount.length, 2)
         XCTAssertEqual(result.selectedCount.characters, 1)
         XCTAssertEqual(result.selectedCount.lines, 2)
         XCTAssertEqual(result.selectedCount.words, 1)

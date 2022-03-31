@@ -73,6 +73,7 @@ extension InvisibleDrawing {
         var lastCodeUnit: unichar?
         for charIndex in characterRange.lowerBound..<characterRange.upperBound {
             let codeUnit = string.character(at: charIndex)
+            defer { lastCodeUnit = codeUnit }
             
             guard
                 let invisible = Invisible(codeUnit: codeUnit),
@@ -80,7 +81,6 @@ extension InvisibleDrawing {
                 !(codeUnit == 0xA && lastCodeUnit == 0xD)  // skip LF for CRLF
                 else { continue }
             
-            lastCodeUnit = codeUnit
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
             // skip folded text

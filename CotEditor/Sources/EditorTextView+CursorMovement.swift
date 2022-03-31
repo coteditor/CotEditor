@@ -51,7 +51,8 @@ extension EditorTextView {
     /// move cursor backward and modify selection (⇧←).
     override func moveLeftAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else { return super.moveLeftAndModifySelection(sender) }
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+//        guard self.hasMultipleInsertions else { return super.moveLeftAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
             self.layoutManager!.leftCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
@@ -77,7 +78,8 @@ extension EditorTextView {
     /// move cursor forward and modify selection (⇧→).
     override func moveRightAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+//        guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
             self.layoutManager!.rightCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
@@ -330,7 +332,8 @@ extension EditorTextView {
     /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
     override func moveBackwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else { return super.moveBackwardAndModifySelection(sender) }
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+//        guard self.hasMultipleInsertions else { return super.moveBackwardAndModifySelection(sender) }
         
         self.moveLeftAndModifySelection(sender)
     }
@@ -352,7 +355,8 @@ extension EditorTextView {
     /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
     override func moveForwardAndModifySelection(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else { return super.moveForwardAndModifySelection(sender) }
+        // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
+//        guard self.hasMultipleInsertions else { return super.moveForwardAndModifySelection(sender) }
         
         self.moveRightAndModifySelection(sender)
     }

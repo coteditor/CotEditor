@@ -8,10 +8,10 @@ interpreters:
 metadata:
   author: "Y.Tokutomi"
   distributionURL: "https://coteditor.com"
-  version: "2.4.0"
+  version: "2.4.1"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2021-08-28"
+  lastModified: "2022-02-26"
 outlineMenu:
 - beginString: "(^[\\t ]*class)[\\t ]+(\\w*)"
   keyString: "$1 $2"
@@ -288,7 +288,7 @@ strings:
   endString: "'"
 - beginString: ":\\w+"
   regularExpression: true
-- beginString: "<<-?([\"'`]?)(\\w+)\\1(?:.|\\n)*?\\n[\\t ]*\\2$"
+- beginString: "<<-?([\"'`]?)(\\w+)\\1(?:.|\\R)*?\\R[\\t ]*\\2$"
   regularExpression: true
 keywords:
 - beginString: "\\bclass\\s"

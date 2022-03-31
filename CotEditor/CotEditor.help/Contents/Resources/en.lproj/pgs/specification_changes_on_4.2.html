@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="migration, specification change, line ending, line break"/>
+	<title>Specification Changes on CotEditor 4.2</title>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+</head>
+
+<body>
+
+<h1>Specification Changes on CotEditor 4.2</h1>
+
+<p>Prior to version 4.2.0, all line ending codes were internally treated as LF (<code>U+000A</code>). From version 4.2.0, the actual line ending codes of documents are treated as they are. Therefore, users, especially those who have used earlier versions, require awareness of this change and may need manual migration for some settings.</p>
+
+
+<h2>Line ending code in the regular expression pattern</h2>
+
+<p>Because the previous CotEditor handled all line ending codes as LF internally, <code>\n</code> could be used as a regular expression pattern to recognize newlines, regardless of the actual line endings in the document. From CotEditor 4.2.0 on, <code>\n</code> matches only the line endings of which document actually uses LF as the line ending. If you want your documents to match any line endings regardless of the line ending character, use <code>\R</code> instead of <code>\n</code>.</p>
+
+<p class="addition"><code>\R</code> is the metacharacter defined in the <a href="about_regex.html">CUI regular expression engine</a>, which is used in CotEditor; and matches a newline character, such as <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</p>
+
+<p>On the other hand, since the new implementation matches the line ending codes used in the actual document, it enables, for instance, to search for LF that slipped into a document that uses CR as the line ending code.</p>
+
+
+<h2>Line ending handling in user settings</h2>
+
+<p>Scripts and regular expression patterns that assume only LF as line endings may not behave as intended in documents with other line endings than LF on CotEditor 4.2.0 and later. Those user settings require change by the user.</p>
+
+<p>The following user settings require attention to the line ending handling:</p>
+<ul>
+	<li>Replacement definitions for the <a href="./howto_multiple_replace.html">multiple replacements</a></li>
+	<li><a href="about_syntaxstyle.html">Custom definitions</a> in the syntax style definitions</li>
+	<li>The line ending handling in <a href="about_scripting.html">user scripts</a> for the Script menu</li>
+</ul>
+
+
+<h2>Line endings in the Find &amp; Replacement</h2>
+
+<p>In normal search and replace with non-regular expression text, the line endings contain in the search/replace string are assumed as the same as the line ending code used in the document being searched for.</p>
+
+<p>That is, for example, if you search a document in which the line endings are LF for a string containing the CR line ending as a (non-regular expression) text search, all line endings in the search string will be assumed as LF. If you want to handle line endings strictly, use the regular expression instead.</p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/whats_new_in_4.2.html">What's New in CotEditor 4.2</a></li>
+	<li><a href="../pgs/releasenotes.html">Release Notes</a></li>
+	<li><a href="../xpgs/xsoftware.html">About CotEditor</a></li>
+</ul>
+</section>
+
+</body>
+</html>

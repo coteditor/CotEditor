@@ -8,7 +8,7 @@ metadata:
   license: "Same as CotEditor"
   lastModified: "2022-03-15"
 outlineMenu:
-- beginString: "^([^\\n -].*?):"
+- beginString: "^([^\\R -].*?):"
   keyString: "$1:"
   description: "top level element"
 - beginString: "^---"
@@ -19,7 +19,7 @@ commands:
 - beginString: "%TAG"
 - beginString: "%YAML [0-9.]+"
   regularExpression: true
-- beginString: "^---[ \\n]"
+- beginString: "^---[ \\R]"
   regularExpression: true
 - beginString: "^\\.\\.\\.$"
   regularExpression: true
@@ -71,7 +71,7 @@ types:
 - beginString: "\\btag:\\S+"
   regularExpression: true
 numbers:
-- beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\n\\}\\]])"
+- beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\R\\}\\]])"
   regularExpression: true
 - beginString: "[-+]?\\.(inf|Inf|INF)\\b"
   regularExpression: true
@@ -82,17 +82,17 @@ numbers:
 strings:
 - beginString: "\""
   endString: "\""
-- beginString: "'[^\\n]*?'"
+- beginString: "'[^\\R]*?'"
   regularExpression: true
 keywords:
-- beginString: "(?<=[-\\n\\[\\{,]|\\A)[ \\t]*[^-:\\[\\]\\n ][^:\\[\\]\\n ]*(?=[\\t
-    ]*:[ \\t\\n])"
+- beginString: "(?<=[-\\R\\[\\{,]|\\A)[ \\t]*[^-:\\[\\]\\R ][^:\\[\\]\\R ]*(?=[\\t
+    ]*:[ \\t\\R])"
   regularExpression: true
 variables:
-- beginString: "(?<!\\w)&[^ \\t\\n]+\\b"
+- beginString: "(?<!\\w)&[^ \\t\\R]+\\b"
   regularExpression: true
   description: "anchor"
-- beginString: "(?<!\\w)\\*[^ \\t\\n]+\\b"
+- beginString: "(?<!\\w)\\*[^ \\t\\R]+\\b"
   regularExpression: true
   description: "reference"
 commentDelimiters:

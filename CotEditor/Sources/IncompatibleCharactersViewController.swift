@@ -121,15 +121,10 @@ final class IncompatibleCharactersViewController: NSViewController {
             tableView.clickedRow > -1,  // invalid click
             let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
             let selectedIncompatible = incompatibles[safe: tableView.clickedRow],
-            let editor = self.document
+            let textView = self.document?.textView
         else { return }
         
-        editor.selectedRange = selectedIncompatible.range
-        
-        // focus result
-        // -> Use textView's `selectedRange` since `range` is incompatible with CRLF.
-        guard let textView = editor.textView else { return }
-        
+        textView.selectedRange = selectedIncompatible.range
         textView.scrollRangeToVisible(textView.selectedRange)
         textView.showFindIndicator(for: textView.selectedRange)
     }
@@ -140,17 +135,16 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
         
-        guard let document = self.document else { return }
+        guard let textStorage = self.document?.textStorage else { return }
         
         if !self.incompatibleCharacters.isEmpty {
-            document.textStorage.clearAllMarkup()
+            textStorage.clearAllMarkup()
         }
         
         self.incompatibleCharacters = incompatibleCharacters
         
         self.updateMessage(isScanning: false)
-        document.textStorage.markup(ranges: incompatibleCharacters.map(\.range),
-                                    lineEnding: document.lineEnding)
+        textStorage.markup(ranges: incompatibleCharacters.map(\.range))
     }
     
     
@@ -170,17 +164,15 @@ final class IncompatibleCharactersViewController: NSViewController {
 private extension NSTextStorage {
     
     /// change background color of pased-in ranges
-    func markup(ranges: [NSRange], lineEnding: LineEnding) {
+    func markup(ranges: [NSRange]) {
         
         guard !ranges.isEmpty else { return }
-        
-        let viewRanges = self.string.convert(ranges: ranges, from: lineEnding, to: .lf)
         
         for manager in self.layoutManagers {
             guard let color = manager.firstTextView?.textColor?.withAlphaComponent(0.2) else { continue }
             
-            for viewRange in viewRanges {
-                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)
+            for range in ranges {
+                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
             }
         }
     }
