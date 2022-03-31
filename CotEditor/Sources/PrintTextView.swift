@@ -203,7 +203,10 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // draw line numbers if needed
         if self.printsLineNumber {
-            guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
+            guard
+                let layoutManager = self.layoutManager as? LayoutManager,
+                let textContainer = self.textContainer
+            else { return assertionFailure() }
             
             // prepare text attributes for line numbers
             let numberFontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
@@ -215,7 +218,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             let numberSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
-            let horizontalOrigin = self.textContainerOrigin.x + self.lineFragmentPadding - self.lineNumberPadding
+            let horizontalOrigin = self.baseWritingDirection == .leftToRight
+                ? self.textContainerOrigin.x + textContainer.lineFragmentPadding - self.lineNumberPadding
+                : self.textContainerOrigin.x + textContainer.size.width
             let baselineOffset = layoutManager.baselineOffset(for: self.layoutOrientation)
             let numberAscender = numberFont.ascender
             
@@ -292,7 +297,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }()
         
         // adjust paddings considering the line numbers
-        self.xOffset = self.printsLineNumber ? self.lineFragmentPadding : 0
+        self.xOffset = (self.printsLineNumber && self.baseWritingDirection == .leftToRight) ? self.lineFragmentPadding : 0
+        self.textContainerInset.width = (self.printsLineNumber && self.baseWritingDirection == .rightToLeft) ? self.lineFragmentPadding : 0
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
