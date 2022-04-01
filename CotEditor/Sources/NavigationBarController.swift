@@ -106,7 +106,7 @@ final class NavigationBarController: NSViewController {
             // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
             //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
             .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
-            .debounce(for: 0.05, scheduler: RunLoop.main)
+            .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
         
         self.updateOutlineMenu()

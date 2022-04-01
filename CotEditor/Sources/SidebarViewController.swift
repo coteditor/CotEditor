@@ -73,7 +73,7 @@ final class SidebarViewController: NSTabViewController {
             self.view.layoutSubtreeIfNeeded()
         }
         self.frameObserver = self.view.publisher(for: \.frame)
-            .debounce(for: 0.1, scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)
             .map(\.size.width)
             .removeDuplicates()
             .sink { UserDefaults.standard[.sidebarWidth] = $0 }
