@@ -186,7 +186,7 @@ extension String {
         
         assert(maximum ?? .max > 0)
         
-        guard self.length > 0 else { return nil }
+        guard !self.isEmpty else { return nil }
         
         var lineEndingRanges: [LineEnding: [NSRange]] = [:]
         let string = self as NSString
