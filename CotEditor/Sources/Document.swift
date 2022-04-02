@@ -34,7 +34,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     private enum SerializationKey {
         
-        static let readingEncoding = "readingEncoding"
         static let syntaxStyle = "syntaxStyle"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
@@ -114,7 +113,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
-        coder.encode(Int(self.fileEncoding.encoding.rawValue), forKey: SerializationKey.readingEncoding)
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
@@ -126,12 +124,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         super.restoreState(with: coder)
         
-        if coder.containsValue(forKey: SerializationKey.readingEncoding) {
-            let encoding = String.Encoding(rawValue: UInt(coder.decodeInteger(forKey: SerializationKey.readingEncoding)))
-            if String.availableStringEncodings.contains(encoding) {
-                self.readingEncoding = encoding
-            }
-        }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
             if self.syntaxParser.style.name != styleName {
                 self.setSyntaxStyle(name: styleName)
@@ -324,6 +316,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let file = try DocumentFile(fileURL: url, readingEncoding: self.readingEncoding)  // FILE_READ
         
+        // .readingEncoding is only valid once
+        self.readingEncoding = .autoDetection
+        
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
         
@@ -453,9 +448,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             self.fileData = self.lastSavedData
-            
-            // store file encoding for revert
-            self.readingEncoding = encoding
         }
     }
     
@@ -782,7 +774,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
             
         } catch {
-            self.readingEncoding = self.fileEncoding.encoding
+            self.readingEncoding = .autoDetection
             
             throw ReinterpretationError.reinterpretationFailed(fileURL: fileURL, encoding: encoding)
         }
