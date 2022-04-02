@@ -2,23 +2,61 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="検索, 改行, タブ"/>
+	<meta name="keywords" content="検索, 置換, 改行"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>改行／タブ文字を検索する</title>
+	<title>改行を検索/置換する</title>
 </head>
 
 <body>
 
-<h1>改行／タブ文字を検索する</h1>
+<h1>改行を検索/置換する</h1>
 
-<p>改行／タブ文字を検索するには、正規表現を使用するか、または検索フィールドに「<kbd>Option</kbd> + <kbd>Return</kbd>」／「<kbd>Option</kbd> + <kbd>Tab</kbd>」を入力することで検索できます。</p>
+<h2>改行の入力</h2>
+
+<p>検索パネルでは「<kbd>Option</kbd>+<kbd>Return</kbd>」で改行が入力できます。</p>
+
+
+<h2>改行の検索</h2>
+
+<h3>テキスト検索</h3>
+
+<p>検索文字列内の改行は、検索対象の書類で用いられている改行コードと同一の改行コードであると想定して使用されます。つまり、書類内に書類の改行コードと異なる改行が紛れていた場合、この改行にはマッチしません。</p>
+
+
+<h3>正規表現検索</h3>
+
+<p>正規表現パターンに含まれる通常の改行は、通常のテキスト検索と同様に、検索対象の書類で用いられている改行コードと同一の改行コードであると想定して使用されます。一方、正規表現中のメタ文字やUnicodeコードポイント等での文字表現は、書類の改行コードに依らず明示した改行文字としてそのまま使われます。</p>
+
 <table>
-	<tr><th></th><th>正規表現</th><th>キーボード入力</th></tr>
-	<tr><td>改行</td><td>\R</td><td><kbd>Option</kbd> + <kbd>Return</kbd></td></tr>
-	<tr><td>タブ</td><td>\t</td><td><kbd>Option</kbd> + <kbd>Tab</kbd></td></tr>
+	<caption>正規表現での改行を表すメタ文字</caption>
+	<tr><th>正規表現</th><th>説明</th></tr>
+	<tr><td>\n</td><td><code>U+000A</code>、LFの改行コード。</td></tr>
+	<tr><td>\r</td><td><code>U+000D</code>、CRの改行コード。</td></tr>
+	<tr><td>\r\n</td><td><code>U+000D</code>と<code>U+000A</code>の組み合わせ、CRLFの改行コード。</td></tr>
+	<tr><td>\R</td><td>汎用の改行表現。<code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, および<code>U+000D</code> <code>U+000A</code>の組み合わせ (CRLF)のいずれでもマッチします。</td></tr>
 </table>
+
+
+<h2>改行の置換</h2>
+
+<p>置換では、<code>\n</code>のようなメタ文字での指定や捕捉した文字列への差し替えも含めて、挿入される置換後の文字列のすべての改行が書類の改行コードと同一の改行に差し替えられます。</p>
+
+<p>例えば、改行コードがLF（<code>\n</code>）の書類で、正規表現を使って検索文字列「dog\Rcow」を置換文字列「$0\r」で置換したとき、書類内の文字列「dog<span class="string">\r\n</span>cow」にもマッチして正規表現上は「dog<span class="string">\r\n</span>cow<span class="string">\r</span>」に置換されることになりますが、CotEditorはマッチした「dog<span class="string">\r\n</span>cow」を「dog<span class="string">\n</span>cow<span class="string">\n</span>」に置換します。</p>
+
+<p>現在、書類の改行コード以外の改行文字に置換する方法は提供されていません。CotEditorで書類の文字コード以外の改行文字を入力する唯一の方法は<a href="../pgs/howto_input_unicode.html">Unicodeコードポイントでの手動入力</a>です。</p>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="../pgs/howto_findpanel.html">検索と置換</a></li>
+	<li><a href="../pgs/about_regex.html">正規表現の構文</a></li>
+	<li><a href="../pgs/howto_input_unicode.html">文字をUnicodeのコードポイントで入力する</a></li>
+</ul>
+</section>
 
 </body>
 </html>

@@ -246,6 +246,7 @@ table {
 	margin: 1em 0;
 }
 table caption {
+	font-weight: 500;
 	text-align: left;
 	margin: 0.4em 0;
 }
