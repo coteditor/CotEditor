@@ -314,13 +314,24 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let storategy: DocumentFile.EncodingStorategy = self.readingEncoding.flatMap { .specific($0) }
-            ?? .automatic(priority: UserDefaults.standard[.encodingList],
-                          refersToTag: UserDefaults.standard[.referToEncodingTag])
-        let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_READ
+        let storategy: DocumentFile.EncodingStorategy = {
+            if let encoding = self.readingEncoding {
+                return .specific(encoding)
+            }
+            
+            var encodingList = UserDefaults.standard[.encodingList]
+            let isInitialOpen = (self.fileData == nil) && (self.textStorage.length == 0)
+            if !isInitialOpen {  // prioritize the current encoding
+                encodingList.insert(self.fileEncoding.encoding.cfEncoding, at: 0)
+            }
+            
+            return .automatic(priority: encodingList, refersToTag: UserDefaults.standard[.referToEncodingTag])
+        }()
         
         // .readingEncoding is only valid once
         self.readingEncoding = nil
+        
+        let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_READ
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
