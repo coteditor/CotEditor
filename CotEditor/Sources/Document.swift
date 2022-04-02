@@ -66,7 +66,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: "PrintPanelAccessory")
     private lazy var savePanelAccessoryController = NSViewController.instantiate(storyboard: "SaveDocumentAccessory")
     
-    private var readingEncoding: String.Encoding  // encoding to read document file
+    private var readingEncoding: String.Encoding?  // encoding to read document file
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
@@ -95,7 +95,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         
         // use the encoding selected by the user in the open panel, if exists
-        self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding ?? .autoDetection
+        self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
         
         super.init()
         
@@ -314,14 +314,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let storategy: DocumentFile.EncodingStorategy = (self.readingEncoding == .autoDetection)
-            ? .automatic(priority: UserDefaults.standard[.encodingList],
-                         refersToTag: UserDefaults.standard[.referToEncodingTag])
-            : .specific(self.readingEncoding)
+        let storategy: DocumentFile.EncodingStorategy = self.readingEncoding.flatMap { .specific($0) }
+            ?? .automatic(priority: UserDefaults.standard[.encodingList],
+                          refersToTag: UserDefaults.standard[.referToEncodingTag])
         let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_READ
         
         // .readingEncoding is only valid once
-        self.readingEncoding = .autoDetection
+        self.readingEncoding = nil
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
@@ -778,7 +777,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.revert(toContentsOf: fileURL, ofType: self.fileType!)
             
         } catch {
-            self.readingEncoding = .autoDetection
+            self.readingEncoding = nil
             
             throw ReinterpretationError.reinterpretationFailed(fileURL: fileURL, encoding: encoding)
         }
