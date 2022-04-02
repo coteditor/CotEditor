@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,6 +41,13 @@ enum FileExtendedAttributeName {
 
 struct DocumentFile {
     
+    enum EncodingStorategy {
+        
+        case automatic(priority: [CFStringEncoding], refersToTag: Bool)
+        case specific(String.Encoding)
+    }
+    
+    
     /// Maximal length to scan encoding declaration
     private static let maxEncodingScanLength = 2000
     
@@ -61,7 +68,12 @@ struct DocumentFile {
     // MARK: -
     // MARK: Lifecycle
     
-    init(fileURL: URL, readingEncoding: String.Encoding, defaults: UserDefaults = .standard) throws {
+    /// Read file at the given URL and initialize.
+    ///
+    /// - Parameters:
+    ///   - fileURL: The location of the file to read.
+    ///   - encodingStorategy: The file encoding to read the file.
+    init(fileURL: URL, encodingStorategy: EncodingStorategy) throws {
         
         let data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: fileURL.path)  // FILE_READ
@@ -74,12 +86,12 @@ struct DocumentFile {
         // decode Data to String
         let content: String
         let encoding: String.Encoding
-        switch readingEncoding {
-            case .autoDetection:
+        switch encodingStorategy {
+            case let .automatic(priority, refersToTag):
                 (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
-                                                      suggestedCFEncodings: defaults[.encodingList],
-                                                      refersToEncodingTag: defaults[.referToEncodingTag])
-            default:
+                                                      suggestedCFEncodings: priority,
+                                                      refersToEncodingTag: refersToTag)
+            case .specific(let readingEncoding):
                 encoding = readingEncoding
                 if !data.isEmpty {
                     guard let string = String(bomCapableData: data, encoding: encoding) else {
@@ -105,7 +117,14 @@ struct DocumentFile {
     
     // MARK: Private Methods
     
-    /// read String from Dada detecting file encoding automatically
+    /// Read string from dada by detecting the file encoding automatically.
+    ///
+    /// - Parameters:
+    ///   - data: The data to encode.
+    ///   - xattrEncoding: The file encoding read from the file's extended attributes.
+    ///   - suggestedCFEncodings: The list of CSStringEncodings to test the encoding.
+    ///   - refersToEncodingTag: The boolean whether to refer encoding tag in the file content.
+    /// - Returns: The decoded string and used encoding.
     private static func string(data: Data, xattrEncoding: String.Encoding?, suggestedCFEncodings: [CFStringEncoding], refersToEncodingTag: Bool) throws -> (String, String.Encoding) {
         
         // try interpreting with xattr encoding

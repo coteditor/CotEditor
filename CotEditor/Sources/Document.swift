@@ -314,7 +314,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let file = try DocumentFile(fileURL: url, readingEncoding: self.readingEncoding)  // FILE_READ
+        let storategy: DocumentFile.EncodingStorategy = (self.readingEncoding == .autoDetection)
+            ? .automatic(priority: UserDefaults.standard[.encodingList],
+                         refersToTag: UserDefaults.standard[.referToEncodingTag])
+            : .specific(self.readingEncoding)
+        let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_READ
         
         // .readingEncoding is only valid once
         self.readingEncoding = .autoDetection
