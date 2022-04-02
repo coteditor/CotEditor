@@ -50,10 +50,9 @@ final class OpenPanelAccessoryController: NSViewController {
         // build encoding menu
         let menu = self.encodingMenu!.menu!
         let autoDetectItem = NSMenuItem(title: "Automatic".localized, action: nil, keyEquivalent: "")
-        autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         menu.items = [autoDetectItem, .separator()] + EncodingManager.shared.createEncodingMenuItems()
         
-        self.selectedEncoding = .autoDetection
+        self.selectedEncoding = nil
     }
     
     
@@ -61,10 +60,10 @@ final class OpenPanelAccessoryController: NSViewController {
     // MARK: Public Methods
     
     /// encoding selected by user
-    private(set) var selectedEncoding: String.Encoding {
+    private(set) var selectedEncoding: String.Encoding? {
         
-        get { String.Encoding(rawValue: self._selectedEncoding) }
-        set { self._selectedEncoding = newValue.rawValue }
+        get { self._selectedEncoding > 0 ? String.Encoding(rawValue: self._selectedEncoding) : nil }
+        set { self._selectedEncoding = newValue?.rawValue ?? 0 }  // 0 for automatic
     }
     
     

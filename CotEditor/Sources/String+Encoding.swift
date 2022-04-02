@@ -106,6 +106,12 @@ extension String.Encoding {
     
     // MARK: Public Methods
     
+    var cfEncoding: CFStringEncoding {
+        
+        CFStringConvertNSStringEncodingToEncoding(self.rawValue)
+    }
+    
+    
     /// whether receiver can convert Yen sign (U+00A5)
     var canConvertYenSign: Bool {
         
