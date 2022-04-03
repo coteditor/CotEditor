@@ -113,6 +113,9 @@ article+article {
 	border-top: 1px solid -apple-system-separator;
 }
 
+p, li {
+	text-align: justify;
+}
 p:lang(ja) {
 	text-indent: 1em;
 }
@@ -311,8 +314,7 @@ span.string {
 	color: hsl(0, 0%, 50%);
 }
 span.invisible {
-	color: -apple-system-secondary-label;
-	font-family: monospace;
+	opacity: 0.4;
 }
 
 /* dark mode */
