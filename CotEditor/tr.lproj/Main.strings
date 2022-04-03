@@ -311,7 +311,7 @@
 /* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
 "564.title" = "Belge Denetçisi";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
-"Gch-XD-tRl.title" = "Anahat";
+"Gch-XD-tRl.title" = "Anahat";  // FIXME: use the consistant word for all the term "outline" feature
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Uyumsuz Karakterler";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */

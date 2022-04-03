@@ -198,7 +198,7 @@ final class OutlineViewController: NSViewController {
     }
     
     
-    /// Update syntax style observation for outline menus
+    /// Update syntax style observation for outline
     private func observeSyntaxStyle() {
         
         self.syntaxStyleObserver = nil

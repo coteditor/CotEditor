@@ -36,7 +36,7 @@
 
 // Accessibility labels
 "inspector" = "denetçi";
-"outline" = "dış hat";
+"outline" = "dış hat";  // FIXME: use the consistant word for all the term "outline" feature
 "incompatible characters" = "uyumsuz karakterler";
 "status bar" = "durum çubuğu";
 "editor" = "düzenleyici";
@@ -559,7 +559,7 @@
 "Strings" = "Diziler";
 "Characters" = "Karakterler";
 "Comments" = "Yorumlar";
-"Outline Menu" = "Anahat Menüsü";
+"Outline" = "Anahat Menüsü";  // FIXME: updated
 "Completion List" = "Tamamlama Listesi";
 "File Mapping" = "Dosya Eşlemleme";
 "Style Info" = "Biçem Bilgisi";
@@ -569,7 +569,7 @@
 "No error found." = "Hata bulunamadı.";
 "An error found!" = "Bir hata bulundu!";
 "%i errors found!" = "%i hata bulundu!";
-"outline menu" = "anahat menüsü";
+"outline" = "anahat menüsü";  // FIXME: updated
 
 
 

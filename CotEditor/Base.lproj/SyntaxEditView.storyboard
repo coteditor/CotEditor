@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -92,7 +92,7 @@
                         <tabViewItem label="Characters" identifier="characters" id="QAb-cv-ACH"/>
                         <tabViewItem label="Comments" identifier="comments" id="pPI-Zd-YoY"/>
                         <tabViewItem label="-" id="WmN-tw-W91"/>
-                        <tabViewItem label="Outline Menu" id="h3G-VQ-reZ"/>
+                        <tabViewItem label="Outline" id="h3G-VQ-reZ"/>
                         <tabViewItem label="Completion List" id="hkH-bj-kzN"/>
                         <tabViewItem label="File Mapping" id="zFQ-sy-EQR"/>
                         <tabViewItem label="-" id="cmd-Pi-Czf"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -109,8 +109,8 @@
                                         </connections>
                                     </button>
                                     <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-hA-pof">
-                                        <rect key="frame" x="209" y="196" width="132" height="14"/>
-                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(Including outline menu)" usesSingleLineMode="YES" id="3325">
+                                        <rect key="frame" x="205" y="196" width="155" height="14"/>
+                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(Including outline extraction)" usesSingleLineMode="YES" id="3325">
                                             <font key="font" metaFont="menu" size="11"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -438,7 +438,7 @@
                                     <constraint firstItem="ofS-Q1-0g8" firstAttribute="top" secondItem="1uW-kK-NRh" secondAttribute="top" constant="20" symbolic="YES" id="rNu-1S-89j"/>
                                     <constraint firstItem="Lt0-OL-jLy" firstAttribute="top" secondItem="hJ2-kD-hQi" secondAttribute="bottom" constant="14" id="rSk-Fu-gYy"/>
                                     <constraint firstItem="o7z-Td-5qC" firstAttribute="leading" secondItem="1uW-kK-NRh" secondAttribute="leading" constant="20" symbolic="YES" id="rbB-zT-zOE"/>
-                                    <constraint firstItem="iU4-hA-pof" firstAttribute="leading" secondItem="o7z-Td-5qC" secondAttribute="trailing" constant="8" symbolic="YES" id="sEG-HS-khk"/>
+                                    <constraint firstItem="iU4-hA-pof" firstAttribute="leading" secondItem="o7z-Td-5qC" secondAttribute="trailing" constant="4" id="sEG-HS-khk"/>
                                     <constraint firstItem="FjK-rw-YKz" firstAttribute="leading" secondItem="uJi-Od-G4t" secondAttribute="trailing" constant="8" symbolic="YES" id="skq-5b-Tg3"/>
                                     <constraint firstAttribute="trailing" secondItem="FjK-rw-YKz" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="tC1-2M-K9G"/>
                                     <constraint firstItem="LQO-NI-fGx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1uW-kK-NRh" secondAttribute="leading" constant="20" symbolic="YES" id="tL7-7g-PrF"/>

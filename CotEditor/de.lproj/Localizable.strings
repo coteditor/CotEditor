@@ -458,8 +458,8 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"Jump to previous outline item" = "Zum vorherigen Gliederungspunkt springen";
-"Jump to next outline item" = "Zum nächsten Gliederungspunkt springen";
+"Jump to previous outline item" = "Zum vorherigen Gliederungsposten springen";
+"Jump to next outline item" = "Zum nächsten Gliederungsposten springen";
 "Extracting Outline…" = "Gliederung extrahieren …";
 
 
@@ -561,7 +561,7 @@
 "Strings" = "Zeichenketten";
 "Characters" = "Zeichen";
 "Comments" = "Kommentare";
-"Outline Menu" = "Gliederungsmenü";
+"Outline" = "Gliederung";
 "Completion List" = "Vervollständigung";
 "File Mapping" = "Dateizuordnung";
 "Style Info" = "Stil-Info";
@@ -571,7 +571,7 @@
 "No error found." = "Kein Fehler wurde gefunden.";
 "An error found!" = "Ein Fehler wurde gefunden.";
 "%i errors found!" = "%i Fehler wurden gefunden.";
-"outline menu" = "Gliederungsmenü";
+"outline" = "Gliederung";
 
 
 

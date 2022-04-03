@@ -560,7 +560,7 @@
 "Strings" = "Strings";
 "Characters" = "Characters";
 "Comments" = "Comments";
-"Outline Menu" = "Outline Menu";
+"Outline" = "Outline";
 "Completion List" = "Completion List";
 "File Mapping" = "File Mapping";
 "Style Info" = "Style Info";
@@ -570,7 +570,7 @@
 "No error found." = "No error found.";
 "An error found!" = "An error found!";
 "%i errors found!" = "%i errors found!";
-"outline menu" = "outline menu";
+"outline" = "outline";
 
 
 

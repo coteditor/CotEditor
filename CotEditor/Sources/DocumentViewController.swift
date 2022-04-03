@@ -227,7 +227,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
-            // start parcing syntax for highlighting and outline menu
+            // start parsing syntax for highlighting and outlines
             self.outlineParseDebouncer.perform()
             self.invalidateSyntaxHighlight()
             

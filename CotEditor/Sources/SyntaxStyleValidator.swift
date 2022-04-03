@@ -185,7 +185,7 @@ final class SyntaxStyleValidator {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
                         results.append(StyleError(kind: .regularExpression(error: error),
-                                                  type: "outline menu",
+                                                  type: "outline",
                                                   role: .regularExpression,
                                                   string: definition.beginString))
                     }

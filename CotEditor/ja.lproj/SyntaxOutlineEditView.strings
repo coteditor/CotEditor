@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
 "cBA-MO-VzQ.title" = "アウトライン項目検索用正規表現";
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
@@ -38,8 +38,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "説明";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "メニュータイトルパターン";
+/* Class = "NSTextFieldCell"; title = "Title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "タイトルパターン";
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "（空白は一致した全文字列）";
 

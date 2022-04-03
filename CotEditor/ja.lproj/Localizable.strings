@@ -561,7 +561,7 @@
 "Strings" = "文字列";
 "Characters" = "文字";
 "Comments" = "コメント";
-"Outline Menu" = "アウトラインメニュー";
+"Outline" = "アウトライン";
 "Completion List" = "入力補完リスト";
 "File Mapping" = "ファイル関連付け";
 "Style Info" = "スタイル情報";
@@ -571,7 +571,7 @@
 "No error found." = "エラーはありません。";
 "An error found!" = "1個のエラーがあります！";
 "%i errors found!" = "%i個のエラーがあります！";
-"outline menu" = "アウトラインメニュー";
+"outline" = "アウトライン";
 
 
 

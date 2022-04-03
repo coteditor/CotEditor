@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "Espressioni regolari per estrarre elementi di contorno del menu";
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Espressioni regolari per estrarre elementi di contorno";
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "Stringa Espressione regolare";
@@ -39,8 +39,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "Descrizione";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "Motivo menu titolo";
+/* Class = "NSTextFieldCell"; title = "Title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Motivo titolo";
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "(Per corrispondenza con l’intera stringa: lasciare in bianco)";
 

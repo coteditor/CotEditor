@@ -562,7 +562,7 @@
 "Strings" = "Strings";
 "Characters" = "Caracteres";
 "Comments" = "Comentários";
-"Outline Menu" = "Menu de Plano";
+"Outline" = "Plano";
 "Completion List" = "Lista de Preenchimento";
 "File Mapping" = "Mapeamento de Arquivo";
 "Style Info" = "Informações do Estilo";
@@ -572,7 +572,7 @@
 "No error found." = "Nenhum erro encontrado.";
 "An error found!" = "1 erro encontrado!";
 "%i errors found!" = "%i erros encontrados!";
-"outline menu" = "menu de plano";
+"outline" = "plano";
 
 
 

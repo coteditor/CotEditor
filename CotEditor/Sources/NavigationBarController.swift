@@ -126,7 +126,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Public Methods
     
-    /// Can select the prev item in outline menu?
+    /// Can select the previous item in outline menu?
     var canSelectPrevItem: Bool {
         
         guard let textView = self.textView else { return false }
@@ -156,7 +156,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Action Messages
     
-    /// Select outline menu item from the popup menu.
+    /// Select outline item from the popup menu.
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard

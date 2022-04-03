@@ -561,7 +561,7 @@
 "Strings" = "字符串";
 "Characters" = "字符";
 "Comments" = "注释";
-"Outline Menu" = "大纲菜单";
+"Outline" = "大纲";
 "Completion List" = "补全列表";
 "File Mapping" = "文件关联";
 "Style Info" = "样式信息";
@@ -571,7 +571,7 @@
 "No error found." = "没有发现错误";
 "An error found!" = "发现1个错误";
 "%i errors found!" = "发现%i个错误";
-"outline menu" = "大纲菜单";
+"outline" = "大纲";
 
 
 

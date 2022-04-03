@@ -543,9 +543,9 @@
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Gliederungsmenü öffnen";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
-"9Lf-39-x5S.title" = "Vorherigen Gliederungspunkt auswählen";
+"9Lf-39-x5S.title" = "Vorherigen Gliederungsposten auswählen";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
-"PWZ-Om-OhX.title" = "Nächsten Gliederungspunkt auswählen";
+"PWZ-Om-OhX.title" = "Nächsten Gliederungsposten auswählen";
 
 /* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
 "eIc-Sj-2mO.title" = "Gehe zu Zeile …";

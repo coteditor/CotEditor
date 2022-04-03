@@ -30,6 +30,7 @@ Change Log
 - Update help contents.
 - [trivial] Accept script files for the Script menu with an uppercased file extension.
 - [trivial] Replace `\n` with `\R` for the new line meta character in the regular expression reference.
+- [trivial] Rename the feature Outline Menu to Outline.
 - [trivial] Tweak Anura theme.
 
 
