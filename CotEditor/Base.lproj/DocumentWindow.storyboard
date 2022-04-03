@@ -300,6 +300,9 @@
                                             </menuItem>
                                             <menuItem title="NEL" tag="3" hidden="YES" toolTip="Unicode Next Line" id="T5S-w3-Q1V">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="hf0-6P-3AG"/>
+                                                </connections>
                                             </menuItem>
                                             <menuItem title="LS" tag="4" hidden="YES" toolTip="Unicode Line Separator" id="ayd-8d-C4Y">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
