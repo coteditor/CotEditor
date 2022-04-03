@@ -823,7 +823,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         assert(Thread.isMainThread)
         
-        guard lineEnding != self.lineEnding else { return }
+        guard
+            lineEnding != self.lineEnding ||
+            self.string.lineEndingRanges().count > 1
+        else { return }
         
         // register undo
         if let undoManager = self.undoManager {
@@ -834,7 +837,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // update line ending
-        self.textStorage.replaceLineEndings([self.lineEnding], with: lineEnding)
+        self.textStorage.replaceLineEndings(with: lineEnding)
         self.lineEnding = lineEnding
         
         // update UI

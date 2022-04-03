@@ -171,7 +171,7 @@ extension String {
     /// The dominated line ending type.
     var detectedLineEnding: LineEnding? {
         
-        self.lineEndingRanges(maximum: 3)?
+        self.lineEndingRanges(maximum: 3)
             .sorted(\.value.first!.location)
             .max { $0.value.count < $1.value.count }?
             .key
@@ -182,11 +182,11 @@ extension String {
     ///
     /// - Parameter maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
     /// - Returns: Ranges of line endings.
-    func lineEndingRanges(maximum: Int? = nil) -> [LineEnding: [NSRange]]? {
+    func lineEndingRanges(maximum: Int? = nil) -> [LineEnding: [NSRange]] {
         
         assert(maximum ?? .max > 0)
         
-        guard !self.isEmpty else { return nil }
+        guard !self.isEmpty else { return [:] }
         
         var lineEndingRanges: [LineEnding: [NSRange]] = [:]
         let string = self as NSString
@@ -212,7 +212,7 @@ extension String {
             }
         }
         
-        return lineEndingRanges.isEmpty ? nil : lineEndingRanges
+        return lineEndingRanges
     }
     
 }
@@ -226,7 +226,7 @@ extension NSMutableAttributedString {
     /// - Parameters:
     ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
     ///     - newLineEnding: The line ending type with which to replace target.
-    func replaceLineEndings(_ lineEndings: [LineEnding]?, with newLineEnding: LineEnding) {
+    func replaceLineEndings(_ lineEndings: [LineEnding]? = nil, with newLineEnding: LineEnding) {
         
         let lineEndings = lineEndings ?? LineEnding.allCases
         
