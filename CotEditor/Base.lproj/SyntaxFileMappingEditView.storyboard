@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PkK-eS-ZqL">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="PkK-eS-ZqL">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -89,7 +89,7 @@
                                     <rect key="frame" x="1" y="1" width="247" height="117"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="Tx3-Ki-c38">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="Tx3-Ki-c38">
                                             <rect key="frame" x="0.0" y="0.0" width="247" height="117"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -159,7 +159,7 @@
                                     <rect key="frame" x="1" y="1" width="176" height="88"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" tableStyle="fullWidth" columnReordering="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" viewBased="YES" id="rl8-9y-Ntt">
                                             <rect key="frame" x="0.0" y="0.0" width="176" height="88"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
