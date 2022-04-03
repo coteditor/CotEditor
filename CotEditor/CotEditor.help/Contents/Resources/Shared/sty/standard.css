@@ -36,6 +36,10 @@ b {
 	font-weight: bold;
 }
 
+img {
+	max-width: 100%;
+}
+
 kbd {
 	font-family: -apple-system, sans-serif;
 	padding: 0 0.2em;
