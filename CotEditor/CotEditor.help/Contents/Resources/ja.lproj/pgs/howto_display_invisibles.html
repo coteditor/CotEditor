@@ -40,7 +40,7 @@
 
 <h3>プリント時の不可視文字表示</h3>
 
-<p>プリントの際に不可視文字を印刷に含めるかどうかは環境設定の<a href="pref_print.html">プリント</a>ペイン、または個別に書類をプリントする際のプリントダイアログから設定できます。</p>
+<p>プリントの際に不可視文字をプリントに含めるかどうかは環境設定の<a href="pref_print.html">プリント</a>ペイン、または個別に書類をプリントする際のプリントダイアログから設定できます。</p>
 
 
 
@@ -71,6 +71,9 @@
 			<td><ul>
 				<li>U+000A <small>(LINE FEED)</small></li>
 				<li>U+000D <small>(CARRIAGE RETURN)</small></li>
+				<li>U+0085 <small>(NEW LINE)</small></li>
+				<li>U+2028 <small>(LINE SEPARATOR)</small></li>
+				<li>U+2029 <small>(PARAGRAPH SEPARATOR)</small></li>
 			</ul></td>
 			<td>改行を表す制御文字です。CRLF (<code>U+000D</code>と<code>U+000A</code>の組み合わせ)も1つの改行文字として扱います。</td>
 		</tr>

@@ -30,12 +30,17 @@
 <p>As with the textual search, the line endings contained in the search string are assumed as the line ending code used in the document being searched for. On the other hand, the line endings specified as a metacharacter or a Unicode code point in the regular expression pattern are treated as-is regardless of the line endings type of the target document.</p>
 
 <table>
-	<caption>Metacharacters indicating a line ending in the regular expression</caption>
-	<tr><th>pattern</th><th>description</th></tr>
-	<tr><td>\n</td><td><code>U+000A</code>, the line ending character for LF</td></tr>
-	<tr><td>\r</td><td><code>U+000D</code>, the line ending character for CR</td></tr>
-	<tr><td>\r\n</td><td>The sequence of <code>U+000D</code> and <code>U+000A</code>, the line ending character for CRLF</td></tr>
-	<tr><td>\R</td><td>Any kind of line endings from <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</td></tr>
+	<thead>
+		<caption>Metacharacters indicating a line ending in the regular expression</caption>
+	</thead>
+	
+	<tbody>
+		<tr><th>pattern</th><th>description</th></tr>
+		<tr><td>\n</td><td><code>U+000A</code>, the line ending character for LF</td></tr>
+		<tr><td>\r</td><td><code>U+000D</code>, the line ending character for CR</td></tr>
+		<tr><td>\r\n</td><td>The sequence of <code>U+000D</code> and <code>U+000A</code>, the line ending character for CRLF</td></tr>
+		<tr><td>\R</td><td>Any kind of line endings from <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</td></tr>
+	</tbody>
 </table>
 
 
