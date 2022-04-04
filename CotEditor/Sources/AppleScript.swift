@@ -59,7 +59,7 @@ final class AppleScript: Script, AppleEventReceivable {
     /// Execute the script by sending it the given Apple event.
     ///
     /// - Parameters:
-    ///   - event: The apple event.
+    ///   - event: The Apple event.
     /// - Throws:`ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         

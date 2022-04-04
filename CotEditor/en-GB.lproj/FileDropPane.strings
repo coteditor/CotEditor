@@ -28,8 +28,8 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "Extensions";
-/* Class = "NSTableColumn"; headerToolTip = "File extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
-"FAF-cL-AAk.headerToolTip" = "File extensions of dropped file (comma separated).";
+/* Class = "NSTableColumn"; headerToolTip = "Filename extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerToolTip" = "Filename extensions of dropped file (comma separated).";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Syntax Style";

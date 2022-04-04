@@ -31,11 +31,11 @@
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "システム設定に従う";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "しない";  // The same as the popup menu selection in the System Preferences > "General"
+"o1f-vR-aFm.title" = "しない";  // The same as the popup menu selection in System Preferences > General
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "自動";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
-"OJs-2q-bg5.title" = "常に";  // The same as the popup menu selection in the System Preferences > "General"
+"OJs-2q-bg5.title" = "常に";  // The same as the popup menu selection in System Preferences > General
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */

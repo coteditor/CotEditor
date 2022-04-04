@@ -8,10 +8,10 @@ Change Log
 ### New Features
 
 - Ability to handle documents holding multiple types of line endings.
-- Add an option “Selection” to the “Pages” section in the Print dialog to print only the selected text in the document.
+- Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.
 - Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the line endings of the opened document are one of these).
 - Add recent history to the Unicode input.
-- Export setting files, such as themes or multiple replacements, to Finder just by dragging and dropping the setting name.
+- Export setting files, such as themes or multiple replacements, to the Finder just by dragging and dropping the setting name.
 - Transfer settings among CotEditors in different machines via Universal Control by dragging the setting name and dropping it to the setting list area in another CotEditor.
 
 
@@ -26,11 +26,11 @@ Change Log
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Prefer using .yml for syntax definition files over .yaml.
-- Remove original document icons for CoffeeScript and Tcl. 
+- Remove original document icons for CoffeeScript and Tcl.
+- Make text in the UI more Apple-favored.
 - Update help contents.
 - [trivial] Accept script files for the Script menu with an uppercased file extension.
 - [trivial] Replace `\n` with `\R` for the new line meta character in the regular expression reference.
-- [trivial] Rename the feature Outline Menu to Outline.
 - [trivial] Tweak Anura theme.
 
 

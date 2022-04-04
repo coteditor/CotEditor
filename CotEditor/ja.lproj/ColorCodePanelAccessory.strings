@@ -34,7 +34,7 @@
 
 /* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "16進法";
-/* Class = "NSMenuItem"; title = "Hex (Short)"; ObjectID = "wEc-KD-y7s"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal (Short)"; ObjectID = "wEc-KD-y7s"; */
 "wEc-KD-y7s.title" = "16進法（ショート）";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";

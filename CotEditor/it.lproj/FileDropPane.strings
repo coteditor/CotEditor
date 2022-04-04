@@ -31,7 +31,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "Estensioni";
-"FAF-cL-AAk.headerToolTip" = "Estensione dei file rilasciati (valori separati da virgola).";  /* File extensions of dropped file (comma separated). */
+"FAF-cL-AAk.headerToolTip" = "Estensione dei file rilasciati (valori separati da virgola).";  /* Filename extensions of dropped file (comma separated). */
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Stile della sintassi";

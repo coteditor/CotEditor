@@ -82,7 +82,7 @@
 "Empty find string" = "Leerer Suchbegriff";
 "The option “in selection” is enabled, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
 "Input text to find." = "Gib den zu findenden Text ein.";
-"Select the search scope in the document or disable the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
+"Select the search scope in the document or turn off the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
 
 // accessibility announcement
 "Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
@@ -255,7 +255,7 @@
 
 "Tab Style" = "Tabulatorstil";
 // tooltip
-"Disable expanding tabs to spaces" = "Auto-Tabulatorexpandierung deaktivieren";
+"Turn off expanding tabs to spaces" = "Auto-Tabulatorexpandierung deaktivieren";
 "Expand tabs to spaces automatically" = "Tabulator zu Leerzeichen automatisch expandieren";
 "Change tab width" = "Tabulatorbreite wechseln";
 // menu
@@ -307,7 +307,7 @@
 
 "Fonts" = "Schriften";
 // tooltip
-"Show Font Panel" = "Schriftfenster einblenden";
+"Show Fonts" = "Schriften einblenden";
 
 
 
@@ -662,7 +662,7 @@
 "Open Scripts Folder" = "Skriptordner öffnen";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "„Option + Klicken“, um das Skript im Editor zu öffnen.";
+"Option-click to open script in editor." = "Option-Klicken, um das Skript im Editor zu öffnen.";
 
 
 
@@ -702,7 +702,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
+"The insertion point after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
 
 
 

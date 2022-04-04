@@ -52,14 +52,14 @@
 "131.title" = "Servisler";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "CotEditor'ü Gizle";
+"134.title" = "CotEditor’ü Gizle";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "Diğerlerini Gizle";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "Tümünü Göster";
 
 /* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
-"136.title" = "CotEditor'den Çık";
+"136.title" = "CotEditor’den Çık";
 
 
 
@@ -219,7 +219,7 @@
 "302.title" = "Sözdizim Biçemi";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "Sözdizim Biçemi";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = "458"; */
 "458.title" = "Tümünü Yeniden Renklendir";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
@@ -441,16 +441,16 @@
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
 "Skr-vI-7VN.title" = "Tam Genişlikten Yarım Genişliğe";
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
-"586.title" = "ASCII'den Tam Genişlik ASCII'ye";
+"586.title" = "ASCII’den Tam Genişlik ASCII’ye";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
-"588.title" = "Tam Genişlik ASCII'den ASCII'ye";
+"588.title" = "Tam Genişlik ASCII’den ASCII’ye";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
 "XWV-by-mnw.title" = "Japonca Metin";
 /* Class = "NSMenuItem"; title = "Hiragana to Katakana"; ObjectID = "592"; */
-"592.title" = "Hiragana'dan Katakana'ya";
+"592.title" = "Hiragana’dan Katakana’ya";
 /* Class = "NSMenuItem"; title = "Katakana to Hiragana"; ObjectID = "594"; */
-"594.title" = "Katakana'dan Hiragana'ya";
+"594.title" = "Katakana’dan Hiragana’ya";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
 "600.title" = "Unicode Olağanlaştırmaları";
@@ -480,11 +480,11 @@
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
 "NU7-EI-1Ct.title" = "Değiştirilmiş NFD (HFS+)";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+'da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır";
+"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+’da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır";
 /* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
 "n6C-Km-BM9.title" = "Değiştirilmiş NFC (HFS+)";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Değiştirilmiş NFD'ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi";
+"n6C-Km-BM9.ibShadowedToolTip" = "Değiştirilmiş NFD’ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi";
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Kodlama Adı Gir";
@@ -601,7 +601,7 @@
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "Sürüm Notları";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor'deki Yenilikler";
+"DCW-Ij-540.title" = "CotEditor’deki Yenilikler";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Teşekkürler";
 

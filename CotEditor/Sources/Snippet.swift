@@ -39,7 +39,7 @@ struct Snippet {
             
             switch self {
                 case .cursor:
-                    return "The cursor position after inserting the snippet."
+                    return "The insertion point after inserting the snippet."
             }
         }
         

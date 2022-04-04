@@ -82,7 +82,7 @@
 "Empty find string" = "Châine de recherche vide";
 "The option “in selection” is enabled, although nothing is selected." = "L’option « Dans la sélection » est activée mais il n’y a aucune sélection.";
 "Input text to find." = "Texte à rechercher";
-"Select the search scope in the document or disable the “in selection” option." = "Sélectionnez le périmètre de recherche dans le document ou désactivez l’option « dans la sélection ».";
+"Select the search scope in the document or turn off the “in selection” option." = "Sélectionnez le périmètre de recherche dans le document ou désactivez l’option « dans la sélection ».";
 // accessibility announcement
 "Search wrapped." = "Retour au début.";  // announced when the search restarted from the beginning.
 
@@ -254,7 +254,7 @@
 
 "Tab Style" = "Style de tabulation";
 // tooltip
-"Disable expanding tabs to spaces" = "Désactiver l’utilisation d’espaces comme tabulation";
+"Turn off expanding tabs to spaces" = "Désactiver l’utilisation d’espaces comme tabulation";
 "Expand tabs to spaces automatically" = "Utiliser des espaces comme tabulation";
 "Change tab width" = "Changer la largeur de tabulation";
 // menu
@@ -306,7 +306,7 @@
 
 "Fonts" = "Polices";
 // tooltip
-"Show Font Panel" = "Afficher le panneau des polices de texte";
+"Show Fonts" = "Afficher les polices";
 
 
 
@@ -661,7 +661,7 @@
 "Open Scripts Folder" = "Ouvrir le dossier Scripts";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "« Alt + clic » pour ouvrir le script dans l’éditeur.";
+"Option-click to open script in editor." = "Option-clic pour ouvrir le script dans l’éditeur.";
 
 
 
@@ -700,7 +700,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "La position du curseur après l’insertion du snippet.";
+"The insertion point after inserting the snippet." = "La position du curseur après l’insertion du snippet.";
 
 
 /* String extension */

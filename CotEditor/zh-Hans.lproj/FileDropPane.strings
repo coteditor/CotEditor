@@ -31,7 +31,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "扩展名";
-"FAF-cL-AAk.headerToolTip" = "拖拽文件的文件扩展名 (逗号分隔)。";  /* File extensions of dropped file (comma separated). */
+"FAF-cL-AAk.headerToolTip" = "拖拽文件的文件扩展名 (逗号分隔)。";  /* Filename extensions of dropped file (comma separated). */
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "语法样式";

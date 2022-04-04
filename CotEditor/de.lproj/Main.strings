@@ -220,7 +220,7 @@
 "302.title" = "Syntaxstil";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "Syntaxstil";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = 458; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "Alles umfärben";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */

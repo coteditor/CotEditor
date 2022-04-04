@@ -65,7 +65,7 @@
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
 "P1I-gs-RgX.title" = "Adattamento righe:";
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
-"3274.title" = "Adatta righe alla larghezza dell'editor";
+"3274.title" = "Adatta righe alla larghezza dell’editor";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
 "mCq-92-2sT.title" = " Fai rientrare le righe a capo di";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */

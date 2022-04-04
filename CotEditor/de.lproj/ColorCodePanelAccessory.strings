@@ -33,9 +33,9 @@
 "HMC-PY-Ngy.title" = "Hinzufügen";
 
 
-/* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "Hexadezimal";
-/* Class = "NSMenuItem"; title = "Hex (Short)"; ObjectID = "wEc-KD-y7s"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal (Short)"; ObjectID = "wEc-KD-y7s"; */
 "wEc-KD-y7s.title" = "Hexadezimal (Kurz)";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";

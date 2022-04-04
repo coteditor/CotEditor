@@ -218,8 +218,8 @@
 "302.title" = "Syntax Style";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "Syntax Style";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
-"458.title" = "Re-Colour All";
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = "458"; */
+"458.title" = "Recolour All";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
 "410.title" = "Font";

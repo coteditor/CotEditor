@@ -83,7 +83,7 @@
 "Empty find string" = "Stringa di ricerca vuota";
 "The option “in selection” is enabled, although nothing is selected." = "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla.";
 "Input text to find." = "Inserire il testo da cercare.";
-"Select the search scope in the document or disable the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
+"Select the search scope in the document or turn off the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
 
 // accessibility announcement
 "Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
@@ -256,7 +256,7 @@
 
 "Tab Style" = "Stile Pannello";
 // tooltip
-"Disable expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
+"Turn off expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
 "Expand tabs to spaces automatically" = "Abilita l’espansione automatica dei Tab";
 "Change tab width" = "Cambia larghezza pannello";
 // menu
@@ -308,7 +308,7 @@
 
 "Fonts" = "Font";
 // tooltip
-"Show Font Panel" = "Mostra il pannello dei font";
+"Show Fonts" = "Mostra font";
 
 
 
@@ -664,7 +664,7 @@ tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 "Open Scripts Folder" = "Apri cartella script";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Alt/Opt + Click” per aprire nell’editor degli script.";
+"Option-click to open script in editor." = "Option-click per aprire nell’editor degli script.";
 
 
 
@@ -704,7 +704,7 @@ tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
+"The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
 
 
 

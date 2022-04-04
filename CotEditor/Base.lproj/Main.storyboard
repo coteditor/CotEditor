@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -390,7 +390,7 @@ Gw
                                             <menu key="submenu" title="Syntax Style" id="304">
                                                 <items>
                                                     <menuItem isSeparatorItem="YES" id="kdb-Ik-s27"/>
-                                                    <menuItem title="Re-Color All" keyEquivalent="r" id="458">
+                                                    <menuItem title="Recolor All" keyEquivalent="r" id="458">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="recolorAll:" target="Ady-hI-5gd" id="ma3-X0-tjk"/>

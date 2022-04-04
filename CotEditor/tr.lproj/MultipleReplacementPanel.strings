@@ -140,9 +140,9 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "JiF-TN-azJ"; */
 "JiF-TN-azJ.ibShadowedToolTip" = "Tam karakter eşliği.";
 
-/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "WWu-mC-MCz"; */
+/* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "WWu-mC-MCz"; */
 "WWu-mC-MCz.title" = "Aksan imlerini yok say";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritical marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
 "9pO-Jw-K7x.ibShadowedToolTip" = "Arama, aksan imlerini yok sayar (örn. ö = o).";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */

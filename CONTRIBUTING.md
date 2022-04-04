@@ -32,7 +32,7 @@ If your localization makes the Autolayout destroy, try first making the sentence
 
 #### Good references for localization
 
-By localization, use macOS standard terms. It might be helpful to study native Apple applications like TextEdit.app or the System Preferences to know how Apple localizes terms in their apps.
+By localization, use macOS standard terms. It might be helpful to study native Apple applications like TextEdit.app or System Preferences to know how Apple localizes terms in their apps.
 
 Especially, follow the terms of the following applications.
 

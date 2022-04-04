@@ -29,7 +29,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "Uzantılar";
-/* Class = "NSTableColumn"; headerToolTip = "File extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
+/* Class = "NSTableColumn"; headerToolTip = "Filename extensions of dropped file (comma separated)."; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerToolTip" = "Bırakılan dosyanın uzantıları (virgülle ayrılmış).";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */

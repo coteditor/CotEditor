@@ -222,7 +222,7 @@
 "302.title" = "语法样式";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "语法样式";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = 458; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "全部重新着色";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */

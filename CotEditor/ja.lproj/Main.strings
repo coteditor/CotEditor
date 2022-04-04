@@ -220,7 +220,7 @@
 "302.title" = "シンタックススタイル";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "シンタックススタイル";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = 458; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "再カラーリング";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */

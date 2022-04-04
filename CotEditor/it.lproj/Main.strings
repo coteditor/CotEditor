@@ -221,7 +221,7 @@
 "302.title" = "Stile sintassi";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "Stile sintassi";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = 458; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "Ricolora tutto";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */

@@ -15,14 +15,14 @@
 
 <h2>Inputting a line ending</h2>
 
-<p>Typing <kbd>Option</kbd>+<kbd>Return</kbd> in a input field in the Find panel breaks a line.</p>
+<p>Typing <kbd>Option</kbd>-<kbd>Return</kbd> in a input field in the Find window breaks a line.</p>
 
 
 <h2>Finding line endings</h2>
 
 <h3>Textual search</h3>
 
-<p>On the normal textual search, the line endings contained in the search string are assumed as the line ending code used in the document being searched for. That is, it doesn't match the line endings that differ from the document line ending type.</p>
+<p>On the normal textual search, the line endings contained in the search string are assumed as the line ending code used in the document being searched for. That is, it doesn’t match the line endings that differ from the document line ending type.</p>
 
 
 <h3>Regular expression search</h3>
@@ -30,9 +30,7 @@
 <p>As with the textual search, the line endings contained in the search string are assumed as the line ending code used in the document being searched for. On the other hand, the line endings specified as a metacharacter or a Unicode code point in the regular expression pattern are treated as-is regardless of the line endings type of the target document.</p>
 
 <table>
-	<thead>
-		<caption>Metacharacters indicating a line ending in the regular expression</caption>
-	</thead>
+    <caption>Metacharacters indicating a line ending in the regular expression</caption>
 	
 	<tbody>
 		<tr><th>pattern</th><th>description</th></tr>
@@ -50,7 +48,7 @@
 
 <p>For instance, when replacing the find string “dog\Rcow” with the replacement string “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the substring “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
 
-<p>There is currently no way to replace with line endings other than the document line ending. The only way on CotEditor to insert a line ending different from the document's line ending is <a href="../pgs/howto_input_unicode.html">manually inputting by Unicode code point</a>.</p>
+<p>There is currently no way to replace with line endings other than the document line ending. The only way on CotEditor to insert a line ending different from the document’s line ending is <a href="../pgs/howto_input_unicode.html">manually inputting by Unicode code point</a>.</p>
 
 
 

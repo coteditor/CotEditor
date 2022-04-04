@@ -359,7 +359,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             case #selector(toggleAutoTabExpand):
                 (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
-                    ? "Disable expanding tabs to spaces".localized
+                    ? "Turn off expanding tabs to spaces".localized
                     : "Expand tabs to spaces automatically".localized
             
             case #selector(changeTabWidth):
@@ -659,7 +659,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     // MARK: Action Messages
     
-    /// re-color whole document
+    /// recolor whole document
     @IBAction func recolorAll(_ sender: Any?) {
         
         self.invalidateSyntaxHighlight()

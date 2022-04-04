@@ -549,7 +549,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Fonts".localized
-                item.toolTip = "Show Font Panel".localized
+                item.toolTip = "Show Fonts".localized
                 item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
                 item.action = #selector(NSFontManager.orderFrontFontPanel)
                 return item
@@ -558,7 +558,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Find".localized
-                item.toolTip = "Show “Find and Replace”".localized
+                item.toolTip = "Show Find and Replace".localized
                 item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(TextFinder.showFindPanel)
                 return item

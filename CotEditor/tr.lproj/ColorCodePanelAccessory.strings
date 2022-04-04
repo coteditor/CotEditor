@@ -31,9 +31,9 @@
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "Ekle";
 
-/* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "Onaltılık";
-/* Class = "NSMenuItem"; title = "Hex (short)"; ObjectID = "wEc-KD-y7s"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal (short)"; ObjectID = "wEc-KD-y7s"; */
 "wEc-KD-y7s.title" = "Onaltılık (kısa)";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";

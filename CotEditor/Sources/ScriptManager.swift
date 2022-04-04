@@ -131,7 +131,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple Event that notifies the given document was opened.
+    /// Dispatch an Apple event that notifies the given document was opened.
     ///
     /// - Parameters:
     ///   - eventType: The event trigger to perform script.
@@ -217,7 +217,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Create an Apple Event caused by the given `Document`.
+    /// Create an Apple event caused by the given `Document`.
     ///
     /// - Bug:
     ///   NSScriptObjectSpecifier.descriptor can be nil.
@@ -225,9 +225,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
     ///
     /// - Parameters:
-    ///   - document: The document to dispatch an Apple Event.
+    ///   - document: The document to dispatch an Apple event.
     ///   - eventID: The event ID to be set in the returned event.
-    /// - Returns: A descriptor for an Apple Event by the `Document`.
+    /// - Returns: A descriptor for an Apple event by the `Document`.
     private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
         
         let event = NSAppleEventDescriptor(eventClass: "cEd1",
@@ -243,11 +243,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Cause the given Apple Event to be dispatched to AppleScripts at given URLs.
+    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
     ///
     /// - Parameters:
-    ///   - event: The Apple Event to be dispatched.
-    ///   - scripts: AppleScripts handling the given Apple Event.
+    ///   - event: The Apple event to be dispatched.
+    ///   - scripts: AppleScripts handling the given Apple event.
     private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [any EventScript]) async {
         
         await withTaskGroup(of: Void.self) { group in
@@ -304,7 +304,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     item.keyEquivalentModifierMask = shortcut.modifierMask
                     item.representedObject = script
                     item.target = self
-                    item.toolTip = "“Option + click” to open script in editor.".localized
+                    item.toolTip = "Option-click to open script in editor.".localized
                     return item
                     
                 } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder

@@ -83,7 +83,7 @@
 "Empty find string" = "Empty find string";
 "The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";
 "Input text to find." = "Input text to find.";
-"Select the search scope in the document or disable the “in selection” option." = "Select the search scope in the document or disable the “in selection” option.";
+"Select the search scope in the document or turn off the “in selection” option." = "Select the search scope in the document or turn off the “in selection” option.";
 
 // accessibility announcement
 "Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.
@@ -255,7 +255,7 @@
 
 "Tab Style" = "Tab Style";
 // tooltip
-"Disable expanding tabs to spaces" = "Disable expanding tabs to spaces";
+"Turn off expanding tabs to spaces" = "Turn off expanding tabs to spaces";
 "Expand tabs to spaces automatically" = "Expand tabs to spaces automatically";
 "Change tab width" = "Change tab width";
 // menu
@@ -307,7 +307,7 @@
 
 "Fonts" = "Fonts";
 // tooltip
-"Show Font Panel" = "Show Font Panel";
+"Show Fonts" = "Show Fonts";
 
 
 
@@ -661,7 +661,7 @@
 "Open Scripts Folder" = "Open Scripts Folder";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Option + click” to open script in editor.";
+"Option-click to open script in editor." = "Option-click to open script in editor.";
 
 
 
@@ -701,7 +701,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "The cursor position after inserting the snippet.";
+"The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";
 
 
 /* String extension */

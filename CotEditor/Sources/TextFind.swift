@@ -78,7 +78,7 @@ final class TextFind {
                 case .emptyFindString:
                     return "Input text to find.".localized
                 case .emptyInSelectionSearch:
-                    return "Select the search scope in the document or disable the “in selection” option.".localized
+                    return "Select the search scope in the document or turn off the “in selection” option.".localized
             }
         }
         

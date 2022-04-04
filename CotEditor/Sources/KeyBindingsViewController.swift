@@ -162,7 +162,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         // cancel input
         guard
-            input != "\u{1b}",  // = ESC key  -> treat esc key as cancel
+            input != "\u{1b}",  // = ESC key  -> treat Esc key as cancel
             input != oldShortcut?.description  // not edited
         else {
             // reset text field display

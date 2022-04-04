@@ -83,7 +83,7 @@
 "Empty find string" = "空的搜索字符串";
 "The option “in selection” is enabled, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
 "Input text to find." = "输入文本以查找。";
-"Select the search scope in the document or disable the “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
+"Select the search scope in the document or turn off the “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
 
 // accessibility announcement
 "Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
@@ -255,7 +255,7 @@
 
 "Tab Style" = "Tab 样式";
 // tooltip
-"Disable expanding tabs to spaces" = "禁止将tab扩展为空格";
+"Turn off expanding tabs to spaces" = "禁止将tab扩展为空格";
 "Expand tabs to spaces automatically" = "自动将tab扩展为空格";
 "Change tab width" = "更改Tab宽度";
 // menu
@@ -295,7 +295,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "“検索と置換”を表示";
+"Show Find & Replace" = "显示查找 & 替换";
 
 "Print" = "打印";
 // tooltip
@@ -307,7 +307,7 @@
 
 "Fonts" = "字体";
 // tooltip
-"Show Font Panel" = "显示字体面板";
+"Show Fonts" = "显示字体";
 
 
 
@@ -662,7 +662,7 @@
 "Open Scripts Folder" = "打开Scripts文件夹";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "使用“Option+单击”在编辑器中打开脚本。";
+"Option-click to open script in editor." = "使用Option-单击在编辑器中打开脚本。";
 
 
 
@@ -702,10 +702,10 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "插入片段后的光标位置";
+"The insertion point after inserting the snippet." = "插入片段后的光标位置";
 
 
 
 /* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-"%@ with BOM" = "%@ with BOM";  // No need to be tranlated since "UTF-8 with BOM" is acceptable in zh-Hans.
+"%@ with BOM" = "%@ with BOM";  // No need to be tranlated because "UTF-8 with BOM" is acceptable in zh-Hans.

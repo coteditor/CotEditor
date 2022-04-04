@@ -84,7 +84,7 @@
 "Empty find string" = "検索文字列が空です。";
 "The option “in selection” is enabled, although nothing is selected." = "「選択範囲のみ」オプションが有効になっていますが、何も選択されていません。";
 "Input text to find." = "検索するテキストを入力してください。";
-"Select the search scope in the document or disable the “in selection” option." = "検索範囲を選択するか「選択範囲のみ」オプションを無効にしてください。";
+"Select the search scope in the document or turn off the “in selection” option." = "検索範囲を選択するか「選択範囲のみ」オプションを無効にしてください。";
 
 // accessibility announcement
 "Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
@@ -256,7 +256,7 @@
 
 "Tab Style" = "タブスタイル";
 // tooltip
-"Disable expanding tabs to spaces" = "自動タブ展開を無効に";
+"Turn off expanding tabs to spaces" = "自動タブ展開を無効に";
 "Expand tabs to spaces automatically" = "自動でタブをスペースに展開";
 "Change tab width" = "タブ幅を変更";
 // menu
@@ -296,7 +296,7 @@
 
 "Find" = "検索";
 // tooltip
-"Show Find & Replace" = "“検索と置換”を表示";
+"Show Find & Replace" = "検索と置換を表示";
 
 "Print" = "プリント";
 // tooltip
@@ -308,7 +308,7 @@
 
 "Fonts" = "フォント";
 // tooltip
-"Show Font Panel" = "フォントパネルを表示";
+"Show Fonts" = "フォントパネルを表示";
 
 
 
@@ -662,7 +662,7 @@
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option+クリック”してください。";
+"Option-click to open script in editor." = "スクリプトをエディタで開くには、Option-クリックしてください。";
 
 
 
@@ -702,7 +702,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "スニペット挿入後のカーソル位置";
+"The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 
 
 /* String extension */
