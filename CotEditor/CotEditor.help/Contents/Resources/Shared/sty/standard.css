@@ -17,9 +17,7 @@
 	color: -apple-system-label;
 }
 body {
-	margin: 1em auto;
-	padding: 0 1em 1em;
-	max-width: 7in;
+	margin: 1em 2em;
 }
 
 a {
@@ -74,7 +72,7 @@ body > h1 {
 	font-size: 1.71rem;
 	line-height: 1.0;
 	font-weight: 400;
-	margin: 1.5em 0;
+	margin: 1.5em 0 1em;
 }
 body > h1::before {
 	content: '';
@@ -88,7 +86,7 @@ body > h1::before {
 }
 h2 {
 	font-family: -apple-system-subheadline, sans-serif;
-	font-size: 1.41rem;
+	font-size: 1.2rem;
 	font-weight: 400;
 	line-height: 1.1;
 	font-weight: 500;
@@ -115,9 +113,6 @@ article+article {
 
 p, li {
 	text-align: justify;
-}
-p:lang(ja) {
-	text-indent: 1em;
 }
 
 ol,
@@ -315,6 +310,9 @@ span.string {
 }
 span.invisible {
 	opacity: 0.4;
+}
+span.variable {
+	font-style: italic;
 }
 
 /* dark mode */

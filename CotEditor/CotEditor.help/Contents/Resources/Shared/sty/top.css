@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2021 CotEditor Project
+ © 2006-2022 CotEditor Project
 */
 
 
@@ -16,7 +16,7 @@
 	color: -apple-system-label;
 }
 body {
-	margin: 1em auto;
+	margin: 1em 2em;
 }
 
 a {
@@ -30,31 +30,27 @@ a:hover {
 }
 
 header {
-	text-align: center;
-	padding: 26px 0;
-	background: linear-gradient(white, hsl(220,6%,95%));
+	position: relative;
+	height: 88px;
+	padding: 12px 0;
+	border-bottom: 1px solid -apple-system-quaternary-label;
+	padding-left: 100px;
 }
-
-@media (prefers-color-scheme: dark) {
-	header {
-	background: linear-gradient(transparent, hsl(220,6%,10%));
-	}
+header img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 96px;
 }
-main {
-	max-width: 7in;
-	margin: 1em auto;
-	padding: 0 1em;
-}
-
 header h1 {
-	font-size: 240%;
-	font-weight: 500;
-	margin: 0.5em 0;
+	font-size: 220%;
+	font-weight: 600;
+	margin: 0;
 }
 
 dt {
 	font-size: 120%;
-	font-weight: normal;
+	font-weight: 500;
 	margin-top: 0.8em;
 }
 dd {
