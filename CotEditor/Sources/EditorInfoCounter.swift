@@ -57,9 +57,9 @@ struct EditorCountResult: Equatable {
     
     struct Cursor: Equatable {
         
-        var location = 1  // caret location from the beginning of document
+        var location = 1  // cursor location from the beginning of document
         var line = 1      // current line
-        var column = 1    // caret location from the beginning of line
+        var column = 1    // cursor location from the beginning of line
     }
     
     

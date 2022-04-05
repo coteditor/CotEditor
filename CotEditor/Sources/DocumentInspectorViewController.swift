@@ -44,9 +44,9 @@ final class EditorInfo: NSObject {
     @objc dynamic var words: String?
     @objc dynamic var length: String?    // character length as UTF-16 string
     
-    @objc dynamic var location: String?  // caret location from the beginning of document
+    @objc dynamic var location: String?  // cursor location from the beginning of document
     @objc dynamic var line: String?      // current line
-    @objc dynamic var column: String?    // caret location from the beginning of line
+    @objc dynamic var column: String?    // cursor location from the beginning of line
     
     @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
 }
