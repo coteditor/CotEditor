@@ -30,10 +30,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-b {
-	font-weight: bold;
-}
-
 img {
 	max-width: 100%;
 }
@@ -45,10 +41,6 @@ kbd {
 	border-radius: 0.2em;
 	border: 1px solid -apple-system-tertiary-label;
 	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .05);
-}
-
-hr {
-	opacity: 0.33;
 }
 
 :not(h1) > code {
@@ -122,6 +114,7 @@ pre {
 	clear: both;
 }
 pre {
+	font-family: 'Courier', 'Courier New', monospace;
 	margin-left: 1em;
 }
 pre.source {
@@ -155,10 +148,6 @@ ol + ul {
 	margin-top: 1em;
 }
 
-ul.topicbox {
-	background-color: white;
-	border: 1px dotted #999;
-}
 table ul li {
 	margin-bottom: 0.2em;
 }
@@ -179,12 +168,6 @@ table ul li {
 	border: none;
 }
 
-p.point {
-	padding: 1em 2em 1em 1.5em;
-	margin: auto -1%;
-	border: 1px solid hsl(213, 25%, 80%);
-	background-color: hsl(213, 25%, 96%);
-}
 p.addition {
 	position: relative;
 	text-indent: 0;
@@ -208,15 +191,6 @@ p.addition > span:first-child {
 em, strong {
 	font-weight: 600;
 	font-style: normal;
-}
-
-p#relbar {
-	text-align: right;
-}
-
-.figmarker {
-	font-weight: bold;
-	color: red;
 }
 
 img.snapshot {
@@ -286,19 +260,14 @@ th code {
 	border: none;
 	background: none;
 }
-th.lh,
 tbody th:first-child {
 	text-align: left;
 	vertical-align: top;
 }
 
-tt,
-pre {
-	font-family: 'Courier', 'Courier New', monospace;
-}
-
 
 /* syntax highlight */
+
 span.comment {
 	color: hsl(0, 40%, 40%);
 }
@@ -315,6 +284,7 @@ span.variable {
 	font-style: italic;
 }
 
+
 /* dark mode */
 
 :root {
@@ -322,10 +292,6 @@ span.variable {
 }
 
 @media (prefers-color-scheme: dark) {
-	body > nav {
-		border-bottom-color: hsl(0, 0%, 20%);
-		background: hsl(0, 0%, 10%);
-	}
 	pre.source {
 		background: hsl(0, 0%, 10%);
 	}
