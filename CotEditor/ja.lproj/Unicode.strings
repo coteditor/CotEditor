@@ -136,7 +136,7 @@
 "Thaana" = "ターナ文字";
 "Telugu" = "テルグ文字";
 "Hiragana" = "ひらがな";
-"CJK Compatibility Ideographs Supp." = "CJK互換漢字追加";
+"CJK Compatibility Ideographs Supplement" = "CJK互換漢字追加";  // "Supp." -> "Supplement"
 "Katakana" = "カタカナ";
 "Mathematical Operators" = "数学演算子";
 "Mahjong Tiles" = "麻雀牌";
