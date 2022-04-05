@@ -644,9 +644,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
-                let indentRange = range.isEmpty ? self.string.rangeOfIndent(at: range.location) : range
-                
                 guard
+                    let indentRange = range.isEmpty ? self.string.rangeOfIndent(at: range.location) : range,
                     !indentRange.isEmpty,
                     let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
                     else { return (range, "", 0) }
