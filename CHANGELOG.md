@@ -22,6 +22,7 @@ Change Log
 - Adjust the vertical position of line numbers on printing.
 - Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
 - Print the line numbers on the right side on printing if the writing direction is right-to-left.
+- Indent snippet text with multiple lines to the indention level where will be inserted. 
 - Add steppers to the font setting controls.
 - Optimize syntax parsing.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.

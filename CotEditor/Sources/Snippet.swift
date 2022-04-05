@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,4 +64,19 @@ struct Snippet {
             .map { $0.element.location - $0.offset * $0.element.length }
             .map { NSRange(location: $0, length: 0) }
     }
+    
+    
+    /// Return a copy of the receiver by inserting the given ident to every new line.
+    ///
+    /// - Parameter indent: The indent string to insert.
+    /// - Returns: An indented snippet.
+    func indented(with indent: String) -> Self {
+        
+        guard !indent.isEmpty else { return self }
+        
+        let string = self.string.replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)
+        
+        return Self(string)
+    }
+    
 }

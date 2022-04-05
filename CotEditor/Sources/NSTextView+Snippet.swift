@@ -34,20 +34,26 @@ extension NSTextView {
             let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue)
             else { return }
         
-        let strings = [String](repeating: snippet.string, count: insertionRanges.count)
-        
-        let selectedRanges: [NSRange]? = {
-            guard !snippet.selections.isEmpty else { return nil }
+        // insert indent to every newline
+        let snippets: [Snippet] = insertionRanges.map { (range) in
+            guard let indentRange = self.string.rangeOfIndent(at: range.location) else { return snippet }
             
-            return insertionRanges
-                .map { range in
+            let indent = (self.string as NSString).substring(with: indentRange)
+            
+            return snippet.indented(with: indent)
+        }
+        
+        let strings = snippets.map(\.string)
+        let selectedRanges: [NSRange]? = snippet.selections.isEmpty
+            ? nil
+            : zip(snippets, insertionRanges)
+                .map { (snippet, range) in
                     insertionRanges
                         .prefix { $0 != range }
                         .map { snippet.string.length - $0.length }
                         .reduce(range.location, +)
                 }
                 .flatMap { offset in snippet.selections.map { $0.shifted(offset: offset) } }
-        }()
         
         self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
     }
