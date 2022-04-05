@@ -87,8 +87,8 @@ final class LineEndingTests: XCTestCase {
             .paragraphSeparator: [NSRange(location: 20, length: 1)],
         ]
         
-        XCTAssertNil("".lineEndingRanges())
-        XCTAssertNil("abc".lineEndingRanges())
+        XCTAssert("".lineEndingRanges().isEmpty)
+        XCTAssert("abc".lineEndingRanges().isEmpty)
         XCTAssertEqual(string.lineEndingRanges(), expected)
         
         let expectedPartly: [LineEnding: [NSRange]] = [
