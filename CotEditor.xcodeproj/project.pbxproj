@@ -22,6 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
+		2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */; };
 		2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
@@ -859,6 +860,7 @@
 		0D51D5912274EF4A00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		0D51D5922274EF5300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Unicode.strings; sourceTree = "<group>"; };
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
+		2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTests.swift; sourceTree = "<group>"; };
 		2A05081223D6B9E900602F5E /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
 		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
@@ -2354,6 +2356,7 @@
 				2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */,
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
+				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3173,6 +3176,7 @@
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 				2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
+				2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,
 				2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,

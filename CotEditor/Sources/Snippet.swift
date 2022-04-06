@@ -46,21 +46,35 @@ struct Snippet {
     }
     
     
-    var string: String
-    var selections: [NSRange]
+    // MARK: Private Properties
+    
+    private let format: String
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(_ string: String) {
+    init(_ format: String) {
         
-        let tokenRanges = (string as NSString).ranges(of: Variable.cursor.token)
+        self.format = format
+    }
+    
+    
+    /// String to insert.
+    var string: String {
         
-        self.string = tokenRanges.reversed()
-            .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: "") }
-        self.selections = tokenRanges.enumerated()
+        self.tokenRanges(for: .cursor)
+            .reversed()
+            .reduce(self.format) { ($0 as NSString).replacingCharacters(in: $1, with: "") }
+    }
+    
+    
+    /// The selected ranges in snippet string.
+    var selections: [NSRange] {
+        
+        self.tokenRanges(for: .cursor)
+            .enumerated()
             .map { $0.element.location - $0.offset * $0.element.length }
             .map { NSRange(location: $0, length: 0) }
     }
@@ -74,9 +88,18 @@ struct Snippet {
         
         guard !indent.isEmpty else { return self }
         
-        let string = self.string.replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)
+        let format = self.format.replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)
         
-        return Self(string)
+        return Self(format)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    func tokenRanges(for variable: Variable) -> [NSRange] {
+        
+        (self.format as NSString).ranges(of: variable.token)
     }
     
 }

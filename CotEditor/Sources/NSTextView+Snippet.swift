@@ -47,13 +47,14 @@ extension NSTextView {
         let selectedRanges: [NSRange]? = snippet.selections.isEmpty
             ? nil
             : zip(snippets, insertionRanges)
-                .map { (snippet, range) in
-                    insertionRanges
+                .flatMap { (snippet, range) -> [NSRange] in
+                    let offset = insertionRanges
                         .prefix { $0 != range }
                         .map { snippet.string.length - $0.length }
                         .reduce(range.location, +)
+                    
+                    return snippet.selections.map { $0.shifted(offset: offset) }
                 }
-                .flatMap { offset in snippet.selections.map { $0.shifted(offset: offset) } }
         
         self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
     }
