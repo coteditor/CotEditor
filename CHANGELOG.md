@@ -16,6 +16,7 @@ Change Log
 
 - Fix an issue that reverting a document to one stored with a different file encoding from the current encoding could fail.
 - Fix an issue that the split view did not inherit the font style and the writing direction.
+- Fix an issue that the icons for Shift Left/Right commands were swapped.
 - Fix an issue that the incompatible character pane did not show the message “No incompatible characters were found.” when all of the existing incompatible characters are cleared.
 - [trivial] Fix localization of a Unicode block name.
 
