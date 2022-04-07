@@ -97,7 +97,7 @@ struct Snippet {
     
     // MARK: Private Methods
     
-    func tokenRanges(for variable: Variable) -> [NSRange] {
+    private func tokenRanges(for variable: Variable) -> [NSRange] {
         
         (self.format as NSString).ranges(of: variable.token)
     }
