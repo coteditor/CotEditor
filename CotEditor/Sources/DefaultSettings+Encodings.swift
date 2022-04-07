@@ -51,7 +51,7 @@ extension DefaultSettings {
         CFStringEncodings.macChineseTrad,     // Traditional Chinese (Mac OS)
         CFStringEncodings.macChineseSimp,     // Simplified Chinese (Mac OS)
         CFStringEncodings.EUC_TW,             // Traditional Chinese (EUC)
-        CFStringEncodings.EUC_CN,             // Simplified Chinese (EUC)
+        CFStringEncodings.EUC_CN,             // Simplified Chinese (GB 2312)
         CFStringEncodings.dosChineseTrad,     // Traditional Chinese (Windows, DOS)
         CFStringEncodings.dosChineseSimplif,  // Simplified Chinese (Windows, DOS)
         kCFStringEncodingInvalidId,
