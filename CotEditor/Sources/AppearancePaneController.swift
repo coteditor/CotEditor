@@ -133,7 +133,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.fontObserver = nil
         self.themeManagerObservers.removeAll()
-        
     }
     
     
