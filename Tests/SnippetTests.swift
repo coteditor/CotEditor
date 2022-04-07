@@ -68,7 +68,6 @@ final class SnippetTests: XCTestCase {
         XCTAssertEqual(indentedSnippet.string, expectedIndentString)
         XCTAssertEqual(indentedSnippet.selections, [NSRange(location: 17, length: 0),
                                                     NSRange(location: 36, length: 0)])
-        
     }
     
 }
