@@ -180,9 +180,11 @@ extension String {
     
     /// Collect ranges of all line endings per line ending type from the beginning.
     ///
-    /// - Parameter maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
+    /// - Parameters:
+    ///     - range: foo.
+    ///     - maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
     /// - Returns: Ranges of line endings.
-    func lineEndingRanges(maximum: Int? = nil) -> [LineEnding: [NSRange]] {
+    func lineEndingRanges(in range: NSRange? = nil, maximum: Int? = nil) -> [LineEnding: [NSRange]] {
         
         assert(maximum ?? .max > 0)
         
@@ -191,7 +193,7 @@ extension String {
         var lineEndingRanges: [LineEnding: [NSRange]] = [:]
         let string = self as NSString
         
-        string.enumerateSubstrings(in: string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
+        string.enumerateSubstrings(in: range ?? string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
             guard !enclosingRange.isEmpty else { return }
             
             let lineEndingRange = NSRange(substringRange.upperBound..<enclosingRange.upperBound)
