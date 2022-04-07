@@ -161,7 +161,7 @@
 <p>When ‘location’ is a negative value, the selection range starts from the ‘location’-th last character.<br/>
 When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range will be from ‘location’ to the end.<br/>
 When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (i.e. the selection’s end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
-<p>This specifying method is modelled after that of PHP’s <code>substr</code>.</p>
+<p>This specifying method is based on <code>substr</code> in PHP.</p>
 <p>The command for changing selection doesn’t scroll the window. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
 </section>
 </section>
