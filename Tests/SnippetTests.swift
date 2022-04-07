@@ -40,19 +40,19 @@ final class SnippetTests: XCTestCase {
     func multipleLinesTest() {
         
         let pattern = """
-        <ul>
-            <li><<<CURSOR>>></li>
-            <li><<<CURSOR>>></li>
-        </ul>
-        """
+            <ul>
+                <li><<<CURSOR>>></li>
+                <li><<<CURSOR>>></li>
+            </ul>
+            """
         let snippet = Snippet(pattern)
         
         let expectedString = """
-        <ul>
-            <li></li>
-            <li></li>
-        </ul>
-        """
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+            """
         XCTAssertEqual(snippet.string, expectedString)
         XCTAssertEqual(snippet.selections, [NSRange(location: 13, length: 0),
                                             NSRange(location: 28, length: 0)])
@@ -60,11 +60,11 @@ final class SnippetTests: XCTestCase {
         let indentedSnippet = snippet.indented(with: "    ")
         
         let expectedIndentString = """
-        <ul>
-                <li></li>
-                <li></li>
-            </ul>
-        """
+            <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+            """
         XCTAssertEqual(indentedSnippet.string, expectedIndentString)
         XCTAssertEqual(indentedSnippet.selections, [NSRange(location: 17, length: 0),
                                                     NSRange(location: 36, length: 0)])
