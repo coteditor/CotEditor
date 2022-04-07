@@ -239,7 +239,7 @@
 "Horizontal" = "Horizontal";
 "Vertical" = "Vertikal";
 // tooltip
-"Toggle text orientation" = "Text vertikal/horizontal ausrichten";
+"Switch text orientation" = "Text vertikal/horizontal ausrichten";
 
 "Indent" = "Einziehen";
 "Shift Left" = "Ausrücken";

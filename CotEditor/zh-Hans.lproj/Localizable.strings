@@ -239,7 +239,7 @@
 "Horizontal" = "水平";
 "Vertical" = "竖直";
 // tooltip
-"Toggle text orientation" = "切换文字方向";
+"Switch text orientation" = "切换文字方向";
 
 "Indent" = "缩进";
 "Shift Left" = "左移";

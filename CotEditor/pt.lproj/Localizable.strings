@@ -240,7 +240,7 @@
 "Horizontal" = "Horizontal";
 "Vertical" = "Vertical";
 // tooltip
-"Toggle text orientation" = "Alterne a orientação do texto";
+"Switch text orientation" = "Alterne a orientação do texto";
 
 "Indent" = "Recuo";
 "Shift Left" = "Deslocar à Esquerda";

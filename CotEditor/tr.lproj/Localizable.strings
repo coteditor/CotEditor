@@ -238,7 +238,7 @@
 "Horizontal" = "Yatay";
 "Vertical" = "Dikey";
 // tooltip
-"Toggle text orientation" = "Metin yönlendirmesini değiştir";
+"Switch text orientation" = "Metin yönlendirmesini değiştir";
 
 "Indent" = "Girintile";
 "Shift Left" = "Sola Kaydır";

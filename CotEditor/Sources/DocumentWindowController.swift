@@ -406,7 +406,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.controlRepresentation = .expanded
                 item.selectionMode = .selectOne
                 item.label = "Text Orientation".localized
-                item.toolTip = "Toggle text orientation".localized
+                item.toolTip = "Switch text orientation".localized
                 item.action = #selector(DocumentViewController.changeOrientation)
                 item.subitems = [horizontalItem, verticalItem]
                 return item

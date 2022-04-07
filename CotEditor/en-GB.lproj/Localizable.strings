@@ -239,7 +239,7 @@
 "Horizontal" = "Horizontal";
 "Vertical" = "Vertical";
 // tooltip
-"Toggle text orientation" = "Toggle text orientation";
+"Switch text orientation" = "Switch text orientation";
 
 "Indent" = "Indent";
 "Shift Left" = "Shift Left";

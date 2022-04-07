@@ -240,7 +240,7 @@
 "Horizontal" = "横書き";
 "Vertical" = "縦書き";
 // tooltip
-"Toggle text orientation" = "横書き/縦書きを切替";
+"Switch text orientation" = "横書き/縦書きを切替";
 
 "Indent" = "インデント";
 "Shift Left" = "左へシフト";
