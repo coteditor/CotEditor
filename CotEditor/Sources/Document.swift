@@ -54,6 +54,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @Published private(set) var lineEnding: LineEnding
     @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
     
+    private let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -90,16 +91,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let encoding = String.availableStringEncodings.contains(defaultEncoding) ? defaultEncoding : .utf8
         self.fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: (encoding == .utf8) && UserDefaults.standard[.saveUTF8BOM])
         
-        self.lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
+        let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
+        self.lineEnding = lineEnding
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         
         // use the encoding selected by the user in the open panel, if exists
         self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
         
+        // observe for inconsistent line endings
+        self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        
         super.init()
         
         self.hasUndoManager = true
+        
+        self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         
         // observe sytnax style update
         self.sytnaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
