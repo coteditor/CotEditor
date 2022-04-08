@@ -353,6 +353,9 @@
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B279824E435FE00F02304 /* OutlineTests.swift */; };
+		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
+		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
+		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
@@ -1142,6 +1145,8 @@
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		2A7B279824E435FE00F02304 /* OutlineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTests.swift; sourceTree = "<group>"; };
+		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
+		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6601CEE351200AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6611CEE351400AA664D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2215,6 +2220,7 @@
 				2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */,
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
+				2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */,
 			);
 			name = Scanners;
 			sourceTree = "<group>";
@@ -2365,6 +2371,7 @@
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
+				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2991,6 +2998,7 @@
 				2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2A6FD9E81D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */,
+				2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
 				2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */,
@@ -3176,6 +3184,7 @@
 				2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
+				2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */,
 				2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */,
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
 				2A1893AD1FFF6A0100AD244F /* LineSortTests.swift in Sources */,
@@ -3310,6 +3319,7 @@
 				2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2A6FD9E71D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2AA375471D40BDCB0080C27C /* LineEnding.swift in Sources */,
+				2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
 				2A1893AA1FFF422D00AD244F /* LineSort.swift in Sources */,
