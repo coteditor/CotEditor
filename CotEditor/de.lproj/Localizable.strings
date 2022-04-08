@@ -197,6 +197,12 @@
 "Do you want to change encoding and show incompatible characters?" = "Möchtest du die Codierung ändern und die inkompatiblen Zeichen zeigen?";
 "Change Encoding" = "Codierung wechseln";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "Das Dokument hat inkonsistente Zeilenenden.";
+"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "Möchtest du die inkonsistenten Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
+"Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
+"Convert" = "Umwandeln";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";

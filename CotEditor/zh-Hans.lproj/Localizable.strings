@@ -198,6 +198,12 @@
 "Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
 "Change Encoding" = "更改编码";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
+"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?";  // FIXME: added
+"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"Convert" = "转换";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
 "The file has been modified by another application." = "文件被其他应用更改。";
