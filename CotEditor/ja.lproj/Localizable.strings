@@ -199,6 +199,12 @@
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "書類に複数の改行コードが含まれています。";
+"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "一致しない改行コードをこの書類で最も使われている%@に変換しますか?";
+"Don’t ask again for this document" = "この書類では次回から確認しない";
+"Convert" = "変換";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
 "The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";

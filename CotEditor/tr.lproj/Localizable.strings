@@ -197,6 +197,12 @@
 "Do you want to change encoding and show incompatible characters?" = "Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";
 "Change Encoding" = "Kodlamayı Değiştir";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
+"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?";  // FIXME: added
+"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"Convert" = "Dönüştür";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";
 "The file has been modified by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";

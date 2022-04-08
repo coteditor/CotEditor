@@ -37,6 +37,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         static let syntaxStyle = "syntaxStyle"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
+        static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
     }
     
     
@@ -54,6 +55,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @Published private(set) var lineEnding: LineEnding
     @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
     
+    private let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -67,6 +69,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private lazy var savePanelAccessoryController = NSViewController.instantiate(storyboard: "SaveDocumentAccessory")
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
+    private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
@@ -74,6 +77,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     private var sytnaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
+    private var windowObserver: AnyCancellable?
     
     private var lastSavedData: Data?  // temporal data used only within saving process
     
@@ -90,16 +94,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let encoding = String.availableStringEncodings.contains(defaultEncoding) ? defaultEncoding : .utf8
         self.fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: (encoding == .utf8) && UserDefaults.standard[.saveUTF8BOM])
         
-        self.lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
+        let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
+        self.lineEnding = lineEnding
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         
         // use the encoding selected by the user in the open panel, if exists
         self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
         
+        // observe for inconsistent line endings
+        self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        
         super.init()
         
         self.hasUndoManager = true
+        
+        self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         
         // observe sytnax style update
         self.sytnaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
@@ -116,6 +126,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
+        coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
     }
     
     
@@ -134,6 +145,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         if coder.containsValue(forKey: SerializationKey.isTransient) {
             self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
+        }
+        if coder.containsValue(forKey: SerializationKey.suppressesInconsistentLineEndingAlert) {
+            self.suppressesInconsistentLineEndingAlert = coder.decodeBool(forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
         }
     }
     
@@ -1026,6 +1040,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if self.isVerticalText {
             viewController.verticalLayoutOrientation = true
         }
+        
+        // show alert if line endings are inconsistent
+        if !self.suppressesInconsistentLineEndingAlert,
+           !self.lineEndingScanner.inconsistentLineEndings.isEmpty
+        {
+            if self.windowForSheet?.isVisible == true {
+                self.showInconsistentLineEndingAlert()
+            } else {
+                // wait for the window to appear
+                self.windowObserver = self.windowForSheet?
+                    .publisher(for: \.isVisible)
+                    .filter { $0 }
+                    .sink { [weak self] _ in self?.showInconsistentLineEndingAlert() }
+            }
+        }
     }
     
     
@@ -1050,6 +1079,36 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard self.string.canBeConverted(to: self.fileEncoding.encoding) else {
             throw EncodingError(kind: .lossySaving, fileEncoding: self.fileEncoding, attempter: self)
+        }
+    }
+    
+    
+    /// Display alert about inconsistent line endings.
+    private func showInconsistentLineEndingAlert() {
+        
+        assert(Thread.isMainThread)
+        
+        guard let documentWindow = self.windowForSheet else { return assertionFailure() }
+        
+        let alert = NSAlert()
+        alert.messageText = "The document has inconsistent line endings.".localized
+        alert.informativeText = String(format: "Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
+        alert.addButton(withTitle: "Convert".localized)
+        alert.addButton(withTitle: "Cancel".localized)
+        alert.showsSuppressionButton = true
+        alert.suppressionButton?.title = "Don’t ask again for this document".localized
+        
+        alert.beginSheetModal(for: documentWindow) { returnCode in
+            self.suppressesInconsistentLineEndingAlert = alert.suppressionButton?.state == .on
+            
+            switch returnCode {
+                case .alertFirstButtonReturn:  // == Convert
+                    self.changeLineEnding(to: self.lineEnding)
+                case .alertSecondButtonReturn:  // == Cancel
+                    break
+                default:
+                    fatalError()
+            }
         }
     }
     
