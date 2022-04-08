@@ -28,7 +28,7 @@ import XCTest
 
 final class SnippetTests: XCTestCase {
     
-    func simpleSnippetTest() {
+    func testSimpleSnippet() {
         
         let snippet = Snippet("<h1><<<CURSOR>>></h1>")
         
@@ -37,7 +37,7 @@ final class SnippetTests: XCTestCase {
     }
     
     
-    func multipleLinesTest() {
+    func testMultipleLines() {
         
         let pattern = """
             <ul>
@@ -55,7 +55,7 @@ final class SnippetTests: XCTestCase {
             """
         XCTAssertEqual(snippet.string, expectedString)
         XCTAssertEqual(snippet.selections, [NSRange(location: 13, length: 0),
-                                            NSRange(location: 28, length: 0)])
+                                            NSRange(location: 27, length: 0)])
         
         let indentedSnippet = snippet.indented(with: "    ")
         
@@ -67,7 +67,7 @@ final class SnippetTests: XCTestCase {
             """
         XCTAssertEqual(indentedSnippet.string, expectedIndentString)
         XCTAssertEqual(indentedSnippet.selections, [NSRange(location: 17, length: 0),
-                                                    NSRange(location: 36, length: 0)])
+                                                    NSRange(location: 35, length: 0)])
     }
     
 }
