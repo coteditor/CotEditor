@@ -198,7 +198,7 @@
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
-"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?";  // FIXME: added
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
 "Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
 "Convert" = "Convertir";
 

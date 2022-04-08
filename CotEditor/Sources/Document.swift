@@ -1092,7 +1092,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let alert = NSAlert()
         alert.messageText = "The document has inconsistent line endings.".localized
-        alert.informativeText = String(format: "Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
+        alert.informativeText = String(format: "Do you want to convert all line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
         alert.addButton(withTitle: "Convert".localized)
         alert.addButton(withTitle: "Cancel".localized)
         alert.showsSuppressionButton = true

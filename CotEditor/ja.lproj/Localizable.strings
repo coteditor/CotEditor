@@ -201,7 +201,7 @@
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "書類に複数の改行コードが含まれています。";
-"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "一致しない改行コードをこの書類で最も使われている%@に変換しますか?";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "すべての改行コードをこの書類で最も使われている%@に変換しますか?";
 "Don’t ask again for this document" = "この書類では次回から確認しない";
 "Convert" = "変換";
 

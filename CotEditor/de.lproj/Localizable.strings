@@ -199,7 +199,7 @@
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "Das Dokument hat inkonsistente Zeilenenden.";
-"Do you want to convert the inconsistent line endings to %@, the most common line endings in this document?" = "Möchtest du die inkonsistenten Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Möchtest du alle Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
 "Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
 "Convert" = "Umwandeln";
 
