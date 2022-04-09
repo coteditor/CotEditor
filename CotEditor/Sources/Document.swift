@@ -1051,7 +1051,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // wait for the window to appear
                 self.windowObserver = self.windowForSheet?
                     .publisher(for: \.isVisible)
-                    .filter { $0 }
+                    .first { $0 }
+                    .delay(for: .seconds(0.15), scheduler: RunLoop.main)  // wait for window open animation
                     .sink { [weak self] _ in self?.showInconsistentLineEndingAlert() }
             }
         }
@@ -1091,6 +1092,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard let documentWindow = self.windowForSheet else { return assertionFailure() }
         
         let alert = NSAlert()
+        alert.alertStyle = .warning
         alert.messageText = "The document has inconsistent line endings.".localized
         alert.informativeText = String(format: "Do you want to convert all line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
         alert.addButton(withTitle: "Convert".localized)
