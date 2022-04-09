@@ -415,13 +415,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let leftItem = NSToolbarItem(itemIdentifier: .shiftLeft)
                 leftItem.label = "Shift Left".localized
                 leftItem.toolTip = "Shift lines to left".localized
-                leftItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: leftItem.label)
+                leftItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: leftItem.label)
                 leftItem.action = #selector(EditorTextView.shiftLeft)
                 
                 let rightItem = NSToolbarItem(itemIdentifier: .shiftRight)
                 rightItem.label = "Shift Right".localized
                 rightItem.toolTip = "Shift lines to right".localized
-                rightItem.image = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: rightItem.label)
+                rightItem.image = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: rightItem.label)
                 rightItem.action = #selector(EditorTextView.shiftRight)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
