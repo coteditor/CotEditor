@@ -103,7 +103,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             .filter { $0.action != #selector(openScriptFolder) }
             .map { $0.copy() as! NSMenuItem }
         
-        guard !items.isEmpty else { return nil }
+        guard items.contains(where: { $0.action == #selector(launchScript) }) else { return nil }
         
         let menu = NSMenu()
         menu.items = items
