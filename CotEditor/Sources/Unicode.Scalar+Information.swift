@@ -73,7 +73,6 @@ extension Unicode.Scalar {
         
         return self.blockName?
             .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-            .replacingOccurrences(of: "Supplement", with: "Supp.")
             .replacingOccurrences(of: "Description", with: "Desc.")
             .localized(tableName: "Unicode")
     }

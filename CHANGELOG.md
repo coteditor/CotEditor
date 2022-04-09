@@ -2,7 +2,27 @@
 Change Log
 ==========================
 
-4.1.4 (unreleased)
+4.1.5 (487)
+--------------------------
+
+### Improvements
+
+- Add a temporal highlight for the current match in the editor (thanks to Ethan Wong!).
+- Update HTML syntax style for better highlighting with `'` character.
+- Update Swift syntax style to fix outline extraction.
+
+
+### Fixes
+
+- Fix an issue that reverting a document to one stored with a different file encoding from the current encoding could fail.
+- Fix an issue that the split view did not inherit the font style and the writing direction.
+- Fix an issue that the icons for Shift Left/Right commands were swapped.
+- Fix an issue that the incompatible character pane did not show the message “No incompatible characters were found.” when all of the existing incompatible characters are cleared.
+- [trivial] Fix localization of a Unicode block name.
+
+
+
+4.1.4 (485)
 --------------------------
 
 ### Improvements

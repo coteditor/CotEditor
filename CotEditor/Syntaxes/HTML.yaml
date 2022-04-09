@@ -5,9 +5,9 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "2.1.1"
+  version: "2.1.2"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2022-03-30"
 outlineMenu:
 - beginString: "<(h1)[^>]*>(.*)</\\1[^>]*>"
   description: "h1"
@@ -1154,8 +1154,7 @@ numbers:
 strings:
 - beginString: "\""
   endString: "\""
-- beginString: "(?<==)\\s*'"
-  endString: "'"
+- beginString: "(?<==)\\s*'.+'"
   regularExpression: true
 keywords:
 - beginString: "(?<=<!DOCTYPE)\\s+html(?=>)"

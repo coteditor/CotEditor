@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -105,6 +105,12 @@ extension String.Encoding {
     
     
     // MARK: Public Methods
+    
+    var cfEncoding: CFStringEncoding {
+        
+        CFStringConvertNSStringEncodingToEncoding(self.rawValue)
+    }
+    
     
     /// whether receiver can convert Yen sign (U+00A5)
     var canConvertYenSign: Bool {
