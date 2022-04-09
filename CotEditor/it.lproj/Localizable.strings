@@ -525,7 +525,7 @@
 "Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "Si è sicuri di voler cancellare il tema “%@”?";
-"This action cannot be undone." = "Questa azione non può essere annullata.";
+"This action cannot be undone." = "L'azione è irreversibile.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Elimina";
@@ -608,7 +608,7 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Si è sicuri di voler cancellare lo stile “%@”?";
-"This action cannot be undone." = "Questa azione non potrà essere annullata.";
+"This action cannot be undone." = "L'azione è irreversibile.";
 "Delete" = "Cancella";
 "Replace" = "Sostituisci";
 
