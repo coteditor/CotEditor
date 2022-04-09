@@ -976,7 +976,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                             alert.buttons.last?.hasDestructiveAction = true
                             
                             documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
-                            let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
+                            let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
                             guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
                                 completionHandler(false)
