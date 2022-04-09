@@ -36,7 +36,7 @@ private extension NSSound {
 
 private enum BundleIdentifier {
     
-    static let ScriptEditor = "com.apple.ScriptEditor2"
+    static let scriptEditor = "com.apple.ScriptEditor2"
 }
 
 
@@ -51,9 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         case website = "https://coteditor.com"
         case issueTracker = "https://github.com/coteditor/CotEditor/issues"
         
-        var url: URL {
-            return URL(string: self.rawValue)!
-        }
+        var url: URL  { URL(string: self.rawValue)! }
     }
     
     
@@ -333,7 +331,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open OSAScript dictionary in Script Editor
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
-        guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.ScriptEditor) else { return }
+        guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.scriptEditor) else { return }
         
         let appURL = Bundle.main.bundleURL
         let configuration = NSWorkspace.OpenConfiguration()
