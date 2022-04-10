@@ -605,7 +605,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "“%@” sözdizim biçemini silmek istediğinize emin misiniz?";
-"Deleted style can’t be restored." = "Silinen biçemler geri yüklenemez.";
 "Delete" = "Sil";
 "Replace" = "Değiştir";
 

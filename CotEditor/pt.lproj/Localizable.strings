@@ -608,7 +608,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Tem certeza de que deseja apagar o estilo de sintaxe “%@”?";
-"Deleted style can’t be restored." = "Os estilos apagados não podem ser restaurados.";
 "Delete" = "Apagar";
 "Replace" = "Substituir";
 
@@ -639,6 +638,13 @@
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Um novo tema chamado “%@” será instalado, mas já existe um tema personalizado com o mesmo nome.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Deseja substituí-lo?\nOs temas substituídos não podem ser restaurados.";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.";  // FIXME: added
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: added
 
 
 

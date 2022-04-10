@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2019 1024jp
+ © 2019-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,5 +25,5 @@
  
  */
 
-/* Class = "NSButtonCell"; title = "Cancel operation."; ObjectID = "3ti-Fq-4CU"; */
-"3ti-Fq-4CU.toolTip" = "Bedienung abbrechen";
+/* Class = "NSButton"; ibShadowedToolTip = "Cancel operation."; ObjectID = "Jua-5O-j1x"; */
+"Jua-5O-j1x.ibShadowedToolTip" = "Bedienung abbrechen";

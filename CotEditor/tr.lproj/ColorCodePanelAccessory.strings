@@ -24,9 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "IBBindingConnection"; ObjectID = "qSi-En-4LR"; */
-"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "renk kodu";  /* color code */
-"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "seçim yok";  /* no selection */
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "renk kodu";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "seçim yok";
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "Ekle";

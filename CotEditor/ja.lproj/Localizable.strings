@@ -607,7 +607,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか?";
-"Deleted style can’t be restored." = "この操作は取り消せません。";
 "Delete" = "削除";
 "Replace" = "置換";
 

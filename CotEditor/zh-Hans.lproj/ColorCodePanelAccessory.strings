@@ -26,9 +26,10 @@
  
  */
 
-/* Class = "IBBindingConnection"; ObjectID = "zwB-Z7-P18"; */
-"zwB-Z7-P18.ibShadowedIsNilPlaceholder" = "颜色码";  /* color code */
-"zwB-Z7-P18.ibShadowedNoSelectionPlaceholder" = "没有选中";  /* no selection */
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "颜色码";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "没有选中";
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "插入";

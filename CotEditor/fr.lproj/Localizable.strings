@@ -606,7 +606,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Êtes-vous sûr de vouloir supprimer la syntaxe « %@ » ?";
-"Deleted style can’t be restored." = "Les syntaxes supprimées ne peuvent être restaurées.";
 "Delete" = "Supprimer";
 "Replace" = "Remplacer";
 

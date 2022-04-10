@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,9 +26,10 @@
  
  */
 
-/* Class = "IBBindingConnection"; ObjectID = "qSi-En-4LR"; */
-"qSi-En-4LR.ibShadowedIsNilPlaceholder" = "Codice colore";  /* color code */
-"qSi-En-4LR.ibShadowedNoSelectionPlaceholder" = "Nessuna selezione";  /* no selection */
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "Codice colore";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "Nessuna selezione";
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "Inserisci";

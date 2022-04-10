@@ -8,7 +8,7 @@
 //
 //  ------------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,8 +60,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
 "d12-uy-VE0.title" = "Muster:";
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Dh1-dP-bGe"; */
-"Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "Regulärer Ausdruck";
+/* Class = "NSTextFieldCell"; placeholderString = "Regular Expression"; ObjectID = "Ia7-Mb-FNn"; */
+"Ia7-Mb-FNn.placeholderString" = "Regulärer Ausdruck";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "Groß-/Kleinschreibung ignorieren";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
