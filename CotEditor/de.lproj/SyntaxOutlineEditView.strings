@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "Regulärer Ausdruck um Gliederungspostens zu extrahieren";  // TODO: update
+"cBA-MO-VzQ.title" = "Regulärer Ausdrücke um Gliederungspostens zu extrahieren";
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "Regulärer Ausdruck";
