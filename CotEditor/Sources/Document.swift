@@ -439,7 +439,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            if !saveOperation.isAutosaving {
+            if !saveOperation.isAutosave {
                 ScriptManager.shared.dispatch(event: .documentSaved, document: self)
             }
         }
@@ -483,7 +483,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.isExecutable, !saveOperation.isAutosaving {
+        if self.isExecutable, !saveOperation.isAutosave {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
         }

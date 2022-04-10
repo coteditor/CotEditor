@@ -27,7 +27,7 @@ import AppKit.NSDocument
 
 extension NSDocument.SaveOperationType {
     
-    var isAutosaving: Bool {
+    var isAutosave: Bool {
         
         switch self {
             case .autosaveElsewhereOperation, .autosaveInPlaceOperation, .autosaveAsOperation:
