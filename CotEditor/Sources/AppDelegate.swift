@@ -95,14 +95,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // instantiate shared instances
         _ = DocumentController.shared
         _ = TextFinder.shared
-        
-        super.init()
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
     }
     
     
