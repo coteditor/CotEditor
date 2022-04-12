@@ -27,19 +27,28 @@
 import Combine
 import Cocoa
 
+/// Table column identifiers
+private extension NSUserInterfaceItemIdentifier {
+    
+    static let line = Self("Line")
+    static let character = Self("Character")
+    static let converted = Self("Converted")
+}
+
+
 final class IncompatibleCharactersViewController: NSViewController {
     
     // MARK: Private Properties
     
     private var document: Document?  { self.representedObject as? Document }
     private var scanner: IncompatibleCharacterScanner?  { self.document?.incompatibleCharacterScanner }
+    private var incompatibleCharacters: [IncompatibleCharacter] = []
+    
+    private var scannerObservers: Set<AnyCancellable> = []
     
     @objc private dynamic var message: String?
-    @objc private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
     
-    private var scannerObservers: [AnyCancellable] = []
-    
-    @IBOutlet private var incompatibleCharsController: NSArrayController?
+    @IBOutlet private var tableView: NSTableView?
     
     
     
@@ -112,25 +121,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     
     
-    // MARK: Action Messages
-    
-    /// select correspondent char in text view
-    @IBAction func selectCharacter(_ tableView: NSTableView) {
-        
-        guard
-            tableView.clickedRow > -1,  // invalid click
-            let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
-            let selectedIncompatible = incompatibles[safe: tableView.clickedRow],
-            let textView = self.document?.textView
-        else { return }
-        
-        textView.selectedRange = selectedIncompatible.range
-        textView.scrollRangeToVisible(textView.selectedRange)
-        textView.showFindIndicator(for: textView.selectedRange)
-    }
-    
-    
-    
     // MARK: Private Methods
     
     @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
@@ -142,6 +132,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         }
         
         self.incompatibleCharacters = incompatibleCharacters
+        self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)
         textStorage.markup(ranges: incompatibleCharacters.map(\.range))
@@ -155,6 +146,56 @@ final class IncompatibleCharactersViewController: NSViewController {
                                   : (self.incompatibleCharacters.isEmpty
                                      ? "No incompatible characters were found.".localized
                                      : nil)
+    }
+    
+}
+
+
+
+extension IncompatibleCharactersViewController: NSTableViewDelegate {
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        guard
+            let tableView = notification.object as? NSTableView,
+            let item = self.incompatibleCharacters[safe: tableView.selectedRow],
+            let textView = self.document?.textView
+        else { return }
+        
+        textView.selectedRange = item.range
+        textView.scrollRangeToVisible(textView.selectedRange)
+        textView.showFindIndicator(for: textView.selectedRange)
+    }
+    
+}
+
+
+
+extension IncompatibleCharactersViewController: NSTableViewDataSource {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+        self.incompatibleCharacters.count
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        guard
+            let incompatibleCharacter = self.incompatibleCharacters[safe: row],
+            let identifier = tableColumn?.identifier
+        else { return nil }
+        
+        switch identifier {
+            case .line:
+                return incompatibleCharacter.lineNumber
+            case .character:
+                return String(incompatibleCharacter.character)
+            case .converted:
+                return incompatibleCharacter.convertedCharacter
+            default:
+                fatalError()
+        }
     }
     
 }

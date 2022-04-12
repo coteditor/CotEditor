@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nX3-cC-y6b">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nX3-cC-y6b">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn editable="NO" width="37" minWidth="20" maxWidth="1000" id="weY-lf-jGz">
+                                                <tableColumn identifier="Line" editable="NO" width="37" minWidth="20" maxWidth="1000" id="weY-lf-jGz">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Line">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,13 +46,14 @@
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3TG-VT-adf" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="42" height="16"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="128" id="v00-eq-cAi">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="128" id="v00-eq-cAi">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="UA9-od-qam" name="value" keyPath="objectValue.lineNumber" id="g4x-GK-hsi"/>
+                                                                        <binding destination="UA9-od-qam" name="value" keyPath="objectValue" id="G5z-z3-fal"/>
+                                                                        <outlet property="formatter" destination="Rsm-xE-2zT" id="4k2-w8-j2k"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -68,7 +69,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn editable="NO" width="73" minWidth="40" maxWidth="1000" id="Nhb-U5-BOF">
+                                                <tableColumn identifier="Character" editable="NO" width="73" minWidth="40" maxWidth="1000" id="Nhb-U5-BOF">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Character">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -91,9 +92,12 @@
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="rX1-Oa-rQt" name="value" keyPath="objectValue" id="bdM-Au-uX2"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="rX1-Oa-rQt" name="value" keyPath="objectValue.character" id="UdI-ue-NaY"/>
+                                                                        <binding destination="rX1-Oa-rQt" name="value" keyPath="objectValue" id="NUG-Ek-cIH"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -109,7 +113,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn editable="NO" width="66" minWidth="10" maxWidth="1000" id="2AE-nU-rdc">
+                                                <tableColumn identifier="Converted" editable="NO" width="66" minWidth="10" maxWidth="1000" id="2AE-nU-rdc">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Converted">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -131,9 +135,12 @@
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <binding destination="88B-RE-j1e" name="value" keyPath="objectValue" id="7P7-oZ-g2V"/>
+                                                                        </connections>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="88B-RE-j1e" name="value" keyPath="objectValue.convertedCharacter" id="sCf-ng-tXK"/>
+                                                                        <binding destination="88B-RE-j1e" name="value" keyPath="objectValue" id="AzW-gU-XWC"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -153,9 +160,8 @@
                                             <connections>
                                                 <accessibilityConnection property="title" destination="wLI-76-6zT" id="q4u-TX-zpo"/>
                                                 <action selector="selectCharacter:" target="nX3-cC-y6b" id="y9H-J7-Z8V"/>
-                                                <binding destination="BLm-fU-xUy" name="content" keyPath="arrangedObjects" id="nAt-g7-ez5"/>
-                                                <binding destination="BLm-fU-xUy" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="nAt-g7-ez5" id="MkZ-tG-JIQ"/>
-                                                <binding destination="BLm-fU-xUy" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="MkZ-tG-JIQ" id="gJC-gW-FFI"/>
+                                                <outlet property="dataSource" destination="nX3-cC-y6b" id="d3r-Zr-pqk"/>
+                                                <outlet property="delegate" destination="nX3-cC-y6b" id="Snk-iF-D9R"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -181,7 +187,11 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="nX3-cC-y6b" name="hidden" keyPath="incompatibleCharacters.@count" id="wC7-7S-FId"/>
+                                    <binding destination="nX3-cC-y6b" name="hidden" keyPath="message" id="ThK-cu-tHI">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="nX3-cC-y6b" name="value" keyPath="message" id="xSa-zI-RXk"/>
                                 </connections>
                             </textField>
@@ -210,21 +220,11 @@
                         <viewLayoutGuide key="layoutMargins" id="vv6-ur-Hig"/>
                     </view>
                     <connections>
-                        <outlet property="incompatibleCharsController" destination="BLm-fU-xUy" id="eqs-vR-iY4"/>
+                        <outlet property="tableView" destination="k0y-Cz-Raz" id="EYt-uL-akX"/>
                     </connections>
                 </viewController>
                 <customObject id="m7E-ag-dEX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="IncompatibleCharacter" editable="NO" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="BLm-fU-xUy">
-                    <declaredKeys>
-                        <string>lineNumber</string>
-                        <string>character</string>
-                        <string>convertedCharacter</string>
-                    </declaredKeys>
-                    <classReference key="objectClass" className="IncompatibleCharacter"/>
-                    <connections>
-                        <binding destination="nX3-cC-y6b" name="contentArray" keyPath="incompatibleCharacters" id="ddc-01-Rxt"/>
-                    </connections>
-                </arrayController>
+                <numberFormatter formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="Rsm-xE-2zT"/>
             </objects>
             <point key="canvasLocation" x="110" y="163"/>
         </scene>
