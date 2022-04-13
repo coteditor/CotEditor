@@ -34,13 +34,37 @@ final class LineEndingScannerTests: XCTestCase {
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
         storage.replaceCharacters(in: NSRange(0..<3), with: "dog\u{85}cow")
-        // test outline parsing with publisher
-        let expectation = self.expectation(description: "didScanLineEndings")
         
+        // test async line ending scan
+        let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
             .sink { (lineEndings) in
                 XCTAssertEqual(lineEndings, [LineEndingLocation(lineEnding: .nel, location: 3),
                                              LineEndingLocation(lineEnding: .crlf, location: 11)])
+                expectation.fulfill()
+            }
+        self.wait(for: [expectation], timeout: .zero)
+        
+        observer.cancel()
+    }
+    
+    
+    func testCRLFEditing() {
+        
+        let storage = NSTextStorage(string: "dog\ncat\r\ncow")
+        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
+        
+        // add \r before \n  (LF -> CRLF)
+        storage.replaceCharacters(in: NSRange(3..<3), with: "\r")
+        // remove \n after \r (CRLF -> CR)
+        storage.replaceCharacters(in: NSRange(9..<10), with: "")
+        
+        // test async line ending scan
+        let expectation = self.expectation(description: "didScanLineEndings")
+        let observer = scanner.$inconsistentLineEndings
+            .sink { (lineEndings) in
+                XCTAssertEqual(lineEndings, [LineEndingLocation(lineEnding: .crlf, location: 3),
+                                             LineEndingLocation(lineEnding: .cr, location: 8)])
                 expectation.fulfill()
             }
         self.wait(for: [expectation], timeout: .zero)
