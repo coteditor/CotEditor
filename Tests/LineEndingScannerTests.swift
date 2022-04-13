@@ -49,6 +49,29 @@ final class LineEndingScannerTests: XCTestCase {
     }
     
     
+    func testEmpty() {
+        
+        let storage = NSTextStorage(string: "\r")
+        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
+        
+        XCTAssertEqual(scanner.inconsistentLineEndings, [LineEndingLocation(lineEnding: .cr, location: 0)])
+        
+        // test scanRange does not expand to the out of range
+        storage.replaceCharacters(in: NSRange(0..<1), with: "")
+        
+        // test async line ending scan
+        let expectation = self.expectation(description: "didScanLineEndings")
+        let observer = scanner.$inconsistentLineEndings
+            .sink { (lineEndings) in
+                XCTAssert(lineEndings.isEmpty)
+                expectation.fulfill()
+            }
+        self.wait(for: [expectation], timeout: .zero)
+        
+        observer.cancel()
+    }
+    
+    
     func testCRLFEditing() {
         
         let storage = NSTextStorage(string: "dog\ncat\r\ncow")

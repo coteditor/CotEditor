@@ -88,7 +88,14 @@ final class LineEndingScanner {
     private func invalidate(in editedRange: NSRange, changeInLength delta: Int) {
         
         // expand range to scan by considering the possibility that a part of CRLF was edited
-        let scanRange = NSRange(max(editedRange.lowerBound - 1, 0)..<min(editedRange.upperBound + 1, self.textStorage.length))
+        let nsString = self.textStorage.string as NSString
+        let lowerScanBound: Int = (0..<editedRange.lowerBound).reversed().lazy
+            .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
+            .last ?? editedRange.lowerBound
+        let upperScanBound: Int = (editedRange.upperBound..<nsString.length)
+            .prefix { [0xA, 0xD].contains(nsString.character(at: $0)) }
+            .last.flatMap { $0 + 1 } ?? editedRange.upperBound
+        let scanRange = NSRange(lowerScanBound..<upperScanBound)
         
         let shiftedLineEndings = self.inconsistentLineEndings
             .filter { $0.location >= (scanRange.upperBound - delta) }
