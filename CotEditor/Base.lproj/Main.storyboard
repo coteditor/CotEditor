@@ -589,10 +589,10 @@ Gw
                                                             <action selector="toggleOutlineMenu:" target="Ady-hI-5gd" id="YG2-ee-mqD"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Incompatible Characters" id="679">
+                                                    <menuItem title="Warnings" id="679">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
+                                                            <action selector="toggleWarningsPane:" target="Ady-hI-5gd" id="dD7-j1-urx"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>

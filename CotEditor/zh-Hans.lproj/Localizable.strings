@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "检查器";
 "outline" = "大纲";
+"warnings" = "warnings";  // FIXME: added
 "incompatible characters" = "不兼容字符";
 "status bar" = "状态栏";
 "editor" = "编辑器";

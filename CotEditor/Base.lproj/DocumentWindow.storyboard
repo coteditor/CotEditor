@@ -147,7 +147,7 @@
                     <tabViewItems>
                         <tabViewItem label="Document Inspector" identifier="DocumentInspector" image="doc" catalog="system" id="Kfj-q6-61N"/>
                         <tabViewItem label="Outline" identifier="Outline" image="list.bullet.indent" catalog="system" id="hyM-2j-hen"/>
-                        <tabViewItem label="Incompatible Characters" identifier="IncompatibleCharacters" image="exclamationmark.triangle" catalog="system" id="JZo-ok-Dks"/>
+                        <tabViewItem label="Warnings" identifier="Warnings" image="exclamationmark.triangle" catalog="system" id="JZo-ok-Dks"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
@@ -160,8 +160,8 @@
                     </tabView>
                     <connections>
                         <outlet property="documentInspectorTabViewItem" destination="Kfj-q6-61N" id="WFA-8N-DmT"/>
-                        <outlet property="incompatibleCharactersTabViewItem" destination="JZo-ok-Dks" id="QRQ-Sy-61p"/>
                         <outlet property="outlineTabViewItem" destination="hyM-2j-hen" id="EFV-Ay-pkJ"/>
+                        <outlet property="warningsTabViewItem" destination="JZo-ok-Dks" id="sDX-RY-1gY"/>
                         <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
                         <segue destination="US1-1U-VH8" kind="relationship" relationship="tabItems" id="4Zo-YO-63m"/>
                         <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
@@ -179,13 +179,13 @@
             </objects>
             <point key="canvasLocation" x="1082" y="1067"/>
         </scene>
-        <!--Incompatible Characters View Controller-->
+        <!--Warnings View Controller-->
         <scene sceneID="Wud-vX-9dR">
             <objects>
-                <controllerPlaceholder storyboardName="IncompatibleCharactersView" id="ry4-rh-ZBT" userLabel="Incompatible Characters View Controller" sceneMemberID="viewController"/>
+                <controllerPlaceholder storyboardName="WarningsView" id="ry4-rh-ZBT" userLabel="Warnings View Controller" sceneMemberID="viewController"/>
                 <customObject id="fzj-JB-SfU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="1217"/>
+            <point key="canvasLocation" x="1049" y="1218"/>
         </scene>
         <!--Outline View Controller-->
         <scene sceneID="0hV-Dj-Fqy">

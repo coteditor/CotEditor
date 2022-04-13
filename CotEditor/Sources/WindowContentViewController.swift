@@ -132,8 +132,8 @@ final class WindowContentViewController: NSSplitViewController {
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
                 return self.canToggleSidebar
             
-            case #selector(toggleIncompatibleCharList):
-                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .incompatibleCharacters) ? .on : .off
+            case #selector(toggleWarningsPane):
+                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .warnings) ? .on : .off
                 return self.canToggleSidebar
             
             default: break
@@ -187,9 +187,9 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     /// toggle visibility of incompatible characters list view
-    @IBAction func toggleIncompatibleCharList(_ sender: Any?) {
+    @IBAction func toggleWarningsPane(_ sender: Any?) {
         
-        self.toggleVisibilityOfSidebarTabItem(index: .incompatibleCharacters)
+        self.toggleVisibilityOfSidebarTabItem(index: .warnings)
     }
     
     

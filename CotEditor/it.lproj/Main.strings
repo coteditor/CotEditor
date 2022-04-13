@@ -314,8 +314,8 @@
 "564.title" = "Ispettore del documento";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "Outline";
-/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "Caratteri incompatibili";
+/* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
+"679.title" = "Warnings";  // FIXME: changed
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "Mostra Ispettore";
 

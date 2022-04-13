@@ -38,6 +38,7 @@
 // Accessibility labels
 "inspector" = "inspector";
 "outline" = "outline";
+"warnings" = "warnings";
 "incompatible characters" = "incompatible characters";
 "status bar" = "status bar";
 "editor" = "editor";

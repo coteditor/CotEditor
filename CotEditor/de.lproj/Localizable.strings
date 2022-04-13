@@ -38,6 +38,7 @@
 // Accessibility labels
 "inspector" = "Infofenster";
 "outline" = "Gliederung";
+"warnings" = "Vorwarnungen";
 "incompatible characters" = "Inkompatible Zeichen";
 "status bar" = "Statusleiste";
 "navigation bar" = "Navigationsleiste";

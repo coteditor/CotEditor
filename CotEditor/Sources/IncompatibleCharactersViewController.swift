@@ -48,7 +48,8 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     @objc private dynamic var message: String?
     
-    @IBOutlet private var tableView: NSTableView?
+    @IBOutlet private var numberFormatter: NumberFormatter?
+    @IBOutlet private weak var tableView: NSTableView?
     
     
     

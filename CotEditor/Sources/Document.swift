@@ -1310,7 +1310,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+            windowContentController?.showSidebarPane(index: .warnings)
         }
     }
     

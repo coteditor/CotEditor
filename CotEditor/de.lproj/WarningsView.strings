@@ -1,16 +1,15 @@
 /*
  
- IncompatibleCharactersView.strings (Italian)
+ WarningsView.strings (German)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-09-28.
- Localized by Agostino Maiello
+ Created by 1024jp on 2015-08-19.
  
  ------------------------------------------------------------------------------
  
- © 2016-2021 CotEditor Project
+ © 2015-2021 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,11 +26,11 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "Caratteri incompatibili";
+"W1c-aP-XZa.title" = "Inkompatible Zeichen";
 
 /* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "Convertito";
+"2AE-nU-rdc.headerCell.title" = "Umgewandelt";
 /* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "Carattere";
+"Nhb-U5-BOF.headerCell.title" = "Zeichen";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "Riga";
+"weY-lf-jGz.headerCell.title" = "Zeile";

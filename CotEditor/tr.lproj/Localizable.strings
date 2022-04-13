@@ -37,6 +37,7 @@
 // Accessibility labels
 "inspector" = "denetçi";
 "outline" = "dış hat";  // FIXME: use the consistant word for all the term "outline" feature
+"warnings" = "warnings";  // FIXME: added
 "incompatible characters" = "uyumsuz karakterler";
 "status bar" = "durum çubuğu";
 "editor" = "düzenleyici";

@@ -313,8 +313,8 @@
 "564.title" = "書類情報";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "アウトライン";
-/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "非互換文字";
+/* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
+"679.title" = "警告";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "インスペクタを表示";
 

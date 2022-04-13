@@ -21,6 +21,7 @@ Change Log
 - Update document icons.
 - Detect the line ending in documents more intelligently.
 - Adjust the vertical position of line numbers on printing.
+- Rename the Incompatible Characters pane to Warnings pane. 
 - Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
 - Print the line numbers on the right side on printing if the writing direction is right-to-left.
 - Indent snippet text with multiple lines to the indention level where will be inserted. 

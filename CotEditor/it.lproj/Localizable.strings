@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "ispettore";
 "outline" = "outline";
+"warnings" = "warnings";  // FIXME: added
 "incompatible characters" = "caratteri incompatibili";
 "status bar" = "barra di stato";
 "editor" = "editor";

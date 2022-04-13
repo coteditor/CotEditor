@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nX3-cC-y6b">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cib-LV-qRp">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
@@ -7,6 +7,30 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Warnings View Controller-->
+        <scene sceneID="vNO-VM-xkO">
+            <objects>
+                <splitViewController id="cib-LV-qRp" customClass="WarningsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem id="Gip-p7-YAr"/>
+                    </splitViewItems>
+                    <splitView key="splitView" dividerStyle="thin" id="6ZP-2e-qOZ">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <outlet property="delegate" destination="cib-LV-qRp" id="wDz-ao-moY"/>
+                        </connections>
+                    </splitView>
+                    <connections>
+                        <outlet property="incompatibleCharactersItem" destination="Gip-p7-YAr" id="tTn-J4-aYu"/>
+                        <outlet property="splitView" destination="6ZP-2e-qOZ" id="Gkv-3A-EbF"/>
+                        <segue destination="nX3-cC-y6b" kind="relationship" relationship="splitItems" id="QnX-Nc-bvx"/>
+                    </connections>
+                </splitViewController>
+                <customObject id="s44-9d-hjZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-410" y="177"/>
+        </scene>
         <!--Incompatible Characters View Controller-->
         <scene sceneID="FPR-6v-f8c">
             <objects>
@@ -220,13 +244,14 @@
                         <viewLayoutGuide key="layoutMargins" id="vv6-ur-Hig"/>
                     </view>
                     <connections>
+                        <outlet property="numberFormatter" destination="Rsm-xE-2zT" id="yVP-dB-g42"/>
                         <outlet property="tableView" destination="k0y-Cz-Raz" id="EYt-uL-akX"/>
                     </connections>
                 </viewController>
                 <customObject id="m7E-ag-dEX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <numberFormatter formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="Rsm-xE-2zT"/>
             </objects>
-            <point key="canvasLocation" x="110" y="163"/>
+            <point key="canvasLocation" x="-74" y="177"/>
         </scene>
     </scenes>
 </document>

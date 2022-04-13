@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "インスペクタ";
 "outline" = "アウトライン";
+"warnings" = "警告";
 "incompatible characters" = "非互換文字";
 "status bar" = "ステータスバー";
 "editor" = "エディタ";

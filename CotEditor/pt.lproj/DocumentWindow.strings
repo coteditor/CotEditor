@@ -28,8 +28,8 @@
 "Kfj-q6-61N.label" = "Inspetor do Documento";
 /* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
 "hyM-2j-hen.label" = "Plano";
-/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Caracteres Incompatíveis";
+/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Warnings";  // FIXME: changed
 
 
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
