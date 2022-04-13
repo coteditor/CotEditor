@@ -204,6 +204,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
 "Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
 "Convert" = "转换";
+"Review" = "Review";  // FIXME: added
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";

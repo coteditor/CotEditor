@@ -205,6 +205,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "すべての改行コードをこの書類で最も使われている%@に変換しますか?";
 "Don’t ask again for this document" = "この書類では次回から確認しない";
 "Convert" = "変換";
+"Review" = "確認";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";

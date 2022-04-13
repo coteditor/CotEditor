@@ -203,6 +203,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "Möchtest du alle Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
 "Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
 "Convert" = "Umwandeln";
+"Review" = "Prüfen";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";

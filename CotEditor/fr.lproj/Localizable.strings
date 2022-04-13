@@ -202,6 +202,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
 "Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
 "Convert" = "Convertir";
+"Review" = "Review";  // FIXME: added
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
