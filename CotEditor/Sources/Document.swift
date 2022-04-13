@@ -844,8 +844,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding] target in
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.string] target in
                 target.changeLineEnding(to: currentLineEnding)
+                target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
             }
             undoManager.setActionName(String(format: "Line Endings to “%@”".localized, lineEnding.name))
         }
