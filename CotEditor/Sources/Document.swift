@@ -1102,7 +1102,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.suppressionButton?.title = "Don’t ask again for this document".localized
         
         alert.beginSheetModal(for: documentWindow) { returnCode in
-            self.suppressesInconsistentLineEndingAlert = alert.suppressionButton?.state == .on
+            if alert.suppressionButton?.state == .on {
+                self.suppressesInconsistentLineEndingAlert = true
+                self.invalidateRestorableState()
+            }
             
             switch returnCode {
                 case .alertFirstButtonReturn:  // == Convert
