@@ -93,16 +93,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
 "Not Found" = "Bulunamadı";
-"%@ found" = "%@ bulundu";  // %@ is number of founds
+"%i found" = "%i bulundu";  // %i is number of founds
 "Not Replaced" = "Değiştirilmedi";
-"%@ replaced" = "%@ değiştirildi";  // %@ is number of replaced
+"%i replaced" = "%i değiştirildi";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
 "Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
-"Found %@ strings in “%@”." = "%2$@ içinde %1$@ dizi bulundu.";
+"Found %i strings in “%@”." = "%2$@ içinde %1$i dizi bulundu.";
 
 
 /* MARK: Regular Expression Reference */

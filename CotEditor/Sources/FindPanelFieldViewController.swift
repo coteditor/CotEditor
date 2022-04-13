@@ -200,7 +200,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 case ..<0:
                     return "Not Found".localized
                 default:
-                    return String(format: "%@ found".localized, String.localizedStringWithFormat("%li", numberOfFound))
+                    return String(format: "%i found".localized, locale: .current, numberOfFound)
             }
         }()
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
@@ -222,7 +222,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 case ..<0:
                     return "Not Replaced".localized
                 default:
-                    return String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", numberOfReplaced))
+                    return String(format: "%i replaced".localized, locale: .current, numberOfReplaced)
             }
         }()
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)

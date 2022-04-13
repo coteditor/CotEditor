@@ -94,16 +94,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
-"%@ found" = "找到%@项";  // %@ is number of founds
+"%i found" = "找到%i项";  // %i is number of founds
 "Not Replaced" = "没有进行替换";
-"%@ replaced" = "%@处被替换";  // %@ is number of replaced
+"%i replaced" = "%i处被替换";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在“%@”中没有找到字符串。";
 "Found one string in “%@”." = "在“%@”中找到一个字符串。";
-"Found %@ strings in “%@”." = "%@ 个字符串在“%@”中被找到。";
+"Found %i strings in “%@”." = "%i 个字符串在“%@”中被找到。";
 
 
 /* MARK: Regular Expression Reference */

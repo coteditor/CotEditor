@@ -94,16 +94,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match.";
 "Replace the current selection with the replacement text." = "Replace the current selection with the replacement text.";
 "Not Found" = "Not Found";
-"%@ found" = "%@ found";  // %@ is number of founds
+"%i found" = "%i found";  // %i is number of founds
 "Not Replaced" = "Not Replaced";
-"%@ replaced" = "%@ replaced";  // %@ is number of replaced
+"%i replaced" = "%i replaced";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "No strings found in “%@”.";
 "Found one string in “%@”." = "Found one string in “%@”.";
-"Found %@ strings in “%@”." = "Found %@ strings in “%@”.";
+"Found %i strings in “%@”." = "Found %i strings in “%@”.";
 
 
 /* MARK: Regular Expression Reference */

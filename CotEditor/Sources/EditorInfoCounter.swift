@@ -77,10 +77,10 @@ struct EditorCountResult: Equatable {
         let selectedCount = self.selectedCount[keyPath: keyPath]
         
         if selectedCount > 0 {
-            return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
+            return String(format: "%li (%li)", locale: .current, count, selectedCount)
         }
         
-        return String.localizedStringWithFormat("%li", count)
+        return String(format: "%li", locale: .current, count)
     }
     
     
@@ -88,7 +88,7 @@ struct EditorCountResult: Equatable {
         
         let count = self.cursor[keyPath: keyPath]
         
-        return String.localizedStringWithFormat("%li", count)
+        return String(format: "%li", locale: .current, count)
     }
     
 }
