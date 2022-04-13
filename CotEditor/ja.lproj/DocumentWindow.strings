@@ -29,8 +29,8 @@
 "Kfj-q6-61N.label" = "書類情報";
 /* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
 "hyM-2j-hen.label" = "アウトライン";
-/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "非互換文字";
+/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "警告";
 
 
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */

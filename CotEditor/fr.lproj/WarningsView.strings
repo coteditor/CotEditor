@@ -1,16 +1,15 @@
 /*
  
- IncompatibleCharactersView.strings (Simplified Chinese)
+ WarningsView.strings (French)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2014-12-18.
- Localized by onevcat
- 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2014-2021 CotEditor Project
+ © 2015-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,11 +26,21 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "不兼容字符";
+"W1c-aP-XZa.title" = "Caractères incompatibles";
 
 /* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "转换后";
+"2AE-nU-rdc.headerCell.title" = "Converti";
 /* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "字符";
+"Nhb-U5-BOF.headerCell.title" = "Caractère";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "行";
+"weY-lf-jGz.headerCell.title" = "Ligne";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
+"Yi4-Vk-FCZ.title" = "Inconsistent Line Endings";  // FIXME: added
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
+"o1z-QY-xMY.headerCell.title" = "Ligne";
+/* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
+"Miu-uX-2tM.headerCell.title" = "Line Ending";  // FIXME: added

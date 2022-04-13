@@ -38,6 +38,7 @@
 // Accessibility labels
 "inspector" = "Infofenster";
 "outline" = "Gliederung";
+"warnings" = "Vorwarnungen";
 "incompatible characters" = "Inkompatible Zeichen";
 "status bar" = "Statusleiste";
 "navigation bar" = "Navigationsleiste";
@@ -202,6 +203,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "Möchtest du alle Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
 "Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
 "Convert" = "Umwandeln";
+"Review" = "Prüfen";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
@@ -379,9 +381,17 @@
 "No Recent Filter" = "Keine letzten Filtereinträge";
 "No Filter Results" = "Keine Filtertreffer";
 
+// Warnings
+"No issues found." = "Keine Probleme gefunden.";
+
 // Incompatible characters
-"No incompatible characters were found." = "Keine inkompatiblen Zeichen gefunden.";
 "Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";
+"Found a incompatible character." = "Es wurde eine inkompatiblen Zeichen gefunden.";
+"Found %i incompatible characters." = "Es wurden %i inkompatiblen Zeichen gefunden.";
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Es wurde ein anderes Zeilenende als %@ gefunden.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "Es wurden %i andere Zeilenenden als %@ gefunden.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
 
 
 

@@ -55,7 +55,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @Published private(set) var lineEnding: LineEnding
     @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
     
-    private let lineEndingScanner: LineEndingScanner
+    let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -1097,7 +1097,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.messageText = "The document has inconsistent line endings.".localized
         alert.informativeText = String(format: "Do you want to convert all line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
         alert.addButton(withTitle: "Convert".localized)
-        alert.addButton(withTitle: "Cancel".localized)
+        alert.addButton(withTitle: "Review".localized)
         alert.showsSuppressionButton = true
         alert.suppressionButton?.title = "Don’t ask again for this document".localized
         
@@ -1107,8 +1107,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             switch returnCode {
                 case .alertFirstButtonReturn:  // == Convert
                     self.changeLineEnding(to: self.lineEnding)
-                case .alertSecondButtonReturn:  // == Cancel
-                    break
+                case .alertSecondButtonReturn:  // == Review
+                    (self.windowControllers.first?.contentViewController as? WindowContentViewController)?
+                        .showSidebarPane(index: .warnings)
                 default:
                     fatalError()
             }
@@ -1310,7 +1311,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+            windowContentController?.showSidebarPane(index: .warnings)
         }
     }
     

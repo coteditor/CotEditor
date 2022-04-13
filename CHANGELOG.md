@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Ability to handle documents holding multiple types of line endings.
+- Add inconsistent line endings list to the 
 - Display alert message for inconsistent line endings.
 - Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.
 - Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the line endings of the opened document are one of these).
@@ -21,6 +22,7 @@ Change Log
 - Update document icons.
 - Detect the line ending in documents more intelligently.
 - Adjust the vertical position of line numbers on printing.
+- Rename the Incompatible Characters pane to Warnings pane. 
 - Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
 - Print the line numbers on the right side on printing if the writing direction is right-to-left.
 - Indent snippet text with multiple lines to the indention level where will be inserted. 

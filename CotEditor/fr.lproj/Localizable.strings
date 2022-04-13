@@ -38,6 +38,7 @@
 // Accessibility labels
 "inspector" = "inspecteur";
 "outline" = "structure";
+"warnings" = "warnings";  // FIXME: added
 "incompatible characters" = "caractères incompatibles";
 "status bar" = "barre d’état";
 "editor" = "éditeur";
@@ -201,6 +202,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
 "Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
 "Convert" = "Convertir";
+"Review" = "Review";  // FIXME: added
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
@@ -378,9 +380,17 @@
 "No Recent Filter" = "Aucun filtre récent";
 "No Filter Results" = "Aucun filtre trouvé";
 
+// Warnings
+"No issues found." = "No issues found.";  // FIXME: added
+
 // Incompatible characters
-"No incompatible characters were found." = "Aucun caractère incompatible trouvé.";
 "Scanning incompatible characters…" = "Recherche de caractères incompatibles …";
+"Found a incompatible character." = "Found a incompatible character.";  // FIXME: added
+"Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %i." = "Found %i line endings other than %i.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
 
 
 

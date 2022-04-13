@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "インスペクタ";
 "outline" = "アウトライン";
+"warnings" = "警告";
 "incompatible characters" = "非互換文字";
 "status bar" = "ステータスバー";
 "editor" = "エディタ";
@@ -204,6 +205,7 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "すべての改行コードをこの書類で最も使われている%@に変換しますか?";
 "Don’t ask again for this document" = "この書類では次回から確認しない";
 "Convert" = "変換";
+"Review" = "確認";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
@@ -380,9 +382,18 @@
 "No Recent Filter" = "フィルタ履歴がありません";
 "No Filter Results" = "フィルタ結果なし";
 
+// Warnings
+"No issues found." = "問題は見つかりませんでした。";
+
 // Incompatible characters
-"No incompatible characters were found." = "非互換文字は見つかりませんでした。";
 "Scanning incompatible characters…" = "非互換文字を走査中…";
+"Found a incompatible character." = "1個の非互換文字が見つかりました。";
+"Found %i incompatible characters." = "%i個の非互換文字が見つかりました。";
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "1個の%@でない改行コードが見つかりました。";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %i." = "%i個の%@でない改行コードが見つかりました。";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
+
 
 
 /* MARK: EditorTextView */

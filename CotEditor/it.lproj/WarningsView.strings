@@ -1,15 +1,16 @@
 /*
  
- IncompatibleCharactersView.strings (German)
+ WarningsView.strings (Italian)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2015-08-19.
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
  
  ------------------------------------------------------------------------------
  
- © 2015-2021 1024jp
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,11 +27,21 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Incompatible Characters"; ObjectID = "W1c-aP-XZa"; */
-"W1c-aP-XZa.title" = "Inkompatible Zeichen";
+"W1c-aP-XZa.title" = "Caratteri incompatibili";
 
 /* Class = "NSTableColumn"; headerCell.title = "Converted"; ObjectID = "2AE-nU-rdc"; */
-"2AE-nU-rdc.headerCell.title" = "Umgewandelt";
+"2AE-nU-rdc.headerCell.title" = "Convertito";
 /* Class = "NSTableColumn"; headerCell.title = "Character"; ObjectID = "Nhb-U5-BOF"; */
-"Nhb-U5-BOF.headerCell.title" = "Zeichen";
+"Nhb-U5-BOF.headerCell.title" = "Carattere";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
-"weY-lf-jGz.headerCell.title" = "Zeile";
+"weY-lf-jGz.headerCell.title" = "Riga";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
+"Yi4-Vk-FCZ.title" = "Inconsistent Line Endings";  // FIXME: added
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
+"o1z-QY-xMY.headerCell.title" = "Riga";
+/* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
+"Miu-uX-2tM.headerCell.title" = "Line Ending";  // FIXME: added

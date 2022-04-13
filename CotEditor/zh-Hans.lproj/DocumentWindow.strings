@@ -30,8 +30,8 @@
 "Kfj-q6-61N.label" = "文稿信息";
 /* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
 "hyM-2j-hen.label" = "大纲";
-/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "不兼容字符";
+/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Warnings";  // FIXME: changed
 
 
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */

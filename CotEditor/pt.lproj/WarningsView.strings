@@ -1,5 +1,5 @@
 //
-// IncompatibleCharactersView.strings (Portuguese)
+// WarningsView.strings (Portuguese)
 // 
 // CotEditor
 // https://coteditor.com
@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018-2021 CotEditor Project
+// © 2018-2022 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,3 +33,13 @@
 "Nhb-U5-BOF.headerCell.title" = "Caractere";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
 "weY-lf-jGz.headerCell.title" = "Linha";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
+"Yi4-Vk-FCZ.title" = "Inconsistent Line Endings";  // FIXME: added
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
+"o1z-QY-xMY.headerCell.title" = "Linha";"Linha"
+/* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
+"Miu-uX-2tM.headerCell.title" = "Line Ending";  // FIXME: added
