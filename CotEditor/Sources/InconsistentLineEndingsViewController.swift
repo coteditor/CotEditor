@@ -40,12 +40,12 @@ final class InconsistentLineEndingsViewController: NSViewController {
     
     private var document: Document?  { self.representedObject as? Document }
     private var lineEndings: [LineEndingLocation] = []
+    private var documentLineEnding: LineEnding = .lf
     
     private var observers: Set<AnyCancellable> = []
     
-    @objc private dynamic var documentLineEnding: String?
-    
     @IBOutlet private var numberFormatter: NumberFormatter?
+    @IBOutlet private weak var messageField: NSTextField?
     @IBOutlet private weak var tableView: NSTableView?
     
     
@@ -61,14 +61,19 @@ final class InconsistentLineEndingsViewController: NSViewController {
             .receive(on: RunLoop.main)
             .sink { [unowned self] in
                 self.lineEndings = $0
+                self.tableView?.enclosingScrollView?.isHidden = $0.isEmpty
                 self.tableView?.reloadData()
+                self.updateMessage()
             }
             .store(in: &self.observers)
         
         self.document?.$lineEnding
             .removeDuplicates()
             .receive(on: RunLoop.main)
-            .sink { [unowned self] in self.documentLineEnding = $0.name }
+            .sink { [unowned self] in
+                self.documentLineEnding = $0
+                self.updateMessage()
+            }
             .store(in: &self.observers)
     }
     
@@ -78,6 +83,28 @@ final class InconsistentLineEndingsViewController: NSViewController {
         super.viewDidDisappear()
         
         self.observers.removeAll()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// Update the result message above the table.
+    @MainActor private func updateMessage() {
+        
+        guard let messageField = self.messageField else { return assertionFailure() }
+        
+        messageField.textColor = self.lineEndings.isEmpty ? .secondaryLabelColor : .labelColor
+        messageField.stringValue = {
+            switch self.lineEndings.count {
+                case 0:  return "No issues found.".localized
+                case 1:  return String(format: "Found a line ending other than %@.".localized,
+                                       self.documentLineEnding.name)
+                default: return String(format: "Found %i line endings other than %@.".localized,
+                                       locale: .current,
+                                       self.lineEndings.count, self.documentLineEnding.name)
+            }
+        }()
     }
     
 }

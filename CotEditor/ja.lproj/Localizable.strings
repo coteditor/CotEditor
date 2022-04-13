@@ -382,9 +382,17 @@
 "No Recent Filter" = "フィルタ履歴がありません";
 "No Filter Results" = "フィルタ結果なし";
 
+// Warnings
+"No issues found." = "問題は見つかりませんでした。";
+
 // Incompatible characters
 "No incompatible characters were found." = "非互換文字は見つかりませんでした。";
 "Scanning incompatible characters…" = "非互換文字を走査中…";
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "1個の%@でない改行コードが見つかりました。";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %i." = "%i個の%@でない改行コードが見つかりました。";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
+
 
 
 /* MARK: EditorTextView */

@@ -260,31 +260,39 @@
             <objects>
                 <viewController id="tAx-yG-GST" customClass="InconsistentLineEndingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Bzt-jh-Vms">
-                        <rect key="frame" x="0.0" y="0.0" width="226" height="222"/>
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="208"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BUR-m7-66L">
-                                <rect key="frame" x="10" y="147" width="159" height="15"/>
+                                <rect key="frame" x="10" y="133" width="159" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Inconsistent Line Endings" id="Yi4-Vk-FCZ">
                                     <font key="font" metaFont="systemBold" size="12"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fso-Ra-PNu">
-                                <rect key="frame" x="12" y="12" width="202" height="105"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-L5-9SX">
+                                <rect key="frame" x="10" y="112" width="192" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" title="Found a line ending other than LF." id="NDC-bR-4cy">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fso-Ra-PNu">
+                                <rect key="frame" x="12" y="12" width="181" height="69"/>
                                 <clipView key="contentView" id="W9f-g2-kXg">
-                                    <rect key="frame" x="1" y="1" width="200" height="103"/>
+                                    <rect key="frame" x="1" y="1" width="179" height="67"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" headerView="Hub-Rz-LiT" viewBased="YES" id="YoU-dq-kJ0">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="39"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="Line" width="40" minWidth="20" maxWidth="1000" id="o1z-QY-xMY">
+                                                <tableColumn identifier="Line" editable="NO" width="40" minWidth="20" maxWidth="1000" id="o1z-QY-xMY">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Line">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -324,7 +332,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="Line Ending" width="131" minWidth="40" maxWidth="1000" id="Miu-uX-2tM">
+                                                <tableColumn identifier="Line Ending" editable="NO" width="131" minWidth="40" maxWidth="1000" id="Miu-uX-2tM">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Line Ending">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -374,8 +382,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="aSv-94-YHF"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tLD-kc-VwX">
-                                    <rect key="frame" x="1" y="88" width="200" height="16"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tLD-kc-VwX">
+                                    <rect key="frame" x="1" y="52" width="179" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="aEU-Q4-OIO">
@@ -387,38 +395,24 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-L5-9SX">
-                                <rect key="frame" x="10" y="125" width="138" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" title="Document line ending: LF" id="NDC-bR-4cy">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="tAx-yG-GST" name="displayPatternValue1" keyPath="documentLineEnding" id="zE7-0M-nkc">
-                                        <dictionary key="options">
-                                            <string key="NSDisplayPattern">Document line ending: %{value1}@</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="BUR-m7-66L" firstAttribute="leading" secondItem="Bzt-jh-Vms" secondAttribute="leading" constant="12" id="5nC-Ib-xnX"/>
+                            <constraint firstItem="BUR-m7-66L" firstAttribute="leading" secondItem="AUU-yj-2h4" secondAttribute="leading" constant="12" id="5nC-Ib-xnX"/>
                             <constraint firstItem="fSg-L5-9SX" firstAttribute="top" secondItem="BUR-m7-66L" secondAttribute="bottom" constant="8" symbolic="YES" id="9gW-yg-Idw"/>
                             <constraint firstItem="AUU-yj-2h4" firstAttribute="bottom" secondItem="Fso-Ra-PNu" secondAttribute="bottom" constant="12" id="CaP-m2-EKW"/>
                             <constraint firstItem="Fso-Ra-PNu" firstAttribute="leading" secondItem="AUU-yj-2h4" secondAttribute="leading" constant="12" id="SiM-Xq-XZ8"/>
                             <constraint firstItem="fSg-L5-9SX" firstAttribute="leading" secondItem="AUU-yj-2h4" secondAttribute="leading" constant="12" id="VrP-VX-2Mc"/>
                             <constraint firstItem="AUU-yj-2h4" firstAttribute="trailing" secondItem="Fso-Ra-PNu" secondAttribute="trailing" constant="12" id="WaD-Oa-7hd"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BUR-m7-66L" secondAttribute="trailing" constant="12" id="dbf-u1-0Yw"/>
+                            <constraint firstItem="AUU-yj-2h4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BUR-m7-66L" secondAttribute="trailing" constant="12" id="dbf-u1-0Yw"/>
                             <constraint firstItem="BUR-m7-66L" firstAttribute="top" secondItem="AUU-yj-2h4" secondAttribute="top" constant="8" id="hEk-3s-4Do"/>
                             <constraint firstItem="Fso-Ra-PNu" firstAttribute="top" secondItem="fSg-L5-9SX" secondAttribute="bottom" constant="8" symbolic="YES" id="lmT-Qe-YjB"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fSg-L5-9SX" secondAttribute="trailing" constant="12" id="qHz-AQ-HfO"/>
+                            <constraint firstItem="AUU-yj-2h4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fSg-L5-9SX" secondAttribute="trailing" constant="12" id="qHz-AQ-HfO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AUU-yj-2h4"/>
                         <viewLayoutGuide key="layoutMargins" id="yLj-8c-9jK"/>
                     </view>
                     <connections>
+                        <outlet property="messageField" destination="fSg-L5-9SX" id="k95-Mz-sx3"/>
                         <outlet property="numberFormatter" destination="g92-NO-XZs" id="4uf-w2-wA9"/>
                         <outlet property="tableView" destination="YoU-dq-kJ0" id="dj4-Cy-nXd"/>
                     </connections>
@@ -426,7 +420,7 @@
                 <customObject id="heb-LF-jlf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <numberFormatter formatterBehavior="default10_4" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="g92-NO-XZs"/>
             </objects>
-            <point key="canvasLocation" x="-74" y="591"/>
+            <point key="canvasLocation" x="-74" y="491"/>
         </scene>
     </scenes>
 </document>

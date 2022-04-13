@@ -380,9 +380,16 @@
 "No Recent Filter" = "Son Filtre Yok";
 "No Filter Results" = "Filtre Sonucu Yok";
 
+// Warnings
+"No issues found." = "No issues found.";  // FIXME: added
+
 // Incompatible characters
 "No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %i." = "Found %i line endings other than %i.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
 
 
 /* MARK: EditorTextView */

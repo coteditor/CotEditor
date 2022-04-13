@@ -381,9 +381,16 @@
 "No Recent Filter" = "没有最近的过滤";
 "No Filter Results" = "无过滤结果";
 
+// Warnings
+"No issues found." = "No issues found.";  // FIXME: added
+
 // Incompatible characters
 "No incompatible characters were found." = "没有找到不兼容字符";
 "Scanning incompatible characters…" = "扫描不兼容字符…";
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  FIXME: added
+"Found %i line endings other than %i." = "Found %i line endings other than %i.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
 
 
 

@@ -40,9 +40,6 @@
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
 "Yi4-Vk-FCZ.title" = "Inkonsistente Zeilenenden";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "Document line ending: %{value1}@"; ObjectID = "zE7-0M-nkc"; */
-"zE7-0M-nkc.ibShadowedDisplayPattern" = "Dokumentzeilenende: %{value1}@";
-
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
 "o1z-QY-xMY.headerCell.title" = "Zeile";
 /* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
