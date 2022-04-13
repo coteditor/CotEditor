@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2021 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,3 +34,16 @@
 "Nhb-U5-BOF.headerCell.title" = "Zeichen";
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "weY-lf-jGz"; */
 "weY-lf-jGz.headerCell.title" = "Zeile";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
+"Yi4-Vk-FCZ.title" = "Inkonsistente Zeilenenden";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "Document line ending: %{value1}@"; ObjectID = "zE7-0M-nkc"; */
+"zE7-0M-nkc.ibShadowedDisplayPattern" = "Dokumentzeilenende: %{value1}@";
+
+/* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
+"o1z-QY-xMY.headerCell.title" = "Zeile";
+/* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
+"Miu-uX-2tM.headerCell.title" = "Zeilenende";

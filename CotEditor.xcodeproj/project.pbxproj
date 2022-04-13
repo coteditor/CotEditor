@@ -712,6 +712,8 @@
 		2AF45E1E1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */; };
 		2AF45E1F1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
+		2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
+		2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF861E32522E64E00A114BE /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF861E22522E64E00A114BE /* NumberFormatter.swift */; };
 		2AF861E42522E64E00A114BE /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF861E22522E64E00A114BE /* NumberFormatter.swift */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
@@ -1449,6 +1451,7 @@
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsViewController.swift; sourceTree = "<group>"; };
 		2AF861E22522E64E00A114BE /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
@@ -2426,6 +2429,7 @@
 				2AE7A8D820450FE600830830 /* OutlineViewController.swift */,
 				2A2B085F28046E3B0028D733 /* WarningsViewController.swift */,
 				2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */,
+				2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */,
 			);
 			name = Sidebar;
 			sourceTree = "<group>";
@@ -2989,6 +2993,7 @@
 				2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
+				2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
@@ -3310,6 +3315,7 @@
 				2AEB8B452726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
+				2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,

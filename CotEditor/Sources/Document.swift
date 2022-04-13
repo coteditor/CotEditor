@@ -55,7 +55,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @Published private(set) var lineEnding: LineEnding
     @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
     
-    private let lineEndingScanner: LineEndingScanner
+    let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
