@@ -386,8 +386,9 @@
 "No issues found." = "No issues found.";  // FIXME: added
 
 // Incompatible characters
-"No incompatible characters were found." = "Nenhum caractere incompatível encontrado.";
 "Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Found a incompatible character." = "Found a incompatible character.";  // FIXME: added
+"Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added

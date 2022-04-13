@@ -385,8 +385,9 @@
 "No issues found." = "No issues found.";
 
 // Incompatible characters
-"No incompatible characters were found." = "No incompatible characters were found.";
 "Scanning incompatible characters…" = "Scanning incompatible characters…";
+"Found a incompatible character." = "Found a incompatible character.";
+"Found %i incompatible characters." = "Found %i incompatible characters.";
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF

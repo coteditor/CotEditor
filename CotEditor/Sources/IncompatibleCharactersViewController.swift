@@ -49,6 +49,7 @@ final class IncompatibleCharactersViewController: NSViewController {
     @objc private dynamic var message: String?
     
     @IBOutlet private var numberFormatter: NumberFormatter?
+    @IBOutlet private weak var messageField: NSTextField?
     @IBOutlet private weak var tableView: NSTableView?
     
     
@@ -133,6 +134,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         }
         
         self.incompatibleCharacters = incompatibleCharacters
+        self.tableView?.enclosingScrollView?.isHidden = incompatibleCharacters.isEmpty
         self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)
@@ -143,10 +145,17 @@ final class IncompatibleCharactersViewController: NSViewController {
     /// Update the state message on the table.
     @MainActor private func updateMessage(isScanning: Bool) {
         
-        self.message = isScanning ? "Scanning incompatible characters…".localized
-                                  : (self.incompatibleCharacters.isEmpty
-                                     ? "No incompatible characters were found.".localized
-                                     : nil)
+        self.messageField?.textColor = self.incompatibleCharacters.isEmpty ? .secondaryLabelColor : .labelColor
+        self.messageField?.stringValue = {
+            switch self.incompatibleCharacters.count {
+                case _ where isScanning: return "Scanning incompatible characters…".localized
+                case 0:   return "No issues found.".localized
+                case 1:   return "Found a incompatible character.".localized
+                default:  return String(format: "Found %i incompatible characters.".localized,
+                                        locale: .current,
+                                        self.incompatibleCharacters.count)
+            }
+        }()
     }
     
 }

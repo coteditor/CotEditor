@@ -43,13 +43,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-Or-pYw">
-                                <rect key="frame" x="12" y="12" width="196" height="155"/>
+                                <rect key="frame" x="12" y="12" width="196" height="133"/>
                                 <clipView key="contentView" id="wee-50-Epf">
-                                    <rect key="frame" x="1" y="1" width="194" height="153"/>
+                                    <rect key="frame" x="1" y="1" width="194" height="131"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" usesAutomaticRowHeights="YES" headerView="Wcl-4n-a3G" viewBased="YES" id="k0y-Cz-Raz">
-                                            <rect key="frame" x="0.0" y="0.0" width="194" height="130"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="194" height="108"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -192,12 +192,15 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zhP-f9-E9G"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="n9g-m9-XN0">
-                                    <rect key="frame" x="1" y="140" width="194" height="14"/>
+                                    <rect key="frame" x="1" y="118" width="194" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="e8x-lE-00G">
-                                    <rect key="frame" x="181" y="24" width="14" height="130"/>
+                                    <rect key="frame" x="181" y="24" width="14" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="Wcl-4n-a3G">
@@ -205,22 +208,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTM-lN-A7l">
-                                <rect key="frame" x="18" y="107" width="184" height="28"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="No incompatible characters were found." id="wsL-BG-Ii8">
-                                    <font key="font" metaFont="menu" size="11"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <binding destination="nX3-cC-y6b" name="hidden" keyPath="message" id="ThK-cu-tHI">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="nX3-cC-y6b" name="value" keyPath="message" id="xSa-zI-RXk"/>
-                                </connections>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLI-76-6zT">
                                 <rect key="frame" x="10" y="175" width="153" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Incompatible Characters" id="W1c-aP-XZa">
@@ -229,23 +216,32 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTM-lN-A7l">
+                                <rect key="frame" x="10" y="153" width="173" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Found a incompatible character." id="wsL-BG-Ii8">
+                                    <font key="font" metaFont="menu" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="dTM-lN-A7l" firstAttribute="leading" secondItem="Yyo-Or-pYw" secondAttribute="leading" constant="8" id="54M-l7-ZlY"/>
+                            <constraint firstItem="Yyo-Or-pYw" firstAttribute="top" secondItem="dTM-lN-A7l" secondAttribute="bottom" constant="8" symbolic="YES" id="9D4-ez-zSE"/>
                             <constraint firstItem="wLI-76-6zT" firstAttribute="top" secondItem="6ks-J6-ct9" secondAttribute="top" constant="8" id="Dlr-So-ts2"/>
+                            <constraint firstItem="dTM-lN-A7l" firstAttribute="leading" secondItem="6ks-J6-ct9" secondAttribute="leading" constant="12" id="FxF-e0-CRe"/>
                             <constraint firstItem="Yyo-Or-pYw" firstAttribute="leading" secondItem="6ks-J6-ct9" secondAttribute="leading" constant="12" id="IWX-DU-u6g"/>
                             <constraint firstItem="6ks-J6-ct9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wLI-76-6zT" secondAttribute="trailing" constant="12" id="SzU-gU-jjE"/>
-                            <constraint firstItem="Yyo-Or-pYw" firstAttribute="top" secondItem="wLI-76-6zT" secondAttribute="bottom" constant="8" symbolic="YES" id="Tgw-hi-pke"/>
                             <constraint firstItem="6ks-J6-ct9" firstAttribute="trailing" secondItem="Yyo-Or-pYw" secondAttribute="trailing" constant="12" id="XoI-aQ-dsR"/>
+                            <constraint firstItem="dTM-lN-A7l" firstAttribute="top" secondItem="wLI-76-6zT" secondAttribute="bottom" constant="8" symbolic="YES" id="Y5U-ao-ngI"/>
                             <constraint firstItem="wLI-76-6zT" firstAttribute="leading" secondItem="6ks-J6-ct9" secondAttribute="leading" constant="12" id="bV8-x0-p0a"/>
-                            <constraint firstItem="dTM-lN-A7l" firstAttribute="top" secondItem="Yyo-Or-pYw" secondAttribute="top" constant="32" id="nbd-jk-pTN"/>
-                            <constraint firstItem="Yyo-Or-pYw" firstAttribute="trailing" secondItem="dTM-lN-A7l" secondAttribute="trailing" constant="8" id="p9g-QX-kS9"/>
                             <constraint firstItem="6ks-J6-ct9" firstAttribute="bottom" secondItem="Yyo-Or-pYw" secondAttribute="bottom" constant="12" id="pnW-PZ-Gde"/>
+                            <constraint firstItem="6ks-J6-ct9" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dTM-lN-A7l" secondAttribute="trailing" constant="12" id="yEU-gM-pqR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6ks-J6-ct9"/>
                         <viewLayoutGuide key="layoutMargins" id="vv6-ur-Hig"/>
                     </view>
                     <connections>
+                        <outlet property="messageField" destination="dTM-lN-A7l" id="CnA-AF-tdl"/>
                         <outlet property="numberFormatter" destination="Rsm-xE-2zT" id="yVP-dB-g42"/>
                         <outlet property="tableView" destination="k0y-Cz-Raz" id="EYt-uL-akX"/>
                     </connections>
@@ -253,7 +249,7 @@
                 <customObject id="m7E-ag-dEX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <numberFormatter formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="Rsm-xE-2zT"/>
             </objects>
-            <point key="canvasLocation" x="-74" y="177"/>
+            <point key="canvasLocation" x="-74" y="152"/>
         </scene>
         <!--Inconsistent Line Endings View Controller-->
         <scene sceneID="hzR-zF-GbZ">
@@ -263,8 +259,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="220" height="208"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BUR-m7-66L">
-                                <rect key="frame" x="10" y="133" width="159" height="15"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BUR-m7-66L">
+                                <rect key="frame" x="10" y="132" width="192" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Inconsistent Line Endings" id="Yi4-Vk-FCZ">
                                     <font key="font" metaFont="systemBold" size="12"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -280,13 +276,13 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fso-Ra-PNu">
-                                <rect key="frame" x="12" y="12" width="181" height="69"/>
+                                <rect key="frame" x="12" y="15" width="188" height="89"/>
                                 <clipView key="contentView" id="W9f-g2-kXg">
-                                    <rect key="frame" x="1" y="1" width="179" height="67"/>
+                                    <rect key="frame" x="1" y="1" width="186" height="87"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" headerView="Hub-Rz-LiT" viewBased="YES" id="YoU-dq-kJ0">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="59"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="17" height="0.0"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -383,7 +379,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="aSv-94-YHF"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="tLD-kc-VwX">
-                                    <rect key="frame" x="1" y="52" width="179" height="16"/>
+                                    <rect key="frame" x="1" y="72" width="186" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="aEU-Q4-OIO">
