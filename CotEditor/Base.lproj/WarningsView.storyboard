@@ -42,7 +42,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="220" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-Or-pYw">
+                            <scrollView verticalCompressionResistancePriority="751" horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-Or-pYw">
                                 <rect key="frame" x="12" y="12" width="196" height="133"/>
                                 <clipView key="contentView" id="wee-50-Epf">
                                     <rect key="frame" x="1" y="1" width="194" height="131"/>
@@ -192,9 +192,6 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zhP-f9-E9G"/>
-                                </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="n9g-m9-XN0">
                                     <rect key="frame" x="1" y="118" width="194" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>

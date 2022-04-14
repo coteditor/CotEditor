@@ -46,6 +46,10 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     private var scannerObservers: Set<AnyCancellable> = []
     
+    private var fixedHeightConstraint: NSLayoutConstraint?
+    private var flexibleHeightConstraint: NSLayoutConstraint?
+    private var currentTableHeight: CGFloat = 100
+    
     @objc private dynamic var message: String?
     
     @IBOutlet private var numberFormatter: NumberFormatter?
@@ -72,6 +76,9 @@ final class IncompatibleCharactersViewController: NSViewController {
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        
+        let isCollapsed = self.scanner?.incompatibleCharacters.isEmpty ?? true
+        self.collapseView(isCollapsed, animate: false)
         
         self.scanner?.shouldScan = true
         self.scanner?.scan()
@@ -133,12 +140,56 @@ final class IncompatibleCharactersViewController: NSViewController {
             textStorage.clearAllMarkup()
         }
         
+        if incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
+            self.collapseView(incompatibleCharacters.isEmpty, animate: true)
+        }
+        
         self.incompatibleCharacters = incompatibleCharacters
-        self.tableView?.enclosingScrollView?.isHidden = incompatibleCharacters.isEmpty
         self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)
         textStorage.markup(ranges: incompatibleCharacters.map(\.range))
+    }
+    
+    
+    /// Open / close the view by adjusting the height of the table.
+    ///
+    /// - Parameters:
+    ///   - isCollapsed: The flag indicating whether open or close.
+    ///   - animate: The flag indicating whether to animate the change.
+    @MainActor private func collapseView(_ isCollapsed: Bool, animate: Bool) {
+        
+        guard let scrollView = self.tableView?.enclosingScrollView else { return assertionFailure() }
+        
+        if isCollapsed {
+            self.currentTableHeight = scrollView.frame.height
+        }
+        
+        let fixedConstraint = self.fixedHeightConstraint ?? NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30)
+        self.fixedHeightConstraint = fixedConstraint
+        let flexibleConstraintt = self.flexibleHeightConstraint ?? NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .height, multiplier: 1, constant: 50)
+        self.flexibleHeightConstraint = flexibleConstraintt
+        
+        let visualHeight = isCollapsed ? 30 : self.currentTableHeight
+        
+        flexibleConstraintt.isActive = false
+        fixedConstraint.constant = scrollView.frame.height
+        fixedConstraint.isActive = true
+        
+        scrollView.isHidden = isCollapsed
+        NSAnimationContext.runAnimationGroup { (context) in
+            if !animate {
+                context.duration = 0
+            }
+            fixedConstraint.animator().constant = visualHeight
+            
+        } completionHandler: {
+            if !isCollapsed {
+                fixedConstraint.isActive = false
+                flexibleConstraintt.isActive = true
+            }
+            scrollView.frame.size.height = visualHeight
+        }
     }
     
     
