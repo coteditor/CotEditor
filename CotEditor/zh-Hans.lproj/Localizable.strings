@@ -391,7 +391,7 @@
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  FIXME: added
-"Found %i line endings other than %i." = "Found %i line endings other than %i.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
 
 
 
