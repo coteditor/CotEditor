@@ -40,7 +40,7 @@ Especially, follow the terms of the following applications.
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa katsumi to find macOS-friendly expressions.
+We recommend to utilize [Apple Localization Terms Glossary for macOS](https://applelocalization.com/macos) by Kishikawa Katsumi to find macOS-friendly expressions.
 You also need to take care of how Apple handles punctuation characters and symbols. Regarding quotation marks, they normally prefer the typographer's ones.
 
 
@@ -82,7 +82,7 @@ We aren't accepting pull-requests adding bundled theme at the moment. You can di
 
 ### Graphics Resources
 
-We aren't accepting pull-requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if a graphic resource has some kind of mistake to be fixed.
+We don't accept pull-requests for image resources. [1024jp](https://github.com/1024jp) enjoys creating and brushing up the graphics ;). Please just point out on the Issues page if a graphic resource has some kind of mistake to be fixed.
 
 
 Coding Style Guide
