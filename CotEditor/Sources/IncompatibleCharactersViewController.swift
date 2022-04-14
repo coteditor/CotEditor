@@ -161,7 +161,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         guard let scrollView = self.tableView?.enclosingScrollView else { return assertionFailure() }
         
-        if isCollapsed {
+        if !scrollView.isHidden {
             self.currentTableHeight = scrollView.frame.height
         }
         

@@ -42,7 +42,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="220" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView verticalCompressionResistancePriority="751" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-Or-pYw">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyo-Or-pYw">
                                 <rect key="frame" x="12" y="12" width="196" height="133"/>
                                 <clipView key="contentView" id="wee-50-Epf">
                                     <rect key="frame" x="1" y="1" width="194" height="131"/>
