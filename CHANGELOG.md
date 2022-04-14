@@ -8,12 +8,12 @@ Change Log
 ### New Features
 
 - Ability to handle documents holding multiple types of line endings.
-- Add inconsistent line endings list to the 
-- Display alert message for inconsistent line endings.
+- Alert inconsistent line endings in the document when opening or reloading.
+- List up the inconsistent line endings in the Warnings pane in the inspector.
+- Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
 - Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.
-- Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the line endings of the opened document are one of these).
-- Add recent history to the Unicode input.
-- Export setting files, such as themes or multiple replacements, to the Finder just by dragging and dropping the setting name.
+- Add history to the Unicode input.
+- Export setting files, such as themes or multiple replacements, to the Finder just by dropping the setting name.
 - Transfer settings among CotEditors in different machines via Universal Control by dragging the setting name and dropping it to the setting list area in another CotEditor.
 
 
@@ -21,18 +21,18 @@ Change Log
 
 - Update document icons.
 - Detect the line ending in documents more intelligently.
-- Adjust the vertical position of line numbers on printing.
-- Rename the Incompatible Characters pane to Warnings pane. 
+- Rename the Incompatible Characters pane to the Warnings pane to share the pane with the inconsistent line ending list.
 - Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
 - Print the line numbers on the right side on printing if the writing direction is right-to-left.
+- Adjust the vertical position of line numbers on printing. 
 - Indent snippet text with multiple lines to the indention level where will be inserted. 
 - Add steppers to the font setting controls.
 - Optimize syntax parsing.
-- Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Prefer using .yml for syntax definition files over .yaml.
+- Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
 - Remove original document icons for CoffeeScript and Tcl.
-- Make text in the UI more Apple-favored.
-- Update help contents.
+- Revise text for more Apple-favored expression.
+- Update the help contents.
 - [trivial] Accept script files for the Script menu with an uppercased file extension.
 - [trivial] Replace `\n` with `\R` for the new line meta character in the regular expression reference.
 - [trivial] Tweak Anura theme.
