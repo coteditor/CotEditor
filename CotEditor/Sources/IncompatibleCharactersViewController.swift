@@ -183,12 +183,13 @@ final class IncompatibleCharactersViewController: NSViewController {
             }
             fixedConstraint.animator().constant = visualHeight
             
-        } completionHandler: {
+        } completionHandler: { [weak self] in
             if !isCollapsed {
                 fixedConstraint.isActive = false
                 flexibleConstraintt.isActive = true
             }
             scrollView.frame.size.height = visualHeight
+            self?.view.needsLayout = true
         }
     }
     
