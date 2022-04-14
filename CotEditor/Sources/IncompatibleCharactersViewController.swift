@@ -200,11 +200,11 @@ final class IncompatibleCharactersViewController: NSViewController {
         self.messageField?.stringValue = {
             switch self.incompatibleCharacters.count {
                 case _ where isScanning: return "Scanning incompatible characters…".localized
-                case 0:   return "No issues found.".localized
-                case 1:   return "Found a incompatible character.".localized
-                default:  return String(format: "Found %i incompatible characters.".localized,
-                                        locale: .current,
-                                        self.incompatibleCharacters.count)
+                case 0:  return "No issues found.".localized
+                case 1:  return "Found a incompatible character.".localized
+                default: return String(format: "Found %i incompatible characters.".localized,
+                                       locale: .current,
+                                       self.incompatibleCharacters.count)
             }
         }()
     }
