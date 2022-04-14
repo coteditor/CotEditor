@@ -144,7 +144,7 @@ final class IncompatibleCharactersViewController: NSViewController {
             self.collapseView(incompatibleCharacters.isEmpty, animate: true)
         }
         
-        self.incompatibleCharacters = incompatibleCharacters
+        self.incompatibleCharacters = incompatibleCharacters.sorted(using: tableView?.sortDescriptors ?? [])
         self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)
@@ -259,8 +259,50 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
         }
     }
     
+    
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        
+        guard
+            tableView.sortDescriptors != oldDescriptors,
+            self.incompatibleCharacters.compareCount(with: 1) == .greater
+        else { return }
+        
+        self.incompatibleCharacters.sort(using: tableView.sortDescriptors)
+        tableView.reloadData()
+    }
+    
 }
 
+
+
+extension IncompatibleCharacter: KeySortable {
+    
+    func compare(with other: Self, key: String) -> ComparisonResult {
+        
+        switch key {
+            case "location":
+                return self.location.compare(other.location)
+                
+            case "character":
+                return String(self.character).localizedStandardCompare(String(other.character))
+                
+            case "convertedCharacter":
+                switch (self.convertedCharacter, other.convertedCharacter) {
+                    case let (.some(converted0), .some(converted1)):
+                        return converted0.localizedStandardCompare(converted1)
+                    case (.some, .none):
+                        return .orderedAscending
+                    case (.none, .some):
+                        return .orderedDescending
+                    case (.none, .none):
+                        return .orderedSame
+                }
+                
+            default:
+                fatalError()
+        }
+    }
+}
 
 
 private extension NSTextStorage {

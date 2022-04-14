@@ -60,7 +60,7 @@ final class InconsistentLineEndingsViewController: NSViewController {
             .removeDuplicates()
             .receive(on: RunLoop.main)
             .sink { [unowned self] in
-                self.lineEndings = $0
+                self.lineEndings = $0.sorted(using: self.tableView?.sortDescriptors ?? [])
                 self.tableView?.enclosingScrollView?.isHidden = $0.isEmpty
                 self.tableView?.reloadData()
                 self.updateMessage()
@@ -156,4 +156,34 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
         }
     }
     
+    
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        
+        guard
+            tableView.sortDescriptors != oldDescriptors,
+            self.lineEndings.compareCount(with: 1) == .greater
+        else { return }
+        
+        self.lineEndings.sort(using: tableView.sortDescriptors)
+        tableView.reloadData()
+    }
+    
+}
+
+
+extension LineEndingLocation: KeySortable {
+    
+    func compare(with other: LineEndingLocation, key: String) -> ComparisonResult {
+        
+        switch key {
+            case "location":
+                return self.location.compare(other.location)
+                
+            case "lineEnding":
+                return self.lineEnding.index.compare(other.lineEnding.index)
+                
+            default:
+                fatalError()
+        }
+    }
 }
