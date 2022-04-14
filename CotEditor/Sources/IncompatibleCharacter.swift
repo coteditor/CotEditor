@@ -45,7 +45,7 @@ extension String {
     /// list-up characters cannot be converted to the passed-in encoding
     ///
     /// - Throws: `CancellationError`
-    func scanIncompatibleCharacters(for encoding: String.Encoding) throws -> [IncompatibleCharacter] {
+    func scanIncompatibleCharacters(with encoding: String.Encoding) throws -> [IncompatibleCharacter] {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         

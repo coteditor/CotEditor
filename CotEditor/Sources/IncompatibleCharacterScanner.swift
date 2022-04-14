@@ -90,7 +90,7 @@ final class IncompatibleCharacterScanner {
         self.isScanning = true
         self.task = Task { [weak self] in
             defer { self?.isScanning = false }
-            self?.incompatibleCharacters = try string.scanIncompatibleCharacters(for: encoding)
+            self?.incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
         }
     }
     
