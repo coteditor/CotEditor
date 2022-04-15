@@ -38,6 +38,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
         static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
+        static let originalContentString = "originalContentString"
     }
     
     
@@ -127,6 +128,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
+        
+        // store unencoded string but only when incompatible
+        if !self.string.canBeConverted(to: self.fileEncoding.encoding) {
+            coder.encode(self.string, forKey: SerializationKey.originalContentString)
+        }
     }
     
     
@@ -148,6 +154,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         if coder.containsValue(forKey: SerializationKey.suppressesInconsistentLineEndingAlert) {
             self.suppressesInconsistentLineEndingAlert = coder.decodeBool(forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
+        }
+        if let string = coder.decodeObject(forKey: SerializationKey.originalContentString) as? String {
+            self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         }
     }
     

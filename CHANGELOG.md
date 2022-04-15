@@ -28,6 +28,7 @@ Change Log
 - Adjust the vertical position of line numbers on printing. 
 - Indent snippet text with multiple lines to the indention level where will be inserted. 
 - Add steppers to the font setting controls.
+- Restore the characters even incompatible with the document encoding when restoring documents from the last session.
 - Optimize syntax parsing.
 - Prefer using .yml for syntax definition files over .yaml.
 - Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
