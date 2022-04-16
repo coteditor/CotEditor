@@ -49,13 +49,6 @@ struct TextFindResult {
 }
 
 
-private struct HighlightItem {
-    
-    var range: NSRange
-    var color: NSColor
-}
-
-
 
 // MARK: -
 
@@ -499,7 +492,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
-            var highlights: [HighlightItem] = []
+            var highlights: [ItemRange<NSColor>] = []
             var results: [TextFindResult] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
@@ -511,7 +504,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 // highlight
                 highlights += matches.enumerated()
                     .filter { !$0.element.isEmpty }
-                    .map { HighlightItem(range: $0.element, color: highlightColors[$0.offset]) }
+                    .map { ItemRange<NSColor>(item: highlightColors[$0.offset], range: $0.element) }
                 
                 // build TextFindResult for table
                 if showsList {
@@ -551,7 +544,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                         layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
                         for highlight in highlights {
-                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.item, forCharacterRange: highlight.range)
                         }
                     }
                 }
