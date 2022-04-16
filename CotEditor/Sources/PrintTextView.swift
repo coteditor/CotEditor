@@ -218,7 +218,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             let numberSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
-            let horizontalOrigin = self.baseWritingDirection == .leftToRight
+            let horizontalOrigin = self.baseWritingDirection != .rightToLeft
                 ? self.textContainerOrigin.x + textContainer.lineFragmentPadding - self.lineNumberPadding
                 : self.textContainerOrigin.x + textContainer.size.width
             let baselineOffset = layoutManager.baselineOffset(for: self.layoutOrientation)
@@ -297,8 +297,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }()
         
         // adjust paddings considering the line numbers
-        self.xOffset = (self.printsLineNumber && self.baseWritingDirection == .leftToRight) ? self.lineFragmentPadding : 0
-        self.textContainerInset.width = (self.printsLineNumber && self.baseWritingDirection == .rightToLeft) ? self.lineFragmentPadding : 0
+        let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
+        self.xOffset = printsAtLeft ? self.lineFragmentPadding : 0
+        self.textContainerInset.width = printsAtLeft ? self.lineFragmentPadding : 0
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
@@ -368,13 +369,13 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         switch (primaryString, secondaryString) {
             // case: empty
-            case (nil, nil):
+            case (.none, .none):
                 return NSAttributedString()
             
             // case: single content
-            case let (.some(string), nil):
+            case let (.some(string), .none):
                 return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
-            case let (nil, .some(string)):
+            case let (.none, .some(string)):
                 return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
             
             case let (.some(primaryString), .some(secondaryString)):
