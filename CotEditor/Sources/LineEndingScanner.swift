@@ -27,19 +27,9 @@ import Foundation
 import class AppKit.NSTextStorage
 import Combine
 
-struct LineEndingLocation: Equatable {
-    
-    var lineEnding: LineEnding
-    var location: Int
-    
-    var range: NSRange  { NSRange(location: self.location, length: self.lineEnding.length) }
-}
-
-
-
 final class LineEndingScanner {
     
-    @Published private(set) var inconsistentLineEndings: [LineEndingLocation] = []
+    @Published private(set) var inconsistentLineEndings: [ItemRange<LineEnding>] = []
     
     
     // MARK: Private Properties
@@ -99,7 +89,7 @@ final class LineEndingScanner {
         
         let shiftedLineEndings = self.inconsistentLineEndings
             .filter { $0.location >= (scanRange.upperBound - delta) }
-            .map { LineEndingLocation(lineEnding: $0.lineEnding, location: $0.location + delta) }
+            .map { $0.shifted(by: delta) }
         let editedLineEndings = self.scan(in: scanRange)
         
         self.inconsistentLineEndings.removeAll { $0.location >= scanRange.lowerBound }
@@ -110,12 +100,12 @@ final class LineEndingScanner {
     /// Scan line endings inconsistent with the document line endings.
     ///
     /// - Parameter range: The range to scan.
-    /// - Returns: The inconsistent line endings with its location.
-    private func scan(in range: NSRange? = nil) -> [LineEndingLocation] {
+    /// - Returns: The ranes of inconsistent line endings with its type.
+    private func scan(in range: NSRange? = nil) -> [ItemRange<LineEnding>] {
         
         self.textStorage.string.lineEndingRanges(in: range)
             .filter { $0.key != self.documentLineEnding }
-            .flatMap { (key, value) in value.map { LineEndingLocation(lineEnding: key, location: $0.location) } }
+            .flatMap { (key, value) in value.map { ItemRange<LineEnding>(item: key, range: $0) } }
             .sorted(\.location)
     }
     

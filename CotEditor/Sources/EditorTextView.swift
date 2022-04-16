@@ -1287,7 +1287,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
                     guard let color = value as? NSColor else { return }
                     
-                    let localRange = range.shifted(offset: -selectedRange.location)
+                    let localRange = range.shifted(by: -selectedRange.location)
                     
                     styledText.addAttribute(.foregroundColor, value: color, range: localRange)
                 }

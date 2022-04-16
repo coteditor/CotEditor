@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -86,7 +86,7 @@ extension MultiCursorEditing {
         
         self.textStorage?.beginEditing()
         for range in replacementRanges {
-            self.textStorage?.replaceCharacters(in: range.shifted(offset: offset), with: attributedString)
+            self.textStorage?.replaceCharacters(in: range.shifted(by: offset), with: attributedString)
             
             newInsertionLocations.append(range.location + offset + stringLength)
             

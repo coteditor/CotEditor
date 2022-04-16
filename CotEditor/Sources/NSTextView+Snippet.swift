@@ -53,7 +53,7 @@ extension NSTextView {
                         .map { snippet.string.length - $0.length }
                         .reduce(range.location, +)
                     
-                    return snippet.selections.map { $0.shifted(offset: offset) }
+                    return snippet.selections.map { $0.shifted(by: offset) }
                 }
         
         self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)

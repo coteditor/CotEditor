@@ -220,10 +220,10 @@ extension String {
             // move selected ranges in the line to move
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(intersectionRange.shifted(offset: -upperLineRange.length))
+                    selectedRanges.append(intersectionRange.shifted(by: -upperLineRange.length))
                     
                 } else if editRange.touches(selectedRange.location) {
-                    selectedRanges.append(selectedRange.shifted(offset: -upperLineRange.length))
+                    selectedRanges.append(selectedRange.shifted(by: -upperLineRange.length))
                 }
             }
         }
@@ -270,10 +270,10 @@ extension String {
                     let offset = (lineString.last?.isNewline == true)
                         ? lowerLineRange.length
                         : lowerLineRange.length + lowerLineString.last!.utf16.count
-                    selectedRanges.append(intersectionRange.shifted(offset: offset))
+                    selectedRanges.append(intersectionRange.shifted(by: offset))
                     
                 } else if editRange.touches(selectedRange.location) {
-                    selectedRanges.append(selectedRange.shifted(offset: lowerLineRange.length))
+                    selectedRanges.append(selectedRange.shifted(by: lowerLineRange.length))
                 }
             }
         }
@@ -394,7 +394,7 @@ extension String {
             
             offset += lineString.length
             for range in group {
-                selectedRanges.append(range.shifted(offset: offset))
+                selectedRanges.append(range.shifted(by: offset))
             }
         }
         

@@ -344,7 +344,7 @@ final class TextFind {
                     if ioStop { return }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
-                    let substringRange = item.range.shifted(offset: -scopeRange.location)
+                    let substringRange = item.range.shifted(by: -scopeRange.location)
                     replacedString.replaceCharacters(in: substringRange, with: item.string)
                 }
                 replacementItems.append(ReplacementItem(string: replacedString.copy() as! String, range: scopeRange))

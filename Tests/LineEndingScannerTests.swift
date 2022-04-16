@@ -39,8 +39,8 @@ final class LineEndingScannerTests: XCTestCase {
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
             .sink { (lineEndings) in
-                XCTAssertEqual(lineEndings, [LineEndingLocation(lineEnding: .nel, location: 3),
-                                             LineEndingLocation(lineEnding: .crlf, location: 11)])
+                XCTAssertEqual(lineEndings, [ItemRange<LineEnding>(item: .nel, range: NSRange(location: 3, length: 1)),
+                                             ItemRange<LineEnding>(item: .crlf, range: NSRange(location: 11, length: 2))])
                 expectation.fulfill()
             }
         self.wait(for: [expectation], timeout: .zero)
@@ -54,7 +54,7 @@ final class LineEndingScannerTests: XCTestCase {
         let storage = NSTextStorage(string: "\r")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
-        XCTAssertEqual(scanner.inconsistentLineEndings, [LineEndingLocation(lineEnding: .cr, location: 0)])
+        XCTAssertEqual(scanner.inconsistentLineEndings, [ItemRange<LineEnding>(item: .cr, range: NSRange(location: 0, length: 1))])
         
         // test scanRange does not expand to the out of range
         storage.replaceCharacters(in: NSRange(0..<1), with: "")
@@ -86,8 +86,8 @@ final class LineEndingScannerTests: XCTestCase {
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
             .sink { (lineEndings) in
-                XCTAssertEqual(lineEndings, [LineEndingLocation(lineEnding: .crlf, location: 3),
-                                             LineEndingLocation(lineEnding: .cr, location: 8)])
+                XCTAssertEqual(lineEndings, [ItemRange<LineEnding>(item: .crlf, range: NSRange(location: 3, length: 2)),
+                                             ItemRange<LineEnding>(item: .cr, range: NSRange(location: 8, length: 1))])
                 expectation.fulfill()
             }
         self.wait(for: [expectation], timeout: .zero)

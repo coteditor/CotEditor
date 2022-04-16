@@ -181,7 +181,7 @@ extension String {
     /// Collect ranges of all line endings per line ending type from the beginning.
     ///
     /// - Parameters:
-    ///     - range: foo.
+    ///     - range: The range to parse.
     ///     - maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
     /// - Returns: Ranges of line endings.
     func lineEndingRanges(in range: NSRange? = nil, maximum: Int? = nil) -> [LineEnding: [NSRange]] {

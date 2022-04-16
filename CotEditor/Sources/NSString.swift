@@ -92,7 +92,7 @@ extension NSRange {
     ///
     /// - Parameter offset: The offset to shift.
     /// - Returns: A new NSRange.
-    func shifted(offset: Int) -> NSRange {
+    func shifted(by offset: Int) -> NSRange {
         
         return NSRange(location: self.location + offset, length: self.length)
     }

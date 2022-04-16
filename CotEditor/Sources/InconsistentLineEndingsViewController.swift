@@ -39,7 +39,7 @@ final class InconsistentLineEndingsViewController: NSViewController {
     // MARK: Private Properties
     
     private var document: Document?  { self.representedObject as? Document }
-    private var lineEndings: [LineEndingLocation] = []
+    private var lineEndings: [ItemRange<LineEnding>] = []
     private var documentLineEnding: LineEnding = .lf
     
     private var observers: Set<AnyCancellable> = []
@@ -150,7 +150,7 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
                 // calculate the line number first at this point to postpone the high cost processing as much as possible
                 return self.document?.string.lineNumber(at: lineEnding.location)
             case .lineEnding:
-                return lineEnding.lineEnding.name
+                return lineEnding.item.name
             default:
                 fatalError()
         }
@@ -171,16 +171,16 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
 }
 
 
-extension LineEndingLocation: KeySortable {
+extension ItemRange: KeySortable where Item == LineEnding {
     
-    func compare(with other: LineEndingLocation, key: String) -> ComparisonResult {
+    func compare(with other: Self, key: String) -> ComparisonResult {
         
         switch key {
             case "location":
                 return self.location.compare(other.location)
                 
             case "lineEnding":
-                return self.lineEnding.index.compare(other.lineEnding.index)
+                return self.item.index.compare(other.item.index)
                 
             default:
                 fatalError()

@@ -526,13 +526,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (index, range) in matches.enumerated() where !range.isEmpty {
                         let color = highlightColors[index]
-                        let inlineRange = range.shifted(offset: -lineRange.location)
+                        let inlineRange = range.shifted(by: -lineRange.location)
                         
                         attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     }
                     
                     // calculate inline range
-                    let inlineRange = matchedRange.shifted(offset: -lineRange.location)
+                    let inlineRange = matchedRange.shifted(by: -lineRange.location)
                     
                     results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
