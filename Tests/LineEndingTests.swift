@@ -76,28 +76,21 @@ final class LineEndingTests: XCTestCase {
     func testLineEndingRanges() {
         
         let string = "\rfoo\r\nbar \n \nb \n\r uz\u{2029}moin\r\n"
-        let expected: [LineEnding: [NSRange]] = [
-            .lf: [NSRange(location: 10, length: 1),
-                  NSRange(location: 12, length: 1),
-                  NSRange(location: 15, length: 1)],
-            .cr: [NSRange(location: 0, length: 1),
-                  NSRange(location: 16, length: 1)],
-            .crlf: [NSRange(location: 4, length: 2),
-                    NSRange(location: 25, length: 2)],
-            .paragraphSeparator: [NSRange(location: 20, length: 1)],
+        let expected: [ItemRange<LineEnding>] = [
+            .init(item: .cr, location: 0),
+            .init(item: .crlf, location: 4),
+            .init(item: .lf, location: 10),
+            .init(item: .lf, location: 12),
+            .init(item: .lf, location: 15),
+            .init(item: .cr, location: 16),
+            .init(item: .paragraphSeparator, location: 20),
+            .init(item: .crlf, location: 25),
         ]
         
         XCTAssert("".lineEndingRanges().isEmpty)
         XCTAssert("abc".lineEndingRanges().isEmpty)
         XCTAssertEqual(string.lineEndingRanges(), expected)
-        
-        let expectedPartly: [LineEnding: [NSRange]] = [
-            .lf: [NSRange(location: 10, length: 1),
-                  NSRange(location: 12, length: 1)],
-            .cr: [NSRange(location: 0, length: 1)],
-            .crlf: [NSRange(location: 4, length: 2)],
-        ]
-        XCTAssertEqual(string.lineEndingRanges(maximum: 2), expectedPartly)
+        XCTAssertEqual(string.lineEndingRanges(maximum: 2), Array(expected[..<4]))
     }
     
     
@@ -105,6 +98,17 @@ final class LineEndingTests: XCTestCase {
         
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings([.lf], with: .cr), "foo\r\nbar\r")
+    }
+    
+}
+
+
+
+private extension ItemRange where Item == LineEnding {
+    
+    init(item: LineEnding, location: Int) {
+        
+        self.init(item: item, range: NSRange(location: location, length: item.length))
     }
     
 }

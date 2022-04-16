@@ -104,9 +104,7 @@ final class LineEndingScanner {
     private func scan(in range: NSRange? = nil) -> [ItemRange<LineEnding>] {
         
         self.textStorage.string.lineEndingRanges(in: range)
-            .filter { $0.key != self.documentLineEnding }
-            .flatMap { (key, value) in value.map { ItemRange<LineEnding>(item: key, range: $0) } }
-            .sorted(\.location)
+            .filter { $0.item != self.documentLineEnding }
     }
     
 }
