@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,6 +32,8 @@ protocol InvisibleDrawing: NSLayoutManager {
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
     var invisiblesDefaultsObserver: AnyCancellable? { get set }
+    
+    func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool
 }
 
 
@@ -118,10 +120,18 @@ extension InvisibleDrawing {
                     pathCache[codeUnit] = path
                 }
             }
+            let isInvalid = self.isInvalidInvisible(invisible, at: charIndex)
+            if isInvalid {
+                NSColor.systemRed.set()
+            }
             
             path.transform(using: .init(translationByX: symbolOrigin.x, byY: symbolOrigin.y))
             path.fill()
             path.transform(using: .init(translationByX: -symbolOrigin.x, byY: -symbolOrigin.y))
+            
+            if isInvalid {
+                color.set()
+            }
         }
         
         NSGraphicsContext.restoreGraphicsState()

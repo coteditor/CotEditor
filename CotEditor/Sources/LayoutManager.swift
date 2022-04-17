@@ -201,6 +201,20 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
+   
+    // MARK: Invisible Drawing Methods
+    
+    func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool {
+        
+        switch invisible {
+            case .newLine:
+                return (self.firstTextView?.window?.windowController?.document as? Document)?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true
+            default:
+                return false
+        }
+    }
+    
+    
     
     // MARK: Public Methods
     
