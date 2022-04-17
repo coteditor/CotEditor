@@ -1,0 +1,123 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="line ending, newline, lf, cr, crlf"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Treating various types of line endings</title>
+</head>
+
+<body>
+<a name="inconsistent_line_endings"></a>
+
+<h1>Treating various types of line endings</h1>
+
+<p>CotEditor can treat various types of line endings. In general, CotEditor uses a single type of line endings for a document consistently.</p>
+
+
+<h2>Line ending characters in CotEditor</h2>
+
+<p>CotEditor treats the following characters as line ending delimiters.</p>
+
+<table>
+    <caption>Line ending types</caption>
+	
+	<thead>
+		<tr><th>label</th><th>Unicode name</th><th>metacharacter</th><th>code point</th><th>description</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>LF</td>
+			<td>Line Feed</td>
+			<td>\n</td>
+			<td><code>U+000A</code></td>
+			<td>The standard line endings in UNIX and modern macOS.</td>
+		</tr>
+		
+		<tr><td>CR</td>
+			<td>Carriage Retrun</td>
+			<td>\r</td>
+			<td><code>U+000D</code></td>
+			<td>The line ending in used in classic MacOS.</td>
+		</tr>
+		
+		<tr><td>CRLF</td>
+			<td class="na">–</td>
+			<td>\r\n</td>
+			<td><code>U+000D</code>+<code>U+000A</code></td>
+			<td>The combination of CR and LF line endings. Used mainly in Windows.</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr><td>NEL</td>
+			<td>Next Line</td>
+			<td></td>
+			<td><code>U+0085</code></td>
+			<td>A legacy line ending character used mainly in EBCDIC, a kind of character encodnig by IBM. Hidden by default.</td>
+		</tr>
+		
+		<tr><td>LS</td>
+			<td>Line Separator</td>
+			<td></td>
+			<td><code>U+2028</code></td>
+			<td>A control character indicating the separator of lines in Unicode. Hidden by default.</td>
+		</tr>
+		
+		<tr><td>PS</td>
+			<td>Paragraph Separator</td>
+			<td></td>
+			<td><code>U+2029</code></td>
+			<td>A control character indicating the separator of paragraphs in Unicode. Hidden by default.</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>The latter three types, NEL, LS, and PS, are hardly used in the real world as line ending delimiters for document files. Therefore, CotEditor hides them by default in the line ending choice.</p>
+
+<p>In contrast, although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually breaks lines in CotEditor, they are not used as line endings characters.</p>
+
+
+<h2>Setting default Line endings</h2>
+
+<p>You can set the default line ending type for new documents in Preferences &gt; Format &gt; Default line endings.</p>
+
+
+<h2>Document line endings in an existing document</h2>
+
+<p>CotEditor detects the line ending used in a document automatically, and sets it as the line endings for the document.</p>
+
+<p>If a document has inconsistent line endings, CotEditor automatically alerts and highlight them. For details, see <a href="./howto_find_inconsistent_line_endings.html">Finding inconsistent line endings</a>.</p>
+
+
+<h2>knowing document line endings</h2>
+
+<p>You can check the type of line endings used in the document either in the following area:</p>
+<ul>
+	<li>The label of the line endings button in the right side of the status bar</li>
+	<li>The Document Inspector by choosing View &gt; Inspectors &gt; Document.</li>
+	<li>The selection of the Line Endings submenu in the Format menu.</li>
+</ul>
+
+
+
+<h2>Changing the line ending type for a document</h2>
+
+<p> or change all the line endings in the document to another, </p>
+
+<p> To convert the document line endings to those minor ones, open the Line Endings menu by pressing the <kbd>Option</kbd> key.</p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/howto_find_newline.html">Find or replace a line ending</a></li>
+	<li><a href="../pgs/howto_find_inconsistent_line_endings.html">Finding inconsistent line endings</a></li>
+	<li><a href="../pgs/howto_input_unicode.html">Inputting a character using Unicode code point</a></li>
+	<li><a href="../pgs/pref_format.html">Change Format preferences</a></li>
+</ul>
+</section>
+
+</body>
+</html>
