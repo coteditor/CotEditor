@@ -89,7 +89,7 @@ final class LineEndingScanner {
         
         let inconsistentLineEndings = self.scan(in: scanRange)
         
-        self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: editedRange, changeInLength: delta)
+        self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
     }
     
     
