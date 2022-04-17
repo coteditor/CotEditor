@@ -87,13 +87,9 @@ final class LineEndingScanner {
             .last.flatMap { $0 + 1 } ?? editedRange.upperBound
         let scanRange = NSRange(lowerScanBound..<upperScanBound)
         
-        let shiftedLineEndings = self.inconsistentLineEndings
-            .filter { $0.location >= (scanRange.upperBound - delta) }
-            .map { $0.shifted(by: delta) }
-        let editedLineEndings = self.scan(in: scanRange)
+        let inconsistentLineEndings = self.scan(in: scanRange)
         
-        self.inconsistentLineEndings.removeAll { $0.location >= scanRange.lowerBound }
-        self.inconsistentLineEndings += editedLineEndings + shiftedLineEndings
+        self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: editedRange, changeInLength: delta)
     }
     
     
@@ -105,6 +101,31 @@ final class LineEndingScanner {
         
         self.textStorage.string.lineEndingRanges(in: range)
             .filter { $0.item != self.documentLineEnding }
+    }
+    
+}
+
+
+
+private extension Array where Element == ItemRange<LineEnding> {
+    
+    mutating func replace(items: [Element], in editedRange: NSRange, changeInLength delta: Int) {
+        
+        guard let lowerEditedIndex = self.firstIndex(where: { $0.location >= editedRange.lowerBound }) else {
+            self += items
+            return
+        }
+        
+        if let upperEditedIndex = self[lowerEditedIndex...].firstIndex(where: { $0.location >= (editedRange.upperBound - delta) }) {
+            for index in upperEditedIndex..<self.count {
+                self[index].shift(by: delta)
+            }
+            self.removeSubrange(lowerEditedIndex..<upperEditedIndex)
+        } else {
+            self.removeSubrange(lowerEditedIndex...)
+        }
+        
+        self.insert(contentsOf: items, at: lowerEditedIndex)
     }
     
 }
