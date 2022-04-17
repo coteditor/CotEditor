@@ -30,7 +30,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextStorageDelegate, NSToolbarItemValidation {
+final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolbarItemValidation {
     
     // MARK: Private Properties
     
@@ -222,7 +222,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             (self.statusBarItem?.viewController as? StatusBarController)?.document = document
             
-            document.textStorage.delegate = self
+            NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
+                                                   name: NSTextStorage.didProcessEditingNotification,
+                                                   object: document.textStorage)
             
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
@@ -403,29 +405,29 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     
     
-    // MARK: Delegate
+    // MARK: Notifications
     
     /// text was edited (invoked right **before** notifying layout managers)
-    func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+    override func textStorageDidProcessEditing(_ notification: Notification) {
+        
+        let textStorage = notification.object as! NSTextStorage
         
         guard
-            editedMask.contains(.editedCharacters),
+            textStorage.editedMask.contains(.editedCharacters),
             self.focusedTextView?.hasMarkedText() != true
-            else { return }
+        else { return }
         
         self.document?.analyzer.invalidate()
         self.document?.incompatibleCharacterScanner.invalidate()
         self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
+        let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
             self?.invalidateSyntaxHighlight(in: editedRange)
         }
     }
     
-    
-    
-    // MARK: Notifications
     
     /// selection did change
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
