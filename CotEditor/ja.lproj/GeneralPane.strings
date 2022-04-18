@@ -87,7 +87,7 @@
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "詳細情報…";
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "cot コマンドラインツールは、コマンドラインからのCotEditor起動やファイルオープンを可能にします。";
+"c48-xK-Ag1.title" = "cotコマンドラインツールは、コマンドラインからのCotEditor起動やファイルオープンを可能にします。";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
