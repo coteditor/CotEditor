@@ -39,7 +39,7 @@
 // Accessibility labels
 "inspector" = "检查器";
 "outline" = "大纲";
-"warnings" = "warnings";  // FIXME: added
+"warnings" = "警告";
 "incompatible characters" = "不兼容字符";
 "status bar" = "状态栏";
 "editor" = "编辑器";
@@ -200,11 +200,11 @@
 "Change Encoding" = "更改编码";
 
 // Inconsistent line ending alert
-"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
-"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"The document has inconsistent line endings." = "文档包含不一致的换行符。";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文档中最常使用的 %@ 吗？";
+"Don’t ask again for this document" = "对该文档不再询问";
 "Convert" = "转换";
-"Review" = "Review";  // FIXME: added
+"Review" = "检查";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
@@ -382,16 +382,16 @@
 "No Filter Results" = "无过滤结果";
 
 // Warnings
-"No issues found." = "No issues found.";  // FIXME: added
+"No issues found." = "没有发现问题。";
 
 // Incompatible characters
 "Scanning incompatible characters…" = "扫描不兼容字符…";
-"Found a incompatible character." = "Found a incompatible character.";  // FIXME: added
-"Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
+"Found a incompatible character." = "发现 1 处不兼容字符。";
+"Found %i incompatible characters." = "发现 %@ 处不兼容字符。";
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  FIXME: added
-"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
+"Found a line ending other than %@." = "发现 1 处不是 %@ 的换行符";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "发现 %i 处不是 %@ 的换行符";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
 
 
 
@@ -484,7 +484,7 @@
 // Coloring indicator
 "Coloring text…" = "文本着色中…";
 "Please wait for a while." = "请稍等片刻…";
-"Parsing document…" = "Parsing document…";  // FIXME: updated
+"Parsing document…" = "文档解析中…";
 "Applying colors to text…" = "在文本上使用颜色…";
 "keywords" = "关键字";
 "commands" = "命令";
@@ -666,7 +666,7 @@
 "Space" = "空格键";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@”已在使用中。";  // FIXME: updated
+"“%@” is already taken by the “%@” command." = "“%@”已被“%@”命令使用。";
 "The Shift key can be used only with another modifier key." = "Shift键只能配合其他修饰键使用。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 "Please combine with other keys." = "请与其他键组合使用。";
