@@ -31,9 +31,14 @@
 <p>スクリプトにCotEditorからデータを渡すには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXInput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け渡すデータを指定します。</p>
 
 <table>
-	<tr><th><code>Selection</code></th><td>現在選択しているテキスト</td></tr>
-	<tr><th><code>AllText</code></th><td>書類のすべてのテキスト</td></tr>
-	<tr><th><code>None</code></th><td>何も渡さない（デフォルト）</td></tr>
+	<thead>
+		<tr><th>キーワード</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>Selection</code></th><td>現在選択しているテキスト</td></tr>
+		<tr><th><code>AllText</code></th><td>書類のすべてのテキスト</td></tr>
+		<tr><th><code>None</code></th><td>何も渡さない（デフォルト）</td></tr>
+	</tbody>
 </table>
 
 <ul style="margin-top: 1em;">
@@ -47,13 +52,18 @@
 <p>CotEditorでスクリプトの出力を受け取るには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXOutput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け取ったあとの処理を指定します。</p>
 
 <table>
-	<tr><th><code>ReplaceSelection</code></th><td>現在選択しているテキストを出力内容で置き換えます。</td></tr>
-	<tr><th><code>ReplaceAllText</code></th><td>書類のすべてのテキストを出力内容で置き換えます。</td></tr>
-	<tr><th><code>InsertAfterSelection</code></th><td>選択範囲の直後に出力内容を挿入します。</td></tr>
-	<tr><th><code>AppendToAllText</code></th><td>書類の末尾に出力内容を挿入します。</td></tr>
-	<tr><th><code>NewDocument</code></th><td>新規書類を作成し、そこに出力内容を挿入します。</td></tr>
-	<tr><th><code>Pasteboard puts</code></th><td>クリップボードに出力内容を格納します。</td></tr>
-	<tr><th><code>Discard</code></th><td>何もしない（デフォルト）</td></tr>
+	<thead>
+		<tr><th>キーワード</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>ReplaceSelection</code></th><td>現在選択しているテキストを出力内容で置き換えます。</td></tr>
+		<tr><th><code>ReplaceAllText</code></th><td>書類のすべてのテキストを出力内容で置き換えます。</td></tr>
+		<tr><th><code>InsertAfterSelection</code></th><td>選択範囲の直後に出力内容を挿入します。</td></tr>
+		<tr><th><code>AppendToAllText</code></th><td>書類の末尾に出力内容を挿入します。</td></tr>
+		<tr><th><code>NewDocument</code></th><td>新規書類を作成し、そこに出力内容を挿入します。</td></tr>
+		<tr><th><code>Pasteboard puts</code></th><td>クリップボードに出力内容を格納します。</td></tr>
+		<tr><th><code>Discard</code></th><td>何もしない（デフォルト）</td></tr>
+	</tbody>
 </table>
 
 <ul>

@@ -18,19 +18,29 @@
 <p>The options for the Outline settings are as follows:</p>
 
 <table>
-	<tr><th>Regular Expression String</th><td>The in-document strings matched by the regular expressions you set here will appear in the drop-down menu. This setting is required to search the items to be listed (RE stands for Regular Expression).</td></tr>
-	<tr><th>IC</th><td>If this is selected, case will be ignored during the search. For example, the expression “abc” matches “ABC” or “abc” or “Abc” in your document (IC stands for Ignore Case).</td></tr>
-	<tr><th>Title Pattern</th><td>Here, you can format the titles of the Outline items. Both the “Regular Expression String” setting and the setting here determine how the corresponding item is titled in the list.</td></tr>
+	<thead>
+		<tr><th>Field</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Regular Expression String</th><td>The in-document strings matched by the regular expressions you set here will appear in the drop-down menu. This setting is required to search the items to be listed (RE stands for Regular Expression).</td></tr>
+		<tr><th>IC</th><td>If this is selected, case will be ignored during the search. For example, the expression “abc” matches “ABC” or “abc” or “Abc” in your document (IC stands for Ignore Case).</td></tr>
+		<tr><th>Title Pattern</th><td>Here, you can format the titles of the Outline items. Both the “Regular Expression String” setting and the setting here determine how the corresponding item is titled in the list.</td></tr>
+	</tbody>
 </table>
 
 <p>The meta characters you can use in the Title Pattern are as follows:</p>
 
 <table>
-	<tr><th>(blank)</th><td>The whole string matched by your regular expression.</td></tr>
-	<tr><th><code>$0</code></th><td>The whole string matched by your regular expression.</td></tr>
-	<tr><th><code>$1</code> ... <code>$9</code></th><td>The string matched by the first through ninth parenthesized subexpression in your regular expression.</td></tr>
-	<tr><th><code>-</code></th><td>A separator of the menu
+	<thead>
+		<tr><th>Metacharacter</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>(blank)</th><td>The whole string matched by your regular expression.</td></tr>
+		<tr><th><code>$0</code></th><td>The whole string matched by your regular expression.</td></tr>
+		<tr><th><code>$1</code> ... <code>$9</code></th><td>The string matched by the first through ninth parenthesized subexpression in your regular expression.</td></tr>
+		<tr><th><code>-</code></th><td>A separator of the menu
 	(invalid when other letters than “-” are included).</td></tr>
+	</tbody>
 </table>
 
 <ul>

@@ -31,9 +31,14 @@
 <p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
-	<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
-	<tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
-	<tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
+	<thead>
+		<tr><th>Keyword</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
+		<tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
+		<tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
+	</tbody>
 </table>
 
 <ul style="margin-top: 1em;">
@@ -47,13 +52,18 @@
 <p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
-	<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
-	<tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
-	<tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
-	<tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
-	<tr><th><code>NewDocument</code></th><td>To create a new document and insert the contents to it.</td></tr>
-	<tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in clipboard.</td></tr>
-	<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
+	<thead>
+		<tr><th>Keyword</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
+		<tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
+		<tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
+		<tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
+		<tr><th><code>NewDocument</code></th><td>To create a new document and insert the contents to it.</td></tr>
+		<tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in clipboard.</td></tr>
+		<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
+	</tbody>
 </table>
 
 <ul>
