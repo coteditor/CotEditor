@@ -120,7 +120,7 @@
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Yapıştır";
 /* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
-"MTm-Qg-WjY.title" = "Paste As-Is";  // FIXME: added
+"MTm-Qg-WjY.title" = "Olduğu Gibi Yapıştır";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Sil";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
@@ -313,9 +313,9 @@
 /* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
 "564.title" = "Belge Denetçisi";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
-"Gch-XD-tRl.title" = "Anahat";  // FIXME: use the consistant word for all the term "outline" feature
+"Gch-XD-tRl.title" = "Ana Hat";
 /* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
-"679.title" = "Warnings";  // FIXME: changed
+"679.title" = "Uyarılar";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "Denetçiyi Göster";
 
@@ -541,11 +541,11 @@
 "5is-7G-OVT.title" = "Vurgulanmamış";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
-"PmT-ho-UU7.title" = "Open Outline Menu";  // FIXME: added
+"PmT-ho-UU7.title" = "Ana Hat Menüsünü Aç";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
-"9Lf-39-x5S.title" = "Bir Önceki Anahat Ögesini Seç";
+"9Lf-39-x5S.title" = "Bir Önceki Ana Hat Ögesini Seç";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */
-"PWZ-Om-OhX.title" = "Sonraki Anahat Ögesini Seç";
+"PWZ-Om-OhX.title" = "Sonraki Ana Hat Ögesini Seç";
 
 /* Class = "NSMenuItem"; title = "Go to Line…"; ObjectID = "eIc-Sj-2mO"; */
 "eIc-Sj-2mO.title" = "Satıra Git…";

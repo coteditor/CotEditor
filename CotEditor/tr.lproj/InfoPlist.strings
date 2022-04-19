@@ -33,7 +33,7 @@
 "Plain text" = "Düz metin";
 "CotEditor Theme" = "CotEditor teması";
 "CotEditor Replacement Definition" = "CotEditor değişiklik tanımı";
-"BibTeX bibliography" = "BibTeX bibliography";  // FIXME: updated
+"BibTeX bibliography" = "BibTeX kaynakça";
 "Configuration" = "Yapılandırma";
 "C header" = "C üstbilgisi";
 "C source" = "C kaynağı";

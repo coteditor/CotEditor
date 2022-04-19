@@ -36,8 +36,8 @@
 
 // Accessibility labels
 "inspector" = "denetçi";
-"outline" = "dış hat";  // FIXME: use the consistant word for all the term "outline" feature
-"warnings" = "warnings";  // FIXME: added
+"outline" = "ana hat";
+"warnings" = "uyarılar";
 "incompatible characters" = "uyumsuz karakterler";
 "status bar" = "durum çubuğu";
 "editor" = "düzenleyici";
@@ -199,11 +199,11 @@
 "Change Encoding" = "Kodlamayı Değiştir";
 
 // Inconsistent line ending alert
-"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
-"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"The document has inconsistent line endings." = "Belgenin satır sonları tutarsız.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Tüm satır sonlarını bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?";
+"Don’t ask again for this document" = "Bu belge için yeniden sorma";
 "Convert" = "Dönüştür";
-"Review" = "Review";  // FIXME: added
+"Review" = "Gözden Geçir";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";
@@ -381,16 +381,16 @@
 "No Filter Results" = "Filtre Sonucu Yok";
 
 // Warnings
-"No issues found." = "No issues found.";  // FIXME: added
+"No issues found." = "Sorun bulunamadı.";
 
 // Incompatible characters
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
-"Found an incompatible character." = "Found an incompatible character.";  // FIXME: added
-"Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
+"Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
+"Found %i incompatible characters." = "%@ uyumsuz karakter bulundu.";
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
-"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
+"Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";
+"Found %i line endings other than %@." = "%2$@ dışında %1$i başka satır sonu bulundu.";
 
 
 /* MARK: EditorTextView */
@@ -472,9 +472,9 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"Jump to previous outline item" = "Bir önceki anahat ögesine atla";
-"Jump to next outline item" = "Bir sonraki anahat ögesine atla";
-"Extracting Outline…" = "Anahat çıkarılıyor…";
+"Jump to previous outline item" = "Bir önceki ana hat ögesine atla";
+"Jump to next outline item" = "Bir sonraki ana hat ögesine atla";
+"Extracting Outline…" = "Ana hat çıkarılıyor…";
 
 
 
@@ -575,7 +575,7 @@
 "Strings" = "Diziler";
 "Characters" = "Karakterler";
 "Comments" = "Yorumlar";
-"Outline" = "Anahat Menüsü";  // FIXME: updated
+"Outline" = "Ana Hat";
 "Completion List" = "Tamamlama Listesi";
 "File Mapping" = "Dosya Eşlemleme";
 "Style Info" = "Biçem Bilgisi";
@@ -585,7 +585,7 @@
 "No error found." = "Hata bulunamadı.";
 "An error found!" = "Bir hata bulundu!";
 "%i errors found!" = "%i hata bulundu!";
-"outline" = "anahat menüsü";  // FIXME: updated
+"outline" = "ana hat";
 
 
 

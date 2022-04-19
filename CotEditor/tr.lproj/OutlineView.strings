@@ -28,7 +28,7 @@
 "CSX-H0-nFf.headerCell.title" = "Başlık";
 
 /* Class = "NSTextFieldCell"; title = "Outline"; ObjectID = "RyV-wo-tpY"; */
-"RyV-wo-tpY.title" = "Anahat";
+"RyV-wo-tpY.title" = "Ana Hat";
 
 /* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "GmM-uR-pQ8"; */
 "GmM-uR-pQ8.placeholderString" = "Filtre";
