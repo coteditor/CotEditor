@@ -118,6 +118,8 @@
 "j3t-7l-xSy.title" = "Copy as Rich Text";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Paste";
+/* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Paste As-Is";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Delete";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */

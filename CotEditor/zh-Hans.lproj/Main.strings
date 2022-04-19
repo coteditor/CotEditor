@@ -122,6 +122,8 @@
 "j3t-7l-xSy.title" = "以富文本拷贝";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "粘贴";
+/* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "原样粘贴";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "删除";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */

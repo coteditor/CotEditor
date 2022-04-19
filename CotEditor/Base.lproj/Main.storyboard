@@ -165,6 +165,12 @@
                                                 <action selector="paste:" target="Ady-hI-5gd" id="kbL-4C-ha8"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Paste As-Is" alternate="YES" keyEquivalent="v" id="MTm-Qg-WjY">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pasteAsIs:" target="Ady-hI-5gd" id="57J-qE-dkT"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Delete" id="164">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

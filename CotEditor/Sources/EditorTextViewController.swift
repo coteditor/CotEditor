@@ -36,8 +36,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private var isApprovedTextChange = false
-    
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
     
@@ -101,7 +99,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
         // skip line ending sanitization
-        if self.isApprovedTextChange { return true }
+        if (textView as? EditorTextView)?.isApprovedTextChange == true { return true }
         
         // standardize line endings to LF
         // -> Line endings replacement on file read is processed in `Document.read(from:ofType:).
@@ -178,10 +176,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard let textView = self.textView else { return assertionFailure() }
         
         let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
-        inputViewController.completionHandler = { [weak self, unowned textView] (character) in
+        inputViewController.completionHandler = { [unowned textView] (character) in
             // flag to skip line ending sanitization
-            self?.isApprovedTextChange = true
-            defer { self?.isApprovedTextChange = false }
+            textView.isApprovedTextChange = true
+            defer { textView.isApprovedTextChange = false }
             
             textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }

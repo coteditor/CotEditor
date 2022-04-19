@@ -120,6 +120,8 @@
 "j3t-7l-xSy.title" = "Als formatierten Text kopieren";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Einsetzen";
+/* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Unbesehen einsetzen";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Löschen";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */

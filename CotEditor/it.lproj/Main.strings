@@ -121,6 +121,8 @@
 "j3t-7l-xSy.title" = "Copia come testo formattato";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Incolla";
+/* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Paste As-Is";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Elimina";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */

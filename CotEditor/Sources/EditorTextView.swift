@@ -56,6 +56,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var theme: Theme?  { didSet { self.applyTheme() } }
     
     var isAutomaticTabExpansionEnabled = false
+    var isApprovedTextChange = false
     
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
@@ -1307,6 +1308,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             pboard.setPropertyList(propertyList, forType: .multipleTextSelection)
         }
         pboard.writeObjects([pasteboardString])
+    }
+    
+    
+    /// Paste clipboard text without any modification.
+    @IBAction func pasteAsIs(_ sender: Any?) {
+        
+        self.isApprovedTextChange = true
+        
+        super.pasteAsPlainText(sender)
+        
+        self.isApprovedTextChange = false
     }
     
     

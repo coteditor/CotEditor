@@ -120,6 +120,8 @@
 "j3t-7l-xSy.title" = "Copier en tant que texte riche";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Coller";
+/* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Coller tel quel";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Supprimer";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
