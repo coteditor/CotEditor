@@ -73,7 +73,7 @@ final class LineEndingScanner {
     /// Whether the character at the given index is a line ending inconsistent with the `documentLineEnding`.
     ///
     /// - Parameter characterIndex: The index of character to test.
-    /// - Returns: A boolean indicating whether the character is a inconsistent line ending.
+    /// - Returns: A boolean indicating whether the character is an inconsistent line ending.
     func isInvalidLineEnding(at characterIndex: Int) -> Bool {
         
         self.inconsistentLineEndings.lazy.map(\.location).contains(characterIndex)

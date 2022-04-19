@@ -340,6 +340,9 @@
 /* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
 "367.title" = "Alterar Opacidade do Editor…";
 
+// Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "2da-fK-Nkg";
+"2da-fK-Nkg.title" = "Entrar em Tela Cheia";
+
 
 
 // MARK: Text
