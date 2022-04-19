@@ -119,8 +119,8 @@
 "j3t-7l-xSy.title" = "Zengin Metin Olarak Kopyala";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Yapıştır";
-/* Class = "NSMenuItem"; title = "Paste As-Is"; ObjectID = "MTm-Qg-WjY"; */
-"MTm-Qg-WjY.title" = "Olduğu Gibi Yapıştır";
+/* Class = "NSMenuItem"; title = "Paste Exactly"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Aynen Yapıştır";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Sil";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */

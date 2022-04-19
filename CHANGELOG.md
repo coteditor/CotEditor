@@ -12,7 +12,7 @@ Change Log
 - List up the inconsistent line endings in the Warnings pane in the inspector.
 - Unicode line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
 - Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.
-- Add a hidden Paste As-Is command (Command-Option-V) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.
+- Add the hidden Paste Exactly command (Command-Option-Shift-V) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.
 - Add history to the Unicode input.
 - Export setting files, such as themes or multiple replacements, to the Finder just by dropping the setting name.
 - Transfer settings among CotEditors in different machines via Universal Control by dragging the setting name and dropping it to the setting list area in another CotEditor.
