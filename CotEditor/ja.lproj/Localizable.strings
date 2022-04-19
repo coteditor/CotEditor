@@ -678,7 +678,7 @@
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
-"Option-click to open script in editor." = "スクリプトをエディタで開くには、Option-クリックしてください。";
+"Option-click to open script in editor." = "スクリプトをエディタで開くには、Option+クリックしてください。";
 
 
 
