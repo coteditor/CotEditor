@@ -87,7 +87,7 @@
 "Select the search scope in the document or turn off the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
 
 // accessibility announcement
-"Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
+"Search wrapped." = "Ricerca dall’inizio";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -535,7 +535,7 @@
 "Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "Si è sicuri di voler cancellare il tema “%@”?";
-"This action cannot be undone." = "L'azione è irreversibile.";
+"This action cannot be undone." = "L’azione è irreversibile.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Elimina";
@@ -618,7 +618,7 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Si è sicuri di voler cancellare lo stile “%@”?";
-"This action cannot be undone." = "L'azione è irreversibile.";
+"This action cannot be undone." = "L’azione è irreversibile.";
 "Delete" = "Cancella";
 "Replace" = "Sostituisci";
 
