@@ -98,21 +98,18 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// text will be edited
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
-        // skip line ending sanitization
-        if (textView as? EditorTextView)?.isApprovedTextChange == true { return true }
+        if textView.undoManager?.isUndoing == true { return true }  // = undo
         
-        // standardize line endings to LF
-        // -> Line endings replacement on file read is processed in `Document.read(from:ofType:).
+        guard let textView = textView as? EditorTextView else { return true }
+        
+        if textView.isApprovedTextChange { return true }
+        
+        // standardize line endings to the document line ending
         if let replacementString = replacementString,  // = only attributes changed
-           !replacementString.isEmpty,  // = text deleted
-           textView.undoManager?.isUndoing != true,  // = undo
-           let lineEnding = replacementString.detectedLineEnding,  // = no line endings
-           let editorLineEnding = (textView as? EditorTextView)?.lineEnding,
-           lineEnding != editorLineEnding
+           replacementString.lineEndingRanges().map(\.item).contains(where: { $0 != textView.lineEnding })
         {
-            return !textView.replace(with: replacementString.replacingLineEndings(with: editorLineEnding),
-                                     range: affectedCharRange,
-                                     selectedRange: nil)
+            return !textView.replace(with: replacementString.replacingLineEndings(with: textView.lineEnding),
+                                     range: affectedCharRange, selectedRange: nil)
         }
         
         return true
