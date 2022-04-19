@@ -387,11 +387,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "扫描不兼容字符…";
 "Found an incompatible character." = "发现 1 处不兼容字符。";
-"Found %i incompatible characters." = "发现 %@ 处不兼容字符。";
+"Found %i incompatible characters." = "发现 %i 处不兼容字符。";  // %i is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "发现 1 处不是 %@ 的换行符";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "发现 %i 处不是 %@ 的换行符";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "发现 %i 处不是 %@ 的换行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 

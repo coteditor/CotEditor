@@ -386,11 +386,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
 "Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
-"Found %i incompatible characters." = "%@ uyumsuz karakter bulundu.";
+"Found %i incompatible characters." = "%i uyumsuz karakter bulundu.";  // %i is the number of characters
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";
-"Found %i line endings other than %@." = "%2$@ dışında %1$i başka satır sonu bulundu.";
+"Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "%@ dışında %i başka satır sonu bulundu.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 /* MARK: EditorTextView */

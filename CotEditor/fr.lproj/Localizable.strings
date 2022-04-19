@@ -386,12 +386,12 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Recherche de caractères incompatibles …";
 "Found an incompatible character." = "Caractère incompatible trouvé.";
-"Found %i incompatible characters." = "%@ caractères incompatibles trouvés.";  // %@ is the number of characters
+"Found %i incompatible characters." = "%i caractères incompatibles trouvés.";  // %i is the number of characters
 // Inconsistent line endings
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Fin de ligne autre que %@ trouvée.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "%i fins de ligne autres que %@ trouvées.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "%i fins de ligne autres que %@ trouvées.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 

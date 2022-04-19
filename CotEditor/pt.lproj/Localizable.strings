@@ -388,11 +388,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
 "Found an incompatible character." = "Found an incompatible character.";  // FIXME: added
-"Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
+"Found %i incompatible characters." = "Found %i incompatible characters.";  // %i is the number of characters  // FIXME: added
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
-"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF  // FIXME: added
 
 
 
