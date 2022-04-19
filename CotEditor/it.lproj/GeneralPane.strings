@@ -48,7 +48,7 @@
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "Abilita il salvataggio automatico delle versioni";
 /* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "Questa funzione registra automaticamente i documenti durante la loro lavorazione. Anche se non è attiva, CotEditor crea comunque dei backup, in caso di blocco dell’applicazione.";  // FIXME: crach -> quit
+"sOa-Ea-zt9.title" = "Questa funzione sovrascrive automaticamente i tuoi file durante la lavorazione. Anche se disabilitata, CotEditor crea dei backup in caso di chiusura inaspettata.";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */

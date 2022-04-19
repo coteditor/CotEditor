@@ -317,7 +317,7 @@
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "Outline";
 /* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
-"679.title" = "Warnings";  // FIXME: changed
+"679.title" = "Avvisi";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "Mostra Ispettore";
 

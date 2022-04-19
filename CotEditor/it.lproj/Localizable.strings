@@ -39,7 +39,7 @@
 // Accessibility labels
 "inspector" = "ispettore";
 "outline" = "outline";
-"warnings" = "warnings";  // FIXME: added
+"warnings" = "avvisi";
 "incompatible characters" = "caratteri incompatibili";
 "status bar" = "barra di stato";
 "editor" = "editor";
@@ -200,11 +200,11 @@
 "Change Encoding" = "Cambia modifica";
 
 // Inconsistent line ending alert
-"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
-"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"The document has inconsistent line endings." = "Il documento presenta dei fine riga non coerenti.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Si desidera convertire tutti i fine riga in %@, il fine riga più comune del documento?";
+"Don’t ask again for this document" = "Non chiedere più per questo documento";
 "Convert" = "Converti";
-"Review" = "Review";  // FIXME: added
+"Review" = "Rivedi";  // this button displays the inconsistent line endings list in the Warnings pane
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Il file è stato modificato da un’altra applicazione. Ci sono anche delle modifiche non salvate in CotEditor.";
@@ -383,16 +383,16 @@
 "No Filter Results" = "Nessun risultato del filtro";  // FIXME: machine-translated (native check required)
 
 // Warnings
-"No issues found." = "No issues found.";  // FIXME: added
+"No issues found." = "Nessun problema rilevato.";
 
 // Incompatible characters
 "Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
-"Found an incompatible character." = "Found an incompatible character.";  // FIXME: added
-"Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
+"Found a incompatible character." = "Rilevato un carattere incompatibile.";
+"Found %i incompatible characters." = "Rilevati %i caratteri incompatibili.";  // %i is the number of characters
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
-"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF  // FIXME: added
+"Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %@." = "Rilevate %i righe che non terminano con %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF  // FIXME: added
 
 
 
@@ -485,7 +485,7 @@
 // Coloring indicator
 "Coloring text…" = "Colorando testo…";
 "Please wait for a while." = "Si prega di attendere.";
-"Parsing document…" = "Parsing document…";  // FIXME: updated
+"Parsing document…" = "Analisi del documento…";
 "Applying colors to text…" = "Applicazione dei colori al testo…";
 "keywords" = "Parole chiave";
 "commands" = "Comandi";
@@ -667,7 +667,7 @@
 "Space" = "Spazio";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";  // FIXME: updated
+"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";
 "The Shift key can be used only with another modifier key." = "Il tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 "Single type is invalid for a shortcut." = "Un solo tasto non è una scorciatoia valida.";
 "Please combine with other keys." = "Si prega di abbinarlo ad altri tasti.";

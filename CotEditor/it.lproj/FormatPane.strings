@@ -50,7 +50,7 @@
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "Abilita l’evidenziazione della sintassi";
 /* Class = "NSTextFieldCell"; title = "(Including outline extraction)"; ObjectID = "3325"; */
-"3325.title" = "(incluso il menu Outline)";  // FIXME: updated
+"3325.title" = "(Including outline extraction)";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Stile della sintassi di default:";

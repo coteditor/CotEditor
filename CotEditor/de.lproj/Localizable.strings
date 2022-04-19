@@ -387,11 +387,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";
 "Found an incompatible character." = "Es wurde eine inkompatiblen Zeichen gefunden.";
-"Found %i incompatible characters." = "Es wurden %i inkompatiblen Zeichen gefunden.";
+"Found %i incompatible characters." = "Es wurden %i inkompatiblen Zeichen gefunden.";  // %i is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Es wurde ein anderes Zeilenende als %@ gefunden.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "Es wurden %i andere Zeilenenden als %@ gefunden.";  // the first %@ is the number of inconsistent line endings and the second %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "Es wurden %i andere Zeilenenden als %@ gefunden.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
