@@ -37,9 +37,9 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
-"Yi4-Vk-FCZ.title" = "Inconsistent Line Endings";  // FIXME: added
+"Yi4-Vk-FCZ.title" = "Tutarsız Satır Sonları";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
 "o1z-QY-xMY.headerCell.title" = "Satır";
 /* Class = "NSTableColumn"; headerCell.title = "Line Ending"; ObjectID = "Miu-uX-2tM"; */
-"Miu-uX-2tM.headerCell.title" = "Line Ending";  // FIXME: added
+"Miu-uX-2tM.headerCell.title" = "Satır Sonu";

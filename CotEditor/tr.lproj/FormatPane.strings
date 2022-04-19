@@ -47,7 +47,7 @@
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "Sözdizim vurgulamasını etkinleştir";
 /* Class = "NSTextFieldCell"; title = "(Including outline extraction)"; ObjectID = "3325"; */
-"3325.title" = "(Anahat menüsü dahil)";  // FIXME: updated
+"3325.title" = "(Ana hat çıkarma dahil)";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Öntanımlı sözdizim biçemi:";
