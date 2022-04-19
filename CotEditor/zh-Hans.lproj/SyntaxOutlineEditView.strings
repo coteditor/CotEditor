@@ -40,7 +40,7 @@
 "6hB-wJ-niI.headerCell.title" = "描述";
 
 /* Class = "NSTextFieldCell"; title = "Title pattern"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "菜单标题样式";  // FIXME: removed "Menu"
+"nnO-qN-dYF.title" = "标题样式";
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "（留空匹配整个字符串）";
 
