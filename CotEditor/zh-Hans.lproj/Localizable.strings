@@ -386,7 +386,7 @@
 
 // Incompatible characters
 "Scanning incompatible characters…" = "扫描不兼容字符…";
-"Found a incompatible character." = "发现 1 处不兼容字符。";
+"Found an incompatible character." = "发现 1 处不兼容字符。";
 "Found %i incompatible characters." = "发现 %@ 处不兼容字符。";
 
 // Inconsistent line endings

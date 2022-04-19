@@ -211,8 +211,8 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dTM-lN-A7l">
-                                <rect key="frame" x="10" y="153" width="173" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Found a incompatible character." id="wsL-BG-Ii8">
+                                <rect key="frame" x="10" y="153" width="180" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Found an incompatible character." id="wsL-BG-Ii8">
                                     <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

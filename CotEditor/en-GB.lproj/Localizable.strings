@@ -386,7 +386,7 @@
 
 // Incompatible characters
 "Scanning incompatible characters…" = "Scanning incompatible characters…";
-"Found a incompatible character." = "Found a incompatible character.";
+"Found an incompatible character." = "Found an incompatible character.";
 "Found %i incompatible characters." = "Found %i incompatible characters.";
 
 // Inconsistent line endings

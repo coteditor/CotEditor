@@ -387,7 +387,7 @@
 
 // Incompatible characters
 "Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
-"Found a incompatible character." = "Found a incompatible character.";  // FIXME: added
+"Found an incompatible character." = "Found an incompatible character.";  // FIXME: added
 "Found %i incompatible characters." = "Found %@ incompatible characters.";  // FIXME: added
 
 // Inconsistent line endings

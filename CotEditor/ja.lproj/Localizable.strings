@@ -387,7 +387,7 @@
 
 // Incompatible characters
 "Scanning incompatible characters…" = "非互換文字を走査中…";
-"Found a incompatible character." = "1個の非互換文字が見つかりました。";
+"Found an incompatible character." = "1個の非互換文字が見つかりました。";
 "Found %i incompatible characters." = "%i個の非互換文字が見つかりました。";
 
 // Inconsistent line endings
