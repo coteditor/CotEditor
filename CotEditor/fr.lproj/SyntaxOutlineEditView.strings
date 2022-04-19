@@ -39,7 +39,7 @@
 "6hB-wJ-niI.headerCell.title" = "Description";
 
 /* Class = "NSTextFieldCell"; title = "Title pattern"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "Titre de l’élément de structure";  // FIXME: removed "Menu"
+"nnO-qN-dYF.title" = "Pattern du titre";
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "(laisser vide utilisera la chaîne extraite en entier)";
 

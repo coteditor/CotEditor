@@ -34,7 +34,7 @@
 "Plain text" = "Texte brut";
 "CotEditor Theme" = "Thème CotEditor";
 "CotEditor Replacement Definition" = "Liste de remplacements CotEditor";
-"BibTeX bibliography" = "Bibliographie BibTeX";  // FIXME: updated (require native check)
+"BibTeX bibliography" = "Bibliographie BibTeX";
 "Configuration" = "Configuration";
 "C header" = "Header C";
 "C source" = "Source C";
