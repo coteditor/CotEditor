@@ -1110,6 +1110,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.addButton(withTitle: "Review".localized)
         alert.showsSuppressionButton = true
         alert.suppressionButton?.title = "Don’t ask again for this document".localized
+        alert.showsHelp = true
+        alert.helpAnchor = "inconsistent_line_endings"
         
         alert.beginSheetModal(for: documentWindow) { returnCode in
             if alert.suppressionButton?.state == .on {

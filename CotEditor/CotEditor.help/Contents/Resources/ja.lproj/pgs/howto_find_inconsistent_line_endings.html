@@ -1,0 +1,52 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="改行, LF, CR, CRLF"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>混在する改行コードを探す</title>
+</head>
+
+<body>
+<a name="inconsistent_line_endings"></a>
+
+<h1>混在する改行コードを探す</h1>
+
+<p>CotEditorは書類内に紛れた設定と異なる改行コードを自動で検知します。</p>
+
+
+<h2>ファイル内の改行コードを検出する</h2>
+
+<p>書類を読み込むとき、CotEditorは自動で書類内の改行コードを検出し、よく使われている改行コードを書類の改行コードとして設定します。</a>
+
+<p>そのとき、もし複数の種類の改行コードをが書類内で使われていた場合は、CotEditorはそれを警告します。ダイアログから、それら混在する改行をすべて変換してその書類で最も使われている改行コードに統一するか、まずはそれらを確認するためにそのままにするかを選ぶことができます。</p>
+
+
+<h2>混在する改行コードの位置を一覧する</h2>
+
+<p>警告ペインには、書類内のすべての書類設定と異なる改行コードがリストアップされます。</p>
+
+
+<p>警告ペインを表示するには以下を実行します:</p>
+<ol>
+	<li>「表示」＞「インスペクタ」＞「警告」を選択</li>
+</ol>
+
+
+<h2>エディタ内で混在する改行コードを探す</h2>
+
+<p>改行が不可視文字として表示されているときは、混在する改行コードは通常と異なる色で描画されます。改行の表示を変更する方法は<a href="./howto_display_invisibles.html">不可視文字を表示する</a>を参照してください。</p>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="../pgs/howto_find_newline.html">改行を検索/置換する</a></li>
+	<li><a href="../pgs/howto_inspect_usedchar.html">非互換の文字が含まれていないか確認する</a></li>
+</ul>
+</section>
+
+</body>
+</html>
