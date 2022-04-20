@@ -84,7 +84,8 @@ h2 {
 	margin-top: 2.5em;
 	margin-bottom: 1em;
 	clear: both;
-	
+}
+:not(h1) + h2 {
 	border-top: 1px solid -apple-system-separator;
 	padding-top: 1em;
 }
@@ -173,6 +174,9 @@ table ul li {
 	border: none;
 }
 
+.na {
+	color: -apple-system-tertiary-label;
+}
 p.addition {
 	position: relative;
 	text-indent: 0;
