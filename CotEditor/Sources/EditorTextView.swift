@@ -150,7 +150,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.replaceTextContainer(textContainer)
         
         let layoutManager = LayoutManager()
-        layoutManager.allowsNonContiguousLayout = true
         layoutManager.tabWidth = self.tabWidth
         self.textContainer!.replaceLayoutManager(layoutManager)
         
@@ -478,6 +477,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     override func didChangeText() {
         
         super.didChangeText()
+        
+        self.invalidateNonContiguousLayout()
         
         self.needsUpdateLineHighlight = true
         
@@ -1039,9 +1040,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
         
-        // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 10.15)
-        //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
-        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
+        self.invalidateNonContiguousLayout()
         
         // reset writing direction
         if orientation == .vertical {
@@ -1440,6 +1439,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         self.scrollToVisible(visibleRect)
+    }
+    
+    
+    /// validate whether turns the non-contiguous layout on
+    private func invalidateNonContiguousLayout() {
+        
+        self.layoutManager?.allowsNonContiguousLayout = {
+            // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 12)
+            //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
+            if self.layoutOrientation == .vertical { return false }
+            
+            return self.string.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
+        }()
     }
     
     
