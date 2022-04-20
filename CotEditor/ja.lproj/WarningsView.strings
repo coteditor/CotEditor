@@ -38,7 +38,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Inconsistent Line Endings"; ObjectID = "Yi4-Vk-FCZ"; */
-"Yi4-Vk-FCZ.title" = "改行コードの不一致";
+"Yi4-Vk-FCZ.title" = "改行コードの混在";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "o1z-QY-xMY"; */
 "o1z-QY-xMY.headerCell.title" = "行";
