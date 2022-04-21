@@ -134,7 +134,7 @@ pre.source {
 }
 
 ul {
-	list-style-type: circle;
+	list-style-type: disc;
 }
 
 li {
@@ -238,7 +238,6 @@ table caption {
 th,
 td {
 	line-height: 1.6;
-	border-top: 1px solid -apple-system-quaternary-label;
 	border-bottom: 1px solid -apple-system-quaternary-label;
 	margin: 0;
 	padding: 0.4em 0.6em;
@@ -250,16 +249,11 @@ table tr > :last-child {
 	padding-right: 0;
 }
 table thead tr th {
-	font-weight: 500;
+	font-weight: 600;
+	text-align: left;
 }
 table thead tr:first-child > * {
-	border-top: none;
-}
-table tr:first-child > * {
-	border-top-color: -apple-system-secondary-label;
-}
-table tr:last-child > * {
-	border-bottom-color: -apple-system-secondary-label;
+	border-top: 2px solid -apple-system-quaternary-label;
 }
 th {
 	font-weight: normal;
@@ -301,6 +295,9 @@ span.variable {
 }
 
 @media (prefers-color-scheme: dark) {
+	table thead {
+		color: -apple-system-secondary-label;
+	}
 	pre.source {
 		background: hsl(0, 0%, 10%);
 	}
@@ -329,18 +326,12 @@ table.preferences thead tr > * {
 	font-weight: 600;
 	text-align: left;
 }
-table.preferences thead tr:first-child > * {
-	border-top: 2px solid -apple-system-quaternary-label;
-}
 table.preferences tbody {
 	font-size: 95%;
 }
 table.preferences tbody tr > * {
 	padding-top: 0.8em;
 	padding-bottom: 0.8em;
-}
-table.preferences tr:last-child > * {
-	border-bottom-color: -apple-system-quaternary-label;
 }
 table.preferences td dl > * {
 	margin-left: 0;

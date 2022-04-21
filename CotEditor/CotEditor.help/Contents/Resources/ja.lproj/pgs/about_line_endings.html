@@ -1,0 +1,138 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="line ending, newline, LF, CR, CRLF, NEL, LS, PS, 改行"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>多様な改行コードを扱う</title>
+</head>
+
+<body>
+
+<h1>多様な改行コードを扱う</h1>
+
+<p>CotEditorは様々なタイプの改行を扱えます。基本的にはCotEditorは一貫して、書類ごとに設定した単一の改行コードを改行に使います。</p>
+
+
+<h2>CotEditorが扱う改行コード</h2>
+
+<p>CotEditorは以下の文字を改行の区切りとして扱います。</p>
+
+<table>
+	<thead>
+		<tr><th>記号</th><th>Unicode名</th><th>コードポイント</th><th>メタ文字</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>LF</th>
+			<td>Line Feed</td>
+			<td><code>U+000A</code></td>
+			<td>\n</td>
+			<td>UNIXや現在のmacOSで標準的な改行コードです。</td>
+		</tr>
+		<tr><th>CR</th>
+			<td>Carriage Return</td>
+			<td><code>U+000D</code></td>
+			<td>\r</td>
+			<td>クラシックMac OSで使われていた改行コードです。</td>
+		</tr>
+		<tr><th>CRLF</th>
+			<td class="na">–</td>
+			<td><code>U+000D</code>+<br/><code>U+000A</code></td>
+			<td>\r\n</td>
+			<td>CRとLFを組み合わせた改行コードです。主にWindowsで使われています。</td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr><th>NEL</th>
+			<td>New Line</td>
+			<td><code>U+0085</code></td>
+			<td></td>
+			<td>EBCDICというIBM系の文字コードで使われていた改行コードです。デフォルトでは非表示。</td>
+		</tr>
+		<tr><th>LS</th>
+			<td>Line Separator</td>
+			<td><code>U+2028</code></td>
+			<td></td>
+			<td>Unicodeで行（line）を分ける記号として定義されている制御文字です。デフォルトでは非表示。</td>
+		</tr>
+		<tr><th>PS</th>
+			<td>Paragraph Separator</td>
+			<td><code>U+2029</code></td>
+			<td></td>
+			<td>Unicodeで文章（paragraph）を分ける記号として定義されている制御文字です。デフォルトでは非表示。</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<p>NEL, LS, PSの後者3タイプは実際にはファイルの改行文字としてはほとんど使われることはありません。そのためCotEditorではこれらの改行コードは選択肢からは非表示になっています。</p>
+
+<p>一方VT（<code>U+000B</code>）やFF（<code>U+000C</code>）は、CotEditorでも視覚的に改行を伴う文字でありますが、改行コードとしては扱いません。</p>
+
+
+
+<h2>デフォルトの改行コードを設定する</h2>
+
+<p>新規書類で使うデフォルトの改行コードは「フォーマット」環境設定で設定できます。この設定は、開いた書類に改行が含まれていなかったときにもその書類の改行コードとして使われます。</p>
+
+
+
+<h2>既存の書類の改行コード</h2>
+
+<p>CotEditorは書類で使われている改行コードを自動で検知し、その書類の改行コードとして編集時の改行に使用します。</p>
+
+<p>もし書類に改行コードが混在していた場合は、CotEditorはそれを通知しハイライトします。詳しくは、<a href="./howto_find_inconsistent_line_endings.html">「混在する改行を探す」</a>を参照してください。</p>
+
+
+
+<h2>書類の改行コードを確認する</h2>
+
+<p>書類で使われている改行コードは以下の場所で確認できます:</p>
+<ul>
+	<li>ステータスバー右側の改行コードメニューの表示</li>
+	<li>「表示」＞「インスペクタ」＞「書類」で表示できる書類インスペクタ</li>
+	<li>「フォーマット」メニューの「改行コード」サブメニューの選択</li>
+</ul>
+
+
+
+<h2>書類の改行コードを変更する</h2>
+
+<p>書類の改行コードは以下の場所で変更できます:</p>
+<ul>
+	<li>ステータスバー右側の改行コードメニュー</li>
+	<li>「フォーマット」メニューの「改行コード」サブメニュー</li>
+</ul>
+
+<p>NEL, LS, PSなどの非表示の改行コードは、<kbd>Option</kbd>キーを押しながら改行コードメニューを開くことで選択できるようになります。</p>
+
+
+
+<h2>書類と異なる改行コードを挿入する</h2>
+
+<p>ユーザが改行コードの違いを意識しなくて良いように、基本的にCotEditorは、改行には書類の改行コードのみを使用します。例えCotEditorスクリプトや正規表現での置換などで書類の改行コードとは異なる改行を含むテキストを挿入したときさえも、CotEditorは暗黙で挿入されるテキストに含まれるすべての改行コードを書類の改行コードに揃えてから書類に挿入します。</p>
+
+<p>現時点では、CotEditorで書類と異なる改行コードを挿入する方法は以下の2種類しか提供されていません:</p>
+
+<ul>
+	<li>改行コード文字の<a href="../pgs/howto_input_unicode.html">Unicodeコードポイントでの手動入力</a></li>
+	<li><a href="../pgs/howto_paste.html">「正確にペースト」コマンド</a>で異なる改行コードを含むテキストをペースト</li>
+</ul>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="../pgs/howto_find_newline.html">改行を検索/置換する</a></li>
+	<li><a href="../pgs/howto_find_inconsistent_line_endings.html">混在する改行を探す</a></li>
+	<li><a href="../pgs/howto_input_unicode.html">文字をUnicodeのコードポイントで入力する</a></li>
+	<li><a href="../pgs/howto_paste.html">テキストをペーストする</a></li>
+	<li><a href="../pgs/pref_format.html">「フォーマット」環境設定を変更する</a></li>
+</ul>
+</section>
+
+</body>
+</html>
