@@ -171,7 +171,7 @@ extension String {
     /// The dominated line ending type.
     var detectedLineEnding: LineEnding? {
         
-        Dictionary(grouping: self.lineEndingRanges(maximum: 3), by: \.item)
+        Dictionary(grouping: self.lineEndingRanges(), by: \.item)
             .sorted(\.value.first!.location)
             .max { $0.value.count < $1.value.count }?
             .key
@@ -182,18 +182,15 @@ extension String {
     ///
     /// - Parameters:
     ///     - range: The range to parse.
-    ///     - maximum: If specified, the count stops when a count of any type of line endings first reaches the given value.
     /// - Returns: Ranges of line endings.
-    func lineEndingRanges(in range: NSRange? = nil, maximum: Int? = nil) -> [ItemRange<LineEnding>] {
-        
-        assert(maximum ?? .max > 0)
+    func lineEndingRanges(in range: NSRange? = nil) -> [ItemRange<LineEnding>] {
         
         guard !self.isEmpty else { return [] }
         
         var lineEndingRanges: [ItemRange<LineEnding>] = []
         let string = self as NSString
         
-        string.enumerateSubstrings(in: range ?? string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, stop) in
+        string.enumerateSubstrings(in: range ?? string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, _) in
             guard !enclosingRange.isEmpty else { return }
             
             let lineEndingRange = NSRange(substringRange.upperBound..<enclosingRange.upperBound)
@@ -205,12 +202,6 @@ extension String {
             else { return }
             
             lineEndingRanges.append(.init(item: lineEnding, range: lineEndingRange))
-            
-            if let maximum = maximum,
-               lineEndingRanges.count(where: { $0.item == lineEnding }) >= maximum
-            {
-                stop.pointee = ObjCBool(true)
-            }
         }
         
         return lineEndingRanges

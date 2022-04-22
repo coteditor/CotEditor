@@ -90,7 +90,6 @@ final class LineEndingTests: XCTestCase {
         XCTAssert("".lineEndingRanges().isEmpty)
         XCTAssert("abc".lineEndingRanges().isEmpty)
         XCTAssertEqual(string.lineEndingRanges(), expected)
-        XCTAssertEqual(string.lineEndingRanges(maximum: 2), Array(expected[..<4]))
     }
     
     
