@@ -45,25 +45,6 @@ final class LineEndingTests: XCTestCase {
     }
     
     
-    func testDetection() {
-        
-        XCTAssertNil("".detectedLineEnding)
-        XCTAssertNil("a".detectedLineEnding)
-        XCTAssertEqual("\n".detectedLineEnding, .lf)
-        XCTAssertEqual("\r".detectedLineEnding, .cr)
-        XCTAssertEqual("\r\n".detectedLineEnding, .crlf)
-        XCTAssertEqual("\u{85}".detectedLineEnding, .nel)
-        XCTAssertEqual("abc\u{2029}def".detectedLineEnding, .paragraphSeparator)
-        XCTAssertEqual("\rfoo\r\nbar\nbuz\u{2029}moin\r\n".detectedLineEnding, .crlf)  // most used new line must be detected
-    
-        let bom = "\u{feff}"
-        let string = "\(bom)\r\n"
-        XCTAssertEqual(string.count, 2)
-        XCTAssertEqual(string.immutable.count, 1)
-        XCTAssertEqual(string.detectedLineEnding, .crlf)
-    }
-    
-    
     func testCount() {
         
         XCTAssertEqual("".countExceptLineEnding, 0)

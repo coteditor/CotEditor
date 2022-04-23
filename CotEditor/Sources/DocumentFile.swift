@@ -57,7 +57,6 @@ struct DocumentFile {
     let data: Data
     let string: String
     let attributes: [FileAttributeKey: Any]
-    let lineEnding: LineEnding?
     let fileEncoding: FileEncoding
     let xattrEncoding: String.Encoding?
     let permissions: FilePermissions
@@ -109,7 +108,6 @@ struct DocumentFile {
         self.string = content
         self.fileEncoding = FileEncoding(encoding: encoding,
                                          withUTF8BOM: (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence))
-        self.lineEnding = content.detectedLineEnding
         self.permissions = FilePermissions(mask: attributes[.posixPermissions] as? UInt16 ?? 0)
     }
     

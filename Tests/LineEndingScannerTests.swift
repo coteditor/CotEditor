@@ -95,4 +95,44 @@ final class LineEndingScannerTests: XCTestCase {
         observer.cancel()
     }
     
+    
+    func testDetection() {
+        
+        let storage = NSTextStorage()
+        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
+        
+        XCTAssertNil(scanner.majorLineEnding)
+        
+        storage.string = "a"
+        XCTAssertNil(scanner.majorLineEnding)
+        
+        storage.string = "\n"
+        XCTAssertEqual(scanner.majorLineEnding, .lf)
+        
+        storage.string = "\r"
+        XCTAssertEqual(scanner.majorLineEnding, .cr)
+        
+        storage.string = "\r\n"
+        XCTAssertEqual(scanner.majorLineEnding, .crlf)
+        
+        storage.string = "\u{85}"
+        XCTAssertEqual(scanner.majorLineEnding, .nel)
+        
+        storage.string = "abc\u{2029}def"
+        XCTAssertEqual(scanner.majorLineEnding, .paragraphSeparator)
+        
+        storage.string = "\rfoo\r\nbar\nbuz\u{2029}moin\r\n"
+        XCTAssertEqual(scanner.majorLineEnding, .crlf)  // most used new line must be detected
+    }
+    
+}
+
+
+extension NSTextStorage {
+    
+    open override var string: String {
+        
+        get { super.string }
+        set { self.replaceCharacters(in: self.range, with: newValue) }
+    }
 }

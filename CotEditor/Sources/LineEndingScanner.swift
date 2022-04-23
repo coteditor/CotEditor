@@ -35,7 +35,14 @@ final class LineEndingScanner {
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
-    private var documentLineEnding: LineEnding  { didSet { self.inconsistentLineEndings = self.scan() } }
+    private var lineEndings: [ItemRange<LineEnding>] = []
+    
+    private var documentLineEnding: LineEnding  {
+        
+        didSet {
+            self.inconsistentLineEndings = self.lineEndings.filter { $0.item != documentLineEnding }
+        }
+    }
     
     private var lineEndingObserver: AnyCancellable?
     private var storageObserver: AnyCancellable?
@@ -70,6 +77,16 @@ final class LineEndingScanner {
     
     // MARK: Public Methods
     
+    /// The line endings mostly occurred in the stoage.
+    var majorLineEnding: LineEnding? {
+        
+        Dictionary(grouping: self.lineEndings, by: \.item)
+            .sorted(\.value.first!.location)
+            .max { $0.value.count < $1.value.count }?
+            .key
+    }
+    
+    
     /// Whether the character at the given index is a line ending inconsistent with the `documentLineEnding`.
     ///
     /// - Parameter characterIndex: The index of character to test.
@@ -100,8 +117,10 @@ final class LineEndingScanner {
             .last.flatMap { $0 + 1 } ?? editedRange.upperBound
         let scanRange = NSRange(lowerScanBound..<upperScanBound)
         
-        let inconsistentLineEndings = self.scan(in: scanRange)
+        let insertedLineEndings = self.textStorage.string.lineEndingRanges(in: scanRange)
+        let inconsistentLineEndings = insertedLineEndings.filter { $0.item != self.documentLineEnding }
         
+        self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
     }
     

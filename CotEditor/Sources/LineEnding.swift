@@ -168,16 +168,6 @@ extension StringProtocol where Self.Index == String.Index {
 
 extension String {
     
-    /// The dominated line ending type.
-    var detectedLineEnding: LineEnding? {
-        
-        Dictionary(grouping: self.lineEndingRanges(), by: \.item)
-            .sorted(\.value.first!.location)
-            .max { $0.value.count < $1.value.count }?
-            .key
-    }
-    
-    
     /// Collect ranges of all line endings per line ending type from the beginning.
     ///
     /// - Parameters:

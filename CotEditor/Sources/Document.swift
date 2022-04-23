@@ -376,13 +376,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isVerticalText = true
         }
         
-        // set read values
-        self.fileEncoding = file.fileEncoding
-        self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
-        
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.range, with: file.string)
+        
+        // set read values
+        self.fileEncoding = file.fileEncoding
+        self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
