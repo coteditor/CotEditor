@@ -120,4 +120,18 @@ final class CollectionTests: XCTestCase {
         }
     }
     
+    
+    func testBinarySearch() {
+        
+        for _ in 0..<10 {
+            let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
+            
+            for _ in 0..<10 {
+                let index = Int.random(in: 0..<100)
+                XCTAssertEqual(array.binarySearchedFirstIndex(where: { $0 > index }),
+                               array.firstIndex(where: { $0 > index }))
+            }
+        }
+    }
+    
 }

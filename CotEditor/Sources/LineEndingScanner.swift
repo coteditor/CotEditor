@@ -124,7 +124,7 @@ private extension Array where Element == ItemRange<LineEnding> {
     
     mutating func replace(items: [Element], in editedRange: NSRange, changeInLength delta: Int) {
         
-        guard let lowerEditedIndex = self.firstIndex(where: { $0.location >= editedRange.lowerBound }) else {
+        guard let lowerEditedIndex = self.binarySearchedFirstIndex(where: { $0.location >= editedRange.lowerBound }) else {
             self += items
             return
         }
