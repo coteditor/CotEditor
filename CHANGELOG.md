@@ -22,8 +22,8 @@ Change Log
 
 - Update document icons.
 - Detect the line ending in documents more intelligently.
-- Display code points instead of left blank in the incompatible character list for whitespaces.
-- Improve the scrolling behavior by normal size documents by enabling the text layout mode to non-contiguous only with large document.
+- Display code points instead of being left blank in the incompatible character list for whitespaces.
+- Improve the scrolling behavior by normal size documents by enabling the non-contiguous text layout mode only with large documents.
 - Optimize syntax parsing.
 - Rename the Incompatible Characters pane to the Warnings pane to share the pane with the inconsistent line ending list.
 - Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
