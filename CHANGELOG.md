@@ -28,7 +28,7 @@ Change Log
 - Rename the Incompatible Characters pane to the Warnings pane to share the pane with the inconsistent line ending list.
 - Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
 - Print the line numbers on the right side on printing if the writing direction is right-to-left.
-- Adjust the vertical position of line numbers on printing. 
+- Adjust the vertical position of line numbers on printing.
 - Indent snippet text with multiple lines to the indention level where will be inserted.
 - Restore the characters even incompatible with the document encoding when restoring documents from the last session.
 - Add steppers to the font setting controls.
