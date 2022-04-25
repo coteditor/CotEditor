@@ -4,16 +4,76 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="シンタックススタイル"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>シンタックススタイルの設定項目</title>
+	<title>シンタックスカラーリングを設定する</title>
 </head>
 
 <body>
 <a name="about_syntaxstyle"></a>
 
 
-<h1>シンタックススタイルの設定項目</h1>
+<h1>シンタックスカラーリングを設定する</h1>
+
+
+<h2>シンタックスカラーリングの種類</h2>
+
+<p>シンタックススタイルを設定できる箇所は次の通りです。</p>
+
+<table>
+	<thead>
+		<tr><th>要素</th><th>説明</th><th>例</th></tr>
+	</thead>
+	
+	<tbody>
+	<tr><th>キーワード</th>
+	<td>プログラミング言語の予約語など</td>
+	<td><code>for</code>, <code>while</code>, <code>if</code></td></tr>
+	
+	<tr><th>コマンド</th>
+	<td>プログラミング言語の関数やコマンド</td>
+	<td><code>print</code>, <code>filter</code>, <code>func()</code></td></tr>
+	
+	<tr><th>タイプ</th>
+	<td>プログラミング言語の型や構造化言語の見出しなど</td>
+	<td><code>int</code>, <code>bool</code>, <code>Object</code></td></tr>
+	
+	<tr><th>属性</th>
+	<td>属性や補足情報など</td>
+	<td><code>&lt;html <span style="color:-apple-system-blue">lang</span>=&quot;ja&quot;&gt;</code>, <code>@classmethod</code></td></tr>
+	
+	<tr><th>変数</th>
+	<td>プログラミング言語の変数</td>
+	<td><code>$foo</code>, <code>self</code></td></tr>
+	
+	<tr><th>値</th>
+	<td>プログラミング言語の固定値</td>
+	<td><code>Null</code>, <code>True</code>, <code>False</code></td></tr>
+	
+	<tr><th>数値</th>
+	<td>数値型のデータ</td>
+	<td><code>Int i = <span style="color: -apple-system-blue;">0</span>;</code></td></tr>
+	
+	<tr><th>文字列</th>
+	<td>文字列型のデータ</td>
+	<td><code>String s = <span style="color: -apple-system-blue">&quot;Hello World&quot;</span></code></td></tr>
+	
+	<tr><th>文字</th>
+	<td>文字型のデータ</td>
+	<td><code>Char c = <span style="color: -apple-system-blue">'a'</span></code></td></tr>
+	
+	<tr><th>コメント</th>
+	<td>プログラム中のコメント</td>
+	<td><code>/* 〜 */</code>, <code># 〜</code></td></tr>
+	</tbody>
+</table>
+
+
+<p>キーワード＞コマンド＞タイプ＞属性＞変数＞値＞数値＞文字列＞文字＞コメントの順で色付けられます。もし、同一の項目で複数のタイプに一致する場合は、後のカラーリングで上塗りされます。</p>
+
+
+
+<h2>シンタックスカラーリングの設定項目</h2>
 
 <p>シンタックススタイルの設定項目の内容は次の通りです。</p>
 
@@ -40,7 +100,7 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/about_outlinemenu_settings.html">アウトライン設定</a></li>
+	<li><a href="../pgs/howto_customize_syntaxstyle.html">シンタックススタイルを定義する</a></li>
 	<li><a href="../pgs/about_regex.html">正規表現の構文</a></li>
 </ul>
 </section>

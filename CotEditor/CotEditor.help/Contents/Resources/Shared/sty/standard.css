@@ -202,9 +202,9 @@ em, strong {
 	font-style: normal;
 }
 
-img.snapshot {
-	float: left;
-	margin: 0 1em 1em 0;
+img.bordered {
+	border: 0.5px solid -apple-system-secondary-label;
+	border-radius: 3px;
 }
 
 dt {

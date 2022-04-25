@@ -5,33 +5,105 @@
 	<meta name="AppleTitle" content="CotEditorヘルプ"/>
 	<meta name="AppleIcon" content="CotEditorHelp/gfx/icon_16x16@2x.png"/>
 	<meta name="robots" content="anchors"/>
-	<link rel="index" href="xpgs/xall.html"/>
+	<link rel="index" href="toc.html"/>
 	<link rel="stylesheet" href="../Shared/sty/top.css"/>
 	<title>CotEditorユーザガイド</title>
 </head>
 
 <body id="landing" class="AppleTopic landing">
 <header>
-<img src="../Shared/gfx/icon_128x128@2x.png" width="128" alt=""/>
-<h1>CotEditorユーザガイド</h1>
-<a href="https://coteditor.com/" rel="external">coteditor.com</a>
+	<img src="../Shared/gfx/icon_128x128@2x.png" width="128" alt=""/>
+	<h1>CotEditorユーザガイド</h1>
+	<a href="toc.html" class="toc">目次</a>
 </header>
 
 <main>
+<p>CotEditorはプログラムから日々のメモまでプレーンテキストの編集に特化したテキストエディタです。CotEditorにはmacOS付属のテキストエディットにはない多くの便利な機能があります。</p>
+
+<section class="topic">
+<img class="snapshot" src="gfx/ov_find@2x.png" alt="[Find window]"/>
+
+<h2>強力な検索/置換機能</h2>
+<p>CotEditorの検索は、正規表現のサポートはもちろん、検索結果をまとめて一覧表示したり、ファイル中の一致した箇所をハイライト表示したりすることもできます。</p>
+<ul>
+	<li><a href="pgs/howto_findpanel.html">テキストを検索/置換する方法</a></li>
+</ul>
+</section>
+
+<section class="topic">
+<img class="snapshot" src="gfx/ov_color@2x.png" alt="ov_color.png"/>
+
+<h2>シンタックスカラーリング</h2>
+<p>プログラム言語の予約語や、TeXのコマンド、HTMLの要素など特定のキーワードに色をつけて書類の構造をわかりやすくします。</p>
+<ul>
+	<li><a href="pgs/howto_customize_syntaxstyle.html">シンタックススタイルを定義する方法</a></li>
+</ul>
+</section>
+
+<section class="topic">
+<img class="snapshot" src="gfx/ov_outline@2x.png" alt="ov_outline.png"/>
+
+<h2>書類のアウトラインを俯瞰する</h2>
+<p>書類から特定のキーワードを含む箇所をリストアップして、メニューとして表示します。メニューをクリックすると、書類の該当する個所へ移動します。</p>
+<ul>
+	<li><a href="pgs/howto_show_outlinemenu.html">アウトラインを表示する方法</a></li>
+</ul>
+</section>
+
+<section class="topic">
+<img class="snapshot" src="gfx/ov_scriptmenu@2x.png" alt="[Script menu]"/>
+
+<h2>スクリプト</h2>
+<p>スクリプトメニューに登録されたスクリプトを実行して、編集中の書類を加工したり、外部のプログラムを起動したりできます。</p>
+<ul>
+	<li><a href="pgs/about_scripting.html">CotEditorスクリプトを作成する方法</a></li>
+</ul>
+</section>
+
+
+<section class="topic">
+<h2>その他の機能</h2>
 <dl>
-	<dt>CotEditorを知ろう</dt>
-	<dd><a href="pgs/overview.html">CotEditorについて簡単にご紹介します。</a></dd>
-	<dt>使い方のヒント</dt>
-	<dd><a href="xpgs/xhowto.html">CotEditorを使う上で役に立ついくつかのヒントをご紹介します。</a></dd>
-	<dt>環境設定</dt>
-	<dd><a href="pgs/preferences.html">環境設定ウインドウについて説明します。</a></dd>
-	<dt>問題を解決する</dt>
-	<dd><a href="xpgs/xfaq.html">よくある問題に対する回答を見つけます。</a></dd>
-	<dt>CotEditorについて</dt>
-	<dd><a href="xpgs/xsoftware.html">CotEditor自身について学べます。</a></dd>
-	<dt>索引</dt>
-	<dd><a href="xpgs/xall.html">トピックを簡単に見つけます。</a></dd>
+	<dt><a href="pgs/howto_edit_multiple_points.html">マルチカーソル編集</a></dt>
+	<dd>マルチカーソルを使うと、同じテキストを複数箇所に一度に挿入できます。</dd>
+	
+	<dt>コメント化/解除</dt>
+	<dd>選択範囲を対応したシンタックススタイルでコメントアウトもしくはコメント解除できます。</dd>
+	
+	<dt><a href="pgs/about_line_endings.html">改行コード</a></dt>
+	<dd>CotEditorは多様な改行コードを扱うことができます。複数種類の改行コードが混在する書類も扱えます。</dd>
+	
+	<dt><a href="pgs/howto_complete.html">入力補完</a></dt>
+	<dd>プログラム言語の予約語や、HTMLの要素などのキーワードの入力を省略する機能です。</dd>
+	
+	<dt><a href="pgs/howto_filedrop.html">ファイルドロップ</a></dt>
+	<dd>ファイルをドロップしたとき、あらかじめ指定しておいた定型文字列を挿入する機能です。例えば「HTML書類に画像をドロップしたときにimgタグを挿入する」といった使い方ができます。</dd>
+	
+	<dt><a href="pgs/howto_customize_keybinding.html">キーバインドのカスタマイズ</a></dt>
+	<dd>CotEditor独自の機能のキーバインドをカスタマイズできます。</dd>
+	
+	<dt>行番号表示</dt>
+	<dd>テキストファイルの行番号を表示します。プログラムの開発とデバッグの際に便利です。</dd>
+	
+	<dt>エディタの透明度設定</dt>
+	<dd>エディタを半透明にできます。多数のウインドウを開いたときに探しやすくなります。</dd>
+	
+	<dt><a href="pgs/howto_show_glyph_info.html">文字情報の表示</a></dt>
+	<dd>選択した文字を拡大表示し、同時にUnicodeキャラクター名などの文字情報を表示できます。</dd>
+	
+	<dt><a href="pgs/howto_inspect_usedchar.html">非互換文字の表示</a></dt>
+	<dd>指定されたエンコーディングで保存できない文字をチェックできます。</dd>
+	
+	<dt><a href="pgs/howto_split.html">エディタを分割</a></dt>
+	<dd>エディタを分割し、書類の異なる部分を同時に表示できます。</dd>
+	
+	<dt>縦書き</dt>
+	<dd>縦書き表示に対応しています。</dd>
 </dl>
+</section>
+
+
+<p>「CotEditorユーザガイド」を詳しく見るには、ページ上部で目次をクリックするか、検索フィールドに単語または語句を入力します。</p>
 </main>
 
 </body>
