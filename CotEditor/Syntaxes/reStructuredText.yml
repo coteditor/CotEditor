@@ -5,18 +5,18 @@ metadata:
   version: "1.1.3"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
+  lastModified: "2022-04-25"
   distributionURL: "https://coteditor.com"
 keywords:
-- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?:(?!\\R\\R)(?:[^*]|\\R))*?(?<![\\\\
+- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?:(?!\\R{2})(?:[^*]|\\R))*?(?<![\\\\
     \\t\\R])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
   regularExpression: true
   description: "em"
 - beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?![
-    \\t])(?:(?!\\R\\R|\\*)(?:.|\\R))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+    \\t])(?:(?!\\R{2}|\\*)(?:.|\\R))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
   regularExpression: true
   description: "strong"
-- beginString: "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\R\\t`](?:(?!\\R\\R)(?:[^`]|\\R))*?[^\\\\
+- beginString: "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\R\\t`](?:(?!\\R{2})(?:[^`]|\\R))*?[^\\\\
     \\R\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
   regularExpression: true
   ignoreCase: true
@@ -24,12 +24,12 @@ keywords:
 - beginString: "\\[\\w[^\\]]*?\\]_"
   regularExpression: true
   description: "cite"
-- beginString: "\\R\\R([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\R]*\\R\\1[\\t
+- beginString: "\\R{2}([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\R]*\\R\\1[\\t
     ]+(?=\\w)"
   regularExpression: true
   ignoreCase: true
   description: "dt"
-- beginString: "\\R\\R[-=`:.'\"~^_*+#]{4,}\\R\\R"
+- beginString: "\\R{2}[-=`:.'\"~^_*+#]{4,}\\R{2}"
   regularExpression: true
   description: "hr"
 - beginString: "^[ \\t]*[-*+•‣⁃][ \\t]"
@@ -87,7 +87,7 @@ numbers:
 - beginString: ":[a-z]+?:(?=`\\w)"
   regularExpression: true
   description: "role"
-- beginString: "\\s\\|\\S(?:(?!\\R\\R)[^\\|])*?\\|_{0,2}[\\W]"
+- beginString: "\\s\\|\\S(?:(?!\\R{2})[^\\|])*?\\|_{0,2}[\\W]"
   regularExpression: true
   description: "sub"
 - beginString: "^[\\t ]*\\.\\. (?:\\|[^|\\R]+?\\| )?image ?::\\s.*$"
@@ -96,7 +96,7 @@ numbers:
 - beginString: "^\\R(={4,} [= ]{4,}\\R)(?:.|\\R)+\\1(?=$\\R)"
   regularExpression: true
   description: "table"
-- beginString: "^\\R\\+[-+]{3,}\\+\\R(?:(?!\\R\\R)(?:.|\\R))+\\+[-+]{3,}\\+(?=$\\R)"
+- beginString: "^\\R\\+[-+]{3,}\\+\\R(?:(?!\\R{2})(?:.|\\R))+\\+[-+]{3,}\\+(?=$\\R)"
   regularExpression: true
   description: "table"
 strings:
@@ -110,7 +110,7 @@ strings:
   regularExpression: true
   description: "url"
 characters:
-- beginString: "(?<!\\\\)``(?![ \\t`])(?:(?!\\R\\R)(?:.|\\R))+?(?<![\\\\\\t ])``"
+- beginString: "(?<!\\\\)``(?![ \\t`])(?:(?!\\R{2})(?:.|\\R))+?(?<![\\\\\\t ])``"
   regularExpression: true
   description: "code"
 - beginString: "(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\R[\\t ]*(?:\\R(?:[\\t ]*\\R)?([\\t
@@ -123,7 +123,7 @@ characters:
   ignoreCase: true
   description: "option lists"
 comments:
-- beginString: "^(?:\\t| {1,4})?\\.\\.\\s(?![_\\[|]|[a-z]+?::)(?:(?!\\R\\R)(.|\\R))*"
+- beginString: "^(?:\\t| {1,4})?\\.\\.\\s(?![_\\[|]|[a-z]+?::)(?:(?!\\R{2})(.|\\R))*"
   ignoreCase: true
   regularExpression: true
 completions: []

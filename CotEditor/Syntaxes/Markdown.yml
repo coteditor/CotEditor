@@ -8,16 +8,16 @@ metadata:
   version: "1.3.4"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
+  lastModified: "2022-04-25"
   distributionURL: "https://coteditor.com"
 keywords:
-- beginString: "(?<![\\\\*])(\\*{1,3})[^ \\t*](?:\\R[^\\R]|[^\\R])*?(?<![\\\\ ])\\1"
+- beginString: "(?<![\\\\*])(\\*{1,3})[^ \\t*](?!.*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
   regularExpression: true
   description: "em, strong"
-- beginString: "(?<![\\\\_])(_{1,3})[^ \\t_](?:\\R[^\\R]|[^\\R])*?(?<![\\\\ ])\\1"
+- beginString: "(?<![\\\\_])(_{1,3})[^ \\t_](?!.*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
   regularExpression: true
   description: "em, strong"
-- beginString: "(?<![\\\\~])~~(?![ \\t])(?:\\R[^\\R]|[^\\R])*?(?<![\\\\\\t ])~~"
+- beginString: "(?<![\\\\~])~~(?![ \\t])(?!.*\\R{2})[^\\R]*?(?<![\\\\\\t ])~~"
   regularExpression: true
   description: "[github] strikethrough"
 - beginString: "\\R[\\t ]*\\R(?:\\- *){3,}$"
@@ -102,10 +102,10 @@ strings:
   endString: "(\\R[ \\t]*\\R)|\\z"
   description: "a href"
 characters:
-- beginString: "(?<![\\\\`])`(?:\\R[^\\R]|[^\\R])*?(?<!\\\\)`"
+- beginString: "(?<![\\\\`])`(?!.*\\R{2})[^\\R]*?(?<!\\\\)`"
   description: "code"
   regularExpression: true
-- beginString: "(?<!\\\\)``(?:\\R[^\\R]|[^\\R])*?(?<!\\\\)``"
+- beginString: "(?<!\\\\)``(?!.*\\R{2})[^\\R]*?(?<!\\\\)``"
   description: "code"
   regularExpression: true
 - beginString: "^[~]{3,}[{[:space:]](?!~~~)(?:.|\\R)*?\\R[\\t ]*[~]{3,}[\\t ]*$"
@@ -128,7 +128,7 @@ outlineMenu:
   keyString: "$1"
   description: "h1"
   bold: true
-- beginString: "(?<=\\R\\R|\\A)([*-_] ?)\\1{2,}$"
+- beginString: "(?<=\\R{2}|\\A)([*-_] ?)\\1{2,}$"
   keyString: "-"
   description: "horizontal line"
 - beginString: "^#[\\t ]?([^#][^\\R]*?)#*$"
