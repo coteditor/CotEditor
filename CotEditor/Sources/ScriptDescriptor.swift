@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,18 +24,18 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 
 enum ScriptingFileType: CaseIterable {
     
     case appleScript
     case unixScript
     
-    
-    var extensions: [String] {
+    var fileTypes: [UTType] {
         
         switch self {
-            case .appleScript: return ["applescript", "scpt", "scptd"]
-            case .unixScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
+            case .appleScript: return [.appleScript, .osaScript, .osaScriptBundle]  // .applescript, .scpt, .scptd
+            case .unixScript: return [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .swiftSource]
         }
     }
     
@@ -112,14 +112,17 @@ struct ScriptDescriptor {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Create a descriptor that represents an user script at given URL.
+    /// Create a descriptor that represents a user script at given URL.
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
-    /// - Parameter url: The location of an user script.
+    /// - Parameter url: The location of a user script.
     init?(at url: URL, name: String) {
         
-        guard let type = ScriptingFileType.allCases.first(where: { $0.extensions.contains(url.pathExtension) }) else { return nil }
+        guard
+            let contentType = try? url.resourceValues(forKeys: [.contentTypeKey]).contentType,
+            let type = ScriptingFileType.allCases.first(where: { $0.fileTypes.contains { $0.conforms(to: contentType) } })
+        else { return nil }
         
         self.url = url
         self.name = name
@@ -135,11 +138,11 @@ struct ScriptDescriptor {
     
     // MARK: Public Methods
     
-    /// Create and return an user script instance.
+    /// Create and return a user script instance.
     ///
     /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
-    func makeScript() throws -> Script {
+    func makeScript() throws -> any Script {
         
         return try self.scriptType.init(url: self.url, name: self.name)
     }

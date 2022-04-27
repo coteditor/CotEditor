@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="スクリプトメニュー,スクリプト, スクリプトのファイル名, スクリプトファイル名"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>CotEditorスクリプトのファイル名規則</title>
 </head>
@@ -36,23 +36,27 @@
 		<table>
 			<caption>例2.</caption>
 			<tr><th>ファイル名</th><td>Insert String<strong>.@e</strong>.scpt</td></tr>
-			<tr><th>メニュータイトル</th><td>Insert String (<kbd>Command</kbd> + <kbd>E</kbd>)</td></tr>
+			<tr><th>メニュータイトル</th><td>Insert String (<kbd>Command</kbd>+<kbd>E</kbd>)</td></tr>
 		</table>
 		
 		<table>
 			<caption>例3.</caption>
 			<tr><th>ファイル名</th><td>03)Insert Date<strong>.@&#x007E;Y</strong>.scpt</td></tr>
-			<tr><th>メニュータイトル</th><td>Insert Date (<kbd>Command</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd>)</td></tr>
+			<tr><th>メニュータイトル</th><td>Insert Date (<kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>Y</kbd>)</td></tr>
 		</table>
 		<dl style="margin-top: 1em;">
 			<dt>修飾キーの記述方法</dt>
 			<dd>
 				<table>
-					<tr><th>表記</th><th>キー</th></tr>
-					<tr><td>^</td><td><kbd>Control</kbd></td></tr>
-					<tr><td>$</td><td><kbd>Shift</kbd></td></tr>
-					<tr><td>&#x007E;</td><td><kbd>Option</kbd></td></tr>
-					<tr><td>@</td><td><kbd>Command</kbd></td></tr>
+					<thead>
+						<tr><th>表記</th><th>キー</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>^</td><td><kbd>Control</kbd></td></tr>
+						<tr><td>$</td><td><kbd>Shift</kbd></td></tr>
+						<tr><td>&#x007E;</td><td><kbd>Option</kbd></td></tr>
+						<tr><td>@</td><td><kbd>Command</kbd></td></tr>
+					</tbody>
 				</table>
 			</dd>
 		</dl>
@@ -63,7 +67,7 @@
 <ul>
 	<li>ショートカットキー（修飾キーでないキー、例2での「e」）は通常小文字で記述します。大文字の場合は「Shiftキーも同時に押す」として認識されます。</li>
 	<li>ショートカットキーは修飾キーのあとに書かなければなりません。また、1文字だけ指定できます。また、ファイル名に使えないキー（「F1」や「Delete」など）は割り当てられません。</li>
-	<li>指定したキーバインドがすでに他の機能に割り当てられている場合、スクリプトのキーバインドは無視されます。</li>
+	<li>指定したキーバインドがすでにほかの機能に割り当てられている場合、スクリプトのキーバインドは無視されます。</li>
 </ul>
 
 <dl>

@@ -197,7 +197,7 @@ extension String {
         guard !self.isEmpty else { return nil }
         
         let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
-        let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
+        let pattern = "\\b(?:" + tags.joined(separator: "|") + ") *[\"']? *([-_a-zA-Z0-9]+)"
         let regex = try! NSRegularExpression(pattern: pattern)
         let scanLength = min(self.length, maxLength)
         
@@ -216,7 +216,9 @@ extension String {
             //    we treat them with care by respecting the user's priority.
             //    FYI: CFStringConvertEncodingToIANACharSetName() converts .shiftJIS and .shiftJIS_X0213
             //         to "shift_jis" and "Shift_JIS" respectively.
-            if ianaCharSetName.uppercased() == "SHIFT_JIS", let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }) {
+            if ianaCharSetName.uppercased() == "SHIFT_JIS",
+               let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 })
+            {
                 return cfEncoding
             }
             

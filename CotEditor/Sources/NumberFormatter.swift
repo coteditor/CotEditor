@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ extension NumberFormatter {
     /// - Returns: The parsed number, or `nil` if failed.
     func leadingDouble(from string: String) -> Double? {
         
-        guard let range = string.range(of: "[ \t]*-?[0-9.,]+", options: [.regularExpression, .anchored]) else { return nil }
+        guard let range = string.range(of: "[ \t]*-?[0-9.,]++", options: [.regularExpression, .anchored]) else { return nil }
         
         return self.number(from: String(string[range])) as? Double
     }

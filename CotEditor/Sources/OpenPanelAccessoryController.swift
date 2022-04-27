@@ -27,6 +27,8 @@ import Cocoa
 
 final class OpenPanelAccessoryController: NSViewController {
     
+    // MARK: Public Properties
+    
     weak var openPanel: NSOpenPanel?  // keep open panel for hidden file visivility toggle
     
     
@@ -45,7 +47,10 @@ final class OpenPanelAccessoryController: NSViewController {
         
         super.viewDidLoad()
         
-        self.buildEncodingPopupButton()
+        // build encoding menu
+        let menu = self.encodingMenu!.menu!
+        let autoDetectItem = NSMenuItem(title: "Automatic".localized, action: nil, keyEquivalent: "")
+        menu.items = [autoDetectItem, .separator()] + EncodingManager.shared.createEncodingMenuItems()
     }
     
     
@@ -55,8 +60,7 @@ final class OpenPanelAccessoryController: NSViewController {
     /// encoding selected by user
     var selectedEncoding: String.Encoding? {
         
-        get { self._selectedEncoding > 0 ? String.Encoding(rawValue: self._selectedEncoding) : nil }
-        set { self._selectedEncoding = newValue?.rawValue ?? 0 }  // 0 for automatic
+        self._selectedEncoding > 0 ? String.Encoding(rawValue: self._selectedEncoding) : nil
     }
     
     
@@ -64,7 +68,7 @@ final class OpenPanelAccessoryController: NSViewController {
     // MARK: Action Messages
     
     /// toggle visivility of hidden files
-    @IBAction func toggleShowsHidenFiles(_ sender: NSButton) {
+    @IBAction func toggleShowsHiddenFiles(_ sender: NSButton) {
         
         guard let openPanel = self.openPanel else { return assertionFailure() }
         
@@ -74,25 +78,6 @@ final class OpenPanelAccessoryController: NSViewController {
         openPanel.treatsFilePackagesAsDirectories = showsHiddenFiles
         
         openPanel.validateVisibleColumns()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// update encoding menu
-    func buildEncodingPopupButton() {
-        
-        let menu = self.encodingMenu!.menu!
-        
-        menu.removeAllItems()
-        
-        let autoDetectItem = NSMenuItem(title: "Automatic".localized, action: nil, keyEquivalent: "")
-        menu.addItem(autoDetectItem)
-        menu.addItem(.separator())
-        menu.items += EncodingManager.shared.createEncodingMenuItems()
-        
-        self.selectedEncoding = nil
     }
     
 }

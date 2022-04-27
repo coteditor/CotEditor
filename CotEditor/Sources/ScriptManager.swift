@@ -39,11 +39,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Private Properties
     
     private let scriptsDirectoryURL: URL?
-    private var scriptHandlersTable: [ScriptingEventType: [EventScript]] = [:]
+    private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     
     private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
-    private var terminationObserver: AnyCancellable?
     
     
     
@@ -53,21 +52,21 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private override init() {
         
         do {
-            self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
-                                                                   in: .userDomainMask, appropriateFor: nil, create: true)
+            self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         } catch {
             self.scriptsDirectoryURL = nil
             print("cannot create the scripts folder: \(error)")
         }
         
-        self.presentedItemURL = self.scriptsDirectoryURL
-        
         super.init()
         
         // observe script folder change
         NSFileCoordinator.addFilePresenter(self)
-        self.terminationObserver = NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)
-            .sink { [unowned self] _ in NSFileCoordinator.removeFilePresenter(self) }
+    }
+    
+    
+    deinit {
+        NSFileCoordinator.removeFilePresenter(self)
     }
     
     
@@ -76,7 +75,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     let presentedItemOperationQueue: OperationQueue = .main
     
-    let presentedItemURL: URL?
+    var presentedItemURL: URL?  { self.scriptsDirectoryURL }
     
     
     /// script folder did change
@@ -113,34 +112,26 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Build the Script menu.
+    /// Build the Script menu and scan script handlers.
     func buildScriptMenu() {
         
         assert(Thread.isMainThread)
         
         self.menuBuildingDebouncer.cancel()
+        self.applicationObserver = nil
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        let menu = MainMenu.script.menu!
-        
-        menu.removeAllItems()
-        
-        self.addChildFileItem(in: directoryURL, to: menu)
-        
-        if !menu.items.isEmpty {
-            menu.addItem(.separator())
-        }
-        
         let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
-        menu.addItem(openMenuItem)
+        
+        MainMenu.script.menu?.items = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
     }
     
     
-    /// Dispatch an Apple Event that notifies the given document was opened.
+    /// Dispatch an Apple event that notifies the given document was opened.
     ///
     /// - Parameters:
     ///   - eventType: The event trigger to perform script.
@@ -154,7 +145,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         let event = self.createEvent(by: document, eventID: eventType.eventID)
         
-        self.dispatch(event, handlers: scripts)
+        Task.detached { [weak self] in
+            await self?.dispatch(event, handlers: scripts)
+        }
     }
     
     
@@ -164,36 +157,34 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// launch script (invoked by menu item)
     @IBAction func launchScript(_ sender: NSMenuItem) {
         
-        guard let script = sender.representedObject as? Script else { return assertionFailure() }
+        guard let script = sender.representedObject as? any Script else { return assertionFailure() }
         
-        do {
-            // change behavior if modifier key is pressed
-            switch NSEvent.modifierFlags {
-                case [.option]:  // open
-                    guard NSWorkspace.shared.open(script.url) else {
-                        throw ScriptFileError(kind: .open, url: script.url)
-                    }
-                
-                case [.option, .shift]:  // reveal
-                    guard script.url.isReachable else {
-                        throw ScriptFileError(kind: .existance, url: script.url)
-                    }
-                    NSWorkspace.shared.activateFileViewerSelecting([script.url])
-                
-                default:  // execute
-                    self.currentScriptName = script.name
-                    try script.run { [weak self] (error) in
-                        if let error = error {
-                            Console.shared.show(message: error.localizedDescription, title: script.name)
+        Task.detached {
+            do {
+                // change behavior if modifier key is pressed
+                switch NSEvent.modifierFlags {
+                    case [.option]:  // open
+                        guard NSWorkspace.shared.open(script.url) else {
+                            throw ScriptFileError(kind: .open, url: script.url)
                         }
-                        if self?.currentScriptName == script.name {
-                            self?.currentScriptName = nil
+                        
+                    case [.option, .shift]:  // reveal
+                        guard script.url.isReachable else {
+                            throw ScriptFileError(kind: .existance, url: script.url)
                         }
-                    }
+                        NSWorkspace.shared.activateFileViewerSelecting([script.url])
+                        
+                    default:  // execute
+                        self.currentScriptName = script.name
+                        try await script.run()
+                        if self.currentScriptName == script.name {
+                            self.currentScriptName = nil
+                        }
+                }
+                
+            } catch {
+                await self.presentError(error, scriptName: script.name)
             }
-            
-        } catch {
-            NSApp.presentError(error)
         }
     }
     
@@ -210,7 +201,23 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Methods
     
-    /// Create an Apple Event caused by the given `Document`.
+    /// Present the given error in the ordenery way by taking the error type in the concideration.
+    ///
+    /// - Parameters:
+    ///   - error: The error to present.
+    ///   - scriptName: The name of script.
+    @MainActor private func presentError(_ error: Error, scriptName: String? = nil) {
+        
+        switch error {
+            case let error as ScriptError:
+                Console.shared.show(message: error.localizedDescription, title: scriptName)
+            default:
+                NSApp.presentError(error)
+        }
+    }
+    
+    
+    /// Create an Apple event caused by the given `Document`.
     ///
     /// - Bug:
     ///   NSScriptObjectSpecifier.descriptor can be nil.
@@ -218,9 +225,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
     ///
     /// - Parameters:
-    ///   - document: The document to dispatch an Apple Event.
+    ///   - document: The document to dispatch an Apple event.
     ///   - eventID: The event ID to be set in the returned event.
-    /// - Returns: A descriptor for an Apple Event by the `Document`.
+    /// - Returns: A descriptor for an Apple event by the `Document`.
     private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
         
         let event = NSAppleEventDescriptor(eventClass: "cEd1",
@@ -236,80 +243,79 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Cause the given Apple Event to be dispatched to AppleScripts at given URLs.
+    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
     ///
     /// - Parameters:
-    ///   - event: The Apple Event to be dispatched.
-    ///   - scripts: AppleScripts handling the given Apple Event.
-    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [EventScript]) {
+    ///   - event: The Apple event to be dispatched.
+    ///   - scripts: AppleScripts handling the given Apple event.
+    private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [any EventScript]) async {
         
-        for script in scripts {
-            do {
-                try script.run(withAppleEvent: event) { (error) in
-                    if let error = error {
-                        Console.shared.show(message: error.localizedDescription, title: script.name)
+        await withTaskGroup(of: Void.self) { group in
+            for script in scripts {
+                group.addTask {
+                    do {
+                        try await script.run(withAppleEvent: event)
+                    } catch {
+                        await self.presentError(error, scriptName: script.name)
                     }
                 }
-            } catch {
-                NSApp.presentError(error)
             }
         }
     }
     
     
-    /// Read files recursively and add to the given menu as menu items.
+    /// Read files recursively and create menu items.
     ///
     /// - Parameters:
     ///   - directoryURL: The directory where to find files recursively.
-    ///   - menu: The menu to add read files.
-    private func addChildFileItem(in directoryURL: URL, to menu: NSMenu) {
+    /// - Returns: Menu items represents scripts.
+    private func scriptMenuItems(in directoryURL: URL) -> [NSMenuItem] {
         
-        guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
-                                                                      includingPropertiesForKeys: [.fileResourceTypeKey],
-                                                                      options: [.skipsHiddenFiles])
+        guard let urls = try? FileManager.default
+            .contentsOfDirectory(at: directoryURL,
+                                 includingPropertiesForKeys: [.contentTypeKey, .isDirectoryKey, .isExecutableKey],
+                                 options: [.skipsHiddenFiles])
+        else { return [] }
+        
+        return urls
+            .filter { !$0.lastPathComponent.hasPrefix("_") }  // ignore files/folders of which name starts with "_"
             .sorted(\.lastPathComponent)
-            else { return }
-        
-        for url in urls {
-            // ignore files/folders of which name starts with "_"
-            if url.lastPathComponent.hasPrefix("_") { continue }
-            
-            var name = url.deletingPathExtension().lastPathComponent
-                .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
-            
-            var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
-            shortcut = shortcut.isValid ? shortcut : .none
-            if shortcut != .none {
-                name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
-            }
-            
-            if name == .separator {  // separator
-                menu.addItem(.separator())
+            .compactMap { url in
+                var name = url.deletingPathExtension().lastPathComponent
+                    .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
                 
-            } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
-                // -> Test script possibility before folder because a script can be a directory, e.g. .scptd.
-                for eventType in descriptor.eventTypes {
-                    guard let script = script as? EventScript else { continue }
-                    self.scriptHandlersTable[eventType, default: []].append(script)
+                var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
+                shortcut = shortcut.isValid ? shortcut : .none
+                if shortcut != .none {
+                    name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
                 }
                 
-                let item = NSMenuItem(title: name, action: #selector(launchScript),
-                                      keyEquivalent: shortcut.keyEquivalent)
-                item.keyEquivalentModifierMask = shortcut.modifierMask
-                item.representedObject = script
-                item.target = self
-                item.toolTip = "“Option + click” to open script in editor.".localized
-                menu.addItem(item)
+                if name == .separator {  // separator
+                    return .separator()
+                    
+                } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
+                    // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
+                    for eventType in descriptor.eventTypes {
+                        guard let script = script as? any EventScript else { continue }
+                        self.scriptHandlersTable[eventType, default: []].append(script)
+                    }
+                    
+                    let item = NSMenuItem(title: name, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
+                    item.keyEquivalentModifierMask = shortcut.modifierMask
+                    item.representedObject = script
+                    item.target = self
+                    item.toolTip = "Option-click to open script in editor.".localized
+                    return item
+                    
+                } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
+                    let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
+                    item.submenu = NSMenu(title: name)
+                    item.submenu!.items = self.scriptMenuItems(in: url)
+                    return item
+                }
                 
-            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
-                let submenu = NSMenu(title: name)
-                self.addChildFileItem(in: url, to: submenu)
-                
-                let item = NSMenuItem(title: name, action: nil, keyEquivalent: "")
-                item.submenu = submenu
-                menu.addItem(item)
+                return nil
             }
-        }
     }
     
 }

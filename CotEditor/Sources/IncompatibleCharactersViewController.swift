@@ -27,19 +27,34 @@
 import Combine
 import Cocoa
 
+/// Table column identifiers
+private extension NSUserInterfaceItemIdentifier {
+    
+    static let line = Self("Line")
+    static let character = Self("Character")
+    static let converted = Self("Converted")
+}
+
+
 final class IncompatibleCharactersViewController: NSViewController {
     
     // MARK: Private Properties
     
     private var document: Document?  { self.representedObject as? Document }
     private var scanner: IncompatibleCharacterScanner?  { self.document?.incompatibleCharacterScanner }
+    private var incompatibleCharacters: [IncompatibleCharacter] = []
+    
+    private var scannerObservers: Set<AnyCancellable> = []
+    
+    private var fixedHeightConstraint: NSLayoutConstraint?
+    private var flexibleHeightConstraint: NSLayoutConstraint?
+    private var currentTableHeight: CGFloat = 100
     
     @objc private dynamic var message: String?
-    @objc private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
     
-    private var scannerObservers: [AnyCancellable] = []
-    
-    @IBOutlet private var incompatibleCharsController: NSArrayController?
+    @IBOutlet private var numberFormatter: NumberFormatter?
+    @IBOutlet private weak var messageField: NSTextField?
+    @IBOutlet private weak var tableView: NSTableView?
     
     
     
@@ -61,6 +76,9 @@ final class IncompatibleCharactersViewController: NSViewController {
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        
+        let isCollapsed = self.scanner?.incompatibleCharacters.isEmpty ?? true
+        self.collapseView(isCollapsed, animate: false)
         
         self.scanner?.shouldScan = true
         self.scanner?.scan()
@@ -112,74 +130,194 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     
     
-    // MARK: Action Messages
-    
-    /// select correspondent char in text view
-    @IBAction func selectCharacter(_ tableView: NSTableView) {
-        
-        guard
-            tableView.clickedRow > -1,  // invalid click
-            let incompatibles = self.incompatibleCharsController?.arrangedObjects as? [IncompatibleCharacter],
-            let selectedIncompatible = incompatibles[safe: tableView.clickedRow],
-            let editor = self.document else { return }
-        
-        editor.selectedRange = selectedIncompatible.range
-        
-        // focus result
-        // -> Use textView's `selectedRange` since `range` is incompatible with CRLF.
-        if let textView = editor.textView {
-            textView.scrollRangeToVisible(textView.selectedRange)
-            textView.showFindIndicator(for: textView.selectedRange)
-        }
-    }
-    
-    
-    
     // MARK: Private Methods
     
     @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
         
-        guard let document = self.document else { return }
+        guard let textStorage = self.document?.textStorage else { return }
         
         if !self.incompatibleCharacters.isEmpty {
-            document.textStorage.clearAllMarkup()
+            textStorage.clearAllMarkup()
         }
         
-        self.incompatibleCharacters = incompatibleCharacters
+        if incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
+            self.collapseView(incompatibleCharacters.isEmpty, animate: true)
+        }
+        
+        self.incompatibleCharacters = incompatibleCharacters.sorted(using: tableView?.sortDescriptors ?? [])
+        self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)
-        document.textStorage.markup(ranges: incompatibleCharacters.map(\.range),
-                                    lineEnding: document.lineEnding)
+        textStorage.markup(ranges: incompatibleCharacters.map(\.range))
+    }
+    
+    
+    /// Open / close the view by adjusting the height of the table.
+    ///
+    /// - Parameters:
+    ///   - isCollapsed: The flag indicating whether open or close.
+    ///   - animate: The flag indicating whether to animate the change.
+    @MainActor private func collapseView(_ isCollapsed: Bool, animate: Bool) {
+        
+        guard let scrollView = self.tableView?.enclosingScrollView else { return assertionFailure() }
+        
+        if !scrollView.isHidden {
+            self.currentTableHeight = scrollView.frame.height
+        }
+        
+        let fixedConstraint = self.fixedHeightConstraint ?? NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30)
+        self.fixedHeightConstraint = fixedConstraint
+        let flexibleConstraintt = self.flexibleHeightConstraint ?? NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .height, multiplier: 1, constant: 50)
+        self.flexibleHeightConstraint = flexibleConstraintt
+        
+        let visualHeight = isCollapsed ? 30 : self.currentTableHeight
+        
+        flexibleConstraintt.isActive = false
+        fixedConstraint.constant = scrollView.frame.height
+        fixedConstraint.isActive = true
+        
+        scrollView.isHidden = isCollapsed
+        NSAnimationContext.runAnimationGroup { (context) in
+            if !animate {
+                context.duration = 0
+            }
+            fixedConstraint.animator().constant = visualHeight
+            
+        } completionHandler: { [weak self] in
+            if !isCollapsed {
+                fixedConstraint.isActive = false
+                flexibleConstraintt.isActive = true
+            }
+            scrollView.frame.size.height = visualHeight
+            self?.view.needsLayout = true
+        }
     }
     
     
     /// Update the state message on the table.
     @MainActor private func updateMessage(isScanning: Bool) {
         
-        self.message = isScanning ? "Scanning incompatible characters…".localized
-                                  : (self.incompatibleCharacters.isEmpty
-                                     ? "No incompatible characters were found.".localized
-                                     : nil)
+        self.messageField?.textColor = self.incompatibleCharacters.isEmpty ? .secondaryLabelColor : .labelColor
+        self.messageField?.stringValue = {
+            switch self.incompatibleCharacters.count {
+                case _ where isScanning: return "Scanning incompatible characters…".localized
+                case 0:  return "No issues found.".localized
+                case 1:  return "Found an incompatible character.".localized
+                default: return String(format: "Found %i incompatible characters.".localized,
+                                       locale: .current,
+                                       self.incompatibleCharacters.count)
+            }
+        }()
     }
     
 }
 
 
 
+extension IncompatibleCharactersViewController: NSTableViewDelegate {
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        guard
+            let tableView = notification.object as? NSTableView,
+            let item = self.incompatibleCharacters[safe: tableView.selectedRow],
+            let textView = self.document?.textView
+        else { return }
+        
+        textView.selectedRange = item.range
+        textView.scrollRangeToVisible(textView.selectedRange)
+        textView.showFindIndicator(for: textView.selectedRange)
+    }
+    
+}
+
+
+
+extension IncompatibleCharactersViewController: NSTableViewDataSource {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+        self.incompatibleCharacters.count
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        guard
+            let incompatibleCharacter = self.incompatibleCharacters[safe: row],
+            let identifier = tableColumn?.identifier
+        else { return nil }
+        
+        switch identifier {
+            case .line:
+                return incompatibleCharacter.lineNumber
+            case .character:
+                return String(incompatibleCharacter.character)
+            case .converted:
+                return incompatibleCharacter.convertedCharacter
+            default:
+                fatalError()
+        }
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, sortDescriptorsDidChange oldDescriptors: [NSSortDescriptor]) {
+        
+        guard
+            tableView.sortDescriptors != oldDescriptors,
+            self.incompatibleCharacters.compareCount(with: 1) == .greater
+        else { return }
+        
+        self.incompatibleCharacters.sort(using: tableView.sortDescriptors)
+        tableView.reloadData()
+    }
+    
+}
+
+
+
+extension IncompatibleCharacter: KeySortable {
+    
+    func compare(with other: Self, key: String) -> ComparisonResult {
+        
+        switch key {
+            case "location":
+                return self.location.compare(other.location)
+                
+            case "character":
+                return String(self.character).localizedStandardCompare(String(other.character))
+                
+            case "convertedCharacter":
+                switch (self.convertedCharacter, other.convertedCharacter) {
+                    case let (.some(converted0), .some(converted1)):
+                        return converted0.localizedStandardCompare(converted1)
+                    case (.some, .none):
+                        return .orderedAscending
+                    case (.none, .some):
+                        return .orderedDescending
+                    case (.none, .none):
+                        return .orderedSame
+                }
+                
+            default:
+                fatalError()
+        }
+    }
+}
+
+
 private extension NSTextStorage {
     
     /// change background color of pased-in ranges
-    func markup(ranges: [NSRange], lineEnding: LineEnding = .lf) {
+    func markup(ranges: [NSRange]) {
         
         guard !ranges.isEmpty else { return }
         
-        guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
-        
-        let viewRanges = ranges.map { self.string.convert(range: $0, from: lineEnding, to: .lf) }
-        
         for manager in self.layoutManagers {
-            for viewRange in viewRanges {
-                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)
+            guard let color = manager.firstTextView?.textColor?.withAlphaComponent(0.2) else { continue }
+            
+            for range in ranges {
+                manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
             }
         }
     }

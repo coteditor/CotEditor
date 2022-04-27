@@ -38,6 +38,7 @@
 // Accessibility labels
 "inspector" = "Infofenster";
 "outline" = "Gliederung";
+"warnings" = "Vorwarnungen";
 "incompatible characters" = "Inkompatible Zeichen";
 "status bar" = "Statusleiste";
 "navigation bar" = "Navigationsleiste";
@@ -82,7 +83,7 @@
 "Empty find string" = "Leerer Suchbegriff";
 "The option “in selection” is enabled, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
 "Input text to find." = "Gib den zu findenden Text ein.";
-"Select the search scope in the document or disable the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
+"Select the search scope in the document or turn off the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
 
 // accessibility announcement
 "Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
@@ -92,16 +93,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
 "Replace the current selection with the replacement text." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen.";
 "Not Found" = "Nicht gefunden";
-"%@ found" = "%@ gefunden";  // %@ is number of founds
+"%i found" = "%i gefunden";  // %i is number of founds
 "Not Replaced" = "Nicht ersetzt";
-"%@ replaced" = "%@ ersetzt";  // %@ is number of replaced
+"%i replaced" = "%i ersetzt";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
-"Found %@ strings in “%@”." = "%@ Zeichenketten „%@” in gefunden.";
+"Found %i strings in “%@”." = "%i Zeichenketten „%@” in gefunden.";
 
 
 /* MARK: Regular Expression Reference */
@@ -197,6 +198,13 @@
 "Do you want to change encoding and show incompatible characters?" = "Möchtest du die Codierung ändern und die inkompatiblen Zeichen zeigen?";
 "Change Encoding" = "Codierung wechseln";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "Das Dokument hat inkonsistente Zeilenenden.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Möchtest du alle Zeilenenden in %@ umwandeln, die häufigsten Zeilenenden in diesem Dokument?";
+"Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
+"Convert" = "Umwandeln";
+"Review" = "Prüfen";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
 "The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
@@ -239,7 +247,7 @@
 "Horizontal" = "Horizontal";
 "Vertical" = "Vertikal";
 // tooltip
-"Toggle text orientation" = "Text vertikal/horizontal ausrichten";
+"Switch text orientation" = "Text vertikal/horizontal ausrichten";
 
 "Indent" = "Einziehen";
 "Shift Left" = "Ausrücken";
@@ -255,7 +263,7 @@
 
 "Tab Style" = "Tabulatorstil";
 // tooltip
-"Disable expanding tabs to spaces" = "Auto-Tabulatorexpandierung deaktivieren";
+"Turn off expanding tabs to spaces" = "Auto-Tabulatorexpandierung deaktivieren";
 "Expand tabs to spaces automatically" = "Tabulator zu Leerzeichen automatisch expandieren";
 "Change tab width" = "Tabulatorbreite wechseln";
 // menu
@@ -307,7 +315,7 @@
 
 "Fonts" = "Schriften";
 // tooltip
-"Show Font Panel" = "Schriftfenster einblenden";
+"Show Fonts" = "Schriften einblenden";
 
 
 
@@ -369,13 +377,21 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Zuletzt gefiltert";
-"Clear Recents" = "Filter löschen";
+"Clear Recent Filters" = "Letzte Filter löschen";
 "No Recent Filter" = "Keine letzten Filtereinträge";
 "No Filter Results" = "Keine Filtertreffer";
 
+// Warnings
+"No issues found." = "Keine Probleme gefunden.";
+
 // Incompatible characters
-"No incompatible characters were found." = "Keine inkompatiblen Zeichen gefunden.";
 "Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";
+"Found an incompatible character." = "Es wurde eine inkompatiblen Zeichen gefunden.";
+"Found %i incompatible characters." = "Es wurden %i inkompatiblen Zeichen gefunden.";  // %i is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Es wurde ein anderes Zeilenende als %@ gefunden.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "Es wurden %i andere Zeilenenden als %@ gefunden.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -458,8 +474,8 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"Jump to previous outline item" = "Zum vorherigen Gliederungspunkt springen";
-"Jump to next outline item" = "Zum nächsten Gliederungspunkt springen";
+"Jump to previous outline item" = "Zum vorherigen Gliederungsposten springen";
+"Jump to next outline item" = "Zum nächsten Gliederungsposten springen";
 "Extracting Outline…" = "Gliederung extrahieren …";
 
 
@@ -468,8 +484,7 @@
 // Coloring indicator
 "Coloring text…" = "Text färben …";
 "Please wait for a while." = "Bitte etwas Geduld.";
-"Extracting %@…" = "%@ extrahieren …";
-"Preparing to color…" = "Färbung vorbereiten …";
+"Parsing document…" = "Dokument parsen …";
 "Applying colors to text…" = "Farben auf den Text anwenden …";
 "keywords" = "Schlüsselwörter";
 "commands" = "Befehle";
@@ -481,7 +496,6 @@
 "strings" = "Zeichenketten";
 "characters" = "Zeichen";
 "comments" = "Kommentare";
-"comments and quoted texts" = "Kommentare und zitierte Texte";
 
 
 
@@ -491,6 +505,16 @@
 // Color list name
 "Stylesheet Keywords" = "CSS-Schlüsselwörter";
 
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Zuletzt benutzt";
+"Clear Recents" = "Verlauf löschen";
+"Invalid code" = "Ungültiger Code";
+
+
+
+/* MARK: Preferences */
 
 // General pane
 // Autosave setting update alert
@@ -553,7 +577,7 @@
 "Strings" = "Zeichenketten";
 "Characters" = "Zeichen";
 "Comments" = "Kommentare";
-"Outline Menu" = "Gliederungsmenü";
+"Outline" = "Gliederung";
 "Completion List" = "Vervollständigung";
 "File Mapping" = "Dateizuordnung";
 "Style Info" = "Stil-Info";
@@ -563,7 +587,7 @@
 "No error found." = "Kein Fehler wurde gefunden.";
 "An error found!" = "Ein Fehler wurde gefunden.";
 "%i errors found!" = "%i Fehler wurden gefunden.";
-"outline menu" = "Gliederungsmenü";
+"outline" = "Gliederung";
 
 
 
@@ -642,7 +666,7 @@
 "Space" = "Leertaste";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "„%@“ wird bereits　vom „%@“-Befehl verwendet.";
+"“%@” is already taken by the “%@” command." = "„%@“ wird bereits vom „%@“-Befehl verwendet.";
 "The Shift key can be used only with another modifier key." = "Die Shift-Taste kann nur mit einer anderen Modifikatortaste verwendet werden.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
 "Please combine with other keys." = "Bitte kombiniere sie mit anderen Tasten.";
@@ -654,7 +678,7 @@
 "Open Scripts Folder" = "Skriptordner öffnen";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "„Option + Klicken“, um das Skript im Editor zu öffnen.";
+"Option-click to open script in editor." = "Option-Klicken, um das Skript im Editor zu öffnen.";
 
 
 
@@ -694,7 +718,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
+"The insertion point after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
 
 
 

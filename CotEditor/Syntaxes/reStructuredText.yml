@@ -1,0 +1,137 @@
+extensions:
+- keyString: "rest"
+- keyString: "rst"
+metadata:
+  version: "1.1.3"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  lastModified: "2022-04-25"
+  distributionURL: "https://coteditor.com"
+keywords:
+- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?:(?!\\R{2})(?:[^*]|\\R))*?(?<![\\\\
+    \\t\\R])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+  regularExpression: true
+  description: "em"
+- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?![
+    \\t])(?:(?!\\R{2}|\\*)(?:.|\\R))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+  regularExpression: true
+  description: "strong"
+- beginString: "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\R\\t`](?:(?!\\R{2})(?:[^`]|\\R))*?[^\\\\
+    \\R\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
+  regularExpression: true
+  ignoreCase: true
+  description: "interpreted text"
+- beginString: "\\[\\w[^\\]]*?\\]_"
+  regularExpression: true
+  description: "cite"
+- beginString: "\\R{2}([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\R]*\\R\\1[\\t
+    ]+(?=\\w)"
+  regularExpression: true
+  ignoreCase: true
+  description: "dt"
+- beginString: "\\R{2}[-=`:.'\"~^_*+#]{4,}\\R{2}"
+  regularExpression: true
+  description: "hr"
+- beginString: "^[ \\t]*[-*+•‣⁃][ \\t]"
+  regularExpression: true
+  description: "ul li"
+- beginString: "^[ \\t]*\\(?(?:[#a-z]|[ivxlxcdm]+|\\d+)[.)][ \\t]"
+  regularExpression: true
+  ignoreCase: true
+  description: "ol li"
+- beginString: "^[\\t ]*:[^\\R:]+?: "
+  regularExpression: true
+  description: "field list"
+- beginString: "^[\\t ]*\\.\\. [a-z]+ ?::"
+  regularExpression: true
+  ignoreCase: true
+  description: "directive"
+- beginString: "^[\\t ]*\\.\\. \\[[^\\]\\R]+\\] "
+  regularExpression: true
+  description: "footnotes"
+types:
+- beginString: "^([-=`:.'\"~^_*+#]{3,})\\R.+\\R\\1$"
+  regularExpression: true
+- beginString: "^.+\\R([-=`:.'\"~^_*+#])\\1{2,}$"
+  regularExpression: true
+commands: []
+values:
+- beginString: "(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+"
+  regularExpression: true
+  description: "url link"
+- beginString: "(?:https?|ftp):\\/\\/[-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\([-_.!~*\\'a-zA-Z0-9;\\/?:\\@&=+\\$,%#]+\\)"
+  regularExpression: true
+  description: "url link with bracket"
+- beginString: "(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+"
+  regularExpression: true
+  description: "mail link"
+- beginString: "\\b[^-=_ \\t\\R](?:\\w|\\d|[-=])*_(?!_)\\b"
+  regularExpression: true
+  description: "single word link"
+- beginString: "\\s\\[#[^\\]]*?\\]_\\b"
+  regularExpression: true
+  description: "foot link"
+- beginString: "\\s\\[\\*\\]_\\b"
+  regularExpression: true
+  description: "foot link"
+- beginString: "\\s\\[\\d+?\\]_\\b"
+  regularExpression: true
+  description: "foot link"
+- beginString: "\\s`[^`]+?`__?\\b"
+  regularExpression: true
+  description: "multi-words link"
+numbers:
+- beginString: "(?<=\\w`):[a-z]+?:"
+  regularExpression: true
+  description: "role"
+- beginString: ":[a-z]+?:(?=`\\w)"
+  regularExpression: true
+  description: "role"
+- beginString: "\\s\\|\\S(?:(?!\\R{2})[^\\|])*?\\|_{0,2}[\\W]"
+  regularExpression: true
+  description: "sub"
+- beginString: "^[\\t ]*\\.\\. (?:\\|[^|\\R]+?\\| )?image ?::\\s.*$"
+  regularExpression: true
+  description: "image"
+- beginString: "^\\R(={4,} [= ]{4,}\\R)(?:.|\\R)+\\1(?=$\\R)"
+  regularExpression: true
+  description: "table"
+- beginString: "^\\R\\+[-+]{3,}\\+\\R(?:(?!\\R{2})(?:.|\\R))+\\+[-+]{3,}\\+(?=$\\R)"
+  regularExpression: true
+  description: "table"
+strings:
+- beginString: " <\\S+>(?=`_)"
+  regularExpression: true
+  description: "url"
+- beginString: "^[\\t ]*\\.\\. _\\S.*(?:\\R[\\t ]+\\S*)?$"
+  regularExpression: true
+  description: "url"
+- beginString: "^[\\t ]*__ .\\S+$"
+  regularExpression: true
+  description: "url"
+characters:
+- beginString: "(?<!\\\\)``(?![ \\t`])(?:(?!\\R{2})(?:.|\\R))+?(?<![\\\\\\t ])``"
+  regularExpression: true
+  description: "code"
+- beginString: "(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\R[\\t ]*(?:\\R(?:[\\t ]*\\R)?([\\t
+    ]+)[^\\R]*)(?:\\R(?:[\\t ]*\\R)?\\1[^\\R]*)*"
+  regularExpression: true
+  ignoreCase: true
+  description: "codeblock"
+- beginString: "^(--?|/)[a-z]((?!  )[a-z0-9_= \\-])* {2,}"
+  regularExpression: true
+  ignoreCase: true
+  description: "option lists"
+comments:
+- beginString: "^(?:\\t| {1,4})?\\.\\.\\s(?![_\\[|]|[a-z]+?::)(?:(?!\\R{2})(.|\\R))*"
+  ignoreCase: true
+  regularExpression: true
+completions: []
+outlineMenu:
+- beginString: "(?<![-=`:.'\"~^_*+#]{2}\\R)^(.+)(?=\\R([-=`:.'\"~^_*+#])\\2{2,}$)"
+  keyString: "$1"
+  description: "section"
+- beginString: "(?<=[-=`:.'\"~^_*+#]{3}\\R)(.+)(?=\\R([-=`:.'\"~^_*+#])\\2{2,}+$)"
+  keyString: "$1"
+  description: "section"
+  bold: true

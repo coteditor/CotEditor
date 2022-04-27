@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class FindPanelTextClipView: NSClipView {
     // MARK: Private Properties
     
     private let leadingPadding: CGFloat = 30  // for history button
-    private let tailingPadding: CGFloat = 22  // for clear button
+    private let trailingPadding: CGFloat = 22  // for clear button
     
     
     
@@ -54,11 +54,12 @@ final class FindPanelTextClipView: NSClipView {
     override var frame: NSRect {
         
         didSet {
-            guard frame.minX < self.leadingPadding else { return }  // avoid infinity loop
+            let leftPadding = self.userInterfaceLayoutDirection == .leftToRight ? self.leadingPadding : self.trailingPadding
             
-            frame.origin.x += self.leadingPadding
-            frame.size.width -= self.leadingPadding
-            frame.size.width -= self.tailingPadding
+            guard frame.minX < leftPadding else { return }  // avoid infinity loop
+            
+            frame.origin.x += leftPadding
+            frame.size.width -= self.leadingPadding + self.trailingPadding
         }
     }
     

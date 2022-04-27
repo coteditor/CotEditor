@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018-2019 CotEditor Project
+// © 2018-2022 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -173,8 +173,8 @@
 "wN3-ao-X42.ibShadowedIsNilPlaceholder" = "Não definido";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "AVc-Ci-UnL"; */
 "AVc-Ci-UnL.ibShadowedIsNilPlaceholder" = "Não definido";
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "r9S-sB-zfs"; */
-"r9S-sB-zfs.ibShadowedIsNilPlaceholder" = "Não definido";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "rpX-lj-tHS"; */
+"rpX-lj-tHS.ibShadowedIsNilPlaceholder" = "Não definido";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
 "Usu-Br-G0a.ibShadowedToolTip" = "Visite o URL";

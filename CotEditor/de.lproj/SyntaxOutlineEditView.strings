@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "Regulärer Ausdruck um Gliederungsmenü zu extrahieren";
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "Regulärer Ausdrücke um Gliederungspostens zu extrahieren";
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
 "vRg-cd-Ib2.headerCell.title" = "Regulärer Ausdruck";
@@ -38,8 +38,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "Beschreibung";
 
-/* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
-"nnO-qN-dYF.title" = "Muster des Menütitels";
+/* Class = "NSTextFieldCell"; title = "Title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "Muster des Titels";
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
 "rqP-22-G2u.title" = "(Leer entspricht der gesamten Zeichenkette)";
 

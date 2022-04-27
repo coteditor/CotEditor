@@ -37,6 +37,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         static let syntaxStyle = "syntaxStyle"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
+        static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
+        static let originalContentString = "originalContentString"
     }
     
     
@@ -54,6 +56,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @Published private(set) var lineEnding: LineEnding
     @Published private(set) var fileAttributes: [FileAttributeKey: Any]?
     
+    let lineEndingScanner: LineEndingScanner
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
@@ -67,6 +70,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private lazy var savePanelAccessoryController = NSViewController.instantiate(storyboard: "SaveDocumentAccessory")
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
+    private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
@@ -74,6 +78,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     private var sytnaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
+    private var windowObserver: AnyCancellable?
     
     private var lastSavedData: Data?  // temporal data used only within saving process
     
@@ -90,16 +95,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let encoding = String.availableStringEncodings.contains(defaultEncoding) ? defaultEncoding : .utf8
         self.fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: (encoding == .utf8) && UserDefaults.standard[.saveUTF8BOM])
         
-        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
+        let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
+        self.lineEnding = lineEnding
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         
         // use the encoding selected by the user in the open panel, if exists
         self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
         
+        // observe for inconsistent line endings
+        self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        
         super.init()
         
         self.hasUndoManager = true
+        
+        self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         
         // observe sytnax style update
         self.sytnaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
@@ -116,6 +127,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
+        coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
+        
+        // store unencoded string but only when incompatible
+        if !self.string.canBeConverted(to: self.fileEncoding.encoding) {
+            coder.encode(self.string, forKey: SerializationKey.originalContentString)
+        }
     }
     
     
@@ -134,6 +151,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         if coder.containsValue(forKey: SerializationKey.isTransient) {
             self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
+        }
+        if coder.containsValue(forKey: SerializationKey.suppressesInconsistentLineEndingAlert) {
+            self.suppressesInconsistentLineEndingAlert = coder.decodeBool(forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
+        }
+        if let string = coder.decodeObject(forKey: SerializationKey.originalContentString) as? String {
+            self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         }
     }
     
@@ -353,22 +376,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isVerticalText = true
         }
         
-        // set read values
-        self.fileEncoding = file.fileEncoding
-        self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
-        
-        // standardize line endings to LF
-        // -> Line endings replacement by other text modifications is processed in
-        //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
-        let string = file.string.replacingLineEndings(with: .lf)
-        
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: file.string)
+        
+        // set read values
+        self.fileEncoding = file.fileEncoding
+        self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: file.string)
             self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
@@ -430,7 +448,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            if !saveOperation.isAutosaving {
+            if !saveOperation.isAutosave {
                 ScriptManager.shared.dispatch(event: .documentSaved, document: self)
             }
         }
@@ -474,9 +492,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.isExecutable, !saveOperation.isAutosaving {
+        if self.isExecutable, !saveOperation.isAutosave {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
-            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions | S_IXUSR
+            attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
         }
         
         return attributes
@@ -594,6 +612,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] need to set string after setting other properties
         printView.string = self.textStorage.string
+        if let selectedRanges = self.textView?.selectedRanges {
+            printView.selectedRanges = selectedRanges
+        }
         
         // detect URLs manually (2019-05 macOS 10.14).
         // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
@@ -612,6 +633,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // setup print panel
         printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
         printOperation.printPanel.options.formUnion([.showsPaperSize, .showsOrientation, .showsScaling])
+        if printView.selectedRanges.count == 1, !printView.selectedRange.isEmpty {
+            printOperation.printPanel.options.formUnion(.showsPrintSelection)
+        }
         
         return printOperation
     }
@@ -750,18 +774,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// Return whole string in the current text storage which document's line endings are already applied to.
-    ///
-    /// - Note: The internal text storage has always LF for its line ending.
+    /// Return whole string in the current text storage.
     var string: String {
         
-        let editorString = self.textStorage.string.immutable  // line ending is always LF
-        
-        if self.lineEnding == .lf {
-            return editorString
-        }
-        
-        return editorString.replacingLineEndings(with: self.lineEnding)
+        self.textStorage.string
     }
     
     
@@ -830,17 +846,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         assert(Thread.isMainThread)
         
-        guard lineEnding != self.lineEnding else { return }
+        guard
+            lineEnding != self.lineEnding ||
+            self.string.lineEndingRanges().count > 1
+        else { return }
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding] target in
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.string] target in
                 target.changeLineEnding(to: currentLineEnding)
+                target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
             }
             undoManager.setActionName(String(format: "Line Endings to “%@”".localized, lineEnding.name))
         }
         
         // update line ending
+        self.textStorage.replaceLineEndings(with: lineEnding)
         self.lineEnding = lineEnding
         
         // update UI
@@ -896,7 +917,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change line ending with sender's tag
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
-        guard let lineEnding = LineEnding(index: sender.tag) else { return assertionFailure() }
+        guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
         
         self.changeLineEnding(to: lineEnding)
     }
@@ -965,7 +986,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                             alert.buttons.last?.hasDestructiveAction = true
                             
                             documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
-                            let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
+                            let returnCode = await alert.beginSheetModal(for: documentWindow)
                             
                             guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
                                 completionHandler(false)
@@ -1006,7 +1027,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
         
-        self.insert(string: string)
+        self.insert(string: string, at: .replaceSelection)
     }
     
     
@@ -1028,6 +1049,22 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         viewController.invalidateStyleInTextStorage()
         if self.isVerticalText {
             viewController.verticalLayoutOrientation = true
+        }
+        
+        // show alert if line endings are inconsistent
+        if !self.suppressesInconsistentLineEndingAlert,
+           !self.lineEndingScanner.inconsistentLineEndings.isEmpty
+        {
+            if self.windowForSheet?.isVisible == true {
+                self.showInconsistentLineEndingAlert()
+            } else {
+                // wait for the window to appear
+                self.windowObserver = self.windowForSheet?
+                    .publisher(for: \.isVisible)
+                    .first { $0 }
+                    .delay(for: .seconds(0.15), scheduler: RunLoop.main)  // wait for window open animation
+                    .sink { [weak self] _ in self?.showInconsistentLineEndingAlert() }
+            }
         }
     }
     
@@ -1053,6 +1090,44 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard self.string.canBeConverted(to: self.fileEncoding.encoding) else {
             throw EncodingError(kind: .lossySaving, fileEncoding: self.fileEncoding, attempter: self)
+        }
+    }
+    
+    
+    /// Display alert about inconsistent line endings.
+    private func showInconsistentLineEndingAlert() {
+        
+        assert(Thread.isMainThread)
+        
+        guard !self.suppressesInconsistentLineEndingAlert else { return }
+        guard let documentWindow = self.windowForSheet else { return assertionFailure() }
+        
+        let alert = NSAlert()
+        alert.alertStyle = .warning
+        alert.messageText = "The document has inconsistent line endings.".localized
+        alert.informativeText = String(format: "Do you want to convert all line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
+        alert.addButton(withTitle: "Convert".localized)
+        alert.addButton(withTitle: "Review".localized)
+        alert.showsSuppressionButton = true
+        alert.suppressionButton?.title = "Don’t ask again for this document".localized
+        alert.showsHelp = true
+        alert.helpAnchor = "inconsistent_line_endings"
+        
+        alert.beginSheetModal(for: documentWindow) { returnCode in
+            if alert.suppressionButton?.state == .on {
+                self.suppressesInconsistentLineEndingAlert = true
+                self.invalidateRestorableState()
+            }
+            
+            switch returnCode {
+                case .alertFirstButtonReturn:  // == Convert
+                    self.changeLineEnding(to: self.lineEnding)
+                case .alertSecondButtonReturn:  // == Review
+                    (self.windowControllers.first?.contentViewController as? WindowContentViewController)?
+                        .showSidebarPane(index: .warnings)
+                default:
+                    fatalError()
+            }
         }
     }
     
@@ -1251,7 +1326,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+            windowContentController?.showSidebarPane(index: .warnings)
         }
     }
     

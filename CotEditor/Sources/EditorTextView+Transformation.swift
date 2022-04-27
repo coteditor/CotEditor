@@ -138,7 +138,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithNFD(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFD") {
-            $0.decomposedStringWithCanonicalMapping
+            $0.normalize(in: .nfd)
         }
     }
     
@@ -147,7 +147,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithNFC(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFC") {
-            $0.precomposedStringWithCanonicalMapping
+            $0.normalize(in: .nfc)
         }
     }
     
@@ -156,7 +156,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithNFKD(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFKD") {
-            $0.decomposedStringWithCompatibilityMapping
+            $0.normalize(in: .nfkd)
         }
     }
     
@@ -165,7 +165,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithNFKC(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFKC") {
-            $0.precomposedStringWithCompatibilityMapping
+            $0.normalize(in: .nfkc)
         }
     }
     
@@ -174,7 +174,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithNFKCCF(_ sender: Any?) {
         
         self.transformSelection(actionName: "NFKC Casefold".localized) {
-            $0.precomposedStringWithCompatibilityMappingWithCasefold
+            $0.normalize(in: .nfkcCasefold)
         }
     }
     
@@ -183,7 +183,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: Any?) {
         
         self.transformSelection(actionName: "Modified NFC".localized) {
-            $0.precomposedStringWithHFSPlusMapping
+            $0.normalize(in: .modifiedNFC)
         }
     }
     
@@ -192,7 +192,7 @@ extension EditorTextView {
     @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: Any?) {
         
         self.transformSelection(actionName: "Modified NFD".localized) {
-            $0.decomposedStringWithHFSPlusMapping
+            $0.normalize(in: .modifiedNFD)
         }
     }
     
@@ -226,9 +226,9 @@ private extension NSTextView {
         }
         
         let selectedRanges = self.selectedRanges.map(\.rangeValue)
-        var strings = [String]()
-        var appliedRanges = [NSRange]()
-        var newSelectedRanges = [NSRange]()
+        var strings: [String] = []
+        var appliedRanges: [NSRange] = []
+        var newSelectedRanges: [NSRange] = []
         var deltaLocation = 0
         
         for range in selectedRanges where !range.isEmpty {

@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "inspetor";
 "outline" = "plano";
+"warnings" = "warnings";  // FIXME: added
 "incompatible characters" = "Caracteres Incompatíveis";
 "status bar" = "barra de estado";
 "editor" = "editor";
@@ -83,7 +84,7 @@
 "Empty find string" = "String de busca vazia";
 "The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
 "Input text to find." = "Digite o texto a buscar.";
-"Select the search scope in the document or disable the “in selection” option." = "Select the search scope in the document or disable the “in selection” option.";  // FIXME: added
+"Select the search scope in the document or turn off the “in selection” option." = "Select the search scope in the document or turn off the “in selection” option.";  // FIXME: added
 
 // accessibility announcement
 "Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
@@ -93,16 +94,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "Substitua a seleção atual pelo texto de substituição e busque a ocorrência seguinte.";
 "Replace the current selection with the replacement text." = "Substitua a seleção atual pelo texto de substituição.";
 "Not Found" = "Não Encontrado";
-"%@ found" = "%@ encontrado(s)";  // %@ is number of founds
+"%i found" = "%i encontrado(s)";  // %i is number of founds
 "Not Replaced" = "Não Substituído";
-"%@ replaced" = "%@ substituído(s)";  // %@ is number of replaced
+"%i replaced" = "%i substituído(s)";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Nenhuma string encontrada em “%@”.";
 "Found one string in “%@”." = "1 string encontrada em “%@”.";
-"Found %@ strings in “%@”." = "%@ strings encontradas em “%@”.";
+"Found %i strings in “%@”." = "%i strings encontradas em “%@”.";
 
 
 /* MARK: Regular Expression Reference */
@@ -198,6 +199,13 @@
 "Do you want to change encoding and show incompatible characters?" = "Deseja alterar a codificação e mostrar os caracteres incompatíveis?";
 "Change Encoding" = "Alterar Codificação";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
+"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"Convert" = "Converter";
+"Review" = "Review";  // FIXME: added
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "O arquivo foi modificado por outro aplicativo. Também há alterações não salvas no CotEditor.";
 "The file has been modified by another application." = "O arquivo foi modificado por outro aplicativo.";
@@ -240,7 +248,7 @@
 "Horizontal" = "Horizontal";
 "Vertical" = "Vertical";
 // tooltip
-"Toggle text orientation" = "Alterne a orientação do texto";
+"Switch text orientation" = "Alterne a orientação do texto";
 
 "Indent" = "Recuo";
 "Shift Left" = "Deslocar à Esquerda";
@@ -256,7 +264,7 @@
 
 "Tab Style" = "Estilo da Tabulação";
 // tooltip
-"Disable expanding tabs to spaces" = "Desative a expansão de tabulações automática";
+"Turn off expanding tabs to spaces" = "Desative a expansão de tabulações automática";
 "Expand tabs to spaces automatically" = "Ative a expansão de tabulações automática";
 "Change tab width" = "Altere a largura da tabulação";
 // menu
@@ -308,7 +316,7 @@
 
 "Fonts" = "Fontes";
 // tooltip
-"Show Font Panel" = "Exibir Painel de Fontes";
+"Show Fonts" = "Mostrar tipos de letra";
 
 
 
@@ -370,13 +378,21 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Filtros Recentes";  // FIXME: machine-translated (native check required)
-"Clear Recents" = "Limpar Recentes";
+"Clear Recent Filters" = "Limpar Recentes";
 "No Recent Filter" = "Nenhum filtro recente";  // FIXME: machine-translated (native check required)
 "No Filter Results" = "Nenhum Resultado do Filtro";  // FIXME: machine-translated (native check required)
 
+// Warnings
+"No issues found." = "No issues found.";  // FIXME: added
+
 // Incompatible characters
-"No incompatible characters were found." = "Nenhum caractere incompatível encontrado.";
 "Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
+"Found an incompatible character." = "Found an incompatible character.";  // FIXME: added
+"Found %i incompatible characters." = "Found %i incompatible characters.";  // %i is the number of characters  // FIXME: added
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF  // FIXME: added
 
 
 
@@ -469,8 +485,7 @@
 // Coloring indicator
 "Coloring text…" = "Colorindo texto…";
 "Please wait for a while." = "Aguarde um momento.";
-"Extracting %@…" = "Extraindo %@…";
-"Preparing to color…" = "Preparando a coloração…";  // FIXME: machine-translated (native check required)
+"Parsing document…" = "Parsing document…";  // FIXME: updated
 "Applying colors to text…" = "Aplicando cores ao texto…";
 "keywords" = "palavras-chave";
 "commands" = "comandos";
@@ -482,7 +497,6 @@
 "strings" = "strings";
 "characters" = "caracteres";
 "comments" = "comentários";
-"comments and quoted texts" = "comentários e texto entre aspas";
 
 
 
@@ -492,6 +506,16 @@
 // Color list name
 "Stylesheet Keywords" = "Palavras-chave da Folha de Estilo";
 
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recentes";
+"Clear Recents" = "Limpar Recentes";
+"Invalid code" = "Codice non valido";
+
+
+
+/* MARK: Preferences */
 
 // General pane
 // Autosave setting update alert
@@ -554,7 +578,7 @@
 "Strings" = "Strings";
 "Characters" = "Caracteres";
 "Comments" = "Comentários";
-"Outline Menu" = "Menu de Plano";
+"Outline" = "Plano";
 "Completion List" = "Lista de Preenchimento";
 "File Mapping" = "Mapeamento de Arquivo";
 "Style Info" = "Informações do Estilo";
@@ -564,7 +588,7 @@
 "No error found." = "Nenhum erro encontrado.";
 "An error found!" = "1 erro encontrado!";
 "%i errors found!" = "%i erros encontrados!";
-"outline menu" = "menu de plano";
+"outline" = "plano";
 
 
 
@@ -594,7 +618,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Tem certeza de que deseja apagar o estilo de sintaxe “%@”?";
-"Deleted style can’t be restored." = "Os estilos apagados não podem ser restaurados.";
 "Delete" = "Apagar";
 "Replace" = "Substituir";
 
@@ -628,6 +651,13 @@
 
 
 
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.";  // FIXME: added
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: added
+
+
+
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
 "Insert Text %li" = "Inserir Texto %li";
@@ -648,7 +678,7 @@
 "Open Scripts Folder" = "Abrir Pasta de Scripts";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Opção + clique” para abrir o script no editor.";
+"Option-click to open script in editor." = "Opção-clique para abrir o script no editor.";
 
 
 
@@ -688,7 +718,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
+"The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
 
 
 /* String extension */

@@ -162,7 +162,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         // cancel input
         guard
-            input != "\u{1b}",  // = ESC key  -> treat esc key as cancel
+            input != "\u{1b}",  // = ESC key  -> treat Esc key as cancel
             input != oldShortcut?.description  // not edited
         else {
             // reset text field display
@@ -266,7 +266,7 @@ private final class SnippetItem: NSObject {
 
 final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
-    @objc private dynamic var snippets = [SnippetItem]()
+    @objc private dynamic var snippets: [SnippetItem] = []
     
     @IBOutlet private var snippetArrayController: NSArrayController?
     @IBOutlet private weak var formatTextView: TokenTextView?

@@ -36,7 +36,8 @@
 
 // Accessibility labels
 "inspector" = "denetçi";
-"outline" = "dış hat";
+"outline" = "ana hat";
+"warnings" = "uyarılar";
 "incompatible characters" = "uyumsuz karakterler";
 "status bar" = "durum çubuğu";
 "editor" = "düzenleyici";
@@ -82,7 +83,7 @@
 "Empty find string" = "Bulunacak dizi boş";
 "The option “in selection” is enabled, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
 "Input text to find." = "Bulunacak girdi metni";
-"Select the search scope in the document or disable the “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
+"Select the search scope in the document or turn off the “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
 
 // accessibility announcement
 "Search wrapped." = "Arama baştan sürüyor";  // announced when the search restarted from the beginning.
@@ -92,16 +93,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
 "Not Found" = "Bulunamadı";
-"%@ found" = "%@ bulundu";  // %@ is number of founds
+"%i found" = "%i bulundu";  // %i is number of founds
 "Not Replaced" = "Değiştirilmedi";
-"%@ replaced" = "%@ değiştirildi";  // %@ is number of replaced
+"%i replaced" = "%i değiştirildi";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
 "Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
-"Found %@ strings in “%@”." = "%2$@ içinde %1$@ dizi bulundu.";
+"Found %i strings in “%@”." = "%2$@ içinde %1$i dizi bulundu.";
 
 
 /* MARK: Regular Expression Reference */
@@ -127,9 +128,9 @@
 "1 or 0 times" = "1 veya 0 kez";
 "0 or more times" = "0 veya daha çok kez";
 "1 or more times" = "1 veya daha çok kez";
-"at least n but not more than m times" = "en az n; ancak m'den fazla değil";
+"at least n but not more than m times" = "en az n; ancak m’den fazla değil";
 "at least n times" = "en az n kez";
-"at least 0 but not more than n times" = "en az 0; ancak n'den fazla değil";
+"at least 0 but not more than n times" = "en az 0; ancak n’den fazla değil";
 "n times" = "n kez";
 
 "Extended Groups" = "Genişletilmiş Gruplar";
@@ -197,10 +198,17 @@
 "Do you want to change encoding and show incompatible characters?" = "Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";
 "Change Encoding" = "Kodlamayı Değiştir";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "Belgenin satır sonları tutarsız.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Tüm satır sonlarını bu belgedeki en yaygın satır sonu olan %@ olarak değiştirmek istiyor musunuz?";
+"Don’t ask again for this document" = "Bu belge için yeniden sorma";
+"Convert" = "Dönüştür";
+"Review" = "Gözden Geçir";
+
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor'da kaydedilmemiş değişiklikler var.";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";
 "The file has been modified by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";
-"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor'da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
 
@@ -238,7 +246,7 @@
 "Horizontal" = "Yatay";
 "Vertical" = "Dikey";
 // tooltip
-"Toggle text orientation" = "Metin yönlendirmesini değiştir";
+"Switch text orientation" = "Metin yönlendirmesini değiştir";
 
 "Indent" = "Girintile";
 "Shift Left" = "Sola Kaydır";
@@ -254,7 +262,7 @@
 
 "Tab Style" = "Sekme Biçemi";
 // tooltip
-"Disable expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırak";
+"Turn off expanding tabs to spaces" = "Sekmeleri boşluklara dönüştürmeyi devre dışı bırak";
 "Expand tabs to spaces automatically" = "Sekmeleri kendiliğinden boşluklara dönüştür";
 "Change tab width" = "Sekme genişliğini değiştir";
 // menu
@@ -294,7 +302,7 @@
 
 "Find" = "Bul";
 // tooltip
-"Show Find & Replace" = "Bul ve Değiştir'i göster";
+"Show Find & Replace" = "Bul ve Değiştir’i göster";
 
 "Print" = "Yazdır";
 // tooltip
@@ -306,7 +314,7 @@
 
 "Fonts" = "Fontlar";
 // tooltip
-"Show Font Panel" = "Font Bölümünü Göster";
+"Show Fonts" = "Fontları Göster";
 
 
 
@@ -368,13 +376,21 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Son Filtreler";
-"Clear Recents" = "Son Filtreleri Temizle";
+"Clear Recent Filters" = "Son Filtreleri Temizle";
 "No Recent Filter" = "Son Filtre Yok";
 "No Filter Results" = "Filtre Sonucu Yok";
 
+// Warnings
+"No issues found." = "Sorun bulunamadı.";
+
 // Incompatible characters
-"No incompatible characters were found." = "Uyumsuz karakter bulunamadı.";
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
+"Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
+"Found %i incompatible characters." = "%i uyumsuz karakter bulundu.";  // %i is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "%@ dışında %i başka satır sonu bulundu.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 /* MARK: EditorTextView */
@@ -432,7 +448,7 @@
 "Wrap Lines" = "Satırları Kaydır";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Preferences" = "Görünmez karakterleri göstermek için ilgili ayarı Tercihler'den değiştirin";
+"To show invisible characters, set them in Preferences" = "Görünmez karakterleri göstermek için ilgili ayarı Tercihler’den değiştirin";
 
 
 
@@ -456,9 +472,9 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"Jump to previous outline item" = "Bir önceki anahat ögesine atla";
-"Jump to next outline item" = "Bir sonraki anahat ögesine atla";
-"Extracting Outline…" = "Anahat çıkarılıyor…";
+"Jump to previous outline item" = "Bir önceki ana hat ögesine atla";
+"Jump to next outline item" = "Bir sonraki ana hat ögesine atla";
+"Extracting Outline…" = "Ana hat çıkarılıyor…";
 
 
 
@@ -466,8 +482,7 @@
 // Coloring indicator
 "Coloring text…" = "Metin renklendiriliyor…";
 "Please wait for a while." = "Lütfen bir süre bekleyin.";
-"Extracting %@…" = "%@ çıkarılıyor…";
-"Preparing to color…" = "Renklendirmeye hazırlanıyor…";
+"Parsing document…" = "Belge ayrıştırılıyor…";
 "Applying colors to text…" = "Metne renkler uygulanıyor…";
 "keywords" = "anahtar sözcükler";
 "commands" = "komutlar";
@@ -479,7 +494,6 @@
 "strings" = "diziler";
 "characters" = "karakterler";
 "comments" = "yorumlar";
-"comments and quoted texts" = "yorumlar ve tırnaklı metinler";
 
 
 
@@ -490,10 +504,20 @@
 "Stylesheet Keywords" = "Stil Sayfası Anahtar Sözcükleri";
 
 
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Son Kullanılanlar";
+"Clear Recents" = "Son Kullanılanları Sil";
+"Invalid code" = "Geçersiz Kod";
+
+
+
+/* MARK: Preferences */
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
-"Do you want to restart CotEditor now?" = "CotEditor'ü şimdi yeniden başlatmak istiyor musunuz?";
+"Do you want to restart CotEditor now?" = "CotEditor’ü şimdi yeniden başlatmak istiyor musunuz?";
 "Restart Now" = "Şimdi Yeniden Başlat";
 "Later" = "Daha Sonra";
 // command-line tool
@@ -534,7 +558,7 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Geçerli 'cot' sembolik bağı, çalışan CotEditor'ü hedeflemiyor.";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Geçerli 'cot' sembolik bağı, çalışan CotEditor’ü hedeflemiyor.";
 "The current 'cot' symbolic link may target an invalid path." = "Geçerli 'cot' sembolik bağı, geçersiz bir yolu hedefleyebilir.";
 
 
@@ -551,7 +575,7 @@
 "Strings" = "Diziler";
 "Characters" = "Karakterler";
 "Comments" = "Yorumlar";
-"Outline Menu" = "Anahat Menüsü";
+"Outline" = "Ana Hat";
 "Completion List" = "Tamamlama Listesi";
 "File Mapping" = "Dosya Eşlemleme";
 "Style Info" = "Biçem Bilgisi";
@@ -561,7 +585,7 @@
 "No error found." = "Hata bulunamadı.";
 "An error found!" = "Bir hata bulundu!";
 "%i errors found!" = "%i hata bulundu!";
-"outline menu" = "anahat menüsü";
+"outline" = "ana hat";
 
 
 
@@ -591,7 +615,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "“%@” sözdizim biçemini silmek istediğinize emin misiniz?";
-"Deleted style can’t be restored." = "Silinen biçemler geri yüklenemez.";
 "Delete" = "Sil";
 "Replace" = "Değiştir";
 
@@ -652,7 +675,7 @@
 "Open Scripts Folder" = "Betikler Klasörünü Aç";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Option + tık”, betiği düzenleyicide açar.";
+"Option-click to open script in editor." = "Option-tık, betiği düzenleyicide açar.";
 
 
 
@@ -692,7 +715,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu";
+"The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu";
 
 
 /* String extension */

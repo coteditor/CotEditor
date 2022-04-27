@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,6 +37,22 @@ extension RangeReplaceableCollection where Element: Equatable {
         self.remove(at: index)
         
         return index
+    }
+    
+    
+    /// Add a new element to the end of the collection by keeping all the collection's elements unique.
+    ///
+    /// - Parameters:
+    ///   - element: The element to append.
+    ///   - maximum: The muximum number of the elements to keep in the collection. The overflowed elements will be removed.
+    mutating func appendUnique(_ element: Element, maximum: Int) {
+        
+        self.removeAll { $0 == element }
+        self.append(element)
+        
+        if self.count > maximum {
+            self.removeFirst(self.count - maximum)
+        }
     }
     
 }
@@ -77,7 +93,7 @@ extension Sequence where Element: Equatable {
     /// An array consists of unique elements of receiver keeping ordering.
     var unique: [Element] {
         
-        return self.reduce(into: []) { (unique, element) in
+        self.reduce(into: []) { (unique, element) in
             guard !unique.contains(element) else { return }
             
             unique.append(element)
@@ -102,11 +118,22 @@ extension Dictionary {
     
     /// Return a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
     ///
-    /// - Parameter keyPath:  The keyPath to the value to transform key. Every transformed key must be unique.
+    /// - Parameter keyPath: The keyPath to the value to transform key. Every transformed key must be unique.
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
     func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
         
         return self.mapKeys { $0[keyPath: keyPath] }
+    }
+    
+    
+    /// Syntax suger to use RawRepresentable keys in dictionaries whose key is the actual raw value.
+    ///
+    /// - Parameter key: The raw representable whose raw value is the one of the receiver's key.
+    /// - Returns: The value corresponding to the given key.
+    subscript<K>(_ key: K) -> Value? where K: RawRepresentable, K.RawValue == Key  {
+        
+        get { self[key.rawValue] }
+        set { self[key.rawValue] = newValue }
     }
     
 }
@@ -161,11 +188,11 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate.
     func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        return try self.reduce(0) { try predicate($1) ? $0 + 1 : $0 }
+        return try self.filter(predicate).count
     }
     
     
-    /// Count up elements by enumerating collection until a element shows up that doesn't satisfy the given predicate.
+    /// Count up elements by enumerating collection until encountering the element that doesn't satisfy the given predicate.
     ///
     /// - Parameters:
     ///    - predicate: A closure that takes an element of the sequence as its argument

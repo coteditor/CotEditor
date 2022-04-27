@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -76,6 +76,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                       let lineNumberView = self?.lineNumberView
                 else { return assertionFailure() }
                 
+                // set scroller location
+                (self?.textView?.enclosingScrollView as? BidiScrollView)?.scrollerDirection = (writingDirection == .rightToLeft) ? .rightToLeft : .leftToRight
+                
+                // set line number view location
                 let index = writingDirection == .rightToLeft ? stackView.arrangedSubviews.count - 1 : 0
                 
                 guard stackView.arrangedSubviews[safe: index] != lineNumberView else { return }
@@ -94,17 +98,18 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// text will be edited
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
-        // standardize line endings to LF
-        // -> Line endings replacement on file read is processed in `Document.read(from:ofType:).
+        if textView.undoManager?.isUndoing == true { return true }  // = undo
+        
+        guard let textView = textView as? EditorTextView else { return true }
+        
+        if textView.isApprovedTextChange { return true }
+        
+        // standardize line endings to the document line ending
         if let replacementString = replacementString,  // = only attributes changed
-            !replacementString.isEmpty,  // = text deleted
-            textView.undoManager?.isUndoing != true,  // = undo
-            let lineEnding = replacementString.detectedLineEnding,  // = no line endings
-            lineEnding != .lf
+           replacementString.lineEndingRanges().map(\.item).contains(where: { $0 != textView.lineEnding })
         {
-            return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
-                                     range: affectedCharRange,
-                                     selectedRange: nil)
+            return !textView.replace(with: replacementString.replacingLineEndings(with: textView.lineEnding),
+                                     range: affectedCharRange, selectedRange: nil)
         }
         
         return true
@@ -169,6 +174,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
         inputViewController.completionHandler = { [unowned textView] (character) in
+            // flag to skip line ending sanitization
+            textView.isApprovedTextChange = true
+            defer { textView.isApprovedTextChange = false }
+            
             textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
         }
         
@@ -183,17 +192,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
-        guard let textView = self.textView, textView.selectsSingleCharacter else { return assertionFailure() }
-        
-        var selectedString = (textView.string as NSString).substring(with: textView.selectedRange)
-        
-        // apply document's line ending
-        let documentLineEnding = textView.document?.lineEnding ?? .lf
-        if documentLineEnding != .lf, selectedString.detectedLineEnding == .lf {
-            selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
-        }
-        
-        guard let character = selectedString.first else { return }
+        guard
+            let textView = self.textView,
+            textView.selectsSingleCharacter,
+            let character = (textView.string as NSString).substring(with: textView.selectedRange).first
+        else { return assertionFailure() }
         
         let popoverController = CharacterPopoverController.instantiate(for: character)
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero

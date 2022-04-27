@@ -4,47 +4,47 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="invisible characters, invisibles, control characters, space, tab, line ending"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Displaying invisible characters</title>
+	<title>Display invisible characters</title>
 </head>
 
 <body>
 
-<h1>Displaying invisible characters</h1>
+<h1>Display invisible characters</h1>
 
 <p>The Invisible Characters feature allows you to draw invisible characters, such as special characters for formatting, in a document with alternative symbols so that you can find where they are.</p>
 
 
-<h2>Toggling visibility of invisible characters</h2>
+<h2>Change visibility of invisible characters</h2>
 
 <h3>Temporary changing the current document </h3>
 
-<p>You can toggle the visibility of invisible characters in the current document by performing one of the following:</p>
+<p>You can switch the visibility of invisible characters in the current document by performing one of the following:</p>
 
 <ul>
-	<li>Choose “Show/Hide Invisible Characters” from the Format menu at the top of your screen.</li>
-	<li>Select “Invisibles” button in the window toolbar (The “Invisibles” button can be added by customizing toolbar).</li>
-	<li>Select “Invisibles” button in the Touch Bar (The “Invisibles” button can be added by customizing Touch Bar).</li>
+	<li>Choose Show/Hide Invisible Characters command from the Format menu at the top of your screen.</li>
+	<li>Select Invisibles button in the window toolbar (The Invisibles button can be added by customizing toolbar).</li>
+	<li>Select Invisibles button in the Touch Bar (The Invisibles button can be added by customizing the Touch Bar).</li>
 </ul>
 
-<p>The change here doesn’t override the CotEditor's default setting.</p>
+<p>The change here doesn’t override the CotEditor’s default setting.</p>
 
 
 <h3>Default setting</h3>
 
-<p>You can change the default setting of the invisible visibility in the Preferences' <a href="pref_appearance.html">Appearance</a> pane by selecting “Show invisible character” checkbox.</p>
+<p>You can change the default setting of the invisible visibility in the Preferences’ <a href="pref_appearance.html">Appearance</a> pane by selecting “Show invisible character” checkbox.</p>
 
 
-<h3>Printing invisible characters on print</h3>
+<h3>Print invisible characters on print</h3>
 
-<p>You can set whether printing also invisible characters on print in the Preferences' <a href="pref_print.html">Print</a> pane for the default setting, or in the print dialog for an individual document.</p>
+<p>You can set whether printing also invisible characters on print in the Preferences’ <a href="pref_print.html">Print</a> pane for the default setting, or in the print dialog for an individual document.</p>
 
 
 
 <h2>Types of invisible characters</h2>
 
-<p>In the Preferences' <a href="pref_appearance.html">Appearance</a> pane, you can set which types of invisible characters are shown when the invisible character display is enabled. The types correspond to the following characters:</p>
+<p>In the Preferences’ <a href="pref_appearance.html">Appearance</a> pane, you can set which types of invisible characters are shown when the invisible character display is enabled. The types correspond to the following characters:</p>
 
 <table>
 	<style>
@@ -69,6 +69,9 @@
 			<td><ul>
 				<li>U+000A <small>(LINE FEED)</small></li>
 				<li>U+000D <small>(CARRIAGE RETURN)</small></li>
+				<li>U+0085 <small>(NEW LINE)</small></li>
+				<li>U+2028 <small>(LINE SEPARATOR)</small></li>
+				<li>U+2029 <small>(PARAGRAPH SEPARATOR)</small></li>
 			</ul></td>
 			<td>The control characters indicating a line break. The CRLF type line ending (combination of <code>U+000D</code> and <code>U+000A</code>) is also drawn as a single character.</td>
 		</tr>

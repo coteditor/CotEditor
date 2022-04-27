@@ -45,24 +45,6 @@ final class LineEndingTests: XCTestCase {
     }
     
     
-    func testDetection() {
-        
-        XCTAssertNil("".detectedLineEnding)
-        XCTAssertNil("a".detectedLineEnding)
-        XCTAssertEqual("\n".detectedLineEnding, .lf)
-        XCTAssertEqual("\r".detectedLineEnding, .cr)
-        XCTAssertEqual("\r\n".detectedLineEnding, .crlf)
-        XCTAssertEqual("abc\u{2029}def".detectedLineEnding, .paragraphSeparator)
-        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, .crlf)  // just check the first new line
-    
-        let bom = "\u{feff}"
-        let string = "\(bom)\r\n"
-        XCTAssertEqual(string.count, 2)
-        XCTAssertEqual(string.immutable.count, 1)
-        XCTAssertEqual(string.detectedLineEnding, .crlf)
-    }
-    
-    
     func testCount() {
         
         XCTAssertEqual("".countExceptLineEnding, 0)
@@ -72,21 +54,41 @@ final class LineEndingTests: XCTestCase {
     }
     
     
-    func testReplacement() {
+    func testLineEndingRanges() {
         
-        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
+        let string = "\rfoo\r\nbar \n \nb \n\r uz\u{2029}moin\r\n"
+        let expected: [ItemRange<LineEnding>] = [
+            .init(item: .cr, location: 0),
+            .init(item: .crlf, location: 4),
+            .init(item: .lf, location: 10),
+            .init(item: .lf, location: 12),
+            .init(item: .lf, location: 15),
+            .init(item: .cr, location: 16),
+            .init(item: .paragraphSeparator, location: 20),
+            .init(item: .crlf, location: 25),
+        ]
+        
+        XCTAssert("".lineEndingRanges().isEmpty)
+        XCTAssert("abc".lineEndingRanges().isEmpty)
+        XCTAssertEqual(string.lineEndingRanges(), expected)
     }
     
     
-    func testRangeConversion() {
+    func testReplacement() {
         
-        let lfToCrlfRange = "a\nb\nc".convert(range: NSRange(location: 2, length: 2), from: .lf, to: .crlf)
-        XCTAssertEqual(lfToCrlfRange.location, 3)
-        XCTAssertEqual(lfToCrlfRange.length, 3)
+        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
+        XCTAssertEqual("foo\r\nbar\n".replacingLineEndings([.lf], with: .cr), "foo\r\nbar\r")
+    }
+    
+}
+
+
+
+private extension ItemRange where Item == LineEnding {
+    
+    init(item: LineEnding, location: Int) {
         
-        let implicitConvertedRange = "a\r\nb\r\nc".convert(range: NSRange(location: 3, length: 3), to: .lf)
-        XCTAssertEqual(implicitConvertedRange.location, 2)
-        XCTAssertEqual(implicitConvertedRange.length, 2)
+        self.init(item: item, range: NSRange(location: location, length: item.length))
     }
     
 }

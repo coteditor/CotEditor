@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "ispettore";
 "outline" = "outline";
+"warnings" = "avvisi";
 "incompatible characters" = "caratteri incompatibili";
 "status bar" = "barra di stato";
 "editor" = "editor";
@@ -83,26 +84,26 @@
 "Empty find string" = "Stringa di ricerca vuota";
 "The option “in selection” is enabled, although nothing is selected." = "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla.";
 "Input text to find." = "Inserire il testo da cercare.";
-"Select the search scope in the document or disable the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
+"Select the search scope in the document or turn off the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
 
 // accessibility announcement
-"Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
+"Search wrapped." = "Ricerca dall’inizio";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Sostituisci la selezione attuale con il testo sostitutivo, poi passa al risultato successivo.";
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
-"%@ found" = "%@ trovati";  // %@ is number of founds
+"%i found" = "%i trovati";  // %i is number of founds
 "Not Replaced" = "Non sostituiti";
-"%@ replaced" = "%@ sostituzioni";  // %@ is number of replaced
+"%i replaced" = "%i sostituzioni";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Nessuna stringa trovata in “%@”.";
 "Found one string in “%@”." = "Trovata una stringa in “%@”.";
-"Found %@ strings in “%@”." = "Trovate %@ stringhe in %@”.";
+"Found %i strings in “%@”." = "Trovate %i stringhe in %@”.";
 
 
 /* MARK: Regular Expression Reference */
@@ -198,6 +199,13 @@
 "Do you want to change encoding and show incompatible characters?" = "Si desidera cambiare codifica e mostrare i caratteri incompatibili?";
 "Change Encoding" = "Cambia modifica";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "Il documento presenta dei fine riga non coerenti.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Si desidera convertire tutti i fine riga in %@, il fine riga più comune del documento?";
+"Don’t ask again for this document" = "Non chiedere più per questo documento";
+"Convert" = "Converti";
+"Review" = "Rivedi";  // this button displays the inconsistent line endings list in the Warnings pane
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "Il file è stato modificato da un’altra applicazione. Ci sono anche delle modifiche non salvate in CotEditor.";
 "The file has been modified by another application." = "Il file è stato modificato da un’altra applicazione.";
@@ -240,7 +248,7 @@
 "Horizontal" = "Orizzontale";
 "Vertical" = "Verticale";
 // tooltip
-"Toggle text orientation" = "Seleziona orientamento orizzontale o verticale del testo";
+"Switch text orientation" = "Seleziona orientamento orizzontale o verticale del testo";
 
 "Indent" = "Rientra";
 "Shift Left" = "Scorri a sinistra";
@@ -256,7 +264,7 @@
 
 "Tab Style" = "Stile Pannello";
 // tooltip
-"Disable expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
+"Turn off expanding tabs to spaces" = "Disabilita l’espansione automatica dei Tab";
 "Expand tabs to spaces automatically" = "Abilita l’espansione automatica dei Tab";
 "Change tab width" = "Cambia larghezza pannello";
 // menu
@@ -308,7 +316,7 @@
 
 "Fonts" = "Font";
 // tooltip
-"Show Font Panel" = "Mostra il pannello dei font";
+"Show Fonts" = "Mostra font";
 
 
 
@@ -370,13 +378,21 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Filtri recenti";  // FIXME: machine-translated (native check required)
-"Clear Recents" = "Cancella recenti";  // FIXME: machine-translated (native check required)
+"Clear Recent Filters" = "Cancella recenti";  // FIXME: machine-translated (native check required)
 "No Recent Filter" = "Nessun filtro recente";  // FIXME: machine-translated (native check required)
 "No Filter Results" = "Nessun risultato del filtro";  // FIXME: machine-translated (native check required)
 
+// Warnings
+"No issues found." = "Nessun problema rilevato.";
+
 // Incompatible characters
-"No incompatible characters were found." = "Nessun carattere incompatibile trovato.";
 "Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
+"Found an incompatible character." = "Rilevato un carattere incompatibile.";
+"Found %i incompatible characters." = "Rilevati %i caratteri incompatibili.";  // %i is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF  // FIXME: added
+"Found %i line endings other than %@." = "Rilevate %i righe che non terminano con %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF  // FIXME: added
 
 
 
@@ -469,8 +485,7 @@
 // Coloring indicator
 "Coloring text…" = "Colorando testo…";
 "Please wait for a while." = "Si prega di attendere.";
-"Extracting %@…" = "Estrazione di %@…";
-"Preparing to color…" = "Preparo la colorazione…";
+"Parsing document…" = "Analisi del documento…";
 "Applying colors to text…" = "Applicazione dei colori al testo…";
 "keywords" = "Parole chiave";
 "commands" = "Comandi";
@@ -482,7 +497,6 @@
 "strings" = "Stringhe";
 "characters" = "Caratteri";
 "comments" = "Commenti";
-"comments and quoted texts" = "Commenti e testo tra virgolette";
 
 
 
@@ -492,6 +506,16 @@
 // Color list name
 "Stylesheet Keywords" = "Parole chiave CSS";
 
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recenti";
+"Clear Recents" = "Cancella recenti";
+"Invalid code" = "Invalid code";
+
+
+
+/* MARK: Preferences */
 
 // General pane
 // Autosave setting update alert
@@ -511,7 +535,7 @@
 "Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "Si è sicuri di voler cancellare il tema “%@”?";
-"This action cannot be undone." = "Questa azione non può essere annullata.";
+"This action cannot be undone." = "L’azione è irreversibile.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Elimina";
@@ -554,7 +578,7 @@
 "Strings" = "Stringhe";
 "Characters" = "Caratteri";
 "Comments" = "Commenti";
-"Outline Menu" = "Menu degli Outline";
+"Outline" = "Outline";
 "Completion List" = "Completamento";
 "File Mapping" = "Mappatura file";
 "Style Info" = "Info. sullo stile";  // Informazioni sullo stile
@@ -564,7 +588,7 @@
 "No error found." = "Nessun errore rilevato.";
 "An error found!" = "Trovato un errore.";
 "%i errors found!" = "Trovati %i errori.";
-"outline menu" = "menu degli outline";
+"outline" = "outline";
 
 
 
@@ -594,7 +618,7 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Si è sicuri di voler cancellare lo stile “%@”?";
-"This action cannot be undone." = "Questa azione non potrà essere annullata.";
+"This action cannot be undone." = "L’azione è irreversibile.";
 "Delete" = "Cancella";
 "Replace" = "Sostituisci";
 
@@ -643,9 +667,8 @@
 "Space" = "Spazio";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";  // FIXME: updated
-"The Shift key can be used only with another modifier key." = "Il
-tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
+"“%@” is already taken by the “%@” command." = "Il tasto “%@” è giù utilizzato.";
+"The Shift key can be used only with another modifier key." = "Il tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 "Single type is invalid for a shortcut." = "Un solo tasto non è una scorciatoia valida.";
 "Please combine with other keys." = "Si prega di abbinarlo ad altri tasti.";
 
@@ -656,7 +679,7 @@ tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 "Open Scripts Folder" = "Apri cartella script";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Alt/Opt + Click” per aprire nell’editor degli script.";
+"Option-click to open script in editor." = "Option-click per aprire nell’editor degli script.";
 
 
 
@@ -696,7 +719,7 @@ tasto Maiuscolo va abbinato ad un altro tasto modificatore.";
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
+"The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
 
 
 

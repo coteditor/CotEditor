@@ -2,6 +2,47 @@
 Change Log
 ==========================
 
+4.2.0-beta (491)
+--------------------------
+
+### New Features
+
+- Ability to handle documents holding multiple types of line endings.
+- Alert inconsistent line endings in the document when opening or reloading.
+- List up the inconsistent line endings in the Warnings pane in the inspector.
+- Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the Option key or when the document's line ending is one of these).
+- Add the hidden Paste Exactly command (Command-Option-V) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.
+- Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.
+- Add history to the Unicode code point input.
+- Export setting files, such as themes or multiple replacements, to the Finder just by dropping the setting name from the Preferences.
+- Transfer settings among CotEditors in different machines via Universal Control by dragging the setting name and dropping it to the setting list area in another CotEditor.
+
+
+### Improvements
+
+- Update document icons.
+- Detect the line ending in documents more intelligently.
+- Display code points instead of being left blank in the incompatible character list for whitespaces.
+- Improve the scrolling behavior by normal size documents by enabling the non-contiguous text layout mode only with large documents.
+- Optimize syntax parsing.
+- Rename the Incompatible Characters pane to the Warnings pane to share the pane with the inconsistent line ending list.
+- Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.
+- Print the line numbers on the right side on printing if the writing direction is right-to-left.
+- Adjust the vertical position of line numbers on printing.
+- Indent snippet text with multiple lines to the indention level where will be inserted.
+- Restore the characters even incompatible with the document encoding when restoring documents from the last session.
+- Add steppers to the font setting controls.
+- Prefer using .yml for syntax definition files over .yaml.
+- Deprecate the feature to replace `$LN` in the outline menu template with the line number of the occurrence.
+- Remove original document icons for CoffeeScript and Tcl.
+- Revise text for more Mac-like expression.
+- Update the help contents.
+- [trivial] Accept script files for the Script menu with an uppercased file extension.
+- [trivial] Replace `\n` with `\R` for the newline metacharacter in the Basic Regular Expression Syntax reference.
+- [trivial] Tweak Anura theme.
+
+
+
 4.1.5 (487)
 --------------------------
 

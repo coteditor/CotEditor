@@ -118,6 +118,8 @@
 "j3t-7l-xSy.title" = "Copy as Rich Text";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Paste";
+/* Class = "NSMenuItem"; title = "Paste Exactly"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Paste Exactly";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Delete";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
@@ -202,6 +204,12 @@
 "297.title" = "Classic Mac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
 "298.title" = "Windows (CRLF)";
+/* Class = "NSMenuItem"; title = "Unicode Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
+"pUE-eY-9RI.title" = "Unicode Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Unicode Line Separator (LS)"; ObjectID = "ins-89-nu3"; */
+"ins-89-nu3.title" = "Unicode Line Separator (LS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; */
+"Zz9-5c-bS1.title" = "Unicode Paragraph Separator (PS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
 "299.title" = "File Encoding";
@@ -212,8 +220,8 @@
 "302.title" = "Syntax Style";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "Syntax Style";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
-"458.title" = "Re-Colour All";
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = "458"; */
+"458.title" = "Recolour All";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
 "410.title" = "Font";
@@ -305,8 +313,8 @@
 "564.title" = "Document Inspector";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "Outline";
-/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "Incompatible Characters";
+/* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
+"679.title" = "Warnings";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "Show Inspector";
 

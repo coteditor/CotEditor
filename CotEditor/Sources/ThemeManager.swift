@@ -26,6 +26,7 @@
 import Combine
 import Foundation
 import AppKit
+import UniformTypeIdentifiers
 
 @objc protocol ThemeHolder: AnyObject {
     
@@ -51,8 +52,7 @@ final class ThemeManager: SettingFileManaging {
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Themes"
-    let filePathExtensions: [String] = DocumentType.theme.extensions
-    let settingFileType: SettingFileType = .theme
+    let fileType: UTType = .cotTheme
     
     @Published var settingNames: [String] = []
     private(set) var bundledSettingNames: [String] = []
@@ -66,7 +66,7 @@ final class ThemeManager: SettingFileManaging {
     private init() {
         
         // cache bundled setting names
-        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: Self.directoryName)!
+        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)!
             .map { self.settingName(from: $0) }
             .sorted(options: [.localized, .caseInsensitive])
         

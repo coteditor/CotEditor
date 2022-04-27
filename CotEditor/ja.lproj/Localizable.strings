@@ -39,6 +39,7 @@
 // Accessibility labels
 "inspector" = "インスペクタ";
 "outline" = "アウトライン";
+"warnings" = "警告";
 "incompatible characters" = "非互換文字";
 "status bar" = "ステータスバー";
 "editor" = "エディタ";
@@ -84,7 +85,7 @@
 "Empty find string" = "検索文字列が空です。";
 "The option “in selection” is enabled, although nothing is selected." = "「選択範囲のみ」オプションが有効になっていますが、何も選択されていません。";
 "Input text to find." = "検索するテキストを入力してください。";
-"Select the search scope in the document or disable the “in selection” option." = "検索範囲を選択するか「選択範囲のみ」オプションを無効にしてください。";
+"Select the search scope in the document or turn off the “in selection” option." = "検索範囲を選択するか「選択範囲のみ」オプションを無効にしてください。";
 
 // accessibility announcement
 "Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
@@ -94,16 +95,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
-"%@ found" = "%@件見つかりました";  // %@ is number of founds
+"%i found" = "%i件見つかりました";  // %@ is number of founds
 "Not Replaced" = "見つかりません";
-"%@ replaced" = "%@件置換しました";  // %@ is number of replaced
+"%i replaced" = "%i件置換しました";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に1件見つかりました。";
-"Found %@ strings in “%@”." = "“%2$@”内に%1$@件見つかりました。";
+"Found %i strings in “%@”." = "“%2$@”内に%1$i件見つかりました。";
 
 
 /* MARK: Regular Expression Reference */
@@ -199,6 +200,13 @@
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "書類に複数の改行コードが混在しています。";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "すべての改行コードをこの書類で最も使われている%@に変換しますか?";
+"Don’t ask again for this document" = "この書類では次回から確認しない";
+"Convert" = "変換";
+"Review" = "確認";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
 "The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
@@ -240,7 +248,7 @@
 "Horizontal" = "横書き";
 "Vertical" = "縦書き";
 // tooltip
-"Toggle text orientation" = "横書き/縦書きを切替";
+"Switch text orientation" = "横書き/縦書きを切替";
 
 "Indent" = "インデント";
 "Shift Left" = "左へシフト";
@@ -256,7 +264,7 @@
 
 "Tab Style" = "タブスタイル";
 // tooltip
-"Disable expanding tabs to spaces" = "自動タブ展開を無効に";
+"Turn off expanding tabs to spaces" = "自動タブ展開を無効に";
 "Expand tabs to spaces automatically" = "自動でタブをスペースに展開";
 "Change tab width" = "タブ幅を変更";
 // menu
@@ -296,7 +304,7 @@
 
 "Find" = "検索";
 // tooltip
-"Show Find & Replace" = "“検索と置換”を表示";
+"Show Find & Replace" = "検索と置換を表示";
 
 "Print" = "プリント";
 // tooltip
@@ -308,7 +316,7 @@
 
 "Fonts" = "フォント";
 // tooltip
-"Show Font Panel" = "フォントパネルを表示";
+"Show Fonts" = "フォントパネルを表示";
 
 
 
@@ -370,13 +378,22 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "最近のフィルタ";
-"Clear Recents" = "フィルタ履歴を消去";
+"Clear Recent Filters" = "フィルタ履歴を消去";
 "No Recent Filter" = "フィルタ履歴がありません";
 "No Filter Results" = "フィルタ結果なし";
 
+// Warnings
+"No issues found." = "問題は見つかりませんでした。";
+
 // Incompatible characters
-"No incompatible characters were found." = "非互換文字は見つかりませんでした。";
 "Scanning incompatible characters…" = "非互換文字を走査中…";
+"Found an incompatible character." = "1個の非互換文字が見つかりました。";
+"Found %i incompatible characters." = "%i個の非互換文字が見つかりました。";  // %i is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "1個の%@でない改行コードが見つかりました。";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "%i個の%@でない改行コードが見つかりました。";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+
 
 
 /* MARK: EditorTextView */
@@ -468,8 +485,7 @@
 // Coloring indicator
 "Coloring text…" = "テキストのカラーリング中…";
 "Please wait for a while." = "しばらくお待ちください…";
-"Extracting %@…" = "%@を抽出中…";
-"Preparing to color…" = "カラーリングの準備中…";
+"Parsing document…" = "書類を解析中…";
 "Applying colors to text…" = "テキストにカラーを適用中…";
 "keywords" = "キーワード";
 "commands" = "コマンド";
@@ -481,7 +497,6 @@
 "strings" = "文字列";
 "characters" = "文字";
 "comments" = "コメント";
-"comments and quoted texts" = "コメントと引用符で囲まれたテキスト";
 
 
 
@@ -491,6 +506,16 @@
 // Color list name
 "Stylesheet Keywords" = "スタイルシートキーワード";
 
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "最近の項目";
+"Clear Recents" = "履歴を消去";
+"Invalid code" = "無効なコード";
+
+
+
+/* MARK: Preferences */
 
 // General pane
 // Autosave setting update alert
@@ -553,7 +578,7 @@
 "Strings" = "文字列";
 "Characters" = "文字";
 "Comments" = "コメント";
-"Outline Menu" = "アウトラインメニュー";
+"Outline" = "アウトライン";
 "Completion List" = "入力補完リスト";
 "File Mapping" = "ファイル関連付け";
 "Style Info" = "スタイル情報";
@@ -563,7 +588,7 @@
 "No error found." = "エラーはありません。";
 "An error found!" = "1個のエラーがあります！";
 "%i errors found!" = "%i個のエラーがあります！";
-"outline menu" = "アウトラインメニュー";
+"outline" = "アウトライン";
 
 
 
@@ -593,7 +618,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか?";
-"Deleted style can’t be restored." = "この操作は取り消せません。";
 "Delete" = "削除";
 "Replace" = "置換";
 
@@ -654,7 +678,7 @@
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option+クリック”してください。";
+"Option-click to open script in editor." = "スクリプトをエディタで開くには、Option+クリックしてください。";
 
 
 
@@ -694,7 +718,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "スニペット挿入後のカーソル位置";
+"The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 
 
 /* String extension */

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,17 +26,18 @@
  
  */
 
-/* Class = "IBBindingConnection"; ObjectID = "qSi-En-4LR"; */
-"qSi-En-4LR.ibShadowedIsNilPlaceholder" = "Codice colore";  /* color code */
-"qSi-En-4LR.ibShadowedNoSelectionPlaceholder" = "Nessuna selezione";  /* no selection */
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "Codice colore";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "Nessuna selezione";
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "Inserisci";
 
 
-/* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "Esadecimale";
-/* Class = "NSMenuItem"; title = "Hex (Short)"; ObjectID = "wEc-KD-y7s"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal (Short)"; ObjectID = "wEc-KD-y7s"; */
 "wEc-KD-y7s.title" = "Esadecimale (breve)";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";

@@ -136,7 +136,7 @@ extension SyntaxParser {
         self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
             self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
-                    group.addTask { try await extractor.items(in: string, range: range) }
+                    _ = group.addTaskUnlessCancelled { try await extractor.items(in: string, range: range) }
                 }
                 
                 return try await group.reduce(into: []) { $0 += $1 }
@@ -253,35 +253,37 @@ extension SyntaxParser {
         assert(!self.style.isNone)
         
         let definition = HighlightParser.Definition(extractors: self.style.highlightExtractors,
-                                                    pairedQuoteTypes: self.style.pairedQuoteTypes,
+                                                    nestablePaires: self.style.nestablePaires,
                                                     inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                     blockCommentDelimiters: self.style.blockCommentDelimiters)
         let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
+        let progress = Progress(totalUnitCount: 10)
         
         let task = Task.detached(priority: .userInitiated) { [weak self, styleName = self.style.name] in
+            progress.localizedDescription = "Parsing text…".localized
+            progress.addChild(parser.progress, withPendingUnitCount: 9)
+            
             let highlights = try await parser.parse()
-            
-            try Task.checkCancellation()
-            
-            parser.progress.localizedDescription = "Applying colors to text…".localized
-            try await Task.sleep(nanoseconds: 10_000_000)  // wait 0.01 seconds for GUI update
-            
-            await MainActor.run { [weak self] in
-                self?.textStorage.apply(highlights: highlights, range: highlightRange)
-            }
             
             if highlightRange == string.nsRange {
                 self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
             }
-            parser.progress.completedUnitCount += 1
+            
+            try Task.checkCancellation()
+            
+            progress.localizedDescription = "Applying colors to text…".localized
+            try await Task.sleep(nanoseconds: 10_000_000)  // wait 0.01 seconds for GUI update
+            
+            await self?.textStorage.apply(highlights: highlights, range: highlightRange)
+            
+            progress.completedUnitCount += 1
         }
-        parser.progress.totalUnitCount += 1  // +1 for highlighting
-        parser.progress.cancellationHandler = { task.cancel() }
+        progress.cancellationHandler = { task.cancel() }
         
         self.highlightParseTask?.cancel()
         self.highlightParseTask = task
         
-        return parser.progress
+        return progress
     }
     
 }
@@ -303,7 +305,7 @@ private extension NSTextStorage {
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
             guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
             
-            let theme = (layoutManager.firstTextView as? Themable)?.theme
+            let theme = (layoutManager.firstTextView as? any Themable)?.theme
             
             layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)

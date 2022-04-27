@@ -1,0 +1,59 @@
+extensions:
+- keyString: "ini"
+- keyString: "url"
+filenames:
+- keyString: ".editorconfig"
+metadata:
+  author: "1024jp"
+  distributionURL: "https://coteditor.com"
+  version: "1.4.1"
+  license: "Same as CotEditor"
+  lastModified: "2022-02-26"
+outlineMenu:
+- beginString: "^([ \\t]*)\\[(.+)\\]"
+  keyString: "$1$2"
+  description: "section"
+completions: []
+keywords:
+- beginString: "^[ \\t]*\\w[^=:\\R]*(?=[=:])"
+  regularExpression: true
+commands: []
+types:
+- beginString: "^[ \\t]*\\["
+  endString: "\\]"
+  regularExpression: true
+values:
+- beginString: "(?<=[:=])\\s*false\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*no\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*none\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*off\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*on\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*true\\b"
+  regularExpression: true
+  ignoreCase: true
+- beginString: "(?<=[:=])\\s*yes\\b"
+  regularExpression: true
+  ignoreCase: true
+numbers:
+- beginString: "(?<![-0-9a-z$])-?[0-9.][0-9.]*(e-?[0-9.]+)?\\b"
+  ignoreCase: true
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+characters: []
+comments:
+- beginString: ";.*"
+  regularExpression: true
+commentDelimiters:
+  inlineDelimiter: "#"

@@ -119,6 +119,8 @@
 "j3t-7l-xSy.title" = "Copiar como Texto com Formatação";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "Colar";
+/* Class = "NSMenuItem"; title = "Paste Exactly"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "Colar Exatamente";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "Apagar";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
@@ -203,6 +205,12 @@
 "297.title" = "Mac OS Clássico (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
 "298.title" = "Windows (CRLF)";
+/* Class = "NSMenuItem"; title = "Unicode Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
+"pUE-eY-9RI.title" = "Unicode Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Unicode Line Separator (LS)"; ObjectID = "ins-89-nu3"; */
+"ins-89-nu3.title" = "Unicode Line Separator (LS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; */
+"Zz9-5c-bS1.title" = "Unicode Paragraph Separator (PS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
 "299.title" = "Codificação do Arquivo";
@@ -213,7 +221,7 @@
 "302.title" = "Estilo da Sintaxe";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "Estilo da Sintaxe";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = "458"; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = "458"; */
 "458.title" = "Recolorir Tudo";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
@@ -306,8 +314,8 @@
 "564.title" = "Inspetor do Documento";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "Plano";
-/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "Caracteres Incompatíveis";
+/* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
+"679.title" = "Warnings";  // FIXME: changed
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "Mostrar Inspetor";
 
@@ -331,6 +339,9 @@
 
 /* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
 "367.title" = "Alterar Opacidade do Editor…";
+
+// Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "2da-fK-Nkg";
+"2da-fK-Nkg.title" = "Entrar em Tela Cheia";
 
 
 
@@ -532,7 +543,7 @@
 "5is-7G-OVT.title" = "Remover Destaque";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
-"PmT-ho-UU7.title" = "Open Outline Menu";  // TODO: added
+"PmT-ho-UU7.title" = "Open Outline Menu";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "Selecionar Item Anterior do Plano";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */

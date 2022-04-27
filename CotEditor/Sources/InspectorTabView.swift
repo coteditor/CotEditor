@@ -177,7 +177,7 @@ final class InspectorTabView: NSTabView {
             self.segmentedControl.setWidth(self.segmentWidth, forSegment: segment)
             self.segmentedControl.setToolTip(item.label, forSegment: segment)
             
-            let selectedImage = (self.delegate as? InspectorTabViewDelegate)?.tabView(self, selectedImageForItem: item)
+            let selectedImage = (self.delegate as? any InspectorTabViewDelegate)?.tabView(self, selectedImageForItem: item)
                 ?? item.selectedImage
             (self.segmentedControl as? InspectorTabSegmentedControl)?
                 .setImage(item.image, selectedImage: selectedImage, forSegment: segment)

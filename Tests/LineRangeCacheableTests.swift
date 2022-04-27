@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -199,19 +199,21 @@ final class LineRangeCacheableTests: XCTestCase {
 
 private final class LineString: LineRangeCacheable {
     
-    private(set) var string: NSString
     var lineRangeCache = LineRangeCache()
+    var string: NSString { self.mutableString as NSString }
+    
+    private let mutableString: NSMutableString
     
     
     init(_ string: String) {
         
-        self.string = string as NSString
+        self.mutableString = NSMutableString(string: string)
     }
     
     
     func replaceCharacters(in range: NSRange, with replacement: String) {
         
-        self.string = self.string.replacingCharacters(in: range, with: replacement) as NSString
+        self.mutableString.replaceCharacters(in: range, with: replacement)
         self.invalidateLineRanges(in: NSRange(location: range.location, length: replacement.length),
                                   changeInLength: replacement.length - range.length)
     }

@@ -56,6 +56,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var theme: Theme?  { didSet { self.applyTheme() } }
     
     var isAutomaticTabExpansionEnabled = false
+    var isApprovedTextChange = false
     
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
@@ -149,7 +150,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.replaceTextContainer(textContainer)
         
         let layoutManager = LayoutManager()
-        layoutManager.allowsNonContiguousLayout = true
         layoutManager.tabWidth = self.tabWidth
         self.textContainer!.replaceLayoutManager(layoutManager)
         
@@ -478,6 +478,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.didChangeText()
         
+        self.invalidateNonContiguousLayout()
+        
         self.needsUpdateLineHighlight = true
         
         // trim trailing whitespace if needed
@@ -605,10 +607,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         // insert soft tab
-        if
-            self.isAutomaticTabExpansionEnabled,
-            let insertionRanges = self.rangesForUserTextChange as? [NSRange]
-        {
+        if self.isAutomaticTabExpansionEnabled {
+            let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
             let softTabs = insertionRanges
                 .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
             
@@ -639,16 +639,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard
             self.isEditable,
             self.isAutomaticIndentEnabled
-            else { return super.insertNewline(sender) }
+            else { return self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange) }
         
         let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
+        let ranges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
-                let indentRange = range.isEmpty ? self.string.rangeOfIndent(at: range.location) : range
-                
                 guard
+                    let indentRange = range.isEmpty ? self.string.rangeOfIndent(at: range.location) : range,
                     !indentRange.isEmpty,
                     let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
                     else { return (range, "", 0) }
@@ -669,23 +668,24 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 
                 // expand block
                 if lastCharacter == "{", nextCharacter == "}" {
-                    indent += "\n" + indentBase
+                    indent += self.lineEnding.string + indentBase
                 }
                 
                 return (range, indent, insertion)
             }
         
-        super.insertNewline(sender)
+        // insert newline
+        self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange)
         
         // auto indent
         var locations: [Int] = []
         var offset = 0
         for (range, indent, insertion) in indents {
-            let location = range.lowerBound + 1 + offset  // +1 for new line character
+            let location = range.lowerBound + self.lineEnding.length + offset
             
             super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
             
-            offset += -range.length + 1 + indent.count
+            offset += -range.length + self.lineEnding.length + indent.count
             locations.append(location + insertion)
         }
         self.setSelectedRangesWithUndo(locations.map { NSRange(location: $0, length: 0) })
@@ -1040,9 +1040,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
         
-        // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 10.15)
-        //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
-        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
+        self.invalidateNonContiguousLayout()
         
         // reset writing direction
         if orientation == .vertical {
@@ -1081,7 +1079,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if pboard.name == .general,
             pboard.types?.contains(.multipleTextSelection) == false,
             let string = pboard.string(forType: .string),
-            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             ranges.count > 1,
             string.rangeOfCharacter(from: .newlines) == nil
         {
@@ -1092,7 +1090,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if pboard.name == .general,
             let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
             let string = pboard.string(forType: .string),
-            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             ranges.count > 1
         {
             let lines = string.components(separatedBy: .newlines)
@@ -1104,7 +1102,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                         groupRanges.append(groupRanges.count..<(groupRanges.count + groupCount))
                     }
                 }
-                .map { lines[$0].joined(separator: "\n") }
+                .map { lines[$0].joined(separator: self.lineEnding.string) }
             let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
             let strings = multipleTexts + blanks
             
@@ -1112,23 +1110,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         return super.readSelection(from: pboard, type: type)
-    }
-    
-    
-    /// convert line endings in pasteboard to document's line ending
-    override func writeSelection(to pboard: NSPasteboard, types: [NSPasteboard.PasteboardType]) -> Bool {
-        
-        let success = super.writeSelection(to: pboard, types: types)
-        
-        guard let lineEnding = self.document?.lineEnding, lineEnding != .lf else { return success }
-        
-        for type in types {
-            guard let string = pboard.string(forType: type) else { continue }
-            
-            pboard.setString(string.replacingLineEndings(with: lineEnding), forType: type)
-        }
-        
-        return success
     }
     
     
@@ -1202,10 +1183,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     // MARK: Public Accessors
     
-    /// document object representing the text view contents
-    var document: Document? {
+    var lineEnding: LineEnding {
         
-        self.window?.windowController?.document as? Document
+        self.document?.lineEnding ?? .lf
     }
     
     
@@ -1296,8 +1276,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard !self.selectedRange.isEmpty else { return NSSound.beep() }
         
-        let lineEnding = self.document?.lineEnding ?? .lf
-        
         // substring all selected attributed strings
         let selections: [NSAttributedString] = self.selectedRanges
             .map(\.rangeValue)
@@ -1309,25 +1287,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
                     guard let color = value as? NSColor else { return }
                     
-                    let localRange = range.shifted(offset: -selectedRange.location)
+                    let localRange = range.shifted(by: -selectedRange.location)
                     
                     styledText.addAttribute(.foregroundColor, value: color, range: localRange)
-                }
-                
-                // apply document's line ending
-                if lineEnding != .lf {
-                    for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
-                        let characterRange = NSRange(index...index, in: plainText)
-                        
-                        styledText.replaceCharacters(in: characterRange, with: lineEnding.string)
-                    }
                 }
                 
                 return styledText
             }
         
         // prepare objects for rectangular selection
-        let pasteboardString = selections.joined(separator: lineEnding.string)
+        let pasteboardString = selections.joined(separator: self.lineEnding.string)
         let propertyList = selections.map { $0.string.components(separatedBy: .newlines).count }
         
         // set to paste board
@@ -1338,6 +1307,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             pboard.setPropertyList(propertyList, forType: .multipleTextSelection)
         }
         pboard.writeObjects([pasteboardString])
+    }
+    
+    
+    /// Paste clipboard text without any modification.
+    @IBAction func pasteAsIs(_ sender: Any?) {
+        
+        self.isApprovedTextChange = true
+        
+        super.pasteAsPlainText(sender)
+        
+        self.isApprovedTextChange = false
     }
     
     
@@ -1357,6 +1337,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     // MARK: Private Methods
+    
+    /// document object representing the text view contents
+    private var document: Document? {
+        
+        self.window?.windowController?.document as? Document
+    }
+    
     
     /// update coloring settings
     private func applyTheme() {
@@ -1452,6 +1439,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         self.scrollToVisible(visibleRect)
+    }
+    
+    
+    /// validate whether turns the non-contiguous layout on
+    private func invalidateNonContiguousLayout() {
+        
+        self.layoutManager?.allowsNonContiguousLayout = {
+            // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 12)
+            //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
+            if self.layoutOrientation == .vertical { return false }
+            
+            return self.string.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
+        }()
     }
     
     
@@ -1717,7 +1717,7 @@ extension EditorTextView {
             let lastCharacter = self.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }
         
-        if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
+        if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // cursor is (probably) at the middle of a word
         
         self.complete(self)
     }

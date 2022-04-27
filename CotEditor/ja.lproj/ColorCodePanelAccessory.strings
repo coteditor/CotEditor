@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,16 +25,17 @@
  
  */
 
-/* Class = "IBBindingConnection"; ObjectID = "qSi-En-4LR"; */
-"qSi-En-4LR.ibShadowedIsNilPlaceholder" = "カラーコード";  /* color code */
-"qSi-En-4LR.ibShadowedNoSelectionPlaceholder" = "選択なし";  /* no selection */
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "color code"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedIsNilPlaceholder" = "カラーコード";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "no selection"; ObjectID = "JAw-oC-vv2"; */
+"JAw-oC-vv2.ibShadowedNoSelectionPlaceholder" = "選択なし";
 
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "挿入";
 
 /* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
 "vF1-in-Dlv.title" = "16進法";
-/* Class = "NSMenuItem"; title = "Hex (Short)"; ObjectID = "wEc-KD-y7s"; */
+/* Class = "NSMenuItem"; title = "Hexadecimal (Short)"; ObjectID = "wEc-KD-y7s"; */
 "wEc-KD-y7s.title" = "16進法（ショート）";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";

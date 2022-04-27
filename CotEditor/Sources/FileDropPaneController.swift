@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -137,7 +137,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         }
         
         // select item
-        if let scope = item[FileDropItem.CodingKeys.scope.rawValue] {
+        if let scope = item[FileDropItem.CodingKeys.scope] {
             menu.selectItem(withTitle: scope)
         } else {
             if let emptyItem = menu.itemArray.first(where: { !$0.isSeparatorItem && $0.title.isEmpty }) {
@@ -190,7 +190,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // sanitize
         let sanitized = content
             .map { $0.filter { !($0.key == FileDropItem.CodingKeys.extensions.rawValue && $0.value.isEmpty) } }
-            .filter { $0[FileDropItem.CodingKeys.format.rawValue] != nil }
+            .filter { $0[FileDropItem.CodingKeys.format] != nil }
         
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
@@ -238,7 +238,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             else { return }
         
         // obtain extension to delete for display
-        let fileExtension = objects.first?[FileDropItem.CodingKeys.extensions.rawValue] ?? ""
+        let fileExtension = objects.first?[FileDropItem.CodingKeys.extensions] ?? ""
         
         let alert = NSAlert()
         alert.messageText = String(format: "Are you sure you want to delete the file drop setting for “%@”?".localized, fileExtension)

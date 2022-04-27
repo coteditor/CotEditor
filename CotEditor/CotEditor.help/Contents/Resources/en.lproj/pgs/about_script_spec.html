@@ -4,56 +4,66 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="Script Menu, script"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Working with UNIX scripts</title>
+	<title>Work with UNIX scripts</title>
 </head>
 
 <body>
 <a name="about_unixscript"></a>
 
 
-<h1>Working with UNIX scripts</h1>
+<h1>Work with UNIX scripts</h1>
 
-<p>This page explains how to pass your document's text to UNIX scripts that are executable via the Script menu, or how to receive the outputs from them.</p>
+<p>This page explains how to pass your document’s text to UNIX scripts that are executable via the Script menu, or how to receive the outputs from them.</p>
 
 <ul>
-	<li>The file extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py .js .swift (regardless of their languages)</li>
+	<li>The filename extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py .js .swift (regardless of their languages)</li>
 	<li>In order to run a script, you need to set execute permission for the script file.</li>
 	<li>Line endings in your script must be LF.</li>
 </ul>
 
-<h2>Referring to the document file path</h2>
+<h2>Refer to the document file path</h2>
 <p>If the frontmost document has already been saved, the absolute file path of the document will be referred to as an argument.</p>
 
-<h2>Passing text data to a script</h2>
+<h2>Pass text data to a script</h2>
 
 <p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
-	<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
-	<tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
-	<tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
+	<thead>
+		<tr><th>Keyword</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>Selection</code></th><td>To pass the text you are currently selecting.</td></tr>
+		<tr><th><code>AllText</code></th><td>To pass the whole text of your document.</td></tr>
+		<tr><th><code>None</code></th><td>To pass nothing (default).</td></tr>
+	</tbody>
 </table>
 
 <ul style="margin-top: 1em;">
 	<li>With no parameters, CotEditor passes nothing just like when you put “None.”</li>
-	<li>A script should capture CotEditor's text data on STDIN (standard in).</li>
+	<li>A script should capture CotEditor’s text data on STDIN (standard in).</li>
 	<li>CotEditor passes text data with UTF-8 encoding.</li>
 </ul>
 
-<h2>Receiving output data from a script</h2>
+<h2>Receive output data from a script</h2>
 
 <p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
 
 <table>
-	<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
-	<tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
-	<tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
-	<tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
-	<tr><th><code>NewDocument</code></th><td>To create a new document and insert the contents to it.</td></tr>
-	<tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in clipboard.</td></tr>
-	<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
+	<thead>
+		<tr><th>Keyword</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>ReplaceSelection</code></th><td>To replace the current selection with the contents of the output data.</td></tr>
+		<tr><th><code>ReplaceAllText</code></th><td>To replace the whole text of your document with the contents of the output data.</td></tr>
+		<tr><th><code>InsertAfterSelection</code></th><td>To insert the contents of the output data right after the current selection.</td></tr>
+		<tr><th><code>AppendToAllText</code></th><td>To insert the contents of the output data at the end of your document.</td></tr>
+		<tr><th><code>NewDocument</code></th><td>To create a new document and insert the contents to it.</td></tr>
+		<tr><th><code>Pasteboardputs</code></th><td>To store the contents of the output data in the Clipboard.</td></tr>
+		<tr><th><code>Discard</code></th><td>To do nothing (default).</td></tr>
+	</tbody>
 </table>
 
 <ul>

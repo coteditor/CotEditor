@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="不可視文字, 制御文字, スペース, タブ, 改行"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>不可視文字を表示する</title>
 </head>
@@ -22,12 +22,12 @@
 
 <h3>一時的な変更</h3>
 
-<p>現在開いている書類ウインドウで一時的に不可視文字の表示/非表示を切り替えるには以下の方法があります：</p>
+<p>現在開いている書類で一時的に不可視文字の表示/非表示を切り替えるには以下の方法があります:</p>
 
 <ul>
-	<li>画面上部の「フォーマット」メニューの「不可視文字を表示/隠す」を選択</li>
+	<li>画面上部の「フォーマット」メニューの「不可視文字を表示/非表示」を選択</li>
 	<li>ウインドウツールバーの「不可視文字」ボタンをクリック（「不可視文字」ボタンはツールバーをカスタマイズして追加できます）</li>
-	<li>Touch Barバーの「不可視文字」ボタンをタッチ（「不可視文字」ボタンはTouch Barをカスタマイズして追加できます）</li>
+	<li>Touch Barの「不可視文字」ボタンをタッチ（「不可視文字」ボタンはTouch Barをカスタマイズして追加できます）</li>
 </ul>
 
 <p>ここでの変更はCotEditorのデフォルトの設定を上書きしません。</p>
@@ -40,7 +40,7 @@
 
 <h3>プリント時の不可視文字表示</h3>
 
-<p>プリントの際に不可視文字を印刷に含めるかどうかは環境設定の<a href="pref_print.html">プリント</a>ペイン、または個別に書類をプリントする際のプリントダイアログから設定できます。</p>
+<p>プリントの際に不可視文字をプリントに含めるかどうかは環境設定の<a href="pref_print.html">プリント</a>ペイン、または個別に書類をプリントする際のプリントダイアログから設定できます。</p>
 
 
 
@@ -71,6 +71,9 @@
 			<td><ul>
 				<li>U+000A <small>(LINE FEED)</small></li>
 				<li>U+000D <small>(CARRIAGE RETURN)</small></li>
+				<li>U+0085 <small>(NEW LINE)</small></li>
+				<li>U+2028 <small>(LINE SEPARATOR)</small></li>
+				<li>U+2029 <small>(PARAGRAPH SEPARATOR)</small></li>
 			</ul></td>
 			<td>改行を表す制御文字です。CRLF (<code>U+000D</code>と<code>U+000A</code>の組み合わせ)も1つの改行文字として扱います。</td>
 		</tr>

@@ -157,8 +157,8 @@
 /* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
 "AIG-rr-79V.title" = "注释：";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "Xab-bx-K4A"; */
-"Xab-bx-K4A.ibShadowedToolTip" = "显示主题文件信息";
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
+"8zj-4c-Hg4.ibShadowedToolTip" = "显示主题文件信息";
 
 
 
@@ -173,14 +173,14 @@
 /* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "Inh-Ci-NGp"; */
 "Inh-Ci-NGp.title" = "描述：";
 
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "Gnv-l4-9O7"; */
-"Gnv-l4-9O7.ibShadowedIsNilPlaceholder" = "未定义";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "RvY-QR-fg6"; */
-"RvY-QR-fg6.ibShadowedIsNilPlaceholder" = "未定义";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "cAy-4O-QOs"; */
-"cAy-4O-QOs.ibShadowedIsNilPlaceholder" = "未定义";
-/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "foD-bl-J2t"; */
-"foD-bl-J2t.ibShadowedIsNilPlaceholder" = "未定义";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "8ur-1G-I4N"; */
+"8ur-1G-I4N.ibShadowedIsNilPlaceholder" = "未定义";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "wN3-ao-X42"; */
+"wN3-ao-X42.ibShadowedIsNilPlaceholder" = "未定义";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "AVc-Ci-UnL"; */
+"AVc-Ci-UnL.ibShadowedIsNilPlaceholder" = "未定义";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "rpX-lj-tHS"; */
+"rpX-lj-tHS.ibShadowedIsNilPlaceholder" = "未定义";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
 "Usu-Br-G0a.ibShadowedToolTip" = "跳转到URL";

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,8 +55,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             self.style.setDictionary(style)
             
             if case .edit(let name) = mode {
-                self.isBundledStyle = manager.isBundledSetting(name: name)
-                self.isRestoreble = manager.isCustomizedBundledSetting(name: name)
+                let isBundled = manager.isBundledSetting(name: name)
+                let isCustomized = manager.isCustomizedSetting(name: name)
+                
+                self.isBundledStyle = isBundled
+                self.isRestoreble = isBundled && isCustomized
             }
         }
     }
@@ -182,8 +185,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
-            let metadata = self.style[SyntaxKey.metadata.rawValue] as? [String: Any],
-            let urlString = metadata[MetadataKey.distributionURL.rawValue] as? String,
+            let metadata = self.style[SyntaxKey.metadata] as? [String: Any],
+            let urlString = metadata[MetadataKey.distributionURL] as? String,
             let url = URL(string: urlString)
             else { return NSSound.beep() }
         

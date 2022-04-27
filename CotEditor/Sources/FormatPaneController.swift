@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@
 import Combine
 import Cocoa
 import AudioToolbox
+import UniformTypeIdentifiers
 
 /// keys for styles controller
 private enum StyleKey: String {
@@ -38,12 +39,13 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSMenuDelegate {
-    
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSMenuDelegate {
+
     // MARK: Private Properties
     
     private var encodingChangeObserver: AnyCancellable?
     private var syntaxStyleChangeObserver: AnyCancellable?
+    private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
@@ -65,7 +67,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
-        self.syntaxTableView?.registerForDraggedTypes([.URL])
+        
+        // register drag & drop types
+        let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        self.syntaxTableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
+        self.syntaxTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
     }
     
     
@@ -114,7 +120,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let isCustomized: Bool
         if let representedSettingName = representedSettingName {
             isBundled = SyntaxManager.shared.isBundledSetting(name: representedSettingName)
-            isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedSettingName)
+            isCustomized = SyntaxManager.shared.isCustomizedSetting(name: representedSettingName)
         } else {
             (isBundled, isCustomized) = (false, false)
         }
@@ -138,20 +144,20 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                     menuItem.title = String(format: "Restore “%@”".localized, name)
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
-                return isCustomized
+                return isBundled && isCustomized
             
             case #selector(exportSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Export “%@”…".localized, name)
                 }
                 menuItem.isHidden = !itemSelected
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
                 }
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case nil:
                 return false
@@ -183,16 +189,12 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         // get swiped style
         let arrangedObjects = self.stylesController!.arrangedObjects as! [[String: Any]]
-        let styleName = arrangedObjects[row][StyleKey.name.rawValue] as! String
-        
-        // check whether style is deletable
-        let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
-        let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
+        let styleName = arrangedObjects[row][StyleKey.name] as! String
         
         // do nothing on undeletable style
-        guard !isBundled || isCustomized else { return [] }
+        guard SyntaxManager.shared.isCustomizedSetting(name: styleName) else { return [] }
         
-        if isCustomized {
+        if SyntaxManager.shared.isBundledSetting(name: styleName) {
             // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
@@ -217,43 +219,87 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard
-        let urls = pboard.readObjects(forClasses: [NSURL.self],
-                                      options: [.urlReadingFileURLsOnly: true])?
-            .compactMap { $0 as? URL }
-            .filter { SyntaxManager.shared.filePathExtensions.contains($0.pathExtension) } ?? []
+        guard
+            info.draggingSource as? NSTableView != tableView,  // avoid self D&D
+            let count = info.filePromiseReceivers(with: .yaml, for: tableView)?.count
+                     ?? info.fileURLs(with: .yaml, for: tableView)?.count
+        else { return [] }
         
-        guard !urls.isEmpty else { return [] }
-        
-        // highlight text view itself
+        // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
-        info.numberOfValidItemsForDrop = urls.count
+        info.numberOfValidItemsForDrop = count
         
         return .copy
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
-                                    searchOptions: [.urlReadingFileURLsOnly: true])
-        { [unowned self] (draggingItem, _, _) in
+        if let receivers = info.filePromiseReceivers(with: .yaml, for: tableView) {
+            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
             
-            guard
-                let fileURL = draggingItem.item as? URL,
-                SyntaxManager.shared.filePathExtensions.contains(fileURL.pathExtension)
-                else { return }
+            for receiver in receivers {
+                receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
+                    if let error = error {
+                        self?.presentError(error)
+                        return
+                    }
+                    self?.importSyntaxStyle(fileURL: fileURL)
+                }
+            }
             
-            self.importSyntaxStyle(fileURL: fileURL)
+        } else if let fileURLs = info.fileURLs(with: .yaml, for: tableView) {
+            for fileURL in fileURLs {
+                self.importSyntaxStyle(fileURL: fileURL)
+            }
+            
+        } else {
+            return false
         }
         
         AudioServicesPlaySystemSound(.volumeMount)
         
         return true
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        
+        guard
+            let arrangedObjects = self.stylesController?.arrangedObjects as? [[String: Any]],
+            let settingName = arrangedObjects[safe: row]?[StyleKey.name] as? String
+        else { return nil }
+        
+        let provider = NSFilePromiseProvider(fileType: UTType.yaml.identifier, delegate: self)
+        provider.userInfo = settingName
+        
+        return provider
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
+        
+        (filePromiseProvider.userInfo as! String) + "." + UTType.yaml.preferredFilenameExtension!
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL) async throws {
+        
+        guard
+            let settingName = filePromiseProvider.userInfo as? String,
+            let sourceURL = SyntaxManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        try FileManager.default.copyItem(at: sourceURL, to: url)
+    }
+    
+    
+    func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
+        
+        self.filePromiseQueue
     }
     
     
@@ -346,10 +392,10 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
-        savePanel.isExtensionHidden = true
+        savePanel.isExtensionHidden = false
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
+        savePanel.allowedContentTypes = [SyntaxManager.shared.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -371,7 +417,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions
+        openPanel.allowedContentTypes = [SyntaxManager.shared.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -446,12 +492,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleNames = SyntaxManager.shared.settingNames
         
-        let styleStates: [[String: Any]] = styleNames.map { styleName in
-            let isBundled = SyntaxManager.shared.isBundledSetting(name: styleName)
-            let isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: styleName)
-            
-            return [StyleKey.name.rawValue: styleName,
-                    StyleKey.state.rawValue: (!isBundled || isCustomized)]
+        let styleStates: [[String: Any]] = styleNames.map {
+            [StyleKey.name.rawValue: $0,
+             StyleKey.state.rawValue: SyntaxManager.shared.isCustomizedSetting(name: $0)]
         }
         
         // update installed style list table
@@ -482,7 +525,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
             return UserDefaults.standard[.syntaxStyle]
         }
-        return styleInfo[StyleKey.name.rawValue] as! String
+        return styleInfo[StyleKey.name] as! String
     }
     
     
@@ -506,7 +549,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
         
-        return arrangedObjects[clickedRow][StyleKey.name.rawValue] as? String
+        return arrangedObjects[clickedRow][StyleKey.name] as? String
     }
     
     

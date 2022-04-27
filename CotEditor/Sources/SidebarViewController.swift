@@ -32,7 +32,7 @@ final class SidebarViewController: NSTabViewController {
         
         case documentInspector
         case outline
-        case incompatibleCharacters
+        case warnings
     }
     
     
@@ -47,7 +47,7 @@ final class SidebarViewController: NSTabViewController {
     
     @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
     @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
-    @IBOutlet private weak var incompatibleCharactersTabViewItem: NSTabViewItem?
+    @IBOutlet private weak var warningsTabViewItem: NSTabViewItem?
     
     
     
@@ -73,7 +73,7 @@ final class SidebarViewController: NSTabViewController {
             self.view.layoutSubtreeIfNeeded()
         }
         self.frameObserver = self.view.publisher(for: \.frame)
-            .debounce(for: 0.1, scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.1), scheduler: DispatchQueue.main)
             .map(\.size.width)
             .removeDuplicates()
             .sink { UserDefaults.standard[.sidebarWidth] = $0 }
@@ -136,7 +136,7 @@ extension SidebarViewController: InspectorTabViewDelegate {
             case self.outlineTabViewItem:
                 return nil  // -> bold version
                 
-            case self.incompatibleCharactersTabViewItem:
+            case self.warningsTabViewItem:
                 return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 

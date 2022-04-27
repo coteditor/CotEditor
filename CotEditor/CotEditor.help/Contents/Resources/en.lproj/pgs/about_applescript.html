@@ -4,19 +4,19 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="Script menu, script, AppleScript, JXA, JavaScript"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/applescript.css"/>
-	<title>Working with AppleScript</title>
+	<title>Work with AppleScript</title>
 </head>
 
 <body>
 <a name="about_applescript"></a>
 
 
-<h1>Working with AppleScript</h1>
+<h1>Work with AppleScript</h1>
 
-<p>CotEditor supports AppleScript and JXA (JavaScript for Automation).</p>
+<p>CotEditor works with AppleScript and JXA (JavaScript for Automation).</p>
 
 <p>It has own AppleScript dictionary so that you can look up all the classes or commands available with CotEditor. To open the dictionary:</p>
 
@@ -81,7 +81,7 @@
 		<dd>Has the file encoding a BOM (byte order mark)? (boolean) <span class="added">new on CotEditor 4.1</span></dd>
 
 		<dt><code>line ending</code></dt>
-		<dd>The line ending code of the document. (<code>CR</code> / <code>LF</code> / <code>CRLF</code>)</dd>
+		<dd>The line ending code of the document. (<code>CR</code> / <code>LF</code> / <code>CRLF</code> / <code>NEL</code> / <code>LS</code> / <code>PS</code>)</dd>
 
 		<dt><code>tab width</code></dt>
 		<dd>The width of a tab character in space equivalents. (int) <span class="added">new on CotEditor 2.1</span></dd>
@@ -156,13 +156,13 @@
 
 <h4>Discussion</h4>
 
-<p>The <code>selection</code> property doesn't work by itself. Use this property with others such as <code>contents</code>.</p>
+<p>The <code>selection</code> property doesn’t work by itself. Use this property with others such as <code>contents</code>.</p>
 
 <p>When ‘location’ is a negative value, the selection range starts from the ‘location’-th last character.<br/>
 When ‘length’ is a positive value, the selection range becomes the ‘length’ characters starting from ‘location.’ If ‘length’ is larger than the number of the rest characters in the document, the range will be from ‘location’ to the end.<br/>
-When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (i.e. the selection's end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
-<p>This specifying method is modelled after that of PHP's <code>substr</code>.</p>
-<p>The command for changing selection doesn't scroll the window. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
+When ‘length’ is a negative value, the selection range ends at the ‘length’-th last character. If the absolute value of ‘length’ is smaller than ‘location’ (i.e. the selection’s end point is before ‘location’), the caret just moves to ‘location’ (same as when {location, 0} was input).</p>
+<p>This specifying method is based on <code>substr</code> in PHP.</p>
+<p>The command for changing selection doesn’t scroll the window. Use the <code>scroll to caret</code> command or <code>jump</code> command to make the selection remain in the view.</p>
 </section>
 </section>
 
@@ -177,7 +177,7 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 
 <dl class="tree">
 	<dt><code class="command">write to console</code></dt>
-	<dd>Display a string on CotEditor's console window.</dd>
+	<dd>Display a string on CotEditor’s console window.</dd>
 	<dd><dl>
 		<dt>target</dt>
 		<dd>‘document’ object</dd>
@@ -191,7 +191,7 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 <h4>Example</h4>
 <figure>
 	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
-	<figcaption>Display the massege &quot;Script failed.&quot; on the CotEditor's console.</figcaption>
+	<figcaption>Display the massege &quot;Script failed.&quot; on the CotEditor’s console.</figcaption>
 </figure>
 </section>
 
@@ -294,7 +294,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <h4>Discussion</h4>
 
 <p>As in the case of the <code>find</code> command, the search starts from the current selection (caret position). Use the <code>all</code> option for searching the whole document.</p>
-<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching string, the caret doesn't move.</p>
+<p>After replacing the whole document using the <code>all</code> option, the caret moves to the head of the document. If there were no matching string, the caret doesn’t move.</p>
 <p>The regular expression search cannot search backwards. If both options were specified at the same time, the <code>backwards</code> option is ignored.</p>
 </section>
 
@@ -367,7 +367,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 		<dd>The new encoding, either in localized encoding name or an IANA charset name.</dd>
 
 		<dt>[<code>lossy</code>] (boolean)</dt>
-		<dd>Whether to allow “lossy” conversion (might result in loss of character that couldn't be converted) or not.</dd>
+		<dd>Whether to allow “lossy” conversion (might result in loss of character that couldn’t be converted) or not.</dd>
 
 		<dt>[<code>BOM</code>] (boolean)</dt>
 		<dd>Whether to add a BOM (byte order mark). <span class="added">(added on CotEditor 4.1)</span></dd>
@@ -766,7 +766,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <ul>
 	<li><a href="../pgs/about_scripting.html">CotEditor Scripting</a></li>
 	<li><a href="../pgs/about_applescript_changes.html">Change log of AppleScript support</a></li>
-	<li><a href="../pgs/about_script_hook.html">Adding scripting hooks for CotEditor scripts</a></li>
+	<li><a href="../pgs/about_script_hook.html">Add scripting hooks to CotEditor scripts</a></li>
 </ul>
 </section>
 

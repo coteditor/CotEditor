@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,13 +46,6 @@ struct TextFindResult {
     var lineNumber: Int
     var attributedLineString: NSAttributedString
     var inlineRange: NSRange
-}
-
-
-private struct HighlightItem {
-    
-    var range: NSRange
-    var color: NSColor
 }
 
 
@@ -210,7 +203,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
-        var matchedRanges = [NSRange]()
+        var matchedRanges: [NSRange] = []
         textFind.findAll { (matches: [NSRange], _) in
             matchedRanges.append(matches[0])
         }
@@ -373,10 +366,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// find string of which line endings are standardized to LF
+    /// find string of which line endings are standardized to the document line ending
     private var sanitizedFindString: String {
         
-        return self.findString.replacingLineEndings(with: .lf)
+        let lineEnding = (self.client as? EditorTextView)?.lineEnding ?? .lf
+        
+        return self.findString.replacingLineEndings(with: lineEnding)
     }
     
     
@@ -497,8 +492,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
-            var highlights = [HighlightItem]()
-            var results = [TextFindResult]()  // not used if showsList is false
+            var highlights: [ItemRange<NSColor>] = []
+            var results: [TextFindResult] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
@@ -509,7 +504,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 // highlight
                 highlights += matches.enumerated()
                     .filter { !$0.element.isEmpty }
-                    .map { HighlightItem(range: $0.element, color: highlightColors[$0.offset]) }
+                    .map { ItemRange<NSColor>(item: highlightColors[$0.offset], range: $0.element) }
                 
                 // build TextFindResult for table
                 if showsList {
@@ -524,13 +519,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (index, range) in matches.enumerated() where !range.isEmpty {
                         let color = highlightColors[index]
-                        let inlineRange = range.shifted(offset: -lineRange.location)
+                        let inlineRange = range.shifted(by: -lineRange.location)
                         
                         attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     }
                     
                     // calculate inline range
-                    let inlineRange = matchedRange.shifted(offset: -lineRange.location)
+                    let inlineRange = matchedRange.shifted(by: -lineRange.location)
                     
                     results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
@@ -549,7 +544,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                         layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
                         for highlight in highlights {
-                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.item, forCharacterRange: highlight.range)
                         }
                     }
                 }
@@ -603,25 +598,19 @@ private final class LineCounter: LineRangeCacheable {
 
 private extension UserDefaults {
     
-    private static let MaxHistorySize = 20
+    private static let maximumRecents = 20
     
     
-    /// append given string to history with the user defaults key
-    func appendHistory(_ string: String, forKey key: DefaultKey<[String]>) {
+    /// Add a new value to history as the latest item with the user defaults key.
+    ///
+    /// - Parameters:
+    ///   - value: The value to add.
+    ///   - key: The default key to add the value.
+    func appendHistory<T>(_ value: T, forKey key: DefaultKey<[T]>) where T: Equatable {
         
-        assert(key == .findHistory || key == .replaceHistory)
+        guard (value as? String)?.isEmpty != true else { return }
         
-        guard !string.isEmpty else { return }
-        
-        // append new string to history
-        var history = self[key]
-        history.removeFirst(string)  // remove duplicated item
-        history.append(string)
-        if history.count > UserDefaults.MaxHistorySize {  // remove overflow
-            history.removeFirst(history.count - UserDefaults.MaxHistorySize)
-        }
-        
-        self[key] = history
+        self[key].appendUnique(value, maximum: Self.maximumRecents)
     }
     
 }

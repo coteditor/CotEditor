@@ -7,16 +7,8 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>txt</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>GenericDocumentIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/plain</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Plain text</string>
 			<key>CFBundleTypeRole</key>
@@ -31,10 +23,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array/>
-			<key>CFBundleTypeIconFile</key>
-			<string>GenericDocumentIcon</string>
 			<key>CFBundleTypeName</key>
 			<string>Text document</string>
 			<key>CFBundleTypeRole</key>
@@ -78,46 +66,40 @@
 			</array>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>bib</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>BibTeXIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
-			<string>BibTeX</string>
+			<string>BibTeX bibliography</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.tug.bibtex.bib</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>conf</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ConfigIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Configuration</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.conf</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>h</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>CIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array/>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C header</string>
 			<key>CFBundleTypeRole</key>
@@ -132,12 +114,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>c</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>CIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C source</string>
 			<key>CFBundleTypeRole</key>
@@ -152,16 +130,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cp</string>
-				<string>cpp</string>
-				<string>c++</string>
-				<string>cc</string>
-				<string>cxx</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C++Icon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C++ source</string>
 			<key>CFBundleTypeRole</key>
@@ -176,17 +146,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>hh</string>
-				<string>hp</string>
-				<string>hpp</string>
-				<string>hxx</string>
-				<string>h++</string>
-				<string>ipp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C++Icon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C++ header</string>
 			<key>CFBundleTypeRole</key>
@@ -201,52 +162,24 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C#Icon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>C# source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.c-sharp</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>coffee</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>CoffeeScriptIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/coffeescript</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>CoffeeScript</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>css</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>CSSIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/css</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Cascading Style Sheet</string>
 			<key>CFBundleTypeRole</key>
@@ -261,118 +194,88 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>d</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>D source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.dlang.d-source</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>dart</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DartIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Dart script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>dev.dart.dart-script</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>diff</string>
-				<string>patch</string>
-				<string>dif</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DiffIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Diff</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.patch-file</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>dtd</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>XMLIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array/>
-			<key>CFBundleTypeName</key>
-			<string>Document Type Definition</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>f</string>
-				<string>f90</string>
-				<string>f95</string>
-				<string>f03</string>
-				<string>f08</string>
-				<string>for</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>FortranIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Fortran Source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.fortran-source</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>go</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>GoIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Go script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.golang.go-script</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>hs</string>
-				<string>lhs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>HaskellIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Haskell script</string>
 			<key>CFBundleTypeRole</key>
@@ -381,23 +284,14 @@
 			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.haskell.haskell-source</string>
+				<string>org.haskell.haskell-script</string>
 			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>html</string>
-				<string>htm</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>HTMLIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/html</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>HTML document</string>
 			<key>CFBundleTypeRole</key>
@@ -412,28 +306,24 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>ini</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>INIIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>INI</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.microsoft.ini</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>java</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JavaIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Java source</string>
 			<key>CFBundleTypeRole</key>
@@ -448,16 +338,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>js</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JavaScriptIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>application/x-javascript</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>JavaScript</string>
 			<key>CFBundleTypeRole</key>
@@ -472,16 +354,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>json</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JSONIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>application/json</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>JSON document</string>
 			<key>CFBundleTypeRole</key>
@@ -496,29 +370,24 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>jl</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JuliaIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Julia script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.julia.julia-script</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>kt</string>
-				<string>kts</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>KotlinIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Kotlin source</string>
 			<key>CFBundleTypeRole</key>
@@ -533,29 +402,24 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lisp</string>
-				<string>lsp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>LispIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Lisp script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.lisp</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lua</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>LuaIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Lua script</string>
 			<key>CFBundleTypeRole</key>
@@ -570,16 +434,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>mkd</string>
-				<string>md</string>
-				<string>markdown</string>
-				<string>mdown</string>
-				<string>mkdn</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>MarkdownIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Markdown document</string>
 			<key>CFBundleTypeRole</key>
@@ -594,18 +450,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>pl</string>
-				<string>pm</string>
-				<string>cgi</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PerlIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-perl-script</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Perl script</string>
 			<key>CFBundleTypeRole</key>
@@ -620,17 +466,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>php</string>
-				<string>php3</string>
-				<string>php4</string>
-				<string>php5</string>
-				<string>phps</string>
-				<string>phtml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PHPIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>PHP script</string>
 			<key>CFBundleTypeRole</key>
@@ -645,17 +482,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>py</string>
-				<string>pyw</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>PythonIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-python-script</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Python script</string>
 			<key>CFBundleTypeRole</key>
@@ -670,33 +498,24 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rst</string>
-				<string>rest</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>reSTIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>reStructured Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.python.restructuredtext</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rb</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>RubyIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/ruby-script</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Ruby script</string>
 			<key>CFBundleTypeRole</key>
@@ -711,33 +530,24 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rs</string>
-				<string>rc</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>RustIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Rust script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.rust-lang.rust-script</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>svg</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SVGIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>image/svg+xml</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Scalable Vector Graphics</string>
 			<key>CFBundleTypeRole</key>
@@ -752,45 +562,40 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>scala</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ScalaIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Scala source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.scala-lang.scala-source</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>scm</string>
-				<string>ss</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SchemeIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Scheme script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.scheme</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sh</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ShellIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Shell script</string>
 			<key>CFBundleTypeRole</key>
@@ -805,14 +610,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>sql</string>
-				<string>mysql</string>
-				<string>pgsql</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SQLIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>SQL source</string>
 			<key>CFBundleTypeRole</key>
@@ -827,12 +626,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>swift</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>SwiftIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Swift source</string>
 			<key>CFBundleTypeRole</key>
@@ -847,142 +642,88 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>tex</string>
-				<string>sty</string>
-				<string>cls</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TeXIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>TeX</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.tex</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>textile</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TextileIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Textile document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.textpattern.textile</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>tcl</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TclIcon</string>
-			<key>CFBundleTypeName</key>
-			<string>Tcl source</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>toml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>TOMLIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>TOML</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.toml</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>v</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>VerilogIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Verilog source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.verilog</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>vhd</string>
-			</array>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/x-vhdl</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>VHDL source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
 			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.vhdl</string>
+			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>xml</string>
-				<string>xsl</string>
-				<string>dtd</string>
-				<string>xslt</string>
-				<string>xsd</string>
-				<string>rlx</string>
-				<string>rng</string>
-				<string>trex</string>
-				<string>fo</string>
-				<string>fob</string>
-				<string>svg</string>
-				<string>mml</string>
-				<string>gml</string>
-				<string>cml</string>
-				<string>opf</string>
-				<string>ncx</string>
-				<string>xul</string>
-				<string>zul</string>
-				<string>smil</string>
-				<string>smi</string>
-				<string>mxml</string>
-				<string>rss</string>
-				<string>rdf</string>
-				<string>atom</string>
-				<string>plist</string>
-				<string>xib</string>
-				<string>xmp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>XMLIcon</string>
-			<key>CFBundleTypeMIMETypes</key>
-			<array>
-				<string>text/xml</string>
-			</array>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>XML document</string>
 			<key>CFBundleTypeRole</key>
@@ -997,13 +738,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>yaml</string>
-				<string>yml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>YAMLIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>YAML document</string>
 			<key>CFBundleTypeRole</key>
@@ -1097,8 +833,6 @@
 	</array>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
-	<key>NSSupportsAutomaticTermination</key>
-	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.coteditor.CotEditor</key>
@@ -1114,8 +848,6 @@
 	<key>OSAScriptingDefinition</key>
 	<string>$(PRODUCT_NAME).sdef</string>
 	<key>SUEnableInstallerLauncherService</key>
-	<true/>
-	<key>SUEnableJavaScript</key>
 	<true/>
 	<key>SUPublicEDKey</key>
 	<string>sY0VDoz2fbpnduoaVKlJBnlcBj/OFqQklEN/QlqDyWM=</string>
@@ -1169,28 +901,27 @@
 				</array>
 			</dict>
 		</dict>
-	</array>
-	<key>UTImportedTypeDeclarations</key>
-	<array>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.source-code</string>
+				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Kotlin script</string>
-			<key>UTTypeIconFile</key>
-			<string>KotlinIcon</string>
+			<string>Configuration</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>config</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>org.kotlinlang.source</string>
-			<key>UTTypeReferenceURL</key>
-			<string>https://kotlinlang.org</string>
+			<string>com.coteditor.conf</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>kt</string>
-					<string>kts</string>
+					<string>conf</string>
 				</array>
 			</dict>
 		</dict>
@@ -1200,18 +931,819 @@
 				<string>public.source-code</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Lua script</string>
-			<key>UTTypeIconFile</key>
-			<string>LuaIcon</string>
+			<string>Lisp script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Lambda-fill</string>
+				<key>UTTypeIconText</key>
+				<string>lisp</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>org.lua.lua-source</string>
-			<key>UTTypeReferenceURL</key>
-			<string>https://www.lua.org</string>
+			<string>com.coteditor.lisp</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>lua</string>
+					<string>lisp</string>
+					<string>lsp</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Scheme script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Lambda-fill</string>
+				<key>UTTypeIconText</key>
+				<string>scheme</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.scheme</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>scm</string>
+					<string>ss</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Verilog source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Circuit-fill</string>
+				<key>UTTypeIconText</key>
+				<string>verilog</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.verilog</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>v</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>VHDL source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Circuit-fill</string>
+				<key>UTTypeIconText</key>
+				<string>VHDL</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.vhdl</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>vhd</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/x-vhdl</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>C header</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>h</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.c-header</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>h</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>C source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>c</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.c-source</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>c</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>C++ header</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>h++</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.c-plus-plus-header</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>hh</string>
+					<string>hp</string>
+					<string>hpp</string>
+					<string>hxx</string>
+					<string>h++</string>
+					<string>ipp</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>C++ source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>c++</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.c-plus-plus-source</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cp</string>
+					<string>cpp</string>
+					<string>c++</string>
+					<string>cc</string>
+					<string>cxx</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Cascading Style Sheet</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Number-fill</string>
+				<key>UTTypeIconText</key>
+				<string>CSS</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.css</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>css</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/css</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Fortran source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>F-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Fortran</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.fortran-source</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>f</string>
+					<string>f90</string>
+					<string>f95</string>
+					<string>f03</string>
+					<string>f08</string>
+					<string>for</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>HTML document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>AngleBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>HTML</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.html</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>html</string>
+					<string>htm</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/html</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>JSON document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>JSON</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.json</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>json</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/json</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Diff</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Diff-fill</string>
+				<key>UTTypeIconText</key>
+				<string>diff</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.patch-file</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>diff</string>
+					<string>patch</string>
+					<string>dif</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.shell-script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Perl script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Perl-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Perl</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.perl-script</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pl</string>
+					<string>pm</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.shell-script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>PHP script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>AngleBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>PHP</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.php-script</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>php</string>
+					<string>php3</string>
+					<string>php4</string>
+					<string>php5</string>
+					<string>phps</string>
+					<string>phtml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Plain text</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Text-fill</string>
+				<key>UTTypeIconText</key>
+				<string>text</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.plain-text</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>txt</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/plain</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.shell-script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Python script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Python-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Python</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.python-script</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>py</string>
+					<string>pyw</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.shell-script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Ruby script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Ruby-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Ruby</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.ruby-script</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>rb</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.script</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Shell script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Shell-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Shell</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.shell-script</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sh</string>
+					<string>command</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.xml</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Scalable Vector Graphics</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>SVG-fill</string>
+				<key>UTTypeIconText</key>
+				<string>SVG</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.svg-image</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>svg</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>image/svg+xml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Swift source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Swift-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Swift</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.swift-source</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>swift</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>TeX</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>TeX-fill</string>
+				<key>UTTypeIconText</key>
+				<string>TeX</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.tex</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>tex</string>
+					<string>sty</string>
+					<string>cls</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>TOML</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>TOML-fill</string>
+				<key>UTTypeIconText</key>
+				<string>TOML</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.toml</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://github.com/toml-lang/toml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>toml</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/toml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>XML</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>AngleBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>XML</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.xml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>xml</string>
+					<string>xsl</string>
+					<string>dtd</string>
+					<string>xslt</string>
+					<string>xsd</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/xml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>YAML document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>YAML</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>public.yaml</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>yml</string>
+					<string>yaml</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/x-yaml</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>C# source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>C#</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.microsoft.c-sharp</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cs</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>INI</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>ini</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.microsoft.ini</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>ini</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>JavaScript</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CurlyBrackets-fill</string>
+				<key>UTTypeIconText</key>
+				<string>js</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.netscape.javascript-source</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>js</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Java source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>CoffeeCup-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Java</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.sun.java-source</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>java</string>
+					<string>jav</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Textile document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Text-fill</string>
+				<key>UTTypeIconText</key>
+				<string>textile</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.textpattern.textile</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>textile</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Dart script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Dart-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Dart</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>dev.dart.dart-script</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://dart.dev</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>dart</string>
 				</array>
 			</dict>
 		</dict>
@@ -1222,8 +1754,13 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Markdown document</string>
-			<key>UTTypeIconFile</key>
-			<string>MarkdownIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Markdown-fill</string>
+				<key>UTTypeIconText</key>
+				<string>md</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>net.daringfireball.markdown</string>
 			<key>UTTypeReferenceURL</key>
@@ -1246,9 +1783,93 @@
 				<string>public.source-code</string>
 			</array>
 			<key>UTTypeDescription</key>
+			<string>D source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>D-fill</string>
+				<key>UTTypeIconText</key>
+				<string>D</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.dlang.d-source</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://dlang.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>d</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Go script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Go-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Go</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.golang.go-script</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://go.dev</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>go</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Haskell script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Haskell-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Haskell</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.haskell.haskell-script</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.haskell.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>hs</string>
+					<string>lhs</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
 			<string>SQL source</string>
-			<key>UTTypeIconFile</key>
-			<string>SQLIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>SQL-fill</string>
+				<key>UTTypeIconText</key>
+				<string>SQL</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>org.iso.sql</string>
 			<key>UTTypeTagSpecification</key>
@@ -1261,6 +1882,191 @@
 				</array>
 				<key>public.mime-type</key>
 				<string>application/sql</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Julia script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Julia-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Julia</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.julia.julia-script</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://julialang.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>sql</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Kotlin script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Kotlin-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Kotlin</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.kotlinlang.source</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://kotlinlang.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>kt</string>
+					<string>kts</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Lua script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Lua-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Lua</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.lua.lua-source</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.lua.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>lua</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>reStructured Text document</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Text-fill</string>
+				<key>UTTypeIconText</key>
+				<string>reST</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.python.restructuredtext</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://docutils.sourceforge.io/rst.html</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>rest</string>
+					<string>rst</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Rust script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Gear-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Rust</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.rust-lang.rust-script</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.rust-lang.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>rs</string>
+					<string>rc</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Scala source</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Scala-fill</string>
+				<key>UTTypeIconText</key>
+				<string>Scala</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.scala-lang.scala-source</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.scala-lang.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>scala</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>BibTeX bibliography</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>TeX-fill</string>
+				<key>UTTypeIconText</key>
+				<string>TeX</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.tug.bibtex.bib</string>
+			<key>UTTypeReferenceURL</key>
+			<string>http://bibtex.tug.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>bib</string>
+				</array>
 			</dict>
 		</dict>
 	</array>

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2021 CotEditor Project
+ © 2016-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,26 +27,24 @@
  */
 
 // Descriptions for privacy authorization dialog
-"NSAppleEventsUsageDescription" = "CotEditor ha bisogno dell'autorizzazione per controllare altre applicazioni tramite AppleScript.";  // "CotEditor needs user approval to control other applications with AppleScript."
+"NSAppleEventsUsageDescription" = "CotEditor ha bisogno dell’autorizzazione per controllare altre applicazioni tramite AppleScript.";  // "CotEditor needs user approval to control other applications with AppleScript."
 
 // Document Types
 "Text document" = "Documento di testo";
 "Plain text" = "Testo semplice";
 "CotEditor Theme" = "Tema CotEditor";
 "CotEditor Replacement Definition" = "Definizione sostituzioni di CotEditor";
-"BibTeX" = "BibTeX";
+"BibTeX bibliography" = "Bibliografia BibTeX";
 "Configuration" = "Configurazione";
 "C header" = " Intestazione C";
 "C source" = "Codice C";
 "C++ source" = "Codice C++";
 "C++ header" = "Intestazione C++";
 "C# source" = "Codice C#";
-"CoffeeScript" = "CoffeeScript";
 "Cascading Style Sheet" = "CSS";
 "Dart script" = "Script Dart";
 "D source" = "Codice D";
 "Diff" = "Diff";
-"Document Type Definition" = "Definizione del tipo di documento (DTD)";
 "Fortran Source" = "Codice Fortran";
 "Go script" = "Script Go";
 "Haskell script" = "Script Haskell";
@@ -74,7 +72,6 @@
 "Swift source" = "Codice Swift";
 "TeX" = "TeX";
 "Textile document" = "Documento Textile";
-"Tcl source" = "Codice Tcl";
 "Verilog source" = "Codice Verilog";
 "VHDL source" = "Codice VHDL";
 "XML document" = "Documento XML";

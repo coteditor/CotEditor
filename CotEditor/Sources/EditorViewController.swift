@@ -169,7 +169,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Select the previous outline menu item.
+    /// Select the previous outline item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
         guard
@@ -181,7 +181,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// Select the next outline menu item.
+    /// Select the next outline item.
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
         guard

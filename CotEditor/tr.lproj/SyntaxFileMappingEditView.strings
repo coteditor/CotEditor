@@ -43,7 +43,7 @@
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
 "Axx-Oq-E9U.title" = "Yorumlayıcılar";
 /* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
-"dIj-Z5-J2j.title" = "Yorumlayıcılar, sözdizim biçemini belgedeki shebang'den algılamaya çalışır.";
+"dIj-Z5-J2j.title" = "Yorumlayıcılar, sözdizim biçemini belgedeki shebang’den algılamaya çalışır.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "I6J-y5-MxO"; */
 "I6J-y5-MxO.headerCell.title" = "Yorumlayıcılar";

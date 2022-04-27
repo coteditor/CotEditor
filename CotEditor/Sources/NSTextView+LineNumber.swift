@@ -52,7 +52,7 @@ extension NSTextView {
     /// - Returns: The number of lines (1-based).
     func lineNumber(at location: Int) -> Int {
         
-        return (self.layoutManager as? LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
+        return (self.layoutManager as? any LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
     }
     
     
@@ -60,25 +60,32 @@ extension NSTextView {
     ///
     /// - Parameters:
     ///   - rect: The bounding rectangle for which to process lines.
+    ///   - range: The character range to procecc lines, or `nil` to enumerate whole in rect.
     ///   - options: The options to skip invoking `body` in some specific fragments.
     ///   - body: The closure executed for each line in the enumeration.
     ///   - lineRect: The line fragment rect.
     ///   - line: The information of the line.
     ///   - lineNumber: The number of logical line (1-based).
-    func enumerateLineFragments(in rect: NSRect, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ line: Line, _ lineNumber: Int) -> Void) {
+    func enumerateLineFragments(in rect: NSRect, for range: NSRange? = nil, options: LineEnumerationOptions = [], body: (_ lineRect: NSRect, _ line: Line, _ lineNumber: Int) -> Void) {
         
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
             else { return assertionFailure() }
         
-        let string = self.string as NSString
-        let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
-        
         // get glyph range of which line number should be drawn
         // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
-        let layoutRect = rect.offset(by: -self.textContainerOrigin)
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
+        guard let glyphRangeToDraw: NSRange = {
+            let layoutRect = rect.offset(by: -self.textContainerOrigin)
+            let rectGlyphRange = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
+            
+            guard let range = range else { return rectGlyphRange }
+            
+            return layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil).intersection(rectGlyphRange)
+        }() else { return }
+        
+        let string = self.string as NSString
+        let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
         // count up lines until the interested area
         let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.lowerBound)
@@ -98,9 +105,9 @@ extension NSTextView {
             
             var wrappedLineGlyphIndex = max(lineGlyphRange.lowerBound, glyphRangeToDraw.lowerBound)
             while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
-                var range = NSRange.notFound
-                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
-                let isWrapped = range.lowerBound != lineGlyphRange.lowerBound
+                var fragmentGlyphRange = NSRange.notFound
+                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &fragmentGlyphRange, withoutAdditionalLayout: true)
+                let isWrapped = fragmentGlyphRange.lowerBound > lineGlyphRange.lowerBound
                 
                 if options.contains(.bySkippingWrappedLine), isWrapped { break }
                 
@@ -108,7 +115,7 @@ extension NSTextView {
                 
                 body(lineRect, line, lineNumber)
                 
-                wrappedLineGlyphIndex = range.upperBound
+                wrappedLineGlyphIndex = fragmentGlyphRange.upperBound
             }
             lineNumber += 1
         }
@@ -137,7 +144,7 @@ extension NSTextView {
     /// - Returns: The number of lines (1-based).
     private func lineRange(at location: Int) -> NSRange {
         
-        return (self.layoutManager as? LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
+        return (self.layoutManager as? any LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
     }
     
 }

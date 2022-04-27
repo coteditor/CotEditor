@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ extension MultipleReplacement {
                 }
                 
                 let resultMessage = !result.isEmpty
-                    ? String(format: "%@ found".localized, String.localizedStringWithFormat("%li", result.count))
+                    ? String(format: "%i found".localized, locale: .current, result.count)
                     : "Not Found".localized
                 
                 indicator.done()
@@ -140,7 +140,7 @@ extension MultipleReplacement {
                 }
                 
                 let resultMessage = (result.count > 0)
-                    ? String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", result.count))
+                ? String(format: "%i replaced".localized, locale: .current, result.count)
                     : "Not Replaced".localized
                 
                 indicator.done()

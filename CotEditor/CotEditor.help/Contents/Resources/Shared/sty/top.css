@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2021 CotEditor Project
+ © 2006-2022 CotEditor Project
 */
 
 
@@ -16,7 +16,7 @@
 	color: -apple-system-label;
 }
 body {
-	margin: 1em auto;
+	margin: 1em 2em;
 }
 
 a {
@@ -30,36 +30,82 @@ a:hover {
 }
 
 header {
-	text-align: center;
-	padding: 26px 0;
-	background: linear-gradient(white, hsl(220,6%,95%));
+	position: relative;
+	height: 88px;
+	padding: 12px 0;
+	border-bottom: 1px solid -apple-system-quaternary-label;
+	padding-left: 100px;
 }
-
-@media (prefers-color-scheme: dark) {
-	header {
-	background: linear-gradient(transparent, hsl(220,6%,10%));
-	}
+header img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 96px;
 }
-main {
-	max-width: 7in;
-	margin: 1em auto;
-	padding: 0 1em;
-}
-
 header h1 {
-	font-size: 240%;
-	font-weight: 500;
-	margin: 0.5em 0;
+	font-size: 220%;
+	font-weight: 600;
+	margin: 0 0 0.4em;
+}
+header .toc::before {
+    display: inline-block;
+	content: url(../gfx/toc.svg);
+	vertical-align: -2px;
+	padding-right: 0.3em;
 }
 
-dt {
-	font-size: 120%;
-	font-weight: normal;
-	margin-top: 0.8em;
+
+
+/* topic */
+
+.topic {
+	padding: 1.5em 0;
+	min-height: 160px;
+	border-bottom: solid 1px -apple-system-grid;
 }
-dd {
+.topic:first-of-type {
+	margin-top: 3em;
+}
+
+.topic h2 {
+	margin-top: 0;
+	font-weight: 500;
+	font-size: 130%;
+}
+
+.topic img.snapshot {
+	width: 200px;
+	border: 0.5px solid -apple-system-secondary-label;
+	border-radius: 3px;
+	float: left;
+	margin: 0 1em 1em 0;
+}
+
+.topic ul {
+	list-style-type: none;
+}
+.topic ul li a::after {
+	content: ' ›';
+	opacity: 0.8;
+}
+
+.topic dl {
+	column-count: 2;
+	column-gap: 3em;
+}
+.topic dl > * {
 	margin-left: 0;
+	-webkit-column-break-inside: avoid;
 }
+.topic dl dt {
+	font-weight: 500;
+	margin: 0;
+	break-after: avoid-column;
+}
+.topic dl dd {
+	margin-bottom: 1em;
+}
+
 
 
 /* dark mode */

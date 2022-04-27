@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="cot, command"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>cot command</title>
 </head>
@@ -13,11 +13,14 @@
 <a name="about_cot"></a>
 
 
-<h1><code>cot</code> command</h1>
+<h1>Use <code>cot</code> command</h1>
 
 <p>CotEditor has '<strong>cot</strong>' command-line tool which allows you to control CotEditor from the command-line. To use <code>cot</code> command, install it at first.</p>
 
-<h2>Installation</h2>
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">Open CotEditor for me</a></p>
+
+
+<h2>Install cot command</h2>
 <p>You can install the <code>cot</code> command-line tool to the desired location by creating a symbolic link in Terminal. The <code>cot</code> substance is bundled at '<code>Contents/SharedSupport/bin/cot</code>' in CotEditor.app. Unless you are particular about the location, we recommend to create the symbolic link at '<code>/usr/local/bin/</code>'.</p>
 <p>To create a symbolic link at the recommended location, run the following lines in Terminal.</p>
 <pre class="source"><code>mkdir /usr/local/bin/
@@ -29,29 +32,34 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>Installation of Python 3</h3>
-<p>The cot command is implemented in Python 3. However, because Python has no longer been bundled into the system since macOS 12.3, users need to install <code>python3</code> manually for the cot command.</p>
-<p>The developer tools provided by Apple include <code>python3</code>. Run the following line in Terminal to install Apple's Command Line Developer Tools. Obviously, any <code>python3</code> installed via other methods can be used as well.</p>
+<p>The cot command is implemented in Python 3. However, because Python has no longer been bundled into the system since macOS 12.3, you need to install <code>python3</code> manually for the cot command.</p>
+<p>The developer tools provided by Apple include <code>python3</code>. Run the following line in Terminal to install Apple’s Command Line Developer Tools. Obviously, any <code>python3</code> installed via other methods can be used as well.</p>
 
 <pre class="source"><code>xcode-select --install</code></pre>
 
 
-<h2>Uninstallation</h2>
+<h2>Uninstall cot command</h2>
 
 <p>To uninstall <code>cot</code> command at the recommended location above via Terminal is like the following:</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 
-<h2>Options</h2>
+<h2>Use with options</h2>
 <p>The following options can be used on <code>cot</code> command.</p>
 
 <table>
-	<tr><th><code>-w</code>, <code>--wait</code></th><td>Wait for opened file to be closed before returning to a prompt.</td></tr>
-	<tr><th><code>-n</code>, <code>--new</code></th><td>Create a new blank document.</td></tr>
-	<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>Jump to specific line in opened document. <code>&lt;line&gt;</code> is an integer specifying the number of line.</td></tr>
-	<tr><th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th><td>Jump to specific column in opened document. <code>&lt;column&gt;</code> is an integer specifying the number of column.</td></tr>
-	<tr><th><code>-b</code>, <code>--background</code></th><td>Do not bring the application to the foreground.</td></tr>
-	<tr><th><code>-h</code>, <code>--help</code></th><td>Show help.</td></tr>
-	<tr><th><code>-v</code>, <code>--version</code></th><td>Print version information.</td></tr>
+	<thead>
+		<tr><th>Option</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>-w</code>, <code>--wait</code></th><td>Wait for opened file to be closed before returning to a prompt.</td></tr>
+		<tr><th><code>-n</code>, <code>--new</code></th><td>Create a new blank document.</td></tr>
+		<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>Jump to specific line in opened document. <code>&lt;line&gt;</code> is an integer specifying the number of line.</td></tr>
+		<tr><th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th><td>Jump to specific column in opened document. <code>&lt;column&gt;</code> is an integer specifying the number of column.</td></tr>
+		<tr><th><code>-b</code>, <code>--background</code></th><td>Do not bring the application to the foreground.</td></tr>
+		<tr><th><code>-h</code>, <code>--help</code></th><td>Show help.</td></tr>
+		<tr><th><code>-v</code>, <code>--version</code></th><td>Print version information.</td></tr>
+	</tbody>
 </table>
 
 <p>For <code>--line</code> and <code>--column</code> options, you can specifty a negative number to count from the end of the document (<code>--line</code> option) or a line (<code>--column</code> option).</p>

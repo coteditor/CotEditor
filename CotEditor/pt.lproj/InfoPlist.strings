@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2018-2021 CotEditor Project
+ © 2018-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,19 +33,18 @@
 "Text document" = "Documento de texto";
 "Plain text" = "Texto simples";
 "CotEditor Theme" = "Tema do CotEditor";
-"BibTeX" = "BibTeX";
+"CotEditor Replacement Definition" = "CotEditor Replacement Definition";  // FIXME: added
+"BibTeX bibliography" = "Bibliografia BibTeX";  // FIXME: updated (require native check)
 "Configuration" = "Configuração";
 "C header" = "Cabeçalho C";
 "C source" = "Fonte C";
 "C++ source" = "Fonte C++";
 "C++ header" = "Cabeçalho C++";
 "C# source" = "Fonte C#";
-"CoffeeScript" = "CoffeeScript";
 "Cascading Style Sheet" = "CSS";
 "D source" = "Fonte D";
 "Dart script" = "Script Dart";
 "Diff" = "Diff";
-"Document Type Definition" = "Definição de Tipo de Documento (DTD)";
 "Fortran Source" = "Fonte Fortran";
 "Go script" = "Script Go";
 "Haskell script" = "Script Haskell";
@@ -73,7 +72,6 @@
 "Swift source" = "Fonte Swift";
 "TeX" = "TeX";
 "Textile document" = "Documento Textile";
-"Tcl source" = "Fonte Tcl";
 "Verilog source" = "Fonte Verilog";
 "VHDL source" = "Fonte VHDL";
 "XML document" = "Documento XML";

@@ -4,9 +4,9 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="cot, コマンド"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>cot コマンド</title>
+	<title>cotコマンドを使う</title>
 </head>
 
 <body>
@@ -16,7 +16,9 @@
 
 <p>CotEditorにはコマンドラインからの操作を可能にする<strong>cot</strong>コマンドラインツールがあります。<code>cot</code>コマンドを使うためには、まずインストールをしてください。</p>
 
-<h2>インストール</h2>
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">CotEditorを開く</a></p>
+
+<h2>cotコマンドのインストール</h2>
 <p><code>cot</code>コマンドはCotEditor.app内の'<code>Contents/SharedSupport/bin/cot</code>'にバンドルされています。</p>
 <p>Terminalからシンボリックリンクを作成して、任意の場所にインストールすることができます。特にこだわりがない場合は'<code>/usr/local/bin/</code>'にシンボリックリンク作成することをお勧めします。</p>
 
@@ -26,7 +28,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>セキュリティ認証</h3>
-<p>macOSでほかのアプリケーションから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム環境設定」&gt;「セキュリティとプライバシー」&gt;「プライバシー」&gt;「オートメーション」で、ターミナルなど利用するクライアントの下にある<strong>CotEditor</strong>（また、<code>--wait</code>オプションのためには<strong>System Events</strong>も）のチェックボックスを有効にしてください。</p>
+<p>macOSでほかのアプリケーションから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム環境設定」＞「セキュリティとプライバシー」＞「プライバシー」＞「オートメーション」で、ターミナルなど利用するクライアントの下にある<strong>CotEditor</strong>（また、<code>--wait</code>オプションのためには<strong>System Events</strong>も）のチェックボックスを有効にしてください。</p>
 
 
 <h3>Python 3のインストール</h3>
@@ -36,23 +38,28 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>xcode-select --install</code></pre>
 
 
-<h2>アンインストール</h2>
+<h2>cotコマンドのアンインストール</h2>
 
 <p>上記推奨場所にインストールした<code>cot</code>コマンドをアンインストールする場合はTerminalから以下を実行します。</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
 
-<h2>オプション</h2>
+<h2>オプションとともに使う</h2>
 <p><code>cot</code>コマンドは以下のオプションが使用できます。</p>
 
 <table>
-	<tr><th><code>-w</code>, <code>--wait</code></th><td>開いたファイルが閉じるまでコマンドの終了を待ちます。</td></tr>
-	<tr><th><code>-n</code>, <code>--new</code></th><td>空の新規書類を開きます。</td></tr>
-	<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>開いた書類の指定した行に移動します。<code>&lt;line&gt;</code>は行を指定する整数型です。</td></tr>
-	<tr><th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th><td>開いた書類の指定した列に移動します。<code>&lt;column&gt;</code>は列を指定する整数型です。</td></tr>
-	<tr><th><code>-b</code>, <code>--background</code></th><td>アプリケーションをバックグラウンドで開きます。</td></tr>
-	<tr><th><code>-h</code>, <code>--help</code></th><td>ヘルプを表示します。</td></tr>
-	<tr><th><code>-v</code>, <code>--version</code></th><td>バージョンを表示します。</td></tr>
+	<thead>
+		<tr><th>オプション</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th><code>-w</code>, <code>--wait</code></th><td>開いたファイルが閉じるまでコマンドの終了を待ちます。</td></tr>
+		<tr><th><code>-n</code>, <code>--new</code></th><td>空の新規書類を開きます。</td></tr>
+		<tr><th><code>-l</code>, <code>--line</code> <code>&lt;line&gt;</code></th><td>開いた書類の指定した行に移動します。<code>&lt;line&gt;</code>は行を指定する整数型です。</td></tr>
+		<tr><th><code>-c</code>, <code>--column</code> <code>&lt;column&gt;</code></th><td>開いた書類の指定した列に移動します。<code>&lt;column&gt;</code>は列を指定する整数型です。</td></tr>
+		<tr><th><code>-b</code>, <code>--background</code></th><td>アプリケーションをバックグラウンドで開きます。</td></tr>
+		<tr><th><code>-h</code>, <code>--help</code></th><td>ヘルプを表示します。</td></tr>
+		<tr><th><code>-v</code>, <code>--version</code></th><td>バージョンを表示します。</td></tr>
+	</tbody>
 </table>
 
 <p><code>--line</code>オプションと<code>--column</code>は負の値を指定することもできます。そのとき、<code>--line</code>オプションの場合は書類の末尾から、<code>--column</code>オプションの場合は行の末尾からカウントがされます。</p>

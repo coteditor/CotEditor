@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,7 +104,7 @@ final class TextSelection: NSObject {
             let textStorage = NSTextStorage(string: string)
             
             textStorage.observeDirectEditing { [weak self] (editedString) in
-                self?.document?.insert(string: editedString)
+                self?.document?.insert(string: editedString, at: .replaceSelection)
             }
             
             return textStorage
@@ -121,7 +121,7 @@ final class TextSelection: NSObject {
                 }
             }() else { return }
             
-            self.document?.insert(string: string)
+            self.document?.insert(string: string, at: .replaceSelection)
         }
     }
     
@@ -168,7 +168,6 @@ final class TextSelection: NSObject {
             guard
                 let lineRange = newValue,
                 (1...2).contains(lineRange.count),
-                // directly communicate with textView as you can skip line ending conversion for this command.
                 let textView = self.document?.textView
                 else { return }
             

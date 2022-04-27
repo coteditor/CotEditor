@@ -50,8 +50,8 @@
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "启用语法高亮";
-/* Class = "NSTextFieldCell"; title = "(Including outline menu)"; ObjectID = "3325"; */
-"3325.title" = "（包括大纲菜单）";
+/* Class = "NSTextFieldCell"; title = "(Including outline extraction)"; ObjectID = "3325"; */
+"3325.title" = "（包括大纲提取）";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "默认语法样式：";

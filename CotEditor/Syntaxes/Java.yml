@@ -1,0 +1,124 @@
+extensions:
+- keyString: "java"
+- keyString: "jav"
+metadata:
+  author: "nakamuxu"
+  distributionURL: "https://coteditor.com"
+  version: "2.1.0"
+  description: "Maintained by CotEditor Project."
+  license: "Same as CotEditor"
+  lastModified: "2022-03-23"
+outlineMenu:
+- keyString: "$1$2 : $3"
+  beginString: "^([\\t ]*)(class)(.*?)(?=(\\{|$))"
+  description: "class"
+  bold: true
+- beginString: "^([\\t ]*)(private)[\\t ]+(.*)(?=\\{)"
+  description: "private"
+- beginString: "^([\\t ]*)(protected)[\\t ]+(.*)(?=\\{)"
+  description: "protected"
+- beginString: "^([\\t ]*)(public)[\\t ]+(.*)(?=\\{)"
+  description: "public"
+commands:
+- beginString: "(?<=\\.)[a-z$_][a-zA-Z0-9$_]*(?=\\()"
+  regularExpression: true
+attributes:
+- beginString: "@[A-Z][a-zA-Z]+\\b"
+  regularExpression: true
+- beginString: "@After"
+- beginString: "@AfterClass"
+- beginString: "@Before"
+- beginString: "@BeforeClass"
+- beginString: "@Deprecated"
+- beginString: "@Documented"
+- beginString: "@Inherited"
+- beginString: "@Override"
+- beginString: "@Retetion"
+- beginString: "@SafeVarargs"
+- beginString: "@SuppressWarnings"
+- beginString: "@Target"
+- beginString: "@Test"
+characters:
+- beginString: "'"
+  endString: "'"
+comments: []
+values:
+- beginString: "\\b[A-Z][A-Z0-9_]+\\b"
+  regularExpression: true
+- beginString: "false"
+- beginString: "NaN"
+- beginString: "null"
+- beginString: "true"
+types:
+- beginString: "boolean"
+- beginString: "byte"
+- beginString: "char"
+- beginString: "double"
+- beginString: "float"
+- beginString: "int"
+- beginString: "long"
+- beginString: "short"
+- beginString: "String"
+- beginString: "void"
+- beginString: "var"
+numbers:
+- beginString: "\\b((\\d+\\.\\d*)|(\\.\\d+))(e[-+]?\\d+)?([lfud]|ul)?\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b0b[01_]+([lfud]|ul)?\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b0x[0-9a-f_]+([lfud]|ul)?\\b"
+  ignoreCase: true
+  regularExpression: true
+- beginString: "\\b[0-9_]+([lfud]|ul)?\\b"
+  ignoreCase: true
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+keywords:
+- beginString: "abstract"
+- beginString: "assert"
+- beginString: "break"
+- beginString: "case"
+- beginString: "catch"
+- beginString: "class"
+- beginString: "continue"
+- beginString: "default"
+- beginString: "do"
+- beginString: "else"
+- beginString: "enum"
+- beginString: "extends"
+- beginString: "final"
+- beginString: "finally"
+- beginString: "for"
+- beginString: "if"
+- beginString: "implements"
+- beginString: "import"
+- beginString: "instanceof"
+- beginString: "interface"
+- beginString: "native"
+- beginString: "new"
+- beginString: "package"
+- beginString: "private"
+- beginString: "protected"
+- beginString: "public"
+- beginString: "return"
+- beginString: "static"
+- beginString: "strictfp"
+- beginString: "switch"
+- beginString: "synchronized"
+- beginString: "throw"
+- beginString: "throws"
+- beginString: "transient"
+- beginString: "try"
+- beginString: "volatile"
+- beginString: "while"
+variables:
+- beginString: "super"
+- beginString: "this"
+commentDelimiters:
+  endDelimiter: "*/"
+  beginDelimiter: "/*"
+  inlineDelimiter: "//"

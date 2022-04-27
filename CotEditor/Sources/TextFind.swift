@@ -78,7 +78,7 @@ final class TextFind {
                 case .emptyFindString:
                     return "Input text to find.".localized
                 case .emptyInSelectionSearch:
-                    return "Select the search scope in the document or disable the “in selection” option.".localized
+                    return "Select the search scope in the document or turn off the “in selection” option.".localized
             }
         }
         
@@ -186,14 +186,14 @@ final class TextFind {
         let selectedRange = self.selectedRanges.first!
         let startLocation = forward ? selectedRange.upperBound : selectedRange.location
         
-        var forwardMatches = [NSRange]()  // matches after the start location
+        var forwardMatches: [NSRange] = []  // matches after the start location
         let forwardRange = NSRange(startLocation..<(self.string as NSString).length)
         self.enumerateMatchs(in: [forwardRange], using: { (matchedRange, _, _) in
             forwardMatches.append(matchedRange)
         })
         
-        var wrappedMatches = [NSRange]()  // matches before the start location
-        var intersectionMatches = [NSRange]()  // matches including the start location
+        var wrappedMatches: [NSRange] = []  // matches before the start location
+        var intersectionMatches: [NSRange] = []  // matches including the start location
         self.enumerateMatchs(in: [(self.string as NSString).range], using: { (matchedRange, _, stop) in
             if matchedRange.location >= startLocation {
                 stop = true
@@ -232,7 +232,7 @@ final class TextFind {
         
         assert(self.inSelection)
         
-        var matches = [NSRange]()
+        var matches: [NSRange] = []
         self.enumerateMatchs(in: self.selectedRanges, using: { (matchedRange, _, _) in
             matches.append(matchedRange)
         })
@@ -310,12 +310,12 @@ final class TextFind {
     func replaceAll(with replacementString: String, using block: @escaping (_ flag: ReplacingFlag, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
-        var replacementItems = [ReplacementItem]()
-        var selectedRanges = [NSRange]()
+        var replacementItems: [ReplacementItem] = []
+        var selectedRanges: [NSRange] = []
         var ioStop = false
         
         // temporal container collecting replacements to process string per selection in `scopeCompletionHandler` block
-        var items = [ReplacementItem]()
+        var items: [ReplacementItem] = []
         
         self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             
@@ -344,7 +344,7 @@ final class TextFind {
                     if ioStop { return }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
-                    let substringRange = item.range.shifted(offset: -scopeRange.location)
+                    let substringRange = item.range.shifted(by: -scopeRange.location)
                     replacedString.replaceCharacters(in: substringRange, with: item.string)
                 }
                 replacementItems.append(ReplacementItem(string: replacedString.copy() as! String, range: scopeRange))

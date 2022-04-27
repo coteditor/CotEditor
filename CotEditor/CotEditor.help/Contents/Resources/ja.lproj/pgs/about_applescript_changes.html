@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="script, AppleScript"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>AppleScript対応の仕様改訂履歴</title>
 </head>
@@ -167,7 +167,7 @@
 <p>CotEditor 1.5でウインドウの不透明度設定の機構が変更されたのをうけて、不透明度設定に関するAppleScriptでの語句も変更されました。1.4までて使用できた<b>document</b>オブジェクトのプロパティ：</p>
 
 <ul class="nostyle">
-	<li><code>transparency</code>:ウィンドウまたはテキストビューの透明度（real型、0.2から1.0の範囲）</li>
+	<li><code>transparency</code>:ウインドウまたはテキストビューの透明度（real型、0.2から1.0の範囲）</li>
 	<li><code>alpha only textView</code>:透明度を設定するのはテキストビューだけかどうか（boolean型)</li>
 </ul>
 
@@ -186,10 +186,10 @@
 <section>
 <h3>アプリケーション直下のselectionオブジェクト</h3>
 <p>CotEditorの最初のβ版0.6では、 &quot;selection&quot;オブジェクトをドキュメントを明示しなくてもアプリケーション前面のドキュメントが指定されたと見なしていました。しかし実際にはうまく動かなかったために、これは将来廃止にする可能性が高く非推奨となり、後方互換性のために該当部分のコードのみは残したままにしていました。</p>
-<p>この仕様はCotEditor 1.5で正式に廃止され関連するコードも削除されました。最前面ドキュメントのselectionを得るためには例1または例2のようにそれを明示して下さい。</p>
+<p>この仕様はCotEditor 1.5で正式に廃止され関連するコードも削除されました。最前面ドキュメントのselectionを得るためには例1または例2のようにそれを明示してください。</p>
 
 <figure>
-<figcaption>例1）</figcaption>
+<figcaption>例1)</figcaption>
 <pre class="source"><code class="AppleScript">tell application "CotEditor"
 	contents of selection <b>of front document</b>
 end tell
@@ -197,7 +197,7 @@ end tell
 </figure>
 
 <figure>
-<figcaption>例2）</figcaption>
+<figcaption>例2)</figcaption>
 <pre class="source"><code class="AppleScript">tell application "CotEditor"
 	<b>tell document 1</b>
 		contents of selection
@@ -212,7 +212,7 @@ end tell
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/about_applescript.html">AppleScriptとの連携</a></li>
+	<li><a href="../pgs/about_applescript.html">AppleScriptと連携する</a></li>
 </ul>
 </section>
 

@@ -224,6 +224,57 @@ final class EncodingDetectionTests: XCTestCase {
         XCTAssertEqual(String.Encoding.isoLatin1.ianaCharSetName, "iso-8859-1")
     }
     
+    
+    func testYenEncoding() {
+        
+        // encodings listed in faq_about_yen_backslash.html
+        let inHelpCFEncodings: [CFStringEncodings] = [
+            .dosJapanese,
+            .EUC_JP,              // Japanese (EUC)
+            .EUC_TW,              // Traditional Chinese (EUC)
+            .EUC_CN,              // Simplified Chinese (GB 2312)
+            .EUC_KR,              // Korean (EUC)
+            .dosKorean,           // Korean (Windows, DOS)
+            .dosThai,             // Thai (Windows, DOS)
+            .isoLatinThai,        // Thai (ISO 8859-11)
+            
+            .macArabic,           // Arabic (Mac OS)
+            .isoLatinArabic,      // Arabic (ISO 8859-6)
+            .macHebrew,           // Hebrew (Mac OS)
+            .isoLatinGreek,       // Greek (ISO 8859-7)
+            .macCyrillic,         // Cyrillic (Mac OS)
+            .isoLatinCyrillic,    // Cyrillic (ISO 8859-5)
+            .windowsCyrillic,     // Cyrillic (Windows)
+            .macCentralEurRoman,  // Central European (Mac OS)
+            .isoLatin2,           // Central European (ISO Latin 2)
+            .isoLatin3,           // Western (ISO Latin 3)
+            .isoLatin4,           // Central European (ISO Latin 4)
+            .dosLatinUS,          // Latin-US (DOS)
+            .windowsLatin2,       // Central European (Windows Latin 2)
+            .isoLatin6,           // Nordic (ISO Latin 6)
+            .isoLatin7,           // Baltic (ISO Latin 7)
+            .isoLatin8,           // Celtic (ISO Latin 8)
+            .isoLatin10,          // Romanian (ISO Latin 10)
+            .dosRussian,          // Russian (DOS)
+            CFStringEncodings(rawValue: CFIndex(CFStringBuiltInEncodings.ASCII.rawValue))!,  // Western (ASCII)
+        ]
+        let inHelpEncodings = inHelpCFEncodings
+            .map { CFStringEncoding($0.rawValue) }
+            .map { String.Encoding(cfEncoding: $0) }
+        let availableEncodings = DefaultSettings.encodings
+            .filter { $0 != kCFStringEncodingInvalidId }
+            .map { String.Encoding(cfEncoding: $0) }
+        let yenIncompatibleEncodigs = availableEncodings
+            .filter { !"¥".canBeConverted(to: $0) }
+        
+        for encoding in yenIncompatibleEncodigs {
+            XCTAssert(inHelpEncodings.contains(encoding), "\(String.localizedName(of: encoding))")
+        }
+        for encoding in inHelpEncodings {
+            XCTAssert(availableEncodings.contains(encoding), "\(String.localizedName(of: encoding))")
+        }
+    }
+    
 }
 
 

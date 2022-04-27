@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pyW-Gr-FLf">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pyW-Gr-FLf">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="pyW-Gr-FLf" customClass="CustomTabWidthViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G7X-lO-X6e">
-                        <rect key="frame" x="0.0" y="0.0" width="192" height="89"/>
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="89"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W3f-KG-c6f" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="108" y="48" width="64" height="21"/>
+                                <rect key="frame" x="96" y="48" width="64" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="aUs-0s-zHS"/>
                                 </constraints>
@@ -36,7 +36,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sYB-kv-GmJ">
-                                <rect key="frame" x="35" y="51" width="67" height="16"/>
+                                <rect key="frame" x="23" y="51" width="67" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tab width:" id="ql5-25-UDJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -44,7 +44,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="892-mq-gWy">
-                                <rect key="frame" x="25" y="13" width="78" height="32"/>
+                                <rect key="frame" x="13" y="13" width="78" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bJM-c0-iOi">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -57,7 +57,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nhc-Zt-Uwr">
-                                <rect key="frame" x="101" y="13" width="78" height="32"/>
+                                <rect key="frame" x="89" y="13" width="78" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="uOy-uv-pR0"/>
                                 </constraints>
@@ -94,7 +94,7 @@ DQ
                 </viewController>
                 <customObject id="pOl-Sh-bBN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="647.5" y="169.5"/>
+            <point key="canvasLocation" x="634.5" y="169.5"/>
         </scene>
     </scenes>
 </document>

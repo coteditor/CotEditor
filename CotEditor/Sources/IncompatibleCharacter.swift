@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,34 +26,14 @@
 
 import Foundation
 
-final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArrayController
+struct IncompatibleCharacter: Equatable {
     
-    @objc let character: String
-    @objc let convertedCharacter: String?
-    @objc let location: Int
-    @objc let lineNumber: Int
+    let character: Character
+    let convertedCharacter: String?
+    let location: Int
+    let lineNumber: Int
     
-    
-    required init(character: Character, convertedCharacter: String?, location: Int, lineNumber: Int) {
-        
-        self.character = String(character)
-        self.convertedCharacter = convertedCharacter
-        self.location = location
-        self.lineNumber = lineNumber
-    }
-    
-    
-    var range: NSRange {
-        
-        NSRange(location: self.location, length: self.character.utf16.count)
-    }
-    
-    
-    override var debugDescription: String {
-        
-        "<\(self): \(self.character) -\(self.location)>"
-    }
-    
+    var range: NSRange  { NSRange(location: self.location, length: self.character.utf16.count) }
 }
 
 
@@ -65,7 +45,7 @@ extension String {
     /// list-up characters cannot be converted to the passed-in encoding
     ///
     /// - Throws: `CancellationError`
-    func scanIncompatibleCharacters(for encoding: String.Encoding) throws -> [IncompatibleCharacter] {
+    func scanIncompatibleCharacters(with encoding: String.Encoding) throws -> [IncompatibleCharacter] {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         

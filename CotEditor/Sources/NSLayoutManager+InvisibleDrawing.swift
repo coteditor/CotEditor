@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,6 +32,8 @@ protocol InvisibleDrawing: NSLayoutManager {
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
     var invisiblesDefaultsObserver: AnyCancellable? { get set }
+    
+    func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool
 }
 
 
@@ -70,15 +72,21 @@ extension InvisibleDrawing {
         
         // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+        var lastCodeUnit: unichar?
         for charIndex in characterRange.lowerBound..<characterRange.upperBound {
             let codeUnit = string.character(at: charIndex)
+            defer { lastCodeUnit = codeUnit }
             
             guard
                 let invisible = Invisible(codeUnit: codeUnit),
-                types.contains(invisible)
+                types.contains(invisible),
+                !(codeUnit == 0xA && lastCodeUnit == 0xD)  // skip LF for CRLF
                 else { continue }
             
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
+            
+            // skip folded text
+            guard !self.propertyForGlyph(at: glyphIndex).contains(.null) else { continue }
             
             var lineFragmentRange: NSRange = .notFound
             let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineFragmentRange, withoutAdditionalLayout: true).origin
@@ -112,10 +120,18 @@ extension InvisibleDrawing {
                     pathCache[codeUnit] = path
                 }
             }
+            let isInvalid = self.isInvalidInvisible(invisible, at: charIndex)
+            if isInvalid {
+                NSColor.systemRed.set()
+            }
             
             path.transform(using: .init(translationByX: symbolOrigin.x, byY: symbolOrigin.y))
             path.fill()
             path.transform(using: .init(translationByX: -symbolOrigin.x, byY: -symbolOrigin.y))
+            
+            if isInvalid {
+                color.set()
+            }
         }
         
         NSGraphicsContext.restoreGraphicsState()

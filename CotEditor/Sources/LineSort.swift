@@ -43,6 +43,8 @@ extension SortPattern {
     /// - Returns: Sorted string.
     func sort(_ string: String, options: SortOptions = SortOptions()) -> String {
         
+        guard let lineEnding = string.firstLineEnding else { return string }
+        
         let compareOptions = options.compareOptions
         let numberFormatter: NumberFormatter? = compareOptions.contains(.numeric) ? .init() : nil
         numberFormatter?.localizesFormat = options.isLocalized
@@ -84,7 +86,7 @@ extension SortPattern {
             lines.insert(firstLine, at: 0)
         }
         
-        return lines.joined(separator: "\n")
+        return lines.joined(separator: String(lineEnding))
     }
     
 }

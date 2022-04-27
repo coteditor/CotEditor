@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@
 "Kfj-q6-61N.label" = "Dokument-Informationen";
 /* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
 "hyM-2j-hen.label" = "Gliederung";
-/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Inkompatible Zeichen";
+/* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Vorwarnungen";
 
 
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
@@ -46,6 +46,9 @@
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */
 "q4F-Uw-VL4.title" = "Codierung";
 
+
+/* Class = "NSTextField"; title = "File Size"; ObjectID = "EJU-9e-uCA"; */
+"EJU-9e-uCA.ibShadowedToolTip" = "Dateigröße";
 /* Class = "NSMenuItem"; title = "Line Endings"; ObjectID = "mS8-3F-93y"; */
 "mS8-3F-93y.title" = "Zeilenenden";
 /* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
@@ -54,6 +57,12 @@
 "J48-tF-WBo.title" = "CR";
 /* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
 "Zo1-Cc-YBm.title" = "CRLF";
+/* Class = "NSMenuItem"; title = "NEL"; ObjectID = "T5S-w3-Q1V"; */
+"T5S-w3-Q1V.title" = "NEL";
+/* Class = "NSMenuItem"; title = "LS"; ObjectID = "ayd-8d-C4Y"; */
+"ayd-8d-C4Y.title" = "LS";
+/* Class = "NSMenuItem"; title = "PS"; ObjectID = "YIk-KP-44u"; */
+"YIk-KP-44u.title" = "PS";
 
 /* Class = "NSPopUpButton"; title = "Line endings"; ObjectID = "FNE-H9-iZR"; */
 "FNE-H9-iZR.ibShadowedToolTip" = "Zeilenenden";
@@ -63,3 +72,9 @@
 "J48-tF-WBo.ibShadowedToolTip" = "Klassisches Mac OS";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
 "Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Next Line"; ObjectID = "T5S-w3-Q1V"; */
+"T5S-w3-Q1V.ibShadowedToolTip" = "Unix Next Line";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Line Separator"; ObjectID = "ayd-8d-C4Y"; */
+"ayd-8d-C4Y.ibShadowedToolTip" = "Unix Line Separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Paragraph Separator"; ObjectID = "YIk-KP-44u"; */
+"YIk-KP-44u.ibShadowedToolTip" = "Unix Paragraph Separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.

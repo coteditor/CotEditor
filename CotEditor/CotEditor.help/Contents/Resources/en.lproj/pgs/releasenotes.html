@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="version, history, changelog, release notes"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/releasenotes.css"/>
 	<title>Release Notes</title>
@@ -15,6 +15,62 @@
 
 
 <h1>Release Notes</h1>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 4.2.0</h1>
+	<p>release: <time>2022-05</time></p>
+</header>
+
+<p class="important">This version contains some specific changes that may require manual migration by users. See <a href="specification_changes_on_4.2.html">Important changes on CotEditor 4.2</a> for details.</p>
+	
+	
+	<section>
+		<h2>New Features</h2>
+		
+		<ul>
+			<li>Ability to handle documents holding multiple types of line endings.</li>
+			<li>Alert inconsistent line endings in the document when opening or reloading.</li>
+			<li>List up the inconsistent line endings in the Warnings pane in the inspector.</li>
+			<li>Minor line endings, namely NEL (New Line), LS (Line Separator), and PS (Paragraph Separator), are added to the line endings options (These items are visible only either when pressing the <kbd>Option</kbd> key or when the document's line ending is one of these).</li>
+			<li>Add the hidden Paste Exactly command (<kbd>Command</kbd>-<kbd>Option</kbd>-<kbd>V</kbd>) that pastes text in the clipboard without any modification, such as adjusting line endings to the document setting.</li>
+			<li>Add an option Selection to the Pages section in the Print dialog to print only the selected text in the document.</li>
+			<li>Add history to the Unicode code point input.</li>
+			<li>Export setting files, such as themes or multiple replacements, to the Finder just by dropping the setting name from the Preferences.</li>
+			<li>Transfer settings among CotEditors in different machines via Universal Control by dragging the setting name and dropping it to the setting list area in another CotEditor.</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>Improvements</h2>
+		
+		<ul>
+			<li>Update document icons.</li>
+			<li>Detect the line ending in documents more intelligently.</li>
+			<li>Indent snippet text with multiple lines to the indention level where will be inserted.</li>
+			<li>Improve the scrolling behavior by normal size documents by enabling the non-contiguous text layout mode only with large documents.</li>
+			<li>Optimize syntax parsing.</li>
+			<li>Rename the Incompatible Characters pane to the Warnings pane to share the pane with the inconsistent line ending list.</li>
+			<li>Locate the vertical scroller for the editor on the left side when the writing direction is right-to-left.</li>
+			<li>Print the line numbers on the right side on printing if the writing direction is right-to-left.</li>
+			<li>Adjust the vertical position of line numbers on printing.</li>
+			<li>Restore the characters even incompatible with the document encoding when restoring documents from the last session.</li>
+			<li>Display code points instead of being left blank in the incompatible character list for whitespaces.</li>
+			<li>Add steppers to the font setting controls.</li>
+			<li>Prefer using .yml for syntax definition files over .yaml.</li>
+			<li>Deprecate the feature to replace <code>$LN</code> in the outline menu template with the line number of the occurrence.</li>
+			<li>Remove original document icons for CoffeeScript and Tcl.</li>
+			<li>Revise text for more Mac-like expression.</li>
+			<li>Update the help contents.</li>
+			<li><span class="trivial">trivial</span>: Accept script files for the Script menu with an uppercased file extension.</li>
+			<li><span class="trivial">trivial</span>: Replace <code>\n</code> with <code>\R</code> for the newline metacharacter in the Basic Regular Expression Syntax reference.</li>
+			<li><span class="trivial">trivial</span>: Tweak Anura theme.</li>
+		</ul>
+	</section>
+</article>
 
 
 
@@ -4646,7 +4702,7 @@
 	<p>release: <time>2015-10-03</time></p>
 </header>
 
-<p class="important">This version contains some specific changes that may require manual migration by users. See <a href="specification_changes_on_2.2.html">Specification Changes on CotEditor 2.2</a> for details.</p>
+<p class="important">This version contains some specific changes that may require manual migration by users. See <a href="specification_changes_on_2.2.html">Important changes on CotEditor 2.2</a> for details.</p>
 
 
 <section>
@@ -5235,7 +5291,7 @@
 	<p>release: <time>2014-11-13</time></p>
 </header>
 
-<p class="important">This version contains some specific changes that may require manual migration by users. See <a href="specification_changes.html">Specification Changes on CotEditor 2.0</a> for details.</p>
+<p class="important">This version contains some specific changes that may require manual migration by users. See <a href="specification_changes.html">Important changes on CotEditor 2.0</a> for details.</p>
 
 <section>
 <h2>New Features</h2>
@@ -5297,7 +5353,7 @@
 	<li>Now, IC (ignore case) can be set even RE (regular expression) is set in syntax style editing.</li>
 	<li>Change regular expression engine to extract outline from OniGmo (OgreKit) to ICU (NSRegularExpression).
 		<ul>
-		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles. See <a href="./specification_changes.html">Specification Changes on CotEditor 2.0</a> for details.</li>
+		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles. See <a href="./specification_changes.html">Important changes on CotEditor 2.0</a> for details.</li>
 		<li>Remove <code>$&amp;</code> definition that represents whole matched string (Use <code>$0</code> instead).</li>
 	</ul></li>
 	<li>Change tab width to 4 characters in outline menu.</li>
@@ -6324,7 +6380,7 @@
 
 <ul>
 	<li>When selecting multiple lines, the selection's background color would break between lines. This problem has been fixed.</li>
-	<li>Turning on the “All controls” option for “Full keyboard access” in the System Preferences could cause some problems (e.g. hiding the caret in a new document or incorrect behavior of input method). This problem has been fixed.</li>
+	<li>Turning on the “All controls” option for “Full keyboard access” in System Preferences could cause some problems (e.g. hiding the caret in a new document or incorrect behavior of input method). This problem has been fixed.</li>
 	<li>Fixed a bug where user-configured key bindings couldn't be deleted in the “Menu Key Bindings” setting.</li>
 	<li>Fixed a bug where current syntax coloring was canceled on each overwrite saving.</li>
 	<li>With the “Fix line height with composite font” option turned off, line height couldn't be changed. This problem has been fixed.</li>

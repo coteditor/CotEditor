@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@ final class SyntaxStyleValidator {
     /// check regular expression syntax and duplicatioin and return errors
     static func validate(_ styleDictionary: SyntaxManager.StyleDictionary) -> [StyleError] {
         
-        var results = [StyleError]()
+        var results: [StyleError] = []
         
         let syntaxDictKeys = SyntaxType.allCases.map(\.rawValue) + [SyntaxKey.outlineMenu.rawValue]
         
@@ -185,7 +185,7 @@ final class SyntaxStyleValidator {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
                         results.append(StyleError(kind: .regularExpression(error: error),
-                                                  type: "outline menu",
+                                                  type: "outline",
                                                   role: .regularExpression,
                                                   string: definition.beginString))
                     }
@@ -194,9 +194,9 @@ final class SyntaxStyleValidator {
         }
         
         // validate block comment delimiter pair
-        if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
-            let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
-            let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter.rawValue]
+        if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters] as? [String: String] {
+            let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter]
+            let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter]
             let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
             if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {

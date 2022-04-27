@@ -292,7 +292,8 @@
   },
   "Java" : {
     "extensions" : [
-      "java"
+      "java",
+      "jav"
     ],
     "filenames" : [
 
@@ -745,8 +746,8 @@
   },
   "YAML" : {
     "extensions" : [
-      "yaml",
-      "yml"
+      "yml",
+      "yaml"
     ],
     "filenames" : [
 

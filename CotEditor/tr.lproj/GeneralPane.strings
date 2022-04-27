@@ -45,8 +45,8 @@
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "Sürümler ile kendiliğinden kaydetmeyi etkinleştir";
-/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "Düzenleme sırasında dosyalarınızın üzerine kendiliğinden yazan bir sistem özelliği. Kapalı olsa bile, CotEditor beklenmedik çökmeler için arka planda yedek oluşturur.";
+/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "Düzenleme sırasında dosyalarınızın üzerine kendiliğinden yazan bir sistem özelliği. Kapalı olsa bile CotEditor beklenmedik çıkmalar için arka planda yedek oluşturur.";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -66,7 +66,7 @@
 /* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
 "3306.title" = "Karakterleri sayarken satır sonlarını yok say";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "Belgedeki URL'leri bağlantıya dönüştür";
+"tPy-Ox-YpP.title" = "Belgedeki URL’leri bağlantıya dönüştür";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
 "3300.title" = "Yazarken yazım denetimi yap";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
@@ -86,7 +86,7 @@
 /* Class = "NSButtonCell"; title = "Learn More"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "Daha Fazla Öğren";
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "'cot' komut satırı aracıyla CotEditor'ü çalıştırabilir ve komut satırından dosyalar açabilirsiniz.";
+"c48-xK-Ag1.title" = "'cot' komut satırı aracıyla CotEditor’ü çalıştırabilir ve komut satırından dosyalar açabilirsiniz.";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

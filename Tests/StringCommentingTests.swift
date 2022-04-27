@@ -197,19 +197,19 @@ final class StringCommentingTests: XCTestCase {
         let textView = CommentingTextView()
         
         textView.string = """
-        // foo
-        //
-        // foo bar
-        """
+            // foo
+            //
+            // foo bar
+            """
         textView.selectedRange = textView.string.nsRange
         XCTAssertTrue(textView.canUncomment(partly: false))
         XCTAssertTrue(textView.canUncomment(partly: true))
         
         textView.string = """
-        // foo
-        
-        // foo bar
-        """
+            // foo
+            
+            // foo bar
+            """
         textView.selectedRange = textView.string.nsRange
         XCTAssertFalse(textView.canUncomment(partly: false))
         XCTAssertTrue(textView.canUncomment(partly: true))

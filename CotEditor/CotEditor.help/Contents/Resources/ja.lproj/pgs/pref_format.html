@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="「フォーマット」環境設定, フォーマット環境設定, 「フォーマット」, フォーマット, 書式, 改行コード, エンコーディング, シンタックス"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>「フォーマット」環境設定を変更する</title>
 </head>
@@ -26,7 +26,7 @@
 <tbody>
 	<tr>
 		<th>デフォルト改行コード</th>
-		<td>新規作成する書類の改行コードを選択します。また、既存の書類に改行コードが含まれていない場合もこの改行コードが適用されます。</td>
+		<td>新規作成する書類の改行コードを選択します。また、既存の書類に改行コードが含まれていない場合もこの改行コードが適用されます。詳しくは<a href="../pgs/about_line_endings.html">「多様な改行コードを扱う」</a>を参照してください。</td>
 	</tr>
 
 	<tr>
@@ -39,12 +39,12 @@
 		<td>エンコーディングの優先順位と既存のファイルのエンコーディング自動認識での方策を選択します。
 		<dl>
 			<dt>リストを編集</dt>
-			<dd>メニューおよびツールバーの「エンコーディング」メニューに表示するエンコーディングの並び順をカスタマイズできます。この並び順は、エンコーディングの自動認識時にも使用され、上から順に適用を試します。詳しくは<a href="../pgs/howto_customize_encoding_order.html">「テキストエンコーディングの認識順序を調整する」</a>を参照してください。</dd>
+			<dd>メニューおよびツールバーの「エンコーディング」メニューに表示するエンコーディングの並び順をカスタマイズできます。この並び順は、エンコーディングの自動認識時にも使用され、上から順に適用を試します。詳しくは<a href="../pgs/howto_customize_encoding_order.html">「テキストエンコーディングの認識順序を変更する」</a>を参照してください。</dd>
 		</dl></td>
 	</tr>
 
 	<tr>
-		<th>書類のエンコーディング宣言を参照</th>
+		<th>書類中のエンコーディング宣言を参照</th>
 		<td>書類中に書かれたエンコーディング宣言を尊重します。詳しくは<a href="../pgs/about_autodetect_charset.html">「エンコーディング宣言による自動認識」</a>を参照してください。</td>
 	</tr>
 
@@ -62,7 +62,7 @@
 	<tr>
 		<th>利用可能なスタイル</th>
 		<td>現在利用可能なシンタックススタイルのリストです。CotEditorにバンドルされているスタイルとユーザが追加したスタイルの両方を含みます。ここから既存のスタイルを編集したり、独自のスタイルを追加することができます。スタイル名の前の小さなドットは、そのスタイルがカスタマイズされていることを表します。<br/>
-		スタイルの編集については、<a href="../pgs/howto_customize_syntaxstyle.html">「シンタックススタイルを設定する」</a>を参照してください。</dd>
+		スタイルの編集については、<a href="../pgs/howto_customize_syntaxstyle.html">「シンタックススタイルを定義する」</a>を参照してください。</dd>
 
 		<dl>
 			<dt>新規 +, 削除 -</dt>
@@ -73,17 +73,17 @@
 
 			<dt>その他アクション（歯車ボタン）</dt>
 			<dd><dl>
-				<dt>“スタイル名”を複製</dt>
+				<dt>“[<span class="variable">スタイル名</span>]”を複製</dt>
 				<dd>選択されているスタイルをコピーして、独自のスタイルを作成します。</dd>
 
-				<dt>“スタイル名”を書き出し</dt>
+				<dt>“[<span class="variable">スタイル名</span>]”を書き出し</dt>
 				<dd>選択されたスタイル設定をファイルに書き出します。作成したスタイルを別の環境で使うときに使用します。「書き出し」で保存したファイルを利用するには「読み込み」を使います。</dd>
 
 				<dt>共有</dt>
 				<dd>選択されたスタイル設定を共有します。</dd>
 
 				<dt>読み込み</dt>
-				<dd>ほかのコンピュータで作成したスタイルを使えるようにします。「読み込み」を選択したあと、パネルから読み込むスタイルファイルを選択してください。</dd>
+				<dd>ほかのコンピュータで作成したスタイルを使えるようにします。「読み込み」を選択したあと、ダイアログから読み込むスタイルファイルを選択してください。</dd>
 
 				<dt>ファイル関連付けのコンフリクトを表示</dt>
 				<dd>1つの拡張子やファイル名に対して、複数のスタイルが割り当てられていないかをチェックします。</dd>
@@ -98,10 +98,11 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/howto_customize_encoding_order.html">テキストエンコーディングの認識順序を調整する</a></li>
-	<li><a href="../pgs/howto_customize_syntaxstyle.html">シンタックススタイルを設定する</a></li>
-	<li><a href="../pgs/about_file_mapping.html">シンタックススタイルのファイル関連付け</a></li>
-	<li><a href="../xpgs/xpreferences.html">環境設定</a></li>
+	<li><a href="../pgs/about_line_endings.html">多様な改行コードを扱う</a></li>
+	<li><a href="../pgs/howto_customize_encoding_order.html">テキストエンコーディングの認識順序を変更する</a></li>
+	<li><a href="../pgs/howto_customize_syntaxstyle.html">シンタックススタイルを定義する</a></li>
+	<li><a href="../pgs/about_file_mapping.html">ファイルをシンタックススタイルに関連付ける</a></li>
+	<li><a href="../pgs/preferences.html">CotEditorで環境設定を変更する</a></li>
 </ul>
 </section>
 

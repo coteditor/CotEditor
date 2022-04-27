@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,7 +147,7 @@
                     <tabViewItems>
                         <tabViewItem label="Document Inspector" identifier="DocumentInspector" image="doc" catalog="system" id="Kfj-q6-61N"/>
                         <tabViewItem label="Outline" identifier="Outline" image="list.bullet.indent" catalog="system" id="hyM-2j-hen"/>
-                        <tabViewItem label="Incompatible Characters" identifier="IncompatibleCharacters" image="exclamationmark.triangle" catalog="system" id="JZo-ok-Dks"/>
+                        <tabViewItem label="Warnings" identifier="Warnings" image="exclamationmark.triangle" catalog="system" id="JZo-ok-Dks"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
@@ -160,8 +160,8 @@
                     </tabView>
                     <connections>
                         <outlet property="documentInspectorTabViewItem" destination="Kfj-q6-61N" id="WFA-8N-DmT"/>
-                        <outlet property="incompatibleCharactersTabViewItem" destination="JZo-ok-Dks" id="QRQ-Sy-61p"/>
                         <outlet property="outlineTabViewItem" destination="hyM-2j-hen" id="EFV-Ay-pkJ"/>
+                        <outlet property="warningsTabViewItem" destination="JZo-ok-Dks" id="sDX-RY-1gY"/>
                         <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
                         <segue destination="US1-1U-VH8" kind="relationship" relationship="tabItems" id="4Zo-YO-63m"/>
                         <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
@@ -179,13 +179,13 @@
             </objects>
             <point key="canvasLocation" x="1082" y="1067"/>
         </scene>
-        <!--Incompatible Characters View Controller-->
+        <!--Warnings View Controller-->
         <scene sceneID="Wud-vX-9dR">
             <objects>
-                <controllerPlaceholder storyboardName="IncompatibleCharactersView" id="ry4-rh-ZBT" userLabel="Incompatible Characters View Controller" sceneMemberID="viewController"/>
+                <controllerPlaceholder storyboardName="WarningsView" id="ry4-rh-ZBT" userLabel="Warnings View Controller" sceneMemberID="viewController"/>
                 <customObject id="fzj-JB-SfU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="1217"/>
+            <point key="canvasLocation" x="1049" y="1218"/>
         </scene>
         <!--Outline View Controller-->
         <scene sceneID="0hV-Dj-Fqy">
@@ -275,24 +275,45 @@
                                 <popUpButtonCell key="cell" type="smallSquare" title="LF" bezelStyle="smallSquare" imagePosition="left" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" inset="2" autoenablesItems="NO" selectedItem="YT7-vd-3ih" id="uXq-8L-T6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
-                                    <menu key="menu" autoenablesItems="NO" id="2cU-Cq-rxZ">
+                                    <menu key="menu" autoenablesItems="NO" id="2cU-Cq-rxZ" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target">
                                         <items>
                                             <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="LF" state="on" toolTip="macOS / Unix" id="YT7-vd-3ih">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7EH-WW-zdr"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="CR" tag="1" toolTip="Classic Mac OS" id="J48-tF-WBo">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="7Dk-av-Fn2"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="CRLF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="2Dg-7M-9om"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="NEL" tag="3" hidden="YES" toolTip="Unicode Next Line" id="T5S-w3-Q1V">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="hf0-6P-3AG"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="LS" tag="4" hidden="YES" toolTip="Unicode Line Separator" id="ayd-8d-C4Y">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="1mF-QW-VLp"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="PS" tag="5" hidden="YES" toolTip="Unicode Paragraph Separator" id="YIk-KP-44u">
+                                                <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                <connections>
+                                                    <action selector="changeLineEnding:" target="wKh-dn-8NK" id="Yap-e1-wvR"/>
                                                 </connections>
                                             </menuItem>
                                         </items>
@@ -327,7 +348,7 @@
                             <box horizontalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-lb-J3U">
                                 <rect key="frame" x="412" y="4" width="5" height="13"/>
                             </box>
-                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField toolTip="File Size" wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="369" y="4" width="39" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="64 MB" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <byteCountFormatter key="formatter" allowsNonnumericFormatting="NO" adaptive="NO" id="esZ-c3-dIT"/>

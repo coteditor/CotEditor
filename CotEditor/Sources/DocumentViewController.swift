@@ -30,7 +30,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextStorageDelegate, NSToolbarItemValidation {
+final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolbarItemValidation {
     
     // MARK: Private Properties
     
@@ -222,12 +222,14 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             (self.statusBarItem?.viewController as? StatusBarController)?.document = document
             
-            document.textStorage.delegate = self
+            NotificationCenter.default.addObserver(self, selector: #selector(textStorageDidProcessEditing),
+                                                   name: NSTextStorage.didProcessEditingNotification,
+                                                   object: document.textStorage)
             
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
-            // start parcing syntax for highlighting and outline menu
+            // start parsing syntax for highlighting and outlines
             self.outlineParseDebouncer.perform()
             self.invalidateSyntaxHighlight()
             
@@ -255,7 +257,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             
             // observe syntaxParser for outline update
             self.outlineObserver = document.syntaxParser.$outlineItems
-                .debounce(for: 0.1, scheduler: RunLoop.main)
+                .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
                 .removeDuplicates()
                 .sink { [weak self] (outlineItems) in
                     self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
@@ -359,7 +361,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
             case #selector(toggleAutoTabExpand):
                 (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
-                    ? "Disable expanding tabs to spaces".localized
+                    ? "Turn off expanding tabs to spaces".localized
                     : "Expand tabs to spaces automatically".localized
             
             case #selector(changeTabWidth):
@@ -403,29 +405,29 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     
     
-    // MARK: Delegate
+    // MARK: Notifications
     
     /// text was edited (invoked right **before** notifying layout managers)
-    func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+    override func textStorageDidProcessEditing(_ notification: Notification) {
+        
+        let textStorage = notification.object as! NSTextStorage
         
         guard
-            editedMask.contains(.editedCharacters),
+            textStorage.editedMask.contains(.editedCharacters),
             self.focusedTextView?.hasMarkedText() != true
-            else { return }
+        else { return }
         
         self.document?.analyzer.invalidate()
         self.document?.incompatibleCharacterScanner.invalidate()
         self.outlineParseDebouncer.schedule()
         
         // -> Perform in the next run loop to give layoutManagers time to update their values.
+        let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
             self?.invalidateSyntaxHighlight(in: editedRange)
         }
     }
     
-    
-    
-    // MARK: Notifications
     
     /// selection did change
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
@@ -659,7 +661,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSTextSt
     
     // MARK: Action Messages
     
-    /// re-color whole document
+    /// recolor whole document
     @IBAction func recolorAll(_ sender: Any?) {
         
         self.invalidateSyntaxHighlight()

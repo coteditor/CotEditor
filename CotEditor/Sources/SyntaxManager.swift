@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 
 import Combine
 import Foundation
+import UniformTypeIdentifiers
 import Yams
 
 @objc protocol SyntaxHolder: AnyObject {
@@ -64,8 +65,7 @@ final class SyntaxManager: SettingFileManaging {
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Syntaxes"
-    let filePathExtensions: [String] = ["yaml", "yml"]
-    let settingFileType: SettingFileType = .syntaxStyle
+    let fileType: UTType = .yaml
     
     @Published var settingNames: [SettingName] = []
     let bundledSettingNames: [SettingName]
@@ -92,6 +92,9 @@ final class SyntaxManager: SettingFileManaging {
         let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
         self.bundledMap = map
         self.bundledSettingNames = map.keys.sorted(options: [.localized, .caseInsensitive])
+        
+        // sanitize user setting file extensions
+        try? self.sanitizeUserSettings()
         
         // cache user styles
         self.checkUserSettings()
@@ -325,7 +328,7 @@ final class SyntaxManager: SettingFileManaging {
             // create file mapping data
             dict[settingName] = style.filter { mappingKeys.contains($0.key) }
                 .mapValues { $0 as? [[String: String]] ?? [] }
-                .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+                .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString] } }
         }
         let map = self.bundledMap.merging(userMap) { (_, new) in new }
         
@@ -336,7 +339,7 @@ final class SyntaxManager: SettingFileManaging {
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
-        let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
+        self.mappingTables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = settingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
                 guard let items = map[settingName]?[key.rawValue] else { return }
                 
@@ -345,12 +348,27 @@ final class SyntaxManager: SettingFileManaging {
                 }
             }
         }
-        self.mappingTables = tables
     }
     
     
     
     // MARK: Private Methods
+    
+    /// Standardize the file extensions of user setting files.
+    ///
+    /// - Note: The file extension for syntax definition files are changed from `.yaml` to `.yml` in CotEditor 4.2.0 released in 2022.
+    private func sanitizeUserSettings() throws {
+        
+        let urls = self.userSettingFileURLs.filter { $0.pathExtension == "yaml" }
+        
+        guard !urls.isEmpty else { return }
+        
+        for url in urls {
+            let newURL = url.deletingPathExtension().appendingPathExtension(for: .yaml)
+            
+            try FileManager.default.moveItem(at: url, to: newURL)
+        }
+    }
     
     /// Load StyleDictionary at file URL.
     ///
@@ -383,20 +401,16 @@ final class SyntaxManager: SettingFileManaging {
 
 private extension StringProtocol where Self.Index == String.Index {
     
-    /// try extracting used language from the shebang line
+    /// Extract interepreter from the shebang line.
     func scanInterpreterInShebang() -> String? {
         
+        guard self.hasPrefix("#!") else { return nil }
+        
         // get first line
-        var firstLine: String?
-        self.enumerateLines { (line, stop) in
-            firstLine = line
-            stop = true
-        }
-        
-        guard var shebang = firstLine, shebang.hasPrefix("#!") else { return nil }
-        
-        // remove #! symbol
-        shebang = shebang.replacingOccurrences(of: "^#! *", with: "", options: .regularExpression)
+        let firstLineRange = self.lineContentsRange(at: self.startIndex)
+        let shebang = self[firstLineRange]
+            .dropFirst("#!".count)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
         
         // find interpreter
         let components = shebang.components(separatedBy: " ")

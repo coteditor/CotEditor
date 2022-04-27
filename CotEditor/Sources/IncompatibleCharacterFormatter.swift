@@ -28,6 +28,10 @@ import AppKit.NSColor
 
 final class IncompatibleCharacterFormatter: Formatter {
     
+    private let invisibleCategories: Set<Unicode.GeneralCategory> = [.control, .spaceSeparator, .lineSeparator]
+    
+    
+    
     // MARK: Formatter Function
     
     /// convert to plain string
@@ -44,7 +48,7 @@ final class IncompatibleCharacterFormatter: Formatter {
             let string = self.string(for: obj),
             string.unicodeScalars.compareCount(with: 1) == .equal,
             let unicode = string.unicodeScalars.first,
-            unicode.properties.generalCategory == .control
+            self.invisibleCategories.contains(unicode.properties.generalCategory)
         else { return nil }
         
         let attributes = (attrs ?? [:]).merging([.foregroundColor: NSColor.tertiaryLabelColor]) { $1 }

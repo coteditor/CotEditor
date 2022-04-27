@@ -38,6 +38,7 @@
 // Accessibility labels
 "inspector" = "inspector";
 "outline" = "outline";
+"warnings" = "warnings";
 "incompatible characters" = "incompatible characters";
 "status bar" = "status bar";
 "editor" = "editor";
@@ -83,7 +84,7 @@
 "Empty find string" = "Empty find string";
 "The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";
 "Input text to find." = "Input text to find.";
-"Select the search scope in the document or disable the “in selection” option." = "Select the search scope in the document or disable the “in selection” option.";
+"Select the search scope in the document or turn off the “in selection” option." = "Select the search scope in the document or turn off the “in selection” option.";
 
 // accessibility announcement
 "Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.
@@ -93,16 +94,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match.";
 "Replace the current selection with the replacement text." = "Replace the current selection with the replacement text.";
 "Not Found" = "Not Found";
-"%@ found" = "%@ found";  // %@ is number of founds
+"%i found" = "%i found";  // %i is number of founds
 "Not Replaced" = "Not Replaced";
-"%@ replaced" = "%@ replaced";  // %@ is number of replaced
+"%i replaced" = "%i replaced";  // %i is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "No strings found in “%@”.";
 "Found one string in “%@”." = "Found one string in “%@”.";
-"Found %@ strings in “%@”." = "Found %@ strings in “%@”.";
+"Found %i strings in “%@”." = "Found %i strings in “%@”.";
 
 
 /* MARK: Regular Expression Reference */
@@ -198,6 +199,13 @@
 "Do you want to change encoding and show incompatible characters?" = "Do you want to change encoding and show incompatible characters?";
 "Change Encoding" = "Change Encoding";
 
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "The document has inconsistent line endings.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";
+"Don’t ask again for this document" = "Don’t ask again for this document";
+"Convert" = "Convert";
+"Review" = "Review";
+
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "The file has been modified by another application. There are also unsaved changes in CotEditor.";
 "The file has been modified by another application." = "The file has been modified by another application.";
@@ -239,7 +247,7 @@
 "Horizontal" = "Horizontal";
 "Vertical" = "Vertical";
 // tooltip
-"Toggle text orientation" = "Toggle text orientation";
+"Switch text orientation" = "Switch text orientation";
 
 "Indent" = "Indent";
 "Shift Left" = "Shift Left";
@@ -255,7 +263,7 @@
 
 "Tab Style" = "Tab Style";
 // tooltip
-"Disable expanding tabs to spaces" = "Disable expanding tabs to spaces";
+"Turn off expanding tabs to spaces" = "Turn off expanding tabs to spaces";
 "Expand tabs to spaces automatically" = "Expand tabs to spaces automatically";
 "Change tab width" = "Change tab width";
 // menu
@@ -307,7 +315,7 @@
 
 "Fonts" = "Fonts";
 // tooltip
-"Show Font Panel" = "Show Font Panel";
+"Show Fonts" = "Show Fonts";
 
 
 
@@ -369,13 +377,21 @@
 /* MARK: Inspector */
 // Outline
 "Recent Filters" = "Recent Filters";
-"Clear Recents" = "Clear Recents";
+"Clear Recent Filters" = "Clear Recent Filters";
 "No Recent Filter" = "No Recent Filter";
 "No Filter Results" = "No Filter Results";
 
+// Warnings
+"No issues found." = "No issues found.";
+
 // Incompatible characters
-"No incompatible characters were found." = "No incompatible characters were found.";
 "Scanning incompatible characters…" = "Scanning incompatible characters…";
+"Found an incompatible character." = "Found an incompatible character.";
+"Found %i incompatible characters." = "Found %i incompatible characters.";  // %i is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 /* MARK: EditorTextView */
@@ -467,8 +483,7 @@
 // Coloring indicator
 "Coloring text…" = "Colouring text…";
 "Please wait for a while." = "Please wait for a while.";
-"Extracting %@…" = "Extracting %@…";
-"Preparing to color…" = "Preparing to colour…";
+"Parsing document…" = "Parsing document…";
 "Applying colors to text…" = "Applying colours to text…";
 "keywords" = "keywords";
 "commands" = "commands";
@@ -480,7 +495,6 @@
 "strings" = "strings";
 "characters" = "characters";
 "comments" = "comments";
-"comments and quoted texts" = "comments and quoted texts";
 
 
 
@@ -490,6 +504,16 @@
 // Color list name
 "Stylesheet Keywords" = "Stylesheet Keywords";
 
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "Recents";
+"Clear Recents" = "Clear Recents";
+"Invalid code" = "Invalid code";
+
+
+
+/* MARK: Preferences */
 
 // General pane
 // Autosave setting update alert
@@ -552,7 +576,7 @@
 "Strings" = "Strings";
 "Characters" = "Characters";
 "Comments" = "Comments";
-"Outline Menu" = "Outline Menu";
+"Outline" = "Outline";
 "Completion List" = "Completion List";
 "File Mapping" = "File Mapping";
 "Style Info" = "Style Info";
@@ -562,7 +586,7 @@
 "No error found." = "No error found.";
 "An error found!" = "An error found!";
 "%i errors found!" = "%i errors found!";
-"outline menu" = "outline menu";
+"outline" = "outline";
 
 
 
@@ -592,7 +616,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Are you sure you want to delete “%@” syntax style?";
-"Deleted style can’t be restored." = "Deleted style can’t be restored.";
 "Delete" = "Delete";
 "Replace" = "Replace";
 
@@ -653,7 +676,7 @@
 "Open Scripts Folder" = "Open Scripts Folder";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "“Option + click” to open script in editor.";
+"Option-click to open script in editor." = "Option-click to open script in editor.";
 
 
 
@@ -693,7 +716,7 @@
 
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
-"The cursor position after inserting the snippet." = "The cursor position after inserting the snippet.";
+"The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";
 
 
 /* String extension */

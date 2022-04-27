@@ -31,6 +31,9 @@ private enum OSALineEnding: FourCharCode {
     case lf = "leLF"
     case cr = "leCR"
     case crlf = "leCL"
+    case nel = "leNL"
+    case ls = "leLS"
+    case ps = "lePS"
     
     
     var lineEnding: LineEnding {
@@ -42,6 +45,12 @@ private enum OSALineEnding: FourCharCode {
                 return .cr
             case .crlf:
                 return .crlf
+            case .nel:
+                return .nel
+            case .ls:
+                return .lineSeparator
+            case .ps:
+                return .paragraphSeparator
         }
     }
     
@@ -55,8 +64,12 @@ private enum OSALineEnding: FourCharCode {
                 self = .cr
             case .crlf:
                 self = .crlf
-            default:
-                return nil
+            case .nel:
+                self = .nel
+            case .lineSeparator:
+                self = .ls
+            case .paragraphSeparator:
+                self = .ps
         }
     }
     
@@ -367,7 +380,7 @@ extension Document {
             }
             
             self.selectedRange = foundRange
-            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument.
+            self.insert(string: replacedString, at: .replaceSelection)
             
             return 1
         }
@@ -424,7 +437,7 @@ extension Document {
         
         let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
         
-        guard let range = string.range(in: fuzzyRange) else {
+        guard let range = self.string.range(in: fuzzyRange) else {
             command.scriptErrorNumber = OSAParameterMismatch
             command.scriptErrorString = "Out of the range."
             return nil

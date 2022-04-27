@@ -25,6 +25,7 @@
 
 import Combine
 import Foundation
+import UniformTypeIdentifiers
 
 final class ReplacementManager: SettingFileManaging {
     
@@ -41,8 +42,7 @@ final class ReplacementManager: SettingFileManaging {
     let didUpdateSetting: PassthroughSubject<SettingChange, Never> = .init()
     
     static let directoryName: String = "Replacements"
-    let filePathExtensions: [String] = DocumentType.replacement.extensions
-    let settingFileType: SettingFileType = .replacement
+    let fileType: UTType = .cotReplacement
     
     @Published var settingNames: [String] = []
     let bundledSettingNames: [String] = []

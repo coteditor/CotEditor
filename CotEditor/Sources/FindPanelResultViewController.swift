@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: Private Properties
     
-    private var results = [TextFindResult]()
+    private var results: [TextFindResult] = []
     @objc private dynamic var findString: String?
     @objc private dynamic var resultMessage: String?
     
@@ -144,8 +144,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
                 case 1:
                     return String(format: "Found one string in “%@”.".localized, documentName)
                 default:
-                    let countStr = String.localizedStringWithFormat("%li", results.count)  // localize to add thousand separators
-                    return String(format: "Found %@ strings in “%@”.".localized, countStr, documentName)
+                    return String(format: "Found %i strings in “%@”.".localized, locale: .current, results.count, documentName)
             }
         }()
         self.resultMessage = resultMessage

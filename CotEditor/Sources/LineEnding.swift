@@ -25,15 +25,16 @@
 
 import Foundation
 
-enum LineEnding: Character {
+enum LineEnding: Character, CaseIterable {
     
     case lf = "\n"
     case cr = "\r"
     case crlf = "\r\n"
+    case nel = "\u{0085}"
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
-    static let basic: [LineEnding] = [.lf, .cr, .crlf]
+    static let basicCases: [LineEnding] = [.lf, .cr, .crlf]
     
     
     var string: String {
@@ -48,6 +49,12 @@ enum LineEnding: Character {
     }
     
     
+    var index: Int {
+        
+        Self.allCases.firstIndex(of: self)!
+    }
+    
+    
     var name: String {
         
         switch self {
@@ -57,6 +64,8 @@ enum LineEnding: Character {
                 return "CR"
             case .crlf:
                 return "CRLF"
+            case .nel:
+                return "NEL"
             case .lineSeparator:
                 return "LS"
             case .paragraphSeparator:
@@ -74,10 +83,12 @@ enum LineEnding: Character {
                 return "Classic Mac OS (CR)".localized
             case .crlf:
                 return "Windows (CRLF)".localized
+            case .nel:
+                return "Unicode Next Line (NEL)".localized
             case .lineSeparator:
-                return "Unix Line Separator".localized
+                return "Unicode Line Separator (LS)".localized
             case .paragraphSeparator:
-                return "Unix Paragraph Separator".localized
+                return "Unicode Paragraph Separator (PS)".localized
         }
     }
     
@@ -89,23 +100,40 @@ enum LineEnding: Character {
 
 private extension LineEnding {
     
-    static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
+    var regexPattern: String {
+        
+        switch self {
+            case .lf:
+                return "(?<!\r)\n"
+            case .cr:
+                return "\r(?!\n)"
+            default:
+                return self.string
+        }
+    }
+    
+}
+
+
+private extension BidirectionalCollection where Element == LineEnding {
+    
+    var regexPattern: String {
+        
+        assert(!self.isEmpty)
+        assert(self.count == self.unique.count)
+        
+        let multiples = self.filter { $0.length > 1 }
+        let singles = self.filter { $0.length == 1 }
+        
+        return (multiples + singles)
+            .map { multiples.isEmpty ? $0.regexPattern : $0.string }
+            .joined(separator: "|")
+    }
+    
 }
 
 
 extension StringProtocol where Self.Index == String.Index {
-    
-    /// The first line ending type.
-    var detectedLineEnding: LineEnding? {
-        
-        guard let range = self.range(of: LineEnding.regexPattern, options: .regularExpression) else { return nil }
-        
-        // -> Swift treats "\r\n" also as a single character.
-        let character = self[range.lowerBound]
-        
-        return LineEnding(rawValue: character)
-    }
-    
     
     /// Count characters in the receiver but except all kinds of line endings.
     var countExceptLineEnding: Int {
@@ -114,43 +142,77 @@ extension StringProtocol where Self.Index == String.Index {
         // cf. https://bugs.swift.org/browse/SR-10896
         guard self.first != "\u{FEFF}" || self.compareCount(with: 16) == .greater else {
             let startIndex = self.index(after: self.startIndex)
-            return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
+            return self[startIndex...].replacingOccurrences(of: LineEnding.allCases.regexPattern, with: "", options: .regularExpression).count + 1
         }
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count
+        return self.replacingOccurrences(of: LineEnding.allCases.regexPattern, with: "", options: .regularExpression).count
     }
     
     
-    /// String replacing all kind of line ending characters in the the receiver with the desired line ending.
+    /// Return a new string in which all specified line ending characters in the receiver are replaced by another given line endings.
     ///
-    /// - Parameter lineEnding: The line ending type to replace with.
+    /// - Parameters:
+    ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
+    ///     - lineEnding: The line ending type with which to replace target.
     /// - Returns: String replacing line ending characers.
-    func replacingLineEndings(with lineEnding: LineEnding) -> String {
+    func replacingLineEndings(_ lineEndings: [LineEnding]? = nil, with lineEnding: LineEnding) -> String {
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: lineEnding.string, options: .regularExpression)
+        let lineEndings = lineEndings ?? LineEnding.allCases
+        
+        return self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
     }
     
+}
+
+
+
+extension String {
     
-    /// Convert passed-in range as if line endings are changed from `fromLineEnding` to `toLineEnding`
-    /// by assuming the receiver has `fromLineEnding` regardless of actual ones if specified.
+    /// Collect ranges of all line endings per line ending type from the beginning.
     ///
-    /// - Important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
-    func convert(range: NSRange, from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding) -> NSRange {
+    /// - Parameters:
+    ///     - range: The range to parse.
+    /// - Returns: Ranges of line endings.
+    func lineEndingRanges(in range: NSRange? = nil) -> [ItemRange<LineEnding>] {
         
-        guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
+        guard !self.isEmpty else { return [] }
         
-        let delta = toLineEnding.length - currentLineEnding.length
+        var lineEndingRanges: [ItemRange<LineEnding>] = []
+        let string = self as NSString
         
-        guard delta != 0 else { return range }
+        string.enumerateSubstrings(in: range ?? string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, _) in
+            guard !enclosingRange.isEmpty else { return }
+            
+            let lineEndingRange = NSRange(substringRange.upperBound..<enclosingRange.upperBound)
+            
+            guard
+                !lineEndingRange.isEmpty,
+                let lastCharacter = string.substring(with: lineEndingRange).first,  // line ending must be a single character
+                let lineEnding = LineEnding(rawValue: lastCharacter)
+            else { return }
+            
+            lineEndingRanges.append(.init(item: lineEnding, range: lineEndingRange))
+        }
         
-        let string = self.replacingLineEndings(with: currentLineEnding)
-        let regex = try! NSRegularExpression(pattern: currentLineEnding.string)
-        let locationRange = NSRange(location: 0, length: range.location)
+        return lineEndingRanges
+    }
+    
+}
+
+
+
+extension NSMutableAttributedString {
+    
+    /// Replace all line ending characters in the receiver with another given line endings.
+    ///
+    /// - Parameters:
+    ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
+    ///     - newLineEnding: The line ending type with which to replace target.
+    func replaceLineEndings(_ lineEndings: [LineEnding]? = nil, with newLineEnding: LineEnding) {
         
-        let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
-        let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)
+        let lineEndings = lineEndings ?? LineEnding.allCases
         
-        return NSRange(location: range.location + locationDelta, length: range.length + lengthDelta)
+        self.mutableString.replaceOccurrences(of: lineEndings.regexPattern, with: newLineEnding.string, options: .regularExpression, range: self.range)
     }
     
 }

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="script, AppleScript, terminology"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>Change log of AppleScript support</title>
 </head>
@@ -48,7 +48,7 @@
 
 <article>
 <h2>Terminology change on CotEditor 3.5.0</h2>
-	<h3>editor's opacity</h3>
+	<h3>editor’s opacity</h3>
 	<p><code>view opacity</code> property was deprecated on CotEditor 3.5.0.</p>
 	<p>Please note that <strong>there is no backward compatibility</strong> with this changing.</p>
 </article>
@@ -159,14 +159,14 @@ This issue doesn’t occur with plain-text AppleScript (.applescript). </p>
 <h2>Terminology change on CotEditor 1.5.0</h2>
 <section>
 <h3>Window transparency</h3>
-<p>According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The <b>document</b>'s properties till on version 1.4:</p>
+<p>According to the changing of the mechanism to make window transparent on CotEditor 1.5, the terms about window opacity for AppleScripting was also changed. The <b>document</b>’s properties till on version 1.4:</p>
 
 <ul class="nostyle">
 	<li><code>transparency</code>: The transparency of Window or TextView. (real, from ‘0.2’ to ‘1.0’)</li>
 	<li><code>alpha only textView</code>: Whether the transparency setting affects only the TextView or not. (boolean)</li>
 </ul>
 
-<p>were deprecated, and the new <b>window</b>'s property:</p>
+<p>were deprecated, and the new <b>window</b>’s property:</p>
 
 <ul class="nostyle">
 	<li><code>view opacity</code>: The opacity of the view. (real, from ‘0.2’ to ‘1.0’)</li>
@@ -174,13 +174,13 @@ This issue doesn’t occur with plain-text AppleScript (.applescript). </p>
 
 <p>was added instead.</p>
 
-<p>Since the previous term “transparency” was incorrectly used until version 1.4, the property name was renamed from “transparency” to “opacity” but the value to set is not changed. Namely, 1.0 means fully opaque on both properties.</p>
+<p>Because the previous term “transparency” was incorrectly used until version 1.4, the property name was renamed from “transparency” to “opacity” but the value to set is not changed. Namely, 1.0 means fully opaque on both properties.</p>
 <p>Please note that <strong>there is no backward compatibility</strong> with this changing.</p>
 </section>
 
 <section>
 <h3>Selection Object direct under the Application</h3>
-<p>In version 0.6, the initial release of CotEditor, if you didn't specify the ‘selection’ object, the frontmost window's contents will be selected. But it was actually didn't work correctly and therefore deprecated.  This method was kept valid however to maintain backwards compatibility.</p>
+<p>In version 0.6, the initial release of CotEditor, if you didn’t specify the ‘selection’ object, the frontmost window’s contents will be selected. But it was actually didn’t work correctly and therefore deprecated.  This method was kept valid however to maintain backwards compatibility.</p>
 <p>On CotEditor 1.5, it is formally removed.  Specify the target like below, when you get the ‘selection’ object.</p>
 
 <figure>

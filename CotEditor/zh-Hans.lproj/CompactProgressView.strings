@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2019 CotEditor Project
+ © 2019-2022 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,5 +26,5 @@
  
  */
 
-/* Class = "NSButtonCell"; title = "Cancel operation."; ObjectID = "3ti-Fq-4CU"; */
-"3ti-Fq-4CU.toolTip" = "取消操作";
+/* Class = "NSButton"; ibShadowedToolTip = "Cancel operation."; ObjectID = "Jua-5O-j1x"; */
+"Jua-5O-j1x.ibShadowedToolTip" = "取消操作";

@@ -2,23 +2,66 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="search, line ending, tab"/>
+	<meta name="keywords" content="search, replace, line ending, newline, line break"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Finding a line ending or a tab</title>
+	<title>Find or replace a line ending</title>
 </head>
 
 <body>
 
-<h1>Finding a line ending or a tab</h1>
+<h1>Find or replace a line ending</h1>
 
-<p>To search a line ending or a tab character using the Find panel, you can either write the corresponding regular expression, or use the following key combinations to input them in the Find field.</p>
+<h2>Input a line ending</h2>
+
+<p>Typing <kbd>Option</kbd>-<kbd>Return</kbd> in a input field in the Find window breaks a line.</p>
+
+
+<h2>Find line endings</h2>
+
+<h3>Textual search</h3>
+
+<p>On the normal textual search, the line endings contained in the search string are assumed as the line ending code used in the document being searched for. That is, it doesn’t match the line endings that differ from the document line ending type.</p>
+
+
+<h3>Regular expression search</h3>
+
+<p>As with the textual search, the line endings contained in the search string are assumed as the line ending code used in the document being searched for. On the other hand, the line endings specified as a metacharacter or a Unicode code point in the regular expression pattern are treated as-is regardless of the line endings type of the target document.</p>
+
 <table>
-	<tr><th></th><th>Regular expression</th><th>Key combination</th></tr>
-	<tr><td>A line ending character</td><td>\R</td><td><kbd>Option</kbd>-<kbd>Return</kbd></td></tr>
-	<tr><td>A tab character</td><td>\t</td><td><kbd>Option</kbd>-<kbd>Tab</kbd></td></tr>
+    <caption>Metacharacters indicating a line ending in the regular expression</caption>
+	
+	<thead>
+		<tr><th>Pattern</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>\n</td><td><code>U+000A</code>, the line ending character for LF</td></tr>
+		<tr><td>\r</td><td><code>U+000D</code>, the line ending character for CR</td></tr>
+		<tr><td>\r\n</td><td>The sequence of <code>U+000D</code> and <code>U+000A</code>, the line ending character for CRLF</td></tr>
+		<tr><td>\R</td><td>Any kind of line endings from <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</td></tr>
+	</tbody>
 </table>
+
+
+<h2>Replace with line endings</h2>
+
+<p>As for the text replacing with, all line endings even ones defined as a metacharacter like<code>\n</code> or captured are assumed as the document line ending.</p>
+
+<p>For instance, when replacing the find string “dog\Rcow” with the replacement string “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the substring “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
+
+<p>There is currently no way to replace with line endings other than the document line ending.</p>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/about_line_endings.html">Handle various types of line endings</a></li>
+	<li><a href="../pgs/howto_findpanel.html">Find or replace text</a></li>
+	<li><a href="../pgs/about_regex.html">Regular Expression Syntax</a></li>
+</ul>
+</section>
 
 </body>
 </html>

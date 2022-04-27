@@ -67,7 +67,7 @@ extension NSTextView {
             
             // let NSTextView culculate by single insertion editing
             guard
-                let insertionRanges = self.rangesForUserTextChange as? [NSRange],
+                let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue),
                 insertionRanges.count > 1,
                 insertionRanges == ranges
                 else { return nil }
@@ -105,8 +105,7 @@ extension NSTextView {
     func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
         
         if let self = self as? MultiCursorEditing,
-            let ranges = ranges as? [NSRange],
-            let set = self.prepareForSelectionUpdate(ranges)
+           let set = self.prepareForSelectionUpdate(ranges.map(\.rangeValue))
         {
             self.selectedRanges = set.selectedRanges
             self.insertionLocations = set.insertionLocations

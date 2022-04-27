@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,6 +104,15 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
         return self.boundingBoxForControlGlyph
+    }
+    
+    
+    
+    // MARK: Invisible Drawing Methods
+
+    func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool {
+        
+        false
     }
     
 }

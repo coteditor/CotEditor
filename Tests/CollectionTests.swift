@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,6 +35,24 @@ final class CollectionTests: XCTestCase {
         let subdata = data.components(length: 3)
         
         XCTAssertEqual(subdata, [Data([0, 1, 2]), Data([3, 4, 5]), Data([6])])
+    }
+    
+    
+    func testAppendUnique() {
+        
+        var array = [0, 1, 2, 3, 4]
+        
+        array.appendUnique(0, maximum: 5)
+        XCTAssertEqual(array, [1, 2, 3, 4, 0])
+        
+        array.appendUnique(6, maximum: 5)
+        XCTAssertEqual(array, [2, 3, 4, 0, 6])
+        
+        array.appendUnique(7, maximum: 6)
+        XCTAssertEqual(array, [2, 3, 4, 0, 6, 7])
+        
+        array.appendUnique(6, maximum: 3)
+        XCTAssertEqual(array, [0, 7, 6])
     }
     
     
@@ -74,6 +92,21 @@ final class CollectionTests: XCTestCase {
     }
     
     
+    func testRawRepresentable() {
+        
+        enum TestKey: String {
+            case dog, cat, cow
+        }
+        var dict = ["dog": "🐶", "cat": "🐱"]
+        
+        XCTAssertEqual(dict[TestKey.dog], dict[TestKey.dog.rawValue])
+        XCTAssertNil(dict[TestKey.cow])
+        
+        dict[TestKey.cow] = "🐮"
+        XCTAssertEqual(dict[TestKey.cow], "🐮")
+    }
+    
+    
     func testSorting() {
         
         for _ in 0..<10 {
@@ -84,6 +117,20 @@ final class CollectionTests: XCTestCase {
             
             array.sort()
             XCTAssertEqual(array, sorted)
+        }
+    }
+    
+    
+    func testBinarySearch() {
+        
+        for _ in 0..<10 {
+            let array = (0..<20).map { _ in Int.random(in: 0..<100) }.sorted()
+            
+            for _ in 0..<10 {
+                let index = Int.random(in: 0..<100)
+                XCTAssertEqual(array.binarySearchedFirstIndex(where: { $0 > index }),
+                               array.firstIndex(where: { $0 > index }))
+            }
         }
     }
     

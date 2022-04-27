@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -145,6 +145,15 @@ final class LineSortTests: XCTestCase {
         pattern.column = 1
         XCTAssertEqual(pattern.sortKey(for: tsvString), tsvString)
         XCTAssertEqual(NSRange(pattern.range(for: tsvString)!, in: tsvString), NSRange(0..<3))
+    }
+    
+    
+    func testNumberFormatter() {
+        
+        let formatter = NumberFormatter()
+        formatter.locale = .init(identifier: "de")
+        
+        XCTAssertEqual(formatter.leadingDouble(from: "-1000,1 m/s"), -1000.1)
     }
     
 }

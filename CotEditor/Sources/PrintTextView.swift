@@ -60,8 +60,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private let lineHeight: CGFloat
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
-    private let dateFormatter: DateFormatter
     private var lastPaperContentSize: NSSize = .zero
+    private lazy var dateFormatter: DateFormatter = .init()
     
     private var asyncHighlightObserver: AnyCancellable?
     
@@ -72,10 +72,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     init() {
         
-        // prepare date formatter
-        self.dateFormatter = DateFormatter()
-        self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
-        
         self.tabWidth = UserDefaults.standard[.tabWidth]
         self.lineHeight = UserDefaults.standard[.lineHeight]
         
@@ -84,18 +80,16 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         textContainer.widthTracksTextView = true
         textContainer.isHangingIndentEnabled = UserDefaults.standard[.enablesHangingIndent]
         textContainer.hangingIndentWidth = UserDefaults.standard[.hangingIndentWidth]
+        textContainer.lineFragmentPadding = self.lineFragmentPadding
+        // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
         
         // setup textView components
         let textStorage = NSTextStorage()
-        let layoutManager = LayoutManager()
+        let layoutManager = PrintLayoutManager()
         textStorage.addLayoutManager(layoutManager)
         layoutManager.addTextContainer(textContainer)
         
         super.init(frame: .zero, textContainer: textContainer)
-        
-        // specify text container padding
-        // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
-        self.textContainer!.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
         self.isHorizontallyResizable = false
@@ -209,16 +203,26 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // draw line numbers if needed
         if self.printsLineNumber {
+            guard
+                let layoutManager = self.layoutManager as? LayoutManager,
+                let textContainer = self.textContainer
+            else { return assertionFailure() }
+            
             // prepare text attributes for line numbers
-            let fontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
-            let attrs: [NSAttributedString.Key: Any] = [.font: NSFont.lineNumberFont(ofSize: fontSize),
+            let numberFontSize = (0.9 * (self.font?.pointSize ?? 12)).rounded()
+            let numberFont = NSFont.lineNumberFont(ofSize: numberFontSize)
+            let attrs: [NSAttributedString.Key: Any] = [.font: numberFont,
                                                         .foregroundColor: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
-            let charSize = NSAttributedString(string: "8", attributes: attrs).size()
+            let numberSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
-            let horizontalOrigin = self.textContainerOrigin.x + self.lineFragmentPadding - self.lineNumberPadding
+            let horizontalOrigin = self.baseWritingDirection != .rightToLeft
+                ? self.textContainerOrigin.x + textContainer.lineFragmentPadding - self.lineNumberPadding
+                : self.textContainerOrigin.x + textContainer.size.width
+            let baselineOffset = layoutManager.baselineOffset(for: self.layoutOrientation)
+            let numberAscender = numberFont.ascender
             
             // vertical text
             let isVerticalText = self.layoutOrientation == .vertical
@@ -229,7 +233,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             }
             
             let options: NSTextView.LineEnumerationOptions = isVerticalText ? [.bySkippingWrappedLine] : []
-            self.enumerateLineFragments(in: dirtyRect, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
+            let range = ((self.layoutManager as? PrintLayoutManager)?.showsSelectionOnly == true) ? self.selectedRange : nil
+            self.enumerateLineFragments(in: dirtyRect, for: range, options: options.union(.bySkippingExtraLine)) { (lineRect, line, lineNumber) in
                 let numberString: String = {
                     switch line {
                         case .new:
@@ -244,14 +249,14 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 }()
                 
                 // adjust position to draw
-                let width = CGFloat(numberString.count) * charSize.width
-                var point = NSPoint(x: horizontalOrigin, y: lineRect.midY)
+                let width = CGFloat(numberString.count) * numberSize.width
+                let point: NSPoint
                 if isVerticalText {
-                    point = NSPoint(x: -point.y - width / 2,
-                                    y: point.x - charSize.height)
+                    point = NSPoint(x: -lineRect.midY - width / 2,
+                                    y: horizontalOrigin - numberSize.height)
                 } else {
-                    point.x -= width  // align right
-                    point.y -= charSize.height / 2
+                    point = NSPoint(x: horizontalOrigin - width,  // - width to align to right
+                                    y: lineRect.minY + baselineOffset - numberAscender)
                 }
                 
                 // draw number
@@ -272,13 +277,16 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private func applyPrintSettings() {
         
         guard
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any]
-            else { return assertionFailure() }
+            let layoutManager = self.layoutManager as? PrintLayoutManager,
+            let printInfo = NSPrintOperation.current?.printInfo
+        else { return assertionFailure() }
+        
+        // set scope to print
+        layoutManager.showsSelectionOnly = printInfo.isSelectionOnly
         
         // check whether print line numbers
         self.printsLineNumber = {
-            switch PrintVisibilityMode(settings[.lineNumber] as? Int) {
+            switch PrintVisibilityMode(printInfo[.lineNumber]) {
                 case .no:
                     return false
                 case .sameAsDocument:
@@ -289,11 +297,13 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }()
         
         // adjust paddings considering the line numbers
-        self.xOffset = self.printsLineNumber ? self.lineFragmentPadding : 0
+        let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
+        self.xOffset = printsAtLeft ? self.lineFragmentPadding : 0
+        self.textContainerInset.width = printsAtLeft ? self.lineFragmentPadding : 0
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            switch PrintVisibilityMode(settings[.invisibles] as? Int) {
+            switch PrintVisibilityMode(printInfo[.invisibles]) {
                 case .no:
                     return false
                 case .sameAsDocument:
@@ -304,20 +314,24 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }()
         
         // set whether draws background
-        self.drawsBackground = settings[.printsBackground] as? Bool ?? true
+        self.drawsBackground = printInfo[.printsBackground] ?? true
         
         // create theme
-        assert(settings[.theme] != nil)
-        let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
+        let themeName = printInfo[.theme] ?? ThemeName.blackAndWhite
         let theme = ThemeManager.shared.setting(name: themeName)  // nil for Black and White
         
         guard self.theme?.name != theme?.name else { return }
         
         // set theme
+        // -> The following two procedures are important to change .textColor in the preview properly
+        //    while printing only the selection (2022-03 macOS 12):
+        //    1. Set .textColor after setting .backgroundColor.
+        //    2. Ensure glyphs.
         self.theme = theme
-        self.textColor = theme?.text.color ?? .textColor
         self.backgroundColor = theme?.background.color ?? .textBackgroundColor  // expensive task
+        self.textColor = theme?.text.color ?? .textColor
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
+        layoutManager.ensureGlyphs(forCharacterRange: self.string.nsRange)
         
         // perform syntax highlight
         let progress = self.syntaxParser.highlight()
@@ -341,27 +355,27 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         let keys = location.keys
         
         guard
-            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            (settings[keys.needsDraw] as? Bool) ?? false
-            else { return NSAttributedString() }
+            let printInfo = NSPrintOperation.current?.printInfo,
+            printInfo[keys.needsDraw] == true
+        else { return NSAttributedString() }
         
-        let primaryInfoType = PrintInfoType(settings[keys.primaryContent] as? Int)
-        let primaryAlignment = AlignmentType(settings[keys.primaryAlignment] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[keys.secondaryContent] as? Int)
-        let secondaryAlignment = AlignmentType(settings[keys.secondaryAlignment] as? Int)
+        let primaryInfoType = PrintInfoType(printInfo[keys.primaryContent])
+        let primaryAlignment = AlignmentType(printInfo[keys.primaryAlignment])
+        let secondaryInfoType = PrintInfoType(printInfo[keys.secondaryContent])
+        let secondaryAlignment = AlignmentType(printInfo[keys.secondaryAlignment])
         
         let primaryString = self.printInfoString(type: primaryInfoType)
         let secondaryString = self.printInfoString(type: secondaryInfoType)
         
         switch (primaryString, secondaryString) {
             // case: empty
-            case (nil, nil):
+            case (.none, .none):
                 return NSAttributedString()
             
             // case: single content
-            case let (.some(string), nil):
+            case let (.some(string), .none):
                 return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
-            case let (nil, .some(string)):
+            case let (.none, .some(string)):
                 return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
             
             case let (.some(primaryString), .some(secondaryString)):
@@ -425,6 +439,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 return filePath
             
             case .printDate:
+                self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
                 return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
             
             case .pageNumber:
@@ -451,6 +466,65 @@ private extension NSLayoutManager {
         
         // cause layout by asking a question which has to determine where the glyph is
         self.textContainer(forGlyphAt: self.numberOfGlyphs - 1, effectiveRange: nil)
+    }
+    
+}
+
+
+
+// MARK: -
+
+private final class PrintLayoutManager: LayoutManager {
+    
+    var showsSelectionOnly = false {
+        
+        didSet {
+            guard showsSelectionOnly != oldValue else { return }
+            
+            let range = self.attributedString().range
+            self.invalidateGlyphs(forCharacterRange: range, changeInLength: 0, actualCharacterRange: nil)
+            self.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)  // important for vertical orientation
+            self.ensureGlyphs(forCharacterRange: range)
+            self.ensureLayout(forCharacterRange: range)
+        }
+    }
+    
+    
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes: UnsafePointer<Int>, font: NSFont, forGlyphRange glyphRange: NSRange) -> Int {
+        
+        // hide unselected glyphs if set so
+        guard
+            self.showsSelectionOnly,
+            let selectedRange = layoutManager.firstTextView?.selectedRange,
+            self.attributedString().length != selectedRange.length
+        else { return 0 }  // return 0 for the default processing
+        
+        let glyphIndexesToHide = (0..<glyphRange.length).filter { !selectedRange.contains(characterIndexes[$0]) }
+        
+        guard !glyphIndexesToHide.isEmpty else { return 0 }
+        
+        let newProperties = UnsafeMutablePointer(mutating: properties)
+        for index in glyphIndexesToHide {
+            newProperties[index].insert(.null)
+        }
+        
+        layoutManager.setGlyphs(glyphs, properties: newProperties, characterIndexes: characterIndexes, font: font, forGlyphRange: glyphRange)
+        
+        return glyphRange.length
+    }
+    
+    
+    override func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
+        
+        // zero width for folded characters
+        if self.showsSelectionOnly,
+           let selectedRange = layoutManager.firstTextView?.selectedRange,
+            !selectedRange.contains(charIndex)
+        {
+            return .zeroAdvancement
+        }
+        
+        return super.layoutManager(layoutManager, shouldUse: action, forControlCharacterAt: charIndex)
     }
     
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -86,7 +86,7 @@ extension MultiCursorEditing {
         
         self.textStorage?.beginEditing()
         for range in replacementRanges {
-            self.textStorage?.replaceCharacters(in: range.shifted(offset: offset), with: attributedString)
+            self.textStorage?.replaceCharacters(in: range.shifted(by: offset), with: attributedString)
             
             newInsertionLocations.append(range.location + offset + stringLength)
             
@@ -406,7 +406,7 @@ extension NSTextView {
     }
     
     
-    /// Find the location for a insertion point where one (visual) line above to the given insertion point location.
+    /// Find the location for the insertion point where one (visual) line above to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
@@ -426,7 +426,7 @@ extension NSTextView {
     }
     
     
-    /// Find the location for a insertion point where one (visual) line below to the given insertion point location.
+    /// Find the location for the insertion point where one (visual) line below to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.

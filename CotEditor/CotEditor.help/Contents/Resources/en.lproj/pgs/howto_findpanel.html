@@ -4,16 +4,16 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="find,replace,replacement,regex,regular expression"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Find and Replace</title>
+	<title>Find or replace text</title>
 </head>
 
 <body>
 <a name="howto_findpanel"></a>
 
 
-<h1>Find and Replace</h1>
+<h1>Find or replace text</h1>
 
 <p>CotEditor has a powerful find and replacement feature that also can use regular expression.</p>
 
@@ -21,6 +21,22 @@
 
 
 <section>
+<h2>Find/Replacement Fields</h2>
+<p>Enter the text to find to the find field, the field with a lope icon; and enter the text to replace with to the replacement field, the field with a pen icon. When the replacement field is empty by replacement, the matched texts are just removed.</p>
+
+<p>To insert the following special characters to the fields, use the following key combinations:</p>
+
+<table>
+	<thead>
+		<tr><th>Character</th><th>Key combination</th></tr>
+	</thead>
+	
+	<tbody>
+		<tr><td>line ending character</td><td><kbd>Option</kbd>-<kbd>Return</kbd></td></tr>
+		<tr><td>tab character</td><td><kbd>Option</kbd>-<kbd>Tab</kbd></td></tr>
+	</tbody>
+</table>
+
 <h2>Find/Replacement Histories</h2>
 
 <p>You can re-use previous find/replacement strings by selecting them from the lope/pen icon in the field.</p>
@@ -46,7 +62,7 @@
 <section>
 <h2>Advanced Find Options</h2>
 
-<p>You can customize find behavior from the advanced find options panel. The advanced find options panel will be opened when you click the gear button in the find panel.</p>
+<p>You can customize find behavior from the advanced find options panel. The advanced find options panel will be opened when you click the gear button in the Find window.</p>
 
 <table>
 	<thead>
@@ -54,15 +70,15 @@
 	</thead>
 	<tbody>
 		<tr><td>Wrap search around</td><td>Find from the the beginning of the document if there is no match after the cursor.</td></tr>
-		<tr><td>Select next match after replace</td><td>Select next match after “Replace” automatically.</td></tr>
-		<tr><td>Auto-close progress dialog</td><td>Automatically close progress dialog that is shown when “Find All” or “Replace All” performed after progress is finished.</td></tr>
+		<tr><td>Select next match after replace</td><td>Select next match after Replace automatically.</td></tr>
+		<tr><td>Auto-close progress dialog</td><td>Automatically close progress dialog that is shown when Find All or Replace All performed after progress is finished.</td></tr>
 	</tbody>
 </table>
 
 
 <section>
 <h3>Textual Search</h3>
-<p>Options for search when the regular expression is disabled.</p>
+<p>Options for search when the regular expression is turned off.</p>
 
 <table>
 	<thead>
@@ -100,8 +116,9 @@
 <section id="cf">
 <h2>See also</h2>
 <ul>
+	<li><a href="../pgs/howto_find_newline.html">Find or replace a line ending</a></li>
 	<li><a href="../pgs/about_regex.html">Regular Expression Syntax</a></li>
-	<li><a href="../pgs/howto_multiple_replace.html">Replacing with multiple rules</a></li>
+	<li><a href="../pgs/howto_multiple_replace.html">Replace with multiple rules</a></li>
 </ul>
 </section>
 

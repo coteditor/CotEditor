@@ -4,7 +4,7 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="エンコーディング, Shift JIS, Windows"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<title>Shift JIS系のエンコーディングの違い</title>
 </head>
@@ -16,10 +16,15 @@
 <p>CotEditorでは、4種類の日本語Shift JIS系エンコーディングを区別して扱います。この4種類には下記のような違いがあります。</p>
 
 <table>
-	<tr><th>Shift JIS</th><td>最も基本的なShift JIS。漢字第一、第二水準をサポートします。</td></tr>
-	<tr><th>Mac OS</th><td>Mac独自の機種依存文字などを加えたものでMac OS 9以前で使われています。</td></tr>
-	<tr><th>Windows, DOS</th><td>Windows独自の機種依存文字などを加えたものです。</td></tr>
-	<tr><th>Shift JIS X0213</th><td>文字コード規格JIS X0213（第一〜第四水準）が扱えます。</td></tr>
+	<thead>
+		<tr><th>エンコーディング名</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>Shift JIS</th><td>最も基本的なShift JIS。漢字第一、第二水準をサポートします。</td></tr>
+		<tr><th>Mac OS</th><td>Mac独自の機種依存文字などを加えたものでMac OS 9以前で使われています。</td></tr>
+		<tr><th>Windows, DOS</th><td>Windows独自の機種依存文字などを加えたものです。</td></tr>
+		<tr><th>Shift JIS X0213</th><td>文字コード規格JIS X0213（第一〜第四水準）が扱えます。</td></tr>
+	</tbody>
 </table>
 
 <p>適切なエンコーディングは場合によって異なりますが、一般には「日本語（Shift JIS）」が無難です。ただし、一部の文字の取り扱いについて下記のような違いがありますので、これらの文字を使う場合には注意してください。</p>
@@ -36,7 +41,7 @@
 	</tbody>
 </table>
 
-<p>これらの文字が含まれていないかどうかは、表示 &gt; インスペクタ &gt; 非互換文字 で確認できます。</p>
+<p>これらの文字が含まれていないかどうかは、「表示」＞「インスペクタ」＞「警告」で確認できます。</p>
 
 
 <section id="cf">

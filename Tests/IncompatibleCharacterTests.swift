@@ -32,7 +32,7 @@ final class IncompatibleCharacterTests: XCTestCase {
     func testIncompatibleCharacterScan() throws {
         
         let string = "abc\\ \n ¥ \n ~"
-        let incompatibles = try string.scanIncompatibleCharacters(for: .plainShiftJIS)
+        let incompatibles = try string.scanIncompatibleCharacters(with: .plainShiftJIS)
         
         XCTAssertEqual(incompatibles.count, 2)
         
@@ -55,7 +55,7 @@ final class IncompatibleCharacterTests: XCTestCase {
     func testSequencialIncompatibleCharactersScan() throws {
         
         let string = "~~"
-        let incompatibles = try string.scanIncompatibleCharacters(for: .plainShiftJIS)
+        let incompatibles = try string.scanIncompatibleCharacters(with: .plainShiftJIS)
         
         XCTAssertEqual(incompatibles.count, 2)
         
@@ -71,7 +71,7 @@ final class IncompatibleCharacterTests: XCTestCase {
     func testIncompatibleCharacterScanWithLengthShift() throws {
         
         let string = "family 👨‍👨‍👦 with 🐕"
-        let incompatibles = try string.scanIncompatibleCharacters(for: .japaneseEUC)
+        let incompatibles = try string.scanIncompatibleCharacters(with: .japaneseEUC)
         
         XCTAssertEqual(incompatibles.count, 2)
         

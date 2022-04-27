@@ -52,7 +52,7 @@ final class FilterField: NSSearchField {
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: "Clear Recents".localized, action: nil, keyEquivalent: "")
+        searchMenu.addItem(withTitle: "Clear Recent Filters".localized, action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
         searchMenu.addItem(withTitle: "No Recent Filter".localized, action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag

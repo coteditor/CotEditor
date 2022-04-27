@@ -139,9 +139,9 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "JiF-TN-azJ"; */
 "JiF-TN-azJ.ibShadowedToolTip" = "バイトレベルで完全一致する文字列にのみ一致";
 
-/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "WWu-mC-MCz"; */
+/* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "WWu-mC-MCz"; */
 "WWu-mC-MCz.title" = "発音区別記号を無視";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritical marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
 "9pO-Jw-K7x.ibShadowedToolTip" = "文字の発音記号を無視して検索（例: ö = o）";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */

@@ -4,20 +4,20 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="スクリプトメニュー, スクリプト, アップルスクリプト, AppleScript, JXA, JavaScript"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/applescript.css"/>
-	<title>AppleScriptとの連携</title>
+	<title>AppleScriptと連携する</title>
 </head>
 
 <body>
 <a name="about_applescript"></a>
 
 
-<h1>AppleScriptとの連携</h1>
+<h1>AppleScriptと連携する</h1>
 <p>CotEditorはAppleScriptおよびJXA (JavaScript for Automation)をサポートしています。</p>
 
-<p>以下で説明するCotEditorのクラス・コマンド以外にも、AppleScriptで標準的に実装されている語句を使用することができます。CotEditorにおけるAppleScriptサポートの詳細な仕様については、辞書ライブラリを参照してください。ライブラリを参照するにはCotEditor上で次のようにします：</p>
+<p>以下で説明するCotEditorのクラス・コマンド以外にも、AppleScriptで標準的に実装されている語句を使用することができます。CotEditorにおけるAppleScriptサポートの詳細な仕様については、辞書ライブラリを参照してください。ライブラリを参照するにはCotEditor上で次のようにします:</p>
 
 <ul>
 	<li>ヘルプメニューの「AppleScript辞書」を選択します。</li>
@@ -80,7 +80,7 @@
 		<dd>エンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></dd>
 
 		<dt><code>line ending</code></dt>
-		<dd>改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code>）</dd>
+		<dd>改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code> / <code>NEL</code> / <code>LS</code> / <code>PS</code>）</dd>
 
 		<dt><code>tab width</code></dt>
 		<dd>スペース幅換算のタブ幅（int型）<span class="added">CotEditor 2.1で追加</span></dd>
@@ -159,7 +159,7 @@
 
 <p>locationが負の場合、対象書類の文字列の後ろから数えてlocation番目から始まる範囲となります。<br/>
 lengthが正である場合、指定される範囲はlocationから数えてlength文字数分となります。また、対象書類の文字列の長さを超えてlengthが入力された場合、末尾までが範囲となります。<br/>
-lengthが負である場合、指定される範囲は対象書類の文字列の後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置にキャレットが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
+lengthが負である場合、指定される範囲は対象書類の文字列の後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
 <p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
 <p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするためには<code>scroll to caret</code>コマンドか<code>jump</code>コマンドを使用してください。</p>
 </section>
@@ -237,7 +237,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <h4>詳細</h4>
 
-<p>検索は、現在の選択位置（キャレット位置）を基準に行われます。<br/>
+<p>検索は、現在の挿入ポイントの位置を基準に行われます。<br/>
 例えば、<code>wrap</code>や<code>backwards</code>が指定されていなかったとき、選択位置以降に対象文字列がない場合には<code>false</code>を返します。</p>
 <p><code>RE</code>（正規表現検索）の場合は、<code>backwards</code>（後方からの検索）ができません。同時に指定された場合は<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
 </section>
@@ -291,8 +291,8 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <h4>詳細</h4>
 
-<p><code>find</code>同様、命令実行前の選択位置（キャレット位置）を基準に置換が行われます。書類全体を対象に実行するときは<code>all</code>を指定してください。</p>
-<p><code>all</code>オプションを付けて書類全体を対象に実行され置換が行われた場合、実行後の選択位置（キャレット位置）は書類の先頭になります。ただし、対象文字列が見つからなかった場合は選択位置（キャレット位置）は変更されません。</p>
+<p><code>find</code>同様、命令実行前の挿入ポイントの位置を基準に置換が行われます。書類全体を対象に実行するときは<code>all</code>を指定してください。</p>
+<p><code>all</code>オプションを付けて書類全体を対象に実行され置換が行われた場合、実行後の挿入ポイントの位置は書類の先頭になります。ただし、対象文字列が見つからなかった場合は挿入ポイントの位置は変更されません。</p>
 <p><code>RE</code>（正規表現検索）の場合は、<code>backwards</code>（後方からの検索）ができません。同時に指定された場合は<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
 </section>
 
@@ -303,7 +303,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">scroll to caret</code></dt>
-	<dd>キャレットまたは選択位置が見えるようにスクロールする。</dd>
+	<dd>挿入ポイントが見えるようにスクロールする。</dd>
 	
 	<dd><dl>
 		<dt>対象</dt>
@@ -315,7 +315,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <figure>
 	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
-	<figcaption>キャレットまたは選択範囲が見えるようにスクロールする。</figcaption>
+	<figcaption>挿入ポイントが見えるようにスクロールする。</figcaption>
 </figure>
 </section>
 
@@ -326,7 +326,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">jump</code></dt>
-	<dd>指定した行にキャレットを移動しその部分が見えるようにスクロールする。</dd>
+	<dd>指定した行に挿入ポイントを移動しその部分が見えるようにスクロールする。</dd>
 	<dd><dl class="subtree">
 		<dt><code>to line</code> (int)</dt>
 		<dd>移動先の行番号</dd>
@@ -348,7 +348,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <figure>
 	<pre class="source"><code class="AppleScript">jump front document to line -1</code></pre>
-	<figcaption>最終行にキャレットを移動しその部分が見えるようにスクロールする。</figcaption>
+	<figcaption>最終行に挿入ポイントを移動しその部分が見えるようにスクロールする。</figcaption>
 </figure>
 
 <h4>詳細</h4>
@@ -453,7 +453,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <figure>
 	<pre class="source"><code class="AppleScript">shift right selection of front document</code></pre>
-	<figcaption>選択位置またはキャレットのある行を右にシフト。</figcaption>
+	<figcaption>挿入ポイントのある行を右にシフト。</figcaption>
 </figure>
 </section>
 
@@ -486,7 +486,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <h4>詳細</h4>
 
-<p>現在のシンタックスにコメント記号が設定されていない、選択範囲にコメント記号がないなど、コマンドが実行できない場合はなにも行いません。</p>
+<p>現在のシンタックスにコメント記号が設定されていない、選択範囲にコメント記号がないなど、コマンドが実行できない場合は何も行いません。</p>
 </section>
 
 
@@ -530,7 +530,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">change case</code></dt>
-	<dd>大文字／小文字／キャピタライズ（単語のアタマだけ大文字）に置き換える。</dd>
+	<dd>大文字/小文字/キャピタライズ（単語のアタマだけ大文字）に置き換える。</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> <code>upper</code>/<code>lower</code>/<code>capitalized</code></dt>
 		<dd>置き換えるスタイル</dd>
@@ -560,7 +560,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">change roman width</code></dt>
-	<dd>半角／全角を変換する。</dd>
+	<dd>半角/全角を変換する。</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> <code>half</code>/<code>full</code></dt>
 		<dd>置き換えるスタイル</dd>
@@ -586,7 +586,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">change kana</code></dt>
-	<dd>ひらがな／カタカナを変換する。</dd>
+	<dd>ひらがな/カタカナを変換する。</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> <code>hiragana</code>/<code>katakana</code></dt>
 		<dd>置き換えるスタイル</dd>
@@ -665,7 +665,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">normalize unicode</code></dt>
-	<dd>ユニコード正規化を行う。</dd>
+	<dd>Unicode正規化を行う。</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> <code>NFKC</code>/<code>NFD</code>/<code>NFC</code>/<code>NFKD</code>/<code>NFKC Casefold</code>/<code>Modified NFC</code>/<code>Modified NFD</code></dt>
 		<dd>正規化方式</dd>
@@ -684,7 +684,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <figure>
 	<pre class="source"><code class="AppleScript">normalize unicode selection of front document to NFC</code></pre>
-	<figcaption>選択位置の文字列をユニコード正規化する。</figcaption>
+	<figcaption>選択位置の文字列をUnicode正規化する。</figcaption>
 </figure>
 </section>
 
@@ -715,7 +715,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 
 <dl class="tree">
 	<dt><code class="command">sort lines</code></dt>
-	<dd>選択行を昇順にソートする。</dd>
+	<dd>選択行を昇順に並び替える。</dd>
 
 	<dt><code class="command">reverse lines</code></dt>
 	<dd>選択行を逆順にする。</dd>
@@ -756,7 +756,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 <ul>
 	<li><a href="../pgs/about_scripting.html">CotEditorスクリプト</a></li>
 	<li><a href="../pgs/about_applescript_changes.html">AppleScript対応の仕様改訂履歴</a></li>
-	<li><a href="../pgs/about_script_hook.html">スクリプトフックの追加</a></li>
+	<li><a href="../pgs/about_script_hook.html">CotEditorスクリプトにスクリプトフックを追加する</a></li>
 </ul>
 </section>
 

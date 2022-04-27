@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,23 +31,30 @@ extension NSTextView {
         
         guard
             !snippet.string.isEmpty,
-            let insertionRanges = self.rangesForUserTextChange as? [NSRange]
+            let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue)
             else { return }
         
-        let strings = [String](repeating: snippet.string, count: insertionRanges.count)
-        
-        let selectedRanges: [NSRange]? = {
-            guard !snippet.selections.isEmpty else { return nil }
+        // insert indent to every newline
+        let snippets: [Snippet] = insertionRanges.map { (range) in
+            guard let indentRange = self.string.rangeOfIndent(at: range.location) else { return snippet }
             
-            return insertionRanges
-                .map { range in
-                    insertionRanges
+            let indent = (self.string as NSString).substring(with: indentRange)
+            
+            return snippet.indented(with: indent)
+        }
+        
+        let strings = snippets.map(\.string)
+        let selectedRanges: [NSRange]? = snippet.selections.isEmpty
+            ? nil
+            : zip(snippets, insertionRanges)
+                .flatMap { (snippet, range) -> [NSRange] in
+                    let offset = insertionRanges
                         .prefix { $0 != range }
                         .map { snippet.string.length - $0.length }
                         .reduce(range.location, +)
+                    
+                    return snippet.selections.map { $0.shifted(by: offset) }
                 }
-                .flatMap { offset in snippet.selections.map { $0.shifted(offset: offset) } }
-        }()
         
         self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
     }

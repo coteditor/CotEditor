@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2021 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,14 +26,16 @@
 import Combine
 import Cocoa
 import AudioToolbox
+import UniformTypeIdentifiers
 
 final class MultipleReplacementListViewController: NSViewController, NSMenuItemValidation, MultipleReplacementPanelViewControlling {
     
     // MARK: Private Properties
     
-    private var settingNames = [String]()
+    private var settingNames: [String] = []
     
     private var listUpdateObserver: AnyCancellable?
+    private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -48,8 +50,10 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         self.mainViewController?.delegate = self
         
-        // register droppable types
-        self.tableView?.registerForDraggedTypes([.fileURL])
+        // register drag & drop types
+        let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        self.tableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
+        self.tableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
         // create blank if empty
         if ReplacementManager.shared.settingNames.isEmpty {
@@ -201,7 +205,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = ReplacementManager.shared.filePathExtensions
+        savePanel.allowedContentTypes = [ReplacementManager.shared.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -223,7 +227,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [ReplacementManager.shared.filePathExtension]
+        openPanel.allowedContentTypes = [ReplacementManager.shared.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -405,42 +409,89 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard
-        let objects = pboard.readObjects(forClasses: [NSURL.self],
-                                         options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
+        guard
+            info.draggingSource as? NSTableView != tableView,  // avoid self D&D
+            let count = info.filePromiseReceivers(with: .cotReplacement, for: tableView)?.count
+                     ?? info.fileURLs(with: .cotReplacement, for: tableView)?.count
+        else { return [] }
         
-        guard let urls = objects, !urls.isEmpty else { return [] }
-        
-        // highlight text view itself
+        // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
-        // show number of setting files
-        info.numberOfValidItemsForDrop = urls.count
+        // show number of acceptable files
+        info.numberOfValidItemsForDrop = count
         
         return .copy
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
-                                    searchOptions: [.urlReadingFileURLsOnly: true,
-                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.utType]])
-        { [weak self] (draggingItem, _, _) in
+        if let receivers = info.filePromiseReceivers(with: .cotReplacement, for: tableView) {
+            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
             
-            guard let fileURL = draggingItem.item as? URL else { return }
+            for receiver in receivers {
+                receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
+                    if let error = error {
+                        self?.presentError(error)
+                        return
+                    }
+                    self?.importSetting(fileURL: fileURL)
+                }
+            }
             
-            self?.importSetting(fileURL: fileURL)
+        } else if let fileURLs = info.fileURLs(with: .cotReplacement, for: tableView) {
+            for fileURL in fileURLs {
+                self.importSetting(fileURL: fileURL)
+            }
+            
+        } else {
+            return false
         }
         
         return true
     }
     
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        
+        let provider = NSFilePromiseProvider(fileType: UTType.cotReplacement.identifier, delegate: self)
+        provider.userInfo = self.settingNames[row]
+        
+        return provider
+    }
+    
 }
 
+
+// MARK: - File Promise Provider Delegate
+
+extension MultipleReplacementListViewController: NSFilePromiseProviderDelegate {
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
+        
+        (filePromiseProvider.userInfo as! String) + "." + UTType.cotReplacement.preferredFilenameExtension!
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL) async throws {
+        
+        guard
+            let settingName = filePromiseProvider.userInfo as? String,
+            let sourceURL = ReplacementManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        try FileManager.default.copyItem(at: sourceURL, to: url)
+    }
+    
+    
+    func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
+        
+        self.filePromiseQueue
+    }
+    
+}
 
 
 // MARK: - TableView Delegate

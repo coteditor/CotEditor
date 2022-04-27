@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,18 @@ extension NSFont {
     var cgFont: CGFont {
         
         return CTFontCopyGraphicsFont(self, nil)
+    }
+    
+    
+    /// Font variation of which numbers are monospaced.
+    var monospacedDigit: NSFont? {
+        
+        let monospaceSetting: [NSFontDescriptor.FeatureKey: NSNumber] = [.typeIdentifier: kNumberSpacingType,
+                                                                         .selectorIdentifier: kMonospacedNumbersSelector]
+            .mapValues { $0 as NSNumber }
+        let descriptor = self.fontDescriptor.addingAttributes([.featureSettings: [monospaceSetting]])
+        
+        return NSFont(descriptor: descriptor, size: self.pointSize)
     }
     
 }

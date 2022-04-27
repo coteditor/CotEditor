@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,10 +25,13 @@
 //
 
 import Cocoa
+import Combine
 
 final class PrintPaneController: NSViewController {
     
     // MARK: Private Properties
+    
+    private var fontObserver: AnyCancellable?
     
     @IBOutlet private weak var usePrintFontButton: NSButton?
     @IBOutlet private weak var fontField: NSTextField?
@@ -44,10 +47,20 @@ final class PrintPaneController: NSViewController {
         
         super.viewWillAppear()
         
-        self.setupFontFamilyNameAndSize()
+        self.fontObserver = UserDefaults.standard.publisher(for: .printFontSize, initial: true)
+            .sink { [weak self] _ in self?.setupFontFamilyNameAndSize() }
+        
         self.setupColorMenu()
         
         self.usePrintFontButton?.setAccessibilityLabel("Use print font".localized)
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.fontObserver = nil
     }
     
     
@@ -182,7 +195,7 @@ extension PrintPaneController: NSFontChanging {
         
         let displayName = font.displayName ?? font.fontName
         
-        fontField.stringValue = displayName + " " + String.localizedStringWithFormat("%g", size)
+        fontField.stringValue = displayName + " " + String(format: "%g", locale: .current, size)
         fontField.font = displayFont
     }
     

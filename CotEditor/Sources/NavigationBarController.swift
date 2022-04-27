@@ -106,7 +106,7 @@ final class NavigationBarController: NSViewController {
             // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
             //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
             .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
-            .debounce(for: 0.05, scheduler: RunLoop.main)
+            .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
         
         self.updateOutlineMenu()
@@ -126,7 +126,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Public Methods
     
-    /// Can select the prev item in outline menu?
+    /// Can select the previous item in outline menu?
     var canSelectPrevItem: Bool {
         
         guard let textView = self.textView else { return false }
@@ -156,7 +156,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Action Messages
     
-    /// Select outline menu item from the popup menu.
+    /// Select outline item from the popup menu.
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard

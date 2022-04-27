@@ -406,7 +406,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.controlRepresentation = .expanded
                 item.selectionMode = .selectOne
                 item.label = "Text Orientation".localized
-                item.toolTip = "Toggle text orientation".localized
+                item.toolTip = "Switch text orientation".localized
                 item.action = #selector(DocumentViewController.changeOrientation)
                 item.subitems = [horizontalItem, verticalItem]
                 return item
@@ -447,7 +447,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
-                        let item = NSMenuItem(title: String.localizedStringWithFormat("%li", width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                        let item = NSMenuItem(title: String(format: "%li", locale: .current, width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
                         item.indentationLevel = 1
                         return item
@@ -549,7 +549,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Fonts".localized
-                item.toolTip = "Show Font Panel".localized
+                item.toolTip = "Show Fonts".localized
                 item.image = NSImage(systemSymbolName: "textformat", accessibilityDescription: item.label)
                 item.action = #selector(NSFontManager.orderFrontFontPanel)
                 return item
@@ -558,7 +558,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Find".localized
-                item.toolTip = "Show “Find and Replace”".localized
+                item.toolTip = "Show Find and Replace".localized
                 item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(TextFinder.showFindPanel)
                 return item
@@ -575,7 +575,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             case .share:
                 let item = NSSharingServicePickerToolbarItem(itemIdentifier: itemIdentifier)
                 item.toolTip = "Share document file".localized
-                item.delegate = self.document as? NSSharingServicePickerToolbarItemDelegate
+                item.delegate = self.document as? any NSSharingServicePickerToolbarItemDelegate
                 return item
                 
             case .inspectorTrackingSeparator:

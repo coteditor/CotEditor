@@ -27,16 +27,19 @@
 import Combine
 import Cocoa
 import AudioToolbox
+import UniformTypeIdentifiers
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
-    private var themeNames = [String]()
+    private var themeNames: [String] = []
     private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     
+    private var fontObserver: AnyCancellable?
     private var themeManagerObservers: Set<AnyCancellable> = []
+    private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
@@ -62,8 +65,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidLoad()
         
-        // register droppable types
-        self.themeTableView?.registerForDraggedTypes([.URL])
+        // register drag & drop types
+        let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
+        self.themeTableView?.registerForDraggedTypes([.fileURL] + receiverTypes)
+        self.themeTableView?.setDraggingSourceOperationMask(.copy, forLocal: false)
         
         // set initial value as field's placeholder
         self.lineHeightField?.bindNullPlaceholderToUserDefaults()
@@ -77,7 +82,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewWillAppear()
         
-        self.setupFontFamilyNameAndSize()
+        self.fontObserver = UserDefaults.standard.publisher(for: .fontSize, initial: true)
+            .sink { [weak self] _ in self?.setupFontFamilyNameAndSize() }
         
         // select one of cursor type radio buttons
         switch UserDefaults.standard[.cursorType] {
@@ -125,8 +131,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         super.viewDidDisappear()
         
+        self.fontObserver = nil
         self.themeManagerObservers.removeAll()
-        
     }
     
     
@@ -158,7 +164,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let isCustomized: Bool
         if let representedSettingName = representedSettingName {
             isBundled = ThemeManager.shared.isBundledSetting(name: representedSettingName)
-            isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedSettingName)
+            isCustomized = ThemeManager.shared.isCustomizedSetting(name: representedSettingName)
         } else {
             (isBundled, isCustomized) = (false, false)
         }
@@ -189,20 +195,20 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     menuItem.title = String(format: "Restore “%@”".localized, name)
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
-                return isCustomized
+                return isBundled && isCustomized
             
             case #selector(exportTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Export “%@”…".localized, name)
                 }
                 menuItem.isHidden = !itemSelected
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case #selector(revealThemeInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
                 }
-                return (!isBundled || isCustomized)
+                return isCustomized
             
             case nil:
                 return false
@@ -235,40 +241,85 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// validate when dragged items come to tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
-        // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard
-        let objects = pboard.readObjects(forClasses: [NSURL.self],
-                                         options: [.urlReadingFileURLsOnly: true,
-                                                   .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
+        guard
+            info.draggingSource as? NSTableView != tableView,  // avoid self D&D
+            let count = info.filePromiseReceivers(with: .cotTheme, for: tableView)?.count
+                       ?? info.fileURLs(with: .cotTheme, for: tableView)?.count
+        else { return [] }
         
-        guard let urls = objects, !urls.isEmpty else { return [] }
-        
-        // highlight text view itself
+        // highlight table view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
         // show number of acceptable files
-        info.numberOfValidItemsForDrop = urls.count
+        info.numberOfValidItemsForDrop = count
         
         return .copy
     }
     
     
-    /// check acceptability of dragged items and insert them to table
+    /// check acceptability of dropped items and insert them to table
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
-        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
-                                    searchOptions: [.urlReadingFileURLsOnly: true,
-                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.utType]])
-        { [unowned self] (draggingItem, _, _) in
+        if let receivers = info.filePromiseReceivers(with: .cotTheme, for: tableView) {
+            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
             
-            guard let fileURL = draggingItem.item as? URL else { return }
+            for receiver in receivers {
+                receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
+                    if let error = error {
+                        self?.presentError(error)
+                        return
+                    }
+                    self?.importTheme(fileURL: fileURL)
+                }
+            }
             
-            self.importTheme(fileURL: fileURL)
+        } else if let fileURLs = info.fileURLs(with: .cotTheme, for: tableView) {
+            for fileURL in fileURLs {
+                self.importTheme(fileURL: fileURL)
+            }
+            
+        } else {
+            return false
         }
         
         AudioServicesPlaySystemSound(.volumeMount)
         
         return true
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+        
+        let provider = NSFilePromiseProvider(fileType: UTType.cotTheme.identifier, delegate: self)
+        provider.userInfo = self.themeNames[row]
+        
+        return provider
+    }
+    
+    
+    
+    // MARK: File Promise Provider Delegate
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
+        
+        (filePromiseProvider.userInfo as! String) + "." + UTType.cotTheme.preferredFilenameExtension!
+    }
+    
+    
+    func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, writePromiseTo url: URL) async throws {
+        
+        guard
+            let settingName = filePromiseProvider.userInfo as? String,
+            let sourceURL = ThemeManager.shared.urlForUserSetting(name: settingName)
+        else { return }
+        
+        try FileManager.default.copyItem(at: sourceURL, to: url)
+    }
+    
+    
+    func operationQueue(for filePromiseProvider: NSFilePromiseProvider) -> OperationQueue {
+        
+        self.filePromiseQueue
     }
     
     
@@ -320,14 +371,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // get swiped theme
         let themeName = self.themeNames[row]
         
-        // check whether theme is deletable
-        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
-        let isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: themeName)
-        
         // do nothing on undeletable theme
-        guard !isBundled || isCustomized else { return [] }
+        guard ThemeManager.shared.isCustomizedSetting(name: themeName) else { return [] }
         
-        if isCustomized {
+        if ThemeManager.shared.isBundledSetting(name: themeName) {
             // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
@@ -486,7 +533,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         savePanel.isExtensionHidden = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
+        savePanel.allowedContentTypes = [ThemeManager.shared.fileType]
         
         Task {
             guard await savePanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -508,7 +555,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
+        openPanel.allowedContentTypes = [ThemeManager.shared.fileType]
         
         Task {
             guard await openPanel.beginSheetModal(for: self.view.window!) == .OK else { return }
@@ -766,7 +813,7 @@ extension AppearancePaneController: NSFontChanging {
         
         let displayName = font.displayName ?? font.fontName
         
-        fontField.stringValue = displayName + " " + String.localizedStringWithFormat("%g", size)
+        fontField.stringValue = displayName + " " + String(format: "%g", locale: .current, size)
         fontField.font = displayFont
         fontField.disablesAntialiasing = !shouldAntiailias
     }

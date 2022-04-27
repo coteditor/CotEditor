@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -78,17 +78,17 @@ extension FileDropItem {
     
     init(dictionary: [String: String]) {
         
-        self.format = dictionary[CodingKeys.format.rawValue] ?? ""
+        self.format = dictionary[CodingKeys.format] ?? ""
         
-        if let extensions = dictionary[CodingKeys.extensions.rawValue]?.components(separatedBy: ", ") {
+        if let extensions = dictionary[CodingKeys.extensions]?.components(separatedBy: ", ") {
             self.extensions = extensions
                 .map { $0.trimmingCharacters(in: .whitespaces) }
                 .filter { !$0.isEmpty }
         }
-        if let scope = dictionary[CodingKeys.scope.rawValue], !scope.isEmpty {
+        if let scope = dictionary[CodingKeys.scope], !scope.isEmpty {
             self.scope = scope
         }
-        self.description = dictionary[CodingKeys.description.rawValue] ?? ""
+        self.description = dictionary[CodingKeys.description] ?? ""
     }
     
     

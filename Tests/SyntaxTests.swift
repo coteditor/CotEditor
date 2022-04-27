@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ final class SyntaxTests: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         
         // load styles
-        let dictsWithNames = bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
+        let dictsWithNames = bundle.urls(forResourcesWithExtension: "yml", subdirectory: styleDirectoryName)!
             .map { url -> (String, SyntaxManager.StyleDictionary) in
                 let string = try! String(contentsOf: url)
                 let name = url.deletingPathExtension().lastPathComponent

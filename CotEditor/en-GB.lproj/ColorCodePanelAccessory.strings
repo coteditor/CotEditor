@@ -31,10 +31,10 @@
 /* Class = "NSButtonCell"; title = "Insert"; ObjectID = "HMC-PY-Ngy"; */
 "HMC-PY-Ngy.title" = "Insert";
 
-/* Class = "NSMenuItem"; title = "Hex"; ObjectID = "vF1-in-Dlv"; */
-"vF1-in-Dlv.title" = "Hex";
-/* Class = "NSMenuItem"; title = "Hex (short)"; ObjectID = "wEc-KD-y7s"; */
-"wEc-KD-y7s.title" = "Hex (short)";
+/* Class = "NSMenuItem"; title = "Hexadecimal"; ObjectID = "vF1-in-Dlv"; */
+"vF1-in-Dlv.title" = "Hexadecimal";
+/* Class = "NSMenuItem"; title = "Hexadecimal (short)"; ObjectID = "wEc-KD-y7s"; */
+"wEc-KD-y7s.title" = "Hexadecimal (short)";
 /* Class = "NSMenuItem"; title = "CSS RGB"; ObjectID = "6bH-jm-mNR"; */
 "6bH-jm-mNR.title" = "CSS RGB";
 /* Class = "NSMenuItem"; title = "CSS RGBa"; ObjectID = "cxo-sm-Sx5"; */

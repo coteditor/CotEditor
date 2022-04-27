@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,14 +45,14 @@ struct HighlightDefinition: Equatable {
     
     init(dictionary: [String: Any]) throws {
         
-        guard let beginString = dictionary[SyntaxDefinitionKey.beginString.rawValue] as? String else { throw Error.invalidFormat }
+        guard let beginString = dictionary[SyntaxDefinitionKey.beginString] as? String else { throw Error.invalidFormat }
         
         self.beginString = beginString
-        if let endString = dictionary[SyntaxDefinitionKey.endString.rawValue] as? String, !endString.isEmpty {
+        if let endString = dictionary[SyntaxDefinitionKey.endString] as? String, !endString.isEmpty {
             self.endString = endString
         }
-        self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
-        self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
+        self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression] as? Bool) ?? false
+        self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase] as? Bool) ?? false
     }
     
 }
@@ -114,14 +114,14 @@ struct OutlineDefinition: Equatable {
     
     init(dictionary: [String: Any]) throws {
         
-        guard let pattern = dictionary[CodingKeys.pattern.rawValue] as? String else { throw Error.invalidFormat }
+        guard let pattern = dictionary[CodingKeys.pattern] as? String else { throw Error.invalidFormat }
         
         self.pattern = pattern
-        self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
-        self.ignoreCase = dictionary[CodingKeys.ignoreCase.rawValue] as? Bool ?? false
-        self.bold = dictionary[CodingKeys.bold.rawValue] as? Bool ?? false
-        self.italic = dictionary[CodingKeys.italic.rawValue] as? Bool ?? false
-        self.underline = dictionary[CodingKeys.underline.rawValue] as? Bool ?? false
+        self.template = dictionary[CodingKeys.template] as? String ?? ""
+        self.ignoreCase = dictionary[CodingKeys.ignoreCase] as? Bool ?? false
+        self.bold = dictionary[CodingKeys.bold] as? Bool ?? false
+        self.italic = dictionary[CodingKeys.italic] as? Bool ?? false
+        self.underline = dictionary[CodingKeys.underline] as? Bool ?? false
     }
     
 }
@@ -142,12 +142,12 @@ struct SyntaxStyle {
     let blockCommentDelimiters: Pair<String>?
     let completionWords: [String]
     
-    let pairedQuoteTypes: [String: SyntaxType]
+    let nestablePaires: [String: SyntaxType]
     private let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
     private let outlineDefinitions: [OutlineDefinition]
     
     private(set) lazy var outlineExtractors: [OutlineExtractor] = self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
-    private(set) lazy var highlightExtractors: [SyntaxType: [HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor() } }
+    private(set) lazy var highlightExtractors: [SyntaxType: [any HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor } }
     
     
     
@@ -163,7 +163,7 @@ struct SyntaxStyle {
         self.blockCommentDelimiters = nil
         self.completionWords = []
         
-        self.pairedQuoteTypes = [:]
+        self.nestablePaires = [:]
         self.highlightDefinitions = [:]
         self.outlineDefinitions = []
     }
@@ -174,18 +174,18 @@ struct SyntaxStyle {
         self.name = name
         self.isNone = false
         
-        self.extensions = (dictionary[SyntaxKey.extensions.rawValue] as? [[String: String]])?
-            .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } ?? []
+        self.extensions = (dictionary[SyntaxKey.extensions] as? [[String: String]])?
+            .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []
         
         // set comment delimiters
         var inlineCommentDelimiter: String?
         var blockCommentDelimiters: Pair<String>?
-        if let delimiters = dictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
-            if let delimiter = delimiters[DelimiterKey.inlineDelimiter.rawValue], !delimiter.isEmpty {
+        if let delimiters = dictionary[SyntaxKey.commentDelimiters] as? [String: String] {
+            if let delimiter = delimiters[DelimiterKey.inlineDelimiter], !delimiter.isEmpty {
                 inlineCommentDelimiter = delimiter
             }
-            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter.rawValue],
-                let endDelimiter = delimiters[DelimiterKey.endDelimiter.rawValue],
+            if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter],
+                let endDelimiter = delimiters[DelimiterKey.endDelimiter],
                 !beginDelimiter.isEmpty, !endDelimiter.isEmpty
             {
                 blockCommentDelimiters = Pair<String>(beginDelimiter, endDelimiter)
@@ -204,23 +204,24 @@ struct SyntaxStyle {
             dict[type] = definitions
         }
         
-        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
+        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithNestablePaires`
         // also combine simple word definitions into single regex definition
-        var quoteTypes = [String: SyntaxType]()
+        var nestablePaires: [String: SyntaxType] = [:]
         self.highlightDefinitions = definitionDictionary.reduce(into: [:]) { (dict, item) in
             
-            var highlightDefinitions = [HighlightDefinition]()
-            var words = [String]()
-            var caseInsensitiveWords = [String]()
+            var highlightDefinitions: [HighlightDefinition] = []
+            var words: [String] = []
+            var caseInsensitiveWords: [String] = []
             
             for definition in item.value {
-                // extract quotes
-                if !definition.isRegularExpression, definition.beginString == definition.endString,
+                // extract paired delimiters such as quotes
+                if !definition.isRegularExpression,
+                    definition.beginString == definition.endString,
                     definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                     Set(definition.beginString).count == 1,  // consists of the same characters
-                    !quoteTypes.keys.contains(definition.beginString)  // not registered yet
+                    !nestablePaires.keys.contains(definition.beginString)  // not registered yet
                 {
-                    quoteTypes[definition.beginString] = item.key
+                    nestablePaires[definition.beginString] = item.key
                     
                     // remove from the normal highlight definition list
                     continue
@@ -251,14 +252,14 @@ struct SyntaxStyle {
             
             dict[item.key] = highlightDefinitions
         }
-        self.pairedQuoteTypes = quoteTypes
+        self.nestablePaires = nestablePaires
         
         // create word-completion data set
         self.completionWords = {
-            if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
+            if let completionDicts = dictionary[SyntaxKey.completions] as? [[String: Any]], !completionDicts.isEmpty {
                 // create from completion definition
                 return completionDicts
-                    .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
+                    .compactMap { $0[SyntaxDefinitionKey.keyString] as? String }
                     .filter { !$0.isEmpty }
                     .sorted()
             } else {
@@ -272,7 +273,7 @@ struct SyntaxStyle {
         }()
         
         // parse outline definitions
-        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?.lazy
+        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu] as? [[String: Any]])?.lazy
             .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
     }
     
@@ -283,7 +284,7 @@ struct SyntaxStyle {
     /// whether receiver has any syntax highlight defintion
     var hasHighlightDefinition: Bool {
         
-        return (!self.highlightDefinitions.isEmpty || !self.pairedQuoteTypes.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
+        return (!self.highlightDefinitions.isEmpty || !self.nestablePaires.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
     }
     
 }
@@ -298,7 +299,7 @@ extension SyntaxStyle: Equatable {
             lhs.extensions == rhs.extensions &&
             lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
             lhs.blockCommentDelimiters == rhs.blockCommentDelimiters &&
-            lhs.pairedQuoteTypes == rhs.pairedQuoteTypes &&
+            lhs.nestablePaires == rhs.nestablePaires &&
             lhs.outlineDefinitions == rhs.outlineDefinitions &&
             lhs.highlightDefinitions == rhs.highlightDefinitions
     }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,12 +25,12 @@
 
 import Foundation.NSString
 
-extension String {
+extension StringProtocol {
     
     /// Whole range in NSRange.
     var nsRange: NSRange {
         
-        return NSRange(location: 0, length: (self as NSString).length)
+        return NSRange(location: 0, length: self.length)
     }
     
     
@@ -92,7 +92,7 @@ extension NSRange {
     ///
     /// - Parameter offset: The offset to shift.
     /// - Returns: A new NSRange.
-    func shifted(offset: Int) -> NSRange {
+    func shifted(by offset: Int) -> NSRange {
         
         return NSRange(location: self.location + offset, length: self.length)
     }
@@ -120,7 +120,11 @@ extension NSString {
         
         guard location > 0 else { return 0 }
         
-        return self.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
+        // avoid returing index between CRLF
+        let index = location - 1
+        let offset = (self.character(at: index) == 0x000A && self.character(at: index - 1) == 0x000D) ? 1 : 0
+        
+        return self.rangeOfComposedCharacterSequence(at: index - offset).lowerBound
     }
     
     
@@ -132,9 +136,13 @@ extension NSString {
     ///            or `location` when the given `location` is the last.
     func index(after location: Int) -> Int {
         
-        guard location < self.length else { return self.length }
+        guard location < self.length - 1 else { return self.length }
         
-        return self.rangeOfComposedCharacterSequence(at: location).upperBound
+        // avoid returing index between CRLF
+        let index = location
+        let offset = (self.character(at: index) == 0x000D && self.character(at: index + 1) == 0x000A) ? 1 : 0
+        
+        return self.rangeOfComposedCharacterSequence(at: index + offset).upperBound
     }
     
     
@@ -148,7 +156,7 @@ extension NSString {
     func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange? = nil) -> [NSRange] {
         
         let searchRange = searchRange ?? self.range
-        var ranges = [NSRange]()
+        var ranges: [NSRange] = []
         
         var location = searchRange.location
         while location != NSNotFound {

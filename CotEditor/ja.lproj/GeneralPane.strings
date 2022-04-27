@@ -46,8 +46,8 @@
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "オートセーブとバージョンを有効にする";
-/* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しないクラッシュに備えて裏でバックアップを作成します。";
+/* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しない終了に備えて裏でバックアップを作成します。";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -87,7 +87,7 @@
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "詳細情報…";
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "cot コマンドラインツールは、コマンドラインからのCotEditor起動やファイルオープンを可能にします。";
+"c48-xK-Ag1.title" = "cotコマンドラインツールは、コマンドラインからのCotEditor起動やファイルオープンを可能にします。";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

@@ -139,10 +139,10 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "JiF-TN-azJ"; */
 "JiF-TN-azJ.ibShadowedToolTip" = "Exact character-by-character equivalence.";
 
-/* Class = "NSButtonCell"; title = "Ignore diacritic marks"; ObjectID = "WWu-mC-MCz"; */
-"WWu-mC-MCz.title" = "Ignore diacritic marks";
-/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritic marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
-"9pO-Jw-K7x.ibShadowedToolTip" = "Search ignores diacritic marks (ex. ö = o).";
+/* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "WWu-mC-MCz"; */
+"WWu-mC-MCz.title" = "Ignore diacritical marks";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritical marks (ex. ö = o)."; ObjectID = "9pO-Jw-K7x"; */
+"9pO-Jw-K7x.ibShadowedToolTip" = "Search ignores diacritical marks (ex. ö = o).";
 
 /* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "lVk-We-BSj"; */
 "lVk-We-BSj.title" = "Ignore width differences";

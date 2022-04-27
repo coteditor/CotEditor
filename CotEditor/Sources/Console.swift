@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,16 +52,12 @@ final class Console {
     /// - Parameters:
     ///   - message: The messege to show.
     ///   - title: The title of the message.
-    func show(message: String, title: String?) {
+    @MainActor func show(message: String, title: String?) {
         
         let log = Console.Log(message: message, title: title)
         
-        DispatchQueue.main.async { [weak self] in
-            guard let panelController = self?.panelController else { return }
-            
-            panelController.showWindow(nil)
-            (panelController.contentViewController as? ConsoleViewController)?.append(log: log)
-        }
+        self.panelController.showWindow(nil)
+        (self.panelController.contentViewController as? ConsoleViewController)?.append(log: log)
     }
     
 }

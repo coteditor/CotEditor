@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2021 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,19 +34,17 @@
 "Plain text" = "プレーンテキスト";
 "CotEditor Theme" = "CotEditorテーマ";
 "CotEditor Replacement Definition" = "CotEditor置換定義";
-"BibTeX" = "BibTeX";
+"BibTeX bibliography" = "BibTeX文献目録";
 "Configuration" = "Configuration";
 "C header" = "Cヘッダ";
 "C source" = "Cソース";
 "C++ source" = "C++ソース";
 "C++ header" = "C++ヘッダ";
 "C# source" = "C#ソース";
-"CoffeeScript" = "CoffeeScript";
 "Cascading Style Sheet" = "CSS";
 "D source" = "Dソース";
 "Dart script" = "Dartスクリプト";
 "Diff" = "Diff";
-"Document Type Definition" = "文書型定義";
 "Fortran Source" = "Fortranソース";
 "Go script" = "Goスクリプト";
 "Haskell script" = "Haskellスクリプト";
@@ -74,7 +72,6 @@
 "Swift source" = "Swiftソース";
 "TeX" = "TeX";
 "Textile document" = "Textile書類";
-"Tcl source" = "Tclソース";
 "Verilog source" = "Verilogソース";
 "VHDL source" = "VHDLソース";
 "XML document" = "XML書類";

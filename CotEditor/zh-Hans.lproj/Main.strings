@@ -122,6 +122,8 @@
 "j3t-7l-xSy.title" = "以富文本拷贝";
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "171"; */
 "171.title" = "粘贴";
+/* Class = "NSMenuItem"; title = "Paste Exactly"; ObjectID = "MTm-Qg-WjY"; */
+"MTm-Qg-WjY.title" = "精确粘贴";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "164"; */
 "164.title" = "删除";
 /* Class = "NSMenuItem"; title = "Complete"; ObjectID = "Qa9-dA-CF1"; */
@@ -206,6 +208,12 @@
 "297.title" = "Classic Mac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
 "298.title" = "Windows (CRLF)";
+/* Class = "NSMenuItem"; title = "Unicode Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
+"pUE-eY-9RI.title" = "Unicode Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Unicode Line Separator (LS)"; ObjectID = "ins-89-nu3"; */
+"ins-89-nu3.title" = "Unicode Line Separator (LS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; */
+"Zz9-5c-bS1.title" = "Unicode Paragraph Separator (PS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
 "299.title" = "文件编码";
@@ -216,7 +224,7 @@
 "302.title" = "语法样式";
 /* Class = "NSMenu"; title = "Syntax Style"; ObjectID = "304"; */
 "304.title" = "语法样式";
-/* Class = "NSMenuItem"; title = "Re-Color All"; ObjectID = 458; */
+/* Class = "NSMenuItem"; title = "Recolor All"; ObjectID = 458; */
 "458.title" = "全部重新着色";
 
 /* Class = "NSMenuItem"; title = "Font"; ObjectID = "410"; */
@@ -308,8 +316,8 @@
 "564.title" = "文稿信息";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "大纲";
-/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "不兼容字符";
+/* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
+"679.title" = "警告";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "显示检查器";
 
@@ -334,7 +342,7 @@
 /* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
 "367.title" = "更改编辑器透明度…";
 
-/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
+/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "2da-fK-Nkg"; */
 "2da-fK-Nkg.title" = "进入全屏";
 
 

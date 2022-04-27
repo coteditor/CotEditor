@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 import Combine
 import Cocoa
 
-final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
+class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
     
     // MARK: Protocol Properties
     
@@ -156,7 +156,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         if color == .unemphasizedSelectedContentBackgroundColor,  // check if inactive
             let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
                                                    effectiveRange: nil, withoutAdditionalLayout: true),
-            let theme = (textContainer.textView as? Themable)?.theme,
+            let theme = (textContainer.textView as? any Themable)?.theme,
             let secondarySelectionColor = theme.secondarySelectionColor
         {
             secondarySelectionColor.setFill()
@@ -198,6 +198,20 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         }
         
         super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
+    }
+    
+    
+   
+    // MARK: Invisible Drawing Methods
+    
+    func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool {
+        
+        switch invisible {
+            case .newLine:
+                return (self.firstTextView?.window?.windowController?.document as? Document)?.lineEndingScanner.isInvalidLineEnding(at: characterIndex) == true
+            default:
+                return false
+        }
     }
     
     
@@ -271,16 +285,21 @@ extension LayoutManager: NSLayoutManagerDelegate {
     /// avoid soft wrapping just after indent
     func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool {
         
-        // avoid creating CharacterSet every time
-        struct NonIndent { static let characterSet = CharacterSet(charactersIn: " \t").inverted }
-        
         // check if the character is the first non-whitespace character after indent
-        let lineStartIndex = self.lineStartIndex(at: charIndex)
-        let range = NSRange(location: lineStartIndex, length: charIndex - lineStartIndex)
+        let string = self.attributedString().string as NSString
         
-        guard !range.isEmpty else { return true }
+        for index in stride(from: charIndex - 1, through: 0, by: -1) {
+            switch string.character(at: index) {
+                case 0x9, 0x20:  // tab, space
+                    continue
+                case 0xA, 0xD, 0x85, 0x2028, 0x2029:  // newlines
+                    return index == charIndex - 1
+                default:
+                    return true
+            }
+        }
         
-        return self.string.rangeOfCharacter(from: NonIndent.characterSet, range: range) != .notFound
+        return true
     }
     
     

@@ -25,5 +25,5 @@
  
  */
 
-/* Class = "NSButtonCell"; title = "Cancel operation."; ObjectID = "3ti-Fq-4CU"; */
-"3ti-Fq-4CU.toolTip" = "Annuler l’opération.";
+/* Class = "NSButton"; ibShadowedToolTip = "Cancel operation."; ObjectID = "Jua-5O-j1x"; */
+"Jua-5O-j1x.ibShadowedToolTip" = "Annuler l’opération.";

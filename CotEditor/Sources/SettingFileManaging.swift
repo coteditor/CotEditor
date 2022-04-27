@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 import Combine
 import Foundation
 import AppKit.NSApplication
+import UniformTypeIdentifiers
 
 enum SettingFileType {
     
@@ -81,11 +82,8 @@ protocol SettingFileManaging: SettingManaging {
     /// directory name in both Application Support and bundled Resources
     static var directoryName: String { get }
     
-    /// path extensions for user setting file
-    var filePathExtensions: [String] { get }
-    
-    /// setting file type
-    var settingFileType: SettingFileType { get }
+    /// UTType of user setting file
+    var fileType: UTType { get }
     
     /// list of names of setting file name (without extension)
     var settingNames: [String] { get set }
@@ -133,20 +131,13 @@ extension SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// default path extension for user setting file
-    var filePathExtension: String {
-        
-        return self.filePathExtensions.first!
-    }
-    
-    
     /// file urls for user settings
     var userSettingFileURLs: [URL] {
         
         return (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
                                                              includingPropertiesForKeys: nil,
                                                              options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
-            .filter { self.filePathExtensions.contains($0.pathExtension) } ?? []
+            .filter { $0.conforms(to: self.fileType) } ?? []
     }
     
     
@@ -167,23 +158,23 @@ extension SettingFileManaging {
     /// return a setting file URL in the application's Resources domain or nil if not exists
     func urlForBundledSetting(name: String) -> URL? {
         
-        return Bundle.main.url(forResource: name, withExtension: self.filePathExtension, subdirectory: Self.directoryName)
+        return Bundle.main.url(forResource: name, withExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
     }
     
     
     /// return a setting file URL in the user's Application Support domain or nil if not exists
     func urlForUserSetting(name: String) -> URL? {
         
-        let url = self.preparedURLForUserSetting(name: name)
+        guard self.settingNames.contains(name) else { return nil }
         
-        return url.isReachable ? url : nil
+        return self.userSettingFileURLs.first { self.settingName(from: $0) == name }
     }
     
     
     /// return a setting file URL in the user's Application Support domain (don't care if it exists)
     func preparedURLForUserSetting(name: String) -> URL {
         
-        return self.userSettingDirectoryURL.appendingPathComponent(name).appendingPathExtension(self.filePathExtension)
+        return self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: self.fileType)
     }
     
     
@@ -194,10 +185,10 @@ extension SettingFileManaging {
     }
     
     
-    /// whether the setting name is one of the bundled settings that is customized by user
-    func isCustomizedBundledSetting(name: String) -> Bool {
+    /// whether the setting name is customized by the user
+    func isCustomizedSetting(name: String) -> Bool {
         
-        return self.isBundledSetting(name: name) && (self.urlForUserSetting(name: name) != nil)
+        return self.urlForUserSetting(name: name) != nil
     }
     
     
@@ -230,8 +221,8 @@ extension SettingFileManaging {
             throw InvalidNameError.startWithDot
         }
         
-        if let duplicatedSettingName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw InvalidNameError.duplicated(name: duplicatedSettingName)
+        if self.settingNames.contains(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw InvalidNameError.duplicated(name: settingName)
         }
     }
     
@@ -364,7 +355,7 @@ extension SettingFileManaging {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw ImportDuplicationError(name: name, type: self.settingFileType, replacingClosure: { [unowned self] in
+                throw ImportDuplicationError(name: name, type: self.fileType, replacingClosure: { [unowned self] in
                     try self.overwriteSetting(fileURL: fileURL)
                 })
             }
@@ -523,19 +514,21 @@ struct SettingFileError: LocalizedError {
 struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var name: String
-    var type: SettingFileType
+    var type: UTType
     var replacingClosure: (() throws -> Void)
     
     
     var errorDescription: String? {
         
         switch self.type {
-            case .syntaxStyle:
+            case .yaml:
                 return String(format: "A new style named “%@” will be installed, but a custom style with the same name already exists.".localized, self.name)
-            case .theme:
+            case .cotTheme:
                 return String(format: "A new theme named “%@” will be installed, but a custom theme with the same name already exists.".localized, self.name)
-            case .replacement:
+            case .cotReplacement:
                 return String(format: "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.".localized, self.name)
+            default:
+                fatalError()
         }
     }
     
@@ -543,12 +536,14 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         switch self.type {
-            case .syntaxStyle:
+            case .yaml:
                 return "Do you want to replace it?\nReplaced style can’t be restored.".localized
-            case .theme:
+            case .cotTheme:
                 return "Do you want to replace it?\nReplaced theme can’t be restored.".localized
-            case .replacement:
+            case .cotReplacement:
                 return "Do you want to replace it?\nReplaced definition can’t be restored.".localized
+            default:
+                fatalError()
         }
     }
     

@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import UniformTypeIdentifiers
 
 private extension NSSound {
     
@@ -35,7 +36,7 @@ private extension NSSound {
 
 private enum BundleIdentifier {
     
-    static let ScriptEditor = "com.apple.ScriptEditor2"
+    static let scriptEditor = "com.apple.ScriptEditor2"
 }
 
 
@@ -50,9 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         case website = "https://coteditor.com"
         case issueTracker = "https://github.com/coteditor/CotEditor/issues"
         
-        var url: URL {
-            return URL(string: self.rawValue)!
-        }
+        var url: URL  { URL(string: self.rawValue)! }
     }
     
     
@@ -91,21 +90,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
-        // -> Setting `NSSupportsAutomaticTermination` in Info.plist
-        //    doesn't work somehow (2021-06)
         ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
         
         // instantiate shared instances
         _ = DocumentController.shared
         _ = TextFinder.shared
-        
-        super.init()
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -114,9 +103,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        let shortVersionRange = Bundle.main.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
-        let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
-        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
+        let shortVersion = Bundle.main.shortVersion
+        let shortVersionRange = shortVersion.range(of: "^[0-9]++\\.[0-9]++", options: .regularExpression)!
+        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
+                                              String(shortVersion[shortVersionRange]))
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -187,15 +177,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // store the latest version
         // -> The bundle version (build number) must be Int.
         let thisVersion = Bundle.main.bundleVersion
-        let isLatest: Bool = {
-            guard
-                let lastVersionString = UserDefaults.standard[.lastVersion],
-                let lastVersion = Int(lastVersionString)
-                else { return true }
-            
-            return Int(thisVersion)! >= lastVersion
-        }()
-        if isLatest {
+        let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
+        if lastVersion == nil || Int(thisVersion)! > lastVersion! {
             UserDefaults.standard[.lastVersion] = thisVersion
         }
         
@@ -228,9 +211,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let documentURLs = filenames.map { URL(fileURLWithPath: $0) }
             .filter {
                 // ask installation if the file is CotEditor theme file
-                DocumentType.theme.extensions.contains($0.pathExtension)
-                    ? !self.askThemeInstallation(fileURL: $0)
-                    : true
+                $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(fileURL: $0) : true
             }
         
         guard !documentURLs.isEmpty else { return NSApp.reply(toOpenOrPrint: .success) }
@@ -340,7 +321,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open OSAScript dictionary in Script Editor
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
-        guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.ScriptEditor) else { return }
+        guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.scriptEditor) else { return }
         
         let appURL = Bundle.main.bundleURL
         let configuration = NSWorkspace.OpenConfiguration()
@@ -406,7 +387,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// - Returns: Whether the given file was handled as a theme file.
     private func askThemeInstallation(fileURL url: URL) -> Bool {
         
-        assert(DocumentType.theme.extensions.contains(url.pathExtension))
+        assert(url.conforms(to: .cotTheme))
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()

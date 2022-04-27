@@ -169,6 +169,7 @@ extension DefaultKeys {
     static let selectedMultipleReplacementSettingName = DefaultKey<String?>("selectedMultipleReplacementSettingName")
     static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
+    static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
     
     // hidden settings
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
@@ -180,6 +181,7 @@ extension DefaultKeys {
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     static let maximumSelectionInstanceHighlightCount = DefaultKey<Int>("maximumSelectionInstanceHighlightCount")
+    static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
     
     static let lastVersion = DefaultKey<String?>("lastVersion")
     

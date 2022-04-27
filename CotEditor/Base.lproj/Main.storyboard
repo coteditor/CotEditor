@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -163,6 +163,12 @@
                                         <menuItem title="Paste" keyEquivalent="v" id="171">
                                             <connections>
                                                 <action selector="paste:" target="Ady-hI-5gd" id="kbL-4C-ha8"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste Exactly" alternate="YES" keyEquivalent="v" id="MTm-Qg-WjY">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pasteAsIs:" target="Ady-hI-5gd" id="57J-qE-dkT"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Delete" id="164">
@@ -340,7 +346,7 @@ Gw
                                     <items>
                                         <menuItem title="Line Endings" tag="100" id="294">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Line Endings" id="296">
+                                            <menu key="submenu" title="Line Endings" id="296" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target">
                                                 <items>
                                                     <menuItem title="macOS / Unix (LF)" id="295">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -360,6 +366,24 @@ Gw
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="qZo-Oc-YV1"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Unicode Next Line (NEL)" tag="3" hidden="YES" id="pUE-eY-9RI">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
+                                                        </attributedString>
+                                                    </menuItem>
+                                                    <menuItem title="Unicode Line Separator (LS)" tag="4" hidden="YES" id="ins-89-nu3">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
+                                                        </attributedString>
+                                                    </menuItem>
+                                                    <menuItem title="Unicode Paragraph Separator (PS)" tag="5" hidden="YES" id="Zz9-5c-bS1">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                                        <attributedString key="userComments">
+                                                            <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
+                                                        </attributedString>
+                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>
@@ -372,7 +396,7 @@ Gw
                                             <menu key="submenu" title="Syntax Style" id="304">
                                                 <items>
                                                     <menuItem isSeparatorItem="YES" id="kdb-Ik-s27"/>
-                                                    <menuItem title="Re-Color All" keyEquivalent="r" id="458">
+                                                    <menuItem title="Recolor All" keyEquivalent="r" id="458">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="recolorAll:" target="Ady-hI-5gd" id="ma3-X0-tjk"/>
@@ -571,10 +595,10 @@ Gw
                                                             <action selector="toggleOutlineMenu:" target="Ady-hI-5gd" id="YG2-ee-mqD"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Incompatible Characters" id="679">
+                                                    <menuItem title="Warnings" id="679">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
+                                                            <action selector="toggleWarningsPane:" target="Ady-hI-5gd" id="dD7-j1-urx"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>
