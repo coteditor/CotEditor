@@ -5,6 +5,10 @@ Change Log
 4.2.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Update the help contents.
+
 
 
 4.2.0-beta (491)

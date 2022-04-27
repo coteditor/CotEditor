@@ -13,7 +13,7 @@
 
 <h1>Handle various types of line endings</h1>
 
-<p>CotEditor can handle various types of line endings. In general, CotEditor uses a single type of line endings set for the document consistently.</p>
+<p>CotEditor can handle various types of line endings. In general, CotEditor uses a single type of line ending set for the document consistently.</p>
 
 
 <h2>Line ending characters in CotEditor</h2>
@@ -35,10 +35,10 @@
 		</tr>
 		
 		<tr><td>CR</td>
-			<td>Carriage Retrun</td>
+			<td>Carriage Return</td>
 			<td><code>U+000D</code></td>
 			<td>\r</td>
-			<td>The line ending in used in classic Mac OS.</td>
+			<td>The line ending used in classic Mac OS.</td>
 		</tr>
 		
 		<tr><td>CRLF</td>
@@ -53,7 +53,7 @@
 			<td>Next Line</td>
 			<td><code>U+0085</code></td>
 			<td></td>
-			<td>A legacy line ending character used mainly in EBCDIC, a kind of character encodnig by IBM. Hidden by default.</td>
+			<td>A legacy line ending character used mainly in EBCDIC, a kind of character encoding by IBM. Hidden by default.</td>
 		</tr>
 		
 		<tr><td>LS</td>
@@ -74,11 +74,11 @@
 
 <p>The latter three types, NEL, LS, and PS, are hardly used in the real world as line ending delimiters for document files. Therefore, CotEditor hides them by default in the line ending choices.</p>
 
-<p>In contrast, although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually breaks lines in CotEditor, they are not regarded as line endings characters.</p>
+<p>In contrast, although VT (<code>U+000B</code>) and FF (<code>U+000C</code>) also visually break lines in CotEditor, they are not regarded as line endings characters.</p>
 
 
 
-<h2>Set default Line endings</h2>
+<h2>Set default line endings</h2>
 
 <p>You can set the default line ending type for new documents in the Format Preferences. This setting will be used also when the existing document doesn’t have any line endings.</p>
 
@@ -86,9 +86,9 @@
 
 <h2>Line endings in an existing document</h2>
 
-<p>CotEditor detects the line ending used in a document automatically, and sets it as the line ending for further input to the document.</p>
+<p>CotEditor detects the line ending used in a document automatically and sets it as the line ending for further input to the document.</p>
 
-<p>If a document has inconsistent line endings, CotEditor automatically alerts and highlight them. For details, see <a href="./howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a>.</p>
+<p>If a document has inconsistent line endings, CotEditor automatically alerts and highlights them. For details, see <a href="./howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a>.</p>
 
 
 
@@ -119,7 +119,7 @@
 
 <p>In general, CotEditor uses only the document line ending when breaking lines so that you don’t need to care about the difference in the line endings types. Even if you insert text with different line endings in some way, such as by CotEditor script or text replacement using the regular expression, CotEditor implicitly converts all line endings in the text to insert to the line ending in the document.</p>
 
-<p>Currently, CotEditor provides only two way to insert line endings different from the document’s line ending:</p>
+<p>Currently, CotEditor provides only two ways to insert line endings different from the document’s line ending:</p>
 
 <ul>
 	<li>Manually input a line ending character by <a href="../pgs/howto_input_unicode.html">Unicode code point</a>.</li>
