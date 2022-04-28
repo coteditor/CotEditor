@@ -92,6 +92,10 @@ h2 {
 .openapp + h2 {
 	margin-top: 1em;
 }
+.openapp + p {
+	border-top: 1px solid -apple-system-separator;
+	padding-top: 1.5em;
+}
 h3 {
 	font-size: 100%;
 	font-weight: 500;
