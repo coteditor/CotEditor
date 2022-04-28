@@ -25,6 +25,7 @@
 			<li><a href="pgs/about_line_endings.html">多様な改行コードを扱う</a></li>
 			<li><a href="pgs/about_move_menu.html">特定の行に移動する</a></li>
 			<li><a href="pgs/howto_inspect_usedchar.html">非互換の文字が含まれていないか確認する</a></li>
+            <li><a href="pgs/about_shiftjis.html">Shift JIS系のエンコーディングを使い分ける</a></li>
 			<li><a href="pgs/howto_display_invisibles.html">不可視文字を表示する</a></li>
 			<li><a href="pgs/howto_split.html">エディタを分割する</a></li>
 			<li><a href="pgs/howto_print.html">書類をプリントする</a></li>
@@ -44,20 +45,20 @@
 			<li><a href="pgs/howto_multiple_replace.html">複数条件で置換する</a></li>
 			<li><a href="pgs/howto_complete.html">入力を補完する</a></li>
 			<li><a href="pgs/howto_filedrop.html">ファイルをドロップする</a></li>
+			<li><a href="pgs/about_regex.html">正規表現を使う</a></li>
+			<li><a href="pgs/about_cot.html">cotコマンドと連携する</a></li>
 		</ul>
 	</details></li>
 	
 	<li><details>
 		<summary>書類のシンタックスを解析する</summary>
 		<ul>
-			<li><a href="pgs/howto_show_outlinemenu.html">アウトラインを表示する</a></li>
-			<li><a href="pgs/howto_customize_syntaxstyle.html">シンタックススタイルを定義する</a></li>
-			<li><a href="pgs/about_syntaxstyle.html">シンタックスカラーリングを設定する</a></li>
-			<li><a href="pgs/about_comment_settings.html">コメントを設定する</a></li>
-			<li><a href="pgs/about_outlinemenu_settings.html">アウトラインを設定する</a></li>
-			<li><a href="pgs/about_file_mapping.html">ファイルをシンタックススタイルに関連付ける</a></li>
-			<li><a href="pgs/about_styleinfo_settings.html">シンタックススタイル情報設定</a></li>
-			<li><a href="pgs/about_regex.html">正規表現の構文</a></li>
+			<li><a href="pgs/howto_show_outlinemenu.html">アウトラインを生成する</a></li>
+			<li><a href="pgs/syntax_definition.html">シンタックススタイルを定義する</a></li>
+			<li><a href="pgs/syntax_highlight_settings.html">シンタックスカラーリングを定義する</a></li>
+			<li><a href="pgs/syntax_comment_settings.html">コメント記号を定義する</a></li>
+			<li><a href="pgs/syntax_outline_settings.html">アウトライン抽出ルールを定義する</a></li>
+			<li><a href="pgs/syntax_file_mapping.html">ファイルをシンタックススタイルに関連付ける</a></li>
 		</ul>
 	</details></li>
 	
@@ -77,28 +78,25 @@
 	<li><details>
 		<summary>CotEditorをスクリプトから使う</summary>
 		<ul>
-			<li><a href="pgs/about_cot.html">cotコマンドを使う</a></li>
-			<li><a href="pgs/about_scripting.html">CotEditorスクリプト</a></li>
-			<li><a href="pgs/about_script_spec.html">UNIXスクリプトと連携する</a></li>
-			<li><a href="pgs/about_applescript.html">AppleScriptと連携する</a></li>
-			<li><a href="pgs/howto_customize_scriptmenu.html">スクリプトメニューをカスタマイズする</a></li>
-			<li><a href="pgs/about_script_name.html">CotEditorスクリプトのファイル名規則</a></li>
-			<li><a href="pgs/about_script_hook.html">CotEditorスクリプトにスクリプトフックを追加する</a></li>
-			<li><a href="pgs/about_applescript_changes.html">AppleScript対応の仕様改訂履歴</a></li>
+			<li><a href="pgs/script_overview.html">CotEditorスクリプトを使う</a></li>
+			<li><a href="pgs/script_osascript.html">AppleScriptを作成する</a></li>
+            <li><a href="pgs/script_unixscript.html">UNIXスクリプトを作成する</a></li>
+			<li><a href="pgs/script_menu.html">スクリプトメニューをカスタマイズする</a></li>
+			<li><a href="pgs/script_hook.html">CotEditorスクリプトにスクリプトフックを追加する</a></li>
+			<li><a href="pgs/script_osascript_changes.html">AppleScriptで異なるバージョンのCotEditorに対応する</a></li>
 		</ul>
 	</details></li>
 	
 	<li><details>
 		<summary>問題を解決する</summary>
 		<ul>
-			<li><a href="pgs/faq_cannot_display.html">文字化けする</a></li>
-			<li><a href="pgs/faq_about_yen_backslash.html">「円マーク」が「バックススラッシュ」に変わる</a></li>
-			<li><a href="pgs/about_shiftjis.html">Shift JIS系のエンコーディングの違い</a></li>
-			<li><a href="pgs/faq_re_coloring.html">カラーリングがおかしくなった</a></li>
-			<li><a href="pgs/faq_keybinding.html">キーボードショートカットを変更後、予期しない動作をする</a></li>
-			<li><a href="pgs/faq_cannot_save.html">ファイルを保存できない</a></li>
-			<li><a href="pgs/faq_crash.html">CotEditorが予期せず終了する</a></li>
-			<li><a href="pgs/faq_not_find_solution.html">解決策が見つからない場合</a></li>
+			<li><a href="pgs/faq_cannot_display.html">文字化けする場合</a></li>
+			<li><a href="pgs/faq_re_coloring.html">カラーリングがおかしくなった場合</a></li>
+			<li><a href="pgs/faq_about_yen_backslash.html">円マークがバックスラッシュに変わる場合</a></li>
+			<li><a href="pgs/faq_keybinding.html">キーボードショートカットを変更後、予期しない動作をする場合</a></li>
+			<li><a href="pgs/faq_cannot_save.html">ファイルを保存できない場合</a></li>
+			<li><a href="pgs/faq_crash.html">CotEditorが予期せず終了する場合</a></li>
+			<li><a href="pgs/faq_not_find_solution.html">解決方法が見つからない場合</a></li>
 		</ul>
 	</details></li>
 	
@@ -107,28 +105,38 @@
 		<ul>
 			<li><a href="pgs/about_sourcecode.html">CotEditorのソースコード</a></li>
 			<li><a href="pgs/releasenotes.html">リリースノート</a></li>
-			<li><a href="pgs/specification_changes_on_4.2.html">CotEditor 4.2での重要な変更</a></li>
-			<li><a href="pgs/specification_changes_on_2.2.html">CotEditor 2.2での重要な変更</a></li>
-			<li><a href="pgs/specification_changes.html">CotEditor 2.0での重要な変更</a></li>
-			<li><a href="pgs/whats_new_in_4.2.html">CotEditor 4.2の新機能</a></li>
-			<li><a href="pgs/whats_new_in_4.1.html">CotEditor 4.1の新機能</a></li>
-			<li><a href="pgs/whats_new_in_4.0.html">CotEditor 4.0の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.9.html">CotEditor 3.9の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.8.html">CotEditor 3.8の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.7.html">CotEditor 3.7の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.6.html">CotEditor 3.6の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.5.html">CotEditor 3.5の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.4.html">CotEditor 3.4の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.3.html">CotEditor 3.3の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.2.html">CotEditor 3.2の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.1.html">CotEditor 3.1の新機能</a></li>
-			<li><a href="pgs/whats_new_in_3.0.html">CotEditor 3.0の新機能</a></li>
-			<li><a href="pgs/whats_new_in_2.5.html">CotEditor 2.5の新機能</a></li>
-			<li><a href="pgs/whats_new_in_2.4.html">CotEditor 2.4の新機能</a></li>
-			<li><a href="pgs/whats_new_in_2.3.html">CotEditor 2.3の新機能</a></li>
-			<li><a href="pgs/whats_new_in_2.2.html">CotEditor 2.2の新機能</a></li>
-			<li><a href="pgs/whats_new_in_2.1.html">CotEditor 2.1の新機能</a></li>
-			<li><a href="pgs/whats_new_in_2.0.html">CotEditor 2.0の新機能</a></li>
+			<li><details>
+				<summary>重要な変更</summary>
+				<ul>
+					<li><a href="pgs/specification_changes_on_4.2.html">CotEditor 4.2での重要な変更</a></li>
+					<li><a href="pgs/specification_changes_on_2.2.html">CotEditor 2.2での重要な変更</a></li>
+					<li><a href="pgs/specification_changes.html">CotEditor 2.0での重要な変更</a></li>
+				</ul>
+			</details></li>
+			<li><details>
+				<summary>新機能</summary>
+				<ul>
+					<li><a href="pgs/whats_new_in_4.2.html">CotEditor 4.2の新機能</a></li>
+					<li><a href="pgs/whats_new_in_4.1.html">CotEditor 4.1の新機能</a></li>
+					<li><a href="pgs/whats_new_in_4.0.html">CotEditor 4.0の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.9.html">CotEditor 3.9の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.8.html">CotEditor 3.8の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.7.html">CotEditor 3.7の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.6.html">CotEditor 3.6の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.5.html">CotEditor 3.5の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.4.html">CotEditor 3.4の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.3.html">CotEditor 3.3の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.2.html">CotEditor 3.2の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.1.html">CotEditor 3.1の新機能</a></li>
+					<li><a href="pgs/whats_new_in_3.0.html">CotEditor 3.0の新機能</a></li>
+					<li><a href="pgs/whats_new_in_2.5.html">CotEditor 2.5の新機能</a></li>
+					<li><a href="pgs/whats_new_in_2.4.html">CotEditor 2.4の新機能</a></li>
+					<li><a href="pgs/whats_new_in_2.3.html">CotEditor 2.3の新機能</a></li>
+					<li><a href="pgs/whats_new_in_2.2.html">CotEditor 2.2の新機能</a></li>
+					<li><a href="pgs/whats_new_in_2.1.html">CotEditor 2.1の新機能</a></li>
+					<li><a href="pgs/whats_new_in_2.0.html">CotEditor 2.0の新機能</a></li>
+				</ul>
+			</details></li>
 			<li><a href="pgs/howto_uninstall.html">CotEditorをアンインストールする</a></li>
 		</ul>
 	</details></li>

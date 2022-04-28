@@ -1,0 +1,65 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="スクリプトメニュー, スクリプト, マクロ, script, macro"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../toc.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>CotEditorスクリプトを使う</title>
+</head>
+
+<body>
+<a name="about_scripting"></a>
+
+
+<h1>CotEditorスクリプトを使う</h1>
+
+<p>CotEditorのスクリプト機能は、自分で書いたスクリプトをCotEditor上で実行して編集中の書類を加工したり外部のプログラムを起動したりします。スクリプトは<object type="image/svg+xml" data="../../Shared/gfx/script.svg" height="14">スクリプトアイコン</object>で表されるスクリプトメニューに登録されます。</p>
+
+
+<figure>
+	<img src="../gfx/ov_scriptmenu@2x.png" alt="[Script menu]" width="400"/>
+</figure>
+
+
+<h2>スクリプトの種類</h2>
+<p>CotEditorスクリプトには大きく分けて以下の2つの種類の書き方があります。</p>
+<ul>
+	<li>AppleScript</li>
+	<li>UNIXスクリプト</li>
+</ul>
+
+<p>AppleScript（JXA; JavaScript for Automationを含む）を使うとより詳細なアプリケーションの制御をすることができます。一方UNIXスクリプトでは最前面の書類の内容しか編集できませんが、Python, Ruby, Perlなど、より一般的な好みの言語でスクリプトを書くことができます。用途に合わせて使い分けてください。スクリプトの書き方についての詳細は「<a href="script_osascript.html">AppleScriptを作成する</a>」または「<a href="script_unixscript.html">UNIXスクリプトを作成する</a>」を参照してください。</p>
+
+
+<h2>スクリプトを追加または削除する</h2>
+<p>スクリプトメニューに項目を追加したり、削除したりするには次のようにします。</p>
+<ol>
+	<li>CotEditorのスクリプトメニューから「スクリプトフォルダを開く」を選択すると、Finderがスクリプト用の次のフォルダを開きます:<br/>
+	~/ライブラリ/Application Scripts/com.coteditor.CotEditor/</li>
+	<li>このフォルダに作成したスクリプトを置くか、またフォルダの不要なスクリプトを削除します。</li>
+	<li>スクリプトフォルダの変更がスクリプトメニューに自動的に反映されます。</li>
+</ol>
+
+<p>スクリプトのファイル名にある特定の文字列を含めることで、表示順を変更したりキーボードショートカットを付与したりできます。詳しくは「<a href="script_menu.html">スクリプトメニューをカスタマイズする</a>」を参照してください。</p>
+
+
+<h2>既存のCotEditorスクリプトを入手する</h2>
+<p>CotEditorプロジェクトはサンプルスクリプトを提供しています。以下のページからダウンロードできます。<br/>
+<a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>
+
+<p>有志の親切なユーザが自身のスクリプトをオンラインで公開していることもあります。そのうちのいくつかは以下のページにリストアップされています。<br/>
+<a href="https://github.com/coteditor/CotEditor/wiki/CotEditor-Scripts" rel="external">CotEditor Scripts -CotEditor Wiki</a></p>
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="script_menu.html">スクリプトメニューをカスタマイズする</a></li>
+	<li><a href="script_osascript.html">AppleScriptを作成する</a></li>
+	<li><a href="script_unixscript.html">UNIXスクリプトを作成する</a></li>
+</ul>
+</section>
+
+</body>
+</html>

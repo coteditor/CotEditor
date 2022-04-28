@@ -1,0 +1,100 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="スクリプトメニュー,スクリプト"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../toc.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>スクリプトメニューをカスタマイズする</title>
+</head>
+
+<body>
+<h1>スクリプトメニューをカスタマイズする</h1>
+
+<p>スクリプトフォルダのスクリプトのファイル名にある特定の文字列を含めることで、メニューでの表示順を変更したりスクリプトにキーボードショートカットを付与したりできます。</p>
+
+
+<h2>表示順</h2>
+
+<p>ファイル名の先頭に『「数字」+「)」』をつけると、数字順に並べることができます。『「数字」+「)」』の部分は、メニュー項目では表示されません。</p>
+
+<table>
+	<caption>例</caption>
+	<thead>
+		<tr><th>ファイル名</th><th>メニューでの表示</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>01)</strong>Open File.scpt</td>
+			<td>Open File</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h2>セパレータ</h2>
+<p>「-」という名前のフォルダはメニューのセパレータとして認識されます。さらにフォルダ名の先頭に『「数字」+「)」』をつけることで、任意のメニュー項目の間に挿入できます。</p>
+
+
+<h2>非表示ファイル/フォルダ</h2>
+<p>「_」から名前が始まるファイル/フォルダはスクリプトメニューに表示されません。設定ファイルやライブラリスクリプトなどに利用できます。</p>
+
+
+<h2>サブメニュー</h2>
+<p>スクリプトフォルダにはフォルダも置くことができます。フォルダはサブメニューとして表示されます。</p>
+
+
+<h2>キーボードショートカット</h2>
+<p>ファイル名の拡張子の直前に「. + 修飾キー + ショートカットキー』を追加すると、キーボードショートカットを割り当てることができます。</p>
+
+<ul>
+	<li>ショートカットキー（修飾キーでないキー、例での「e」や「Y」）は通常小文字で記述します。大文字の場合は「Shiftキーも同時に押す」として認識されます。</li>
+	<li>ショートカットキーは修飾キーのあとに書かなければなりません。1文字だけ指定できます。ファイル名に使えないキー（<kbd>F1</kbd>や<kbd>Delete</kbd>など）は割り当てられません。</li>
+	<li>指定したキーバインドがすでにほかの機能に割り当てられている場合、スクリプトのキーバインドは無視されます。</li>
+</ul>
+
+<table>
+	<caption>修飾キーの記述方法</caption>
+	<thead>
+		<tr><th>表記</th><th>キー</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>^</td><td><kbd>Control</kbd></td></tr>
+		<tr><td>$</td><td><kbd>Shift</kbd></td></tr>
+		<tr><td>~</td><td><kbd>Option</kbd></td></tr>
+		<tr><td>@</td><td><kbd>Command</kbd></td></tr>
+	</tbody>
+</table>
+
+<table>
+	<caption>例</caption>
+	<thead>
+		<tr><th>ファイル名</th><th>メニューでの表示</th><th>ショートカット</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Insert String<strong>.@e</strong>.scpt</td>
+			<td>Insert String</td>
+			<td><kbd>Command</kbd>+<kbd>E</kbd></td>
+		</tr>
+		<tr>
+			<td>03)Insert Date<strong>.@~Y</strong>.scpt</td>
+			<td>Insert Date</td>
+			<td><kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>Y</kbd></td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="script_overview.html">CotEditorスクリプトを使う</a></li>
+</ul>
+</section>
+
+</body>
+</html>

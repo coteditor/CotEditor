@@ -10,11 +10,12 @@
 </head>
 
 <body>
+<a name="specification_changes_on_4.2.0"></a>
 
 <h1>Important changes on CotEditor 4.2</h1>
 
 <p>Prior to version 4.2.0, all line ending codes were internally treated as LF (<code>U+000A</code>). From version 4.2.0, the actual line ending codes in document files are treated as they are. Therefore, users, especially those who have used earlier versions, require awareness of this change and may need manual migration for some settings.</p>
-<p>For details how the latest CotEditor treats line endings, see <a href="./about_line_endings.html">Handle various types of line endings</a>.</p>
+<p>For details on how the latest CotEditor treats line endings, see <a href="about_line_endings.html">Handle various types of line endings</a>.</p>
 
 
 <h2>Line ending code in the regular expression pattern</h2>
@@ -23,8 +24,6 @@
 
 <p class="addition"><code>\R</code> is the metacharacter defined in the <a href="about_regex.html">CUI regular expression engine</a>, which is used in CotEditor; and matches any of a newline character, such as <code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, or the sequence of <code>U+000D</code> <code>U+000A</code> (CRLF).</p>
 
-<p>On the other hand, because the new implementation matches the line ending codes used in the actual document, it enables, for instance, to search for LF that slipped into a document that uses CR as the line ending code.</p>
-
 
 <h2>Line ending handling in user settings</h2>
 
@@ -32,9 +31,9 @@
 
 <p>The following user settings require attention to the line ending handling:</p>
 <ul>
-	<li>Replacement definitions for the <a href="./howto_multiple_replace.html">multiple replacements</a></li>
-	<li><a href="about_syntaxstyle.html">Custom definitions</a> in the syntax style definitions</li>
-	<li>The line ending handling in <a href="about_scripting.html">user scripts</a> for the Script menu</li>
+	<li>Replacement definitions for the <a href="howto_multiple_replace.html">multiple replacements</a></li>
+	<li><a href="syntax_highlight_settings.html">Custom definitions</a> in the syntax style definitions</li>
+	<li>The line ending handling in <a href="script_overview.html">user scripts</a> for the Script menu</li>
 </ul>
 
 
@@ -46,18 +45,18 @@
 
 <p>On the other hand, regarding the text replacing with, all line endings even ones defined as a metacharacter like <code>\r</code> are assumed as the document line ending. Currently, there is no way to replace with line endings other than the document line ending and this is the same behavior as the previous CotEditor.</p>
 
-<p>See <a href="../pgs/howto_find_newline.html">Find or replace a line ending</a> for the details how CotEditor handles line endings in the Find &amp; Replacement.</p>
+<p>See <a href="howto_find_newline.html">Find or replace a line ending</a> for the details of how CotEditor handles line endings in the Find &amp; Replacement.</p>
 
 
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="../pgs/about_line_endings.html">Handle various types of line endings</a></li>
-	<li><a href="../pgs/howto_find_newline.html">Find or replace a line ending</a></li>
-	<li><a href="../pgs/howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a></li>
-	<li><a href="../pgs/howto_paste.html">Paste text</a></li>
-	<li><a href="../pgs/whats_new_in_4.2.html">What’s New in CotEditor 4.2</a></li>
-	<li><a href="../pgs/releasenotes.html">Release Notes</a></li>
+	<li><a href="about_line_endings.html">Handle various types of line endings</a></li>
+	<li><a href="howto_find_newline.html">Find or replace a line ending</a></li>
+	<li><a href="howto_find_inconsistent_line_endings.html">Find inconsistent line endings</a></li>
+	<li><a href="howto_paste.html">Paste text</a></li>
+	<li><a href="whats_new_in_4.2.html">What’s New in CotEditor 4.2</a></li>
+	<li><a href="releasenotes.html">Release Notes</a></li>
 
 </section>
 

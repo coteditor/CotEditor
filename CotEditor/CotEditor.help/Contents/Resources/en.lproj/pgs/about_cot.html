@@ -6,14 +6,14 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>cot command</title>
+	<title>Work with cot command</title>
 </head>
 
 <body>
 <a name="about_cot"></a>
 
 
-<h1>Use <code>cot</code> command</h1>
+<h1>Work with <code>cot</code> command</h1>
 
 <p>CotEditor has '<strong>cot</strong>' command-line tool which allows you to control CotEditor from the command-line. To use <code>cot</code> command, install it at first.</p>
 
@@ -21,7 +21,7 @@
 
 
 <h2>Install cot command</h2>
-<p>You can install the <code>cot</code> command-line tool to the desired location by creating a symbolic link in Terminal. The <code>cot</code> substance is bundled at '<code>Contents/SharedSupport/bin/cot</code>' in CotEditor.app. Unless you are particular about the location, we recommend to create the symbolic link at '<code>/usr/local/bin/</code>'.</p>
+<p>You can install the <code>cot</code> command-line tool to the desired location by creating a symbolic link in Terminal. The <code>cot</code> substance is bundled at '<code>Contents/SharedSupport/bin/cot</code>' in CotEditor.app. Unless you are particular about the location, we recommend creating the symbolic link at '<code>/usr/local/bin/</code>'.</p>
 <p>To create a symbolic link at the recommended location, run the following lines in Terminal.</p>
 <pre class="source"><code>mkdir /usr/local/bin/
 ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/cot</code></pre>
@@ -62,7 +62,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 	</tbody>
 </table>
 
-<p>For <code>--line</code> and <code>--column</code> options, you can specifty a negative number to count from the end of the document (<code>--line</code> option) or a line (<code>--column</code> option).</p>
+<p>For <code>--line</code> and <code>--column</code> options, you can specify a negative number to count from the end of the document (<code>--line</code> option) or a line (<code>--column</code> option).</p>
 
 <h2>Examples</h2>
 <p>A simple <code>cot</code> command will launch CotEditor, or just activate it if CotEditor is already running.</p>
@@ -70,12 +70,12 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot
 </code></pre>
 
-<p>The following command opens the foo.txt file on CotEditor and move the cursor to the line 200 in the opened document. <code>cot</code> command do nothing if foo.txt file is not exists.</p>
+<p>The following command opens the foo.txt file on CotEditor and moves the cursor to line 200 in the opened document. <code>cot</code> command does nothing if foo.txt file does not exist.</p>
 
 <pre class="source"><code>cot --line 200 foo.txt
 </code></pre>
 
-<p>The following command opens the foo.txt file on CotEditor and move the cursor to the end of the document.</p>
+<p>The following command opens the foo.txt file on CotEditor and moves the cursor to the end of the document.</p>
 
 <pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
@@ -94,7 +94,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="../pgs/pref_general.html">Change General preferences</a></li>
+	<li><a href="pref_general.html">Change General preferences</a></li>
 </ul>
 </section>
 

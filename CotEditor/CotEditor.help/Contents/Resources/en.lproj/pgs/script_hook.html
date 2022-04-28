@@ -1,46 +1,43 @@
-<html lang="ja">
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="スクリプトメニュー, スクリプト, スクリプトバンドル, フック"/>
+	<meta name="keywords" content="Script Menu, script, script bundle, hook"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/pygmentize.css"/>
-	<title>CotEditorスクリプトにスクリプトフックを追加する</title>
+	<title>Add scripting hooks to CotEditor scripts</title>
 </head>
 
 <body>
-<a name="about_script_hook"></a>
+<h1>Add scripting hooks to CotEditor scripts</h1>
 
-
-<h1>CotEditorスクリプトにスクリプトフックを追加する</h1>
-
-<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。CotEditorは、次に挙げるイベントでのフックをサポートしています。</p>
+<p>Scripting hooks allow CotEditor scripts to be executed on certain events. The following events are available with CotEditor:</p>
 
 <ul>
-	<li><code>document opened</code>: ファイルを開く操作を行い、テキストが読み込まれた直後</li>
-	<li><code>document saved</code>: ファイルを保存する操作を行い、テキストが書き込まれた直後</li>
+	<li><code>document opened</code> : after you opened the file and then the contents were loaded</li>
+	<li><code>document saved</code> : after you saved the file and then the contents were stored</li>
 </ul>
 
-<p>イベントの詳細な仕様については、AppleScript辞書のCotEditor Event Handler suite項を参照してください。</p>
+<p>See `CotEditor Event Handler suite` section on AppleScript Dictionary for further information.</p>
 
-<p>このページではCotEditorスクリプトをスクリプトフックへ対応させる方法について説明します。</p>
+<p>The rest of this page describes how to include the script hooking to your CotEditor script.</p>
 
-<h2>概要</h2>
+<h2>Synopsis</h2>
 
-<p>フックに対応したスクリプトを作成する場合、以下の制約を満足する必要があります。</p>
+<p>Scripts with scripting hook must conform to the following protocols:</p>
 
 <ul>
-	<li>AppleScriptまたはJavaScript for Automation (JXA)による記述</li>
-	<li>スクリプトバンドル形式 (`.scptd`) で格納</li>
+	<li>written in AppleScript or JavaScript for Automation (JXA)</li>
+	<li>stored in the form of a script bundle (`.scptd`)</li>
 </ul>
 
-<p>以上に加えて、フックしたいイベントをメタデータファイルにて明示し、イベントハンドラを記述する必要があります。</p>
+<p>In addition, events to subscribe to and handlers for them must be declared, as described below.</p>
 
-<h2>スクリプトバンドルの構造</h2>
+<h2>Structure of Script Bundle</h2>
 
-<p>スクリプトバンドルは、以下に示す構造を持つディレクトリ構造です。</p>
+<p>A script bundle is the directory structure as follows:</p>
 
 <pre>
 HookingScript.scptd
@@ -55,10 +52,9 @@ HookingScript.scptd
             └── TXT.rtf
 </pre>
 
-<p>この形式には、macOSに標準で添付されているスクリプトエディタを用いることにより、簡単に書き出すことができます。</p>
+<p>Any scripts can be exported in this form with Script Editor.app, which is one of the standard applications distributed with macOS.</p>
 
-<p>CotEditorのスクリプトフックに対応させるためには、まず、`Info.plist`にフックしたいイベントの一覧を記載する必要があります。
-`plist`ファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
+<p>To support scripting hooks, the list of events to subscribing must be written in `Contents/Info.plist`. `Info.plist` is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
 
 <pre class="highlight source"><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
@@ -74,7 +70,7 @@ HookingScript.scptd
 <span class="nt">&lt;/plist&gt;</span>
 </pre>
 
-<p>フックしたいイベントの一覧は、キー`CotEditorHandlers`に文字列の配列として記載します。以下にその一例を示します。</p>
+<p>The events to subscribe must be stored at the key `CotEditorHandlers` and in the form of `array` of `string`.</p>
 
 <pre class="highlight source"><span></span><span class="nt">&lt;key&gt;</span>CotEditorHandlers<span class="nt">&lt;/key&gt;</span>
 <span class="nt">&lt;array&gt;</span>
@@ -83,14 +79,13 @@ HookingScript.scptd
 <span class="nt">&lt;/array&gt;</span>
 </pre>
 
-<h2>イベントハンドラ</h2>
+<h2>Event handlers</h2>
 
-<p>イベントハンドラは、アプリケーションが発生させたイベントを受信し、処理をするスクリプトを指します。
-ここでは、ファイルを読み込んだ後と書き込んだ後にダイアログを表示するスクリプトを例に採り上げ、イベントハンドラの記述方法について説明します。</p>
+<p>An event handler is a block to receive certain events that the application caused and do something with the received event. In this section, the manners to write an event handler are described with a simple example, which shows the dialog on opening and saving a file.</p>
 
 <h3>AppleScript</h3>
 
-<p>AppleScriptでスクリプトを記述する場合、`using terms from`ブロックと`on`ブロックを組み合わせることで、ハンドラを作成します。</p>
+<p>In AppleScript, handlers are written with a `using terms from` block and `on` blocks.</p>
 
 <pre class="highlight source"><span></span><span class="k">using terms from</span> <span class="nb">application</span> <span class="s2">&quot;CotEditor&quot;</span>
     <span class="nb">on</span> <span class="na">document</span> <span class="nv">opened</span> <span class="nv">theDocument</span>
@@ -107,7 +102,7 @@ HookingScript.scptd
 
 <h3>JavaScript for Automation (JXA)</h3>
 
-<p>JXAでスクリプトを記述する場合、`function`文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
+<p>In JXA, `function` statements on the global object will create handlers.</p>
 
 <pre class="highlight source"><span></span><span class="nx">CotEditor</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">currentApplication</span><span class="p">()</span>
 <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">includeStandardAdditions</span> <span class="o">=</span> <span class="kc">true</span>
@@ -122,11 +117,11 @@ HookingScript.scptd
 </pre>
 
 <section id="cf">
-<h2>関連項目</h2>
+<h2>See also</h2>
 <ul>
-	<li><a href="../pgs/about_scripting.html">CotEditorスクリプト</a></li>
-	<li><a href="../pgs/howto_customize_scriptmenu.html">スクリプトメニューをカスタマイズする</a></li>
-	<li><a href="../pgs/about_applescript.html">AppleScriptと連携する</a></li>
+	<li><a href="script_overview.html">Script CotEditor</a></li>
+	<li><a href="script_menu.html">Customize the Script menu</a></li>
+	<li><a href="script_osascript.html">Create AppleScript scripts</a></li>
 </ul>
 </section>
 
