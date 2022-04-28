@@ -148,7 +148,7 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
         switch identifier {
             case .line:
                 // calculate the line number first at this point to postpone the high cost processing as much as possible
-                return self.document?.string.lineNumber(at: lineEnding.location)
+                return self.document?.lineEndingScanner.lineNumber(at: lineEnding.location)
             case .lineEnding:
                 return lineEnding.item.name
             default:

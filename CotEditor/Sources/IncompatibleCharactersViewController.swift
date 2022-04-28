@@ -250,7 +250,7 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
         
         switch identifier {
             case .line:
-                return incompatibleCharacter.lineNumber
+                return self.document?.lineEndingScanner.lineNumber(at: incompatibleCharacter.location)
             case .character:
                 return String(incompatibleCharacter.character)
             case .converted:

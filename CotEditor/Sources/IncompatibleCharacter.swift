@@ -31,7 +31,6 @@ struct IncompatibleCharacter: Equatable {
     let character: Character
     let convertedCharacter: String?
     let location: Int
-    let lineNumber: Int
     
     var range: NSRange  { NSRange(location: self.location, length: self.character.utf16.count) }
 }
@@ -73,8 +72,7 @@ extension String {
                 
                 return IncompatibleCharacter(character: character,
                                              convertedCharacter: converted,
-                                             location: location,
-                                             lineNumber: self.lineNumber(at: location))
+                                             location: location)
             }
     }
     
@@ -93,8 +91,7 @@ extension String {
                 
                 return IncompatibleCharacter(character: characters.0,
                                              convertedCharacter: String(characters.1),
-                                             location: location,
-                                             lineNumber: self.lineNumber(at: location))
+                                             location: location)
             }
     }
     

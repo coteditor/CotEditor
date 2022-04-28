@@ -125,6 +125,33 @@ final class LineEndingScannerTests: XCTestCase {
         XCTAssertEqual(scanner.majorLineEnding, .crlf)  // most used new line must be detected
     }
     
+    
+    func testLineNumberCalculation() {
+        
+        let storage = NSTextStorage(string: "dog \n\n cat \n cow \n")
+        let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
+        
+        XCTAssertEqual(scanner.lineNumber(at: 0), 1)
+        XCTAssertEqual(scanner.lineNumber(at: 1), 1)
+        XCTAssertEqual(scanner.lineNumber(at: 4), 1)
+        XCTAssertEqual(scanner.lineNumber(at: 5), 2)
+        XCTAssertEqual(scanner.lineNumber(at: 6), 3)
+        XCTAssertEqual(scanner.lineNumber(at: 11), 3)
+        XCTAssertEqual(scanner.lineNumber(at: 12), 4)
+        XCTAssertEqual(scanner.lineNumber(at: 17), 4)
+        XCTAssertEqual(scanner.lineNumber(at: 18), 5)
+        
+        for _ in 0..<20 {
+            storage.string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
+            
+            for index in (0..<storage.length).shuffled() {
+                XCTAssertEqual(scanner.lineNumber(at: index),
+                               storage.string.lineNumber(at: index),
+                               "At \(index) with string \"\(storage.string)\"")
+            }
+        }
+    }
+    
 }
 
 

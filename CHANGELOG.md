@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [beta] Update the help contents.
+- [beta][trivial] Optimize the performance of the Warnings pane.
 
 
 

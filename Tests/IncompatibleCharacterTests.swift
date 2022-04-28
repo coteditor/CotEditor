@@ -41,14 +41,12 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(backslash.character, "\\")
         XCTAssertEqual(backslash.convertedCharacter, "＼")
         XCTAssertEqual(backslash.location, 3)
-        XCTAssertEqual(backslash.lineNumber, 1)
         
         let tilde = incompatibles[1]
         
         XCTAssertEqual(tilde.character, "~")
         XCTAssertEqual(tilde.convertedCharacter, "?")
         XCTAssertEqual(tilde.location, 11)
-        XCTAssertEqual(tilde.lineNumber, 3)
     }
     
     
@@ -64,7 +62,6 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(tilde.character, "~")
         XCTAssertEqual(tilde.convertedCharacter, "?")
         XCTAssertEqual(tilde.location, 1)
-        XCTAssertEqual(tilde.lineNumber, 1)
     }
     
     
@@ -78,12 +75,10 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(incompatibles[0].character, "👨‍👨‍👦")
         XCTAssertEqual(incompatibles[0].convertedCharacter, "????????")
         XCTAssertEqual(incompatibles[0].location, 7)
-        XCTAssertEqual(incompatibles[0].lineNumber, 1)
         
         XCTAssertEqual(incompatibles[1].character, "🐕")
         XCTAssertEqual(incompatibles[1].convertedCharacter, "??")
         XCTAssertEqual(incompatibles[1].location, 21)
-        XCTAssertEqual(incompatibles[1].lineNumber, 1)
     }
     
 }
