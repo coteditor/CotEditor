@@ -1172,7 +1172,7 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="CotEditor Scripting Guide" id="OLa-Mb-rXS">
                                                 <items>
-                                                    <menuItem title="About Scripting" identifier="about_scripting" id="u2o-8v-WPL">
+                                                    <menuItem title="About Scripting" identifier="script_overview" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="CvM-9e-xdi"/>

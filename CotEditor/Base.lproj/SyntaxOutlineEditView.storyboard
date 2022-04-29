@@ -105,7 +105,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gL1-K8-zYn">
-                                                            <rect key="frame" x="288" y="1" width="140" height="16"/>
+                                                            <rect key="frame" x="287.5" y="1" width="140" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="e1M-tw-2hv">
@@ -218,7 +218,7 @@
                                     <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.underline" id="e91-xE-cUI"/>
                                 </connections>
                             </button>
-                            <button identifier="about_outlinemenu_settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I4O-YH-ALG">
+                            <button identifier="syntax_outline_settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I4O-YH-ALG">
                                 <rect key="frame" x="417" y="4" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lB1-fG-MMl">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
