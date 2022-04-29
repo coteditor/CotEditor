@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /*
- Additional Help Style Sheet for Index Pages
+ Additional Help Style Sheet for Table of Contents
  
  CotEditor
  https://coteditor.com
@@ -19,14 +19,14 @@ ul {
 	list-style-type: none;
 }
 ul ul {
-    padding-left: 1.5em;
+	padding-left: 1.5em;
 }
 
 summary {
-  cursor: pointer;
+	cursor: pointer;
 }
 summary::-webkit-details-marker {
-  color: -apple-system-tertiary-label;
+	color: -apple-system-tertiary-label;
 }
 
 body > ul > li {

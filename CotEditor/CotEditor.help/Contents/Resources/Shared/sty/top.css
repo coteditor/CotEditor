@@ -71,30 +71,13 @@ img.snapshot {
 	border-radius: 3px;
 }
 
-.topic ul {
+section ul {
 	list-style-type: none;
 	padding: 0;
 }
-.topic ul li a::after {
+section ul li a::after {
 	content: ' ›';
 	opacity: 0.75;
-}
-
-.features dl {
-	column-count: 2;
-	column-gap: 3em;
-}
-.features dl > * {
-	margin-left: 0;
-	-webkit-column-break-inside: avoid;
-}
-.features dl dt {
-	font-weight: 500;
-	margin: 0;
-	break-after: avoid-column;
-}
-.features dl dd {
-	margin-bottom: 1em;
 }
 
 
