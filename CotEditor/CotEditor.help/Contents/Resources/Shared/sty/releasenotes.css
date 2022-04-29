@@ -13,13 +13,10 @@
 
 
 article ul, ol {
-	margin: 0;
 	padding: 0 1.5em;
 }
-article li {
-	margin: 0.2em 0;
-}
 article ul li {
+	margin: 0.2em 0;
 	list-style-type: circle;
 }
 
@@ -35,10 +32,6 @@ footer::before {
 	width: 140px;
 	border-top: 1px solid -apple-system-separator;
 	margin: 0.8em 0;
-}
-
-p.note strong {
-	text-decoration: underline;
 }
 
 article+article {
@@ -57,7 +50,6 @@ article > header p {
 	text-indent: 0 !important;
 }
 article h2 {
-	font-size: 105%;
 	margin-bottom: 0.5em;
 }
 

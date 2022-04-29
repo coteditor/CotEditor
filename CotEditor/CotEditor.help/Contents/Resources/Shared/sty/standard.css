@@ -11,9 +11,7 @@
 
 
 :root {
-	-webkit-text-size-adjust: 100%;
 	font: 13px/1.6 -apple-system, sans-serif;
-	font-weight: 400;
 	color: -apple-system-label;
 }
 body {
@@ -39,8 +37,8 @@ kbd {
 	padding: 0 0.2em;
 	margin: 0 0.1em;
 	border-radius: 0.2em;
-	border: 1px solid -apple-system-tertiary-label;
-	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .05);
+	border: 1px solid -apple-system-quaternary-label;
+	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .04);
 }
 
 :not(h1) > code {
@@ -169,7 +167,6 @@ table ul li {
 	font-size: 100%;
 	font-weight: 600;
 	margin-bottom: 0.5em;
-	border: none;
 }
 #cf ul {
 	list-style-type: none;
@@ -213,15 +210,11 @@ img.bordered {
 
 dt {
 	font-weight: 600;
-	margin-left: 0.5em;
 }
 dd {
-	margin-left: 2.5em;
+	margin-left: 2em;
 }
 dd + dt {
-	margin-top: 1em;
-}
-dl dl dd + dt {
 	margin-top: 0.5em;
 }
 dd + dd dl {
@@ -244,7 +237,7 @@ td {
 	line-height: 1.6;
 	border-bottom: 1px solid -apple-system-quaternary-label;
 	margin: 0;
-	padding: 0.4em 0.6em;
+	padding: 0.5em 0.6em;
 }
 table tr > :first-child {
 	padding-left: 0;
@@ -317,38 +310,23 @@ p img.appicon {
 	vertical-align: text-bottom;
 }
 
-table.preferences caption {
-	font-size: 110%;
-	font-weight: 600;
-	margin-top: 1em;
-}
 table.preferences th {
 	width: 18em;
 	white-space: normal;
 }
-table.preferences thead tr > * {
-	font-weight: 600;
-	text-align: left;
-}
 table.preferences tbody {
 	font-size: 95%;
-}
-table.preferences tbody tr > * {
-	padding-top: 0.8em;
-	padding-bottom: 0.8em;
 }
 table.preferences td dl > * {
 	margin-left: 0;
 }
 table.preferences td ul {
 	padding-left: 1.5em;
-	list-style-type: disc;
 }
 table.preferences td ul li strong {
 	font-weight: 500;
 	font-style: italic;
 }
 table.preferences td ul li strong:lang(ja) {
-	font-weight: 600;
 	font-style: normal;
 }
