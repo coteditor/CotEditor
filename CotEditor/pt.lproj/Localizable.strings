@@ -39,7 +39,7 @@
 // Accessibility labels
 "inspector" = "inspetor";
 "outline" = "plano";
-"warnings" = "warnings";  // FIXME: added
+"warnings" = "avisos";  // FIXME: machine-translated (native check required)
 "incompatible characters" = "Caracteres Incompatíveis";
 "status bar" = "barra de estado";
 "editor" = "editor";
@@ -383,7 +383,7 @@
 "No Filter Results" = "Nenhum Resultado do Filtro";  // FIXME: machine-translated (native check required)
 
 // Warnings
-"No issues found." = "No issues found.";  // FIXME: added
+"No issues found." = "Nenhum problema encontrado.";
 
 // Incompatible characters
 "Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
@@ -485,7 +485,7 @@
 // Coloring indicator
 "Coloring text…" = "Colorindo texto…";
 "Please wait for a while." = "Aguarde um momento.";
-"Parsing document…" = "Parsing document…";  // FIXME: updated
+"Parsing document…" = "Analisando documento…";  // FIXME: machine-translated (native check required)
 "Applying colors to text…" = "Aplicando cores ao texto…";
 "keywords" = "palavras-chave";
 "commands" = "comandos";
