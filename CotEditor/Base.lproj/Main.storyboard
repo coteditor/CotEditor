@@ -371,18 +371,27 @@ Gw
                                                         <attributedString key="userComments">
                                                             <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
                                                         </attributedString>
+                                                        <connections>
+                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="kMb-3e-oqh"/>
+                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Unicode Line Separator (LS)" tag="4" hidden="YES" id="ins-89-nu3">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                         <attributedString key="userComments">
                                                             <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
                                                         </attributedString>
+                                                        <connections>
+                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="WJR-XT-Mtc"/>
+                                                        </connections>
                                                     </menuItem>
                                                     <menuItem title="Unicode Paragraph Separator (PS)" tag="5" hidden="YES" id="Zz9-5c-bS1">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                         <attributedString key="userComments">
                                                             <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>
                                                         </attributedString>
+                                                        <connections>
+                                                            <action selector="changeLineEnding:" target="Ady-hI-5gd" id="p4p-VS-YXM"/>
+                                                        </connections>
                                                     </menuItem>
                                                 </items>
                                             </menu>

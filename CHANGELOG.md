@@ -11,6 +11,11 @@ Change Log
 - [trivial] Rename “Unicode Next Line” to “Next Line”.
 
 
+### Fixes
+
+- [beta] Fix an issue that the Line Endings submenu in the Format menu did not display minor line ending types even with the Option key.
+
+
 
 4.2.0-beta.2 (493)
 --------------------------
