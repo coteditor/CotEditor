@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- [trivial] Fix an issue that the Script menu apeared in the shortcut menu even when no script exists.
+- [trivial] Fix an issue that the Script menu appeared in the shortcut menu even when no script exists.
 - [beta] Fix an issue that UNIX scripts did not terminate.
 
 
