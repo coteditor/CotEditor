@@ -30,6 +30,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     // MARK: Invisible Drawing Properties
     
+    let invisiblesColor: NSColor = .disabledControlTextColor
     let textFont: NSFont = .systemFont(ofSize: 0)
     private(set) var showsInvisibles: Bool = false  { didSet { self.invalidateInvisibleDisplay() } }
     var showsControls: Bool = false
@@ -72,7 +73,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if self.showsInvisibles {
-            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, color: .disabledControlTextColor, types: UserDefaults.standard.showsInvisible)
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, types: UserDefaults.standard.showsInvisible)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
