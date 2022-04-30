@@ -11,6 +11,11 @@ Change Log
 - [beta][trivial] Optimize the performance of the Warnings pane.
 
 
+### Fixes
+
+- [beta] Fix an issue that UNIX scripts did not terminate.
+
+
 
 4.2.0-beta (491)
 --------------------------
