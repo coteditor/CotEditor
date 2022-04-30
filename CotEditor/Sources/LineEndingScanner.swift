@@ -29,13 +29,13 @@ import Combine
 
 final class LineEndingScanner {
     
-    @Published private(set) var inconsistentLineEndings: [ItemRange<LineEnding>] = []
+    @Published private(set) var inconsistentLineEndings: [ItemRange<LineEnding>]
     
     
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
-    private var lineEndings: [ItemRange<LineEnding>] = []
+    private var lineEndings: [ItemRange<LineEnding>]
     
     private var documentLineEnding: LineEnding  {
         
@@ -57,7 +57,8 @@ final class LineEndingScanner {
         self.textStorage = textStorage
         self.documentLineEnding = lineEnding
         
-        self.inconsistentLineEndings = self.scan()
+        self.lineEndings = textStorage.string.lineEndingRanges()
+        self.inconsistentLineEndings = self.lineEndings.filter { $0.item != lineEnding }
         
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
             .compactMap { $0.object as? NSTextStorage }
@@ -84,6 +85,18 @@ final class LineEndingScanner {
             .sorted(\.value.first!.location)
             .max { $0.value.count < $1.value.count }?
             .key
+    }
+    
+    
+    /// Return the 1-based line number at the given character index.
+    ///
+    /// - Parameter index: The character index.
+    /// - Returns: The 1-based line number.
+    func lineNumber(at index: Int) -> Int {
+        
+        assert(index <= self.textStorage.string.length)
+        
+        return self.lineEndings.countPrefix { $0.range.upperBound <= index } + 1
     }
     
     
@@ -122,17 +135,6 @@ final class LineEndingScanner {
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
-    }
-    
-    
-    /// Scan line endings inconsistent with the document line endings.
-    ///
-    /// - Parameter range: The range to scan.
-    /// - Returns: The ranes of inconsistent line endings with its type.
-    private func scan(in range: NSRange? = nil) -> [ItemRange<LineEnding>] {
-        
-        self.textStorage.string.lineEndingRanges(in: range)
-            .filter { $0.item != self.documentLineEnding }
     }
     
 }

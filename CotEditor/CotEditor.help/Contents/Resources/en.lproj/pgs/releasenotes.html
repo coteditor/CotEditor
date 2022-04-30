@@ -3,8 +3,6 @@
 <head>
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="version, history, changelog, release notes"/>
-	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/releasenotes.css"/>
 	<title>Release Notes</title>
@@ -68,6 +66,15 @@
 			<li><span class="trivial">trivial</span>: Accept script files for the Script menu with an uppercased file extension.</li>
 			<li><span class="trivial">trivial</span>: Replace <code>\n</code> with <code>\R</code> for the newline metacharacter in the Basic Regular Expression Syntax reference.</li>
 			<li><span class="trivial">trivial</span>: Tweak Anura theme.</li>
+		</ul>
+	</section>
+	
+	
+	<section>
+		<h2>Fixes</h2>
+		
+		<ul>
+			<li><span class="trivial">trivial</span>: Fix an issue that the Script menu appeared in the shortcut menu even when no script exists.</li>
 		</ul>
 	</section>
 </article>
@@ -887,7 +894,7 @@
 <h2>New Features</h2>
 
 <ul>
-	<li>Rewrite the <a href="../pgs/howto_display_invisibles.html">invisible character drawing feature</a> to draw alternative symbols more properly under various environments.</li>
+	<li>Rewrite the <a href="howto_display_invisibles.html">invisible character drawing feature</a> to draw alternative symbols more properly under various environments.</li>
 	<li>Add an option to draw indent guides.</li>
 	<li>Display Unicode's general category in the character inspector.</li>
 </ul>
@@ -1676,7 +1683,7 @@
 <h2>New Features</h2>
 
 <ul>
-	<li><a href="../pgs/howto_edit_multiple_points.html">Multi-cursor editing</a>.</li>
+	<li><a href="howto_edit_multiple_points.html">Multi-cursor editing</a>.</li>
 	<li>Add “Opacity” toolbar item to change editor's opacity.</li>
 	<li>Add “Surround Selection With” &gt; “Square Brackets” menu item.</li>
 </ul>
@@ -3335,7 +3342,7 @@
 <ul>
 	<li>Add Scripting hook feature for document opening/saving (thanks to Kaito Udagawa!):
 	<ul>
-		<li>See <a href="about_script_execution_model.html">Specifying the execution model of CotEditor scripts</a> from the Help menu &gt; CotEditor Scripting Manual &gt; <a href="about_scripting.html">About Scripting</a> for details.</li>
+		<li>See <a href="about_script_execution_model.html">Specifying the execution model of CotEditor scripts</a> from the Help menu &gt; CotEditor Scripting Manual &gt; <a href="script_overview.html">About Scripting</a> for details.</li>
 		</ul></li>
 	<li>Support AppleScript's script bundle (.scptd) for scripting (thanks to Kaito Udagawa!).</li>
 	<li>Add a new AppleScript property <code>expands tab</code> for document object (thanks to Kaito Udagawa!).</li>
@@ -5353,7 +5360,7 @@
 	<li>Now, IC (ignore case) can be set even RE (regular expression) is set in syntax style editing.</li>
 	<li>Change regular expression engine to extract outline from OniGmo (OgreKit) to ICU (NSRegularExpression).
 		<ul>
-		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles. See <a href="./specification_changes.html">Important changes on CotEditor 2.0</a> for details.</li>
+		<li><strong>Attention!</strong>: You may need to update the outline extracting definitions in your custom syntax styles. See <a href="specification_changes.html">Important changes on CotEditor 2.0</a> for details.</li>
 		<li>Remove <code>$&amp;</code> definition that represents whole matched string (Use <code>$0</code> instead).</li>
 	</ul></li>
 	<li>Change tab width to 4 characters in outline menu.</li>

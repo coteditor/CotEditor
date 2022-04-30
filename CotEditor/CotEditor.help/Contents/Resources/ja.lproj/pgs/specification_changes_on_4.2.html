@@ -4,18 +4,16 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="仕様変更,line ending,改行"/>
 	<title>CotEditor 4.2での重要な変更</title>
-	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 </head>
 
 <body>
+<a name="specification_changes_on_4.2.0"></a>
 
-<a name="specification_changes"></a>
 <h1>CotEditor 4.2での重要な変更</h1>
 
 <p>CotEditorはバージョン4.2.0から改行コードの扱いが変更されました。バージョン4.2.0以前では内部的には改行コードはすべてLF (<code>U+000A</code>)として扱っていましたが、バージョン4.2.0以降は書類ファイルの実際の改行コードをそのまま扱います。そのため、とくに以前のバージョンを使っていたユーザはこの変更を意識し、いくつかの設定で変更が必要になる場合があります。</p>
-<p>最新のCotEditorがどう改行を扱うかについて詳しくは、<a href="./about_line_endings.html">多様な改行コードを扱う</a>を参照してください。</p>
+<p>最新のCotEditorがどう改行を扱うかについて詳しくは、<a href="about_line_endings.html">多様な改行コードを扱う</a>を参照してください。</p>
 
 
 <h2>正規表現パターンでの改行コード</h2>
@@ -24,17 +22,15 @@
 
 <p class="addition"><code>\R</code>は、CotEditorが使用している<a href="about_regex.html">ICU正規表現エンジン</a>において、改行を表現する文字全般に一致するメタ文字です。<code>U+000A</code> (LF), <code>U+000B</code>, <code>U+000C</code>, <code>U+000D</code> (CR), <code>U+0085</code>, <code>U+2028</code>, <code>U+2029</code>, および<code>U+000D</code> <code>U+000A</code>の組み合わせ (CRLF)を改行コードとして認識します。</p>
 
-<p>一方で、実際の書類で使われている改行コードに一致するようになるため、「CRを改行コードとして使用している書類に紛れているLFを検索する」といった使い方ができるようになります。</p>
-
 
 <h2>保存している設定での改行の取り扱い</h2>
 <p>改行コードとしてLFのみを想定したスクリプト処理や正規表現パターンは、CotEditor 4.2.0以降LF以外の改行コードを持つ書類で意図した挙動をしなくなる可能性があります。これらユーザ設定はユーザ自身が設定を変更する必要があります。</p>
 
 <p>CotEidtorで改行が関わるユーザ設定としては、以下の設定項目が該当します:</p>
 <ul>
-	<li><a href="./howto_multiple_replace.html">複数置換設定</a>の置換定義</li>
-	<li>シンタックススタイルの<a href="about_syntaxstyle.html">カスタム定義</a></li>
-	<li>スクリプトメニューに保存している<a href="about_scripting.html">スクリプト</a>内での書類の改行コードの取り扱い</li>
+	<li><a href="howto_multiple_replace.html">複数置換設定</a>の置換定義</li>
+	<li>シンタックススタイルの<a href="syntax_highlight_settings.html">カスタム定義</a></li>
+	<li>スクリプトメニューに保存している<a href="script_overview.html">スクリプト</a>内での書類の改行コードの取り扱い</li>
 </ul>
 
 
@@ -46,19 +42,19 @@
 
 <p>一方、置換においては、置換文字列に含まれる（<code>\n</code>のようなメタ文字での指定も含む）すべての改行コードは書類の改行コードと同一の改行コードに差し替えられます。現状は書類の改行コード以外の改行コードで置換する方法は提供されておらず、これは以前のCotEditorと同じ仕様となります。</p>
 
-<p>検索と置換での改行について詳しくは、<a href="../pgs/howto_find_newline.html">改行を検索/置換する</a>を参照して下さい。</p>
+<p>検索と置換での改行について詳しくは、<a href="howto_find_newline.html">改行を検索/置換する</a>を参照して下さい。</p>
 
 
 
 <section id="cf">
 <h2>See also</h2>
 <ul>
-	<li><a href="../pgs/about_line_endings.html">多様な改行コードを扱う</a></li>
-	<li><a href="../pgs/howto_find_newline.html">改行を検索/置換する</a></li>
-	<li><a href="../pgs/howto_find_inconsistent_line_endings.html">混在する改行を探す</a></li>
-	<li><a href="../pgs/howto_paste.html">テキストをペーストする</a></li>
-	<li><a href="../pgs/whats_new_in_4.2.html">CotEditor 4.2の新機能</a></li>
-	<li><a href="../pgs/releasenotes.html">リリースノート</a></li>
+	<li><a href="about_line_endings.html">多様な改行コードを扱う</a></li>
+	<li><a href="howto_find_newline.html">改行を検索/置換する</a></li>
+	<li><a href="howto_find_inconsistent_line_endings.html">混在する改行を探す</a></li>
+	<li><a href="howto_paste.html">テキストをペーストする</a></li>
+	<li><a href="whats_new_in_4.2.html">CotEditor 4.2の新機能</a></li>
+	<li><a href="releasenotes.html">リリースノート</a></li>
 </ul>
 </section>
 

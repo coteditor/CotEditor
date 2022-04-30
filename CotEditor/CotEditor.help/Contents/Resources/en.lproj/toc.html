@@ -3,10 +3,8 @@
 <head>
 	<meta charset="UTF-8"/>
 	<meta name="robots" content="anchors"/>
-	<link rel="start" href="CotEditorHelp.html"/>
-	<link rel="index" href="toc.html"/>
 	<link rel="stylesheet" href="../Shared/sty/standard.css"/>
-	<link rel="stylesheet" href="../Shared/sty/index.css"/>
+	<link rel="stylesheet" href="../Shared/sty/toc.css"/>
 	<title>Table of Contents</title>
 </head>
 
@@ -15,16 +13,16 @@
 <h1>Table of Contents</h1>
 
 <ul>
-	<li><a href="CotEditorHelp.html">Welcome</a></li>
+	<li><a href="CotEditor.html">Welcome</a></li>
 	
 	<li><details>
-		<summary>Handle documents</summary>
+		<summary>Inspect documents</summary>
 		<ul>
 			<li><a href="pgs/howto_inspect_fileinfo.html">Get information about a document</a></li>
 			<li><a href="pgs/howto_show_glyph_info.html">Get information about a character</a></li>
 			<li><a href="pgs/about_line_endings.html">Handle various types of line endings</a></li>
-			<li><a href="pgs/about_move_menu.html">Go to a specific line</a></li>
-			<li><a href="pgs/howto_inspect_usedchar.html">Check whether incompatible characters are included</a></li>
+			<li><a href="pgs/howto_find_newline.html">Find inconsistent line endings</a></li>
+			<li><a href="pgs/howto_jump.html">Go to a specific line</a></li>
 			<li><a href="pgs/howto_display_invisibles.html">Display invisible characters</a></li>
 			<li><a href="pgs/howto_split.html">Split editor</a></li>
 			<li><a href="pgs/howto_print.html">Print a document</a></li>
@@ -39,11 +37,14 @@
 			<li><a href="pgs/howto_rectangular_selection.html">Select rectangular area</a></li>
 			<li><a href="pgs/howto_input_unicode.html">Input a character using Unicode code point</a></li>
 			<li><a href="pgs/howto_paste.html">Paste text</a></li>
-			<li><a href="pgs/howto_findpanel.html">Find or replace text</a></li>
+			<li><a href="pgs/howto_find.html">Find or replace text</a></li>
 			<li><a href="pgs/howto_find_newline.html">Find or replace a line ending</a></li>
 			<li><a href="pgs/howto_multiple_replace.html">Replace with multiple rules</a></li>
+			<li><a href="pgs/howto_pattern_sort.html">Sort lines with specific pattern</a></li>
 			<li><a href="pgs/howto_complete.html">Complete words</a></li>
 			<li><a href="pgs/howto_filedrop.html">Drop files</a></li>
+            <li><a href="pgs/about_regex.html">Use the regular expression</a></li>
+			<li><a href="pgs/about_cot.html">Work with cot command</a></li>
 
 		</ul>
 	</details></li>
@@ -51,14 +52,22 @@
 	<li><details>
 		<summary>Parse document syntax</summary>
 		<ul>
-			<li><a href="pgs/howto_show_outlinemenu.html">View Outline</a></li>
-			<li><a href="pgs/howto_customize_syntaxstyle.html">Define a syntax style</a></li>
-			<li><a href="pgs/about_syntaxstyle.html">Customize syntax highlighting</a></li>
-			<li><a href="pgs/about_comment_settings.html">Customize comment rules</a></li>
-			<li><a href="pgs/about_outlinemenu_settings.html">Customize Outline rules</a></li>
-			<li><a href="pgs/about_file_mapping.html">Map files to syntax styles</a></li>
-			<li><a href="pgs/about_styleinfo_settings.html">Syntax style information settings</a></li>
-			<li><a href="pgs/about_regex.html">Regular Expression Syntax</a></li>
+			<li><a href="pgs/howto_show_outlinemenu.html">Build Outline</a></li>
+			<li><a href="pgs/syntax_definition.html">Define a syntax style</a></li>
+			<li><a href="pgs/syntax_highlight_settings.html">Define syntax highlighting</a></li>
+			<li><a href="pgs/syntax_comment_settings.html">Define comment delimiters</a></li>
+			<li><a href="pgs/syntax_outline_settings.html">Define Outline extraction rules</a></li>
+			<li><a href="pgs/syntax_file_mapping.html">Map files to syntax styles</a></li>
+		</ul>
+	</details></li>
+	
+	<li><details>
+		<summary>Handle document’s text encoding</summary>
+		<ul>
+			<li><a href="pgs/howto_inspect_usedchar.html">Check whether incompatible characters are included</a></li>
+			<li><a href="pgs/howto_customize_encoding_order.html">Set priority of encoding detection</a></li>
+			<li><a href="pgs/about_autodetect_charset.html">Use encoding declarations for encoding detection</a></li>
+			<li><a href="pgs/about_shiftjis.html">Use four kinds of Shift JIS properly</a></li>
 		</ul>
 	</details></li>
 	
@@ -68,38 +77,34 @@
 			<li><a href="pgs/preferences.html">Change preferences in CotEditor</a></li>
 			<li><a href="pgs/howto_customize_font.html">Change font type</a></li>
 			<li><a href="pgs/howto_customize_theme.html">Customize themes</a></li>
-			<li><a href="pgs/howto_customize_complete.html">Change range of possible completions</a></li>
+			<li><a href="pgs/howto_customize_complete.html">Change the scope of completion words</a></li>
 			<li><a href="pgs/howto_customize_keybinding.html">Customize key bindings</a></li>
 			<li><a href="pgs/howto_customize_toolbar.html">Customize toolbar</a></li>
-			<li><a href="pgs/howto_customize_encoding_order.html">Set priority of encoding detection</a></li>
 		</ul>
 	</details></li>
 	
 	<li><details>
 		<summary>Script CotEditor</summary>
 		<ul>
-			<li><a href="pgs/about_cot.html">Use cot command</a></li>
-			<li><a href="pgs/about_scripting.html">CotEditor Scripting</a></li>
-			<li><a href="pgs/about_applescript.html">Work with AppleScript scripts</a></li>
-			<li><a href="pgs/about_script_spec.html">Work with UNIX scripts</a></li>
-			<li><a href="pgs/howto_customize_scriptmenu.html">Customize the Script menu</a></li>
-			<li><a href="pgs/about_script_name.html">File naming rules for CotEditor scripts</a></li>
-			<li><a href="pgs/about_script_hook.html">Add scripting hooks for CotEditor scripts</a></li>
-			<li><a href="pgs/about_applescript_changes.html">Change log of AppleScript support</a></li>
+			<li><a href="pgs/script_overview.html">Script CotEditor</a></li>
+			<li><a href="pgs/script_osascript.html">Create AppleScript scripts</a></li>
+			<li><a href="pgs/script_unixscript.html">Create UNIX scripts</a></li>
+			<li><a href="pgs/script_menu.html">Customize the Script menu</a></li>
+			<li><a href="pgs/script_hook.html">Add scripting hooks for CotEditor scripts</a></li>
+			<li><a href="pgs/script_osascript_changes.html">Support different CotEditor versions in AppleScript</a></li>
 		</ul>
 	</details></li>
 	
 	<li><details>
 		<summary>Solve problems</summary>
 		<ul>
-			<li><a href="pgs/faq_cannot_display.html">Characters aren’t displayed correctly</a></li>
-			<li><a href="pgs/faq_crash.html">CotEditor quits unexpectedly</a></li>
-			<li><a href="pgs/faq_not_find_solution.html">I can’t find a solution</a></li>
-			<li><a href="pgs/faq_cannot_save.html">I can’t save a file</a></li>
-			<li><a href="pgs/faq_keybinding.html">My own key bindings don’t work as I expect</a></li>
-			<li><a href="pgs/faq_re_coloring.html">Syntax coloring seems not working properly</a></li>
-			<li><a href="pgs/faq_about_yen_backslash.html">The Yen sign appears as a backslash</a></li>
-			<li><a href="pgs/about_shiftjis.html">What is the difference between the four kinds of Shift JIS?</a></li>
+			<li><a href="pgs/faq_cannot_display.html">If characters aren’t displayed correctly</a></li>
+			<li><a href="pgs/faq_re_coloring.html">If syntax coloring seems not working properly</a></li>
+			<li><a href="pgs/faq_about_yen_backslash.html">If the Yen sign appears as a backslash</a></li>
+			<li><a href="pgs/faq_keybinding.html">If your key bindings don’t work as you expect</a></li>
+			<li><a href="pgs/faq_cannot_save.html">If you can’t save a file</a></li>
+			<li><a href="pgs/faq_crash.html">If CotEditor quits unexpectedly</a></li>
+			<li><a href="pgs/faq_not_find_solution.html">If you can’t find a solution</a></li>
 		</ul>
 	</details></li>
 	
@@ -108,28 +113,38 @@
 		<ul>
 			<li><a href="pgs/about_sourcecode.html">CotEditor’s Source Code</a></li>
 			<li><a href="pgs/releasenotes.html">Release Notes</a></li>
-			<li><a href="pgs/specification_changes_on_4.2.html">Important changes on CotEditor 4.2</a></li>
-			<li><a href="pgs/specification_changes_on_2.2.html">Important changes on CotEditor 2.2</a></li>
-			<li><a href="pgs/specification_changes.html">Important changes on CotEditor 2.0</a></li>
-			<li><a href="pgs/whats_new_in_4.2.html">What’s New in CotEditor 4.2</a></li>
-			<li><a href="pgs/whats_new_in_4.1.html">What’s New in CotEditor 4.1</a></li>
-			<li><a href="pgs/whats_new_in_4.0.html">What’s New in CotEditor 4.0</a></li>
-			<li><a href="pgs/whats_new_in_3.9.html">What’s New in CotEditor 3.9</a></li>
-			<li><a href="pgs/whats_new_in_3.8.html">What’s New in CotEditor 3.8</a></li>
-			<li><a href="pgs/whats_new_in_3.7.html">What’s New in CotEditor 3.7</a></li>
-			<li><a href="pgs/whats_new_in_3.6.html">What’s New in CotEditor 3.6</a></li>
-			<li><a href="pgs/whats_new_in_3.5.html">What’s New in CotEditor 3.5</a></li>
-			<li><a href="pgs/whats_new_in_3.4.html">What’s New in CotEditor 3.4</a></li>
-			<li><a href="pgs/whats_new_in_3.3.html">What’s New in CotEditor 3.3</a></li>
-			<li><a href="pgs/whats_new_in_3.2.html">What’s New in CotEditor 3.2</a></li>
-			<li><a href="pgs/whats_new_in_3.1.html">What’s New in CotEditor 3.1</a></li>
-			<li><a href="pgs/whats_new_in_3.0.html">What’s New in CotEditor 3.0</a></li>
-			<li><a href="pgs/whats_new_in_2.5.html">What’s New in CotEditor 2.5</a></li>
-			<li><a href="pgs/whats_new_in_2.4.html">What’s New in CotEditor 2.4</a></li>
-			<li><a href="pgs/whats_new_in_2.3.html">What’s New in CotEditor 2.3</a></li>
-			<li><a href="pgs/whats_new_in_2.2.html">What’s New in CotEditor 2.2</a></li>
-			<li><a href="pgs/whats_new_in_2.1.html">What’s New in CotEditor 2.1</a></li>
-			<li><a href="pgs/whats_new_in_2.0.html">What’s New in CotEditor 2.0</a></li>
+			<li><details>
+				<summary>Important changes</summary>
+				<ul>
+					<li><a href="pgs/specification_changes_on_4.2.html">Important changes on CotEditor 4.2</a></li>
+					<li><a href="pgs/specification_changes_on_2.2.html">Important changes on CotEditor 2.2</a></li>
+					<li><a href="pgs/specification_changes.html">Important changes on CotEditor 2.0</a></li>
+				</ul>
+			</details></li>
+			<li><details>
+				<summary>What’s New</summary>
+				<ul>
+					<li><a href="pgs/whats_new_in_4.2.html">What’s New in CotEditor 4.2</a></li>
+					<li><a href="pgs/whats_new_in_4.1.html">What’s New in CotEditor 4.1</a></li>
+					<li><a href="pgs/whats_new_in_4.0.html">What’s New in CotEditor 4.0</a></li>
+					<li><a href="pgs/whats_new_in_3.9.html">What’s New in CotEditor 3.9</a></li>
+					<li><a href="pgs/whats_new_in_3.8.html">What’s New in CotEditor 3.8</a></li>
+					<li><a href="pgs/whats_new_in_3.7.html">What’s New in CotEditor 3.7</a></li>
+					<li><a href="pgs/whats_new_in_3.6.html">What’s New in CotEditor 3.6</a></li>
+					<li><a href="pgs/whats_new_in_3.5.html">What’s New in CotEditor 3.5</a></li>
+					<li><a href="pgs/whats_new_in_3.4.html">What’s New in CotEditor 3.4</a></li>
+					<li><a href="pgs/whats_new_in_3.3.html">What’s New in CotEditor 3.3</a></li>
+					<li><a href="pgs/whats_new_in_3.2.html">What’s New in CotEditor 3.2</a></li>
+					<li><a href="pgs/whats_new_in_3.1.html">What’s New in CotEditor 3.1</a></li>
+					<li><a href="pgs/whats_new_in_3.0.html">What’s New in CotEditor 3.0</a></li>
+					<li><a href="pgs/whats_new_in_2.5.html">What’s New in CotEditor 2.5</a></li>
+					<li><a href="pgs/whats_new_in_2.4.html">What’s New in CotEditor 2.4</a></li>
+					<li><a href="pgs/whats_new_in_2.3.html">What’s New in CotEditor 2.3</a></li>
+					<li><a href="pgs/whats_new_in_2.2.html">What’s New in CotEditor 2.2</a></li>
+					<li><a href="pgs/whats_new_in_2.1.html">What’s New in CotEditor 2.1</a></li>
+					<li><a href="pgs/whats_new_in_2.0.html">What’s New in CotEditor 2.0</a></li>
+				</ul>
+			</details></li>
 			<li><a href="pgs/howto_uninstall.html">Uninstall CotEditor</a></li>
 		</ul>
 	</details></li>

@@ -3,15 +3,13 @@
 <head>
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="テキストエンコーディング, エンコーディング, 自動認識"/>
-	<link rel="start" href="../CotEditorHelp.html"/>
-	<link rel="index" href="../toc.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>エンコーディング宣言による自動認識</title>
+	<title>エンコーディング宣言を参照する</title>
 </head>
 
 <body>
 
-<h1>エンコーディング宣言による自動認識</h1>
+<h1>エンコーディング宣言を参照する</h1>
 
 <p>環境設定「フォーマット」の「書類中のエンコーディング宣言を参照」が有効な場合、書類中の<code>charset=</code>, <code>encoding=</code>, <code>@charset</code>, <code>encoding:</code>, <code>coding:</code>タグを読み取り、記述に矛盾がなければこのタグの記述を優先します。</p>
 <p>これらの記述はコメントの中であっても有効ですし、地の文として書かれていても読み取られます。もし、書類のエンコーディングでないものを<code>charset=</code>などのエンコーディング指定タグとともに記述する必要がある場合には、その記述よりも前に実際のエンコーディングを書き込むか、環境設定「フォーマット」の「書類中のエンコーディング宣言を参照」のチェックを外してください。</p>
@@ -22,15 +20,15 @@
 	<li><code>charset=</code>, <code>encoding=</code>の後ろは、<code>&quot;</code>で囲っていなくても認識します。</li>
 	<li>複数の記述があるときは、一番最初のものを読み取ります。</li>
 	<li><code>charset=&quot;Shift_JIS&quot;</code>の場合は、「日本語 (Shift JIS)」と「日本語 (Shift JIS X0213)」のうち、優先されている方（メニューで上にある方）として認識されます。<br />
-	→ <a href="../pgs/howto_customize_encoding_order.html">テキストエンコーディングの認識順序を変更する</a></li>
+	→ <a href="howto_customize_encoding_order.html">テキストエンコーディングの認識順序を変更する</a></li>
 </ul>
 
 
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/pref_format.html">「フォーマット」環境設定を変更する</a></li>
-	<li><a href="../pgs/howto_customize_encoding_order.html">テキストエンコーディングの認識順序を変更する</a></li>
+	<li><a href="pref_format.html">「フォーマット」環境設定を変更する</a></li>
+	<li><a href="howto_customize_encoding_order.html">テキストエンコーディングの認識順序を変更する</a></li>
 </ul>
 </section>
 

@@ -1,0 +1,127 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Script Menu, script, script bundle, hook"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<link rel="stylesheet" href="../../Shared/sty/pygmentize.css"/>
+	<title>Add scripting hooks to CotEditor scripts</title>
+</head>
+
+<body>
+<h1>Add scripting hooks to CotEditor scripts</h1>
+
+<p>Scripting hooks allow CotEditor scripts to be executed on certain events. The following events are available with CotEditor:</p>
+
+<ul>
+	<li><code>document opened</code> : after you opened the file and then the contents were loaded</li>
+	<li><code>document saved</code> : after you saved the file and then the contents were stored</li>
+</ul>
+
+<p>See `CotEditor Event Handler suite` section on AppleScript Dictionary for further information.</p>
+
+<p>The rest of this page describes how to include the script hooking to your CotEditor script.</p>
+
+<h2>Synopsis</h2>
+
+<p>Scripts with scripting hook must conform to the following protocols:</p>
+
+<ul>
+	<li>written in AppleScript or JavaScript for Automation (JXA)</li>
+	<li>stored in the form of a script bundle (`.scptd`)</li>
+</ul>
+
+<p>In addition, events to subscribe to and handlers for them must be declared, as described below.</p>
+
+<h2>Structure of Script Bundle</h2>
+
+<p>A script bundle is the directory structure as follows:</p>
+
+<pre>
+HookingScript.scptd
+└── Contents
+    ├── Info.plist
+    └── Resources
+        ├── Script Libraries
+        │   └── my-fancy-library.scpt
+        ├── Scripts
+        │   └── main.scpt
+        └── description.rtfd
+            └── TXT.rtf
+</pre>
+
+<p>Any scripts can be exported in this form with Script Editor.app, which is one of the standard applications distributed with macOS.</p>
+
+<p>To support scripting hooks, the list of events to subscribing must be written in `Contents/Info.plist`. `Info.plist` is a property list containing the metadata of the bundle and formatted in XML like the following example:</p>
+
+<pre class="highlight source"><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>CFBundleIdentifier<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>com.coteditor.hooking-script<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>CFBundleName<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>Hooking Script<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>CFBundleShortVersionString<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>1.0<span class="nt">&lt;/string&gt;</span>
+  <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/plist&gt;</span>
+</pre>
+
+<p>The events to subscribe must be stored at the key `CotEditorHandlers` and in the form of `array` of `string`.</p>
+
+<pre class="highlight source"><span></span><span class="nt">&lt;key&gt;</span>CotEditorHandlers<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+  <span class="nt">&lt;string&gt;</span>document opened<span class="nt">&lt;/string&gt;</span>
+  <span class="nt">&lt;string&gt;</span>document saved<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</pre>
+
+<h2>Event handlers</h2>
+
+<p>An event handler is a block to receive certain events that the application caused and do something with the received event. In this section, the manners to write an event handler are described with a simple example, which shows the dialog on opening and saving a file.</p>
+
+<h3>AppleScript</h3>
+
+<p>In AppleScript, handlers are written with a `using terms from` block and `on` blocks.</p>
+
+<pre class="highlight source"><span></span><span class="k">using terms from</span> <span class="nb">application</span> <span class="s2">&quot;CotEditor&quot;</span>
+    <span class="nb">on</span> <span class="na">document</span> <span class="nv">opened</span> <span class="nv">theDocument</span>
+        <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
+        <span class="nb">display alert</span> <span class="s2">&quot;Opened &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
+    <span class="k">end</span> <span class="na">document</span> <span class="nv">opened</span>
+
+    <span class="nb">on</span> <span class="na">document</span> <span class="nv">saved</span> <span class="nv">theDocument</span>
+        <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
+        <span class="nb">display alert</span> <span class="s2">&quot;Saved &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
+    <span class="k">end</span> <span class="na">document</span> <span class="nv">saved</span>
+<span class="k">end</span> <span class="k">using terms from</span>
+</pre>
+
+<h3>JavaScript for Automation (JXA)</h3>
+
+<p>In JXA, `function` statements on the global object will create handlers.</p>
+
+<pre class="highlight source"><span></span><span class="nx">CotEditor</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">currentApplication</span><span class="p">()</span>
+<span class="nx">CotEditor</span><span class="p">.</span><span class="nx">includeStandardAdditions</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="kd">function</span> <span class="nx">documentOpened</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Opened &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">documentSaved</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Saved &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre>
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="script_overview.html">Script CotEditor</a></li>
+	<li><a href="script_menu.html">Customize the Script menu</a></li>
+	<li><a href="script_osascript.html">Create AppleScript scripts</a></li>
+</ul>
+</section>
+
+</body>
+</html>

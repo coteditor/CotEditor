@@ -1,0 +1,58 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="アウトライン"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>アウトライン抽出ルールを定義する</title>
+</head>
+
+<body>
+<a name="syntax_outline_settings"></a>
+
+
+<h1>アウトライン抽出ルールを定義する</h1>
+
+<p>アウトライン設定の各項目の内容は次の通りです。</p>
+
+<table>
+	<thead>
+		<tr><th>項目</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>正規表現</th><td>ここで設定した正規表現に一致する部分がアウトラインとしてリストアップされます。この項目は必須です。</td></tr>
+		<tr><th>IC</th><td>チェックがオンの場合、大文字小文字を区別しません（Ignore Caseの略）。例えば、開始文字列を「abc」として「IC」にチェックを入れると、「ABC」「abc」「Abc」などに一致します。</td></tr>
+		<tr><th>タイトル<br/>パターン</th><td>アウトライン項目の書式を設定します。「正規表現」で一致した文字列とこのパターンからタイトルが決定されます。</td></tr>
+	</tbody>
+</table>
+
+<p>「タイトルパターン」で使えるメタ文字は下記の通りです。</p>
+
+<table>
+	<thead>
+		<tr><th>メタ文字</th><th>説明</th></tr>
+	</thead>
+	<tbody>
+		<tr><th>（記述なし）</th><td>「正規表現」で一致したすべての文字列</td></tr>
+		<tr><th><code>$0</code></th><td>「正規表現」で一致したすべての文字列</td></tr>
+		<tr><th><code>$1</code> 〜 <code>$9</code></th><td>「正規表現」で一致した部分文字列のうち、最初〜9番目に一致した部分</td></tr>
+		<tr><th><code>-</code></th><td>メニューの区切り<br />（「-」のみ記入、ほかの文字があった場合には無効となります）</td></tr>
+	</tbody>
+</table>
+
+<ul>
+<li>「$0」などのメタ文字をそのままメニューに表示させるには、「$」の直前に「&#x005C;（半角バックスラッシュ）」を置いてください。メニュー項目では「&#x005C;」は表示されません。</li>
+</ul>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="howto_show_outlinemenu.html">アウトラインを生成する</a></li>
+	<li><a href="syntax_definition.html">シンタックススタイルを定義する</a></li>
+	<li><a href="about_regex.html">正規表現を使う</a></li>
+</ul>
+</section>
+
+</body>
+</html>

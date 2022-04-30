@@ -1,0 +1,124 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="find,replace,replacement,regex,regular expression"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Find or replace text</title>
+</head>
+
+<body>
+<a name="howto_find"></a>
+
+
+<h1>Find or replace text</h1>
+
+<p>CotEditor has a powerful find and replacement feature that also can use regular expression.</p>
+
+<p><img src="../gfx/findpanel@2x.png" width="747" alt=""/></p>
+
+
+<section>
+<h2>Find/Replacement Fields</h2>
+<p>Enter the text to find to the find field, the field with a lope icon; and enter the text to replace with to the replacement field, the field with a pen icon. When the replacement field is empty by replacement, the matched texts are just removed.</p>
+
+<p>To insert the following special characters to the fields, use the following key combinations:</p>
+
+<table>
+	<thead>
+		<tr><th>Character</th><th>Key combination</th></tr>
+	</thead>
+	
+	<tbody>
+		<tr><td>line ending character</td><td><kbd>Option</kbd>-<kbd>Return</kbd></td></tr>
+		<tr><td>tab character</td><td><kbd>Option</kbd>-<kbd>Tab</kbd></td></tr>
+	</tbody>
+</table>
+
+<h2>Find/Replacement Histories</h2>
+
+<p>You can re-use previous find/replacement strings by selecting them from the lope/pen icon in the field.</p>
+</section>
+
+
+<section>
+<h2>Options</h2>
+
+<table>
+	<thead>
+		<tr><th>Option</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Regular Expression</td><td>Search with regular expression.</td></tr>
+		<tr><td>Ignore Case</td><td>Ignore character case on search.</td></tr>
+		<tr><td>In Selection</td><td>Search text only from selection.</td></tr>
+	</tbody>
+</table>
+</section>
+
+
+<section>
+<h2>Advanced Find Options</h2>
+
+<p>You can customize find behavior from the advanced find options panel. The advanced find options panel will be opened when you click the gear button in the Find window.</p>
+
+<table>
+	<thead>
+		<tr><th>Option</th><th>Description</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Wrap search around</td><td>Find from the the beginning of the document if there is no match after the cursor.</td></tr>
+		<tr><td>Select next match after replace</td><td>Select next match after Replace automatically.</td></tr>
+		<tr><td>Auto-close progress dialog</td><td>Automatically close progress dialog that is shown when Find All or Replace All performed after progress is finished.</td></tr>
+	</tbody>
+</table>
+
+
+<section>
+<h3>Textual Search</h3>
+<p>Options for search when the regular expression is turned off.</p>
+
+<table>
+	<thead>
+		<tr><th>Option</th><th>Description</th><th>Default</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Match only whole word</td><td>Restrict search results to the whole words.</td><td>Off</td></tr>
+		<tr><td>Distinguish characters strictly</td><td>Exact character-by-character equivalence.</td><td>Off</td></tr>
+		<tr><td>Ignore diacritical marks</td><td>Search ignores diacritical marks (e.g., ö = o).</td><td>Off</td></tr>
+		<tr><td>Ignore width differences</td><td>Search ignores width differences in character forms (e.g., ａ = a).</td><td>Off</td></tr>
+	</tbody>
+</table>
+</section>
+
+<section>
+<h3>Regular Expression Search</h3>
+<p>Options for search when the regular expression is enabled.</p>
+
+<table>
+	<thead>
+		<tr><th>Option</th><th>Description</th><th>Default</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Dot matches line separators</td><td>Allow . to match any character, including newline characters (singleline).</td><td>Off</td></tr>
+		<tr><td>Anchors match lines</td><td>Allow ^ and $ to match the start and end of lines (multiline).</td><td>On</td></tr>
+		<tr><td>Use Unicode word boundaries</td><td>Use Unicode TR#29 to specify word boundaries</td><td>Off</td></tr>
+		<tr><td>Unescape replacement string</td><td>Unescape meta characters with backslash in replacement string.</td><td>On</td></tr>
+	</tbody>
+</table>
+</section>
+</section>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="howto_find_newline.html">Find or replace a line ending</a></li>
+	<li><a href="about_regex.html">Use the regular expression</a></li>
+	<li><a href="howto_multiple_replace.html">Replace with multiple rules</a></li>
+</ul>
+</section>
+
+</body>
+</html>

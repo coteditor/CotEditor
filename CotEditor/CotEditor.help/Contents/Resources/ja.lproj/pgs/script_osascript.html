@@ -1,0 +1,762 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="スクリプトメニュー, スクリプト, アップルスクリプト, AppleScript, JXA, JavaScript"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<link rel="stylesheet" href="../../Shared/sty/applescript.css"/>
+	<title>AppleScriptを作成する</title>
+</head>
+
+<body>
+<h1>AppleScriptを作成する</h1>
+
+<p>CotEditorはAppleScriptおよびJXA (JavaScript for Automation)をサポートしています。</p>
+
+<p>以下で説明するCotEditorのクラス・コマンド以外にも、AppleScriptで標準的に実装されている語句を使用することができます。CotEditorにおけるAppleScriptサポートの詳細な仕様については、辞書ライブラリを参照してください。ライブラリを参照するにはCotEditor上で次のようにします:</p>
+
+<ul>
+	<li>ヘルプメニューの「AppleScript辞書」を選択します。</li>
+</ul>
+
+<p>CotEditorでのAppleScriptサポートのバージョン履歴を確認するには、「<a href="script_osascript_changes.html">AppleScriptで異なるバージョンのCotEditorに対応する</a>」を参照してください。</p>
+
+
+<section id="Class">
+<h2>クラス</h2>
+<p>CotEditorで独自に定義されているクラス・プロパティです。</p>
+
+<section>
+<h3>Application</h3>
+
+<p>CotEditorアプリケーション</p>
+</section>
+
+
+<section>
+<h3>Window</h3>
+
+<p>CotEditorウインドウ</p>
+
+<dl class="tree">
+	<dt>プロパティ</dt>
+	<dd><dl class="subtree">
+		<dt><code>view opacity</code></dt>
+		<dd><del>エディタの不透明度（real型、0.2から1.0の範囲）</del><span class="deprecated">CotEditor 3.5で廃止</span></dd>
+	</dl></dd>
+</dl>
+</section>
+
+
+<section>
+<h3>Document</h3>
+
+<p>CotEditor書類</p>
+
+<dl class="tree">
+	<dt>プロパティ</dt>
+	<dd><dl class="subtree">
+		<dt><code>contents</code></dt>
+		<dd>書類の内容文字列（text型）</dd>
+
+		<dt><code>text</code></dt>
+		<dd>書類の内容文字列（text型）</dd>
+
+		<dt><code>length</code></dt>
+		<dd>書類の文字数（int型）</dd>
+
+		<dt><code>selection</code></dt>
+		<dd>書類の選択内容オブジェクト（selection-object型）</dd>
+
+		<dt><code>encoding</code></dt>
+		<dd>エンコーディング（Unicode text型）</dd>
+
+		<dt><code>IANA charset</code></dt>
+		<dd>エンコーディングのIANA charset名（Unicode text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
+
+		<dt><code>has BOM</code></dt>
+		<dd>エンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></dd>
+
+		<dt><code>line ending</code></dt>
+		<dd>改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code> / <code>NEL</code> / <code>LS</code> / <code>PS</code>）</dd>
+
+		<dt><code>tab width</code></dt>
+		<dd>スペース幅換算のタブ幅（int型）<span class="added">CotEditor 2.1で追加</span></dd>
+
+		<dt><code>expands tab</code></dt>
+		<dd>タブをスペースに展開するかどうか（boolean型）</dd>
+
+		<dt><code>wrap lines</code></dt>
+		<dd>折り返しているかどうか（boolean型）</dd>
+
+		<dt><code>coloring style</code></dt>
+		<dd>シンタックスカラーリングスタイル（Unicode text型）</dd>
+
+		<dt><del><code>line spacing</code></del></dt>
+		<dd><del>行間値（real型、0.0から10.0の範囲）</del><span class="deprecated">CotEditor 2.6で廃止</span></dd>
+	</dl></dd>
+</dl>
+</section>
+
+
+<section>
+<h3>Selection-object</h3>
+
+<p>選択部分オブジェクト</p>
+
+<dl class="tree">
+	<dt>プロパティ</dt>
+	<dd><dl class="subtree">
+		<dt><code>contents</code></dt>
+		<dd>選択内容文字列</dd>
+
+		<dt><code>range</code></dt>
+		<dd>文字単位での選択位置（{location, length}の型）</dd>
+
+		<dt><code>line range</code></dt>
+		<dd>行単位での選択位置（{location, length}の型、<code>length</code>省略可。また、lengthは<code>0</code>でも<code>1</code>でも、1行を選択する）</dd>
+	</dl></dd>
+</dl>
+
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">contents of selection of document 1</code></pre>
+	<figcaption>最前面の書類選択部分の文字列を返す。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">set contents of selection of front document to &quot;Apple&quot;</code></pre>
+	<figcaption>選択部分を「Apple」に置換する。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">range of selection of front document</code></pre>
+	<figcaption>選択位置を{location, length}のリスト型で返す。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">set range of selection of front document to {1, 12}</code></pre>
+	<figcaption>1文字目から12文字を選択状態にする。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">set line range of selection of front document to 10</code></pre>
+	<figcaption>10行目を選択する。</figcaption>
+</figure>
+
+<figure>
+	<pre class="source"><code class="AppleScript">set range of selection of front document to {-15, -1}</code></pre>
+	<figcaption>最後から15文字目から、最後から1文字目を残して選択。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>「selection」は単独では意味を持ちません。contentsなどのプロパティとともに使用してください。</p>
+
+<p>locationが負の場合、対象書類の文字列の後ろから数えてlocation番目から始まる範囲となります。<br/>
+lengthが正である場合、指定される範囲はlocationから数えてlength文字数分となります。また、対象書類の文字列の長さを超えてlengthが入力された場合、末尾までが範囲となります。<br/>
+lengthが負である場合、指定される範囲は対象書類の文字列の後ろから数えてlength文字までとなります。もし、lengthの絶対値がlocationよりも小さい（locationよりも前に終了位置がある）場合には、locationが優先されlocation位置に挿入ポイントが移動します（<code>{location, 0}</code>が入力されたのと同じ）。</p>
+<p>この指定方法はPHPの<code>substr</code>のそれにならっています。</p>
+<p>選択位置を変える命令だけでは画面のスクロールは行われません。選択位置を見えるようにするためには<code>scroll to caret</code>コマンドか<code>jump</code>コマンドを使用してください。</p>
+</section>
+</section>
+
+
+<section id="Command">
+<h2>コマンド</h2>
+<p>CotEditorで独自に定義されているコマンドです。<br/>
+（[]で囲まれたものはオプションです）</p>
+
+<section>
+<h3>write to console</h3>
+
+<dl class="tree">
+	<dt><code class="command">write to console</code></dt>
+	<dd>文字列をCotEditorのコンソールウインドウに表示する。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 3.2.0以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">write to console &quot;Script failed.&quot;</code></pre>
+	<figcaption>「Script failed.」という文字列をコンソールで表示する。</figcaption>
+</figure>
+</section>
+
+<section>
+<h3>find</h3>
+
+<dl class="tree">
+	<dt><code class="command">find</code></dt>
+	<dd>検索し、対象文字列があれば選択状態にして<code>true</code>を返す。見つからなければ<code>false</code>を返す。</dd>
+	<dd><dl class="subtree">
+		<dt><code>for</code> (Unicode text)</dt>
+		<dd>検索対象文字列</dd>
+
+		<dt>[<code>RE</code> (boolean)]</dt>
+		<dd>正規表現検索か</dd>
+
+		<dt>[<code>wrap</code> (boolean)]</dt>
+		<dd>ラップサーチか</dd>
+
+		<dt>[<code>ignore case</code> (boolean)]</dt>
+		<dd>大文字小文字を無視するか</dd>
+
+		<dt>[<code>backwards</code> (boolean)]</dt>
+		<dd>後ろから検索するか</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>返り値</dt>
+		<dd>boolean型</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">find front document for &quot;Apple&quot; with ignore case</code></pre>
+	<figcaption>最前面の書類内の選択位置以降で「Apple」を大文字小文字を無視して検索し、結果を返す。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>検索は、現在の挿入ポイントの位置を基準に行われます。<br/>
+例えば、<code>wrap</code>や<code>backwards</code>が指定されていなかったとき、選択位置以降に対象文字列がない場合には<code>false</code>を返します。</p>
+<p><code>RE</code>（正規表現検索）の場合は、<code>backwards</code>（後方からの検索）ができません。同時に指定された場合は<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
+</section>
+
+
+<section>
+<h3>replace</h3>
+
+<dl class="tree">
+	<dt><code class="command">replace</code></dt>
+	<dd>検索し、対象文字列があれば置換して置換された回数を返す。見つからなければ<code>0</code>を返す。</dd>
+	<dd><dl class="subtree">
+		<dt><code>for</code> (Unicode text)</dt>
+		<dd>置換対象文字列</dd>
+
+		<dt><code>to</code> (Unicode text)</dt>
+		<dd>置換後の文字列</dd>
+
+		<dt>[<code>all</code> (boolean)]</dt>
+		<dd>書類全体を対象とするか</dd>
+
+		<dt>[<code>RE</code> (boolean)]</dt>
+		<dd>正規表現検索か</dd>
+
+		<dt>[<code>wrap</code> (boolean)]</dt>
+		<dd>ラップサーチか</dd>
+
+		<dt>[<code>ignore case</code> (boolean)]</dt>
+		<dd>大文字小文字を無視するか</dd>
+
+		<dt>[<code>backwards</code> (boolean)]</dt>
+		<dd>後ろから検索するか</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>返り値</dt>
+		<dd>int型</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">replace front document for &quot;Apple&quot; to &quot;Orange&quot; with all and ignore case</code></pre>
+	<figcaption>最前面の書類内で「Apple」を大文字小文字を無視して検索し、「Orange」に置換して置換した数を返す。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p><code>find</code>同様、命令実行前の挿入ポイントの位置を基準に置換が行われます。書類全体を対象に実行するときは<code>all</code>を指定してください。</p>
+<p><code>all</code>オプションを付けて書類全体を対象に実行され置換が行われた場合、実行後の挿入ポイントの位置は書類の先頭になります。ただし、対象文字列が見つからなかった場合は挿入ポイントの位置は変更されません。</p>
+<p><code>RE</code>（正規表現検索）の場合は、<code>backwards</code>（後方からの検索）ができません。同時に指定された場合は<code>RE</code>が優先され、<code>backwards</code>は無視されます。</p>
+</section>
+
+
+
+<section>
+<h3>scroll to caret</h3>
+
+<dl class="tree">
+	<dt><code class="command">scroll to caret</code></dt>
+	<dd>挿入ポイントが見えるようにスクロールする。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">scroll to caret front document</code></pre>
+	<figcaption>挿入ポイントが見えるようにスクロールする。</figcaption>
+</figure>
+</section>
+
+
+
+<section>
+<h3>jump</h3>
+
+<dl class="tree">
+	<dt><code class="command">jump</code></dt>
+	<dd>指定した行に挿入ポイントを移動しその部分が見えるようにスクロールする。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to line</code> (int)</dt>
+		<dd>移動先の行番号</dd>
+
+		<dt>[<code>column</code> (int)]</dt>
+		<dd>移動先の（行内の）列番号</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.1.0以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">jump front document to line -1</code></pre>
+	<figcaption>最終行に挿入ポイントを移動しその部分が見えるようにスクロールする。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>行番号や列番号に負の数が指定された場合は、最終行（文字）から数えた位置に移動する。</p>
+</section>
+
+
+<section>
+<h3>convert</h3>
+
+<dl class="tree">
+	<dt><code class="command">convert</code></dt>
+	<dd>書類のエンコーディングを変換する。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to</code> (Unicode text)</dt>
+		<dd>新しいエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
+
+		<dt>[<code>lossy</code>] (boolean)</dt>
+		<dd>エンコーディング適用によって一部の文字列が失われても良いか</dd>
+
+		<dt>[<code>BOM</code>] (boolean)</dt>
+		<dd>エンコーディングにBOMを付けるかどうか <span class="added">(CotEditor 4.1で追加)</span></dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>返り値</dt>
+		<dd>boolean型</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; with BOM without lossy</code></pre>
+	<figcaption>Unicode (UTF-8)BOM付きに変換し、変換できたかどうかを返す。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>CotEditor 4.0.7以降は、新しいエンコーディングの指定にIANA charset nameも使えます。</p>
+</section>
+
+
+<section>
+<h3>reinterpret</h3>
+
+<dl class="tree">
+	<dt><code class="command">reinterpret</code></dt>
+	<dd>書類を指定されたエンコーディングでファイル内容を再解釈する。</dd>
+	<dd><dl class="subtree">
+		<dt><code>as</code> (Unicode text)</dt>
+		<dd>新しいエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>返り値</dt>
+		<dd>boolean型</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>documentオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">reinterpret front document as &quot;Japanese (EUC)&quot;</code></pre>
+	<figcaption>EUCで解釈し直し、解釈できたかどうかを返す。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>ファイルそのものが未保存の場合は、<code>false</code>を返します。</p>
+<p>ファイル保存されていない変更部分は失われます。</p>
+<p>CotEditor 4.0.7以降は、新しいエンコーディングの指定にIANA charset nameも使えます。</p>
+</section>
+
+
+<section>
+<h3>shift</h3>
+
+<dl class="tree">
+	<dt><code class="command">shift left</code></dt>
+	<dd>選択位置のある行を左にシフト</dd>
+
+	<dt><code class="command">shift right</code></dt>
+	<dd>選択位置のある行を右にシフト</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">shift right selection of front document</code></pre>
+	<figcaption>挿入ポイントのある行を右にシフト。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>comment out</h3>
+
+<dl class="tree">
+	<dt><code class="command">comment out</code></dt>
+	<dd>選択範囲にコメント記号をつけてコメント化</dd>
+
+	<dt><code class="command">uncomment</code></dt>
+	<dd>選択範囲のコメント記号を取り去りコメント解除</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.0.1以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">comment out selection of front document</code></pre>
+	<figcaption>選択位置をコメントアウト。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>現在のシンタックスにコメント記号が設定されていない、選択範囲にコメント記号がないなど、コマンドが実行できない場合は何も行いません。</p>
+</section>
+
+
+<section>
+<h3>string</h3>
+
+<dl class="tree">
+	<dt><code class="command">string</code></dt>
+	<dd>選択範囲に関係なく、書類中の指定された範囲の文字列を返す。</dd>
+	<dd><dl class="subtree">
+		<dt><code>in</code> (list)</dt>
+		<dd>範囲</dd>
+	</dl></dd>
+	<dd><dl>
+		<dt>返り値</dt>
+		<dd>Unicode text型</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">string front document in {0, 10}</code></pre>
+	<figcaption>書類の最初から10文字を返す。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>無効な範囲を指定した場合などは、空の文字列を返します。</p>
+<p>このコマンドは指定された選択範囲を変更しません。</p>
+</section>
+
+
+<section>
+<h3>change case</h3>
+
+<dl class="tree">
+	<dt><code class="command">change case</code></dt>
+	<dd>大文字/小文字/キャピタライズ（単語のアタマだけ大文字）に置き換える。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to</code> <code>upper</code>/<code>lower</code>/<code>capitalized</code></dt>
+		<dd>置き換えるスタイル</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">change case selection of front document to upper</code></pre>
+	<figcaption>選択位置の英単語を大文字にする。</figcaption>
+</figure>
+
+<h4>詳細</h4>
+
+<p>対象にできるのは`selection`オブジェクトだけです。</p>
+</section>
+
+
+<section>
+<h3>change roman width</h3>
+
+<dl class="tree">
+	<dt><code class="command">change roman width</code></dt>
+	<dd>半角/全角を変換する。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to</code> <code>half</code>/<code>full</code></dt>
+		<dd>置き換えるスタイル</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">change roman width selection of front document to full</code></pre>
+	<figcaption>選択位置の英単語を全角にする。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>change kana</h3>
+
+<dl class="tree">
+	<dt><code class="command">change kana</code></dt>
+	<dd>ひらがな/カタカナを変換する。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to</code> <code>hiragana</code>/<code>katakana</code></dt>
+		<dd>置き換えるスタイル</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">change kana selection of front document to katakana</code></pre>
+	<figcaption>選択位置のひらがなをカタカナに変換する。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>スマート引用符</h3>
+
+<dl class="tree">
+	<dt><code class="command">smarten quotes</code></dt>
+	<dd>まっすぐな引用符をカールした引用符に変更する。</dd>
+
+	<dt><code class="command">straighten quotes</code></dt>
+	<dd>カールした引用符をまっすぐな引用符に変更する。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 3.9.7以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">smarten quotes selection of front document</code></pre>
+	<figcaption>選択位置の引用符をカールしたものに変換する。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>スマートダッシュ</h3>
+
+<dl class="tree">
+	<dt><code class="command">smarten dashes</code></dt>
+	<dd>連続したハイフンをダッシュ記号に変更する。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 3.9.7以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">smarten dashes selection of front document</code></pre>
+	<figcaption>選択位置の連続したハイフンをダッシュ記号に変換する。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>normalize unicode</h3>
+
+<dl class="tree">
+	<dt><code class="command">normalize unicode</code></dt>
+	<dd>Unicode正規化を行う。</dd>
+	<dd><dl class="subtree">
+		<dt><code>to</code> <code>NFKC</code>/<code>NFD</code>/<code>NFC</code>/<code>NFKD</code>/<code>NFKC Casefold</code>/<code>Modified NFC</code>/<code>Modified NFD</code></dt>
+		<dd>正規化方式</dd>
+	</dl></dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.0.0以降</p>
+
+<h4>例</h4>
+
+<figure>
+	<pre class="source"><code class="AppleScript">normalize unicode selection of front document to NFC</code></pre>
+	<figcaption>選択位置の文字列をUnicode正規化する。</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h3>move line</h3>
+
+<dl class="tree">
+	<dt><code class="command">move line up</code></dt>
+	<dd>選択行を一つ上の行と入れ替える。</dd>
+
+	<dt><code class="command">move line down</code></dt>
+	<dd>選択行を一つ下の行と入れ替える。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.3.0以降</p>
+</section>
+
+
+<section>
+<h3>sort lines</h3>
+
+<dl class="tree">
+	<dt><code class="command">sort lines</code></dt>
+	<dd>選択行を昇順に並び替える。</dd>
+
+	<dt><code class="command">reverse lines</code></dt>
+	<dd>選択行を逆順にする。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.3.0以降</p>
+</section>
+
+
+<section>
+<h3>delete duplicate line</h3>
+
+<dl class="tree">
+	<dt><code class="command">delete duplicate line</code></dt>
+	<dd>選択行に含まれる重複行を削除する。</dd>
+	
+	<dd><dl>
+		<dt>対象</dt>
+		<dd>selectionオブジェクト</dd>
+	</dl></dd>
+</dl>
+
+<h4>バージョン</h4>
+<p>CotEditor 2.3.0以降</p>
+</section>
+</section>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="script_overview.html">CotEditorスクリプトを使う</a></li>
+	<li><a href="script_osascript_changes.html">AppleScriptで異なるバージョンのCotEditorに対応する</a></li>
+	<li><a href="script_hook.html">CotEditorスクリプトにスクリプトフックを追加する</a></li>
+</ul>
+</section>
+
+</body>
+</html>

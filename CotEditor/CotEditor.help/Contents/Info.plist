@@ -13,21 +13,21 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3</string>
+	<string>4.2.0</string>
 	<key>CFBundleSignature</key>
 	<string>CEHb</string>
 	<key>CFBundleVersion</key>
-	<string>2.1</string>
+	<string>491</string>
 	<key>CFBundleHelpTOCFile</key>
-	<string>CotEditorHelp.html</string>
+	<string>CotEditor.html</string>
 	<key>HPDBookAccessPath</key>
-	<string>CotEditorHelp.html</string>
+	<string>CotEditor.html</string>
 	<key>HPDBookIconPath</key>
 	<string>../Shared/gfx/icon_32x32@2x.png</string>
 	<key>HPDBookIndexPath</key>
 	<string>CotEditor.helpindex</string>
 	<key>HPDBookTitle</key>
-	<string>CotEditor Help</string>
+	<string>CotEditor User Guide</string>
 	<key>HPDBookType</key>
 	<string>3</string>
 	<key>HPDBookKBURL</key>

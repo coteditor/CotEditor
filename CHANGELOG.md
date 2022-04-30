@@ -2,6 +2,22 @@
 Change Log
 ==========================
 
+4.2.0-beta.2 (493)
+--------------------------
+
+### Improvements
+
+- [beta] Update the help contents.
+- [beta][trivial] Optimize the performance of the Warnings pane.
+
+
+### Fixes
+
+- [trivial] Fix an issue that the Script menu appeared in the shortcut menu even when no script exists.
+- [beta] Fix an issue that UNIX scripts did not terminate.
+
+
+
 4.2.0-beta (491)
 --------------------------
 

@@ -1,0 +1,129 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="スクリプトメニュー, スクリプト, スクリプトバンドル, フック"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<link rel="stylesheet" href="../../Shared/sty/pygmentize.css"/>
+	<title>CotEditorスクリプトにスクリプトフックを追加する</title>
+</head>
+
+<body>
+<h1>CotEditorスクリプトにスクリプトフックを追加する</h1>
+
+<p>スクリプトフックは、特定のイベント発生時にスクリプトを起動する機能です。CotEditorは、次に挙げるイベントでのフックをサポートしています。</p>
+
+<ul>
+	<li><code>document opened</code>: ファイルを開く操作を行い、テキストが読み込まれた直後</li>
+	<li><code>document saved</code>: ファイルを保存する操作を行い、テキストが書き込まれた直後</li>
+</ul>
+
+<p>イベントの詳細な仕様については、AppleScript辞書のCotEditor Event Handler suite項を参照してください。</p>
+
+<p>このページではCotEditorスクリプトをスクリプトフックへ対応させる方法について説明します。</p>
+
+<h2>概要</h2>
+
+<p>フックに対応したスクリプトを作成する場合、以下の制約を満足する必要があります。</p>
+
+<ul>
+	<li>AppleScriptまたはJavaScript for Automation (JXA)による記述</li>
+	<li>スクリプトバンドル形式 (`.scptd`) で格納</li>
+</ul>
+
+<p>以上に加えて、フックしたいイベントをメタデータファイルにて明示し、イベントハンドラを記述する必要があります。</p>
+
+<h2>スクリプトバンドルの構造</h2>
+
+<p>スクリプトバンドルは、以下に示す構造を持つディレクトリ構造です。</p>
+
+<pre>
+HookingScript.scptd
+└── Contents
+    ├── Info.plist
+    └── Resources
+        ├── Script Libraries
+        │   └── my-fancy-library.scpt
+        ├── Scripts
+        │   └── main.scpt
+        └── description.rtfd
+            └── TXT.rtf
+</pre>
+
+<p>この形式には、macOSに標準で添付されているスクリプトエディタを用いることにより、簡単に書き出すことができます。</p>
+
+<p>CotEditorのスクリプトフックに対応させるためには、まず、`Info.plist`にフックしたいイベントの一覧を記載する必要があります。
+`plist`ファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
+
+<pre class="highlight source"><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
+<span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;dict&gt;</span>
+    <span class="nt">&lt;key&gt;</span>CFBundleIdentifier<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>com.coteditor.hooking-script<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>CFBundleName<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>Hooking Script<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;key&gt;</span>CFBundleShortVersionString<span class="nt">&lt;/key&gt;</span>
+    <span class="nt">&lt;string&gt;</span>1.0<span class="nt">&lt;/string&gt;</span>
+  <span class="nt">&lt;/dict&gt;</span>
+<span class="nt">&lt;/plist&gt;</span>
+</pre>
+
+<p>フックしたいイベントの一覧は、キー`CotEditorHandlers`に文字列の配列として記載します。以下にその一例を示します。</p>
+
+<pre class="highlight source"><span></span><span class="nt">&lt;key&gt;</span>CotEditorHandlers<span class="nt">&lt;/key&gt;</span>
+<span class="nt">&lt;array&gt;</span>
+  <span class="nt">&lt;string&gt;</span>document opened<span class="nt">&lt;/string&gt;</span>
+  <span class="nt">&lt;string&gt;</span>document saved<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/array&gt;</span>
+</pre>
+
+<h2>イベントハンドラ</h2>
+
+<p>イベントハンドラは、アプリケーションが発生させたイベントを受信し、処理をするスクリプトを指します。
+ここでは、ファイルを読み込んだ後と書き込んだ後にダイアログを表示するスクリプトを例に採り上げ、イベントハンドラの記述方法について説明します。</p>
+
+<h3>AppleScript</h3>
+
+<p>AppleScriptでスクリプトを記述する場合、`using terms from`ブロックと`on`ブロックを組み合わせることで、ハンドラを作成します。</p>
+
+<pre class="highlight source"><span></span><span class="k">using terms from</span> <span class="nb">application</span> <span class="s2">&quot;CotEditor&quot;</span>
+    <span class="nb">on</span> <span class="na">document</span> <span class="nv">opened</span> <span class="nv">theDocument</span>
+        <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
+        <span class="nb">display alert</span> <span class="s2">&quot;Opened &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
+    <span class="k">end</span> <span class="na">document</span> <span class="nv">opened</span>
+
+    <span class="nb">on</span> <span class="na">document</span> <span class="nv">saved</span> <span class="nv">theDocument</span>
+        <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
+        <span class="nb">display alert</span> <span class="s2">&quot;Saved &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
+    <span class="k">end</span> <span class="na">document</span> <span class="nv">saved</span>
+<span class="k">end</span> <span class="k">using terms from</span>
+</pre>
+
+<h3>JavaScript for Automation (JXA)</h3>
+
+<p>JXAでスクリプトを記述する場合、`function`文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
+
+<pre class="highlight source"><span></span><span class="nx">CotEditor</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">currentApplication</span><span class="p">()</span>
+<span class="nx">CotEditor</span><span class="p">.</span><span class="nx">includeStandardAdditions</span> <span class="o">=</span> <span class="kc">true</span>
+
+<span class="kd">function</span> <span class="nx">documentOpened</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Opened &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">documentSaved</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Saved &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre>
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="script_overview.html">CotEditorスクリプトを使う</a></li>
+	<li><a href="script_menu.html">スクリプトメニューをカスタマイズする</a></li>
+	<li><a href="script_osascript.html">AppleScriptを作成する</a></li>
+</ul>
+</section>
+
+</body>
+</html>

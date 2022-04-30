@@ -129,6 +129,7 @@ final class UnixScript: Script {
                 for chunk in data.components(length: 65_536) {
                     handle.write(chunk)
                 }
+                handle.closeFile()
                 
                 // inPipe must avoid releasing before `writeabilityHandler` is invocated
                 inPipe.fileHandleForWriting.writeabilityHandler = nil
