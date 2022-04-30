@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [dev] Update Yams from 5.0.0 to 5.0.1.
+- [trivial] Rename “Unicode Next Line” to “Next Line”.
 
 
 

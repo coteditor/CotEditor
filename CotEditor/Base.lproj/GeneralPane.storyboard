@@ -443,7 +443,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="pZi-vk-ErT" name="enabled" keyPath="values.SUEnableAutomaticChecks" id="gib-XV-aD1"/>
                                     <binding destination="pZi-vk-ErT" name="value" keyPath="values.checksUpdatesForBeta" id="2Zd-GD-6RA"/>
                                 </connections>
                             </button>

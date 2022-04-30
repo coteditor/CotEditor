@@ -366,7 +366,7 @@ Gw
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="qZo-Oc-YV1"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Unicode Next Line (NEL)" tag="3" hidden="YES" id="pUE-eY-9RI">
+                                                    <menuItem title="Next Line (NEL)" tag="3" hidden="YES" id="pUE-eY-9RI">
                                                         <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                         <attributedString key="userComments">
                                                             <fragment content="Unlike other line endings, this item is preferably as-is because of the unfamiliarity."/>

@@ -298,7 +298,7 @@
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="2Dg-7M-9om"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="NEL" tag="3" hidden="YES" toolTip="Unicode Next Line" id="T5S-w3-Q1V">
+                                            <menuItem title="NEL" tag="3" hidden="YES" toolTip="Next Line" id="T5S-w3-Q1V">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="changeLineEnding:" target="wKh-dn-8NK" id="hf0-6P-3AG"/>

@@ -208,8 +208,8 @@
 "297.title" = "Classic Mac OS (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
 "298.title" = "Windows (CRLF)";
-/* Class = "NSMenuItem"; title = "Unicode Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
-"pUE-eY-9RI.title" = "Unicode Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
+"pUE-eY-9RI.title" = "Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 /* Class = "NSMenuItem"; title = "Unicode Line Separator (LS)"; ObjectID = "ins-89-nu3"; */
 "ins-89-nu3.title" = "Unicode Line Separator (LS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 /* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; */

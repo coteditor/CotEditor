@@ -84,7 +84,7 @@ enum LineEnding: Character, CaseIterable {
             case .crlf:
                 return "Windows (CRLF)".localized
             case .nel:
-                return "Unicode Next Line (NEL)".localized
+                return "Next Line (NEL)".localized
             case .lineSeparator:
                 return "Unicode Line Separator (LS)".localized
             case .paragraphSeparator:
