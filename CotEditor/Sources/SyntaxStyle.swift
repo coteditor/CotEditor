@@ -143,8 +143,8 @@ struct SyntaxStyle {
     let completionWords: [String]
     
     let nestablePaires: [String: SyntaxType]
-    private let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
-    private let outlineDefinitions: [OutlineDefinition]
+    let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
+    let outlineDefinitions: [OutlineDefinition]
     
     private(set) lazy var outlineExtractors: [OutlineExtractor] = self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
     private(set) lazy var highlightExtractors: [SyntaxType: [any HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor } }
