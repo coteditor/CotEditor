@@ -29,19 +29,19 @@ struct EditorInfoTypes: OptionSet {
     
     let rawValue: Int
     
-    static let length     = EditorInfoTypes(rawValue: 1 << 0)
-    static let characters = EditorInfoTypes(rawValue: 1 << 1)
-    static let lines      = EditorInfoTypes(rawValue: 1 << 2)
-    static let words      = EditorInfoTypes(rawValue: 1 << 3)
-    static let location   = EditorInfoTypes(rawValue: 1 << 4)
-    static let line       = EditorInfoTypes(rawValue: 1 << 5)
-    static let column     = EditorInfoTypes(rawValue: 1 << 6)
-    static let unicode    = EditorInfoTypes(rawValue: 1 << 7)
+    static let length     = Self(rawValue: 1 << 0)
+    static let characters = Self(rawValue: 1 << 1)
+    static let lines      = Self(rawValue: 1 << 2)
+    static let words      = Self(rawValue: 1 << 3)
+    static let location   = Self(rawValue: 1 << 4)
+    static let line       = Self(rawValue: 1 << 5)
+    static let column     = Self(rawValue: 1 << 6)
+    static let unicode    = Self(rawValue: 1 << 7)
     
-    static let all: EditorInfoTypes = [.length, .characters, .lines, .words, .location, .line, .column, .unicode]
+    static let all: Self = [.length, .characters, .lines, .words, .location, .line, .column, .unicode]
     
-    static let counts: EditorInfoTypes = [.length, .characters, .lines, .words]
-    static let cursors: EditorInfoTypes = [.location, .line, .column]
+    static let counts: Self = [.length, .characters, .lines, .words]
+    static let cursors: Self = [.location, .line, .column]
 }
 
 

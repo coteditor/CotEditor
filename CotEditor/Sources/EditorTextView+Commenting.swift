@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -92,10 +92,10 @@ struct CommentTypes: OptionSet {
     
     let rawValue: Int
     
-    static let inline = CommentTypes(rawValue: 1 << 0)
-    static let block = CommentTypes(rawValue: 1 << 1)
+    static let inline = Self(rawValue: 1 << 0)
+    static let block = Self(rawValue: 1 << 1)
     
-    static let both: CommentTypes = [.inline, .block]
+    static let both: Self = [.inline, .block]
 }
 
 

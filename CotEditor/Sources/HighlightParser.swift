@@ -46,8 +46,8 @@ private struct NestableItem {
         
         let rawValue: Int
         
-        static let begin = Role(rawValue: 1 << 0)
-        static let end   = Role(rawValue: 1 << 1)
+        static let begin = Self(rawValue: 1 << 0)
+        static let end   = Self(rawValue: 1 << 1)
     }
 }
 
