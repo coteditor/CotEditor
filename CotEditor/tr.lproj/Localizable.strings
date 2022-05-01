@@ -721,3 +721,15 @@
 /* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "BOM ile %@";
+
+
+/* MARK: Migration Panel */
+
+"Important change on CotEditor 4.2.0" = "Important change on CotEditor 4.2.0";  // FIXME: added
+"From this version, CotEditor handles line endings more strictly." = "From this version, CotEditor handles line endings more strictly.";  // FIXME: added
+"Due to this change, you may need manual migration for your settings below:" = "Due to this change, you may need manual migration for your settings below:";  // FIXME: added
+"Multiple replacement definitions" = "Multiple replacement definitions";  // FIXME: added
+"Syntax styles" = "Syntax styles";  // FIXME: added
+"CotEditor scripts" = "CotEditor scripts";  // FIXME: added
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending.";  // FIXME: added
+"Learn More…" = "Daha Fazla Bilgi…";

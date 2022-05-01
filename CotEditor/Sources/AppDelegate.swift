@@ -103,10 +103,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        let shortVersion = Bundle.main.shortVersion
-        let shortVersionRange = shortVersion.range(of: "^[0-9]++\\.[0-9]++", options: .regularExpression)!
         self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
-                                              String(shortVersion[shortVersionRange]))
+                                              Bundle.main.minorVersion)
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
