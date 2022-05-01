@@ -53,6 +53,8 @@ final class LineEndingMigrationPanel: NSPanel {
 
 
 
+// MARK: - SwiftUI View
+
 private struct LineEndingMigrationView: View {
     
     let options: LineEndingMigrationOptions
@@ -111,7 +113,7 @@ private struct LineEndingMigrationView: View {
             self.listItem("`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending.")
             
             Spacer()
-            HStack(alignment: .center) {
+            HStack {
                 Spacer()
                 Button("Learn More…") {
                     NSHelpManager.shared.openHelpAnchor("specification_changes_on_4.2.0",
@@ -149,6 +151,8 @@ private struct LineEndingMigrationView: View {
 }
 
 
+
+// MARK: - Preview
 
 struct LineEndingMigrationView_Previews: PreviewProvider {
 
