@@ -674,6 +674,38 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        
+        super.updateUserActivityState(activity)
+        
+        if let textView = self.textView {
+            let selectedRanges = textView.selectedRanges
+                .map(\.rangeValue)
+                .map(NSStringFromRange)
+            activity.addUserInfoEntries(from: [
+                UserActivityInfo.selectedRanges.key: selectedRanges
+            ])
+            activity.needsSave = true
+        }
+    }
+    
+    
+    override func restoreUserActivityState(_ userActivity: NSUserActivity) {
+        
+        super.restoreUserActivityState(userActivity)
+        
+        if let textView = self.textView,
+           let ranges = (userActivity.userInfo?[UserActivityInfo.selectedRanges.key] as? [String])?
+            .map(NSRangeFromString),
+           let upperBound = ranges.map(\.upperBound).max(),
+           upperBound <= textView.string.length
+        {
+            textView.selectedRanges = ranges as [NSValue]
+            textView.scrollRangeToVisible(textView.selectedRange)
+        }
+    }
+    
+    
     
     // MARK: Protocols
     
