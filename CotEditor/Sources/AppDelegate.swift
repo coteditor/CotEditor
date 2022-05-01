@@ -103,10 +103,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        let shortVersion = Bundle.main.shortVersion
-        let shortVersionRange = shortVersion.range(of: "^[0-9]++\\.[0-9]++", options: .regularExpression)!
         self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
-                                              String(shortVersion[shortVersionRange]))
+                                              Bundle.main.minorVersion)
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -168,6 +166,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // setup touchbar
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
+        
+        // show notification panel for line ending migration on CotEditor 4.2.0
+        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init),
+           lastVersion < 491  // earlier than CotEditor 4.2.0
+        {
+            var migrationOptions: LineEndingMigrationOptions = []
+            if ReplacementManager.shared.needsLineEndingMigration() {
+                migrationOptions.insert(.replacement)
+            }
+            if SyntaxManager.shared.needsLineEndingMigration() {
+                migrationOptions.insert(.syntax)
+            }
+            if ScriptManager.shared.hasScripts {
+                migrationOptions.insert(.script)
+            }
+            
+            LineEndingMigrationPanel(options: migrationOptions).makeKeyAndOrderFront(nil)
+        }
     }
     
     

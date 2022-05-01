@@ -151,6 +151,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
+    /// Whether user script exists.
+    var hasScripts: Bool {
+        
+        self.contexualMenu != nil
+    }
+    
+    
     
     // MARK: Action Message
     

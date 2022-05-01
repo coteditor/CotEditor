@@ -272,6 +272,26 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
+    /// Check if any of user settings that use `\n` in regular expression patterns exists.
+    ///
+    /// Don't forget to revert SyntaxStyle's .outlineDefinitions and .highlightDefinitions to private
+    /// when removing this method.
+    func needsLineEndingMigration() -> Bool {
+        
+        self.userSettingFileURLs.lazy
+            .compactMap { try? self.loadSetting(at: $0) }
+            .flatMap { setting in
+                setting.outlineDefinitions
+                    .map(\.pattern)
+                + setting.highlightDefinitions
+                    .flatMap(\.value)
+                    .filter(\.isRegularExpression)
+                    .flatMap { [$0.beginString, $0.endString].compactMap { $0 } }
+            }
+            .contains { $0.contains("\\n") }
+    }
+    
+    
     
     // MARK: Setting File Managing
     

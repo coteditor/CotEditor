@@ -134,6 +134,8 @@
 		2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */; };
 		2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
+		2A291C11281D73C100A0014D /* LineEndingMigrationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A291C10281D73C100A0014D /* LineEndingMigrationPanel.swift */; };
+		2A291C12281D73C100A0014D /* LineEndingMigrationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A291C10281D73C100A0014D /* LineEndingMigrationPanel.swift */; };
 		2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */; };
 		2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */; };
 		2A2B086028046E3B0028D733 /* WarningsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2B085F28046E3B0028D733 /* WarningsViewController.swift */; };
@@ -978,6 +980,7 @@
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
+		2A291C10281D73C100A0014D /* LineEndingMigrationPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingMigrationPanel.swift; sourceTree = "<group>"; };
 		2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRadioButton.swift; sourceTree = "<group>"; };
 		2A2B085F28046E3B0028D733 /* WarningsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningsViewController.swift; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationViewController.swift; sourceTree = "<group>"; };
@@ -1762,6 +1765,7 @@
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
 				2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */,
 				2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */,
+				2A291C10281D73C100A0014D /* LineEndingMigrationPanel.swift */,
 				2AFB5AEA1D597AFC003895A7 /* Defaults */,
 			);
 			name = Application;
@@ -3018,6 +3022,7 @@
 				2A34C50A2807EC4E005E9AAB /* KeySortable.swift in Sources */,
 				2A6FD9E81D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */,
+				2A291C11281D73C100A0014D /* LineEndingMigrationPanel.swift in Sources */,
 				2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
@@ -3343,6 +3348,7 @@
 				2A34C50B2807EC4E005E9AAB /* KeySortable.swift in Sources */,
 				2A6FD9E71D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2AA375471D40BDCB0080C27C /* LineEnding.swift in Sources */,
+				2A291C12281D73C100A0014D /* LineEndingMigrationPanel.swift in Sources */,
 				2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
