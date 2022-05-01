@@ -2,13 +2,14 @@
 Change Log
 ==========================
 
-4.2.0-beta.3 (unreleased)
+4.2.0-rc (unreleased)
 --------------------------
 
 ### Improvements
 
 - [dev] Update Yams from 5.0.0 to 5.0.1.
-- [trivial] Rename “Unicode Next Line” to “Next Line”.
+- [beta.2] Add the panel notifying about the line ending migration.
+- [beta][trivial] Rename “Unicode Next Line” to “Next Line”.
 
 
 ### Fixes
