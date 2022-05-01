@@ -735,5 +735,5 @@
 "Multiple replacement definitions" = "複数置換定義";
 "Syntax styles" = "シンタックススタイル";
 "CotEditor scripts" = "CotEditorスクリプト";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "正規表現の\\nは実際に改行がLFのときのみ一致するようになりました。改行コードに関わらず改行に一致させたい場合は代わりに\\Rを使ってください。";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "正規表現の`\\n`は実際に改行がLFのときのみ一致するようになりました。改行コードに関わらず改行に一致させたい場合は代わりに`\\R`を使ってください。";
 "Learn More…" = "詳しい情報…";
