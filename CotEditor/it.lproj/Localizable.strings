@@ -730,11 +730,11 @@
 
 /* MARK: Migration Panel */
 
-"Important change on CotEditor 4.2.0" = "Important change on CotEditor 4.2.0";  // FIXME: added
-"From this version, CotEditor handles line endings more strictly." = "From this version, CotEditor handles line endings more strictly.";  // FIXME: added
-"Due to this change, you may need manual migration for your settings below:" = "Due to this change, you may need manual migration for your settings below:";  // FIXME: added
-"Multiple replacement definitions" = "Multiple replacement definitions";  // FIXME: added
-"Syntax styles" = "Syntax styles";  // FIXME: added
-"CotEditor scripts" = "CotEditor scripts";  // FIXME: added
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending.";  // FIXME: added
+"Important change on CotEditor 4.2.0" = "Modifiche importanti in CotEditor 4.2.0";
+"From this version, CotEditor handles line endings more strictly." = "A partire da questa versione, CotEditor gestisce in maniera più precisa i fine riga.";
+"Due to this change, you may need manual migration for your settings below:" = "A seguito di questa modifica, potrebbe essere necessario migrare manualmente i seguenti parametri:";
+"Multiple replacement definitions" = "Definizioni delle sostituzioni multiple";
+"Syntax styles" = "Stili della sintassi";
+"CotEditor scripts" = "Script di CotEditor";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` per le espressioni regolari risulta solo quando il fine riga è in realtà LF. Usare invece `\\R` per far risultare ogni tipo di fine riga.";
 "Learn More…" = "Ulteriori informazioni…";
