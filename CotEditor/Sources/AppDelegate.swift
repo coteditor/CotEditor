@@ -158,13 +158,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// just after application did launch
     func applicationDidFinishLaunching(_ notification: Notification) {
         
-        // setup KeyBindingManager
         MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
         
-        // register Services
         NSApp.servicesProvider = ServicesProvider()
-        
-        // setup touchbar
+        NSHelpManager.shared.registerBooks(in: .main)
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         
         // show notification panel for line ending migration on CotEditor 4.2.0

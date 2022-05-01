@@ -25,12 +25,14 @@
 
 cd CotEditor.help/Contents/Resources/
 
-for dir in *.lproj/; do
+for dir in *.lproj; do
     lang=$(basename $dir .lproj)
     [ $lang == 'ja' ] && min_length=1 || min_length=3
+    [ $lang == 'ja' ] && stopwords="" || stopwords="--stopwords ${lang}"
+    
     
     echo "📦 Indexing ${dir}..."
-    hiutil -I corespotlight -av --create $dir --file "${dir}/CotEditor.helpindex" -m $min_length --stopwords $lang 2>&1 | \
+    hiutil --index-format corespotlight -avv --create $dir --file "${dir}/CotEditor.helpindex" --min-term-length=$min_length $stopwords 2>&1 | \
     awk "{ if (/error:/) {err = 1}; print} END {exit err}"
     if [ $? -gt 0 ]; then
         exit 1
