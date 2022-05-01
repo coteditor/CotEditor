@@ -5,6 +5,11 @@ Change Log
 4.2.0-rc (unreleased)
 --------------------------
 
+### New Features
+
+- Support Handoff.
+
+
 ### Improvements
 
 - [dev] Update Yams from 5.0.0 to 5.0.1.
