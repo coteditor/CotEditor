@@ -13,7 +13,7 @@ Change Log
 ### Improvements
 
 - [dev] Update Yams from 5.0.0 to 5.0.1.
-- [beta.2] Add the panel notifying about the line ending migration.
+- [beta] Add the panel notifying about the line ending migration.
 - [beta][trivial] Rename “Unicode Next Line” to “Next Line”.
 
 
