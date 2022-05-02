@@ -5,9 +5,9 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "2.1.2"
+  version: "2.1.3"
   license: "Same as CotEditor"
-  lastModified: "2022-03-30"
+  lastModified: "2022-05-02"
 outlineMenu:
 - beginString: "<(h1)[^>]*>(.*)</\\1[^>]*>"
   description: "h1"
@@ -37,6 +37,10 @@ outlineMenu:
   description: "title"
   ignoreCase: true
   keyString: "$1: $2"
+- beginString: "<hr */?>"
+  description: "hr"
+  ignoreCase: true
+  keyString: "-"
   bold: true
 completions:
 - keyString: "&amp;"
