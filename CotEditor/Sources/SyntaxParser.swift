@@ -221,11 +221,10 @@ extension SyntaxParser {
         }
         
         // use cache if the content of the whole document is the same as the last
-        if
-            highlightRange == wholeRange,
-            let cache = self.highlightCache,
-            cache.styleName == self.style.name,
-            cache.string == self.textStorage.string
+        if highlightRange == wholeRange,
+           let cache = self.highlightCache,
+           cache.styleName == self.style.name,
+           cache.string == self.textStorage.string
         {
             self.textStorage.apply(highlights: cache.highlights, range: highlightRange)
             return nil

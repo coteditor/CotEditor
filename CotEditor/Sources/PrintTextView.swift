@@ -337,9 +337,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         let progress = self.syntaxParser.highlight()
         
         // asynchronously trigger preview update if needed
-        if
-            let progress = progress,
-            let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
+        if let progress = progress,
+           let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
         {
             self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
                 .first { $0 }

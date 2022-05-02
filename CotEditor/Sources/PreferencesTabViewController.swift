@@ -44,9 +44,8 @@ final class PreferencesTabViewController: NSTabViewController {
         super.viewDidLoad()
         
         // select last used pane
-        if
-            let identifier = UserDefaults.standard[.lastPreferencesPaneIdentifier],
-            let index = self.tabViewItems.firstIndex(where: { $0.identifier as? String == identifier })
+        if let identifier = UserDefaults.standard[.lastPreferencesPaneIdentifier],
+           let index = self.tabViewItems.firstIndex(where: { $0.identifier as? String == identifier })
         {
             self.selectedTabViewItemIndex = index
         }

@@ -161,12 +161,11 @@ extension DocumentWindow {
         }
         
         // select tabbed window with `⌘+number` (`⌘9` for the last tab)
-        if
-            modifierFlags == [.command],
-            let characters = event.charactersIgnoringModifiers,
-            let number = Int(characters), number > 0,
-            let windows = self.tabbedWindows,
-            let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
+        if modifierFlags == [.command],
+           let characters = event.charactersIgnoringModifiers,
+           let number = Int(characters), number > 0,
+           let windows = self.tabbedWindows,
+           let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
         {
             window.tabGroup?.selectedWindow = window
             return true
