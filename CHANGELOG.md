@@ -20,6 +20,7 @@ Change Log
 ### Fixes
 
 - [beta] Fix an issue that the Line Endings submenu in the Format menu did not display minor line ending types even with the Option key.
+- [beta] Fix a possible issue that the initial massage in the incompatible character list did not refrect the actual result.
 
 
 

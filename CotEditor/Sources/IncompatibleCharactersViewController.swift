@@ -82,6 +82,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         self.scanner?.shouldScan = true
         self.scanner?.scan()
+        self.updateMessage(isScanning: false)
     }
     
     
