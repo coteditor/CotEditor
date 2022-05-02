@@ -44,11 +44,11 @@ final class ServicesProvider: NSObject {
             return
         }
         
-        if let document = document as? Document {
-            document.textStorage.replaceCharacters(in: NSRange(0..<0), with: selection)
-            document.makeWindowControllers()
-            document.showWindows()
-        }
+        guard let document = document as? Document else { return assertionFailure() }
+        
+        document.textStorage.replaceCharacters(in: NSRange(0..<0), with: selection)
+        document.makeWindowControllers()
+        document.showWindows()
     }
     
     
@@ -57,16 +57,11 @@ final class ServicesProvider: NSObject {
         
         guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }
         
-        Task {
-            await withTaskGroup(of: Void.self) { group in
-                for fileURL in fileURLs {
-                    group.addTask {
-                        do {
-                            try await NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true)
-                        } catch {
-                            await NSApp.presentError(error)
-                        }
-                    }
+        for fileURL in fileURLs {
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (_, _, error) in
+                if let error = error {
+                    errorPointer.pointee = error.localizedDescription as NSString
+                    NSApp.presentError(error)
                 }
             }
         }
