@@ -734,6 +734,6 @@
 "Due to this change, you may need manual migration for your settings below:" = "Aufgrund dieser Änderung musst du möglicherweise deine folgenden Einstellungen manuell migrieren:";
 "Multiple replacement definitions" = "Definitionen der multiplen Ersetzung";
 "Syntax styles" = "Syntaxstile";
-"CotEditor scripts" = "CotEditor-skripten";
+"CotEditor scripts" = "CotEditor-Skripten";
 "`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` für den regulären Ausdruck passt nur, wenn das Zeilenende tatsächlich LF ist. Verwendest du stattdessen `\\R`, um jede Art von Zeilenende zu finden.";
 "Learn More…" = "Weitere Infos …";
