@@ -35,17 +35,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private enum SerializationKey {
         
         static let syntaxStyle = "syntaxStyle"
-        static let isVerticalText = "isVerticalText"
-        static let isTransient = "isTransient"
-        static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
         static let originalContentString = "originalContentString"
     }
     
     
     // MARK: Public Properties
     
-    var isVerticalText = false
-    var isTransient = false  // untitled & empty document that was created automatically
+    @objc var isVerticalText = false
+    @objc var isTransient = false  // untitled & empty document that was created automatically
     
     
     // MARK: Readonly Properties
@@ -70,7 +67,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private lazy var savePanelAccessoryController = NSViewController.instantiate(storyboard: "SaveDocumentAccessory")
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
-    private var suppressesInconsistentLineEndingAlert = false
+    @objc private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
@@ -119,15 +116,23 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    /// keys to be restored from the last session
+    override class var restorableStateKeyPaths: [String] {
+        
+        super.restorableStateKeyPaths + [
+            #keyPath(isVerticalText),
+            #keyPath(isTransient),
+            #keyPath(suppressesInconsistentLineEndingAlert),
+        ]
+    }
+    
+    
     /// store internal document state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
-        coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
-        coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
-        coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
         
         // store unencoded string but only when incompatible
         if !self.string.canBeConverted(to: self.fileEncoding.encoding) {
@@ -136,26 +141,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// restore UI state
+    /// restore internal document state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
         
-        if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
-            if self.syntaxParser.style.name != styleName {
-                self.setSyntaxStyle(name: styleName)
-            }
+        if let styleName = coder.decodeObject(of: [NSString.self], forKey: SerializationKey.syntaxStyle) as? String,
+           self.syntaxParser.style.name != styleName
+        {
+            self.setSyntaxStyle(name: styleName)
         }
-        if coder.containsValue(forKey: SerializationKey.isVerticalText) {
-            self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
-        }
-        if coder.containsValue(forKey: SerializationKey.isTransient) {
-            self.isTransient = coder.decodeBool(forKey: SerializationKey.isTransient)
-        }
-        if coder.containsValue(forKey: SerializationKey.suppressesInconsistentLineEndingAlert) {
-            self.suppressesInconsistentLineEndingAlert = coder.decodeBool(forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
-        }
-        if let string = coder.decodeObject(forKey: SerializationKey.originalContentString) as? String {
+        
+        if let string = coder.decodeObject(of: [NSString.self], forKey: SerializationKey.originalContentString) as? String {
             self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         }
     }

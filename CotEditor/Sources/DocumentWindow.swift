@@ -71,7 +71,7 @@ final class DocumentWindow: NSWindow {
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
-        return super.restorableStateKeyPaths + [
+        super.restorableStateKeyPaths + [
             #keyPath(backgroundAlpha),
         ]
     }
@@ -98,26 +98,6 @@ final class DocumentWindow: NSWindow {
                     .sink { [weak self] _ in self?.invalidateTitlebarOpacity() }
             }
         }
-    }
-    
-    
-    /// resore UI state
-    override func restoreState(with coder: NSCoder) {
-        
-        super.restoreState(with: coder)
-        
-        if coder.containsValue(forKey: #keyPath(backgroundAlpha)) {
-            self.backgroundAlpha = CGFloat(coder.decodeDouble(forKey: #keyPath(backgroundAlpha)))
-        }
-    }
-    
-    
-    /// store UI state
-    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
-        
-        super.encodeRestorableState(with: coder, backgroundQueue: queue)
-        
-        coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
     }
     
     

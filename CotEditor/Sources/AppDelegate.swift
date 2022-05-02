@@ -146,6 +146,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Application Delegate
     
+    /// Enable secure restorable state
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+        
+        true
+    }
+    
+    
     #if SPARKLE
     /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {

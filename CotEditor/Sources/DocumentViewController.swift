@@ -32,13 +32,18 @@ private let maximumNumberOfSplitEditors = 8
 
 final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolbarItemValidation {
     
+    private enum SerializationKey {
+        
+        static let theme = "theme"
+    }
+    
+    
     // MARK: Private Properties
     
     private var documentStyleObserver: AnyCancellable?
     private var outlineObserver: AnyCancellable?
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
-    private var opacityObserver: AnyCancellable?
     private var progressIndicatorAvailabilityObserver: AnyCancellable?
     private var themeChangeObserver: AnyCancellable?
     
@@ -123,12 +128,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         guard let window = self.view.window else { return assertionFailure() }
         
-        // observe opacity setting change
-        if let window = window as? DocumentWindow {
-            self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
-                .assign(to: \.backgroundAlpha, on: window)
-        }
-        
         // observe availability of sheet attachment for sytnax highlight indicator
         let publishers = [NSWindow.didChangeOcclusionStateNotification,
                           NSWindow.willBeginSheetNotification,
@@ -148,7 +147,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         super.viewDidDisappear()
         
-        self.opacityObserver = nil
         self.sheetAvailabilityObserver = nil
     }
     
@@ -156,7 +154,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
-        return super.restorableStateKeyPaths + [
+        super.restorableStateKeyPaths + [
             #keyPath(showsLineNumber),
             #keyPath(showsPageGuide),
             #keyPath(showsIndentGuides),
@@ -172,16 +170,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        if let themeName = self.theme?.name {
-            coder.encode(themeName, forKey: "theme")
-        }
-        
-        // manunally encode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
-        for keyPath in Self.restorableStateKeyPaths {
-            coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
-        }
-        
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        if let themeName = self.theme?.name {
+            coder.encode(themeName, forKey: SerializationKey.theme)
+        }
     }
     
     
@@ -190,7 +183,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         super.restoreState(with: coder)
         
-        if let storedThemeName = coder.decodeObject(forKey: "theme") as? String {
+        if let storedThemeName = coder.decodeObject(of: [NSString.self], forKey: SerializationKey.theme) as? String {
             let themeName = UserDefaults.standard[.pinsThemeAppearance]
                 ? storedThemeName
                 : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
@@ -198,11 +191,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             if themeName != self.theme?.name {
                 self.setTheme(name: themeName)
             }
-        }
-        
-        // manunally decode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
-        for keyPath in Self.restorableStateKeyPaths where coder.containsValue(forKey: keyPath) {
-            self.setValue(coder.decodeObject(forKey: keyPath), forKeyPath: keyPath)
         }
     }
     

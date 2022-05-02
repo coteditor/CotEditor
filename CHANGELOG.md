@@ -12,6 +12,7 @@ Change Log
 
 ### Improvements
 
+- [trivial] Enable the secure state restoration instroduced in macOS 12.
 - [dev] Update Yams from 5.0.0 to 5.0.1.
 - [beta] Add the panel notifying about the line ending migration.
 - [beta][trivial] Rename “Unicode Next Line” to “Next Line”.
