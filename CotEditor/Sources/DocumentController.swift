@@ -313,7 +313,7 @@ final class DocumentController: NSDocumentController {
         assert(type != nil)
         
         // check if the file is possible binary
-        let binaryTypes: [UTType] = [.image, .audiovisualContent, .gzip, .zip, .bz2]
+        let binaryTypes: [UTType] = [.image, .audiovisualContent, .archive]
         if let type = type,
            binaryTypes.contains(where: type.conforms(to:)),
            !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
