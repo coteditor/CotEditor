@@ -354,7 +354,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// view did change frame
     override func setFrameSize(_ newSize: NSSize) {
         
+        let didChange = newSize != self.frame.size
+        
         super.setFrameSize(newSize)
+        
+        guard didChange else { return }
         
         if !self.inLiveResize {
             self.overscrollResizingDebouncer.schedule()
