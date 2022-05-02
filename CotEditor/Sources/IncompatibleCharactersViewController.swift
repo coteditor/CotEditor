@@ -141,7 +141,7 @@ final class IncompatibleCharactersViewController: NSViewController {
             textStorage.clearAllMarkup()
         }
         
-        if incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
+        if self.isViewShown, incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
             self.collapseView(incompatibleCharacters.isEmpty, animate: true)
         }
         
