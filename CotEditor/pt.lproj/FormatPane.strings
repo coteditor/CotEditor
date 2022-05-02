@@ -47,7 +47,7 @@
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
 "3326.title" = "Ativar destaque da sintaxe";
 /* Class = "NSTextFieldCell"; title = "(Including outline extraction)"; ObjectID = "3325"; */
-"3325.title" = "(inclusive no menu de plano)";  // FIXME: updated
+"3325.title" = "(Inclusive no menu de plano)";
 
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Estilo de sintaxe padrão:";

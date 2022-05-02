@@ -29,7 +29,7 @@
 /* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
 "hyM-2j-hen.label" = "Plano";
 /* Class = "NSTabViewItem"; label = "Warnings"; ObjectID = "JZo-ok-Dks"; */
-"JZo-ok-Dks.label" = "Avisos";  // FIXME: machine-translated (native check required)
+"JZo-ok-Dks.label" = "Avisos";
 
 
 /* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
