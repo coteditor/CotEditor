@@ -35,7 +35,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="title" width="158" minWidth="100" maxWidth="1000" id="CSX-H0-nFf">
+                                                <tableColumn identifier="title" width="182" minWidth="100" maxWidth="1000" id="CSX-H0-nFf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Title">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -47,11 +47,11 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nfz-SY-V76">
-                                                            <rect key="frame" x="4" y="2" width="50" height="14"/>
+                                                        <tableCellView horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nfz-SY-V76">
+                                                            <rect key="frame" x="4" y="2" width="186" height="14"/>
                                                             <subviews>
                                                                 <textField identifier="title" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="F1F-V6-xxG" customClass="SeparatorTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="-2" y="0.0" width="54" height="14"/>
+                                                                    <rect key="frame" x="-2" y="0.0" width="190" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Item Title" id="opH-Sc-iu8">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
