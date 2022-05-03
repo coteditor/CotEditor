@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.2.0-rc.2 (496)
+--------------------------
+
+### Fixes
+
+- [rc] Fix an issue the migration panel could not read in the Dark Mode.
+
+
+
 4.2.0-rc (495)
 --------------------------
 
