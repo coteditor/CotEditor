@@ -45,7 +45,7 @@ final class LineEndingMigrationPanel: NSPanel {
         self.titlebarAppearsTransparent = true
         self.isReleasedWhenClosed = false
         self.contentView = NSHostingView(rootView: LineEndingMigrationView(options: options))
-        self.backgroundColor = .white
+        self.backgroundColor = .controlBackgroundColor
         self.center()
     }
     
@@ -79,7 +79,6 @@ private struct LineEndingMigrationView: View {
             
             (Text("CotEditor ") + Text(Bundle.main.minorVersion).fontWeight(.light))
             .font(.system(size: 32))
-            .foregroundColor(.init(white: 0.3))
         }
         .padding(.leading)
         .fixedSize()
