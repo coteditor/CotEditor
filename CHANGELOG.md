@@ -14,6 +14,7 @@ Change Log
 
 - Update HTML syntax style to display `hr` elements as separators in the Outline.
 - Restore the file encoding the user explicitly set in the last session.
+- Improve stability.
 - [trivial] Enable the secure state restoration introduced in macOS 12.
 - [dev] Update Yams from 5.0.0 to 5.0.1.
 - [beta] Add the panel notifying about the line ending migration.
