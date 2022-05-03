@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -74,10 +74,10 @@ struct RectCorner: OptionSet {
     
     let rawValue: Int
     
-    static let topLeft     = RectCorner(rawValue: 1 << 0)
-    static let bottomLeft  = RectCorner(rawValue: 1 << 1)
-    static let topRight    = RectCorner(rawValue: 1 << 2)
-    static let bottomRight = RectCorner(rawValue: 1 << 3)
+    static let topLeft     = Self(rawValue: 1 << 0)
+    static let bottomLeft  = Self(rawValue: 1 << 1)
+    static let topRight    = Self(rawValue: 1 << 2)
+    static let bottomRight = Self(rawValue: 1 << 3)
     
     static let allCorners: RectCorner = [.topLeft, .bottomLeft, .topRight, .bottomRight]
 }

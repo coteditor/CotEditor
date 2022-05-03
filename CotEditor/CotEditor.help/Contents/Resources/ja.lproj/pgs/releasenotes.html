@@ -36,6 +36,7 @@
 			<li>改行コードの補正などの一切の改変を行わなわずクリップボード内容をそのままペーストする隠しコマンド「正確にペースト」（<kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>V</kbd>）を追加</li>
 			<li>プリントダイアログに選択した部分のテキストのみがプリントできる「選択部分」オプションを追加</li>
 			<li>Unicodeのコードポイント入力に履歴を追加</li>
+			<li>Handoffに対応</li>
 			<li>テーマや複数置換などの設定ファイルを環境設定からFinderに設定名をドロップで書き出し</li>
 			<li>ユニバーサルコントロールを通じて環境設定の設定名を別のCotEditorの設定リスト欄にドロップすることで異なるマシン間のCotEditorの設定を移行</li>
 		</ul>
@@ -57,15 +58,20 @@
 			<li>プリント時の行番号表示位置を調整</li>
 			<li>最後のセッションから書類を復帰するときに書類のテキストエンコーディングで非互換な文字も復帰</li>
 			<li>非互換文字リストで空白文字が非互換のときに空欄でなくその制御文字のコードポイントを表示</li>
+			<li>HTMLシンタックススタイルを更新して<code>hr</code>要素をアウトラインで区切り線として表示</li>
 			<li>フォント設定コントロールにステッパーを追加</li>
+			<li>前回のセッションでユーザが明示的にエンコーディングを変更したときは、そのエンコーディングに復帰するように</li>
 			<li>シンタックススタイル定義の標準の拡張子を.yamlから.ymlに変更</li>
 			<li>アウトラインのテンプレートとして<code>$LN</code>を入れると行番号を挿入できる機能の廃止</li>
 			<li>CoffeeScriptとTclのオリジナル書類アイコンを廃止</li>
 			<li>テキスト類を推敲しよりMacらしい表現に</li>
 			<li>ヘルプを更新</li>
+			<li>安定性を向上</li>
 			<li><span class="trivial">trivial</span>: スクリプトの拡張子が大文字でもCotEditorスクリプトとして認識されるように変更</li>
 			<li><span class="trivial">trivial</span>: 「正規表現の基本文法」リファレンスの改行のメタ文字を<code>\n</code>から<code>\R</code>に変更</li>
 			<li><span class="trivial">trivial</span>: Anuraテーマを調整</li>
+			<li><span class="trivial">trivial</span>: macOS 12のsecure state restorationを有効化</li>
+			<li><span class="trivial">開発</span>: Yamsを5.0.0から5.0.1に更新</li>
 		</ul>
 	</section>
 	

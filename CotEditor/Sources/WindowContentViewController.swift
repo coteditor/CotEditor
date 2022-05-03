@@ -28,14 +28,6 @@ import Cocoa
 
 final class WindowContentViewController: NSSplitViewController {
     
-    // MARK: Enums
-    
-    private enum SerializationKey {
-        
-        static let isSidebarShown = "isSidebarShown"
-    }
-    
-    
     // MARK: Private Properties
     
     private var sidebarObserver: AnyCancellable?
@@ -48,6 +40,15 @@ final class WindowContentViewController: NSSplitViewController {
     
     // MARK: -
     // MARK: Split View Controller Methods
+    
+    /// keys to be restored from the last session
+    override class var restorableStateKeyPaths: [String] {
+        
+        super.restorableStateKeyPaths + [
+            #keyPath(isSidebarShown),
+        ]
+    }
+    
     
     /// setup view
     override func viewDidLoad() {
@@ -67,26 +68,6 @@ final class WindowContentViewController: NSSplitViewController {
                 self?.siblings.filter { $0 != self }
                     .forEach { $0.sidebarViewController?.selectedTabViewItemIndex = tabViewIndex }
             }
-    }
-    
-    
-    /// restore UI state
-    override func restoreState(with coder: NSCoder) {
-        
-        super.restoreState(with: coder)
-        
-        if coder.containsValue(forKey: SerializationKey.isSidebarShown) {
-            self.isSidebarShown = coder.decodeBool(forKey: SerializationKey.isSidebarShown)
-        }
-    }
-    
-    
-    /// store UI state
-    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
-        
-        super.encodeRestorableState(with: coder, backgroundQueue: queue)
-        
-        coder.encode(self.isSidebarShown, forKey: SerializationKey.isSidebarShown)
     }
     
     
@@ -217,7 +198,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     /// whether sidebar is opened
-    private var isSidebarShown: Bool {
+    @objc private var isSidebarShown: Bool {
         
         get {
             return self.sidebarViewItem?.isCollapsed == false

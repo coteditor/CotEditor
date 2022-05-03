@@ -137,7 +137,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Inserir Sinal de Iene";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Inserir no ponto de código Unicode…";  // FIXME: machine-translated (native check required)
+"tWx-pj-3PL.title" = "Inserir nos Pontos de Código do Unicode…";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Ortografia e Gramática";
@@ -161,7 +161,7 @@
 /* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
 "7NX-1r-Wq7.title" = "Substituir Aspas";
 /* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
-"9gl-1h-Yit.title" = "Endireitar Citações";  // FIXME: machine-translated (native check required)
+"9gl-1h-Yit.title" = "Endireitar Citações";
 /* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
 "hMS-qd-BCS.title" = "Substituir Hifens";
 /* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
@@ -205,8 +205,8 @@
 "297.title" = "Mac OS Clássico (CR)";
 /* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
 "298.title" = "Windows (CRLF)";
-/* Class = "NSMenuItem"; title = "Unicode Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
-"pUE-eY-9RI.title" = "Unicode Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
+/* Class = "NSMenuItem"; title = "Next Line (NEL)"; ObjectID = "pUE-eY-9RI"; */
+"pUE-eY-9RI.title" = "Next Line (NEL)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 /* Class = "NSMenuItem"; title = "Unicode Line Separator (LS)"; ObjectID = "ins-89-nu3"; */
 "ins-89-nu3.title" = "Unicode Line Separator (LS)";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 /* Class = "NSMenuItem"; title = "Unicode Paragraph Separator (PS)"; ObjectID = "Zz9-5c-bS1"; */
@@ -315,7 +315,7 @@
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "Plano";
 /* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
-"679.title" = "Warnings";  // FIXME: changed
+"679.title" = "Avisos";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
 "I2p-KB-gxR.title" = "Mostrar Inspetor";
 
@@ -543,7 +543,7 @@
 "5is-7G-OVT.title" = "Remover Destaque";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
-"PmT-ho-UU7.title" = "Open Outline Menu";  // FIXME: added
+"PmT-ho-UU7.title" = "Abrir Menu de Plano";
 /* Class = "NSMenuItem"; title = "Select Previous Outline Item"; ObjectID = "9Lf-39-x5S"; */
 "9Lf-39-x5S.title" = "Selecionar Item Anterior do Plano";
 /* Class = "NSMenuItem"; title = "Select Next Outline Item"; ObjectID = "PWZ-Om-OhX"; */

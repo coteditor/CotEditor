@@ -32,9 +32,9 @@ struct OutlineItem: Equatable {
         
         let rawValue: Int
         
-        static let bold      = Style(rawValue: 1 << 0)
-        static let italic    = Style(rawValue: 1 << 1)
-        static let underline = Style(rawValue: 1 << 2)
+        static let bold      = Self(rawValue: 1 << 0)
+        static let italic    = Self(rawValue: 1 << 1)
+        static let underline = Self(rawValue: 1 << 2)
     }
     
     

@@ -87,6 +87,16 @@ final class InconsistentLineEndingsViewController: NSViewController {
     
     
     
+    // MARK: Actions
+    
+    /// Item in the table was clicked.
+    @IBAction func selectItem(_ sender: NSTableView) {
+        
+        self.selectItem(at: sender.clickedRow)
+    }
+    
+    
+    
     // MARK: Private Methods
     
     /// Update the result message above the table.
@@ -107,6 +117,21 @@ final class InconsistentLineEndingsViewController: NSViewController {
         }()
     }
     
+    
+    /// Select correspondence range of the item in the editor.
+    ///
+    /// - Parameter row: The index of items to select.
+    @MainActor private func selectItem(at row: Int) {
+        
+        guard
+            let item = self.lineEndings[safe: row],
+            let textView = self.document?.textView
+        else { return }
+        
+        textView.selectedRange = item.range
+        textView.centerSelectionInVisibleArea(self)
+    }
+    
 }
 
 
@@ -115,15 +140,9 @@ extension InconsistentLineEndingsViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard
-            let tableView = notification.object as? NSTableView,
-            let selectedLineEnding = self.lineEndings[safe: tableView.selectedRow],
-            let textView = self.document?.textView
-        else { return }
+        guard let tableView = notification.object as? NSTableView else { return }
         
-        textView.selectedRange = selectedLineEnding.range
-        textView.scrollRangeToVisible(textView.selectedRange)
-        textView.showFindIndicator(for: textView.selectedRange)
+        self.selectItem(at: tableView.selectedRow)
     }
     
 }

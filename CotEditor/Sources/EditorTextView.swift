@@ -275,7 +275,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
-        return super.restorableStateKeyPaths + [
+        super.restorableStateKeyPaths + [
             #keyPath(font),
             #keyPath(scale),
             #keyPath(tabWidth),
@@ -297,12 +297,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.restoreState(with: coder)
         
-        if
-            let insertionLocations = coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int],
-            !insertionLocations.isEmpty
+        if let insertionLocations = (coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int])?
+            .filter({ $0 <= self.string.length }),
+           !insertionLocations.isEmpty
         {
-            let length = self.textStorage?.length ?? 0
-            self.insertionLocations = insertionLocations.filter { $0 <= length }
+            self.insertionLocations = insertionLocations
         }
     }
     
@@ -355,7 +354,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// view did change frame
     override func setFrameSize(_ newSize: NSSize) {
         
+        let didChange = newSize != self.frame.size
+        
         super.setFrameSize(newSize)
+        
+        guard didChange else { return }
         
         if !self.inLiveResize {
             self.overscrollResizingDebouncer.schedule()

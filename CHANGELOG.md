@@ -2,6 +2,34 @@
 Change Log
 ==========================
 
+4.2.0-rc (495)
+--------------------------
+
+### New Features
+
+- Support Handoff.
+
+
+### Improvements
+
+- Update HTML syntax style to display `hr` elements as separators in the Outline.
+- Restore the file encoding the user explicitly set in the last session.
+- Improve stability.
+- [trivial] Enable the secure state restoration introduced in macOS 12.
+- [dev] Update Yams from 5.0.0 to 5.0.1.
+- [beta] Add the panel notifying about the line ending migration.
+- [beta] Select the character in the editor also when an item already selected in the Warnings pane is clicked.
+- [beta][trivial] Rename “Unicode Next Line” to “Next Line”.
+
+
+### Fixes
+
+- [beta] Fix an issue that the Line Endings submenu in the Format menu did not display minor line ending types even with the Option key.
+- [beta] Fix an issue the item fields in the Outline inspector did not resize properly.
+- [beta] Fix a possible issue that the initial massage in the incompatible character list did not reflect the actual result.
+
+
+
 4.2.0-beta.2 (493)
 --------------------------
 

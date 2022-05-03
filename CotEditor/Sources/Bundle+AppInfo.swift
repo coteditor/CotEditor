@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,6 +60,16 @@ extension Bundle {
         
         // -> Pre-release versions contain non-digit letter.
         return (self.shortVersion.range(of: "[^0-9.]", options: .regularExpression) != nil)
+    }
+    
+    
+    /// Human-readable version number indicates only major and minor version.
+    var minorVersion: String {
+        
+        let shortVersion = self.shortVersion
+        let range = shortVersion.range(of: "^[0-9]++\\.[0-9]++", options: .regularExpression)!
+        
+        return String(shortVersion[range])
     }
     
 }

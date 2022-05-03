@@ -166,19 +166,21 @@ final class OutlineViewController: NSViewController {
     
     /// Select correspondence range of the outline item in textView.
     ///
-    /// - Parameter row: The index of outline items to select.
+    /// - Parameter row: The index of the outline item to select.
     private func selectOutlineItem(at row: Int) {
         
         guard
-            let item = self.filterString.isEmpty ? self.outlineItems[safe: row] : self.filteredOutlineItems[safe: row],
+            let item = self.filterString.isEmpty
+                ? self.outlineItems[safe: row]
+                : self.filteredOutlineItems[safe: row],
             item.title != .separator
-            else { return }
+        else { return }
         
-        // abandon if text became shorter than range to select
+        // cancel if text became shorter than range to select
         guard
             let textView = self.document?.textView,
-            textView.string.nsRange.upperBound >= item.range.upperBound
-            else { return }
+            item.range.upperBound <= textView.string.length
+        else { return }
         
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)

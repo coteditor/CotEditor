@@ -28,6 +28,7 @@ import Cocoa
 
 protocol InvisibleDrawing: NSLayoutManager {
     
+    var invisiblesColor: NSColor { get }
     var textFont: NSFont { get }
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
@@ -46,9 +47,8 @@ extension InvisibleDrawing {
     ///   - glyphsToShow: The range of glyphs that are drawn.
     ///   - origin: The position of the text container in the coordinate system of the currently focused view.
     ///   - baselineOffset: The baseline offset to draw glyphs.
-    ///   - color: The color of invisibles.
     ///   - types: The invisible types to draw.
-    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor, types: Set<Invisible>) {
+    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, types: Set<Invisible>) {
         
         guard
             self.showsInvisibles,
@@ -68,7 +68,7 @@ extension InvisibleDrawing {
         
         // setup drawing parameters
         NSGraphicsContext.saveGraphicsState()
-        color.set()
+        self.invisiblesColor.set()
         
         // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
@@ -130,7 +130,7 @@ extension InvisibleDrawing {
             path.transform(using: .init(translationByX: -symbolOrigin.x, byY: -symbolOrigin.y))
             
             if isInvalid {
-                color.set()
+                self.invisiblesColor.set()
             }
         }
         

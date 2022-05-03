@@ -183,6 +183,7 @@
                                             </tableColumns>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="wLI-76-6zT" id="q4u-TX-zpo"/>
+                                                <action selector="selectItem:" target="nX3-cC-y6b" id="wgd-e7-hOe"/>
                                                 <outlet property="dataSource" destination="nX3-cC-y6b" id="d3r-Zr-pqk"/>
                                                 <outlet property="delegate" destination="nX3-cC-y6b" id="Snk-iF-D9R"/>
                                             </connections>
@@ -365,6 +366,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <action selector="selectItem:" target="tAx-yG-GST" id="yT8-4F-nfd"/>
                                                 <outlet property="dataSource" destination="tAx-yG-GST" id="MN2-jP-ese"/>
                                                 <outlet property="delegate" destination="tAx-yG-GST" id="Z8D-uT-272"/>
                                             </connections>

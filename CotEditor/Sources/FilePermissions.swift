@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,9 +34,9 @@ struct FilePermissions {
         
         let rawValue: UInt16
         
-        static let read    = Permission(rawValue: 0b100)
-        static let write   = Permission(rawValue: 0b010)
-        static let execute = Permission(rawValue: 0b001)
+        static let read    = Self(rawValue: 0b100)
+        static let write   = Self(rawValue: 0b010)
+        static let execute = Self(rawValue: 0b001)
         
         
         var humanReadable: String {

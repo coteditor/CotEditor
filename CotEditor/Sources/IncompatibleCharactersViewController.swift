@@ -82,6 +82,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         
         self.scanner?.shouldScan = true
         self.scanner?.scan()
+        self.updateMessage(isScanning: false)
     }
     
     
@@ -130,6 +131,16 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     
     
+    // MARK: Actions
+    
+    /// Item in the table was clicked.
+    @IBAction func selectItem(_ sender: NSTableView) {
+        
+        self.selectItem(at: sender.clickedRow)
+    }
+    
+    
+    
     // MARK: Private Methods
     
     @MainActor private func didUpdateIncompatibleCharacters(_ incompatibleCharacters: [IncompatibleCharacter]) {
@@ -140,7 +151,7 @@ final class IncompatibleCharactersViewController: NSViewController {
             textStorage.clearAllMarkup()
         }
         
-        if incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
+        if self.isViewShown, incompatibleCharacters.isEmpty != self.incompatibleCharacters.isEmpty {
             self.collapseView(incompatibleCharacters.isEmpty, animate: true)
         }
         
@@ -210,6 +221,21 @@ final class IncompatibleCharactersViewController: NSViewController {
         }()
     }
     
+    
+    /// Select correspondence range of the item in the editor.
+    ///
+    /// - Parameter row: The index of items to select.
+    @MainActor private func selectItem(at row: Int) {
+        
+        guard
+            let item = self.incompatibleCharacters[safe: row],
+            let textView = self.document?.textView
+        else { return }
+        
+        textView.selectedRange = item.range
+        textView.centerSelectionInVisibleArea(self)
+    }
+    
 }
 
 
@@ -218,15 +244,9 @@ extension IncompatibleCharactersViewController: NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard
-            let tableView = notification.object as? NSTableView,
-            let item = self.incompatibleCharacters[safe: tableView.selectedRow],
-            let textView = self.document?.textView
-        else { return }
+        guard let tableView = notification.object as? NSTableView else { return }
         
-        textView.selectedRange = item.range
-        textView.scrollRangeToVisible(textView.selectedRange)
-        textView.showFindIndicator(for: textView.selectedRange)
+        self.selectItem(at: tableView.selectedRow)
     }
     
 }

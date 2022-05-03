@@ -43,6 +43,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
+    private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     
     private var documentStyleObserver: AnyCancellable?
@@ -71,6 +72,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
+        }
+        
+        // observe opacity setting change
+        if let window = self.window as? DocumentWindow {
+            self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
+                .assign(to: \.backgroundAlpha, on: window)
         }
         
         // observe appearance setting change

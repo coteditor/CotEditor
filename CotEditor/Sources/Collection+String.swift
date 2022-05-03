@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ struct StringComparisonOptions: OptionSet {
     
     let rawValue: Int
     
-    static let localized       = StringComparisonOptions(rawValue: 1 << 0)
-    static let caseInsensitive = StringComparisonOptions(rawValue: 1 << 1)
+    static let localized       = Self(rawValue: 1 << 0)
+    static let caseInsensitive = Self(rawValue: 1 << 1)
 }
 
 

@@ -100,6 +100,21 @@ final class ReplacementManager: SettingFileManaging {
     }
     
     
+    /// Check if any of user settings that use `\n` in regular expression patterns exists.
+    func needsLineEndingMigration() -> Bool {
+        
+        self.userSettingFileURLs.lazy
+            .compactMap { try? self.loadSetting(at: $0) }
+            .flatMap { setting in
+                setting.replacements
+                    .filter(\.usesRegularExpression)
+                    .flatMap { [$0.findString, $0.replacementString] }
+            }
+            .contains { $0.contains("\\n") }
+        
+    }
+    
+    
     
     // MARK: Setting File Managing
     

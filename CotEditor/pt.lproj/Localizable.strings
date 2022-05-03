@@ -39,14 +39,14 @@
 // Accessibility labels
 "inspector" = "inspetor";
 "outline" = "plano";
-"warnings" = "warnings";  // FIXME: added
+"warnings" = "avisos";
 "incompatible characters" = "Caracteres Incompatíveis";
 "status bar" = "barra de estado";
 "editor" = "editor";
 "navigation bar" = "barra de navegação";
 "line numbers" = "números das linhas";
 "find result" = "resultados da busca";
-"Use print font" = "Use print font";  // FIXME: added
+"Use print font" = "Usar fonte de impressão";
 
 
 
@@ -82,9 +82,9 @@
 "%@ strings replaced." = "%@ strings substituídas.";
 "Invalid regular expression" = "Expressão regular inválida";
 "Empty find string" = "String de busca vazia";
-"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
+"The option “in selection” is enabled, although nothing is selected." = "A opção “Na Seleção” está habilitada, porém nada está selecionado.";
 "Input text to find." = "Digite o texto a buscar.";
-"Select the search scope in the document or turn off the “in selection” option." = "Select the search scope in the document or turn off the “in selection” option.";  // FIXME: added
+"Select the search scope in the document or turn off the “in selection” option." = "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção”.";
 
 // accessibility announcement
 "Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
@@ -158,7 +158,7 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "O arquivo “%@” não parece ser de dados de texto.";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "O arquivo é %@.\n\nDeseja realmente abrir o arquivo?";  // FIXME: is -> appears to be
+"The file appears to be %@.\n\nDo you really want to open the file?" = "O arquivo aparenta ser %@.\n\nDeseja realmente abrir o arquivo?";
 
 // Large file alert
 "The file “%@” has a size of %@." = "O arquivo “%@” tem %@ de tamanho.";
@@ -200,11 +200,11 @@
 "Change Encoding" = "Alterar Codificação";
 
 // Inconsistent line ending alert
-"The document has inconsistent line endings." = "The document has inconsistent line endings.";  // FIXME: added
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Do you want to convert all line endings to %@, the most common line endings in this document?";  // FIXME: added
-"Don’t ask again for this document" = "Don’t ask again for this document";  // FIXME: added
+"The document has inconsistent line endings." = "O documento contém finais de linha inconsistentes.";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "Você deseja converter todos os finais de linha para %@, a maior parte dos finais de linha desse arquivo?";
+"Don’t ask again for this document" = "Não pergunte novamente para este arquivo";
 "Convert" = "Converter";
-"Review" = "Review";  // FIXME: added
+"Review" = "Revisar";
 
 // Modified by an external application alert
 "The file has been modified by another application. There are also unsaved changes in CotEditor." = "O arquivo foi modificado por outro aplicativo. Também há alterações não salvas no CotEditor.";
@@ -377,22 +377,22 @@
 
 /* MARK: Inspector */
 // Outline
-"Recent Filters" = "Filtros Recentes";  // FIXME: machine-translated (native check required)
+"Recent Filters" = "Filtros Recentes";
 "Clear Recent Filters" = "Limpar Recentes";
-"No Recent Filter" = "Nenhum filtro recente";  // FIXME: machine-translated (native check required)
-"No Filter Results" = "Nenhum Resultado do Filtro";  // FIXME: machine-translated (native check required)
+"No Recent Filter" = "Nenhum filtro recente";
+"No Filter Results" = "Nenhum Resultado do Filtro";
 
 // Warnings
-"No issues found." = "No issues found.";  // FIXME: added
+"No issues found." = "Nenhum problema encontrado.";
 
 // Incompatible characters
-"Scanning incompatible characters…" = "Scanning incompatible characters…";  // FIXME: added
-"Found an incompatible character." = "Found an incompatible character.";  // FIXME: added
-"Found %i incompatible characters." = "Found %i incompatible characters.";  // %i is the number of characters  // FIXME: added
+"Scanning incompatible characters…" = "Escaneando caracteres incompatíveis...";
+"Found an incompatible character." = "Encontrado caracter incompatível.";
+"Found %i incompatible characters." = "Encontrados %i caracteres incompatíveis.";  // %i is the number of characters
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "Found a line ending other than %@.";  // %@ is a line ending type, such as LF  // FIXME: added
-"Found %i line endings other than %@." = "Found %i line endings other than %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF  // FIXME: added
+"Found a line ending other than %@." = "Foi encontrado um final de linha diferente de %@.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "Foram encontrados %i finais de linha diferentes de %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -485,7 +485,7 @@
 // Coloring indicator
 "Coloring text…" = "Colorindo texto…";
 "Please wait for a while." = "Aguarde um momento.";
-"Parsing document…" = "Parsing document…";  // FIXME: updated
+"Parsing document…" = "Analisando documento…";
 "Applying colors to text…" = "Aplicando cores ao texto…";
 "keywords" = "palavras-chave";
 "commands" = "comandos";
@@ -653,8 +653,8 @@
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.";  // FIXME: added
-"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: added
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Uma nova definição de substituição chamada %@ será instalada, mas uma definição com o mesmo nome já existe.";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Deseja confirmar alteração?\nDefinições substituídas não podem ser restauradas.";
 
 
 
@@ -666,8 +666,8 @@
 "Space" = "Espaço";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@” já está sendo usado.";  // FIXME: updated
-"The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";  // FIXME: added
+"“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@”.";
+"The Shift key can be used only with another modifier key." = "A tecla Shift só pode ser usada em conjunto com outra tecla de modificação.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
 "Please combine with other keys." = "Combine-a com outra tecla.";
 
@@ -724,3 +724,15 @@
 /* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@ com BOM";
+
+
+/* MARK: Migration Panel */
+
+"Important change on CotEditor 4.2.0" = "Importantes mudanças no CotEditor 4.2.0";
+"From this version, CotEditor handles line endings more strictly." = "Nessa versão, o CotEditor está mais rigoroso com os finais de linha.";
+"Due to this change, you may need manual migration for your settings below:" = "Devido a essa mudança, você pode precisar migrar manualmente suas configurações abaixo:";
+"Multiple replacement definitions" = "Múltiplas substituições de definições";
+"Syntax styles" = "Estilos de sintaxes";
+"CotEditor scripts" = "Scripts do CotEditor";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` para combinações de expressões regulares apenas quando o final de linha for LF. Prefira usar`\\R` em qualquer outra combinação de final de linha.";
+"Learn More…" = "Saiba Mais…";

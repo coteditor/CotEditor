@@ -15,7 +15,7 @@
             <enumerator name="LF" code="leLF" description="macOS / Unix (LF)"/>
             <enumerator name="CR" code="leCR" description="Classic Mac OS (CR)"/>
             <enumerator name="CRLF" code="leCL" description="Windows (CRLF)"/>
-            <enumerator name="NEL" code="leNL" description="Unicode New Line (NEL)"/>
+            <enumerator name="NEL" code="leNL" description="Next Line (NEL)"/>
             <enumerator name="LS" code="leLS" description="Unicode Line Separator (LS)"/>
             <enumerator name="PS" code="lePS" description="Unicode Paragraph Separator (PS)"/>
         </enumeration>
@@ -81,7 +81,7 @@
             <property name="wrap lines" code="wRln" type="boolean" access="rw" description="Are lines wrapped?">
                 <cocoa key="wrapsLines"/>
             </property>
-            <property name="path" code="ppth" type="text" hidden="yes" description="The document’s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backwards compatibility. Use ‘file’ property instead.">
+            <property name="path" code="ppth" type="text" hidden="yes" description="The document’s path. !!!: This property is deprecated on CotEditor 2.0, and available just for the backward compatibility. Use ‘file’ property instead.">
                 <!-- this property is deprecated -->
                 <cocoa key="fileName"/>
             </property>
