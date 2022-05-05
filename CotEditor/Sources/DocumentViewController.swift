@@ -204,7 +204,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         // manunally decode `restorableStateKeyPaths` for secure state restoration
         for keyPath in self.restorableBoolStateKeyPaths where coder.containsValue(forKey: keyPath) {
-            self.setValue(coder.decodeBool(forKey: keyPath), forKeyPath: keyPath)
+            let value = coder.decodeObject(of: NSNumber.self, forKey: keyPath)
+            self.setValue(value, forKeyPath: keyPath)
         }
     }
     
