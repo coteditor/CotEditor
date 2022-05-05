@@ -41,15 +41,6 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: -
     // MARK: Split View Controller Methods
     
-    /// keys to be restored from the last session
-    override class var restorableStateKeyPaths: [String] {
-        
-        super.restorableStateKeyPaths + [
-            #keyPath(isSidebarShown),
-        ]
-    }
-    
-    
     /// setup view
     override func viewDidLoad() {
         
@@ -198,7 +189,7 @@ final class WindowContentViewController: NSSplitViewController {
     
     
     /// whether sidebar is opened
-    @objc private var isSidebarShown: Bool {
+    private var isSidebarShown: Bool {
         
         get {
             return self.sidebarViewItem?.isCollapsed == false

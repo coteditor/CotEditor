@@ -47,6 +47,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private enum SerializationKey {
         
+        static let font = "font"
+        static let scale = "scale"
+        static let tabWidth = "tabWidth"
         static let insertionLocations = "insertionLocations"
     }
     
@@ -272,22 +275,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     // MARK: Text View Methods
     
-    /// keys to be restored from the last session
-    override class var restorableStateKeyPaths: [String] {
-        
-        super.restorableStateKeyPaths + [
-            #keyPath(font),
-            #keyPath(scale),
-            #keyPath(tabWidth),
-        ]
-    }
-    
-    
     /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
+        coder.encode(self.font, forKey: SerializationKey.font)
+        coder.encode(Double(self.scale), forKey: SerializationKey.scale)
+        coder.encode(self.tabWidth, forKey: SerializationKey.tabWidth)
         coder.encode(self.insertionLocations, forKey: SerializationKey.insertionLocations)
     }
     
@@ -297,7 +292,21 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.restoreState(with: coder)
         
-        if let insertionLocations = (coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int])?
+        if let font = coder.decodeObject(of: NSFont.self, forKey: SerializationKey.font) {
+            self.font = font
+        }
+        
+        let scale = coder.decodeDouble(forKey: SerializationKey.scale)
+        if scale != 1, scale > 0 {
+            self.scale = scale
+        }
+        
+        let tabWidth = coder.decodeInteger(forKey: SerializationKey.tabWidth)
+        if tabWidth > 0 {
+            self.tabWidth = tabWidth
+        }
+        
+        if let insertionLocations = (coder.decodeArrayOfObjects(ofClass: NSNumber.self, forKey: SerializationKey.insertionLocations) as? [Int])?
             .filter({ $0 <= self.string.length }),
            !insertionLocations.isEmpty
         {
@@ -1193,7 +1202,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     /// tab width in number of spaces
-    @objc var tabWidth: Int {
+    var tabWidth: Int {
         
         didSet {
             tabWidth = max(tabWidth, 0)

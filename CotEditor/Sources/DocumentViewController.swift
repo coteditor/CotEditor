@@ -35,10 +35,22 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     private enum SerializationKey {
         
         static let theme = "theme"
+        static let writingDirection = "writingDirection"
     }
     
     
     // MARK: Private Properties
+    
+    /// keys for bool values to be restored from the last session
+    private var restorableBoolStateKeyPaths: [String] = [
+        #keyPath(showsLineNumber),
+        #keyPath(showsPageGuide),
+        #keyPath(showsIndentGuides),
+        #keyPath(showsInvisibles),
+        #keyPath(wrapsLines),
+        #keyPath(verticalLayoutOrientation),
+        #keyPath(isAutoTabExpandEnabled),
+    ]
     
     private var documentStyleObserver: AnyCancellable?
     private var outlineObserver: AnyCancellable?
@@ -151,22 +163,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// keys to be restored from the last session
-    override class var restorableStateKeyPaths: [String] {
-        
-        super.restorableStateKeyPaths + [
-            #keyPath(showsLineNumber),
-            #keyPath(showsPageGuide),
-            #keyPath(showsIndentGuides),
-            #keyPath(showsInvisibles),
-            #keyPath(wrapsLines),
-            #keyPath(verticalLayoutOrientation),
-            #keyPath(writingDirection),
-            #keyPath(isAutoTabExpandEnabled),
-        ]
-    }
-    
-    
     /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
@@ -174,6 +170,13 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         if let themeName = self.theme?.name {
             coder.encode(themeName, forKey: SerializationKey.theme)
+        }
+        
+        coder.encode(self.writingDirection.rawValue, forKey: SerializationKey.writingDirection)
+        
+        // manunally encode `restorableStateKeyPaths` for secure state restoration
+        for keyPath in self.restorableBoolStateKeyPaths {
+            coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
         }
     }
     
@@ -183,7 +186,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         super.restoreState(with: coder)
         
-        if let storedThemeName = coder.decodeObject(of: [NSString.self], forKey: SerializationKey.theme) as? String {
+        if let storedThemeName = coder.decodeObject(of: NSString.self, forKey: SerializationKey.theme) as? String {
             let themeName = UserDefaults.standard[.pinsThemeAppearance]
                 ? storedThemeName
                 : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
@@ -191,6 +194,17 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             if themeName != self.theme?.name {
                 self.setTheme(name: themeName)
             }
+        }
+        
+        if coder.containsValue(forKey: SerializationKey.writingDirection),
+           let direction = NSWritingDirection(rawValue: coder.decodeInteger(forKey: SerializationKey.writingDirection))
+        {
+            self.writingDirection = direction
+        }
+        
+        // manunally decode `restorableStateKeyPaths` for secure state restoration
+        for keyPath in self.restorableBoolStateKeyPaths where coder.containsValue(forKey: keyPath) {
+            self.setValue(coder.decodeBool(forKey: keyPath), forKeyPath: keyPath)
         }
     }
     
@@ -581,7 +595,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    @objc var writingDirection: NSWritingDirection {
+    var writingDirection: NSWritingDirection {
         
         get {
             return self.focusedTextView?.baseWritingDirection ?? .leftToRight

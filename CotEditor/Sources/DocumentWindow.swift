@@ -68,12 +68,23 @@ final class DocumentWindow: NSWindow {
     // MARK: -
     // MARK: Window Methods
     
-    /// keys to be restored from the last session
-    override class var restorableStateKeyPaths: [String] {
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        super.restorableStateKeyPaths + [
-            #keyPath(backgroundAlpha),
-        ]
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        coder.encode(self.backgroundAlpha, forKey: #keyPath(backgroundAlpha))
+    }
+    
+    
+    /// restore UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if let alpha = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(backgroundAlpha)) as? CGFloat, alpha != 1 {
+            self.backgroundAlpha = alpha
+        }
     }
     
     

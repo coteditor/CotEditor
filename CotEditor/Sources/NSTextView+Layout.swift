@@ -133,6 +133,7 @@ extension NSTextView {
             self.sizeToFit()
             
             self.needsDisplay = true
+            self.invalidateRestorableState()
         }
     }
     

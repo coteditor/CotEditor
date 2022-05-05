@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.2.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [rc] Fix an issue that some UI states were not restored from the last session.
+
+
+
 4.2.0-rc.2 (496)
 --------------------------
 
