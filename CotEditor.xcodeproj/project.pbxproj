@@ -2801,7 +2801,6 @@
 				2A443220219AC235008A0A6B /* PreferencesWindow.storyboard in Resources */,
 				2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
 				2A86C47F2037312900B9357C /* SaveDocumentAccessory.storyboard in Resources */,
-				2A4144B8201397150061F653 /* WarningsView.storyboard in Resources */,
 				2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2AB2245421A809A000F6201F /* SyntaxEditView.storyboard in Resources */,
 				2AB2241D21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */,
@@ -2810,8 +2809,9 @@
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
 				2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */,
-				2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */,
 				2AB2243E21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */,
+				2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */,
+				2A4144B8201397150061F653 /* WarningsView.storyboard in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
 			);
