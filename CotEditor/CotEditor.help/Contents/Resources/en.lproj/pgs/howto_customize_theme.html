@@ -11,7 +11,16 @@
 
 <h1>Customize themes</h1>
 
-<p>CotEditor’s theme is a collection of settings about the editor’s coloring.  To customize themes:</p>
+<p>CotEditor’s theme is a collection of settings about the editor’s coloring.</p>
+
+<figure>
+	<img src="../gfx/theme@2x.png" width="400" class="bordered" alt="Theme setting view"/>
+</figure>
+
+
+<h2>Customize a theme</h2>
+
+<p>To select a theme to customize:</p>
 <ol>
 	<li>Choose CotEditor &gt; Preferences.</li>
 	<li>Select the Appearances pane.</li>
@@ -20,8 +29,29 @@
 
 <p>To use an existing theme as a guide for creating your own, choose Duplicate in the action button (gear icon) instead. You can also export your themes and import themes that are created by others.</p>
 
-<h2>Theme file format</h2>
-<p>CotEditor theme file must have extension .cottheme and its format is based on JSON with hexadecimal color values with <code>#</code> symbol.</p>
+
+<p>To customize a theme:</p>
+<ol>
+	<li>Click a color well in the theme editor.</li>
+	<li>Select a color in the Color panel.</li>
+</ol>
+
+<p>The change will be saved automatically and applied immediately.</p>
+
+<p>If you check the “Use system color” option, the color specified in the system (System Preferences &gt; General) will be used for the background of the selected text in the editor, instead of a fixed color.</p>
+
+
+<h2>Switch theme according to the appearance</h2>
+
+<p>A pair of themes with the same theme name but “ (Dark)” (with a space) at the end of one of them will automatically switch themes depending on the window’s appearance. In this case, the theme name for light mode can be either the theme name only or the theme name with “ (Light)” at the end. For example, bundled “Anura” and “Anura (Dark)” themes are a pair. So, “Anura” is used when the appearance is light, and “Anura (Dark)” is used in Dark Mode.</p>
+
+<p>However, if you select a theme opposite to the appearance as the default theme, that theme will take precedence regardless of the appearance.</p>
+
+
+
+<h2>File format of CotEditor themes</h2>
+
+<p>CotEditor theme file must have extension .cottheme and its format is based on JSON with hexadecimal color values with a <code>#</code> symbol.</p>
 
 
 <section id="cf">
