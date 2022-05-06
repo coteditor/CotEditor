@@ -4,7 +4,7 @@
 
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 24.5">
 
-<style>
+<style type="text/css">
 	@media (prefers-color-scheme: dark) {
 		path { fill: white }
 	}

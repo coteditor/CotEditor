@@ -17,8 +17,11 @@
 	<li>In order to run a script, you need to set execute permission for the script file.</li>
 </ul>
 
+
 <h2>Refer to the document file path</h2>
+
 <p>If the frontmost document has already been saved, the absolute file path of the document will be referred to as an argument.</p>
+
 
 <h2>Pass text data to a script</h2>
 
@@ -40,6 +43,7 @@
 	<li>A script should capture CotEditor’s text data on STDIN (standard in).</li>
 	<li>CotEditor passes text data with UTF-8 encoding.</li>
 </ul>
+
 
 <h2>Receive output data from a script</h2>
 
@@ -66,17 +70,33 @@
 	<li>The text encoding of the text that CotEditor receives must be UTF-8.</li>
 </ul>
 
-<h2>Example</h2>
-<p>The following Python script prepends “&gt;” character to every line in the selection of the frontmost document.</p>
 
-<pre class="source"><code><span class="comment">#!/usr/bin/env python
+<h2>Print text to the Console</h2>
+
+<p>The string thrown to the standard error will be printed in the Console window.</p>
+
+
+<h2>Example</h2>
+
+<p>The following Python script prepends “&gt;” character to every line in the selection of the frontmost document, and then print the number of the processed lines to the Console.</p>
+
+<pre class="source"><code><span class="comment">#!/usr/bin/env python3
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%</span>
 
 <span class="keyword">import</span> sys
+
+count = 0
 <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
+    count += 1
     print(<span class="string">&quot;&gt;&quot;</span> + line.rstrip())
+sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.format(count))
 </code></pre>
+
+<figure>
+	<figcaption>Output to the Console</figcaption>
+	<img src="../gfx/console@2x.png" width="406" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 5 lines."/>
+</figure>
 
 <p>You can get more sample scripts on:<br/>
 <a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>

@@ -5,6 +5,11 @@ Change Log
 4.2.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- [rc] Update the help contents.
+
+
 ### Fixes
 
 - [rc] Fix an issue that some UI states were not restored from the last session.
