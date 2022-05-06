@@ -15,9 +15,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lj-uv-tp6">
-                                <rect key="frame" x="310" y="13" width="76" height="27"/>
+                                <rect key="frame" x="328" y="13" width="58" height="27"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="6wx-JO-VXi"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="6wx-JO-VXi"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="1021">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -53,6 +53,9 @@ DQ
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="foX-H3-gAp" id="b7D-T5-bd8"/>
+                                </connections>
                             </button>
                             <stackView distribution="fillEqually" orientation="vertical" alignment="leading" spacing="19" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalClippingResistancePriority="750" verticalClippingResistancePriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QlX-zU-Kbs">
                                 <rect key="frame" x="20" y="44" width="360" height="362"/>
@@ -132,7 +135,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="w8q-3P-Q1e">
-                                                                            <rect key="frame" x="90.5" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="91" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="bkQ-4g-uet">
@@ -300,7 +303,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="FdF-7h-gtp">
-                                                                            <rect key="frame" x="90.5" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="91" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Qt3-S7-Bpi">
@@ -468,7 +471,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="SjR-UH-naJ">
-                                                                            <rect key="frame" x="92.5" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="93" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="85I-66-i9l">

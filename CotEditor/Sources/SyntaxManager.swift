@@ -79,6 +79,8 @@ final class SyntaxManager: SettingFileManaging {
                                                                                .filenames: [:],
                                                                                .interpreters: [:]]
     
+    private var settingUpdateObserver: AnyCancellable?
+    
     
     
     // MARK: -
@@ -98,6 +100,10 @@ final class SyntaxManager: SettingFileManaging {
         
         // cache user styles
         self.checkUserSettings()
+        
+        // update also .mappingTables
+        self.settingUpdateObserver = self.didUpdateSetting
+            .sink { [weak self] _ in self?.checkUserSettings() }
     }
     
     
@@ -243,7 +249,9 @@ final class SyntaxManager: SettingFileManaging {
     /// conflicted maps
     var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
         
-        return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
+        self.mappingTables
+            .mapValues { $0.filter { $0.value.count > 1 } }
+            .filter { !$0.value.isEmpty }
     }
     
     

@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.2.0 (unreleased)
+4.2.0-rc.3 (unreleased)
 --------------------------
 
 ### Improvements
@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the changes of syntax styles after the launch were not applied to the file mapping.
 - [rc] Fix an issue that some UI states were not restored from the last session.
 
 
