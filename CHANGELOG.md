@@ -16,7 +16,7 @@ Change Log
 
 ### Fixes
 
-- [rc] Fix an issue the migration panel could not read in the Dark Mode.
+- [rc] Fix an issue the migration panel could not be read in the Dark Mode.
 
 
 
