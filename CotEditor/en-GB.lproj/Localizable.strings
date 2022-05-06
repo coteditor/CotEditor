@@ -211,8 +211,8 @@
 "Review" = "Review";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "The file has been modified by another application. There are also unsaved changes in CotEditor.";
-"The file has been modified by another application." = "The file has been modified by another application.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "The file has been changed by another application. There are also unsaved changes in CotEditor.";
+"The file has been changed by another application." = "The file has been changed by another application.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Do you want to keep CotEditor’s edition or update it to the modified edition?";
 "Keep CotEditor’s Edition" = "Keep CotEditor’s Edition";
 "Update" = "Update";

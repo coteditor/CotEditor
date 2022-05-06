@@ -151,7 +151,7 @@
 /* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
 "AIG-rr-79V.title" = "Comentários:";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file information"; ObjectID = "8zj-4c-Hg4"; */
 "8zj-4c-Hg4.ibShadowedToolTip" = "Mostre o arquivo de informações do tema";
 
 

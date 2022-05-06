@@ -211,8 +211,8 @@
 "Review" = "Rivedi";  // this button displays the inconsistent line endings list in the Warnings pane
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Il file è stato modificato da un’altra applicazione. Ci sono anche delle modifiche non salvate in CotEditor.";
-"The file has been modified by another application." = "Il file è stato modificato da un’altra applicazione.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Il file è stato modificato da un’altra applicazione. Ci sono anche delle modifiche non salvate in CotEditor.";
+"The file has been changed by another application." = "Il file è stato modificato da un’altra applicazione.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Si desidera mantenere la versione di CotEditor oppure aggiornarla a quella modificata?";
 "Keep CotEditor’s Edition" = "Mantieni la versione di CotEditor";
 "Update" = "Aggiorna";
@@ -394,8 +394,8 @@
 "Found %i incompatible characters." = "Rilevati %i caratteri incompatibili.";  // %i is the number of characters
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF  // FIXME: added
-"Found %i line endings other than %@." = "Rilevate %i righe che non terminano con %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF  // FIXME: added
+"Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "Rilevate %i righe che non terminano con %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 

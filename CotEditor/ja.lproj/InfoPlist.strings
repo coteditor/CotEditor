@@ -26,7 +26,7 @@
  */
 
 // Descriptions for privacy authorization dialog
-"NSAppleEventsUsageDescription" = "CotEditorがAppleScriptでほかのアプリケーションを操作するためにユーザの許可が必要です。";  // "CotEditor needs user approval to control other applications with AppleScript."
+"NSAppleEventsUsageDescription" = "CotEditorがAppleScriptで別のアプリケーションを操作するためにユーザの許可が必要です。";  // "CotEditor needs user approval to control other applications with AppleScript."
 
 
 // Document Types

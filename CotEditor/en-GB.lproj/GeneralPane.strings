@@ -48,8 +48,8 @@
 "sOa-Ea-zt9.title" = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected quit.";
 
 
-/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "When document is modified by another application:";
+/* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "When document is changed by another application:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
 "sBH-MX-cTd.title" = "Keep CotEditor’s edition";

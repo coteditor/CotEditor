@@ -51,7 +51,7 @@
 "sOa-Ea-zt9.title" = "编辑文件时自动覆盖保存文件的系统特性。即使被禁用，CotEditor也会在程序退出时自动保存备份。";
 
 
-/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
+/* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
 "x4n-2n-I3p.title" = "当文档被其他应用更改时：";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */

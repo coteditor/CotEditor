@@ -29,7 +29,7 @@
 "zDW-aW-9G8.title" = "起動したとき:";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "前回のウインドウを復帰";
+"QX9-BI-SIL.title" = "最後のセッションのウインドウを開く";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
 "wmw-xg-bSt.title" = "何も開かれていなければ:";
 
@@ -50,8 +50,8 @@
 "sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しない終了に備えて裏でバックアップを作成します。";
 
 
-/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき:";
+/* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "書類が別のアプリケーションによって変更されたとき:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
 "sBH-MX-cTd.title" = "CotEditorの編集内容を保持";

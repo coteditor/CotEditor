@@ -1178,8 +1178,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isExternalUpdateAlertShown = true
             
             let messageText = self.isDocumentEdited
-                ? "The file has been modified by another application. There are also unsaved changes in CotEditor."
-                : "The file has been modified by another application."
+                ? "The file has been changed by another application. There are also unsaved changes in CotEditor."
+                : "The file has been changed by another application."
             
             let alert = NSAlert()
             alert.messageText = messageText.localized

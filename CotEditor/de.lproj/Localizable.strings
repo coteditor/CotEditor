@@ -211,8 +211,8 @@
 "Review" = "Prüfen";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde durch ein anderes Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
-"The file has been modified by another application." = "Die Datei wurde durch ein anderes Programm geändert.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";
+"The file has been changed by another application." = "Die Datei wurde von einem anderen Programm geändert.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Möchtest du die Version des CotEditors behalten oder auf die geänderte Version aktualisieren?";
 "Keep CotEditor’s Edition" = "CotEditors Version behalten";
 "Update" = "Aktualisieren";
@@ -365,7 +365,7 @@
 "Off" = "Aus";
 "Don’t Print" = "Nicht drucken";
 "Same as Document’s Setting" = "Wie Dokument";
-"Black and White" = "Schwarz/Weiß";
+"Black and White" = "Schwarzweiß";
 "Print" = "Drucken";
 "Syntax Name" = "Syntaxname";
 "Document Name" = "Dokumentenname";
@@ -478,8 +478,8 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"Jump to previous outline item" = "Zum vorherigen Gliederungsposten springen";
-"Jump to next outline item" = "Zum nächsten Gliederungsposten springen";
+"Jump to previous outline item" = "Zum vorherigen Gliederungsposten";
+"Jump to next outline item" = "Zum nächsten Gliederungsposten";
 "Extracting Outline…" = "Gliederung extrahieren …";
 
 

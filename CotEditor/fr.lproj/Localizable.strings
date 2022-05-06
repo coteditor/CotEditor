@@ -211,8 +211,8 @@
 "Review" = "Passer en revue";  // this button displays the inconsistent line endings list in the Warnings pane
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
-"The file has been modified by another application." = "Le fichier a été modifié par une autre application.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
+"The file has been changed by another application." = "Le fichier a été modifié par une autre application.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?";
 "Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
 "Update" = "Rafraîchir";
