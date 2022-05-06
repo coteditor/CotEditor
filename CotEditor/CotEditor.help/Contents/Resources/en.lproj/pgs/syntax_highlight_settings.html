@@ -65,7 +65,7 @@
 	</tbody>
 </table>
 
-<p>CotEditor colors the code elements in the following order: 1) keywords, 2) commands, 3) types, 4) attributes, 5) variables, 6) values, 7) numbers, 8) strings, 9) characters, 10) comments. When your document contains an item to be colored which matches multiple categories (e.g. keywords and commands), the color of the latter in the order will overwrite the former’s.</p>
+<p>CotEditor colors the code elements in the following order: 1) keywords, 2) commands, 3) types, 4) attributes, 5) variables, 6) values, 7) numbers, 8) strings, 9) characters, 10) comments. When your document contains an item to be colored that matches multiple categories (e.g. keywords and commands), the color of the latter in the order will overwrite the former’s.</p>
 
 
 
@@ -78,18 +78,18 @@
 		<tr><th>Field</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>RE</th><td>If this option is selected, both Begin-string and End-string will be considered as regular expressions (RE stands for Regular Expression).</td></tr>
-		<tr><th>IC</th><td>If this option is selected, case will be ignored during the search (IC stands for Ignore Case). For example, if you set “abc” as Begin-string and check IC, “ABC” or “abc” or “Abc” in your document will be matched.</td></tr>
-		<tr><th>Begin String</th><td>A string which denotes the beginning of the search pattern. This is required to search the code elements you want to be colored.</td></tr>
-		<tr><th>End String</th><td>A string which denotes the end of the search pattern. This can be left blank.</td></tr>
-		<tr><th>Description</th><td>You can use this field to leave a comment about the term. Description doesn’t affect to syntax highlighitng. This can be left blank.</td></tr>
+		<tr><th>RE</th><td>If this option is selected, both Begin-string and End-string will be considered regular expressions (RE stands for Regular Expression).</td></tr>
+		<tr><th>IC</th><td>If this option is selected, the case will be ignored during the search (IC stands for Ignore Case). For example, if you set “abc” as Begin-string and check IC, “ABC” or “abc” or “Abc” in your document will be matched.</td></tr>
+		<tr><th>Begin String</th><td>A string that denotes the beginning of the search pattern. This is required to search the code elements you want to be colored.</td></tr>
+		<tr><th>End String</th><td>A string that denotes the end of the search pattern. This field can be left blank.</td></tr>
+		<tr><th>Description</th><td>You can use this field to leave a comment about the term. Description doesn’t affect syntax highlighting. This field can be left blank.</td></tr>
 	</tbody>
 </table>
 
 <ul>
 	<li>A definition whose Begin-string is blank will be ignored.</li>
 	<li>A definition whose End-string is blank and RE is turned off will be used for defining the completion list as well.</li>
-	<li>The RE setting affects both Begin-string and End-string, which means they should be written in regular expression or plain form both together.</li>
+	<li>The RE setting affects both Begin-string and End-string, which means they should be written in the regular expression or plain form both together.</li>
 </ul>
 
 

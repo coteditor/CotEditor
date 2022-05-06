@@ -15,7 +15,7 @@
 
 <p>When opening a file, CotEditor detects the document type and applies the corresponding syntax style automatically.</p>
 
-<p>The “File Mapping” definitions in each syntax style are used for this detection.</p>
+<p>The File Mapping definitions in each syntax style are used for this detection.</p>
 
 <h2>Priority order of file mapping</h2>
 
@@ -39,15 +39,15 @@
 		<li>e.g.: <code>#!/usr/bin/env python3</code> → Python (interpreter: <code>python3</code>)</li>
 	</ul></li>
 	<li>XML declaration<ul>
-		<li>When there is no corresponding syntax style up to here but the file content starts with a XML declaration, syntax style is automatically set to “XML”.</li>
+		<li>When there is no corresponding syntax style up to here but the file content starts with an XML declaration, syntax style is automatically set to “XML”.</li>
 		<li>e.g.: <code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</code> → XML</li>
 	</ul></li>
 	<li>None<ul>
-		<li>If no appropriate style can be found at all, “None” syntax style would be set.</li>
+		<li>If no appropriate style can be found at all, the “None” syntax style would be set.</li>
 	</ul></li>
 </ol>
 
-<p>When there are multiple syntax styles in the same level like the filename extension level or the filename level, custom styles are prioritized than the bundled styles. And yet, if there are multiple corresponding styles, the first found style will be applied automatically.</p>
+<p>When there are multiple syntax styles in the same level like the filename extension level or the filename level, custom styles are prioritized over the bundled styles. And yet, if there are multiple corresponding styles, the first found style will be applied automatically.</p>
 
 <h2>File mapping conflicts</h2>
 
