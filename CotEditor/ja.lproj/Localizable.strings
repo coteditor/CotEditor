@@ -1,30 +1,28 @@
-/*
- 
- Localizable.strings (Japanese)
- 
- CotEditor
- https://coteditor.com
- 
- Created by nakamuxu on 2004-12-20.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2022 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Localizable.strings (Japanese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by nakamuxu on 2004-12-20.
+//  Localized by 1024jp
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu, 2014-2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 // Basic button titles
 "OK" = "OK";
@@ -33,7 +31,6 @@
 
 // Appending words in parentheses
 " (%@)" = "（%@）";
-
 
 
 // Accessibility labels
@@ -49,12 +46,15 @@
 "Use print font" = "プリント用フォントを使う";
 
 
-
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認…";
 "What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
 "Share" = "共有";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "この操作は取り消せません。";
 
 
 
@@ -91,6 +91,7 @@
 "Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
 
 
+
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
@@ -100,11 +101,13 @@
 "%i replaced" = "%i件置換しました";  // %@ is number of replaced
 
 
+
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に1件見つかりました。";
 "Found %i strings in “%@”." = "“%2$@”内に%1$i件見つかりました。";
+
 
 
 /* MARK: Regular Expression Reference */
@@ -516,7 +519,6 @@
 
 
 /* MARK: Preferences */
-
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
@@ -535,7 +537,6 @@
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか?";
-"This action cannot be undone." = "この操作は取り消せません。";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "削除";
@@ -683,7 +684,6 @@
 
 
 /* MARK: Script */
-
 // No script target document errors
 "No document to get input." = "入力元となる書類が見つかりませんでした。";
 "No document to put output." = "結果を出力する書類が見つかりませんでした。";
@@ -721,14 +721,14 @@
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 
 
-/* String extension */
+
+/* MARK: String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@BOM付き";
 
 
 
 /* MARK: Migration Panel */
-
 "Important change on CotEditor 4.2.0" = "CotEditor 4.2.0での重要な変更";
 "From this version, CotEditor handles line endings more strictly." = "このバージョンからCotEditorは改行コードをより厳密に扱うようになりました。";
 "Due to this change, you may need manual migration for your settings below:" = "この変更により、以下の設定のユーザによる移行処理が必要になる可能性があります:";

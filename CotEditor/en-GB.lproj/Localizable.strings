@@ -1,29 +1,28 @@
-/*
- 
- Localizable.strings (English (UK))
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2022-01-30.
- 
- ------------------------------------------------------------------------------
- 
- © 2022 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Localizable.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2022-01-30.
+//  Localized by 1024jp
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 // Basic button titles
 "OK" = "OK";
@@ -32,7 +31,6 @@
 
 // Appending words in parentheses
 " (%@)" = " (%@)";
-
 
 
 // Accessibility labels
@@ -48,12 +46,15 @@
 "Use print font" = "Use print font";
 
 
-
 // Main menu item titles
 "Check for Updates…" = "Check for Updates…";
 "What’s New in CotEditor %@" = "What’s New in CotEditor %@";  // %@ is version number
 
 "Share" = "Share";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "This action cannot be undone.";
 
 
 
@@ -90,6 +91,7 @@
 "Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.
 
 
+
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match.";
 "Replace the current selection with the replacement text." = "Replace the current selection with the replacement text.";
@@ -99,11 +101,13 @@
 "%i replaced" = "%i replaced";  // %i is number of replaced
 
 
+
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "No strings found in “%@”.";
 "Found one string in “%@”." = "Found one string in “%@”.";
 "Found %i strings in “%@”." = "Found %i strings in “%@”.";
+
 
 
 /* MARK: Regular Expression Reference */
@@ -394,6 +398,7 @@
 "Found %i line endings other than %@." = "Found %i line endings other than %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
+
 /* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "Replace Text";
@@ -514,7 +519,6 @@
 
 
 /* MARK: Preferences */
-
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "The change will be applied first on the next launch.";
@@ -533,7 +537,6 @@
 "Reveal “%@” in Finder" = "Reveal “%@” in Finder";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "Are you sure you want to delete “%@” theme?";
-"This action cannot be undone." = "This action cannot be undone.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Delete";
@@ -681,7 +684,6 @@
 
 
 /* MARK: Script */
-
 // No script target document errors
 "No document to get input." = "No document to get input.";
 "No document to put output." = "No document to put output.";
@@ -719,13 +721,14 @@
 "The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";
 
 
-/* String extension */
+
+/* MARK: String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@ with BOM";
 
 
-/* MARK: Migration Panel */
 
+/* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "Important change on CotEditor 4.2.0";
 "From this version, CotEditor handles line endings more strictly." = "From this version, CotEditor handles line endings more strictly.";
 "Due to this change, you may need manual migration for your settings below:" = "Due to this change, you may need manual migration for your settings below:";

@@ -1,29 +1,28 @@
-/*
- 
- Localizable.strings (German)
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2015-08-19.
- 
- ------------------------------------------------------------------------------
- 
- © 2015-2022 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Localizable.strings (German)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-08-19.
+//  Localized by 1024jp
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2015-2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 // Basic buttons
 "OK" = "OK";
@@ -32,7 +31,6 @@
 
 // Appending words in parentheses
 " (%@)" = " (%@)";
-
 
 
 // Accessibility labels
@@ -48,12 +46,16 @@
 "Use print font" = "Schrift für drucken benutzen";
 
 
-
 // Main menu item titles
 "Check for Updates…" = "Nach Updates suchen …";
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
 "Share" = "Teilen";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
+
 
 
 /* MARK: AppDelegate */
@@ -89,6 +91,7 @@
 "Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
 
 
+
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
 "Replace the current selection with the replacement text." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen.";
@@ -98,11 +101,13 @@
 "%i replaced" = "%i ersetzt";  // %i is number of replaced
 
 
+
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
 "Found %i strings in “%@”." = "%i Zeichenketten „%@” in gefunden.";
+
 
 
 /* MARK: Regular Expression Reference */
@@ -221,7 +226,6 @@
 // menu item title
 "Recently Used" = "Zuletzt benutzt";
 "Deleted" = "Gelöscht";
-
 
 "Inspector" = "Infofenster";
 // tooltip
@@ -515,7 +519,6 @@
 
 
 /* MARK: Preferences */
-
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
@@ -534,7 +537,6 @@
 "Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "Möchtest du das Thema „%@“ wirklich löschen?";
-"This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Löschen";
@@ -617,7 +619,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "Möchtest du den Syntaxstil „%@“ wirklich löschen?";
-"This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 "Delete" = "Löschen";
 "Replace" = "Ersetzen";
 
@@ -683,7 +684,6 @@
 
 
 /* MARK: Script */
-
 // No script target document errors
 "No document to get input." = "Kein Dokument, die Eingabe zu erhalten.";
 "No document to put output." = "Kein Dokument, die Ausgabe zu setzen.";
@@ -722,13 +722,13 @@
 
 
 
-/* String extension */
+/* MARK: String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@ mit BOM";
 
 
-/* MARK: Migration Panel */
 
+/* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "Wichtige Änderung bei CotEditor 4.2.0";
 "From this version, CotEditor handles line endings more strictly." = "Ab dieser Version behandelt CotEditor Zeilenenden strikter.";
 "Due to this change, you may need manual migration for your settings below:" = "Aufgrund dieser Änderung musst du möglicherweise deine folgenden Einstellungen manuell migrieren:";
