@@ -729,11 +729,11 @@
 
 
 /* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "Important change on CotEditor 4.2.0";  // FIXME: added
-"From this version, CotEditor handles line endings more strictly." = "From this version, CotEditor handles line endings more strictly.";  // FIXME: added
-"Due to this change, you may need manual migration for your settings below:" = "Due to this change, you may need manual migration for your settings below:";  // FIXME: added
-"Multiple replacement definitions" = "Multiple replacement definitions";  // FIXME: added
-"Syntax styles" = "Syntax styles";  // FIXME: added
-"CotEditor scripts" = "CotEditor scripts";  // FIXME: added
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending.";  // FIXME: added
+"Important change on CotEditor 4.2.0" = "Changement important dans CotEditor 4.2.0";
+"From this version, CotEditor handles line endings more strictly." = "A partir de cette version, la façon dont CotEditor gère les fins de ligne devient plus stricte.";
+"Due to this change, you may need manual migration for your settings below:" = "De ce fait, il se peut que vous deviez migrer manuellement les réglages ci-dessous :";
+"Multiple replacement definitions" = "Liste de remplacements CotEditor";
+"Syntax styles" = "Styles de syntaxe";
+"CotEditor scripts" = "Scripts CotEditor";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "Dans les expressions régulières, `\\n` cible uniquement les fins de lignes qui sont effectivement de type LF. Utilisez `\\R` à la place pour cibler n'importe quel type de fin de ligne.";
 "Learn More…" = "En savoir plus…";
