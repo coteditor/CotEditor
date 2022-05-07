@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by Alex Newson on 2022-01-30.
+//  Localized by 1024jp
 //
 //  ------------------------------------------------------------------------------
 //
@@ -30,10 +31,6 @@
 
 
 
-
-
-
-
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Shortcuts for menu items";
 
@@ -56,7 +53,6 @@
 
 /* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
 "5zd-aF-0zL.title" = "The keys here must exclude the Command key.";
-
 
 
 

@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2018-02-27.
+//  Localized by 
 //
 //  ---------------------------------------------------------------------------
 //
@@ -31,4 +32,3 @@
 
 /* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "GmM-uR-pQ8"; */
 "GmM-uR-pQ8.placeholderString" = "Filtro";
-

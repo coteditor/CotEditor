@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by Alex Newson on 2022-01-30.
+//  Localized by 1024jp
 //
 //  ------------------------------------------------------------------------------
 //
@@ -25,7 +26,6 @@
 
 /* Class = "NSWindow"; title = "Preferences"; ObjectID = "KjF-xP-N55"; */
 "KjF-xP-N55.title" = "Preferences";
-
 
 /* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
 "CNJ-6L-fga.label" = "General";
