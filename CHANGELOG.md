@@ -2,12 +2,13 @@
 Change Log
 ==========================
 
-4.2.0-rc.3 (unreleased)
+4.2.0-rc.3 (498)
 --------------------------
 
 ### Improvements
 
 - [rc] Update the help contents.
+- [rc] Update localized strings.
 
 
 ### Fixes
