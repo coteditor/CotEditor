@@ -1,30 +1,28 @@
-/*
- 
- Localizable.strings (Simplified Chinese)
- 
- CotEditor
- https://coteditor.com
- 
- Created by onevcat on 2014-11-27.
- Localized by onevcat
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2022 CotEditor Project
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Localizable.strings (Simplified Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by onevcat on 2014-11-27.
+//  Localized by onevcat
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 // Basic buttons
 "OK" = "好";
@@ -33,7 +31,6 @@
 
 // Appending words in parentheses
 " (%@)" = " (%@)";
-
 
 
 // Accessibility labels
@@ -49,12 +46,16 @@
 "Use print font" = "使用打印字体";
 
 
-
 // Main menu item titles
 "Check for Updates…" = "检查更新…";
 "What’s New in CotEditor %@" = "CotEditor %@新特性";  // %@ is version number
 
 "Share" = "共享";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "此操作不能撤销。";
+
 
 
 /* MARK: AppDelegate */
@@ -90,6 +91,7 @@
 "Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
 
 
+
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
@@ -99,11 +101,13 @@
 "%i replaced" = "%i处被替换";  // %i is number of replaced
 
 
+
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在“%@”中没有找到字符串。";
 "Found one string in “%@”." = "在“%@”中找到一个字符串。";
 "Found %i strings in “%@”." = "%i 个字符串在“%@”中被找到。";
+
 
 
 /* MARK: Regular Expression Reference */
@@ -207,8 +211,8 @@
 "Review" = "检查";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
-"The file has been modified by another application." = "文件被其他应用更改。";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";
+"The file has been changed by another application." = "文件被其他应用更改。";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本还是更新至被编辑过的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";
@@ -515,7 +519,6 @@
 
 
 /* MARK: Preferences */
-
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "变更将在下次启动时生效。";
@@ -534,7 +537,6 @@
 "Reveal “%@” in Finder" = "在访达中显示“%@”";
 // Theme delete alert
 "Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
-"This action cannot be undone." = "此操作不能撤销。";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "删除";
@@ -617,7 +619,6 @@
 
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "确定删除语法样式“%@”？";
-"This action cannot be undone." = "此操作不能撤销。";
 "Delete" = "删除";
 "Replace" = "替换";
 
@@ -683,7 +684,6 @@
 
 
 /* MARK: Script */
-
 // No script target document errors
 "No document to get input." = "没有输入文档。";
 "No document to put output." = "没有输出文档。";
@@ -722,9 +722,10 @@
 
 
 
-/* String extension */
+/* MARK: String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@ with BOM";  // No need to be tranlated because "UTF-8 with BOM" is acceptable in zh-Hans.
+
 
 
 /* MARK: Migration Panel */

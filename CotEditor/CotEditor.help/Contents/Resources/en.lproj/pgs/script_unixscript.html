@@ -4,25 +4,33 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="Script Menu, script"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Create UNIX scripts</title>
+	<title>Script CotEditor with UNIX script</title>
 </head>
 
 <body>
-<h1>Create UNIX scripts</h1>
+
+<h1>Script CotEditor with UNIX script</h1>
 
 <p>This page explains how to pass your document’s text to UNIX scripts that are executable via the Script menu, or how to receive the outputs from them.</p>
 
 <ul>
-	<li>The filename extensions of the scripts you can add to the Script menu are: .sh .pl .php .rb .py .js .swift (regardless of their languages)</li>
+	<li>The filename extensions of the scripts you can add to the Script menu are: .sh, .pl, .php, .rb, .py, .js, and .swift (regardless of the language)</li>
 	<li>In order to run a script, you need to set execute permission for the script file.</li>
 </ul>
 
+
 <h2>Refer to the document file path</h2>
+
 <p>If the frontmost document has already been saved, the absolute file path of the document will be referred to as an argument.</p>
+
 
 <h2>Pass text data to a script</h2>
 
-<p>To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
+<p>A script can receive the contents of the frontmost document on STDIN (standard in). To pass text data from CotEditor to your script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>” inside. Replace “<code><var>xxxx</var></code>” with one of the parameters below. With no parameters, CotEditor passes nothing just like when you put “<coee>None</code>.”</p>
+
+<ul>
+	<li>CotEditor passes text data encoded with UTF-8.</li>
+</ul>
 
 <table>
 	<thead>
@@ -35,15 +43,14 @@
 	</tbody>
 </table>
 
-<ul style="margin-top: 1em;">
-	<li>With no parameters, CotEditor passes nothing just like when you put “None.”</li>
-	<li>A script should capture CotEditor’s text data on STDIN (standard in).</li>
-	<li>CotEditor passes text data with UTF-8 encoding.</li>
-</ul>
 
 <h2>Receive output data from a script</h2>
 
-<p>To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=xxxx}%%%</code>” inside. Replace “<code>xxxx</code>” with one of the parameters below.</p>
+<p>CotEditor can receive the output text from the script on STDOUT (standard out) and apply it to the document and so on. To make CotEditor receive output data from a script, you need to put a comment at the beginning of the script and write “<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>” inside. Replace <code><var>xxxx</var></code> with one of the parameters below. Without parameters, CotEditor does nothing just like when you put “<code>Discard</code>.”</p>
+
+<ul>
+	<li>The encoding of the text that CotEditor receives must be UTF-8.</li>
+</ul>
 
 <table>
 	<thead>
@@ -60,23 +67,33 @@
 	</tbody>
 </table>
 
-<ul>
-	<li>Without parameters, CotEditor does nothing just like when you put “Discard.”</li>
-	<li>A script should output the text data for CotEditor on STDOUT (standard out).</li>
-	<li>The text encoding of the text that CotEditor receives must be UTF-8.</li>
-</ul>
+
+<h2>Print text to the Console</h2>
+
+<p>The string thrown to the standard error will be printed in the Console window.</p>
+
 
 <h2>Example</h2>
-<p>The following Python script prepends “&gt;” character to every line in the selection of the frontmost document.</p>
 
-<pre class="source"><code><span class="comment">#!/usr/bin/env python
+<p>The following Python script prepends the “&gt;” character to every line in the selection of the frontmost document, and then prints the number of the processed lines to the Console.</p>
+
+<pre class="source"><code><span class="comment">#!/usr/bin/env python3
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%</span>
 
 <span class="keyword">import</span> sys
+
+count = 0
 <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
+    count += 1
     print(<span class="string">&quot;&gt;&quot;</span> + line.rstrip())
+sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.format(count))
 </code></pre>
+
+<figure>
+	<figcaption>Output to the Console</figcaption>
+	<img src="../gfx/console@2x.png" width="406" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 5 lines."/>
+</figure>
 
 <p>You can get more sample scripts on:<br/>
 <a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>

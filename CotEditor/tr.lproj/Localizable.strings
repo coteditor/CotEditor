@@ -33,7 +33,6 @@
 " (%@)" = " (%@)";
 
 
-
 // Accessibility labels
 "inspector" = "denetçi";
 "outline" = "ana hat";
@@ -47,12 +46,15 @@
 "Use print font" = "Baskı fontunu kullan";
 
 
-
 // Main menu item titles
 "Check for Updates…" = "Güncellemeleri Denetle…";
 "What’s New in CotEditor %@" = "CotEditor %@ Sürümündeki Yenilikler";  // %@ is version number
 
 "Share" = "Paylaş";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "Bu eylem geri alınamaz.";
 
 
 
@@ -89,6 +91,7 @@
 "Search wrapped." = "Arama baştan sürüyor";  // announced when the search restarted from the beginning.
 
 
+
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
@@ -98,11 +101,13 @@
 "%i replaced" = "%i değiştirildi";  // %i is number of replaced
 
 
+
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
 "Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
 "Found %i strings in “%@”." = "%2$@ içinde %1$i dizi bulundu.";
+
 
 
 /* MARK: Regular Expression Reference */
@@ -206,8 +211,8 @@
 "Review" = "Gözden Geçir";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";
-"The file has been modified by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";
+"The file has been changed by another application." = "Dosya başka bir uygulama tarafından değiştirilmiş.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
@@ -393,6 +398,7 @@
 "Found %i line endings other than %@." = "%@ dışında %i başka satır sonu bulundu.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
+
 /* MARK: EditorTextView */
 // Undo action names
 "Replace Text" = "Metin Değiştir";
@@ -513,7 +519,6 @@
 
 
 /* MARK: Preferences */
-
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
@@ -532,7 +537,6 @@
 "Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "“%@” temasını silmek istediğinize emin misiniz?";
-"This action cannot be undone." = "Bu eylem geri alınamaz.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Sil";
@@ -680,7 +684,6 @@
 
 
 /* MARK: Script */
-
 // No script target document errors
 "No document to get input." = "Girdi alınacak bir belge yok.";
 "No document to put output." = "Çıktı koyulacak bir belge yok.";
@@ -718,13 +721,14 @@
 "The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu";
 
 
-/* String extension */
+
+/* MARK: String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "BOM ile %@";
 
 
-/* MARK: Migration Panel */
 
+/* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 sürümündeki önemli değişiklikler";
 "From this version, CotEditor handles line endings more strictly." = "Bu sürümden itibaren; CotEditor, satır sonlarını daha doğru bir biçimde işler.";
 "Due to this change, you may need manual migration for your settings below:" = "Bu değişiklikten dolayı, aşağıdaki ayarları el ile düzeltmeniz gerekebilir:";

@@ -2,12 +2,28 @@
 Change Log
 ==========================
 
+4.2.0-rc.3 (498)
+--------------------------
+
+### Improvements
+
+- [rc] Update the help contents.
+- [rc] Update localized strings.
+
+
+### Fixes
+
+- Fix an issue that the changes of syntax styles after the launch were not applied to the file mapping.
+- [rc] Fix an issue that some UI states were not restored from the last session.
+
+
+
 4.2.0-rc.2 (496)
 --------------------------
 
 ### Fixes
 
-- [rc] Fix an issue the migration panel could not read in the Dark Mode.
+- [rc] Fix an issue the migration panel could not be read in the Dark Mode.
 
 
 

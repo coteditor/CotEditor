@@ -4,24 +4,36 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="Go to, menu"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Go to a specific line</title>
+	<title>Go to a specific line in CotEditor</title>
 </head>
 
 <body>
 <a name="howto_jump"></a>
 
+<h1>Go to a specific line in CotEditor</h1>
 
-<h1>Go to a specific line</h1>
+<p>The “Go to Line” command allows you to select and move to a specific line quickly.</p>
 
-<p>When you choose Go to Line in the Find menu, or press Command-L, CotEditor displays the Go To dialog to give you quick access to the line(s) you want to see.</p>
-<p>In the dialog, enter the line number, and click Go.</p>
+<figure>
+	<img src="../gfx/jumpToLine@2x.png" width="300" class="bordered" alt="Go to Line dialog"/>
+</figure>
+
+
+<ol>
+	<li>Choose Go to Line in the Find menu</li>
+	<li>Enter the line number where to jump to the dialog.</li>
+	<li>Click Go, or press </kbd>Return</kbd>.</li>
+</ol>
+
+
+<p>You can also specify a range of lines.</p>
 <ul>
 	<li><dl><dt>If you type in “3”:</dt>
-	<dd>→ The line 3 (the third line from the top) will be selected.</dd></dl></li>
+	<dd>→ Line 3 (the third line from the top) will be selected.</dd></dl></li>
 	<li><dl><dt>If you type in “3:2”:</dt>
-	<dd>→ What this indicates is “starting from line 3, select 2 lines.” Thus, the line 3 and 4 will be selected.</dd></dl></li>
+	<dd>→ What this indicates is “starting from line 3, select 2 lines.” Thus, lines 3 and 4 will be selected.</dd></dl></li>
 	<li><dl><dt>If you type in “3:-1”:</dt>
-	<dd>→ What this indicates is “starting from line 3, select the rest lines except the last 1 line.” Thus, if the document has 10 lines, the lines from the line 3 to 9 will be selected.</dd></dl></li>
+	<dd>→ What this indicates is “starting from line 3, select the rest lines except the last 1 line.” Thus, if the document has 10 lines, the lines from line 3 to 9 will be selected.</dd></dl></li>
 </ul>
 
 </body>

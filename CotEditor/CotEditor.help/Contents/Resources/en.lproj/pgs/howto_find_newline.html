@@ -4,12 +4,12 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="search, replace, line ending, newline, line break"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Find or replace a line ending</title>
+	<title>Find or replace a line ending in CotEditor</title>
 </head>
 
 <body>
 
-<h1>Find or replace a line ending</h1>
+<h1>Find or replace a line ending in CotEditor</h1>
 
 <h2>Input a line ending</h2>
 
@@ -46,7 +46,7 @@
 
 <p>As for the text replacing with, all line endings even ones defined as a metacharacter like<code>\n</code> or captured are assumed as the document line ending.</p>
 
-<p>For instance, when replacing the find string “dog\Rcow” with the replacement string “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the substring “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
+<p>For example, when replacing the find string “dog\Rcow” with the replacement string “$0\r” using the regular expression in a document whose line ending type is LF (<code>\n</code>), the substring “dog<span class="invisible">\r\n</span>cow” in the document matches as well, and theoretically, the regular expression should replace it with “dog<span class="invisible">\r\n</span>cow<span class="invisible">\r</span>”; however CotEditor actually replaces it with “dog<span class="invisible">\n</span>cow<span class="invisible">\n</span>”.</p>
 
 <p>There is currently no way to replace with line endings other than the document line ending.</p>
 

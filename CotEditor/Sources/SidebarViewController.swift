@@ -88,15 +88,6 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: Tab View Controller Methods
     
-    /// keys to be restored from the last session
-    override class var restorableStateKeyPaths: [String] {
-        
-        super.restorableStateKeyPaths + [
-            #keyPath(selectedTabViewItemIndex),
-        ]
-    }
-    
-    
     /// deliver passed-in document instance to child view controllers
     override var representedObject: Any? {
         
@@ -117,6 +108,28 @@ final class SidebarViewController: NSTabViewController {
                 UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
                 self.invalidateRestorableState()
             }
+            
+            self.invalidateRestorableState()
+        }
+    }
+    
+    
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+        
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        coder.encode(self.selectedTabViewItemIndex, forKey: #keyPath(selectedTabViewItemIndex))
+    }
+    
+    
+    /// restore UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if coder.containsValue(forKey: #keyPath(selectedTabViewItemIndex)) {
+            self.selectedTabViewItemIndex = coder.decodeInteger(forKey: #keyPath(selectedTabViewItemIndex))
         }
     }
     

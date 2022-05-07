@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2020 1024jp
+ © 2015-2022 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -50,8 +50,8 @@
 "sOa-Ea-zt9.title" = "Eine Systemfunktion, die deine Dateien während der Bearbeitung automatisch überschreibt. Selbst wenn nicht aktiviert, erstellt CotEditor verdeckt Backups für unerwartete Beenden.";
 
 
-/* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "Wenn Dokument durch ein anderes Programm geändert wird:";
+/* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
+"x4n-2n-I3p.title" = "Wenn Dokument von einem anderen Programm geändert wird:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
 "sBH-MX-cTd.title" = "CotEditors Version behalten";

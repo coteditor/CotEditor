@@ -1,29 +1,28 @@
-/*
- 
- Localizable.strings (French)
- 
- CotEditor
- https://coteditor.com
- 
- Created by Aurélien Roy on 2019-04-26.
- Localized by Aurélien Roy
- ------------------------------------------------------------------------------
- 
- © 2019-2022 CotEditor Project
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Localizable.strings (French)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by Aurélien Roy on 2019-04-26.
+//  Localized by Aurélien Roy
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2019-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 // Basic button titles
 "OK" = "OK";
@@ -32,7 +31,6 @@
 
 // Appending words in parentheses
 " (%@)" = " (%@)";
-
 
 
 // Accessibility labels
@@ -48,12 +46,12 @@
 "Use print font" = "Utiliser une police pour l’impression";
 
 
-
 // Main menu item titles
 "Check for Updates…" = "Vérifier les mises à jour…";
 "What’s New in CotEditor %@" = "Nouveautés de CotEditor %@";  // %@ is version number
 
 "Share" = "Partager";
+
 
 
 /* MARK: AppDelegate */
@@ -66,6 +64,10 @@
 
 // Window title of issue report
 "Issue Report" = "Signaler un problème";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "Cette action est irréversible.";
 
 
 
@@ -84,8 +86,10 @@
 "The option “in selection” is enabled, although nothing is selected." = "L’option « Dans la sélection » est activée mais il n’y a aucune sélection.";
 "Input text to find." = "Texte à rechercher";
 "Select the search scope in the document or turn off the “in selection” option." = "Sélectionnez le périmètre de recherche dans le document ou désactivez l’option « dans la sélection ».";
+
 // accessibility announcement
 "Search wrapped." = "Retour au début.";  // announced when the search restarted from the beginning.
+
 
 
 /* MARK: FindPanelController */
@@ -97,11 +101,13 @@
 "%i replaced" = "%i remplacé(s)";  // %i is number of replaced
 
 
+
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Aucune chaîne trouvée dans « %@ ».";
 "Found one string in “%@”." = "Une chaîne trouvée dans « %@ ».";
 "Found %i strings in “%@”." = "%i chaînes trouvées dans « %@ ».";
+
 
 
 /* MARK: Regular Expression Reference */
@@ -205,8 +211,8 @@
 "Review" = "Passer en revue";  // this button displays the inconsistent line endings list in the Warnings pane
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
-"The file has been modified by another application." = "Le fichier a été modifié par une autre application.";
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
+"The file has been changed by another application." = "Le fichier a été modifié par une autre application.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?";
 "Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
 "Update" = "Rafraîchir";
@@ -220,7 +226,6 @@
 // item in the menu
 "Recently Used" = "Récemment utilisés";
 "Deleted" = "Supprimés";  // heading for deleted items
-
 
 "Inspector" = "Inspecteur";
 // tooltip
@@ -387,7 +392,6 @@
 "Scanning incompatible characters…" = "Recherche de caractères incompatibles …";
 "Found an incompatible character." = "Caractère incompatible trouvé.";
 "Found %i incompatible characters." = "%i caractères incompatibles trouvés.";  // %i is the number of characters
-// Inconsistent line endings
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Fin de ligne autre que %@ trouvée.";  // %@ is a line ending type, such as LF
@@ -515,7 +519,6 @@
 
 
 /* MARK: Preferences */
-
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Le changement sera appliqué au prochain lancement.";
@@ -534,7 +537,6 @@
 "Reveal “%@” in Finder" = "Afficher « %@ » dans le Finder";
 // Theme deletion alert
 "Are you sure you want to delete “%@” theme?" = "Êtes-vous sûr de vouloir supprimer le thème « %@ » ?";
-"This action cannot be undone." = "Cette action est irréversible.";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Supprimer";
@@ -682,7 +684,6 @@
 
 
 /* MARK: Script */
-
 // No script target document errors
 "No document to get input." = "Aucun document d’entrée.";
 "No document to put output." = "Aucun document de sortie.";
@@ -714,23 +715,25 @@
 "(If the dropped file is a text file) file content." = "Contenu du fichier (si le fichier déposé est un fichier texte)";
 
 
+
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "La position du curseur après l’insertion du snippet.";
 
 
-/* String extension */
+
+/* MARK: String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
 "%@ with BOM" = "%@ avec BOM";
 
 
-/* MARK: Migration Panel */
 
-"Important change on CotEditor 4.2.0" = "Important change on CotEditor 4.2.0";  // FIXME: added
-"From this version, CotEditor handles line endings more strictly." = "From this version, CotEditor handles line endings more strictly.";  // FIXME: added
-"Due to this change, you may need manual migration for your settings below:" = "Due to this change, you may need manual migration for your settings below:";  // FIXME: added
-"Multiple replacement definitions" = "Multiple replacement definitions";  // FIXME: added
-"Syntax styles" = "Syntax styles";  // FIXME: added
-"CotEditor scripts" = "CotEditor scripts";  // FIXME: added
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending.";  // FIXME: added
+/* MARK: Migration Panel */
+"Important change on CotEditor 4.2.0" = "Changement important dans CotEditor 4.2.0";
+"From this version, CotEditor handles line endings more strictly." = "A partir de cette version, la façon dont CotEditor gère les fins de ligne devient plus stricte.";
+"Due to this change, you may need manual migration for your settings below:" = "De ce fait, il se peut que vous deviez migrer manuellement les réglages ci-dessous :";
+"Multiple replacement definitions" = "Liste de remplacements CotEditor";
+"Syntax styles" = "Styles de syntaxe";
+"CotEditor scripts" = "Scripts CotEditor";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "Dans les expressions régulières, `\\n` cible uniquement les fins de lignes qui sont effectivement de type LF. Utilisez `\\R` à la place pour cibler n'importe quel type de fin de ligne.";
 "Learn More…" = "En savoir plus…";

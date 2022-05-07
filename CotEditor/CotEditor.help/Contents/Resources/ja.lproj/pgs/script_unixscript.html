@@ -4,25 +4,33 @@
 	<meta charset="UTF-8"/>
 	<meta name="keywords" content="スクリプトメニュー,スクリプト"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>UNIXスクリプトを作成する</title>
+	<title>CotEditorをUNIXスクリプトでスクリプティングする</title>
 </head>
 
 <body>
-<h1>UNIXスクリプトを作成する</h1>
+
+<h1>CotEditorをUNIXスクリプトでスクリプティングする</h1>
 
 <p>このページではスクリプトメニューから実行するUNIXスクリプトにCotEditorで編集中の書類の情報やテキストを渡したり、スクリプトの実行結果を書類に反映する方法を説明します。</p>
 
 <ul>
-	<li>スクリプトメニューに登録できるスクリプトの拡張子は.sh .pl .php .rb .py .js .swiftです（言語は関係ありません）。</li>
+	<li>スクリプトメニューに登録できるスクリプトの拡張子は.sh、.pl、.php、.rb、.py、.js、.swiftです（言語は関係ありません）。</li>
 	<li>スクリプトには実行権限がなければなりません。</li>
 </ul>
 
+
 <h2>ファイルパスの受け取り</h2>
+
 <p>最前面の書類が保存済みの場合は、その書類の絶対ファイルパスが引数 (argv) としてスクリプトに渡されます。</p>
+
 
 <h2>スクリプトにテキストを渡す</h2>
 
-<p>スクリプトにCotEditorからデータを渡すには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXInput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け渡すデータを指定します。</p>
+<p>最前面の書類の内容を標準入力としてスクリプトに渡すことができます。スクリプトにCotEditorからデータを渡すには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXInput=<var>xxxx</var>}%%%</code>」を埋め込みます。「<code><var>xxxx</var></code>」で、受け渡すデータを指定します。このコメントを記述しなかった場合は「<code>None</code>」と同等の処理となり何もスクリプトに渡されません。</p>
+
+<ul>
+	<li>スクリプトに渡されるテキストのテキストエンコーディングはUTF-8です。</li>
+</ul>
 
 <table>
 	<thead>
@@ -35,15 +43,14 @@
 	</tbody>
 </table>
 
-<ul style="margin-top: 1em;">
-	<li>コメントを記述しなかった場合、「None」となります。</li>
-	<li>CotEditorからのテキストは標準入力に渡されます。</li>
-	<li>スクリプトに渡されるテキストのテキストエンコーディングはUTF-8です。</li>
-</ul>
 
 <h2>スクリプトの出力を受け取る</h2>
 
-<p>CotEditorでスクリプトの出力を受け取るには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXOutput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け取ったあとの処理を指定します。</p>
+<p>スクリプトから標準出力に送ったテキストはCotEditorで受け取り書類などに反映することができます。CotEditorでスクリプトの出力を受け取るには、スクリプトの冒頭にコメントとして固定文字列「<code>%%%{CotEditorXOutput=<var>xxxx</var>}%%%</code>」を埋め込み、「<code><var>xxxx</var></code>」で受け取ったあとの処理を指定します。このコメントを記述しなかった場合は「<code>Discard</code>」と同等の処理となり出力は無視されます。</p>
+
+<ul>
+	<li>CotEditorに返すテキストのテキストエンコーディングはUTF-8でなければなりません。</li>
+</ul>
 
 <table>
 	<thead>
@@ -60,23 +67,33 @@
 	</tbody>
 </table>
 
-<ul>
-	<li>コメントを記述しなかった場合、「Discard」となります。</li>
-	<li>CotEditorに渡すテキストは、標準出力としてください。</li>
-	<li>CotEditorに返すテキストのテキストエンコーディングはUTF-8でなければなりません。</li>
-</ul>
+
+<h2>コンソールにテキストを表示する</h2>
+
+<p>標準エラー出力に投げられたテキストはコンソールウインドウに出力されます。</p>
+
 
 <h2>例</h2>
-<p>以下のPythonスクリプトは最前面書類の選択範囲内のすべての行の行頭に「&gt;」を追加します。</p>
 
-<pre class="source"><code><span class="comment">#!/usr/bin/env python
+<p>以下のPythonスクリプトは最前面書類の選択範囲内のすべての行の行頭に「&gt;」を追加し、さらに処理した行数をコンソールに表示します。</p>
+
+<pre class="source"><code><span class="comment">#!/usr/bin/env python3
 # %%%{CotEditorXInput=Selection}%%%
 # %%%{CotEditorXOutput=ReplaceSelection}%%%</span>
 
 <span class="keyword">import</span> sys
+
+count = 0
 <span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
+    count += 1
     print(<span class="string">&quot;&gt;&quot;</span> + line.rstrip())
+sys.stderr.write(<span class="string">&quot;Processed {} lines.&quot;</span>.format(count))
 </code></pre>
+
+<figure>
+	<figcaption>コンソールへの出力結果</figcaption>
+	<img src="../gfx/console@2x.png" width="406" alt="[2022-05-06 18:35:00] Example Code&#x0A;Processed 3 lines."/>
+</figure>
 
 <p>ほかにも、以下のサイトから様々なサンプルスクリプトを入手することができます:<br/>
 <a href="https://github.com/coteditor/SampleScripts" rel="external">coteditor/SampleScripts -GitHub</a></p>

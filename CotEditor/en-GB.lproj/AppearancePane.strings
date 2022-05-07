@@ -151,8 +151,8 @@
 /* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "hbk-iX-4VK"; */
 "hbk-iX-4VK.title" = "Characters:";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
-"8zj-4c-Hg4.ibShadowedToolTip" = "Show theme file info";
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file information"; ObjectID = "8zj-4c-Hg4"; */
+"8zj-4c-Hg4.ibShadowedToolTip" = "Show theme file information";
 
 
 

@@ -1018,7 +1018,7 @@
                                     <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.usesSystemSetting" id="dXs-Zl-kBI"/>
                                 </connections>
                             </button>
-                            <button toolTip="Show theme file info" translatesAutoresizingMaskIntoConstraints="NO" id="8zj-4c-Hg4">
+                            <button toolTip="Show theme file information" translatesAutoresizingMaskIntoConstraints="NO" id="8zj-4c-Hg4">
                                 <rect key="frame" x="315" y="3" width="15" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="HuK-AR-s3B"/>
