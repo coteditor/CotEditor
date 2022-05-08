@@ -2,6 +2,13 @@
 Change Log
 ==========================
 
+4.2.0 (unreleased)
+--------------------------
+
+- [rc.3][trivial] Tweak Japanese localization.
+
+
+
 4.2.0-rc.3 (498)
 --------------------------
 

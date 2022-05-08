@@ -36,7 +36,7 @@
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
 "i4c-DG-ADS.title" = "新規書類を作成";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
-"hIX-mh-cG4.title" = "「開く」ダイアログを表示";
+"hIX-mh-cG4.title" = "”開く”ダイアログを表示";
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
 "KgD-GV-alV.title" = "何もしない";
 
