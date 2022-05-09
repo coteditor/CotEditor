@@ -1,35 +1,33 @@
-/*
- 
- KeyBindingsPane.strings (Japanese)
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2014-11-04.
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2022 CotEditor Project
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  KeyBindingsPane.strings (Japanese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-11-04.
+//  Localized by 1024jp
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 /* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
 "sBQ-LT-Rwm.title" = "メニュー項目";
 /* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
 "9kQ-W2-4kw.title" = "スニペット";
-
 
 
 
@@ -52,7 +50,6 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
 "CyK-OL-qHa.title" = "デフォルトに戻す";
-
 
 
 

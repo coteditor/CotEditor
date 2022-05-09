@@ -31,9 +31,6 @@
 
 
 
-
-
-
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Menü ögeleri kestirmeleri";
 
@@ -53,7 +50,6 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
 "CyK-OL-qHa.title" = "Saptanmışlara Dön";
-
 
 
 

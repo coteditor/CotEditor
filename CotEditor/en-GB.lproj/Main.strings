@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by Alex Newson on 2022-01-30.
+//  Localized by 1024jp
 //
 //  ------------------------------------------------------------------------------
 //
@@ -518,6 +519,7 @@
 "HgR-ke-6gq.title" = "Find All";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
 "ULf-cT-Xvb.title" = "Select All Find Matches";
+
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Use Selection for Find";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
