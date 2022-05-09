@@ -5,6 +5,10 @@ Change Log
 4.2.1 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix the help content style in Dark Mode.
+
 
 
 4.2.0 (502)
