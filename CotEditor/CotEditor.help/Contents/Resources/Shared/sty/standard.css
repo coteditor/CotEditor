@@ -197,6 +197,14 @@ p.addition::after {
 p.addition > span:first-child {
 	color: hsl(201, 25%, 55%);
 }
+@media (prefers-color-scheme: dark) {
+	p.addition {
+		background: hsl(213, 30%, 20%);
+	}
+	p.addition::after {
+		border-bottom-color: hsl(213, 30%, 20%);
+	}
+}
 
 em, strong {
 	font-weight: 600;
