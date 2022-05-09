@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue some snippet setting could not be inserted in a specific condition.
 - Fix the help content style in Dark Mode.
 
 

@@ -126,7 +126,7 @@ extension String {
         let lineRange = (self as NSString).lineRange(at: location)
         let range = (self as NSString).range(of: "^[ \\t]++", options: .regularExpression, range: lineRange)
         
-        guard range.location != NSNotFound else { return .notFound }
+        guard range.location != NSNotFound else { return nil }
         
         return range
     }
