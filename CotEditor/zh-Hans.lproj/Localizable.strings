@@ -735,5 +735,5 @@
 "Multiple replacement definitions" = "多次替换的定义";
 "Syntax styles" = "语法风格";
 "CotEditor scripts" = "CotEditor 脚本";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` 仅在行尾确实是 LF 时进行匹配。如需匹配任意行尾，请使用 \\R`。";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` 仅在行尾确实是 LF 时进行匹配。如需匹配任意行尾，请使用 `\\R`。";
 "Learn More…" = "了解更多…";

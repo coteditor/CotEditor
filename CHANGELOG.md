@@ -9,6 +9,7 @@ Change Log
 
 - Fix an issue some snippet setting could not be inserted in a specific condition.
 - Fix the help content style in Dark Mode.
+- Fix the description of “Important change in CotEditor 4.2.0” in the Simplified Chinese localization.
 
 
 
