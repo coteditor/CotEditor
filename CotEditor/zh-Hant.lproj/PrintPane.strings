@@ -1,0 +1,156 @@
+//
+//  PrintPane.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-12-12.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
+"C9y-bs-mE1.title" = "字型：";
+/* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
+"PfG-m4-gpq.title" = "與文件字型一致";
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
+"3385.title" = "選擇…";
+
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
+"3388.title" = "顏色：";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
+"1353.title" = "黑白";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
+"1354.title" = "與文件設定一致";
+/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+"P53-bb-aGF.title" = "列印背景";
+
+
+/* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
+"3380.title" = "行號：";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
+"946.title" = "不列印";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
+"947.title" = "與文件設定一致";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
+"948.title" = "列印";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
+"3382.title" = "不可見字元：";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
+"952.title" = "不列印";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
+"953.title" = "與文件設定一致";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
+"954.title" = "列印";
+
+
+
+/* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
+"3368.title" = "列印頁首";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
+"3369.title" = "主：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
+"895.title" = "無";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
+"uuc-7D-Iot.title" = "文法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
+"896.title" = "檔案名稱";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
+"897.title" = "檔案路徑";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
+"898.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
+"893.title" = "頁碼";
+
+/* Class = "NSSegmentedCell"; ObjectID = "90p-SJ-bXq"; */
+"90p-SJ-bXq.ibShadowedToolTips[0]" = "左對齊";  /* Align Left */
+"90p-SJ-bXq.ibShadowedToolTips[1]" = "居中";  /* Center */
+"90p-SJ-bXq.ibShadowedToolTips[2]" = "右對齊";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
+"3373.title" = "次：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
+"906.title" = "無";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
+"plk-U5-NGA.title" = "文法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
+"902.title" = "檔案名稱";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
+"903.title" = "檔案路徑";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
+"904.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
+"905.title" = "頁碼";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Jap-f3-ehL"; */
+"Jap-f3-ehL.ibShadowedToolTips[0]" = "左對齊";  /* Align Left */
+"Jap-f3-ehL.ibShadowedToolTips[1]" = "居中";  /* Center */
+"Jap-f3-ehL.ibShadowedToolTips[2]" = "右對齊";  /* Align Right */
+
+
+
+/* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
+"3375.title" = "列印頁尾";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
+"3379.title" = "主：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
+"941.title" = "無";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
+"Mvg-wT-FTM.title" = "文法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
+"937.title" = "檔案名稱";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
+"938.title" = "檔案路徑";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
+"939.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
+"940.title" = "頁碼";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Zgh-yF-xd2"; */
+"Zgh-yF-xd2.ibShadowedToolTips[0]" = "左對齊";  /* Align Left */
+"Zgh-yF-xd2.ibShadowedToolTips[1]" = "居中";  /* Center */
+"Zgh-yF-xd2.ibShadowedToolTips[2]" = "右對齊";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3377"; */
+"3377.title" = "次：";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
+"927.title" = "無";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
+"ckJ-Cw-ccE.title" = "文法名";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
+"929.title" = "檔案名稱";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
+"930.title" = "檔案路徑";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
+"931.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
+"932.title" = "頁碼";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Pjk-d8-E4v"; */
+"Pjk-d8-E4v.ibShadowedToolTips[0]" = "左對齊";  /* Align Left */
+"Pjk-d8-E4v.ibShadowedToolTips[1]" = "居中";  /* Center */
+"Pjk-d8-E4v.ibShadowedToolTips[2]" = "右對齊";  /* Align Right */
