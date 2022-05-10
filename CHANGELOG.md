@@ -7,8 +7,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that restoring documents on macOS 11.x made the application unstable.
-- Fix an issue that some snippet setting could not be inserted in a specific condition.
+- Fix an issue on CotEditor 4.2.0 that restoring documents on macOS 11.x made the application unstable.
+- Fix an issue on CotEditor 4.2.0 that some snippet settings could not be inserted in a specific condition.
 - Fix the help content style in Dark Mode.
 - Fix the description of “Important change in CotEditor 4.2.0” in the Simplified Chinese localization.
 
