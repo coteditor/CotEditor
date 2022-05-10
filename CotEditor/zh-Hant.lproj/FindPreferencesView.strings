@@ -25,13 +25,13 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "Dl6-kv-hhz"; */
-"Dl6-kv-hhz.title" = "高階查詢選項";
+"Dl6-kv-hhz.title" = "進階檢索選項";
 
 
 /* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
-"o7S-uI-urg.title" = "折行查詢";
+"o7S-uI-urg.title" = "折行檢索";
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
-"XBp-LE-3Ry.title" = "替換後選擇下一個匹配";
+"XBp-LE-3Ry.title" = "取代後選擇下一個匹配";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
 "KBq-zH-H2M.title" = "自動關閉進度表";
 
@@ -39,33 +39,33 @@
 // Textual Search
 
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
-"d1L-6X-N8c.title" = "文字查詢";
+"d1L-6X-N8c.title" = "文字檢索";
 
 /* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "Na3-Ur-cf8"; */
 "Na3-Ur-cf8.title" = "僅全字匹配";
 /* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "eqE-mg-d9b"; */
-"eqE-mg-d9b.ibShadowedToolTip" = "將查詢結果限定於全字。";
+"eqE-mg-d9b.ibShadowedToolTip" = "將檢索結果限定於全字。";
 
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
 "mY4-am-wla.title" = "嚴格區分字元";
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */
-"KG4-LQ-sen.ibShadowedToolTip" = "逐字元相等查詢";
+"KG4-LQ-sen.ibShadowedToolTip" = "逐字元相等檢索";
 
 /* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "忽略變音符號";
 /* Class = "NSButton"; ibShadowedToolTip = "Search Ignore diacritical marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
-"YYY-qb-T00.ibShadowedToolTip" = "忽略變音符號進行查詢 (例如ö = o)。";
+"YYY-qb-T00.ibShadowedToolTip" = "忽略變音符號進行檢索 (例如ö = o)。";
 
 /* Class = "NSButtonCell"; title = "Ignores width differences"; ObjectID = "Jug-Dk-JMZ"; */
 "Jug-Dk-JMZ.title" = "忽略字元寬度";
 /* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
-"A5O-jt-o7T.ibShadowedToolTip" = "忽略字元形式的寬度進行查詢 (例如ａ = a)。";
+"A5O-jt-o7T.ibShadowedToolTip" = "忽略字元形式的寬度進行檢索 (例如ａ = a)。";
 
 
 // Regular Expression
 
 /* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "Xa9-i4-ELR"; */
-"Xa9-i4-ELR.title" = "正規表示式查詢";
+"Xa9-i4-ELR.title" = "正規表示式檢索";
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "使點匹配換行";
@@ -83,6 +83,6 @@
 "VMh-Tq-bq0.ibShadowedToolTip" = "使用Unicode TR#29指定字詞邊界";
 
 /* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
-"rTR-zE-Wff.title" = "解碼替換字串";
+"rTR-zE-Wff.title" = "解碼取代字串";
 /* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
-"PLV-vr-cdI.ibShadowedToolTip" = "使用反斜槓元字元解碼替換字串";
+"PLV-vr-cdI.ibShadowedToolTip" = "使用反斜槓元字元解碼取代字串";

@@ -42,7 +42,7 @@
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "編輯列表…";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
-"3280.title" = "參考檔案中的編碼宣告";
+"3280.title" = "參考文件中的編碼宣告";
 
 
 
@@ -58,7 +58,7 @@
 "vlw-Tc-sLl.title" = "可用的文法樣式：";
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
-"cbJ-XK-bnG.ibShadowedToolTip" = "該樣式已被自定義。";
+"cbJ-XK-bnG.ibShadowedToolTip" = "該樣式已被自訂。";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
 "dI1-Dk-Mce.ibShadowedToolTip" = "移除選中的樣式";
