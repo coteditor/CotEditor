@@ -1,0 +1,99 @@
+//
+//  WindowPane.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-12-12.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
+"8zu-3V-Obg.title" = "偏好標籤：";
+
+/* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
+"Guj-Kc-zf2.title" = "使用系統設定";
+/* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
+"o1f-vR-aFm.title" = "永不";  // The same as the popup menu selection in System Preferences > General
+/* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
+"10Z-Xd-CLV.title" = "自動";
+/* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
+"OJs-2q-bg5.title" = "總是";  // The same as the popup menu selection in System Preferences > General
+
+
+/* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
+"iw9-Ba-eD2.title" = "顯示：";
+/* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
+"A9U-Sx-or3.title" = "行號";
+/* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
+"3352.title" = "列位置頁面指示：";
+
+/* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
+"RwN-73-I8c.title" = "書寫方向:";
+/* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
+"3Kb-bF-CW0.title" = "從左到右";
+/* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
+"USo-8p-Edc.title" = "從右到左";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
+"Ge8-vU-lyg.title" = "豎直";
+
+/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
+"7Nz-lv-JZb.title" = "額外滾動：";
+
+
+/* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
+"kjP-FS-fyd.title" = "狀態列顯示：";
+/* Class = "NSButtonCell"; title = "Line count"; ObjectID = "6jK-xX-8AH"; */
+"6jK-xX-8AH.title" = "行數";
+/* Class = "NSButtonCell"; title = "Character count"; ObjectID = "sHZ-kO-Wvu"; */
+"sHZ-kO-Wvu.title" = "字元數";
+/* Class = "NSButtonCell"; title = "Word count"; ObjectID = "hRw-gK-ONt"; */
+"hRw-gK-ONt.title" = "字數";
+/* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */
+"ctl-Ps-V8Z.title" = "位置";
+/* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
+"JbR-gR-aiA.title" = "當前行";
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
+"SR0-Bx-Nh6.title" = "當前列";
+/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
+"ikB-dS-c4S.title" = "檔案尺寸";
+
+
+/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "視窗寬度：";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
+"u8r-OW-Z1O.title" = "px";
+/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "高度：";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
+"VCx-PO-Fnr.title" = "px";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "hye-gP-iep"; */
+"hye-gP-iep.ibShadowedIsNilPlaceholder" = "自動";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Auto"; ObjectID = "UXj-fO-Vee"; */
+"UXj-fO-Vee.ibShadowedIsNilPlaceholder" = "自動";
+
+/* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
+"dug-hV-7hj.title" = "分隔編輯器：";
+/* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
+"Bj6-2A-Nxj.title" = "水平";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
+"sQC-O4-YON.title" = "垂直";
+
+/* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
+"gSx-LA-TPc.title" = "編輯器透明度：";

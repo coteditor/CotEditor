@@ -1,0 +1,45 @@
+//
+//  PreferencesWindow.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-12-12.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2020 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "KjF-xP-N55"; */
+"KjF-xP-N55.title" = "偏好設定";
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
+"CNJ-6L-fga.label" = "通用";
+/* Class = "NSTabViewItem"; label = "Window"; ObjectID = "5fL-58-BrZ"; */
+"5fL-58-BrZ.label" = "視窗";
+/* Class = "NSTabViewItem"; label = "Appearance"; ObjectID = "icK-P1-6ta"; */
+"icK-P1-6ta.label" = "外觀";
+/* Class = "NSTabViewItem"; label = "Edit"; ObjectID = "sh3-xI-elX"; */
+"sh3-xI-elX.label" = "編輯";
+/* Class = "NSTabViewItem"; label = "Format"; ObjectID = "frU-Pc-xZT"; */
+"frU-Pc-xZT.label" = "格式";
+/* Class = "NSTabViewItem"; label = "File Drop"; ObjectID = "aO6-oS-ZGt"; */
+"aO6-oS-ZGt.label" = "檔案拖拽";
+/* Class = "NSTabViewItem"; label = "Key Bindings"; ObjectID = "b8q-WN-1ls"; */
+"b8q-WN-1ls.label" = "按鍵繫結";
+/* Class = "NSTabViewItem"; label = "Print"; ObjectID = "UuB-iq-kOt"; */
+"UuB-iq-kOt.label" = "列印";

@@ -1,0 +1,50 @@
+//
+//  SyntaxOutlineEditView.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-12-14.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
+"cBA-MO-VzQ.title" = "用於提取大綱項的正規表示式";
+
+/* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
+"vRg-cd-Ib2.headerCell.title" = "正規表示式";
+
+/* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
+"1tC-mo-cEL.headerCell.title" = "IC";  /* IC */
+"1tC-mo-cEL.headerToolTip" = "忽略大小寫";  /* Ignore Case (case-insensitive) */
+
+/* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
+"6hB-wJ-niI.headerCell.title" = "描述";
+
+/* Class = "NSTextFieldCell"; title = "Title pattern"; ObjectID = "nnO-qN-dYF"; */
+"nnO-qN-dYF.title" = "標題樣式";
+/* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
+"rqP-22-G2u.title" = "（留空匹配整個字串）";
+
+/* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
+"iub-mE-wGf.title" = "粗體";
+/* Class = "NSButtonCell"; title = "Italic"; ObjectID = "fUz-0u-0D4"; */
+"fUz-0u-0D4.title" = "斜體";
+/* Class = "NSButtonCell"; title = "Underline"; ObjectID = "00X-sB-42F"; */
+"00X-sB-42F.title" = "加下劃線";

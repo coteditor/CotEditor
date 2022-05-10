@@ -1,0 +1,76 @@
+//
+//  PatternSortView.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2018-01-05.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2018-2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
+"I06-xc-WQt.title" = "示例：";
+/* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
+"W2m-Jf-7Yj.ibShadowedToolTip" = "檢查行中哪個部分將被用於比較排序的示例行。";
+
+/* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
+"bKb-oj-ekR.title" = "排序鍵：";
+
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "整行";
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
+"pKE-GY-bD6.title" = "列";
+/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
+"Ase-N7-QHB.title" = "正規表示式";
+
+
+/* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
+"eio-Wb-V6q.title" = "排序選項：";
+/* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
+"GS5-w5-IIt.title" = "忽略大小寫";
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
+"x72-Sd-pMB.title" = "遵守語言規則";
+/* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
+"yXD-KA-8KI.title" = "將陣列視為數值";
+/* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
+"uUe-tD-Z8s.title" = "首行置頂";
+/* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
+"h1K-Og-3x3.title" = "降序";
+
+
+/* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
+"CLj-6v-R1R.title" = "分界符：";
+/* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
+"HE1-PS-8J3.title" = "位置：";
+
+
+/* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
+"d12-uy-VE0.title" = "模式：";
+/* Class = "NSTextFieldCell"; placeholderString = "Regular Expression"; ObjectID = "Ia7-Mb-FNn"; */
+"Ia7-Mb-FNn.placeholderString" = "正規表示式";
+/* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
+"Lr8-mD-svg.title" = "忽略大小寫";
+/* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
+"eys-fy-HVq.title" = "使用捕獲組：";
+
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
+"Lw7-xg-639.title" = "取消";
+/* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
+"ara-FL-nKk.title" = "排序";
