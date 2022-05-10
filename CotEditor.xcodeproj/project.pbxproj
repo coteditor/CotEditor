@@ -1549,6 +1549,10 @@
 		5B08851028296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/Credits.html"; sourceTree = "<group>"; };
 		5B08851128296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
 		5B08851228296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
+		5B91B7D1282A679E005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B91B7D2282A67F1005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B91B7D3282A681D005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
+		5B91B7D4282A6851005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Unicode.strings"; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3603,6 +3607,7 @@
 				0D51D58F2274EE6F00A5D747 /* fr */,
 				08C28FAF279CBE440016693E /* tr */,
 				2AE4658727A6BDCF00D2904F /* en-GB */,
+				5B91B7D1282A679E005CBD5C /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3856,6 +3861,7 @@
 				0D51D5912274EF4A00A5D747 /* fr */,
 				08C28FB1279CBE4F0016693E /* tr */,
 				2AC4E5D027A6C02C0052A4DD /* en-GB */,
+				5B91B7D3282A681D005CBD5C /* zh-Hant */,
 			);
 			name = ServicesMenu.strings;
 			sourceTree = "<group>";
@@ -4012,6 +4018,7 @@
 				0D51D5922274EF5300A5D747 /* fr */,
 				08C28FB2279CBE530016693E /* tr */,
 				2AC4E5D127A6C0300052A4DD /* en-GB */,
+				5B91B7D4282A6851005CBD5C /* zh-Hant */,
 			);
 			name = Unicode.strings;
 			sourceTree = "<group>";
@@ -4416,6 +4423,7 @@
 				0D51D5902274EF3F00A5D747 /* fr */,
 				08C28FB0279CBE4C0016693E /* tr */,
 				2AC4E5CF27A6C0270052A4DD /* en-GB */,
+				5B91B7D2282A67F1005CBD5C /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

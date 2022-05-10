@@ -27,7 +27,7 @@
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "字型：";
 /* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "與文件字型一致";
+"PfG-m4-gpq.title" = "與檔案字型一致";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "選擇…";
 
@@ -36,7 +36,7 @@
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "黑白";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "與文件設定一致";
+"1354.title" = "與檔案設定一致";
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "列印背景";
 
@@ -46,7 +46,7 @@
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "不列印";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "與文件設定一致";
+"947.title" = "與檔案設定一致";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "列印";
 
@@ -55,7 +55,7 @@
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "不列印";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "與文件設定一致";
+"953.title" = "與檔案設定一致";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "列印";
 

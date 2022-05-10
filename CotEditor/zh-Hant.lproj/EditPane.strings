@@ -55,7 +55,7 @@
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
 "as9-us-CuG.title" = "個空格縮排";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
-"Cte-hW-0M3.title" = "在開啟文件時檢測縮排格式";
+"Cte-hW-0M3.title" = "在開啟檔案時檢測縮排格式";
 /* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
 "aVn-PD-hen.title" = "使用Tab鍵對選擇進行縮排";
 
@@ -84,7 +84,7 @@
 /* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
 "dLj-Kh-KtX.title" = "補全列表包括：";
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
-"EJZ-N6-54G.title" = "文件中的單詞";
+"EJZ-N6-54G.title" = "檔案中的單詞";
 /* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
 "1v9-7i-9RL.title" = "文法樣式中包含的單詞";
 /* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */

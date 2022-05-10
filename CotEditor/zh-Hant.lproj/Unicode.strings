@@ -1,0 +1,368 @@
+//
+//  Unicode.strings (Simplified Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-11-19.
+//  Localized by onevcat
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2015-2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+"<a letter consisting of %d characters>" = "<包含有%d個字元>";
+
+// Variation selectors
+"Emoji Style" = "表情文字格式";
+"Text Style" = "文字文字格式";
+"Skin Tone I-II" = "色調I-II";
+"Skin Tone III" = "色調III";
+"Skin Tone IV" = "色調IV";
+"Skin Tone V" = "色 V";
+"Skin Tone VI" = "色調VI";
+"Variant" = "異體字";
+
+
+// Unicode block names
+// -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
+// cf. <https://developer.apple.com/download/all/?q=glossaries>
+"Cuneiform" = "楔形文字";
+"Variation Selectors" = "變體選擇器";
+"Latin Extended-B" = "拉丁文擴展-B";
+"Brahmi" = "婆羅米文字";
+"Enclosed Alphanumerics" = "圓圈中的字母數字";
+"Linear B Syllabary" = "線性 B 音節文字";
+"Arabic Mathematical Alphabetic Symbols" = "阿拉伯數學字母數字元號";
+"Ugaritic" = "烏加里特文";
+"Bamum Supplement" = "巴姆穆文字補充";
+"Alphabetic Presentation Forms" = "字母表達形式";
+"Early Dynastic Cuneiform" = "早期王朝楔形文字";
+"Miao" = "苗文";
+"Mongolian" = "蒙古文";
+"CJK Radicals Supplement" = "中日韓漢字部首補充";
+"Arabic" = "阿拉伯文";
+"Khudawadi" = "庫達瓦迪文";
+"Control Pictures" = "控製圖片";
+"Inscriptional Parthian" = "帕提亞碑銘體";
+"Meroitic Hieroglyphs" = "麥羅埃文聖書體";
+"Linear A" = "線形文字 A";
+"Phaistos Disc" = "菲斯通盤文";
+"Siddham" = "悉曇文字";
+"Geometric Shapes" = "幾何形狀";
+"CJK Unified Ideographs" = "中日韓統一表意文字";
+"Greek and Coptic" = "希臘文和科普特文";
+"Ancient Greek Musical Notation" = "古希臘音樂記號";
+"Basic Latin" = "基本拉丁文";
+"Inscriptional Pahlavi" = "巴拉維碑銘體";
+"Braille Patterns" = "盲文點字模型";
+"Javanese" = "爪哇文";
+"Old South Arabian" = "古代南方阿拉伯文";
+"Hebrew" = "希伯來文";
+"Specials" = "專用文字";
+"Anatolian Hieroglyphs" = "安納托利亞象形文字";
+"Variation Selectors Supplement" = "變體選擇器補充";
+"Ornamental Dingbats" = "裝飾符號";
+"Miscellaneous Technical" = "其他技術符號";
+"Sundanese Supplement" = "巽他文補充";
+"Aegean Numbers" = "愛琴海數字";
+"General Punctuation" = "一般標點符號";
+"Latin Extended-D" = "拉丁文擴展-D";
+"CJK Compatibility Ideographs" = "中日韓兼容表意文字";
+"Bopomofo" = "注音字母";
+"Myanmar Extended-B" = "緬甸文擴展-B";
+"Buhid" = "布西德文";
+"Khojki" = "可吉文";
+"Chakma" = "查克馬文";
+"Bengali" = "孟加拉文";
+"Shorthand Format Controls" = "速記格式控制符";
+"Grantha" = "帕拉瓦文";
+"New Tai Lue" = "新傣文";
+"Linear B Ideograms" = "線性 B 象形文字";
+"Coptic Epact Numbers" = "科普特閏餘數字";
+"Unified Canadian Aboriginal Syllabics" = "統一加拿大土著音節文字";
+"Low Surrogates" = "低半代理";
+"Ethiopic" = "衣索比亞文";
+"Vertical Forms" = "豎排形式";
+"Block Elements" = "方塊元素";
+"Supplemental Symbols and Pictographs" = "補充符號和象形文字";
+"Pahawh Hmong" = "帕哈苗文";
+"Currency Symbols" = "貨幣符號";
+"Bamum" = "巴姆穆文字";
+"Superscripts and Subscripts" = "上標和下標";
+"Arabic Presentation Forms-A" = "阿拉伯字母表達形式-A";
+"Shavian" = "蕭伯納風格";
+"CJK Unified Ideographs Ext. B" = "中日韓統一表意文字擴展 B 區";
+"Enclosed Ideographic Supplement" = "圓圈中的表意文字補充";
+"Combining Diacritical Marks Extended" = "組合變音標記擴展";
+"Ancient Symbols" = "古代記數系統";
+"Cyrillic Extended-B" = "西裡爾字母擴展-B";
+"Saurashtra" = "索拉什特拉文";
+"Vedic Extensions" = "吠陀文擴展";
+"Old Hungarian" = "古匈牙利字母";
+"Cyrillic" = "西裡爾字母";
+"Arrows" = "箭頭";
+"Thai" = "泰文";
+"Supplemental Arrows-B" = "補充箭頭-B";
+"Ancient Greek Numbers" = "古希臘數字";
+"Cham" = "佔語字母";
+"Tai Tham" = "傣坦文";
+"Bopomofo Extended" = "注音字母擴展";
+"Warang Citi" = "瓦蘭齊地文";
+"Phonetic Extensions Supplement" = "音標擴展補充";
+"Meroitic Cursive" = "麥羅埃文草書體";
+"Sora Sompeng" = "索拉文";
+"Ol Chiki" = "桑塔利文";
+"Cuneiform Numbers and Punctuation" = "楔形文字數字和標點符號";
+"Phags-pa" = "八思巴文";
+"Devanagari Extended" = "天城文擴展";
+"Devanagari" = "天城文";
+"Greek Extended" = "希臘文擴展";
+"Thaana" = "塔納文";
+"Telugu" = "泰盧固文";
+"Hiragana" = "平假名";
+"CJK Compatibility Ideographs Supplement" = "中日韓兼容表意文字增補";
+"Katakana" = "片假名";
+"Mathematical Operators" = "數學運算符";
+"Mahjong Tiles" = "麻將拼圖";
+"Batak" = "巴塔克文";
+"Vai" = "瓦伊文";
+"Phonetic Extensions" = "音標擴展";
+"Malayalam" = "馬拉雅拉姆文";
+"Optical Character Recognition" = "光學字元識別";
+"Hangul Jamo Extended-A" = "韓文字母擴展-A";
+"Geometric Shapes Extended" = "幾何圖形擴展";
+"Supplemental Mathematical Operators" = "補充數學運算符";
+"Common Indic Number Forms" = "通用印度數字形式";
+"Enclosed Alphanumeric Supplement" = "圓圈中的字母數字補充";
+"Kaithi" = "凱提文";
+"Imperial Aramaic" = "皇室阿拉姆文";
+"Hatran" = "哈坦文";
+"Modifier Tone Letters" = "修飾聲調字母";
+"Sharada" = "夏拉達文";
+"Kayah Li" = "克耶李文";
+"Tamil" = "泰米爾文";
+"Small Form Variants" = "小寫變體";
+"CJK Unified Ideographs Ext. D" = "中日韓統一表意文字擴展 D 區";
+"Caucasian Albanian" = "高加索阿爾巴尼亞文";
+"Tifinagh" = "提非納文";
+"Miscellaneous Symbols and Pictographs" = "其他符號與象形文字";
+"Meetei Mayek Extensions" = "曼尼普爾文擴展";
+"Miscellaneous Mathematical Symbols-B" = "其他數學符號-B";
+"Mahajani" = "馬哈佳尼文";
+"Yi Radicals" = "彝文字根";
+"Lydian" = "呂底亞文";
+"Unified Canadian Aboriginal Syllabics Extended" = "統一加拿大土著音節文字擴展";
+"Supplementary Private Use Area-B" = "補充專用區域-B";
+"Private Use Area" = "專用區域";
+"Glagolitic" = "格拉哥里字母";
+"Osmanya" = "奧斯曼亞文";
+"Yijing Hexagram Symbols" = "易經六形符號";
+"Latin Extended-A" = "拉丁文擴展-A";
+"Cyrillic Supplement" = "西裡爾字母補充";
+"Box Drawing" = "製表符";
+"Letterlike Symbols" = "類似字母的符號";
+"Sinhala" = "僧伽羅文";
+"Supplemental Punctuation" = "補充標點符號";
+"Mathematical Alphanumeric Symbols" = "數學字母數字元號";
+"Cypriot Syllabary" = "塞普勒斯音節文字";
+"Gurmukhi" = "古木基文";
+"Gothic" = "哥特文";
+"Cherokee" = "切羅基字母";
+"CJK Compatibility Forms" = "中日韓兼容形式";
+"Mro" = "默文";
+"Latin Extended-C" = "拉丁文擴展-C";
+"Old Turkic" = "古代突厥文";
+"Mende Kikakui" = "門地奇卡奎文";
+"Domino Tiles" = "多米諾骨牌";
+"Khmer Symbols" = "高棉文符號";
+"Khmer" = "高棉文";
+"Syloti Nagri" = "辛哈拉文";
+"Runic" = "古代北歐文字";
+"Enclosed CJK Letters and Months" = "圓圈中的 CJK 字母和月份";
+"Byzantine Musical Symbols" = "拜占庭音樂符號";
+"CJK Strokes" = "中日韓筆畫";
+"Latin Extended-E" = "拉丁文擴展-E";
+"Miscellaneous Symbols" = "其他符號";
+"Tai Le" = "臺樂文";
+"Katakana Phonetic Extensions" = "片假名音標擴展";
+"Tagalog" = "塔加路文";
+"Kharoshthi" = "法盧文";
+"Dingbats" = "裝飾符號";
+"Sundanese" = "巽他文";
+"Combining Diacritical Marks for Symbols" = "符號的組合變音標記";
+"Samaritan" = "撒馬利亞文";
+"Old Italic" = "舊斜體";
+"CJK Symbols and Punctuation" = "中日韓符號和標點";
+"Kangxi Radicals" = "康熙字根";
+"Buginese" = "布吉文";
+"Phoenician" = "腓尼基文";
+"Bassa Vah" = "巴薩哇文字";
+"Tagbanwa" = "塔格班瓦文";
+"Ethiopic Supplement" = "衣索比亞文補充";
+"Lisu" = "傈僳文";
+"IPA Extensions" = "IPA 擴展";
+"Yi Syllables" = "彝文音節";
+"Kannada" = "卡納達文";
+"Egyptian Hieroglyphs" = "埃及象形文字";
+"Myanmar Extended-A" = "緬甸文擴展-A";
+"Rumi Numeral Symbols" = "魯米數字元號";
+"Hangul Jamo" = "韓文字母";
+"Lepcha" = "雷布查文";
+"Meetei Mayek" = "曼尼普爾文";
+"Hangul Syllables" = "韓文音節";
+"Arabic Supplement" = "阿拉伯文補充";
+"Sutton SignWriting" = "薩頓書寫符號";
+"Kanbun" = "寬文";
+"Combining Diacritical Marks" = "組合變音標記";
+"Latin-1 Supplement" = "拉丁文-1 補充";
+"Takri" = "塔卡里文";
+"Tirhuta" = "提爾胡塔文";
+"Supplemental Arrows-C" = "追加箭頭-C";
+"Deseret" = "德賽萊特字母";
+"Hangul Compatibility Jamo" = "韓文兼容字母";
+"NKo" = "尼日-科爾多凡語系";
+"Arabic Presentation Forms-B" = "阿拉伯文表達形式-B";
+"CJK Unified Ideographs Ext. A" = "中日韓統一表意文字擴展 A 區";
+"Cyrillic Extended-A" = "西裡爾字母擴展-A";
+"Armenian" = "亞美尼亞字母";
+"Ethiopic Extended" = "衣索比亞文擴展";
+"Lycian" = "呂西亞文";
+"Manichaean" = "摩尼字母";
+"Syriac" = "敘利亞文";
+"Coptic" = "科普特字母";
+"Nabataean" = "納巴泰字母";
+"High Surrogates" = "高半代理";
+"Limbu" = "林布文";
+"Avestan" = "阿維斯陀字母";
+"Old Persian" = "古波斯文";
+"Ogham" = "歐甘文字";
+"Supplemental Arrows-A" = "補充箭頭-A";
+"Sinhala Archaic Numbers" = "古僧伽羅文數字";
+"Psalter Pahlavi" = "詩篇巴列維文";
+"CJK Unified Ideographs Ext. C" = "中日韓統一表意文字擴展 C 區";
+"Palmyrene" = "帕爾邁拉字母";
+"Ideographic Desc. Characters" = "表意文字描述字元";
+"Rejang" = "拉讓文";
+"Alchemical Symbols" = "鍊金術符號";
+"Pau Cin Hau" = "袍清豪文";
+"Tags" = "標記";
+"Emoticons" = "表情符號";
+"Balinese" = "巴釐字母";
+"Myanmar" = "緬甸文";
+"Musical Symbols" = "音樂符號";
+"Ethiopic Extended-A" = "衣索比亞文擴展-A";
+"Mandaic" = "曼代克文";
+"Spacing Modifier Letters" = "空格修飾字母";
+"Carian" = "卡利亞字母";
+"Number Forms" = "數字形式";
+"CJK Compatibility" = "中日韓兼容字元";
+"CJK Unified Ideographs Ext. E" = "中日韓統一表意文字擴展 E 區";
+"Modi" = "莫迪文";
+"Halfwidth and Fullwidth Forms" = "半形和全形";
+"Playing Cards" = "撲克牌";
+"Cherokee Supplement" = "切羅基語補充";
+"Miscellaneous Symbols and Arrows" = "其他符號和箭頭";
+"Old North Arabian" = "古北阿拉伯字母";
+"Transport and Map Symbols" = "交通與地圖符號";
+"Lao" = "寮國文";
+"Multani" = "穆爾塔妮文";
+"Hangul Jamo Extended-B" = "韓文字母擴展-B";
+"Tibetan" = "西藏文";
+"Old Permic" = "古彼爾姆文";
+"Georgian Supplement" = "喬治亞文補充";
+"Duployan" = "杜普雷速記";
+"Tai Viet" = "越南傣文";
+"Arabic Extended-A" = "阿拉伯文擴展-A";
+"Elbasan" = "艾爾巴桑字母";
+"Combining Diacritical Marks Supplement" = "組合變音標記補充";
+"Hanunoo" = "哈魯喏文";
+"Oriya" = "奧里亞文";
+"Latin Extended Additional" = "拉丁文擴展附加";
+"Georgian" = "喬治亞文";
+"Miscellaneous Mathematical Symbols-A" = "其他數學符號-A";
+"Combining Half Marks" = "組合用半符號";
+"Counting Rod Numerals" = "算籌";
+"Ahom" = "阿豪姆文字";
+"Gujarati" = "古吉拉特文";
+"Tai Xuan Jing Symbols" = "太玄經符號";
+"Kana Supplement" = "假名補充";
+"Supplementary Private Use Area-A" = "補充專用區域-A";
+
+
+// The following blocks are (mostly newly added to Unicode and therefore) not in the glosseries.
+"Syriac Supplement" = "Syriac Supplement";
+"Cyrillic Extended-C" = "西裡爾字母擴展-C";
+"High Private Use Surrogates" = "高度私有使用區";
+"Georgian Extended" = "Georgian Extended";
+"Osage" = "Osage";
+"Hanifi Rohingya" = "Hanifi Rohingya";
+"Yezidi" = "Yezidi";
+"Old Sogdian" = "Old Sogdian";
+"Sogdian" = "Sogdian";
+"Chorasmian" = "Chorasmian";
+"Elymaic" = "Elymaic";
+"Newa" = "Newa";
+"Mongolian Supplement" = "Mongolian Supplement";
+"Dogra" = "Dogra";
+"Dives Akuru" = "Dives Akuru";
+"Nandinagari" = "Nandinagari";
+"Zanabazar Square" = "Zanabazar Square";
+"Soyombo" = "Soyombo";
+"Bhaiksuki" = "Bhaiksuki";
+"Marchen" = "Marchen";
+"Masaram Gondi" = "Masaram Gondi";
+"Gunjala Gondi" = "Gunjala Gondi";
+"Makasar" = "Makasar";
+"Lisu Supplement" = "Lisu Supplement";
+"Tamil Supplement" = "Tamil Supplement";
+"Egyptian Hieroglyph Format Controls" = "Egyptian Hieroglyph Format Controls";
+"Medefaidrin" = "Medefaidrin";
+"Ideographic Symbols and Punctuation" = "Ideographic Symbols and Punctuation";
+"Tangut" = "Tangut";
+"Tangut Components" = "Tangut Components";
+"Khitan Small Script" = "Khitan Small Script";
+"Tangut Supplement" = "Tangut Supplement";
+"Kana Extended-A" = "Kana Extended-A";
+"Small Kana Extension" = "Small Kana Extension";
+"Nushu" = "Nushu";
+"Mayan Numerals" = "Mayan Numerals";
+"Glagolitic Supplement" = "Glagolitic Supplement";
+"Nyiakeng Puachue Hmong" = "Nyiakeng Puachue Hmong";
+"Wancho" = "Wancho";
+"Adlam" = "Adlam";
+"Indic Siyaq Numbers" = "Indic Siyaq Numbers";
+"Ottoman Siyaq Numbers" = "Ottoman Siyaq Numbers";
+"Chess Symbols" = "Chess Symbols";
+"Symbols and Pictographs Extended-A" = "符號與象形文字擴展-A";
+"Symbols for Legacy Computing" = "Symbols for Legacy Computing";
+"CJK Unified Ideographs Ext. F" = "中日韓統一表意文字擴展 F 區";
+"CJK Unified Ideographs Ext. G" = "中日韓統一表意文字擴展 G 區";
+
+
+// Blocks added in Unicode 14.0.0 (2021-01)
+"Arabic Extended-B" = "阿拉伯文擴展-B";
+"Latin Extended-F" = "拉丁文擴展-F";
+"Vithkuqi" = "Vithkuqi";
+"Old Uyghur" = "Old Uyghur";
+"Unified Canadian Aboriginal Syllabics Extended-A" = "統一加拿大土著音節文字擴展-A";
+"Cypro-Minoan" = "Cypro-Minoan";
+"Tangsa" = "Tangsa";
+"Kana Extended-B" = "Kana Extended-B";
+"Znamenny Musical Notation" = "Znamenny Musical Notation";
+"Latin Extended-G" = "拉丁文擴展-G";
+"Toto" = "Toto";
+"Ethiopic Extended-B" = "衣索比亞文擴展-B";
