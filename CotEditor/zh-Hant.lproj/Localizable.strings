@@ -60,11 +60,11 @@
 
 /* MARK: AppDelegate */
 // Importing theme
-"“%@” is a CotEditor theme file." = "“%@”是CotEditor主題檔案";
+"“%@” is a CotEditor theme file." = "「%@」是CotEditor主題檔案";
 "Do you want to install this theme?" = "是否安裝主題？";
 "Install" = "安裝";
 "Open as Text File" = "以文字方式打開";
-"A new theme named “%@” has been successfully installed." = "新主題“%@”安裝完成";
+"A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
 
 // Window title of issue report
 "Issue Report" = "問題報告";
@@ -83,9 +83,9 @@
 "%@ strings replaced." = "已替換%@個匹配";
 "Invalid regular expression" = "無效的正規表達式";
 "Empty find string" = "空的搜索字元串";
-"The option “in selection” is enabled, although nothing is selected." = "“在選擇中搜索”選項被激活，但是並沒有內容被選中。";
+"The option “in selection” is enabled, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
 "Input text to find." = "輸入文字以查找。";
-"Select the search scope in the document or turn off the “in selection” option." = "在文件中選擇搜索範圍，或者禁用“在選擇中搜索”。";
+"Select the search scope in the document or turn off the “in selection” option." = "在文件中選擇搜索範圍，或者禁用「在選擇中搜索」。";
 
 // accessibility announcement
 "Search wrapped." = "已從頭搜索";  // announced when the search restarted from the beginning.
@@ -104,9 +104,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "在“%@”中沒有找到字元串。";
-"Found one string in “%@”." = "在“%@”中找到一個字元串。";
-"Found %i strings in “%@”." = "%i 個字元串在“%@”中被找到。";
+"No strings found in “%@”." = "在「%@」中沒有找到字元串。";
+"Found one string in “%@”." = "在「%@」中找到一個字元串。";
+"Found %i strings in “%@”." = "%i 個字元串在「%@」中被找到。";
 
 
 
@@ -161,11 +161,11 @@
 "Automatic" = "自動";
 
 // Binary file alert
-"The file “%@” doesn’t appear to be text data." = "檔案“%@”不是文字資料";
+"The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";
 "The file appears to be %@.\n\nDo you really want to open the file?" = "該檔案看起來是%@。\n\n確定要打開該檔案？";
 
 // Large file alert
-"The file “%@” has a size of %@." = "“%@”檔案尺寸為%@。";
+"The file “%@” has a size of %@." = "「%@」檔案尺寸為%@。";
 "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打開大型檔案可能導致應用速度變慢。\n\n確定要打開該檔案？";
 "Open" = "打開";
 
@@ -173,33 +173,33 @@
 
 /* MARK: Document */
 // Undo action names
-"Encoding to “%@”" = "編碼變更為“%@”";
-"Line Endings to “%@”" = "行尾變更為“%@”";
+"Encoding to “%@”" = "編碼變更為「%@」";
+"Line Endings to “%@”" = "行尾變更為「%@」";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "檔案編碼";
-"Do you want to convert or reinterpret this document using “%@”?" = "要使用“%@”進行轉換或者再次解釋嗎？";
+"Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋嗎？";
 "Convert" = "轉換";
 "Reinterpret" = "再次解釋";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為“%@”時一些字元可能需要被更改或者刪除。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
 "Do you want to continue processing?" = "繼續進行處理嗎？";
 "Save Available Text" = "儲存有效文字";
 "Show Incompatible Characters" = "顯示不兼容字元";
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "該文件中含有未儲存的修改。";
-"Do you want to discard the changes and reopen the document using “%@”?" = "你確認放棄更改，並使用“%@”重新打開文件嗎？";  // %@ is an encoding name.
+"Do you want to discard the changes and reopen the document using “%@”?" = "你確認放棄更改，並使用「%@」重新打開文件嗎？";  // %@ is an encoding name.
 "Discard Changes" = "放棄修改";
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "該文件沒有用來再次解釋的檔案。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "檔案“%@”無法使用“%@”編碼再次解釋。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "檔案「%@」無法使用「%@」編碼再次解釋。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "該檔案可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為“%@”時一些字元可能需要被更改或者刪除。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
 "Do you want to change encoding and show incompatible characters?" = "改變編碼並顯示不兼容字元嗎？";
 "Change Encoding" = "更改編碼";
 
@@ -531,12 +531,12 @@
 
 // Appearance pane
 // Contextual menu items
-"Rename “%@”" = "給“%@”重新命名";
-"Duplicate “%@”" = "拷貝“%@”";
-"Restore “%@”" = "還原“%@”";
-"Reveal “%@” in Finder" = "在訪達中顯示“%@”";
+"Rename “%@”" = "給「%@」重新命名";
+"Duplicate “%@”" = "拷貝「%@」";
+"Restore “%@”" = "還原「%@」";
+"Reveal “%@” in Finder" = "在訪達中顯示「%@」";
 // Theme delete alert
-"Are you sure you want to delete “%@” theme?" = "確認刪除“%@”主題？";
+"Are you sure you want to delete “%@” theme?" = "確認刪除「%@」主題？";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "刪除";
@@ -545,14 +545,14 @@
 
 // Format pane
 // Installed syntax styles action menu items
-"Duplicate “%@”…" = "拷貝“%@”…";
-"Export “%@”…" = "導出“%@”…";
-"Reveal “%@” in Finder" = "在訪達中顯示“%@”";
+"Duplicate “%@”…" = "拷貝「%@」…";
+"Export “%@”…" = "導出「%@」…";
+"Reveal “%@” in Finder" = "在訪達中顯示「%@」";
 
 
 // File Drop pane
 // File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "確定刪除檔案拖拽設置“%@”？";
+"Are you sure you want to delete the file drop setting for “%@”?" = "確定刪除檔案拖拽設置「%@」？";
 "Deleted setting can’t be restored." = "設置刪除後無法恢復。";
 
 
@@ -594,16 +594,16 @@
 
 
 /* MARK: SettingFileManager */
-"“%@” couldn’t be deleted." = "“%@”無法刪除。";
-"“%@” couldn’t be imported." = "“%@”無法導入。";
-"No original file for “%@” was found." = "無法找到“%@”的源檔案。";
+"“%@” couldn’t be deleted." = "「%@」無法刪除。";
+"“%@” couldn’t be imported." = "「%@」無法導入。";
+"No original file for “%@” was found." = "無法找到「%@」的源檔案。";
 
 // Setting filename warnings
 "Please choose another name." = "請輸入其他名稱。";
 "Name can’t be empty." = "名稱不能為空。";
-"You can’t use a name that contains “/”." = "名稱不能含有“/”。";
-"You can’t use a name that begins with a dot “.”." = "名稱不能含有“.”。";
-"The name “%@” is already taken." = "“%@”已經在使用中。";
+"You can’t use a name that contains “/”." = "名稱不能含有「/」。";
+"You can’t use a name that begins with a dot “.”." = "名稱不能含有「.」。";
+"The name “%@” is already taken." = "「%@」已經在使用中。";
 
 
 
@@ -618,14 +618,14 @@
 "copy" = "拷貝";
 
 // Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "確定刪除文法樣式“%@”？";
+"Are you sure you want to delete “%@” syntax style?" = "確定刪除文法樣式「%@」？";
 "Delete" = "刪除";
 "Replace" = "替換";
 
 // Import syntax style file choose openPanel button
 "Import" = "導入";
 // Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "將要安裝名為“%@”的新樣式，但是已經存在同名的自定義樣式。";
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "將要安裝名為「%@」的新樣式，但是已經存在同名的自定義樣式。";
 "Do you want to replace it?\nReplaced style can’t be restored." = "要替換樣式嗎？\n被替換的樣式無法將恢復。";
 
 // Export syntax style file savePanel label
@@ -647,14 +647,14 @@
 "Customized Theme" = "自定義主題";
 
 // Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為“%@”的新主題，但是已經存在同名的自定義主題。";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自定義主題。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆蓋原主題嗎？\n主題刪除後將無法還原。";
 
 
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名稱為“%@”的新替換定義將被安裝，但是已經存在相同名稱的定義。";
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名稱為「%@」的新替換定義將被安裝，但是已經存在相同名稱的定義。";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替換該定義嗎？\n被替換的定義無法恢復。";
 
 
@@ -667,7 +667,7 @@
 "Space" = "空格鍵";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@”已被“%@”命令使用。";
+"“%@” is already taken by the “%@” command." = "「%@」已被「%@」命令使用。";
 "The Shift key can be used only with another modifier key." = "Shift鍵只能配合其他修飾鍵使用。";
 "Single type is invalid for a shortcut." = "單獨的按鍵類型不能被用作快捷鍵。";
 "Please combine with other keys." = "請與其他鍵組合使用。";
@@ -689,10 +689,10 @@
 "No document to put output." = "沒有輸出文件。";
 
 // Script file error description
-"The script “%@” does not exist." = "腳本“%@”不存在。";
-"The script file “%@” couldn’t be opened." = "無法打開腳本檔案“%@”。";
-"The script “%@” can’t be executed because you don’t have the execute permission." = "由於沒有執行許可權，無法執行腳本“%@”。";
-"The script “%@” couldn’t be read." = "無法讀取腳本“%@”。";
+"The script “%@” does not exist." = "腳本「%@」不存在。";
+"The script file “%@” couldn’t be opened." = "無法打開腳本檔案「%@」。";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "由於沒有執行許可權，無法執行腳本「%@」。";
+"The script “%@” couldn’t be read." = "無法讀取腳本「%@」。";
 
 // Script file error recovery suggestions
 "Check the script file." = "請確認腳本檔案。";
