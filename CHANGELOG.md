@@ -5,6 +5,11 @@ Change Log
 4.2.1 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Chinese (Traditional) localization (thanks to Shiki Suen!).
+
+
 ### Fixes
 
 - Fix an issue on CotEditor 4.2.0 that restoring documents on macOS 11.x made the application unstable.
