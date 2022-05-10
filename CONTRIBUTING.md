@@ -54,6 +54,7 @@ Currently, we already have maintainers for:
 
 - Japanese
 - Simplified Chinese
+- Traditional Chinese
 - Italian
 - French
 - Turkish
