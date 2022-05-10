@@ -1506,6 +1506,53 @@
 		57ED31751FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pt; path = pt.lproj/Credits.html; sourceTree = "<group>"; };
 		57ED31761FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = pt; path = pt.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		57ED31771FFD892A00F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = pt; path = pt.lproj/ReportTemplate.md; sourceTree = "<group>"; };
+		5B0884E828296B5F003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		5B0884E928296B5F003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PreferencesWindow.strings"; sourceTree = "<group>"; };
+		5B0884EA28296B5F003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GeneralPane.strings"; sourceTree = "<group>"; };
+		5B0884EB28296B5F003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WindowPane.strings"; sourceTree = "<group>"; };
+		5B0884EC28296B5F003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/AppearancePane.strings"; sourceTree = "<group>"; };
+		5B0884ED28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EditPane.strings"; sourceTree = "<group>"; };
+		5B0884EE28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FormatPane.strings"; sourceTree = "<group>"; };
+		5B0884EF28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FileDropPane.strings"; sourceTree = "<group>"; };
+		5B0884F028296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/KeyBindingsPane.strings"; sourceTree = "<group>"; };
+		5B0884F128296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPane.strings"; sourceTree = "<group>"; };
+		5B0884F228296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
+		5B0884F328296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
+		5B0884F428296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxCommentsEditView.strings"; sourceTree = "<group>"; };
+		5B0884F528296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxOutlineEditView.strings"; sourceTree = "<group>"; };
+		5B0884F628296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
+		5B0884F728296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
+		5B0884F828296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
+		5B0884F928296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EncodingListView.strings"; sourceTree = "<group>"; };
+		5B0884FA28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxMappingConflictsView.strings"; sourceTree = "<group>"; };
+		5B0884FB28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FindPanel.strings"; sourceTree = "<group>"; };
+		5B0884FC28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
+		5B0884FD28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MultipleReplacementPanel.strings"; sourceTree = "<group>"; };
+		5B0884FE28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
+		5B0884FF28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
+		5B08850028296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OutlineView.strings"; sourceTree = "<group>"; };
+		5B08850128296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WarningsView.strings"; sourceTree = "<group>"; };
+		5B08850228296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EditorView.strings"; sourceTree = "<group>"; };
+		5B08850328296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
+		5B08850428296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
+		5B08850528296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
+		5B08850628296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProgressView.strings"; sourceTree = "<group>"; };
+		5B08850728296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CompactProgressView.strings"; sourceTree = "<group>"; };
+		5B08850828296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
+		5B08850928296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
+		5B08850A28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CustomSurroundStringView.strings"; sourceTree = "<group>"; };
+		5B08850B28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CustomTabWidthView.strings"; sourceTree = "<group>"; };
+		5B08850C28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
+		5B08850D28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UnicodeInputView.strings"; sourceTree = "<group>"; };
+		5B08850E28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
+		5B08850F28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ColorCodePanelAccessory.strings"; sourceTree = "<group>"; };
+		5B08851028296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/Credits.html"; sourceTree = "<group>"; };
+		5B08851128296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
+		5B08851228296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hant"; path = "zh-Hant.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
+		5B91B7D1282A679E005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5B91B7D2282A67F1005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5B91B7D3282A681D005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
+		5B91B7D4282A6851005CBD5C /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Unicode.strings"; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2655,6 +2702,7 @@
 				fr,
 				tr,
 				"en-GB",
+				"zh-Hant",
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			packageReferences = (
@@ -3559,6 +3607,7 @@
 				0D51D58F2274EE6F00A5D747 /* fr */,
 				08C28FAF279CBE440016693E /* tr */,
 				2AE4658727A6BDCF00D2904F /* en-GB */,
+				5B91B7D1282A679E005CBD5C /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3575,6 +3624,7 @@
 				0D51D57B2274EADF00A5D747 /* fr */,
 				08C28F83279CBE2D0016693E /* tr */,
 				98EAE81427A5D7D700C6D571 /* en-GB */,
+				5B0884EB28296B5F003D4C2D /* zh-Hant */,
 			);
 			name = WindowPane.storyboard;
 			sourceTree = "<group>";
@@ -3591,6 +3641,7 @@
 				0D51D5802274EAE100A5D747 /* fr */,
 				08C28F88279CBE2D0016693E /* tr */,
 				98EAE81927A5D7D700C6D571 /* en-GB */,
+				5B0884F028296B60003D4C2D /* zh-Hant */,
 			);
 			name = KeyBindingsPane.storyboard;
 			sourceTree = "<group>";
@@ -3607,6 +3658,7 @@
 				0D51D5812274EAE100A5D747 /* fr */,
 				08C28F89279CBE2D0016693E /* tr */,
 				98EAE81A27A5D7D700C6D571 /* en-GB */,
+				5B0884F128296B60003D4C2D /* zh-Hant */,
 			);
 			name = PrintPane.storyboard;
 			sourceTree = "<group>";
@@ -3623,6 +3675,7 @@
 				0D51D57C2274EADF00A5D747 /* fr */,
 				08C28F84279CBE2D0016693E /* tr */,
 				98EAE81527A5D7D700C6D571 /* en-GB */,
+				5B0884EC28296B5F003D4C2D /* zh-Hant */,
 			);
 			name = AppearancePane.storyboard;
 			sourceTree = "<group>";
@@ -3639,6 +3692,7 @@
 				0D51D57D2274EAE000A5D747 /* fr */,
 				08C28F85279CBE2D0016693E /* tr */,
 				98EAE81627A5D7D700C6D571 /* en-GB */,
+				5B0884ED28296B60003D4C2D /* zh-Hant */,
 			);
 			name = EditPane.storyboard;
 			sourceTree = "<group>";
@@ -3655,6 +3709,7 @@
 				0D51D57E2274EAE000A5D747 /* fr */,
 				08C28F86279CBE2D0016693E /* tr */,
 				98EAE81727A5D7D700C6D571 /* en-GB */,
+				5B0884EE28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FormatPane.storyboard;
 			sourceTree = "<group>";
@@ -3671,6 +3726,7 @@
 				0D51D5762274EADC00A5D747 /* fr */,
 				08C28FA2279CBE2F0016693E /* tr */,
 				98EAE83327A5D7DA00C6D571 /* en-GB */,
+				5B08850928296B61003D4C2D /* zh-Hant */,
 			);
 			name = PatternSortView.storyboard;
 			sourceTree = "<group>";
@@ -3687,6 +3743,7 @@
 				0D51D5782274EADD00A5D747 /* fr */,
 				08C28FA4279CBE2F0016693E /* tr */,
 				98EAE83527A5D7DA00C6D571 /* en-GB */,
+				5B08850B28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CustomTabWidthView.storyboard;
 			sourceTree = "<group>";
@@ -3703,6 +3760,7 @@
 				0D51D56B2274EAD600A5D747 /* fr */,
 				08C28F96279CBE2E0016693E /* tr */,
 				98EAE82727A5D7D900C6D571 /* en-GB */,
+				5B0884FD28296B60003D4C2D /* zh-Hant */,
 			);
 			name = MultipleReplacementPanel.storyboard;
 			sourceTree = "<group>";
@@ -3719,6 +3777,7 @@
 				0D51D56F2274EAD800A5D747 /* fr */,
 				08C28F9A279CBE2F0016693E /* tr */,
 				98EAE82B27A5D7D900C6D571 /* en-GB */,
+				5B08850128296B61003D4C2D /* zh-Hant */,
 			);
 			name = WarningsView.storyboard;
 			sourceTree = "<group>";
@@ -3735,6 +3794,7 @@
 				0D51D56D2274EAD700A5D747 /* fr */,
 				08C28F98279CBE2F0016693E /* tr */,
 				98EAE82927A5D7D900C6D571 /* en-GB */,
+				5B0884FF28296B60003D4C2D /* zh-Hant */,
 			);
 			name = DocumentInspectorView.storyboard;
 			sourceTree = "<group>";
@@ -3751,6 +3811,7 @@
 				0D51D5792274EADD00A5D747 /* fr */,
 				08C28F81279CBE2C0016693E /* tr */,
 				98EAE81227A5D7D600C6D571 /* en-GB */,
+				5B0884E928296B5F003D4C2D /* zh-Hant */,
 			);
 			name = PreferencesWindow.storyboard;
 			sourceTree = "<group>";
@@ -3767,6 +3828,7 @@
 				2A5DD44122793B9B0057AAD1 /* fr */,
 				08C28FAC279CBE300016693E /* tr */,
 				98EAE83D27A5D7DA00C6D571 /* en-GB */,
+				5B08851228296B61003D4C2D /* zh-Hant */,
 			);
 			name = ReportTemplate.md;
 			sourceTree = "<group>";
@@ -3783,6 +3845,7 @@
 				0D51D5682274EAD400A5D747 /* fr */,
 				08C28F94279CBE2E0016693E /* tr */,
 				98EAE82527A5D7D900C6D571 /* en-GB */,
+				5B0884FB28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FindPanel.storyboard;
 			sourceTree = "<group>";
@@ -3798,6 +3861,7 @@
 				0D51D5912274EF4A00A5D747 /* fr */,
 				08C28FB1279CBE4F0016693E /* tr */,
 				2AC4E5D027A6C02C0052A4DD /* en-GB */,
+				5B91B7D3282A681D005CBD5C /* zh-Hant */,
 			);
 			name = ServicesMenu.strings;
 			sourceTree = "<group>";
@@ -3814,6 +3878,7 @@
 				0D51D5702274EAD800A5D747 /* fr */,
 				08C28F9B279CBE2F0016693E /* tr */,
 				98EAE82C27A5D7D900C6D571 /* en-GB */,
+				5B08850228296B61003D4C2D /* zh-Hant */,
 			);
 			name = EditorView.storyboard;
 			sourceTree = "<group>";
@@ -3830,6 +3895,7 @@
 				2A642CD82390ECB200BCA4C4 /* fr */,
 				08C28F9F279CBE2F0016693E /* tr */,
 				98EAE83027A5D7D900C6D571 /* en-GB */,
+				5B08850628296B61003D4C2D /* zh-Hant */,
 			);
 			name = ProgressView.storyboard;
 			sourceTree = "<group>";
@@ -3846,6 +3912,7 @@
 				2A642CE22392196A00BCA4C4 /* fr */,
 				08C28FA0279CBE2F0016693E /* tr */,
 				98EAE83127A5D7D900C6D571 /* en-GB */,
+				5B08850728296B61003D4C2D /* zh-Hant */,
 			);
 			name = CompactProgressView.storyboard;
 			sourceTree = "<group>";
@@ -3862,6 +3929,7 @@
 				0D51D56C2274EAD700A5D747 /* fr */,
 				08C28F97279CBE2F0016693E /* tr */,
 				98EAE82827A5D7D900C6D571 /* en-GB */,
+				5B0884FE28296B60003D4C2D /* zh-Hant */,
 			);
 			name = DocumentWindow.storyboard;
 			sourceTree = "<group>";
@@ -3878,6 +3946,7 @@
 				2A08C889228E72DC002DC184 /* fr */,
 				08C28FAA279CBE300016693E /* tr */,
 				98EAE83B27A5D7DA00C6D571 /* en-GB */,
+				5B08851028296B61003D4C2D /* zh-Hant */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
@@ -3891,6 +3960,7 @@
 				57ED31761FFD892900F16CAD /* pt */,
 				08C28FAB279CBE300016693E /* tr */,
 				98EAE83C27A5D7DA00C6D571 /* en-GB */,
+				5B08851128296B61003D4C2D /* zh-Hant */,
 			);
 			name = Acknowledgments.html;
 			sourceTree = "<group>";
@@ -3907,6 +3977,7 @@
 				0D51D5672274EAD300A5D747 /* fr */,
 				08C28F7F279CBE2C0016693E /* tr */,
 				98EAE81027A5D7D600C6D571 /* en-GB */,
+				5B0884E828296B5F003D4C2D /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -3923,6 +3994,7 @@
 				0D51D5722274EADA00A5D747 /* fr */,
 				08C28F9D279CBE2F0016693E /* tr */,
 				98EAE82E27A5D7D900C6D571 /* en-GB */,
+				5B08850428296B61003D4C2D /* zh-Hant */,
 			);
 			name = SaveDocumentAccessory.storyboard;
 			sourceTree = "<group>";
@@ -3946,6 +4018,7 @@
 				0D51D5922274EF5300A5D747 /* fr */,
 				08C28FB2279CBE530016693E /* tr */,
 				2AC4E5D127A6C0300052A4DD /* en-GB */,
+				5B91B7D4282A6851005CBD5C /* zh-Hant */,
 			);
 			name = Unicode.strings;
 			sourceTree = "<group>";
@@ -3962,6 +4035,7 @@
 				0D51D5892274EAE400A5D747 /* fr */,
 				08C28F90279CBE2E0016693E /* tr */,
 				98EAE82127A5D7D800C6D571 /* en-GB */,
+				5B0884F828296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxInfoEditView.storyboard;
 			sourceTree = "<group>";
@@ -3978,6 +4052,7 @@
 				0D51D5882274EAE300A5D747 /* fr */,
 				08C28F8F279CBE2E0016693E /* tr */,
 				98EAE82027A5D7D800C6D571 /* en-GB */,
+				5B0884F728296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxFileMappingEditView.storyboard;
 			sourceTree = "<group>";
@@ -3994,6 +4069,7 @@
 				0D51D5872274EAE300A5D747 /* fr */,
 				08C28F8E279CBE2E0016693E /* tr */,
 				98EAE81F27A5D7D800C6D571 /* en-GB */,
+				5B0884F628296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxCompletionsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4010,6 +4086,7 @@
 				0D51D5862274EAE300A5D747 /* fr */,
 				08C28F8D279CBE2E0016693E /* tr */,
 				98EAE81E27A5D7D800C6D571 /* en-GB */,
+				5B0884F528296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxOutlineEditView.storyboard;
 			sourceTree = "<group>";
@@ -4026,6 +4103,7 @@
 				0D51D5852274EAE200A5D747 /* fr */,
 				08C28F8C279CBE2E0016693E /* tr */,
 				98EAE81D27A5D7D800C6D571 /* en-GB */,
+				5B0884F428296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxCommentsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4042,6 +4120,7 @@
 				0D51D5842274EAE200A5D747 /* fr */,
 				08C28F8B279CBE2D0016693E /* tr */,
 				98EAE81C27A5D7D800C6D571 /* en-GB */,
+				5B0884F328296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxTermsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4058,6 +4137,7 @@
 				0D51D5832274EAE200A5D747 /* fr */,
 				08C28F8A279CBE2D0016693E /* tr */,
 				98EAE81B27A5D7D800C6D571 /* en-GB */,
+				5B0884F228296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxEditView.storyboard;
 			sourceTree = "<group>";
@@ -4074,6 +4154,7 @@
 				2A156894245C10880055CD85 /* fr */,
 				08C28FA5279CBE300016693E /* tr */,
 				98EAE83627A5D7DA00C6D571 /* en-GB */,
+				5B08850C28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CharacterPopover.storyboard;
 			sourceTree = "<group>";
@@ -4098,6 +4179,7 @@
 				0D51D57A2274EADE00A5D747 /* fr */,
 				08C28F82279CBE2D0016693E /* tr */,
 				98EAE81327A5D7D700C6D571 /* en-GB */,
+				5B0884EA28296B5F003D4C2D /* zh-Hant */,
 			);
 			name = GeneralPane.storyboard;
 			sourceTree = "<group>";
@@ -4114,6 +4196,7 @@
 				0D51D5712274EAD900A5D747 /* fr */,
 				08C28F9C279CBE2F0016693E /* tr */,
 				98EAE82D27A5D7D900C6D571 /* en-GB */,
+				5B08850328296B61003D4C2D /* zh-Hant */,
 			);
 			name = OpenDocumentAccessory.storyboard;
 			sourceTree = "<group>";
@@ -4130,6 +4213,7 @@
 				0D51D58B2274EAE500A5D747 /* fr */,
 				08C28F93279CBE2E0016693E /* tr */,
 				98EAE82427A5D7D800C6D571 /* en-GB */,
+				5B0884FA28296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxMappingConflictsView.storyboard;
 			sourceTree = "<group>";
@@ -4146,6 +4230,7 @@
 				0D51D58A2274EAE400A5D747 /* fr */,
 				08C28F92279CBE2E0016693E /* tr */,
 				98EAE82327A5D7D800C6D571 /* en-GB */,
+				5B0884F928296B60003D4C2D /* zh-Hant */,
 			);
 			name = EncodingListView.storyboard;
 			sourceTree = "<group>";
@@ -4162,6 +4247,7 @@
 				0D51D56A2274EAD500A5D747 /* fr */,
 				08C28F95279CBE2E0016693E /* tr */,
 				98EAE82627A5D7D900C6D571 /* en-GB */,
+				5B0884FC28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FindPreferencesView.storyboard;
 			sourceTree = "<group>";
@@ -4178,6 +4264,7 @@
 				0D51D5732274EADB00A5D747 /* fr */,
 				08C28F9E279CBE2F0016693E /* tr */,
 				98EAE82F27A5D7D900C6D571 /* en-GB */,
+				5B08850528296B61003D4C2D /* zh-Hant */,
 			);
 			name = PrintPanelAccessory.storyboard;
 			sourceTree = "<group>";
@@ -4194,6 +4281,7 @@
 				0D51D58E2274EAE700A5D747 /* fr */,
 				08C28FA9279CBE300016693E /* tr */,
 				98EAE83A27A5D7DA00C6D571 /* en-GB */,
+				5B08850F28296B61003D4C2D /* zh-Hant */,
 			);
 			name = ColorCodePanelAccessory.storyboard;
 			sourceTree = "<group>";
@@ -4210,6 +4298,7 @@
 				0D51D58D2274EAE700A5D747 /* fr */,
 				08C28FA6279CBE300016693E /* tr */,
 				98EAE83727A5D7DA00C6D571 /* en-GB */,
+				5B08850D28296B61003D4C2D /* zh-Hant */,
 			);
 			name = UnicodeInputView.storyboard;
 			sourceTree = "<group>";
@@ -4226,6 +4315,7 @@
 				0D51D5752274EADC00A5D747 /* fr */,
 				08C28FA1279CBE2F0016693E /* tr */,
 				98EAE83227A5D7DA00C6D571 /* en-GB */,
+				5B08850828296B61003D4C2D /* zh-Hant */,
 			);
 			name = GoToLineView.storyboard;
 			sourceTree = "<group>";
@@ -4250,6 +4340,7 @@
 				0D51D58C2274EAE600A5D747 /* fr */,
 				08C28FA8279CBE300016693E /* tr */,
 				98EAE83927A5D7DA00C6D571 /* en-GB */,
+				5B08850E28296B61003D4C2D /* zh-Hant */,
 			);
 			name = ConsolePanel.storyboard;
 			sourceTree = "<group>";
@@ -4266,6 +4357,7 @@
 				0D51D57F2274EAE100A5D747 /* fr */,
 				08C28F87279CBE2D0016693E /* tr */,
 				98EAE81827A5D7D700C6D571 /* en-GB */,
+				5B0884EF28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FileDropPane.storyboard;
 			sourceTree = "<group>";
@@ -4282,6 +4374,7 @@
 				0D51D5772274EADC00A5D747 /* fr */,
 				08C28FA3279CBE2F0016693E /* tr */,
 				98EAE83427A5D7DA00C6D571 /* en-GB */,
+				5B08850A28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CustomSurroundStringView.storyboard;
 			sourceTree = "<group>";
@@ -4314,6 +4407,7 @@
 				0D51D56E2274EAD800A5D747 /* fr */,
 				08C28F99279CBE2F0016693E /* tr */,
 				98EAE82A27A5D7D900C6D571 /* en-GB */,
+				5B08850028296B61003D4C2D /* zh-Hant */,
 			);
 			name = OutlineView.storyboard;
 			sourceTree = "<group>";
@@ -4329,6 +4423,7 @@
 				0D51D5902274EF3F00A5D747 /* fr */,
 				08C28FB0279CBE4C0016693E /* tr */,
 				2AC4E5CF27A6C0270052A4DD /* en-GB */,
+				5B91B7D2282A67F1005CBD5C /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -4378,10 +4473,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 502;
+				CURRENT_PROJECT_VERSION = 505;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CotEditor/Info.plist;
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4393,10 +4488,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 502;
+				CURRENT_PROJECT_VERSION = 505;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CotEditor/Info.plist;
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4432,10 +4527,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 502;
+				CURRENT_PROJECT_VERSION = 505;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CotEditor/Info.plist;
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.2.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -4448,10 +4543,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "Accent Color";
-				CURRENT_PROJECT_VERSION = 502;
+				CURRENT_PROJECT_VERSION = 505;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = CotEditor/Info.plist;
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.2.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;

@@ -1,27 +1,27 @@
 //
-// Main.strings (Portuguese)
-// 
-// CotEditor
-// https://coteditor.com
-// 
-// Created by BR Lingo on 2018-01-15.
-// Localized by BR Lingo
-// 
-// ------------------------------------------------------------------------------
-// 
-// © 2018-2020 CotEditor Project
-// 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// 
-// https://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  Main.strings (Portuguese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by BR Lingo on 2018-01-15.
+//  Localized by BR Lingo
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2018-2020 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 // MARK: Dock Menu
@@ -479,7 +479,6 @@
 "zuR-3K-9fs.title" = "NFKC Case Fold";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.ibShadowedToolTip" = "Aplicando NFKC, case-folding e remoção de pontos de código ignorados por padrão";
-
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
 "NU7-EI-1Ct.title" = "NFD Modificado (HFS+)";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
@@ -568,6 +567,7 @@
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "Trazer Todas para a Frente";
+
 /* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
 "653.title" = "Console";
 

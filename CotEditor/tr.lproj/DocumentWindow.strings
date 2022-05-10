@@ -76,6 +76,3 @@
 "ayd-8d-C4Y.ibShadowedToolTip" = "Unix Line Separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Unix Paragraph Separator"; ObjectID = "YIk-KP-44u"; */
 "YIk-KP-44u.ibShadowedToolTip" = "Unix Paragraph Separator";  // Unlike other line endings, this item is preferably as-is because of the unfamiliarity.
-
-
-

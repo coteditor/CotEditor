@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by Alex Newson on 2022-01-30.
+//  Localized by 1024jp
 //
 //  ------------------------------------------------------------------------------
 //
@@ -105,7 +106,6 @@
 "UMs-gY-YHE.title" = "Reveal in Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
 "52n-xG-4ZL.title" = "Import…";
-
 
 
 

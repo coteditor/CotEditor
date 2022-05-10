@@ -1,0 +1,49 @@
+//
+//  SyntaxFileMappingEditView.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-12-14.
+//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Extensions"; ObjectID = "6eS-Hj-xoA"; */
+"6eS-Hj-xoA.title" = "副檔名";
+/* Class = "NSTextFieldCell"; title = "(without dots)"; ObjectID = "QjK-XG-E4X"; */
+"QjK-XG-E4X.title" = "（不包括點）";
+
+/* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "IIL-M3-S2o"; */
+"IIL-M3-S2o.headerCell.title" = "副檔名";
+
+
+/* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
+"IAe-3F-qcV.title" = "檔名";
+
+/* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "jwM-Gn-44e"; */
+"jwM-Gn-44e.headerCell.title" = "檔名";
+
+
+/* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */
+"Axx-Oq-E9U.title" = "直譯器";
+/* Class = "NSTextFieldCell"; title = "The interpreters are used to determine the syntax style from the shebang in the document."; ObjectID = "dIj-Z5-J2j"; */
+"dIj-Z5-J2j.title" = "直譯器將根據檔案整體來決定文法高亮樣式。";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "I6J-y5-MxO"; */
+"I6J-y5-MxO.headerCell.title" = "直譯器";

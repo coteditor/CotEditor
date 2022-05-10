@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by Emir SARI on 2022-01-28.
+//  Localized by Emir SARI
 //
 //  ------------------------------------------------------------------------------
 //
@@ -21,6 +22,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
 
 "<a letter consisting of %d characters>" = "%d karakterden oluşan bir harf";
 

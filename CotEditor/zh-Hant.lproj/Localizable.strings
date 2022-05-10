@@ -1,0 +1,739 @@
+//
+//  Localizable.strings (Traditional Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by onevcat on 2014-11-27.
+//  Localized by onevcat
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2014-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// Basic button titles
+"OK" = "好";
+"Cancel" = "取消";
+
+
+// Appending words in parentheses
+" (%@)" = " (%@)";
+
+
+// Accessibility labels
+"inspector" = "檢查器";
+"outline" = "大綱";
+"warnings" = "警告";
+"incompatible characters" = "不兼容字元";
+"status bar" = "狀態欄";
+"editor" = "編輯器";
+"navigation bar" = "導航欄";
+"line numbers" = "行號";
+"find result" = "查找結果";
+"Use print font" = "使用列印字體";
+
+
+// Main menu item titles
+"Check for Updates…" = "檢查更新…";
+"What’s New in CotEditor %@" = "CotEditor %@新特性";  // %@ is version number
+
+"Share" = "共享";
+
+
+// warning message occurs in multipla places
+"This action cannot be undone." = "此操作不能撤銷。";
+
+
+
+/* MARK: AppDelegate */
+// Importing theme
+"“%@” is a CotEditor theme file." = "「%@」是CotEditor主題檔案";
+"Do you want to install this theme?" = "是否安裝主題？";
+"Install" = "安裝";
+"Open as Text File" = "以文字方式打開";
+"A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
+
+// Window title of issue report
+"Issue Report" = "問題報告";
+
+
+
+/* MARK: Text Finder */
+"Replace" = "替換";
+"Find All" = "查找全部";
+"Replace All" = "替換全部";
+"Highlight" = "高亮";
+"Searching in text…" = "正在文字中搜索…";
+"%@ string found." = "找到%@個匹配";
+"%@ strings found." = "找到%@個匹配";
+"%@ string replaced." = "已替換%@個匹配";
+"%@ strings replaced." = "已替換%@個匹配";
+"Invalid regular expression" = "無效的正規表達式";
+"Empty find string" = "空的搜索字元串";
+"The option “in selection” is enabled, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
+"Input text to find." = "輸入文字以查找。";
+"Select the search scope in the document or turn off the “in selection” option." = "在文件中選擇搜索範圍，或者禁用「在選擇中搜索」。";
+
+// accessibility announcement
+"Search wrapped." = "已從頭搜索";  // announced when the search restarted from the beginning.
+
+
+
+/* MARK: FindPanelController */
+"Replace the current selection with the replacement text, then find the next match." = "用替換文字替換當前選中內容，然後查找下一個匹配項目";
+"Replace the current selection with the replacement text." = "用替換文字替換當前選中內容";
+"Not Found" = "未找到";
+"%i found" = "找到%i項";  // %i is number of founds
+"Not Replaced" = "沒有進行替換";
+"%i replaced" = "%i處被替換";  // %i is number of replaced
+
+
+
+/* MARK: FindPanelResultViewController */
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "在「%@」中沒有找到字元串。";
+"Found one string in “%@”." = "在「%@」中找到一個字元串。";
+"Found %i strings in “%@”." = "%i個字元串在「%@」中被找到。";
+
+
+
+/* MARK: Regular Expression Reference */
+"Basic Regular Expression Syntax" = "基本正規表達式文法";
+
+"Characters" = "字元";
+"any character" = "任意字元";
+"new line character" = "換行符";
+"tab character" = "tab符號";
+"word character" = "單詞字元";
+"whitespace character" = "空格字元";
+"non-whitespace character" = "非空格字元";
+"decimal number" = "數字";
+"any character in range A to Z" = "A到Z範圍內的任意字元";
+"any character not in range A to Z" = "不在A到Z範圍內的任意字元";
+
+"Anchors" = "錨點";
+"beginning of the line" = "行首";
+"end of the line" = "行末";
+"word boundary" = "單詞邊界";
+
+"Quantifiers" = "數量";
+"1 or 0 times" = "1次或0次";
+"0 or more times" = "0次或更多";
+"1 or more times" = "1次或更多";
+"at least n but not more than m times" = "至少n次但不超過m次";
+"at least n times" = "至少n次";
+"at least 0 but not more than n times" = "至少0次但不超過n次";
+"n times" = "n次";
+
+"Extended Groups" = "擴展分組";
+"look-ahead" = "前向";
+"look-behind" = "後向";
+
+"Back Reference" = "回溯引用";
+"first match" = "首字匹配";
+
+
+
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "插入規則";
+"Delete Rules" = "刪除規則";
+"Edit Rule" = "編輯規則";
+"Move Rules" = "移動規則";
+
+
+
+/* MARK: Document Controller */
+// File open accessory's menu item title
+"Automatic" = "自動";
+
+// Binary file alert
+"The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "該檔案看起來是%@。\n\n確定要打開該檔案？";
+
+// Large file alert
+"The file “%@” has a size of %@." = "「%@」檔案尺寸為%@。";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打開大型檔案可能導致應用速度變慢。\n\n確定要打開該檔案？";
+"Open" = "打開";
+
+
+
+/* MARK: Document */
+// Undo action names
+"Encoding to “%@”" = "編碼變更為「%@」";
+"Line Endings to “%@”" = "行尾變更為「%@」";
+
+// Convert or reinterpret encoding alert
+"File encoding" = "檔案編碼";
+"Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋嗎？";
+"Convert" = "轉換";
+"Reinterpret" = "再次解釋";
+
+// Lossy encoding alert
+"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
+"Do you want to continue processing?" = "繼續進行處理嗎？";
+"Save Available Text" = "儲存有效文字";
+"Show Incompatible Characters" = "顯示不兼容字元";
+
+// Encoding change with unsaved changes alert
+"The document has unsaved changes." = "該文件中含有未儲存的修改。";
+"Do you want to discard the changes and reopen the document using “%@”?" = "你確認放棄更改，並使用「%@」重新打開文件嗎？";  // %@ is an encoding name.
+"Discard Changes" = "放棄修改";
+
+// Reinterpretation failed alert
+"The document doesn’t have a file to reinterpret." = "該文件沒有用來再次解釋的檔案。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "檔案「%@」無法使用「%@」編碼再次解釋。";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "該檔案可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
+
+// incompatible characters alert
+"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
+"Do you want to change encoding and show incompatible characters?" = "改變編碼並顯示不兼容字元嗎？";
+"Change Encoding" = "更改編碼";
+
+// Inconsistent line ending alert
+"The document has inconsistent line endings." = "文件包含不一致的換行符。";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要將所有換行符都替換為文件中最常使用的 %@ 嗎？";
+"Don’t ask again for this document" = "對該文件不再詢問";
+"Convert" = "轉換";
+"Review" = "檢查";
+
+// Modified by an external application alert
+"The file has been changed by another application. There are also unsaved changes in CotEditor." = "檔案被其他應用更改，CotEditor中還有未儲存的變更。";
+"The file has been changed by another application." = "檔案被其他應用更改。";
+"Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本還是更新至被編輯過的版本？";
+"Keep CotEditor’s Edition" = "保留CotEditor編輯的內容";
+"Update" = "更新";
+
+
+
+/* MARK: Toolbar */
+"Syntax Style" = "文法樣式";
+// tooltip
+"Change syntax style" = "改變文法樣式";
+// menu item title
+"Recently Used" = "最近使用";
+"Deleted" = "已刪除";  // heading for deleted items
+
+"Inspector" = "檢查器";
+// tooltip
+"Show document information" = "顯示文件資訊";
+
+"Text Size" = "文字尺寸";
+"Smaller" = "較小";
+"Bigger" = "較大";
+// tooltip
+"Change text size" = "改變文字尺寸";
+"Decrease text size" = "減少文字尺寸";
+"Increase text size" = "增加文字尺寸";
+
+"Writing Direction" = "書寫方向";
+"Left to Right" = "從左到右";
+"Right to Left" = "從右到左";
+// tooltip
+"Change writing direction" = "改變書寫方向";
+"Left to right" = "從左到右";
+"Right to left" = "從右到左";
+
+"Text Orientation" = "文字方向";
+"Horizontal" = "水平";
+"Vertical" = "豎直";
+// tooltip
+"Switch text orientation" = "切換文字方向";
+
+"Indent" = "縮進";
+"Shift Left" = "左移";
+"Shift Right" = "右移";
+// tooltip
+"Indent selection" = "縮進選擇";
+"Shift lines to left" = "將選中行左移";
+"Shift lines to right" = "將選中行右移";
+
+"Comment" = "註釋";
+// tooltip
+"Comment-out or uncomment selection" = "將選中內容註釋或取消註釋";
+
+"Tab Style" = "Tab樣式";
+// tooltip
+"Turn off expanding tabs to spaces" = "禁止將tab擴展為空格";
+"Expand tabs to spaces automatically" = "自動將tab擴展為空格";
+"Change tab width" = "更改Tab寬度";
+// menu
+"Tab Width" = "Tab寬度";
+"Custom…" = "自定義…";
+
+"Wrap Lines" = "換行";
+// tooltip
+"Unwrap lines" = "不換行";
+"Wrap lines" = "換行";
+
+"Invisibles" = "不可見元素";
+// tooltip
+"Hide invisible characters" = "隱藏不可見元素";
+"Show invisible characters" = "顯示不可見元素";
+
+"Indent Guides" = "縮進指示";
+// tooltip
+"Hide indent guide lines" = "隱藏縮進指示線";
+"Show indent guide lines" = "顯示縮進指示線";
+
+"Opacity" = "透明度";
+// tooltip
+"Change editor’s opacity" = "更改編輯器透明度";
+
+"Spell Check" = "拼寫檢查";
+// tooltip
+"Show spelling and grammar" = "顯示拼寫和文法";
+
+"Color Code" = "顏色代碼";
+// tooltip
+"Open Color Code Editor and set selection as color code" = "打開調色盤並將選中內容設為顏色代碼";
+
+"Emoji & Symbols" = "表情與符號";
+// tooltip
+"Show Emoji & Symbols palette" = "顯示查找和替換";
+
+"Find" = "查找";
+// tooltip
+"Show Find & Replace" = "顯示查找 & 替換";
+
+"Print" = "列印";
+// tooltip
+"Print document" = "列印文稿";
+
+// tooltip
+// -> The toolbar label for "Share" is set automatically.
+"Share document file" = "共享文件檔案";
+
+"Fonts" = "字體";
+// tooltip
+"Show Fonts" = "顯示字體";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Document View
+"Invisibles" = "不可見元素";
+"Indent Guides" = "縮進指示";
+"Wrap Lines" = "換行";
+
+// Touch bar item labels -Text View
+"Shift" = "Shift";
+"Comment" = "註釋";
+"Text Size" = "文字尺寸";
+"Actual Size" = "實際尺寸";
+
+
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "列印：%@";  // %@ is date
+
+
+
+/* MARK: PrintAccessoryViewController */
+// Summary item names
+"Color" = "顏色";
+"Print Background" = "列印背景";
+"Line Number" = "行號";
+"Invisibles" = "不可見元素";
+"Print Header" = "列印頁眉";
+"Primary Header" = "主頁眉";
+"Primary Header Alignment" = "主頁眉對齊";
+"Secondary Header" = "次頁眉";
+"Secondary Header Alignment" = "次頁眉對齊";
+"Print Footer" = "列印頁腳";
+"Primary Footer" = "主頁腳";
+"Primary Footer Alignment" = "主頁腳對齊";
+"Secondary Footer" = "次頁腳";
+"Secondary Footer Alignment" = "次頁腳對齊";
+
+// Summary item values
+"On" = "開";
+"Off" = "關";
+"Don’t Print" = "不列印";
+"Same as Document’s Setting" = "同文件設置一致";
+"Black and White" = "黑白";
+"Print" = "列印";
+"Syntax Name" = "文法名";
+"Document Name" = "檔案名稱";
+"File Path" = "檔案路徑";
+"Print Date" = "列印日期";
+"Page Number" = "頁碼";
+"Left" = "左";
+"Center" = "居中";
+"Right" = "右";
+
+
+
+/* MARK: Inspector */
+// Outline
+"Recent Filters" = "最近的過濾";
+"Clear Recent Filters" = "清除最近記錄";
+"No Recent Filter" = "沒有最近的過濾";
+"No Filter Results" = "無過濾結果";
+
+// Warnings
+"No issues found." = "沒有發現問題。";
+
+// Incompatible characters
+"Scanning incompatible characters…" = "掃描不兼容字元…";
+"Found an incompatible character." = "發現1處不兼容字元。";
+"Found %i incompatible characters." = "發現%i處不兼容字元。";  // %i is the number of characters
+
+// Inconsistent line endings
+"Found a line ending other than %@." = "發現1處不是%@的換行符";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "發現%i處不是%@的換行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+
+
+
+/* MARK: EditorTextView */
+// Undo action names
+"Replace Text" = "替換文字";
+"Insert Text" = "插入文字";
+"Insert Snippet" = "插入片段";
+"Shift Right" = "右移";
+"Shift Left" = "左移";
+"Convert Indentation" = "轉換縮進";
+"Comment Out" = "註釋";
+"Uncomment" = "取消註釋";
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
+"Modified NFC" = "修改NFC";
+"Modified NFD" = "修改NFD";
+"Inspect Character" = "顯示字元";
+"Move Line" = "移動行";
+"Sort Lines" = "排序行";
+"Reverse Lines" = "逆序行";
+"Delete Duplicate Lines" = "移除重複行";
+"Duplicate Line" = "複製行";
+"Delete Line" = "刪除行";
+"Trim Trailing Whitespace" = "移除行尾空白";
+
+// Contextual menu items
+"Font" = "字體";
+"Text" = "文字";
+"Copy as Rich Text" = "以富文字拷貝";
+"Select All" = "全部選擇";
+"Straighten Quotes" = "直引號";
+
+
+
+/* MARK: DocumentViewController */
+// Menu items
+"Hide Inspector" = "隱藏檢查器";
+"Show Inspector" = "顯示檢查器";
+"Hide Line Numbers" = "隱藏行號";
+"Show Line Numbers" = "顯示行號";
+"Hide Status Bar" = "隱藏狀態欄";
+"Show Status Bar" = "顯示狀態欄";
+"Hide Navigation Bar" = "隱藏導航欄";
+"Show Navigation Bar" = "顯示導航欄";
+"Hide Invisibles" = "隱藏不可見元素";
+"Show Invisibles" = "顯示不可見元素";
+"Hide Page Guide" = "隱藏頁面指示";
+"Show Page Guide" = "顯示頁面指示";
+"Hide Indent Guides" = "隱藏縮進指示";
+"Show Indent Guides" = "顯示縮進指示";
+"Unwrap Lines" = "不換行";
+"Wrap Lines" = "換行";
+
+// Tooltip for "Show Invisibles" menu item and toolbar item
+"To show invisible characters, set them in Preferences" = "要顯示不可見元素，請在偏好設置中進行設定";
+
+
+
+/* MARK: SplitViewController */
+// Menu items
+"Stack Editors Horizontally" = "橫向分隔編輯器";
+"Stack Editors Vertically" = "縱向分隔編輯器";
+
+
+
+/* MARK: StatusBarController */
+"Lines: " = "行數：";
+"Characters: " = "字元數：";
+"Length: " = "長度：";
+"Words: " = "字數：";
+"Location: " = "位置：";
+"Line: " = "行：";
+"Column: " = "列：";
+
+
+
+/* MARK: NavigationBarController */
+// Outline menu title
+"Jump to previous outline item" = "上一個提綱項目";
+"Jump to next outline item" = "下一個提綱項目";
+"Extracting Outline…" = "提取提綱…";
+
+
+
+/* MARK: SyntaxStyle */
+// Coloring indicator
+"Coloring text…" = "文字著色中…";
+"Please wait for a while." = "請稍等片刻…";
+"Parsing document…" = "文件解析中…";
+"Applying colors to text…" = "在文字上使用顏色…";
+"keywords" = "關鍵字";
+"commands" = "命令";
+"types" = "類型";
+"attributes" = "標記";
+"variables" = "變數";
+"values" = "值";
+"numbers" = "數字";
+"strings" = "字元串";
+"characters" = "字元";
+"comments" = "註釋";
+
+
+
+/* MARK: ColorCodePanelController */
+// Undo action name
+"Insert Color Code" = "插入顏色代碼";
+// Color list name
+"Stylesheet Keywords" = "樣式表關鍵字";
+
+
+
+/* MARK: Unicode Input View Controller */
+"Recents" = "最近";
+"Clear Recents" = "清除最近使用的項目";
+"Invalid code" = "無效的代碼";
+
+
+
+/* MARK: Preferences */
+// General pane
+// Autosave setting update alert
+"The change will be applied first on the next launch." = "變更將在下次啟動時生效。";
+"Do you want to restart CotEditor now?" = "現在就重啟CotEditor嗎？";
+"Restart Now" = "現在重啟";
+"Later" = "稍後";
+// command-line tool
+"installed at %@" = "已安裝於%@";
+
+
+// Appearance pane
+// Contextual menu items
+"Rename “%@”" = "給「%@」重新命名";
+"Duplicate “%@”" = "拷貝「%@」";
+"Restore “%@”" = "還原「%@」";
+"Reveal “%@” in Finder" = "在訪達中顯示「%@」";
+// Theme delete alert
+"Are you sure you want to delete “%@” theme?" = "確認刪除「%@」主題？";
+
+// Swipe to delete (also used in the Format pane)
+"Delete" = "刪除";
+"Restore" = "還原";
+
+
+// Format pane
+// Installed syntax styles action menu items
+"Duplicate “%@”…" = "拷貝「%@」…";
+"Export “%@”…" = "導出「%@」…";
+"Reveal “%@” in Finder" = "在訪達中顯示「%@」";
+
+
+// File Drop pane
+// File drop setting deletion alert
+"Are you sure you want to delete the file drop setting for “%@”?" = "確定刪除檔案拖拽設置「%@」？";
+"Deleted setting can’t be restored." = "設置刪除後無法恢復。";
+
+
+// Print pane
+"Theme" = "主題";
+
+
+// Integration pane
+// Warnings on Integration pane
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "當前的cot符號鏈接沒有指向正在運行的CotEditor。";
+"The current 'cot' symbolic link may target an invalid path." = "當前的cot符號鏈接可能指向無效路徑。";
+
+
+
+/* MARK: SyntaxEditViewController */
+// Menu items
+"Keywords" = "關鍵字";
+"Commands" = "命令";
+"Types" = "類型";
+"Attributes" = "標記";
+"Variables" = "變數";
+"Values" = "值";
+"Numbers" = "數字";
+"Strings" = "字元串";
+"Characters" = "字元";
+"Comments" = "註釋";
+"Outline" = "大綱";
+"Completion List" = "補全列表";
+"File Mapping" = "檔案關聯";
+"Style Info" = "樣式資訊";
+"Syntax Validation" = "文法驗證";
+
+// Syntax style validation results
+"No error found." = "沒有發現錯誤";
+"An error found!" = "發現1個錯誤";
+"%i errors found!" = "發現%i個錯誤";
+"outline" = "大綱";
+
+
+
+/* MARK: SettingFileManager */
+"“%@” couldn’t be deleted." = "「%@」無法刪除。";
+"“%@” couldn’t be imported." = "「%@」無法導入。";
+"No original file for “%@” was found." = "無法找到「%@」的源檔案。";
+
+// Setting filename warnings
+"Please choose another name." = "請輸入其他名稱。";
+"Name can’t be empty." = "名稱不能為空。";
+"You can’t use a name that contains “/”." = "名稱不能含有「/」。";
+"You can’t use a name that begins with a dot “.”." = "名稱不能含有「.」。";
+"The name “%@” is already taken." = "「%@」已經在使用中。";
+
+
+
+/* MARK: SyntaxManager */
+// Style name
+"None" = "無";
+
+// Selected syntax style name was original
+"Bundled styles can’t be renamed." = "內置樣式的名稱不能改變。";
+
+// Suffix of copied syntax coloring style
+"copy" = "拷貝";
+
+// Delete syntax style alert
+"Are you sure you want to delete “%@” syntax style?" = "確定刪除文法樣式「%@」？";
+"Delete" = "刪除";
+"Replace" = "替換";
+
+// Import syntax style file choose openPanel button
+"Import" = "導入";
+// Importing same name style alert
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "將要安裝名為「%@」的新樣式，但是已經存在同名的自定義樣式。";
+"Do you want to replace it?\nReplaced style can’t be restored." = "要替換樣式嗎？\n被替換的樣式無法將恢復。";
+
+// Export syntax style file savePanel label
+"Export As:" = "導出為：";
+
+// Syntax validation
+"Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
+"Begin string" = "開始字元串";
+"End string" = "結束字元串";
+"Regular expression" = "正規表達式";
+"The same word is registered multiple times." = "重複註冊。";
+"Regular Expression: " = "正規表達式：";
+
+
+
+/* MARK: ThemeManager */
+// Theme names
+"Untitled" = "未命名";
+"Customized Theme" = "自定義主題";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自定義主題。";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "要覆蓋原主題嗎？\n主題刪除後將無法還原。";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名稱為「%@」的新替換定義將被安裝，但是已經存在相同名稱的定義。";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替換該定義嗎？\n被替換的定義無法恢復。";
+
+
+
+/* MARK: KeyBindingManager */
+// Label for text menu keybindings action
+"Insert Text %li" = "插入文字%li";
+
+// Keyboard key name
+"Space" = "空格鍵";
+
+// Warning messages
+"“%@” is already taken by the “%@” command." = "「%@」已被「%@」命令使用。";
+"The Shift key can be used only with another modifier key." = "Shift鍵只能配合其他修飾鍵使用。";
+"Single type is invalid for a shortcut." = "單獨的按鍵類型不能被用作快捷鍵。";
+"Please combine with other keys." = "請與其他鍵組合使用。";
+
+
+
+/* MARK: ScriptManager */
+// Menu items
+"Open Scripts Folder" = "打開Scripts檔案夾";
+
+// Script menu item tooltips
+"Option-click to open script in editor." = "使用Option-單擊在編輯器中打開腳本。";
+
+
+
+/* MARK: Script */
+// No script target document errors
+"No document to get input." = "沒有輸入文件。";
+"No document to put output." = "沒有輸出文件。";
+
+// Script file error description
+"The script “%@” does not exist." = "腳本「%@」不存在。";
+"The script file “%@” couldn’t be opened." = "無法打開腳本檔案「%@」。";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "由於沒有執行許可權，無法執行腳本「%@」。";
+"The script “%@” couldn’t be read." = "無法讀取腳本「%@」。";
+
+// Script file error recovery suggestions
+"Check the script file." = "請確認腳本檔案。";
+"Check the permission of the script file." = "請確認腳本檔案的許可權。";
+
+
+
+/* MARK: FileDropItem */
+// Descriptions about variables in the file drop feature
+"The dropped file absolute path." = "拖拽的檔案絕對路徑";
+"The relative path between the dropped file and the document." = "拖拽的檔案與編輯中文件的相對路徑";
+"The dropped file’s name including extension (if exists)." = "拖拽的檔案的檔案名以及擴展名（如果存在）";
+"The dropped file’s name without extension." = "不帶擴展名的檔案名";
+"The dropped file’s extension." = "拖拽的檔案的擴展名";
+"The dropped file’s extension (converted to lowercase)." = "拖拽的檔案的擴展名（轉換為小寫）";
+"The dropped file’s extension (converted to uppercase)." = "拖拽的檔案的擴展名（轉換為大寫）";
+"The parent directory name of dropped file." = "拖拽的檔案的上級目錄";
+"(If the dropped file is an image) image width." = "圖片寬度（如果拖拽檔案是圖像）";
+"(If the dropped file is an image) image height." = "圖片高度（如果拖拽檔案是圖像）";
+"(If the dropped file is a text file) file content." = "檔案內容（如果拖拽檔案是文字檔案）";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The insertion point after inserting the snippet." = "插入片段後的遊標位置";
+
+
+
+/* MARK: String extension */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "%@ with BOM";  // No need to be tranlated because "UTF-8 with BOM" is acceptable in zh-Hans.
+
+
+
+/* MARK: Migration Panel */
+"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
+"From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";
+"Due to this change, you may need manual migration for your settings below:" = "由於這個變更，你可能需要對下面的設定進行手動遷移：";
+"Multiple replacement definitions" = "多次替換的定義";
+"Syntax styles" = "文法風格";
+"CotEditor scripts" = "CotEditor腳本";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n`僅在行尾確實是LF時進行匹配。如需匹配任意行尾，請使用`\\R`。";
+"Learn More…" = "瞭解更多…";
