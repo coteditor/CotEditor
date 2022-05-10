@@ -34,10 +34,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Filenames"; ObjectID = "IAe-3F-qcV"; */
-"IAe-3F-qcV.title" = "文件名";
+"IAe-3F-qcV.title" = "檔案名稱";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "jwM-Gn-44e"; */
-"jwM-Gn-44e.headerCell.title" = "文件名";
+"jwM-Gn-44e.headerCell.title" = "檔案名稱";
 
 
 /* Class = "NSTextFieldCell"; title = "Interpreters"; ObjectID = "Axx-Oq-E9U"; */

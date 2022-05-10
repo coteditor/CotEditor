@@ -1,0 +1,76 @@
+//
+//  InfoPlist.strings (Simplified Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-01-01.
+//  Localized by onevcat
+//
+//  ------------------------------------------------------------------------------
+//
+//  © 2015-2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// Descriptions for privacy authorization dialog
+"NSAppleEventsUsageDescription" = "CotEditor需要用戶授權使用AppleScript控制其他應用。";  // "CotEditor needs user approval to control other applications with AppleScript."
+
+// Document Types
+"Text document" = "文字文件";
+"Plain text" = "純文字";
+"CotEditor Theme" = "CotEditor主題";
+"CotEditor Replacement Definition" = "CotEditor替換定義";
+"BibTeX bibliography" = "BibTeX參考書目";
+"Configuration" = "配置檔案";
+"C header" = "C頭檔案";
+"C source" = "C源碼";
+"C++ source" = "C++源碼";
+"C++ header" = "C++頭檔案";
+"C# source" = "C#源碼";
+"Cascading Style Sheet" = "CSS檔案";
+"D source" = "D源碼";
+"Dart script" = "Dart腳本";
+"Diff" = "Diff";
+"Fortran Source" = "Fortran源碼";
+"Go script" = "Go 腳本";
+"Haskell script" = "Haskell腳本";
+"HTML document" = "HTML文件";
+"INI" = "INI";
+"Java source" = "Java源碼";
+"JavaScript" = "JavaScript";
+"JSON document" = "JSON文件";
+"Julia script" = "Julia腳本";
+"Kotlin source" = "Kotlin源碼";
+"Lisp script" = "Lisp腳本";
+"Lua script" = "Lua腳本";
+"Markdown document" = "Markdown文件";
+"Perl script" = "Perl腳本";
+"PHP script" = "PHP腳本";
+"Python script" = "Python腳本";
+"reStructured Text document" = "reStructured文字文件";
+"Ruby script" = "Ruby腳本";
+"Rust script" = "Rust腳本";
+"Scalable Vector Graphics" = "矢量圖";
+"Scala source" = "Scala源碼";
+"Scheme script" = "Scheme腳本";
+"Shell script" = "Shell腳本";
+"SQL source" = "SQL源碼";
+"Swift source" = "Swift源碼";
+"TeX" = "TeX";
+"Textile document" = "Textile文件";
+"Verilog source" = "Verilog源碼";
+"VHDL source" = "VHDL源碼";
+"XML document" = "XML文件";
+"YAML document" = "YAML文件";

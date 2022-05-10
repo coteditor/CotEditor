@@ -43,10 +43,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
-"Msi-ee-MNF.title" = "文件名：";
+"Msi-ee-MNF.title" = "檔案名稱：";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
-"YGO-sx-UT0.headerCell.title" = "文件名";
+"YGO-sx-UT0.headerCell.title" = "檔案名稱";
 /* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "cz8-8b-5qL"; */
 "cz8-8b-5qL.headerCell.title" = "已使用样式";
 /* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "nge-9Z-A9D"; */
