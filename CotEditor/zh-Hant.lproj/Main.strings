@@ -52,14 +52,14 @@
 "131.title" = "服務";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "隱藏 CotEditor";
+"134.title" = "隱藏CotEditor";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "隱藏其他";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "全部顯示";
 
 /* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
-"136.title" = "退出 CotEditor";
+"136.title" = "退出CotEditor";
 
 
 
@@ -137,7 +137,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "輸入日元符號";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "用 Unicode 輸入…";
+"tWx-pj-3PL.title" = "用Unicode輸入…";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "拼寫和文法";
@@ -443,9 +443,9 @@
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
 "Skr-vI-7VN.title" = "全寬到半寬";
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
-"586.title" = "ASCII 到全寬 ASCII";
+"586.title" = "ASCII到全寬ASCII";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
-"588.title" = "全寬 ASCII 到 ASCII";
+"588.title" = "全寬ASCII到ASCII";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
 "XWV-by-mnw.title" = "日文文字";
@@ -455,9 +455,9 @@
 "594.title" = "片假名到平假名";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode 標準化";
+"600.title" = "Unicode標準化";
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
-"599.title" = "Unicode 標準化";
+"599.title" = "Unicode標準化";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
@@ -590,21 +590,21 @@
 "106.title" = "幫助";
 
 /* Class = "NSMenuItem"; title = "CotEditor Help"; ObjectID = "111"; */
-"111.title" = "CotEditor 幫助";
+"111.title" = "CotEditor幫助";
 
 /* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "CotEditor 指令碼手冊";
+"M1N-Fg-Bo4.title" = "CotEditor指令碼手冊";
 /* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "CotEditor 指令碼手冊";
+"OLa-Mb-rXS.title" = "CotEditor指令碼手冊";
 /* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "關於指令碼";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
-"620.title" = "AppleScript 字典";
+"620.title" = "AppleScript字典";
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "釋出說明";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor 新特性";
+"DCW-Ij-540.title" = "CotEditor新特性";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "致謝";
 
@@ -613,4 +613,4 @@
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "報告問題";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
-"g34-YV-E6o.title" = "CotEditor 網站";
+"g34-YV-E6o.title" = "CotEditor網站";

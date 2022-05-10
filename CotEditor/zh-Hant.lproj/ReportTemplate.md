@@ -1,5 +1,5 @@
 
-按照示例進行填寫，並將它釋出到 [GitHub Issues](https://github.com/coteditor/CotEditor/issues) 上或是透過郵件傳送到 <coteditor.github@gmail.com>。請注意，透過郵件傳送的內容也會被共享至 Issue 頁面。請使用英文或者日文書寫報告內容。
+按照示例進行填寫，並將它釋出到[GitHub Issues](https://github.com/coteditor/CotEditor/issues)上或是透過郵件傳送到<coteditor.github@gmail.com>。請注意，透過郵件傳送的內容也會被共享至Issue頁面。請使用英文或者日文書寫報告內容。
 
 -----------------------------------------------
 

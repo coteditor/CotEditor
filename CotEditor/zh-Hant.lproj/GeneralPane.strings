@@ -66,7 +66,7 @@
 /* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
 "3306.title" = "字元計數時忽略行尾";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "連結檔案中的 URL";
+"tPy-Ox-YpP.title" = "連結檔案中的URL";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
 "3300.title" = "輸入時檢查拼寫";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
@@ -86,7 +86,7 @@
 /* Class = "NSButtonCell"; title = "Learn More…"; ObjectID = "ltN-wn-m8M"; */
 "ltN-wn-m8M.title" = "瞭解更多…";
 /* Class = "NSTextFieldCell"; title = "With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line."; ObjectID = "c48-xK-Ag1"; */
-"c48-xK-Ag1.title" = "cot 命令列工具可以讓您使用命令列來啟動CotEditor並開啟檔案。";
+"c48-xK-Ag1.title" = "cot命令列工具可以讓您使用命令列來啟動CotEditor並開啟檔案。";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

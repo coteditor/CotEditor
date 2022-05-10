@@ -106,7 +106,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在「%@」中沒有找到字元串。";
 "Found one string in “%@”." = "在「%@」中找到一個字元串。";
-"Found %i strings in “%@”." = "%i 個字元串在「%@」中被找到。";
+"Found %i strings in “%@”." = "%i個字元串在「%@」中被找到。";
 
 
 
@@ -265,7 +265,7 @@
 // tooltip
 "Comment-out or uncomment selection" = "將選中內容註釋或取消註釋";
 
-"Tab Style" = "Tab 樣式";
+"Tab Style" = "Tab樣式";
 // tooltip
 "Turn off expanding tabs to spaces" = "禁止將tab擴展為空格";
 "Expand tabs to spaces automatically" = "自動將tab擴展為空格";
@@ -390,12 +390,12 @@
 
 // Incompatible characters
 "Scanning incompatible characters…" = "掃描不兼容字元…";
-"Found an incompatible character." = "發現 1 處不兼容字元。";
-"Found %i incompatible characters." = "發現 %i 處不兼容字元。";  // %i is the number of characters
+"Found an incompatible character." = "發現1處不兼容字元。";
+"Found %i incompatible characters." = "發現%i處不兼容字元。";  // %i is the number of characters
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "發現 1 處不是 %@ 的換行符";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "發現 %i 處不是 %@ 的換行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found a line ending other than %@." = "發現1處不是%@的換行符";  // %@ is a line ending type, such as LF
+"Found %i line endings other than %@." = "發現%i處不是%@的換行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -526,7 +526,7 @@
 "Restart Now" = "現在重啟";
 "Later" = "稍後";
 // command-line tool
-"installed at %@" = "已安裝於 %@";
+"installed at %@" = "已安裝於%@";
 
 
 // Appearance pane
@@ -730,10 +730,10 @@
 
 /* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
-"From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor 將會更嚴格地處理行尾。";
+"From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";
 "Due to this change, you may need manual migration for your settings below:" = "由於這個變更，你可能需要對下面的設定進行手動遷移：";
 "Multiple replacement definitions" = "多次替換的定義";
 "Syntax styles" = "文法風格";
-"CotEditor scripts" = "CotEditor 腳本";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` 僅在行尾確實是 LF 時進行匹配。如需匹配任意行尾，請使用 `\\R`。";
+"CotEditor scripts" = "CotEditor腳本";
+"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n`僅在行尾確實是LF時進行匹配。如需匹配任意行尾，請使用`\\R`。";
 "Learn More…" = "瞭解更多…";
