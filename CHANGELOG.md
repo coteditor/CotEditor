@@ -5,6 +5,10 @@ Change Log
 4.2.2 (unreleased)
 --------------------------
 
+### Improvement
+
+- Update Markdown and Textile syntax styles to fix highlighing.
+
 
 
 4.2.1 (505)
