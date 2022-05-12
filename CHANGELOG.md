@@ -8,6 +8,7 @@ Change Log
 ### Improvement
 
 - Update Markdown and Textile syntax styles to fix highlighing.
+- Improve traditional Chinese localization.
 
 
 
