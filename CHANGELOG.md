@@ -12,6 +12,8 @@ Change Log
 
 
 ### Fixes
+
+- Fix an issue that the Outline pane occasionally showed the horizontal scroller.
 - Fix some unlocalized text.
 
 
