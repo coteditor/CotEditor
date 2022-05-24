@@ -15,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the Outline pane occasionally showed the horizontal scroller.
+- Fix an issue that the stored action names for customized key bindings were wrong.
 - Fix some unlocalized text.
 
 

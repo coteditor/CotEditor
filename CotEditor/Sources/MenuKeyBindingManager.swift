@@ -270,7 +270,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                     ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(name: menu.title, action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
+                let item = KeyBindingItem(name: menuItem.title, action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
                 return NamedTreeNode(name: menuItem.title, representedObject: item)
             }
