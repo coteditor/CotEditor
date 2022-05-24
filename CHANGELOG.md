@@ -7,6 +7,7 @@ Change Log
 
 ### Improvement
 
+- Perform automatic indentation even when inserting a newline while selecting text.
 - Update Markdown and Textile syntax styles to fix highlighing.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
 
