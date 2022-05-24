@@ -669,6 +669,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”, halihazırda “%@ komutu tarafından alınmış.";
 "The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";
+"The combination “%@” is not supported for the key binding customization." = "The combination “%@” is not supported for the key binding customization.";  // FIXME: added
 "Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
 "Please combine with other keys." = "Lütfen başka düğmeler ile ikileyin.";
 

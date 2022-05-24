@@ -8,7 +8,8 @@ Change Log
 ### Improvement
 
 - Perform automatic indentation even when inserting a newline while selecting text.
-- Update Markdown and Textile syntax styles to fix highlighing.
+- Alert for registering the key bindings that are not actually supported.
+- Update Markdown and Textile syntax styles to fix highhighlightinglighing.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
 
 

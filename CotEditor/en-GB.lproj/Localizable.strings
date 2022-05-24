@@ -669,6 +669,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@” is already taken by the “%@” command.";
 "The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";
+"The combination “%@” is not supported for the key binding customization." = "The combination “%@” is not supported for the key binding customization.";
 "Single type is invalid for a shortcut." = "Single type is invalid for a shortcut.";
 "Please combine with other keys." = "Please combine with other keys.";
 

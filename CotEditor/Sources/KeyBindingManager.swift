@@ -32,6 +32,7 @@ struct InvalidShortcutError: LocalizedError {
         case singleType
         case alreadyTaken(name: String)
         case shiftOnlyModifier
+        case unsupported
     }
     
     let kind: ErrorKind
@@ -49,6 +50,9 @@ struct InvalidShortcutError: LocalizedError {
                 
             case .shiftOnlyModifier:
                 return "The Shift key can be used only with another modifier key.".localized
+                
+            case .unsupported:
+                return String(format: "The combination “%@” is not supported for the key binding customization.".localized, self.shortcut.description)
         }
     }
     
@@ -172,6 +176,10 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         
         // blank key is always valid
         if shortcut.isEmpty { return }
+        
+        if shortcut.keyEquivalent == "\u{9}" || shortcut.keyEquivalent == "\u{19}" {  // Tab or Backtab
+            throw InvalidShortcutError(kind: .unsupported, shortcut: shortcut)
+        }
         
         // avoid shift-only modifier with a letter
         // -> typing Shift + letter inserting an uppercase letter instead of invoking a shortcut
