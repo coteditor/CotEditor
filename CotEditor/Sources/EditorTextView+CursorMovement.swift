@@ -52,7 +52,7 @@ extension EditorTextView {
     override func moveLeftAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
-//        guard self.hasMultipleInsertions else { return super.moveLeftAndModifySelection(sender) }
+        guard self.hasMultipleInsertions || self.lineEnding == .crlf else { return super.moveLeftAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
             self.layoutManager!.leftCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
@@ -79,7 +79,7 @@ extension EditorTextView {
     override func moveRightAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
-//        guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
+        guard self.hasMultipleInsertions || self.lineEnding == .crlf else { return super.moveRightAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
             self.layoutManager!.rightCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
@@ -333,7 +333,7 @@ extension EditorTextView {
     override func moveBackwardAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
-//        guard self.hasMultipleInsertions else { return super.moveBackwardAndModifySelection(sender) }
+        guard self.hasMultipleInsertions || self.lineEnding == .crlf else { return super.moveBackwardAndModifySelection(sender) }
         
         self.moveLeftAndModifySelection(sender)
     }
@@ -356,7 +356,7 @@ extension EditorTextView {
     override func moveForwardAndModifySelection(_ sender: Any?) {
         
         // -> The default implementation cannot handle CRLF line endings correctly (2022-02 macOS 12).
-//        guard self.hasMultipleInsertions else { return super.moveForwardAndModifySelection(sender) }
+        guard self.hasMultipleInsertions || self.lineEnding == .crlf else { return super.moveForwardAndModifySelection(sender) }
         
         self.moveRightAndModifySelection(sender)
     }
