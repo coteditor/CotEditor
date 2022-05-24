@@ -8,16 +8,16 @@ metadata:
   version: "1.3.5"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2022-05-12"
+  lastModified: "2022-05-25"
   distributionURL: "https://coteditor.com"
 keywords:
-- beginString: "(?<![\\\\*])(\\*{1,3})[^ \\t*](?![^\\R*]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
+- beginString: "(?<!\\\\)\\b(\\*{1,3})[^ \\t*](?![^\\R*]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
   regularExpression: true
   description: "em, strong"
-- beginString: "(?<![\\\\_])(_{1,3})[^ \\t_](?![^\\R_]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
+- beginString: "(?<!\\\\)\\b(_{1,3})[^ \\t_](?![^\\R_]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
   regularExpression: true
   description: "em, strong"
-- beginString: "(?<![\\\\~])~~(?![ \\t])(?![^\\R~]*\\R{2})[^\\R]*?(?<![\\\\\\t ])~~"
+- beginString: "(?<!\\\\)\\b~~(?![ \\t])(?![^\\R~]*\\R{2})[^\\R]*?(?<![\\\\\\t ])~~"
   regularExpression: true
   description: "[github] strikethrough"
 - beginString: "\\R[\\t ]*\\R(?:\\- *){3,}$"
