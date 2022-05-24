@@ -129,15 +129,15 @@ final class SyntaxManager: SettingFileManaging {
         }
         
         if let pathExtension = fileName.components(separatedBy: ".").last,
-           let extentionTable = mappingTables[.extensions]
+           let extensionTable = mappingTables[.extensions]
         {
-            if let settingName = extentionTable[pathExtension]?.first {
+            if let settingName = extensionTable[pathExtension]?.first {
                 return settingName
             }
             
             // check case-insensitively
             let lowerPathExtension = pathExtension.lowercased()
-            if let sttingName = extentionTable
+            if let sttingName = extensionTable
                 .first(where: { $0.key.lowercased() == lowerPathExtension })?
                 .value.first
             {
