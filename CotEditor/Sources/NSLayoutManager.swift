@@ -178,7 +178,9 @@ extension NSLayoutManager {
         
         let characterIndexes = self.lineFragmentInsertionPointIndexes(forCharacterAt: characterIndex)
         
-        guard let index = characterIndexes.firstIndex(of: characterIndex) else { assertionFailure(); return characterIndex }
+        guard let index = characterIndexes.firstIndex(of: characterIndex)
+                ?? characterIndexes.lastIndex(where: { $0 < characterIndex })
+        else { assertionFailure(); return characterIndex }
         
         // -> The target is in the same fragment.
         if index > 0 { return characterIndexes[index - 1] }
@@ -204,7 +206,9 @@ extension NSLayoutManager {
         
         let characterIndexes = self.lineFragmentInsertionPointIndexes(forCharacterAt: characterIndex)
         
-        guard let index = characterIndexes.firstIndex(of: characterIndex) else { assertionFailure(); return characterIndex }
+        guard let index = characterIndexes.firstIndex(of: characterIndex)
+                ?? characterIndexes.lastIndex(where: { $0 < characterIndex })
+        else { assertionFailure(); return characterIndex }
         
         // -> The target is in the same fragment.
         if index < characterIndexes.count - 1 { return characterIndexes[index + 1] }
