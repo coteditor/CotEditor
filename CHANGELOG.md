@@ -11,6 +11,7 @@ Change Log
 - Alert for registering the key bindings that are not actually supported.
 - Update Markdown and Textile syntax styles to fix highlighting.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
+- Update the help contents.
 
 
 ### Fixes
