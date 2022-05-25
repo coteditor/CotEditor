@@ -13,6 +13,7 @@ Change Log
 - Improve the indent style detection.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
 - Update the help contents.
+- [trivial] Change UTI for TeX document to `org.tug.tex`.
 
 
 ### Fixes

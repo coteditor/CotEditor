@@ -721,7 +721,7 @@
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>1</integer>
 			<key>CFBundleTypeName</key>
-			<string>TeX</string>
+			<string>TeX document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -1588,7 +1588,7 @@
 				<string>TeX</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>public.tex</string>
+			<string>org.tug.tex</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

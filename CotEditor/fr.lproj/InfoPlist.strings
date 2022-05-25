@@ -69,7 +69,7 @@
 "Shell script" = "Source Shell";
 "SQL source" = "Script SQL";
 "Swift source" = "Source Swift";
-"TeX" = "TeX";
+"TeX document" = "Document TeX";
 "Textile document" = "Document Textile";
 "Verilog source" = "Source Verilog";
 "VHDL source" = "Source VHDL";
