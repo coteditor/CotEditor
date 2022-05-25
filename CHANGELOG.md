@@ -5,19 +5,19 @@ Change Log
 4.2.2 (unreleased)
 --------------------------
 
-### Improvement
+### Improvements
 
 - Perform automatic indentation even when inserting a newline while selecting text.
 - Alert for registering the key bindings that are not actually supported.
 - Update Markdown and Textile syntax styles to fix highlighting.
-- Improve indent detection.
+- Improve the indent style detection.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
 - Update the help contents.
 
 
 ### Fixes
 
-- Fix an issue that changing text selection with the Shift and allow keys selected wrongly.
+- Fix an issue that changing text selection with the Shift and an arrow keys could move the selection in the wrong direction.
 - Fix an issue that the Outline pane occasionally showed the horizontal scroller.
 - Fix an issue that the stored action names for customized key bindings were wrong.
 - Fix some unlocalized text.
