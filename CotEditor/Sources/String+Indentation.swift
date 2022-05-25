@@ -34,7 +34,7 @@ enum IndentStyle {
 
 private enum DetectionLines {
     
-    static let min = 5
+    static let min = 3
     static let max = 100
 }
 
@@ -43,7 +43,7 @@ extension String {
     
     // MARK: Public Methods
     
-    /// detect indent style
+    /// detected indent style
     var detectedIndentStyle: IndentStyle? {
         
         guard !self.isEmpty else { return nil }
@@ -53,26 +53,24 @@ extension String {
         var spaceCount = 0
         var lineCount = 0
         self.enumerateLines { (line, stop) in
-            guard lineCount < DetectionLines.max else {
-                stop = true
-                return
-            }
-            
-            lineCount += 1
-            
             // check first character
             switch line.first {
                 case "\t":
                     tabCount += 1
-                case " ":
+                case " " where line.starts(with: "  "):
                     spaceCount += 1
                 default:
                     break
             }
+            
+            lineCount += 1
+            if lineCount >= DetectionLines.max {
+                stop = true
+            }
         }
         
         // no enough lines to detect
-        guard tabCount + spaceCount >= DetectionLines.min else { return nil }
+        guard max(tabCount, spaceCount) >= DetectionLines.min else { return nil }
         
         // detect indent style
         if tabCount > spaceCount * 2 {

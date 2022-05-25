@@ -10,6 +10,7 @@ Change Log
 - Perform automatic indentation even when inserting a newline while selecting text.
 - Alert for registering the key bindings that are not actually supported.
 - Update Markdown and Textile syntax styles to fix highlighting.
+- Improve indent detection.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
 - Update the help contents.
 
