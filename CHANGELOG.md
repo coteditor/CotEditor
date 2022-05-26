@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.2.2 (unreleased)
+4.2.2 (508)
 --------------------------
 
 ### Improvements
@@ -13,6 +13,7 @@ Change Log
 - Improve the indent style detection.
 - Improve traditional Chinese localization (thanks to Shiki Suen!).
 - Update the help contents.
+- [dev] Update the build environment to Xcode 13.4 (macOS 12.3 SDK).
 - [trivial] Change UTI for TeX document to `org.tug.tex`.
 
 
