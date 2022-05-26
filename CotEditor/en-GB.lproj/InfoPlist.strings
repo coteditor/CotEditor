@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2022-01-30.
 //  Localized by 1024jp
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2022 1024jp
 //
@@ -69,7 +69,7 @@
 "Shell script" = "Shell script";
 "SQL source" = "SQL source";
 "Swift source" = "Swift source";
-"TeX" = "TeX";
+"TeX document" = "TeX document";
 "Textile document" = "Textile document";
 "Verilog source" = "Verilog source";
 "VHDL source" = "VHDL source";

@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2018-01-05.
 //  Localized by onevcat
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2018-2022 1024jp
 //
@@ -62,8 +62,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
 "d12-uy-VE0.title" = "模式：";
-/* Class = "NSTextFieldCell"; placeholderString = "Regular Expression"; ObjectID = "Ia7-Mb-FNn"; */
-"Ia7-Mb-FNn.placeholderString" = "正则表达式";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
+"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "正则表达式";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "忽略大小写";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */

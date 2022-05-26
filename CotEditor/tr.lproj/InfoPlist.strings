@@ -7,7 +7,7 @@
 //  Created by Emir SARI on 2022-01-28.
 //  Localized by Emir SARI
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2022 1024jp
 //
@@ -69,7 +69,7 @@
 "Shell script" = "Kabuk betiği";
 "SQL source" = "SQL kaynağı";
 "Swift source" = "Swift kaynağı";
-"TeX" = "TeX";
+"TeX document" = "TeX belgesi";
 "Textile document" = "Textile belgesi";
 "Verilog source" = "Verilog kaynağı";
 "VHDL source" = "VHDL kaynağı";

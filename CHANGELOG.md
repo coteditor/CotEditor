@@ -2,6 +2,30 @@
 Change Log
 ==========================
 
+4.2.2 (508)
+--------------------------
+
+### Improvements
+
+- Perform automatic indentation even when inserting a newline while selecting text.
+- Alert for registering the key bindings that are not actually supported.
+- Update Markdown and Textile syntax styles to fix highlighting.
+- Improve the indent style detection.
+- Improve traditional Chinese localization (thanks to Shiki Suen!).
+- Update the help contents.
+- [dev] Update the build environment to Xcode 13.4 (macOS 12.3 SDK).
+- [trivial] Change UTI for TeX document to `org.tug.tex`.
+
+
+### Fixes
+
+- Fix an issue that changing text selection with the Shift and an arrow keys could move the selection in the wrong direction.
+- Fix an issue that the Outline pane occasionally showed the horizontal scroller.
+- Fix an issue that the stored action names for customized key bindings were wrong.
+- Fix some unlocalized text.
+
+
+
 4.2.1 (505)
 --------------------------
 

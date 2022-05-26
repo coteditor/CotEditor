@@ -7,7 +7,7 @@
 //  Created by Emir SARI on 2022-01-28.
 //  Localized by Emir SARI
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2022 1024jp
 //
@@ -64,8 +64,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
 "d12-uy-VE0.title" = "Dizgi:";
-/* Class = "NSTextFieldCell"; placeholderString = "Regular Expression"; ObjectID = "Ia7-Mb-FNn"; */
-"Ia7-Mb-FNn.placeholderString" = "Düzenli İfade";
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
+"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "Düzenli İfade";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "BÜYÜK/küçük Harf Yok Say";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */

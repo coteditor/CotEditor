@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2014-12-12.
 //  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2014-2022 CotEditor Project
 //
@@ -27,7 +27,7 @@
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
 "C9y-bs-mE1.title" = "字型：";
 /* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "與檔案字型一致";
+"PfG-m4-gpq.title" = "與文件字型一致";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "選擇…";
 
@@ -36,7 +36,7 @@
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "黑白";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
-"1354.title" = "與檔案設定一致";
+"1354.title" = "與文件設定一致";
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "列印背景";
 
@@ -46,7 +46,7 @@
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "不列印";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
-"947.title" = "與檔案設定一致";
+"947.title" = "與文件設定一致";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
 "948.title" = "列印";
 
@@ -55,7 +55,7 @@
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "不列印";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
-"953.title" = "與檔案設定一致";
+"953.title" = "與文件設定一致";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "列印";
 
@@ -72,7 +72,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
 "uuc-7D-Iot.title" = "文法名";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
-"896.title" = "檔案名稱";
+"896.title" = "文件名稱";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
 "897.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
@@ -94,7 +94,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
 "plk-U5-NGA.title" = "文法名";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
-"902.title" = "檔案名稱";
+"902.title" = "文件名稱";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
 "903.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
@@ -120,7 +120,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
 "Mvg-wT-FTM.title" = "文法名";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
-"937.title" = "檔案名稱";
+"937.title" = "文件名稱";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
 "938.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
@@ -142,7 +142,7 @@
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
 "ckJ-Cw-ccE.title" = "文法名";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
-"929.title" = "檔案名稱";
+"929.title" = "文件名稱";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
 "930.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */

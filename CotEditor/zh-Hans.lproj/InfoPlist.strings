@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2015-01-01.
 //  Localized by onevcat
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2015-2022 1024jp
 //
@@ -68,7 +68,7 @@
 "Shell script" = "Shell脚本";
 "SQL source" = "SQL源码";
 "Swift source" = "Swift源码";
-"TeX" = "TeX";
+"TeX document" = "TeX文档";
 "Textile document" = "Textile文档";
 "Verilog source" = "Verilog源码";
 "VHDL source" = "VHDL源码";

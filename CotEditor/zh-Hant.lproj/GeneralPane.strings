@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2014-12-12.
 //  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2014-2022 CotEditor Project
 //
@@ -33,7 +33,7 @@
 "wmw-xg-bSt.title" = "當沒有可以開啟的檔案時：";
 
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
-"i4c-DG-ADS.title" = "建立新檔案";
+"i4c-DG-ADS.title" = "建立新文件";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
 "hIX-mh-cG4.title" = "顯示開啟對話方塊";
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
@@ -41,7 +41,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "檔案儲存：";
+"Ki4-3Y-AZL.title" = "文件儲存：";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "開啟帶有版本的自動儲存";
@@ -50,7 +50,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "When document is changed by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "當檔案被其他應用更改時：";
+"x4n-2n-I3p.title" = "當文件被其他應用更改時：";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
 "sBH-MX-cTd.title" = "保留CotEditor的版本";
@@ -66,7 +66,7 @@
 /* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
 "3306.title" = "字元計數時忽略行尾";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "連結檔案中的URL";
+"tPy-Ox-YpP.title" = "連結文件中的URL";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
 "3300.title" = "輸入時檢查拼寫";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */

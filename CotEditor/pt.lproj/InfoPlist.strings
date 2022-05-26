@@ -7,7 +7,7 @@
 //  Created by BR Lingo on 2018-01-15.
 //  Localized by BR Lingo
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2018-2022 CotEditor Project
 //
@@ -68,7 +68,7 @@
 "Shell script" = "Script de Shell";
 "SQL source" = "Fonte SQL";
 "Swift source" = "Fonte Swift";
-"TeX" = "TeX";
+"TeX document" = "Documento TeX";
 "Textile document" = "Documento Textile";
 "Verilog source" = "Fonte Verilog";
 "VHDL source" = "Fonte VHDL";

@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2015-08-19.
 //  Localized by 1024jp
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2015-2022 1024jp
 //
@@ -68,7 +68,7 @@
 "Shell script" = "Shell-Skript";
 "SQL source" = "SQL-Quellcode";
 "Swift source" = "Swift-Quellcode";
-"TeX" = "TeX";
+"TeX document" = "TeX-Document";
 "Textile document" = "Textile-Dokument";
 "Verilog source" = "Verilog-Quellcode";
 "VHDL source" = "VHDL-Quellcode";

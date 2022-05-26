@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2014-12-12.
 //  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2014-2022 CotEditor Project
 //
@@ -130,7 +130,7 @@
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "選擇行";
 /* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
-"0HX-j9-5jF.title" = "選擇單詞";
+"0HX-j9-5jF.title" = "選擇單字";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "輸入反斜槓";
@@ -146,7 +146,7 @@
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "uXu-vF-RqZ"; */
 "uXu-vF-RqZ.title" = "顯示拼寫和文法";
 /* Class = "NSMenuItem"; title = "Check Document Now"; ObjectID = "hIk-Nu-0X3"; */
-"hIk-Nu-0X3.title" = "立即檢查文稿";
+"hIk-Nu-0X3.title" = "立即檢查文件";
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "9ny-sN-pmO"; */
 "9ny-sN-pmO.title" = "輸入時檢查拼寫";
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "5eg-wx-S4p"; */
@@ -155,19 +155,19 @@
 "kQ8-FM-Cgx.title" = "自動糾正拼寫";
 
 /* Class = "NSMenu"; title = "Substitutions"; ObjectID = "2wy-A5-6kZ"; */
-"2wy-A5-6kZ.title" = "替換";
+"2wy-A5-6kZ.title" = "取代";
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "yN3-iT-4Lq"; */
-"yN3-iT-4Lq.title" = "替換";
+"yN3-iT-4Lq.title" = "取代";
 /* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
-"7NX-1r-Wq7.title" = "替換引號";
+"7NX-1r-Wq7.title" = "取代引號";
 /* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
 "9gl-1h-Yit.title" = "直引號";
 /* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
-"hMS-qd-BCS.title" = "替換破折號";
+"hMS-qd-BCS.title" = "取代破折號";
 /* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
-"ue7-85-H8l.title" = "替換文字";
+"ue7-85-H8l.title" = "取代文字";
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
-"gqI-2M-XIx.title" = "顯示替換";
+"gqI-2M-XIx.title" = "顯示取代";
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
 "QKD-ue-EQp.title" = "智慧複製/貼上";
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
@@ -175,7 +175,7 @@
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
 "cIp-rb-QPk.title" = "智慧破折號";
 /* Class = "NSMenuItem"; title = "Text Replacement"; ObjectID = "PSn-PG-o9k"; */
-"PSn-PG-o9k.title" = "文字替換";
+"PSn-PG-o9k.title" = "文字取代";
 
 /* Class = "NSMenuItem"; title = "Speech"; ObjectID = "gBe-fO-wVv"; */
 "gBe-fO-wVv.title" = "語音";
@@ -255,7 +255,7 @@
 /* Class = "NSMenuItem"; title = "8"; ObjectID = "9e0-Q5-Oqh"; */
 "9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
-"gMO-5n-fiJ.title" = "自定義…";
+"gMO-5n-fiJ.title" = "自訂…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Tab轉為空格";
 
@@ -301,9 +301,9 @@
 "324.title" = "顯示";
 
 /* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
-"612.title" = "隱藏工具欄";
+"612.title" = "隱藏工具列";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "自定工具欄…";
+"613.title" = "自訂工具列…";
 
 
 /* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
@@ -311,7 +311,7 @@
 /* Class = "NSMenu"; title = "Inspector"; ObjectID = "10j-rd-fWr"; */
 "10j-rd-fWr.title" = "檢查器";
 /* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
-"564.title" = "文稿資訊";
+"564.title" = "文件資訊";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
 "Gch-XD-tRl.title" = "大綱";
 /* Class = "NSMenuItem"; title = "Warnings"; ObjectID = "679"; */
@@ -320,7 +320,7 @@
 "I2p-KB-gxR.title" = "顯示檢查器";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
-"681.title" = "顯示導航欄";
+"681.title" = "顯示巡覽列";
 /* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
 "323.title" = "顯示行號";
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
@@ -414,7 +414,7 @@
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
 "cTU-2P-7Tp.title" = "方括弧";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
-"3VX-DL-PgT.title" = "自定義…";
+"3VX-DL-PgT.title" = "自訂…";
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "移除行尾空白";
@@ -439,13 +439,13 @@
 "x1F-KX-2de.title" = "轉為大駝峰式";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
-"dVK-1s-xJq.title" = "半寬到全寬";
+"dVK-1s-xJq.title" = "半形到全形";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
-"Skr-vI-7VN.title" = "全寬到半寬";
+"Skr-vI-7VN.title" = "全形到半形";
 /* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
-"586.title" = "ASCII到全寬ASCII";
+"586.title" = "ASCII到全形ASCII";
 /* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
-"588.title" = "全寬ASCII到ASCII";
+"588.title" = "全形ASCII到ASCII";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
 "XWV-by-mnw.title" = "日文文字";
@@ -489,9 +489,9 @@
 "n6C-Km-BM9.ibShadowedToolTip" = "非官方的基於NFD的標準化形式與修改後的NFD對應";
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
-"663.title" = "插入編碼名字";
+"663.title" = "插入編碼名稱";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "插入作為IANA字符集的編碼名字";
+"663.ibShadowedToolTip" = "插入作為IANA字符集的編碼名稱";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "檢視文字";
@@ -503,38 +503,38 @@
 // MARK: Find
 
 /* Class = "NSMenuItem"; title = "Find"; ObjectID = "538"; */
-"538.title" = "查詢";
+"538.title" = "檢索";
 /* Class = "NSMenu"; title = "Find"; ObjectID = "kGA-vM-cdL"; */
-"kGA-vM-cdL.title" = "查詢";
+"kGA-vM-cdL.title" = "檢索";
 
 /* Class = "NSMenuItem"; title = "Find…"; ObjectID = "eP6-ss-sUG"; */
-"eP6-ss-sUG.title" = "查詢…";
+"eP6-ss-sUG.title" = "檢索…";
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
-"NwE-Cf-L9F.title" = "查詢下一個";
+"NwE-Cf-L9F.title" = "檢索下一個";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
-"wiV-Hh-7xU.title" = "查詢上一個";
+"wiV-Hh-7xU.title" = "檢索上一個";
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
-"l33-Nz-UAw.title" = "在選擇文字中查詢";
+"l33-Nz-UAw.title" = "在選擇文字中檢索";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
-"HgR-ke-6gq.title" = "查詢全部";
+"HgR-ke-6gq.title" = "檢索全部";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
-"ULf-cT-Xvb.title" = "選擇全部查詢到的匹配";
+"ULf-cT-Xvb.title" = "選擇全部檢索到的匹配";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
-"hTx-ef-3T2.title" = "查詢所選內容";
+"hTx-ef-3T2.title" = "檢索所選內容";
 /* Class = "NSMenuItem"; title = "Use Selection for Replace"; ObjectID = "kwa-lu-0Fz"; */
-"kwa-lu-0Fz.title" = "替換所選內容";
+"kwa-lu-0Fz.title" = "取代所選內容";
 /* Class = "NSMenuItem"; title = "Jump to Selection"; ObjectID = "p4A-mE-Ve3"; */
 "p4A-mE-Ve3.title" = "跳到所選內容";
 
 /* Class = "NSMenuItem"; title = "Replace"; ObjectID = "bnD-BP-sPi"; */
-"bnD-BP-sPi.title" = "替換";
+"bnD-BP-sPi.title" = "取代";
 /* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
-"KrV-3z-r5B.title" = "替換並查詢下一個";
+"KrV-3z-r5B.title" = "取代並檢索下一個";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
-"5HV-xo-NTK.title" = "替換全部";
+"5HV-xo-NTK.title" = "取代全部";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "多重替換…";
+"o7K-sI-KJA.title" = "多重取代…";
 
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "高亮";

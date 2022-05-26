@@ -7,7 +7,7 @@
 //  Created by 1024jp on 2014-12-14.
 //  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2014-2015 CotEditor Project
 //
@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "fJg-PK-TBB"; */
-"fJg-PK-TBB.title" = "如果沒有單詞，補全列表將由高亮設定生成。";
+"fJg-PK-TBB.title" = "如果沒有單字，補全列表將由高亮設定生成。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Completions"; ObjectID = "uGV-wD-V9T"; */
 "uGV-wD-V9T.headerCell.title" = "補全";

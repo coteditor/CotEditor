@@ -7,7 +7,7 @@
 //  Created by onevcat on 2014-11-27.
 //  Localized by onevcat
 //
-//  ------------------------------------------------------------------------------
+//  ---------------------------------------------------------------------------
 //
 //  © 2014-2022 CotEditor Project
 //
@@ -40,7 +40,7 @@
 "incompatible characters" = "不兼容字元";
 "status bar" = "狀態欄";
 "editor" = "編輯器";
-"navigation bar" = "導航欄";
+"navigation bar" = "巡覽列";
 "line numbers" = "行號";
 "find result" = "查找結果";
 "Use print font" = "使用列印字體";
@@ -63,7 +63,7 @@
 "“%@” is a CotEditor theme file." = "「%@」是CotEditor主題檔案";
 "Do you want to install this theme?" = "是否安裝主題？";
 "Install" = "安裝";
-"Open as Text File" = "以文字方式打開";
+"Open as Text File" = "以文字方式開啟";
 "A new theme named “%@” has been successfully installed." = "新主題「%@」安裝完成";
 
 // Window title of issue report
@@ -72,15 +72,15 @@
 
 
 /* MARK: Text Finder */
-"Replace" = "替換";
+"Replace" = "取代";
 "Find All" = "查找全部";
-"Replace All" = "替換全部";
+"Replace All" = "取代全部";
 "Highlight" = "高亮";
 "Searching in text…" = "正在文字中搜索…";
 "%@ string found." = "找到%@個匹配";
 "%@ strings found." = "找到%@個匹配";
-"%@ string replaced." = "已替換%@個匹配";
-"%@ strings replaced." = "已替換%@個匹配";
+"%@ string replaced." = "已取代%@個匹配";
+"%@ strings replaced." = "已取代%@個匹配";
 "Invalid regular expression" = "無效的正規表達式";
 "Empty find string" = "空的搜索字元串";
 "The option “in selection” is enabled, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
@@ -93,12 +93,12 @@
 
 
 /* MARK: FindPanelController */
-"Replace the current selection with the replacement text, then find the next match." = "用替換文字替換當前選中內容，然後查找下一個匹配項目";
-"Replace the current selection with the replacement text." = "用替換文字替換當前選中內容";
+"Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
+"Replace the current selection with the replacement text." = "用取代文字取代當前選中內容";
 "Not Found" = "未找到";
 "%i found" = "找到%i項";  // %i is number of founds
-"Not Replaced" = "沒有進行替換";
-"%i replaced" = "%i處被替換";  // %i is number of replaced
+"Not Replaced" = "沒有進行取代";
+"%i replaced" = "%i處被取代";  // %i is number of replaced
 
 
 
@@ -117,7 +117,7 @@
 "any character" = "任意字元";
 "new line character" = "換行符";
 "tab character" = "tab符號";
-"word character" = "單詞字元";
+"word character" = "單字字元";
 "whitespace character" = "空格字元";
 "non-whitespace character" = "非空格字元";
 "decimal number" = "數字";
@@ -127,7 +127,7 @@
 "Anchors" = "錨點";
 "beginning of the line" = "行首";
 "end of the line" = "行末";
-"word boundary" = "單詞邊界";
+"word boundary" = "單字邊界";
 
 "Quantifiers" = "數量";
 "1 or 0 times" = "1次或0次";
@@ -162,12 +162,12 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "檔案「%@」不是文字資料";
-"The file appears to be %@.\n\nDo you really want to open the file?" = "該檔案看起來是%@。\n\n確定要打開該檔案？";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "該檔案看起來是%@。\n\n確定要開啟該檔案？";
 
 // Large file alert
 "The file “%@” has a size of %@." = "「%@」檔案尺寸為%@。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "打開大型檔案可能導致應用速度變慢。\n\n確定要打開該檔案？";
-"Open" = "打開";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "開啟大型檔案可能導致應用速度變慢。\n\n確定要開啟該檔案？";
+"Open" = "開啟";
 
 
 
@@ -178,7 +178,7 @@
 
 // Convert or reinterpret encoding alert
 "File encoding" = "檔案編碼";
-"Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋嗎？";
+"Do you want to convert or reinterpret this document using “%@”?" = "要使用「%@」進行轉換或者再次解釋這份文件嗎？";
 "Convert" = "轉換";
 "Reinterpret" = "再次解釋";
 
@@ -190,11 +190,11 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "該文件中含有未儲存的修改。";
-"Do you want to discard the changes and reopen the document using “%@”?" = "你確認放棄更改，並使用「%@」重新打開文件嗎？";  // %@ is an encoding name.
+"Do you want to discard the changes and reopen the document using “%@”?" = "你確認放棄更改，並使用「%@」重新開啟該文件嗎？";  // %@ is an encoding name.
 "Discard Changes" = "放棄修改";
 
 // Reinterpretation failed alert
-"The document doesn’t have a file to reinterpret." = "該文件沒有用來再次解釋的檔案。";
+"The document doesn’t have a file to reinterpret." = "該文件沒有要用來再次解釋的檔案。";
 "The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "檔案「%@」無法使用「%@」編碼再次解釋。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "該檔案可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
 
@@ -205,7 +205,7 @@
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "文件包含不一致的換行符。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要將所有換行符都替換為文件中最常使用的 %@ 嗎？";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要將所有換行符都取代為文件中最常使用的 %@ 嗎？";
 "Don’t ask again for this document" = "對該文件不再詢問";
 "Convert" = "轉換";
 "Review" = "檢查";
@@ -272,7 +272,7 @@
 "Change tab width" = "更改Tab寬度";
 // menu
 "Tab Width" = "Tab寬度";
-"Custom…" = "自定義…";
+"Custom…" = "自訂…";
 
 "Wrap Lines" = "換行";
 // tooltip
@@ -299,19 +299,19 @@
 
 "Color Code" = "顏色代碼";
 // tooltip
-"Open Color Code Editor and set selection as color code" = "打開調色盤並將選中內容設為顏色代碼";
+"Open Color Code Editor and set selection as color code" = "開啟調色盤並將選中內容設為顏色代碼";
 
 "Emoji & Symbols" = "表情與符號";
 // tooltip
-"Show Emoji & Symbols palette" = "顯示查找和替換";
+"Show Emoji & Symbols palette" = "顯示查找和取代";
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "顯示查找 & 替換";
+"Show Find & Replace" = "顯示查找 & 取代";
 
 "Print" = "列印";
 // tooltip
-"Print document" = "列印文稿";
+"Print document" = "列印文件";
 
 // tooltip
 // -> The toolbar label for "Share" is set automatically.
@@ -368,7 +368,7 @@
 "Black and White" = "黑白";
 "Print" = "列印";
 "Syntax Name" = "文法名";
-"Document Name" = "檔案名稱";
+"Document Name" = "文件名稱";
 "File Path" = "檔案路徑";
 "Print Date" = "列印日期";
 "Page Number" = "頁碼";
@@ -401,7 +401,7 @@
 
 /* MARK: EditorTextView */
 // Undo action names
-"Replace Text" = "替換文字";
+"Replace Text" = "取代文字";
 "Insert Text" = "插入文字";
 "Insert Snippet" = "插入片段";
 "Shift Right" = "右移";
@@ -442,8 +442,8 @@
 "Show Line Numbers" = "顯示行號";
 "Hide Status Bar" = "隱藏狀態欄";
 "Show Status Bar" = "顯示狀態欄";
-"Hide Navigation Bar" = "隱藏導航欄";
-"Show Navigation Bar" = "顯示導航欄";
+"Hide Navigation Bar" = "隱藏巡覽列";
+"Show Navigation Bar" = "顯示巡覽列";
 "Hide Invisibles" = "隱藏不可見元素";
 "Show Invisibles" = "顯示不可見元素";
 "Hide Page Guide" = "隱藏頁面指示";
@@ -620,13 +620,13 @@
 // Delete syntax style alert
 "Are you sure you want to delete “%@” syntax style?" = "確定刪除文法樣式「%@」？";
 "Delete" = "刪除";
-"Replace" = "替換";
+"Replace" = "取代";
 
 // Import syntax style file choose openPanel button
 "Import" = "導入";
 // Importing same name style alert
-"A new style named “%@” will be installed, but a custom style with the same name already exists." = "將要安裝名為「%@」的新樣式，但是已經存在同名的自定義樣式。";
-"Do you want to replace it?\nReplaced style can’t be restored." = "要替換樣式嗎？\n被替換的樣式無法將恢復。";
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "將要安裝名為「%@」的新樣式，但是已經存在同名的自訂樣式。";
+"Do you want to replace it?\nReplaced style can’t be restored." = "要取代樣式嗎？\n被取代的樣式無法將恢復。";
 
 // Export syntax style file savePanel label
 "Export As:" = "導出為：";
@@ -644,18 +644,18 @@
 /* MARK: ThemeManager */
 // Theme names
 "Untitled" = "未命名";
-"Customized Theme" = "自定義主題";
+"Customized Theme" = "自訂主題";
 
 // Theme import duplicated alert
-"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自定義主題。";
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "將要安裝名為「%@」的新主題，但是已經存在同名的自訂主題。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "要覆蓋原主題嗎？\n主題刪除後將無法還原。";
 
 
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名稱為「%@」的新替換定義將被安裝，但是已經存在相同名稱的定義。";
-"Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替換該定義嗎？\n被替換的定義無法恢復。";
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名稱為「%@」的新取代定義將被安裝，但是已經存在相同名稱的定義。";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "你想要取代該定義嗎？\n被取代的定義無法恢復。";
 
 
 
@@ -669,6 +669,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "「%@」已被「%@」命令使用。";
 "The Shift key can be used only with another modifier key." = "Shift鍵只能配合其他修飾鍵使用。";
+"The combination “%@” is not supported for the key binding customization." = "The combination “%@” is not supported for the key binding customization.";  // FIXME: added
 "Single type is invalid for a shortcut." = "單獨的按鍵類型不能被用作快捷鍵。";
 "Please combine with other keys." = "請與其他鍵組合使用。";
 
@@ -676,21 +677,21 @@
 
 /* MARK: ScriptManager */
 // Menu items
-"Open Scripts Folder" = "打開Scripts檔案夾";
+"Open Scripts Folder" = "開啟Scripts檔案夾";
 
 // Script menu item tooltips
-"Option-click to open script in editor." = "使用Option-單擊在編輯器中打開腳本。";
+"Option-click to open script in editor." = "使用Option-單擊在編輯器中開啟腳本。";
 
 
 
 /* MARK: Script */
 // No script target document errors
-"No document to get input." = "沒有輸入文件。";
-"No document to put output." = "沒有輸出文件。";
+"No document to get input." = "沒有要輸入的文件。";
+"No document to put output." = "沒有要輸出的文件。";
 
 // Script file error description
 "The script “%@” does not exist." = "腳本「%@」不存在。";
-"The script file “%@” couldn’t be opened." = "無法打開腳本檔案「%@」。";
+"The script file “%@” couldn’t be opened." = "無法開啟腳本檔案「%@」。";
 "The script “%@” can’t be executed because you don’t have the execute permission." = "由於沒有執行許可權，無法執行腳本「%@」。";
 "The script “%@” couldn’t be read." = "無法讀取腳本「%@」。";
 
@@ -703,7 +704,7 @@
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的檔案絕對路徑";
-"The relative path between the dropped file and the document." = "拖拽的檔案與編輯中文件的相對路徑";
+"The relative path between the dropped file and the document." = "拖拽的文件與編輯中檔案的相對路徑";
 "The dropped file’s name including extension (if exists)." = "拖拽的檔案的檔案名以及擴展名（如果存在）";
 "The dropped file’s name without extension." = "不帶擴展名的檔案名";
 "The dropped file’s extension." = "拖拽的檔案的擴展名";
@@ -732,7 +733,7 @@
 "Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
 "From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";
 "Due to this change, you may need manual migration for your settings below:" = "由於這個變更，你可能需要對下面的設定進行手動遷移：";
-"Multiple replacement definitions" = "多次替換的定義";
+"Multiple replacement definitions" = "多次取代的定義";
 "Syntax styles" = "文法風格";
 "CotEditor scripts" = "CotEditor腳本";
 "`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n`僅在行尾確實是LF時進行匹配。如需匹配任意行尾，請使用`\\R`。";
