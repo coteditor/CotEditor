@@ -5,6 +5,10 @@ Change Log
 4.2.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that letters in the editor were drawn in wrong glyphs when updateding the font under very specific conditions.
+
 
 
 4.2.2 (508)
