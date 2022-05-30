@@ -7,7 +7,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that letters in the editor were drawn in wrong glyphs when updateding the font under very specific conditions.
+- Fix an issue that letters in the editor were drawn in wrong glyphs when updating the font under very specific conditions.
 
 
 
