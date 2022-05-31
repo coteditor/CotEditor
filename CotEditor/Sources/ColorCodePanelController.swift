@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private let stylesheetColorList: NSColorList = NSColor.stylesheetKeywordColors
-        .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) { $0.setColor($1.value, forKey: $1.key) }
+    private let stylesheetColorList: NSColorList = KeywordColor.stylesheetColors        .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) { $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword) }
     
     private weak var panel: NSColorPanel?
     @objc private dynamic var color: NSColor?
