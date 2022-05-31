@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Update Markdown syntax style to fix highlighting.
 - [trivial] Change the color names in the Stylesheet Keyword color palette in the color code panel to lower case.
 
 
