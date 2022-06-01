@@ -2,29 +2,29 @@ extensions:
 - keyString: "rest"
 - keyString: "rst"
 metadata:
-  version: "1.1.3"
+  version: "1.1.4"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2022-04-25"
+  lastModified: "2022-06-01"
   distributionURL: "https://coteditor.com"
 keywords:
-- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?:(?!\\R{2})(?:[^*]|\\R))*?(?<![\\\\
-    \\t\\R])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
+- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*[^* \\t\\r\\n)\\]'\"’‘”“`}>›»](?:(?!\\R{2})(?:[^*]|\\R))*?(?<![\\\\
+    \\t\\r\\n])\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
   regularExpression: true
   description: "em"
-- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\R)\\]'\"’‘”“`}>›»](?![
+- beginString: "(?<![\\\\*)\\]'\"’‘”“`}>›»]|\\w)\\*\\*[^* \\t\\r\\n)\\]'\"’‘”“`}>›»](?![
     \\t])(?:(?!\\R{2}|\\*)(?:.|\\R))*?(?<![\\\\\\t ])\\*\\*(?!\\w|['\"’‘”“`<‹«(\\[{])"
   regularExpression: true
   description: "strong"
-- beginString: "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\R\\t`](?:(?!\\R{2})(?:[^`]|\\R))*?[^\\\\
-    \\R\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
+- beginString: "(?<![\\\\`)\\]'\"’‘”“`}>›»]|\\w)`[^ \\r\\n\\t`](?:(?!\\R{2})(?:[^`]|\\R))*?[^\\\\
+    \\r\\n\\t]`(?!\\w|['\"’‘”“`<‹«(\\[{_])"
   regularExpression: true
   ignoreCase: true
   description: "interpreted text"
 - beginString: "\\[\\w[^\\]]*?\\]_"
   regularExpression: true
   description: "cite"
-- beginString: "\\R{2}([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w[^\\R]*\\R\\1[\\t
+- beginString: "\\R{2}([\\t ]*)(?!(?:[#a-z]|[ivxlxcdm]+|\\d+)\\.)\\w.*\\R\\1[\\t
     ]+(?=\\w)"
   regularExpression: true
   ignoreCase: true
@@ -39,14 +39,14 @@ keywords:
   regularExpression: true
   ignoreCase: true
   description: "ol li"
-- beginString: "^[\\t ]*:[^\\R:]+?: "
+- beginString: "^[\\t ]*:[^\\r\\n:]+?: "
   regularExpression: true
   description: "field list"
 - beginString: "^[\\t ]*\\.\\. [a-z]+ ?::"
   regularExpression: true
   ignoreCase: true
   description: "directive"
-- beginString: "^[\\t ]*\\.\\. \\[[^\\]\\R]+\\] "
+- beginString: "^[\\t ]*\\.\\. \\[[^\\]\\r\\n]+\\] "
   regularExpression: true
   description: "footnotes"
 types:
@@ -65,7 +65,7 @@ values:
 - beginString: "(mailto:)?[a-zA-Z0-9]+[a-zA-Z0-9\\._-]*@[a-zA-Z0-9_-]+([a-zA-Z0-9\\._-]+)+"
   regularExpression: true
   description: "mail link"
-- beginString: "\\b[^-=_ \\t\\R](?:\\w|\\d|[-=])*_(?!_)\\b"
+- beginString: "\\b[^-=_ \\t\\r\\n](?:\\w|\\d|[-=])*_(?!_)\\b"
   regularExpression: true
   description: "single word link"
 - beginString: "\\s\\[#[^\\]]*?\\]_\\b"
@@ -90,7 +90,7 @@ numbers:
 - beginString: "\\s\\|\\S(?:(?!\\R{2})[^\\|])*?\\|_{0,2}[\\W]"
   regularExpression: true
   description: "sub"
-- beginString: "^[\\t ]*\\.\\. (?:\\|[^|\\R]+?\\| )?image ?::\\s.*$"
+- beginString: "^[\\t ]*\\.\\. (?:\\|[^|\\r\\n]+?\\| )?image ?::\\s.*$"
   regularExpression: true
   description: "image"
 - beginString: "^\\R(={4,} [= ]{4,}\\R)(?:.|\\R)+\\1(?=$\\R)"
@@ -114,7 +114,7 @@ characters:
   regularExpression: true
   description: "code"
 - beginString: "(?<!^[\\t ]{0,4}\\.\\. [a-z]{1,10} ?)::\\R[\\t ]*(?:\\R(?:[\\t ]*\\R)?([\\t
-    ]+)[^\\R]*)(?:\\R(?:[\\t ]*\\R)?\\1[^\\R]*)*"
+    ]+).*)(?:\\R(?:[\\t ]*\\R)?\\1.*)*"
   regularExpression: true
   ignoreCase: true
   description: "codeblock"

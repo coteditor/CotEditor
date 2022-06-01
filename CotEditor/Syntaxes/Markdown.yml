@@ -11,19 +11,19 @@ metadata:
   lastModified: "2022-06-01"
   distributionURL: "https://coteditor.com"
 keywords:
-- beginString: "(?<!\\\\)(\\*{1,3})[^ \\t*](?![^\\R*]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
+- beginString: "(?<!\\\\)(\\*{1,3})[^ \\t*]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\1"
   regularExpression: true
   description: "em, strong"
-- beginString: "(?<!\\\\)\\b(_{1,3})[^ \\t_](?![^\\R_]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
+- beginString: "(?<!\\\\)\\b(_{1,3})[^ \\t_]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\1"
   regularExpression: true
   description: "em, strong"
-- beginString: "(?<!\\\\)\\b~~(?![ \\t])(?![^\\R~]*\\R{2})[^\\R]*?(?<![\\\\\\t ])~~"
+- beginString: "(?<!\\\\)\\b~~(?![ \\t])((?!\\R{2})(?:.|\\R))*?(?<![\\\\\\t ])~~"
   regularExpression: true
   description: "[github] strikethrough"
 - beginString: "\\R[\\t ]*\\R(?:\\- *){3,}$"
   regularExpression: true
   description: "hr"
-- beginString: "\\R[^: \\t\\R][^\\R]*+(?=\\R[ ]{0,3}:[ \\t])"
+- beginString: "\\R[^: \\t\\r\\n].*+(?=\\R[ ]{0,3}:[ \\t])"
   regularExpression: true
   description: "[extra] dt"
 - beginString: "^(?:\\* *){3,}$"
@@ -102,7 +102,7 @@ strings:
   endString: "(\\R[ \\t]*\\R)|\\z"
   description: "a href"
 characters:
-- beginString: "(?<!\\\\)(\\`{1,2})[^ \\t`](?![^\\R`]*\\R{2})[^\\R]*?(?<![\\\\ ])\\1"
+- beginString: "(?<!\\\\)(\\`{1,2})[^ \\t`]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\1"
   description: "code"
   regularExpression: true
 - beginString: "^[~]{3,}[{[:space:]](?!~~~)(?:.|\\R)*?\\R[\\t ]*[~]{3,}[\\t ]*$"
@@ -128,23 +128,23 @@ outlineMenu:
 - beginString: "(?<=\\R{2}|\\A)([*-_] ?)\\1{2,}$"
   keyString: "-"
   description: "horizontal line"
-- beginString: "^#[\\t ]?([^#][^\\R]*?)#*$"
+- beginString: "^#[\\t ]?([^#].*?)#*$"
   keyString: "$1"
   description: "h1"
   bold: true
-- beginString: "^#{2}[\\t ]?([^#][^\\R]*?)#*$"
+- beginString: "^#{2}[\\t ]?([^#].*?)#*$"
   keyString: "    $1"
   description: "h2"
   bold: true
-- beginString: "^#{3}[\\t ]?([^#][^\\R]*?)#*$"
+- beginString: "^#{3}[\\t ]?([^#].*?)#*$"
   keyString: "        $1"
   description: "h3"
-- beginString: "^#{4}[\\t ]?([^#][^\\R]*?)#*$"
+- beginString: "^#{4}[\\t ]?([^#].*?)#*$"
   keyString: "            $1"
   description: "h4"
-- beginString: "^#{5}[\\t ]?([^#][^\\R]*?)#*$"
+- beginString: "^#{5}[\\t ]?([^#].*?)#*$"
   keyString: "                $1"
   description: "h5"
-- beginString: "^#{6}[\\t ]?([^#][^\\R]*?)#*$"
+- beginString: "^#{6}[\\t ]?([^#].*?)#*$"
   keyString: "                    $1"
   description: "h6"

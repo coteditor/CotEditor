@@ -4,11 +4,11 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.3.0"
+  version: "1.3.1"
   license: "Same as CotEditor"
-  lastModified: "2022-03-15"
+  lastModified: "2022-06-01"
 outlineMenu:
-- beginString: "^([^\\R -].*?):"
+- beginString: "^([^\\r\\n -].*?):"
   keyString: "$1:"
   description: "top level element"
 - beginString: "^---"
@@ -19,7 +19,7 @@ commands:
 - beginString: "%TAG"
 - beginString: "%YAML [0-9.]+"
   regularExpression: true
-- beginString: "^---[ \\R]"
+- beginString: "^---( |$)"
   regularExpression: true
 - beginString: "^\\.\\.\\.$"
   regularExpression: true
@@ -71,7 +71,7 @@ types:
 - beginString: "\\btag:\\S+"
   regularExpression: true
 numbers:
-- beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\R\\}\\]])"
+- beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\r\\n\\}\\]])"
   regularExpression: true
 - beginString: "[-+]?\\.(inf|Inf|INF)\\b"
   regularExpression: true
@@ -82,17 +82,17 @@ numbers:
 strings:
 - beginString: "\""
   endString: "\""
-- beginString: "'[^\\R]*?'"
+- beginString: "'.*?'"
   regularExpression: true
 keywords:
-- beginString: "(?<=[-\\R\\[\\{,]|\\A)[ \\t]*[^-:\\[\\]\\R ][^:\\[\\]\\R ]*(?=[\\t
-    ]*:[ \\t\\R])"
+- beginString: "(?<=[-\\[{,]|^)[ \\t]*[^-:\\[\\]\\r\\n ][^:\\[\\]\\r\\n ]*[\\t
+    ]*(?=:\\s)"
   regularExpression: true
 variables:
-- beginString: "(?<!\\w)&[^ \\t\\R]+\\b"
+- beginString: "(?<!\\w)&[^ \\t\\r\\n]+\\b"
   regularExpression: true
   description: "anchor"
-- beginString: "(?<!\\w)\\*[^ \\t\\R]+\\b"
+- beginString: "(?<!\\w)\\*[^ \\t\\r\\n]+\\b"
   regularExpression: true
   description: "reference"
 commentDelimiters:

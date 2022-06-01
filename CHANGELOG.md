@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Update Markdown syntax style to fix highlighting.
+- Update the following syntax styles to fix syntax highlighting: DTD, INI, JSON, LaTeX, Markdown, PHP, Perl, reStructuredText, Shell Script, Textile, XML, and YAML.
 - [trivial] Change the color names in the Stylesheet Keyword color palette in the color code panel to lower case.
 
 

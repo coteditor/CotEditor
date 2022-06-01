@@ -21,9 +21,9 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "3.2.2"
+  version: "3.2.3"
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
+  lastModified: "2022-06-01"
 keywords:
 - beginString: "break"
 - beginString: "breaksw"
@@ -273,6 +273,6 @@ commentDelimiters:
 outlineMenu:
 - beginString: "^(#.+)$"
   keyString: "$1"
-- beginString: "^([\\t ]*)(.*)\\(\\)[\\R\\t ]*\\{"
+- beginString: "^([\\t ]*)(.*)\\(\\)[\\r\\n\\t ]*\\{"
   keyString: "$1$2 ()"
 completions: []
