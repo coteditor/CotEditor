@@ -166,6 +166,7 @@ extension DefaultKeys {
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let outlineViewFontSize = DefaultKey<CGFloat>("outlineViewFontSize")
+    static let findResultViewFontSize = DefaultKey<CGFloat>("findResultViewFontSize")
     static let selectedMultipleReplacementSettingName = DefaultKey<String?>("selectedMultipleReplacementSettingName")
     static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")

@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Make font size of the find result table changable by Command-Plus (+) sign or Command-Minus sign (+) while focusing on the result table.
 - Improve the algorithm parsing comments and quoted text.
 - Update the following syntax styles to fix syntax highlighting: DTD, INI, JSON, LaTeX, Markdown, PHP, Perl, reStructuredText, Ruby, Shell Script, Textile, XML, and YAML.
 - Update SQL syntax style to support inline comment highlighting with `#`.
