@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,21 +32,23 @@ extension NSTextView {
     /// - Parameters:
     ///   - mode: Parse mode of reguler expression.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
-    func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) {
+    /// - Returns: Whether the content is not invalid.
+    @discardableResult
+    func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
         
         assert(Thread.isMainThread)
         
-        guard let layoutManager = self.layoutManager else { return assertionFailure() }
+        guard let layoutManager = self.layoutManager else { assertionFailure(); return false }
         
         // clear the last highlight anyway
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
         
-        guard enabled else { return }
+        guard enabled else { return true }
         
         // validate regex pattern
         switch mode {
             case .search:
-                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }
+                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return false }
             case .replacement:
                 break
         }
@@ -57,6 +59,8 @@ extension NSTextView {
                 layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
             }
         }
+        
+        return true
     }
     
 }
