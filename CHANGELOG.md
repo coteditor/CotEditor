@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Make font size of the find result table changable by Command-Plus (+) sign or Command-Minus sign (+) while focusing on the result table.
+- Make the font size of the find result table changeable by Command-Plus sign (+) or Command-Minus sign (-) while focusing on the result table.
 - Improve the algorithm parsing comments and quoted text.
 - Rewrite LaTeX syntax style to improve highlighting.
 - Update the following syntax styles to fix syntax highlighting: DTD, INI, JSON, LaTeX, Markdown, PHP, Perl, reStructuredText, Ruby, Shell Script, Textile, XML, and YAML.
@@ -17,7 +17,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue with CRLF documents that the editor did not scroll by changing selection with Shift-arrow key. 
+- Fix an issue by documents with the CRLF line ending that the editor did not scroll by changing selection with the Shift-arrow keys.
 - Fix an issue that letters in the editor were drawn in wrong glyphs when updating the font under very specific conditions.
 
 
