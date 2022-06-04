@@ -16,6 +16,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue with CRLF documents that the editor did not scroll by changing selection with Shift-arrow key. 
 - Fix an issue that letters in the editor were drawn in wrong glyphs when updating the font under very specific conditions.
 
 
