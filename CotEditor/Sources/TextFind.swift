@@ -171,13 +171,13 @@ final class TextFind {
     /// Return the nearest match from the insertion point.
     ///
     /// - Parameters:
-    ///   - forward: Whether search forward from the insertion.
-    ///   - isWrap: Whetehr search wrap search around.
+    ///   - forward: Whether searchs forward from the insertion.
+    ///   - isWrap: Whether the search wraps  around.
     /// - Returns:
     ///   - range: The range of matched or nil if not found.
-    ///   - count: The total number of matches in the scopes.
+    ///   - ranges: The ranges of all matches in the scopes.
     ///   - wrapped: Whether the search was wrapped to find the result.
-    func find(forward: Bool, isWrap: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
+    func find(forward: Bool, isWrap: Bool) -> (range: NSRange?, ranges: [NSRange], wrapped: Bool) {
         
         if self.inSelection {
             return self.findInSelection(forward: forward)
@@ -214,21 +214,21 @@ final class TextFind {
             foundRange = forward ? (wrappedMatches + intersectionMatches).first : (intersectionMatches + forwardMatches).last
         }
         
-        let count = forwardMatches.count + wrappedMatches.count + intersectionMatches.count
+        let ranges = forwardMatches + intersectionMatches + wrappedMatches
         
-        return (foundRange, count, isWrapped)
+        return (foundRange, ranges, isWrapped)
     }
     
     
     /// Return a match in selection ranges.
     ///
     /// - Parameters:
-    ///   - forward: Whether search forward from the insertion.
+    ///   - forward: Whether searchs forward from the insertion.
     /// - Returns:
     ///   - range: The range of matched or nil if not found.
-    ///   - count: The total number of matches in the scopes.
+    ///   - ranges: The ranges of all matches in the scopes.
     ///   - wrapped: Whether the search was wrapped to find the result.
-    func findInSelection(forward: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
+    func findInSelection(forward: Bool) -> (range: NSRange?, ranges: [NSRange], wrapped: Bool) {
         
         assert(self.inSelection)
         
@@ -239,7 +239,7 @@ final class TextFind {
         
         let foundRange = forward ? matches.first : matches.last
         
-        return (foundRange, matches.count, false)
+        return (foundRange, matches, false)
     }
     
     

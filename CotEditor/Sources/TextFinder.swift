@@ -451,11 +451,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             NSSound.beep()
         }
         
-        self.delegate?.textFinder(self, didFind: result.count, textView: textView)
+        self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         
-        return result.count
+        return result.ranges.count
     }
     
     
