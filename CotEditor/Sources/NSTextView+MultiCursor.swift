@@ -288,7 +288,9 @@ extension MultiCursorEditing {
         self.insertionLocations = set.insertionLocations
         self.selectionOrigins = newOrigins
         
-        self.scrollRangeToVisible(NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound))
+        // make the moved location visible
+        let cursorLocation = forward ? ranges.last!.upperBound : ranges.first!.lowerBound
+        self.scrollRangeToVisible(NSRange(location: cursorLocation, length: 0))
     }
     
     

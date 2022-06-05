@@ -24,6 +24,7 @@
 //
 
 import Cocoa
+import Combine
 
 /// the maximum number of characters to add to the left of the matched string
 private let maxLeftMargin = 16
@@ -45,6 +46,9 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     private var results: [TextFindResult] = []
     @objc private dynamic var findString: String?
     @objc private dynamic var resultMessage: String?
+    @objc private dynamic var fontSize: CGFloat = NSFont.smallSystemFontSize
+    
+    private var fontSizeObserver: AnyCancellable?
     
     @IBOutlet private weak var disclosureButton: NSButton?
     @IBOutlet private weak var tableView: NSTableView?
@@ -64,19 +68,31 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         self.view.setAccessibilityLabel("find result".localized)
     }
     
-    /// prepare for display
+    
     override func viewWillAppear() {
+        
+        super.viewWillAppear()
         
         // make sure the disclosure button points up before open result
         // (The buttom may point down if the view was closed by dragging.)
         self.disclosureButton?.state = .on
+        
+        self.fontSizeObserver = UserDefaults.standard.publisher(for: .findResultViewFontSize, initial: true)
+            .sink { [weak self] in
+                self?.fontSize = $0
+                self?.tableView?.reloadData()
+            }
     }
     
     
-    /// remove also find result highlights in the text view when result view disappear
     override func viewWillDisappear() {
         
+        super.viewWillDisappear()
+        
+        // remove also find result highlights in the text view
         self.unhighlight()
+        
+        self.fontSizeObserver = nil
     }
     
     
@@ -186,6 +202,34 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             else { return }
         
         textView.select(range: range)
+    }
+    
+}
+
+
+
+extension FindPanelResultViewController {
+    
+    /// Increase result's font size.
+    @IBAction func biggerFont(_ sender: Any?) {
+        
+        UserDefaults.standard[.findResultViewFontSize] += 1
+    }
+    
+    
+    /// Decrease result's font size.
+    @IBAction func smallerFont(_ sender: Any?) {
+        
+        guard UserDefaults.standard[.findResultViewFontSize] > NSFont.smallSystemFontSize else { return }
+        
+        UserDefaults.standard[.findResultViewFontSize] -= 1
+    }
+    
+    
+    /// Restore result's font size to default.
+    @IBAction func resetFont(_ sender: Any?) {
+        
+        UserDefaults.standard.restore(key: .findResultViewFontSize)
     }
     
 }

@@ -193,7 +193,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
         self.ligature = defaults[.ligature] ? .standard : .none
-        self.invalidateDefaultParagraphStyle()
+        self.invalidateDefaultParagraphStyle(initial: true)
         
         // observe change in defaults
         self.defaultsObservers = [
@@ -292,7 +292,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.restoreState(with: coder)
         
-        if let font = coder.decodeObject(of: NSFont.self, forKey: SerializationKey.font) {
+        if let font = coder.decodeObject(of: NSFont.self, forKey: SerializationKey.font),
+           font != self.font
+        {
             self.font = font
         }
         
@@ -897,9 +899,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             //    when the set font doesn't have a glyph for the first character.
             (self.layoutManager as? LayoutManager)?.textFont = font
             
-            super.font = font
-            
             self.invalidateDefaultParagraphStyle()
+            
+            // set to the super after updating textStorage attributes in `.invalidateDefaultParagraphStyle()`
+            // to avoid the strange issue that letters change into undefined
+            // after specific characters.
+            // Change the font in characters.md to reproduce this issue (macOS 12 2022-05-30)
+            super.font = font
         }
     }
     
@@ -1391,8 +1397,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// set defaultParagraphStyle based on font, tab width, and line height
-    private func invalidateDefaultParagraphStyle() {
+    /// Update `defaultParagraphStyle` based on the font, tab width, and line height.
+    ///
+    /// - Parameter initial: If true, apply the paragraphStyle even if the values are the same as the current `.defaultParagraphStyle.
+    private func invalidateDefaultParagraphStyle(initial: Bool = false) {
         
         assert(Thread.isMainThread)
         
@@ -1400,8 +1408,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // set line height
         // -> The actual line height will be calculated in LayoutManager based on this line height multiple.
-        //    Because the default Cocoa Text System calculate line height differently
-        //     if the first character of the document is drawn with another font (typically by a composite font).
+        //    Because the default implementation calculates the line height differently
+        //     if the first character is drawn with another font (typically by a composite font).
         paragraphStyle.lineHeightMultiple = self.lineHeight
         
         // calculate tab interval
@@ -1410,7 +1418,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
         }
         
-        guard self.defaultParagraphStyle != paragraphStyle else { return }
+        guard initial ||
+                (paragraphStyle.lineHeightMultiple != self.defaultParagraphStyle?.lineHeightMultiple ||
+                 paragraphStyle.defaultTabInterval != self.defaultParagraphStyle?.defaultTabInterval)
+        else { return }
         
         self.defaultParagraphStyle = paragraphStyle
         self.typingAttributes[.paragraphStyle] = paragraphStyle

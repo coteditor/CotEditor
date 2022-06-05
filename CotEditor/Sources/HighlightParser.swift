@@ -178,6 +178,8 @@ final class HighlightParser {
         // remove escaped ones
         positions.removeAll { self.string.isCharacterEscaped(at: $0.range.location) }
         
+        guard !positions.isEmpty else { return [:] }
+        
         // sort by location
         positions.sort {
             if $0.range.location < $1.range.location { return true }
@@ -195,36 +197,32 @@ final class HighlightParser {
         
         try Task.checkCancellation()
         
-        // scan quoted strings and comments in the parse range
+        // find paires in the parse range
         var highlights: [SyntaxType: [NSRange]] = [:]
         var seekLocation = self.parseRange.location
-        var searchingItem: NestableItem?
+        var index = 0
         
-        for position in positions {
-            // search next begin delimiter
-            guard let item = searchingItem else {
-                if position.role.contains(.begin), position.range.location >= seekLocation {
-                    searchingItem = position
-                }
-                continue
-            }
+        while index < positions.count {
+            let beginPosition = positions[index]
+            index += 1
             
+            guard
+                beginPosition.role.contains(.begin),
+                beginPosition.range.location >= seekLocation
+            else { continue }
+                
             // search corresponding end delimiter
-            if position.role.contains(.end), position.token == item.token {
-                let range = NSRange(item.range.lowerBound..<position.range.upperBound)
-                
-                highlights[item.type, default: []].append(range)
-                
-                searchingItem = nil
-                seekLocation = range.upperBound
-            }
-        }
-        
-        // highlight until the end if not closed
-        if let item = searchingItem {
-            let range = NSRange(item.range.lowerBound..<self.parseRange.upperBound)
+            guard let endIndex = positions[index...].firstIndex(where: {
+                $0.role.contains(.end) && $0.token == beginPosition.token
+            }) else { continue }  // give up if no end delimiter found
             
-            highlights[item.type, default: []].append(range)
+            let endPosition = positions[endIndex]
+            let range = NSRange(beginPosition.range.lowerBound..<endPosition.range.upperBound)
+            
+            highlights[beginPosition.type, default: []].append(range)
+            
+            seekLocation = range.upperBound
+            index = endIndex
         }
         
         return highlights

@@ -3,9 +3,9 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.4"
+  version: "1.1.5"
   license: "Same as CotEditor"
-  lastModified: "2022-05-12"
+  lastModified: "2022-06-01"
 outlineMenu:
 - keyString: "$2"
   beginString: "^h1([\\[{()=>]\\S*)?\\.[\\t ]*(.*)$"
@@ -33,13 +33,13 @@ characters:
 - beginString: "<pre(\\s[^<>]*)?>"
   endString: "</pre>"
   regularExpression: true
-- beginString: "@[^\\R]*@"
+- beginString: "@.*@"
   regularExpression: true
 comments: []
 values:
 - beginString: "\\[\\d+\\]"
   regularExpression: true
-- beginString: "\\s\"[^\\R]*?\"(?>:)"
+- beginString: "\\s\".*?\"(?>:)"
   regularExpression: true
 types:
 - beginString: "^h[1-6]([\\[{()=>]\\S*)?\\.[\\t ]"
@@ -61,10 +61,10 @@ strings:
   endString: "$"
   regularExpression: true
 keywords:
-- beginString: "(?<![\\\\*])\\*[^ \\t*](?![^\\R*]*\\R{2})[^\\R]*?(?<![\\\\ ])\\*"
+- beginString: "(?<![\\\\*])\\*[^ \\t*]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\*"
   description: "bold"
   regularExpression: true
-- beginString: "(?<![\\_])_[^ \\t*](?![^\\R_]*\\R{2})[^\\R]*?(?<![\\\\ ])_"
+- beginString: "(?<![\\_])_[^ \\t*]((?!\\R{2})(?:.|\\R)).*?(?<![\\\\ ])_"
   description: "italic"
   regularExpression: true
 - beginString: "^#+[\\t ]"

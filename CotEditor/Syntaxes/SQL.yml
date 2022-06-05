@@ -10,13 +10,15 @@ attributes: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.0"
+  version: "1.2.0"
   license: "Same as CotEditor"
-  lastModified: "2022-03-03"
+  lastModified: "2022-05-30"
 characters:
 - beginString: "\\\\u[0-9a-f]{4}\\b"
   regularExpression: true
-comments: []
+comments:
+- beginString: "(?<!\\\\)#.*$"
+  regularExpression: true
 values:
 - beginString: "false"
   ignoreCase: true

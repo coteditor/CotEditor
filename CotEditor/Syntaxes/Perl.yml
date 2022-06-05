@@ -9,7 +9,7 @@ metadata:
   version: "2.2.2"
   description: "Maintained by CotEditor Project."
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
+  lastModified: "2022-06-01"
 outlineMenu:
 - beginString: "^([\\t ]*)(sub)[ ]*([a-z][a-z0-9_]*)[^{].*\\{"
   ignoreCase: true
@@ -398,7 +398,7 @@ strings:
   endString: "\""
 - beginString: "(?s)<<[ \\t]*\"?([0-9a-zA-Z_]+)\"?[ \\t]*;.+?\\R\\1\\R"
   regularExpression: true
-- beginString: "/[^\\R/]*/[^\\R/]*/[a-z]*"
+- beginString: "/[^\\r\\n/]*/[^\\r\\n/]*/[a-z]*\\b"
   regularExpression: true
 - beginString: "qq/"
   endString: "/"

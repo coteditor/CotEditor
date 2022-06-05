@@ -5,11 +5,10 @@ extensions:
 - keyString: "cls"
 metadata:
   distributionURL: "https://coteditor.com"
-  author: "Yuhei Kuratomi"
+  author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
-  description: "Maintained by CotEditor Project."
-  version: "2.0.3"
+  lastModified: "2022-06-05"
+  version: "3.0.0"
 outlineMenu:
 - beginString: "[\\\\¥]chapter\\*?\\{(.*)\\}"
   description: "chapter"
@@ -27,86 +26,66 @@ outlineMenu:
 - beginString: "[\\\\¥]subsubsection\\*?\\{(.*)\\}"
   description: "subsubsection"
   keyString: "            $1"
-comments: []
-numbers:
-- beginString: "[\\\\¥]frac\\{[^}]+\\}\\{[^}]"
-  endString: "\\}"
+keywords:
+- beginString: "(?<=\\w)_(?=\\{)"
+  regularExpression: true
+- beginString: "(?<!\\\\)\\^"
+  regularExpression: true
+- beginString: "(?<!\\\\)&"
+  regularExpression: true
+- beginString: "\\\\\\\\"
   regularExpression: true
 commands:
-- beginString: "[\\\\¥]caption\\{.+\\}"
+- beginString: "[\\\\¥][a-zA-Z0-9]+\\*?"
   regularExpression: true
-- beginString: "[\\\\¥]centering"
-  regularExpression: true
-- beginString: "[\\\\¥]cite\\{([^}])+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]file\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]hfill"
-  regularExpression: true
-- beginString: "[\\\\¥]includegraphics(\\[.+\\])?\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]label\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]LARGE"
-  regularExpression: true
-- beginString: "[\\\\¥]Large"
-  regularExpression: true
-- beginString: "[\\\\¥]large"
-  regularExpression: true
-- beginString: "[\\\\¥]maketitle"
-  regularExpression: true
-- beginString: "[\\\\¥]normalsize"
-  regularExpression: true
-- beginString: "[\\\\¥]ref\\{([^}])+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]renewcommand.*$"
-  regularExpression: true
-- beginString: "[\\\\¥]sf"
-  regularExpression: true
-- beginString: "[\\\\¥]text(tt|bf)\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]tt"
-  regularExpression: true
-- beginString: "^\\s*[\\\\¥]item"
+types:
+- beginString: "{"
+  endString: "}"
+attributes:
+- beginString: "["
+  endString: "]"
+variables:
+- beginString: "(?<!\\\\)##?[0-9]"
   regularExpression: true
 values:
 - beginString: "[\\\\¥](La)?TeXe?"
   regularExpression: true
-- beginString: "\\$([^$\\R]+)\\$"
+- beginString: "\\$.+?\\$"
   regularExpression: true
 - beginString: "\\("
   endString: "\\)"
-keywords:
-- beginString: "[\\\\¥]author\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]begin\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]chapter\\*?\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]date\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]documentclass(\\[.+\\])?\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]end\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]pagestyle\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]part\\{.+\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]section\\*?\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]subsection\\*?\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]subsubsection\\*?\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]title\\{.*\\}"
-  regularExpression: true
-- beginString: "[\\\\¥]usepackage(\\[.+\\])?\\{.+\\}"
-  regularExpression: true
+- beginString: "\\["
+  endString: "\\]"
+numbers: []
 strings: []
+characters:
+- beginString: "(?<!\\\\)\\\\[&%$#_{}~^]"
+  regularExpression: true
+  description: "escaped characters"
+- beginString: "---?"
+  regularExpression: true
+  description: "en/em dash"
+- beginString: "~"
+  regularExpression: true
+  description: "non-breaking space"
+- beginString: "''"
+  regularExpression: true
+  description: "opening double quotation mark (“)"
+- beginString: "``"
+  regularExpression: true
+  description: "closing double quotation mark (”)"
+- beginString: "!'"
+  regularExpression: true
+  description: "inverted exclamation mark (¡)"
+- beginString: "\\?'"
+  regularExpression: true
+  description: "inverted question mark (¿)"
+- beginString: "(?<!\\\\)\\\\[!,:>; ]"
+  regularExpression: true
+  description: "spaces"
+comments: []
 commentDelimiters:
   inlineDelimiter: "%"
-characters: []
 completions:
 - keyString: "begin"
 - keyString: "chapter"

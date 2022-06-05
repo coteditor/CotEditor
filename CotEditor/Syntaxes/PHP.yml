@@ -10,10 +10,10 @@ interpreters:
 metadata:
   author: "kaz"
   distributionURL: "https://coteditor.com"
-  version: "2.5.4"
+  version: "2.5.5"
   description: "Support PHP4 - PHP5.6.\n\nMaintained by 1024jp since 2013."
   license: "Same as CotEditor"
-  lastModified: "2022-02-26"
+  lastModified: "2022-06-01"
 outlineMenu:
 - beginString: "^([\\t ]*)(((?:(?:final|static|public|protected|private)[\\t ]+)+)function)\\s*([^{;]*)(?=[{;])"
   description: "function"
@@ -5723,7 +5723,7 @@ characters:
 - beginString: "'"
   endString: "'"
 comments:
-- beginString: "#[^\\R]*?(?=$|\\?>)"
+- beginString: "(?<!\\\\)#.*?(?=$|\\?>)"
   regularExpression: true
 values:
 - beginString: "__CLASS__"
