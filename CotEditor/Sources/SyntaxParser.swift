@@ -94,7 +94,7 @@ final class SyntaxParser {
     /// Whether syntax should be parsed.
     var canParse: Bool {
         
-        return UserDefaults.standard[.enableSyntaxHighlight] && !self.style.isNone
+        !self.style.isNone
     }
     
     
@@ -162,7 +162,6 @@ extension SyntaxParser {
         
         assert(Thread.isMainThread)
         
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
         // in case that wholeRange length is changed from editedRange

@@ -105,7 +105,6 @@ struct DefaultSettings {
         .encodingInNew: String.Encoding.utf8.rawValue,
         .saveUTF8BOM: false,
         .referToEncodingTag: true,
-        .enableSyntaxHighlight: true,
         .syntaxStyle: "Plain Text",
         
         .fileDropArray: [

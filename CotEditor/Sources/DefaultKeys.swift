@@ -108,7 +108,6 @@ extension DefaultKeys {
     static let encodingInNew = DefaultKey<UInt>("encodingInNew")
     static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
     static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
-    static let enableSyntaxHighlight = DefaultKey<Bool>("doSyntaxColoring")
     static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
     
     // File Drop
