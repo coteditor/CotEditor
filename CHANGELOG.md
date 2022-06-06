@@ -5,6 +5,11 @@ Change Log
 4.3.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Drastically improved the performance of syntax highlighting on large documents so that no rainbow cursor appears.
+
+
 ### Fixes
 
 - Fix an issue that highlight of Find All in the editor remained even when closing the find window.

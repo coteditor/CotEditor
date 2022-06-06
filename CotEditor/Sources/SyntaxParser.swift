@@ -43,7 +43,7 @@ final class SyntaxParser {
         
         var styleName: String
         var string: String
-        var highlights: [SyntaxType: [NSRange]]
+        var highlights: [Highlight]
     }
     
     
@@ -216,7 +216,7 @@ extension SyntaxParser {
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
-            self.textStorage.apply(highlights: [:], range: highlightRange)
+            self.textStorage.apply(highlights: [], range: highlightRange)
             return nil
         }
         
@@ -291,18 +291,24 @@ extension SyntaxParser {
 
 private extension NSTextStorage {
     
-    /// apply highlights to the document
-    @MainActor func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
+    /// Apply highlights to the document using layoutManager's temporary attributes.
+    ///
+    /// - Note: Sanitize the `highlights` before so that the ranges does not overwrap each other.
+    ///
+    /// - Parameters:
+    ///   - highlights: The highlight definitions to apply.
+    ///   - highlightRange: The range to update syntax highlight.
+    @MainActor func apply(highlights: [Highlight], range highlightRange: NSRange) {
         
-        assert(Thread.isMainThread)
+        // -> This condition is really, really important to reduce the time
+        //    to apply large number of temporary attributes. (2022-06, macOS 12)
+        assert(highlights.sorted(\.range.location) == highlights)
         
         guard self.length > 0 else { return }
         
-        let hasHighlight = highlights.values.contains { !$0.isEmpty }
-        
         for layoutManager in self.layoutManagers {
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
-            guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
+            guard !highlights.isEmpty || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
             
             let theme = (layoutManager.firstTextView as? any Themable)?.theme
             
@@ -310,23 +316,11 @@ private extension NSTextStorage {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
                 layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
                 
-                for type in SyntaxType.allCases {
-                    guard
-                        let ranges = highlights[type]?.compactMap({ $0.intersection(highlightRange) }),
-                        !ranges.isEmpty else { continue }
+                for highlight in highlights {
+                    layoutManager.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)
                     
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
-                    }
-                    
-                    if let color = theme?.style(for: type)?.color {
-                        for range in ranges {
-                            layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                        }
-                    } else {
-                        for range in ranges {
-                            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                        }
+                    if let color = theme?.style(for: highlight.item)?.color {
+                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: highlight.range)
                     }
                 }
             }
@@ -344,8 +338,6 @@ extension NSLayoutManager {
     /// - Parameter theme: The theme to apply.
     /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
     @MainActor func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
-        
-        assert(Thread.isMainThread)
         
         let wholeRange = range ?? self.attributedString().range
         
