@@ -28,7 +28,7 @@ import Combine
 import Foundation
 import AppKit.NSTextStorage
 
-private extension NSAttributedString.Key {
+extension NSAttributedString.Key {
     
     static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
 }

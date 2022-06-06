@@ -1784,7 +1784,7 @@ extension EditorTextView {
         
         // select (syntax-highlighted) quoted text
         if ["\"", "'", "`"].contains(clickedCharacter),
-            let highlightRange = self.layoutManager?.effectiveRange(of: .foregroundColor, at: range.location)
+            let highlightRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: range.location)
         {
             let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound
