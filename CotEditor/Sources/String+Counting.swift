@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension StringProtocol where Index == String.Index {
+extension StringProtocol {
     
     /// The number of words in the whole string.
     var numberOfWords: Int {

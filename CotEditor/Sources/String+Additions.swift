@@ -57,7 +57,7 @@ extension String {
 
 
 
-extension StringProtocol where Self.Index == String.Index {
+extension StringProtocol {
     
     /// The first appeared line ending character.
     var firstLineEnding: Character? {
