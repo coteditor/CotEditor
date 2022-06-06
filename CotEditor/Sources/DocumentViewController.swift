@@ -603,7 +603,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         set {
-            for textView in self.editorViewControllers.compactMap(\.textView) {
+            for textView in self.editorViewControllers.compactMap(\.textView) where textView.baseWritingDirection != newValue {
                 textView.baseWritingDirection = newValue
             }
             self.invalidateRestorableState()
@@ -966,12 +966,16 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         editorViewController.setTextStorage(self.textStorage!)
         
-        editorViewController.textView?.wrapsLines = self.wrapsLines
-        editorViewController.textView?.showsInvisibles = self.showsInvisibles
-        editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
-        editorViewController.textView?.baseWritingDirection = self.writingDirection
-        editorViewController.textView?.showsPageGuide = self.showsPageGuide
-        editorViewController.textView?.showsIndentGuides = self.showsIndentGuides
+        guard let textView = editorViewController.textView else { return assertionFailure() }
+        
+        textView.wrapsLines = self.wrapsLines
+        textView.showsInvisibles = self.showsInvisibles
+        textView.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
+        if textView.baseWritingDirection != self.writingDirection {
+            textView.baseWritingDirection = self.writingDirection
+        }
+        textView.showsPageGuide = self.showsPageGuide
+        textView.showsIndentGuides = self.showsIndentGuides
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
@@ -980,7 +984,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         // copy textView states
-        if let baseTextView = baseViewController?.textView, let textView = editorViewController.textView {
+        if let baseTextView = baseViewController?.textView {
             textView.font = baseTextView.font
             textView.usesAntialias = baseTextView.usesAntialias
             textView.ligature = baseTextView.ligature

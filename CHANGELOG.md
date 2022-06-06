@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Drastically improved the performance of syntax highlighting on large documents so that no rainbow cursor appears.
+- Optimize the time to open large documents.
 
 
 ### Fixes
