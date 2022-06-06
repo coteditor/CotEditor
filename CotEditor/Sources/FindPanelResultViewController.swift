@@ -89,9 +89,6 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         super.viewWillDisappear()
         
-        // remove also find result highlights in the text view
-        self.unhighlight()
-        
         self.fontSizeObserver = nil
     }
     
@@ -171,15 +168,6 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         }
         
         self.tableView?.reloadData()
-    }
-    
-    
-    /// remove current highlight by Find All
-    private func unhighlight() {
-        
-        guard let textView = self.target else { return }
-        
-        textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
     }
     
     

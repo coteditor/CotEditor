@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import Cocoa
+import Combine
 
 private let defaultResultViewHeight: CGFloat = 200.0
 
@@ -32,6 +33,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     // MARK: Private Properties
     
     private var isUncollapsing = false
+    
+    private var resultViewObserver: AnyCancellable?
     
     @IBOutlet private weak var fieldSplitViewItem: NSSplitViewItem?
     @IBOutlet private weak var resultSplitViewItem: NSSplitViewItem?
@@ -96,6 +99,14 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         self.setResultShown(true, animate: true)
         self.splitView.window?.windowController?.showWindow(self)
+        
+        // remove also find result highlights in the text view
+        self.resultViewObserver = self.resultViewController?.view.publisher(for: \.isHiddenOrHasHiddenAncestor)
+            .filter { $0 }
+            .sink { [weak self, weak textView] _ in
+                textView?.unhighlight()
+                self?.resultViewObserver = nil
+            }
     }
     
     
@@ -196,4 +207,13 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         self.splitView.needsDisplay = true
     }
     
+}
+
+
+private extension NSTextView {
+    
+    func unhighlight() {
+        
+        self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
+    }
 }

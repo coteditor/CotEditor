@@ -5,6 +5,10 @@ Change Log
 4.3.0 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that highlight of Find All in the editor remained even when closing the find window.
+
 
 
 4.2.3 (510)
