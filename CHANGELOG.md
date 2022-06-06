@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Drastically improved the performance of syntax highlighting on large documents so that no rainbow cursor appears.
+- Stop displaying the progress bar for syntax highlight on large documents and apply the highlight asynchronously instead.
 - Optimize the time to open large documents.
 
 

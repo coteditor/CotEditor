@@ -56,11 +56,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     private var outlineObserver: AnyCancellable?
     private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
-    private var progressIndicatorAvailabilityObserver: AnyCancellable?
     private var themeChangeObserver: AnyCancellable?
-    
-    @Published private var sheetAvailability = false
-    private var sheetAvailabilityObserver: AnyCancellable?
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
     private weak var syntaxHighlightProgress: Progress?
@@ -131,35 +127,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 
                 self.setTheme(name: themeName)
             }
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        guard let window = self.view.window else { return assertionFailure() }
-        
-        // observe availability of sheet attachment for sytnax highlight indicator
-        let publishers = [NSWindow.didChangeOcclusionStateNotification,
-                          NSWindow.willBeginSheetNotification,
-                          NSWindow.didEndSheetNotification]
-            .map { NotificationCenter.default.publisher(for: $0, object: window) }
-        
-        self.sheetAvailabilityObserver = Publishers.MergeMany(publishers)
-            .map { $0.object as! NSWindow }
-            .merge(with: Just(window))  // set current state
-            .map { $0.occlusionState.contains(.visible) && $0.attachedSheet == nil }
-            .removeDuplicates()
-            .sink { [weak self] in self?.sheetAvailability = $0 }
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.sheetAvailabilityObserver = nil
     }
     
     
@@ -914,6 +881,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// - Parameter range: The character range to invalidate syntax highlight, or `nil` when entire text is needed to re-highlight.
     private func invalidateSyntaxHighlight(in range: NSRange? = nil) {
         
+        guard let parser = self.syntaxParser else { return assertionFailure() }
+        
         var range = range
         
         // retry entire syntax highlight if the last highlightAll has not finished yet
@@ -923,41 +892,13 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             range = nil
         }
         
-        guard let parser = self.syntaxParser else { return assertionFailure() }
-        
         // start parse
         let progress = parser.highlight(around: range)
         
-        // show indicator for a large update
-        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
-        let highlightLength = range?.length ?? self.textStorage?.length ?? 0
-        guard threshold > 0, highlightLength > threshold else { return }
+        // make large update cancellable
+        guard (range?.length ?? self.textStorage?.length ?? 0) > 10_000 else { return }
         
         self.syntaxHighlightProgress = progress
-        
-        guard progress != nil else { return }
-        
-        self.progressIndicatorAvailabilityObserver = self.$sheetAvailability
-            .filter { $0 }
-            .sink { [weak self] _ in self?.presentSyntaxHighlightProgress() }
-    }
-    
-    
-    /// Show syntax highlight progress as a sheet.
-    private func presentSyntaxHighlightProgress() {
-        
-        self.progressIndicatorAvailabilityObserver = nil
-        
-        guard
-            let progress = self.syntaxHighlightProgress,
-            !progress.isFinished, !progress.isCancelled
-            else { return }
-        
-        let indicator = NSStoryboard(name: "CompactProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: "Coloring text…".localized, appliesDescriptionImmediately: true)
-        }!
-        
-        self.presentAsSheet(indicator)
     }
     
     

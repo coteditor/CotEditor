@@ -283,7 +283,6 @@
 		2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */; };
 		2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */; };
 		2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
-		2A642CDB2392192100BCA4C4 /* CompactProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */; };
 		2A643BB3245172EB00B2AD54 /* NSBezierPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A643BB2245172EB00B2AD54 /* NSBezierPathTests.swift */; };
 		2A64A2362387754000646BE4 /* UserDefaultsObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */; };
 		2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
@@ -587,7 +586,6 @@
 		2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1261E714D230027192A /* AppearancePane.storyboard */; };
 		2ACDE28E2406B9C000FC31EC /* CharacterPopover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */; };
 		2ACDE28F2406B9C000FC31EC /* ColorCodePanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0CA321A3BFB700723073 /* ColorCodePanelAccessory.storyboard */; };
-		2ACDE2902406B9C000FC31EC /* CompactProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */; };
 		2ACDE2912406B9C000FC31EC /* ConsolePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */; };
 		2ACDE2922406B9C000FC31EC /* CustomTabWidthView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A25C51920F068FD0003AE1A /* CustomTabWidthView.storyboard */; };
 		2ACDE2932406B9C000FC31EC /* CustomSurroundStringView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */; };
@@ -817,7 +815,6 @@
 		08C28F9D279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		08C28F9E279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		08C28F9F279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		08C28FA0279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
 		08C28FA1279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		08C28FA2279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		08C28FA3279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/CustomSurroundStringView.strings; sourceTree = "<group>"; };
@@ -1105,13 +1102,6 @@
 		2A642CD62390ECA900BCA4C4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2A642CD72390ECAD00BCA4C4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2A642CD82390ECB200BCA4C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2A642CDA2392192100BCA4C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CompactProgressView.storyboard; sourceTree = "<group>"; };
-		2A642CDD2392195000BCA4C4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
-		2A642CDE2392195A00BCA4C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CompactProgressView.strings"; sourceTree = "<group>"; };
-		2A642CDF2392195D00BCA4C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
-		2A642CE02392196200BCA4C4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
-		2A642CE12392196600BCA4C4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
-		2A642CE22392196A00BCA4C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
 		2A643BB2245172EB00B2AD54 /* NSBezierPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPathTests.swift; sourceTree = "<group>"; };
 		2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsObservationTests.swift; sourceTree = "<group>"; };
 		2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuKeyBindingManager.swift; sourceTree = "<group>"; };
@@ -1537,7 +1527,6 @@
 		5B08850428296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
 		5B08850528296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		5B08850628296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProgressView.strings"; sourceTree = "<group>"; };
-		5B08850728296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CompactProgressView.strings"; sourceTree = "<group>"; };
 		5B08850828296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
 		5B08850928296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		5B08850A28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CustomSurroundStringView.strings"; sourceTree = "<group>"; };
@@ -1587,7 +1576,6 @@
 		98EAE82E27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
 		98EAE82F27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		98EAE83027A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ProgressView.strings"; sourceTree = "<group>"; };
-		98EAE83127A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CompactProgressView.strings"; sourceTree = "<group>"; };
 		98EAE83227A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
 		98EAE83327A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		98EAE83427A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CustomSurroundStringView.strings"; sourceTree = "<group>"; };
@@ -2363,7 +2351,6 @@
 				2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */,
 				2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */,
 				2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */,
-				2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */,
 				2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */,
 				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
 				2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */,
@@ -2746,7 +2733,6 @@
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
 				2ACDE28E2406B9C000FC31EC /* CharacterPopover.storyboard in Resources */,
 				2ACDE28F2406B9C000FC31EC /* ColorCodePanelAccessory.storyboard in Resources */,
-				2ACDE2902406B9C000FC31EC /* CompactProgressView.storyboard in Resources */,
 				2ACDE2912406B9C000FC31EC /* ConsolePanel.storyboard in Resources */,
 				2ACDE2922406B9C000FC31EC /* CustomTabWidthView.storyboard in Resources */,
 				2ACDE2932406B9C000FC31EC /* CustomSurroundStringView.storyboard in Resources */,
@@ -2823,7 +2809,6 @@
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2ABC828421A9486A008F9229 /* CharacterPopover.storyboard in Resources */,
 				2ACA0CA521A3BFB700723073 /* ColorCodePanelAccessory.storyboard in Resources */,
-				2A642CDB2392192100BCA4C4 /* CompactProgressView.storyboard in Resources */,
 				2ADD0AE321800E2F00F78732 /* ConsolePanel.storyboard in Resources */,
 				2A25C51B20F068FD0003AE1A /* CustomTabWidthView.storyboard in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
@@ -3898,23 +3883,6 @@
 				5B08850628296B61003D4C2D /* zh-Hant */,
 			);
 			name = ProgressView.storyboard;
-			sourceTree = "<group>";
-		};
-		2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A642CDA2392192100BCA4C4 /* Base */,
-				2A642CDD2392195000BCA4C4 /* ja */,
-				2A642CDE2392195A00BCA4C4 /* zh-Hans */,
-				2A642CDF2392195D00BCA4C4 /* de */,
-				2A642CE02392196200BCA4C4 /* it */,
-				2A642CE12392196600BCA4C4 /* pt */,
-				2A642CE22392196A00BCA4C4 /* fr */,
-				08C28FA0279CBE2F0016693E /* tr */,
-				98EAE83127A5D7D900C6D571 /* en-GB */,
-				5B08850728296B61003D4C2D /* zh-Hant */,
-			);
-			name = CompactProgressView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */ = {

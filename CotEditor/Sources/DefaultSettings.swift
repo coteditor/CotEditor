@@ -181,7 +181,6 @@ struct DefaultSettings {
         .headerFooterDateFormat: "yyyy-MM-dd HH:mm",
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
-        .showColoringIndicatorTextLength: 75000,
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
         .savesTextOrientation: true,

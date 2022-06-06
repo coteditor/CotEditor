@@ -259,7 +259,6 @@ extension SyntaxParser {
         let progress = Progress(totalUnitCount: 10)
         
         let task = Task.detached(priority: .userInitiated) { [weak self, styleName = self.style.name] in
-            progress.localizedDescription = "Parsing text…".localized
             progress.addChild(parser.progress, withPendingUnitCount: 9)
             
             let highlights = try await parser.parse()
@@ -269,9 +268,6 @@ extension SyntaxParser {
             }
             
             try Task.checkCancellation()
-            
-            progress.localizedDescription = "Applying colors to text…".localized
-            try await Task.sleep(nanoseconds: 10_000_000)  // wait 0.01 seconds for GUI update
             
             await self?.textStorage.apply(highlights: highlights, range: highlightRange)
             
