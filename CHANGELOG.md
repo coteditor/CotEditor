@@ -11,6 +11,7 @@ Change Log
 - Stop displaying the progress bar for syntax highlight on large documents and apply the highlight asynchronously instead.
 - Optimize the time to open large documents.
 - Remove the preference option to disable syntax highlighting.
+- Update Swift syntax style to support Swift 5.7.
 
 
 ### Fixes
