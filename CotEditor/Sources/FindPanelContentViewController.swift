@@ -210,7 +210,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
 }
 
 
-private extension NSTextView {
+extension NSTextView {
     
     func unhighlight() {
         

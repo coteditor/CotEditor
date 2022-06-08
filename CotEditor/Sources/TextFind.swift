@@ -173,18 +173,23 @@ final class TextFind {
     /// - Parameters:
     ///   - forward: Whether searchs forward from the insertion.
     ///   - isWrap: Whether the search wraps  around.
+    ///   - includingCurrentSelection: Whether includes the current selection to search.
     /// - Returns:
     ///   - range: The range of matched or nil if not found.
     ///   - ranges: The ranges of all matches in the scopes.
     ///   - wrapped: Whether the search was wrapped to find the result.
-    func find(forward: Bool, isWrap: Bool) -> (range: NSRange?, ranges: [NSRange], wrapped: Bool) {
+    func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) -> (range: NSRange?, ranges: [NSRange], wrapped: Bool) {
+        
+        assert(forward || !includingSelection)
         
         if self.inSelection {
             return self.findInSelection(forward: forward)
         }
         
         let selectedRange = self.selectedRanges.first!
-        let startLocation = forward ? selectedRange.upperBound : selectedRange.location
+        let startLocation = forward
+            ? (includingSelection ? selectedRange.lowerBound : selectedRange.upperBound)
+            : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
         var forwardMatches: [NSRange] = []  // matches after the start location
         let forwardRange = NSRange(startLocation..<(self.string as NSString).length)
