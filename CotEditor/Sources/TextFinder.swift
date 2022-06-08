@@ -108,7 +108,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Menu Item Validation
     
-    /// validate menu item
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
@@ -140,7 +139,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Public Methods
     
-    /// target text view
+    /// Target text view.
     var client: NSTextView? {
         
         guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
@@ -152,28 +151,28 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Action Messages
     
-    /// jump to selection in client
+    /// Jump to selection in client.
     @IBAction override func centerSelectionInVisibleArea(_ sender: Any?) {
         
         self.client?.centerSelectionInVisibleArea(sender)
     }
     
     
-    /// activate find panel
+    /// Activate find panel.
     @IBAction func showFindPanel(_ sender: Any?) {
         
         self.findPanelController.showWindow(sender)
     }
     
     
-    /// activate multiple replacement panel
+    /// Activate multiple replacement panel.
     @IBAction func showMultipleReplacementPanel(_ sender: Any?) {
         
         self.multipleReplacementPanelController.showWindow(sender)
     }
     
     
-    /// find next matched string
+    /// Find next matched string.
     @IBAction func findNext(_ sender: Any?) {
         
         // find backwards if Shift key pressed
@@ -183,14 +182,14 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// find previous matched string
+    /// Find previous matched string.
     @IBAction func findPrevious(_ sender: Any?) {
         
         self.find(forward: false)
     }
     
     
-    /// perform find action with the selected string
+    /// Perform find action with the selected string.
     @IBAction func findSelectedText(_ sender: Any?) {
         
         self.useSelectionForFind(sender)
@@ -198,7 +197,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// select all matched strings
+    /// Select all matched strings.
     @IBAction func selectAllMatches(_ sender: Any?) {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
@@ -216,21 +215,21 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// find all matched strings and show results in a table
+    /// Find all matched strings and show results in a table.
     @IBAction func findAll(_ sender: Any?) {
         
         self.findAll(showsList: true, actionName: "Find All".localized)
     }
     
     
-    /// highlight all matched strings
+    /// Highlight all matched strings.
     @IBAction func highlight(_ sender: Any?) {
         
         self.findAll(showsList: false, actionName: "Highlight".localized)
     }
     
     
-    /// remove all of current highlights in the frontmost textView
+    /// Remove all of current highlights in the frontmost textView.
     @IBAction func unhighlight(_ sender: Any?) {
         
         guard let textView = self.client else { return }
@@ -241,7 +240,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// replace matched string in selection with replacementString
+    /// Replace matched string in selection with replacementString.
     @IBAction func replace(_ sender: Any?) {
         
         if self.replace() {
@@ -255,7 +254,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// replace matched string with replacementString and select the next match
+    /// Replace matched string with replacementString and select the next match.
     @IBAction func replaceAndFind(_ sender: Any?) {
         
         self.replace()
@@ -266,7 +265,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// replace all matched strings with given string
+    /// Replace all matched strings with given string.
     @IBAction func replaceAll(_ sender: Any?) {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: true) else { return }
@@ -335,7 +334,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// set selected string to find field
+    /// Set selected string to find field.
     @IBAction func useSelectionForFind(_ sender: Any?) {
         
         guard let selectedString = self.selectedString else { return NSSound.beep() }
@@ -347,7 +346,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// set selected string to replace field
+    /// Set selected string to replace field.
     @IBAction func useSelectionForReplace(_ sender: Any?) {
         
         self.replacementString = self.selectedString ?? ""
@@ -357,7 +356,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Methods
     
-    /// selected string in the current tareget
+    /// Selected string in the current tareget.
     private var selectedString: String? {
         
         guard let textView = self.client else { return nil }
@@ -366,7 +365,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// find string of which line endings are standardized to the document line ending
+    /// Find string of which line endings are standardized to the document line ending.
     private var sanitizedFindString: String {
         
         let lineEnding = (self.client as? EditorTextView)?.lineEnding ?? .lf
@@ -375,7 +374,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// check Find can be performed and alert if needed
+    /// Check Find can be performed and alert if needed.
+    ///
+    /// - Parameter forEditing: When true, perform only when the textView is editable.
+    /// - Returns: The target textView and a TextFind object.
     private func prepareTextFind(forEditing: Bool) -> (NSTextView, TextFind)? {
         
         guard
@@ -417,7 +419,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// perform "Find Next" or "Find Previous" and return number of found
+    /// Perform Find Next or Find Previous.
+    ///
+    /// - Parameter forward: The flag whether finds forward or backward.
+    /// - Returns: The number of found.
     @discardableResult
     private func find(forward: Bool) -> Int {
         
@@ -454,7 +459,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// replace matched string in selection with replacementString
+    /// Replace matched string in selection with replacementString.
     @discardableResult
     private func replace() -> Bool {
         
@@ -471,7 +476,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// find all matched strings and apply the result to views
+    /// Find all matched strings and apply the result to views.
+    ///
+    /// - Parameters:
+    ///   - showsList: Whether shows the result view when finished.
+    ///   - actionName: The name of the action to display in the progress sheet.
     private func findAll(showsList: Bool, actionName: String) {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
@@ -648,7 +657,7 @@ private extension UserDefaults {
 
 private extension NSPasteboard {
     
-    /// find string from global domain
+    /// Find string from global domain.
     class var findString: String? {
         
         get {
