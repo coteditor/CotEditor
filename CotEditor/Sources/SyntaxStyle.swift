@@ -185,8 +185,8 @@ struct SyntaxStyle {
                 inlineCommentDelimiter = delimiter
             }
             if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter],
-                let endDelimiter = delimiters[DelimiterKey.endDelimiter],
-                !beginDelimiter.isEmpty, !endDelimiter.isEmpty
+               let endDelimiter = delimiters[DelimiterKey.endDelimiter],
+               !beginDelimiter.isEmpty, !endDelimiter.isEmpty
             {
                 blockCommentDelimiters = Pair<String>(beginDelimiter, endDelimiter)
             }

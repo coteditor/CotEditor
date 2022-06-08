@@ -160,8 +160,6 @@ extension SyntaxParser {
     /// - Returns: The progress of the async highlight task if performed.
     @MainActor func highlight(around editedRange: NSRange? = nil) -> Progress? {
         
-        assert(Thread.isMainThread)
-        
         guard !self.textStorage.string.isEmpty else { return nil }
         
         // in case that wholeRange length is changed from editedRange
@@ -288,7 +286,7 @@ private extension NSTextStorage {
     
     /// Apply highlights to the document using layoutManager's temporary attributes.
     ///
-    /// - Note: Sanitize the `highlights` before so that the ranges does not overwrap each other.
+    /// - Note: Sanitize the `highlights` before so that the ranges do not overwrap each other.
     ///
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.
@@ -331,10 +329,11 @@ extension NSLayoutManager {
     /// Apply the theme based on the current `syntaxType` attributes.
     ///
     /// - Parameter theme: The theme to apply.
-    /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
-    @MainActor func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
+    @MainActor func invalidateHighlight(theme: Theme) {
         
-        let wholeRange = range ?? self.attributedString().range
+        let wholeRange = self.attributedString().range
+        
+        guard self.hasTemporaryAttribute(.syntaxType, in: wholeRange) else { return }
         
         self.groupTemporaryAttributesUpdate(in: wholeRange) {
             self.enumerateTemporaryAttribute(.syntaxType, in: wholeRange) { (type, range, _) in

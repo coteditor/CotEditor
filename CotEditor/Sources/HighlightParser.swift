@@ -233,12 +233,10 @@ final class HighlightParser {
     }
     
     
-    /// Remove overlapped ranges and converted to sorted Highlights.
+    /// Remove overlapped ranges and convert to sorted Highlights.
     ///
     /// - Note:
     /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
-    /// Adding temporary attribute to a layoutManager in the main thread is quite sluggish,
-    /// so we want to remove useless highlighting ranges as many as possible beforehand.
     ///
     /// - Parameter dictionary: The syntax highlight dictionary.
     /// - Returns: An array of sorted Highlight structs.
@@ -259,7 +257,7 @@ final class HighlightParser {
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
             .flatMap { (type, ranges) in ranges.map { ItemRange(item: type, range: $0) } }
-            .sorted { $0.range.location < $1.range.location }  // imporant to reduce the time to apply
+            .sorted { $0.range.location < $1.range.location }
     }
     
 }
