@@ -17,6 +17,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that highlight of Find All in the editor remained even when closing the find window.
+- Address an issue that recent documents became occasionaly empty. 
 
 
 

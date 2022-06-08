@@ -20,25 +20,56 @@
 				<string>public.plain-text</string>
 				<string>public.text</string>
 				<string>public.data</string>
+ 				<string>com.coteditor.CotEditor.theme</string>
+ 				<string>com.coteditor.CotEditor.replacement</string>
+ 				<string>public.c-header</string>
+ 				<string>public.c-plus-plus-header</string>
+ 				<string>public.c-plus-plus-source</string>
+ 				<string>public.c-source</string>
+ 				<string>public.css</string>
+ 				<string>public.fortran-source</string>
+ 				<string>public.html</string>
+ 				<string>public.json</string>
+ 				<string>public.patch-file</string>
+ 				<string>public.perl-script</string>
+ 				<string>public.php-script</string>
+ 				<string>public.python-script</string>
+ 				<string>public.ruby-script</string>
+ 				<string>public.shell-script</string>
+ 				<string>public.svg-image</string>
+ 				<string>public.swift-source</string>
+ 				<string>public.tex</string>
+ 				<string>public.toml</string>
+ 				<string>public.xml</string>
+ 				<string>public.yaml</string>
+ 				<string>com.microsoft.c-sharp</string>
+ 				<string>com.microsoft.ini</string>
+ 				<string>com.netscape.javascript-source</string>
+ 				<string>com.sun.java-source</string>
+ 				<string>com.textpattern.textile</string>
+ 				<string>dev.dart.dart-script</string>
+ 				<string>net.daringfireball.markdown</string>
+ 				<string>org.dlang.d-source</string>
+ 				<string>org.golang.go-script</string>
+ 				<string>org.haskell.haskell-script</string>
+ 				<string>org.iso.sql</string>
+ 				<string>org.julia.julia-script</string>
+ 				<string>org.kotlinlang.source</string>
+ 				<string>org.lua.lua-source</string>
+ 				<string>org.python.restructuredtext</string>
+ 				<string>org.rust-lang.rust-script</string>
+ 				<string>org.scala-lang.scala-source</string>
+ 				<string>org.tug.bibtex.bib</string>
+ 				<string>com.coteditor.conf</string>
+ 				<string>com.coteditor.lisp</string>
+ 				<string>com.coteditor.scheme</string>
+ 				<string>com.coteditor.verilog</string>
+ 				<string>com.coteditor.vhdl</string>
 			</array>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 			<key>NSUbiquitousDocumentUserActivityType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).editing</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeIconSystemGenerated</key>
-			<integer>1</integer>
-			<key>CFBundleTypeName</key>
-			<string>CotEditor Theme</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.coteditor.CotEditor.theme</string>
-			</array>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
