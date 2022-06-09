@@ -453,7 +453,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
             }
             
-            // unmark either when the client view resign key window or when the Find panel closed
+            // unmark either when the client view resigned the key window or when the Find panel closed
             self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
                 .sink { [weak self, weak textView] _ in
                     textView?.unhighlight()
