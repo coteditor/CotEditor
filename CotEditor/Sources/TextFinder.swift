@@ -73,6 +73,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     // MARK: Private Properties
     
     private var applicationActivationObserver: AnyCancellable?
+    private var highlightObserver: AnyCancellable?
     
     private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
     private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
@@ -145,6 +146,16 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
         
         return provider.textFinderClient()
+    }
+    
+    
+    /// Perform incremental search.
+    ///
+    /// - Returns: The number of found.
+    @discardableResult
+    func incrementalSearch() -> Int {
+        
+        return find(forward: true, marksAllMatches: true, isIncremental: true)
     }
     
     
@@ -419,16 +430,36 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// Perform Find Next or Find Previous.
+    /// Perform single find.
     ///
-    /// - Parameter forward: The flag whether finds forward or backward.
+    /// - Parameters:
+    ///   - forward: The flag whether finds forward or backward.
+    ///   - marksAllMatches: Whether marks all matches in the editor.
+    ///   - isIncremental: Whether is the incremental search.
     /// - Returns: The number of found.
     @discardableResult
-    private func find(forward: Bool) -> Int {
+    private func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) -> Int {
+        
+        assert(forward || !isIncremental)
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
         
-        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap])
+        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
+        
+        // mark all matches
+        if marksAllMatches, let layoutManager = textView.layoutManager {
+            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
+            for range in result.ranges {
+                layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
+            }
+            
+            // unmark either when the client view resign key window or when the Find panel closed
+            self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
+                .sink { [weak self, weak textView] _ in
+                    textView?.unhighlight()
+                    self?.highlightObserver = nil
+                }
+        }
         
         // found feedback
         if let range = result.range {
@@ -451,11 +482,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             NSSound.beep()
         }
         
-        self.delegate?.textFinder(self, didFind: result.count, textView: textView)
+        self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
         
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        if !isIncremental {
+            UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        }
         
-        return result.count
+        return result.ranges.count
     }
     
     

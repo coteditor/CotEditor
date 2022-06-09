@@ -5,6 +5,11 @@ Change Log
 4.3.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Introduce incremental search.
+
+
 ### Improvements
 
 - Drastically improved the performance of syntax highlighting on large documents so that no rainbow cursor appears.
