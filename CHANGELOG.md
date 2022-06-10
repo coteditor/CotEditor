@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Introduce incremental search.
+- Incremental search in the Find window.
 
 
 ### Improvements
@@ -23,7 +23,6 @@ Change Log
 
 - Fix an issue that the application crashed with very specific fonts.
 - Fix an issue that the highlights of Find All in the editor remained even when closing the Find window.
-- Address an issue that recent documents in the File menu became occasionally empty.
 
 
 
