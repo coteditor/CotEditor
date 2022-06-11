@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 CotEditor Project
+//  © 2015-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "置換後に次の一致を選択";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
-"KBq-zH-H2M.title" = "完了後自動的に進捗表示を閉じる";
+"KBq-zH-H2M.title" = "完了後自動的に進行状況表示を閉じる";
 
 
 // Textual Search

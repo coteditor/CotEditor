@@ -33,7 +33,7 @@
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "Nach der Ersetzung nächste Übereinstimmung auswählen";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
-"KBq-zH-H2M.title" = "Verlaufsanzeige automatisch schließen";
+"KBq-zH-H2M.title" = "Statusanzeige automatisch schließen";
 
 
 // Textual Search
