@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,11 +37,6 @@ final class SyntaxTermsEditViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        self.termsController?.unbind(.contentArray)
-    }
-    
-    
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -49,6 +44,14 @@ final class SyntaxTermsEditViewController: NSViewController {
         // set binding with desired key
         let type = (self.parent as? NSTabViewController)?.tabViewItem(for: self)?.identifier as? String
         self.termsController!.bind(.contentArray, to: self, withKeyPath: #keyPath(representedObject) + "." + type!)
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.termsController?.unbind(.contentArray)
     }
     
 }

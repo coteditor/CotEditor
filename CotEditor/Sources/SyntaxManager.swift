@@ -427,7 +427,7 @@ final class SyntaxManager: SettingFileManaging {
 
 
 
-private extension StringProtocol where Self.Index == String.Index {
+private extension StringProtocol {
     
     /// Extract interepreter from the shebang line.
     func scanInterpreterInShebang() -> String? {

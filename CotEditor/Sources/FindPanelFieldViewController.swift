@@ -114,12 +114,23 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// find string did change
     func textDidChange(_ notification: Notification) {
         
-        guard let textView = notification.object as? NSTextView else { return assertionFailure() }
+        guard let textView = notification.object as? RegexFindPanelTextView else { return assertionFailure() }
         
         switch textView {
             case self.findTextView!:
                 self.clearNumberOfReplaced()
                 self.clearNumberOfFound()
+                
+                // perform incremental search
+                guard
+                    !textView.hasMarkedText(),
+                    !textView.string.isEmpty,
+                    textView.isValid,
+                    !UserDefaults.standard[.findInSelection]
+                else { return }
+                
+                self.textFinder.incrementalSearch()
+                
             case self.replacementTextView!:
                 self.clearNumberOfReplaced()
             default:

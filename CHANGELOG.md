@@ -2,6 +2,30 @@
 Change Log
 ==========================
 
+4.3.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Incremental search in the Find window.
+
+
+### Improvements
+
+- Drastically improved the performance of syntax highlighting on large documents so that no rainbow cursor appears.
+- Stop displaying the progress indicator for syntax highlight on large documents and apply the highlight asynchronously instead.
+- Optimize the time to open large documents.
+- Remove the preference option to disable syntax highlighting.
+- Update Swift syntax style to support Swift 5.7.
+
+
+### Fixes
+
+- Fix an issue that the application crashed with very specific fonts.
+- Fix an issue that the highlights of Find All in the editor remained even when closing the Find window.
+
+
+
 4.2.3 (510)
 --------------------------
 

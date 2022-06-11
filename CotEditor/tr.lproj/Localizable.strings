@@ -484,25 +484,6 @@
 
 
 
-/* MARK: SyntaxStyle */
-// Coloring indicator
-"Coloring text…" = "Metin renklendiriliyor…";
-"Please wait for a while." = "Lütfen bir süre bekleyin.";
-"Parsing document…" = "Belge ayrıştırılıyor…";
-"Applying colors to text…" = "Metne renkler uygulanıyor…";
-"keywords" = "anahtar sözcükler";
-"commands" = "komutlar";
-"types" = "türler";
-"attributes" = "öznitelikler";
-"variables" = "değişkenler";
-"values" = "değerler";
-"numbers" = "sayılar";
-"strings" = "diziler";
-"characters" = "karakterler";
-"comments" = "yorumlar";
-
-
-
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "Renk Kodu Ekle";

@@ -484,25 +484,6 @@
 
 
 
-/* MARK: SyntaxStyle */
-// Coloring indicator
-"Coloring text…" = "Colorindo texto…";
-"Please wait for a while." = "Aguarde um momento.";
-"Parsing document…" = "Analisando documento…";
-"Applying colors to text…" = "Aplicando cores ao texto…";
-"keywords" = "palavras-chave";
-"commands" = "comandos";
-"types" = "tipos";
-"attributes" = "atributos";
-"variables" = "variáveis";
-"values" = "valores";
-"numbers" = "números";
-"strings" = "strings";
-"characters" = "caracteres";
-"comments" = "comentários";
-
-
-
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "Inserir Código de Cor";

@@ -56,6 +56,13 @@ For those people who just want to build and play with CotEditor locally.
 
 
 
+Contribution
+--------------------------
+
+CotEditor has own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
+
+
+
 License
 --------------------------
 

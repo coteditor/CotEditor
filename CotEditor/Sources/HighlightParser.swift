@@ -26,6 +26,9 @@
 
 import Foundation
 
+typealias Highlight = ItemRange<SyntaxType>
+
+
 private struct NestableItem {
     
     let type: SyntaxType
@@ -101,9 +104,9 @@ final class HighlightParser {
     ///
     /// - Returns: A dictionary of ranges to highlight per syntax types.
     /// - Throws: CancellationError.
-    func parse() async throws -> [SyntaxType: [NSRange]] {
+    func parse() async throws -> [Highlight] {
         
-        var highlights: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { [unowned self] group in
+        let highlightDictionary: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { [unowned self] group in
             // extract standard highlight ranges
             for (type, extractors) in self.definition.extractors {
                 for extractor in extractors {
@@ -126,8 +129,9 @@ final class HighlightParser {
         
         try Task.checkCancellation()
         
-        // reduce complexity of highlights dictionary
-        try highlights.sanitize()
+        // reduce complexity of highlights dictionary for layoutManager application
+        let highlights = try Self.sanitize(highlightDictionary)
+        
         self.progress.completedUnitCount += 10
         
         return highlights
@@ -228,27 +232,20 @@ final class HighlightParser {
         return highlights
     }
     
-}
-
-
-
-// MARK: - Private Functions
-
-private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     
-    /// Remove overlapped ranges.
+    /// Remove overlapped ranges and convert to sorted Highlights.
     ///
     /// - Note:
     /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
-    /// Adding temporary attribute to a layoutManager in the main thread is quite sluggish,
-    /// so we want to remove useless highlighting ranges as many as possible beforehand.
     ///
+    /// - Parameter dictionary: The syntax highlight dictionary.
+    /// - Returns: An array of sorted Highlight structs.
     /// - Throws: CancellationError
-    mutating func sanitize() throws {
+    private static func sanitize(_ dictionary: [SyntaxType: [NSRange]]) throws -> [Highlight] {
         
-        self = try SyntaxType.allCases.reversed()
+        try SyntaxType.allCases.reversed()
             .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
-                guard let ranges = self[type] else { return }
+                guard let ranges = dictionary[type] else { return }
                 
                 try Task.checkCancellation()
                 
@@ -258,8 +255,9 @@ private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
                 
                 dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
             }
-            .filter { !$0.value.isEmpty }
             .mapValues { $0.rangeView.map(NSRange.init) }
+            .flatMap { (type, ranges) in ranges.map { ItemRange(item: type, range: $0) } }
+            .sorted { $0.range.location < $1.range.location }
     }
     
 }

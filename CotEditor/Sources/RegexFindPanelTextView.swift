@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     var parseMode: RegularExpressionParseMode = .search  { didSet { self.invalidateRegularExpression() } }
     var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
+    private(set) var isValid = true
     
     
     // MARK: -
@@ -40,9 +41,10 @@ final class RegexFindPanelTextView: FindPanelTextView {
     /// content string did update
     override func didChangeText() {
         
-        super.didChangeText()
-        
+        // invalidate the pattern before invoking delegates
         self.invalidateRegularExpression()
+        
+        super.didChangeText()
     }
     
     
@@ -98,7 +100,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     /// highlight string as regular expression pattern
     private func invalidateRegularExpression() {
         
-        self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)
+        self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)
     }
     
 }

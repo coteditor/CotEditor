@@ -133,7 +133,7 @@ private extension BidirectionalCollection where Element == LineEnding {
 }
 
 
-extension StringProtocol where Self.Index == String.Index {
+extension StringProtocol {
     
     /// Count characters in the receiver but except all kinds of line endings.
     var countExceptLineEnding: Int {

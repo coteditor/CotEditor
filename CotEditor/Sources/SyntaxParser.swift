@@ -28,7 +28,7 @@ import Combine
 import Foundation
 import AppKit.NSTextStorage
 
-private extension NSAttributedString.Key {
+extension NSAttributedString.Key {
     
     static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
 }
@@ -43,7 +43,7 @@ final class SyntaxParser {
         
         var styleName: String
         var string: String
-        var highlights: [SyntaxType: [NSRange]]
+        var highlights: [Highlight]
     }
     
     
@@ -94,7 +94,7 @@ final class SyntaxParser {
     /// Whether syntax should be parsed.
     var canParse: Bool {
         
-        return UserDefaults.standard[.enableSyntaxHighlight] && !self.style.isNone
+        !self.style.isNone
     }
     
     
@@ -160,9 +160,6 @@ extension SyntaxParser {
     /// - Returns: The progress of the async highlight task if performed.
     @MainActor func highlight(around editedRange: NSRange? = nil) -> Progress? {
         
-        assert(Thread.isMainThread)
-        
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
         // in case that wholeRange length is changed from editedRange
@@ -216,7 +213,7 @@ extension SyntaxParser {
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
-            self.textStorage.apply(highlights: [:], range: highlightRange)
+            self.textStorage.apply(highlights: [], range: highlightRange)
             return nil
         }
         
@@ -259,7 +256,6 @@ extension SyntaxParser {
         let progress = Progress(totalUnitCount: 10)
         
         let task = Task.detached(priority: .userInitiated) { [weak self, styleName = self.style.name] in
-            progress.localizedDescription = "Parsing text…".localized
             progress.addChild(parser.progress, withPendingUnitCount: 9)
             
             let highlights = try await parser.parse()
@@ -269,9 +265,6 @@ extension SyntaxParser {
             }
             
             try Task.checkCancellation()
-            
-            progress.localizedDescription = "Applying colors to text…".localized
-            try await Task.sleep(nanoseconds: 10_000_000)  // wait 0.01 seconds for GUI update
             
             await self?.textStorage.apply(highlights: highlights, range: highlightRange)
             
@@ -291,18 +284,24 @@ extension SyntaxParser {
 
 private extension NSTextStorage {
     
-    /// apply highlights to the document
-    @MainActor func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
+    /// Apply highlights to the document using layoutManager's temporary attributes.
+    ///
+    /// - Note: Sanitize the `highlights` before so that the ranges do not overwrap each other.
+    ///
+    /// - Parameters:
+    ///   - highlights: The highlight definitions to apply.
+    ///   - highlightRange: The range to update syntax highlight.
+    @MainActor func apply(highlights: [Highlight], range highlightRange: NSRange) {
         
-        assert(Thread.isMainThread)
+        // -> This condition is really, really important to reduce the time
+        //    to apply large number of temporary attributes. (2022-06, macOS 12)
+        assert(highlights.sorted(\.range.location) == highlights)
         
         guard self.length > 0 else { return }
         
-        let hasHighlight = highlights.values.contains { !$0.isEmpty }
-        
         for layoutManager in self.layoutManagers {
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
-            guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
+            guard !highlights.isEmpty || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
             
             let theme = (layoutManager.firstTextView as? any Themable)?.theme
             
@@ -310,23 +309,11 @@ private extension NSTextStorage {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
                 layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
                 
-                for type in SyntaxType.allCases {
-                    guard
-                        let ranges = highlights[type]?.compactMap({ $0.intersection(highlightRange) }),
-                        !ranges.isEmpty else { continue }
+                for highlight in highlights {
+                    layoutManager.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)
                     
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
-                    }
-                    
-                    if let color = theme?.style(for: type)?.color {
-                        for range in ranges {
-                            layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                        }
-                    } else {
-                        for range in ranges {
-                            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                        }
+                    if let color = theme?.style(for: highlight.item)?.color {
+                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: highlight.range)
                     }
                 }
             }
@@ -342,12 +329,11 @@ extension NSLayoutManager {
     /// Apply the theme based on the current `syntaxType` attributes.
     ///
     /// - Parameter theme: The theme to apply.
-    /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
-    @MainActor func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
+    @MainActor func invalidateHighlight(theme: Theme) {
         
-        assert(Thread.isMainThread)
+        let wholeRange = self.attributedString().range
         
-        let wholeRange = range ?? self.attributedString().range
+        guard self.hasTemporaryAttribute(.syntaxType, in: wholeRange) else { return }
         
         self.groupTemporaryAttributesUpdate(in: wholeRange) {
             self.enumerateTemporaryAttribute(.syntaxType, in: wholeRange) { (type, range, _) in

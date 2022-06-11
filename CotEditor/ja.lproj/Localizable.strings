@@ -484,25 +484,6 @@
 
 
 
-/* MARK: SyntaxStyle */
-// Coloring indicator
-"Coloring text…" = "テキストのカラーリング中…";
-"Please wait for a while." = "しばらくお待ちください…";
-"Parsing document…" = "書類を解析中…";
-"Applying colors to text…" = "テキストにカラーを適用中…";
-"keywords" = "キーワード";
-"commands" = "コマンド";
-"types" = "タイプ";
-"attributes" = "属性";
-"variables" = "変数";
-"values" = "値";
-"numbers" = "数値";
-"strings" = "文字列";
-"characters" = "文字";
-"comments" = "コメント";
-
-
-
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "カラーコードを挿入";

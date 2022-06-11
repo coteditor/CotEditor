@@ -484,25 +484,6 @@
 
 
 
-/* MARK: SyntaxStyle */
-// Coloring indicator
-"Coloring text…" = "文字著色中…";
-"Please wait for a while." = "請稍等片刻…";
-"Parsing document…" = "文件解析中…";
-"Applying colors to text…" = "在文字上使用顏色…";
-"keywords" = "關鍵字";
-"commands" = "命令";
-"types" = "類型";
-"attributes" = "標記";
-"variables" = "變數";
-"values" = "值";
-"numbers" = "數字";
-"strings" = "字元串";
-"characters" = "字元";
-"comments" = "註釋";
-
-
-
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "插入顏色代碼";

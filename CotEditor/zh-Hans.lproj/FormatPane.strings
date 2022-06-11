@@ -45,12 +45,6 @@
 "3280.title" = "参考文档中的编码声明";
 
 
-
-/* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
-"3326.title" = "启用语法高亮";
-/* Class = "NSTextFieldCell"; title = "(Including outline extraction)"; ObjectID = "3325"; */
-"3325.title" = "（包括大纲提取）";
-
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "默认语法样式：";
 
