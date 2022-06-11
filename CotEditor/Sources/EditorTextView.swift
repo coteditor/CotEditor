@@ -309,10 +309,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.tabWidth = tabWidth
         }
         
-        // just ignore the last one
-        // because `decodeArrayOfObjects(ofClass:forKey:)` on macOS 11 breaks window display
-        guard #available(macOS 12, *) else { return }
-        
         if let insertionLocations = (coder.decodeArrayOfObjects(ofClass: NSNumber.self, forKey: SerializationKey.insertionLocations) as? [Int])?
             .filter({ $0 <= self.string.length }),
            !insertionLocations.isEmpty

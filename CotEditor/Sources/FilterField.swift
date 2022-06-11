@@ -40,10 +40,9 @@ final class FilterField: NSSearchField {
         
         super.init(coder: coder)
         
-        if #available(macOS 12.0, *) {
-            let configuration = NSImage.SymbolConfiguration(paletteColors: [.labelColor, .controlAccentColor])
-            self.filteringImage = self.filteringImage.withSymbolConfiguration(configuration)!
-        }
+        let configuration = NSImage.SymbolConfiguration(paletteColors: [.labelColor, .controlAccentColor])
+        self.filteringImage = self.filteringImage.withSymbolConfiguration(configuration)!
+        
         self.validateImage()
         
         let searchMenu = NSMenu(title: "Recent Filters".localized)
