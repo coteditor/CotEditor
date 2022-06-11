@@ -5,6 +5,10 @@ Change Log
 4.4.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the system requirement to __macOS 12 Moneterey and later__.
+
 
 
 4.3.1 (519)
