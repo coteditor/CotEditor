@@ -21,6 +21,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the application crashed with very specific fonts.
 - Fix an issue that the highlights of Find All in the editor remained even when closing the Find window.
 - Address an issue that recent documents in the File menu became occasionally empty.
 

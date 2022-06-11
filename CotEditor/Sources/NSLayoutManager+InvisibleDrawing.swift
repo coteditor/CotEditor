@@ -61,7 +61,8 @@ extension InvisibleDrawing {
         
         let string = self.attributedString().string as NSString
         let isRTL = textContainer.textView?.baseWritingDirection == .rightToLeft
-        let glyphHeight = self.textFont.capHeight
+        // -> Some fonts, such as Raanana in the system, can return a negative value for `.capHeight` (macOS 12, 2022-06).
+        let glyphHeight = (self.textFont.capHeight > 0) ? self.textFont.capHeight : self.textFont.ascender
         let lineWidth = self.textFont.pointSize * (1 + self.textFont.weight.rawValue) / 12
         let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]
         var pathCache: [UTF16.CodeUnit: NSBezierPath] = [:]
