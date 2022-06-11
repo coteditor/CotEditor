@@ -253,11 +253,9 @@ extension SyntaxParser {
                                                     inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                     blockCommentDelimiters: self.style.blockCommentDelimiters)
         let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
-        let progress = Progress(totalUnitCount: 10)
+        let progress = Progress(totalUnitCount: 1)
         
         let task = Task.detached(priority: .userInitiated) { [weak self, styleName = self.style.name] in
-            progress.addChild(parser.progress, withPendingUnitCount: 9)
-            
             let highlights = try await parser.parse()
             
             if highlightRange == string.nsRange {

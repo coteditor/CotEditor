@@ -5,6 +5,10 @@ Change Log
 4.3.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta][trivial] Tweak parsing syntax highlight.
+
 
 
 4.3.0-beta (513)
