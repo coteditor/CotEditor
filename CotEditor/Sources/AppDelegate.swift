@@ -79,6 +79,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var whatsNewMenuItem: NSMenuItem?
     
     
+    #if DEBUG
+    private let textKitObserver = NotificationCenter.default.publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
+        .compactMap { $0.object as? NSTextView }
+        .sink { print("⚠️ \($0.className) did switch to NSLayoutManager.") }
+    #endif
+    
+    
     
     // MARK: -
     // MARK: Lifecycle
