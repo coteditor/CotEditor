@@ -35,37 +35,23 @@ extension NSRegularExpression {
     ///   - range: The range of the string to search.
     /// - Throws: `CancellationError`
     /// - Returns: An array of all the matches.
-    func matches(in string: String, options: MatchingOptions = [], range: NSRange) async throws -> [NSTextCheckingResult] {
+    func cancellableMatches(in string: String, options: MatchingOptions = [], range: NSRange) throws -> [NSTextCheckingResult] {
         
-        let task: Task<[NSTextCheckingResult], Error> = .detached {
-            try await withUnsafeThrowingContinuation { continuation in
-                guard !Task.isCancelled else { return continuation.resume(throwing: CancellationError()) }
-                
-                var matches: [NSTextCheckingResult] = []
-                self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
-                    if Task.isCancelled {
-                        stopPointer.pointee = ObjCBool(true)
-                        return
-                    }
-                    
-                    if let match = match {
-                        matches.append(match)
-                    }
-                }
-                
-                if Task.isCancelled {
-                    continuation.resume(throwing: CancellationError())
-                } else {
-                    continuation.resume(returning: matches)
-                }
+        var matches: [NSTextCheckingResult] = []
+        self.enumerateMatches(in: string, options: options, range: range) { (match, _, stopPointer) in
+            if Task.isCancelled {
+                stopPointer.pointee = ObjCBool(true)
+                return
+            }
+            
+            if let match = match {
+                matches.append(match)
             }
         }
         
-        return try await withTaskCancellationHandler {
-            try await task.value
-        } onCancel: {
-            task.cancel()
-        }
+        try Task.checkCancellation()
+        
+        return matches
     }
     
 }

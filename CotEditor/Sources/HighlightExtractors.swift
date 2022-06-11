@@ -27,7 +27,7 @@ import Foundation
 
 protocol HighlightExtractable {
     
-    func ranges(in: String, range: NSRange) async throws -> [NSRange]
+    func ranges(in: String, range: NSRange) throws -> [NSRange]
 }
 
 
@@ -71,7 +71,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) async throws -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
         var ranges: [NSRange] = []
         
@@ -123,9 +123,9 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) async throws -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
-        try await self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
+        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
             .map(\.range)
     }
     
@@ -151,9 +151,9 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) async throws -> [NSRange] {
+    func ranges(in string: String, range: NSRange) throws -> [NSRange] {
         
-        try await self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
+        try self.beginRegex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
             .map(\.range)
             .compactMap { beginRange in
                 let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],

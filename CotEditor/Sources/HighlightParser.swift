@@ -111,7 +111,7 @@ final class HighlightParser {
             for (type, extractors) in self.definition.extractors {
                 for extractor in extractors {
                     _ = group.addTaskUnlessCancelled {
-                        [type: try await extractor.ranges(in: self.string, range: self.parseRange)]
+                        [type: try extractor.ranges(in: self.string, range: self.parseRange)]
                     }
                 }
             }
