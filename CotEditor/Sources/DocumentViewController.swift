@@ -881,24 +881,23 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// - Parameter range: The character range to invalidate syntax highlight, or `nil` when entire text is needed to re-highlight.
     private func invalidateSyntaxHighlight(in range: NSRange? = nil) {
         
-        guard let parser = self.syntaxParser else { return assertionFailure() }
+        assert(self.syntaxParser != nil)
         
         var range = range
         
         // retry entire syntax highlight if the last highlightAll has not finished yet
         if let progress = self.syntaxHighlightProgress, !progress.isFinished, !progress.isCancelled {
             progress.cancel()
-            self.syntaxHighlightProgress = nil
             range = nil
         }
         
         // start parse
-        let progress = parser.highlight(around: range)
+        let progress = self.syntaxParser?.highlight(around: range)
         
         // make large update cancellable
-        guard (range?.length ?? self.textStorage?.length ?? 0) > 10_000 else { return }
-        
-        self.syntaxHighlightProgress = progress
+        if let length = range?.length ?? self.textStorage?.length, length > 10_000  {
+            self.syntaxHighlightProgress = progress
+        }
     }
     
     
