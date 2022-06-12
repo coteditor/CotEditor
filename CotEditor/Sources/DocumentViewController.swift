@@ -227,8 +227,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             
             // observe syntaxParser for outline update
             self.outlineObserver = document.syntaxParser.$outlineItems
-                .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
                 .removeDuplicates()
+                .receive(on: RunLoop.main)
                 .sink { [weak self] (outlineItems) in
                     self?.editorViewControllers.forEach { $0.outlineItems = outlineItems }
                 }
