@@ -48,7 +48,7 @@ extension URLDetectable {
                 self.urlDetectionTask = nil
             }
             
-            var links: [(url: URL, range: NSRange)] = []
+            var links: [ItemRange<URL>] = []
             let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
             
             detector.enumerateMatches(in: string, options: [.reportProgress], range: string.range) { (result, _, stop) in
@@ -57,7 +57,7 @@ extension URLDetectable {
                 }
                 guard let result = result, let url = result.url else { return }
                 
-                links.append((url, result.range))
+                links.append(ItemRange(item: url, range: result.range))
             }
             try Task.checkCancellation()
             
@@ -69,7 +69,7 @@ extension URLDetectable {
                 textStorage.beginEditing()
                 textStorage.removeAttribute(.link, range: textStorage.range)
                 for link in links {
-                    textStorage.addAttribute(.link, value: link.url, range: link.range)
+                    textStorage.addAttribute(.link, value: link.item, range: link.range)
                 }
                 textStorage.endEditing()
             }
