@@ -7,15 +7,15 @@ Change Log
 
 ### Improvements
 
-- [trivial] Change the threshold to display a large document alert.
 - [beta] Suppress the “not found” beep sound on incremental search.
 - [beta] Update Swift syntax style to add `swift` interpreter.
+- [beta][trivial] Change the threshold to display a large document alert.
 - [beta][trivial] Tweak parsing syntax highlight.
 
 
 ### Fixes
 
-- Fix an issue that the application becomes unresponsive when try showing the file mapping conflicts.
+- Fix an issue that the application could become unresponsive when trying to show the file mapping conflicts.
 
 
 
