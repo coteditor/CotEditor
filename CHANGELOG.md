@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [trivial] Change the threshold to display a large document alert.
 - [beta][trivial] Tweak parsing syntax highlight.
 
 
