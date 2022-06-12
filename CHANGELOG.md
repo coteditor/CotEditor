@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [trivial] Change the threshold to display a large document alert.
+- [beta] Suppress the “not found” beep sound on incremental search.
 - [beta] Update Swift syntax style to add `swift` interpreter.
 - [beta][trivial] Tweak parsing syntax highlight.
 
