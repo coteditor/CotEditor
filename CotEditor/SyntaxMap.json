@@ -670,7 +670,7 @@
 
     ],
     "interpreters" : [
-
+      "swift"
     ]
   },
   "Tcl" : {
