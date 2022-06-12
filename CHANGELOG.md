@@ -13,6 +13,11 @@ Change Log
 - [beta][trivial] Tweak parsing syntax highlight.
 
 
+### Fixes
+
+- Fix an issue that the application becomes unresponsive when try showing the file mapping conflicts.
+
+
 
 4.3.0-beta (513)
 --------------------------
