@@ -1,0 +1,90 @@
+//
+//  FindSettingsView.strings (Italian)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2016-09-28.
+//  Localized by Agostino Maiello
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2016-2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Advanced Find Options"; ObjectID = "Dl6-kv-hhz"; */
+"Dl6-kv-hhz.title" = "Opzioni di ricerca avanzata";
+
+
+/* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
+"o7S-uI-urg.title" = "Manda a capo la ricerca";
+/* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
+"XBp-LE-3Ry.title" = "Seleziona il prossimo risultato dopo la sostituzione";
+/* Class = "NSButtonCell"; title = "Search incrementally"; ObjectID = "jxH-a9-v61"; */
+"jxH-a9-v61.title" = "Ricerca incrementale";
+/* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
+"KBq-zH-H2M.title" = "Chiudi automaticamente la finestra di avanzamento";
+
+
+// Textual Search
+
+/* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
+"d1L-6X-N8c.title" = "Ricerca testuale";
+
+/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "Na3-Ur-cf8"; */
+"Na3-Ur-cf8.title" = "Solo parole intere";
+/* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "eqE-mg-d9b"; */
+"eqE-mg-d9b.ibShadowedToolTip" = "Limita i risultati della ricerca alle parole intere.";
+
+/* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
+"mY4-am-wla.title" = "Distingui i caratteri con precisione";
+/* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */
+"KG4-LQ-sen.ibShadowedToolTip" = "Equivalenza assoluta dei caratteri.";
+
+/* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "OUc-5d-N7I"; */
+"OUc-5d-N7I.title" = "Ignora segni diacritici";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores diacritical marks (e.g., ö = o)."; ObjectID = "YYY-qb-T00"; */
+"YYY-qb-T00.ibShadowedToolTip" = "La ricerca ignora i segni diacritici (es. ö = o).";
+
+/* Class = "NSButtonCell"; title = "Ignore width differences"; ObjectID = "Jug-Dk-JMZ"; */
+"Jug-Dk-JMZ.title" = "Ignora le differenze di ampiezza";
+/* Class = "NSButton"; ibShadowedToolTip = "Search ignores width differences in character forms (e.g., ａ = a)."; ObjectID = "A5O-jt-o7T"; */
+"A5O-jt-o7T.ibShadowedToolTip" = "La ricerca ignora le differenze di ampiezza nei caratteri (es. ａ = a).";
+
+
+// Regular Expression
+
+/* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "Xa9-i4-ELR"; */
+"Xa9-i4-ELR.title" = "Ricerca espressioni regolari";
+
+/* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
+"nqr-AM-oJQ.title" = "Il punto vale come separatore di riga";
+/* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
+"c11-J5-UXF.ibShadowedToolTip" = "Consente al . di equivalere a qualunque carattere, anche quello di nuova riga (singola).";
+
+/* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
+"YXU-NA-BZb.title" = "Le Anchors valgono come righe";
+/* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
+"Lhw-9C-lgB.ibShadowedToolTip" = "Consente a ^ e $ di valere come inizio e fine riga (multipla).";
+
+/* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
+"5oj-ch-YiX.title" = "Usa Word Boundary Unicode";
+/* Class = "NSButton"; ibShadowedToolTip = "Use Unicode TR#29 to specify word boundaries"; ObjectID = "VMh-Tq-bq0"; */
+"VMh-Tq-bq0.ibShadowedToolTip" = "Usa Unicode TR#29 per specificare i Word Boundary";
+
+/* Class = "NSButtonCell"; title = "Unescape replacement string"; ObjectID = "rTR-zE-Wff"; */
+"rTR-zE-Wff.title" = "Stringa di sostituzione Unescape";
+/* Class = "NSButton"; ibShadowedToolTip = "Unescape meta characters with backslash in replacement string."; ObjectID = "PLV-vr-cdI"; */
+"PLV-vr-cdI.ibShadowedToolTip" = "Metacaratteri Unescape con backslash nella stringa di sostituzione.";

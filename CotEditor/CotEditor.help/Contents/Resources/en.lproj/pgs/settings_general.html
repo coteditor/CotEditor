@@ -1,0 +1,126 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="General settings, general"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Change General settings in CotEditor</title>
+</head>
+
+<body>
+<a name="settings_general"></a>
+
+<h1>Change General settings in CotEditor</h1>
+
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use General settings to choose how to handle documents, save, and more. To change these settings, choose CotEditor &gt; Settings, then click General.</p>
+
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">Open CotEditor for me</a></p>
+
+
+
+<table class="settings">
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Reopen windows from last session</th>
+		<td>On starting up, automatically opens the documents that were opened when quitting last time.</td>
+	</tr>
+	
+	<tr>
+		<th>When nothing else is open</th>
+		<td>To change the behavior when you launch CotEditor and you had no window already open, click the pop-up menu, then choose an option:
+			<ul>
+				<li><strong>Create a New Document</strong>: Create a new blank document.</li>
+				<li><strong>Show Open Dialog</strong>: Show the open dialog to select a document to open.</li>
+				<li><strong>No Action</strong>: Just activate the application and do nothing.</li>
+			</ul></td>
+	</tr>
+	
+	<tr>
+		<th>Enable Auto Save with Versions</th>
+		<td>Automatically save documents to your file constantly while editing. This option also enables Versions, the modern system feature allowing you to go back to previous versions, as well as modify document name or location from the window title bar.<br/>Even if it is turned off, CotEditor creates backup covertly for unexpected quit.</td>
+	</tr>
+	
+	<tr>
+		<th>When document is changed by another application</th>
+		<td>Choose the behavior when the document file was updated by another application while it is opened in CotEditor.
+			<ul>
+				<li><strong>Keep CotEditor’s edition</strong>: Do nothing and keep CotEditor’s edition. CotEditor may ask whether overwrite the file that was changed by another application first when you save the document.</li>
+				
+				<li><strong>Ask how to resolve</strong>: Display a dialog when the file was changed by another application so that you can choose between keeping CotEditor’s edition or reverting to the latest file.</li>
+				
+				<li><strong>Update to modified edition</strong>: Update the editor’s text to the latest version silently when the file was changed by another application. Take notice that the undo history will also be cleared after updating.</li>
+			</ul></td>
+	</tr>
+	
+	<tr>
+		<th>Ignore line endings when counting characters</th>
+		<td>Exclude line endings when counting characters to display in the document inspector and status bar.</td>
+	</tr>
+	
+	<tr>
+		<th>Link URL in document</th>
+		<td>Highlight and make clickable the URLs found in the document.</td>
+	</tr>
+	
+	<tr>
+		<th>Check spelling while typing</th>
+		<td>Automatically check your spelling as you type.</td>
+	</tr>
+	
+	<tr>
+		<th>Highlight matching braces “()” “[]” “{}”</th>
+		<td>Briefly highlight the corresponding brace when the cursor moved through a part of paired braces.</td>
+	</tr>
+	
+	<tr>
+		<th>Highlight “&lt;&gt;”</th>
+		<td>Apply paired brace highlight also to angle brackets.</td>
+	</tr>
+	
+	<tr>
+		<th>Highlight instances of selected text</th>
+		<td>Highlight all the occurrences of the selection in the editor with a time delay after selecting text. The highlight will be performed only when the selected text consists of entire words.</td>
+	</tr>
+	
+	<tr>
+		<th>Command-line tool</th>
+		<td>This section shows the installation status of the <code>cot</code> command-line tool. See <a href="about_cot.html">Work with cot command</a> for details.</td>
+	</tr>
+</tbody>
+</table>
+
+
+<table class="settings">
+<caption>Software Update <span class="note">(only on non-AppStore ver.)</span></caption>
+
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Check for updates automatically</th>
+		<td>Check the existence of a new version via the internet automatically on launch. Then if a new one has been released, CotEditor notifies the information on a dialog.</td>
+	</tr>
+	
+	<tr>
+		<th>Include pre-releases</th>
+		<td>Notify also about releases of pre-release versions (beta versions). Take notice that pre-release versions can be unstable.</td>
+	</tr>
+</tbody>
+</table>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="settings.html">Change settings</a></li>
+</ul>
+</section>
+
+</body>
+</html>

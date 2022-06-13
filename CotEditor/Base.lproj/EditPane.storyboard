@@ -467,7 +467,7 @@
                                     <constraint firstItem="8WW-uf-bLm" firstAttribute="baseline" secondItem="X2i-kL-uLT" secondAttribute="baseline" id="zAQ-rz-8hO"/>
                                 </constraints>
                             </customView>
-                            <button identifier="pref_edit" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ks6-yt-k9q">
+                            <button identifier="settings_edit" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ks6-yt-k9q">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Rz-Ie-QiJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

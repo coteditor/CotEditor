@@ -456,7 +456,7 @@
 "Wrap Lines" = "Wrap Lines";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Preferences" = "To show invisible characters, set them in Preferences";
+"To show invisible characters, set them in Settings" = "To show invisible characters, set them in Settings";
 
 
 
@@ -501,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "The change will be applied first on the next launch.";

@@ -51,7 +51,7 @@ private extension NSCursor {
     static let lightIBeamCursorForVerticalLayout = NSCursor(image: #imageLiteral(resourceName: "LightIBeamCursorForVerticalLayout"), hotSpot: NSCursor.iBeamCursorForVerticalLayout.hotSpot)
     
     
-    /// The outline color for cursors that the user set in System Preferences > Accessibility > Display > Pointer.
+    /// The outline color for cursors that the user set in System Settings > Accessibility > Display > Pointer.
     static var outlineColor: NSColor? {
         
         guard
@@ -64,7 +64,7 @@ private extension NSCursor {
     }
     
     
-    /// The fill color for cursors that the user set in System Preferences > Accessibility > Display > Pointer
+    /// The fill color for cursors that the user set in System Settings > Accessibility > Display > Pointer
     static var fillColor: NSColor? {
         
         guard

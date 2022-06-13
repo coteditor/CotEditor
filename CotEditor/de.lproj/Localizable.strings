@@ -456,7 +456,7 @@
 "Wrap Lines" = "Zeilen umbrechen";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "Um Steuerzeichen anzuzeigen, setze sie in den Einstellungen";
+"To show invisible characters, set them in Settings" = "Um Steuerzeichen anzuzeigen, setze sie in den Einstellungen";
 
 
 
@@ -501,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";

@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="570" height="380"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button identifier="pref_filedrop" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-D1-7oE">
+                            <button identifier="settings_filedrop" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-D1-7oE">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="HA6-Rk-NOw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

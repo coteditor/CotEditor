@@ -456,7 +456,7 @@
 "Wrap Lines" = "Renvoyer à la ligne";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "Pour afficher les caractères invisibles, activez l’option dans les Préférences";
+"To show invisible characters, set them in Settings" = "Pour afficher les caractères invisibles, activez l’option dans les Réglages";
 
 
 
@@ -501,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Le changement sera appliqué au prochain lancement.";

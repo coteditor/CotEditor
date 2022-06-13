@@ -456,7 +456,7 @@
 "Wrap Lines" = "行を折り返す";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
+"To show invisible characters, set them in Settings" = "不可視文字を表示させるには設定を変更してください";
 
 
 
@@ -501,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";

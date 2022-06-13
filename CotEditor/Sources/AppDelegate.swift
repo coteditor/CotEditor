@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var preferencesWindowController = NSWindowController.instantiate(storyboard: "PreferencesWindow")
+    private lazy var settingsWindowController = NSWindowController.instantiate(storyboard: "SettingsWindow")
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
@@ -317,10 +317,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// show preferences window
+    /// show Settings window
     @IBAction func showPreferences(_ sender: Any?) {
         
-        self.preferencesWindowController.showWindow(sender)
+        self.settingsWindowController.showWindow(sender)
     }
     
     

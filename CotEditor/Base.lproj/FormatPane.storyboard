@@ -430,7 +430,7 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-bI-CJS">
                                 <rect key="frame" x="20" y="197" width="530" height="5"/>
                             </box>
-                            <button identifier="pref_format" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-4V-mYI">
+                            <button identifier="settings_format" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-4V-mYI">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="qkT-9V-g1o">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

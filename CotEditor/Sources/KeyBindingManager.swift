@@ -115,7 +115,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     var defaultKeyBindings: Set<KeyBinding> { preconditionFailure() }
     
     
-    /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
+    /// create a KVO-compatible collection for outlineView in the settings from the key binding setting
     ///
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
     func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] { preconditionFailure() }

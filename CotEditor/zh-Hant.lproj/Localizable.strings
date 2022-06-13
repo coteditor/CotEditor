@@ -456,7 +456,7 @@
 "Wrap Lines" = "換行";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "要顯示不可見元素，請在偏好設置中進行設定";
+"To show invisible characters, set them in Settings" = "要顯示不可見元素，請在設定中進行設定";
 
 
 
@@ -501,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "變更將在下次啟動時生效。";

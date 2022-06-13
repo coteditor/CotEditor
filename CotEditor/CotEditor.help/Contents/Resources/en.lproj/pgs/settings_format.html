@@ -1,0 +1,105 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Format settings, format, line endings, new line, encoding, syntax"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Change Format settings in CotEditor</title>
+</head>
+
+<body>
+<a name="settings_format"></a>
+
+<h1>Change Format settings in CotEditor</h1>
+
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use Format settings to set the default format for documents such as line ending type and text encoding, and to manage syntax styles. To change these settings, choose CotEditor &gt; Settings, then click Format.</p>
+
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">Open CotEditor for me</a></p>
+
+
+
+<table class="settings">
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Default line endings</th>
+		<td>The default line ending style is used when creating a new document. This setting is used also when the opened document doesn’t include any line endings.</td>
+	</tr>
+
+	<tr>
+		<th>Default text encoding</th>
+		<td>The default text encoding is used when creating a new document. See <a href="about_line_endings.html">Handle various types of line endings</a> for details.</td>
+	</tr>
+
+	<tr>
+		<th>Priority of encodings</th>
+		<td>The priority of encodings and the policy of encoding detection when opening an existing file.
+		<dl>
+			<dt>Edit List</dt>
+			<dd>Click Edit List to set the order of encodings that appear in the File Encoding submenu in the Format menu and the File Encoding drop-down list on the toolbar. This order is also used for encoding detection. CotEditor tries each encoding from the top of the list. See <a href="howto_customize_encoding_order.html">Change priorities of text encodings</a> for details.</dd>
+		</dl></td>
+	</tr>
+
+	<tr>
+		<th>Refer to encoding declaration<br/>in document</th>
+		<td>The encoding declaration written in the document is respected when detecting the text encoding of the document. See <a href="about_autodetect_charset.html">Use encoding declarations for encoding detection</a> for details.</td>
+	</tr>
+
+	<tr>
+		<th>Default syntax style</th>
+		<td>If there is no syntax style associated with the extension of the file you opened, the one you specified here will be used for coloring.<br />
+		This setting applies to a newly created document as well.</td>
+	</tr>
+
+	<tr>
+		<th>Available syntax styles</th>
+		<td>The list of the existing syntax styles. A small dot in front of style names represents that it is customized.<br/>
+		See <a href="syntax_definition.html">Define a syntax style</a> for editing style.</dd>
+
+		<dl>
+			<dt>Add +, Remove -</dt>
+			<dd>Create a new style or remove the selected style. The styles bundled with CotEditor can not be removed.</dd>
+
+			<dt>Edit (pencil icon)</dt>
+			<dd>Edit the selected style.</dd>
+
+			<dt>Other Actions (gear icon)</dt>
+			<dd><dl>
+				<dt>Duplicate “[<span class="variable">style name</span>]”</dt>
+				<dd>Duplicate the selected style to make your own one.</dd>
+
+				<dt>Export “[<span class="variable">style name</span>]”</dt>
+				<dd>Export the style definition file made from the selected style. You can use this exported file to use it on another computer. To use the exported file, do Import.</dd>
+
+				<dt>Share</dt>
+				<dd>Share the style definition file made from the selected style.</dd>
+
+				<dt>Import</dt>
+				<dd>This allows you to use a style created on another computer. After selecting Import, choose the exported style file to install.</dd>
+
+				<dt>Show File Mapping Conflicts</dt>
+				<dd>Check if multiple styles are associated with the same extension/filename.</dd>
+			</dl></dd>
+		</dl></td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="about_line_endings.html">Handle various types of line endings</a></li>
+	<li><a href="howto_customize_encoding_order.html">Change priorities of text encodings</a></li>
+	<li><a href="syntax_definition.html">Define a syntax style</a></li>
+	<li><a href="syntax_file_mapping.html">Map files to syntax styles</a></li>
+	<li><a href="settings.html">Change settings</a></li>
+</ul>
+</section>
+
+</body>
+</html>
