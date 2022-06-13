@@ -529,7 +529,7 @@
 // Format pane
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製…";
-"Export “%@”…" = "“%@”を書き出し…";
+"Export “%@”…" = "“%@”を書き出す…";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
 
@@ -606,7 +606,7 @@
 "Replace" = "置換";
 
 // Import syntax style file choose openPanel button
-"Import" = "読み込み";
+"Import" = "読み込む";
 // Importing same name style alert
 "A new style named “%@” will be installed, but a custom style with the same name already exists." = "新しいスタイル“%@”のインストールを試みましたが、同名のカスタムスタイルがすでに存在しています。";
 "Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか?\n置き換えたスタイルは元に戻せません。";
