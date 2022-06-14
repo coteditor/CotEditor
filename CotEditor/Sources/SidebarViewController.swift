@@ -108,8 +108,6 @@ final class SidebarViewController: NSTabViewController {
                 UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
                 self.invalidateRestorableState()
             }
-            
-            self.invalidateRestorableState()
         }
     }
     
