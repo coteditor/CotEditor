@@ -384,7 +384,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
             case .tooLarge(let size):
                 return String(format: "The file “%@” has a size of %@.".localized,
                               self.url.lastPathComponent,
-                              ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file))
+                              size.formatted(.byteCount(style: .file)))
         }
     }
     

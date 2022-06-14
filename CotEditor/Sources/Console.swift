@@ -99,13 +99,6 @@ final class ConsoleViewController: NSViewController {
         return paragraphStyle
     }()
     
-    private let dateFormatter: ISO8601DateFormatter = {
-        let formatter = ISO8601DateFormatter()
-        formatter.timeZone = .current
-        formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withSpaceBetweenDateAndTime, .withColonSeparatorInTime]
-        return formatter
-    }()
-    
     @IBOutlet private weak var textView: NSTextView?
     @IBOutlet private weak var textFinder: NSTextFinder?
     
@@ -132,7 +125,7 @@ final class ConsoleViewController: NSViewController {
         guard let textView = self.textView else { return assertionFailure() }
         
         let lastLocation = (textView.string as NSString).length
-        let date = self.dateFormatter.string(from: log.date)
+        let date = log.date.formatted(.iso8601.year().month().day().dateTimeSeparator(.space).time(includingFractionalSeconds: false))
         let attrString = NSMutableAttributedString(string: "[" + date + "]")
         
         // append bold title

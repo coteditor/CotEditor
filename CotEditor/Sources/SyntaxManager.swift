@@ -482,8 +482,7 @@ private extension SyntaxManager.StyleDictionary {
             case let array as [Any]:
                 return NSMutableArray(array: array.map(convertToCocoaBindable))
             case let date as Date:
-                return ISO8601DateFormatter.string(from: date, timeZone: .current,
-                                                   formatOptions: [.withFullDate, .withDashSeparatorInDate])
+                return date.formatted(.iso8601.year().month().day())
             default:
                 return item
         }
