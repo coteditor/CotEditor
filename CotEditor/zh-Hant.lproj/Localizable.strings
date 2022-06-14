@@ -712,6 +712,18 @@
 
 
 
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "文法樣式對映衝突";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列檔案對映規則被註冊了多種格式。CotEditor自動使用第一個格式。可以透過編輯每個文法格式來解決衝突。";
+"Extension" = "副檔名";
+"Filename" = "檔名";
+"Interpreter" = "直譯器";
+// table column headers
+"Used style" = "已使用樣式";
+"Duplicated styles" = "重複的樣式";
+
+
+
 /* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
 "From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";

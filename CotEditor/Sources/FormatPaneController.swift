@@ -28,6 +28,7 @@ import Combine
 import Cocoa
 import AudioToolbox
 import UniformTypeIdentifiers
+import SwiftUI
 
 /// keys for styles controller
 private enum StyleKey: String {
@@ -329,7 +330,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        let viewController = NSViewController.instantiate(storyboard: "SyntaxMappingConflictsView")
+        let view = SyntaxMappingConflictsView(dictionary: SyntaxManager.shared.mappingConflicts)
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
         
         self.presentAsSheet(viewController)
     }

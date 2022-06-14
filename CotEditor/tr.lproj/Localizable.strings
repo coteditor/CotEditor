@@ -712,6 +712,18 @@
 
 
 
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";
+"Extension" = "Uzantı";
+"Filename" = "Dosya Adı";
+"Interpreter" = "Yorumlayıcı";
+// table column headers
+"Used style" = "Kullanılan Biçem";
+"Duplicated styles" = "Yinelenmiş Biçemler";
+
+
+
 /* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 sürümündeki önemli değişiklikler";
 "From this version, CotEditor handles line endings more strictly." = "Bu sürümden itibaren; CotEditor, satır sonlarını daha doğru bir biçimde işler.";

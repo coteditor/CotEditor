@@ -712,6 +712,18 @@
 
 
 
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Dateizuordnungskonflikte";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Die folgenden Dateizuordnungsregeln sind in mehreren Stilen registriert.CotEditor verwendet den ersten Stil automatisch. Um Konflikte zu beheben, bearbeite jeden Syntaxstil.";
+"Extension" = "Suffix";
+"Filename" = "Dateiname";
+"Interpreter" = "Interpreter";
+// table column headers
+"Used style" = "Angewandter Stil";
+"Duplicated styles" = "Duplizierte Stile";
+
+
+
 /* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "Wichtige Änderung bei CotEditor 4.2.0";
 "From this version, CotEditor handles line endings more strictly." = "Ab dieser Version behandelt CotEditor Zeilenenden strikter.";

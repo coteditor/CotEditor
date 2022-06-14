@@ -712,6 +712,18 @@
 
 
 
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Conflitos de Mapeamento de Estilos de Sintaxe";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "As seguintes regras de mapeamento de arquivo estão registradas em vários estilos. O CotEditor usa o primeiro estilo automaticamente. Para resolver conflitos, edite cada estilo de sintaxe.";
+"Extension" = "Extensão";
+"Filename" = "Nome do Arquivo";
+"Interpreter" = "Intérpretes";
+// table column headers
+"Used style" = "Estilo Usado";
+"Duplicated styles" = "Estilos Duplicados";
+
+
+
 /* MARK: Migration Panel */
 "Important change on CotEditor 4.2.0" = "Importantes mudanças no CotEditor 4.2.0";
 "From this version, CotEditor handles line endings more strictly." = "Nessa versão, o CotEditor está mais rigoroso com os finais de linha.";
