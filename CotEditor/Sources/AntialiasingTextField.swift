@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ final class AntialiasingTextField: NSTextField {
     
     // MARK: Public Properties
     
-    var disablesAntialiasing = false  { didSet { self.needsDisplay = true } }
+    @Invalidating(.display) var disablesAntialiasing = false
     
     
     

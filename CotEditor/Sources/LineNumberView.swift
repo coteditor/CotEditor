@@ -99,8 +99,8 @@ final class LineNumberView: NSView {
     private var drawingInfo: DrawingInfo?
     private var thickness = 32.0
     
-    private var textColor: NSColor = .textColor  { didSet { self.needsDisplay = true } }
-    private var backgroundColor: NSColor = .textBackgroundColor  { didSet { self.needsDisplay = true } }
+    @Invalidating(.display) private var textColor: NSColor = .textColor
+    @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
     
     private var opacityObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
