@@ -721,15 +721,3 @@
 // table column headers
 "Used style" = "使用するスタイル";
 "Duplicated styles" = "重複しているスタイル";
-
-
-
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0での重要な変更";
-"From this version, CotEditor handles line endings more strictly." = "このバージョンからCotEditorは改行コードをより厳密に扱うようになりました。";
-"Due to this change, you may need manual migration for your settings below:" = "この変更により、以下の設定のユーザによる移行処理が必要になる可能性があります:";
-"Multiple replacement definitions" = "複数置換定義";
-"Syntax styles" = "シンタックススタイル";
-"CotEditor scripts" = "CotEditorスクリプト";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "正規表現の`\\n`は実際に改行がLFのときのみ一致するようになりました。改行コードに関わらず改行に一致させたい場合は代わりに`\\R`を使ってください。";
-"Learn More…" = "詳しい情報…";

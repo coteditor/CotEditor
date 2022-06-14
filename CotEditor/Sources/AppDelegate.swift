@@ -170,24 +170,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         NSHelpManager.shared.registerBooks(in: .main)
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-        
-        // show notification panel for line ending migration on CotEditor 4.2.0
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init),
-           lastVersion < 494  // earlier than CotEditor 4.2.0
-        {
-            var migrationOptions: LineEndingMigrationOptions = []
-            if ReplacementManager.shared.needsLineEndingMigration() {
-                migrationOptions.insert(.replacement)
-            }
-            if SyntaxManager.shared.needsLineEndingMigration() {
-                migrationOptions.insert(.syntax)
-            }
-            if ScriptManager.shared.hasScripts {
-                migrationOptions.insert(.script)
-            }
-            
-            LineEndingMigrationPanel(options: migrationOptions).makeKeyAndOrderFront(nil)
-        }
     }
     
     

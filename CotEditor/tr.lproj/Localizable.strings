@@ -721,15 +721,3 @@
 // table column headers
 "Used style" = "Kullanılan Biçem";
 "Duplicated styles" = "Yinelenmiş Biçemler";
-
-
-
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 sürümündeki önemli değişiklikler";
-"From this version, CotEditor handles line endings more strictly." = "Bu sürümden itibaren; CotEditor, satır sonlarını daha doğru bir biçimde işler.";
-"Due to this change, you may need manual migration for your settings below:" = "Bu değişiklikten dolayı, aşağıdaki ayarları el ile düzeltmeniz gerekebilir:";
-"Multiple replacement definitions" = "Çoklu değiştirme tanımları";
-"Syntax styles" = "Sözdizim biçemleri";
-"CotEditor scripts" = "CotEditor betikleri";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "Satır sonu gerçekten LF iken yalnızca düzenli ifade eşleşmeleri için `\\n`. Her türden satır sonu ile eşleşmek için `\\R` kullanın.";
-"Learn More…" = "Daha Fazla Bilgi…";

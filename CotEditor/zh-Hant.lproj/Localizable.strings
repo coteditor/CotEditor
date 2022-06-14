@@ -721,15 +721,3 @@
 // table column headers
 "Used style" = "已使用樣式";
 "Duplicated styles" = "重複的樣式";
-
-
-
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
-"From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";
-"Due to this change, you may need manual migration for your settings below:" = "由於這個變更，你可能需要對下面的設定進行手動遷移：";
-"Multiple replacement definitions" = "多次取代的定義";
-"Syntax styles" = "文法風格";
-"CotEditor scripts" = "CotEditor腳本";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n`僅在行尾確實是LF時進行匹配。如需匹配任意行尾，請使用`\\R`。";
-"Learn More…" = "瞭解更多…";

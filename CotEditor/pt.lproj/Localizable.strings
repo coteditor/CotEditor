@@ -721,15 +721,3 @@
 // table column headers
 "Used style" = "Estilo Usado";
 "Duplicated styles" = "Estilos Duplicados";
-
-
-
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "Importantes mudanças no CotEditor 4.2.0";
-"From this version, CotEditor handles line endings more strictly." = "Nessa versão, o CotEditor está mais rigoroso com os finais de linha.";
-"Due to this change, you may need manual migration for your settings below:" = "Devido a essa mudança, você pode precisar migrar manualmente suas configurações abaixo:";
-"Multiple replacement definitions" = "Múltiplas substituições de definições";
-"Syntax styles" = "Estilos de sintaxes";
-"CotEditor scripts" = "Scripts do CotEditor";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` para combinações de expressões regulares apenas quando o final de linha for LF. Prefira usar`\\R` em qualquer outra combinação de final de linha.";
-"Learn More…" = "Saiba Mais…";
