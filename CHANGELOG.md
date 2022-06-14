@@ -2,7 +2,24 @@
 Change Log
 ==========================
 
-4.3.0 (unreleased)
+4.3.0-rc (515)
+--------------------------
+
+### Improvements
+
+- [beta] Suppress the “not found” beep sound on incremental search.
+- [beta] Update Swift syntax style to add `swift` interpreter.
+- [beta][trivial] Change the threshold to display a large document alert.
+- [beta][trivial] Tweak parsing syntax highlight.
+
+
+### Fixes
+
+- Fix an issue that the application could become unresponsive when trying to show the file mapping conflicts.
+
+
+
+4.3.0-beta (513)
 --------------------------
 
 ### New Features

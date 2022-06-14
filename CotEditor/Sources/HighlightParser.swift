@@ -70,11 +70,6 @@ final class HighlightParser {
     
     
     
-    // MARK: Public Properties
-    
-    let progress: Progress  // can be updated from a background thread
-    
-    
     // MARK: Private Properties
     
     private let definition: Definition
@@ -91,10 +86,6 @@ final class HighlightParser {
         self.definition = definition
         self.string = string
         self.parseRange = parseRange
-        
-        // +1 for extractCommentsWithNestablePaires() and +10 for sanitizing
-        let extractorCount = definition.extractors.values.map(\.count).reduce(0, +)
-        self.progress = Progress(totalUnitCount: Int64(extractorCount) + 1 + 10)
     }
     
     
@@ -111,7 +102,7 @@ final class HighlightParser {
             for (type, extractors) in self.definition.extractors {
                 for extractor in extractors {
                     _ = group.addTaskUnlessCancelled {
-                        [type: try await extractor.ranges(in: self.string, range: self.parseRange)]
+                        [type: try extractor.ranges(in: self.string, range: self.parseRange)]
                     }
                 }
             }
@@ -122,19 +113,11 @@ final class HighlightParser {
             }
             
             return try await group.reduce(into: .init()) {
-                $0.merge($1) { $0 + $1 }
-                self.progress.completedUnitCount += 1
+                $0.merge($1, uniquingKeysWith: +)
             }
         }
         
-        try Task.checkCancellation()
-        
-        // reduce complexity of highlights dictionary for layoutManager application
-        let highlights = try Self.sanitize(highlightDictionary)
-        
-        self.progress.completedUnitCount += 10
-        
-        return highlights
+        return try Self.sanitize(highlightDictionary)
     }
     
     

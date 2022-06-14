@@ -135,7 +135,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="w8q-3P-Q1e">
-                                                                            <rect key="frame" x="91" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="90.5" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="bkQ-4g-uet">
@@ -303,7 +303,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="FdF-7h-gtp">
-                                                                            <rect key="frame" x="91" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="90.5" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Qt3-S7-Bpi">
@@ -356,7 +356,6 @@ DQ
                                                                                 </textField>
                                                                             </subviews>
                                                                             <connections>
-                                                                                <accessibilityConnection property="title" destination="OKS-Jt-6Ds" id="IPJ-gH-KxN"/>
                                                                                 <outlet property="textField" destination="0IP-DP-nt2" id="wCl-VF-HnV"/>
                                                                             </connections>
                                                                         </tableCellView>
@@ -364,6 +363,7 @@ DQ
                                                                 </tableColumn>
                                                             </tableColumns>
                                                             <connections>
+                                                                <accessibilityConnection property="title" destination="OKS-Jt-6Ds" id="WDp-9R-q3Z"/>
                                                                 <binding destination="lxi-wt-2lm" name="content" keyPath="arrangedObjects" id="2iw-GX-mNf"/>
                                                                 <binding destination="lxi-wt-2lm" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="2iw-GX-mNf" id="AWi-IZ-IXw"/>
                                                             </connections>
@@ -471,7 +471,7 @@ DQ
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="SjR-UH-naJ">
-                                                                            <rect key="frame" x="93" y="1" width="97" height="16"/>
+                                                                            <rect key="frame" x="92.5" y="1" width="97" height="16"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="85I-66-i9l">
@@ -524,7 +524,6 @@ DQ
                                                                                 </textField>
                                                                             </subviews>
                                                                             <connections>
-                                                                                <accessibilityConnection property="title" destination="bE5-DE-kLn" id="WgW-Xd-Uf9"/>
                                                                                 <outlet property="textField" destination="U4F-FD-huB" id="3wG-Ad-grH"/>
                                                                             </connections>
                                                                         </tableCellView>
@@ -532,6 +531,7 @@ DQ
                                                                 </tableColumn>
                                                             </tableColumns>
                                                             <connections>
+                                                                <accessibilityConnection property="title" destination="bE5-DE-kLn" id="6nS-zH-BSP"/>
                                                                 <binding destination="cXt-Bi-vrU" name="content" keyPath="arrangedObjects" id="g0h-tE-qOW"/>
                                                                 <binding destination="cXt-Bi-vrU" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="g0h-tE-qOW" id="Jjf-3d-INs"/>
                                                             </connections>
@@ -602,35 +602,35 @@ DQ
                     </connections>
                 </viewController>
                 <customObject id="foX-H3-gAp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="oW9-gC-3kM" userLabel="Extension Conflicts Controller">
+                <arrayController objectClassName="CotEditor.MappingConflict" editable="NO" avoidsEmptySelection="NO" id="oW9-gC-3kM" userLabel="Extension Conflicts Controller">
                     <declaredKeys>
                         <string>name</string>
                         <string>primaryStyle</string>
                         <string>doubledStyles</string>
                     </declaredKeys>
-                    <classReference key="objectClass" className="MappingConflict"/>
+                    <classReference key="objectClass" className="MappingConflict" moduleName="CotEditor" moduleProvider="target"/>
                     <connections>
                         <binding destination="JDa-L5-c8m" name="contentArray" keyPath="extensionConflicts" id="C7y-Fk-FOc"/>
                     </connections>
                 </arrayController>
-                <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="lxi-wt-2lm" userLabel="Filename Conflicts Controller">
+                <arrayController objectClassName="CotEditor.MappingConflict" editable="NO" avoidsEmptySelection="NO" id="lxi-wt-2lm" userLabel="Filename Conflicts Controller">
                     <declaredKeys>
                         <string>name</string>
                         <string>primaryStyle</string>
                         <string>doubledStyles</string>
                     </declaredKeys>
-                    <classReference key="objectClass" className="MappingConflict"/>
+                    <classReference key="objectClass" className="MappingConflict" moduleName="CotEditor" moduleProvider="target"/>
                     <connections>
                         <binding destination="JDa-L5-c8m" name="contentArray" keyPath="filenameConflicts" id="8AJ-gA-tbi"/>
                     </connections>
                 </arrayController>
-                <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="cXt-Bi-vrU" userLabel="Interpreter Conflicts Controller">
+                <arrayController objectClassName="CotEditor.MappingConflict" editable="NO" avoidsEmptySelection="NO" id="cXt-Bi-vrU" userLabel="Interpreter Conflicts Controller">
                     <declaredKeys>
                         <string>name</string>
                         <string>primaryStyle</string>
                         <string>doubledStyles</string>
                     </declaredKeys>
-                    <classReference key="objectClass" className="MappingConflict"/>
+                    <classReference key="objectClass" className="MappingConflict" moduleName="CotEditor" moduleProvider="target"/>
                     <connections>
                         <binding destination="JDa-L5-c8m" name="contentArray" keyPath="interpreterConflicts" id="Zi4-AB-RsY"/>
                     </connections>

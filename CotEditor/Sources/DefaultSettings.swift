@@ -181,7 +181,7 @@ struct DefaultSettings {
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
         .coloringRangeBufferLength: 5000,
-        .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
+        .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
         .savesTextOrientation: true,
         .maximumRecentStyleCount: 6,
         .maximumSelectionInstanceHighlightCount: 100,

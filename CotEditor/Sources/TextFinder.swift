@@ -478,7 +478,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                                          userInfo: [.announcement: "Search wrapped.".localized])
                 }
             }
-        } else {
+        } else if !isIncremental {
             NSSound.beep()
         }
         

@@ -64,9 +64,9 @@ struct OutlineExtractor {
     ///   - parseRange: The range of the string to parse.
     /// - Throws: `CancellationError`
     /// - Returns: An array of `OutlineItem`.
-    func items(in string: String, range parseRange: NSRange) async throws -> [OutlineItem] {
+    func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
         
-        try await self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
+        return try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
             
             // separator
             if self.template == .separator {

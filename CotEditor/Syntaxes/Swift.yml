@@ -1,13 +1,15 @@
 extensions:
 - keyString: "swift"
 - keyString: "swiftinterface"
+interpreters:
+- keyString: "swift"
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
   version: "4.7.0"
   description: "Based on Swift 5.7"
   license: "Same as CotEditor"
-  lastModified: "2022-06-07"
+  lastModified: "2022-06-12"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME:)[ \\t](.+)"
   keyString: "$2"

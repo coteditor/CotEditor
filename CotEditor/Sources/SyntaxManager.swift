@@ -318,7 +318,7 @@ final class SyntaxManager: SettingFileManaging {
             guard let url = self.urlForUsedSetting(name: name) else { return nil }
             
             let setting = try? self.loadSetting(at: url)
-            self.$cachedSettings.mutate { $0[name] = setting }
+            self.$cachedSettings.mutate({ $0[name] = setting })
             
             return setting
             }() else { return nil }
