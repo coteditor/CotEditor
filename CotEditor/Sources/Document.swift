@@ -1087,7 +1087,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // show alert if line endings are inconsistent
         if !self.suppressesInconsistentLineEndingAlert,
-           !self.lineEndingScanner.inconsistentLineEndings.isEmpty
+           !self.lineEndingScanner.inconsistentLineEndings.isEmpty,
+           !self.isBrowsingVersions
         {
             if self.windowForSheet?.isVisible == true {
                 self.showInconsistentLineEndingAlert()

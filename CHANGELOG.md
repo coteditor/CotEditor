@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+4.3.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [trivial] Suprpress the inconsistent line ending alart in the Versions browsing.
+
+
+
 4.3.0-rc (515)
 --------------------------
 
