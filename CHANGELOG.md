@@ -8,7 +8,7 @@ Change Log
 ### Improvements
 
 - Avoid re-parsing syntax on printing.
-- [trivial] Suprpress the inconsistent line ending alart in the Versions browsing.
+- [trivial] Suppress the inconsistent line ending alert in the Versions browsing.
 
 
 
