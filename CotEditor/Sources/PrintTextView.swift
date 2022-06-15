@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Cocoa
 
 final class PrintTextView: NSTextView, Themable, URLDetectable {
@@ -43,8 +42,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     var filePath: String?
     var documentName: String?
+    var syntaxName: String = BundledStyleName.none
     private(set) var theme: Theme?
-    private(set) lazy var syntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
     // settings on current window to be set by Document.
     // These values are used if set option is "Same as document's setting"
@@ -62,8 +61,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private var xOffset: CGFloat = 0
     private var lastPaperContentSize: NSSize = .zero
     private lazy var dateFormatter: DateFormatter = .init()
-    
-    private var asyncHighlightObserver: AnyCancellable?
     
     
     
@@ -333,17 +330,10 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         layoutManager.ensureGlyphs(forCharacterRange: self.string.nsRange)
         
-        // perform syntax highlight
-        let progress = self.syntaxParser.highlight()
-        
-        // asynchronously trigger preview update if needed
-        if let progress = progress,
-           let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
-        {
-            self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
-                .first { $0 }
-                .receive(on: DispatchQueue.main)
-                .sink { [weak controller] _ in controller?.needsUpdatePreview = true }
+        if let theme = theme {
+            layoutManager.invalidateHighlight(theme: theme)
+        } else {
+            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.range)
         }
     }
     
@@ -426,7 +416,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 return self.documentName
             
             case .syntaxName:
-                return self.syntaxParser.style.name
+                return self.syntaxName
             
             case .filePath:
                 guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet

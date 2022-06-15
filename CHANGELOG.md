@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Avoid re-parsing syntax on printing.
 - [trivial] Suprpress the inconsistent line ending alart in the Versions browsing.
 
 

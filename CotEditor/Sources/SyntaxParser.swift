@@ -280,7 +280,7 @@ extension SyntaxParser {
 
 
 
-private extension NSTextStorage {
+extension NSTextStorage {
     
     /// Apply highlights to the document using layoutManager's temporary attributes.
     ///
@@ -324,17 +324,38 @@ private extension NSTextStorage {
 
 extension NSLayoutManager {
     
+    /// Extract all syntax highlights in the given range.
+    ///
+    /// - Parameter range: The range to extract highlights.
+    /// - Returns: An array of Highlights in order.
+    @MainActor func syntaxHighlights(in range: NSRange? = nil) -> [Highlight] {
+        
+        let targetRange = range ?? self.attributedString().range
+        
+        var highlights: [Highlight] = []
+        self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
+            guard let type = type as? SyntaxType else { return }
+            
+            highlights.append(Highlight(item: type, range: range))
+        }
+        
+        return highlights
+    }
+    
+    
     /// Apply the theme based on the current `syntaxType` attributes.
     ///
-    /// - Parameter theme: The theme to apply.
-    @MainActor func invalidateHighlight(theme: Theme) {
+    /// - Parameters:
+    ///   - theme: The theme to apply.
+    ///   - range: The range to invalidate highlight.
+    @MainActor func invalidateHighlight(theme: Theme, in range: NSRange? = nil) {
         
-        let wholeRange = self.attributedString().range
+        let targetRange = range ?? self.attributedString().range
         
-        guard self.hasTemporaryAttribute(.syntaxType, in: wholeRange) else { return }
+        guard self.hasTemporaryAttribute(.syntaxType, in: targetRange) else { return }
         
-        self.groupTemporaryAttributesUpdate(in: wholeRange) {
-            self.enumerateTemporaryAttribute(.syntaxType, in: wholeRange) { (type, range, _) in
+        self.groupTemporaryAttributesUpdate(in: targetRange) {
+            self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
                 guard let type = type as? SyntaxType else { return }
                 
                 if let color = theme.style(for: type)?.color {

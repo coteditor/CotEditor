@@ -53,12 +53,6 @@ enum ThemeName {
 
 final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccessorizing {
     
-    // MARK: Public Properties
-    
-    /// dummy property for syntax highlighting update
-    @objc dynamic var needsUpdatePreview = false
-    
-    
     // MARK: Private Properties
     
     @IBOutlet private weak var colorPopupButton: NSPopUpButton?
@@ -139,8 +133,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                 #keyPath(primaryFooterContent),
                 #keyPath(secondaryFooterAlignment),
                 #keyPath(secondaryFooterContent),
-                
-                #keyPath(needsUpdatePreview),
         ]
     }
     

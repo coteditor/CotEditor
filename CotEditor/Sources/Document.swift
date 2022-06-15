@@ -600,7 +600,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.documentName = self.displayName
         printView.filePath = self.fileURL?.path
-        printView.syntaxParser.style = self.syntaxParser.style
+        printView.syntaxName = self.syntaxParser.style.name
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber
         printView.baseWritingDirection = viewController.writingDirection
@@ -615,6 +615,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.string = self.textStorage.string
         if let selectedRanges = self.textView?.selectedRanges {
             printView.selectedRanges = selectedRanges
+        }
+        
+        if let highlights = self.textStorage.layoutManagers.first?.syntaxHighlights(), !highlights.isEmpty {
+            printView.textStorage?.apply(highlights: highlights, range: printView.string.range)
         }
         
         // detect URLs manually (2019-05 macOS 10.14).
