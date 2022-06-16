@@ -91,14 +91,18 @@ final class ProgressViewController: NSViewController {
         guard
             let indicator = self.indicator,
             let descriptionField = self.descriptionField
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         self.progressSubscriptions.removeAll()
         
-        self.progress.publisher(for: \.fractionCompleted, options: .initial)
-            .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
-            .assign(to: \.doubleValue, on: indicator)
-            .store(in: &self.progressSubscriptions)
+        if self.progress.isIndeterminate {
+            indicator.startAnimation(nil)
+        } else {
+            self.progress.publisher(for: \.fractionCompleted, options: .initial)
+                .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
+                .assign(to: \.doubleValue, on: indicator)
+                .store(in: &self.progressSubscriptions)
+        }
         
         self.progress.publisher(for: \.localizedDescription, options: .initial)
             .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
@@ -127,6 +131,8 @@ final class ProgressViewController: NSViewController {
         if self.closesAutomatically {
             return self.dismiss(self)
         }
+        
+        self.indicator?.stopAnimation(nil)
         
         guard let button = self.button else { return assertionFailure() }
         
