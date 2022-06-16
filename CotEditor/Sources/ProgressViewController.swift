@@ -132,13 +132,19 @@ final class ProgressViewController: NSViewController {
             return self.dismiss(self)
         }
         
-        self.indicator?.stopAnimation(nil)
+        guard
+            let indicator = indicator,
+            let descriptionField = self.descriptionField,
+            let button = self.button
+        else { return assertionFailure() }
         
-        guard let button = self.button else { return assertionFailure() }
+        indicator.isIndeterminate = false
+        indicator.doubleValue = 1
+        indicator.stopAnimation(nil)
         
-        self.descriptionField?.stringValue = self.progress.localizedDescription
+        descriptionField.stringValue = self.progress.localizedDescription
         
-        button.title = "OK".localized
+        button.title = "Done".localized
         button.action = #selector(dismiss(_:) as (Any?) -> Void)
         button.keyEquivalent = "\r"
     }
