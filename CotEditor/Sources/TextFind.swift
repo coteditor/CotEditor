@@ -219,7 +219,7 @@ final class TextFind {
             foundRange = forward ? (wrappedMatches + intersectionMatches).first : (intersectionMatches + forwardMatches).last
         }
         
-        let ranges = forwardMatches + intersectionMatches + wrappedMatches
+        let ranges = wrappedMatches + intersectionMatches + forwardMatches
         
         return (foundRange, ranges, isWrapped)
     }

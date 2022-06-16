@@ -450,7 +450,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         if marksAllMatches, let layoutManager = textView.layoutManager {
             layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
-                for range in result.ranges.sorted(\.location) {
+                for range in result.ranges {
                     layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
                 }
             }
