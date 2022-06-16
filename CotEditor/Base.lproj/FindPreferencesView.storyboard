@@ -11,11 +11,11 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="YZB-Be-CwN" sceneMemberID="viewController">
                     <view key="view" id="n0x-rs-gOH">
-                        <rect key="frame" x="0.0" y="0.0" width="230" height="346"/>
+                        <rect key="frame" x="0.0" y="0.0" width="231" height="366"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZxT-dv-zkd">
-                                <rect key="frame" x="38" y="314" width="155" height="16"/>
+                                <rect key="frame" x="38" y="334" width="155" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Advanced Find Options" id="Dl6-kv-hhz">
                                     <font key="font" metaFont="systemSemibold" size="13"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B9b-MW-hnQ">
-                                <rect key="frame" x="19" y="291" width="127" height="16"/>
+                                <rect key="frame" x="19" y="311" width="127" height="16"/>
                                 <buttonCell key="cell" type="check" title="Wrap search around" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="o7S-uI-urg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
@@ -51,7 +51,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vSw-Kt-7km">
-                                <rect key="frame" x="19" y="271" width="186" height="16"/>
+                                <rect key="frame" x="19" y="291" width="186" height="16"/>
                                 <buttonCell key="cell" type="check" title="Select next match after replace" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="XBp-LE-3Ry">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button identifier="howto_find" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ccZ-5g-nEA">
-                                <rect key="frame" x="201" y="10" width="18" height="19"/>
+                                <rect key="frame" x="202" y="10" width="18" height="19"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hgt-Qf-aBk">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
@@ -158,10 +158,23 @@
                                     <binding destination="hNo-st-CW5" name="value" keyPath="values.regexUnescapesReplacementString" id="urL-VK-LKH"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="S5c-FI-8aR">
+                                <rect key="frame" x="19" y="271" width="131" height="16"/>
+                                <buttonCell key="cell" type="check" title="Search incrementally" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="jxH-a9-v61">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="hNo-st-CW5" name="value" keyPath="values.findSearchesIncrementally" id="2rW-QU-hYe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="KG4-LQ-sen" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="0f1-1h-B7P"/>
+                            <constraint firstItem="rmT-GL-9fJ" firstAttribute="top" secondItem="S5c-FI-8aR" secondAttribute="bottom" constant="6" symbolic="YES" id="2Ci-4g-sqD"/>
+                            <constraint firstItem="S5c-FI-8aR" firstAttribute="top" secondItem="vSw-Kt-7km" secondAttribute="bottom" constant="6" symbolic="YES" id="2qm-mN-zEl"/>
                             <constraint firstItem="eqE-mg-d9b" firstAttribute="top" secondItem="s9v-U5-5ZM" secondAttribute="bottom" constant="8" symbolic="YES" id="3bw-kT-3S8"/>
+                            <constraint firstItem="S5c-FI-8aR" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="6YL-Gi-H49"/>
                             <constraint firstItem="s9v-U5-5ZM" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="7Cp-U1-VKJ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KG4-LQ-sen" secondAttribute="trailing" constant="20" symbolic="YES" id="7Dv-5E-qlo"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lhw-9C-lgB" secondAttribute="trailing" constant="20" symbolic="YES" id="9RW-K1-fIx"/>
@@ -173,6 +186,7 @@
                             <constraint firstItem="c11-J5-UXF" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="JDf-cL-mwG"/>
                             <constraint firstItem="YYY-qb-T00" firstAttribute="top" secondItem="KG4-LQ-sen" secondAttribute="bottom" constant="6" symbolic="YES" id="Ka4-3P-WqQ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VMh-Tq-bq0" secondAttribute="trailing" constant="20" symbolic="YES" id="LLj-gm-a8B"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="S5c-FI-8aR" secondAttribute="trailing" constant="20" symbolic="YES" id="LXH-X2-nhs"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="A5O-jt-o7T" secondAttribute="trailing" constant="20" symbolic="YES" id="NI2-O3-Lsm"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="B9b-MW-hnQ" secondAttribute="trailing" constant="20" symbolic="YES" id="NNC-zc-g5b"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZxT-dv-zkd" secondAttribute="trailing" constant="20" symbolic="YES" id="OSo-17-FNj"/>
@@ -184,7 +198,6 @@
                             <constraint firstItem="ccZ-5g-nEA" firstAttribute="top" secondItem="PLV-vr-cdI" secondAttribute="bottom" constant="4" id="SAq-84-ckj"/>
                             <constraint firstItem="B9b-MW-hnQ" firstAttribute="leading" secondItem="n0x-rs-gOH" secondAttribute="leading" constant="20" symbolic="YES" id="SiP-ac-WCV"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="s9v-U5-5ZM" secondAttribute="trailing" constant="20" symbolic="YES" id="UuP-c9-5FU"/>
-                            <constraint firstItem="rmT-GL-9fJ" firstAttribute="top" secondItem="vSw-Kt-7km" secondAttribute="bottom" constant="6" symbolic="YES" id="XEO-se-Rgf"/>
                             <constraint firstItem="vSw-Kt-7km" firstAttribute="top" secondItem="B9b-MW-hnQ" secondAttribute="bottom" constant="6" symbolic="YES" id="YDN-5I-jWH"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YYY-qb-T00" secondAttribute="trailing" constant="20" symbolic="YES" id="ZFn-os-rzH"/>
                             <constraint firstItem="s9v-U5-5ZM" firstAttribute="top" secondItem="rmT-GL-9fJ" secondAttribute="bottom" constant="14" id="aBe-mJ-w9p"/>
@@ -213,7 +226,7 @@
                 <customObject id="S2W-Go-l2i" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="hNo-st-CW5"/>
             </objects>
-            <point key="canvasLocation" x="152" y="189.5"/>
+            <point key="canvasLocation" x="152" y="212.5"/>
         </scene>
     </scenes>
 </document>

@@ -125,10 +125,11 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 
                 // perform incremental search
                 guard
+                    UserDefaults.standard[.findSearchesIncrementally],
+                    !UserDefaults.standard[.findInSelection],
                     !textView.hasMarkedText(),
                     !textView.string.isEmpty,
-                    textView.isValid,
-                    !UserDefaults.standard[.findInSelection]
+                    textView.isValid
                 else { return }
                 
                 self.incrementalDebouncer.schedule()

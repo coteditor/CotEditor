@@ -32,6 +32,8 @@
 "o7S-uI-urg.title" = "Wrap search around";
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "Select next match after replace";
+/* Class = "NSButtonCell"; title = "Search incrementally"; ObjectID = "jxH-a9-v61"; */
+"jxH-a9-v61.title" = "Search incrementally";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
 "KBq-zH-H2M.title" = "Auto-close progress dialogue";
 

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 CotEditor Project
+//  © 2018-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@
 "o7S-uI-urg.title" = "Voltar busca ao início";
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "Selecionar ocorrência seguinte ao substituir";
+/* Class = "NSButtonCell"; title = "Search incrementally"; ObjectID = "jxH-a9-v61"; */
+"jxH-a9-v61.title" = "Pesquise de forma incremental";  // FIXME: machine-translated (native check required)
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
 "KBq-zH-H2M.title" = "Fechar diálogo de progresso automaticamente";
 
