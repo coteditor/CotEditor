@@ -33,7 +33,7 @@
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
 "XBp-LE-3Ry.title" = "Değişim sonrası bir sonraki eşleşmeyi seç";
 /* Class = "NSButtonCell"; title = "Search incrementally"; ObjectID = "jxH-a9-v61"; */
-"jxH-a9-v61.title" = "Aşamalı olarak arayın";  // FIXME: machine-translated (native check required)
+"jxH-a9-v61.title" = "Aşamalı olarak ara";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
 "KBq-zH-H2M.title" = "İlerleme iletişim kutusunu kendiliğinden kapat";
 
