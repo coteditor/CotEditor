@@ -650,7 +650,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”已被“%@”命令使用。";
 "The Shift key can be used only with another modifier key." = "Shift键只能配合其他修饰键使用。";
-"The combination “%@” is not supported for the key binding customization." = "The combination “%@” is not supported for the key binding customization.";  // FIXME: added
+"The combination “%@” is not supported for the key binding customization." = "组合键“%@”无法被用作自定义绑定键。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 "Please combine with other keys." = "请与其他键组合使用。";
 
