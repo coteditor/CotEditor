@@ -9,6 +9,7 @@ Change Log
 
 - Avoid re-parsing syntax on printing.
 - [trivial] Suppress the inconsistent line ending alert in the Versions browsing.
+- [beta] Optimize the performance of the incremental search.
 
 
 
