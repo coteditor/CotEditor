@@ -57,7 +57,8 @@ extension MultipleReplacement {
                 }
                 
                 progress.completedUnitCount += 1
-            }.sorted(\.location)
+            }
+                .sorted(\.location)
             
             DispatchQueue.main.async {
                 textView.isEditable = true
