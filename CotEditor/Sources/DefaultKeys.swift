@@ -173,8 +173,6 @@ extension DefaultKeys {
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
     
     // hidden settings
-    static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
-    static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")

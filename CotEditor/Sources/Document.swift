@@ -601,7 +601,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let printView = PrintTextView()
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.documentName = self.displayName
-        printView.filePath = self.fileURL?.path
+        printView.fileURL = self.fileURL
         printView.syntaxName = self.syntaxParser.style.name
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber

@@ -40,7 +40,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     // MARK: Public Properties
     
-    var filePath: String?
+    var fileURL: URL?
     var documentName: String?
     var syntaxName: String = BundledStyleName.none
     private(set) var theme: Theme?
@@ -419,17 +419,11 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 return self.syntaxName
             
             case .filePath:
-                guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
-                    return self.documentName
-                }
-                if UserDefaults.standard[.headerFooterPathAbbreviatingWithTilde] {
-                    return filePath.abbreviatingWithTildeInSandboxedPath
-                }
-                return filePath
-            
+                return self.fileURL?.path.abbreviatingWithTildeInSandboxedPath ?? self.documentName
+                
             case .printDate:
-                self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
-                return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
+                self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                return String(format: "Printed on %@".localized, self.dateFormatter.string(from: .now))
             
             case .pageNumber:
                 guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }

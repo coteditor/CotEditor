@@ -178,8 +178,6 @@ struct DefaultSettings {
         .findResultViewFontSize: NSFont.smallSystemFontSize,
         
         // ------ hidden settings ------
-        .headerFooterDateFormat: "yyyy-MM-dd HH:mm",
-        .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
