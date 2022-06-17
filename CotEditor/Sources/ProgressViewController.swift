@@ -91,14 +91,18 @@ final class ProgressViewController: NSViewController {
         guard
             let indicator = self.indicator,
             let descriptionField = self.descriptionField
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         self.progressSubscriptions.removeAll()
         
-        self.progress.publisher(for: \.fractionCompleted, options: .initial)
-            .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
-            .assign(to: \.doubleValue, on: indicator)
-            .store(in: &self.progressSubscriptions)
+        if self.progress.isIndeterminate {
+            indicator.startAnimation(nil)
+        } else {
+            self.progress.publisher(for: \.fractionCompleted, options: .initial)
+                .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
+                .assign(to: \.doubleValue, on: indicator)
+                .store(in: &self.progressSubscriptions)
+        }
         
         self.progress.publisher(for: \.localizedDescription, options: .initial)
             .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
@@ -128,11 +132,19 @@ final class ProgressViewController: NSViewController {
             return self.dismiss(self)
         }
         
-        guard let button = self.button else { return assertionFailure() }
+        guard
+            let indicator = indicator,
+            let descriptionField = self.descriptionField,
+            let button = self.button
+        else { return assertionFailure() }
         
-        self.descriptionField?.stringValue = self.progress.localizedDescription
+        indicator.isIndeterminate = false
+        indicator.doubleValue = 1
+        indicator.stopAnimation(nil)
         
-        button.title = "OK".localized
+        descriptionField.stringValue = self.progress.localizedDescription
+        
+        button.title = "Done".localized
         button.action = #selector(dismiss(_:) as (Any?) -> Void)
         button.keyEquivalent = "\r"
     }

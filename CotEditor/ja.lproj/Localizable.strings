@@ -27,6 +27,7 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "キャンセル";
+"Done" = "完了";
 
 
 // Appending words in parentheses

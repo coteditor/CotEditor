@@ -1589,8 +1589,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             let layoutManager = self.layoutManager
             else { return }
         
-        for range in ranges {
-            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
+        layoutManager.groupTemporaryAttributesUpdate(in: self.string.nsRange) {
+            for range in ranges {
+                layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
+            }
         }
     }
     

@@ -58,6 +58,7 @@ extension MultipleReplacement {
                 
                 progress.completedUnitCount += 1
             }
+                .sorted(\.location)
             
             DispatchQueue.main.async {
                 textView.isEditable = true
@@ -67,10 +68,12 @@ extension MultipleReplacement {
                 if !result.isEmpty {
                     // apply to the text view
                     if let layoutManager = textView.layoutManager {
-                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
-                        let color = NSColor.textHighlighterColor
-                        for range in result {
-                            layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
+                        layoutManager.groupTemporaryAttributesUpdate(in: string.nsRange) {
+                            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
+                            let color = NSColor.textHighlighterColor
+                            for range in result {
+                                layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
+                            }
                         }
                     }
                     

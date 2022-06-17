@@ -45,6 +45,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private var resultClosingTrigerObserver: AnyCancellable?
     
+    private lazy var incrementalDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.textFinder.incrementalSearch() }
+    
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
     @IBOutlet private weak var findHistoryMenu: NSMenu?
@@ -123,13 +125,14 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 
                 // perform incremental search
                 guard
+                    UserDefaults.standard[.findSearchesIncrementally],
+                    !UserDefaults.standard[.findInSelection],
                     !textView.hasMarkedText(),
                     !textView.string.isEmpty,
-                    textView.isValid,
-                    !UserDefaults.standard[.findInSelection]
+                    textView.isValid
                 else { return }
                 
-                self.textFinder.incrementalSearch()
+                self.incrementalDebouncer.schedule()
                 
             case self.replacementTextView!:
                 self.clearNumberOfReplaced()

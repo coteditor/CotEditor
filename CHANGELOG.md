@@ -2,6 +2,19 @@
 Change Log
 ==========================
 
+4.3.0 (517)
+--------------------------
+
+### Improvements
+
+- Avoid re-parsing syntax on printing.
+- Update the style of the search progress dialog.
+- [trivial] Suppress the inconsistent line ending alert in the Versions browsing.
+- [beta] Add the option to disable incremental search.
+- [beta] Optimize the performance of the incremental search.
+
+
+
 4.3.0-rc (515)
 --------------------------
 

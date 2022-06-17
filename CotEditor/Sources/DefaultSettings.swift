@@ -156,6 +156,7 @@ struct DefaultSettings {
         .findIsWrap: true,
         .findMatchesFullWord: false,
         .findNextAfterReplace: true,
+        .findSearchesIncrementally: true,
         .findClosesIndicatorWhenDone: true,
         .findIgnoresCase: false,
         .findTextIsLiteralSearch: false,

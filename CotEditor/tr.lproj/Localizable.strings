@@ -27,6 +27,7 @@
 // Basic button titles
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
+"Done" = "Bitti";
 
 
 // Appending words in parentheses
@@ -648,9 +649,9 @@
 "Space" = "Boşluk";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@”, halihazırda “%@ komutu tarafından alınmış.";
+"“%@” is already taken by the “%@” command." = "“%@”, halihazırda “%@” komutu tarafından alınmış.";
 "The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";
-"The combination “%@” is not supported for the key binding customization." = "The combination “%@” is not supported for the key binding customization.";  // FIXME: added
+"The combination “%@” is not supported for the key binding customization." = "“%@” kombinasyonu, düğme bağıntısı özelleştirmesi için desteklenmiyor.";
 "Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
 "Please combine with other keys." = "Lütfen başka düğmeler ile ikileyin.";
 

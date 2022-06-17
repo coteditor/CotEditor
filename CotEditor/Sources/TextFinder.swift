@@ -448,9 +448,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // mark all matches
         if marksAllMatches, let layoutManager = textView.layoutManager {
-            layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
-            for range in result.ranges {
-                layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
+            layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
+                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
+                for range in result.ranges {
+                    layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
+                }
             }
             
             // unmark either when the client view resigned the key window or when the Find panel closed

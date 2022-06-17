@@ -27,6 +27,7 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Abbrechen";
+"Done" = "Fertig";
 
 
 // Appending words in parentheses
