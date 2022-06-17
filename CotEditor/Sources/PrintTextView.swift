@@ -419,7 +419,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 return self.syntaxName
             
             case .filePath:
-                return self.fileURL?.path.abbreviatingWithTildeInSandboxedPath ?? self.documentName
+                return self.fileURL?.pathAbbreviatingWithTilde ?? self.documentName
                 
             case .printDate:
                 self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
