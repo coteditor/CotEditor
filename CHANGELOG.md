@@ -10,6 +10,11 @@ Change Log
 - Add new Shuffle command to Text > Lines submenu.
 
 
+### Improvements
+
+- [trivial] Update French localization.
+
+
 
 4.3.0 (517)
 --------------------------
