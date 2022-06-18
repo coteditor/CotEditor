@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ extension EditorTextView {
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 let leftImage = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: "Shift Left".localized)!
                 let rightImage = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: "Shift Right".localized)!
-                item.customizationLabel = "Shift".localized(comment: "touch bar item")
+                item.customizationLabel = String(localized: "Shift", comment: "touch bar item")
                 item.view = NSSegmentedControl(images: [leftImage, rightImage],
                                                trackingMode: .momentary,
                                                target: self, action: #selector(shift))
@@ -71,13 +71,13 @@ extension EditorTextView {
             
             case .comment:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = "Comment".localized(comment: "touch bar item")
+                item.customizationLabel = String(localized: "Comment", comment: "touch bar item")
                 item.view = NSButton(image: NSImage(named: "text.commentout")!, target: self, action: #selector(toggleComment))
                 return item
             
             case .textSize:
                 let item = NSPopoverTouchBarItem(identifier: identifier)
-                item.customizationLabel = "Text Size".localized(comment: "touch bar item")
+                item.customizationLabel = String(localized: "Text Size", comment: "touch bar item")
                 item.collapsedRepresentationImage = NSImage(systemSymbolName: "textformat.size", accessibilityDescription: "Text Size".localized)!
                 item.popoverTouchBar = TextSizeTouchBar(textView: self)
                 item.pressAndHoldTouchBar = TextSizeTouchBar(textView: self, forPressAndHold: true)

@@ -181,7 +181,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
-            labelItem.title = "Recently Used".localized(comment: "menu heading in syntax style list on toolbar popup")
+            labelItem.title = String(localized: "Recently Used", comment: "menu heading in syntax style list on toolbar popup")
             labelItem.isEnabled = false
             menu.addItem(labelItem)
             

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,21 +68,21 @@ extension DocumentViewController: NSTouchBarDelegate {
         switch identifier {
             case .invisibles:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = "Invisibles".localized(comment: "touch bar item")
+                item.customizationLabel = String(localized: "Invisibles", comment: "touch bar item")
                 let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: "Invisibles".localized)!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
                 return item
             
             case .indentGuides:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = "Indent Guides".localized(comment: "touch bar item")
+                item.customizationLabel = String(localized: "Indent Guides", comment: "touch bar item")
                 let image = NSImage(named: "text.indentguides")!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
                 return item
             
             case .wrapLines:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.customizationLabel = "Wrap Lines".localized(comment: "touch bar item")
+                item.customizationLabel = String(localized: "Wrap Lines", comment: "touch bar item")
                 let image = NSImage(named: "text.wrap")!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleLineWrapViaTouchBar))
                 return item

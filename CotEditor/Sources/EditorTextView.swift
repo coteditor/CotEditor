@@ -841,7 +841,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard let menu = super.menu(for: event) else { return nil }
         
         // remove unwanted "Font" menu and its submenus
-        if let fontMenuItem = menu.item(withTitle: "Font".localized(comment: "menu item title in the context menu")) {
+        if let fontMenuItem = menu.item(withTitle: String(localized: "Font", comment: "menu item title in the context menu")) {
             menu.removeItem(fontMenuItem)
         }
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,14 +30,14 @@ extension String {
     /// Cocoa localized string
     var localized: String {
         
-        return NSLocalizedString(self, comment: "")
+        NSLocalizedString(self, comment: "")
     }
     
     
     /// returns a localized string, using the main bundle if one is not specified.
-    func localized(tableName: String? = nil, bundle: Bundle = .main, value: String = "", comment: String = "") -> String {
+    func localized(tableName: String) -> String {
         
-        return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: value, comment: comment)
+        NSLocalizedString(self, tableName: tableName, comment: "")
     }
     
 }
