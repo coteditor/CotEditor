@@ -5,6 +5,10 @@ Change Log
 4.3.1-alpha (unreleased)
 --------------------------
 
+### New Features
+
+- Add new Shuffle command to Text > Lines submenu.
+
 
 
 4.3.0 (517)

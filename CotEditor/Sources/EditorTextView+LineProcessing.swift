@@ -77,6 +77,18 @@ extension EditorTextView {
     }
     
     
+    /// shuffle selected lines (only in the first selection)
+    @IBAction func shuffleLines(_ sender: Any?) {
+        
+        // process whole document if no text selected
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        
+        guard let editingInfo = self.string.shuffleLines(in: range) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Shuffle Lines".localized)
+    }
+    
+    
     /// delete duplicate lines in selection
     @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
@@ -321,6 +333,27 @@ extension String {
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
             .reversed()
+            .joined(separator: lineEnding)
+        
+        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
+    }
+    
+    
+    /// shuffle selected lines
+    func shuffleLines(in range: NSRange) -> EditingInfo? {
+        
+        let string = self as NSString
+        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
+        
+        // do nothing with single line
+        guard lineEndingRange != .notFound else { return nil }
+        
+        let lineEnding = string.substring(with: lineEndingRange)
+        let lineRange = string.lineContentsRange(for: range)
+        let newString = string
+            .substring(with: lineRange)
+            .components(separatedBy: .newlines)
+            .shuffled()
             .joined(separator: lineEnding)
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])

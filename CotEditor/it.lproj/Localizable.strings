@@ -421,6 +421,7 @@
 "Move Line" = "Muovi riga";
 "Sort Lines" = "Ordina righe";
 "Reverse Lines" = "Inverti righe";
+"Shuffle Lines" = "Shuffle Lines";  // FIXME: added
 "Delete Duplicate Lines" = "Elimina righe duplicate";
 "Duplicate Line" = "Duplica riga";
 "Delete Line" = "Elimina riga";

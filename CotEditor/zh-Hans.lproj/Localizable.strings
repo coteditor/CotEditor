@@ -421,6 +421,7 @@
 "Move Line" = "移动行";
 "Sort Lines" = "排序行";
 "Reverse Lines" = "逆序行";
+"Shuffle Lines" = "Shuffle Lines";  // FIXME: added
 "Delete Duplicate Lines" = "移除重复行";
 "Duplicate Line" = "复制行";
 "Delete Line" = "删除行";

@@ -421,6 +421,7 @@
 "Move Line" = "Move Line";
 "Sort Lines" = "Sort Lines";
 "Reverse Lines" = "Reverse Lines";
+"Shuffle Lines" = "Shuffle Lines";
 "Delete Duplicate Lines" = "Delete Duplicate Lines";
 "Duplicate Line" = "Duplicate Line";
 "Delete Line" = "Delete Line";

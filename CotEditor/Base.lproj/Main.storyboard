@@ -759,6 +759,12 @@ DQ
                                                             <action selector="reverseLines:" target="Ady-hI-5gd" id="Ch5-d7-qWS"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Shuffle" id="M8V-zi-g4l">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="shuffleLines:" target="Ady-hI-5gd" id="osd-nP-5fS"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem title="Delete Duplicates" id="bjv-m0-tZq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

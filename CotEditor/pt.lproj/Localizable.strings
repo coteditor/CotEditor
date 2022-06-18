@@ -421,6 +421,7 @@
 "Move Line" = "Mover Linha";
 "Sort Lines" = "Ordenar Linhas";
 "Reverse Lines" = "Inverter Linhas";
+"Shuffle Lines" = "Shuffle Lines";  // FIXME: added
 "Delete Duplicate Lines" = "Apagar Linhas Duplicadas";
 "Duplicate Line" = "Duplicar Linha";
 "Delete Line" = "Apagar Linha";
