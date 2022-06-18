@@ -103,8 +103,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
-                                              Bundle.main.minorVersion)
+        self.whatsNewMenuItem?.title = String(localized: "What’s New in CotEditor \(Bundle.main.minorVersion)")
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -393,7 +392,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(format: "“%@” is a CotEditor theme file.".localized, url.lastPathComponent)
+        alert.messageText = String(localized: "“\(url.lastPathComponent)” is a CotEditor theme file.")
         alert.informativeText = "Do you want to install this theme?".localized
         alert.addButton(withTitle: "Install".localized)
         alert.addButton(withTitle: "Open as Text File".localized)
@@ -416,7 +415,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // feedback for success
         let themeName = ThemeManager.shared.settingName(from: url)
         let feedbackAlert = NSAlert()
-        feedbackAlert.messageText = String(format: "A new theme named “%@” has been successfully installed.".localized, themeName)
+        feedbackAlert.messageText = String(localized: "A new theme named “\(themeName)” has been successfully installed.")
         
         NSSound.glass?.play()
         feedbackAlert.runModal()

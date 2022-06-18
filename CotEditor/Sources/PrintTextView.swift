@@ -423,7 +423,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 
             case .printDate:
                 self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-                return String(format: "Printed on %@".localized, self.dateFormatter.string(from: .now))
+                return String(localized: "Printed on \(self.dateFormatter.string(from: .now))")
             
             case .pageNumber:
                 guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }

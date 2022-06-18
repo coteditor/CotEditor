@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %d characters>" = "<a letter consisting of %d characters>";
+"<a letter consisting of %lld characters>" = "<a letter consisting of %lld characters>";
 
 // Variation selectors
 "Emoji Style" = "Emoji Style";

@@ -79,7 +79,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
-            let title = String(format: "Insert Text %li".localized, locale: .current, index)
+            let title = String(localized: "Insert Text \(index)")
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             

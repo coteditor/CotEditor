@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "Sostituisci la selezione attuale con il testo sostitutivo, poi passa al risultato successivo.";
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
-"%i found" = "%i trovati";  // %i is number of founds
+"%lld found" = "%lld trovati";  // %lld is number of founds
 "Not Replaced" = "Non sostituiti";
-"%i replaced" = "%i sostituzioni";  // %i is number of replaced
+"%lld replaced" = "%lld sostituzioni";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Nessuna stringa trovata in “%@”.";
 "Found one string in “%@”." = "Trovata una stringa in “%@”.";
-"Found %i strings in “%@”." = "Trovate %i stringhe in %@”.";
+"Found %lld strings in “%@”." = "Trovate %lld stringhe in %@”.";
 
 
 
@@ -392,11 +392,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
 "Found an incompatible character." = "Rilevato un carattere incompatibile.";
-"Found %i incompatible characters." = "Rilevati %i caratteri incompatibili.";  // %i is the number of characters
+"Found %lld incompatible characters." = "Rilevati %lld caratteri incompatibili.";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "Rilevate %i righe che non terminano con %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "Rilevate %lld righe che non terminano con %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -571,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "Nessun errore rilevato.";
 "An error found!" = "Trovato un errore.";
-"%i errors found!" = "Trovati %i errori.";
+"%lld errors found!" = "Trovati %lld errori.";
 "outline" = "outline";
 
 
@@ -644,7 +644,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "Inserisci testo %li";
+"Insert Text %lld" = "Inserisci testo %lld";
 
 // Keyboard key name
 "Space" = "Spazio";

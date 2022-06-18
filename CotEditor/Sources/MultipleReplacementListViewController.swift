@@ -103,13 +103,13 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             
             case #selector(renameSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Rename “%@”".localized, name)
+                    menuItem.title = String(localized: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
             
             case #selector(duplicateSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                    menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
             
@@ -118,13 +118,13 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             
             case #selector(exportSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                    menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 
             case #selector(revealSettingInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
+                    menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 
             case nil:
@@ -294,7 +294,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     private func deleteSetting(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: "Are you sure you want to delete “%@”?".localized, name)
+        alert.messageText = String(localized: "Are you sure you want to delete “\(name)”?")
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)

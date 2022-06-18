@@ -378,13 +378,11 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .binaryFile:
-                return String(format: "The file “%@” doesn’t appear to be text data.".localized,
-                              self.url.lastPathComponent)
+                return String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
             
             case .tooLarge(let size):
-                return String(format: "The file “%@” has a size of %@.".localized,
-                              self.url.lastPathComponent,
-                              size.formatted(.byteCount(style: .file)))
+                let byteSize = size.formatted(.byteCount(style: .file))
+                return String(localized: "The file “\(self.url.lastPathComponent)” has a size of \(byteSize).")
         }
     }
     
@@ -394,7 +392,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         switch self.kind {
             case .binaryFile(let type):
                 let localizedTypeName = type.localizedDescription ?? "unknown file type"
-                return String(format: "The file appears to be %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
+                return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?")
             
             case .tooLarge:
                 return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized

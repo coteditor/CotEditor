@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
 "Not Found" = "Bulunamadı";
-"%i found" = "%i bulundu";  // %i is number of founds
+"%lld found" = "%lld bulundu";  // %lld is number of founds
 "Not Replaced" = "Değiştirilmedi";
-"%i replaced" = "%i değiştirildi";  // %i is number of replaced
+"%lld replaced" = "%lld değiştirildi";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
 "Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
-"Found %i strings in “%@”." = "%2$@ içinde %1$i dizi bulundu.";
+"Found %lld strings in “%@”." = "%2$@ içinde %1$lld dizi bulundu.";
 
 
 
@@ -392,11 +392,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
 "Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
-"Found %i incompatible characters." = "%i uyumsuz karakter bulundu.";  // %i is the number of characters
+"Found %lld incompatible characters." = "%lld uyumsuz karakter bulundu.";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "%@ dışında %i başka satır sonu bulundu.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "%@ dışında %lld başka satır sonu bulundu.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -571,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "Hata bulunamadı.";
 "An error found!" = "Bir hata bulundu!";
-"%i errors found!" = "%i hata bulundu!";
+"%lld errors found!" = "%lld hata bulundu!";
 "outline" = "ana hat";
 
 
@@ -644,7 +644,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "%li Metnini Ekle";
+"Insert Text %lld" = "%lld Metnini Ekle";
 
 // Keyboard key name
 "Space" = "Boşluk";

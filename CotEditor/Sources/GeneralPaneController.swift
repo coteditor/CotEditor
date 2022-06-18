@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -162,8 +162,7 @@ final class GeneralPaneController: NSViewController {
         self.cltStatusView?.toolTip = status.message
         
         self.cltPathField?.isHidden = !status.installed
-        self.cltPathField?.stringValue = String(format: "installed at %@".localized,
-                                                CommandLineToolManager.shared.linkURL.path)
+        self.cltPathField?.stringValue = String(localized: "installed at \(CommandLineToolManager.shared.linkURL.path)")
     }
     
 }

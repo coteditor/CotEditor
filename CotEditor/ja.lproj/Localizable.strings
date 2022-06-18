@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
-"%i found" = "%i件見つかりました";  // %@ is number of founds
+"%lld found" = "%lld件見つかりました";  // %lld is number of founds
 "Not Replaced" = "見つかりません";
-"%i replaced" = "%i件置換しました";  // %@ is number of replaced
+"%lld replaced" = "%lld件置換しました";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に1件見つかりました。";
-"Found %i strings in “%@”." = "“%2$@”内に%1$i件見つかりました。";
+"Found %lld strings in “%@”." = "“%2$@”内に%1$lld件見つかりました。";
 
 
 
@@ -392,11 +392,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "非互換文字を走査中…";
 "Found an incompatible character." = "1個の非互換文字が見つかりました。";
-"Found %i incompatible characters." = "%i個の非互換文字が見つかりました。";  // %i is the number of characters
+"Found %lld incompatible characters." = "%lld個の非互換文字が見つかりました。";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "1個の%@でない改行コードが見つかりました。";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "%i個の%@でない改行コードが見つかりました。";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "%lld個の%@でない改行コードが見つかりました。";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -571,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "エラーはありません。";
 "An error found!" = "1個のエラーがあります！";
-"%i errors found!" = "%i個のエラーがあります！";
+"%lld errors found!" = "%lld個のエラーがあります！";
 "outline" = "アウトライン";
 
 
@@ -644,7 +644,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "テキストを挿入%li";
+"Insert Text %lld" = "テキストを挿入%lld";
 
 // Keyboard key name
 "Space" = "スペース";

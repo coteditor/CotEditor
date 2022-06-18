@@ -133,7 +133,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             case #selector(duplicateSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                    menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
             
@@ -142,21 +142,21 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             case #selector(restoreSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Restore “%@”".localized, name)
+                    menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
                 return isBundled && isCustomized
             
             case #selector(exportSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                    menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return isCustomized
             
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
+                    menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 return isCustomized
             
@@ -567,7 +567,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     private func deleteSyntaxStyle(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: "Are you sure you want to delete “%@” syntax style?".localized, name)
+        alert.messageText = String(localized: "Are you sure you want to delete “\(name)” syntax style?")
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)

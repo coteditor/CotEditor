@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -78,13 +78,13 @@ struct ScriptFileError: LocalizedError {
         
         switch self.kind {
             case .existance:
-                return String(format: "The script “%@” does not exist.".localized, self.url.lastPathComponent)
+                return String(localized: "The script “\(self.url.lastPathComponent)” does not exist.")
             case .read:
-                return String(format: "The script “%@” couldn’t be read.".localized, self.url.lastPathComponent)
+                return String(localized: "The script “\(self.url.lastPathComponent)” couldn’t be read.")
             case .open:
-                return String(format: "The script file “%@” couldn’t be opened.".localized, self.url.path)
+                return String(localized: "The script file “\(self.url.path)” couldn’t be opened.")
             case .permission:
-                return String(format: "The script “%@” can’t be executed because you don’t have the execute permission.".localized, self.url.lastPathComponent)
+                return String(localized: "The script “\(self.url.lastPathComponent)” can’t be executed because you don’t have the execute permission.")
         }
     }
     

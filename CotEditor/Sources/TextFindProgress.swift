@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ final class TextFindProgress: Progress {
     
     // MARK: Private Properties
     
-    private let format: CountableFormatter
+    private let format: CountableFormat
     private var _localizedDescription: String?
     
     
@@ -37,7 +37,7 @@ final class TextFindProgress: Progress {
     // MARK: -
     // MARK: Lifecycle
     
-    init(format: CountableFormatter, totalUnitCount: Int = -1) {
+    init(format: CountableFormat, totalUnitCount: Int = -1) {
         
         self.format = format
         
@@ -63,17 +63,10 @@ final class TextFindProgress: Progress {
 
 // MARK: -
 
-struct CountableFormatter {
+enum CountableFormat {
     
-    static let find = CountableFormatter(singular: "%li string found.", plural: "%li strings found.")
-    static let replacement = CountableFormatter(singular: "%li string replaced.", plural: "%li strings replaced.")
-    
-    
-    
-    // MARK: Private Properties
-    
-    private let singular: String
-    private let plural: String
+    case find
+    case replacement
     
     
     
@@ -81,22 +74,32 @@ struct CountableFormatter {
     
     fileprivate func localizedString(for count: Int) -> String {
         
-        return String(format: self.format(for: count).localized, locale: .current, count)
+        String(localized: self.format(for: count))
     }
     
     
     
     // MARK: Private Methods
     
-    private func format(for count: Int) -> String {
+    private func format(for count: Int) -> String.LocalizationValue {
         
         switch count {
             case 0:
                 return "Searching in text…"
             case 1:
-                return self.singular
+                switch self {
+                    case .find:
+                        return "\(count) string found."
+                    case .replacement:
+                        return "\(count) string replaced."
+                }
             default:
-                return self.plural
+                switch self {
+                    case .find:
+                        return "\(count) strings found."
+                    case .replacement:
+                        return "\(count) strings replaced."
+                }
         }
     }
     

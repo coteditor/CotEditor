@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ final class SyntaxValidationViewController: NSViewController {
                 case 1:
                     return "An error found!".localized
                 default:
-                    return String(format: "%i errors were found!".localized, errors.count)
+                    return String(localized: "\(errors.count) errors found!")
             }
         }()
     }
