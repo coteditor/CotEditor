@@ -813,7 +813,7 @@ extension AppearancePaneController: NSFontChanging {
         
         let displayName = font.displayName ?? font.fontName
         
-        fontField.stringValue = displayName + " " + String(format: "%g", locale: .current, size)
+        fontField.stringValue = displayName + " " + size.formatted()
         fontField.font = displayFont
         fontField.disablesAntialiasing = !shouldAntiailias
     }

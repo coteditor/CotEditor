@@ -454,7 +454,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
-                        let item = NSMenuItem(title: String(format: "%li", locale: .current, width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                        let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
                         item.indentationLevel = 1
                         return item
