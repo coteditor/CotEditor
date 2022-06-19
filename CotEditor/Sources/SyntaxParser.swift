@@ -213,7 +213,7 @@ extension SyntaxParser {
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
-            self.textStorage.apply(highlights: [], range: highlightRange)
+            self.apply(highlights: [], range: highlightRange)
             return nil
         }
         
@@ -223,7 +223,7 @@ extension SyntaxParser {
            cache.styleName == self.style.name,
            cache.string == self.textStorage.string
         {
-            self.textStorage.apply(highlights: cache.highlights, range: highlightRange)
+            self.apply(highlights: cache.highlights, range: highlightRange)
             return nil
         }
         
@@ -233,7 +233,7 @@ extension SyntaxParser {
         //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
-        return self.highlight(string: string, range: highlightRange)
+        return self.parse(string: string, range: highlightRange)
     }
     
     
@@ -241,9 +241,8 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange) -> Progress {
+    @MainActor private func parse(string: String, range highlightRange: NSRange) -> Progress {
         
-        assert(Thread.isMainThread)
         assert(!(string as NSString).className.contains("MutableString"))
         assert(!highlightRange.isEmpty)
         assert(!self.style.isNone)
@@ -264,7 +263,7 @@ extension SyntaxParser {
             
             try Task.checkCancellation()
             
-            await self?.textStorage.apply(highlights: highlights, range: highlightRange)
+            await self?.apply(highlights: highlights, range: highlightRange)
             
             progress.completedUnitCount += 1
         }
@@ -276,45 +275,12 @@ extension SyntaxParser {
         return progress
     }
     
-}
-
-
-
-extension NSTextStorage {
     
-    /// Apply highlights to the document using layoutManager's temporary attributes.
-    ///
-    /// - Note: Sanitize the `highlights` before so that the ranges do not overwrap each other.
-    ///
-    /// - Parameters:
-    ///   - highlights: The highlight definitions to apply.
-    ///   - highlightRange: The range to update syntax highlight.
-    @MainActor func apply(highlights: [Highlight], range highlightRange: NSRange) {
+    /// apply highlights to all the layoutManagers.
+    @MainActor private func apply(highlights: [Highlight], range highlightRange: NSRange) {
         
-        // -> This condition is really, really important to reduce the time
-        //    to apply large number of temporary attributes. (2022-06, macOS 12)
-        assert(highlights.sorted(\.range.location) == highlights)
-        
-        guard self.length > 0 else { return }
-        
-        for layoutManager in self.layoutManagers {
-            // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
-            guard !highlights.isEmpty || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
-            
-            let theme = (layoutManager.firstTextView as? any Themable)?.theme
-            
-            layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
-                layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
-                layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
-                
-                for highlight in highlights {
-                    layoutManager.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)
-                    
-                    if let color = theme?.style(for: highlight.item)?.color {
-                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: highlight.range)
-                    }
-                }
-            }
+        for layoutManager in self.textStorage.layoutManagers {
+            layoutManager.apply(highlights: highlights, range: highlightRange)
         }
     }
     
@@ -340,6 +306,39 @@ extension NSLayoutManager {
         }
         
         return highlights
+    }
+    
+    
+    /// Apply highlights as temporary attributes.
+    ///
+    /// - Note: Sanitize the `highlights` before so that the ranges do not overwrap each other.
+    ///
+    /// - Parameters:
+    ///   - highlights: The highlight definitions to apply.
+    ///   - highlightRange: The range to update syntax highlight.
+    @MainActor func apply(highlights: [Highlight], range highlightRange: NSRange) {
+        
+        // -> This condition is really, really important to reduce the time
+        //    to apply large number of temporary attributes. (2022-06, macOS 12)
+        assert(highlights.sorted(\.range.location) == highlights)
+        
+        // skip if never colorlized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
+        guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { return }
+        
+        let theme = (self.firstTextView as? any Themable)?.theme
+        
+        self.groupTemporaryAttributesUpdate(in: highlightRange) {
+            self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
+            self.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
+            
+            for highlight in highlights {
+                self.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)
+                
+                if let color = theme?.style(for: highlight.item)?.color {
+                    self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: highlight.range)
+                }
+            }
+        }
     }
     
     

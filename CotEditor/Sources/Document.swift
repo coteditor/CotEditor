@@ -618,7 +618,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         if let highlights = self.textStorage.layoutManagers.first?.syntaxHighlights(), !highlights.isEmpty {
-            printView.textStorage?.apply(highlights: highlights, range: printView.string.range)
+            printView.layoutManager?.apply(highlights: highlights, range: printView.string.range)
         }
         
         // detect URLs manually (2019-05 macOS 10.14).

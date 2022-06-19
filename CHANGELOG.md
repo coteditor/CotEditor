@@ -13,6 +13,7 @@ Change Log
 
 ### Improvements
 
+- Optimize the performance for the editor splitting.
 - [trivial] Update French localization.
 
 
