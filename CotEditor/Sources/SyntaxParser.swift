@@ -146,7 +146,7 @@ extension SyntaxParser {
     /// - Parameters:
     ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
     /// - Returns: The progress of the async highlight task if performed.
-    @MainActor func highlight(around editedRange: NSRange? = nil) -> Progress? {
+    @MainActor func highlight(around editedRange: NSRange?) -> Progress? {
         
         guard !self.textStorage.string.isEmpty else { return nil }
         
