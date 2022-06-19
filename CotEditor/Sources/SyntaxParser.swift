@@ -157,6 +157,13 @@ extension SyntaxParser {
         }
         
         let wholeRange = self.textStorage.range
+        
+        // just clear current highlight and return if no coloring required
+        guard self.style.hasHighlightDefinition else {
+            self.apply(highlights: [], range: wholeRange)
+            return nil
+        }
+        
         let highlightRange: NSRange = {
             guard let editedRange = editedRange, editedRange != wholeRange else { return wholeRange }
             
@@ -177,14 +184,14 @@ extension SyntaxParser {
             // expand highlight area if the character just before/after the highlighting area is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
                 if highlightRange.lowerBound > 0,
-                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
+                   let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
                 {
                     highlightRange = NSRange(location: effectiveRange.lowerBound,
                                              length: highlightRange.upperBound - effectiveRange.lowerBound)
                 }
                 
                 if highlightRange.upperBound < wholeRange.upperBound,
-                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
+                   let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
                 {
                     highlightRange.length = effectiveRange.upperBound - highlightRange.location
                 }
@@ -196,19 +203,13 @@ extension SyntaxParser {
             
             return highlightRange
         }()
-        
         guard !highlightRange.isEmpty else { return nil }
         
-        // just clear current highlight and return if no coloring needs
-        guard self.style.hasHighlightDefinition else {
-            self.apply(highlights: [], range: highlightRange)
-            return nil
-        }
-        
-        // make sure that string is immutable
+        // make sure the string is immutable
         // -> `string` of NSTextStorage is actually a mutable object
         //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
         //    (2016-11, macOS 10.12.1 SDK)
+        moof((self.textStorage.string as NSString).className)
         let string = self.textStorage.string.immutable
         
         return self.parse(string: string, range: highlightRange)
@@ -266,11 +267,10 @@ extension NSLayoutManager {
     
     /// Extract all syntax highlights in the given range.
     ///
-    /// - Parameter range: The range to extract highlights.
     /// - Returns: An array of Highlights in order.
-    @MainActor func syntaxHighlights(in range: NSRange? = nil) -> [Highlight] {
+    @MainActor func syntaxHighlights() -> [Highlight] {
         
-        let targetRange = range ?? self.attributedString().range
+        let targetRange = self.attributedString().range
         
         var highlights: [Highlight] = []
         self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
@@ -320,10 +320,9 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - theme: The theme to apply.
-    ///   - range: The range to invalidate highlight.
-    @MainActor func invalidateHighlight(theme: Theme, in range: NSRange? = nil) {
+    @MainActor func invalidateHighlight(theme: Theme) {
         
-        let targetRange = range ?? self.attributedString().range
+        let targetRange = self.attributedString().range
         
         guard self.hasTemporaryAttribute(.syntaxType, in: targetRange) else { return }
         
