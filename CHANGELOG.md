@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Add new Shuffle command to Text > Lines submenu.
+- Update Swift syntax style to add keywords.
 
 
 ### Improvements
