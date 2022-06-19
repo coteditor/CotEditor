@@ -39,18 +39,9 @@ extension NSAttributedString.Key {
 
 final class SyntaxParser {
     
-    private struct Cache {
-        
-        var styleName: String
-        var string: String
-        var highlights: [Highlight]
-    }
-    
-    
     // MARK: Public Properties
     
     let textStorage: NSTextStorage
-    
     var style: SyntaxStyle
     
     @Published private(set) var outlineItems: [OutlineItem]?
@@ -60,8 +51,6 @@ final class SyntaxParser {
     
     private var outlineParseTask: Task<Void, Error>?
     private var highlightParseTask: Task<Void, Error>?
-    
-    private var highlightCache: Cache?  // results cache of the last whole string highlights
     
     private var textEditingObserver: AnyCancellable?
     
@@ -101,7 +90,6 @@ final class SyntaxParser {
     /// Cancel all syntax parse including ones in the queues.
     func invalidateCurrentParse() {
         
-        self.highlightCache = nil
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
     }
@@ -217,16 +205,6 @@ extension SyntaxParser {
             return nil
         }
         
-        // use cache if the content of the whole document is the same as the last
-        if highlightRange == wholeRange,
-           let cache = self.highlightCache,
-           cache.styleName == self.style.name,
-           cache.string == self.textStorage.string
-        {
-            self.apply(highlights: cache.highlights, range: highlightRange)
-            return nil
-        }
-        
         // make sure that string is immutable
         // -> `string` of NSTextStorage is actually a mutable object
         //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
@@ -254,12 +232,8 @@ extension SyntaxParser {
         let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
         let progress = Progress(totalUnitCount: 1)
         
-        let task = Task.detached(priority: .userInitiated) { [weak self, styleName = self.style.name] in
+        let task = Task.detached(priority: .userInitiated) { [weak self] in
             let highlights = try await parser.parse()
-            
-            if highlightRange == string.nsRange {
-                self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
-            }
             
             try Task.checkCancellation()
             
