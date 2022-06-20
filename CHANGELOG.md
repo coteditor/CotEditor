@@ -8,12 +8,12 @@ Change Log
 ### New Features
 
 - Add new Shuffle command to the Text > Lines submenu.
-- Update Swift syntax style to add keywords.
 
 
 ### Improvements
 
 - Optimize the performance for editor splitting.
+- Update Swift syntax style to add keywords.
 - [trivial] Update French localization.
 
 

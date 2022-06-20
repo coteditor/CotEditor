@@ -8,15 +8,12 @@ CotEditor is a lightweight plain-text editor for macOS.
 - __Web Site__: <https://coteditor.com>
 - __Mac App Store__: <https://itunes.apple.com/app/coteditor/id1024640650?ls=1>
 
-<img src="screenshot@2x.png" width="731"/>
+<img src="screenshot@2x.png" width="731" alt="screenshot"/>
 
 
 
 Source Code
 --------------------------
-
-[![Test Status](https://github.com/coteditor/CotEditor/workflows/Test/badge.svg)](https://github.com/coteditor/CotEditor/actions?query=workflow%3ATest)
-[![GitHub release](https://img.shields.io/github/release/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/releases/latest)
 
 CotEditor is a pure document-based Cocoa application written in Swift.
 
@@ -27,6 +24,13 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 - Xcode 13.4
 - Swift 5.6
 - Sandbox enabled
+
+
+
+Contribution
+--------------------------
+
+CotEditor has own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
 
 
 
@@ -47,19 +51,12 @@ For those people who just want to build and play with CotEditor locally.
 1. Build "CotEditor" scheme in the workspace.
 
 
-### Build for distribution (incl. Sparkle version)
+### Build for distribution
 
 1. Run following commands to resolve dependencies.
     - `git submodule update --init --recursive`
 1. Open `CotEditor.xcodeproj` in Xcode.
 1. Build "CotEditor" scheme in the workspace.
-
-
-
-Contribution
---------------------------
-
-CotEditor has own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
 
 
 
