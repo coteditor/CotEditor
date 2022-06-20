@@ -209,7 +209,6 @@ extension SyntaxParser {
         // -> `string` of NSTextStorage is actually a mutable object
         //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
         //    (2016-11, macOS 10.12.1 SDK)
-        moof((self.textStorage.string as NSString).className)
         let string = self.textStorage.string.immutable
         
         return self.parse(string: string, range: highlightRange)
