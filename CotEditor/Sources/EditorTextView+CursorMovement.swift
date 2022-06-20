@@ -258,7 +258,7 @@ extension EditorTextView {
         let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
         let origin = isLowerOrigin ? superRange.lowerBound : superRange.upperBound
         
-        //  skip modifying the selection in RTL text as it is too complex
+        // skip modifying the selection in RTL text as it is too complex
         // -> Additional word boundaries may be not so nessessory in RTL text.
         guard !self.layoutManager!.isRTL(at: cursor) else { return }
         
