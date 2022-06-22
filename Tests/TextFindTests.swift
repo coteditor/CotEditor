@@ -54,7 +54,7 @@ final class TextFindTests: XCTestCase {
         let findString = "abc"
         
         var textFind: TextFind
-        var result: (range: NSRange?, ranges: [NSRange], wrapped: Bool)
+        var result: TextFind.FindResult
         
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
         
@@ -94,7 +94,7 @@ final class TextFindTests: XCTestCase {
     func testFullWord() throws {
         
         var textFind: TextFind
-        var result: (range: NSRange?, ranges: [NSRange], wrapped: Bool)
+        var result: TextFind.FindResult
         
         textFind = try TextFind(for: "apples apple Apple", findString: "apple",
                                 mode: .textual(options: .caseInsensitive, fullWord: true))
@@ -154,7 +154,7 @@ final class TextFindTests: XCTestCase {
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
         
         var textFind: TextFind
-        var result: (range: NSRange?, ranges: [NSRange], wrapped: Bool)
+        var result: TextFind.FindResult
         var replacementResult: ReplacementItem?
         
         

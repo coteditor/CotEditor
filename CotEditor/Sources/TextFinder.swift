@@ -302,7 +302,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 switch flag {
-                    case .findProgress, .foundCount:
+                    case .findProgress:
                         break
                     case .replacementProgress:
                         progress.completedUnitCount += 1

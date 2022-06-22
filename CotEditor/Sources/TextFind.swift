@@ -45,7 +45,6 @@ final class TextFind {
     enum ReplacingFlag {
         
         case findProgress
-        case foundCount(Int)
         case replacementProgress
     }
     
@@ -82,6 +81,19 @@ final class TextFind {
             }
         }
         
+    }
+    
+    
+    struct FindResult {
+        
+        /// The range of matched or nil if not found.
+        var range: NSRange?
+        
+        /// The ranges of all matches in the scopes.
+        var ranges: [NSRange]
+        
+        /// Whether the search was wrapped to find the result.
+        var wrapped: Bool
     }
     
     
@@ -174,11 +186,8 @@ final class TextFind {
     ///   - forward: Whether searchs forward from the insertion.
     ///   - isWrap: Whether the search wraps  around.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
-    /// - Returns:
-    ///   - range: The range of matched or nil if not found.
-    ///   - ranges: The ranges of all matches in the scopes.
-    ///   - wrapped: Whether the search was wrapped to find the result.
-    func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) -> (range: NSRange?, ranges: [NSRange], wrapped: Bool) {
+    /// - Returns:An FindResult object.
+    func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) -> FindResult {
         
         assert(forward || !includingSelection)
         
@@ -192,14 +201,14 @@ final class TextFind {
             : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
         var forwardMatches: [NSRange] = []  // matches after the start location
-        let forwardRange = NSRange(startLocation..<(self.string as NSString).length)
-        self.enumerateMatchs(in: [forwardRange], using: { (matchedRange, _, _) in
+        let forwardRange = NSRange(startLocation..<self.string.length)
+        self.enumerateMatchs(in: forwardRange) { (matchedRange, _, _) in
             forwardMatches.append(matchedRange)
-        })
+        }
         
         var wrappedMatches: [NSRange] = []  // matches before the start location
         var intersectionMatches: [NSRange] = []  // matches including the start location
-        self.enumerateMatchs(in: [(self.string as NSString).range], using: { (matchedRange, _, stop) in
+        self.enumerateMatchs(in: self.string.range) { (matchedRange, _, stop) in
             if matchedRange.location >= startLocation {
                 stop = true
                 return
@@ -209,7 +218,7 @@ final class TextFind {
             } else {
                 wrappedMatches.append(matchedRange)
             }
-        })
+        }
         
         var foundRange = forward ? forwardMatches.first : wrappedMatches.last
         
@@ -221,30 +230,7 @@ final class TextFind {
         
         let ranges = wrappedMatches + intersectionMatches + forwardMatches
         
-        return (foundRange, ranges, isWrapped)
-    }
-    
-    
-    /// Return a match in selection ranges.
-    ///
-    /// - Parameters:
-    ///   - forward: Whether searchs forward from the insertion.
-    /// - Returns:
-    ///   - range: The range of matched or nil if not found.
-    ///   - ranges: The ranges of all matches in the scopes.
-    ///   - wrapped: Whether the search was wrapped to find the result.
-    func findInSelection(forward: Bool) -> (range: NSRange?, ranges: [NSRange], wrapped: Bool) {
-        
-        assert(self.inSelection)
-        
-        var matches: [NSRange] = []
-        self.enumerateMatchs(in: self.selectedRanges, using: { (matchedRange, _, _) in
-            matches.append(matchedRange)
-        })
-        
-        let foundRange = forward ? matches.first : matches.last
-        
-        return (foundRange, matches, false)
+        return .init(range: foundRange, ranges: ranges, wrapped: isWrapped)
     }
     
     
@@ -271,7 +257,6 @@ final class TextFind {
                 guard let match = regex.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: selectedRange) else { return nil }
                 
                 let template = self.replacementString(from: replacementString)
-                
                 let replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
                 
                 return ReplacementItem(string: replacedString, range: match.range)
@@ -289,16 +274,17 @@ final class TextFind {
         
         let numberOfGroups = self.numberOfCaptureGroups
         
-        self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
-            
-            var matches = [matchedRange]
-            
-            if let match = match, numberOfGroups > 0 {
-                matches += (1...numberOfGroups).map { match.range(at: $0) }
+        for range in self.scopeRanges {
+            self.enumerateMatchs(in: range) { (matchedRange, match, stop) in
+                var matches = [matchedRange]
+                
+                if let match = match, numberOfGroups > 0 {
+                    matches += (1...numberOfGroups).map { match.range(at: $0) }
+                }
+                
+                block(matches, &stop)
             }
-            
-            block(matches, &stop)
-        })
+        }
     }
     
     
@@ -319,24 +305,23 @@ final class TextFind {
         var selectedRanges: [NSRange] = []
         var ioStop = false
         
-        // temporal container collecting replacements to process string per selection in `scopeCompletionHandler` block
-        var items: [ReplacementItem] = []
-        
-        self.enumerateMatchs(in: self.scopeRanges, using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+        for scopeRange in self.scopeRanges {
+            var items: [ReplacementItem] = []
             
-            let replacedString: String = {
-                guard let match = match, let regex = match.regularExpression else { return replacementString }
+            self.enumerateMatchs(in: scopeRange) { (matchedRange, match, stop) in
+                let replacedString: String = {
+                    guard let match = match, let regex = match.regularExpression else { return replacementString }
+                    
+                    return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
+                }()
                 
-                return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
-            }()
+                items.append(ReplacementItem(string: replacedString, range: matchedRange))
+                
+                block(.findProgress, &ioStop)
+                stop = ioStop
+            }
             
-            items.append(ReplacementItem(string: replacedString, range: matchedRange))
-            
-            block(.findProgress, &ioStop)
-            stop = ioStop
-            
-        }, scopeCompletionHandler: { (scopeRange: NSRange) in
-            block(.foundCount(items.count), &ioStop)
+            if ioStop { break }
             
             let length: Int
             if items.isEmpty {
@@ -345,8 +330,9 @@ final class TextFind {
                 // build replacementString
                 let replacedString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
                 for item in items.reversed() {
+                    var ioStop = false
                     block(.replacementProgress, &ioStop)
-                    if ioStop { return }
+                    if ioStop { break }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
                     let substringRange = item.range.shifted(by: -scopeRange.location)
@@ -356,15 +342,15 @@ final class TextFind {
                 length = replacedString.length
             }
             
+            if ioStop { break }
+            
             // build selectedRange
             let locationDelta = zip(selectedRanges, self.selectedRanges)
                 .map { $0.0.length - $0.1.length }
                 .reduce(scopeRange.location, +)
             let selectedRange = NSRange(location: locationDelta, length: length)
             selectedRanges.append(selectedRange)
-            
-            items.removeAll()
-        })
+        }
         
         return (replacementItems, self.inSelection ? selectedRanges : nil)
     }
@@ -372,9 +358,6 @@ final class TextFind {
     
     
     // MARK: Private Methods
-    
-    private typealias EnumerationBlock = ((_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void)
-    
     
     /// unescape given string for replacement string only if needed
     private func replacementString(from string: String) -> String {
@@ -395,77 +378,85 @@ final class TextFind {
     }
     
     
+    /// Return a match in selection ranges.
+    ///
+    /// - Parameters:
+    ///   - forward: Whether searchs forward from the insertion.
+    /// - Returns:An FindResult object.
+    private func findInSelection(forward: Bool) -> FindResult {
+        
+        assert(self.inSelection)
+        
+        var matches: [NSRange] = []
+        for range in self.selectedRanges {
+            self.enumerateMatchs(in: range) { (matchedRange, _, _) in
+                matches.append(matchedRange)
+            }
+        }
+        
+        let foundRange = forward ? matches.first : matches.last
+        
+        return .init(range: foundRange, ranges: matches, wrapped: false)
+    }
+    
+    
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
+    private func enumerateMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         switch self.mode {
             case .textual:
-                self.enumerateTextualMatchs(in: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
-            
+                self.enumerateTextualMatchs(in: range, using: block)
             case .regularExpression:
-                self.enumerateRegularExpressionMatchs(in: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
+                self.enumerateRegularExpressionMatchs(in: range, using: block)
         }
     }
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
+    private func enumerateTextualMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         guard !self.string.isEmpty else { return }
         
         guard case let .textual(options, fullWord) = self.mode else { return assertionFailure() }
         
         let string = self.string as NSString
+        var searchRange = range
         
-        for scopeRange in ranges {
-            var searchRange = scopeRange
+        while searchRange.location != NSNotFound {
+            searchRange.length = string.length - searchRange.location
+            let foundRange = string.range(of: self.findString, options: options, range: searchRange)
             
-            while searchRange.location != NSNotFound {
-                searchRange.length = string.length - searchRange.location
-                let foundRange = string.range(of: self.findString, options: options, range: searchRange)
-                
-                guard foundRange.upperBound <= scopeRange.upperBound else { break }
-                
-                searchRange.location = foundRange.upperBound
-                
-                guard !fullWord || self.isFullWord(range: foundRange) else { continue }
-                
-                var stop = false
-                block(foundRange, nil, &stop)
-                
-                guard !stop else { return }
-            }
+            guard foundRange.upperBound <= range.upperBound else { break }
             
-            scopeCompletionHandler(scopeRange)
+            searchRange.location = foundRange.upperBound
+            
+            guard !fullWord || self.isFullWord(range: foundRange) else { continue }
+            
+            var stop = false
+            block(foundRange, nil, &stop)
+            
+            guard !stop else { return }
         }
     }
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
+    private func enumerateRegularExpressionMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         guard !self.string.isEmpty else { return }
         
         let string = self.string
         let regex = self.regex!
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
-        var cancelled = false
         
-        for scopeRange in ranges {
-            guard !cancelled else { return }
+        regex.enumerateMatches(in: string, options: options, range: range) { (result, _, stop) in
+            guard let result = result else { return }
             
-            regex.enumerateMatches(in: string, options: options, range: scopeRange) { (result, _, stop) in
-                guard let result = result else { return }
-                
-                var ioStop = false
-                block(result.range, result, &ioStop)
-                if ioStop {
-                    stop.pointee = ObjCBool(ioStop)
-                    cancelled = true
-                }
+            var ioStop = false
+            block(result.range, result, &ioStop)
+            if ioStop {
+                stop.pointee = ObjCBool(ioStop)
             }
-            
-            scopeCompletionHandler(scopeRange)
         }
     }
     
