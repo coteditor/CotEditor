@@ -218,7 +218,7 @@ struct SyntaxStyle: Equatable {
     
     var highlightParser: HighlightParser {
         
-        var nestablePaires: [String: SyntaxType] = [:]
+        var nestables: [NestableToken: SyntaxType] = [:]
         let extractors = self.highlightDefinitions
             .reduce(into: [SyntaxType: [HighlightDefinition]]()) { (dict, item) in
                 var definitions: [HighlightDefinition] = []
@@ -228,12 +228,13 @@ struct SyntaxStyle: Equatable {
                 for definition in item.value {
                     // extract paired delimiters such as quotes
                     if !definition.isRegularExpression,
-                       definition.beginString == definition.endString,
-                       definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
-                       Set(definition.beginString).count == 1,  // consists of the same characters
-                       !nestablePaires.keys.contains(definition.beginString)  // not registered yet
+                       let pair = definition.endString.flatMap({ Pair(definition.beginString, $0) }),
+                       pair.begin == pair.end,
+                       pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
+                       Set(pair.begin).count == 1,  // consists of the same characters
+                       !nestables.keys.contains(.pair(pair))  // not registered yet
                     {
-                        nestablePaires[definition.beginString] = item.key
+                        nestables[.pair(pair)] = item.key
                         continue
                     }
                     
@@ -263,7 +264,14 @@ struct SyntaxStyle: Equatable {
             .mapValues { $0.compactMap { try? $0.extractor } }
             .filter { !$0.value.isEmpty }
         
-        return .init(extractors: extractors, nestablePaires: nestablePaires, inlineCommentDelimiter: self.inlineCommentDelimiter, blockCommentDelimiters: self.blockCommentDelimiters)
+        if let blockCommentDelimiters = self.blockCommentDelimiters {
+            nestables[.pair(blockCommentDelimiters)] = .comments
+        }
+        if let inlineCommentDelimiter = self.inlineCommentDelimiter {
+            nestables[.inline(inlineCommentDelimiter)] = .comments
+        }
+        
+        return .init(extractors: extractors, nestables: nestables)
     }
     
 }

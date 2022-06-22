@@ -29,20 +29,19 @@ import Foundation
 typealias Highlight = ItemRange<SyntaxType>
 
 
+enum NestableToken: Equatable, Hashable {
+    
+    case inline(String)
+    case pair(Pair<String>)
+}
+
+
 private struct NestableItem {
     
-    let type: SyntaxType
-    let token: Token
-    let role: Role
-    let range: NSRange
-    
-    
-    enum Token: Equatable {
-        
-        case inlineComment
-        case blockComment
-        case string(String)
-    }
+    var type: SyntaxType
+    var token: NestableToken
+    var role: Role
+    var range: NSRange
     
     
     struct Role: OptionSet {
@@ -63,9 +62,7 @@ struct HighlightParser {
     // MARK: Public Properties
     
     let extractors: [SyntaxType: [any HighlightExtractable]]
-    let nestablePaires: [String: SyntaxType]  // such as quotes to extract with comment
-    let inlineCommentDelimiter: String?
-    let blockCommentDelimiters: Pair<String>?
+    let nestables: [NestableToken: SyntaxType]
     
     
     
@@ -74,7 +71,7 @@ struct HighlightParser {
     
     var isEmpty: Bool {
         
-        self.extractors.isEmpty && self.nestablePaires.isEmpty && self.inlineCommentDelimiter == nil && self.blockCommentDelimiters == nil
+        self.extractors.isEmpty && self.nestables.isEmpty
     }
     
     
@@ -97,9 +94,9 @@ struct HighlightParser {
                 }
             }
             
-            // extract comments and nestable paires
+            // extract nestables
             _ = group.addTaskUnlessCancelled {
-                try self.extractCommentsWithNestablePaires(string: string, range: range)
+                try self.extractNestables(string: string, range: range)
             }
             
             return try await group.reduce(into: .init()) {
@@ -114,61 +111,56 @@ struct HighlightParser {
     
     // MARK: Private Methods
     
-    /// Extract ranges of comments and paired characters such as quotes in the parse range.
+    /// Extract ranges of nestable items such as comments and quotes in the parse range.
     ///
+    /// - Parameters:
+    ///   - string: The string to parse.
+    ///   - range: The range where to parse.
     /// - Throws: CancellationError.
-    private func extractCommentsWithNestablePaires(string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
+    private func extractNestables(string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
         
-        var positions: [NestableItem] = []
-        
-        if let delimiters = self.blockCommentDelimiters {
-            positions += string.ranges(of: delimiters.begin, range: parseRange)
-                .map { NestableItem(type: .comments, token: .blockComment, role: .begin, range: $0) }
-            positions += string.ranges(of: delimiters.end, range: parseRange)
-                .map { NestableItem(type: .comments, token: .blockComment, role: .end, range: $0) }
-        }
-        
-        try Task.checkCancellation()
-        
-        if let delimiter = self.inlineCommentDelimiter {
-            positions += string.ranges(of: delimiter, range: parseRange)
-                .flatMap { range -> [NestableItem] in
-                    let lineEnd = string.lineContentsEndIndex(at: range.upperBound)
-                    let endRange = NSRange(location: lineEnd, length: 0)
+        let positions: [NestableItem] = try self.nestables.flatMap { (token, type) -> [NestableItem] in
+            try Task.checkCancellation()
+            
+            switch token {
+                case .inline(let delimiter):
+                    return string.ranges(of: delimiter, range: parseRange)
+                        .flatMap { range -> [NestableItem] in
+                            let lineEnd = string.lineContentsEndIndex(at: range.upperBound)
+                            let endRange = NSRange(location: lineEnd, length: 0)
+                            
+                            return [NestableItem(type: .comments, token: token, role: .begin, range: range),
+                                    NestableItem(type: .comments, token: token, role: .end, range: endRange)]
+                        }
                     
-                    return [NestableItem(type: .comments, token: .inlineComment, role: .begin, range: range),
-                            NestableItem(type: .comments, token: .inlineComment, role: .end, range: endRange)]
+                case .pair(let pair):
+                    if pair.begin == pair.end {
+                        return string.ranges(of: pair.begin, range: parseRange)
+                            .map { NestableItem(type: type, token: token, role: [.begin, .end], range: $0) }
+                    } else {
+                        return string.ranges(of: pair.begin, range: parseRange)
+                            .map { NestableItem(type: type, token: token, role: .begin, range: $0) }
+                        + string.ranges(of: pair.end, range: parseRange)
+                            .map { NestableItem(type: type, token: token, role: .end, range: $0) }
+                    }
+            }
+        }
+            .filter { !string.isCharacterEscaped(at: $0.range.location) }  // remove escaped ones
+            .sorted {  // sort by location
+                if $0.range.location < $1.range.location { return true }
+                if $0.range.location > $1.range.location { return false }
+                
+                if $0.range.isEmpty { return true }
+                if $1.range.isEmpty { return false }
+                
+                if $0.range.length != $1.range.length {
+                    return $0.range.length > $1.range.length
                 }
-        }
-        
-        try Task.checkCancellation()
-        
-        for (quote, type) in self.nestablePaires {
-            positions += string.ranges(of: quote, range: parseRange)
-                .map { NestableItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
-        }
-        
-        try Task.checkCancellation()
-        
-        // remove escaped ones
-        positions.removeAll { string.isCharacterEscaped(at: $0.range.location) }
+                
+                return $0.role.rawValue > $1.role.rawValue
+            }
         
         guard !positions.isEmpty else { return [:] }
-        
-        // sort by location
-        positions.sort {
-            if $0.range.location < $1.range.location { return true }
-            if $0.range.location > $1.range.location { return false }
-            
-            if $0.range.isEmpty { return true }
-            if $1.range.isEmpty { return false }
-            
-            if $0.range.length != $1.range.length {
-                return $0.range.length > $1.range.length
-            }
-            
-            return $0.role.rawValue > $1.role.rawValue
-        }
         
         try Task.checkCancellation()
         
