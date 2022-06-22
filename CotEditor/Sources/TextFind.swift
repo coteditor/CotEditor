@@ -187,7 +187,8 @@ final class TextFind {
     ///   - isWrap: Whether the search wraps  around.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
     /// - Returns:An FindResult object.
-    func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) -> FindResult {
+    /// - Throws: `CancellationError`
+    func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) throws -> FindResult {
         
         assert(forward || !includingSelection)
         
@@ -202,13 +203,23 @@ final class TextFind {
         
         var forwardMatches: [NSRange] = []  // matches after the start location
         let forwardRange = NSRange(startLocation..<self.string.length)
-        self.enumerateMatchs(in: forwardRange) { (matchedRange, _, _) in
+        self.enumerateMatchs(in: forwardRange) { (matchedRange, _, stop) in
+            if Task.isCancelled {
+                stop = true
+                return
+            }
             forwardMatches.append(matchedRange)
         }
+        
+        try Task.checkCancellation()
         
         var wrappedMatches: [NSRange] = []  // matches before the start location
         var intersectionMatches: [NSRange] = []  // matches including the start location
         self.enumerateMatchs(in: self.string.range) { (matchedRange, _, stop) in
+            if Task.isCancelled {
+                stop = true
+                return
+            }
             if matchedRange.location >= startLocation {
                 stop = true
                 return
@@ -219,6 +230,8 @@ final class TextFind {
                 wrappedMatches.append(matchedRange)
             }
         }
+        
+        try Task.checkCancellation()
         
         var foundRange = forward ? forwardMatches.first : wrappedMatches.last
         

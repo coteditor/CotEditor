@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Optimize the performance for editor splitting.
+- Avoid sluggishness by incremental search in large documents.
 - Update Swift syntax style to add keywords.
 - [trivial] Update French localization.
 
