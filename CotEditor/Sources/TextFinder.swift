@@ -152,10 +152,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Perform incremental search.
     ///
     /// - Returns: The number of found.
-    @discardableResult
-    func incrementalSearch() -> Int {
+    func incrementalSearch() {
         
-        return find(forward: true, marksAllMatches: true, isIncremental: true)
+        self.find(forward: true, marksAllMatches: true, isIncremental: true)
     }
     
     
@@ -436,13 +435,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     ///   - forward: The flag whether finds forward or backward.
     ///   - marksAllMatches: Whether marks all matches in the editor.
     ///   - isIncremental: Whether is the incremental search.
-    /// - Returns: The number of found.
-    @discardableResult
-    private func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) -> Int {
+    private func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) {
         
         assert(forward || !isIncremental)
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
         let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
         
@@ -489,8 +486,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         if !isIncremental {
             UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         }
-        
-        return result.ranges.count
     }
     
     
