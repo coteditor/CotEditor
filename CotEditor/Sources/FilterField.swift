@@ -29,8 +29,11 @@ final class FilterField: NSSearchField {
     
     // MARK: Private Properties
     
-    private let image: NSImage = .init(named: "filter.chevron")!
-    private var filteringImage: NSImage = .init(named: "filter.chevron-fill")!
+    private let image: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle",
+                                       accessibilityDescription: "filter".localized)!
+    private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
+                                                accessibilityDescription: "filter".localized)!
+        .tinted(with: .controlAccentColor)
     
     
     
@@ -39,9 +42,6 @@ final class FilterField: NSSearchField {
     required init?(coder: NSCoder) {
         
         super.init(coder: coder)
-        
-        let configuration = NSImage.SymbolConfiguration(paletteColors: [.labelColor, .controlAccentColor])
-        self.filteringImage = self.filteringImage.withSymbolConfiguration(configuration)!
         
         self.validateImage()
         
