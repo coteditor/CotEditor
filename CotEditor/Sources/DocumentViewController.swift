@@ -257,7 +257,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         switch item.action {
             case #selector(recolorAll):
-                return self.syntaxParser?.canParse ?? false
+                return self.syntaxParser?.canHighlight ?? false
             
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {

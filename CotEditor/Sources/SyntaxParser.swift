@@ -42,12 +42,22 @@ final class SyntaxParser {
     // MARK: Public Properties
     
     let textStorage: NSTextStorage
-    var style: SyntaxStyle
+    
+    var style: SyntaxStyle {
+        
+        didSet {
+            self.outlineExtractors = style.outlineExtractors
+            self.highlightParser = style.highlightParser
+        }
+    }
     
     @Published private(set) var outlineItems: [OutlineItem]?
     
     
     // MARK: Private Properties
+    
+    private lazy var outlineExtractors: [OutlineExtractor] = self.style.outlineExtractors
+    private lazy var highlightParser: HighlightParser = self.style.highlightParser
     
     private var outlineParseTask: Task<Void, Error>?
     private var highlightParseTask: Task<Void, Error>?
@@ -81,9 +91,9 @@ final class SyntaxParser {
     // MARK: Public Methods
     
     /// Whether syntax should be parsed.
-    var canParse: Bool {
+    var canHighlight: Bool {
         
-        !self.style.isNone
+        !self.highlightParser.isEmpty
     }
     
     
@@ -108,8 +118,7 @@ extension SyntaxParser {
         self.outlineParseTask?.cancel()
         
         guard
-            self.canParse,
-            !self.style.outlineExtractors.isEmpty,
+            !self.outlineExtractors.isEmpty,
             !self.textStorage.range.isEmpty
         else {
             self.outlineItems = []
@@ -118,13 +127,12 @@ extension SyntaxParser {
         
         self.outlineItems = nil
         
-        let extractors = self.style.outlineExtractors
+        let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
-        let range = self.textStorage.range
         self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
             self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
-                    _ = group.addTaskUnlessCancelled { try extractor.items(in: string, range: range) }
+                    _ = group.addTaskUnlessCancelled { try extractor.items(in: string, range: string.range) }
                 }
                 
                 return try await group.reduce(into: []) { $0 += $1 }
@@ -159,7 +167,7 @@ extension SyntaxParser {
         let wholeRange = self.textStorage.range
         
         // just clear current highlight and return if no coloring required
-        guard self.style.hasHighlightDefinition else {
+        guard !self.highlightParser.isEmpty else {
             self.apply(highlights: [], range: wholeRange)
             return nil
         }
@@ -223,17 +231,13 @@ extension SyntaxParser {
         
         assert(!(string as NSString).className.contains("MutableString"))
         assert(!highlightRange.isEmpty)
-        assert(!self.style.isNone)
+        assert(!self.highlightParser.isEmpty)
         
-        let definition = HighlightParser.Definition(extractors: self.style.highlightExtractors,
-                                                    nestablePaires: self.style.nestablePaires,
-                                                    inlineCommentDelimiter: self.style.inlineCommentDelimiter,
-                                                    blockCommentDelimiters: self.style.blockCommentDelimiters)
-        let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
+        let parser = self.highlightParser
         let progress = Progress(totalUnitCount: 1)
         
         let task = Task.detached(priority: .userInitiated) { [weak self] in
-            let highlights = try await parser.parse()
+            let highlights = try await parser.parse(string: string, range: highlightRange)
             
             try Task.checkCancellation()
             

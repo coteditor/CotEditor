@@ -1488,10 +1488,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         let fileDropItems = UserDefaults.standard[.fileDropArray].map { FileDropItem(dictionary: $0) }
         let documentURL = self.document?.fileURL
-        let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxParser.style else { return nil }
-            return style.isNone ? nil : style.name
-        }()
+        let syntaxStyle = self.document?.syntaxParser.style.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
             if url.pathExtension == "textClipping", let textClipping = try? TextClipping(url: url) {

@@ -58,58 +58,48 @@ private struct NestableItem {
 
 // MARK: -
 
-final class HighlightParser {
+struct HighlightParser {
     
-    struct Definition {
-        
-        var extractors: [SyntaxType: [any HighlightExtractable]]
-        var nestablePaires: [String: SyntaxType]  // such as quotes to extract with comment
-        var inlineCommentDelimiter: String?
-        var blockCommentDelimiters: Pair<String>?
-    }
+    // MARK: Public Properties
     
-    
-    
-    // MARK: Private Properties
-    
-    private let definition: Definition
-    private let string: String
-    private let parseRange: NSRange
+    let extractors: [SyntaxType: [any HighlightExtractable]]
+    let nestablePaires: [String: SyntaxType]  // such as quotes to extract with comment
+    let inlineCommentDelimiter: String?
+    let blockCommentDelimiters: Pair<String>?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
+    // MARK: Public Methods
     
-    init(definition: Definition, string: String, range parseRange: NSRange) {
+    var isEmpty: Bool {
         
-        self.definition = definition
-        self.string = string
-        self.parseRange = parseRange
+        self.extractors.isEmpty && self.nestablePaires.isEmpty && self.inlineCommentDelimiter == nil && self.blockCommentDelimiters == nil
     }
     
     
-    // MARK: Public Methods
-    
     /// Extract all highlight ranges in the parse range.
     ///
+    /// - Parameters:
+    ///   - string: The string to parse.
+    ///   - range: The range where to parse.
     /// - Returns: A dictionary of ranges to highlight per syntax types.
     /// - Throws: CancellationError.
-    func parse() async throws -> [Highlight] {
+    func parse(string: String, range: NSRange) async throws -> [Highlight] {
         
-        let highlightDictionary: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { [unowned self] group in
+        let highlightDictionary: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { group in
             // extract standard highlight ranges
-            for (type, extractors) in self.definition.extractors {
+            for (type, extractors) in self.extractors {
                 for extractor in extractors {
                     _ = group.addTaskUnlessCancelled {
-                        [type: try extractor.ranges(in: self.string, range: self.parseRange)]
+                        [type: try extractor.ranges(in: string, range: range)]
                     }
                 }
             }
             
             // extract comments and nestable paires
             _ = group.addTaskUnlessCancelled {
-                try self.extractCommentsWithNestablePaires()
+                try self.extractCommentsWithNestablePaires(string: string, range: range)
             }
             
             return try await group.reduce(into: .init()) {
@@ -127,25 +117,23 @@ final class HighlightParser {
     /// Extract ranges of comments and paired characters such as quotes in the parse range.
     ///
     /// - Throws: CancellationError.
-    private func extractCommentsWithNestablePaires() throws -> [SyntaxType: [NSRange]] {
+    private func extractCommentsWithNestablePaires(string: String, range parseRange: NSRange) throws -> [SyntaxType: [NSRange]] {
         
-        let string = self.string as NSString
         var positions: [NestableItem] = []
         
-        if let delimiters = self.definition.blockCommentDelimiters {
-            positions += string.ranges(of: delimiters.begin, range: self.parseRange)
+        if let delimiters = self.blockCommentDelimiters {
+            positions += string.ranges(of: delimiters.begin, range: parseRange)
                 .map { NestableItem(type: .comments, token: .blockComment, role: .begin, range: $0) }
-            positions += string.ranges(of: delimiters.end, range: self.parseRange)
+            positions += string.ranges(of: delimiters.end, range: parseRange)
                 .map { NestableItem(type: .comments, token: .blockComment, role: .end, range: $0) }
         }
         
         try Task.checkCancellation()
         
-        if let delimiter = self.definition.inlineCommentDelimiter {
-            positions += string.ranges(of: delimiter, range: self.parseRange)
+        if let delimiter = self.inlineCommentDelimiter {
+            positions += string.ranges(of: delimiter, range: parseRange)
                 .flatMap { range -> [NestableItem] in
-                    var lineEnd = 0
-                    string.getLineStart(nil, end: &lineEnd, contentsEnd: nil, for: range)
+                    let lineEnd = string.lineContentsEndIndex(at: range.upperBound)
                     let endRange = NSRange(location: lineEnd, length: 0)
                     
                     return [NestableItem(type: .comments, token: .inlineComment, role: .begin, range: range),
@@ -155,15 +143,15 @@ final class HighlightParser {
         
         try Task.checkCancellation()
         
-        for (quote, type) in self.definition.nestablePaires {
-            positions += string.ranges(of: quote, range: self.parseRange)
+        for (quote, type) in self.nestablePaires {
+            positions += string.ranges(of: quote, range: parseRange)
                 .map { NestableItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
         }
         
         try Task.checkCancellation()
         
         // remove escaped ones
-        positions.removeAll { self.string.isCharacterEscaped(at: $0.range.location) }
+        positions.removeAll { string.isCharacterEscaped(at: $0.range.location) }
         
         guard !positions.isEmpty else { return [:] }
         
@@ -186,7 +174,7 @@ final class HighlightParser {
         
         // find paires in the parse range
         var highlights: [SyntaxType: [NSRange]] = [:]
-        var seekLocation = self.parseRange.location
+        var seekLocation = parseRange.location
         var index = 0
         
         while index < positions.count {

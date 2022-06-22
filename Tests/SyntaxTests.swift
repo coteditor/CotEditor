@@ -93,8 +93,7 @@ final class SyntaxTests: XCTestCase {
         let style = SyntaxStyle()
         
         XCTAssertEqual(style.name, "None")
-        XCTAssert(style.isNone)
-        XCTAssertFalse(style.hasHighlightDefinition)
+        XCTAssert(style.highlightParser.isEmpty)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertNil(style.blockCommentDelimiters)
     }
@@ -105,8 +104,7 @@ final class SyntaxTests: XCTestCase {
         let style = self.htmlStyle!
         
         XCTAssertEqual(style.name, "HTML")
-        XCTAssertFalse(style.isNone)
-        XCTAssert(style.hasHighlightDefinition)
+        XCTAssertFalse(style.highlightParser.isEmpty)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertEqual(style.blockCommentDelimiters?.begin, "<!--")
         XCTAssertEqual(style.blockCommentDelimiters?.end, "-->")
