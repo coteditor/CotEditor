@@ -1578,7 +1578,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     self.selectedRanges.count == 1
                 else { throw CancellationError() }
                 
-                return(self.string.immutable, self.selectedRange)
+                return (self.string.immutable, self.selectedRange)
             }
             
             guard (try! NSRegularExpression(pattern: "\\A\\b\\w.*\\w\\b\\z"))
