@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21208.1"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -908,6 +908,19 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="kwE-D3-DED"/>
+                                                    <menuItem title="URL Encode" id="xxp-UD-STx">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="encodeURL:" target="Ady-hI-5gd" id="Q1o-ui-gfY"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="URL Decode" id="3VB-Bg-Ker">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="decodeURL:" target="Ady-hI-5gd" id="sFe-3p-LOb"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="5h2-9z-aol"/>
                                                     <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

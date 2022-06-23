@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Dynamically prioritize the scripts in the subfolder whose name is the same as the frontmost document's syntax style when the same keyboard shortcut is determined in multiple CotEditor scripts.
+- Add URL Encode/Decode commands to the Text > Transformations submenu.
 - Display a dot in the window tab if the document has unsaved changes.
 
 

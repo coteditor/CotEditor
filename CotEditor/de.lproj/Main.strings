@@ -440,6 +440,11 @@
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
 "x1F-KX-2de.title" = "Pascalcase";
 
+/* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
+"xxp-UD-STx.title" = "URL-Codierung";
+/* Class = "NSMenuItem"; title = "URL Decode"; ObjectID = "3VB-Bg-Ker"; */
+"3VB-Bg-Ker.title" = "URL-Decodierung";
+
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Halbbreiten zu Vollbreiten";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */

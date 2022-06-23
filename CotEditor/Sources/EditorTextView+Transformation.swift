@@ -74,6 +74,26 @@ extension EditorTextView {
     }
     
     
+    /// encode URL
+    @IBAction func encodeURL(_ sender: Any?) {
+        
+        let allowedCharacters = CharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
+        self.transformSelection {
+            $0.addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? $0
+        }
+        
+    }
+    
+    
+    /// decode URL
+    @IBAction func decodeURL(_ sender: Any?) {
+        
+        self.transformSelection {
+            $0.removingPercentEncoding ?? $0
+        }
+    }
+    
+    
     
     // MARK: Action Messages (Transformations)
     
