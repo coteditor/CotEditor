@@ -626,7 +626,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // detect URLs manually (2019-05 macOS 10.14).
         // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
         //    but then, multiline-URLs over a page break would be broken. (cf. #958)
-        printView.detectLink()
+        try? printView.textStorage?.linkURLs()
         
         // create print operation
         let printInfo = self.printInfo

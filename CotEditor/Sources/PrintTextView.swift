@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class PrintTextView: NSTextView, Themable, URLDetectable {
+final class PrintTextView: NSTextView, Themable {
     
     // MARK: Constants
     
@@ -49,8 +49,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     // These values are used if set option is "Same as document's setting"
     var documentShowsLineNumber = false
     var documentShowsInvisibles = false
-    
-    var urlDetectionTask: Task<Void, Error>?
     
     
     // MARK: Private Properties
@@ -101,12 +99,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    deinit {
-        self.layoutManager?.delegate = nil
-        self.urlDetectionTask?.cancel()
     }
     
     
