@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.3.1-alpha (unreleased)
+4.3.1 (unreleased)
 --------------------------
 
 ### New Features
@@ -14,6 +14,8 @@ Change Log
 
 - Optimize the performance for editor splitting.
 - Avoid sluggishness by incremental search in large documents.
+- Optimize the performance of highlighting selected text instances.
+- Remove the limitation to highlight a large number of instances of the selected text.
 - Update Swift syntax style to add keywords.
 - [trivial] Update French localization.
 
