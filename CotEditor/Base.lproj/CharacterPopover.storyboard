@@ -19,7 +19,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="brS-3N-jsB"/>
                                 </constraints>
-                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="蛙" id="E2I-1W-zW6" customClass="CharacterFieldCell" customModule="CotEditor" customModuleProvider="target">
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="蛙" id="E2I-1W-zW6">
                                     <font key="font" size="64" name="TimesNewRomanPSMT"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -120,7 +120,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="Moq-dM-efC"/>
                                 </constraints>
-                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="🏴‍☠️" id="bo5-qy-Mxx" customClass="CharacterFieldCell" customModule="CotEditor" customModuleProvider="target">
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="🏴‍☠️" id="bo5-qy-Mxx">
                                     <font key="font" size="64" name="TimesNewRomanPSMT"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,11 +23,14 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 final class CharacterField: NSTextField {
     
-    fileprivate private(set) var drawsGuide = false
+    // MARK: Private Properties
+    
+    @Invalidating(.display) private var drawsGuide = false
+    
     
     
     // MARK: Text Field Methods
@@ -42,13 +45,28 @@ final class CharacterField: NSTextField {
     }
     
     
+    override func draw(_ dirtyRect: NSRect) {
+        
+        let bounds = self.attributedStringValue.bounds
+        let pathBounds = self.attributedStringValue.pathBounds
+        let centeringRect = NSRect(origin: self.bounds.mid, size: .zero).inset(by: -pathBounds.size.scaled(to: 0.5))
+        let drawingPoint = centeringRect.origin.offsetBy(dx: -pathBounds.minX, dy: pathBounds.maxY - bounds.maxY)
+        
+        self.attributedStringValue.draw(at: drawingPoint)
+        
+        if self.drawsGuide == true {
+            self.bounds.frame(withWidth: 0.2)
+            centeringRect.frame(withWidth: 0.2)
+        }
+    }
+    
+    
     #if DEBUG
     override func mouseDown(with event: NSEvent) {
         
         super.mouseDown(with: event)
         
         self.drawsGuide.toggle()
-        self.needsDisplay = true
     }
     #endif
     
@@ -56,31 +74,8 @@ final class CharacterField: NSTextField {
 
 
 
-final class CharacterFieldCell: NSTextFieldCell {
-    
-    // MARK: Text Field Cell Methods
-    
-    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
-        
-        let bounds = self.attributedStringValue.bounds
-        let pathBounds = self.attributedStringValue.pathBounds
-        let centeringRect = NSRect(origin: cellFrame.mid, size: .zero).inset(by: -pathBounds.size.scaled(to: 0.5))
-        let drawingPoint = centeringRect.origin.offsetBy(dx: -pathBounds.minX, dy: pathBounds.maxY - bounds.maxY)
-        
-        self.attributedStringValue.draw(at: drawingPoint)
-        
-        if (self.controlView as? CharacterField)?.drawsGuide == true {
-            cellFrame.frame(withWidth: 0.2)
-            centeringRect.frame(withWidth: 0.2)
-        }
-    }
-    
-}
-
-
-
 private extension NSAttributedString {
     
-    var bounds: NSRect { self.boundingRect(with: .infinite, context: nil) }
-    var pathBounds: NSRect { self.boundingRect(with: .infinite, options: .usesDeviceMetrics, context: nil) }
+    var bounds: NSRect  { self.boundingRect(with: .infinite, context: nil) }
+    var pathBounds: NSRect  { self.boundingRect(with: .infinite, options: .usesDeviceMetrics, context: nil) }
 }
