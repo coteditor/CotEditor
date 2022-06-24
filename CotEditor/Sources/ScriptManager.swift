@@ -33,7 +33,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     static let shared = ScriptManager()
     
-    @Atomic private(set) var currentScriptName: String?
+    @MainActor private(set) var currentScriptName: String?
     
     
     // MARK: Private Properties
@@ -213,7 +213,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - error: The error to present.
     ///   - scriptName: The name of script.
-    @MainActor private func presentError(_ error: Error, scriptName: String? = nil) {
+    @MainActor private func presentError(_ error: Error, scriptName: String) {
         
         switch error {
             case let error as ScriptError:
