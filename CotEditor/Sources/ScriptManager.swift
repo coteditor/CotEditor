@@ -145,8 +145,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         let event = self.createEvent(by: document, eventID: eventType.eventID)
         
-        Task.detached { [weak self] in
-            await self?.dispatch(event, handlers: scripts)
+        Task {
+            await self.dispatch(event, handlers: scripts)
         }
     }
     
@@ -166,7 +166,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let script = sender.representedObject as? any Script else { return assertionFailure() }
         
-        Task.detached {
+        Task {
             do {
                 // change behavior if modifier key is pressed
                 switch NSEvent.modifierFlags {
@@ -190,7 +190,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 }
                 
             } catch {
-                await self.presentError(error, scriptName: script.name)
+                self.presentError(error, scriptName: script.name)
             }
         }
     }
