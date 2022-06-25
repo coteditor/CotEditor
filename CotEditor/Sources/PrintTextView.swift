@@ -30,12 +30,12 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Constants
     
-    static let verticalPrintMargin: CGFloat = 56.0    // default 90.0
-    static let horizontalPrintMargin: CGFloat = 24.0  // default 72.0
+    static let verticalPrintMargin = 56.0    // default 90.0
+    static let horizontalPrintMargin = 24.0  // default 72.0
     
-    private let lineFragmentPadding: CGFloat = 18.0
-    private let lineNumberPadding: CGFloat = 10.0
-    private let headerFooterFontSize: CGFloat = 9.0
+    private let lineFragmentPadding = 18.0
+    private let lineNumberPadding = 10.0
+    private let headerFooterFontSize = 9.0
     
     
     // MARK: Public Properties
@@ -312,15 +312,10 @@ final class PrintTextView: NSTextView, Themable {
         guard self.theme?.name != theme?.name else { return }
         
         // set theme
-        // -> The following two procedures are important to change .textColor in the preview properly
-        //    while printing only the selection (2022-03 macOS 12):
-        //    1. Set .textColor after setting .backgroundColor.
-        //    2. Ensure glyphs.
         self.theme = theme
         self.backgroundColor = theme?.background.color ?? .textBackgroundColor  // expensive task
         self.textColor = theme?.text.color ?? .textColor
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
-        layoutManager.ensureGlyphs(forCharacterRange: self.string.nsRange)
         
         if let theme = theme {
             layoutManager.invalidateHighlight(theme: theme)
