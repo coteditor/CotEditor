@@ -5,6 +5,11 @@ Change Log
 4.4.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Display a dot in the window tab if the document has unsaved changes.
+
+
 ### Improvements
 
 - Change the system requirement to __macOS 12 Moneterey and later__.

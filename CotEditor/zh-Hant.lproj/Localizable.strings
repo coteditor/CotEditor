@@ -220,6 +220,12 @@
 
 
 
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in window tab
+"Document has unsaved changes" = "Document has unsaved changes";
+
+
+
 /* MARK: Toolbar */
 "Syntax Style" = "文法樣式";
 // tooltip

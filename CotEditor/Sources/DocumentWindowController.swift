@@ -74,6 +74,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
+        // set edited indicator to window tab
+        let dotView = DotView()
+        dotView.isHidden = true
+        dotView.color = .tertiaryLabelColor
+        dotView.toolTip = "Document has unsaved changes".localized
+        self.window?.tab.accessoryView = dotView
+        NSLayoutConstraint(item: dotView, attribute: .height, relatedBy: .equal, toItem: dotView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+        
         // observe opacity setting change
         if let window = self.window as? DocumentWindow {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
@@ -124,6 +132,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     override func setDocumentEdited(_ dirtyFlag: Bool) {
+        
+        self.window?.tab.accessoryView?.isHidden = !dirtyFlag
         
         super.setDocumentEdited(self.isWhitepaper ? false : dirtyFlag)
     }
