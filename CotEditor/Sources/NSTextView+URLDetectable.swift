@@ -38,12 +38,10 @@ extension URLDetectable {
         
         self.urlDetectionTask?.cancel()
         self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
-            defer {
-                // remove the task itself when completed in order to use the `.urlDetectionTask` property as the task completion flag.
-                self?.urlDetectionTask = nil
-            }
+            try? await self?.textStorage?.linkURLs()
             
-            try await self?.textStorage?.linkURLs()
+            // remove the task itself when completed in order to use the `.urlDetectionTask` property as the task completion flag.
+            self?.urlDetectionTask = nil
         }
     }
     
