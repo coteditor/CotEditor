@@ -20,6 +20,11 @@ Change Log
 - [trivial] Update French localization.
 
 
+### Fixes
+
+- Fix memory leak on closing documents.
+
+
 
 4.3.0 (517)
 --------------------------

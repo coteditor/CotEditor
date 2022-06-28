@@ -67,7 +67,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Private Properties
     
     private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: "PrintPanelAccessory")
-    private lazy var savePanelAccessoryController = NSViewController.instantiate(storyboard: "SaveDocumentAccessory")
+    private var savePanelAccessoryController: NSViewController?
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
     private var suppressesInconsistentLineEndingAlert = false
@@ -530,8 +530,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set accessory view
-        self.savePanelAccessoryController.representedObject = self
-        savePanel.accessoryView = self.savePanelAccessoryController.view
+        self.savePanelAccessoryController = .instantiate(storyboard: "SaveDocumentAccessory")
+        self.savePanelAccessoryController?.representedObject = self
+        savePanel.accessoryView = self.savePanelAccessoryController?.view
         
         return true
     }
@@ -585,6 +586,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         self.syntaxParser.invalidateCurrentParse()
         self.textStorageObserver?.cancel()
+        self.savePanelAccessoryController?.representedObject = nil
         
         super.close()
     }
