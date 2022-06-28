@@ -171,12 +171,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     /// return the number of pages available for printing
     override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
-        // apply print settings
-        self.applyPrintSettings()
-        
         // adjust content size based on print setting
         if let paperContentSize = NSPrintOperation.current?.printInfo.paperContentSize,
-            self.lastPaperContentSize != paperContentSize
+           self.lastPaperContentSize != paperContentSize
         {
             self.lastPaperContentSize = paperContentSize
             self.frame.size = paperContentSize
@@ -184,6 +181,15 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }
         
         return super.knowsPageRange(range)
+    }
+    
+    
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        // apply print settings
+        self.applyPrintSettings()
     }
     
     
