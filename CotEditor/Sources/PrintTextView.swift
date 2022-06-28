@@ -384,7 +384,7 @@ final class PrintTextView: NSTextView, Themable {
         
         // tab stops for double-sided alignment (imitation of super.pageHeader)
         if let printInfo = NSPrintOperation.current?.printInfo {
-            let xMax = printInfo.paperSize.width - printInfo.topMargin / 2
+            let xMax = printInfo.paperSize.width - printInfo.leftMargin - printInfo.rightMargin
             paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: xMax / 2),
                                        NSTextTab(type: .rightTabStopType, location: xMax)]
         }
