@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -62,15 +62,15 @@ extension MultipleReplacement.Settings {
         
         var settings: MultipleReplacement.Settings {
             
-            var textualOptions = NSString.CompareOptions()
-            if self.textIsLiteralSearch        { textualOptions.formUnion(.literal) }
-            if self.textIgnoresDiacriticMarks  { textualOptions.formUnion(.diacriticInsensitive) }
-            if self.textIgnoresWidth           { textualOptions.formUnion(.widthInsensitive) }
+            let textualOptions = NSString.CompareOptions()
+                .union(self.textIsLiteralSearch ? .literal : [])
+                .union(self.textIgnoresDiacriticMarks ? .diacriticInsensitive : [])
+                .union(self.textIgnoresWidth ? .widthInsensitive : [])
             
-            var regexOptions = NSRegularExpression.Options()
-            if self.regexIsSingleline          { regexOptions.formUnion(.dotMatchesLineSeparators) }
-            if self.regexIsMultiline           { regexOptions.formUnion(.anchorsMatchLines) }
-            if self.regexUsesUnicodeBoundaries { regexOptions.formUnion(.useUnicodeWordBoundaries) }
+            let regexOptions = NSRegularExpression.Options()
+                .union(self.regexIsSingleline ? .dotMatchesLineSeparators : [])
+                .union(self.regexIsMultiline ? .anchorsMatchLines : [])
+                .union(self.regexUsesUnicodeBoundaries ? .useUnicodeWordBoundaries : [])
             
             return MultipleReplacement.Settings(textualOptions: textualOptions,
                                                 regexOptions: regexOptions,

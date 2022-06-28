@@ -233,16 +233,9 @@ final class SortOptions: NSObject {
     
     var compareOptions: String.CompareOptions {
         
-        var options: String.CompareOptions = [.forcedOrdering]
-        
-        if self.ignoresCase {
-            options.formUnion(.caseInsensitive)
-        }
-        if self.numeric {
-            options.formUnion(.numeric)
-        }
-        
-        return options
+        return .forcedOrdering
+            .union(self.ignoresCase ? .caseInsensitive : [])
+            .union(self.numeric ? .numeric : [])
     }
     
     

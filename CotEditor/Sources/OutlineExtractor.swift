@@ -43,17 +43,10 @@ struct OutlineExtractor {
         
         self.template = definition.template
         
-        var style = OutlineItem.Style()
-        if definition.bold {
-            style.formUnion(.bold)
-        }
-        if definition.italic {
-            style.formUnion(.italic)
-        }
-        if definition.underline {
-            style.formUnion(.underline)
-        }
-        self.style = style
+        self.style = OutlineItem.Style()
+            .union(definition.bold ? .bold : [])
+            .union(definition.italic ? .italic : [])
+            .union(definition.underline ? .underline : [])
     }
     
     
