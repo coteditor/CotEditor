@@ -421,7 +421,7 @@
 "Move Line" = "Satır Taşı";
 "Sort Lines" = "Satırları Sırala";
 "Reverse Lines" = "Satırları Tersine Çevir";
-"Shuffle Lines" = "Shuffle Lines";  // FIXME: added
+"Shuffle Lines" = "Satırları Karıştır";
 "Delete Duplicate Lines" = "Çoğaltılan Satırları Sil";
 "Duplicate Line" = "Satır Yinele";
 "Delete Line" = "Satın Sil";
