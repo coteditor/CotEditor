@@ -23,7 +23,6 @@ Change Log
 ### Fixes
 
 - Fix memory leak on closing documents.
-- [trivial] Fix an issue on macOS 13 Monterey (beta) that the print preview was not updated even when settings changed. 
 
 
 
