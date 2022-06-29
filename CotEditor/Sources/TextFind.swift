@@ -281,10 +281,12 @@ final class TextFind {
         
         for range in self.scopeRanges {
             self.enumerateMatchs(in: range) { (matchedRange, match, stop) in
-                var matches = [matchedRange]
+                let matches: [NSRange]
                 
-                if let match = match, numberOfGroups > 0 {
-                    matches += (1...numberOfGroups).map { match.range(at: $0) }
+                if let match = match {
+                    matches = (0...numberOfGroups).map { match.range(at: $0) }
+                } else {
+                    matches = [matchedRange]
                 }
                 
                 block(matches, &stop)
