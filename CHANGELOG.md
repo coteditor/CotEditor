@@ -22,7 +22,7 @@ Change Log
 
 ### Fixes
 
-- Fix memory leak on closing documents.
+- Fix an issue that memory rarely leaks on closing documents.
 
 
 
