@@ -93,5 +93,5 @@
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "忽略字符串中的制表符和换行符";
 
-/* Class = "NSTextFieldCell"; title = "⚠️ Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
-"dmb-pc-4M5.title" = "⚠️ 至少选择一个条目来激活补全。";
+/* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "至少选择一个条目来激活补全。";

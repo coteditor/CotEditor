@@ -93,5 +93,5 @@
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "Während der Texteingabe Vervollständigungen vorschlagen";
 
-/* Class = "NSTextFieldCell"; title = "⚠️ Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
-"dmb-pc-4M5.title" = "⚠️ Wähle mindestens ein Element, um die Vervollständigung zu aktivieren.";
+/* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "Wähle mindestens ein Element, um die Vervollständigung zu aktivieren.";

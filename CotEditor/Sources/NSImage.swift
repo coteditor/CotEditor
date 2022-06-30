@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2021 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,6 +49,20 @@ extension NSImage {
         image.alignmentRect = self.alignmentRect
         
         return image
+    }
+    
+}
+
+
+
+extension NSAttributedString {
+    
+    convenience init(systemSymbolName: String, accessibilityDescription: String? = nil) {
+        
+        let attachment = NSTextAttachment()
+        attachment.image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: accessibilityDescription)
+        
+        self.init(attachment: attachment)
     }
     
 }

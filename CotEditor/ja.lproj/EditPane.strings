@@ -93,5 +93,5 @@
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "入力中に補完候補を表示";
 
-/* Class = "NSTextFieldCell"; title = "⚠️ Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
-"dmb-pc-4M5.title" = "⚠️ 入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
+/* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
