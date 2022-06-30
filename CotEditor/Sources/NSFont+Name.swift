@@ -60,10 +60,11 @@ extension NSFont {
     /// Font variation of which numbers are monospaced.
     var monospacedDigit: NSFont? {
         
-        let monospaceSetting: [NSFontDescriptor.FeatureKey: NSNumber] = [.typeIdentifier: kNumberSpacingType,
-                                                                         .selectorIdentifier: kMonospacedNumbersSelector]
-            .mapValues { $0 as NSNumber }
-        let descriptor = self.fontDescriptor.addingAttributes([.featureSettings: [monospaceSetting]])
+        let settings: [[NSFontDescriptor.FeatureKey: Int]] = [
+            [.typeIdentifier: kNumberSpacingType,
+             .selectorIdentifier: kMonospacedNumbersSelector],
+        ]
+        let descriptor = self.fontDescriptor.addingAttributes([.featureSettings: settings])
         
         return NSFont(descriptor: descriptor, size: self.pointSize)
     }
