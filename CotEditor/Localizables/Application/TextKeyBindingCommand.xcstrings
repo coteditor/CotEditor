@@ -1,0 +1,369 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "TextKeyBindingCommand.deleteBackward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete Backward"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.deleteForward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete Forward"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.deleteToEndOfParagraph" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete to End of Paragraph"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.deleteWordBackward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete Word Backward"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveBackward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Backward"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveDown" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Down"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveDownAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Down and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveForward" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Forward"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveLeftAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Left and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveParagraphBackwardAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Paragraph Backward and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveParagraphForwardAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Paragraph Forward and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveRightAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Right and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToBeginningOfDocument" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Beginning of Document"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToBeginningOfDocumentAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Beginning of Document and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToBeginningOfParagraph" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Beginning of Paragraph"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToEndOfDocument" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to End of Document"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToEndOfDocumentAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to End of Document and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToEndOfParagraph" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to End of Paragraph"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToLeftEndOfLine" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Left End of Line"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToLeftEndOfLineAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Left End of Line and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToRightEndOfLine" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Right End of Line"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveToRightEndOfLineAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move to Right End of Line and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveUp" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Up"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveUpAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Up and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordLeft" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Left"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordLeftAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Left and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordRight" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Right"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.moveWordRightAndModifySelection" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Move Word Right and Modify Selection"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.scrollPageDown" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll Page Down"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.scrollPageUp" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll Page Up"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.scrollToBeginningOfDocument" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll to Beginning of Document"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.scrollToEndOfDocument" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll to End of Document"
+          }
+        }
+      }
+    },
+    "TextKeyBindingCommand.transpose" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transpose"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
