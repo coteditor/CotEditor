@@ -14,6 +14,7 @@ Change Log
 
 - Change the system requirement to __macOS 12 Moneterey and later__.
 - Improve the algorithm to parse numbers in the Sort by Parttern command.
+- [trivial] Improve the Basic Regular Expression Syntax reference.
 
 
 

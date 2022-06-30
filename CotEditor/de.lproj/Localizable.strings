@@ -146,6 +146,8 @@
 "Back Reference" = "Rückwärtsreferenz";
 "first match" = "erste Übereinstimmung";
 
+"The syntax conforms to the %@ specifications." = "Die Syntax entspricht den Spezifikationen von %@.";  // %@ is the name of the regex engine (ICU Regular Expressions)
+
 
 
 /* MARK: Multiple Replacement View Controller */

@@ -146,6 +146,8 @@
 "Back Reference" = "回溯引用";
 "first match" = "首字匹配";
 
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
+
 
 
 /* MARK: Multiple Replacement View Controller */

@@ -146,6 +146,8 @@
 "Back Reference" = "Geri Başvuru";
 "first match" = "ilk eşleşme";
 
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
+
 
 
 /* MARK: Multiple Replacement View Controller */
