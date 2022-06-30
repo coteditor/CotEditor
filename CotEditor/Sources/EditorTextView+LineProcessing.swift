@@ -38,6 +38,7 @@ extension EditorTextView {
             else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
+        self.scrollRangeToVisible(self.selectedRange)
     }
     
     
@@ -50,6 +51,7 @@ extension EditorTextView {
             else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
+        self.scrollRangeToVisible(self.selectedRange)
     }
     
     

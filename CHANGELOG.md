@@ -16,6 +16,7 @@ Change Log
 - Avoid sluggishness by incremental search in large documents.
 - Optimize the performance of highlighting selected text instances.
 - Remove the limitation to highlight a large number of instances of the selected text.
+- Scroll the editor by the Move Line Up/Down commands so that the moved lines are visible.
 - Change the behavior of the metacharacter `\v` in the regular expression for text search to confirm with the current ICU specification.
 - Update Swift syntax style to add keywords.
 - [trivial] Update French localization.
