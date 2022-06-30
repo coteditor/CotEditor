@@ -160,7 +160,7 @@ extension SyntaxParser {
         
         // in case that wholeRange length is changed from editedRange
         guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
-            assertionFailure("Invalid range \(editedRange?.description ?? "nil") is passed in to \(#function)")
+            debugPrint("⚠️ Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) lentgh textStorage is passed in to \(#function)")
             return nil
         }
         

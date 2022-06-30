@@ -85,19 +85,13 @@ struct HighlightParser {
     func parse(string: String, range: NSRange) async throws -> [Highlight] {
         
         let highlightDictionary: [SyntaxType: [NSRange]] = try await withThrowingTaskGroup(of: [SyntaxType: [NSRange]].self) { group in
-            // extract standard highlight ranges
+            
             for (type, extractors) in self.extractors {
                 for extractor in extractors {
-                    _ = group.addTaskUnlessCancelled {
-                        [type: try extractor.ranges(in: string, range: range)]
-                    }
+                    group.addTask { [type: try extractor.ranges(in: string, range: range)] }
                 }
             }
-            
-            // extract nestables
-            _ = group.addTaskUnlessCancelled {
-                try self.extractNestables(string: string, range: range)
-            }
+            group.addTask { try self.extractNestables(string: string, range: range) }
             
             return try await group.reduce(into: .init()) {
                 $0.merge($1, uniquingKeysWith: +)
@@ -129,8 +123,8 @@ struct HighlightParser {
                             let lineEnd = string.lineContentsEndIndex(at: range.upperBound)
                             let endRange = NSRange(location: lineEnd, length: 0)
                             
-                            return [NestableItem(type: .comments, token: token, role: .begin, range: range),
-                                    NestableItem(type: .comments, token: token, role: .end, range: endRange)]
+                            return [NestableItem(type: type, token: token, role: .begin, range: range),
+                                    NestableItem(type: type, token: token, role: .end, range: endRange)]
                         }
                     
                 case .pair(let pair):
@@ -153,11 +147,7 @@ struct HighlightParser {
                 if $0.range.isEmpty { return true }
                 if $1.range.isEmpty { return false }
                 
-                if $0.range.length != $1.range.length {
-                    return $0.range.length > $1.range.length
-                }
-                
-                return $0.role.rawValue > $1.role.rawValue
+                return $0.range.length > $1.range.length
             }
         
         guard !positions.isEmpty else { return [:] }
@@ -220,7 +210,7 @@ struct HighlightParser {
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
             .flatMap { (type, ranges) in ranges.map { ItemRange(item: type, range: $0) } }
-            .sorted { $0.range.location < $1.range.location }
+            .sorted(\.range.location)
     }
     
 }
