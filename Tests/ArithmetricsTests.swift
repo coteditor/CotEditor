@@ -1,14 +1,14 @@
 //
-//  Arithmetrics.swift
+//  ArithmetricsTests.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2021-09-23.
+//  Created by 1024jp on 2022-06-30.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2022 1024jp
+//  © 2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,22 +23,15 @@
 //  limitations under the License.
 //
 
-extension Int {
+import XCTest
+@testable import CotEditor
+
+final class ArithmetricsTests: XCTestCase {
     
-    /// Array of digits from the ones place.
-    var digits: [Int] {
+    func testDigits() {
         
-        assert(self >= 0)
-        
-        var number = self
-        var digits: [Int] = []
-        
-        while number > 0 {
-            digits.append(number % 10)
-            number /= 10
-        }
-        
-        return digits
+        XCTAssertEqual(0.digits, [])
+        XCTAssertEqual(1024.digits, [4, 2, 0, 1])
     }
     
 }

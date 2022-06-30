@@ -259,18 +259,17 @@ final class LineNumberView: NSView {
                 case .new(let isSelected):
                     // draw line number
                     if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
-                        let digit = lineNumber.numberOfDigits
+                        let digits = lineNumber.digits
                         
                         // calculate base position
                         let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: (y + drawingInfo.charWidth * CGFloat(digit) / 2).rounded(.up), y: 3 * drawingInfo.tickLength)
+                            ? CGPoint(x: (y + drawingInfo.charWidth * CGFloat(digits.count) / 2).rounded(.up), y: 3 * drawingInfo.tickLength)
                             : CGPoint(x: -drawingInfo.padding, y: y)
                         
                         // get glyphs and positions
-                        let positions: [CGPoint] = (0..<digit)
+                        let positions: [CGPoint] = (0..<digits.count)
                             .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
-                        let glyphs: [CGGlyph] = (0..<digit)
-                            .map { lineNumber.number(at: $0) }
+                        let glyphs: [CGGlyph] = digits
                             .map { drawingInfo.digitGlyphs[$0] }
                         
                         // draw
@@ -325,7 +324,7 @@ final class LineNumberView: NSView {
         let thickness: CGFloat = {
             switch self.orientation {
                 case .horizontal:
-                    let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                    let requiredNumberOfDigits = max(self.numberOfLines.digits.count, self.minNumberOfDigits)
                     let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
                     return max(thickness.rounded(.up), self.minVerticalThickness)
                 

@@ -716,6 +716,7 @@
 		2AF45E1E1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */; };
 		2AF45E1F1E6C0D920030CD60 /* EditorInfoCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E1D1E6C0D920030CD60 /* EditorInfoCounter.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
+		2AF5D0E5286D9AB3000BE826 /* ArithmetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */; };
 		2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
@@ -1441,6 +1442,7 @@
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmetricsTests.swift; sourceTree = "<group>"; };
 		2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsViewController.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
@@ -1802,6 +1804,7 @@
 		2A1A4EB224FBA28100B50AA0 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				2AA056AC26FCA171000E0CB2 /* Arithmetrics.swift */,
 				2A885E321D5C3A1B00288723 /* Comparable.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
 				2A5C00332814698000700CAE /* Collection+BinarySearch.swift */,
@@ -1938,7 +1941,6 @@
 		2A359E011DAEA0FC00FEF7AA /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				2AA056AC26FCA171000E0CB2 /* Arithmetrics.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */,
 				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
@@ -2364,6 +2366,7 @@
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */,
 				2A9082EE1D325ED900228F50 /* GeometryTests.swift */,
 				2AC39F721E8AC80E009F97D5 /* CollectionTests.swift */,
 				2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */,
@@ -3210,6 +3213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF5D0E5286D9AB3000BE826 /* ArithmetricsTests.swift in Sources */,
 				2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AC39F731E8AC80E009F97D5 /* CollectionTests.swift in Sources */,
