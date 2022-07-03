@@ -150,7 +150,7 @@ final class StringCommentingTests: XCTestCase {
         XCTAssertEqual(textView.string, "// foo\n// bar")
         XCTAssertEqual(textView.selectedRanges, [NSRange(0..<6), NSRange(7..<13)] as [NSValue])
         XCTAssertTrue(textView.canUncomment(partly: false))
-        textView.uncomment(fromLineHead: true)
+        textView.uncomment()
         XCTAssertEqual(textView.string, "foo\nbar")
         XCTAssertEqual(textView.selectedRanges, [NSRange(0..<3), NSRange(4..<7)] as [NSValue])
         
@@ -159,8 +159,8 @@ final class StringCommentingTests: XCTestCase {
         textView.commentOut(types: .inline, fromLineHead: true)
         XCTAssertEqual(textView.string, "// foo\n// bar")
         XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(4..<4), NSRange(11..<11)] as [NSValue])
-        XCTAssertFalse(textView.canUncomment(partly: false))
-        textView.uncomment(fromLineHead: true)
+        XCTAssert(textView.canUncomment(partly: false))
+        textView.uncomment()
         XCTAssertEqual(textView.string, "foo\nbar")
         XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
     }
@@ -176,7 +176,7 @@ final class StringCommentingTests: XCTestCase {
         XCTAssertEqual(textView.string, "<- foo ->\n<- bar ->")
         XCTAssertEqual(textView.selectedRanges, [NSRange(0..<9), NSRange(10..<19)] as [NSValue])
         XCTAssertTrue(textView.canUncomment(partly: false))
-        textView.uncomment(fromLineHead: true)
+        textView.uncomment()
         XCTAssertEqual(textView.string, "foo\nbar")
         XCTAssertEqual(textView.selectedRanges, [NSRange(0..<3), NSRange(4..<7)] as [NSValue])
         
@@ -185,8 +185,8 @@ final class StringCommentingTests: XCTestCase {
         textView.commentOut(types: .block, fromLineHead: true)
         XCTAssertEqual(textView.string, "<- foo ->\n<- bar ->")
         XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(4..<4), NSRange(14..<14)] as [NSValue])
-        XCTAssertFalse(textView.canUncomment(partly: false))
-        textView.uncomment(fromLineHead: true)
+        XCTAssert(textView.canUncomment(partly: false))
+        textView.uncomment()
         XCTAssertEqual(textView.string, "foo\nbar")
         XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
     }

@@ -242,7 +242,7 @@ final class TextSelection: NSObject {
     /// swap selected lines with the line just below
     @objc func handleUncomment(_ command: NSScriptCommand) {
         
-        self.textView?.uncomment(fromLineHead: false)
+        self.textView?.uncomment()
     }
     
     
