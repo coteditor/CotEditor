@@ -197,7 +197,7 @@ extension Commenting {
         guard
             self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
-            targetRanges.contains(where: { !$0.isEmpty })
+            selectedRanges.contains(where: { !$0.isEmpty })
         else { return false }
         
         if let delimiters = self.blockCommentDelimiters {
