@@ -676,20 +676,20 @@ private extension UserDefaults {
     var textFindMode: TextFind.Mode {
         
         if self[.findUsesRegularExpression] {
-            var options = NSRegularExpression.Options()
-            if self[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
-            if self[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
-            if self[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
-            if self[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
+            let options = NSRegularExpression.Options()
+                .union(self[.findIgnoresCase] ? .caseInsensitive : [])
+                .union(self[.findRegexIsSingleline] ? .dotMatchesLineSeparators : [])
+                .union(self[.findRegexIsMultiline] ? .anchorsMatchLines : [])
+                .union(self[.findRegexUsesUnicodeBoundaries] ? .useUnicodeWordBoundaries : [])
             
             return .regularExpression(options: options, unescapesReplacement: self[.findRegexUnescapesReplacementString])
             
         } else {
-            var options = NSString.CompareOptions()
-            if self[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
-            if self[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
-            if self[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
-            if self[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
+            let options = NSString.CompareOptions()
+                .union(self[.findIgnoresCase] ? .caseInsensitive : [])
+                .union(self[.findTextIsLiteralSearch] ? .literal : [])
+                .union(self[.findTextIgnoresDiacriticMarks] ? .diacriticInsensitive : [])
+                .union(self[.findTextIgnoresWidth] ? .widthInsensitive : [])
             
             return .textual(options: options, fullWord: self[.findMatchesFullWord])
         }

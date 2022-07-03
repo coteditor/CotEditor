@@ -33,7 +33,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     static let shared = ScriptManager()
     
-    @Atomic private(set) var currentScriptName: String?
+    @MainActor private(set) var currentScriptName: String?
     
     
     // MARK: Private Properties
@@ -145,8 +145,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         let event = self.createEvent(by: document, eventID: eventType.eventID)
         
-        Task.detached { [weak self] in
-            await self?.dispatch(event, handlers: scripts)
+        Task {
+            await self.dispatch(event, handlers: scripts)
         }
     }
     
@@ -166,7 +166,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let script = sender.representedObject as? any Script else { return assertionFailure() }
         
-        Task.detached {
+        Task {
             do {
                 // change behavior if modifier key is pressed
                 switch NSEvent.modifierFlags {
@@ -190,7 +190,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 }
                 
             } catch {
-                await self.presentError(error, scriptName: script.name)
+                self.presentError(error, scriptName: script.name)
             }
         }
     }
@@ -213,7 +213,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - error: The error to present.
     ///   - scriptName: The name of script.
-    @MainActor private func presentError(_ error: Error, scriptName: String? = nil) {
+    @MainActor private func presentError(_ error: Error, scriptName: String) {
         
         switch error {
             case let error as ScriptError:

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 CotEditor Project
+//  © 2018-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %d characters>" = "<uma letra que consiste em %d caracteres>";
+"<a letter consisting of %lld characters>" = "<uma letra que consiste em %lld caracteres>";
 
 // Variation selectors
 "Emoji Style" = "Estilo do Emoji";

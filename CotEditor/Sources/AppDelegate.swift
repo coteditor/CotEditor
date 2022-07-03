@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var preferencesWindowController = NSWindowController.instantiate(storyboard: "PreferencesWindow")
+    private lazy var settingsWindowController = NSWindowController.instantiate(storyboard: "SettingsWindow")
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
@@ -103,8 +103,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
-                                              Bundle.main.minorVersion)
+        self.whatsNewMenuItem?.title = String(localized: "What’s New in CotEditor \(Bundle.main.minorVersion)")
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -170,24 +169,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         NSHelpManager.shared.registerBooks(in: .main)
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-        
-        // show notification panel for line ending migration on CotEditor 4.2.0
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init),
-           lastVersion < 494  // earlier than CotEditor 4.2.0
-        {
-            var migrationOptions: LineEndingMigrationOptions = []
-            if ReplacementManager.shared.needsLineEndingMigration() {
-                migrationOptions.insert(.replacement)
-            }
-            if SyntaxManager.shared.needsLineEndingMigration() {
-                migrationOptions.insert(.syntax)
-            }
-            if ScriptManager.shared.hasScripts {
-                migrationOptions.insert(.script)
-            }
-            
-            LineEndingMigrationPanel(options: migrationOptions).makeKeyAndOrderFront(nil)
-        }
     }
     
     
@@ -317,10 +298,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// show preferences window
+    /// show Settings window
     @IBAction func showPreferences(_ sender: Any?) {
         
-        self.preferencesWindowController.showWindow(sender)
+        self.settingsWindowController.showWindow(sender)
     }
     
     
@@ -390,7 +371,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // open as document
         guard let document = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false) as? Document else { return assertionFailure() }
-        document.displayName = "Issue Report".localized(comment: "document title")
+        document.displayName = String(localized: "Issue Report", comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(0..<0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
@@ -411,7 +392,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(format: "“%@” is a CotEditor theme file.".localized, url.lastPathComponent)
+        alert.messageText = String(localized: "“\(url.lastPathComponent)” is a CotEditor theme file.")
         alert.informativeText = "Do you want to install this theme?".localized
         alert.addButton(withTitle: "Install".localized)
         alert.addButton(withTitle: "Open as Text File".localized)
@@ -434,7 +415,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // feedback for success
         let themeName = ThemeManager.shared.settingName(from: url)
         let feedbackAlert = NSAlert()
-        feedbackAlert.messageText = String(format: "A new theme named “%@” has been successfully installed.".localized, themeName)
+        feedbackAlert.messageText = String(localized: "A new theme named “\(themeName)” has been successfully installed.")
         
         NSSound.glass?.play()
         feedbackAlert.runModal()

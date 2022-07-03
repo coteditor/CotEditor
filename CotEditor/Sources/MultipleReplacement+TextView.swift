@@ -82,9 +82,7 @@ extension MultipleReplacement {
                     progress.localizedDescription = "Not Found".localized
                 }
                 
-                let resultMessage = !result.isEmpty
-                    ? String(format: "%i found".localized, locale: .current, result.count)
-                    : "Not Found".localized
+                let resultMessage = String(localized: result.isEmpty ? "Not Found" : "\(result.count) found")
                 
                 indicator.done()
                 
@@ -142,9 +140,7 @@ extension MultipleReplacement {
                     progress.localizedDescription = "Not Found".localized
                 }
                 
-                let resultMessage = (result.count > 0)
-                ? String(format: "%i replaced".localized, locale: .current, result.count)
-                    : "Not Replaced".localized
+                let resultMessage = String(localized: (result.count == 0) ? "Not Replaced" : "\(result.count) replaced")
                 
                 indicator.done()
                 

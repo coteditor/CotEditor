@@ -74,6 +74,14 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
+        // set edited indicator to window tab
+        let dotView = DotView()
+        dotView.isHidden = true
+        dotView.color = .tertiaryLabelColor
+        dotView.toolTip = "Document has unsaved changes".localized
+        self.window?.tab.accessoryView = dotView
+        NSLayoutConstraint(item: dotView, attribute: .height, relatedBy: .equal, toItem: dotView, attribute: .width, multiplier: 1, constant: 0).isActive = true
+        
         // observe opacity setting change
         if let window = self.window as? DocumentWindow {
             self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
@@ -124,6 +132,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     override func setDocumentEdited(_ dirtyFlag: Bool) {
+        
+        self.window?.tab.accessoryView?.isHidden = !dirtyFlag
         
         super.setDocumentEdited(self.isWhitepaper ? false : dirtyFlag)
     }
@@ -181,7 +191,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
-            labelItem.title = "Recently Used".localized(comment: "menu heading in syntax style list on toolbar popup")
+            labelItem.title = String(localized: "Recently Used", comment: "menu heading in syntax style list on toolbar popup")
             labelItem.isEnabled = false
             menu.addItem(labelItem)
             
@@ -353,14 +363,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let smallerItem = NSToolbarItem(itemIdentifier: .smaller)
                 smallerItem.label = "Smaller".localized
                 smallerItem.toolTip = "Smaller".localized
-                smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: smallerItem.label)!
-                    .withSymbolConfiguration(.init(scale: .small))
+                smallerItem.image = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: smallerItem.label)!
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
                 biggerItem.label = "Bigger".localized
                 biggerItem.toolTip = "Bigger".localized
-                biggerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: biggerItem.label)!
+                biggerItem.image = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: biggerItem.label)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -454,7 +463,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
-                        let item = NSMenuItem(title: String(format: "%li", locale: .current, width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                        let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
                         item.indentationLevel = 1
                         return item

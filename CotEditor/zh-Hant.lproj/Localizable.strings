@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
 "Replace the current selection with the replacement text." = "用取代文字取代當前選中內容";
 "Not Found" = "未找到";
-"%i found" = "找到%i項";  // %i is number of founds
+"%lld found" = "找到%lld項";  // %lld is number of founds
 "Not Replaced" = "沒有進行取代";
-"%i replaced" = "%i處被取代";  // %i is number of replaced
+"%lld replaced" = "%lld處被取代";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在「%@」中沒有找到字元串。";
 "Found one string in “%@”." = "在「%@」中找到一個字元串。";
-"Found %i strings in “%@”." = "%i個字元串在「%@」中被找到。";
+"Found %lld strings in “%@”." = "%lld個字元串在「%@」中被找到。";
 
 
 
@@ -145,6 +145,8 @@
 
 "Back Reference" = "回溯引用";
 "first match" = "首字匹配";
+
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
 
 
 
@@ -217,6 +219,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本還是更新至被編輯過的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor編輯的內容";
 "Update" = "更新";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in window tab
+"Document has unsaved changes" = "Document has unsaved changes";
 
 
 
@@ -392,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "掃描不兼容字元…";
 "Found an incompatible character." = "發現1處不兼容字元。";
-"Found %i incompatible characters." = "發現%i處不兼容字元。";  // %i is the number of characters
+"Found %lld incompatible characters." = "發現%lld處不兼容字元。";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "發現1處不是%@的換行符";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "發現%i處不是%@的換行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "發現%lld處不是%@的換行符";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -456,7 +464,7 @@
 "Wrap Lines" = "換行";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "要顯示不可見元素，請在偏好設置中進行設定";
+"To show invisible characters, set them in Settings" = "要顯示不可見元素，請在設定中進行設定";
 
 
 
@@ -501,7 +509,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "變更將在下次啟動時生效。";
@@ -571,7 +579,7 @@
 // Syntax style validation results
 "No error found." = "沒有發現錯誤";
 "An error found!" = "發現1個錯誤";
-"%i errors found!" = "發現%i個錯誤";
+"%lld errors found!" = "發現%lld個錯誤";
 "outline" = "大綱";
 
 
@@ -644,7 +652,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "插入文字%li";
+"Insert Text %lld" = "插入文字%lld";
 
 // Keyboard key name
 "Space" = "空格鍵";
@@ -712,12 +720,12 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
-"From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";
-"Due to this change, you may need manual migration for your settings below:" = "由於這個變更，你可能需要對下面的設定進行手動遷移：";
-"Multiple replacement definitions" = "多次取代的定義";
-"Syntax styles" = "文法風格";
-"CotEditor scripts" = "CotEditor腳本";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n`僅在行尾確實是LF時進行匹配。如需匹配任意行尾，請使用`\\R`。";
-"Learn More…" = "瞭解更多…";
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "文法樣式對映衝突";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列檔案對映規則被註冊了多種格式。CotEditor自動使用第一個格式。可以透過編輯每個文法格式來解決衝突。";
+"Extension" = "副檔名";
+"Filename" = "檔名";
+"Interpreter" = "直譯器";
+// table column headers
+"Used style" = "已使用樣式";
+"Duplicated styles" = "重複的樣式";

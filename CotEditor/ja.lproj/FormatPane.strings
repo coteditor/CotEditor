@@ -65,7 +65,7 @@
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */
-"1lj-x8-ouD.title" = "読み込み…";
+"1lj-x8-ouD.title" = "読み込む…";
 /* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
 "FhP-Hj-cWE.title" = "すべてのスタイルを再読み込み";
 /* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
@@ -82,6 +82,6 @@
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "NDE-r5-xAF"; */
 "NDE-r5-xAF.title" = "削除";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "Qwp-u8-Urf"; */
-"Qwp-u8-Urf.title" = "書き出し…";
+"Qwp-u8-Urf.title" = "書き出す…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "AkE-0P-0FC"; */
 "AkE-0P-0FC.title" = "Finderに表示";

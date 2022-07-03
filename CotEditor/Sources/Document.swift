@@ -601,7 +601,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let printView = PrintTextView()
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.documentName = self.displayName
-        printView.filePath = self.fileURL?.path
+        printView.fileURL = self.fileURL
         printView.syntaxName = self.syntaxParser.style.name
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber
@@ -626,7 +626,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // detect URLs manually (2019-05 macOS 10.14).
         // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
         //    but then, multiline-URLs over a page break would be broken. (cf. #958)
-        printView.detectLink()
+        try? printView.textStorage?.linkURLs()
         
         // create print operation
         let printInfo = self.printInfo
@@ -869,7 +869,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding] target in
                 try? target.changeEncoding(to: currentFileEncoding, lossy: lossy)
             }
-            undoManager.setActionName(String(format: "Encoding to “%@”".localized, fileEncoding.localizedName))
+            undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
         }
         
         // update encoding
@@ -897,7 +897,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 target.changeLineEnding(to: currentLineEnding)
                 target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
             }
-            undoManager.setActionName(String(format: "Line Endings to “%@”".localized, lineEnding.name))
+            undoManager.setActionName(String(localized: "Line Endings to “\(lineEnding.name)”"))
         }
         
         // update line ending
@@ -998,7 +998,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
             alert.messageText = "File encoding".localized
-            alert.informativeText = String(format: "Do you want to convert or reinterpret this document using “%@”?".localized, fileEncoding.localizedName)
+            alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
             alert.addButton(withTitle: "Convert".localized)
             alert.addButton(withTitle: "Reinterpret".localized)
             alert.addButton(withTitle: "Cancel".localized)
@@ -1020,7 +1020,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = "The document has unsaved changes.".localized
-                            alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, fileEncoding.localizedName)
+                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?")
                             alert.addButton(withTitle: "Cancel".localized)
                             alert.addButton(withTitle: "Discard Changes".localized)
                             alert.buttons.last?.hasDestructiveAction = true
@@ -1146,7 +1146,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let alert = NSAlert()
         alert.alertStyle = .warning
         alert.messageText = "The document has inconsistent line endings.".localized
-        alert.informativeText = String(format: "Do you want to convert all line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
+        alert.informativeText = String(localized: "Do you want to convert all line endings to \(self.lineEnding.name), the most common line endings in this document?")
         alert.addButton(withTitle: "Convert".localized)
         alert.addButton(withTitle: "Review".localized)
         alert.showsSuppressionButton = true
@@ -1265,8 +1265,7 @@ private enum ReinterpretationError: LocalizedError {
                 return "The document doesn’t have a file to reinterpret.".localized
             
             case let .reinterpretationFailed(fileURL, encoding):
-                return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
-                              fileURL.lastPathComponent, String.localizedName(of: encoding))
+                return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding))”.")
         }
     }
     
@@ -1301,7 +1300,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     var errorDescription: String? {
         
-        return String(format: "Some characters would have to be changed or deleted in saving as “%@”.".localized, self.fileEncoding.localizedName)
+        return String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName)”.")
     }
     
     

@@ -167,7 +167,7 @@ struct DefaultSettings {
         .findRegexUsesUnicodeBoundaries: false,
         .findRegexUnescapesReplacementString: true,
         
-        // ------ settings not in preferences window ------
+        // ------ settings not in the Settings window ------
         .pinsThemeAppearance: false,
         .colorCodeType: 1,
         .sidebarWidth: 220,
@@ -178,8 +178,6 @@ struct DefaultSettings {
         .findResultViewFontSize: NSFont.smallSystemFontSize,
         
         // ------ hidden settings ------
-        .headerFooterDateFormat: "yyyy-MM-dd HH:mm",
-        .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB

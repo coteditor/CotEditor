@@ -1,0 +1,105 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="「フォーマット」設定, フォーマット設定, 「フォーマット」, フォーマット, 書式, 改行コード, エンコーディング, シンタックス"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>CotEditorで「フォーマット」設定を変更する</title>
+</head>
+
+<body>
+<a name="settings_format"></a>
+
+<h1>CotEditorで「フォーマット」設定を変更する</h1>
+
+<p>MacのCotEditorアプリケーション<img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/>で、改行コードやエンコーディング、シンタックススタイルなど、書類のフォーマットを選択するには、「フォーマット」設定を使用します。これらの設定を変更するには、「CotEditor」＞「設定」と選択してから「フォーマット」をクリックします。</p>
+
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">CotEditorを開く</a></p>
+
+
+
+<table class="settings">
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>デフォルト改行コード</th>
+		<td>新規作成する書類の改行コードを選択します。また、既存の書類に改行コードが含まれていない場合もこの改行コードが適用されます。詳しくは「<a href="about_line_endings.html">多様な改行コードを扱う</a>」を参照してください。</td>
+	</tr>
+
+	<tr>
+		<th>デフォルトエンコーディング</th>
+		<td>新規作成する書類のエンコーディングを選択します。</td>
+	</tr>
+
+	<tr>
+		<th>エンコーディングの優先順位</th>
+		<td>エンコーディングの優先順位と既存のファイルのエンコーディング自動認識での方策を選択します。
+		<dl>
+			<dt>リストを編集</dt>
+			<dd>メニューおよびツールバーの「エンコーディング」メニューに表示するエンコーディングの並び順をカスタマイズできます。この並び順は、エンコーディングの自動認識時にも使用され、上から順に適用を試します。詳しくは「<a href="howto_customize_encoding_order.html">テキストエンコーディングの優先順位を変更する</a>」を参照してください。</dd>
+		</dl></td>
+	</tr>
+
+	<tr>
+		<th>書類中のエンコーディング宣言を参照</th>
+		<td>書類中に書かれたエンコーディング宣言を尊重します。詳しくは「<a href="about_autodetect_charset.html">エンコーディング宣言を参照する</a>」を参照してください。</td>
+	</tr>
+
+	<tr>
+		<th>デフォルトスタイル</th>
+		<td>開いたファイルの拡張子にひも付けられたシンタックススタイルが無い場合に適用するスタイルを選択します。<br />
+		この設定は、新規書類にも適用されます。</td>
+	</tr>
+
+	<tr>
+		<th>利用可能なスタイル</th>
+		<td>現在利用可能なシンタックススタイルのリストです。CotEditorにバンドルされているスタイルとユーザが追加したスタイルの両方を含みます。ここから既存のスタイルを編集したり、独自のスタイルを追加することができます。スタイル名の前の小さなドットは、そのスタイルがカスタマイズされていることを表します。<br/>
+		スタイルの編集については、「<a href="syntax_definition.html">シンタックススタイルを定義する</a>」を参照してください。</dd>
+
+		<dl>
+			<dt>新規 +, 削除 -</dt>
+			<dd>新規スタイルを作成するか選択されているスタイルを削除します。CotEditorにバンドルされているスタイルは削除できません。</dd>
+
+			<dt>編集（鉛筆アイコン）</dt>
+			<dd>選択されているスタイルを編集します。</dd>
+
+			<dt>その他アクション（歯車ボタン）</dt>
+			<dd><dl>
+				<dt>“[<span class="variable">スタイル名</span>]”を複製</dt>
+				<dd>選択されているスタイルをコピーして、独自のスタイルを作成します。</dd>
+
+				<dt>“[<span class="variable">スタイル名</span>]”を書き出す</dt>
+				<dd>選択されたスタイル設定をファイルに書き出します。作成したスタイルを別の環境で使うときに使用します。「書き出す」で保存したファイルを利用するには「読み込む」を使います。</dd>
+
+				<dt>共有</dt>
+				<dd>選択されたスタイル設定を共有します。</dd>
+
+				<dt>読み込む</dt>
+				<dd>ほかのコンピュータで作成したスタイルを使えるようにします。「読み込む」を選択したあと、ダイアログから読み込むスタイルファイルを選択してください。</dd>
+
+				<dt>ファイル関連付けのコンフリクトを表示</dt>
+				<dd>1つの拡張子やファイル名に対して、複数のスタイルが割り当てられていないかをチェックします。</dd>
+			</dl></dd>
+		</dl></td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="about_line_endings.html">多様な改行コードを扱う</a></li>
+	<li><a href="howto_customize_encoding_order.html">テキストエンコーディングの優先順位を変更する</a></li>
+	<li><a href="syntax_definition.html">シンタックススタイルを定義する</a></li>
+	<li><a href="syntax_file_mapping.html">ファイルをシンタックススタイルに関連付ける</a></li>
+	<li><a href="settings.html">設定を変更する</a></li>
+</ul>
+</section>
+
+</body>
+</html>

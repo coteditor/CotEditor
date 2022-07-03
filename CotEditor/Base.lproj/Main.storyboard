@@ -793,12 +793,12 @@ CA
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Indentation" id="YOd-Hk-eIa">
                                                 <items>
-                                                    <menuItem title="Shift Right" keyEquivalent="]" id="454">
+                                                    <menuItem title="Shift Right" keyEquivalent="]" mirroring="NO" id="454">
                                                         <connections>
                                                             <action selector="shiftRight:" target="Ady-hI-5gd" id="0TU-LL-51E"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Shift Left" keyEquivalent="[" id="455">
+                                                    <menuItem title="Shift Left" keyEquivalent="[" mirroring="NO" id="455">
                                                         <connections>
                                                             <action selector="shiftLeft:" target="Ady-hI-5gd" id="5sc-L5-cQC"/>
                                                         </connections>

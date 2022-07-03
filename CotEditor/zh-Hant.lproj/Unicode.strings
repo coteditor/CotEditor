@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %d characters>" = "<包含有%d個字元>";
+"<a letter consisting of %lld characters>" = "<包含有%lld個字元>";
 
 // Variation selectors
 "Emoji Style" = "表情文字格式";

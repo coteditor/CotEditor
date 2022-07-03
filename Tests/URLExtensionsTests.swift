@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreation() {
         
-        let url = URL(string: "/foo/bar/file.txt")!
-        let baseUrl = URL(string: "/foo/buz/file.txt")!
+        let url = URL(fileURLWithPath: "/foo/bar/file.txt")
+        let baseUrl = URL(fileURLWithPath: "/foo/buz/file.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseUrl), "../bar/file.txt")
         XCTAssertNil(url.path(relativeTo: nil))
@@ -41,8 +41,8 @@ final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreation2() {
         
-        let url = URL(string: "/file1.txt")!
-        let baseUrl = URL(string: "/file2.txt")!
+        let url = URL(fileURLWithPath: "/file1.txt")
+        let baseUrl = URL(fileURLWithPath: "/file2.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseUrl), "file1.txt")
     }
@@ -50,8 +50,8 @@ final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreationWithSameURLs() {
         
-        let url = URL(string: "/file1.txt")!
-        let baseUrl = URL(string: "/file1.txt")!
+        let url = URL(fileURLWithPath: "/file1.txt")
+        let baseUrl = URL(fileURLWithPath: "/file1.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseUrl), "file1.txt")
     }

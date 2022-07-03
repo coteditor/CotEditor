@@ -29,7 +29,7 @@ import Combine
 private struct Definition: Identifiable {
     
     var term: String
-    var description: String
+    var description: LocalizedStringKey
     let id = UUID()
 }
 
@@ -79,11 +79,7 @@ struct RegularExpressionReferenceView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Text("Basic Regular Expression Syntax")
-                .font(.title3)
-                .foregroundColor(.secondary)
-            
+        Section {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     DefinitionList(Definition.characters, title: "Characters")
@@ -100,6 +96,20 @@ struct RegularExpressionReferenceView: View {
                 }
             }
             .font(.system(size: NSFont.smallSystemFontSize))
+            
+        } header: {
+            Text("Basic Regular Expression Syntax")
+                .font(.title3)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+        } footer: {
+            let icuLink = try! AttributedString(markdown: "[ICU Regular Expressions](https://unicode-org.github.io/icu/userguide/strings/regexp.html)")
+            Text("The syntax conforms to the \(icuLink) specifications.")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .multilineTextAlignment(.leading)
         }
         .fixedSize(horizontal: true, vertical: false)
         .padding()
@@ -108,14 +118,14 @@ struct RegularExpressionReferenceView: View {
     
     private struct DefinitionList: View {
         
-        var title: String
+        var title: LocalizedStringKey
         var definitions: [Definition]
         
         @State private var width: CGFloat?
         private let event = PassthroughSubject<CGFloat, Never>()
         
         
-        init(_ definitions: [Definition], title: String) {
+        init(_ definitions: [Definition], title: LocalizedStringKey) {
             
             self.definitions = definitions
             self.title = title
@@ -132,7 +142,7 @@ struct RegularExpressionReferenceView: View {
                                 .fontWeight(.medium)
                                 .frame(width: self.width, alignment: .leading)
                                 .background(WidthGetter(widthChanged: self.event))
-                            Text(definition.description.localized)
+                            Text(definition.description)
                         }
                         .fixedSize()
                     }
@@ -143,10 +153,11 @@ struct RegularExpressionReferenceView: View {
                 }
                 
             } header: {
-                Text(self.title.localized)
+                Text(self.title)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
             }
+            .frame(minWidth: 200, alignment: .leading)
         }
     }
     

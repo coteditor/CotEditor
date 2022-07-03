@@ -176,14 +176,14 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             
             case #selector(renameTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Rename “%@”".localized, name)
+                    menuItem.title = String(localized: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
                 return !isBundled
             
             case #selector(duplicateTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                    menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
             
@@ -192,21 +192,21 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             
             case #selector(restoreTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Restore “%@”".localized, name)
+                    menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
                 return isBundled && isCustomized
             
             case #selector(exportTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                    menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return isCustomized
             
             case #selector(revealThemeInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
+                    menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 return isCustomized
             
@@ -643,7 +643,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     private func deleteTheme(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: "Are you sure you want to delete “%@” theme?".localized, name)
+        alert.messageText = String(localized: "Are you sure you want to delete “\(name)” theme?")
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)
@@ -813,7 +813,7 @@ extension AppearancePaneController: NSFontChanging {
         
         let displayName = font.displayName ?? font.fontName
         
-        fontField.stringValue = displayName + " " + String(format: "%g", locale: .current, size)
+        fontField.stringValue = displayName + " " + size.formatted()
         fontField.font = displayFont
         fontField.disablesAntialiasing = !shouldAntiailias
     }

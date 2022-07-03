@@ -309,10 +309,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.tabWidth = tabWidth
         }
         
-        // just ignore the last one
-        // because `decodeArrayOfObjects(ofClass:forKey:)` on macOS 11 breaks window display
-        guard #available(macOS 12, *) else { return }
-        
         if let insertionLocations = (coder.decodeArrayOfObjects(ofClass: NSNumber.self, forKey: SerializationKey.insertionLocations) as? [Int])?
             .filter({ $0 <= self.string.length }),
            !insertionLocations.isEmpty
@@ -845,7 +841,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard let menu = super.menu(for: event) else { return nil }
         
         // remove unwanted "Font" menu and its submenus
-        if let fontMenuItem = menu.item(withTitle: "Font".localized(comment: "menu item title in the context menu")) {
+        if let fontMenuItem = menu.item(withTitle: String(localized: "Font", comment: "menu item title in the context menu")) {
             menu.removeItem(fontMenuItem)
         }
         
@@ -1492,10 +1488,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         let fileDropItems = UserDefaults.standard[.fileDropArray].map { FileDropItem(dictionary: $0) }
         let documentURL = self.document?.fileURL
-        let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxParser.style else { return nil }
-            return style.isNone ? nil : style.name
-        }()
+        let syntaxStyle = self.document?.syntaxParser.style.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
             if url.pathExtension == "textClipping", let textClipping = try? TextClipping(url: url) {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ final class WindowPaneController: NSViewController {
         let systemSettingLabel = menu.item(withTag: NSWindow.userTabbingPreference.rawValue)!.title
         let attributes: [NSAttributedString.Key: Any] = [.font: menu.font].compactMapValues { $0 }
         let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting, attributes: attributes)
-        let userSettingLabel = NSAttributedString(string: String(format: " (%@)".localized, systemSettingLabel),
+        let userSettingLabel = NSAttributedString(string: String(localized: " (\(systemSettingLabel)"),
                                                   attributes: [.foregroundColor: NSColor.secondaryLabelColor].merging(attributes) { $1 })
         
         menu.items.first!.attributedTitle = attrLabel + userSettingLabel

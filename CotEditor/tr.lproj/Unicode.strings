@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %d characters>" = "%d karakterden oluşan bir harf";
+"<a letter consisting of %lld characters>" = "%lld karakterden oluşan bir harf";
 
 // Variation selectors
 "Emoji Style" = "Emoji Biçemi";

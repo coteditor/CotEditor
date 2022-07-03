@@ -531,7 +531,7 @@
                                     <constraint firstItem="fiR-qP-3Z4" firstAttribute="leading" secondItem="5Bt-cy-Umw" secondAttribute="trailing" constant="8" symbolic="YES" id="zvm-jO-Vjk"/>
                                 </constraints>
                             </customView>
-                            <button identifier="pref_print" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-ld-DGW">
+                            <button identifier="settings_print" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-ld-DGW">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="vLp-x1-my1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

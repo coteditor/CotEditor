@@ -260,7 +260,7 @@ struct Shortcut: Hashable {
         .f18: "F18",
         .f19: "F19",
         .help: "Help",
-        .space: "Space".localized(comment: "keyboard key name"),
+        .space: String(localized: "Space", comment: "keyboard key name"),
     ].mapKeys(\.unicodeScalar)
     
 }

@@ -55,10 +55,6 @@ struct HighlightDefinition: Equatable {
         self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase] as? Bool) ?? false
     }
     
-}
-
-
-extension HighlightDefinition {
     
     /// create a regex type definition from simple words by considering non-word characters around words
     init(words: [String], ignoreCase: Bool) {
@@ -130,24 +126,22 @@ struct OutlineDefinition: Equatable {
 
 // MARK: -
 
-struct SyntaxStyle {
+struct SyntaxStyle: Equatable {
     
     // MARK: Public Properties
     
-    let name: String
-    let isNone: Bool
-    let extensions: [String]
+    var name: String
+    var extensions: [String] = []
     
-    let inlineCommentDelimiter: String?
-    let blockCommentDelimiters: Pair<String>?
-    let completionWords: [String]
+    var inlineCommentDelimiter: String?
+    var blockCommentDelimiters: Pair<String>?
+    var completionWords: [String] = []
     
-    let nestablePaires: [String: SyntaxType]
-    let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
-    let outlineDefinitions: [OutlineDefinition]
     
-    private(set) lazy var outlineExtractors: [OutlineExtractor] = self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
-    private(set) lazy var highlightExtractors: [SyntaxType: [any HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor } }
+    // MARK: Private Properties
+    
+    private var highlightDefinitions: [SyntaxType: [HighlightDefinition]] = [:]
+    private var outlineDefinitions: [OutlineDefinition] = []
     
     
     
@@ -156,23 +150,12 @@ struct SyntaxStyle {
     
     init() {
         self.name = BundledStyleName.none
-        self.isNone = true
-        self.extensions = []
-        
-        self.inlineCommentDelimiter = nil
-        self.blockCommentDelimiters = nil
-        self.completionWords = []
-        
-        self.nestablePaires = [:]
-        self.highlightDefinitions = [:]
-        self.outlineDefinitions = []
     }
     
     
     init(dictionary: [String: Any], name: String) {
         
         self.name = name
-        self.isNone = false
         
         self.extensions = (dictionary[SyntaxKey.extensions] as? [[String: String]])?
             .compactMap { $0[SyntaxDefinitionKey.keyString] } ?? []
@@ -194,65 +177,15 @@ struct SyntaxStyle {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
+        self.highlightDefinitions = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
-            let definitions = wordDicts.compactMap { try? HighlightDefinition(dictionary: $0) }
-            
-            guard !definitions.isEmpty else { return }
-            
-            dict[type] = definitions
+            dict[type] = wordDicts.compactMap { try? HighlightDefinition(dictionary: $0) }
         }
         
-        // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithNestablePaires`
-        // also combine simple word definitions into single regex definition
-        var nestablePaires: [String: SyntaxType] = [:]
-        self.highlightDefinitions = definitionDictionary.reduce(into: [:]) { (dict, item) in
-            
-            var highlightDefinitions: [HighlightDefinition] = []
-            var words: [String] = []
-            var caseInsensitiveWords: [String] = []
-            
-            for definition in item.value {
-                // extract paired delimiters such as quotes
-                if !definition.isRegularExpression,
-                    definition.beginString == definition.endString,
-                    definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
-                    Set(definition.beginString).count == 1,  // consists of the same characters
-                    !nestablePaires.keys.contains(definition.beginString)  // not registered yet
-                {
-                    nestablePaires[definition.beginString] = item.key
-                    
-                    // remove from the normal highlight definition list
-                    continue
-                }
-                
-                // extract simple words
-                if !definition.isRegularExpression, definition.endString == nil {
-                    if definition.ignoreCase {
-                        caseInsensitiveWords.append(definition.beginString)
-                    } else {
-                        words.append(definition.beginString)
-                    }
-                    continue
-                }
-                
-                highlightDefinitions.append(definition)
-            }
-            
-            // transform simple word highlights to single regex for performance reasons
-            if !words.isEmpty {
-                highlightDefinitions.append(HighlightDefinition(words: words, ignoreCase: false))
-            }
-            if !caseInsensitiveWords.isEmpty {
-                highlightDefinitions.append(HighlightDefinition(words: caseInsensitiveWords, ignoreCase: true))
-            }
-            
-            guard !highlightDefinitions.isEmpty else { return }
-            
-            dict[item.key] = highlightDefinitions
-        }
-        self.nestablePaires = nestablePaires
+        // parse outline definitions
+        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu] as? [[String: Any]])?.lazy
+            .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
         
         // create word-completion data set
         self.completionWords = {
@@ -264,54 +197,81 @@ struct SyntaxStyle {
                     .sorted()
             } else {
                 // create from normal highlighting words
-                return definitionDictionary.values.flatMap { $0 }
+                return self.highlightDefinitions.values.flatMap { $0 }
                     .filter { $0.endString == nil && !$0.isRegularExpression }
                     .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
                     .filter { !$0.isEmpty }
                     .sorted()
             }
         }()
-        
-        // parse outline definitions
-        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu] as? [[String: Any]])?.lazy
-            .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
     }
     
     
     
     // MARK: Public Methods
     
-    /// whether receiver has any syntax highlight defintion
-    var hasHighlightDefinition: Bool {
+    var outlineExtractors: [OutlineExtractor] {
         
-        return (!self.highlightDefinitions.isEmpty || !self.nestablePaires.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
+        self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
     }
     
-}
-
-
-
-extension SyntaxStyle: Equatable {
     
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    var highlightParser: HighlightParser {
         
-        return lhs.name == rhs.name &&
-            lhs.extensions == rhs.extensions &&
-            lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
-            lhs.blockCommentDelimiters == rhs.blockCommentDelimiters &&
-            lhs.nestablePaires == rhs.nestablePaires &&
-            lhs.outlineDefinitions == rhs.outlineDefinitions &&
-            lhs.highlightDefinitions == rhs.highlightDefinitions
-    }
-    
-}
-
-
-extension SyntaxStyle: CustomDebugStringConvertible {
-    
-    var debugDescription: String {
+        var nestables: [NestableToken: SyntaxType] = [:]
+        let extractors = self.highlightDefinitions
+            .reduce(into: [SyntaxType: [HighlightDefinition]]()) { (dict, item) in
+                var definitions: [HighlightDefinition] = []
+                var words: [String] = []
+                var caseInsensitiveWords: [String] = []
+                
+                for definition in item.value {
+                    // extract paired delimiters such as quotes
+                    if !definition.isRegularExpression,
+                       let pair = definition.endString.flatMap({ Pair(definition.beginString, $0) }),
+                       pair.begin == pair.end,
+                       pair.begin.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
+                       Set(pair.begin).count == 1,  // consists of the same characters
+                       !nestables.keys.contains(.pair(pair))  // not registered yet
+                    {
+                        nestables[.pair(pair)] = item.key
+                        continue
+                    }
+                    
+                    // extract simple words
+                    if !definition.isRegularExpression, definition.endString == nil {
+                        if definition.ignoreCase {
+                            caseInsensitiveWords.append(definition.beginString)
+                        } else {
+                            words.append(definition.beginString)
+                        }
+                        continue
+                    }
+                    
+                    definitions.append(definition)
+                }
+                
+                // transform simple word highlights to single regex for performance reasons
+                if !words.isEmpty {
+                    definitions.append(HighlightDefinition(words: words, ignoreCase: false))
+                }
+                if !caseInsensitiveWords.isEmpty {
+                    definitions.append(HighlightDefinition(words: caseInsensitiveWords, ignoreCase: true))
+                }
+                
+                dict[item.key] = definitions
+            }
+            .mapValues { $0.compactMap { try? $0.extractor } }
+            .filter { !$0.value.isEmpty }
         
-        return "<SyntaxStyle -\(self.name)>"
+        if let blockCommentDelimiters = self.blockCommentDelimiters {
+            nestables[.pair(blockCommentDelimiters)] = .comments
+        }
+        if let inlineCommentDelimiter = self.inlineCommentDelimiter {
+            nestables[.inline(inlineCommentDelimiter)] = .comments
+        }
+        
+        return .init(extractors: extractors, nestables: nestables)
     }
     
 }

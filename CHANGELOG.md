@@ -2,6 +2,22 @@
 Change Log
 ==========================
 
+4.4.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Display a dot in the window tab if the document has unsaved changes.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 12 Moneterey and later__.
+- Improve the algorithm to parse numbers in the Sort by Parttern command.
+- [trivial] Improve the Basic Regular Expression Syntax reference.
+
+
+
 4.3.1 (519)
 --------------------------
 

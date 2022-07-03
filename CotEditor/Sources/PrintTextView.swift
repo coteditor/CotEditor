@@ -26,21 +26,21 @@
 
 import Cocoa
 
-final class PrintTextView: NSTextView, Themable, URLDetectable {
+final class PrintTextView: NSTextView, Themable {
     
     // MARK: Constants
     
-    static let verticalPrintMargin: CGFloat = 56.0    // default 90.0
-    static let horizontalPrintMargin: CGFloat = 24.0  // default 72.0
+    static let verticalPrintMargin = 56.0    // default 90.0
+    static let horizontalPrintMargin = 24.0  // default 72.0
     
-    private let lineFragmentPadding: CGFloat = 18.0
-    private let lineNumberPadding: CGFloat = 10.0
-    private let headerFooterFontSize: CGFloat = 9.0
+    private let lineFragmentPadding = 18.0
+    private let lineNumberPadding = 10.0
+    private let headerFooterFontSize = 9.0
     
     
     // MARK: Public Properties
     
-    var filePath: String?
+    var fileURL: URL?
     var documentName: String?
     var syntaxName: String = BundledStyleName.none
     private(set) var theme: Theme?
@@ -49,8 +49,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     // These values are used if set option is "Same as document's setting"
     var documentShowsLineNumber = false
     var documentShowsInvisibles = false
-    
-    var urlDetectionTask: Task<Void, Error>?
     
     
     // MARK: Private Properties
@@ -101,12 +99,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    deinit {
-        self.layoutManager?.delegate = nil
-        self.urlDetectionTask?.cancel()
     }
     
     
@@ -171,12 +163,9 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     /// return the number of pages available for printing
     override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
-        // apply print settings
-        self.applyPrintSettings()
-        
         // adjust content size based on print setting
         if let paperContentSize = NSPrintOperation.current?.printInfo.paperContentSize,
-            self.lastPaperContentSize != paperContentSize
+           self.lastPaperContentSize != paperContentSize
         {
             self.lastPaperContentSize = paperContentSize
             self.frame.size = paperContentSize
@@ -184,6 +173,15 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         }
         
         return super.knowsPageRange(range)
+    }
+    
+    
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        // apply print settings
+        self.applyPrintSettings()
     }
     
     
@@ -320,15 +318,10 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         guard self.theme?.name != theme?.name else { return }
         
         // set theme
-        // -> The following two procedures are important to change .textColor in the preview properly
-        //    while printing only the selection (2022-03 macOS 12):
-        //    1. Set .textColor after setting .backgroundColor.
-        //    2. Ensure glyphs.
         self.theme = theme
         self.backgroundColor = theme?.background.color ?? .textBackgroundColor  // expensive task
         self.textColor = theme?.text.color ?? .textColor
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
-        layoutManager.ensureGlyphs(forCharacterRange: self.string.nsRange)
         
         if let theme = theme {
             layoutManager.invalidateHighlight(theme: theme)
@@ -397,7 +390,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // tab stops for double-sided alignment (imitation of super.pageHeader)
         if let printInfo = NSPrintOperation.current?.printInfo {
-            let xMax = printInfo.paperSize.width - printInfo.topMargin / 2
+            let xMax = printInfo.paperSize.width - printInfo.leftMargin - printInfo.rightMargin
             paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: xMax / 2),
                                        NSTextTab(type: .rightTabStopType, location: xMax)]
         }
@@ -419,17 +412,11 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                 return self.syntaxName
             
             case .filePath:
-                guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
-                    return self.documentName
-                }
-                if UserDefaults.standard[.headerFooterPathAbbreviatingWithTilde] {
-                    return filePath.abbreviatingWithTildeInSandboxedPath
-                }
-                return filePath
-            
+                return self.fileURL?.pathAbbreviatingWithTilde ?? self.documentName
+                
             case .printDate:
-                self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
-                return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
+                self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                return String(localized: "Printed on \(self.dateFormatter.string(from: .now))")
             
             case .pageNumber:
                 guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }

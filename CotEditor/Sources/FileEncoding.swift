@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ struct FileEncoding: Equatable {
         let localizedName = String.localizedName(of: self.encoding)
         
         return (self.encoding == .utf8 && self.withUTF8BOM)
-            ? String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"), localizedName)
+            ? String(localized: "\(localizedName) with BOM", comment: "Unicode (UTF-8) with BOM")
             : localizedName
     }
     

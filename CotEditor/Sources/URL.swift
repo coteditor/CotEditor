@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,19 +23,25 @@
 //  limitations under the License.
 //
 
-import struct Foundation.URL
+import Foundation
 
 extension URL {
     
-    /// check just URL is reachable and ignore any errors
+    /// Simply check the reachability of the URL by ignoring errors.
     var isReachable: Bool {
         
-        return (try? self.checkResourceIsReachable()) == true
+        (try? self.checkResourceIsReachable()) == true
     }
     
     
-    /// return relative-path string
+    /// Rturn relative-path string.
+    ///
+    /// - Parameter baseURL: The URL the relative path based on.
+    /// - Returns: A path string.
     func path(relativeTo baseURL: URL?) -> String? {
+        
+        assert(self.isFileURL)
+        assert(baseURL?.isFileURL != false)
         
         guard let baseURL = baseURL else { return nil }
         
@@ -48,10 +54,27 @@ extension URL {
         
         let sameCount = zip(basePathComponents, pathComponents).countPrefix { $0.0 == $0.1 }
         let parentCount = basePathComponents.count - sameCount - 1
-        let sameComponents = [String](repeating: "..", count: parentCount)
+        let parentComponents = [String](repeating: "..", count: parentCount)
         let diffComponents = pathComponents[sameCount...]
         
-        return (sameComponents + diffComponents).joined(separator: "/")
+        return (parentComponents + diffComponents).joined(separator: "/")
+    }
+    
+}
+
+
+
+// MARK: Sandboxing
+
+extension URL {
+    
+    private static let homeDirectory = getpwuid(getuid())?.pointee.pw_dir.flatMap { String(cString: $0) } ?? NSHomeDirectory()
+    
+    
+    /// A path string that replaces the user's home directory with a tilde (~) character.
+    var pathAbbreviatingWithTilde: String {
+        
+        self.path.replacingOccurrences(of: Self.homeDirectory, with: "~", options: .anchored)
     }
     
 }

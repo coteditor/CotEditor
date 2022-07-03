@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "Sostituisci la selezione attuale con il testo sostitutivo, poi passa al risultato successivo.";
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
 "Not Found" = "Non trovato";
-"%i found" = "%i trovati";  // %i is number of founds
+"%lld found" = "%lld trovati";  // %lld is number of founds
 "Not Replaced" = "Non sostituiti";
-"%i replaced" = "%i sostituzioni";  // %i is number of replaced
+"%lld replaced" = "%lld sostituzioni";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "Nessuna stringa trovata in “%@”.";
 "Found one string in “%@”." = "Trovata una stringa in “%@”.";
-"Found %i strings in “%@”." = "Trovate %i stringhe in %@”.";
+"Found %lld strings in “%@”." = "Trovate %lld stringhe in %@”.";
 
 
 
@@ -145,6 +145,8 @@
 
 "Back Reference" = "Back Reference";
 "first match" = "primo risultato";
+
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
 
 
 
@@ -217,6 +219,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Si desidera mantenere la versione di CotEditor oppure aggiornarla a quella modificata?";
 "Keep CotEditor’s Edition" = "Mantieni la versione di CotEditor";
 "Update" = "Aggiorna";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in window tab
+"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: added
 
 
 
@@ -392,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Scansione dei caratteri incompatibili…";
 "Found an incompatible character." = "Rilevato un carattere incompatibile.";
-"Found %i incompatible characters." = "Rilevati %i caratteri incompatibili.";  // %i is the number of characters
+"Found %lld incompatible characters." = "Rilevati %lld caratteri incompatibili.";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Rilevata una riga che non termina con %@.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "Rilevate %i righe che non terminano con %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "Rilevate %lld righe che non terminano con %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -456,7 +464,7 @@
 "Wrap Lines" = "A capo automatico";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "Per visualizzare i caratteri invisibili, impostarli nelle Preferenze";
+"To show invisible characters, set them in Settings" = "Per visualizzare i caratteri invisibili, impostarli nelle Impostazioni";
 
 
 
@@ -501,7 +509,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "La modifica verrà applicata al prossimo avvio.";
@@ -571,7 +579,7 @@
 // Syntax style validation results
 "No error found." = "Nessun errore rilevato.";
 "An error found!" = "Trovato un errore.";
-"%i errors found!" = "Trovati %i errori.";
+"%lld errors found!" = "Trovati %lld errori.";
 "outline" = "outline";
 
 
@@ -644,7 +652,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "Inserisci testo %li";
+"Insert Text %lld" = "Inserisci testo %lld";
 
 // Keyboard key name
 "Space" = "Spazio";
@@ -712,12 +720,12 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "Modifiche importanti in CotEditor 4.2.0";
-"From this version, CotEditor handles line endings more strictly." = "A partire da questa versione, CotEditor gestisce in maniera più precisa i fine riga.";
-"Due to this change, you may need manual migration for your settings below:" = "A seguito di questa modifica, potrebbe essere necessario migrare manualmente i seguenti parametri:";
-"Multiple replacement definitions" = "Definizioni delle sostituzioni multiple";
-"Syntax styles" = "Stili della sintassi";
-"CotEditor scripts" = "Script di CotEditor";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` per le espressioni regolari risulta solo quando il fine riga è in realtà LF. Usare invece `\\R` per far risultare ogni tipo di fine riga.";
-"Learn More…" = "Ulteriori informazioni…";
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Mappatura dei conflitti di stile sintassi";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Le seguenti regole di mappatura del file sono registrate per più stili. CotEditor usa automaticamente il primo stile. Per risolvere eventuali conflitti, modificare ciascuno stile di sintassi";
+"Extension" = "Estensione";
+"Filename" = "Nome del file";
+"Interpreter" = "Interpreti";
+// table column headers
+"Used style" = "Stile utilizzato";
+"Duplicated styles" = "Stili duplicati";

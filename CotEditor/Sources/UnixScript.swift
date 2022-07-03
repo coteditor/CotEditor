@@ -160,7 +160,7 @@ final class UnixScript: Script {
             do {
                 try await self.applyOutput(output, type: outputType, editor: document)
             } catch {
-                await Console.shared.show(message: error.localizedDescription, title: name)
+                await Console.shared.show(message: error.localizedDescription, title: self.name)
             }
         }
         

@@ -195,7 +195,7 @@ extension SettingFileManaging {
     /// return setting name appending number suffix without extension
     func savableSettingName(for proposedName: String, appendingCopySuffix: Bool = false) -> String {
         
-        let suffix = appendingCopySuffix ? "copy".localized(comment: "copied file suffix") : nil
+        let suffix = appendingCopySuffix ? String(localized: "copy", comment: "copied file suffix") : nil
         
         return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }
@@ -461,7 +461,7 @@ enum InvalidNameError: LocalizedError {
             case .startWithDot:
                 return "You can’t use a name that begins with a dot “.”.".localized
             case .duplicated(let name):
-                return String(format: "The name “%@” is already taken.".localized, name)
+                return String(localized: "The name “\(name)” is already taken.")
         }
     }
     
@@ -493,11 +493,11 @@ struct SettingFileError: LocalizedError {
         
         switch self.kind {
             case .deletionFailed:
-                return String(format: "“%@” couldn’t be deleted.".localized, self.name)
+                return String(localized: "“\(self.name)” couldn’t be deleted.")
             case .importFailed:
-                return String(format: "“%@” couldn’t be imported.".localized, self.name)
+                return String(localized: "“\(self.name)” couldn’t be imported.")
             case .noSourceFile:
-                return String(format: "No original file for “%@” was found.".localized, self.name)
+                return String(localized: "No original file for “\(self.name)” was found.")
         }
     }
     
@@ -522,11 +522,11 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
             case .yaml:
-                return String(format: "A new style named “%@” will be installed, but a custom style with the same name already exists.".localized, self.name)
+                return String(localized: "A new style named “\(self.name)” will be installed, but a custom style with the same name already exists.")
             case .cotTheme:
-                return String(format: "A new theme named “%@” will be installed, but a custom theme with the same name already exists.".localized, self.name)
+                return String(localized: "A new theme named “\(self.name)” will be installed, but a custom theme with the same name already exists.")
             case .cotReplacement:
-                return String(format: "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.".localized, self.name)
+                return String(localized: "A new replacement definition named “\(self.name)” will be installed, but a definition with the same name already exists.")
             default:
                 fatalError()
         }

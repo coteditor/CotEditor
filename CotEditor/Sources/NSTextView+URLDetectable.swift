@@ -36,43 +36,47 @@ extension URLDetectable {
     /// Detect URLs in content asynchronously.
     @MainActor func detectLink() {
         
-        guard let textStorage = self.textStorage else { return assertionFailure() }
-        guard textStorage.length > 0 else { return }
-        
-        let string = textStorage.string.immutable
-        
         self.urlDetectionTask?.cancel()
-        self.urlDetectionTask = Task.detached(priority: .userInitiated) {
-            defer {
-                // remove the task itself when completed in order to use the `.urlDetectionTask` property as the task completion flag.
-                self.urlDetectionTask = nil
-            }
+        self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
+            try? await self?.textStorage?.linkURLs()
             
-            var links: [ItemRange<URL>] = []
-            let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-            
-            detector.enumerateMatches(in: string, options: [.reportProgress], range: string.range) { (result, _, stop) in
-                if Task.isCancelled {
-                    stop.pointee = true
-                }
-                guard let result = result, let url = result.url else { return }
-                
-                links.append(ItemRange(item: url, range: result.range))
+            // remove the task itself when completed in order to use the `.urlDetectionTask` property as the task completion flag.
+            self?.urlDetectionTask = nil
+        }
+    }
+    
+}
+
+
+extension NSTextStorage {
+    
+    /// Detect URLs in the string and link them.
+    ///
+    /// - Throws: `CancellationError`
+    func linkURLs() throws {
+        
+        guard self.length > 0 else { return }
+        
+        let string = self.string.immutable
+        
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let links: [ItemRange<URL>] = try detector.cancellableMatches(in: string, range: string.range)
+            .compactMap { (result) in
+                guard let url = result.url else { return nil }
+                return ItemRange(item: url, range: result.range)
             }
-            try Task.checkCancellation()
+        
+        Task { @MainActor in
+            assert(self.string.length == string.length, "textStorage was edited after starting URL detection")
             
-            await MainActor.run { [links] in
-                assert(textStorage.string.length == string.length, "textStorage was edited after starting URL detection")
-                
-                if links.isEmpty, !textStorage.hasAttribute(.link) { return }
-                
-                textStorage.beginEditing()
-                textStorage.removeAttribute(.link, range: textStorage.range)
-                for link in links {
-                    textStorage.addAttribute(.link, value: link.item, range: link.range)
-                }
-                textStorage.endEditing()
+            guard !links.isEmpty || self.hasAttribute(.link) else { return }
+            
+            self.beginEditing()
+            self.removeAttribute(.link, range: self.range)
+            for link in links {
+                self.addAttribute(.link, value: link.item, range: link.range)
             }
+            self.endEditing()
         }
     }
     

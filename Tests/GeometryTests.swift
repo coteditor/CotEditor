@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,13 +56,6 @@ final class GeometryTests: XCTestCase {
         XCTAssertEqual(CGPoint(x: 2, y: 3).offsetBy(dx: 4, dy: 5), CGPoint(x: 6, y: 8))
         XCTAssertEqual(CGPoint(x: 2, y: 3).offset(by: -CGPoint(x: 2, y: 3)), .zero)
         XCTAssertEqual(CGPoint(x: 2, y: 3).offset(by: -CGSize(width: 2, height: 3)), .zero)
-    }
-    
-    
-    func testRound() {
-        
-        XCTAssertEqual((2.555).rounded(to: 1), 2.6)
-        XCTAssertEqual((2.444).rounded(to: 2), 2.44)
     }
     
 }

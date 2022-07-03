@@ -236,13 +236,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// avoid showing draggable cursor
+    /// avoid showing draggable cursor for the status bar boundary
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        // -> Super's delegate method must be called anyway.
-        super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
-        
-        return .zero
+        .zero
     }
     
     
@@ -260,7 +257,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         switch item.action {
             case #selector(recolorAll):
-                return self.syntaxParser?.canParse ?? false
+                return self.syntaxParser?.canHighlight ?? false
             
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
@@ -314,7 +311,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 
                 // disable if item cannot be enabled
                 let canActivateShowInvisibles = !UserDefaults.standard.showsInvisible.isEmpty
-                item.toolTip = canActivateShowInvisibles ? nil : "To show invisible characters, set them in Preferences".localized
+                item.toolTip = canActivateShowInvisibles ? nil : "To show invisible characters, set them in Settings".localized
                 if canActivateShowInvisibles {
                     (item as? NSToolbarItem)?.toolTip = self.showsInvisibles
                         ? "Hide invisible characters".localized

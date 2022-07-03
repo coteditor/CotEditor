@@ -46,13 +46,13 @@ struct InvalidShortcutError: LocalizedError {
                 return "Single type is invalid for a shortcut.".localized
             
             case let .alreadyTaken(name):
-                return String(format: "“%@” is already taken by the “%@” command.".localized, self.shortcut.description, name)
+                return String(localized: "“\(self.shortcut.description)” is already taken by the “\(name)” command.")
                 
             case .shiftOnlyModifier:
                 return "The Shift key can be used only with another modifier key.".localized
                 
             case .unsupported:
-                return String(format: "The combination “%@” is not supported for the key binding customization.".localized, self.shortcut.description)
+                return String(localized: "The combination “\(self.shortcut.description)” is not supported for the key binding customization.")
         }
     }
     
@@ -115,7 +115,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     var defaultKeyBindings: Set<KeyBinding> { preconditionFailure() }
     
     
-    /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
+    /// create a KVO-compatible collection for outlineView in the settings from the key binding setting
     ///
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
     func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] { preconditionFailure() }

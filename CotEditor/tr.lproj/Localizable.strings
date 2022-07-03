@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
 "Not Found" = "Bulunamadı";
-"%i found" = "%i bulundu";  // %i is number of founds
+"%lld found" = "%lld bulundu";  // %lld is number of founds
 "Not Replaced" = "Değiştirilmedi";
-"%i replaced" = "%i değiştirildi";  // %i is number of replaced
+"%lld replaced" = "%lld değiştirildi";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
 "Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
-"Found %i strings in “%@”." = "%2$@ içinde %1$i dizi bulundu.";
+"Found %lld strings in “%@”." = "%2$@ içinde %1$lld dizi bulundu.";
 
 
 
@@ -145,6 +145,8 @@
 
 "Back Reference" = "Geri Başvuru";
 "first match" = "ilk eşleşme";
+
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
 
 
 
@@ -217,6 +219,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in window tab
+"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: added
 
 
 
@@ -392,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
 "Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
-"Found %i incompatible characters." = "%i uyumsuz karakter bulundu.";  // %i is the number of characters
+"Found %lld incompatible characters." = "%lld uyumsuz karakter bulundu.";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "%@ dışında %i başka satır sonu bulundu.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "%@ dışında %lld başka satır sonu bulundu.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -456,7 +464,7 @@
 "Wrap Lines" = "Satırları Kaydır";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Preferences" = "Görünmez karakterleri göstermek için ilgili ayarı Tercihler’den değiştirin";
+"To show invisible characters, set them in Settings" = "Görünmez karakterleri göstermek için ilgili ayarı Tercihler’den değiştirin";  // FIXME: Preferences -> Settings (Ayarlar)
 
 
 
@@ -501,7 +509,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
@@ -571,7 +579,7 @@
 // Syntax style validation results
 "No error found." = "Hata bulunamadı.";
 "An error found!" = "Bir hata bulundu!";
-"%i errors found!" = "%i hata bulundu!";
+"%lld errors found!" = "%lld hata bulundu!";
 "outline" = "ana hat";
 
 
@@ -644,7 +652,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "%li Metnini Ekle";
+"Insert Text %lld" = "%lld Metnini Ekle";
 
 // Keyboard key name
 "Space" = "Boşluk";
@@ -712,12 +720,12 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 sürümündeki önemli değişiklikler";
-"From this version, CotEditor handles line endings more strictly." = "Bu sürümden itibaren; CotEditor, satır sonlarını daha doğru bir biçimde işler.";
-"Due to this change, you may need manual migration for your settings below:" = "Bu değişiklikten dolayı, aşağıdaki ayarları el ile düzeltmeniz gerekebilir:";
-"Multiple replacement definitions" = "Çoklu değiştirme tanımları";
-"Syntax styles" = "Sözdizim biçemleri";
-"CotEditor scripts" = "CotEditor betikleri";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "Satır sonu gerçekten LF iken yalnızca düzenli ifade eşleşmeleri için `\\n`. Her türden satır sonu ile eşleşmek için `\\R` kullanın.";
-"Learn More…" = "Daha Fazla Bilgi…";
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";
+"Extension" = "Uzantı";
+"Filename" = "Dosya Adı";
+"Interpreter" = "Yorumlayıcı";
+// table column headers
+"Used style" = "Kullanılan Biçem";
+"Duplicated styles" = "Yinelenmiş Biçemler";

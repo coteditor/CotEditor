@@ -43,17 +43,10 @@ struct OutlineExtractor {
         
         self.template = definition.template
         
-        var style = OutlineItem.Style()
-        if definition.bold {
-            style.formUnion(.bold)
-        }
-        if definition.italic {
-            style.formUnion(.italic)
-        }
-        if definition.underline {
-            style.formUnion(.underline)
-        }
-        self.style = style
+        self.style = OutlineItem.Style()
+            .union(definition.bold ? .bold : [])
+            .union(definition.italic ? .italic : [])
+            .union(definition.underline ? .underline : [])
     }
     
     
@@ -81,19 +74,6 @@ struct OutlineExtractor {
             
             return OutlineItem(title: title, range: result.range, style: self.style)
         }
-    }
-    
-}
-
-
-extension OutlineExtractor: Equatable {
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        
-        return lhs.regex.pattern == rhs.regex.pattern &&
-            lhs.regex.options == rhs.regex.options &&
-            lhs.template == rhs.template &&
-            lhs.style == rhs.style
     }
     
 }

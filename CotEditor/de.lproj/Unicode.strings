@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %d characters>" = "<ein aus %d Zeichen bestehender Buchstabe>";
+"<a letter consisting of %lld characters>" = "<ein aus %lld Zeichen bestehender Buchstabe>";
 
 // Variation selectors
 "Emoji Style" = "Emoji-Stil";

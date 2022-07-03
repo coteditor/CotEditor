@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -228,15 +228,13 @@ private extension UserDefaults {
     /// info types needed to be calculated
     var statusBarEditorInfo: EditorInfoTypes {
         
-        var types = EditorInfoTypes()
-        if self[.showStatusBarChars]    { types.formUnion(.characters) }
-        if self[.showStatusBarLines]    { types.formUnion(.lines) }
-        if self[.showStatusBarWords]    { types.formUnion(.words) }
-        if self[.showStatusBarLocation] { types.formUnion(.location) }
-        if self[.showStatusBarLine]     { types.formUnion(.line) }
-        if self[.showStatusBarColumn]   { types.formUnion(.column) }
-        
-        return types
+        EditorInfoTypes()
+            .union(self[.showStatusBarChars] ? .characters : [])
+            .union(self[.showStatusBarLines] ? .lines : [])
+            .union(self[.showStatusBarWords] ? .words : [])
+            .union(self[.showStatusBarLocation] ? .location : [])
+            .union(self[.showStatusBarLine] ? .line : [])
+            .union(self[.showStatusBarColumn] ? .column : [])
     }
     
 }

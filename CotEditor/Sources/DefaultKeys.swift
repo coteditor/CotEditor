@@ -157,9 +157,9 @@ extension DefaultKeys {
     static let findRegexUsesUnicodeBoundaries = DefaultKey<Bool>("regexUsesUnicodeBoundaries")
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
-    // settings that are not in preferences
+    // settings that are not in the Settings window
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
-    static let lastPreferencesPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
+    static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
@@ -173,8 +173,6 @@ extension DefaultKeys {
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
     
     // hidden settings
-    static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
-    static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")

@@ -97,9 +97,9 @@
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
 "Not Found" = "未找到";
-"%i found" = "找到%i项";  // %i is number of founds
+"%lld found" = "找到%lld项";  // %lld is number of founds
 "Not Replaced" = "没有进行替换";
-"%i replaced" = "%i处被替换";  // %i is number of replaced
+"%lld replaced" = "%lld处被替换";  // %lld is number of replaced
 
 
 
@@ -107,7 +107,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "在“%@”中没有找到字符串。";
 "Found one string in “%@”." = "在“%@”中找到一个字符串。";
-"Found %i strings in “%@”." = "%i 个字符串在“%@”中被找到。";
+"Found %lld strings in “%@”." = "%lld 个字符串在“%@”中被找到。";
 
 
 
@@ -145,6 +145,8 @@
 
 "Back Reference" = "回溯引用";
 "first match" = "首字匹配";
+
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
 
 
 
@@ -217,6 +219,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本还是更新至被编辑过的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in window tab
+"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: added
 
 
 
@@ -392,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "扫描不兼容字符…";
 "Found an incompatible character." = "发现 1 处不兼容字符。";
-"Found %i incompatible characters." = "发现 %i 处不兼容字符。";  // %i is the number of characters
+"Found %lld incompatible characters." = "发现 %lld 处不兼容字符。";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "发现 1 处不是 %@ 的换行符";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "发现 %i 处不是 %@ 的换行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "发现 %lld 处不是 %@ 的换行符";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -456,7 +464,7 @@
 "Wrap Lines" = "换行";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "要显示不可见元素，请在偏好设置中进行设定";
+"To show invisible characters, set them in Settings" = "要显示不可见元素，请在设置中进行设定";
 
 
 
@@ -501,7 +509,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "变更将在下次启动时生效。";
@@ -571,7 +579,7 @@
 // Syntax style validation results
 "No error found." = "没有发现错误";
 "An error found!" = "发现1个错误";
-"%i errors found!" = "发现%i个错误";
+"%lld errors found!" = "发现%lld个错误";
 "outline" = "大纲";
 
 
@@ -644,7 +652,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "插入文本%li";
+"Insert Text %lld" = "插入文本%lld";
 
 // Keyboard key name
 "Space" = "空格键";
@@ -712,12 +720,12 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要变更";
-"From this version, CotEditor handles line endings more strictly." = "从该版本开始，CotEditor 将会更严格地处理行尾。";
-"Due to this change, you may need manual migration for your settings below:" = "由于这个变更，你可能需要对下面的设定进行手动迁移：";
-"Multiple replacement definitions" = "多次替换的定义";
-"Syntax styles" = "语法风格";
-"CotEditor scripts" = "CotEditor 脚本";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` 仅在行尾确实是 LF 时进行匹配。如需匹配任意行尾，请使用 `\\R`。";
-"Learn More…" = "了解更多…";
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "语法样式映射冲突";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列文件映射规则被注册了多种格式。CotEditor自动使用第一个格式。可以通过编辑每个语法格式来解决冲突。";
+"Extension" = "扩展名";
+"Filename" = "檔案名稱";
+"Interpreter" = "解释器";
+// table column headers
+"Used style" = "已使用样式";
+"Duplicated styles" = "重复的样式";
