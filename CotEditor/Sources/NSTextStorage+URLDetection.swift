@@ -1,5 +1,5 @@
 //
-//  NSTextView+URLDetectable.swift
+//  NSTextStorage+URLDetection.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,30 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
-
-protocol URLDetectable: NSTextView {
-    
-    var urlDetectionTask: Task<Void, Error>? { get set }
-}
-
-
-extension URLDetectable {
-    
-    /// Detect URLs in content asynchronously.
-    @MainActor func detectLink() {
-        
-        self.urlDetectionTask?.cancel()
-        self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
-            try? await self?.textStorage?.linkURLs()
-            
-            // remove the task itself when completed in order to use the `.urlDetectionTask` property as the task completion flag.
-            self?.urlDetectionTask = nil
-        }
-    }
-    
-}
-
+import AppKit.NSTextStorage
 
 extension NSTextStorage {
     

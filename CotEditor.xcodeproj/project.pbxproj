@@ -58,8 +58,8 @@
 		2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */; };
 		2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
-		2A1125C623F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */; };
-		2A1125C723F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */; };
+		2A1125C623F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */; };
+		2A1125C723F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */; };
@@ -919,7 +919,7 @@
 		2A10D1471E7477D30027192A /* StyledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
 		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
-		2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+URLDetectable.swift"; sourceTree = "<group>"; };
+		2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+URLDetection.swift"; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unicode.UTF32.CodeUnit+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextField.swift; sourceTree = "<group>"; };
@@ -2111,10 +2111,10 @@
 				2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */,
 				2A1311D52127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift */,
 				2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */,
-				2A1125C523F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift */,
 				2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */,
 				2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */,
 				2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */,
+				2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */,
 				2AFE848522AE71130001C4ED /* TextContainer.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */,
@@ -3083,6 +3083,7 @@
 				2ACA0C9E21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */,
 				2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
+				2A1125C723F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */,
 				2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A1311D72127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,
 				2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */,
@@ -3094,7 +3095,6 @@
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2A36CE7D1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
-				2A1125C723F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */,
 				2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
@@ -3409,6 +3409,7 @@
 				2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2A6FD9ED1D3A85D700A59784 /* NSString.swift in Sources */,
 				2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
+				2A1125C623F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */,
 				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A1311D62127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
@@ -3420,7 +3421,6 @@
 				2AE73F43203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
-				2A1125C623F6EFB2006A1DB2 /* NSTextView+URLDetectable.swift in Sources */,
 				2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,

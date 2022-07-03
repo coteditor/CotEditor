@@ -35,7 +35,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDetectable, MultiCursorEditing {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
     // MARK: Notification Names
     
@@ -88,8 +88,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
     
-    var urlDetectionTask: Task<Void, any Error>?
-    
     
     // MARK: Private Properties
     
@@ -108,6 +106,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private var instanceHighlightTask: Task<Void, any Error>?
+    
+    private var urlDetectionTask: Task<Void, any Error>?
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
@@ -1353,6 +1353,24 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: .notFound)
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    /// Detect URLs in content asynchronously.
+    func detectLink() {
+        
+        self.urlDetectionTask?.cancel()
+        self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
+            try? await self?.textStorage?.linkURLs()
+            
+            // remove the task itself when completed to use the `.urlDetectionTask` property as the task completion flag.
+            await MainActor.run { [weak self] in
+                self?.urlDetectionTask = nil
+            }
+        }
     }
     
     
