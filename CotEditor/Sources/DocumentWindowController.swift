@@ -43,6 +43,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
+    private lazy var editedIndicator: NSView = {
+        
+        let dotView = DotView()
+        dotView.color = .tertiaryLabelColor
+        dotView.toolTip = "Document has unsaved changes".localized
+        dotView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return dotView
+    }()
+    
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     
@@ -73,14 +82,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
-        
-        // set edited indicator to window tab
-        let dotView = DotView()
-        dotView.isHidden = true
-        dotView.color = .tertiaryLabelColor
-        dotView.toolTip = "Document has unsaved changes".localized
-        self.window?.tab.accessoryView = dotView
-        NSLayoutConstraint(item: dotView, attribute: .height, relatedBy: .equal, toItem: dotView, attribute: .width, multiplier: 1, constant: 0).isActive = true
         
         // observe opacity setting change
         if let window = self.window as? DocumentWindow {
@@ -133,7 +134,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     override func setDocumentEdited(_ dirtyFlag: Bool) {
         
-        self.window?.tab.accessoryView?.isHidden = !dirtyFlag
+        self.window?.tab.accessoryView = dirtyFlag ? self.editedIndicator : nil
         
         super.setDocumentEdited(self.isWhitepaper ? false : dirtyFlag)
     }

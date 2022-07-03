@@ -30,13 +30,19 @@ final class DotView: NSView {
     
     // MARK: Inspectable Properties
     
-    @Invalidating(.display) @IBInspectable var color: NSColor = .labelColor
-    @Invalidating(.display) @IBInspectable var dotLength: CGFloat = 4
+    @IBInspectable @Invalidating(.display) var color: NSColor = .labelColor
+    @IBInspectable @Invalidating(.display, .intrinsicContentSize) var dotLength: CGFloat = 4
     
     
     
     // MARK: -
     // MARK: View Methods
+    
+    override var intrinsicContentSize: NSSize {
+        
+        NSSize(width: self.dotLength * 4, height: self.dotLength * 4)
+    }
+    
     
     override func draw(_ dirtyRect: NSRect) {
         
