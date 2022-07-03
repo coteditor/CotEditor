@@ -72,6 +72,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
+    private var searchTask: Task<Void, Error>?
     private var applicationActivationObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
@@ -152,10 +153,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Perform incremental search.
     ///
     /// - Returns: The number of found.
-    @discardableResult
-    func incrementalSearch() -> Int {
+    func incrementalSearch() {
         
-        return find(forward: true, marksAllMatches: true, isIncremental: true)
+        self.searchTask?.cancel()
+        self.searchTask = Task(priority: .userInitiated) {
+            try await self.find(forward: true, marksAllMatches: true, isIncremental: true)
+        }
     }
     
     
@@ -189,14 +192,20 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // find backwards if Shift key pressed
         let isShiftPressed = NSEvent.modifierFlags.contains(.shift)
         
-        self.find(forward: !isShiftPressed)
+        self.searchTask?.cancel()
+        self.searchTask = Task(priority: .userInitiated) {
+            try await self.find(forward: !isShiftPressed)
+        }
     }
     
     
     /// Find previous matched string.
     @IBAction func findPrevious(_ sender: Any?) {
         
-        self.find(forward: false)
+        self.searchTask?.cancel()
+        self.searchTask = Task(priority: .userInitiated) {
+            try await self.find(forward: false)
+        }
     }
     
     
@@ -269,7 +278,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     @IBAction func replaceAndFind(_ sender: Any?) {
         
         self.replace()
-        self.find(forward: true)
+        
+        self.searchTask?.cancel()
+        self.searchTask = Task(priority: .userInitiated) {
+            try await self.find(forward: true)
+        }
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
@@ -303,7 +316,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 switch flag {
-                    case .findProgress, .foundCount:
+                    case .findProgress:
                         break
                     case .replacementProgress:
                         progress.completedUnitCount += 1
@@ -389,7 +402,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     ///
     /// - Parameter forEditing: When true, perform only when the textView is editable.
     /// - Returns: The target textView and a TextFind object.
-    private func prepareTextFind(forEditing: Bool) -> (NSTextView, TextFind)? {
+    @MainActor private func prepareTextFind(forEditing: Bool) -> (NSTextView, TextFind)? {
         
         guard
             let textView = self.client,
@@ -436,61 +449,59 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     ///   - forward: The flag whether finds forward or backward.
     ///   - marksAllMatches: Whether marks all matches in the editor.
     ///   - isIncremental: Whether is the incremental search.
-    /// - Returns: The number of found.
-    @discardableResult
-    private func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) -> Int {
+    private nonisolated func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) async throws {
         
         assert(forward || !isIncremental)
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
+        guard let (textView, textFind) = await self.prepareTextFind(forEditing: false) else { return }
         
-        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
+        let result = try textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
         
-        // mark all matches
-        if marksAllMatches, let layoutManager = textView.layoutManager {
-            layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
-                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
-                for range in result.ranges {
-                    layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
-                }
-            }
-            
-            // unmark either when the client view resigned the key window or when the Find panel closed
-            self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
-                .sink { [weak self, weak textView] _ in
-                    textView?.unhighlight()
-                    self?.highlightObserver = nil
-                }
-        }
-        
-        // found feedback
-        if let range = result.range {
-            textView.select(range: range)
-            textView.showFindIndicator(for: range)
-            
-            if result.wrapped {
-                if let view = textView.enclosingScrollView?.superview {
-                    let hudController = HUDController.instantiate(storyboard: "HUDView")
-                    hudController.symbol = .wrap(reversed: !forward)
-                    hudController.show(in: view)
+        Task { @MainActor in
+            // mark all matches
+            if marksAllMatches, let layoutManager = textView.layoutManager {
+                layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
+                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
+                    for range in result.ranges {
+                        layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
+                    }
                 }
                 
-                if let window = NSApp.mainWindow {
-                    NSAccessibility.post(element: window, notification: .announcementRequested,
-                                         userInfo: [.announcement: "Search wrapped.".localized])
-                }
+                // unmark either when the client view resigned the key window or when the Find panel closed
+                self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
+                    .sink { [weak self, weak textView] _ in
+                        textView?.unhighlight()
+                        self?.highlightObserver = nil
+                    }
             }
-        } else if !isIncremental {
-            NSSound.beep()
+            
+            // found feedback
+            if let range = result.range {
+                textView.select(range: range)
+                textView.showFindIndicator(for: range)
+                
+                if result.wrapped {
+                    if let view = textView.enclosingScrollView?.superview {
+                        let hudController = HUDController.instantiate(storyboard: "HUDView")
+                        hudController.symbol = .wrap(reversed: !forward)
+                        hudController.show(in: view)
+                    }
+                    
+                    if let window = NSApp.mainWindow {
+                        NSAccessibility.post(element: window, notification: .announcementRequested,
+                                             userInfo: [.announcement: "Search wrapped.".localized])
+                    }
+                }
+            } else if !isIncremental {
+                NSSound.beep()
+            }
+            
+            self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
+            
+            if !isIncremental {
+                UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+            }
         }
-        
-        self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
-        
-        if !isIncremental {
-            UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
-        }
-        
-        return result.ranges.count
     }
     
     

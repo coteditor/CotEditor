@@ -185,7 +185,6 @@ struct DefaultSettings {
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
         .savesTextOrientation: true,
         .maximumRecentStyleCount: 6,
-        .maximumSelectionInstanceHighlightCount: 100,
         .minimumLengthForNonContiguousLayout: 5_000_000,
     ]
     

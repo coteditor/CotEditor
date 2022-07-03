@@ -38,7 +38,6 @@
 				<string>public.shell-script</string>
 				<string>public.svg-image</string>
 				<string>public.swift-source</string>
-				<string>public.tex</string>
 				<string>public.toml</string>
 				<string>public.xml</string>
 				<string>public.yaml</string>
@@ -60,6 +59,7 @@
 				<string>org.rust-lang.rust-script</string>
 				<string>org.scala-lang.scala-source</string>
 				<string>org.tug.bibtex.bib</string>
+				<string>org.tug.tex</string>
 				<string>com.coteditor.conf</string>
 				<string>com.coteditor.lisp</string>
 				<string>com.coteditor.scheme</string>

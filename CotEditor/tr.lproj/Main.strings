@@ -392,6 +392,8 @@
 "lNH-Mh-pIE.title" = "Dizgiye Göre Sırala…";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "Ters";
+/* Class = "NSMenuItem"; title = "Shuffle"; ObjectID = "M8V-zi-g4l"; */
+"M8V-zi-g4l.title" = "Karıştır";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
 "bjv-m0-tZq.title" = "Çoğaltılanları Sil";
 /* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */

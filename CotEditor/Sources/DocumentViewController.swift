@@ -822,7 +822,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.outlineItems = self.syntaxParser?.outlineItems ?? []
-        self.invalidateSyntaxHighlight()
         
         // adjust visible areas
         if let selectedRange = currentEditorViewController.textView?.selectedRange {
@@ -931,6 +930,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
+            
+            if let highlights = baseTextView.layoutManager?.syntaxHighlights(), !highlights.isEmpty {
+                textView.layoutManager?.apply(highlights: highlights, range: textView.string.range)
+            }
         }
     }
     

@@ -6,10 +6,10 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.7.0"
+  version: "4.7.1"
   description: "Based on Swift 5.7"
   license: "Same as CotEditor"
-  lastModified: "2022-06-12"
+  lastModified: "2022-06-19"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME:)[ \\t](.+)"
   keyString: "$2"
@@ -371,6 +371,7 @@ keywords:
 - beginString: "#sourceLocation"
 - beginString: "#unavailable"
 - beginString: "#warning"
+- beginString: "actor"
 - beginString: "any"
 - beginString: "as"
 - beginString: "assignment"

@@ -114,7 +114,7 @@ final class DocumentAnalyzer {
                                         countsWholeText: countsWholeText)
         
         self.countTask?.cancel()
-        self.countTask = Task { [unowned self] in
+        self.countTask = Task {
             var result = try counter.count()
             
             if countsWholeText {

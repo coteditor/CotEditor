@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -143,7 +143,7 @@ extension MultipleReplacement {
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, stop) in
                 
                 switch flag {
-                    case .findProgress, .foundCount:
+                    case .findProgress:
                         break
                     case .replacementProgress:
                         result.count += 1

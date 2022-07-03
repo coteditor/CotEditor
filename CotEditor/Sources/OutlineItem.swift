@@ -84,7 +84,7 @@ extension BidirectionalCollection where Element == OutlineItem {
     /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
     func indexOfItem(at location: Int, allowsSeparator: Bool = false) -> Index? {
         
-        return self.lastIndex { $0.range.location <= location && (allowsSeparator || !$0.isSeparator ) }
+        return self.lastIndex { $0.range.location <= location && (allowsSeparator || !$0.isSeparator) }
     }
     
     
@@ -113,7 +113,7 @@ extension BidirectionalCollection where Element == OutlineItem {
         guard
             let currentIndex = self.indexOfItem(at: range.upperBound),
             currentIndex <= self.endIndex
-            else { return nil }
+        else { return nil }
         
         return self[self.index(after: currentIndex)...].first { !$0.isSeparator }
     }

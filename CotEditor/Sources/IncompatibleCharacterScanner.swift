@@ -88,9 +88,9 @@ final class IncompatibleCharacterScanner {
         let string = document.string.immutable
         
         self.isScanning = true
-        self.task = Task { [weak self] in
-            defer { self?.isScanning = false }
-            self?.incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
+        self.task = Task {
+            defer { self.isScanning = false }
+            self.incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
         }
     }
     

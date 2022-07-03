@@ -421,6 +421,7 @@
 "Move Line" = "Zeile verschieben";
 "Sort Lines" = "Zeilen sortieren";
 "Reverse Lines" = "Zeilen umdrehen";
+"Shuffle Lines" = "Zeilen zufällig wiedergeben";
 "Delete Duplicate Lines" = "Doppelte Zeilen löschen";
 "Duplicate Line" = "Zeile duplizieren";
 "Delete Line" = "Zeile löschen";

@@ -107,7 +107,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightDebouncer = Debouncer { [weak self] in self?.highlightInstance() }
+    private var instanceHighlightTask: Task<Void, Error>?
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
@@ -269,6 +269,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     deinit {
         self.insertionPointTimer?.cancel()
         self.urlDetectionTask?.cancel()
+        self.instanceHighlightTask?.cancel()
     }
     
     
@@ -499,6 +500,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.invalidateNonContiguousLayout()
         
         self.needsUpdateLineHighlight = true
+        
+        self.instanceHighlightTask?.cancel()
         
         // trim trailing whitespace if needed
         if UserDefaults.standard[.autoTrimsTrailingWhitespace],
@@ -815,11 +818,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             
             // invalidate current instances highlight
             if UserDefaults.standard[.highlightSelectionInstance] {
+                self.instanceHighlightTask?.cancel()
                 if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
                     layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 }
-                let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-                self.instanceHighlightDebouncer.schedule(delay: .seconds(delay))
+                self.highlightInstances(delay: UserDefaults.standard[.selectionInstanceHighlightDelay])
             }
         }
         
@@ -1546,7 +1549,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// highlight the brace matching to the brace next to the cursor
+    /// Highlight the brace matching to the brace next to the cursor.
     private func highlightMatchingBrace() {
         
         let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
@@ -1555,43 +1558,52 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// highlight all instances of the selection
-    private func highlightInstance() {
+    /// Highlight all instances of the selection.
+    ///
+    /// - Parameter delay: The delay time to start instance highlight in seconds.
+    private func highlightInstances(delay: TimeInterval) {
         
-        guard
-            !self.string.isEmpty,  // important to avoid crash after closing editor
-            !self.hasMarkedText(),
-            self.insertionLocations.isEmpty,
-            self.selectedRanges.count == 1,
-            !self.selectedRange.isEmpty,
-            (try! NSRegularExpression(pattern: "\\A\\b\\w.*\\w\\b\\z"))
-                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
-            else { return }
-        
-        let maxCount = UserDefaults.standard[.maximumSelectionInstanceHighlightCount]
-        let substring = (self.string as NSString).substring(with: self.selectedRange)
-        let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
-        let regex = try! NSRegularExpression(pattern: pattern)
-        
-        var ranges: [NSRange] = []
-        regex.enumerateMatches(in: self.string, range: self.string.nsRange) { (match, _, stop) in
-            guard let range = match?.range else { return }
+        self.instanceHighlightTask?.cancel()
+        self.instanceHighlightTask = Task.detached { [weak self] in
+            try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))  // debounce
             
-            ranges.append(range)
+            guard let self = self else { return }
             
-            if ranges.count >= maxCount {
-                stop.pointee = true
+            let (string, selectedRange): (String, NSRange) = try await MainActor.run {
+                guard
+                    !self.string.isEmpty,  // important to avoid crash after closing editor
+                    !self.selectedRange.isEmpty,
+                    !self.hasMarkedText(),
+                    self.insertionLocations.isEmpty,
+                    self.selectedRanges.count == 1
+                else { throw CancellationError() }
+                
+                return (self.string.immutable, self.selectedRange)
             }
-        }
-        
-        guard
-            ranges.count < maxCount,
-            let layoutManager = self.layoutManager
+            
+            guard (try! NSRegularExpression(pattern: "\\A\\b\\w.*\\w\\b\\z"))
+                .firstMatch(in: string, options: [.withTransparentBounds], range: selectedRange) != nil
             else { return }
-        
-        layoutManager.groupTemporaryAttributesUpdate(in: self.string.nsRange) {
-            for range in ranges {
-                layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
+            
+            let substring = (string as NSString).substring(with: selectedRange)
+            let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
+            let regex = try! NSRegularExpression(pattern: pattern)
+            let ranges = try regex.cancellableMatches(in: string, range: string.nsRange).map(\.range)
+            
+            guard
+                let lower = ranges.first?.lowerBound,
+                let upper = ranges.last?.upperBound
+            else { return }
+            
+            await MainActor.run {
+                guard let layoutManager = self.layoutManager else { return }
+                
+                let color = self.instanceHighlightColor
+                layoutManager.groupTemporaryAttributesUpdate(in: NSRange(lower..<upper)) {
+                    for range in ranges {
+                        layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: color, forCharacterRange: range)
+                    }
+                }
             }
         }
     }

@@ -14,26 +14,68 @@
 <h1>Release notes for CotEditor</h1>
 
 
+<article>
+	<header>
+		<h1>CotEditor 4.3.1</h1>
+		<p>release: <time>2022-07-03</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Add new Shuffle command to the Text &gt; Lines submenu.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Optimize the performance for editor splitting.</li>
+			<li>Avoid sluggishness by incremental search in large documents.</li>
+			<li>Optimize the performance of highlighting selected text instances.</li>
+			<li>Remove the limitation to highlight a large number of instances of the selected text.</li>
+			<li>Scroll the editor by the Move Line Up/Down commands so that the moved lines are visible.</li>
+			<li>Change the behavior of the metacharacter <code>\v</code> in the regular expression for text search to confirm with the current ICU specification.</li>
+			<li>Update Swift syntax style to add keywords.</li>
+			<li><span class="trivial">trivial</span>: Update French localization.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that memory rarely leaks on closing documents.</li>
+		</ul>
+	</section>
+</article>
+
+
 
 <article>
 	<header>
 		<h1>CotEditor 4.3.0</h1>
 		<p>release: <time>2022-06-18</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>New Features</h2>
-		
+
 		<ul>
 			<li>Incremental search in the Find window.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Drastically improved the performance of syntax highlighting on large documents so that no rainbow cursor appears.</li>
 			<li>Stop displaying the progress indicator for syntax highlight on large documents and apply the highlight asynchronously instead.</li>
@@ -45,11 +87,11 @@
 			<li><span class="trivial">trivial</span>: Suppress the inconsistent line ending alert in the Versions browsing.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the application crashed with very specific fonts.</li>
 			<li>Fix an issue that the highlights of Find All in the editor remained even when closing the Find window.</li>
@@ -65,11 +107,11 @@
 		<h1>CotEditor 4.2.3</h1>
 		<p>release: <time>2022-06-05</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Make the font size of the find result table changeable by <kbd>Command</kbd>-<kbd>Plus sign</kbd> (+) or <kbd>Command</kbd>-<kbd>Minus sign</kbd> (-) while focusing on the result table.</li>
 			<li>Rewrite the algorithm parsing comments and quoted text.</li>
@@ -79,11 +121,11 @@
 			<li><span class="trivial">trivial</span>: Change the color names in the Stylesheet Keyword color palette in the color code panel to lower case.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue by documents with the CRLF line ending that the editor did not scroll by changing selection with the <kbd>Shift</kbd>-<kbd>arrow</kbd> keys.</li>
 			<li>Fix an issue that letters in the editor were drawn in wrong glyphs when updating the font under very specific conditions.</li>
@@ -98,11 +140,11 @@
 		<h1>CotEditor 4.2.2</h1>
 		<p>release: <time>2022-05-26</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Perform automatic indentation even when inserting a newline while selecting text.</li>
 			<li>Alert for registering the key bindings that are not actually supported.</li>
@@ -114,11 +156,11 @@
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.4 (macOS 12.3 SDK).</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that changing text selection with the Shift and an arrow keys could move the selection in the wrong direction.</li>
 			<li>Fix an issue that the Outline pane occasionally showed the horizontal scroller.</li>
@@ -135,20 +177,20 @@
 		<h1>CotEditor 4.2.1</h1>
 		<p>release: <time>2022-05-11</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>New Features</h2>
-		
+
 		<ul>
 			<li>Add Chinese (Traditional) localization (thanks to Shiki Suen!).</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue on CotEditor 4.2.0 that restoring documents on macOS 11.x made the application unstable.</li>
 			<li>Fix an issue on CotEditor 4.2.0 that some snippet settings could not be inserted in a specific condition.</li>
@@ -167,11 +209,11 @@
 </header>
 
 <p class="important">This version contains some specific changes that may require manual migration by users. See <a href="specification_changes_on_4.2.html">Important changes on CotEditor 4.2</a> for details.</p>
-	
-	
+
+
 	<section>
 		<h2>New Features</h2>
-		
+
 		<ul>
 			<li>Ability to handle documents holding multiple types of line endings.</li>
 			<li>Alert inconsistent line endings in the document when opening or reloading.</li>
@@ -185,11 +227,11 @@
 			<li>Transfer settings among CotEditors in different machines via Universal Control by dragging the setting name and dropping it to the setting list area in another CotEditor.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Update document icons.</li>
 			<li>Detect the line ending in documents more intelligently.</li>
@@ -218,11 +260,11 @@
 			<li><span class="trivial">dev</span>: Update Yams from 5.0.0 to 5.0.1.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the changes of syntax styles after the launch were not applied to the file mapping.</li>
 			<li><span class="trivial">trivial</span>: Fix an issue that the Script menu appeared in the shortcut menu even when no script exists.</li>
@@ -237,22 +279,22 @@
 		<h1>CotEditor 4.1.5</h1>
 		<p>release: <time>2022-04-09</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Add a temporal highlight for the current match in the editor (thanks to Ethan Wong!).</li>
 			<li>Update HTML syntax style for better highlighting with <code>'</code> character.</li>
 			<li>Update Swift syntax style to fix outline extraction.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that reverting a document to one stored with a different file encoding from the current encoding could fail.</li>
 			<li>Fix an issue that the split view did not inherit the font style and the writing direction.</li>
@@ -270,11 +312,11 @@
 		<h1>CotEditor 4.1.4</h1>
 		<p>release: <time>2022-03-26</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Update Swift syntax style to add keywords added in Swift 5.6.</li>
 			<li>Update YAML syntax style for better coloring.</li>
@@ -282,11 +324,11 @@
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 13.3 (Swift 5.6).</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the file extension proposed in the save dialog for untitled document did not reflect the latest syntax style.</li>
 			<li>Fix an issue that the application could not open Haskell files.</li>
@@ -302,11 +344,11 @@
 		<h1>CotEditor 4.1.3</h1>
 		<p>release: <time>2022-03-05</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Use <code>python3</code> instead of <code>python</code> for running the <code>cot</code> command so that macOS 12.3 and later can use the Python installed via the Apple's developer tools (From macOS 12.3 on, cot command requires an additional install of python3).</li>
 			<li>Optimize the performance of syntax highlighting.</li>
@@ -316,11 +358,11 @@
 			<li>Update JSON syntax style to fix coloring.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the text copied from the editor has always LF line endings regardless of the actual document's line ending setting.</li>
 			<li>Fix an issue that when the option swapping ¥ and \ keys is enabled, those characters are swapped even when inputting them with Unicode code point.</li>
@@ -335,21 +377,21 @@
 		<h1>CotEditor 4.1.2</h1>
 		<p>release: <time>2022-02-20</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li><span class="trivial">dev</span>: Update Yams from 4.0.6 to 5.0.0.</li>
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle from 2.0.0 to 2.1.0.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the editor scrolls oddly by typing the Space key if the “Link URLs in document” option is enabled.</li>
 		</ul>
@@ -363,20 +405,20 @@
 		<h1>CotEditor 4.1.1</h1>
 		<p>release: <time>2022-02-16</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Improve Turkish localization (thanks to Emir SARI!).</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the shortcut symbols in the Key Bindings preference pane did not display properly.</li>
 		</ul>
@@ -390,11 +432,11 @@
 		<h1>CotEditor 4.1.0</h1>
 		<p>release: <time>2022-02-15</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>New Features</h2>
-		
+
 		<ul>
 			<li>Add a feature to filter outline items in the outline pane.</li>
 			<li>Add an option not to draw the background color on printing.</li>
@@ -406,11 +448,11 @@
 			<li>Add syntax style for Protocol Buffer.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Change the system requirement to <strong>macOS 11 Big Sur and later</strong>.</li>
 			<li>Update the window size setting to use the last document window size if the width/height setting in the preferences &gt; Window is left blank (= auto).</li>
@@ -438,11 +480,11 @@
 			<li><span class="label">non-AppStore ver.</span>: Update Sparkle to 2.0.0.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the current line number becomes 0 when the cursor is placed at the beginning of the document (thanks to Alex Newson!).</li>
 			<li>Fix an issue on macOS 12 Monterey that the user custom color did not apply to the i-beam cursor for the vertical layout.</li>
@@ -468,11 +510,11 @@
 		<h1>CotEditor 4.0.9</h1>
 		<p>release: <time>2021-11-28</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that File Drop settings were not saved if both the extensions and syntax styles are for “all.”</li>
 			<li>Fix an issue that shortcuts for snippet did not accept Shift with a non-letter character, such as Shift + Return.</li>
@@ -490,11 +532,11 @@
 		<h1>CotEditor 4.0.8</h1>
 		<p>release: <time>2021-09-19</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that memory leaked if the autosaving is disabled.</li>
 			<li>Fix an issue on the syntax style menu in the toolbar that the previous selection remained under specific conditions.</li>
@@ -509,13 +551,13 @@
 		<h1>CotEditor 4.0.7-1</h1>
 		<p>release: <time>2021-09-10</time></p>
 	</header>
-	
+
 	<p class="important">This version was released only for the non-AppStore distribution to fix the update check issue on CotEditor 4.0.7.</p>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li><span class="label">non-AppStore ver.</span>: Fix an issue that CotEditor could not check updates.</li>
 		</ul>
@@ -529,11 +571,11 @@
 		<h1>CotEditor 4.0.7</h1>
 		<p>release: <time>2021-09-09</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Highlight named capture where highlight regular expression patterns such as in the find panel.</li>
 			<li>Add “.erb” extension to Ruby syntax style.</li>
@@ -545,11 +587,11 @@
 			<li><span class="trivial">dev</span> <span class="label">non-AppStore ver.</span>: Use <code>sparkle:channel</code> element in appcast.xml for prerelease check instead of appcast-beta.xml.</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix syntax highlight regression on CotEditor 4.0.6.</li>
 			<li>Fix the layout of the initial encoding priority list.</li>
@@ -564,11 +606,11 @@
 		<h1>CotEditor 4.0.6</h1>
 		<p>release: <time>2021-07-24</time></p>
 	</header>
-	
-	
+
+
 	<section>
 		<h2>Improvements</h2>
-		
+
 		<ul>
 			<li>Add “Share” command to the menus for setting files, such as theme, syntax style, or multi replacement definition.</li>
 			<li>Resume “Select word” on top of the document if the search reached the end.</li>
@@ -584,11 +626,11 @@
 			<li><span class="trivial">trivial</span> <span class="label">non-AppStore ver.</span>: Sign the application with EdDSA signature for update manager (Sparkle).</li>
 		</ul>
 	</section>
-	
-	
+
+
 	<section>
 		<h2>Fixes</h2>
-		
+
 		<ul>
 			<li>Fix an issue that the document theme did occasionally not change when switching the default theme to “Anura” in Dark Mode.</li>
 			<li>Fix an issue that disabling the “Reopen windows from last session” option did not work if the Auto Save is disabled.</li>

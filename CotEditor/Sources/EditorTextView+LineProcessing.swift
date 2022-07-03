@@ -38,6 +38,7 @@ extension EditorTextView {
             else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
+        self.scrollRangeToVisible(self.selectedRange)
     }
     
     
@@ -50,6 +51,7 @@ extension EditorTextView {
             else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
+        self.scrollRangeToVisible(self.selectedRange)
     }
     
     
@@ -74,6 +76,18 @@ extension EditorTextView {
         guard let editingInfo = self.string.reverseLines(in: range) else { return }
         
         self.edit(with: editingInfo, actionName: "Reverse Lines".localized)
+    }
+    
+    
+    /// shuffle selected lines (only in the first selection)
+    @IBAction func shuffleLines(_ sender: Any?) {
+        
+        // process whole document if no text selected
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        
+        guard let editingInfo = self.string.shuffleLines(in: range) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Shuffle Lines".localized)
     }
     
     
@@ -288,42 +302,21 @@ extension String {
     /// sort selected lines ascending
     func sortLinesAscending(in range: NSRange) -> EditingInfo? {
         
-        let string = self as NSString
-        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
-        
-        // do nothing with single line
-        guard lineEndingRange != .notFound else { return nil }
-        
-        let lineEnding = string.substring(with: lineEndingRange)
-        let lineRange = string.lineContentsRange(for: range)
-        let newString = string
-            .substring(with: lineRange)
-            .components(separatedBy: .newlines)
-            .sorted(options: [.localized, .caseInsensitive])
-            .joined(separator: lineEnding)
-        
-        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
+        self.sortLines(in: range) { $0.sorted(options: [.localized, .caseInsensitive]) }
     }
     
     
     /// reverse selected lines
     func reverseLines(in range: NSRange) -> EditingInfo? {
         
-        let string = self as NSString
-        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
+        self.sortLines(in: range) { $0.reversed() }
+    }
+    
+    
+    /// shuffle selected lines
+    func shuffleLines(in range: NSRange) -> EditingInfo? {
         
-        // do nothing with single line
-        guard lineEndingRange != .notFound else { return nil }
-        
-        let lineEnding = string.substring(with: lineEndingRange)
-        let lineRange = string.lineContentsRange(for: range)
-        let newString = string
-            .substring(with: lineRange)
-            .components(separatedBy: .newlines)
-            .reversed()
-            .joined(separator: lineEnding)
-        
-        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
+        self.sortLines(in: range) { $0.shuffled() }
     }
     
     
@@ -419,6 +412,35 @@ extension String {
         selectedRanges = selectedRanges.unique.sorted(\.location)
         
         return (strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// Sort lines in the range using the given predicate.
+    ///
+    /// - Parameters:
+    ///   - range: The range where sort lines.
+    ///   - predicate: The way to sort lines.
+    /// - Returns: The editing info.
+    private func sortLines(in range: NSRange, predicate: ([String]) -> [String]) -> EditingInfo? {
+        
+        let string = self as NSString
+        let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
+        
+        // do nothing with single line
+        guard lineEndingRange != .notFound else { return nil }
+        
+        let lineEnding = string.substring(with: lineEndingRange)
+        let lineRange = string.lineContentsRange(for: range)
+        let lines = string
+            .substring(with: lineRange)
+            .components(separatedBy: .newlines)
+        let newString = predicate(lines)
+            .joined(separator: lineEnding)
+        
+        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
     
 }

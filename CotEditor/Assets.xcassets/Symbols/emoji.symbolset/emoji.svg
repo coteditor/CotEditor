@@ -79,21 +79,24 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"
  
  <g id="Symbols">
   <g id="Regular-L" transform="translate(1449.845 1520.75) scale(1.29)">
-   <circle fill="none" stroke="black" stroke-width="8" r="48"/>
+   <path d="M0 0m-52,0a52,52,0 1,0 104,0a 52,52 0 1,0 -104,0z
+            M0 0m-44,0a44,44,0 0,1 88,0a 44,44 0 0,1 -88,0z"/>
    <ellipse rx="6" ry="7.5" cx= "15" cy="-10.5"/>
    <ellipse rx="6" ry="7.5" cx="-15" cy="-10.5"/>
    <path d="M-27.2,18.5C-21.9,29.8-12.9,35.4,0,35.4c13.1,0,22-5.7,27.3-16.9C18.1,20.9,8.9,22.2,0,22.2C-8.9,22.2-18.1,20.9-27.2,18.5z"/>
    <path fill="none" stroke="black" stroke-width="5" stroke-linejoin="round" d="M0,35.4c-16.3,0-26.3-8.8-30.6-26.8c10.2,3,20.6,4.6,30.6,4.6c10.1,0,20.4-1.6,30.8-4.7C26.5,26.4,16.5,35.4,0,35.4z"/>
   </g>
   <g id="Regular-M" transform="translate(1449.845 1090.75)">
-   <circle fill="none" stroke="black" stroke-width="8" r="48"/>
+   <path d="M0 0m-52,0a52,52,0 1,0 104,0a 52,52 0 1,0 -104,0z
+            M0 0m-44,0a44,44,0 0,1 88,0a 44,44 0 0,1 -88,0z"/>
    <ellipse rx="6" ry="7.5" cx= "15" cy="-10.5"/>
    <ellipse rx="6" ry="7.5" cx="-15" cy="-10.5"/>
    <path d="M-27.2,18.5C-21.9,29.8-12.9,35.4,0,35.4c13.1,0,22-5.7,27.3-16.9C18.1,20.9,8.9,22.2,0,22.2C-8.9,22.2-18.1,20.9-27.2,18.5z"/>
    <path fill="none" stroke="black" stroke-width="4.8" stroke-linejoin="round" d="M0,35.4c-16.3,0-26.3-8.8-30.6-26.8c10.2,3,20.6,4.6,30.6,4.6c10.1,0,20.4-1.6,30.8-4.7C26.5,26.4,16.5,35.4,0,35.4z"/>
   </g>
   <g id="Regular-S" transform="translate(1449.845 660.75) scale(0.783)">
-   <circle fill="none" stroke="black" stroke-width="8" r="48"/>
+   <path d="M0 0m-52,0a52,52,0 1,0 104,0a 52,52 0 1,0 -104,0z
+            M0 0m-44,0a44,44,0 0,1 88,0a 44,44 0 0,1 -88,0z"/>
    <ellipse rx="6" ry="7.5" cx= "15" cy="-10.5"/>
    <ellipse rx="6" ry="7.5" cx="-15" cy="-10.5"/>
    <path d="M-27.2,18.5C-21.9,29.8-12.9,35.4,0,35.4c13.1,0,22-5.7,27.3-16.9C18.1,20.9,8.9,22.2,0,22.2C-8.9,22.2-18.1,20.9-27.2,18.5z"/>
