@@ -40,7 +40,7 @@ final class IncompatibleCharacterScanner {
     
     private weak var document: Document?
     
-    private var task: Task<Void, Error>?
+    private var task: Task<Void, any Error>?
     private lazy var updateDebouncer = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
     

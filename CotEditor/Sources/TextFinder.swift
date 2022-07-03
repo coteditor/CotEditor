@@ -72,7 +72,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
-    private var searchTask: Task<Void, Error>?
+    private var searchTask: Task<Void, any Error>?
     private var applicationActivationObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     

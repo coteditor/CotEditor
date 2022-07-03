@@ -88,7 +88,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
     
-    var urlDetectionTask: Task<Void, Error>?
+    var urlDetectionTask: Task<Void, any Error>?
     
     
     // MARK: Private Properties
@@ -107,7 +107,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private var instanceHighlightTask: Task<Void, Error>?
+    private var instanceHighlightTask: Task<Void, any Error>?
     
     private var needsRecompletion = false
     private var isShowingCompletion = false

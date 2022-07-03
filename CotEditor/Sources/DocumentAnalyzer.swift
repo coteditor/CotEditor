@@ -43,7 +43,7 @@ final class DocumentAnalyzer {
     
     private var needsCountWholeText = true
     private lazy var updateDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
-    private var countTask: Task<Void, Error>?
+    private var countTask: Task<Void, any Error>?
     
     
     

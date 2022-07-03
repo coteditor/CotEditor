@@ -59,8 +59,8 @@ final class SyntaxParser {
     private lazy var outlineExtractors: [OutlineExtractor] = self.style.outlineExtractors
     private lazy var highlightParser: HighlightParser = self.style.highlightParser
     
-    private var outlineParseTask: Task<Void, Error>?
-    private var highlightParseTask: Task<Void, Error>?
+    private var outlineParseTask: Task<Void, any Error>?
+    private var highlightParseTask: Task<Void, any Error>?
     
     private var textEditingObserver: AnyCancellable?
     
