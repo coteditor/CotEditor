@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "オン";
 "Off" = "オフ";
-"Don’t Print" = "プリントしない";
 "Same as Document’s Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
-"Print" = "プリント";
 "Syntax Name" = "シンタックス名";
 "Document Name" = "書類名";
 "File Path" = "ファイルパス";

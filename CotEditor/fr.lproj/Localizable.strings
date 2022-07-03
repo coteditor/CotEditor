@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "Oui";
 "Off" = "Non";
-"Don’t Print" = "Ne pas imprimer";
 "Same as Document’s Setting" = "Identique aux paramètres du document";
 "Black and White" = "Noir et Blanc";
-"Print" = "Imprimer";
 "Syntax Name" = "Nom de la syntaxe";
 "Document Name" = "Nom du document";
 "File Path" = "Chemin du fichier";

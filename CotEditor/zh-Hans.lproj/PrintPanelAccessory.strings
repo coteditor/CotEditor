@@ -33,24 +33,12 @@
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
 "Jff-bZ-Xbm.title" = "打印背景";
 
-/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
-"716.title" = "行号：";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
-"420.title" = "不打印";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
-"419.title" = "与文档设置一致";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
-"418.title" = "打印";
-
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "不可见元素：";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
-"427.title" = "与文档设置一致";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
-"428.title" = "不打印";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
-"426.title" = "打印";
-
+/* Class = "NSTextFieldCell"; title = "Options:"; ObjectID = "716"; */
+"716.title" = "Options:";  // FIXME: added
+/* Class = "NSButtonCell"; title = "line numbers"; ObjectID = "ZWa-GC-hpv"; */
+"ZWa-GC-hpv.title" = "行号";
+/* Class = "NSButtonCell"; title = "invisibles"; ObjectID = "oES-Vf-YlC"; */
+"oES-Vf-YlC.title" = "不可见元素";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */

@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "Ativo";
 "Off" = "Inativo";
-"Don’t Print" = "Não Imprimir";
 "Same as Document’s Setting" = "Usar Ajustes do Documento";
 "Black and White" = "Preto e Branco";
-"Print" = "Imprimir";
 "Syntax Name" = "Nome da Sintaxe";
 "Document Name" = "Nome do Documento";
 "File Path" = "Caminho do Arquivo";

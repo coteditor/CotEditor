@@ -597,14 +597,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let viewController = self.viewController!
         
+        self.printPanelAccessoryController.documentShowsInvisibles = viewController.showsInvisibles
+        self.printPanelAccessoryController.documentShowsLineNumber = viewController.showsLineNumber
+        
         // create printView
         let printView = PrintTextView()
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.documentName = self.displayName
         printView.fileURL = self.fileURL
         printView.syntaxName = self.syntaxParser.style.name
-        printView.documentShowsInvisibles = viewController.showsInvisibles
-        printView.documentShowsLineNumber = viewController.showsLineNumber
         printView.baseWritingDirection = viewController.writingDirection
         printView.ligature = UserDefaults.standard[.ligature] ? .standard : .none
         

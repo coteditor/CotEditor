@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 12 Moneterey and later__.
+- Update the view in the print panel.
 - Improve the algorithm to parse numbers in the Sort by Parttern command.
 - Improve the algorithm of uncommenting.
 - [trivial] Improve the Basic Regular Expression Syntax reference.

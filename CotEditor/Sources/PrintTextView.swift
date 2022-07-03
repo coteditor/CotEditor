@@ -45,11 +45,6 @@ final class PrintTextView: NSTextView, Themable {
     var syntaxName: String = BundledStyleName.none
     private(set) var theme: Theme?
     
-    // settings on current window to be set by Document.
-    // These values are used if set option is "Same as document's setting"
-    var documentShowsLineNumber = false
-    var documentShowsInvisibles = false
-    
     
     // MARK: Private Properties
     
@@ -279,34 +274,15 @@ final class PrintTextView: NSTextView, Themable {
         // set scope to print
         layoutManager.showsSelectionOnly = printInfo.isSelectionOnly
         
-        // check whether print line numbers
-        self.printsLineNumber = {
-            switch PrintVisibilityMode(printInfo[.lineNumber]) {
-                case .no:
-                    return false
-                case .sameAsDocument:
-                    return self.documentShowsLineNumber
-                case .yes:
-                    return true
-            }
-        }()
-        
+        // set line numbers
+        self.printsLineNumber = printInfo[.printsLineNumber] ?? false
         // adjust paddings considering the line numbers
         let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
         self.xOffset = printsAtLeft ? self.lineFragmentPadding : 0
         self.textContainerInset.width = printsAtLeft ? self.lineFragmentPadding : 0
         
-        // check whether print invisibles
-        layoutManager.showsInvisibles = {
-            switch PrintVisibilityMode(printInfo[.invisibles]) {
-                case .no:
-                    return false
-                case .sameAsDocument:
-                    return self.documentShowsInvisibles
-                case .yes:
-                    return true
-            }
-        }()
+        // set invisibles
+        layoutManager.showsInvisibles = printInfo[.printsInvisibles] ?? false
         
         // set whether draws background
         self.drawsBackground = printInfo[.printsBackground] ?? true
@@ -390,7 +366,7 @@ final class PrintTextView: NSTextView, Themable {
         
         // tab stops for double-sided alignment (imitation of super.pageHeader)
         if let printInfo = NSPrintOperation.current?.printInfo {
-            let xMax = printInfo.paperSize.width - printInfo.leftMargin - printInfo.rightMargin
+            let xMax = printInfo.paperSize.width - printInfo.leftMargin
             paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: xMax / 2),
                                        NSTextTab(type: .rightTabStopType, location: xMax)]
         }

@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "Acceso";
 "Off" = "Spento";
-"Don’t Print" = "Non stampare";
 "Same as Document’s Setting" = "Come da documento";
 "Black and White" = "Bianco e nero";
-"Print" = "Stampa";
 "Syntax Name" = "Nome sintassi";
 "Document Name" = "Nome documento";
 "File Path" = "Percorso file";

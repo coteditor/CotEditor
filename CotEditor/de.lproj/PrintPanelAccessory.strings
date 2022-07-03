@@ -33,23 +33,13 @@
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
 "Jff-bZ-Xbm.title" = "Hintergrund drucken";
 
-/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
-"716.title" = "Zeilennummern:";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
-"420.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
-"419.title" = "Wie Dokument";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
-"418.title" = "Drucken";
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Steuerzeichen:";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
-"427.title" = "Wie Dokument";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
-"428.title" = "Nicht drucken";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
-"426.title" = "Drucken";
+/* Class = "NSTextFieldCell"; title = "Print:"; ObjectID = "716"; */
+"716.title" = "Drucken:";
+/* Class = "NSButtonCell"; title = "line numbers"; ObjectID = "ZWa-GC-hpv"; */
+"ZWa-GC-hpv.title" = "Zeilennummern";
+/* Class = "NSButtonCell"; title = "invisibles"; ObjectID = "oES-Vf-YlC"; */
+"oES-Vf-YlC.title" = "Steuerzeichen";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */

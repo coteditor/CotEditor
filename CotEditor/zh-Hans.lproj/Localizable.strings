@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "开";
 "Off" = "关";
-"Don’t Print" = "不打印";
 "Same as Document’s Setting" = "同文档设置一致";
 "Black and White" = "黑白";
-"Print" = "打印";
 "Syntax Name" = "语法名";
 "Document Name" = "文档名";
 "File Path" = "文件路径";

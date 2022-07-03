@@ -29,8 +29,8 @@ extension NSPrintInfo.AttributeKey {
     
     static let theme = Self("CEThemeName")
     static let printsBackground = Self("CEPrintBackground")
-    static let lineNumber = Self("CEPrintLineNumber")
-    static let invisibles = Self("CEPrintInvisibles")
+    static let printsLineNumber = Self("CEPrintLineNumber")
+    static let printsInvisibles = Self("CEPrintInvisibles")
     static let printsHeader = Self("CEPrintHeader")
     static let primaryHeaderContent = Self("CEPrimaryHeaderContent")
     static let secondaryHeaderContent = Self("CESecondaryHeaderContent")
@@ -52,6 +52,14 @@ enum ThemeName {
 
 
 final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccessorizing {
+    
+    // MARK: Public Properties
+    
+    // settings on current window to be set by Document.
+    // These values are used if set option is "Same as document's setting"
+    var documentShowsLineNumber = false
+    var documentShowsInvisibles = false
+    
     
     // MARK: Private Properties
     
@@ -85,8 +93,27 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                 }
             }()
             self.printsBackground = defaults[.printBackground]
-            self.lineNumberMode = defaults[.printLineNumIndex]
-            self.invisibleCharsMode = defaults[.printInvisibleCharIndex]
+            
+            self.printsLineNumbers = {
+                switch defaults[.printLineNumIndex] {
+                    case .no:
+                        return false
+                    case .sameAsDocument:
+                        return self.documentShowsLineNumber
+                    case .yes:
+                        return true
+                }
+            }()
+            self.printsInvisibles = {
+                switch defaults[.printInvisibleCharIndex] {
+                    case .no:
+                        return false
+                    case .sameAsDocument:
+                        return self.documentShowsInvisibles
+                    case .yes:
+                        return true
+                }
+            }()
             
             self.printsHeader = defaults[.printHeader]
             self.primaryHeaderContent = defaults[.primaryHeaderContent]
@@ -117,22 +144,23 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// list of key paths that affect to preview
     func keyPathsForValuesAffectingPreview() -> Set<String> {
         
-        return [#keyPath(theme),
-                #keyPath(printsBackground),
-                #keyPath(lineNumberMode),
-                #keyPath(invisibleCharsMode),
-                
-                #keyPath(printsHeader),
-                #keyPath(primaryHeaderContent),
-                #keyPath(primaryHeaderAlignment),
-                #keyPath(secondaryHeaderContent),
-                #keyPath(secondaryHeaderAlignment),
-                
-                #keyPath(printsFooter),
-                #keyPath(primaryFooterAlignment),
-                #keyPath(primaryFooterContent),
-                #keyPath(secondaryFooterAlignment),
-                #keyPath(secondaryFooterContent),
+        [
+            #keyPath(theme),
+            #keyPath(printsBackground),
+            #keyPath(printsLineNumbers),
+            #keyPath(printsInvisibles),
+            
+            #keyPath(printsHeader),
+            #keyPath(primaryHeaderContent),
+            #keyPath(primaryHeaderAlignment),
+            #keyPath(secondaryHeaderContent),
+            #keyPath(secondaryHeaderAlignment),
+            
+            #keyPath(printsFooter),
+            #keyPath(primaryFooterAlignment),
+            #keyPath(primaryFooterContent),
+            #keyPath(secondaryFooterAlignment),
+            #keyPath(secondaryFooterContent),
         ]
     }
     
@@ -146,9 +174,9 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             [.itemName: "Print Background".localized,
              .itemDescription: self.printsBackground ? "On".localized : "Off".localized],
             [.itemName: "Line Number".localized,
-             .itemDescription: self.lineNumberMode.localizedDescription],
+             .itemDescription: self.printsLineNumbers ? "On".localized : "Off".localized],
             [.itemName: "Invisibles".localized,
-             .itemDescription: self.invisibleCharsMode.localizedDescription],
+             .itemDescription: self.printsInvisibles ? "On".localized : "Off".localized],
             
             [.itemName: "Print Header".localized,
              .itemDescription: self.printsHeader ? "On" .localized: "Off".localized],
@@ -235,18 +263,18 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// whether draws line number
-    @objc dynamic var lineNumberMode: PrintVisibilityMode {
+    @objc dynamic var printsLineNumbers: Bool {
         
-        get { PrintVisibilityMode(self.printInfo?[.lineNumber]) }
-        set { self.printInfo?[.lineNumber] = newValue.rawValue }
+        get { self.printInfo?[.printsLineNumber] ?? false }
+        set { self.printInfo?[.printsLineNumber] = newValue }
     }
     
     
     /// whether draws invisible characters
-    @objc dynamic var invisibleCharsMode: PrintVisibilityMode {
+    @objc dynamic var printsInvisibles: Bool {
         
-        get { PrintVisibilityMode(self.printInfo?[.invisibles]) }
-        set { self.printInfo?[.invisibles] = newValue.rawValue }
+        get { self.printInfo?[.printsInvisibles] ?? false }
+        set { self.printInfo?[.printsInvisibles] = newValue }
     }
     
     
@@ -329,22 +357,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         set { self.printInfo?[.secondaryFooterAlignment] = newValue.rawValue }
     }
     
-}
-
-
-private extension PrintVisibilityMode {
-    
-    var localizedDescription: String {
-        
-        switch self {
-            case .no:
-                return "Don’t Print".localized
-            case .sameAsDocument:
-                return "Same as Document’s Setting".localized
-            case .yes:
-                return "Print".localized
-        }
-    }
 }
 
 

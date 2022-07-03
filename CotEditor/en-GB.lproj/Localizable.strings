@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "On";
 "Off" = "Off";
-"Don’t Print" = "Don’t Print";
 "Same as Document’s Setting" = "Same as Document’s Setting";
 "Black and White" = "Black and White";
-"Print" = "Print";
 "Syntax Name" = "Syntax Name";
 "Document Name" = "Document Name";
 "File Path" = "File Path";

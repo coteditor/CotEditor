@@ -372,10 +372,8 @@
 // Summary item values
 "On" = "Açık";
 "Off" = "Kapalı";
-"Don’t Print" = "Yazdırma";
 "Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";
 "Black and White" = "Siyah ve Beyaz";
-"Print" = "Yazdır";
 "Syntax Name" = "Sözdizim Adı";
 "Document Name" = "Belge Adı";
 "File Path" = "Dosya Yolu";
