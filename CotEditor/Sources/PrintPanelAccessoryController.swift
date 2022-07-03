@@ -29,7 +29,7 @@ extension NSPrintInfo.AttributeKey {
     
     static let theme = Self("CEThemeName")
     static let printsBackground = Self("CEPrintBackground")
-    static let printsLineNumber = Self("CEPrintLineNumber")
+    static let printsLineNumbers = Self("CEPrintLineNumber")
     static let printsInvisibles = Self("CEPrintInvisibles")
     static let printsHeader = Self("CEPrintHeader")
     static let primaryHeaderContent = Self("CEPrimaryHeaderContent")
@@ -179,7 +179,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
              .itemDescription: self.printsInvisibles ? "On".localized : "Off".localized],
             
             [.itemName: "Print Header".localized,
-             .itemDescription: self.printsHeader ? "On" .localized: "Off".localized],
+             .itemDescription: self.printsHeader ? "On" .localized : "Off".localized],
             [.itemName: "Primary Header".localized,
              .itemDescription: self.primaryHeaderContent.localizedDescription],
             [.itemName: "Primary Header Alignment".localized,
@@ -265,8 +265,8 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// whether draws line number
     @objc dynamic var printsLineNumbers: Bool {
         
-        get { self.printInfo?[.printsLineNumber] ?? false }
-        set { self.printInfo?[.printsLineNumber] = newValue }
+        get { self.printInfo?[.printsLineNumbers] ?? false }
+        set { self.printInfo?[.printsLineNumbers] = newValue }
     }
     
     

@@ -65,9 +65,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Üstbilgiyi yazdır";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
-"3369.title" = "Birincil:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "Hiçbiri";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
@@ -88,9 +85,6 @@
 /* Class = "NSSegmentedCell"; Jap-f3-ehL.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Jap-f3-ehL"; */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "Sağa Hizala";
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
-"3373.title" = "İkincil:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "Hiçbiri";
@@ -117,9 +111,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Altbilgiyi yazdır";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "Birincil:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "Hiçbiri";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
@@ -140,9 +131,6 @@
 /* Class = "NSSegmentedCell"; Zgh-yF-xd2.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Zgh-yF-xd2"; */
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "Sağa Hizala";
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
-"3377.title" = "İkincil:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "Hiçbiri";

@@ -45,9 +45,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "Üstbilgiyi yazdır";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
-"706.title" = "Birincil:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "Hiçbiri";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
@@ -67,9 +64,6 @@
 "Aru-Gd-J0D.ibShadowedToolTips[1]" = "Ortala";
 /* Class = "NSSegmentedCell"; Aru-Gd-J0D.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Aru-Gd-J0D"; */
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "Sağa Hizala";
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
-"707.title" = "İkincil:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "Hiçbiri";
@@ -96,9 +90,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "Altbilgiyi yazdır";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
-"711.title" = "Birincil:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "Hiçbiri";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
@@ -119,9 +110,6 @@
 /* Class = "NSSegmentedCell"; njJ-Ab-dUQ.ibShadowedToolTips[2] = "Align Right"; ObjectID = "njJ-Ab-dUQ"; */
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Sağa Hizala";
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
-"712.title" = "İkincil:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "Hiçbiri";

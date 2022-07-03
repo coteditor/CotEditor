@@ -64,9 +64,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "打印页眉";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
-"3369.title" = "主：";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "无";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
@@ -85,9 +82,6 @@
 "90p-SJ-bXq.ibShadowedToolTips[1]" = "居中";  /* Center */
 "90p-SJ-bXq.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
-"3373.title" = "次：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "无";
@@ -112,9 +106,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "打印页脚";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "主：";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "无";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
@@ -133,9 +124,6 @@
 "Zgh-yF-xd2.ibShadowedToolTips[1]" = "居中";  /* Center */
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "右对齐";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3377"; */
-"3377.title" = "次：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "无";

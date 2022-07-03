@@ -63,9 +63,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "ヘッダをプリント";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
-"3369.title" = "主ヘッダ:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "なし";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
@@ -84,9 +81,6 @@
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
-"3373.title" = "副ヘッダ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "なし";
@@ -111,9 +105,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "フッタをプリント";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "主フッタ:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "なし";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
@@ -132,9 +123,6 @@
 "Zgh-yF-xd2.ibShadowedToolTips[1]" = "中央揃え";  /* Center */
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "右揃え";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
-"3377.title" = "副フッタ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "なし";

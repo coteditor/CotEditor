@@ -275,7 +275,7 @@ final class PrintTextView: NSTextView, Themable {
         layoutManager.showsSelectionOnly = printInfo.isSelectionOnly
         
         // set line numbers
-        self.printsLineNumber = printInfo[.printsLineNumber] ?? false
+        self.printsLineNumber = printInfo[.printsLineNumbers] ?? false
         // adjust paddings considering the line numbers
         let printsAtLeft = (self.printsLineNumber && self.baseWritingDirection != .rightToLeft)
         self.xOffset = printsAtLeft ? self.lineFragmentPadding : 0

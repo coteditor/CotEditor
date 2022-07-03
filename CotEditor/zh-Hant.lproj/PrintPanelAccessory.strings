@@ -45,9 +45,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "列印頁首";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
-"706.title" = "主：";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "無";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
@@ -66,10 +63,6 @@
 "Aru-Gd-J0D.ibShadowedToolTips[1]" = "居中";  /* Center */
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "右對齊";  /* Align Right */
 
-
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
-"707.title" = "次：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "無";
@@ -94,9 +87,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "列印頁尾";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
-"711.title" = "主：";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "無";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
@@ -115,9 +105,6 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[1]" = "居中";  /* Center */
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "右對齊";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
-"712.title" = "次：";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "無";

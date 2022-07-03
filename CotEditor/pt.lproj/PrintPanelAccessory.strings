@@ -45,9 +45,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "Imprimir cabeçalho";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
-"706.title" = "Primário:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "Nenhum";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
@@ -66,9 +63,6 @@
 "Aru-Gd-J0D.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
-"707.title" = "Secundário:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "Nenhum";
@@ -93,9 +87,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "Imprimir rodapé";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
-"711.title" = "Primário:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "Nenhum";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
@@ -114,9 +105,6 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
-"712.title" = "Secundário:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "Nenhum";
