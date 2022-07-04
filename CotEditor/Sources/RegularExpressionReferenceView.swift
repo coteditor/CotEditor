@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Combine
 
 private struct Definition: Identifiable {
     
@@ -118,11 +117,10 @@ struct RegularExpressionReferenceView: View {
     
     private struct DefinitionList: View {
         
-        var title: LocalizedStringKey
-        var definitions: [Definition]
+        @State private var title: LocalizedStringKey
+        @State private var definitions: [Definition]
         
         @State private var width: CGFloat?
-        private let event = PassthroughSubject<CGFloat, Never>()
         
         
         init(_ definitions: [Definition], title: LocalizedStringKey) {
@@ -137,20 +135,17 @@ struct RegularExpressionReferenceView: View {
             Section {
                 VStack(alignment: .leading, spacing: 1) {
                     ForEach(self.definitions) { definition in
-                        HStack {
+                        HStack(alignment: .firstTextBaseline) {
                             Text(definition.term)
                                 .fontWeight(.medium)
                                 .frame(width: self.width, alignment: .leading)
-                                .background(WidthGetter(widthChanged: self.event))
+                                .background(SizeGetter())
                             Text(definition.description)
                         }
                         .fixedSize()
                     }
-                }.onReceive(self.event) { width in
-                    if width > (self.width ?? 0) {
-                        self.width = width
-                    }
                 }
+                .onPreferenceChange(SizeKey.self) { self.width = $0.map(\.width).max() }
                 
             } header: {
                 Text(self.title)
@@ -164,16 +159,26 @@ struct RegularExpressionReferenceView: View {
 }
 
 
-private struct WidthGetter: View {
-    
-    let widthChanged: PassthroughSubject<CGFloat, Never>
+
+private struct SizeGetter: View {
     
     var body: some View {
-    
-        GeometryReader { geometry -> Path in
-            self.widthChanged.send(geometry.frame(in: .global).width)
-            return Path()
+        
+        GeometryReader { (geometry) in
+            Path().preference(key: SizeKey.self, value: [geometry.size])
         }
+    }
+}
+
+
+
+private struct SizeKey: PreferenceKey {
+    
+    static var defaultValue: [CGSize] = []
+    
+    static func reduce(value: inout [CGSize], nextValue: () -> [CGSize]) {
+        
+        value.append(contentsOf: nextValue())
     }
 }
 
