@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21179.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,7 +16,7 @@
                                 <rect key="frame" x="42" y="20" width="486" height="381"/>
                                 <subviews>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jB6-pW-rzu">
-                                        <rect key="frame" x="111" y="189" width="247" height="25"/>
+                                        <rect key="frame" x="111" y="189" width="214" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="953" id="R0d-ln-RzZ">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -35,7 +34,7 @@
                                         </connections>
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YjD-Jc-NEF">
-                                        <rect key="frame" x="111" y="219" width="247" height="25"/>
+                                        <rect key="frame" x="111" y="219" width="214" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="947" id="guD-S3-rc0">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -78,7 +77,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiR-qP-3Z4">
-                                        <rect key="frame" x="300" y="135" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="135" width="81" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -119,7 +118,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-e4-wvP">
-                                        <rect key="frame" x="300" y="105" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="105" width="81" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -144,10 +143,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ito-FV-Lxm">
-                                        <rect key="frame" x="111" y="275" width="247" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="RvQ-pn-gIW"/>
-                                        </constraints>
+                                        <rect key="frame" x="111" y="275" width="214" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Same as Document’s Setting" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="1354" id="RcI-6Q-ONB">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -192,9 +188,9 @@
                                         </connections>
                                     </textField>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Bt-cy-Umw">
-                                        <rect key="frame" x="111" y="133" width="187" height="25"/>
+                                        <rect key="frame" x="111" y="133" width="141" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="G8K-i7-Dee"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="G8K-i7-Dee"/>
                                         </constraints>
                                         <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="895" id="Sos-1f-I2b">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -227,7 +223,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-wb-NLt">
-                                        <rect key="frame" x="300" y="18" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="18" width="81" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -266,7 +262,7 @@
                                         </connections>
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-wy-VQk">
-                                        <rect key="frame" x="111" y="46" width="187" height="25"/>
+                                        <rect key="frame" x="111" y="46" width="141" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="tRU-Ql-e0X">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -301,7 +297,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WDk-Zl-PJd">
-                                        <rect key="frame" x="300" y="48" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="48" width="81" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -326,7 +322,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-TU-mOj">
-                                        <rect key="frame" x="111" y="103" width="187" height="25"/>
+                                        <rect key="frame" x="111" y="103" width="141" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="cUP-ax-qGf">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -350,7 +346,7 @@
                                         </connections>
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nPF-cF-nDP">
-                                        <rect key="frame" x="111" y="16" width="187" height="25"/>
+                                        <rect key="frame" x="111" y="16" width="141" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="dc6-yt-bjo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -471,7 +467,7 @@
                                 </constraints>
                             </customView>
                             <button identifier="settings_print" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-ld-DGW">
-                                <rect key="frame" x="525" y="20" width="25" height="25"/>
+                                <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="vLp-x1-my1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

@@ -17,11 +17,11 @@
                                 <rect key="frame" x="10" y="0.0" width="300" height="307"/>
                                 <subviews>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
-                                        <rect key="frame" x="201" y="103" width="75" height="24"/>
+                                        <rect key="frame" x="195" y="103" width="77" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
                                                 <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                                     <nil key="label"/>
@@ -43,9 +43,6 @@
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="585">
                                         <rect key="frame" x="52" y="263" width="214" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="ywH-Ua-doT"/>
-                                        </constraints>
                                         <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="590" id="722">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -62,11 +59,11 @@
                                         </connections>
                                     </popUpButton>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
-                                        <rect key="frame" x="201" y="49" width="75" height="24"/>
+                                        <rect key="frame" x="195" y="49" width="77" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
                                                 <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                                     <nil key="label"/>
@@ -96,8 +93,8 @@
                                             <binding destination="YLz-6z-SWq" name="value" keyPath="printsHeader" id="iKa-8d-dzT"/>
                                         </connections>
                                     </button>
-                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="305">
-                                        <rect key="frame" x="52" y="101" width="147" height="25"/>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
+                                        <rect key="frame" x="52" y="101" width="141" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -121,11 +118,11 @@
                                         </connections>
                                     </popUpButton>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
-                                        <rect key="frame" x="201" y="19" width="75" height="24"/>
+                                        <rect key="frame" x="195" y="19" width="77" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
                                                 <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                                     <nil key="label"/>
@@ -145,8 +142,8 @@
                                             </binding>
                                         </connections>
                                     </segmentedControl>
-                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="321">
-                                        <rect key="frame" x="52" y="17" width="147" height="25"/>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="321">
+                                        <rect key="frame" x="52" y="17" width="141" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -169,8 +166,8 @@
                                             <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryFooterContent" id="raJ-1y-Hyw"/>
                                         </connections>
                                     </popUpButton>
-                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="313">
-                                        <rect key="frame" x="52" y="47" width="147" height="25"/>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
+                                        <rect key="frame" x="52" y="47" width="141" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -193,10 +190,10 @@
                                             <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="eSk-6s-EvS"/>
                                         </connections>
                                     </popUpButton>
-                                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="198">
-                                        <rect key="frame" x="52" y="131" width="147" height="25"/>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
+                                        <rect key="frame" x="52" y="131" width="141" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="140" id="EKF-Mv-PUx"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="100" id="EKF-Mv-PUx"/>
                                         </constraints>
                                         <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -229,11 +226,11 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
-                                        <rect key="frame" x="201" y="133" width="75" height="24"/>
+                                        <rect key="frame" x="195" y="133" width="77" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="21"/>
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
                                                 <segment toolTip="Center" image="arrow.center.to.line" width="21" selected="YES" tag="1"/>
                                                 <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="21">
                                                     <nil key="label"/>

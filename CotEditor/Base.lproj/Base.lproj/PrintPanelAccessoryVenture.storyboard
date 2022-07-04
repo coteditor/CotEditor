@@ -37,11 +37,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin">
-                                <rect key="frame" x="255" y="315" width="185" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="3TL-xn-k3L"/>
-                                </constraints>
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin">
+                                <rect key="frame" x="321" y="315" width="119" height="16"/>
                                 <popUpButtonCell key="cell" type="bevel" title="Black and White" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -90,7 +87,7 @@
                                 <rect key="frame" x="0.0" y="89" width="440" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dpB-O3-zLC">
-                                <rect key="frame" x="20" y="228" width="400" height="5"/>
+                                <rect key="frame" x="20" y="228" width="420" height="5"/>
                             </box>
                             <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" controlSize="mini" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="NX9-Wy-k9a">
                                 <rect key="frame" x="413" y="239" width="28" height="16"/>
@@ -120,12 +117,9 @@
                                     <binding destination="bU7-R8-ocO" name="value" keyPath="printsFooter" id="GY5-ob-Xvf"/>
                                 </connections>
                             </switch>
-                            <popUpButton horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha">
-                                <rect key="frame" x="216" y="136" width="145" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="140" id="ISU-iR-29H"/>
-                                </constraints>
-                                <popUpButtonCell key="cell" type="bevel" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="nGA-NN-REz" id="jk3-rE-AyP">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha">
+                                <rect key="frame" x="238" y="136" width="123" height="16"/>
+                                <popUpButtonCell key="cell" type="bevel" title="Document Name" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="nGA-NN-REz" id="jk3-rE-AyP">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="3uu-24-iga">
@@ -160,6 +154,7 @@
                                     </segments>
                                 </segmentedCell>
                                 <connections>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryHeaderAlignment" id="o6Y-Ju-UzO"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="primaryHeaderContent" previousBinding="zqU-1W-Au6" id="HY9-zP-4O1">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -168,7 +163,6 @@
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="printsHeader" id="ryf-7D-ayU"/>
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeader" id="zqU-1W-Au6"/>
                                 </connections>
                             </segmentedControl>
@@ -185,8 +179,8 @@
                                     </segments>
                                 </segmentedCell>
                                 <connections>
-                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="printsHeader" id="1hV-Z6-vdJ"/>
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeader" id="pYB-rR-FaL"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryHeaderAlignment" id="vFE-bC-Bb0"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="secondaryHeaderContent" previousBinding="pYB-rR-FaL" id="iY4-gm-2xf">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -197,9 +191,9 @@
                                     </binding>
                                 </connections>
                             </segmentedControl>
-                            <popUpButton horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW">
-                                <rect key="frame" x="216" y="105" width="145" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SnR-fR-DZF" id="Vqj-Po-rB8">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW">
+                                <rect key="frame" x="238" y="105" width="123" height="16"/>
+                                <popUpButtonCell key="cell" type="bevel" title="Page Number" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SnR-fR-DZF" id="Vqj-Po-rB8">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="Bk3-uv-jzy">
@@ -246,9 +240,9 @@
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="bL4-Ga-QAw"/>
                                 </connections>
                             </segmentedControl>
-                            <popUpButton horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM">
-                                <rect key="frame" x="216" y="32" width="145" height="18"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="rsB-Kk-kBp" id="inp-eT-VVY">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM">
+                                <rect key="frame" x="238" y="32" width="123" height="18"/>
+                                <popUpButtonCell key="cell" type="bevel" title="Page Number" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="rsB-Kk-kBp" id="inp-eT-VVY">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="TfU-Pz-bEH">
@@ -270,9 +264,9 @@
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="QF3-LY-9Ag"/>
                                 </connections>
                             </popUpButton>
-                            <popUpButton horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O">
-                                <rect key="frame" x="216" y="4" width="145" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="VyN-kq-VID" id="mh2-B1-LxR">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O">
+                                <rect key="frame" x="238" y="4" width="123" height="16"/>
+                                <popUpButtonCell key="cell" type="bevel" title="None" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="VyN-kq-VID" id="mh2-B1-LxR">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="fhH-st-yT7">
@@ -332,7 +326,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="dK7-a2-oXG" secondAttribute="trailing" id="06l-r5-aBj"/>
-                            <constraint firstAttribute="trailing" secondItem="dpB-O3-zLC" secondAttribute="trailing" constant="20" symbolic="YES" id="1gA-vr-aIv"/>
+                            <constraint firstAttribute="trailing" secondItem="dpB-O3-zLC" secondAttribute="trailing" id="1gA-vr-aIv"/>
                             <constraint firstItem="NmH-od-2G4" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="1xQ-4L-0zn"/>
                             <constraint firstItem="xyB-Z8-pVB" firstAttribute="firstBaseline" secondItem="kYV-zv-wrQ" secondAttribute="firstBaseline" id="2Kh-ox-WYa"/>
                             <constraint firstItem="QKu-nK-alH" firstAttribute="top" secondItem="BB8-10-llF" secondAttribute="bottom" constant="10" id="79J-pw-XC3"/>
