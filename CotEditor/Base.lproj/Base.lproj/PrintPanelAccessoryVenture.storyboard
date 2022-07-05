@@ -51,6 +51,7 @@
                                 </popUpButtonCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="CvE-De-52u" id="bk5-MK-LHE"/>
+                                    <binding destination="bU7-R8-ocO" name="selectedValue" keyPath="theme" id="Ngl-SP-HER"/>
                                 </connections>
                             </popUpButton>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dK7-a2-oXG">
