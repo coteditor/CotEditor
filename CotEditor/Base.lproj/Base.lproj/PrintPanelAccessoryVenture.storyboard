@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21179.7"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,7 +23,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kYV-zv-wrQ">
-                                <rect key="frame" x="-2" y="278" width="109" height="16"/>
+                                <rect key="frame" x="18" y="278" width="109" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Print Background" id="5eL-Aw-LdI">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -355,7 +356,6 @@
                             <constraint firstItem="zau-Af-OBf" firstAttribute="top" secondItem="Y6C-KD-Qlx" secondAttribute="bottom" constant="8" symbolic="YES" id="K70-QO-QcT"/>
                             <constraint firstAttribute="trailing" secondItem="t3D-7C-ObH" secondAttribute="trailing" id="LWZ-cU-bVV"/>
                             <constraint firstItem="Yho-OF-r7g" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="Lbe-au-Lqg"/>
-                            <constraint firstItem="kYV-zv-wrQ" firstAttribute="leading" secondItem="CvE-De-52u" secondAttribute="leading" id="Ldt-1V-XVB"/>
                             <constraint firstItem="NX9-Wy-k9a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yho-OF-r7g" secondAttribute="trailing" constant="8" symbolic="YES" id="OLR-px-2Qe"/>
                             <constraint firstItem="dK7-a2-oXG" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="Oia-l9-e1F"/>
                             <constraint firstItem="50N-5Y-LZQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Af-55-FYV" secondAttribute="trailing" constant="8" symbolic="YES" id="OrB-LP-osE"/>
@@ -369,6 +369,7 @@
                             <constraint firstItem="t3D-7C-ObH" firstAttribute="top" secondItem="qqp-Os-uMO" secondAttribute="bottom" constant="8" symbolic="YES" id="V5w-Qn-x58"/>
                             <constraint firstItem="t3D-7C-ObH" firstAttribute="firstBaseline" secondItem="BMN-9W-V2O" secondAttribute="firstBaseline" id="VEU-Q6-JRJ"/>
                             <constraint firstAttribute="trailing" secondItem="5oG-pS-6uI" secondAttribute="trailing" id="W1n-cr-TnJ"/>
+                            <constraint firstItem="kYV-zv-wrQ" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="20" id="WSe-UZ-wEH"/>
                             <constraint firstAttribute="trailing" secondItem="50N-5Y-LZQ" secondAttribute="trailing" id="WmK-lv-kIZ"/>
                             <constraint firstItem="qqp-Os-uMO" firstAttribute="leading" secondItem="JEM-Eg-bfM" secondAttribute="trailing" constant="8" symbolic="YES" id="Wwr-Qs-r0B"/>
                             <constraint firstItem="Y6C-KD-Qlx" firstAttribute="leading" secondItem="f1I-iq-7Ha" secondAttribute="trailing" constant="8" symbolic="YES" id="chi-yO-QH8"/>
