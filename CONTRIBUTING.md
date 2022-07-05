@@ -7,7 +7,20 @@ General Feedback
 
 Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/issues). You can write your feedback either in English (recommended) or in Japanese.
 
-Bug reports __must__ include your environment. You can generate a bug report template automatically in CotEditor selecting Help > Create Bug Report in the menu.
+
+### Bug reports
+
+Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one. Do not hesitate to post the same phenomenon  to the existing issue as long as the cases are less than 10. Multiple instances help a lot to find out the cause. In that situation, include your enviroment (version of CotEditor and macOS) to your post.
+
+If possible, attach screenshots/screencasts of the issue you face. It is also helpful to attach sample files that can reproduce the issue.
+
+If your issue relates the syntax highlight, include the sample code that can reproduce the unwanted highlight to your post.
+
+
+### Feature request
+
+Search for existing requests first. If you find your feature previously requested, post your comment to that issue; otherwise, create a new one.
+Create an issue per feature instead of listing multiple features in one issue page.
 
 
 
