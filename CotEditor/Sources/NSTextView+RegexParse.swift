@@ -36,9 +36,9 @@ extension NSTextView {
     @discardableResult
     @MainActor func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
         
-        // avoid using TextKit 2 in field editors because it does actually not work on macOS 12 (2022-07).
+        // avoid using TextKit 2 on macOS 12 because it does actually not work (2022-07).
         guard
-            !self.isFieldEditor,
+            #available(macOS 13, *),
             let layoutManager = self.textLayoutManager,
             let contentManager = layoutManager.textContentManager
         else { return self.highlightAsRegularExpressionPatternWithLegacyTextKit(mode: mode, enabled: enabled) }
