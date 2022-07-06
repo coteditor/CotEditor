@@ -27,6 +27,13 @@
 import Combine
 import Cocoa
 
+private struct ScriptItem {
+    
+    var script: any Script
+    var shortcut: Shortcut
+}
+
+
 final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Properties
@@ -40,9 +47,12 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private let scriptsDirectoryURL: URL?
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
+    private var currentContext: String?  { didSet { self.applyShortcuts() } }
     
     private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     private var applicationObserver: AnyCancellable?
+    private var documentObserver: AnyCancellable?
+    private var syntaxObserver: AnyCancellable?
     
     
     
@@ -62,6 +72,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         // observe script folder change
         NSFileCoordinator.addFilePresenter(self)
+        
+        // observe the frontmost syntax change
+        self.documentObserver = NotificationCenter.default.publisher(for: NSWindow.didBecomeMainNotification)
+            .compactMap { ($0.object as! NSWindow).windowController?.document as? Document }
+            .sink { [unowned self] in
+                self.syntaxObserver = $0.didChangeSyntaxStyle
+                    .merge(with: Just($0.syntaxParser.style.name))
+                    .removeDuplicates()
+                    .receive(on: RunLoop.main)
+                    .sink { self.currentContext = $0 }
+            }
     }
     
     
@@ -127,6 +148,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         openMenuItem.target = self
         
         MainMenu.script.menu?.items = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
+        self.applyShortcuts()
     }
     
     
@@ -156,7 +178,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// launch script (invoked by menu item)
     @IBAction func launchScript(_ sender: NSMenuItem) {
         
-        guard let script = sender.representedObject as? any Script else { return assertionFailure() }
+        guard let script = (sender.representedObject as? ScriptItem)?.script else { return assertionFailure() }
         
         Task {
             do {
@@ -292,18 +314,21 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 if name == .separator {  // separator
                     return .separator()
                     
-                } else if let descriptor = ScriptDescriptor(at: url, name: name), let script = try? descriptor.makeScript() {  // scripts
+                } else if let descriptor = ScriptDescriptor(at: url, name: name),
+                          let script = try? descriptor.makeScript()
+                {  // scripts
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
                     for eventType in descriptor.eventTypes {
                         guard let script = script as? any EventScript else { continue }
                         self.scriptHandlersTable[eventType, default: []].append(script)
                     }
                     
-                    let item = NSMenuItem(title: name, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
-                    item.keyEquivalentModifierMask = shortcut.modifierMask
-                    item.representedObject = script
+                    let item = NSMenuItem(title: script.name, action: #selector(launchScript), keyEquivalent: "")
+                    // -> Shortcut will be applied later in `applyShortcuts()`.
+                    item.representedObject = ScriptItem(script: script, shortcut: shortcut)
                     item.target = self
                     item.toolTip = "Option-click to open script in editor.".localized
+                    
                     return item
                     
                 } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory == true {  // folder
@@ -315,6 +340,73 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 
                 return nil
             }
+    }
+    
+    
+    /// Apply the keyboard shortcuts to the Script menu items.
+    private func applyShortcuts() {
+        
+        assert(Thread.isMainThread)
+        
+        guard let menu = MainMenu.script.menu else { return assertionFailure() }
+        
+        // clear all shortcuts
+        menu.items.forEach { $0.removeAllShortcuts() }
+        
+        // apply shortcuts for priotarized domain
+        let usedShortcuts: [Shortcut]
+        if let context = self.currentContext, let submenu = menu.item(withTitle: context)?.submenu {
+            usedShortcuts = submenu.items.flatMap { $0.applyShortcut(recursively: true) }
+        } else {
+            usedShortcuts = menu.items.flatMap { $0.applyShortcut(recursively: false) }
+        }
+        
+        // apply shortcuts for the rest
+        menu.items.forEach { $0.applyShortcut(recursively: true, exclude: usedShortcuts) }
+    }
+    
+}
+
+
+
+private extension NSMenuItem {
+    
+    /// Remove all keyboard shortcuts recursively.
+    func removeAllShortcuts() {
+        
+        self.keyEquivalent = ""
+        self.keyEquivalentModifierMask = []
+        self.submenu?.items.forEach { $0.removeAllShortcuts() }
+    }
+    
+    
+    /// Apply the keyboard shortcut determined in `ScriptItem` struct stored in the receiver's `.representedObject`.
+    ///
+    /// - Parameters:
+    ///   - recursively: When `true`, apply shortcuts also to the menu items in the `submenu` recursively.
+    ///   - exclude: The list of shortcuts not to apply.
+    /// - Returns: The shortcuts actually applied.
+    @discardableResult
+    func applyShortcut(recursively: Bool, exclude: [Shortcut] = []) -> [Shortcut] {
+        
+        guard self.keyEquivalent.isEmpty else { return [] }
+        
+        if let scriptItem = self.representedObject as? ScriptItem {
+            let shortcut = scriptItem.shortcut
+            
+            guard !exclude.contains(shortcut) else { return [] }
+            
+            self.keyEquivalent = shortcut.keyEquivalent
+            self.keyEquivalentModifierMask = shortcut.modifierMask
+            
+            return shortcut == .none ? [] : [shortcut]
+            
+        } else if recursively {
+            return self.submenu?.items.flatMap { $0.applyShortcut(recursively: true, exclude: exclude) } ?? []
+            
+        } else {
+            return []
+        }
     }
     
 }

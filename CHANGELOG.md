@@ -7,14 +7,15 @@ Change Log
 
 ### New Features
 
+- Dynamically prioritize the scripts in the subfolder whose name is the same as the frontmost document's syntax style when the same keyboard shortcut is determined in multiple CotEditor scripts.
 - Display a dot in the window tab if the document has unsaved changes.
 
 
 ### Improvements
 
-- Change the system requirement to __macOS 12 Moneterey and later__.
+- Change the system requirement to __macOS 12 Monterey and later__.
 - Update the CotEditor's setting view in the print panel.
-- Improve the algorithm to parse numbers in the Sort by Parttern command.
+- Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
 - [trivial] Improve the Basic Regular Expression Syntax reference.
 - [non-AppStore ver.] Update Sparkle to 2.2.0.
