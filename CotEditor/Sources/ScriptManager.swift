@@ -101,12 +101,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         let items = MainMenu.script.menu!.items
             .filter { $0.action != #selector(openScriptFolder) }
-            .map { $0.copy() as! NSMenuItem }
         
         guard items.contains(where: { $0.action == #selector(launchScript) }) else { return nil }
         
         let menu = NSMenu()
-        menu.items = items
+        menu.items = items.map { $0.copy() as! NSMenuItem }
         
         return menu
     }
@@ -148,13 +147,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         Task {
             await self.dispatch(event, handlers: scripts)
         }
-    }
-    
-    
-    /// Whether user script exists.
-    var hasScripts: Bool {
-        
-        self.contexualMenu != nil
     }
     
     
