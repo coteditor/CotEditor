@@ -377,6 +377,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isVerticalText = true
         }
         
+        if file.allowsInconsistentLineEndings {
+            self.suppressesInconsistentLineEndingAlert = true
+        }
+        
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.range, with: file.string)
@@ -470,6 +474,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // save document state to the extended file attributes
         if self.shouldSaveXattr {
             try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
+        }
+        if self.suppressesInconsistentLineEndingAlert {
+            try url.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
         }
         if UserDefaults.standard[.savesTextOrientation] {
             try url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)

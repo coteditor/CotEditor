@@ -14,6 +14,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 12 Monterey and later__.
+- Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and resprect it for future open.
 - Update the CotEditor's setting view in the print panel.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
