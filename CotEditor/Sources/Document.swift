@@ -487,8 +487,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
+            assert(self.lastSavedData != nil)
             self.fileData = self.lastSavedData
         }
+        self.lastSavedData = nil
     }
     
     
