@@ -10,7 +10,7 @@ Create a new issue on our [Issues page](https://github.com/coteditor/CotEditor/i
 
 ### Bug reports
 
-Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one. Do not hesitate to post the same phenomenon to the existing issue as long as the cases are less than 10. Multiple instances help a lot to find out the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
+Search for existing issues first. If you find your issue previously reported, post your case to that issue; otherwise, create a new one by filling up the "Bug report" template. Do not hesitate to post the same phenomenon to the existing issue as long as the cases are less than 10. Multiple instances help a lot to find out the cause. In that situation, include your environment (versions of both CotEditor and macOS) in your post.
 
 If possible, attach screenshots/screencasts of the issue you face. It is also helpful to attach sample files that can reproduce the issue.
 
@@ -19,7 +19,7 @@ If your issue relates to the syntax highlight, include the sample code that can 
 
 ### Feature requests
 
-Search for existing requests first. If you find your feature previously requested, post your comment to that issue; otherwise, create a new one.
+Search for existing requests first. If you find your feature previously requested, post your comment to that issue; otherwise, create a new one by filling up the "Feature request" template.
 Create an issue per feature instead of listing multiple features on one issue page.
 
 
