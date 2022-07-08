@@ -27,6 +27,12 @@
 import Combine
 import Cocoa
 
+// NSObject-based NSAppleEventDescriptor must be used but not sendable
+// -> According to the documentation, NSAppleEventDescriptor is just a wrapper of AEDesc,
+//    so seems safe to conform to Sendable. (macOS 12, Xcode 14.0)
+extension NSAppleEventDescriptor: @unchecked Sendable { }
+
+
 private struct ScriptItem {
     
     var script: any Script
