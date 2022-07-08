@@ -40,3 +40,6 @@ for dir in *.lproj; do
         echo "    ✅ ok."
     fi
 done
+
+# clear cache
+hiutil -P
