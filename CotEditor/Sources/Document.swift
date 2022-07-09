@@ -1168,6 +1168,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if alert.suppressionButton?.state == .on {
                 self.suppressesInconsistentLineEndingAlert = true
                 self.invalidateRestorableState()
+                
+                // save xattr
+                if let fileURL = self.fileURL {
+                    var error: NSError?
+                    NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in
+                        try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
+                    }
+                }
             }
             
             switch returnCode {
