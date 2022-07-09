@@ -20,6 +20,7 @@ Change Log
 - Update the CotEditor's setting view in the print panel.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
+- Deprecate the “Ignore line endings when counting characters” option.
 - [trivial] Improve the Basic Regular Expression Syntax reference.
 - [non-AppStore ver.] Update Sparkle to 2.2.0.
 

@@ -33,7 +33,6 @@ struct DefaultSettings {
         .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
-        .countLineEndingAsChar: true,
         .autoLinkDetection: false,
         .checkSpellingAsType: false,
         .highlightBraces: true,
