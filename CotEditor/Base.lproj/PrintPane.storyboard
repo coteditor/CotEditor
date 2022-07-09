@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21208.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -77,13 +78,13 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiR-qP-3Z4">
-                                        <rect key="frame" x="254" y="135" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="135" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
-                                                <segment toolTip="Center" image="arrow.center.to.line" width="23" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="23">
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -118,13 +119,13 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-e4-wvP">
-                                        <rect key="frame" x="254" y="105" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="105" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
-                                                <segment toolTip="Center" image="arrow.center.to.line" width="23" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="23">
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -223,13 +224,13 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-wb-NLt">
-                                        <rect key="frame" x="254" y="18" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="18" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
-                                                <segment toolTip="Center" image="arrow.center.to.line" width="23" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="23">
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -297,13 +298,13 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WDk-Zl-PJd">
-                                        <rect key="frame" x="254" y="48" width="81" height="24"/>
+                                        <rect key="frame" x="254" y="48" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="23"/>
-                                                <segment toolTip="Center" image="arrow.center.to.line" width="23" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="23">
+                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
+                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -502,8 +503,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.center.to.line" width="14" height="10"/>
         <image name="arrow.left.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" width="26" height="16"/>
         <image name="arrow.right.to.line" catalog="system" width="17" height="12"/>
     </resources>
 </document>
