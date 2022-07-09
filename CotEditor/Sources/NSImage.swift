@@ -45,7 +45,7 @@ extension NSImage {
             return true
         }
         
-        image.capInsets = image.capInsets
+        image.capInsets = self.capInsets
         image.alignmentRect = self.alignmentRect
         
         return image
