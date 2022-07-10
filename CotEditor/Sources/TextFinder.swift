@@ -559,7 +559,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 // highlight
                 highlights += matches.enumerated()
                     .filter { !$0.element.isEmpty }
-                    .map { ItemRange<NSColor>(item: highlightColors[$0.offset], range: $0.element) }
+                    .map { ItemRange(item: highlightColors[$0.offset], range: $0.element) }
                 
                 // build TextFindResult for table
                 if showsList {
