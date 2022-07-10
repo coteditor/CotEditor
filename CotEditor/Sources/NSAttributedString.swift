@@ -78,7 +78,7 @@ extension NSAttributedString {
 
 
 
-extension Sequence where Self.Element == NSAttributedString {
+extension Sequence<NSAttributedString> {
     
     /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///
