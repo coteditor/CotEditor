@@ -27,7 +27,7 @@ Create an issue per feature instead of listing multiple features on one issue pa
 Pull-Request
 --------------------------
 
-- Make a topic branch, instead of committing to the master or develop branch.
+- Make a topic branch, instead of committing to the main or develop branch.
 
 
 ### General Code Improvements
