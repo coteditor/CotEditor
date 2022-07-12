@@ -136,7 +136,7 @@ extension String {
 
 struct CharacterCountOptions {
     
-    enum CharacterUnit {
+    enum CharacterUnit: String {
         
         case graphemeCluster
         case unicodeScalar

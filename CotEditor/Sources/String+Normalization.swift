@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum UnicodeNormalizationForm {
+enum UnicodeNormalizationForm: String {
     
     case nfd
     case nfc
