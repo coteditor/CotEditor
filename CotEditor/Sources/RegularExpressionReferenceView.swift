@@ -160,30 +160,6 @@ struct RegularExpressionReferenceView: View {
 
 
 
-private struct SizeGetter: View {
-    
-    var body: some View {
-        
-        GeometryReader { (geometry) in
-            Path().preference(key: SizeKey.self, value: [geometry.size])
-        }
-    }
-}
-
-
-
-private struct SizeKey: PreferenceKey {
-    
-    static var defaultValue: [CGSize] = []
-    
-    static func reduce(value: inout [CGSize], nextValue: () -> [CGSize]) {
-        
-        value.append(contentsOf: nextValue())
-    }
-}
-
-
-
 // MARK: - Preview
 
 struct RegularExpressionReferenceView_Previews: PreviewProvider {
