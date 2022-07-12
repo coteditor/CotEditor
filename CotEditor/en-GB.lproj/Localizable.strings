@@ -28,6 +28,7 @@
 "OK" = "OK";
 "Cancel" = "Cancel";
 "Done" = "Done";
+"Start" = "Start";
 
 
 // Appending words in parentheses
@@ -727,3 +728,33 @@
 // table column headers
 "Used style" = "Used style";
 "Duplicated styles" = "Duplicated styles";
+
+
+
+/* MARK: AdvancedCharacterCounterView */
+// menu labels
+"Advanced Character Count…" = "Advanced Character Count…";
+"Stop Advanced Character Count" = "Stop Advanced Character Count";
+// unit of countend character
+" characters" = " characters";
+// tooltip
+"Change options" = "Change options";
+
+
+
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "Whitespace:";
+"Ignore line endings" = "Ignore line endings";
+"Ignore whitespace" = "Ignore whitespace";
+"Treat consecutive whitespace as one space" = "Treat consecutive whitespace as one space";
+
+"Unit:" = "Unit:";
+"Grapheme cluster" = "Grapheme cluster";  // technical term defined in Unicode
+"Unicode scalar" = "Unicode scalar";
+"UTF-16" = "UTF-16";
+
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character.";
+"Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";
+"Count Unicode code points but a surrogate pair as two characters." = "Count Unicode code points but a surrogate pair as two characters.";
+
+"Normalization:" = "Normalisation:";
