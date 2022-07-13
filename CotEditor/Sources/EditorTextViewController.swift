@@ -30,6 +30,14 @@ import SwiftUI
 
 final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
+    // MARK: Enums
+    
+    private enum SerializationKey {
+        
+        static let showsAdvancedCounter = "showsAdvancedCounter"
+    }
+    
+    
     // MARK: Public Properties
     
     @IBOutlet private(set) weak var textView: EditorTextView?
@@ -97,6 +105,26 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 stackView.needsLayout = true
                 stackView.layoutSubtreeIfNeeded()
             }
+    }
+    
+    
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+        
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        if self.advancedCounterView != nil {
+            coder.encode(true, forKey: SerializationKey.showsAdvancedCounter)
+        }
+    }
+    
+    
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
+            self.showAdvancedCharacterCounter()
+        }
     }
     
     
@@ -255,6 +283,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         } completionHandler: {
             counterView.removeFromSuperview()
         }
+        
+        self.invalidateRestorableState()
     }
     
     
@@ -272,6 +302,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         counterView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
         self.alignAdvancedCharacterCounter()
+        
+        self.invalidateRestorableState()
     }
     
     
