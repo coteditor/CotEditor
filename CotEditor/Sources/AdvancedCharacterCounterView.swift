@@ -27,21 +27,15 @@ import SwiftUI
 
 struct AdvancedCharacterCounterView: View {
     
-    @State var string: String
-    @State private var isSettingPresented = false
+    @StateObject var counter: AdvancedCharacterCounter
     
-    @AppStorage("countOption.unit") private var unit: CharacterCountOptions.CharacterUnit = .graphemeCluster
-    @AppStorage("countOption.normalizationForm") private var normalizationForm: UnicodeNormalizationForm = .nfc
-    @AppStorage("countOption.normalizes") private var normalizes = false
-    @AppStorage("countOption.ignoresNewlines") private var ignoresNewlines = false
-    @AppStorage("countOption.ignoresWhitespaces") private var ignoresWhitespaces = false
-    @AppStorage("countOption.treatsConsecutiveWhitespaceAsSingle") private var treatsConsecutiveWhitespaceAsSingle = false
+    @State private var isSettingPresented = false
     
     
     var body: some View {
         
         HStack(alignment: .firstTextBaseline) {
-            (Text(self.string.count(options: self.options), format: .number)
+            (Text(self.counter.selectionCount == 0 ? self.counter.entireCount : self.counter.selectionCount, format: .number)
                 .font(.body.monospacedDigit().weight(.medium)) +
              Text(" characters")
                 .foregroundColor(.secondary))
@@ -67,16 +61,6 @@ struct AdvancedCharacterCounterView: View {
         .cornerRadius(8)
         .shadow(radius: 4, y: 2)
     }
-    
-    
-    private var options: CharacterCountOptions {
-        
-        .init(unit: self.unit,
-              normalizationForm: self.normalizes ? self.normalizationForm : nil,
-              ignoresNewlines: self.ignoresNewlines,
-              ignoresWhitespaces: self.ignoresWhitespaces,
-              treatsConsecutiveWhitespaceAsSingle: self.treatsConsecutiveWhitespaceAsSingle)
-    }
 }
 
 
@@ -87,7 +71,7 @@ struct AdvancedCharacterCounterView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        AdvancedCharacterCounterView(string: "dog  \r\n abc")
+        AdvancedCharacterCounterView(counter: .init(textView: .init()))
     }
     
 }

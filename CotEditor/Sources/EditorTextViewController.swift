@@ -263,7 +263,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let counterView = NSHostingView(rootView: AdvancedCharacterCounterView(string: string))
+        let counter = AdvancedCharacterCounter(textView: textView)
+        let counterView = NSHostingView(rootView: AdvancedCharacterCounterView(counter: counter))
         counterView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(counterView)

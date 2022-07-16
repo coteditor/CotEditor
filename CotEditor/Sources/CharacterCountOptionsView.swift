@@ -28,12 +28,7 @@ import AppKit.NSFont
 
 struct CharacterCountOptionsView: View {
     
-    @AppStorage("countOption.unit") private var unit: CharacterCountOptions.CharacterUnit = .graphemeCluster
-    @AppStorage("countOption.normalizationForm") private var normalizationForm: UnicodeNormalizationForm = .nfc
-    @AppStorage("countOption.normalizes") private var normalizes = false
-    @AppStorage("countOption.ignoresNewlines") private var ignoresNewlines = false
-    @AppStorage("countOption.ignoresWhitespaces") private var ignoresWhitespaces = false
-    @AppStorage("countOption.treatsConsecutiveWhitespaceAsSingle") private var treatsConsecutiveWhitespaceAsSingle = false
+    @StateObject private var setting = CharacterCountOptionsSetting()
     
     @State private var contentWidth: CGFloat?
     
@@ -45,10 +40,10 @@ struct CharacterCountOptionsView: View {
                 Text("Whitespace:")
                 
                 VStack(alignment: .leading) {
-                    Toggle("Ignore line endings", isOn: $ignoresNewlines)
-                    Toggle("Ignore whitespace", isOn: $ignoresWhitespaces)
-                    Toggle("Treat consecutive whitespace as one space", isOn: $treatsConsecutiveWhitespaceAsSingle)
-                        .disabled(ignoresNewlines && ignoresWhitespaces)
+                    Toggle("Ignore line endings", isOn: self.setting.$ignoresNewlines)
+                    Toggle("Ignore whitespace", isOn: self.setting.$ignoresWhitespaces)
+                    Toggle("Treat consecutive whitespace as one space", isOn: self.setting.$treatsConsecutiveWhitespaceAsSingle)
+                        .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
                 }
                 .alignmentGuide(.column) { $0[.leading] }
                 .background(SizeGetter())
@@ -60,29 +55,29 @@ struct CharacterCountOptionsView: View {
                     .fixedSize()
                 
                 VStack(alignment: .leading) {
-                    Picker("Unit:", selection: $unit.animation(.linear(duration: 0.15))) {
+                    Picker("Unit:", selection: self.setting.$unit.animation(.linear(duration: 0.15))) {
                         Text("Grapheme cluster").tag(CharacterCountOptions.CharacterUnit.graphemeCluster)
                         Text("Unicode scalar").tag(CharacterCountOptions.CharacterUnit.unicodeScalar)
                         Text("UTF-16").tag(CharacterCountOptions.CharacterUnit.utf16)
                     }.labelsHidden()
                         .fixedSize()
-                    Text(self.unit.description)
+                    Text(self.setting.unit.description)
                         .font(.system(size: NSFont.smallSystemFontSize))
                         .foregroundColor(.secondary)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                         .fixedSize()
                     
-                    if self.unit != .graphemeCluster {
+                    if self.setting.unit != .graphemeCluster {
                         HStack(alignment: .firstTextBaseline) {
-                            Toggle("Normalization:", isOn: $normalizes)
-                            Picker("Normalization:", selection: $normalizationForm) {
+                            Toggle("Normalization:", isOn: self.setting.$normalizes)
+                            Picker("Normalization:", selection: self.setting.$normalizationForm) {
                                 Text("NFD").tag(UnicodeNormalizationForm.nfd)
                                 Text("NFC").tag(UnicodeNormalizationForm.nfc)
                                 Text("NFKD").tag(UnicodeNormalizationForm.nfkd)
                                 Text("NFKC").tag(UnicodeNormalizationForm.nfkc)
                                 Text("NFKC casefold").tag(UnicodeNormalizationForm.nfkcCasefold)
                             }.labelsHidden()
-                                .disabled(!self.normalizes)
+                                .disabled(!self.setting.normalizes)
                         }.fixedSize()
                     }
                 }
