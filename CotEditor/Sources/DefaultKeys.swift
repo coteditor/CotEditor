@@ -32,7 +32,6 @@ extension DefaultKeys {
     static let noDocumentOnLaunchBehavior = RawRepresentableDefaultKey<NoDocumentOnLaunchBehavior>("noDocumentOnLaunchBehavior")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let documentConflictOption = RawRepresentableDefaultKey<DocumentConflictOption>("documentConflictOption")
-    static let countLineEndingAsChar = DefaultKey<Bool>("countLineEndingAsChar")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
     static let highlightBraces = DefaultKey<Bool>("highlightBraces")

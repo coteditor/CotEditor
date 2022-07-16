@@ -63,8 +63,6 @@
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "Parsing :";
 
-/* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
-"3306.title" = "Ignorer les fins de ligne lors du comptage des caractères";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "Lier les URLs dans le document";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */

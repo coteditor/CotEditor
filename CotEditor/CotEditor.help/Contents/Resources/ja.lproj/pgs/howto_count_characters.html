@@ -1,0 +1,38 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="文字, カウント, 数える, 高度な文字カウント"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>CotEditorで文字をカウントする</title>
+</head>
+
+<body>
+<a name="howto_count_characters"></a>
+
+<h1>CotEditorで文字をカウントする</h1>
+
+<p>CotEditorは編集中に書類の文字を逐次カウントする機能があります。</p>
+
+
+<h2>標準の文字カウント</h2>
+
+<p>CotEditorはステータスバーと書類インスペクタの2箇所で文字カウントを表示することができます。標準の文字カウントでは、Unicodeでextended grapheme clusterと定義されている書記素クラスタ (grapheme cluster) 単位で文字をカウントをします。</p>
+
+<p>書記素クラスタは、1つ以上のUnicodeコードポイントから成り立つ、人間の感覚にあった文字単位です。例えば、A（<code>U+0041</code>）のような通常の1コードポイントの文字を1文字と数えながら、複数のUnicodeコードポイントから成り立つ1️⃣（<code>U+0031</code> <code>U+FE0F</code> <code>U+20E3</code>）のような絵文字も1文字と数えます。</p>
+
+
+<h2>高度な文字カウント</h2>
+
+<p>テキストメニューの「高度な文字カウント」コマンドから、より多様な方法で文字をカウントをすることができます。</p>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="howto_inspect_fileinfo.html">書類の情報を見る</a></li>
+</ul>
+</section>
+
+</body>
+</html>

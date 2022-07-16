@@ -502,6 +502,8 @@
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Inspect Character";
+/* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
+"SPF-Mw-eZP.title" = "Advanced Character Count…";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "Edit Colour Code…";
 

@@ -139,6 +139,49 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testCharacterCountOptions() {
+        
+        var options = CharacterCountOptions()
+        
+        let string = "aaa \t 🐱\n\r\n c"
+        
+        XCTAssertEqual(string.count(options: options), string.count)
+        options.ignoresNewlines = true
+        XCTAssertEqual(string.count(options: options), 9)
+        options.ignoresWhitespaces = true
+        XCTAssertEqual(string.count(options: options), 5)
+        options.ignoresNewlines = false
+        options.ignoresWhitespaces = true
+        XCTAssertEqual(string.count(options: options), 7)
+        
+        // test .treatsConsecutiveWhitespaceAsSingle
+        options = .init()
+        options.treatsConsecutiveWhitespaceAsSingle = true
+        XCTAssertEqual(string.count(options: options), 7)
+        options.ignoresNewlines = true
+        XCTAssertEqual(string.count(options: options), 7)
+        options.treatsConsecutiveWhitespaceAsSingle = false
+        options.ignoresNewlines = true
+        options.ignoresWhitespaces = true
+        XCTAssertEqual(string.count(options: options), 5)
+        
+        // test other units
+        options = .init()
+        options.unit = .unicodeScalar
+        XCTAssertEqual(string.count(options: options), 12)
+        options.unit = .utf16
+        XCTAssertEqual(string.count(options: options), 13)
+        
+        // test normailzation
+        let aUmlaut = "Ä"
+        options = .init()
+        options.unit = .unicodeScalar
+        XCTAssertEqual(aUmlaut.count(options: options), 2)
+        options.normalizationForm = .nfc
+        XCTAssertEqual(aUmlaut.count(options: options), 1)
+    }
+    
+    
     func testProgrammingCases() {
         
         XCTAssertEqual("AbcDefg Hij".snakecased, "abc_defg hij")

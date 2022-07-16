@@ -110,7 +110,6 @@ final class DocumentAnalyzer {
         let counter = EditorInfoCounter(string: string,
                                         selectedRange: selectedRange,
                                         requiredInfo: self.requiredInfoTypes,
-                                        countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],
                                         countsWholeText: countsWholeText)
         
         self.countTask?.cancel()
