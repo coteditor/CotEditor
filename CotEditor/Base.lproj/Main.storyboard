@@ -1029,6 +1029,12 @@ CA
                                                 <action selector="showSelectionInfo:" target="Ady-hI-5gd" id="yjs-tN-DkF"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Advanced Character Count…" id="SPF-Mw-eZP">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleAdvancedCounter:" target="Ady-hI-5gd" id="dbe-Aq-zCr"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Edit Color Code…" keyEquivalent="h" id="641">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>

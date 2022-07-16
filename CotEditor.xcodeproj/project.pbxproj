@@ -514,6 +514,8 @@
 		2AB1BD1D287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD1B287D60DF00C6FEAF /* CharacterCountOptionsView.swift */; };
 		2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */; };
 		2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */; };
+		2AB1BD24287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */; };
+		2AB1BD25287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */; };
 		2AB2241421A7CDEF00F6201F /* SyntaxInfoEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241221A7CDEF00F6201F /* SyntaxInfoEditView.storyboard */; };
 		2AB2241D21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241B21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard */; };
 		2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
@@ -1263,6 +1265,7 @@
 		2AAFA5801FFFCE2900E15768 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2AB1BD1B287D60DF00C6FEAF /* CharacterCountOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountOptionsView.swift; sourceTree = "<group>"; };
 		2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeGetter.swift; sourceTree = "<group>"; };
+		2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountOptionsSheetView.swift; sourceTree = "<group>"; };
 		2AB2241321A7CDEF00F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxInfoEditView.storyboard; sourceTree = "<group>"; };
 		2AB2241621A7CF3400F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		2AB2241721A7CF3500F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
@@ -2404,6 +2407,7 @@
 			children = (
 				2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */,
 				2AB1BD1B287D60DF00C6FEAF /* CharacterCountOptionsView.swift */,
+				2AB1BD23287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift */,
 			);
 			name = "Advanced Character Count";
 			sourceTree = "<group>";
@@ -3012,6 +3016,7 @@
 				2A1ABC9B27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
+				2AB1BD24287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
 				2AB1BD1C287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */,
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
 				2AF073FC1D34587500770BA6 /* CharacterInfo.swift in Sources */,
@@ -3343,6 +3348,7 @@
 				2A1ABC9C27F056E60054795D /* BidiScrollView.swift in Sources */,
 				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A479C821D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
+				2AB1BD25287DA73D00C6FEAF /* CharacterCountOptionsSheetView.swift in Sources */,
 				2AB1BD1D287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,

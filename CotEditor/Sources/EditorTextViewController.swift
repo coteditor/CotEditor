@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
@@ -35,6 +36,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: Private Properties
+    
+    private weak var advancedCounterView: NSView?
+    private weak var horizontalCounterConstraint: NSLayoutConstraint?
     
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
@@ -57,6 +61,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             .sink { [weak self] (orientation) in
                 guard let self = self else { return assertionFailure() }
                 
+                self.alignAdvancedCharacterCounter()
+                
                 self.stackView?.orientation = {
                     switch orientation {
                         case .horizontal: return .horizontal
@@ -72,6 +78,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
             .sink { [weak self] (writingDirection) in
+                self?.alignAdvancedCharacterCounter()
+                
                 guard let stackView = self?.stackView,
                       let lineNumberView = self?.lineNumberView
                 else { return assertionFailure() }
@@ -189,6 +197,24 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    @IBAction func toggleAdvancedCounter(_ sender: Any?) {
+        
+        // hide counter
+        if let counterView = self.advancedCounterView {
+            return self.dismissAdvancedCharacterCounter(counterView)
+        }
+        
+        // show counter
+        let sheetView = CharacterCountOptionsSheetView { [weak self] (performs) in
+            guard performs else { return }
+            self?.showAdvancedCharacterCounter()
+        }
+        let optionViewController = NSHostingController(rootView: sheetView)
+        optionViewController.rootView.parent = optionViewController
+        self.presentAsSheet(optionViewController)
+    }
+    
+    
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
@@ -216,6 +242,55 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         set { self.lineNumberView?.isHidden = !newValue }
     }
     
+    
+    
+    // MARK: Private Methods
+    
+    /// Hide existing advanced character counter.
+    /// - Parameter counterView: The advanced character counter to dismiss.
+    private func dismissAdvancedCharacterCounter(_ counterView: NSView) {
+        
+        NSAnimationContext.runAnimationGroup { _ in
+            counterView.animator().alphaValue = 0
+        } completionHandler: {
+            counterView.removeFromSuperview()
+        }
+    }
+    
+    
+    /// Setup and show advanced character counter.
+    private func showAdvancedCharacterCounter() {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let counterView = NSHostingView(rootView: AdvancedCharacterCounterView(string: string))
+        counterView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(counterView)
+        self.advancedCounterView = counterView
+        
+        counterView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        self.alignAdvancedCharacterCounter()
+    }
+    
+    
+    /// Align advanced character count view by taking the writing direction into consideration.
+    private func alignAdvancedCharacterCounter() {
+        
+        guard
+            let textView = self.textView,
+            let counterView = self.advancedCounterView
+        else { return }
+        
+        let followsTrailing = textView.layoutOrientation == .vertical || textView.baseWritingDirection == .rightToLeft
+        
+        self.horizontalCounterConstraint?.isActive = false
+        self.horizontalCounterConstraint = followsTrailing
+            ? counterView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
+            : counterView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+        self.horizontalCounterConstraint?.isActive = true
+    }
+    
 }
 
 
@@ -225,6 +300,12 @@ extension EditorTextViewController: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(toggleAdvancedCounter):
+                (item as? NSMenuItem)?.title = (self.advancedCounterView == nil)
+                    ? "Advanced Character Count…".localized
+                    : "Stop Advanced Character Count".localized
+                return true
+                
             case #selector(showSelectionInfo):
                 return self.textView?.selectsSingleCharacter == true
                 
