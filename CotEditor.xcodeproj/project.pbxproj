@@ -25,6 +25,8 @@
 		2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */; };
 		2A04E9C027FEF72E008C82D8 /* Alignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BE27FEF72E008C82D8 /* Alignments.swift */; };
 		2A04E9C227FEFA2B008C82D8 /* Alignments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A04E9BE27FEF72E008C82D8 /* Alignments.swift */; };
+		2A04E9C327FEFA86008C82D8 /* AdvancedCharacterCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */; };
+		2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */; };
 		2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
@@ -1432,6 +1434,7 @@
 		2AE4658727A6BDCF00D2904F /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
+		2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCharacterCounterView.swift; sourceTree = "<group>"; };
 		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
 		2AE73ECB2035223100D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Credits.css; sourceTree = "<group>"; };
 		2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ExtendedAttribute.swift"; sourceTree = "<group>"; };
@@ -2276,6 +2279,7 @@
 				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
 				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
+				2AB1BD22287D789800C6FEAF /* Advanced Character Count */,
 			);
 			name = "Accessory Views";
 			sourceTree = "<group>";
@@ -2398,6 +2402,7 @@
 		2AB1BD22287D789800C6FEAF /* Advanced Character Count */ = {
 			isa = PBXGroup;
 			children = (
+				2AE56CC6265F2F4C00B8A278 /* AdvancedCharacterCounterView.swift */,
 				2AB1BD1B287D60DF00C6FEAF /* CharacterCountOptionsView.swift */,
 			);
 			name = "Advanced Character Count";
@@ -2994,6 +2999,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */,
+				2A04E9C327FEFA86008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
 				2A04E9C227FEFA2B008C82D8 /* Alignments.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
@@ -3324,6 +3330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */,
+				2A04E9C427FEFA87008C82D8 /* AdvancedCharacterCounterView.swift in Sources */,
 				2A04E9C027FEF72E008C82D8 /* Alignments.swift in Sources */,
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
