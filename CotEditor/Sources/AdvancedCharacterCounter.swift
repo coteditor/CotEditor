@@ -79,6 +79,7 @@ final class AdvancedCharacterCounter: ObservableObject {
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .compactMap { [weak self] in self?.textView }
+            .receive(on: DispatchQueue.main)
             .map { $0.string.immutable }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
@@ -92,6 +93,7 @@ final class AdvancedCharacterCounter: ObservableObject {
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .compactMap { [weak self] in self?.textView }
+            .receive(on: DispatchQueue.main)
             .map { ($0.string as NSString).substring(with: $0.selectedRange) }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
