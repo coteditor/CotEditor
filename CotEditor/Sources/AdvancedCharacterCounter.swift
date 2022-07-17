@@ -35,6 +35,7 @@ final class CharacterCountOptionsSetting: ObservableObject {
     @AppStorage("countOption.ignoresNewlines") var ignoresNewlines = false
     @AppStorage("countOption.ignoresWhitespaces") var ignoresWhitespaces = false
     @AppStorage("countOption.treatsConsecutiveWhitespaceAsSingle") var treatsConsecutiveWhitespaceAsSingle = false
+    @AppStorage("countOption.encoding") var encoding: Int = Int(String.Encoding.utf8.rawValue)
     
     
     var options: CharacterCountOptions {
@@ -43,7 +44,8 @@ final class CharacterCountOptionsSetting: ObservableObject {
               normalizationForm: self.normalizes ? self.normalizationForm : nil,
               ignoresNewlines: self.ignoresNewlines,
               ignoresWhitespaces: self.ignoresWhitespaces,
-              treatsConsecutiveWhitespaceAsSingle: self.treatsConsecutiveWhitespaceAsSingle)
+              treatsConsecutiveWhitespaceAsSingle: self.treatsConsecutiveWhitespaceAsSingle,
+              encoding: .init(rawValue: UInt(self.encoding)))
     }
     
 }
@@ -54,8 +56,8 @@ final class AdvancedCharacterCounter: ObservableObject {
     
     // MARK: Public Properties
     
-    @Published private(set) var entireCount = 0
-    @Published private(set) var selectionCount = 0
+    @Published private(set) var entireCount: Int? = 0
+    @Published private(set) var selectionCount: Int? = 0
     
     
     // MARK: Private Properties

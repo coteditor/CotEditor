@@ -737,6 +737,8 @@
 "Stop Advanced Character Count" = "高度な文字カウントを停止";
 // unit of countend character
 " characters" = "文字";
+// error message when counting failed
+"failed" = "失敗";
 // tooltip
 "Change options" = "オプションを変更";
 
@@ -752,8 +754,11 @@
 "Grapheme cluster" = "書記素クラスタ";
 "Unicode scalar" = "Unicodeスカラー";
 "UTF-16" = "UTF-16";
+"Byte" = "バイト";
 "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。";
 "Count Unicode code points. Same as counting UTF-32." = "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。";
 "Count Unicode code points but a surrogate pair as two characters." = "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。";
+"Count bytes of the text encoded with the specified encoding." = "指定したエンコーディングでエンコードしたときのバイト長をカウントします。";
 
+"Encoding:" = "エンコーディング:";
 "Normalization:" = "正規化:";

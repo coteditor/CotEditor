@@ -141,6 +141,7 @@ struct CharacterCountOptions {
         case graphemeCluster
         case unicodeScalar
         case utf16
+        case byte
     }
     
     
@@ -149,12 +150,13 @@ struct CharacterCountOptions {
     var ignoresNewlines = false
     var ignoresWhitespaces = false
     var treatsConsecutiveWhitespaceAsSingle = false
+    var encoding: String.Encoding = .utf8
 }
 
 
 extension String {
     
-    func count(options: CharacterCountOptions) -> Int {
+    func count(options: CharacterCountOptions) -> Int? {
         
         guard !self.isEmpty else { return 0 }
         
@@ -182,6 +184,8 @@ extension String {
                 return string.unicodeScalars.count
             case .utf16:
                 return string.utf16.count
+            case .byte:
+                return string.data(using: options.encoding)?.count
         }
     }
     

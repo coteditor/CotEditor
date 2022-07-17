@@ -133,6 +133,23 @@ extension String.Encoding {
 
 extension String {
     
+    /// An array of the encodings that strings support in the application’s environment. `nil` for section divider.
+    static let sortedAvailableStringEncodings: [String.Encoding?] = Self.availableStringEncodings
+        .sorted {
+            String.localizedName(of: $0).localizedCaseInsensitiveCompare(String.localizedName(of: $1)) == .orderedAscending
+        }
+        .reduce(into: []) { (encodings, encoding) in
+            if let last = encodings.last as? String.Encoding,
+               let nameRangeLast = String.localizedName(of: last).range(of: "^\\w+", options: .regularExpression),
+               let nameRange = String.localizedName(of: encoding).range(of: "^\\w+", options: .regularExpression),
+               String.localizedName(of: last)[nameRangeLast] != String.localizedName(of: encoding)[nameRange]
+            {
+                encodings.append(nil)
+            }
+            encodings.append(encoding)
+        }
+    
+    
     /// decode data and remove UTF-8 BOM if exists
     ///
     /// cf. <https://bugs.swift.org/browse/SR-10173>

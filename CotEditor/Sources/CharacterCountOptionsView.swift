@@ -59,13 +59,30 @@ struct CharacterCountOptionsView: View {
                         Text("Grapheme cluster").tag(CharacterCountOptions.CharacterUnit.graphemeCluster)
                         Text("Unicode scalar").tag(CharacterCountOptions.CharacterUnit.unicodeScalar)
                         Text("UTF-16").tag(CharacterCountOptions.CharacterUnit.utf16)
+                        Text("Byte").tag(CharacterCountOptions.CharacterUnit.byte)
                     }.labelsHidden()
                         .fixedSize()
+                    
+                    if self.setting.unit == .byte {
+                        Picker("Encoding:", selection: self.$setting.encoding) {
+                            ForEach(0..<String.sortedAvailableStringEncodings.count, id: \.self) { index in
+                                if let encoding = String.sortedAvailableStringEncodings[index] {
+                                    Text(String.localizedName(of: encoding)).tag(Int(encoding.rawValue))
+                                } else {
+                                    Divider()
+                                }
+                            }
+                        }.fixedSize()
+                            .background(SizeGetter())
+                            .onPreferenceChange(SizeKey.self) { self.contentWidth = $0.map(\.width).max() }
+                    }
+                    
                     Text(self.setting.unit.description)
                         .font(.system(size: NSFont.smallSystemFontSize))
                         .foregroundColor(.secondary)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                         .fixedSize()
+                    
                     
                     if self.setting.unit != .graphemeCluster {
                         HStack(alignment: .firstTextBaseline) {
@@ -102,6 +119,8 @@ extension CharacterCountOptions.CharacterUnit {
                 return "Count Unicode code points. Same as counting UTF-32."
             case .utf16:
                 return "Count Unicode code points but a surrogate pair as two characters."
+            case .byte:
+                return "Count bytes of the text encoded with the specified encoding."
         }
     }
 }

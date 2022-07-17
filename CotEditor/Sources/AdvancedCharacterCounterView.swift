@@ -35,11 +35,18 @@ struct AdvancedCharacterCounterView: View {
     var body: some View {
         
         HStack(alignment: .firstTextBaseline) {
-            (Text(self.counter.selectionCount == 0 ? self.counter.entireCount : self.counter.selectionCount, format: .number)
-                .font(.body.monospacedDigit().weight(.medium)) +
-             Text(" characters")
-                .foregroundColor(.secondary))
-            .textSelection(.enabled)
+            
+            if let selectionCount = self.counter.selectionCount,
+               let count = (selectionCount > 0) ? selectionCount : self.counter.entireCount
+            {
+                (Text(count, format: .number).font(.body.monospacedDigit().weight(.medium)) +
+                 Text(" characters").foregroundColor(.secondary))
+                .textSelection(.enabled)
+            } else {
+                Text(Image(systemName: "exclamationmark.triangle.fill").symbolRenderingMode(.multicolor))
+                Text("failed")
+                    .foregroundColor(.secondary)
+            }
             
             Spacer()
             

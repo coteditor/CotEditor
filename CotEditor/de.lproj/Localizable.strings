@@ -737,6 +737,8 @@
 "Stop Advanced Character Count" = "Erweiterte Zeichenanzahl stoppen";
 // unit of countend character
 " characters" = " Zeichen";
+// error message when counting failed
+"failed" = "fehlgeschlagen";
 // tooltip
 "Change options" = "Optionen wechseln";
 
@@ -752,9 +754,12 @@
 "Grapheme cluster" = "Graphemhaufen";  // technical term defined in Unicode
 "Unicode scalar" = "Unicode-Skalar";
 "UTF-16" = "UTF-16";
+"Byte" = "Byte";
 
 "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Auf intuitive Weise, die in Unicode definiert ist, zahlen. Das aus mehreren Unicode-Codepunkten bestehende Zeichen, wie Emojis, wird als ein Zeichen gezählt.";
 "Count Unicode code points. Same as counting UTF-32." = "Unicode-Codepunkte zahlen. Das gleiche wie UTF-32 zu zählen.";
 "Count Unicode code points but a surrogate pair as two characters." = "Unicode-Codepunkte aber Surrogate-Paaren als zwei Zeichen zahlen.";
+"Count bytes of the text encoded with the specified encoding." = "Bytes des mit der angegebenen Codierung codierten Textes zahlen.";
 
+"Encoding:" = "Codierung:";
 "Normalization:" = "Normalisierung:";

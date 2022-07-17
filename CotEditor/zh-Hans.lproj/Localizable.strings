@@ -737,6 +737,8 @@
 "Stop Advanced Character Count" = "Stop Advanced Character Count";  // FIXME: new
 // unit of countend character
 " characters" = " characters";  // FIXME: new
+// error message when counting failed
+"failed" = "failed";  // FIXME: new
 // tooltip
 "Change options" = "Change options";  // FIXME: new
 
@@ -752,9 +754,12 @@
 "Grapheme cluster" = "Grapheme cluster";  // technical term defined in Unicode  // FIXME: new
 "Unicode scalar" = "Unicode scalar";  // FIXME: new
 "UTF-16" = "UTF-16";  // FIXME: new
+"Byte" = "Byte";  // FIXME: new
 
 "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character.";  // FIXME: new
 "Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";  // FIXME: new
 "Count Unicode code points but a surrogate pair as two characters." = "Count Unicode code points but a surrogate pair as two characters.";  // FIXME: new
+"Count bytes of the text encoded with the specified encoding." = "Count bytes of the text encoded with the specified encoding.";  // FIXME: new
 
+"Encoding:" = "Encoding:";  // FIXME: new
 "Normalization:" = "Normalization:";  // FIXME: new
