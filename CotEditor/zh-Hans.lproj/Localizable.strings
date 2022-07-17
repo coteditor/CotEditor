@@ -79,10 +79,10 @@
 "Replace All" = "替换全部";
 "Highlight" = "高亮";
 "Searching in text…" = "正在文本中搜索…";
-"%@ string found." = "找到%@个匹配";
-"%@ strings found." = "找到%@个匹配";
-"%@ string replaced." = "已替换%@个匹配";
-"%@ strings replaced." = "已替换%@个匹配";
+"%lld string found." = "找到%lld个匹配";
+"%lld strings found." = "找到%lld个匹配";
+"%lld string replaced." = "已替换%lld个匹配";
+"%lld strings replaced." = "已替换%lld个匹配";
 "Invalid regular expression" = "无效的正则表达式";
 "Empty find string" = "空的搜索字符串";
 "The option “in selection” is enabled, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";

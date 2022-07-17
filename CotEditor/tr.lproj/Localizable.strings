@@ -79,10 +79,10 @@
 "Replace All" = "Tümünü Değiştir";
 "Highlight" = "Vurgula";
 "Searching in text…" = "Metinde aranıyor…";
-"%@ string found." = "%@ dizi bulundu.";
-"%@ strings found." = "%@ dizi bulundu.";
-"%@ string replaced." = "%@ dizi değiştirildi.";
-"%@ strings replaced." = "%@ dizi değiştirildi.";
+"%lld string found." = "%lld dizi bulundu.";
+"%lld strings found." = "%lld dizi bulundu.";
+"%lld string replaced." = "%lld dizi değiştirildi.";
+"%lld strings replaced." = "%lld dizi değiştirildi.";
 "Invalid regular expression" = "Geçersiz düzenli ifade";
 "Empty find string" = "Bulunacak dizi boş";
 "The option “in selection” is enabled, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";

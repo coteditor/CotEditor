@@ -79,10 +79,10 @@
 "Replace All" = "Replace All";
 "Highlight" = "Highlight";
 "Searching in text…" = "Searching in text…";
-"%@ string found." = "%@ string found.";
-"%@ strings found." = "%@ strings found.";
-"%@ string replaced." = "%@ string replaced.";
-"%@ strings replaced." = "%@ strings replaced.";
+"%lld string found." = "%lld string found.";
+"%lld strings found." = "%lld strings found.";
+"%lld string replaced." = "%lld string replaced.";
+"%lld strings replaced." = "%lld strings replaced.";
 "Invalid regular expression" = "Invalid regular expression";
 "Empty find string" = "Empty find string";
 "The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";

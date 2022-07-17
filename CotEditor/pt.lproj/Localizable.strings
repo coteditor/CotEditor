@@ -79,10 +79,10 @@
 "Replace All" = "Substituir Tudo";
 "Highlight" = "Destacar";
 "Searching in text…" = "Buscando no texto…";
-"%@ string found." = "%@ string encontrada.";
-"%@ strings found." = "%@ strings encontradas.";
-"%@ string replaced." = "%@ string substituída.";
-"%@ strings replaced." = "%@ strings substituídas.";
+"%lld string found." = "%lld string encontrada.";
+"%lld strings found." = "%lld strings encontradas.";
+"%lld string replaced." = "%lld string substituída.";
+"%lld strings replaced." = "%lld strings substituídas.";
 "Invalid regular expression" = "Expressão regular inválida";
 "Empty find string" = "String de busca vazia";
 "The option “in selection” is enabled, although nothing is selected." = "A opção “Na Seleção” está habilitada, porém nada está selecionado.";

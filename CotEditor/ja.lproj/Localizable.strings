@@ -79,10 +79,10 @@
 "Replace All" = "すべて置換";
 "Highlight" = "ハイライト";
 "Searching in text…" = "テキストを検索しています…";
-"%@ string found." = "%@件見つかりました。";
-"%@ strings found." = "%@件見つかりました。";
-"%@ string replaced." = "%@件置換しました。";
-"%@ strings replaced." = "%@件置換しました。";
+"%lld string found." = "%lld件見つかりました。";
+"%lld strings found." = "%lld件見つかりました。";
+"%lld string replaced." = "%lld件置換しました。";
+"%lld strings replaced." = "%lld件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
 "The option “in selection” is enabled, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
