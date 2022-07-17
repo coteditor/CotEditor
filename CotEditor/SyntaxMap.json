@@ -706,6 +706,20 @@
 
     ]
   },
+  "TypeScript" : {
+    "extensions" : [
+      "ts",
+      "tsx",
+      "mts",
+      "cts"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Verilog" : {
     "extensions" : [
       "v"
