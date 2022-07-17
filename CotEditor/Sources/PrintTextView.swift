@@ -53,7 +53,6 @@ final class PrintTextView: NSTextView, Themable {
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
     private var lastPaperContentSize: NSSize = .zero
-    private lazy var dateFormatter: DateFormatter = .init()
     
     
     
@@ -340,9 +339,9 @@ final class PrintTextView: NSTextView, Themable {
                 switch (primaryAlignment, secondaryAlignment) {
                     // case: double-sided
                     case (.left, .right):
-                        return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+                        return NSAttributedString(string: primaryString + "\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
                     case (.right, .left):
-                        return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+                        return NSAttributedString(string: secondaryString + "\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
                     
                     // case: two lines
                     default:
@@ -364,11 +363,10 @@ final class PrintTextView: NSTextView, Themable {
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.alignment = alignment.textAlignment
         
-        // tab stops for double-sided alignment (imitation of super.pageHeader)
+        // tab stop for double-sided alignment (imitation of super.pageHeader)
         if let printInfo = NSPrintOperation.current?.printInfo {
-            let xMax = printInfo.paperSize.width - printInfo.leftMargin
-            paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: xMax / 2),
-                                       NSTextTab(type: .rightTabStopType, location: xMax)]
+            let xMax = printInfo.paperSize.width - printInfo.topMargin / 2
+            paragraphStyle.tabStops = [NSTextTab(type: .rightTabStopType, location: xMax)]
         }
         
         return [.font: font,
@@ -383,21 +381,14 @@ final class PrintTextView: NSTextView, Themable {
         switch type {
             case .documentName:
                 return self.documentName
-            
             case .syntaxName:
                 return self.syntaxName
-            
             case .filePath:
                 return self.fileURL?.pathAbbreviatingWithTilde ?? self.documentName
-                
             case .printDate:
-                self.dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-                return String(localized: "Printed on \(self.dateFormatter.string(from: .now))")
-            
+                return String(localized: "Printed on \(Date.now.formatted())")
             case .pageNumber:
-                guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
-                return String(pageNumber)
-            
+                return NSPrintOperation.current.flatMap { String($0.currentPage) }
             case .none:
                 return nil
         }
