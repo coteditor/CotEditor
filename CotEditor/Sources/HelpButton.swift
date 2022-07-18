@@ -26,41 +26,23 @@
 import SwiftUI
 import AppKit
 
-struct HelpButton: View {
+
+struct HelpButton: NSViewRepresentable {
     
-    var anchor: String
+    typealias NSViewType = NSButton
     
-    private let bookName = Bundle.main.object(forInfoDictionaryKey: "CFBundleHelpBookName") as! String
+    let anchor: String
     
     
-    var body: some View {
+    func makeNSView(context: Context) -> NSButton {
         
-        Button {
-            NSHelpManager.shared.openHelpAnchor(self.anchor, inBook: self.bookName)
-            
-        } label: {
-            ZStack {
-                Circle()
-                    .fill(Color(NSColor.controlColor))
-                    .shadow(color: Color(NSColor.shadowColor).opacity(0.3), radius: 0.8, y: 0.5)
-                    .frame(width: 20, height: 20)
-                Text("?").font(.system(size: 16))
-            }
-        }
-        .buttonStyle(PlainButtonStyle())
+        let nsView = NSButton(title: "", target: nil, action: #selector(AppDelegate.openHelpAnchor))
+        nsView.bezelStyle = .helpButton
+        nsView.identifier = .init(self.anchor)
+        return nsView
     }
     
-}
-
-
-
-// MARK: - Preview
-
-struct HelpButton_Previews: PreviewProvider {
     
-    static var previews: some View {
-        
-        HelpButton(anchor: "moof")
-    }
+    func updateNSView(_ nsView: NSButton, context: Context) { }
     
 }
