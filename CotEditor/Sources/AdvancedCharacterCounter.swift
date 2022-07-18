@@ -87,8 +87,6 @@ final class AdvancedCharacterCounter: ObservableObject {
             .receive(on: DispatchQueue.main)
             .assign(to: &self.$entireCount)
         NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
-            .map { ($0.object as! NSTextView).selectedRange }
-            .removeDuplicates()  // notificaiton is sent multiple times when dragging mouse
             .eraseToVoid()
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation

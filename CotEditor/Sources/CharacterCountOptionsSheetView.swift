@@ -39,7 +39,7 @@ struct CharacterCountOptionsSheetView: View {
             HStack {
                 HelpButton(anchor: "howto_count_characters")
                 Spacer()
-                Button("Cancel") {
+                Button("Cancel", role: .cancel) {
                     self.parent?.dismiss(nil)
                     self.completionHandler(false)
                 }

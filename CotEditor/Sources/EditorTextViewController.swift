@@ -229,7 +229,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // hide counter
         if let counterView = self.advancedCounterView {
-            return self.dismissAdvancedCharacterCounter(counterView)
+            return self.dismissAdvancedCharacterCounter()
         }
         
         // show counter
@@ -276,7 +276,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     /// Hide existing advanced character counter.
     /// - Parameter counterView: The advanced character counter to dismiss.
-    private func dismissAdvancedCharacterCounter(_ counterView: NSView) {
+    private func dismissAdvancedCharacterCounter() {
+        
+        guard let counterView = self.advancedCounterView else { return assertionFailure() }
         
         NSAnimationContext.runAnimationGroup { _ in
             counterView.animator().alphaValue = 0
@@ -294,7 +296,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard let textView = self.textView else { return assertionFailure() }
         
         let counter = AdvancedCharacterCounter(textView: textView)
-        let counterView = NSHostingView(rootView: AdvancedCharacterCounterView(counter: counter))
+        let rootView = AdvancedCharacterCounterView(counter: counter) { [weak self] in
+            self?.dismissAdvancedCharacterCounter()
+        }
+        let counterView = NSHostingView(rootView: rootView)
         counterView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(counterView)

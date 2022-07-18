@@ -736,7 +736,8 @@
 "Advanced Character Count…" = "Advanced Character Count…";
 "Stop Advanced Character Count" = "Stop Advanced Character Count";
 // unit of countend character
-" characters" = " characters";
+"%@ character" = "%@ character";
+"%@ characters" = "%@ characters";
 // error message when counting failed
 "failed" = "failed";
 // tooltip

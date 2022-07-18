@@ -792,6 +792,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             }
         }
         
+        let currentRanges = self.rangesForUserTextChange ?? self.selectedRanges
+        
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         
         // remove official selectedRanges from the sub insertion points
@@ -822,7 +824,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             }
         }
         
-        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+        // Sent notification on the next run loop
+        // -> `self.selectedRange` may not be updated yet at this timing.
+        DispatchQueue.main.async { [weak self] in
+            guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
+            NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+        }
     }
     
     
