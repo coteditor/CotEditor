@@ -39,7 +39,9 @@ struct AdvancedCharacterCounterView: View {
             if let selectionCount = self.counter.selectionCount,
                let count = (selectionCount > 0) ? selectionCount : self.counter.entireCount
             {
-                (Text(count, format: .number).font(.body.monospacedDigit().weight(.medium)) +
+                (Text(count, format: .number)
+                    .font(.body.monospacedDigit().weight(.medium))
+                    .foregroundColor(.primary) +
                  Text(" characters").foregroundColor(.secondary))
                 .textSelection(.enabled)
             } else {
