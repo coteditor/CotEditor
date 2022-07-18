@@ -42,7 +42,8 @@ struct AdvancedCharacterCounterView: View {
                 (Text(count, format: .number)
                     .font(.body.monospacedDigit().weight(.medium))
                     .foregroundColor(.primary) +
-                 Text(" characters").foregroundColor(.secondary))
+                 Text(" characters")
+                    .foregroundColor(.secondary))
                 .textSelection(.enabled)
             } else {
                 Text(Image(systemName: "exclamationmark.triangle.fill").symbolRenderingMode(.multicolor))
@@ -61,8 +62,11 @@ struct AdvancedCharacterCounterView: View {
             .foregroundColor(.secondary)
             .help("Change options")
             .popover(isPresented: self.$isSettingPresented) {
-                CharacterCountOptionsView()
-                    .padding()
+                VStack {
+                    CharacterCountOptionsView()
+                    HelpButton(anchor: "howto_count_characters")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }.padding()
             }
         }
         .padding(10)
