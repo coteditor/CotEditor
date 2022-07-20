@@ -55,7 +55,7 @@ struct CharacterCountOptionsView: View {
                     .fixedSize()
                 
                 VStack(alignment: .leading) {
-                    Picker("Unit:", selection: self.setting.$unit.animation(.linear(duration: 0.15))) {
+                    Picker("Unit:", selection: self.setting.$unit) {
                         Text("Grapheme cluster").tag(CharacterCountOptions.CharacterUnit.graphemeCluster)
                         Text("Unicode scalar").tag(CharacterCountOptions.CharacterUnit.unicodeScalar)
                         Text("UTF-16").tag(CharacterCountOptions.CharacterUnit.utf16)
@@ -101,6 +101,7 @@ struct CharacterCountOptionsView: View {
                 .alignmentGuide(.column) { $0[.leading] }
             }
         }
+        .animation(.default, value: self.setting.unit)
     }
 }
 
