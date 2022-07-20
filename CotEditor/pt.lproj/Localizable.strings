@@ -735,9 +735,6 @@
 // menu labels
 "Advanced Character Count…" = "Advanced Character Count…";  // FIXME: new
 "Stop Advanced Character Count" = "Stop Advanced Character Count";  // FIXME: new
-// unit of countend character
-"%@ character" = "%@ character";  // FIXME: new
-"%@ characters" = "%@ characters";  // FIXME: new
 // error message when counting failed
 "failed" = "failed";  // FIXME: new
 // tooltip

@@ -735,9 +735,6 @@
 // menu labels
 "Advanced Character Count…" = "高度な文字カウント…";
 "Stop Advanced Character Count" = "高度な文字カウントを停止";
-// unit of countend character
-"%@ character" = "文字";
-"%@ characters" = "文字";
 // error message when counting failed
 "failed" = "失敗";
 // tooltip

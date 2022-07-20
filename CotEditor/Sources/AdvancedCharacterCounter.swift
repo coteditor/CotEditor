@@ -59,11 +59,12 @@ final class AdvancedCharacterCounter: ObservableObject {
     @Published private(set) var entireCount: Int? = 0
     @Published private(set) var selectionCount: Int? = 0
     
+    let setting = CharacterCountOptionsSetting()
+    
     
     // MARK: Private Properties
     
     private let textView: NSTextView
-    private let setting = CharacterCountOptionsSetting()
     
     
     
@@ -83,7 +84,6 @@ final class AdvancedCharacterCounter: ObservableObject {
             .map { $0.string.immutable }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
-            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .assign(to: &self.$entireCount)
         NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
@@ -95,7 +95,6 @@ final class AdvancedCharacterCounter: ObservableObject {
             .map { ($0.string as NSString).substring(with: $0.selectedRange) }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
-            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .assign(to: &self.$selectionCount)
     }

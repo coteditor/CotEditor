@@ -39,15 +39,25 @@ struct AdvancedCharacterCounterView: View {
             if let selectionCount = self.counter.selectionCount,
                let count = (selectionCount > 0) ? selectionCount : self.counter.entireCount
             {
-                let countText = Text(count, format: .number)
+                let key: String.LocalizationValue = {
+                    switch self.counter.setting.unit {
+                        case .byte: return "*\(count)* byte(s)"
+                        default: return "*\(count)* character(s)"
+                    }
+                }()
+                let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
                     .foregroundColor(.primary)
-                Text(count == 0 ? "\(countText) character" : "\(countText) characters")
+                let attributedCount = AttributedString(localized: key, locale: .current)
+                    .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: attributes)
+                
+                Text(attributedCount)
                     .foregroundColor(.secondary)
                     .textSelection(.enabled)
+                
             } else {
-                Text(Image(systemName: "exclamationmark.triangle.fill").symbolRenderingMode(.multicolor))
-                Text("failed")
+                Label("failed", systemImage: "exclamationmark.triangle.fill")
+                    .symbolRenderingMode(.multicolor)
                     .foregroundColor(.secondary)
             }
             
@@ -78,6 +88,7 @@ struct AdvancedCharacterCounterView: View {
             Button("Stop Advanced Character Count", action: self.dismissAction)
         }
     }
+    
 }
 
 

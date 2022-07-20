@@ -228,7 +228,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     @IBAction func toggleAdvancedCounter(_ sender: Any?) {
         
         // hide counter
-        if let counterView = self.advancedCounterView {
+        if self.advancedCounterView != nil {
             return self.dismissAdvancedCharacterCounter()
         }
         

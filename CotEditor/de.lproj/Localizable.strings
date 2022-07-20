@@ -735,9 +735,6 @@
 // menu labels
 "Advanced Character Count…" = "Erweiterte Zeichenanzahl …";
 "Stop Advanced Character Count" = "Erweiterte Zeichenanzahl stoppen";
-// unit of countend character
-"%@ character" = "%@ Zeichen";
-"%@ characters" = "%@ Zeichen";
 // error message when counting failed
 "failed" = "fehlgeschlagen";
 // tooltip
