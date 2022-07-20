@@ -136,7 +136,7 @@ struct RegularExpressionReferenceView: View {
                 VStack(alignment: .leading, spacing: 1) {
                     ForEach(self.definitions) { definition in
                         HStack(alignment: .firstTextBaseline) {
-                            Text(definition.term)
+                            Text(verbatim: definition.term)
                                 .fontWeight(.medium)
                                 .frame(width: self.width, alignment: .leading)
                                 .background(SizeGetter())
