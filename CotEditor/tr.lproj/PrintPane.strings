@@ -35,7 +35,7 @@
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "Renk:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
-"1353.title" = "Siyah ve Beyaz";
+"1353.title" = "Siyah - Beyaz";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Belge Ayarlarıyla Aynı";
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */

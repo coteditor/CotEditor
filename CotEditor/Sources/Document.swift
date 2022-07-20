@@ -1283,7 +1283,7 @@ private enum ReinterpretationError: LocalizedError {
                 return "The document doesn’t have a file to reinterpret.".localized
             
             case let .reinterpretationFailed(fileURL, encoding):
-                return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding))”.")
+                return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
     }
     
@@ -1318,7 +1318,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     var errorDescription: String? {
         
-        return String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName)”.")
+        return String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName).”")
     }
     
     

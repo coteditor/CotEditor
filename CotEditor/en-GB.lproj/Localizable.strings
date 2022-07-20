@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "No strings found in “%@”.";
-"Found one string in “%@”." = "Found one string in “%@”.";
-"Found %lld strings in “%@”." = "Found %lld strings in “%@”.";
+"No strings found in “%@.”" = "No strings found in “%@”.";
+"Found one string in “%@.”" = "Found one string in “%@”.";
+"Found %lld strings in “%@.”" = "Found %lld strings in “%@”.";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "Reinterpret";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Some characters would have to be changed or deleted in saving as “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Some characters would have to be changed or deleted in saving as “%@”.";
 "Do you want to continue processing?" = "Do you want to continue processing?";
 "Save Available Text" = "Save Available Text";
 "Show Incompatible Characters" = "Show Incompatible Characters";
@@ -199,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "The document doesn’t have a file to reinterpret.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "The file “%@” couldn’t be reinterpreted using text encoding “%@”.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "The file “%@” couldn’t be reinterpreted using text encoding “%@”.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "The file may have been saved using a different text encoding, or it may not be a text file.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Some characters would have to be changed or deleted in saving as “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Some characters would have to be changed or deleted in saving as “%@”.";
 "Do you want to change encoding and show incompatible characters?" = "Do you want to change encoding and show incompatible characters?";
 "Change Encoding" = "Change Encoding";
 

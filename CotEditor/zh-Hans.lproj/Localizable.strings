@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "在“%@”中没有找到字符串。";
-"Found one string in “%@”." = "在“%@”中找到一个字符串。";
-"Found %lld strings in “%@”." = "%lld 个字符串在“%@”中被找到。";
+"No strings found in “%@.”" = "在“%@”中没有找到字符串。";
+"Found one string in “%@.”" = "在“%@”中找到一个字符串。";
+"Found %lld strings in “%@.”" = "%lld 个字符串在“%@”中被找到。";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "再次解释";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to continue processing?" = "继续进行处理吗？";
 "Save Available Text" = "保存有效文本";
 "Show Incompatible Characters" = "显示不兼容字符";
@@ -199,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "该文档没有用来再次解释的文件。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "文件“%@”无法使用“%@”编码再次解释。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "文件“%@”无法使用“%@”编码再次解释。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "该文件可能已使用了不同的文本编码来存储，或者可能不是文本文件。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "保存为“%@”时一些字符可能需要被更改或者删除。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "保存为“%@”时一些字符可能需要被更改或者删除。";
 "Do you want to change encoding and show incompatible characters?" = "改变编码并显示不兼容字符吗？";
 "Change Encoding" = "更改编码";
 

@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "Aucune chaîne trouvée dans « %@ ».";
-"Found one string in “%@”." = "Une chaîne trouvée dans « %@ ».";
-"Found %lld strings in “%@”." = "%lld chaînes trouvées dans « %@ ».";
+"No strings found in “%@.”" = "Aucune chaîne trouvée dans « %@ ».";
+"Found one string in “%@.”" = "Une chaîne trouvée dans « %@ ».";
+"Found %lld strings in “%@.”" = "%lld chaînes trouvées dans « %@ ».";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "Ré-interpréter";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Certains caractères devront être altérés ou supprimés en sauvegardant en « %@ ».";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Certains caractères devront être altérés ou supprimés en sauvegardant en « %@ ».";
 "Do you want to continue processing?" = "Voulez-vous poursuivre ?";
 "Save Available Text" = "Sauvegarder les caractères disponibles";
 "Show Incompatible Characters" = "Montrer les caractères incompatibles";
@@ -199,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Le document n’a pas de fichier à réinterpréter.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Le fichier « %@ » n’a pas pu être réinterprété en utilisant l’encodage « %@ ».";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "Le fichier « %@ » n’a pas pu être réinterprété en utilisant l’encodage « %@ ».";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Le fichier a peut-être été sauvegardé dans un encodage différent, ou bien il ne s’agit pas d’un fichier texte.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Certains caractères devront être altérés ou supprimés en sauvegardant en « %@ ».";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Certains caractères devront être altérés ou supprimés en sauvegardant en « %@ ».";
 "Do you want to change encoding and show incompatible characters?" = "Voulez-vous changer l’encodage et afficher les caractères incomptables ?";
 "Change Encoding" = "Changer l’encodage";
 

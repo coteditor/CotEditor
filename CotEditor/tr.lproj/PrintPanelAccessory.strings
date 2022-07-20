@@ -27,7 +27,7 @@
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
 "eXI-55-yQO.title" = "Renk:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
-"590.title" = "Siyah ve Beyaz";
+"590.title" = "Siyah - Beyaz";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
 "589.title" = "Belge Ayarlarıyla Aynı";
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */

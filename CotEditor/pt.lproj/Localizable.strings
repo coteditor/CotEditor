@@ -87,7 +87,7 @@
 "Empty find string" = "String de busca vazia";
 "The option “in selection” is enabled, although nothing is selected." = "A opção “Na Seleção” está habilitada, porém nada está selecionado.";
 "Input text to find." = "Digite o texto a buscar.";
-"Select the search scope in the document or turn off the “in selection” option." = "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção”.";
+"Select the search scope in the document or turn off the “in selection” option." = "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção.”";
 
 // accessibility announcement
 "Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "Nenhuma string encontrada em “%@”.";
-"Found one string in “%@”." = "1 string encontrada em “%@”.";
-"Found %lld strings in “%@”." = "%lld strings encontradas em “%@”.";
+"No strings found in “%@.”" = "Nenhuma string encontrada em “%@.”";
+"Found one string in “%@.”" = "1 string encontrada em “%@.”";
+"Found %lld strings in “%@.”" = "%lld strings encontradas em “%@.”";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "Reinterpretar";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@.”";
 "Do you want to continue processing?" = "Deseja continuar o processamento?";
 "Save Available Text" = "Salvar Strings Disponíveis";
 "Show Incompatible Characters" = "Mostrar Caracteres Incompatíveis";
@@ -199,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "O documento não tem um arquivo para reinterpretar.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "A codificação de texto “%2$@” não pôde ser usada para reinterpretar o arquivo “%1$@”.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "A codificação de texto “%2$@” não pôde ser usada para reinterpretar o arquivo “%1$@.”";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "O arquivo pode ter sido salvo com outra codificação de texto ou não ser um arquivo de texto.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@.”";
 "Do you want to change encoding and show incompatible characters?" = "Deseja alterar a codificação e mostrar os caracteres incompatíveis?";
 "Change Encoding" = "Alterar Codificação";
 
@@ -657,7 +657,7 @@
 "Space" = "Espaço";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@”.";
+"“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@.”";
 "The Shift key can be used only with another modifier key." = "A tecla Shift só pode ser usada em conjunto com outra tecla de modificação.";
 "The combination “%@” is not supported for the key binding customization." = "A combinação “%@” não é suportada pela customização de combinações de teclas.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";

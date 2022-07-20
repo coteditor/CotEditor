@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "Nessuna stringa trovata in “%@”.";
-"Found one string in “%@”." = "Trovata una stringa in “%@”.";
-"Found %lld strings in “%@”." = "Trovate %lld stringhe in %@”.";
+"No strings found in “%@.”" = "Nessuna stringa trovata in “%@”.";
+"Found one string in “%@.”" = "Trovata una stringa in “%@”.";
+"Found %lld strings in “%@.”" = "Trovate %lld stringhe in %@”.";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "Reinterpreta";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Alcuni caratteri dovranno essere cambiati o eliminati nel salvataggio come “%@”.";
 "Do you want to continue processing?" = "Si desidera continuare l’elaborazione?";
 "Save Available Text" = "Salva le stringhe disponibili";
 "Show Incompatible Characters" = "Mostra caratteri incompatibili";

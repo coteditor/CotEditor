@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
-"Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
-"Found %lld strings in “%@”." = "%2$@ içinde %1$lld dizi bulundu.";
+"No strings found in “%@.”" = "%@ içinde dizi bulunamadı.";
+"Found one string in “%@.”" = "%@ içinde bir dizi bulundu.";
+"Found %lld strings in “%@.”" = "%2$@ içinde %1$lld dizi bulundu.";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "Yeniden Yorumla";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
 "Do you want to continue processing?" = "İşlemi sürdürmek istiyor musunuz?";
 "Save Available Text" = "Kullanılabilir Metni Kaydet";
 "Show Incompatible Characters" = "Uyumsuz Karakterleri Göster";
@@ -199,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Belgede yeniden yorumlanacak bir dosya yok.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "“%1@” dosyası, “%2@” metin kodlaması kullanarak yeniden yorumlanamadı.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "“%1@” dosyası, “%2@” metin kodlaması kullanarak yeniden yorumlanamadı.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Dosya, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
 "Do you want to change encoding and show incompatible characters?" = "Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";
 "Change Encoding" = "Kodlamayı Değiştir";
 
@@ -374,7 +374,7 @@
 "On" = "Açık";
 "Off" = "Kapalı";
 "Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";
-"Black and White" = "Siyah ve Beyaz";
+"Black and White" = "Siyah - Beyaz";
 "Syntax Name" = "Sözdizim Adı";
 "Document Name" = "Belge Adı";
 "File Path" = "Dosya Yolu";

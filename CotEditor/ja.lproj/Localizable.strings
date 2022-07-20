@@ -106,9 +106,9 @@
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "“%@”内に見つかりませんでした。";
-"Found one string in “%@”." = "“%@”内に1件見つかりました。";
-"Found %lld strings in “%@”." = "“%2$@”内に%1$lld件見つかりました。";
+"No strings found in “%@.”" = "“%@”内に見つかりませんでした。";
+"Found one string in “%@.”" = "“%@”内に1件見つかりました。";
+"Found %lld strings in “%@.”" = "“%2$@”内に%1$lld件見つかりました。";
 
 
 
@@ -187,7 +187,7 @@
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
 "Do you want to continue processing?" = "保存を続けますか?";
 "Save Available Text" = "有効なテキストを保存";
 "Show Incompatible Characters" = "非互換文字を表示";
@@ -199,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "再解釈をするファイルがありません。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "テキストエンコーディング“%1@”でファイル“%2@”を再解釈できませんでした。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%1@”でファイル“%2@”を再解釈できませんでした。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "このファイルは、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 

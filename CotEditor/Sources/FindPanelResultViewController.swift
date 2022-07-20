@@ -153,11 +153,11 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         let resultMessage: String = {
             switch results.count {
                 case 0:
-                    return String(localized: "No strings found in “\(documentName)”.")
+                    return String(localized: "No strings found in “\(documentName).”")
                 case 1:
-                    return String(localized: "Found one string in “\(documentName)”.")
+                    return String(localized: "Found one string in “\(documentName).”")
                 default:
-                    return String(localized: "Found \(results.count) strings in “\(documentName)”.")
+                    return String(localized: "Found \(results.count) strings in “\(documentName).”")
             }
         }()
         self.resultMessage = resultMessage
