@@ -30,10 +30,12 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
+			<key>zero</key>
+			<string>*%lld* caractère</string>
 			<key>one</key>
-			<string>*%lld* character</string>
+			<string>*%lld* caractère</string>
 			<key>other</key>
-			<string>*%lld* characters</string>
+			<string>*%lld* caractères</string>
 		</dict>
 	</dict>
 </dict>

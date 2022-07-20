@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
 			<key>one</key>
-			<string>*%lld* character</string>
+			<string>*%lld* caractere</string>
 			<key>other</key>
-			<string>*%lld* characters</string>
+			<string>*%lld* caracteres</string>
 		</dict>
 	</dict>
 </dict>

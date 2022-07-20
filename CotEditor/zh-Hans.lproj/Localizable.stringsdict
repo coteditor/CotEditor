@@ -27,7 +27,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>lld</string>
 			<key>other</key>
-			<string>*%lld* characters</string>
+			<string>*%lld*个字符</string>
 		</dict>
 	</dict>
 </dict>
