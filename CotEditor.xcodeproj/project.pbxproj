@@ -3985,7 +3985,6 @@
 				2A7F4E142871F4980029CE66 /* zh-Hant */,
 			);
 			name = PrintPanelAccessoryVenture.storyboard;
-			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 		2A80C65C1CEE33C100AA664D /* Credits.html */ = {
