@@ -503,7 +503,7 @@
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Karakter Denetle";
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
-"SPF-Mw-eZP.title" = "Advanced Character Count…";FIXME: new
+"SPF-Mw-eZP.title" = "Advanced Character Count…";  // FIXME: new
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "Renk Kodu Düzenle…";
 
