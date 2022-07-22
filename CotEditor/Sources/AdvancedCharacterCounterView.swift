@@ -53,7 +53,6 @@ struct AdvancedCharacterCounterView: View {
                 
                 Text(attributedCount)
                     .foregroundColor(.secondary)
-                    .textSelection(.enabled)
                 
             } else {
                 Label("failed", systemImage: "exclamationmark.triangle.fill")
@@ -79,7 +78,8 @@ struct AdvancedCharacterCounterView: View {
                 }.padding()
             }
         }
-        .padding(10)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 8)
         .background(.regularMaterial)
         .cornerRadius(8)
         .shadow(radius: 4, y: 2)
