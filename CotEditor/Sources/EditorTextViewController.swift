@@ -69,8 +69,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             .sink { [weak self] (orientation) in
                 guard let self = self else { return assertionFailure() }
                 
-                self.alignAdvancedCharacterCounter()
-                
                 self.stackView?.orientation = {
                     switch orientation {
                         case .horizontal: return .horizontal
@@ -86,8 +84,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
             .sink { [weak self] (writingDirection) in
-                self?.alignAdvancedCharacterCounter()
-                
                 guard let stackView = self?.stackView,
                       let lineNumberView = self?.lineNumberView
                 else { return assertionFailure() }
@@ -299,34 +295,17 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let rootView = AdvancedCharacterCounterView(counter: counter) { [weak self] in
             self?.dismissAdvancedCharacterCounter()
         }
-        let counterView = NSHostingView(rootView: rootView)
+        let counterView = DraggableHostingView(rootView: rootView)
         counterView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(counterView)
         self.advancedCounterView = counterView
         
-        counterView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
-        self.alignAdvancedCharacterCounter()
+        if textView.layoutOrientation == .horizontal, textView.baseWritingDirection != .rightToLeft {
+            counterView.frame.origin.x = self.view.frame.width - counterView.frame.width
+        }
         
         self.invalidateRestorableState()
-    }
-    
-    
-    /// Align advanced character count view by taking the writing direction into consideration.
-    private func alignAdvancedCharacterCounter() {
-        
-        guard
-            let textView = self.textView,
-            let counterView = self.advancedCounterView
-        else { return }
-        
-        let followsTrailing = textView.layoutOrientation == .vertical || textView.baseWritingDirection == .rightToLeft
-        
-        self.horizontalCounterConstraint?.isActive = false
-        self.horizontalCounterConstraint = followsTrailing
-            ? counterView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20)
-            : counterView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
-        self.horizontalCounterConstraint?.isActive = true
     }
     
 }
