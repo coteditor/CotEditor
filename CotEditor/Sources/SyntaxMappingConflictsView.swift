@@ -69,7 +69,7 @@ struct SyntaxMappingConflictsView: View {
             Text("Syntax Style Mapping Conflicts")
                 .font(.headline)
             Text("The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style.")
-                .font(.system(size: 11))
+                .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
                 self.listView(name: "Extension".localized, conflicts: self.extensionConflicts)

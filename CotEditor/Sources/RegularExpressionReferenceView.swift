@@ -94,7 +94,7 @@ struct RegularExpressionReferenceView: View {
                     DefinitionList(Definition.backReference, title: "Back Reference")
                 }
             }
-            .font(.system(size: NSFont.smallSystemFontSize))
+            .controlSize(.small)
             
         } header: {
             Text("Basic Regular Expression Syntax")

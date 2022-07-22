@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import AppKit.NSFont
 
 struct CharacterCountOptionsView: View {
     
@@ -78,8 +77,8 @@ struct CharacterCountOptionsView: View {
                     }
                     
                     Text(self.setting.unit.description)
-                        .font(.system(size: NSFont.smallSystemFontSize))
                         .foregroundColor(.secondary)
+                        .controlSize(.small)
                         .frame(width: max(300, self.contentWidth ?? 0), alignment: .leading)
                         .fixedSize()
                     
