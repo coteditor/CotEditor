@@ -70,7 +70,7 @@ final class AdvancedCharacterCounter: ObservableObject {
     
     // MARK: Lifecycle
     
-    init(textView: NSTextView) {
+    @MainActor init(textView: NSTextView) {
         
         self.textView = textView
         
@@ -79,8 +79,8 @@ final class AdvancedCharacterCounter: ObservableObject {
             .eraseToVoid()
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
-            .compactMap { [weak self] in self?.textView }
             .receive(on: DispatchQueue.main)
+            .compactMap { [weak self] in self?.textView }
             .map { $0.string.immutable }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
@@ -90,8 +90,8 @@ final class AdvancedCharacterCounter: ObservableObject {
             .eraseToVoid()
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
-            .compactMap { [weak self] in self?.textView }
             .receive(on: DispatchQueue.main)
+            .compactMap { [weak self] in self?.textView }
             .map { ($0.string as NSString).substring(with: $0.selectedRange) }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
