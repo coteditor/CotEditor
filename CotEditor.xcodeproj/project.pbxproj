@@ -245,8 +245,8 @@
 		2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
 		2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
 		2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
-		2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
-		2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
+		2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDView.swift */; };
+		2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDView.swift */; };
 		2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
@@ -537,7 +537,6 @@
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2ABC828421A9486A008F9229 /* CharacterPopover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */; };
-		2ABC828821A950AC008F9229 /* HUDView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828621A950AC008F9229 /* HUDView.storyboard */; };
 		2ABEFB6A23DC0CA0008769F4 /* EditorInfoCountOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */; };
 		2ABF49E3221A54AD00239278 /* TextClipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF49E2221A54AD00239278 /* TextClipping.swift */; };
 		2ABF49E4221A54AD00239278 /* TextClipping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF49E2221A54AD00239278 /* TextClipping.swift */; };
@@ -617,7 +616,6 @@
 		2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
 		2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */; };
 		2ACDE29E2406B9C000FC31EC /* GoToLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */; };
-		2ACDE29F2406B9C000FC31EC /* HUDView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828621A950AC008F9229 /* HUDView.storyboard */; };
 		2ACDE2A02406B9C000FC31EC /* WarningsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* WarningsView.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
 		2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */; };
@@ -1080,7 +1078,7 @@
 		2A5C00332814698000700CAE /* Collection+BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+BinarySearch.swift"; sourceTree = "<group>"; };
 		2A5D13091D1ED10400D38E6A /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
-		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
+		2A5D13121D1EE8FF00D38E6A /* HUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelLayoutManager.swift; sourceTree = "<group>"; };
@@ -1331,7 +1329,6 @@
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2ABC828321A9486A008F9229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CharacterPopover.storyboard; sourceTree = "<group>"; };
-		2ABC828721A950AC008F9229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HUDView.storyboard; sourceTree = "<group>"; };
 		2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperationTests.swift; sourceTree = "<group>"; };
 		2ABF49E2221A54AD00239278 /* TextClipping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextClipping.swift; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
@@ -2264,6 +2261,7 @@
 			isa = PBXGroup;
 			children = (
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
+				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
 				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
 			);
 			name = SwiftUI;
@@ -2301,7 +2299,6 @@
 				2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */,
 				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
 				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
-				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
 				2AB1BD22287D789800C6FEAF /* Advanced Character Count */,
 			);
 			name = "Accessory Views";
@@ -2409,7 +2406,6 @@
 				2A25C51920F068FD0003AE1A /* CustomTabWidthView.storyboard */,
 				2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */,
 				2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */,
-				2ABC828621A950AC008F9229 /* HUDView.storyboard */,
 			);
 			name = "Document Accessories";
 			sourceTree = "<group>";
@@ -2820,7 +2816,6 @@
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
 				2ACDE29E2406B9C000FC31EC /* GoToLineView.storyboard in Resources */,
-				2ACDE29F2406B9C000FC31EC /* HUDView.storyboard in Resources */,
 				2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */,
 				2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */,
 				2ACDE2A42406B9C000FC31EC /* OpenDocumentAccessory.storyboard in Resources */,
@@ -2897,7 +2892,6 @@
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2AC20A711E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
 				2AD940E721A47C4B0076A28C /* GoToLineView.storyboard in Resources */,
-				2ABC828821A950AC008F9229 /* HUDView.storyboard in Resources */,
 				2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */,
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */,
 				2AC60698204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
@@ -3124,7 +3118,7 @@
 				2A4A7D132856FF340085D2E7 /* HelpButton.swift in Sources */,
 				2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AAD61F91D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
-				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
+				2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */,
 				2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
@@ -3458,7 +3452,7 @@
 				2A4A7D142856FF340085D2E7 /* HelpButton.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AAD61F81D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
-				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
+				2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */,
 				2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2AEB8B452726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
@@ -4248,14 +4242,6 @@
 				5B08850C28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CharacterPopover.storyboard;
-			sourceTree = "<group>";
-		};
-		2ABC828621A950AC008F9229 /* HUDView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ABC828721A950AC008F9229 /* Base */,
-			);
-			name = HUDView.storyboard;
 			sourceTree = "<group>";
 		};
 		2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */ = {

@@ -25,6 +25,7 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 @objc protocol TextFinderClientProvider: AnyObject {
     
@@ -482,9 +483,19 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 if result.wrapped {
                     if let view = textView.enclosingScrollView?.superview {
-                        let hudController = HUDController.instantiate(storyboard: "HUDView")
-                        hudController.symbol = .wrap(reversed: !forward)
-                        hudController.show(in: view)
+                        let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, rotated: !forward))
+                        hudView.rootView.parent = hudView
+                        hudView.translatesAutoresizingMaskIntoConstraints = false
+                        
+                        // remove previous HUD if any
+                        for subview in view.subviews where subview is NSHostingView<HUDView> {
+                            subview.removeFromSuperview()
+                        }
+                        
+                        view.addSubview(hudView)
+                        hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                        hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+                        hudView.layout()
                     }
                     
                     if let window = NSApp.mainWindow {
