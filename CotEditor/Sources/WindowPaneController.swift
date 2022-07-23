@@ -66,7 +66,7 @@ final class WindowPaneController: NSViewController {
         let systemSettingLabel = menu.item(withTag: NSWindow.userTabbingPreference.rawValue)!.title
         let attributes: [NSAttributedString.Key: Any] = [.font: menu.font].compactMapValues { $0 }
         let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting, attributes: attributes)
-        let userSettingLabel = NSAttributedString(string: String(localized: " (\(systemSettingLabel)"),
+        let userSettingLabel = NSAttributedString(string: String(localized: " (\(systemSettingLabel))"),
                                                   attributes: [.foregroundColor: NSColor.secondaryLabelColor].merging(attributes) { $1 })
         
         menu.items.first!.attributedTitle = attrLabel + userSettingLabel
