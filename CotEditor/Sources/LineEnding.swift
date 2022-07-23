@@ -115,7 +115,7 @@ private extension LineEnding {
 }
 
 
-private extension BidirectionalCollection where Element == LineEnding {
+private extension BidirectionalCollection<LineEnding> {
     
     var regexPattern: String {
         

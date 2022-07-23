@@ -163,7 +163,7 @@ final class EditorInfoCounter {
     
     // MARK: Private Methods
     
-    private func count<S: StringProtocol>(in string: S) throws -> EditorCountResult.Count {
+    private func count(in string: some StringProtocol) throws -> EditorCountResult.Count {
         
         var count = EditorCountResult.Count()
         

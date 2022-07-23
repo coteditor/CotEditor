@@ -76,7 +76,7 @@ extension OutlineItem {
 }
 
 
-extension BidirectionalCollection where Element == OutlineItem {
+extension BidirectionalCollection<OutlineItem> {
     
     /// Return the index of element for the given range.
     ///

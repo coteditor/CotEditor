@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2021 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ extension UserDefaults {
         
         // MARK: Publisher Methods
         
-        func receive<S>(subscriber: S) where S: Combine.Subscriber, Failure == S.Failure, Output == S.Input {
+        func receive(subscriber: some Combine.Subscriber<Output, Failure>) {
             
             let subscription = Subscription(subscriber: subscriber, userDefaults: self.userDefaults, key: self.key)
             

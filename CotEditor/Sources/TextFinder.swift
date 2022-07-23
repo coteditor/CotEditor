@@ -672,7 +672,7 @@ private extension UserDefaults {
     /// - Parameters:
     ///   - value: The value to add.
     ///   - key: The default key to add the value.
-    func appendHistory<T>(_ value: T, forKey key: DefaultKey<[T]>) where T: Equatable {
+    func appendHistory<T: Equatable>(_ value: T, forKey key: DefaultKey<[T]>) {
         
         guard (value as? String)?.isEmpty != true else { return }
         

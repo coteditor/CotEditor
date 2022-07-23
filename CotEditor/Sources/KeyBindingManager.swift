@@ -208,7 +208,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
 
 
 
-private extension Collection where Element == NSTreeNode {
+private extension Collection<NSTreeNode> {
     
     var keyBindings: Set<KeyBinding> {
         

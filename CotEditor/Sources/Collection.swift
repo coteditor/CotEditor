@@ -148,9 +148,9 @@ extension Sequence {
     ///
     /// - Parameter keyPath: The key path to the value to compare.
     /// - Returns: A sorted array of the sequence’s elements.
-    func sorted<Value: Comparable>(_ keyPath: KeyPath<Element, Value>) -> [Element] {
+    func sorted(_ keyPath: KeyPath<Element, some Comparable>) -> [Element] {
         
-        return self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
+        self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
     
 }
@@ -161,7 +161,7 @@ extension MutableCollection where Self: RandomAccessCollection {
     /// Sort the collection in place, using the value that the given key path refers as the comparison between elements.
     ///
     /// - Parameter keyPath: The key path to the value to compare.
-    mutating func sort<Value: Comparable>(_ keyPath: KeyPath<Element, Value>) {
+    mutating func sort(_ keyPath: KeyPath<Element, some Comparable>) {
         
         self.sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
