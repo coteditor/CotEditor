@@ -24,6 +24,7 @@ Change Log
 - Deprecate the “Ignore line endings when counting characters” option.
 - [trivial] Improve the Basic Regular Expression Syntax reference.
 - [non-AppStore ver.] Update Sparkle to 2.2.1.
+- [dev] Update the build environment to Xcode 14.0.
 
 
 
