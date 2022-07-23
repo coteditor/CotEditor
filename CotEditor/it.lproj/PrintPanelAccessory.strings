@@ -35,7 +35,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Print:"; ObjectID = "716"; */
-"716.title" = "Print:";  // FIXME: added
+"716.title" = "Print:";  // FIXME: new
 /* Class = "NSButtonCell"; title = "line numbers"; ObjectID = "ZWa-GC-hpv"; */
 "ZWa-GC-hpv.title" = "Numeri righe";
 /* Class = "NSButtonCell"; title = "invisibles"; ObjectID = "oES-Vf-YlC"; */

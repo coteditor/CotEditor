@@ -147,7 +147,7 @@
 "Back Reference" = "Références passées";
 "first match" = "Première correspondance";
 
-"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: added
+"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: new
 
 
 
@@ -225,7 +225,7 @@
 
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in window tab
-"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: added
+"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: new
 
 
 
