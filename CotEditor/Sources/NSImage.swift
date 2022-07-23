@@ -57,10 +57,11 @@ extension NSImage {
 
 extension NSAttributedString {
     
-    convenience init(systemSymbolName: String, accessibilityDescription: String? = nil) {
+    convenience init(systemSymbolName: String, configuration: NSImage.SymbolConfiguration? = nil, accessibilityDescription: String? = nil) {
         
         let attachment = NSTextAttachment()
-        attachment.image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: accessibilityDescription)
+        attachment.image = NSImage(systemSymbolName: systemSymbolName, accessibilityDescription: accessibilityDescription)?
+            .withSymbolConfiguration(configuration ?? .init())
         
         self.init(attachment: attachment)
     }

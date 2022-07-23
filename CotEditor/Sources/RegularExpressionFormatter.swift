@@ -69,9 +69,9 @@ final class RegularExpressionFormatter: Formatter {
                         _ = try NSRegularExpression(pattern: string)
                     } catch {
                         if self.showsError {
-                            let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill")
+                            let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill",
+                                                           configuration: .preferringMulticolor())
                             attributedString.replaceCharacters(in: NSRange(..<0), with: alert)
-                            attributedString.addAttribute(.foregroundColor, value: NSColor.systemYellow, range: NSRange(0..<1))
                         }
                         return attributedString
                     }
