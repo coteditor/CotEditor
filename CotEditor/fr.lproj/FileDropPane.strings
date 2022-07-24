@@ -33,7 +33,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Syntaxe";
-"RqT-x4-YbN.headerToolTip" = "Syntaxe pour laquelle ce File Drop est activé.";  /* Syntax style in which this file drop setting is enabled. */
+"RqT-x4-YbN.headerToolTip" = "Syntaxe pour laquelle ce File Drop est activé.";  /* Syntax style in which this file drop setting is used. */
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
 "p2m-Qi-6k3.headerCell.title" = "Description";

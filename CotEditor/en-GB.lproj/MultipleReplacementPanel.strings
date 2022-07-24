@@ -69,8 +69,8 @@
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
 "KTe-1r-oHM.headerToolTip" = "Enable";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Select to enable this replacement rule.";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
+"PuQ-No-wC1.ibShadowedToolTip" = "Select to use this replacement rule.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
 "zee-UW-TVR.headerCell.title" = "Find";

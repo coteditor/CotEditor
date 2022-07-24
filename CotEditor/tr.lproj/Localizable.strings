@@ -85,7 +85,7 @@
 "%lld strings replaced." = "%lld dizi değiştirildi.";
 "Invalid regular expression" = "Geçersiz düzenli ifade";
 "Empty find string" = "Bulunacak dizi boş";
-"The option “in selection” is enabled, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
+"The option “in selection” is selected, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
 "Input text to find." = "Bulunacak girdi metni";
 "Select the search scope in the document or turn off the “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
 

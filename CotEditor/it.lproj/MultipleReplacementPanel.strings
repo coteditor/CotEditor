@@ -69,8 +69,8 @@
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
 "KTe-1r-oHM.headerToolTip" = "Abilita";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Selezionare per abilitare questa regola di sostituzione.";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
+"PuQ-No-wC1.ibShadowedToolTip" = "Selezionare per abilitare questa regola di sostituzione.";  // FIXME: enable -> use
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
 "zee-UW-TVR.headerCell.title" = "Trova";

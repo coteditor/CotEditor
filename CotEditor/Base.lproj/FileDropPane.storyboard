@@ -45,7 +45,7 @@
                                     <rect key="frame" x="1" y="1" width="528" height="58"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" findStyle="panel" allowsUndo="YES" smartInsertDelete="YES" layoutManager="textKit1" id="Rdu-bG-bow" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" findStyle="panel" allowsUndo="YES" smartInsertDelete="YES" id="Rdu-bG-bow" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="528" height="58"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -151,7 +151,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="153.5" minWidth="40" maxWidth="1000" headerToolTip="Syntax style in which this file drop setting is enabled." id="RqT-x4-YbN">
+                                                <tableColumn width="153.5" minWidth="40" maxWidth="1000" headerToolTip="Syntax style in which this file drop setting is used." id="RqT-x4-YbN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Syntax Style">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -164,7 +164,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Nke-jc-fMr">
-                                                            <rect key="frame" x="183" y="1" width="153" height="17"/>
+                                                            <rect key="frame" x="182.5" y="1" width="153" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <popUpButton id="IBU-1D-WII">

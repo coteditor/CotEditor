@@ -34,8 +34,8 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Syntax Style";
-/* Class = "NSTableColumn"; headerToolTip = "Syntax style in which this file drop setting is enabled."; ObjectID = "RqT-x4-YbN"; */
-"RqT-x4-YbN.headerToolTip" = "Syntax style in which this file drop setting is enabled.";
+/* Class = "NSTableColumn"; headerToolTip = "Syntax style in which this file drop setting is used."; ObjectID = "RqT-x4-YbN"; */
+"RqT-x4-YbN.headerToolTip" = "Syntax style in which this file drop setting is used.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
 "p2m-Qi-6k3.headerCell.title" = "Description";

@@ -555,7 +555,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
             
-            // remove auto-saved file if exists
+            // remove autosaved file if exists
             if let url = self.fileURL {
                 var deletionError: NSError?
                 NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_READ

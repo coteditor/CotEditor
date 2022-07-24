@@ -64,7 +64,7 @@ final class TextFind {
                 case .emptyFindString:
                     return "Empty find string".localized
                 case .emptyInSelectionSearch:
-                    return "The option “in selection” is enabled, although nothing is selected.".localized
+                    return "The option “in selection” is selected, although nothing is selected.".localized
             }
         }
         

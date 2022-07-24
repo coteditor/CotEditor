@@ -85,7 +85,7 @@
 "%lld strings replaced." = "%lld stringhe sostituite.";
 "Invalid regular expression" = "Espressione regolare non valida";
 "Empty find string" = "Stringa di ricerca vuota";
-"The option “in selection” is enabled, although nothing is selected." = "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla.";
+"The option “in selection” is selected, although nothing is selected." = "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla.";
 "Input text to find." = "Inserire il testo da cercare.";
 "Select the search scope in the document or turn off the “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
 

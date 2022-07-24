@@ -85,7 +85,7 @@
 "%lld strings replaced." = "%lld Zeichenketten ersetzt.";
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 "Empty find string" = "Leerer Suchbegriff";
-"The option “in selection” is enabled, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
+"The option “in selection” is selected, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
 "Input text to find." = "Gib den zu findenden Text ein.";
 "Select the search scope in the document or turn off the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
 
@@ -277,7 +277,7 @@
 
 "Tab Style" = "Tabulatorstil";
 // tooltip
-"Turn off expanding tabs to spaces" = "Auto-Tabulatorexpandierung deaktivieren";
+"Turn off expanding tabs to spaces" = "Tabulatorexpandierung deaktivieren";
 "Expand tabs to spaces automatically" = "Tabulator zu Leerzeichen automatisch expandieren";
 "Change tab width" = "Tabulatorbreite wechseln";
 // menu

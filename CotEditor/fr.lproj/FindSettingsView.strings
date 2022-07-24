@@ -34,7 +34,7 @@
 "XBp-LE-3Ry.title" = "Sélectionner le résultat suivant après un remplacement";
 /* Class = "NSButtonCell"; title = "Search incrementally"; ObjectID = "jxH-a9-v61"; */
 "jxH-a9-v61.title" = "Recherche incrémentale";
-/* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
+/* Class = "NSButtonCell"; title = "Close progress dialog automatically"; ObjectID = "KBq-zH-H2M"; */
 "KBq-zH-H2M.title" = "Fermer automatiquement le fenêtre de progression";
 
 

@@ -85,7 +85,7 @@
 "%lld strings replaced." = "%lld strings replaced.";
 "Invalid regular expression" = "Invalid regular expression";
 "Empty find string" = "Empty find string";
-"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";
+"The option “in selection” is selected, although nothing is selected." = "The option “in selection” is selected, although nothing is selected.";
 "Input text to find." = "Input text to find.";
 "Select the search scope in the document or turn off the “in selection” option." = "Select the search scope in the document or turn off the “in selection” option.";
 

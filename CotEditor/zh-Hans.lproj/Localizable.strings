@@ -85,7 +85,7 @@
 "%lld strings replaced." = "已替换%lld个匹配";
 "Invalid regular expression" = "无效的正则表达式";
 "Empty find string" = "空的搜索字符串";
-"The option “in selection” is enabled, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
+"The option “in selection” is selected, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
 "Input text to find." = "输入文本以查找。";
 "Select the search scope in the document or turn off the “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
 

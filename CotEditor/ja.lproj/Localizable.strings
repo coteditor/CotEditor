@@ -85,7 +85,7 @@
 "%lld strings replaced." = "%lld件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
-"The option “in selection” is enabled, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
+"The option “in selection” is selected, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
 "Input text to find." = "検索するテキストを入力してください。";
 "Select the search scope in the document or turn off the “in selection” option." = "検索範囲を選択するか”選択範囲のみ”オプションを無効にしてください。";
 
