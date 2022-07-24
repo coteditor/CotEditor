@@ -17,13 +17,13 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 12 Monterey and later__.
-- Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and resprect it for future open.
-- Support the split cursor for RTL languages in the multi-cursor editing.
+- Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.
+- Support the split cursor for bidirectional languages in multi-cursor editing.
 - Update the CotEditor's setting view in the print panel.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
 - Deprecate the “Ignore line endings when counting characters” option.
-- [trivial] Improve the Basic Regular Expression Syntax reference.
+- [trivial] Improve the basic regular expression syntax reference.
 - [non-AppStore ver.] Update Sparkle to 2.2.1.
 - [dev] Update the build environment to Xcode 14.0.
 
