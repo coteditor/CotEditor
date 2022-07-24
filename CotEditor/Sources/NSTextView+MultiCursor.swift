@@ -391,20 +391,17 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index where the insertion point will locate.
     /// - Returns: Rect where insertion point filled.
-    @objc func insertionPointRect(at index: Int) -> NSRect {
+    func insertionPointRects(at index: Int) -> [NSRect] {
         
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-            else { assertionFailure(); return .zero }
+        guard  let layoutManager = self.layoutManager else { assertionFailure(); return [] }
         
-        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
-            .offset(by: self.textContainerOrigin)
         let scale = self.scale
-        let minX = (rect.minX * scale).rounded(.down) / scale
-        
-        return NSRect(x: minX, y: rect.minY, width: 1 / scale, height: rect.height)
+        return layoutManager.insertionPointRects(at: index)
+            .map { $0.offset(by: self.textContainerOrigin) }
+            .map { NSRect(x: ($0.minX * scale).rounded(.down) / scale,
+                          y: $0.minY,
+                          width: 1 / scale,
+                          height: $0.height) }
     }
     
     

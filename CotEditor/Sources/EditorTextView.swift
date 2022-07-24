@@ -963,41 +963,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// draw insersion point
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
-        var rect = rect
-        switch self.cursorType {
-            case .bar:
-                break
-            case .thickBar:
-                rect.size.width *= 2
-            case .block:
-                let index = self.characterIndexForInsertion(at: rect.mid)
-                rect.size.width = self.insertionBlockWidth(at: index)
-        }
+        let rect = self.insertionPointRect(in: rect, for: self.cursorType)
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
         
         // draw sub insertion rects
         self.insertionLocations
-            .map { self.insertionPointRect(at: $0) }
+            .flatMap { self.insertionPointRects(at: $0) }
+            .map { self.insertionPointRect(in: $0, for: self.cursorType) }
             .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
-    }
-    
-    
-    /// calculate rect for insartion point at index
-    override func insertionPointRect(at index: Int) -> NSRect {
-        
-        var rect = super.insertionPointRect(at: index)
-        
-        switch self.cursorType {
-            case .bar:
-                break
-            case .thickBar:
-                rect.size.width *= 2
-            case .block:
-                rect.size.width = self.insertionBlockWidth(at: index)
-        }
-        
-        return rect
     }
     
     
@@ -1037,7 +1011,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if self.needsDrawInsertionPoints {
             self.insertionRanges
                 .filter(\.isEmpty)
-                .map { self.insertionPointRect(at: $0.location) }
+                .flatMap { self.insertionPointRects(at: $0.location) }
+                .map { self.insertionPointRect(in: $0, for: self.cursorType) }
                 .filter { $0.intersects(dirtyRect) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
@@ -1545,6 +1520,30 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// Return the rect to draw insertion point by taking cursor type setting into the consideration.
+    ///
+    /// - Parameters:
+    ///   - rect: The proposed insertion point rect.
+    ///   - cursorType: The cursor type.
+    /// - Returns: Rect to draw insertion point.
+    private func insertionPointRect(in rect: NSRect, for cursorType: CursorType) -> NSRect {
+        
+        var rect = rect
+        
+        switch cursorType {
+            case .bar:
+                break
+            case .thickBar:
+                rect.size.width *= 2
+            case .block:
+                let index = self.characterIndexForInsertion(at: rect.mid)
+                rect.size.width = self.insertionBlockWidth(at: index)
+        }
+        
+        return rect
+    }
+    
+    
     /// Return the width of the insertion point to be drawn at the `index`.
     ///
     /// - Parameter index: The character index of the insertion point.
@@ -1561,7 +1560,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         guard
             layoutManager.isValidGlyphIndex(glyphIndex),
             layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
-            else { return layoutManager.spaceWidth }
+        else { return layoutManager.spaceWidth }
         
         return layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer).width
     }
