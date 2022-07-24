@@ -79,7 +79,8 @@ extension EditorTextView {
         
         let allowedCharacters = CharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
         self.transformSelection {
-            $0.addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? $0
+            $0.removingPercentEncoding?
+                .addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? $0
         }
         
     }
