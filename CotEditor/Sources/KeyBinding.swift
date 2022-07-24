@@ -23,13 +23,13 @@
 //  limitations under the License.
 //
 
-import struct Foundation.Selector
+import struct ObjectiveC.Selector
 
 struct KeyBinding: Hashable, Codable {
     
-    let name: String
-    let action: Selector
-    let shortcut: Shortcut?
+    var name: String
+    var action: Selector
+    var shortcut: Shortcut?
 }
 
 
@@ -37,7 +37,7 @@ extension KeyBinding: Comparable {
     
     static func < (lhs: Self, rhs: Self) -> Bool {
         
-        return lhs.action.description < rhs.action.description
+        lhs.action.description < rhs.action.description
     }
     
 }
