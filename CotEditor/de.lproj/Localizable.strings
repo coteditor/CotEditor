@@ -719,6 +719,13 @@
 
 
 
+/* MARK: Pattern Sort View */
+// error messages
+"Invalid pattern" = "Ungültiges Muster";
+"Empty pattern" = "Leeres Muster";
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "Dateizuordnungskonflikte";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Die folgenden Dateizuordnungsregeln sind in mehreren Stilen registriert.CotEditor verwendet den ersten Stil automatisch. Um Konflikte zu beheben, bearbeite jeden Syntaxstil.";

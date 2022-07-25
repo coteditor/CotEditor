@@ -161,6 +161,7 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     @objc dynamic var usesCaptureGroup: Bool = false
     @objc dynamic var group: Int = 1
     
+    @objc private(set) dynamic var errorMessage: String?
     @objc private(set) dynamic var numberOfCaptureGroups: Int = 0
     
     
@@ -205,12 +206,18 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
         } catch {
             self.regex = nil
             self.numberOfCaptureGroups = 0
+            if self.searchPattern.isEmpty {
+                self.errorMessage = "Empty pattern".localized
+            } else {
+                self.errorMessage = "Invalid pattern".localized
+            }
             
             throw error
         }
         
         self.regex = regex
         self.numberOfCaptureGroups = regex.numberOfCaptureGroups
+        self.errorMessage = nil
     }
     
 }

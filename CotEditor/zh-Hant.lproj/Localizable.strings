@@ -719,6 +719,13 @@
 
 
 
+/* MARK: Pattern Sort View */
+// error messages
+"Invalid pattern" = "Invalid pattern";  // FIXME: new
+"Empty pattern" = "Empty pattern";  // FIXME: new
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "文法樣式對映衝突";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列檔案對映規則被註冊了多種格式。CotEditor自動使用第一個格式。可以透過編輯每個文法格式來解決衝突。";

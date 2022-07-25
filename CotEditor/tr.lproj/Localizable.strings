@@ -719,6 +719,13 @@
 
 
 
+/* MARK: Pattern Sort View */
+// error messages
+"Invalid pattern" = "Invalid pattern";  // FIXME: new
+"Empty pattern" = "Empty pattern";  // FIXME: new
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";

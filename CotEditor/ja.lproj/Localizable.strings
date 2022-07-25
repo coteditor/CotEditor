@@ -719,6 +719,13 @@
 
 
 
+/* MARK: Pattern Sort View */
+// error messages
+"Invalid pattern" = "無効なパターン";
+"Empty pattern" = "空のパターン";
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "ファイル関連付けのコンフリクト";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "以下のファイル関連付けルールはいくつかのスタイルで重複して登録されています。CotEditorは自動的に最初のスタイルを使用します。解決するには、それぞれのシンタックススタイルを編集してください。";

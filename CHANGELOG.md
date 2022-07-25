@@ -20,6 +20,7 @@ Change Log
 - Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.
 - Support the split cursor for bidirectional languages in multi-cursor editing.
 - Update the CotEditor's setting view in the print panel.
+- Display the error message in the pattern sort dialog if the regular expression pattern is invalid.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
 - Deprecate the “Ignore line endings when counting characters” option.

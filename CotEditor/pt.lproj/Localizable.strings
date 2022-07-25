@@ -719,6 +719,13 @@
 
 
 
+/* MARK: Pattern Sort View */
+// error messages
+"Invalid pattern" = "Invalid pattern";  // FIXME: new
+"Empty pattern" = "Empty pattern";  // FIXME: new
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "Conflitos de Mapeamento de Estilos de Sintaxe";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "As seguintes regras de mapeamento de arquivo estão registradas em vários estilos. O CotEditor usa o primeiro estilo automaticamente. Para resolver conflitos, edite cada estilo de sintaxe.";
