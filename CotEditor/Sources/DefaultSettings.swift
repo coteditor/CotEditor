@@ -147,7 +147,7 @@ struct DefaultSettings {
         .secondaryFooterContent: PrintInfoType.pageNumber.rawValue,
         .secondaryFooterAlignment: AlignmentType.center.rawValue,
         
-        // ------ text finder ------
+        // text finder
         .findHistory: [],
         .replaceHistory: [],
         .findUsesRegularExpression: false,
@@ -166,7 +166,7 @@ struct DefaultSettings {
         .findRegexUsesUnicodeBoundaries: false,
         .findRegexUnescapesReplacementString: true,
         
-        // ------ settings not in the Settings window ------
+        // settings not in the Settings window
         .pinsThemeAppearance: false,
         .colorCodeType: 1,
         .sidebarWidth: 220,
@@ -176,7 +176,7 @@ struct DefaultSettings {
         .outlineViewFontSize: NSFont.smallSystemFontSize,
         .findResultViewFontSize: NSFont.smallSystemFontSize,
         
-        // ------ hidden settings ------
+        // hidden settings
         .autoCompletionDelay: 0.25,
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB
