@@ -417,13 +417,6 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修正NFC";
-"Modified NFD" = "修正NFD";
 "Inspect Character" = "文字情報を表示";
 "Move Line" = "行を移動";
 "Sort Lines" = "行を並び替え";

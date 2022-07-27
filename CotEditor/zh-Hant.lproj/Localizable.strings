@@ -417,13 +417,6 @@
 "Convert Indentation" = "轉換縮進";
 "Comment Out" = "註釋";
 "Uncomment" = "取消註釋";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修改NFC";
-"Modified NFD" = "修改NFD";
 "Inspect Character" = "顯示字元";
 "Move Line" = "移動行";
 "Sort Lines" = "排序行";

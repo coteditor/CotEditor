@@ -35,9 +35,9 @@ extension String {
     
     
     /// returns a localized string, using the main bundle if one is not specified.
-    func localized(tableName: String) -> String {
+    func localized(tableName: String, comment: String = "") -> String {
         
-        NSLocalizedString(self, tableName: tableName, comment: "")
+        NSLocalizedString(self, tableName: tableName, comment: comment)
     }
     
 }

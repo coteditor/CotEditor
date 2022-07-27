@@ -417,13 +417,6 @@
 "Convert Indentation" = "转换缩进";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修改NFC";
-"Modified NFD" = "修改NFD";
 "Inspect Character" = "显示字符";
 "Move Line" = "移动行";
 "Sort Lines" = "排序行";

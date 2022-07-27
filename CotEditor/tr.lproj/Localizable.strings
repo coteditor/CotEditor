@@ -417,13 +417,6 @@
 "Convert Indentation" = "Girintilemeyi Dönüştür";
 "Comment Out" = "Yorum Yap";
 "Uncomment" = "Yorumu Kaldır";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Biçim Kıvır";
-"Modified NFC" = "Değiştirilmiş NFC";
-"Modified NFD" = "Değiştirilmiş NFD";
 "Inspect Character" = "Karakter Denetle";
 "Move Line" = "Satır Taşı";
 "Sort Lines" = "Satırları Sırala";

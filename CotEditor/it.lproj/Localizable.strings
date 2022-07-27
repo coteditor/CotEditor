@@ -417,13 +417,6 @@
 "Convert Indentation" = "Converti rientro";
 "Comment Out" = "Trasforma in commento";
 "Uncomment" = "De-commenta";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "NFC Modificato";
-"Modified NFD" = "NFD Modificato";
 "Inspect Character" = "Ispeziona carattere";
 "Move Line" = "Muovi riga";
 "Sort Lines" = "Ordina righe";

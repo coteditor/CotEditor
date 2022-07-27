@@ -722,6 +722,8 @@
 		2AF073F51D34076A00770BA6 /* CharacterPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */; };
 		2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073FA1D34587500770BA6 /* CharacterInfo.swift */; };
 		2AF073FC1D34587500770BA6 /* CharacterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073FA1D34587500770BA6 /* CharacterInfo.swift */; };
+		2AF0A4702890BA48003B2148 /* UnicodeNormalization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF0A4732890BA48003B2148 /* UnicodeNormalization.strings */; };
+		2AF0A4712890BA48003B2148 /* UnicodeNormalization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF0A4732890BA48003B2148 /* UnicodeNormalization.strings */; };
 		2AF0C1251D3DA44900B6FCB6 /* FourCharCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */; };
 		2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */; };
 		2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */; };
@@ -1476,6 +1478,15 @@
 		2AF073E21D33C3AB00770BA6 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPopoverController.swift; sourceTree = "<group>"; };
 		2AF073FA1D34587500770BA6 /* CharacterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfo.swift; sourceTree = "<group>"; };
+		2AF0A4722890BA48003B2148 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		2AF0A4742890BA5C003B2148 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodeNormalization.strings"; sourceTree = "<group>"; };
+		2AF0A4752890BAAD003B2148 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		2AF0A4762890BAB0003B2148 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		2AF0A4772890BAB2003B2148 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		2AF0A4782890BAB6003B2148 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		2AF0A4792890BAB8003B2148 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/UnicodeNormalization.strings; sourceTree = "<group>"; };
+		2AF0A47A2890BABD003B2148 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/UnicodeNormalization.strings"; sourceTree = "<group>"; };
+		2AF0A47B2890BABE003B2148 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UnicodeNormalization.strings"; sourceTree = "<group>"; };
 		2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCode.swift; sourceTree = "<group>"; };
 		2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourCharCodeTests.swift; sourceTree = "<group>"; };
 		2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -2092,6 +2103,7 @@
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
 				2AA2E0111BFE12620087BDD6 /* Unicode.strings */,
+				2AF0A4732890BA48003B2148 /* UnicodeNormalization.strings */,
 				2A80C65C1CEE33C100AA664D /* Credits.html */,
 				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
@@ -2798,6 +2810,7 @@
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
 				2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */,
 				2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */,
+				2AF0A4702890BA48003B2148 /* UnicodeNormalization.strings in Resources */,
 				2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2ACDE28D2406B9C000FC31EC /* AppearancePane.storyboard in Resources */,
 				2ACDE28E2406B9C000FC31EC /* CharacterPopover.storyboard in Resources */,
@@ -2874,6 +2887,7 @@
 				2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */,
 				2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */,
 				2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */,
+				2AF0A4712890BA48003B2148 /* UnicodeNormalization.strings in Resources */,
 				2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2ABC828421A9486A008F9229 /* CharacterPopover.storyboard in Resources */,
@@ -4470,6 +4484,22 @@
 				5B08850028296B61003D4C2D /* zh-Hant */,
 			);
 			name = OutlineView.storyboard;
+			sourceTree = "<group>";
+		};
+		2AF0A4732890BA48003B2148 /* UnicodeNormalization.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AF0A4722890BA48003B2148 /* ja */,
+				2AF0A4742890BA5C003B2148 /* zh-Hans */,
+				2AF0A4752890BAAD003B2148 /* de */,
+				2AF0A4762890BAB0003B2148 /* it */,
+				2AF0A4772890BAB2003B2148 /* pt */,
+				2AF0A4782890BAB6003B2148 /* fr */,
+				2AF0A4792890BAB8003B2148 /* tr */,
+				2AF0A47A2890BABD003B2148 /* en-GB */,
+				2AF0A47B2890BABE003B2148 /* zh-Hant */,
+			);
+			name = UnicodeNormalization.strings;
 			sourceTree = "<group>";
 		};
 		2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */ = {

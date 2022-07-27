@@ -967,53 +967,7 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem title="Unicode Normalizations" id="599">
-                                            <menu key="submenu" title="Unicode Normalizations" id="600">
-                                                <items>
-                                                    <menuItem title="NFD" toolTip="Canonical Decomposition" id="601">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithNFD:" target="Ady-hI-5gd" id="1bP-fy-Ixy"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="NFC" tag="1" toolTip="Canonical Decomposition, followed by Canonical Composition" id="602">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithNFC:" target="Ady-hI-5gd" id="pmf-yf-jYo"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="NFKD" tag="2" toolTip="Compatibility Decomposition" id="603">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithNFKD:" target="Ady-hI-5gd" id="O9c-JY-XaD"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="NFKC" tag="3" toolTip="Compatibility Decomposition, followed by Canonical Composition" id="598">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithNFKC:" target="Ady-hI-5gd" id="ltN-cG-DDT"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="NFKC Casefold" tag="4" toolTip="Applying NFKC, CaseFolding, and removal of default-ignorable code points" id="zuR-3K-9fs">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithNFKCCF:" target="Ady-hI-5gd" id="iSp-un-Dje"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="OlS-1E-EU6"/>
-                                                    <menuItem title="Modified NFD (HFS+)" tag="4" toolTip="Unofficial NFD-based normalization form used in HFS+" id="NU7-EI-1Ct">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithModifiedNFD:" target="Ady-hI-5gd" id="u6J-AC-xDH"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Modified NFC (HFS+)" tag="4" toolTip="Unofficial NFC-based normalization form corresponding to Modified NFD" id="n6C-Km-BM9">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="normalizeUnicodeWithModifiedNFC:" target="Ady-hI-5gd" id="ZQc-l2-VW9"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
+                                            <menu key="submenu" title="Unicode Normalizations" id="600"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="597"/>
                                         <menuItem title="Insert Encoding Name" toolTip="Insert encoding name as IANA charset name" id="663">
@@ -1272,6 +1226,7 @@ CA
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CotEditor" customModuleProvider="target">
                     <connections>
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
+                        <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
                         <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
                         <outlet property="whatsNewMenuItem" destination="DCW-Ij-540" id="Hnl-Yn-pbG"/>

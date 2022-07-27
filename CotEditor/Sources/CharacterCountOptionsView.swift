@@ -87,11 +87,13 @@ struct CharacterCountOptionsView: View {
                         HStack(alignment: .firstTextBaseline) {
                             Toggle("Normalization:", isOn: self.setting.$normalizes)
                             Picker("Normalization:", selection: self.setting.$normalizationForm) {
-                                Text("NFD").tag(UnicodeNormalizationForm.nfd)
-                                Text("NFC").tag(UnicodeNormalizationForm.nfc)
-                                Text("NFKD").tag(UnicodeNormalizationForm.nfkd)
-                                Text("NFKC").tag(UnicodeNormalizationForm.nfkc)
-                                Text("NFKC casefold").tag(UnicodeNormalizationForm.nfkcCasefold)
+                                ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { (form) in
+                                    Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                }
+                                Divider()
+                                ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { (form) in
+                                    Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                }
                             }.labelsHidden()
                                 .disabled(!self.setting.normalizes)
                         }.fixedSize()
@@ -108,7 +110,7 @@ struct CharacterCountOptionsView: View {
 
 // MARK: Model
 
-extension CharacterCountOptions.CharacterUnit {
+private extension CharacterCountOptions.CharacterUnit {
     
     var description: LocalizedStringKey {
         

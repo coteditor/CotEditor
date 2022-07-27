@@ -76,6 +76,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
+    @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var whatsNewMenuItem: NSMenuItem?
     
     
@@ -144,8 +145,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)
         
-        // build menus
         ScriptManager.shared.buildScriptMenu()
+        
+        // build Unicode normalizationi menu items
+        
+        self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
+                                         UnicodeNormalizationForm.modifiedForms)
+            .map { (form) in
+                guard let form = form else { return .separator() }
+                
+                let action: Selector
+                switch form {
+                    case .nfd:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFD)
+                    case .nfc:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFC)
+                    case .nfkd:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFKD)
+                    case .nfkc:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFKC)
+                    case .nfkcCasefold:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFKCCF)
+                    case .modifiedNFD:
+                        action = #selector(EditorTextView.normalizeUnicodeWithModifiedNFD)
+                    case .modifiedNFC:
+                        action = #selector(EditorTextView.normalizeUnicodeWithModifiedNFC)
+                }
+                
+                let item = NSMenuItem(title: form.localizedName, action: action, keyEquivalent: "")
+                item.toolTip = form.localizedDescription
+                return item
+            }
     }
     
     

@@ -466,35 +466,6 @@
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
 "599.title" = "Unicode Olağanlaştırmaları";
 
-/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
-"601.title" = "NFD";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition"; ObjectID = "601"; */
-"601.ibShadowedToolTip" = "Kurallara Uygun Kompozisyon";
-/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
-"602.title" = "NFC";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
-"602.ibShadowedToolTip" = "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon";
-/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
-"603.title" = "NFKD";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition"; ObjectID = "603"; */
-"603.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu";
-/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
-"598.title" = "NFKC";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
-"598.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon";
-/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.title" = "NFKC Biçim Kıvırması";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor";
-/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "Değiştirilmiş NFD (HFS+)";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+’da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır";
-/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "Değiştirilmiş NFC (HFS+)";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Değiştirilmiş NFD’ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi";
-
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Kodlama Adı Gir";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Insert encoding name as IANA charset name"; ObjectID = "663"; */
