@@ -1160,11 +1160,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 return !self.selectedRange.isEmpty
             
             case #selector(toggleComment):
-                if let menuItem = item as? NSMenuItem {
-                    menuItem.title = self.canUncomment(partly: false)
-                        ? "Uncomment".localized
-                        : "Comment Out".localized
-                }
+                (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
+                    ? "Uncomment".localized
+                    : "Comment Out".localized
                 return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
             
             case #selector(inlineCommentOut):

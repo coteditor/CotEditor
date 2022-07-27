@@ -298,9 +298,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 (item as? NSMenuItem)?.title = self.wrapsLines
                     ? "Unwrap Lines".localized
                     : "Wrap Lines".localized
-                (item as? NSToolbarItem)?.toolTip = self.wrapsLines
-                    ? "Unwrap lines".localized
-                    : "Wrap lines".localized
+                if #available(macOS 13, *) {
+                    (item as? NSToolbarItem)?.label = self.wrapsLines
+                        ? "Unwrap lines".localized
+                        : "Wrap lines".localized
+                }
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
             
             case #selector(toggleInvisibleChars):

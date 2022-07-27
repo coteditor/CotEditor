@@ -489,6 +489,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
+                if #available(macOS 13, *) {
+                    item.possibleLabels = ["Wrap Lines".localized,
+                                           "Unwrap Lines".localized]
+                }
                 item.toolTip = "Wrap lines".localized
                 item.stateImages[.on] = NSImage(named: "text.unwrap")
                 item.stateImages[.off] = NSImage(named: "text.wrap")
