@@ -196,19 +196,20 @@ extension Commenting {
         
         guard
             self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil,
-            let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue),
-            selectedRanges.contains(where: { !$0.isEmpty })
+            let targetRanges = self.rangesForUserTextChange?.map(\.rangeValue)
+                .map(self.string.lineContentsRange(for:))
+                .filter({ !$0.isEmpty })
+                .unique,
+            !targetRanges.isEmpty
         else { return false }
         
         if let delimiters = self.blockCommentDelimiters {
-            let targetRanges = selectedRanges.map { $0.isEmpty ? self.string.lineContentsRange(for: $0) : $0 }.unique
             if let ranges = self.string.rangesOfBlockDelimiters(delimiters, spacer: "", ranges: targetRanges) {
                 return partly ? true : (ranges.count == (2 * targetRanges.count))
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            let targetRanges = selectedRanges.map { self.string.lineContentsRange(for: $0) }.unique
             if let ranges = self.string.rangesOfInlineDelimiter(delimiter, spacer: "", ranges: targetRanges) {
                 let lineRanges = targetRanges.flatMap { self.string.lineContentsRanges(for: $0) }.unique
                 return partly ? true : (ranges.count == lineRanges.count)
