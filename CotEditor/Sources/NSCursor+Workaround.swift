@@ -28,7 +28,10 @@ import AppKit.NSCursor
 extension NSCursor {
     
     /// Fix i-beam for vertical text orientation (FB7722838).
+    @available(macOS, deprecated: 13, message: "The issue FB7722838 was fxed on macOS 13.")
     func fixIBeam() {
+        
+        guard #unavailable(macOS 13) else { return }
         
         if self == .iBeamCursorForVerticalLayout {
             // -> The system draws i-beam with custom colors correctly.
