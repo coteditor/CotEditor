@@ -145,8 +145,15 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
         
         guard let superFrame = self.superview?.frame else { return assertionFailure() }
         
-        self.frame.origin.x.clamp(to: self.margin...(superFrame.width - self.frame.width - self.margin))
-        self.frame.origin.y.clamp(to: self.margin...(superFrame.height - self.frame.height - self.margin))
+        let maxX = superFrame.width - self.frame.width - self.margin
+        if self.margin < maxX {
+            self.frame.origin.x.clamp(to: self.margin...maxX)
+        }
+        
+        let maxY = superFrame.height - self.frame.height - self.margin
+        if self.margin < maxY {
+            self.frame.origin.y.clamp(to: self.margin...maxY)
+        }
     }
     
 }
