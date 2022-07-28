@@ -175,6 +175,7 @@ struct DefaultSettings {
         .selectedInspectorPaneIndex: 0,
         .outlineViewFontSize: NSFont.smallSystemFontSize,
         .findResultViewFontSize: NSFont.smallSystemFontSize,
+        .suppressesInconsistentLineEndingAlert: false,
         
         // hidden settings
         .autoCompletionDelay: 0.25,

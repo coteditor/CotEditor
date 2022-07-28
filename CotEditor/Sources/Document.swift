@@ -1150,7 +1150,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         assert(Thread.isMainThread)
         
-        guard !self.suppressesInconsistentLineEndingAlert else { return }
+        guard
+            !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
+            !self.suppressesInconsistentLineEndingAlert
+        else { return }
         guard let documentWindow = self.windowForSheet else { return assertionFailure() }
         
         let alert = NSAlert()
