@@ -10,6 +10,11 @@ Change Log
 - [non-AppStore ver.] Update Sparkle to 2.2.1.
 
 
+### Fixes
+
+- Fix an issue that the length of invisible tab characters was drawn wrongly in the right-to-left writing direction.
+
+
 
 4.3.1 (519)
 --------------------------

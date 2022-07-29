@@ -108,7 +108,7 @@ extension InvisibleDrawing {
                     default:
                         // -> Avoid invoking `.enclosingRectForGlyph(at:in:)` as much as possible
                         //    that takes long time with long unwrapped lines.
-                        glyphWidth = lineFragmentRange.contains(glyphIndex + 1)
+                        glyphWidth = (lineFragmentRange.contains(glyphIndex + 1) && !isRTL)
                             ? self.location(forGlyphAt: glyphIndex + 1).x - glyphLocation.x
                             : self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
                 }
