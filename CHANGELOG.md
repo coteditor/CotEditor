@@ -5,6 +5,10 @@ Change Log
 4.3.2 (Unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle to 2.2.1.
+
 
 
 4.3.1 (519)
