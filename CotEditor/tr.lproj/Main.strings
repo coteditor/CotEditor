@@ -441,9 +441,9 @@
 "x1F-KX-2de.title" = "Paskal Biçimi Yap";
 
 /* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
-"xxp-UD-STx.title" = "URL Encode";  // FIXME: new
+"xxp-UD-STx.title" = "URL Kodla";
 /* Class = "NSMenuItem"; title = "URL Decode"; ObjectID = "3VB-Bg-Ker"; */
-"3VB-Bg-Ker.title" = "URL Decode";  // FIXME: new
+"3VB-Bg-Ker.title" = "URL Kodu Çöz";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Yarım Genişlikten Tam Genişliğe";
@@ -474,7 +474,7 @@
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Karakter Denetle";
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
-"SPF-Mw-eZP.title" = "Advanced Character Count…";  // FIXME: new
+"SPF-Mw-eZP.title" = "Gelişmiş Karakter Sayım…";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "Renk Kodu Düzenle…";
 
