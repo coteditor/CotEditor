@@ -2,6 +2,21 @@
 Change Log
 ==========================
 
+4.3.2 (522)
+--------------------------
+
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle to 2.2.1.
+
+
+### Fixes
+
+- Fix an issue that the tab width setting was not respected when printing.
+- Fix an issue that the length of invisible tab characters was drawn wrongly in the right-to-left writing direction.
+
+
+
 4.3.1 (519)
 --------------------------
 
