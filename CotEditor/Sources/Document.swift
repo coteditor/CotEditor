@@ -611,14 +611,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // create printView
         let printView = PrintTextView()
-        printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.documentName = self.displayName
         printView.fileURL = self.fileURL
         printView.syntaxName = self.syntaxParser.style.name
+        
+        printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection
         printView.ligature = UserDefaults.standard[.ligature] ? .standard : .none
-        
-        // set font for printing
         printView.font = UserDefaults.standard[.setPrintFont]
             ? NSFont(name: UserDefaults.standard[.printFontName], size: UserDefaults.standard[.printFontSize])
             : viewController.font

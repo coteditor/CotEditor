@@ -141,11 +141,12 @@ final class PrintTextView: NSTextView, Themable {
             guard let font = font else { return }
             
             // setup paragraph style
-            let paragraphStyle = NSParagraphStyle.default.mutable
+            let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
             paragraphStyle.tabStops = []
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
+            self.typingAttributes[.paragraphStyle] = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
             
             // set font also to layout manager
