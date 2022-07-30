@@ -27,9 +27,6 @@ Create an issue per feature instead of listing multiple features on one issue pa
 Pull-Request
 --------------------------
 
-- Make a topic branch, instead of committing to the main or develop branch.
-
-
 ### General Code Improvements
 
 Bug fixes and improvements are welcome. If you want to add a new feature or the change is huge, it's better at first to ask the team whether your idea will be accepted.
