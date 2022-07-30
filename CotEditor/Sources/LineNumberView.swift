@@ -239,10 +239,12 @@ final class LineNumberView: NSView {
     
     /// return line number font for selected lines by considering the current accesibility setting
     private var boldLineNumberFont: CGFont {
-        return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+        
+        NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
             ? Self.highContrastBoldLineNumberFont
             : Self.boldLineNumberFont
     }
+    
     
     /// draw line numbers
     private func drawNumbers(in rect: NSRect) {
