@@ -89,6 +89,7 @@ final class LineNumberView: NSView {
         case normal = 0.6
         case bold = 1.0
         case stroke = 0.4
+        case separator = 0.85
         
         static let highContrastCoefficient = 0.4
     }
@@ -102,6 +103,9 @@ final class LineNumberView: NSView {
     @Invalidating(.display) private var textColor: NSColor = .textColor
     @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
     
+    @Invalidating(.display) private var drawsSeparator = false
+    
+    private var settingObserver: AnyCancellable?
     private var opacityObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
     
@@ -164,6 +168,10 @@ final class LineNumberView: NSView {
         // redraw on window opacity change
         self.opacityObserver = newWindow?.publisher(for: \.isOpaque)
             .sink { [weak self] _ in self?.needsDisplay = true }
+        
+        // redraw on setting change
+        self.settingObserver = UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
+            .sink { [weak self] in self?.drawsSeparator = $0 }
     }
     
     
@@ -173,10 +181,28 @@ final class LineNumberView: NSView {
         // fill background
         if self.isOpaque {
             NSGraphicsContext.saveGraphicsState()
-            
             self.backgroundColor.setFill()
             dirtyRect.fill()
+            NSGraphicsContext.restoreGraphicsState()
+        }
+        
+        // draw separator
+        if self.drawsSeparator {
+            let lineRect: NSRect
+            switch (self.orientation, self.textView?.baseWritingDirection) {
+                case (.vertical, _):
+                    lineRect = NSRect(x: 0, y: 0, width: self.frame.width, height: 1)
+                case (_, .rightToLeft):
+                    lineRect = NSRect(x: 0, y: 0, width: 1, height: self.frame.height)
+                default:
+                    lineRect = NSRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
+            }
             
+            NSGraphicsContext.saveGraphicsState()
+            self.foregroundColor(.separator).set()
+            self.backingAlignedRect(lineRect, options: .alignAllEdgesOutward)
+                .intersection(dirtyRect)
+                .fill()
             NSGraphicsContext.restoreGraphicsState()
         }
         

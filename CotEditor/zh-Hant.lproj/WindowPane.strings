@@ -41,6 +41,8 @@
 "iw9-Ba-eD2.title" = "顯示：";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行號";
+/* Class = "NSButtonCell"; title = "Draw separator"; ObjectID = "zgz-Vf-91b"; */
+"zgz-Vf-91b.title" = "Draw separator";  // FIXME: new
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
 "3352.title" = "列位置頁面指示：";
 

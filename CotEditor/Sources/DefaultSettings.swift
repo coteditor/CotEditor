@@ -44,6 +44,7 @@ struct DefaultSettings {
         .windowTabbing: -1,  // = Respect System Setting
         .showNavigationBar: true,
         .showLineNumbers: true,
+        .showLineNumberSeparator: false,
         .showPageGuide: false,
         .pageGuideColumn: 80,
         .writingDirection: 0,
