@@ -738,7 +738,6 @@
 // error message when counting failed
 "failed" = "başarısız";
 // tooltip
-<<<<<<< HEAD
 "Change options" = "Seçenekleri değiştir";
 // context menu item labels
 "Copy" = "Kopyala";
