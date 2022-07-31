@@ -36,9 +36,7 @@ struct AdvancedCharacterCounterView: View {
     var body: some View {
         
         HStack(alignment: .firstTextBaseline) {
-            if let selectionCount = self.counter.selectionCount,
-               let count = (selectionCount > 0) ? selectionCount : self.counter.entireCount
-            {
+            if let count = self.count {
                 let key: String.LocalizationValue = {
                     switch self.counter.setting.unit {
                         case .byte: return "*\(count)* byte(s)"
@@ -85,8 +83,23 @@ struct AdvancedCharacterCounterView: View {
         .shadow(radius: 4, y: 2)
         .onTapGesture { }  // avoid clicking through
         .contextMenu {
-            Button("Stop Advanced Character Count", action: self.dismissAction)
+            if let count = self.count {
+                Button("Copy") {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(String(count), forType: .string)
+                }
+                Divider()
+            }
+            Button("Stop Count", action: self.dismissAction)
         }
+    }
+    
+    
+    private var count: Int? {
+        
+        guard let selectionCount = self.counter.selectionCount else { return nil }
+        
+        return (selectionCount > 0) ? selectionCount : self.counter.entireCount
     }
     
 }

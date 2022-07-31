@@ -739,6 +739,9 @@
 "failed" = "失敗";
 // tooltip
 "Change options" = "オプションを変更";
+// context menu item labels
+"Copy" = "コピー";
+"Stop Count" = "カウントを停止";  // This "Stop" should be translated the same as it in the "Stop Advanced Character Count" menu label.
 
 
 
