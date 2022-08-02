@@ -27,13 +27,6 @@ import Cocoa
 
 final class WarningsViewController: NSSplitViewController {
     
-    // MARK: Private Properties
-
-    @IBOutlet private weak var incompatibleCharactersItem: NSSplitViewItem?
-    @IBOutlet private weak var inconsistentLineEndingsItem: NSSplitViewItem?
-    
-    
-    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
