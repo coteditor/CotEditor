@@ -738,7 +738,7 @@
 // error message when counting failed
 "failed" = "başarısız";
 // tooltip
-"Change options" = "Seçenekleri değiştir";
+"Show options" = "Seçenekleri göster";
 
 
 
