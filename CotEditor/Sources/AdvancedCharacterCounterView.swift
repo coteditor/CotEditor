@@ -67,7 +67,7 @@ struct AdvancedCharacterCounterView: View {
             }
             .buttonStyle(.plain)
             .foregroundColor(.secondary)
-            .help("Change options")
+            .help("Show options")
             .popover(isPresented: self.$isSettingPresented) {
                 VStack {
                     CharacterCountOptionsView()
