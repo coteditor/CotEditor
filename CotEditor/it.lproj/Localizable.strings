@@ -739,6 +739,9 @@
 "failed" = "failed";  // FIXME: new
 // tooltip
 "Change options" = "Change options";  // FIXME: new
+// context menu item labels
+"Copy" = "Copia";
+"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it in the "Stop Advanced Character Count" menu label.  // FIXME: new
 
 
 

@@ -43,8 +43,6 @@ private extension Unicode.Scalar {
     
     var variantDescription: String? {
         
-        guard self.properties.isVariationSelector else { return nil }
-        
         switch self {
             case EmojiVariationSelector.emoji:
                 return "Emoji Style"
@@ -60,8 +58,10 @@ private extension Unicode.Scalar {
                 return "Skin Tone V"
             case SkinToneModifier.type6:
                 return "Skin Tone VI"
-            default:
+            case _ where self.properties.isVariationSelector:
                 return "Variant"
+            default:
+                return nil
         }
     }
     
@@ -75,42 +75,48 @@ struct CharacterInfo {
     
     // MARK: Public Properties
     
-    let character: Character
-    let isComplex: Bool
-    let pictureString: String?
-    let localizedDescription: String
+    var character: Character
     
     
+    // MARK: Public Methods
     
-    // MARK: -
-    // MARK: Lifecycle
-    
-    init(_ character: Character) {
+    var localizedDescription: String? {
         
-        let unicodes = character.unicodeScalars
-        let isVariant = (unicodes.count == 2 && unicodes.last!.properties.isVariationSelector)
-        let isComplex = (unicodes.count > 1 && !isVariant)
+        let unicodes = self.character.unicodeScalars
+        if self.isComplex {
+            return String(localized: "<a letter consisting of \(unicodes.count) characters>", table: "Unicode")
+        }
         
-        self.character = character
-        self.isComplex = isComplex
+        guard var unicodeName = unicodes.first?.name else { return nil }
         
-        self.pictureString = unicodes.count == 1  // ignore CRLF
-            ? unicodes.first?.pictureRepresentation.flatMap { String($0) }
+        if self.isVariant, let variantDescription = unicodes.last?.variantDescription {
+            unicodeName += " (" + variantDescription.localized(tableName: "Unicode") + ")"
+        }
+        
+        return unicodeName
+    }
+    
+    
+    var pictureString: String? {
+        
+        self.character.unicodeScalars.count == 1  // ignore CRLF
+            ? self.character.unicodeScalars.first?.pictureRepresentation.flatMap(String.init)
             : nil
+    }
+    
+    
+    var isComplex: Bool {
         
-        self.localizedDescription = {
-            if isComplex {
-                return String(localized: "<a letter consisting of \(unicodes.count) characters>", table: "Unicode")
-            }
-            
-            guard var unicodeName = unicodes.first?.name else { return String(character) }
-            
-            if isVariant, let variantDescription = unicodes.last?.variantDescription {
-                unicodeName += " (" + variantDescription.localized(tableName: "Unicode") + ")"
-            }
-            
-            return unicodeName
-        }()
+        self.character.unicodeScalars.count > 1 && !self.isVariant
+    }
+    
+    
+    // MARK: Private Methods
+    
+    private var isVariant: Bool {
+        
+        (self.character.unicodeScalars.count == 2 &&
+         self.character.unicodeScalars.last?.variantDescription != nil)
     }
     
 }

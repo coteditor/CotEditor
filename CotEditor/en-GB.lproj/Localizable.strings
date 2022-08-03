@@ -739,6 +739,9 @@
 "failed" = "failed";
 // tooltip
 "Change options" = "Change options";
+// context menu item labels
+"Copy" = "Copy";
+"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it in the "Stop Advanced Character Count" menu label.
 
 
 
