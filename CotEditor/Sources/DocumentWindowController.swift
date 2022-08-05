@@ -69,10 +69,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         super.windowDidLoad()
         
-        // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        // -> Do not use "document" for autosave name because somehow windows forget the size with that name. (2018-09)
-        self.windowFrameAutosaveName = "Document Window"
+        self.windowFrameAutosaveName = "Document"
         
         // set window size
         let width = UserDefaults.standard[.windowWidth]

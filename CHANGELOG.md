@@ -30,6 +30,10 @@ Change Log
 - [dev] Update the build environment to Xcode 14.0.
 
 
+### Fixes
+
+- Fix an issue that document windows sometimes did not shift the initial position from the last window. 
+
 
 
 4.3.2 (522)
