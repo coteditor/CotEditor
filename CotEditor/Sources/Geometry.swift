@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,12 +104,6 @@ extension CGSize {
     
     static let unit = CGSize(width: 1, height: 1)
     static let infinite = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-    
-    
-    var rotated: CGSize {
-        
-        return CGSize(width: self.height, height: self.width)
-    }
 }
 
 
