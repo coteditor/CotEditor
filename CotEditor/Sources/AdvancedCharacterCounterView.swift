@@ -28,7 +28,7 @@ import SwiftUI
 struct AdvancedCharacterCounterView: View {
     
     @StateObject var counter: AdvancedCharacterCounter
-    var dismissAction: () -> Void
+    let dismissAction: () -> Void
     
     @State private var isSettingPresented = false
     
