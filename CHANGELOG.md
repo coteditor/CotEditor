@@ -5,6 +5,10 @@ Change Log
 4.3.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that document windows sometimes did not shift the initial position from the last window. 
+
 
 
 4.3.2 (522)
