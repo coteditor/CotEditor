@@ -36,7 +36,7 @@ struct HUDView: View {
     weak var parent: NSHostingView<Self>?  // workaround presentationMode.dismiss() doesn't work
     
     @State var symbol: Symbol
-    @State var rotated = false
+    @State var flipped = false
     @State var isPresented = true
     
     
@@ -48,7 +48,7 @@ struct HUDView: View {
                 .scaledToFit()
                 .foregroundColor(.secondary)
                 .frame(width: 72, height: 72)
-                .rotationEffect(.radians(self.rotated ? .pi : 0))
+                .scaleEffect(y: self.flipped ? -1 : 1)
                 .padding(28)
                 .background(.ultraThinMaterial)
                 .cornerRadius(14)

@@ -483,7 +483,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 if result.wrapped {
                     if let view = textView.enclosingScrollView?.superview {
-                        let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, rotated: !forward))
+                        let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, flipped: !forward))
                         hudView.rootView.parent = hudView
                         hudView.translatesAutoresizingMaskIntoConstraints = false
                         
