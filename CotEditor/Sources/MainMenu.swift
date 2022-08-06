@@ -42,14 +42,13 @@ enum MainMenu: Int {
     // not to list up in the "Menu Key Bindings" setting
     enum MenuItemTag: Int {
         
-        case services = 999
-        case recentDocumentsDirectory = 2999
+        case recentDocuments = 2999
     }
     
     
     var menu: NSMenu? {
         
-        return NSApp.mainMenu?.item(at: self.rawValue)?.submenu
+        NSApp.mainMenu?.item(at: self.rawValue)?.submenu
     }
     
 }

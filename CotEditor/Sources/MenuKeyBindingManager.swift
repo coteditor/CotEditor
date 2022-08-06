@@ -141,13 +141,15 @@ final class MenuKeyBindingManager: KeyBindingManager {
             return false
         }
         
-        // specific tags
-        if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
-            switch tag {
-                case .services,
-                     .recentDocumentsDirectory:
-                    return false
-            }
+        // spcific items
+        switch MainMenu.MenuItemTag(rawValue: menuItem.tag) {
+            case .recentDocuments:
+                return false
+            case nil:
+                break
+        }
+        if menuItem.submenu == NSApp.servicesMenu {
+            return false
         }
         
         // specific actions
