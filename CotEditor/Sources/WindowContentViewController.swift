@@ -138,7 +138,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// toggle visibility of inspector
     @IBAction func toggleInspector(_ sender: Any?) {
         
-        NSAnimationContext.current.withAnimation(true) {
+        NSAnimationContext.current.withAnimation {
             self.isSidebarShown.toggle()
         }
     }
@@ -171,20 +171,15 @@ final class WindowContentViewController: NSSplitViewController {
     /// split view item to view controller
     private var sidebarViewController: SidebarViewController? {
         
-        return self.sidebarViewItem?.viewController as? SidebarViewController
+        self.sidebarViewItem?.viewController as? SidebarViewController
     }
     
     
     /// sidebar thickness
     private var sidebarThickness: CGFloat {
         
-        get {
-            return self.sidebarViewController?.view.frame.width ?? 0
-        }
-        
-        set {
-            self.sidebarViewController?.view.frame.size.width = max(newValue, 0)  // avoid having a negative value
-        }
+        get { self.sidebarViewController?.view.frame.width ?? 0 }
+        set { self.sidebarViewController?.view.frame.size.width = max(newValue, 0) }
     }
     
     
