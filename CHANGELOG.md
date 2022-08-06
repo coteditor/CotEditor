@@ -26,6 +26,7 @@ Change Log
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
 - Deprecate the “Ignore line endings when counting characters” option.
+- [trivial] Organize the editor's contextual menu.
 - [trivial] Improve the basic regular expression syntax reference.
 - [dev] Update the build environment to Xcode 14.0.
 

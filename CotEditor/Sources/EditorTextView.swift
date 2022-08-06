@@ -847,9 +847,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         guard let menu = super.menu(for: event) else { return nil }
         
-        // remove unwanted "Font" menu and its submenus
-        if let fontMenuItem = menu.item(withTitle: String(localized: "Font", comment: "menu item title in the context menu")) {
-            menu.removeItem(fontMenuItem)
+        // remove unwanted menu items
+        for item in menu.items {
+            guard
+                let submenu = item.submenu,
+                submenu.items.contains(where: {
+                    $0.action == #selector(changeLayoutOrientation) ||  // Layout Orientation submenu
+                    $0.action == #selector(NSFontManager.orderFrontFontPanel)  // Font submenu
+                })
+            else { continue }
+            
+            menu.removeItem(item)
         }
         
         // add "Copy as Rich Text" menu item
@@ -862,7 +870,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // add "Select All" menu item
-        let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
+        let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste))
         if pasteIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Select All".localized,
                             action: #selector(selectAll),

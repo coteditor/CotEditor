@@ -428,7 +428,6 @@
 "Trim Trailing Whitespace" = "行末の空白を削除";
 
 // Contextual menu items
-"Font" = "フォント";
 "Text" = "テキスト";
 "Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";

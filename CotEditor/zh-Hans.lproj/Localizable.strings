@@ -428,7 +428,6 @@
 "Trim Trailing Whitespace" = "移除行尾空白";
 
 // Contextual menu items
-"Font" = "字体";
 "Text" = "文本";
 "Copy as Rich Text" = "以富文本拷贝";
 "Select All" = "全部选择";

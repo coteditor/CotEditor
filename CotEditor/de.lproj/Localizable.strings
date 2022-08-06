@@ -428,7 +428,6 @@
 "Trim Trailing Whitespace" = "Leerzeichen am Zeilenende entfernen";
 
 // Contextual menu items
-"Font" = "Schrift";
 "Text" = "Text";
 "Copy as Rich Text" = "Als formatierten Text kopieren";
 "Select All" = "Alles auswählen";
