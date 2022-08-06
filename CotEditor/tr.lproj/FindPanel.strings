@@ -102,8 +102,8 @@
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Son Değişimleri Temizle";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Gelişmiş seçenekleri ayarla";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Gelişmiş seçenekleri göster";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Gelişmiş seçenekler";
 

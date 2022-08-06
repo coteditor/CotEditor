@@ -100,8 +100,8 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "无效的规则将被跳过。";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "设置高级选项";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "显示高级选项";
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "高级选项";
 
 

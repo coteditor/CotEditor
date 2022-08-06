@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2016 CotEditor Project
+//  © 2015-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -100,8 +100,9 @@
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "清除最近取代";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "設定進階選項";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "顯示進階選項";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "進階選項";
 
 

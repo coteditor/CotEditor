@@ -102,8 +102,8 @@
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Clear Recent Replacements";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Set advanced options";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Show advanced options";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Advanced options";
 

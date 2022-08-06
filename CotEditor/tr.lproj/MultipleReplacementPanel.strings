@@ -100,8 +100,8 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "Geçersiz kurallar atlanacaktır.";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "Gelişmiş seçenekleri ayarla";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "Gelişmiş seçenekleri göster";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "i8z-Xa-PxI"; */
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Gelişmiş seçenekler";
 

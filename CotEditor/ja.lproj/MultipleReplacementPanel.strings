@@ -100,8 +100,8 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "無効な条件はスキップされます。";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを設定";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを表示";
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "詳細オプション";
 
 

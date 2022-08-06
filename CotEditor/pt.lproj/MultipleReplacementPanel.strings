@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -100,8 +100,8 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "Regras inválidas serão ignoradas.";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "Defina opções avançadas";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "Mostrar opções avançadas";
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Opções avançadas";
 
 

@@ -100,8 +100,8 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "Les règles invalides seront sautées.";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "Définir les options avancées";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "Afficher les options avancées";
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Options avancées";
 
 
