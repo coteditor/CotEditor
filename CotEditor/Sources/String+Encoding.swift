@@ -66,18 +66,6 @@ extension Unicode {
 }
 
 
-private let ISO2022JPEscapeSequences: [Data] = [
-    [0x1B, 0x28, 0x42],  // ASCII
-    [0x1B, 0x28, 0x49],  // kana
-    [0x1B, 0x24, 0x40],  // 1978
-    [0x1B, 0x24, 0x42],  // 1983
-    [0x1B, 0x24, 0x28, 0x44],  // JISX0212
-    ].map { Data($0) }
-
-
-private let maxDetectionLength = 1024 * 8
-
-
 
 // MARK: -
 
@@ -167,25 +155,13 @@ extension String {
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
         // detect encoding from so-called "magic numbers"
-        // check Unicode's BOM
         for bom in Unicode.BOM.allCases {
             guard
                 data.starts(with: bom.sequence),
                 let string = String(bomCapableData: data, encoding: bom.encoding)
-                else { continue }
+            else { continue }
             
             usedEncoding = bom.encoding
-            self = string
-            return
-        }
-        
-        // try ISO-2022-JP by checking the existence of typical escape sequences
-        // -> It's not perfect yet works in most cases. (2016-01)
-        if data.prefix(maxDetectionLength).contains(0x1B),
-            ISO2022JPEscapeSequences.contains(where: { data.range(of: $0) != nil }),
-            let string = String(data: data, encoding: .iso2022JP)
-        {
-            usedEncoding = .iso2022JP
             self = string
             return
         }
@@ -193,12 +169,13 @@ extension String {
         // try encodings in order from the top of the encoding list
         for cfEncoding in suggestedCFEncodings {
             let encoding = String.Encoding(cfEncoding: cfEncoding)
+            guard
+                let string = String(data: data, encoding: encoding)
+            else { continue }
             
-            if let string = String(data: data, encoding: encoding) {
-                usedEncoding = encoding
-                self = string
-                return
-            }
+            usedEncoding = encoding
+            self = string
+            return
         }
         
         throw CocoaError(.fileReadUnknownStringEncoding)

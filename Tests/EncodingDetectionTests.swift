@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,8 +70,14 @@ final class EncodingDetectionTests: XCTestCase {
     
     func testISO2022() throws {
         
+        let data = try self.dataForFileName("ISO 2022-JP")
+        let encodings: [String.Encoding] = [.utf8, .iso2022JP, .utf16]
+        let cfEncodings = encodings
+            .map(\.rawValue)
+            .map(CFStringConvertNSStringEncodingToEncoding)
+        
         var encoding: String.Encoding?
-        let string = try self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
+        let string = try String(data: data, suggestedCFEncodings: cfEncodings, usedEncoding: &encoding)
         
         XCTAssertEqual(string, "dog犬")
         XCTAssertEqual(encoding, .iso2022JP)

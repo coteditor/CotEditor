@@ -25,6 +25,7 @@ Change Log
 - Display the error message in the pattern sort dialog if the regular expression pattern is invalid.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
+- Improve the algorithm of encoding detection.
 - Deprecate the “Ignore line endings when counting characters” option.
 - [trivial] Organize the editor's contextual menu.
 - [trivial] Improve the basic regular expression syntax reference.
