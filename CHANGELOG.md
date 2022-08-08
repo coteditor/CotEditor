@@ -48,7 +48,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that memory rarely leaks on closing documents.
+- Fix an issue that memory rarely leaked on closing documents.
 
 
 
