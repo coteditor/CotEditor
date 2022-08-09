@@ -79,13 +79,13 @@ final class DocumentController: NSDocumentController {
     @MainActor override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // obtain transient document if exists
-        self.transientDocumentLock.lock()
-        let transientDocument = self.transientDocumentToReplace
-        if let transientDocument = transientDocument {
-            transientDocument.isTransient = false
+        let transientDocument: Document? = self.transientDocumentLock.withLock { [unowned self] in
+            guard let document = self.transientDocumentToReplace else { return nil }
+            
+            document.isTransient = false
             self.deferredDocuments.removeAll()
+            return document
         }
-        self.transientDocumentLock.unlock()
         
         let (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
         
