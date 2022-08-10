@@ -1060,10 +1060,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // reset text wrapping width
         if self.wrapsLines {
-            // -> Use scrollView's visibleRect to workaround bug in NSScrollView with the vertical layout (2020-04 macOS 10.14-, FB5703371).
-            let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
-            self.frame.size[keyPath: keyPath] = visibleRect.width * self.scale
+            self.frame.size[keyPath: keyPath] = self.visibleRect.width * self.scale
         }
     }
     
