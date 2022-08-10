@@ -71,7 +71,7 @@ final class EncodingDetectionTests: XCTestCase {
     func testISO2022() throws {
         
         let data = try self.dataForFileName("ISO 2022-JP")
-        let encodings: [String.Encoding] = [.utf8, .iso2022JP, .utf16]
+        let encodings: [String.Encoding] = [.iso2022JP, .utf16]
         let cfEncodings = encodings
             .map(\.rawValue)
             .map(CFStringConvertNSStringEncodingToEncoding)
