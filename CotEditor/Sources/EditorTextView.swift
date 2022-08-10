@@ -325,7 +325,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// append inset only to the bottom for overscroll
     override var textContainerOrigin: NSPoint {
         
-        return NSPoint(x: super.textContainerOrigin.x, y: Self.textContainerInset.height)
+        NSPoint(x: super.textContainerOrigin.x, y: Self.textContainerInset.height)
+            .offsetBy(dy: (self.layoutOrientation == .vertical) ? self.bounds.minY.rounded() : 0)
     }
     
     

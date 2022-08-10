@@ -117,12 +117,6 @@ extension NSTextView {
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
             self.didChangeValue(for: \.scale)
             
-            // ensure bounds origin is {0, 0} for vertical text orientation
-            // to workaround AppKit-side bug (FB5703371).
-            if self.layoutOrientation == .vertical {
-                self.translateOrigin(to: self.bounds.origin)
-            }
-            
             // reset minimum size for unwrap mode
             let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
             self.minSize = visibleRect.size
