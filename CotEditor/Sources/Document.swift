@@ -66,7 +66,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 13 ? "PrintPanelAccessoryVenture" : "PrintPanelAccessory")
+    private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 13 ? "PrintPanelAccessoryVentura" : "PrintPanelAccessory")
     private var savePanelAccessoryController: NSViewController?
     
     private var readingEncoding: String.Encoding?  // encoding to read document file

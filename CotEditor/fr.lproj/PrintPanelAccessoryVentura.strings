@@ -1,11 +1,11 @@
 //
-//  PrintPanelAccessoryVenture.strings (Japanese)
+//  PrintPanelAccessoryVentura.strings (French)
 //
 //  CotEditor
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2022-07-04.
-//  Localized by 1024jp
+//  Localized by Aurélien Roy
 //
 //  ---------------------------------------------------------------------------
 //
@@ -25,109 +25,109 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "yQ7-YE-ZK9"; */
-"yQ7-YE-ZK9.title" = "カラー";
+"yQ7-YE-ZK9.title" = "Couleur";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "nUs-hp-672"; */
-"nUs-hp-672.title" = "白黒";
+"nUs-hp-672.title" = "Noir et blanc";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "P9K-oM-I0Z"; */
-"P9K-oM-I0Z.title" = "書類の設定と同じ";
+"P9K-oM-I0Z.title" = "Identique aux paramètres du document";
 /* Class = "NSTextFieldCell"; title = "Print Background"; ObjectID = "5eL-Aw-LdI"; */
-"5eL-Aw-LdI.title" = "背景をプリント";
+"5eL-Aw-LdI.title" = "Imprimer l’arrière-plan";
 
 
 /* Class = "NSTextFieldCell"; title = "Print Line Numbers"; ObjectID = "L7u-ng-jC7"; */
-"L7u-ng-jC7.title" = "行番号をプリント";
+"L7u-ng-jC7.title" = "Print Line Numbers";  // FIXME: new
 /* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
-"M5e-Tg-MlQ.title" = "不可視文字をプリント";
+"M5e-Tg-MlQ.title" = "Print Invisibles";  // FIXME: new
 
 
 
 /* Class = "NSTextFieldCell"; title = "Print Header"; ObjectID = "l4b-D2-DDX"; */
-"l4b-D2-DDX.title" = "ヘッダをプリント";
+"l4b-D2-DDX.title" = "Imprimer l’en-tête";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "Y5Z-M5-b2b"; */
-"Y5Z-M5-b2b.title" = "なし";
+"Y5Z-M5-b2b.title" = "Aucun";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "fni-Se-oWa"; */
-"fni-Se-oWa.title" = "シンタックス名";
+"fni-Se-oWa.title" = "Nom de la syntaxe";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "nGA-NN-REz"; */
-"nGA-NN-REz.title" = "書類名";
+"nGA-NN-REz.title" = "Nom du document";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "Pt8-CF-UKF"; */
-"Pt8-CF-UKF.title" = "ファイルパス";
+"Pt8-CF-UKF.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "5pM-iD-yzY"; */
-"5pM-iD-yzY.title" = "プリント日時";
+"5pM-iD-yzY.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "AJ9-Ls-PY8"; */
-"AJ9-Ls-PY8.title" = "ページ番号";
+"AJ9-Ls-PY8.title" = "Numéro de page";
 
 /* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[0] = "Align Left"; ObjectID = "wZK-fo-Sky"; */
-"wZK-fo-Sky.ibShadowedToolTips[0]" = "左揃え";
+"wZK-fo-Sky.ibShadowedToolTips[0]" = "Aligner à gauche";
 /* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[1] = "Center"; ObjectID = "wZK-fo-Sky"; */
-"wZK-fo-Sky.ibShadowedToolTips[1]" = "中央揃え";
+"wZK-fo-Sky.ibShadowedToolTips[1]" = "Centrer";
 /* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[2] = "Align Right"; ObjectID = "wZK-fo-Sky"; */
-"wZK-fo-Sky.ibShadowedToolTips[2]" = "右揃え";
+"wZK-fo-Sky.ibShadowedToolTips[2]" = "Aligner à droite";
 
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "M42-Kl-i11"; */
-"M42-Kl-i11.title" = "なし";
+"M42-Kl-i11.title" = "Aucun";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "VDr-rb-Yb7"; */
-"VDr-rb-Yb7.title" = "シンタックス名";
+"VDr-rb-Yb7.title" = "Nom de la syntaxe";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "mUC-Ec-3CH"; */
-"mUC-Ec-3CH.title" = "書類名";
+"mUC-Ec-3CH.title" = "Nom du document";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "vb5-jb-jaf"; */
-"vb5-jb-jaf.title" = "ファイルパス";
+"vb5-jb-jaf.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "OlC-eq-RvC"; */
-"OlC-eq-RvC.title" = "プリント日時";
+"OlC-eq-RvC.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "SnR-fR-DZF"; */
-"SnR-fR-DZF.title" = "ページ番号";
+"SnR-fR-DZF.title" = "Numéro de page";
 
 /* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[0] = "Align Left"; ObjectID = "phR-yp-SWP"; */
-"phR-yp-SWP.ibShadowedToolTips[0]" = "左揃え";
+"phR-yp-SWP.ibShadowedToolTips[0]" = "Aligner à gauche";
 /* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[1] = "Center"; ObjectID = "phR-yp-SWP"; */
-"phR-yp-SWP.ibShadowedToolTips[1]" = "中央揃え";
+"phR-yp-SWP.ibShadowedToolTips[1]" = "Centrer";
 /* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[2] = "Align Right"; ObjectID = "phR-yp-SWP"; */
-"phR-yp-SWP.ibShadowedToolTips[2]" = "右揃え";
+"phR-yp-SWP.ibShadowedToolTips[2]" = "Aligner à droite";
 
 
 
 /* Class = "NSTextFieldCell"; title = "Print Footer"; ObjectID = "mY6-Zh-2Uc"; */
-"mY6-Zh-2Uc.title" = "フッタをプリント";
+"mY6-Zh-2Uc.title" = "Imprimer le pied de page";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "qXf-Q9-bwe"; */
-"qXf-Q9-bwe.title" = "なし";
+"qXf-Q9-bwe.title" = "Aucun";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "xgF-th-sHJ"; */
-"xgF-th-sHJ.title" = "シンタックス名";
+"xgF-th-sHJ.title" = "Nom de la syntaxe";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "q7l-X0-G9F"; */
-"q7l-X0-G9F.title" = "書類名";
+"q7l-X0-G9F.title" = "Nom du document";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "sI8-qH-dUB"; */
-"sI8-qH-dUB.title" = "ファイルパス";
+"sI8-qH-dUB.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "Qcn-h2-Kj0"; */
-"Qcn-h2-Kj0.title" = "プリント日時";
+"Qcn-h2-Kj0.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "rsB-Kk-kBp"; */
-"rsB-Kk-kBp.title" = "ページ番号";
+"rsB-Kk-kBp.title" = "Numéro de page";
 
 
 /* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Qh8-SW-Qcm"; */
-"Qh8-SW-Qcm.ibShadowedToolTips[0]" = "左揃え";
+"Qh8-SW-Qcm.ibShadowedToolTips[0]" = "Aligner à gauche";
 /* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[1] = "Center"; ObjectID = "Qh8-SW-Qcm"; */
-"Qh8-SW-Qcm.ibShadowedToolTips[1]" = "中央揃え";
+"Qh8-SW-Qcm.ibShadowedToolTips[1]" = "Centrer";
 /* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Qh8-SW-Qcm"; */
-"Qh8-SW-Qcm.ibShadowedToolTips[2]" = "右揃え";
+"Qh8-SW-Qcm.ibShadowedToolTips[2]" = "Aligner à droite";
 
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "VyN-kq-VID"; */
-"VyN-kq-VID.title" = "なし";
+"VyN-kq-VID.title" = "Aucun";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "eTG-DT-1kN"; */
-"eTG-DT-1kN.title" = "シンタックス名";
+"eTG-DT-1kN.title" = "Nom de la syntaxe";
 /* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "3Gu-P5-h2x"; */
-"3Gu-P5-h2x.title" = "書類名";
+"3Gu-P5-h2x.title" = "Nom du document";
 /* Class = "NSMenuItem"; title = "File Path"; ObjectID = "3eZ-nZ-qLl"; */
-"3eZ-nZ-qLl.title" = "ファイルパス";
+"3eZ-nZ-qLl.title" = "Chemin du fichier";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "li5-BL-b9F"; */
-"li5-BL-b9F.title" = "プリント日時";
+"li5-BL-b9F.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "rNw-Nn-0WT"; */
-"rNw-Nn-0WT.title" = "ページ番号";
+"rNw-Nn-0WT.title" = "Numéro de page";
 
 /* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[0] = "Align Left"; ObjectID = "2gN-eY-bmu"; */
-"2gN-eY-bmu.ibShadowedToolTips[0]" = "左揃え";
+"2gN-eY-bmu.ibShadowedToolTips[0]" = "Aligner à gauche";
 /* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[1] = "Center"; ObjectID = "2gN-eY-bmu"; */
-"2gN-eY-bmu.ibShadowedToolTips[1]" = "中央揃え";
+"2gN-eY-bmu.ibShadowedToolTips[1]" = "Centrer";
 /* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[2] = "Align Right"; ObjectID = "2gN-eY-bmu"; */
-"2gN-eY-bmu.ibShadowedToolTips[2]" = "右揃え";
+"2gN-eY-bmu.ibShadowedToolTips[2]" = "Aligner à droite";
