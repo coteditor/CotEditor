@@ -634,9 +634,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printInfo.dictionary().addEntries(from: printSettings)
         let printOperation = NSPrintOperation(view: printView, printInfo: printInfo)
         printOperation.showsProgressPanel = true
-        // -> This flag looks fancy but needs to disable
-        //    since NSTextView seems to cannot print in a background thraed (macOS -10.15).
-        printOperation.canSpawnSeparateThread = false
         
         // setup print panel
         printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
