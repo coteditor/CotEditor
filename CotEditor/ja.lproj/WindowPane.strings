@@ -42,7 +42,7 @@
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行番号";
 /* Class = "NSButtonCell"; title = "Draw separator"; ObjectID = "zgz-Vf-91b"; */
-"zgz-Vf-91b.title" = "区切り線を描画";
+"zgz-Vf-91b.title" = "区切り線を表示";
 /* Class = "NSButtonCell"; title = Page guide at column:; ObjectID = "3352"; */
 "3352.title" = "ページガイド　列:";
 
