@@ -55,7 +55,7 @@ final class LineNumberView: NSView {
             
             // calculate margins
             self.padding = self.charWidth
-            self.tickLength = (fontSize / 3).rounded(.up)
+            self.tickLength = (scale * fontSize / 3).rounded(.up)
         }
         
     }
@@ -254,7 +254,7 @@ final class LineNumberView: NSView {
             let textView = self.textView,
             let layoutManager = textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         context.saveGState()
         
@@ -315,7 +315,7 @@ final class LineNumberView: NSView {
                     // draw tick
                     if isVerticalText {
                         let rect = CGRect(x: y.rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
-                        context.stroke(rect, width: 1)
+                        context.stroke(rect, width: scale)
                     }
                 
                 case .wrapped:

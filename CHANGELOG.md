@@ -28,6 +28,7 @@ Change Log
 - Improve the algorithm of uncommenting.
 - Improve the algorithm of encoding detection.
 - Deprecate the “Ignore line endings when counting characters” option.
+- [trivial] Adjust ticks in the line number view for vertical orientation.
 - [trivial] Save documents asynchronously.
 - [trivial] Organize the editor's contextual menu.
 - [trivial] Improve the basic regular expression syntax reference.
