@@ -17,6 +17,7 @@ Change Log
 
 ### Improvements
 
+- Support __macOS 13 Ventura__.
 - Change the system requirement to __macOS 12 Monterey and later__.
 - Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.
     - [for advanced users] Now you can also disable the feature entirely by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
@@ -34,7 +35,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that document windows sometimes did not shift the initial position from the last window. 
+- Fix an issue that document windows sometimes did not shift the initial position from the last window.
 
 
 
