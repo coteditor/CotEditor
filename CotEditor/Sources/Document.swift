@@ -435,7 +435,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // workaround the issue that invoking the async version super blocks the save process
-        // with macOS 12.1 + Xcode 13.2.1 (2022-01).
+        // with macOS 12-13 + Xcode 13-14 (2022 FB11203469).
+        // To reproduce the issue:
+        //     1. Make a document unsaved ("Edited" status in the window subtitle).
+        //     2. Open the save panel once and cancel it.
+        //     3. Quit the application.
+        //     4. Then, the application hangs up.
         super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
             defer {
                 completionHandler(error)
