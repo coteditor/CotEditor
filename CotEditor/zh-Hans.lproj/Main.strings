@@ -496,7 +496,7 @@
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
 "l33-Nz-UAw.title" = "在选择文本中查找";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
-"HgR-ke-6gq.title" = "查找全部";
+"HgR-ke-6gq.title" = "全部查找";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
 "ULf-cT-Xvb.title" = "选择全部查找到的匹配";
 
@@ -512,7 +512,7 @@
 /* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
 "KrV-3z-r5B.title" = "替换并查找下一个";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
-"5HV-xo-NTK.title" = "替换全部";
+"5HV-xo-NTK.title" = "全部替换";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "多重替换…";
 

@@ -67,7 +67,7 @@
 // Regular Expression
 
 /* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "Xa9-i4-ELR"; */
-"Xa9-i4-ELR.title" = "正規表示式檢索";
+"Xa9-i4-ELR.title" = "常規表示式檢索";
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
 "nqr-AM-oJQ.title" = "使點匹配換行";

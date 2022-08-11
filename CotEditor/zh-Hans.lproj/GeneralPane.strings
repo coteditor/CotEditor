@@ -28,7 +28,7 @@
 "zDW-aW-9G8.title" = "启动时：";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "重新打开上次会话的窗口";
+"QX9-BI-SIL.title" = "重新打开最后关闭的窗口";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
 "wmw-xg-bSt.title" = "当无项目可以打开时：";
 

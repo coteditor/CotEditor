@@ -88,16 +88,16 @@
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "次の一致を検索";  /* "Find next match." */
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
-"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近の検索";
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "検索履歴";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "最近の検索";
+"cdV-rY-hCN.title" = "検索履歴";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "検索履歴を消去";
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
-"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近の置換";
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "置換履歴";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "最近の置換";
+"7cw-iQ-0LM.title" = "置換履歴";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "置換履歴を消去";
 

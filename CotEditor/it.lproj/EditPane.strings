@@ -27,7 +27,7 @@
 /* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
 "SqI-BC-ar9.title" = "Sostituzione:";
 /* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
-"3302.title" = "Copia/Incolla intelligente";
+"3302.title" = "Copia/incolla smart";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "Inserisci automaticamente parentesi e virgolette di chiusura";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */

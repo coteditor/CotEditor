@@ -54,7 +54,7 @@
 "8My-G5-daT.ibShadowedToolTip" = "Düzenli ifade kullanarak aramak için seçin.";
 
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "BÜYÜK/küçük Harf Yok Say";
+"4wg-Cz-ozb.title" = "Büyük-Küçük Harf Fark Etmez";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
 "GvT-tD-Cbk.ibShadowedToolTip" = "Seçimde BÜYÜK/küçük harf yok saymak için seçin.";
 

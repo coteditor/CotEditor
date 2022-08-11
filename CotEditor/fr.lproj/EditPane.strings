@@ -61,7 +61,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "Renvoi à la ligne :";
+"P1I-gs-RgX.title" = "Retours à la ligne :";
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
 "3274.title" = "Renvoyer les lignes qui dépassent la largeur de l’éditeur";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
@@ -91,7 +91,7 @@
 "c5j-0N-f2R.title" = "Mots courants";
 
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
-"J1B-wA-rdr.title" = "Suggérer des mots pendant la frappe";
+"J1B-wA-rdr.title" = "Afficher des suggestions pendant la saisie";
 
 /* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
 "dmb-pc-4M5.title" = "Sélectionnez au moins un élément pour activer la complétion.";

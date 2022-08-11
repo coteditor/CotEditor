@@ -32,7 +32,7 @@
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerCell.title" = "IC";  /* IC */
-"1tC-mo-cEL.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+"1tC-mo-cEL.headerToolTip" = "大文字/小文字を無視";  /* Ignore Case (case-insensitive) */
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "6hB-wJ-niI"; */
 "6hB-wJ-niI.headerCell.title" = "説明";

@@ -106,7 +106,7 @@
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "Nella selezione";
+"4lm-Fu-Fcf.title" = "In selezione";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "Selezionare per ricercare testo solo all’interno della selezione.";
 

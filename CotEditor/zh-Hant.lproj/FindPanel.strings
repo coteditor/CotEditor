@@ -48,9 +48,9 @@
 "Y5M-CG-n0V.ibExternalAccessibilityDescription" = "清除";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
-"brT-HP-GVL.title" = "正規表示式";
+"brT-HP-GVL.title" = "常規表示式";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "8My-G5-daT"; */
-"8My-G5-daT.ibShadowedToolTip" = "選中以啟用正規表示式檢索。";
+"8My-G5-daT.ibShadowedToolTip" = "選中以啟用常規表示式檢索。";
 
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
 "4wg-Cz-ozb.title" = "忽略大小寫";
@@ -58,12 +58,12 @@
 "GvT-tD-Cbk.ibShadowedToolTip" = "選中以忽略大小寫。";
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "選中範圍內";
+"9bc-9Q-fhd.title" = "所選範圍";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
 "tu7-IT-dA3.ibShadowedToolTip" = "選中僅在選擇範圍內進行文字檢索。";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show quick reference for regular expression syntax."; ObjectID = "i2l-7Z-Zmf"; */
-"i2l-7Z-Zmf.ibShadowedToolTip" = "顯示正規表示式快速參考。";
+"i2l-7Z-Zmf.ibShadowedToolTip" = "顯示常規表示式快速參考。";
 
 
 // Buttons
@@ -74,7 +74,7 @@
 "OCv-Y5-8XR.ibShadowedToolTip" = "列出所有匹配。";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
-"5gU-5y-iLn.title" = "取代全部";
+"5gU-5y-iLn.title" = "全部取代";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
 "RR6-rj-B8P.ibShadowedToolTip" = "將所有匹配用取代文字取代。";
 
@@ -87,16 +87,16 @@
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "檢索後一個匹配。";  /* "Find next match." */
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
-"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近檢索";
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近的搜尋";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "最近檢索";
+"cdV-rY-hCN.title" = "最近的搜尋";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "清除最近檢索";
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
-"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近取代";
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近的取代";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "最近取代";
+"7cw-iQ-0LM.title" = "最近的取代";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "清除最近取代";
 

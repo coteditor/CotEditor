@@ -75,15 +75,15 @@
 
 /* MARK: Text Finder */
 "Replace" = "取代";
-"Find All" = "查找全部";
-"Replace All" = "取代全部";
+"Find All" = "全部查找";
+"Replace All" = "全部取代";
 "Highlight" = "高亮";
 "Searching in text…" = "正在文字中搜索…";
 "%lld string found." = "找到%lld個匹配";
 "%lld strings found." = "找到%lld個匹配";
 "%lld string replaced." = "已取代%lld個匹配";
 "%lld strings replaced." = "已取代%lld個匹配";
-"Invalid regular expression" = "無效的正規表達式";
+"Invalid regular expression" = "無效的常規表示式";
 "Empty find string" = "空的搜索字元串";
 "The option “in selection” is selected, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
 "Input text to find." = "輸入文字以查找。";
@@ -113,7 +113,7 @@
 
 
 /* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "基本正規表達式文法";
+"Basic Regular Expression Syntax" = "基本常規表示式文法";
 
 "Characters" = "字元";
 "any character" = "任意字元";
@@ -617,9 +617,9 @@
 "Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
 "Begin string" = "開始字元串";
 "End string" = "結束字元串";
-"Regular expression" = "正規表達式";
+"Regular expression" = "常規表示式";
 "The same word is registered multiple times." = "重複註冊。";
-"Regular Expression: " = "正規表達式：";
+"Regular Expression: " = "常規表示式：";
 
 
 

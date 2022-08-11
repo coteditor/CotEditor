@@ -75,8 +75,8 @@
 
 /* MARK: Text Finder */
 "Replace" = "替换";
-"Find All" = "查找全部";
-"Replace All" = "替换全部";
+"Find All" = "全部查找";
+"Replace All" = "全部替换";
 "Highlight" = "高亮";
 "Searching in text…" = "正在文本中搜索…";
 "%lld string found." = "找到%lld个匹配";

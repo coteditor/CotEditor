@@ -43,7 +43,7 @@
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
 "eio-Wb-V6q.title" = "Sıralama seçeneği:";
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
-"GS5-w5-IIt.title" = "BÜYÜK/küçük Harf Yok Say";
+"GS5-w5-IIt.title" = "Büyük-Küçük Harf Fark Etmez";
 /* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
 "x72-Sd-pMB.title" = "Dil kurallarına uy";
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
@@ -67,7 +67,7 @@
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
 "Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "Düzenli İfade";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
-"Lr8-mD-svg.title" = "BÜYÜK/küçük Harf Yok Say";
+"Lr8-mD-svg.title" = "Büyük-Küçük Harf Fark Etmez";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
 "eys-fy-HVq.title" = "Yakalanan grup kullan:";
 

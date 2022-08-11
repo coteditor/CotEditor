@@ -106,7 +106,7 @@
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "选中范围内";
+"4lm-Fu-Fcf.title" = "所选内容";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "选中仅在选择范围内进行文本查找。";
 
@@ -116,7 +116,7 @@
 "99C-Bz-ySi.ibShadowedToolTip" = "高亮所有匹配替换规则的文本。";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
-"LI2-Hh-D6g.title" = "替换全部";
+"LI2-Hh-D6g.title" = "全部替换";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
 "Nth-za-4Ad.ibShadowedToolTip" = "依据替换规则替换所有匹配文本。";
 

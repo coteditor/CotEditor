@@ -58,7 +58,7 @@
 "GvT-tD-Cbk.ibShadowedToolTip" = "选中以忽略大小写。";
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "选中范围内";
+"9bc-9Q-fhd.title" = "所选内容";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
 "tu7-IT-dA3.ibShadowedToolTip" = "选中仅在选择范围内进行文本查找。";
 
@@ -69,12 +69,12 @@
 // Buttons
 
 /* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
-"XLZ-92-VVF.title" = "查找全部";
+"XLZ-92-VVF.title" = "全部查找";
 /* Class = "NSButton"; ibShadowedToolTip = "Find and list up all matches."; ObjectID = "OCv-Y5-8XR"; */
 "OCv-Y5-8XR.ibShadowedToolTip" = "列出所有匹配。";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
-"5gU-5y-iLn.title" = "替换全部";
+"5gU-5y-iLn.title" = "全部替换";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
 "RR6-rj-B8P.ibShadowedToolTip" = "将所有匹配用替换文本替换。";
 
@@ -87,16 +87,16 @@
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "查找后一个匹配。";  /* "Find next match." */
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
-"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近查找";
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近的搜索";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "最近查找";
+"cdV-rY-hCN.title" = "最近的搜索";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "清除最近查找";
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
-"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近替换";
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近的替换";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "最近替换";
+"7cw-iQ-0LM.title" = "最近的替换";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "清除最近替换";
 

@@ -512,7 +512,7 @@
 /* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
 "KrV-3z-r5B.title" = "取代並檢索下一個";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
-"5HV-xo-NTK.title" = "取代全部";
+"5HV-xo-NTK.title" = "全部取代";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "多重取代…";
 

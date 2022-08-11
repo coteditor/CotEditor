@@ -58,7 +58,7 @@
 "GvT-tD-Cbk.ibShadowedToolTip" = "Selezionare per ignorare maiuscole/minuscole nella ricerca.";
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "Nella selezione";
+"9bc-9Q-fhd.title" = "In selezione";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
 "tu7-IT-dA3.ibShadowedToolTip" = "Selezionare per ricercare testo solo all’interno della selezione.";
 

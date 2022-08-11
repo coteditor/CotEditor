@@ -53,7 +53,7 @@
 "8My-G5-daT.ibShadowedToolTip" = "Selecione para buscar com expressão regular.";
 
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "Ignorar Maiúsculas";
+"4wg-Cz-ozb.title" = "Ignorar Maiúsculas/Minúsculas";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
 "GvT-tD-Cbk.ibShadowedToolTip" = "Selecione para ignorar maiúsculas/minúsculas ao buscar.";
 

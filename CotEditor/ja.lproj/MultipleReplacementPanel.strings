@@ -86,7 +86,7 @@
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
 "d3o-yf-jB4.headerCell.title" = "IC";
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerToolTip" = "大文字小文字を無視";
+"d3o-yf-jB4.headerToolTip" = "大文字/小文字を無視";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
 "Rhy-iE-CIC.headerCell.title" = "説明";

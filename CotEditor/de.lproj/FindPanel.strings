@@ -87,16 +87,16 @@
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "Nächste Übereinstimmung suchen.";  /* "Find next match." */
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
-"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Zuletzt gesucht";
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Letzte Sucheinträge";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
-"cdV-rY-hCN.title" = "Zuletzt gesucht";
+"cdV-rY-hCN.title" = "Letzte Sucheinträge";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "Letzte Sucheinträge löschen";
 
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
-"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Zuletzt ersetzt";
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Letzte Ersetzungen";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
-"7cw-iQ-0LM.title" = "Zuletzt ersetzt";
+"7cw-iQ-0LM.title" = "Letzte Ersetzungen";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Letzte Ersetzungen löschen";
 

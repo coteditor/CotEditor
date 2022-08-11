@@ -38,7 +38,7 @@
 "3278.title" = "Standard-Codierung:";
 
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
-"3277.title" = "Priorität der Codierung:";
+"3277.title" = "Priorität der Codierungen:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Liste bearbeiten …";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
