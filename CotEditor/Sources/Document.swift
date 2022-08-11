@@ -427,27 +427,35 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// save or autosave the document contents to a file
-    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) async throws {
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
         // break undo grouping
         for layoutManager in self.textStorage.layoutManagers {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        try await super.save(to: url, ofType: typeName, for: saveOperation)
-        
-        // apply syntax style that is inferred from the file name or the shebang
-        // -> Due to the async-saving, self.string can be changed from the actual saved contents.
-        //    But we don't care about that.
-        if saveOperation == .saveAsOperation,
-           let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-            ?? SyntaxManager.shared.settingName(documentContent: self.string)
-        {
-            self.setSyntaxStyle(name: styleName)
-        }
-        
-        if !saveOperation.isAutosave {
-            ScriptManager.shared.dispatch(event: .documentSaved, document: self)
+        // workaround the issue that invoking the async version super blocks the save process
+        // with macOS 12.1 + Xcode 13.2.1 (2022-01).
+        super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
+            defer {
+                completionHandler(error)
+            }
+            if error != nil { return }
+            
+            // apply syntax style that is inferred from the file name or the shebang
+            if saveOperation == .saveAsOperation {
+                if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
+                // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                //    But we don't care about that.
+                {
+                    self.setSyntaxStyle(name: styleName)
+                }
+            }
+            
+            if !saveOperation.isAutosave {
+                ScriptManager.shared.dispatch(event: .documentSaved, document: self)
+            }
         }
     }
     
