@@ -55,7 +55,7 @@ final class LineNumberView: NSView {
             
             // calculate margins
             self.padding = self.charWidth
-            self.tickLength = (scale * fontSize / 3).rounded(.up)
+            self.tickLength = scale * fontSize / 3
         }
         
     }
