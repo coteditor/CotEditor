@@ -111,7 +111,7 @@ extension StringProtocol {
             case .nfkc:
                 return self.precomposedStringWithCompatibilityMapping
             case .nfkcCasefold:
-                return String(self).precomposedStringWithCompatibilityMappingWithCasefold
+                return self.precomposedStringWithCompatibilityMappingWithCasefold
             case .modifiedNFD:
                 return String(self).decomposedStringWithHFSPlusMapping
             case .modifiedNFC:
@@ -122,20 +122,20 @@ extension StringProtocol {
 }
 
 
-extension String {
-    
-    // MARK: Public Properties
+extension StringProtocol {
     
     /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. NFKC_Casefold or NFKC_CF.
     var precomposedStringWithCompatibilityMappingWithCasefold: String {
         
-        let mutable = NSMutableString(string: self) as CFMutableString
-        CFStringNormalize(mutable, .KC)
-        CFStringFold(mutable, .compareCaseInsensitive, nil)
-        
-        return mutable as String
+        self.precomposedStringWithCompatibilityMapping
+            .folding(options: .caseInsensitive, locale: nil)
     }
+}
+
+
+extension String {
     
+    // MARK: Public Properties
     
     /// A string made by normalizing the receiver’s contents using the normalization form adopted by HFS+, a.k.a. Apple Modified NFC.
     var precomposedStringWithHFSPlusMapping: String {
