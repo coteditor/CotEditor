@@ -410,8 +410,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // get data from string to save
         guard var data = string.convertingYenSign(for: fileEncoding.encoding).data(using: fileEncoding.encoding, allowLossyConversion: true) else {
-            throw CocoaError.error(.fileWriteInapplicableStringEncoding,
-                                   userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
+            throw CocoaError(.fileWriteInapplicableStringEncoding,
+                             userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
         }
         
         // add UTF-8 BOM if needed
