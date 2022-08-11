@@ -237,7 +237,7 @@
 "404.title" = "Menor";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
 "574.title" = "Restaurar Padrão";
-/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
+/* Class = "NSMenuItem"; title = "Antialias"; ObjectID = "745"; */
 "745.title" = "Antisserrilhado";
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
 "viH-Eo-wKz.title" = "Ligadures";
