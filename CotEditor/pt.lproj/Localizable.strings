@@ -274,6 +274,7 @@
 // menu
 "Tab Width" = "Largura da Tabulação";
 "Custom…" = "Personalizar…";
+"Auto-Expand Tabs" = "Expandir Tabulações Automaticamente";
 
 "Wrap Lines" = "Ajustar Linhas";
 // tooltip

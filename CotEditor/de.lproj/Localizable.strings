@@ -274,6 +274,7 @@
 // menu
 "Tab Width" = "Tabulatorbreite";
 "Custom…" = "Konfigurieren …";
+"Auto-Expand Tabs" = "Tabulatoren automatisch expandieren";
 
 "Wrap Lines" = "Zeilen umbrechen";
 // tooltip
