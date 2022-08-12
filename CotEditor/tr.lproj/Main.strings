@@ -256,7 +256,7 @@
 "9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "Özel…";
-/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Expand to Spaces Automatically"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Sekmeleri Kendiliğinden Genişlet";
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */

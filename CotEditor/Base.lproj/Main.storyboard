@@ -497,7 +497,7 @@ Gw
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
-                                                    <menuItem title="Auto-Expand Tabs" id="hsG-8k-OKX">
+                                                    <menuItem title="Expand Tabs Automatically" id="hsG-8k-OKX">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleAutoTabExpand:" target="Ady-hI-5gd" id="OC3-9y-dRT"/>

@@ -470,7 +470,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
                 menu.items.last?.indentationLevel = 1
                 menu.addItem(.separator())
-                menu.addItem(withTitle: "Auto-Expand Tabs".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
+                menu.addItem(withTitle: "Expand to Spaces Automatically".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
