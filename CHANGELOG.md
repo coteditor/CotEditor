@@ -2,6 +2,18 @@
 Change Log
 ==========================
 
+4.3.3 (525)
+--------------------------
+
+### Fixes
+
+- Fix an issue that the application could hang up when an opened document shared in iCloud Drive was modified in another machine. 
+- Fix an issue that document windows sometimes did not shift the initial position from the last window. 
+- Fix an issue that the scrollable area of the editor in vertical layout orientation could be clipped wrongly when scaled.
+- Fix an issue that some text was not localized.
+
+
+
 4.3.2 (522)
 --------------------------
 
@@ -39,7 +51,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that memory rarely leaks on closing documents.
+- Fix an issue that memory rarely leaked on closing documents.
 
 
 
