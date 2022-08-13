@@ -283,6 +283,7 @@
 // menu
 "Tab Width" = "Tab宽度";
 "Custom…" = "自定义…";
+"Auto-Expand Tabs" = "Tab转为空格";
 
 "Wrap Lines" = "换行";
 // tooltip

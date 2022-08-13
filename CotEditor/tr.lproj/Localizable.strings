@@ -283,6 +283,7 @@
 // menu
 "Tab Width" = "Sekme Genişliği";
 "Custom…" = "Özel…";
+"Auto-Expand Tabs" = "Sekmeleri Kendiliğinden Genişlet";
 
 "Wrap Lines" = "Satırları Kaydır";
 // tooltip

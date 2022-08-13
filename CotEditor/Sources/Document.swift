@@ -738,43 +738,25 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             UserDefaults.standard[.documentConflictOption] != .ignore,
             !self.isExternalUpdateAlertShown,  // don't check twice if already notified
             let fileURL = self.fileURL
-            else { return }
+        else { return }
         
-        var didChange = false
-        var fileModificationDate: Date?
-        var coordinatorError: NSError?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinatorError) { (newURL) in  // FILE_READ
-            let data: Data
-            do {
-                // ignore if file's modificationDate is the same as document's modificationDate
-                fileModificationDate = try FileManager.default.attributesOfItem(atPath: newURL.path)[.modificationDate] as? Date
-                guard fileModificationDate != self.fileModificationDate else { return }
-                
-                // check if file contents was changed from the stored file data
-                data = try Data(contentsOf: newURL, options: [.mappedIfSafe])
-            } catch {
-                return assertionFailure(error.localizedDescription)
-            }
-            didChange = (data != self.fileData)
-        }
-        if let error = coordinatorError {
-            assertionFailure(error.localizedDescription)
+        // check wheather the document content is really modified
+        // -> Avoid using NSFileCoordinator although the document recommends
+        //    because it cause deadlock when the document in the iCloud Document remotely modified.
+        //    (2022-08 on macOS 12.5, Xcode 14, #1296)
+        let data: Data
+        do {
+            // ignore if file's modificationDate is the same as document's modificationDate
+            let fileModificationDate = try FileManager.default.attributesOfItem(atPath: fileURL.path)[.modificationDate] as? Date
+            guard fileModificationDate != self.fileModificationDate else { return }
+            
+            // check if file contents was changed from the stored file data
+            data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])
+        } catch {
+            return assertionFailure(error.localizedDescription)
         }
         
-        guard didChange else {
-            // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-            // -> If not, an alert shows up when user saves the file.
-            DispatchQueue.main.async { [weak self] in
-                guard
-                    let lastModificationDate = self?.fileModificationDate,
-                    let fileModificationDate = fileModificationDate,
-                    lastModificationDate < fileModificationDate
-                    else { return }
-                
-                self?.fileModificationDate = fileModificationDate
-            }
-            return
-        }
+        guard data != self.fileData else { return }
         
         // notify about external file update
         DispatchQueue.main.async { [weak self] in
