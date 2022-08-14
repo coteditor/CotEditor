@@ -97,10 +97,10 @@ extension Document {
             switch newValue {
                 case let textStorage as NSTextStorage:
                     self.insert(string: textStorage.string, at: .replaceAll)
-                
+                    
                 case let string as String:
                     self.insert(string: string, at: .replaceAll)
-                
+                    
                 default:
                     assertionFailure()
             }
@@ -112,7 +112,7 @@ extension Document {
     @objc var contents: Any {
         
         get {
-            return self.scriptTextStorage
+            self.scriptTextStorage
         }
         
         set {
@@ -125,7 +125,7 @@ extension Document {
     @objc var selectionObject: Any {
         
         get {
-            return self.selection
+            self.selection
         }
         
         set {
@@ -139,7 +139,7 @@ extension Document {
     /// length of document (integer)
     @objc var length: Int {
         
-        return (self.string as NSString).length
+        (self.string as NSString).length
     }
     
     
@@ -147,7 +147,7 @@ extension Document {
     @objc var lineEndingChar: FourCharCode {
         
         get {
-            return (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue
+            (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue
         }
         
         set {
@@ -161,14 +161,14 @@ extension Document {
     /// encoding name (Unicode text)
     @objc var encodingName: String {
         
-        return String.localizedName(of: self.fileEncoding.encoding)
+        String.localizedName(of: self.fileEncoding.encoding)
     }
     
     
     /// encoding in IANA CharSet name (Unicode text)
     @objc var IANACharSetName: String {
         
-        return self.fileEncoding.encoding.ianaCharSetName ?? ""
+        self.fileEncoding.encoding.ianaCharSetName ?? ""
     }
     
     
@@ -184,7 +184,7 @@ extension Document {
     @objc var coloringStyle: String {
         
         get {
-            return self.syntaxParser.style.name
+            self.syntaxParser.style.name
         }
         
         set {
@@ -197,7 +197,7 @@ extension Document {
     @objc var wrapsLines: Bool {
         
         get {
-            return self.viewController?.wrapsLines ?? false
+            self.viewController?.wrapsLines ?? false
         }
         
         set {
@@ -210,7 +210,7 @@ extension Document {
     @objc var tabWidth: Int {
         
         get {
-            return self.viewController?.tabWidth ?? 0
+            self.viewController?.tabWidth ?? 0
         }
         
         set {
@@ -223,7 +223,7 @@ extension Document {
     @objc var expandsTab: Bool {
         
         get {
-            return self.viewController?.isAutoTabExpandEnabled ?? false
+            self.viewController?.isAutoTabExpandEnabled ?? false
         }
         
         set {
@@ -300,7 +300,7 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty
-            else { return false }
+        else { return false }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
@@ -309,7 +309,7 @@ extension Document {
         let string = self.string as NSString
         guard let foundRange = string.range(of: searchString, selectedRange: self.selectedRange,
                                             options: options, isWrapSearch: isWrapSearch)
-            else { return false }
+        else { return false }
         
         self.selectedRange = foundRange
         
@@ -324,7 +324,7 @@ extension Document {
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
             let replacementString = arguments["newString"] as? String
-            else { return 0 }
+        else { return 0 }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
@@ -361,7 +361,7 @@ extension Document {
         } else {
             guard let foundRange = (string as NSString).range(of: searchString, selectedRange: self.selectedRange,
                                                               options: options, isWrapSearch: isWrapSearch)
-                else { return 0 }
+            else { return 0 }
             
             let replacedString: String
             if options.contains(.regularExpression) {

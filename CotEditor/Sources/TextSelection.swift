@@ -88,7 +88,7 @@ final class TextSelection: NSObject {
     /// return object name which is determined in the sdef file
     override var objectSpecifier: NSScriptObjectSpecifier? {
         
-        return NSNameSpecifier(containerSpecifier: self.document!.objectSpecifier, key: "text selection")
+        NSNameSpecifier(containerSpecifier: self.document!.objectSpecifier, key: "text selection")
     }
     
     
@@ -142,7 +142,7 @@ final class TextSelection: NSObject {
                 let length = newValue?[1],
                 let string = self.document?.string,
                 let range = string.range(in: FuzzyRange(location: location, length: length))
-                else { return }
+            else { return }
             
             self.document?.selectedRange = range
         }
@@ -169,7 +169,7 @@ final class TextSelection: NSObject {
                 let lineRange = newValue,
                 (1...2).contains(lineRange.count),
                 let textView = self.document?.textView
-                else { return }
+            else { return }
             
             let fuzzyRange = FuzzyRange(location: lineRange[0], length: lineRange[safe: 1] ?? 1)
             
@@ -252,7 +252,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["caseType"] as? UInt32,
             let type = OSACaseType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .lowercase:
@@ -271,7 +272,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["widthType"] as? UInt32,
             let type = OSAWidthType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .half:
@@ -288,7 +290,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
             let type = OSAKanaType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .hiragana:
@@ -326,7 +329,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["unfType"] as? UInt32,
             let type = OSAUnicodeNormalizationType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .nfc:
@@ -352,7 +356,7 @@ final class TextSelection: NSObject {
     
     private var textView: EditorTextView? {
         
-        return self.document?.viewController?.focusedTextView
+        self.document?.viewController?.focusedTextView
     }
     
 }
