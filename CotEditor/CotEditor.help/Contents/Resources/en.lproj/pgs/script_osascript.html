@@ -62,10 +62,10 @@
 		<dd>The current selection. (selection-object)</dd>
 
 		<dt><code>encoding</code></dt>
-		<dd>The text encoding name of the document. (Unicode text)</dd>
+		<dd>The text encoding name of the document. (text)</dd>
 
 		<dt><code>IANA charset</code></dt>
-		<dd>The IANA charset name of the document. (Unicode text, e.g.<code>Shift_JIS</code>, <code>EUC-JP</code>)</dd>
+		<dd>The IANA charset name of the document. (text, e.g.<code>Shift_JIS</code>, <code>EUC-JP</code>)</dd>
 
 		<dt><code>has BOM</code></dt>
 		<dd>Has the file encoding a BOM (byte order mark)? (boolean) <span class="added">new on CotEditor 4.1</span></dd>
@@ -83,7 +83,7 @@
 		<dd>Whether to wrap lines or not. (boolean)</dd>
 
 		<dt><code>coloring style</code></dt>
-		<dd>The syntax coloring style name of the document. (Unicode text)</dd>
+		<dd>The syntax coloring style name of the document. (text)</dd>
 	</dl></dd>
 </dl>
 </section>
@@ -189,7 +189,7 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 	<dt><code class="command">find</code></dt>
 	<dd>Searches a string, selects the string and returns <code>true</code>, if any, otherwise returns <code>false</code>.</dd>
 	<dd><dl class="subtree">
-		<dt><code>for</code> (Unicode text)</dt>
+		<dt><code>for</code> (text)</dt>
 		<dd>The string to search for.</dd>
 
 		<dt>[<code>RE</code> (boolean)]</dt>
@@ -238,10 +238,10 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dt><code class="command">replace</code></dt>
 	<dd>Searches a string, replaces the string and returns the number of replacements, if any, otherwise returns <code>0</code>.</dd>
 	<dd><dl class="subtree">
-		<dt><code>for</code> (Unicode text)</dt>
+		<dt><code>for</code> (text)</dt>
 		<dd>The string to search for.</dd>
 
-		<dt><code>to</code> (Unicode text)</dt>
+		<dt><code>to</code> (text)</dt>
 		<dd>The string to replace with.</dd>
 
 		<dt>[<code>all</code> (boolean)]</dt>
@@ -350,7 +350,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dt><code class="command">convert</code></dt>
 	<dd>Converts the text encoding of the document.</dd>
 	<dd><dl class="subtree">
-		<dt><code>to</code> (Unicode text)</dt>
+		<dt><code>to</code> (text)</dt>
 		<dd>The new encoding, either in localized encoding name or an IANA charset name.</dd>
 
 		<dt>[<code>lossy</code>] (boolean)</dt>
@@ -390,7 +390,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dt><code class="command">reinterpret</code></dt>
 	<dd>Reinterpret the document with the specified text encoding.</dd>
 	<dd><dl class="subtree">
-		<dt><code>as</code> (Unicode text)</dt>
+		<dt><code>as</code> (text)</dt>
 		<dd>The encoding for reinterpreting, either in localized encoding name or an IANA charset name.</dd>
 	</dl></dd>
 	<dd><dl>
@@ -494,7 +494,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	</dl></dd>
 	<dd><dl>
 		<dt>Return value</dt>
-		<dd>Unicode text</dd>
+		<dd>text</dd>
 	</dl></dd>
 	
 	<dd><dl>

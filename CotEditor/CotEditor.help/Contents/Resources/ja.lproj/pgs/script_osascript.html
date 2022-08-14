@@ -62,10 +62,10 @@
 		<dd>書類の選択内容オブジェクト（selection-object型）</dd>
 
 		<dt><code>encoding</code></dt>
-		<dd>エンコーディング（Unicode text型）</dd>
+		<dd>エンコーディング（text型）</dd>
 
 		<dt><code>IANA charset</code></dt>
-		<dd>エンコーディングのIANA charset名（Unicode text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
+		<dd>エンコーディングのIANA charset名（text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
 
 		<dt><code>has BOM</code></dt>
 		<dd>エンコーディングでBOMがあるかどうか（boolean型）<span class="added">CotEditor 4.1で追加</span></dd>
@@ -83,7 +83,7 @@
 		<dd>折り返しているかどうか（boolean型）</dd>
 
 		<dt><code>coloring style</code></dt>
-		<dd>シンタックススタイル（Unicode text型）</dd>
+		<dd>シンタックススタイル（text型）</dd>
 	</dl></dd>
 </dl>
 </section>
@@ -190,7 +190,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 	<dt><code class="command">find</code></dt>
 	<dd>検索し、対象文字列があれば選択状態にして<code>true</code>を返す。見つからなければ<code>false</code>を返す。</dd>
 	<dd><dl class="subtree">
-		<dt><code>for</code> (Unicode text)</dt>
+		<dt><code>for</code> (text)</dt>
 		<dd>検索対象文字列</dd>
 
 		<dt>[<code>RE</code> (boolean)]</dt>
@@ -238,10 +238,10 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 	<dt><code class="command">replace</code></dt>
 	<dd>検索し、対象文字列があれば置換して置換された回数を返す。見つからなければ<code>0</code>を返す。</dd>
 	<dd><dl class="subtree">
-		<dt><code>for</code> (Unicode text)</dt>
+		<dt><code>for</code> (text)</dt>
 		<dd>置換対象文字列</dd>
 
-		<dt><code>to</code> (Unicode text)</dt>
+		<dt><code>to</code> (text)</dt>
 		<dd>置換後の文字列</dd>
 
 		<dt>[<code>all</code> (boolean)]</dt>
@@ -352,7 +352,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 	<dt><code class="command">convert</code></dt>
 	<dd>書類のエンコーディングを変換する。</dd>
 	<dd><dl class="subtree">
-		<dt><code>to</code> (Unicode text)</dt>
+		<dt><code>to</code> (text)</dt>
 		<dd>新しいエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
 
 		<dt>[<code>lossy</code>] (boolean)</dt>
@@ -392,7 +392,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 	<dt><code class="command">reinterpret</code></dt>
 	<dd>書類を指定されたエンコーディングでファイル内容を再解釈する。</dd>
 	<dd><dl class="subtree">
-		<dt><code>as</code> (Unicode text)</dt>
+		<dt><code>as</code> (text)</dt>
 		<dd>新しいエンコーディング（ローカライズされたエンコーディング名かIANA charset名で指定）</dd>
 	</dl></dd>
 	<dd><dl>
@@ -490,7 +490,7 @@ lengthが負である場合、指定される範囲は対象書類の文字列�
 	</dl></dd>
 	<dd><dl>
 		<dt>返り値</dt>
-		<dd>Unicode text型</dd>
+		<dd>text型</dd>
 	</dl></dd>
 	
 	<dd><dl>
