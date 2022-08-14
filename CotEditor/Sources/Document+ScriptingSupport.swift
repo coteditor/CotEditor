@@ -122,17 +122,9 @@ extension Document {
     
     
     /// selection-object (TextSelection)
-    @objc var selectionObject: Any {
+    @objc var selectionObject: TextSelection {
         
-        get {
-            self.selection
-        }
-        
-        set {
-            guard let string = newValue as? String else { return }
-            
-            self.selection.contents = string
-        }
+        self.selection
     }
     
     

@@ -77,7 +77,7 @@
             <property name="expands tab" code="extb" type="boolean" access="rw" description="Are tab characters expanded to space?">
                 <cocoa key="expandsTab"/>
             </property>
-            <property name="selection" code="sele" type="text selection" access="rw" description="The current selection.">
+            <property name="selection" code="sele" type="text selection" access="r" description="The current selection.">
                 <cocoa key="selectionObject"/>
             </property>
             <property name="wrap lines" code="wRln" type="boolean" access="rw" description="Are lines wrapped?">
