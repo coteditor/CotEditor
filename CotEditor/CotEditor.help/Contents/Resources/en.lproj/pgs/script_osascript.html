@@ -38,14 +38,6 @@
 <h3>Window</h3>
 
 <p>A CotEditor window.</p>
-
-<dl class="tree">
-	<dt>Properties</dt>
-	<dd><dl class="subtree">
-		<dt><code>view opacity</code></dt>
-		<dd><del>The opacity of the view. (real, from ‘0.2’ to ‘1.0’)</del> <span class="deprecated">deprecated on CotEditor 3.5</span></dd>
-	</dl></dd>
-</dl>
 </section>
 
 
@@ -63,8 +55,8 @@
 		<dt><code>text</code></dt>
 		<dd>The contents of the document. (text)</dd>
 
-		<dt><code>length</code></dt>
-		<dd>The number of characters of the document. (int)</dd>
+		<dt><del><code>length</code></del></dt>
+		<dd><del>The number of characters of the document in UTF-16. (int)</del> <span class="deprecated">deprecated on CotEditor 4.4</span></dd>
 
 		<dt><code>selection</code></dt>
 		<dd>The current selection. (selection-object)</dd>
@@ -92,9 +84,6 @@
 
 		<dt><code>coloring style</code></dt>
 		<dd>The syntax coloring style name of the document. (Unicode text)</dd>
-
-		<dt><del><code>line spacing</code></del></dt>
-		<dd><del>The spacing between lines. (real, from ‘0.0’ to ‘10.0’)</del> <span class="deprecated">deprecated on CotEditor 2.6</span></dd>
 	</dl></dd>
 </dl>
 </section>

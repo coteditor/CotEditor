@@ -136,10 +136,12 @@ extension Document {
     }
     
     
-    /// length of document (integer)
+    /// length of document in UTF-16 (integer)
+    ///
+    /// - Note: deprecated in CotEditor 4.4.0 (2022-10).
     @objc var length: Int {
         
-        (self.string as NSString).length
+        self.string.utf16.count
     }
     
     

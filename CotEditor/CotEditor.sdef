@@ -65,7 +65,9 @@
             <property name="has BOM" code="hBOM" type="boolean" access="r" description="Is the file encoding of the document has BOM (byte order mark)?">
                 <cocoa key="hasBOM"/>
             </property>
-            <property name="length" code="slen" type="integer" access="r" description="The number of characters in the document."/>
+            <property name="length" code="slen" type="integer" access="r" hidden="yes" description="The number of characters in the document. !!!: This property is deprecated on CotEditor 4.4.0, and available just for the backward compatibility.">
+                <!-- this property is deprecated -->
+            </property>
             <property name="line ending" code="lend" type="line ending character" access="rw" description="The line ending type of the document.">
                 <cocoa key="lineEndingChar"/>
             </property>

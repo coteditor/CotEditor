@@ -38,14 +38,6 @@
 <h3>Window</h3>
 
 <p>CotEditorウインドウ</p>
-
-<dl class="tree">
-	<dt>プロパティ</dt>
-	<dd><dl class="subtree">
-		<dt><code>view opacity</code></dt>
-		<dd><del>エディタの不透明度（real型、0.2から1.0の範囲）</del><span class="deprecated">CotEditor 3.5で廃止</span></dd>
-	</dl></dd>
-</dl>
 </section>
 
 
@@ -63,8 +55,8 @@
 		<dt><code>text</code></dt>
 		<dd>書類の内容文字列（text型）</dd>
 
-		<dt><code>length</code></dt>
-		<dd>書類の文字数（int型）</dd>
+		<dt><del><code>length</code></del></dt>
+		<dd><del>書類のUTF-16単位の字数（int型）</del><span class="deprecated">CotEditor 4.4で廃止</span></dd>
 
 		<dt><code>selection</code></dt>
 		<dd>書類の選択内容オブジェクト（selection-object型）</dd>
@@ -92,9 +84,6 @@
 
 		<dt><code>coloring style</code></dt>
 		<dd>シンタックススタイル（Unicode text型）</dd>
-
-		<dt><del><code>line spacing</code></del></dt>
-		<dd><del>行間値（real型、0.0から10.0の範囲）</del><span class="deprecated">CotEditor 2.6で廃止</span></dd>
 	</dl></dd>
 </dl>
 </section>
