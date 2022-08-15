@@ -1,5 +1,5 @@
 //
-//  Editable.swift
+//  NSTextView+ScriptingSupport.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,12 +26,6 @@
 
 import Cocoa
 
-protocol Editable: AnyObject {
-    
-    var textView: NSTextView? { get }
-}
-
-
 enum InsertionLocation {
     
     case replaceSelection
@@ -41,47 +35,7 @@ enum InsertionLocation {
 }
 
 
-extension Editable {
-    
-    /// whole string
-    var string: String {
-        
-        self.textView?.string ?? ""
-    }
-    
-    
-    /// current selection
-    var selectedString: String {
-        
-        self.textView?.selectedString ?? ""
-    }
-    
-    
-    /// selected range in focused text view
-    var selectedRange: NSRange {
-        
-        get { self.textView?.selectedRange ?? .notFound }
-        set { self.textView?.selectedRange = newValue }
-    }
-    
-    
-    /// insert string at desire location and select inserted range
-    func insert(string: String, at location: InsertionLocation) {
-        
-        self.textView?.insert(string: string, at: location)
-    }
-    
-}
-
-
-private extension NSTextView {
-    
-    /// current selection
-    var selectedString: String {
-        
-        (self.string as NSString).substring(with: self.selectedRange)
-    }
-    
+extension NSTextView {
     
     /// Insert string at desire location and select inserted range.
     func insert(string: String, at location: InsertionLocation) {

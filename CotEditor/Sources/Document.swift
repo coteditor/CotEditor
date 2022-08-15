@@ -805,17 +805,24 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// Return whole string in the current text storage.
+    /// The whole string in the current text storage.
     var string: String {
         
         self.textStorage.string
     }
     
     
-    /// return document window's editor wrapper
+    /// The view controller represents document.
     var viewController: DocumentViewController? {
         
-        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
+        (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
+    }
+    
+    
+    /// The text view currently focused.
+    var textView: NSTextView? {
+        
+        self.viewController?.focusedTextView
     }
     
     
@@ -1059,7 +1066,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
         
-        self.insert(string: string, at: .replaceSelection)
+        self.textView?.insert(string: string, at: .replaceSelection)
     }
     
     
@@ -1234,19 +1241,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         } catch {
             self.presentErrorAsSheetSafely(error)
         }
-    }
-    
-}
-
-
-
-// MARK: - Protocol
-
-extension Document: Editable {
-    
-    var textView: NSTextView? {
-        
-        return self.viewController?.focusedTextView
     }
     
 }

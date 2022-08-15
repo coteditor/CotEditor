@@ -96,12 +96,12 @@ final class UnixScript: Script {
         }
         
         // fetch target document
-        weak var document = await NSDocumentController.shared.currentDocument as? NSDocument & Editable
+        weak var document = await NSDocumentController.shared.currentDocument as? Document
         
         // read input
         let input: String?
         if let inputType = InputType(scanning: script) {
-            input = try await self.readInput(type: inputType, editor: document)
+            input = try await self.readInput(type: inputType, editor: document?.textView)
         } else {
             input = nil
         }
@@ -158,7 +158,7 @@ final class UnixScript: Script {
         // apply output
         if let outputType = outputType, let output = String(data: outputData, encoding: .utf8) {
             do {
-                try await self.applyOutput(output, type: outputType, editor: document)
+                try await self.applyOutput(output, type: outputType, editor: document?.textView)
             } catch {
                 await Console.shared.show(message: error.localizedDescription, title: self.name)
             }
@@ -182,13 +182,13 @@ final class UnixScript: Script {
     ///   - editor: The editor to read the input.
     /// - Returns: The read string.
     /// - Throws: `ScriptError`
-    @MainActor private func readInput(type: InputType, editor: Editable?) throws -> String {
+    @MainActor private func readInput(type: InputType, editor: NSTextView?) throws -> String {
         
         guard let editor = editor else { throw ScriptError.noInputTarget }
         
         switch type {
             case .selection:
-                return editor.selectedString
+                return (editor.string as NSString).substring(with: editor.selectedRange)
             case .allText:
                 return editor.string
         }
@@ -200,9 +200,9 @@ final class UnixScript: Script {
     /// - Parameters:
     ///   - output: The output string.
     ///   - type: The type of output target.
-    ///   - editor: The editor to write the output.
+    ///   - editor: The textView to write the output.
     /// - Throws: `ScriptError`
-    @MainActor private func applyOutput(_ output: String, type: OutputType, editor: Editable?) throws {
+    @MainActor private func applyOutput(_ output: String, type: OutputType, editor: NSTextView?) throws {
         
         switch type {
             case .replaceSelection:
@@ -222,9 +222,9 @@ final class UnixScript: Script {
                 editor.insert(string: output, at: .afterAll)
             
             case .newDocument:
-                let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! any Editable
-                document.insert(string: output, at: .replaceAll)
-                document.selectedRange = NSRange(0..<0)
+                guard let editor = try (NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as? Document)?.textView else { throw ScriptError.noOutputTarget }
+                editor.insert(string: output, at: .replaceAll)
+                editor.selectedRange = NSRange(0..<0)
             
             case .pasteBoard:
                 NSPasteboard.general.clearContents()

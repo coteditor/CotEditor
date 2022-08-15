@@ -87,23 +87,24 @@ extension Document {
             let textStorage = NSTextStorage(string: self.string)
             
             textStorage.observeDirectEditing { [weak self] (editedString) in
-                self?.insert(string: editedString, at: .replaceAll)
+                self?.textView?.insert(string: editedString, at: .replaceAll)
             }
             
             return textStorage
         }
         
         set {
+            let string: String
             switch newValue {
                 case let textStorage as NSTextStorage:
-                    self.insert(string: textStorage.string, at: .replaceAll)
-                    
-                case let string as String:
-                    self.insert(string: string, at: .replaceAll)
-                    
+                    string = textStorage.string
+                case let str as String:
+                    string = str
                 default:
-                    assertionFailure()
+                    return assertionFailure()
             }
+            
+            self.textView?.insert(string: string, at: .replaceAll)
         }
     }
     
@@ -293,7 +294,8 @@ extension Document {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String, !searchString.isEmpty
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
+            let textView = self.textView
         else { return false }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
@@ -301,11 +303,11 @@ extension Document {
         
         // perform find
         let string = self.string as NSString
-        guard let foundRange = string.range(of: searchString, selectedRange: self.selectedRange,
+        guard let foundRange = string.range(of: searchString, selectedRange: textView.selectedRange,
                                             options: options, isWrapSearch: isWrapSearch)
         else { return false }
         
-        self.selectedRange = foundRange
+        textView.selectedRange = foundRange
         
         return true
     }
@@ -317,7 +319,8 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
-            let replacementString = arguments["newString"] as? String
+            let replacementString = arguments["newString"] as? String,
+            let textView = self.textView
         else { return 0 }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
@@ -347,13 +350,13 @@ extension Document {
             
             guard count > 0 else { return 0 }
             
-            self.insert(string: mutableString as String, at: .replaceAll)
-            self.selectedRange = NSRange()
+            textView.insert(string: mutableString as String, at: .replaceAll)
+            textView.selectedRange = NSRange()
             
             return count as NSNumber
             
         } else {
-            guard let foundRange = (string as NSString).range(of: searchString, selectedRange: self.selectedRange,
+            guard let foundRange = (string as NSString).range(of: searchString, selectedRange: textView.selectedRange,
                                                               options: options, isWrapSearch: isWrapSearch)
             else { return 0 }
             
@@ -373,8 +376,8 @@ extension Document {
                 replacedString = replacementString
             }
             
-            self.selectedRange = foundRange
-            self.insert(string: replacedString, at: .replaceSelection)
+            textView.selectedRange = foundRange
+            textView.insert(string: replacedString, at: .replaceSelection)
             
             return 1
         }
