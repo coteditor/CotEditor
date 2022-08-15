@@ -1850,7 +1850,6 @@
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
 				2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */,
-				2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */,
 				2AFB5AEA1D597AFC003895A7 /* Defaults */,
 			);
 			name = Application;
@@ -1993,7 +1992,6 @@
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
-				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
 				2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */,
 				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
@@ -2072,6 +2070,7 @@
 				2A7CF2441A5747F400D09249 /* Text Finder */,
 				2A42825318FCC22100386899 /* Document */,
 				2A80BE9327FFFBAB00D2F7FF /* Scanners */,
+				2A9F58E628AAB07500346A98 /* ScriptingSupport */,
 				2A42825418FCC23400386899 /* Document Window */,
 				2A42825218FCC1C100386899 /* Text View */,
 				2A15832C18E3A29A00601026 /* Views */,
@@ -2205,10 +2204,7 @@
 				2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */,
 				2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */,
 				2A1679E51D3CE07100E8261D /* Document.swift */,
-				2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */,
 				2A50AA61204D513500D10A10 /* DocumentFile.swift */,
-				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
-				2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */,
 			);
 			name = Document;
 			sourceTree = "<group>";
@@ -2366,6 +2362,18 @@
 				2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsView.swift */,
 			);
 			name = "Other View Controllers";
+			sourceTree = "<group>";
+		};
+		2A9F58E628AAB07500346A98 /* ScriptingSupport */ = {
+			isa = PBXGroup;
+			children = (
+				2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */,
+				2AF0C12C1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift */,
+				2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */,
+				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
+				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
+			);
+			name = ScriptingSupport;
 			sourceTree = "<group>";
 		};
 		2AA14CFA1FA47E9000EAF586 /* Script */ = {
