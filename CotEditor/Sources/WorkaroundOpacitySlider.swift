@@ -38,7 +38,7 @@ final class WorkaroundOpacitySlider: NSSlider {
         // (2022-01, macOS 12)
         if newWindow != nil,
            self.infoForBinding(.value) == nil,
-           let documentWindow = NSApp.orderedDocuments.first?.windowControllers.first?.window as? DocumentWindow
+           let documentWindow = NSDocumentController.shared.currentDocument?.windowControllers.first?.window as? DocumentWindow
         {
             self.bind(.value, to: documentWindow, withKeyPath: #keyPath(DocumentWindow.backgroundAlpha))
         }
