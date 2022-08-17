@@ -218,7 +218,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // store directory URL to avoid finding Autosaved Information directory every time
                 struct AutosaveDirectory {
                     
-                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    static let url = try! FileManager.default.url(for: .autosavedInformationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 }
                 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
@@ -228,7 +228,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
                 let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
                 
-                super.autosavedContentsFileURL =  AutosaveDirectory.URL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
+                super.autosavedContentsFileURL =  AutosaveDirectory.url.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
             }
             
             return super.autosavedContentsFileURL
