@@ -1149,7 +1149,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.showsHelp = true
         alert.helpAnchor = "inconsistent_line_endings"
         
-        alert.beginSheetModal(for: documentWindow) { returnCode in
+        alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
             if alert.suppressionButton?.state == .on {
                 self.suppressesInconsistentLineEndingAlert = true
                 self.invalidateRestorableState()
@@ -1207,7 +1207,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: documentWindow) { returnCode in
+            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revertWithoutAsking()
                 }
