@@ -80,12 +80,12 @@ final class IncompatibleCharacterScanner {
         guard let document = self.document else { return assertionFailure() }
         let encoding = document.fileEncoding.encoding
         
-        guard !document.string.canBeConverted(to: encoding) else {
+        guard !document.textStorage.string.canBeConverted(to: encoding) else {
             self.incompatibleCharacters = []
             return
         }
         
-        let string = document.string.immutable
+        let string = document.textStorage.string.immutable
         
         self.isScanning = true
         self.task = Task {

@@ -84,7 +84,7 @@ extension Document {
     @objc var scriptTextStorage: Any {
         
         get {
-            let textStorage = NSTextStorage(string: self.string)
+            let textStorage = NSTextStorage(string: self.textStorage.string)
             
             textStorage.observeDirectEditing { [weak self] (editedString) in
                 self?.textView?.insert(string: editedString, at: .replaceAll)
@@ -134,7 +134,7 @@ extension Document {
     /// - Note: deprecated in CotEditor 4.4.0 (2022-10).
     @objc var length: Int {
         
-        self.string.utf16.count
+        self.textStorage.string.utf16.count
     }
     
     
@@ -302,7 +302,7 @@ extension Document {
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         // perform find
-        let string = self.string as NSString
+        let string = self.textStorage.string as NSString
         guard let foundRange = string.range(of: searchString, selectedRange: textView.selectedRange,
                                             options: options, isWrapSearch: isWrapSearch)
         else { return false }
@@ -327,7 +327,7 @@ extension Document {
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         let isAll = (arguments["all"] as? Bool) ?? false
         
-        let string = self.string
+        let string = self.textStorage.string
         
         guard !string.isEmpty else { return 0 }
         
@@ -434,13 +434,13 @@ extension Document {
         
         let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
         
-        guard let range = self.string.range(in: fuzzyRange) else {
+        guard let range = self.textStorage.string.range(in: fuzzyRange) else {
             command.scriptErrorNumber = OSAParameterMismatch
             command.scriptErrorString = "Out of the range."
             return nil
         }
         
-        return (self.string as NSString).substring(with: range)
+        return (self.textStorage.string as NSString).substring(with: range)
     }
     
     

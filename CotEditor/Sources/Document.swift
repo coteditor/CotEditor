@@ -130,8 +130,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         
         // store unencoded string but only when incompatible
-        if !self.string.canBeConverted(to: self.fileEncoding.encoding) {
-            coder.encode(self.string, forKey: SerializationKey.originalContentString)
+        if !self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) {
+            coder.encode(self.textStorage.string, forKey: SerializationKey.originalContentString)
         }
     }
     
@@ -402,7 +402,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to async-saving.
         
         let fileEncoding = self.fileEncoding
-        let string = self.string.immutable
+        let string = self.textStorage.string.immutable
         
         // unblock the user interface, since fetching current document state has been done here
         self.unblockUserInteraction()
@@ -449,8 +449,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
-                // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                    ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
+                // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
                 //    But we don't care about that.
                 {
                     self.setSyntaxStyle(name: styleName)
@@ -805,13 +805,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// The whole string in the current text storage.
-    var string: String {
-        
-        self.textStorage.string
-    }
-    
-    
     /// The view controller represents document.
     var viewController: DocumentViewController? {
         
@@ -859,7 +852,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard fileEncoding != self.fileEncoding else { return }
         
         // check if conversion is lossy
-        guard lossy || self.string.canBeConverted(to: fileEncoding.encoding) else {
+        guard lossy || self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
             throw EncodingError(kind: .lossyConversion, fileEncoding: fileEncoding, attempter: self)
         }
         
@@ -887,12 +880,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard
             lineEnding != self.lineEnding ||
-            self.string.lineEndingRanges().count > 1
+                self.textStorage.string.lineEndingRanges().count > 1
         else { return }
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.string] target in
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.changeLineEnding(to: currentLineEnding)
                 target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
             }
@@ -1128,7 +1121,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// check if the content can be saved with the file encoding
     private func checkSavingSafetyForConverting() throws {
         
-        guard self.string.canBeConverted(to: self.fileEncoding.encoding) else {
+        guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
             throw EncodingError(kind: .lossySaving, fileEncoding: self.fileEncoding, attempter: self)
         }
     }
