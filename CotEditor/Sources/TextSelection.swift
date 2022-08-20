@@ -99,7 +99,7 @@ final class TextSelection: NSObject {
     @objc var contents: Any? {
         
         get {
-            guard let textView = self.textView else {return nil }
+            guard let textView = self.textView else { return nil }
             
             let textStorage = NSTextStorage(string: textView.string)
             
