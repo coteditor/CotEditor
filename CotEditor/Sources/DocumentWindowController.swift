@@ -536,8 +536,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let opacityViewController = self.storyboard!.instantiateController(withIdentifier: "Opacity Slider") as! NSViewController
-                opacityViewController.representedObject = self.window
+                let opacityViewController = self.storyboard!.instantiateController(withIdentifier: "Opacity Slider") as! OpacityViewController
+                opacityViewController.window = self.window
                 let menuItem = NSMenuItem()
                 menuItem.view = opacityViewController.view
                 menuItem.representedObject = opacityViewController

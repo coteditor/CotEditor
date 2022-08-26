@@ -36,6 +36,11 @@ Change Log
 - [dev] Update the build environment to Xcode 14.0.
 
 
+### Fixes
+
+- Fix an issue that memory could leak when the opacity toolbar item is used.
+
+
 
 4.3.4 (527)
 --------------------------

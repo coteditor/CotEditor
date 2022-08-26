@@ -118,6 +118,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             .sink { [weak self] (change) in self?.setSyntaxStyle(name: change.new ?? BundledStyleName.none) }
     }
     
+    deinit {
+        moof()
+    }
+    
     
     /// store internal document state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
