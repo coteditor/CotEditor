@@ -41,12 +41,11 @@ final class SyntaxParser {
     
     // MARK: Public Properties
     
-    let textStorage: NSTextStorage
-    
     var style: SyntaxStyle {
         
         didSet {
-            self.invalidateCurrentParse()
+            self.outlineParseTask?.cancel()
+            self.highlightParseTask?.cancel()
             self.outlineExtractors = style.outlineExtractors
             self.highlightParser = style.highlightParser
         }
@@ -56,6 +55,8 @@ final class SyntaxParser {
     
     
     // MARK: Private Properties
+    
+    private let textStorage: NSTextStorage
     
     private lazy var outlineExtractors: [OutlineExtractor] = self.style.outlineExtractors
     private lazy var highlightParser: HighlightParser = self.style.highlightParser
@@ -71,7 +72,7 @@ final class SyntaxParser {
     // MARK: -
     // MARK: Lifecycle
     
-    init(textStorage: NSTextStorage, style: SyntaxStyle = SyntaxStyle()) {
+    init(textStorage: NSTextStorage, style: SyntaxStyle) {
         
         self.textStorage = textStorage
         self.style = style
@@ -85,16 +86,6 @@ final class SyntaxParser {
     
     
     deinit {
-        self.invalidateCurrentParse()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// Cancel all syntax parse.
-    private func invalidateCurrentParse() {
-        
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
     }
@@ -127,7 +118,7 @@ extension SyntaxParser {
         self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
             self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
-                    _ = group.addTaskUnlessCancelled { try extractor.items(in: string, range: string.range) }
+                    group.addTask { try extractor.items(in: string, range: string.range) }
                 }
                 
                 return try await group.reduce(into: []) { $0 += $1 }
@@ -225,10 +216,10 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func parse(string: String, range highlightRange: NSRange) {
+    private func parse(string: String, range: NSRange) {
         
-        assert(!(string as NSString).className.contains("MutableString"))
-        assert(!highlightRange.isEmpty)
+        assert(!(string as NSString).className.contains("Mutable"))
+        assert(!range.isEmpty)
         assert(!self.highlightParser.isEmpty)
         
         let parser = self.highlightParser
@@ -238,25 +229,25 @@ extension SyntaxParser {
             defer {
                 self?.isHighlighting = false
             }
-            let highlights = try await parser.parse(string: string, range: highlightRange)
+            let highlights = try await parser.parse(string: string, range: range)
             
             try Task.checkCancellation()
             
-            await self?.apply(highlights: highlights, range: highlightRange)
+            await self?.apply(highlights: highlights, range: range)
         }
         
         // make large parse cancellable
-        if highlightRange.length > 10_000 {
+        if range.length > 10_000 {
             self.isHighlighting = true
         }
     }
     
     
     /// apply highlights to all the layoutManagers.
-    @MainActor private func apply(highlights: [Highlight], range highlightRange: NSRange) {
+    @MainActor private func apply(highlights: [Highlight], range: NSRange) {
         
         for layoutManager in self.textStorage.layoutManagers {
-            layoutManager.apply(highlights: highlights, range: highlightRange)
+            layoutManager.apply(highlights: highlights, range: range)
         }
     }
     
@@ -290,21 +281,19 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.
-    ///   - highlightRange: The range to update syntax highlight.
-    @MainActor func apply(highlights: [Highlight], range highlightRange: NSRange) {
+    ///   - range: The range to update syntax highlight.
+    @MainActor func apply(highlights: [Highlight], range: NSRange) {
         
-        // -> This condition is really, really important to reduce the time
-        //    to apply large number of temporary attributes. (2022-06, macOS 12)
         assert(highlights.sorted(\.range.location) == highlights)
         
         // skip if never colorlized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
-        guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { return }
+        guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }
         
         let theme = (self.firstTextView as? any Themable)?.theme
         
-        self.groupTemporaryAttributesUpdate(in: highlightRange) {
-            self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
-            self.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
+        self.groupTemporaryAttributesUpdate(in: range) {
+            self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+            self.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
             
             for highlight in highlights {
                 self.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)
