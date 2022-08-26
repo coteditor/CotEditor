@@ -597,7 +597,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// close document
     override func close() {
         
-        self.syntaxParser.invalidateCurrentParse()
         self.textStorageObserver?.cancel()
         self.savePanelAccessoryController?.representedObject = nil
         
@@ -910,7 +909,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
-        self.syntaxParser.invalidateCurrentParse()
         self.syntaxParser.style = syntaxStyle
         
         // skip notification when initial style was set on file open

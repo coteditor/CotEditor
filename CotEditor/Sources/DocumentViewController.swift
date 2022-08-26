@@ -255,9 +255,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(recolorAll):
-                return self.syntaxParser?.canHighlight ?? false
-            
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
                     item.state = (self.theme?.name == item.title) ? .on : .off

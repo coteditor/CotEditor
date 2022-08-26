@@ -46,6 +46,7 @@ final class SyntaxParser {
     var style: SyntaxStyle {
         
         didSet {
+            self.invalidateCurrentParse()
             self.outlineExtractors = style.outlineExtractors
             self.highlightParser = style.highlightParser
         }
@@ -89,17 +90,10 @@ final class SyntaxParser {
     
     
     
-    // MARK: Public Methods
+    // MARK: Private Methods
     
-    /// Whether syntax should be parsed.
-    var canHighlight: Bool {
-        
-        !self.highlightParser.isEmpty
-    }
-    
-    
-    /// Cancel all syntax parse including ones in the queues.
-    func invalidateCurrentParse() {
+    /// Cancel all syntax parse.
+    private func invalidateCurrentParse() {
         
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
