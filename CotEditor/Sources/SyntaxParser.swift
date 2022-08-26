@@ -61,6 +61,7 @@ final class SyntaxParser {
     
     private var outlineParseTask: Task<Void, any Error>?
     private var highlightParseTask: Task<Void, any Error>?
+    private var isHighlighting = false
     
     private var textEditingObserver: AnyCancellable?
     
@@ -152,24 +153,28 @@ extension SyntaxParser {
     /// Update highlights around passed-in range.
     ///
     /// - Parameters:
-    ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
-    /// - Returns: The progress of the async highlight task if performed.
-    @MainActor func highlight(around editedRange: NSRange?) -> Progress? {
+    ///   - editedRange: The character range that was edited, or `nil` to highlight the entire range.
+    @MainActor func highlight(around editedRange: NSRange? = nil) {
         
-        guard !self.textStorage.string.isEmpty else { return nil }
+        // retry entire parsing if the last one has not finished yet
+        var editedRange = editedRange
+        if self.isHighlighting {
+            self.highlightParseTask?.cancel()
+            editedRange = nil
+        }
+        
+        guard !self.textStorage.string.isEmpty else { return }
         
         // in case that wholeRange length is changed from editedRange
         guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
-            debugPrint("⚠️ Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) lentgh textStorage is passed in to \(#function)")
-            return nil
+            return debugPrint("⚠️ Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) lentgh textStorage is passed in to \(#function)")
         }
         
         let wholeRange = self.textStorage.range
         
         // just clear current highlight and return if no coloring required
         guard !self.highlightParser.isEmpty else {
-            self.apply(highlights: [], range: wholeRange)
-            return nil
+            return self.apply(highlights: [], range: wholeRange)
         }
         
         let highlightRange: NSRange = {
@@ -194,14 +199,13 @@ extension SyntaxParser {
                 if highlightRange.lowerBound > 0,
                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
                 {
-                    highlightRange = NSRange(location: effectiveRange.lowerBound,
-                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
+                    highlightRange = NSRange(effectiveRange.lowerBound..<highlightRange.upperBound)
                 }
                 
                 if highlightRange.upperBound < wholeRange.upperBound,
                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
                 {
-                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
+                    highlightRange = NSRange(highlightRange.lowerBound..<effectiveRange.upperBound)
                 }
             }
             
@@ -211,7 +215,7 @@ extension SyntaxParser {
             
             return highlightRange
         }()
-        guard !highlightRange.isEmpty else { return nil }
+        guard !highlightRange.isEmpty else { return }
         
         // make sure the string is immutable
         // -> `string` of NSTextStorage is actually a mutable object
@@ -219,7 +223,7 @@ extension SyntaxParser {
         //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
-        return self.parse(string: string, range: highlightRange)
+        self.parse(string: string, range: highlightRange)
     }
     
     
@@ -227,30 +231,30 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    @MainActor private func parse(string: String, range highlightRange: NSRange) -> Progress {
+    private func parse(string: String, range highlightRange: NSRange) {
         
         assert(!(string as NSString).className.contains("MutableString"))
         assert(!highlightRange.isEmpty)
         assert(!self.highlightParser.isEmpty)
         
         let parser = self.highlightParser
-        let progress = Progress(totalUnitCount: 1)
         
-        let task = Task.detached(priority: .userInitiated) { [weak self] in
+        self.highlightParseTask?.cancel()
+        self.highlightParseTask = Task.detached(priority: .userInitiated) { [weak self] in
+            defer {
+                self?.isHighlighting = false
+            }
             let highlights = try await parser.parse(string: string, range: highlightRange)
             
             try Task.checkCancellation()
             
             await self?.apply(highlights: highlights, range: highlightRange)
-            
-            progress.completedUnitCount += 1
         }
-        progress.cancellationHandler = { task.cancel() }
         
-        self.highlightParseTask?.cancel()
-        self.highlightParseTask = task
-        
-        return progress
+        // make large parse cancellable
+        if highlightRange.length > 10_000 {
+            self.isHighlighting = true
+        }
     }
     
     

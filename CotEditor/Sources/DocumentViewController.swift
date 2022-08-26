@@ -59,7 +59,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     private var themeChangeObserver: AnyCancellable?
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
-    private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
@@ -201,7 +200,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             
             // start parsing syntax for highlighting and outlines
             self.outlineParseDebouncer.perform()
-            self.invalidateSyntaxHighlight()
+            document.syntaxParser.highlight()
             
             // detect indent style
             if UserDefaults.standard[.detectsIndentStyle],
@@ -393,7 +392,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
-            self?.invalidateSyntaxHighlight(in: editedRange)
+            self?.syntaxParser?.highlight(around: editedRange)
         }
     }
     
@@ -418,7 +417,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         self.outlineParseDebouncer.perform()
-        self.invalidateSyntaxHighlight()
+        syntaxParser.highlight()
     }
     
     
@@ -633,7 +632,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// recolor whole document
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.invalidateSyntaxHighlight()
+        self.syntaxParser?.highlight()
     }
     
     
@@ -873,31 +872,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     
     // MARK: Private Methods
-    
-    /// Invalidate the current syntax highlight.
-    ///
-    /// - Parameter range: The character range to invalidate syntax highlight, or `nil` when entire text is needed to re-highlight.
-    private func invalidateSyntaxHighlight(in range: NSRange? = nil) {
-        
-        assert(self.syntaxParser != nil)
-        
-        var range = range
-        
-        // retry entire syntax highlight if the last highlightAll has not finished yet
-        if let progress = self.syntaxHighlightProgress, !progress.isFinished, !progress.isCancelled {
-            progress.cancel()
-            range = nil
-        }
-        
-        // start parse
-        let progress = self.syntaxParser?.highlight(around: range)
-        
-        // make large update cancellable
-        if let length = range?.length ?? self.textStorage?.length, length > 10_000  {
-            self.syntaxHighlightProgress = progress
-        }
-    }
-    
     
     /// create and set-up new (split) editor view
     private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
