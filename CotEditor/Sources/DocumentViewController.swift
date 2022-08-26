@@ -795,9 +795,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// show editor opacity slider as popover
     @IBAction func showOpacitySlider(_ sender: Any?) {
         
-        guard let viewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? NSViewController else { return assertionFailure() }
+        guard let viewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? OpacityViewController else { return assertionFailure() }
         
-        viewController.representedObject = self.view.window
+        viewController.window = self.view.window
         
         self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
                      preferredEdge: .maxY, behavior: .transient)

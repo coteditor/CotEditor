@@ -14,6 +14,7 @@ Change Log
 
 - Address an issue since macOS 12.4 that the buttons in the save dialog became occasionally unresponsive when the application is running in the Japanese environment.
 - Fix an issue that the option “Give execute permission” in the save dialog was applied to the document even the save operation cancelled.
+- Fix an issue that memory could leak when the opacity toolbar item is used.
 - Fix an issue that the column of the outline pane was narrower than the list width.
 - Fix an issue that the width of the line number view was not updated when the content was changed on disk.
 - Fix some typo.

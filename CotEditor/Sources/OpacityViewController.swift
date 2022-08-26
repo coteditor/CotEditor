@@ -1,5 +1,5 @@
 //
-//  WorkaroundOpacitySlider.swift
+//  OpacityViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,6 +24,12 @@
 //
 
 import AppKit
+
+final class OpacityViewController: NSViewController {
+    
+    @objc dynamic weak var window: NSWindow?
+}
+
 
 /// - Attention: Only for the slider for editor opacity slider.
 final class WorkaroundOpacitySlider: NSSlider {
