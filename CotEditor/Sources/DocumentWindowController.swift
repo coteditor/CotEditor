@@ -72,6 +72,12 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.shouldCascadeWindows = true
         self.windowFrameAutosaveName = "Document"
         
+        // set window frame manually to workaround the issue that
+        // the window cascading randomly fails with window frame autosave. (2022-08, macOS 12.5)
+        if let descriptor = UserDefaults.standard.string(forKey: "NSWindow Frame \(self.windowFrameAutosaveName)") {
+            self.window?.setFrame(from: descriptor)
+        }
+        
         // set window size
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
@@ -140,6 +146,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     
     // MARK: Window Delegate
+    
+    func windowDidResize(_ notification: Notification) {
+        
+        guard self.isWindowLoaded, let window = self.window else { return }
+        
+        // workaround issue that window frame is not saved automatically (2022-08 macOS 12.5, FB11082729)
+        window.saveFrame(usingName: self.windowFrameAutosaveName)
+    }
+    
     
     func windowWillEnterFullScreen(_ notification: Notification) {
         

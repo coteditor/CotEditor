@@ -37,6 +37,15 @@ Change Log
 
 
 
+4.3.4 (527)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 4.3.3 that the window size was not inherited from the last document.
+
+
+
 4.3.3 (525)
 --------------------------
 
