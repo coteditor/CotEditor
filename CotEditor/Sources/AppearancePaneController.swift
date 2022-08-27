@@ -803,18 +803,17 @@ extension AppearancePaneController: NSFontChanging {
         let name = UserDefaults.standard[.fontName]
         let size = UserDefaults.standard[.fontSize]
         let shouldAntiailias = UserDefaults.standard[.shouldAntialias]
-        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
         
         guard
             let font = NSFont(name: name, size: size),
-            let displayFont = NSFont(name: name, size: min(size, maxDisplaySize)),
             let fontField = self.fontField
-            else { return }
+        else { return }
         
         let displayName = font.displayName ?? font.fontName
+        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
         
         fontField.stringValue = displayName + " " + size.formatted()
-        fontField.font = displayFont
+        fontField.font = font.withSize(min(size, maxDisplaySize))
         fontField.disablesAntialiasing = !shouldAntiailias
     }
     

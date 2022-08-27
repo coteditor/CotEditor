@@ -56,19 +56,21 @@ extension OutlineItem {
     
     func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
         
-        var font = baseFont
         var attributes = attributes
+        var traits: NSFontDescriptor.SymbolicTraits = []
         
         if self.style.contains(.bold) {
-            font = NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask)
+            traits.insert(.bold)
         }
         if self.style.contains(.italic) {
-            font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
+            traits.insert(.italic)
         }
         if self.style.contains(.underline) {
             attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
-        attributes[.font] = font
+        
+        attributes[.font] = NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits),
+                                   size: baseFont.pointSize)
         
         return NSAttributedString(string: self.title, attributes: attributes)
     }

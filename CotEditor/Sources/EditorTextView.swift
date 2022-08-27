@@ -179,7 +179,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let font: NSFont = {
             let fontName = defaults[.fontName]
             let fontSize = defaults[.fontSize]
-            return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
+            return NSFont(name: fontName, size: fontSize) ?? .userFont(ofSize: fontSize) ?? .systemFont(ofSize: fontSize)
         }()
         super.font = font
         layoutManager.textFont = font
