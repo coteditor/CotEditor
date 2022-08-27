@@ -1857,6 +1857,9 @@
 		2A180F462854E58400EBAF66 /* TextKit */ = {
 			isa = PBXGroup;
 			children = (
+				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
+				2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */,
+				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
 				2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */,
 			);
 			name = TextKit;
@@ -1991,9 +1994,6 @@
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
-				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
-				2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */,
-				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
 				2A05081223D6B9E900602F5E /* NSViewController.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
