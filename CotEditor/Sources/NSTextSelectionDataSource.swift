@@ -1,5 +1,5 @@
 //
-//  NSTextContentManager.swift
+//  NSTextSelectionDataSource.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,7 +27,7 @@ import AppKit
 
 // MARK: Range Conversion
 
-extension NSTextContentManager {
+extension NSTextSelectionDataSource {
     
     /// Convert NSRange to NSTextRange.
     ///

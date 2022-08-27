@@ -78,8 +78,8 @@
 		2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */; };
 		2A17A3161D2D4319001DD717 /* DocumentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3151D2D4319001DD717 /* DocumentWindow.swift */; };
 		2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A17A3151D2D4319001DD717 /* DocumentWindow.swift */; };
-		2A180F4B2854E71800EBAF66 /* NSTextContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A180F4A2854E71800EBAF66 /* NSTextContentManager.swift */; };
-		2A180F4C2854E71800EBAF66 /* NSTextContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A180F4A2854E71800EBAF66 /* NSTextContentManager.swift */; };
+		2A180F4B2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */; };
+		2A180F4C2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */; };
 		2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */; };
 		2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */; };
 		2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */; };
@@ -954,7 +954,7 @@
 		2A1679E51D3CE07100E8261D /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowContentViewController.swift; sourceTree = "<group>"; };
 		2A17A3151D2D4319001DD717 /* DocumentWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindow.swift; sourceTree = "<group>"; };
-		2A180F4A2854E71800EBAF66 /* NSTextContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextContentManager.swift; sourceTree = "<group>"; };
+		2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTextSelectionDataSource.swift; sourceTree = "<group>"; };
 		2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionFormatter.swift; sourceTree = "<group>"; };
 		2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegularExpressionSyntaxType+Color.swift"; sourceTree = "<group>"; };
 		2A1814BD21CFC9CF00602214 /* RegexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexTextField.swift; sourceTree = "<group>"; };
@@ -1857,7 +1857,7 @@
 		2A180F462854E58400EBAF66 /* TextKit */ = {
 			isa = PBXGroup;
 			children = (
-				2A180F4A2854E71800EBAF66 /* NSTextContentManager.swift */,
+				2A180F4A2854E71800EBAF66 /* NSTextSelectionDataSource.swift */,
 			);
 			name = TextKit;
 			sourceTree = "<group>";
@@ -3197,7 +3197,7 @@
 				2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2ACA0C9E21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */,
-				2A180F4B2854E71800EBAF66 /* NSTextContentManager.swift in Sources */,
+				2A180F4B2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
 				2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
 				2A1125C723F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */,
 				2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
@@ -3531,7 +3531,7 @@
 				2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2A6FD9ED1D3A85D700A59784 /* NSString.swift in Sources */,
-				2A180F4C2854E71800EBAF66 /* NSTextContentManager.swift in Sources */,
+				2A180F4C2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
 				2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
 				2A1125C623F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */,
 				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,

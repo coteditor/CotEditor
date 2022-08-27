@@ -39,12 +39,11 @@ extension NSTextView {
         // avoid using TextKit 2 on macOS 12 because it does actually not work (2022-07).
         guard
             #available(macOS 13, *),
-            let layoutManager = self.textLayoutManager,
-            let contentManager = layoutManager.textContentManager
+            let layoutManager = self.textLayoutManager
         else { return self.highlightAsRegularExpressionPatternWithLegacyTextKit(mode: mode, enabled: enabled) }
         
         // clear the last highlight anyway
-        layoutManager.removeRenderingAttribute(.foregroundColor, for: contentManager.documentRange)
+        layoutManager.removeRenderingAttribute(.foregroundColor, for: layoutManager.documentRange)
         
         guard enabled else { return true }
         
@@ -59,7 +58,7 @@ extension NSTextView {
         // highlight
         for type in RegularExpressionSyntaxType.priority.reversed() {
             for range in type.ranges(in: self.string, mode: mode) {
-                guard let textRange = contentManager.textRange(for: range) else { continue }
+                guard let textRange = layoutManager.textRange(for: range) else { continue }
                 layoutManager.addRenderingAttribute(.foregroundColor, value: type.color, for: textRange)
             }
         }
