@@ -33,7 +33,7 @@ final class FilterField: NSSearchField {
                                        accessibilityDescription: "filter".localized)!
     private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
                                                 accessibilityDescription: "filter".localized)!
-        .tinted(with: .controlAccentColor)
+        .withSymbolConfiguration(.init(paletteColors: [.controlAccentColor]))!
     
     
     
