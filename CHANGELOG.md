@@ -28,6 +28,7 @@ Change Log
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.
 - Improve the algorithm of encoding detection.
+- Improve VoiceOver support.
 - Deprecate the “Ignore line endings when counting characters” option.
 - [trivial] Adjust ticks in the line number view for vertical orientation.
 - [trivial] Save documents asynchronously.

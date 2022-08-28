@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21219" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21219"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -586,8 +586,8 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="u6p-Hz-aK5">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Find previous match." image="NSGoLeftTemplate" width="32" tag="3"/>
-                                        <segment toolTip="Find next match." image="NSGoRightTemplate" width="32" tag="2"/>
+                                        <segment toolTip="Find previous match." image="chevron.backward" catalog="system" width="32" tag="3"/>
+                                        <segment toolTip="Find next match." image="chevron.forward" catalog="system" width="32" tag="2"/>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
@@ -628,9 +628,9 @@
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="15" height="15"/>
-        <image name="NSGoLeftTemplate" width="10" height="14"/>
-        <image name="NSGoRightTemplate" width="10" height="14"/>
         <image name="NSStopProgressFreestandingTemplate" width="15" height="15"/>
+        <image name="chevron.backward" catalog="system" width="10" height="14"/>
+        <image name="chevron.forward" catalog="system" width="10" height="14"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>

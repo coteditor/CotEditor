@@ -148,14 +148,15 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="wZK-fo-Sky">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="f1I-iq-7Ha" id="ilc-7n-q0o"/>
                                     <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryHeaderAlignment" id="o6Y-Ju-UzO"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="primaryHeaderContent" previousBinding="zqU-1W-Au6" id="HY9-zP-4O1">
                                         <dictionary key="options">
@@ -173,14 +174,15 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="phR-yp-SWP">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="lW8-WA-sUW" id="Pfa-Ji-2ZV"/>
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsHeader" id="pYB-rR-FaL"/>
                                     <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="secondaryHeaderAlignment" id="vFE-bC-Bb0"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="secondaryHeaderContent" previousBinding="pYB-rR-FaL" id="iY4-gm-2xf">
@@ -222,14 +224,15 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Qh8-SW-Qcm">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="JEM-Eg-bfM" id="WUh-mW-fmm"/>
                                     <binding destination="bU7-R8-ocO" name="selectedTag" keyPath="primaryFooterAlignment" id="xRY-eU-52j"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="primaryFooterContent" previousBinding="bL4-Ga-QAw" id="RmR-OF-Yej">
                                         <dictionary key="options">
@@ -295,14 +298,15 @@
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="2gN-eY-bmu">
                                     <font key="font" metaFont="system"/>
                                     <segments>
-                                        <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                        <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
                                 </segmentedCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="BMN-9W-V2O" id="E46-uW-adf"/>
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="cTD-Kd-SE9"/>
                                     <binding destination="bU7-R8-ocO" name="selectedIndex" keyPath="secondaryFooterAlignment" id="4vD-ax-KUb"/>
                                     <binding destination="bU7-R8-ocO" name="enabled2" keyPath="secondaryFooterContent" previousBinding="cTD-Kd-SE9" id="XsA-9z-gB4">
@@ -410,8 +414,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left.to.line" catalog="system" width="17" height="12"/>
-        <image name="arrow.right.and.line.vertical.and.arrow.left" width="20" height="12"/>
-        <image name="arrow.right.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" width="26" height="16"/>
     </resources>
 </document>

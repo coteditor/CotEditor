@@ -61,6 +61,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="akE-EA-zGb"/>
                                             <action selector="updateFontField:" target="WBM-EY-ENr" id="zZp-TH-Xyb"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.shouldAntialias" id="WYd-vz-gCE"/>
                                         </connections>
@@ -72,6 +73,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="yEn-NR-Avf"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.ligature" id="BcZ-Pb-BN1"/>
                                         </connections>
                                     </button>

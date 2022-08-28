@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21208.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,9 +22,9 @@
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                                 <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                                <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -64,9 +64,9 @@
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                                 <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                                <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -123,9 +123,9 @@
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                                 <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22">
+                                                <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -231,9 +231,9 @@
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Align Left" image="arrow.left.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                                 <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                                <segment toolTip="Align Right" image="arrow.right.to.line" catalog="system" width="22"/>
+                                                <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -372,8 +372,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
+        <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
         <image name="arrow.right.and.line.vertical.and.arrow.left" width="26" height="16"/>
-        <image name="arrow.right.to.line" catalog="system" width="17" height="12"/>
     </resources>
 </document>

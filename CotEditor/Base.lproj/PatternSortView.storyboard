@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21208.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -469,6 +469,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Mfy-cT-iBU" id="oty-uR-Vn5"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="cDT-FV-4Vo" id="gHr-T5-9H1">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -483,6 +484,7 @@ Gw
                                 <rect key="frame" x="190" y="2" width="19" height="28"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Mfy-cT-iBU" id="SbB-y4-IdY"/>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="35M-Gp-zFo" id="NnC-Je-R8x"/>
                                     <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="35M-Gp-zFo"/>

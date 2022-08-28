@@ -173,6 +173,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         let inSelection = UserDefaults.standard[.findInSelection]
         self.definition.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
             self?.resultMessage = resultMessage
+            
+            // feedback for VoiceOver
+            if let window = NSApp.mainWindow {
+                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
+            }
         }
     }
     
@@ -187,6 +192,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         let inSelection = UserDefaults.standard[.findInSelection]
         self.definition.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
             self?.resultMessage = resultMessage
+            
+            // feedback for VoiceOver
+            if let window = NSApp.mainWindow {
+                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
+            }
         }
     }
     
