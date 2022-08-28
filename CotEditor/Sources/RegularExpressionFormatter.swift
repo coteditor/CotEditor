@@ -70,7 +70,7 @@ final class RegularExpressionFormatter: Formatter {
                     } catch {
                         if self.showsError {
                             let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill",
-                                                           configuration: .preferringMulticolor())
+                                                           configuration: .init(hierarchicalColor: .systemYellow))
                             attributedString.replaceCharacters(in: NSRange(..<0), with: alert)
                         }
                         return attributedString
