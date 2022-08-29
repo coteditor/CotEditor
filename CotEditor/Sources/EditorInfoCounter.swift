@@ -29,18 +29,17 @@ struct EditorInfoTypes: OptionSet {
     
     let rawValue: Int
     
-    static let length     = Self(rawValue: 1 << 0)
-    static let characters = Self(rawValue: 1 << 1)
-    static let lines      = Self(rawValue: 1 << 2)
-    static let words      = Self(rawValue: 1 << 3)
-    static let location   = Self(rawValue: 1 << 4)
-    static let line       = Self(rawValue: 1 << 5)
-    static let column     = Self(rawValue: 1 << 6)
-    static let unicode    = Self(rawValue: 1 << 7)
+    static let characters = Self(rawValue: 1 << 0)
+    static let lines      = Self(rawValue: 1 << 1)
+    static let words      = Self(rawValue: 1 << 2)
+    static let location   = Self(rawValue: 1 << 3)
+    static let line       = Self(rawValue: 1 << 4)
+    static let column     = Self(rawValue: 1 << 5)
+    static let unicode    = Self(rawValue: 1 << 6)
     
-    static let all: Self = [.length, .characters, .lines, .words, .location, .line, .column, .unicode]
+    static let all: Self = [.characters, .lines, .words, .location, .line, .column, .unicode]
     
-    static let counts: Self = [.length, .characters, .lines, .words]
+    static let counts: Self = [.characters, .lines, .words]
     static let cursors: Self = [.location, .line, .column]
 }
 
@@ -49,7 +48,6 @@ struct EditorCountResult: Equatable {
     
     struct Count: Equatable {
         
-        var length = 0
         var characters = 0
         var lines = 0
         var words = 0
@@ -166,12 +164,6 @@ final class EditorInfoCounter {
     private func count(in string: some StringProtocol) throws -> EditorCountResult.Count {
         
         var count = EditorCountResult.Count()
-        
-        try Task.checkCancellation()
-        
-        if self.requiredInfo.contains(.length) {
-            count.length = string.utf16.count
-        }
         
         try Task.checkCancellation()
         

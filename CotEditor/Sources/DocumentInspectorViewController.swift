@@ -42,7 +42,6 @@ final class EditorInfo: NSObject {
     @objc dynamic var lines: String?
     @objc dynamic var chars: String?
     @objc dynamic var words: String?
-    @objc dynamic var length: String?    // character length as UTF-16 string
     
     @objc dynamic var location: String?  // cursor location from the beginning of document
     @objc dynamic var line: String?      // current line
@@ -167,7 +166,6 @@ final class DocumentInspectorViewController: NSViewController {
         document.analyzer.$result
             .receive(on: DispatchQueue.main)
             .sink { [info = self.editorInfo] (result) in
-                info.length = result.format(\.length)
                 info.chars = result.format(\.characters)
                 info.lines = result.format(\.lines)
                 info.words = result.format(\.words)
