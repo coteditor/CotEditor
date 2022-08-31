@@ -36,6 +36,7 @@ Change Log
 - [trivial] Organize the editor's contextual menu.
 - [trivial] Improve the basic regular expression syntax reference.
 - [dev] Update the build environment to Xcode 14.0.
+- [non-AppStore ver.] Update Sparkle to 2.2.2.
 
 
 ### Fixes
