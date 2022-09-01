@@ -34,7 +34,8 @@ Change Log
 - [trivial] Adjust ticks in the line number view for vertical orientation.
 - [trivial] Save documents asynchronously.
 - [trivial] Organize the editor's contextual menu.
-- [trivial] Improve the basic regular expression syntax reference.
+- [trivial] Improve the basic regular expression syntax reference.]
+- [trivial] Improve the status bar display.
 - [dev] Update the build environment to Xcode 14.0.
 - [non-AppStore ver.] Update Sparkle to 2.2.2.
 

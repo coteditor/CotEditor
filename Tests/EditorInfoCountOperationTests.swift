@@ -45,14 +45,9 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 0)
-        XCTAssertEqual(result.count.characters, 0)
-        XCTAssertEqual(result.count.lines, 0)
-        XCTAssertEqual(result.count.words, 0)
-        XCTAssertEqual(result.selectedCount.length, 0)
-        XCTAssertEqual(result.selectedCount.characters, 0)
-        XCTAssertEqual(result.selectedCount.lines, 0)
-        XCTAssertEqual(result.selectedCount.words, 0)
+        XCTAssertNil(result.count)
+        XCTAssertNil(result.selectedCount)
+        XCTAssertNil(result.cursor)
     }
     
     
@@ -67,19 +62,17 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 36)
-        XCTAssertEqual(result.count.characters, 31)
-        XCTAssertEqual(result.count.lines, 3)
-        XCTAssertEqual(result.count.words, 6)
+        XCTAssertEqual(result.count!.characters, 31)
+        XCTAssertEqual(result.count!.lines, 3)
+        XCTAssertEqual(result.count!.words, 6)
         
-        XCTAssertEqual(result.selectedCount.length, 10)
-        XCTAssertEqual(result.selectedCount.characters, 9)
-        XCTAssertEqual(result.selectedCount.lines, 1)
-        XCTAssertEqual(result.selectedCount.words, 2)
+        XCTAssertEqual(result.selectedCount!.characters, 9)
+        XCTAssertEqual(result.selectedCount!.lines, 1)
+        XCTAssertEqual(result.selectedCount!.words, 2)
         
-        XCTAssertEqual(result.cursor.location, 11)
-        XCTAssertEqual(result.cursor.column, 1)
-        XCTAssertEqual(result.cursor.line, 2)
+        XCTAssertEqual(result.cursor!.location, 11)
+        XCTAssertEqual(result.cursor!.column, 1)
+        XCTAssertEqual(result.cursor!.line, 2)
     }
     
     
@@ -94,19 +87,15 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 0)
-        XCTAssertEqual(result.count.characters, 0)
-        XCTAssertEqual(result.count.lines, 0)
-        XCTAssertEqual(result.count.words, 0)
+        XCTAssertNil(result.count)
         
-        XCTAssertEqual(result.selectedCount.length, 10)
-        XCTAssertEqual(result.selectedCount.characters, 9)
-        XCTAssertEqual(result.selectedCount.lines, 1)
-        XCTAssertEqual(result.selectedCount.words, 2)
+        XCTAssertEqual(result.selectedCount!.characters, 9)
+        XCTAssertEqual(result.selectedCount!.lines, 1)
+        XCTAssertEqual(result.selectedCount!.words, 2)
         
-        XCTAssertEqual(result.cursor.location, 11)
-        XCTAssertEqual(result.cursor.column, 1)
-        XCTAssertEqual(result.cursor.line, 2)
+        XCTAssertEqual(result.cursor!.location, 11)
+        XCTAssertEqual(result.cursor!.column, 1)
+        XCTAssertEqual(result.cursor!.line, 2)
     }
     
     
@@ -122,19 +111,17 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 4)
-        XCTAssertEqual(result.count.characters, 3)
-        XCTAssertEqual(result.count.lines, 2)
-        XCTAssertEqual(result.count.words, 2)
+        XCTAssertEqual(result.count!.characters, 3)
+        XCTAssertEqual(result.count!.lines, 2)
+        XCTAssertEqual(result.count!.words, 2)
         
-        XCTAssertEqual(result.selectedCount.length, 3)
-        XCTAssertEqual(result.selectedCount.characters, 2)
-        XCTAssertEqual(result.selectedCount.lines, 2)
-        XCTAssertEqual(result.selectedCount.words, 1)
+        XCTAssertEqual(result.selectedCount!.characters, 2)
+        XCTAssertEqual(result.selectedCount!.lines, 2)
+        XCTAssertEqual(result.selectedCount!.words, 1)
         
-        XCTAssertEqual(result.cursor.location, 2)
-        XCTAssertEqual(result.cursor.column, 2)
-        XCTAssertEqual(result.cursor.line, 1)
+        XCTAssertEqual(result.cursor!.location, 2)
+        XCTAssertEqual(result.cursor!.column, 2)
+        XCTAssertEqual(result.cursor!.line, 1)
     }
     
 }

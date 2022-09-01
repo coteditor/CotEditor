@@ -273,7 +273,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="FtE-QH-05o" id="Ylm-Hw-Yzp"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.lines" id="aaV-tu-pJP"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.lines" id="Gb0-fU-Hn8">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">-</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zO6-zt-3hX">
@@ -293,7 +297,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="zO6-zt-3hX" id="oy3-RZ-ru1"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.chars" id="xBc-3c-nqL"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.chars" id="VTx-Py-JTn">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">-</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lx4-8L-owE">
@@ -313,7 +321,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="Lx4-8L-owE" id="uE5-LE-Jnx"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.words" id="KQe-UB-12r"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.words" id="dy8-bc-fTf">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">-</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w9a-lK-7bb">
@@ -333,7 +345,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="w9a-lK-7bb" id="qly-GW-0BL"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.location" id="bpr-Z9-pcF"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.location" id="rfc-Je-9FR">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">-</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANk-BC-fJD">
@@ -353,7 +369,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="ANk-BC-fJD" id="cwf-FX-0I4"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.line" id="5og-2S-7ZT"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.line" id="uDx-OL-K2h">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">-</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-4P-eSh">
@@ -398,7 +418,11 @@
                                             </textFieldCell>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="paK-hv-1d8" id="BRm-k6-n0b"/>
-                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.column" id="4s3-mg-crD"/>
+                                                <binding destination="KUC-8F-iAD" name="value" keyPath="selection.column" id="hJH-h9-Vs7">
+                                                    <dictionary key="options">
+                                                        <string key="NSNullPlaceholder">-</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-i2-FuC">
