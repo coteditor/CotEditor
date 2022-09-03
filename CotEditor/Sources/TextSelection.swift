@@ -168,7 +168,7 @@ final class TextSelection: NSObject {
             guard
                 let lineRange = newValue,
                 (1...2).contains(lineRange.count),
-                let textView = self.document?.textView
+                let textView = self.textView
             else { return }
             
             let fuzzyRange = FuzzyRange(location: lineRange[0], length: lineRange[safe: 1] ?? 1)
