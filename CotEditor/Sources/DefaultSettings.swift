@@ -101,7 +101,7 @@ struct DefaultSettings {
         .autoComplete: false,
         
         .lineEndCharCode: 0,
-        .encodingList: DefaultSettings.encodings.map { UInt($0) },
+        .encodingList: DefaultSettings.encodings.map(UInt.init),
         .encodingInNew: String.Encoding.utf8.rawValue,
         .saveUTF8BOM: false,
         .referToEncodingTag: true,

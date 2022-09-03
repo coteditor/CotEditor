@@ -246,7 +246,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         assert(Thread.isMainThread)
         
-        let documentURLs = filenames.map { URL(fileURLWithPath: $0) }
+        let documentURLs = filenames.map(URL.init(fileURLWithPath:))
             .filter {
                 // ask installation if the file is CotEditor theme file
                 $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(fileURL: $0) : true
