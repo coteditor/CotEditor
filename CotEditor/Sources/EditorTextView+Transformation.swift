@@ -208,7 +208,7 @@ extension EditorTextView {
     /// Unicode normalization (Modified NFC)
     @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: Any?) {
         
-        let form: UnicodeNormalizationForm = .nfc
+        let form: UnicodeNormalizationForm = .modifiedNFC
         self.transformSelection(actionName: form.localizedName) {
             $0.normalize(in: form)
         }
