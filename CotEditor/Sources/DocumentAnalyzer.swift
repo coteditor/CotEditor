@@ -108,10 +108,10 @@ final class DocumentAnalyzer {
         
         let string = textView.string.immutable
         let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
-        let counter = EditorInfoCounter(string: string,
-                                        selectedRange: selectedRange,
-                                        requiredInfo: self.requiredInfoTypes,
-                                        countsWholeText: self.needsCountWholeText)
+        let counter = EditorCounter(string: string,
+                                    selectedRange: selectedRange,
+                                    requiredInfo: self.requiredInfoTypes,
+                                    countsWholeText: self.needsCountWholeText)
         
         self.countTask?.cancel()
         self.countTask = Task {

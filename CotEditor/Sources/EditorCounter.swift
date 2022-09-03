@@ -1,5 +1,5 @@
 //
-//  EditorInfoCounter.swift
+//  EditorCounter.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -78,7 +78,7 @@ extension EditorCountResult.Count {
 
 // MARK: -
 
-final class EditorInfoCounter {
+final class EditorCounter {
     
     // MARK: Private Properties
     
