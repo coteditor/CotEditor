@@ -47,7 +47,9 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         XCTAssertNil(result.count)
         XCTAssertNil(result.selectedCount)
-        XCTAssertNil(result.cursor)
+        XCTAssertNil(result.location)
+        XCTAssertNil(result.line)
+        XCTAssertNil(result.column)
     }
     
     
@@ -70,9 +72,9 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.selectedCount!.lines, 1)
         XCTAssertEqual(result.selectedCount!.words, 2)
         
-        XCTAssertEqual(result.cursor!.location, 11)
-        XCTAssertEqual(result.cursor!.column, 1)
-        XCTAssertEqual(result.cursor!.line, 2)
+        XCTAssertEqual(result.location, 11)
+        XCTAssertEqual(result.column, 1)
+        XCTAssertEqual(result.line, 2)
     }
     
     
@@ -93,9 +95,9 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.selectedCount!.lines, 1)
         XCTAssertEqual(result.selectedCount!.words, 2)
         
-        XCTAssertEqual(result.cursor!.location, 11)
-        XCTAssertEqual(result.cursor!.column, 1)
-        XCTAssertEqual(result.cursor!.line, 2)
+        XCTAssertEqual(result.location, 11)
+        XCTAssertEqual(result.column, 1)
+        XCTAssertEqual(result.line, 2)
     }
     
     
@@ -119,9 +121,9 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.selectedCount!.lines, 2)
         XCTAssertEqual(result.selectedCount!.words, 1)
         
-        XCTAssertEqual(result.cursor!.location, 2)
-        XCTAssertEqual(result.cursor!.column, 2)
-        XCTAssertEqual(result.cursor!.line, 1)
+        XCTAssertEqual(result.location, 2)
+        XCTAssertEqual(result.column, 2)
+        XCTAssertEqual(result.line, 1)
     }
     
 }

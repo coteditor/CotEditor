@@ -83,7 +83,7 @@ final class DocumentAnalyzer {
     /// info types needed to be calculated
     private var requiredInfoTypes: EditorInfoTypes {
         
-        return self.shouldUpdate ? .all : self.statusBarRequirements
+        self.shouldUpdate ? .all : self.statusBarRequirements
     }
     
     
@@ -93,7 +93,7 @@ final class DocumentAnalyzer {
         guard
             let textView = self.document?.viewController?.focusedTextView,
             !textView.hasMarkedText()
-            else { return }
+        else { return }
         
         // do nothing if only cursor is moved but no need to calculate the cursor location.
         if !self.needsCountWholeText,

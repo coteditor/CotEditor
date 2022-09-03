@@ -169,9 +169,9 @@ final class DocumentInspectorViewController: NSViewController {
                 info.chars = result.format(\.characters)
                 info.lines = result.format(\.lines)
                 info.words = result.format(\.words)
-                info.location = result.format(\.location)
-                info.line = result.format(\.line)
-                info.column = result.format(\.column)
+                info.location = result.location?.formatted()
+                info.line = result.line?.formatted()
+                info.column = result.column?.formatted()
                 info.unicode = result.unicode
             }
             .store(in: &self.documentObservers)

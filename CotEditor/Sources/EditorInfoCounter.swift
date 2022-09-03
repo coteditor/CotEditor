@@ -23,8 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 struct EditorInfoTypes: OptionSet {
     
     let rawValue: Int
@@ -53,19 +51,15 @@ struct EditorCountResult: Equatable {
         var words = 0
     }
     
-    struct Cursor: Equatable {
-        
-        var location = 1  // cursor location from the beginning of document
-        var line = 1      // current line
-        var column = 1    // cursor location from the beginning of line
-    }
-    
     
     var count: Count?
     var selectedCount: Count?
-    var cursor: Cursor?
+    
+    var location: Int?  // cursor location from the beginning of document
+    var line: Int?   // current line
+    var column: Int?   // cursor location from the beginning of line
+    
     var unicode: String?  // Unicode of selected single character (or surrogate-pair)
-    var character: Character?
     
     
     
@@ -79,12 +73,6 @@ struct EditorCountResult: Equatable {
         else { return count?.formatted() }
         
         return "\(count?.formatted() ?? "-") (\(selectedCount.formatted()))"
-    }
-    
-    
-    func format(_ keyPath: KeyPath<Cursor, Int>) -> String? {
-        
-        self.cursor?[keyPath: keyPath].formatted()
     }
     
 }
@@ -111,7 +99,6 @@ final class EditorInfoCounter {
     init(string: String, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes, countsWholeText: Bool) {
         
         assert(selectedRange.upperBound <= string.endIndex)
-        assert(!(string as NSString).className.contains("Mutable"))
         
         self.string = string
         self.selectedRange = selectedRange
@@ -121,7 +108,7 @@ final class EditorInfoCounter {
     
     
     
-    // MARK: Operation Methods
+    // MARK: Public Methods
     
     func count() throws -> EditorCountResult {
         
@@ -135,16 +122,29 @@ final class EditorInfoCounter {
             result.selectedCount = try self.count(in: self.string[self.selectedRange])
         }
         
-        if !self.requiredInfo.isDisjoint(with: .cursors) {
-            result.cursor = try self.locate(in: self.string, at: self.selectedRange.lowerBound)
+        if self.requiredInfo.contains(.location) {
+            try Task.checkCancellation()
+            result.location = self.string.distance(from: self.string.startIndex,
+                                                   to: self.selectedRange.lowerBound) + 1
+        }
+        
+        if self.requiredInfo.contains(.line) {
+            try Task.checkCancellation()
+            result.line = (self.selectedRange.lowerBound == self.string.startIndex)
+                ? 1
+                : self.string.numberOfLines(in: self.string.startIndex..<self.selectedRange.lowerBound)
+        }
+        
+        if self.requiredInfo.contains(.column) {
+            try Task.checkCancellation()
+            let lineStartIndex = self.string.lineStartIndex(at: self.selectedRange.lowerBound)
+            result.column = self.string.distance(from: lineStartIndex, to: self.selectedRange.lowerBound) + 1
         }
         
         if self.requiredInfo.contains(.unicode) {
             let selectedString = self.string[self.selectedRange]
-            if selectedString.compareCount(with: 1) == .equal,
-               let character = selectedString.first
-            {
-                result.unicode = character.unicodeScalars.map(\.codePoint).joined(separator: ", ")
+            if selectedString.compareCount(with: 1) == .equal {
+                result.unicode = selectedString.first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
             }
         }
         
@@ -159,51 +159,22 @@ final class EditorInfoCounter {
         
         var count = EditorCountResult.Count()
         
-        try Task.checkCancellation()
-        
         if self.requiredInfo.contains(.characters) {
+            try Task.checkCancellation()
             count.characters = string.count
         }
         
-        try Task.checkCancellation()
-        
         if self.requiredInfo.contains(.lines) {
+            try Task.checkCancellation()
             count.lines = string.numberOfLines
         }
         
-        try Task.checkCancellation()
-        
         if self.requiredInfo.contains(.words) {
+            try Task.checkCancellation()
             count.words = string.numberOfWords
         }
         
         return count
-    }
-    
-    
-    private func locate(in string: some StringProtocol, at location: String.Index) throws -> EditorCountResult.Cursor {
-        
-        var cursor = EditorCountResult.Cursor()
-        
-        try Task.checkCancellation()
-        
-        if self.requiredInfo.contains(.location) {
-            cursor.location = string.distance(from: string.startIndex, to: location) + 1
-        }
-        
-        try Task.checkCancellation()
-        
-        if self.requiredInfo.contains(.line) {
-            cursor.line = (location == string.startIndex) ? 1 : string.numberOfLines(in: string.startIndex..<location)
-        }
-        
-        try Task.checkCancellation()
-        
-        if self.requiredInfo.contains(.column) {
-            cursor.column = string.distance(from: string.lineStartIndex(at: location), to: location) + 1
-        }
-        
-        return cursor
     }
     
 }

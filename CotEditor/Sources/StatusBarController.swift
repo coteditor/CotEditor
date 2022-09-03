@@ -171,13 +171,13 @@ final class StatusBarController: NSViewController {
             status.append(.formatted(label: "Words") + .formatted(state: result?.format(\.words)))
         }
         if types.contains(.location) {
-            status.append(.formatted(label: "Location") + .formatted(state: result?.format(\.location)))
+            status.append(.formatted(label: "Location") + .formatted(state: result?.location?.formatted()))
         }
         if types.contains(.line) {
-            status.append(.formatted(label: "Line") + .formatted(state: result?.format(\.line)))
+            status.append(.formatted(label: "Line") + .formatted(state: result?.line?.formatted()))
         }
         if types.contains(.column) {
-            status.append(.formatted(label: "Column") + .formatted(state: result?.format(\.column)))
+            status.append(.formatted(label: "Column") + .formatted(state: result?.column?.formatted()))
         }
         
         let attrStatus = status.joined(separator: "   ").mutable
