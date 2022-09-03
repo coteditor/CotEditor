@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Cocoa
 
 final class DocumentAnalyzer {
@@ -73,7 +72,7 @@ final class DocumentAnalyzer {
         
         guard !self.requiredInfoTypes.isEmpty else { return }
         
-        self.updateDebouncer.schedule(delay: onlySelection ? .milliseconds(10) : nil)
+        self.updateDebouncer.schedule(delay: self.needsCountWholeText ? nil : .milliseconds(10))
     }
     
     
@@ -90,7 +89,7 @@ final class DocumentAnalyzer {
     /// update editor info (only if really needed)
     private func updateEditorInfo() {
         
-        guard let textView = self.document?.textView else { return }
+        guard let textView = self.document?.textView else { return assertionFailure() }
         
         // do nothing if only cursor is moved but no need to calculate the cursor location.
         if !self.needsCountWholeText,

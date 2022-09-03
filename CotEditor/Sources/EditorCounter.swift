@@ -153,21 +153,18 @@ final class EditorCounter {
         
         if self.requiredInfo.contains(.line) {
             try Task.checkCancellation()
-            result.line = (self.selectedRange.lowerBound == self.string.startIndex)
-                ? 1
-                : self.string.numberOfLines(in: self.string.startIndex..<self.selectedRange.lowerBound)
+            result.line = self.string.lineNumber(at: self.selectedRange.lowerBound)
         }
         
         if self.requiredInfo.contains(.column) {
             try Task.checkCancellation()
-            let lineStartIndex = self.string.lineStartIndex(at: self.selectedRange.lowerBound)
-            result.column = self.string.distance(from: lineStartIndex, to: self.selectedRange.lowerBound) + 1
+            result.column = self.string.columnNumber(at: self.selectedRange.lowerBound) + 1
         }
         
-        if self.requiredInfo.contains(.unicode),
-           selectedString.compareCount(with: 1) == .equal
-        {
-            result.unicode = selectedString.first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
+        if self.requiredInfo.contains(.unicode) {
+            result.unicode = (selectedString.compareCount(with: 1) == .equal)
+                ? selectedString.first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
+                : nil
         }
         
         return result

@@ -397,10 +397,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// selection did change
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
-        let editedCharacters = (notification.object as? NSTextView)?.textStorage?.editedMask.contains(.editedCharacters) == true
-        
-        // update document information
-        self.document?.analyzer.invalidate(onlySelection: !editedCharacters)
+        self.document?.analyzer.invalidate(onlySelection: true)
     }
     
     

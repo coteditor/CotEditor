@@ -86,6 +86,16 @@ extension StringProtocol {
         return count
     }
     
+    
+    /// Calculate the umber of characters from the beginning of the line where the given characer index locates (0-based).
+    ///
+    /// - Parameter index: The character index.
+    /// - Returns: The column number.
+    func columnNumber(at index: Index) -> Int {
+        
+        self.distance(from: self.lineStartIndex(at: index), to: index)
+    }
+    
 }
 
 

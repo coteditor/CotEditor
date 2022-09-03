@@ -139,6 +139,18 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testColumnCOunt() {
+        
+        let string = "aaa \r\n🐱 "
+        
+        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 3)), 3)
+        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 4)), 4)
+        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 5)), 0)
+        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 6)), 1)
+        XCTAssertEqual(string.columnNumber(at: string.index(string.startIndex, offsetBy: 7)), 2)
+    }
+    
+    
     func testCharacterCountOptions() {
         
         var options = CharacterCountOptions()
