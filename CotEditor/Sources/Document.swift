@@ -894,9 +894,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update line ending
         self.textStorage.replaceLineEndings(with: lineEnding)
         self.lineEnding = lineEnding
-        
-        // update UI
-        self.analyzer.invalidate()
     }
     
     
@@ -1066,9 +1063,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// transfer file information to UI
     private func applyContentToWindow() {
-        
-        // update status bar and document inspector
-        self.analyzer.invalidate()
         
         // update incompatible characters if pane is visible
         self.incompatibleCharacterScanner.invalidate()

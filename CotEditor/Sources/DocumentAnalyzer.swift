@@ -33,7 +33,7 @@ final class DocumentAnalyzer {
     
     @Published private(set) var result: EditorCountResult = .init()
     
-    var shouldUpdate = false  // need to update all editor info
+    var updatesAll = false
     var statusBarRequirements: EditorInfoTypes = []
     
     
@@ -81,19 +81,16 @@ final class DocumentAnalyzer {
     // MARK: Private Methods
     
     /// info types needed to be calculated
-    private var requiredInfoTypes: EditorInfoTypes {
+    var requiredInfoTypes: EditorInfoTypes {
         
-        self.shouldUpdate ? .all : self.statusBarRequirements
+        self.updatesAll ? .all : self.statusBarRequirements
     }
     
     
     /// update editor info (only if really needed)
     private func updateEditorInfo() {
         
-        guard
-            let textView = self.document?.viewController?.focusedTextView,
-            !textView.hasMarkedText()
-        else { return }
+        guard let textView = self.document?.textView else { return }
         
         // do nothing if only cursor is moved but no need to calculate the cursor location.
         if !self.needsCountWholeText,

@@ -91,7 +91,7 @@ final class DocumentInspectorViewController: NSViewController {
         guard let document = self.document else { return assertionFailure() }
         
         self.subscribe(document)
-        self.analyzer?.shouldUpdate = true
+        self.analyzer?.updatesAll = true
         self.analyzer?.invalidate()
     }
     
@@ -102,7 +102,7 @@ final class DocumentInspectorViewController: NSViewController {
         super.viewDidDisappear()
         
         self.documentObservers.removeAll()
-        self.analyzer?.shouldUpdate = false
+        self.analyzer?.updatesAll = false
     }
     
     
@@ -110,7 +110,7 @@ final class DocumentInspectorViewController: NSViewController {
     override var representedObject: Any? {
         
         willSet {
-            self.analyzer?.shouldUpdate = false
+            self.analyzer?.updatesAll = false
             self.documentObservers.removeAll()
         }
         
@@ -118,7 +118,7 @@ final class DocumentInspectorViewController: NSViewController {
             assert(representedObject == nil || representedObject is Document,
                    "representedObject of \(self.className) must be an instance of \(Document.className())")
             
-            self.analyzer?.shouldUpdate = self.isViewShown
+            self.analyzer?.updatesAll = self.isViewShown
             
             if self.isViewShown, let document = self.document {
                 self.subscribe(document)
