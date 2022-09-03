@@ -45,8 +45,9 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertNil(result.count)
-        XCTAssertNil(result.selectedCount)
+        XCTAssertNil(result.lines.entire)
+        XCTAssertNil(result.characters.entire)
+        XCTAssertNil(result.words.entire)
         XCTAssertNil(result.location)
         XCTAssertNil(result.line)
         XCTAssertNil(result.column)
@@ -64,13 +65,13 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count!.characters, 31)
-        XCTAssertEqual(result.count!.lines, 3)
-        XCTAssertEqual(result.count!.words, 6)
+        XCTAssertEqual(result.lines.entire, 3)
+        XCTAssertEqual(result.characters.entire, 31)
+        XCTAssertEqual(result.words.entire, 6)
         
-        XCTAssertEqual(result.selectedCount!.characters, 9)
-        XCTAssertEqual(result.selectedCount!.lines, 1)
-        XCTAssertEqual(result.selectedCount!.words, 2)
+        XCTAssertEqual(result.characters.selected, 9)
+        XCTAssertEqual(result.lines.selected, 1)
+        XCTAssertEqual(result.words.selected, 2)
         
         XCTAssertEqual(result.location, 11)
         XCTAssertEqual(result.column, 1)
@@ -89,11 +90,13 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertNil(result.count)
+        XCTAssertNil(result.lines.entire)
+        XCTAssertNil(result.characters.entire)
+        XCTAssertNil(result.words.entire)
         
-        XCTAssertEqual(result.selectedCount!.characters, 9)
-        XCTAssertEqual(result.selectedCount!.lines, 1)
-        XCTAssertEqual(result.selectedCount!.words, 2)
+        XCTAssertEqual(result.lines.selected, 1)
+        XCTAssertEqual(result.characters.selected, 9)
+        XCTAssertEqual(result.words.selected, 2)
         
         XCTAssertEqual(result.location, 11)
         XCTAssertEqual(result.column, 1)
@@ -113,13 +116,13 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count!.characters, 3)
-        XCTAssertEqual(result.count!.lines, 2)
-        XCTAssertEqual(result.count!.words, 2)
+        XCTAssertEqual(result.lines.entire, 2)
+        XCTAssertEqual(result.characters.entire, 3)
+        XCTAssertEqual(result.words.entire, 2)
         
-        XCTAssertEqual(result.selectedCount!.characters, 2)
-        XCTAssertEqual(result.selectedCount!.lines, 2)
-        XCTAssertEqual(result.selectedCount!.words, 1)
+        XCTAssertEqual(result.lines.selected, 2)
+        XCTAssertEqual(result.characters.selected, 2)
+        XCTAssertEqual(result.words.selected, 1)
         
         XCTAssertEqual(result.location, 2)
         XCTAssertEqual(result.column, 2)

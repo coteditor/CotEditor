@@ -37,7 +37,6 @@ struct EditorInfoTypes: OptionSet {
     
     static let all: Self = [.characters, .lines, .words, .location, .line, .column, .unicode]
     
-    static let counts: Self = [.characters, .lines, .words]
     static let cursors: Self = [.location, .line, .column]
 }
 
@@ -46,33 +45,31 @@ struct EditorCountResult: Equatable {
     
     struct Count: Equatable {
         
-        var characters = 0
-        var lines = 0
-        var words = 0
+        var entire: Int?
+        var selected = 0
     }
     
-    
-    var count: Count?
-    var selectedCount: Count?
+    var characters = Count()
+    var lines = Count()
+    var words = Count()
     
     var location: Int?  // cursor location from the beginning of document
     var line: Int?   // current line
     var column: Int?   // cursor location from the beginning of line
     
     var unicode: String?  // Unicode of selected single character (or surrogate-pair)
+}
+
+
+extension EditorCountResult.Count {
     
-    
-    
-    func format(_ keyPath: KeyPath<Count, Int>) -> String? {
+    var formatted: String? {
         
-        let count = self.count?[keyPath: keyPath]
-        
-        guard
-            let selectedCount = self.selectedCount?[keyPath: keyPath],
-            selectedCount > 0
-        else { return count?.formatted() }
-        
-        return "\(count?.formatted() ?? "-") (\(selectedCount.formatted()))"
+        if self.selected == 0 {
+            return self.entire?.formatted()
+        } else {
+            return "\(self.entire?.formatted() ?? "-") (\(self.selected.formatted()))"
+        }
     }
     
 }
@@ -85,11 +82,11 @@ final class EditorInfoCounter {
     
     // MARK: Private Properties
     
-    private let string: String
-    private let selectedRange: Range<String.Index>
+    let string: String
+    let selectedRange: Range<String.Index>
     
-    private let requiredInfo: EditorInfoTypes
-    private let countsWholeText: Bool
+    let requiredInfo: EditorInfoTypes
+    let countsWholeText: Bool
     
     
     
@@ -114,12 +111,38 @@ final class EditorInfoCounter {
         
         var result = EditorCountResult()
         
-        if self.countsWholeText, !self.requiredInfo.isDisjoint(with: .counts) {
-            result.count = try self.count(in: self.string)
+        let selectedString = self.string[self.selectedRange]
+        
+        if self.countsWholeText {
+            if self.requiredInfo.contains(.characters) {
+                try Task.checkCancellation()
+                result.characters.entire = self.string.count
+            }
+            
+            if self.requiredInfo.contains(.lines) {
+                try Task.checkCancellation()
+                result.lines.entire = self.string.numberOfLines
+            }
+            
+            if self.requiredInfo.contains(.words) {
+                try Task.checkCancellation()
+                result.words.entire = self.string.numberOfWords
+            }
         }
         
-        if !self.requiredInfo.isDisjoint(with: .counts) {
-            result.selectedCount = try self.count(in: self.string[self.selectedRange])
+        if self.requiredInfo.contains(.characters) {
+            try Task.checkCancellation()
+            result.characters.selected = selectedString.count
+        }
+        
+        if self.requiredInfo.contains(.lines) {
+            try Task.checkCancellation()
+            result.lines.selected = selectedString.numberOfLines
+        }
+        
+        if self.requiredInfo.contains(.words) {
+            try Task.checkCancellation()
+            result.words.selected = selectedString.numberOfWords
         }
         
         if self.requiredInfo.contains(.location) {
@@ -141,40 +164,13 @@ final class EditorInfoCounter {
             result.column = self.string.distance(from: lineStartIndex, to: self.selectedRange.lowerBound) + 1
         }
         
-        if self.requiredInfo.contains(.unicode) {
-            let selectedString = self.string[self.selectedRange]
-            if selectedString.compareCount(with: 1) == .equal {
-                result.unicode = selectedString.first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
-            }
+        if self.requiredInfo.contains(.unicode),
+           selectedString.compareCount(with: 1) == .equal
+        {
+            result.unicode = selectedString.first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
         }
         
         return result
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    private func count(in string: some StringProtocol) throws -> EditorCountResult.Count {
-        
-        var count = EditorCountResult.Count()
-        
-        if self.requiredInfo.contains(.characters) {
-            try Task.checkCancellation()
-            count.characters = string.count
-        }
-        
-        if self.requiredInfo.contains(.lines) {
-            try Task.checkCancellation()
-            count.lines = string.numberOfLines
-        }
-        
-        if self.requiredInfo.contains(.words) {
-            try Task.checkCancellation()
-            count.words = string.numberOfWords
-        }
-        
-        return count
     }
     
 }

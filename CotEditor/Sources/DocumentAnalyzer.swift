@@ -100,26 +100,29 @@ final class DocumentAnalyzer {
             self.requiredInfoTypes.isDisjoint(with: .cursors),
             textView.selectedRange.isEmpty
         {
-            self.result.selectedCount = .init()
+            self.result.lines.selected = 0
+            self.result.characters.selected = 0
+            self.result.words.selected = 0
             return
         }
         
         let string = textView.string.immutable
         let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
-        let countsWholeText = self.needsCountWholeText
         let counter = EditorInfoCounter(string: string,
                                         selectedRange: selectedRange,
                                         requiredInfo: self.requiredInfoTypes,
-                                        countsWholeText: countsWholeText)
+                                        countsWholeText: self.needsCountWholeText)
         
         self.countTask?.cancel()
         self.countTask = Task {
             var result = try counter.count()
             
-            if countsWholeText {
+            if counter.countsWholeText {
                 self.needsCountWholeText = false
             } else {
-                result.count = self.result.count
+                result.lines.entire = self.result.lines.entire
+                result.characters.entire = self.result.characters.entire
+                result.words.entire = self.result.words.entire
             }
             self.result = result
         }

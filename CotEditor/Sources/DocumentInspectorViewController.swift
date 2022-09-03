@@ -166,9 +166,9 @@ final class DocumentInspectorViewController: NSViewController {
         document.analyzer.$result
             .receive(on: DispatchQueue.main)
             .sink { [info = self.editorInfo] (result) in
-                info.chars = result.format(\.characters)
-                info.lines = result.format(\.lines)
-                info.words = result.format(\.words)
+                info.chars = result.characters.formatted
+                info.lines = result.lines.formatted
+                info.words = result.words.formatted
                 info.location = result.location?.formatted()
                 info.line = result.line?.formatted()
                 info.column = result.column?.formatted()

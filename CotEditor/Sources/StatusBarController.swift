@@ -162,13 +162,13 @@ final class StatusBarController: NSViewController {
         var status: [NSAttributedString] = []
         
         if types.contains(.lines) {
-            status.append(.formatted(label: "Lines") + .formatted(state: result?.format(\.lines)))
+            status.append(.formatted(label: "Lines") + .formatted(state: result?.lines.formatted))
         }
         if types.contains(.characters) {
-            status.append(.formatted(label: "Characters") + .formatted(state: result?.format(\.characters)))
+            status.append(.formatted(label: "Characters") + .formatted(state: result?.characters.formatted))
         }
         if types.contains(.words) {
-            status.append(.formatted(label: "Words") + .formatted(state: result?.format(\.words)))
+            status.append(.formatted(label: "Words") + .formatted(state: result?.words.formatted))
         }
         if types.contains(.location) {
             status.append(.formatted(label: "Location") + .formatted(state: result?.location?.formatted()))
