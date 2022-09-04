@@ -89,6 +89,7 @@ final class DocumentAnalyzer {
     /// update editor info (only if really needed)
     private func updateEditorInfo() {
         
+        guard !self.requiredInfoTypes.isEmpty else { return }
         guard let textView = self.document?.textView else { return assertionFailure() }
         
         // do nothing if only cursor is moved but no need to calculate the cursor location.
@@ -120,6 +121,7 @@ final class DocumentAnalyzer {
                 result.characters.entire = self.result.characters.entire
                 result.words.entire = self.result.words.entire
             }
+            
             self.result = result
         }
     }

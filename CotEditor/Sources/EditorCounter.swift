@@ -148,7 +148,7 @@ final class EditorCounter {
         if self.requiredInfo.contains(.location) {
             try Task.checkCancellation()
             result.location = self.string.distance(from: self.string.startIndex,
-                                                   to: self.selectedRange.lowerBound) + 1
+                                                   to: self.selectedRange.lowerBound)
         }
         
         if self.requiredInfo.contains(.line) {
@@ -158,7 +158,7 @@ final class EditorCounter {
         
         if self.requiredInfo.contains(.column) {
             try Task.checkCancellation()
-            result.column = self.string.columnNumber(at: self.selectedRange.lowerBound) + 1
+            result.column = self.string.columnNumber(at: self.selectedRange.lowerBound)
         }
         
         if self.requiredInfo.contains(.unicode) {

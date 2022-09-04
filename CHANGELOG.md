@@ -24,6 +24,7 @@ Change Log
 - Deprecate the `length` property in AppleScript (Use `number of characters of contents` instead).
 - Support the split cursor for bidirectional languages in multi-cursor editing.
 - Update the CotEditor's setting view in the print panel.
+- Change the location and column count to start with zero.
 - Display the error message in the pattern sort dialog if the regular expression pattern is invalid.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
 - Improve the algorithm of uncommenting.

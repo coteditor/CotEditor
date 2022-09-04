@@ -73,8 +73,8 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.lines.selected, 1)
         XCTAssertEqual(result.words.selected, 2)
         
-        XCTAssertEqual(result.location, 11)
-        XCTAssertEqual(result.column, 1)
+        XCTAssertEqual(result.location, 10)
+        XCTAssertEqual(result.column, 0)
         XCTAssertEqual(result.line, 2)
     }
     
@@ -98,8 +98,8 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.characters.selected, 9)
         XCTAssertEqual(result.words.selected, 2)
         
-        XCTAssertEqual(result.location, 11)
-        XCTAssertEqual(result.column, 1)
+        XCTAssertEqual(result.location, 10)
+        XCTAssertEqual(result.column, 0)
         XCTAssertEqual(result.line, 2)
     }
     
@@ -124,8 +124,8 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.characters.selected, 2)
         XCTAssertEqual(result.words.selected, 1)
         
-        XCTAssertEqual(result.location, 2)
-        XCTAssertEqual(result.column, 2)
+        XCTAssertEqual(result.location, 1)
+        XCTAssertEqual(result.column, 1)
         XCTAssertEqual(result.line, 1)
     }
     
