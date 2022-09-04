@@ -224,7 +224,7 @@
 
 
 /* MARK: Document Window */
-// tooltip for the "edited" indicator in window tab
+// tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "Das Dokument enthält ungesicherte Änderungen.";
 
 
@@ -713,7 +713,7 @@
 
 
 /* MARK: Pattern Sort View */
-// error messages
+// error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "Ungültiges Muster";
 "Empty pattern" = "Leeres Muster";
 
@@ -741,7 +741,7 @@
 "Show options" = "Optionen einblenden";
 // context menu item labels
 "Copy" = "Kopieren";
-"Stop Count" = "Anzahl stoppen";  // This "Stop" should be translated the same as it in the "Stop Advanced Character Count" menu label.
+"Stop Count" = "Anzahl stoppen";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
 

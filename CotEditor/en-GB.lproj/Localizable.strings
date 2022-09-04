@@ -224,7 +224,7 @@
 
 
 /* MARK: Document Window */
-// tooltip for the "edited" indicator in window tab
+// tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "Document has unsaved changes";
 
 
@@ -713,7 +713,7 @@
 
 
 /* MARK: Pattern Sort View */
-// error messages
+// error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "Invalid pattern";
 "Empty pattern" = "Empty pattern";
 
@@ -741,7 +741,7 @@
 "Show options" = "Show options";
 // context menu item labels
 "Copy" = "Copy";
-"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it in the "Stop Advanced Character Count" menu label.
+"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
 

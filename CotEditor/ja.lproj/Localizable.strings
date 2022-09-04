@@ -224,7 +224,7 @@
 
 
 /* MARK: Document Window */
-// tooltip for the "edited" indicator in window tab
+// tooltip for the "edited" indicator in the window tab
 "Document has unsaved changes" = "書類に保存されていない変更があります";
 
 
@@ -713,7 +713,7 @@
 
 
 /* MARK: Pattern Sort View */
-// error messages
+// error messages ("pattern" is a regular expression pattern)
 "Invalid pattern" = "無効なパターン";
 "Empty pattern" = "空のパターン";
 
@@ -741,7 +741,7 @@
 "Show options" = "オプションを表示";
 // context menu item labels
 "Copy" = "コピー";
-"Stop Count" = "カウントを停止";  // This "Stop" should be translated the same as it in the "Stop Advanced Character Count" menu label.
+"Stop Count" = "カウントを停止";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
 
