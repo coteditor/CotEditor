@@ -129,4 +129,21 @@ final class EditorInfoCountOperationTests: XCTestCase {
         XCTAssertEqual(result.line, 1)
     }
     
+    
+    func testCountFormatting() {
+        
+       var count = EditorCountResult.Count()
+        
+        XCTAssertNil(count.formatted)
+        
+        count.entire = 1000
+        XCTAssertEqual(count.formatted, "1,000")
+        
+        count.selected = 100
+        XCTAssertEqual(count.formatted, "1,000 (100)")
+        
+        count.entire = nil
+        XCTAssertEqual(count.formatted, "- (100)")
+    }
+    
 }
