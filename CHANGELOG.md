@@ -31,8 +31,8 @@ Change Log
 - Improve the algorithm of encoding detection.
 - Improve VoiceOver support.
 - Deprecate the “Ignore line endings when counting characters” option.
+- Deprecate the option to hide file size in the status bar.
 - Remove the text length display in the document inspector.
-- Remove the option to hide file size in the status bar.
 - [trivial] Adjust ticks in the line number view for vertical orientation.
 - [trivial] Save documents asynchronously.
 - [trivial] Organize the editor's contextual menu.
