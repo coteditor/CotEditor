@@ -57,7 +57,6 @@ final class StatusBarController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -69,7 +68,6 @@ final class StatusBarController: NSViewController {
     }
     
     
-    /// request analyzer to update editor info
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -102,7 +100,6 @@ final class StatusBarController: NSViewController {
     }
     
     
-    /// request analyzer to stop updating editor info
     override func viewDidDisappear() {
         
         super.viewDidDisappear()

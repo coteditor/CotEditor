@@ -129,7 +129,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -147,7 +146,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -251,7 +249,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// apply current state to related UI items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {

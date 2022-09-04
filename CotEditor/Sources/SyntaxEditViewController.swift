@@ -85,11 +85,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // MARK: -
     // MARK: Lifecycle
     
-    /// prepare embeded TabViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
+        // prepare embeded TabViewController
         if let destinationController = segue.destinationController as? NSTabViewController {
             self.tabViewController = destinationController
             self.menuTitles = destinationController.tabViewItems.map(\.label.localized)
@@ -98,7 +98,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()

@@ -58,7 +58,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     }
     
     
-    /// finish current editing
     override func viewWillDisappear() {
         
         super.viewWillDisappear()

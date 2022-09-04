@@ -39,7 +39,6 @@ final class FindPanelButtonViewController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()

@@ -42,11 +42,11 @@ final class CustomTabWidthViewController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// set default tab width to placeholder
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        // set default tab width to placeholder
         self.tabWidthField?.placeholderString = String(self.defaultWidth)
     }
     

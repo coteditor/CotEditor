@@ -107,7 +107,6 @@ final class ConsoleViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()

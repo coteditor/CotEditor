@@ -42,7 +42,6 @@ final class PrintPaneController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()

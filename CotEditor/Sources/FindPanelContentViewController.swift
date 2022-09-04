@@ -44,7 +44,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     // MARK: -
     // MARK: Split View Controller Methods
     
-    /// set delegate
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -53,7 +52,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     }
     
     
-    /// setup UI
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -62,7 +60,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     }
     
     
-    /// collapse result view by dragging divider
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
         super.splitViewDidResizeSubviews(notification)

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,10 +29,9 @@ final class FlippedClipView: NSClipView {
     
     // MARK: Clip View Methods
     
-    /// flip for scroll view
     override var isFlipped: Bool {
         
-        return true
+        true
     }
     
 }

@@ -43,7 +43,6 @@ final class GeneralPaneController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -52,7 +51,6 @@ final class GeneralPaneController: NSViewController {
     }
     
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()

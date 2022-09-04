@@ -83,20 +83,19 @@ final class DocumentInspectorViewController: NSViewController {
     }
     
     
-    /// let documentAnalyzer autoupdate
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
         guard let document = self.document else { return assertionFailure() }
         
+        /// stop autoupdate documentAnalyzer
         self.subscribe(document)
         self.analyzer?.updatesAll = true
         self.analyzer?.invalidate()
     }
     
     
-    /// stop autoupdate documentAnalyzer
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -106,7 +105,6 @@ final class DocumentInspectorViewController: NSViewController {
     }
     
     
-    /// set analyzer
     override var representedObject: Any? {
         
         willSet {

@@ -85,7 +85,6 @@ final class ThemeViewController: NSViewController {
     }
     
     
-    /// finish current editing
     override func viewWillDisappear() {
         
         super.viewWillDisappear()

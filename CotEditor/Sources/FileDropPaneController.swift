@@ -50,7 +50,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -80,7 +79,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -89,7 +87,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// finish current editing
     override func viewWillDisappear() {
         
         super.viewWillDisappear()

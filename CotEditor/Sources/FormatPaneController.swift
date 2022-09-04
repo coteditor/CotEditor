@@ -61,7 +61,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -76,7 +75,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -92,11 +90,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// stop observations for UI update
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
         
+        // stop observations for UI update
         self.encodingChangeObserver = nil
         self.syntaxStyleChangeObserver = nil
     }

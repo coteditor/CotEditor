@@ -41,7 +41,6 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: -
     // MARK: Split View Controller Methods
     
-    /// setup view
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -62,7 +61,6 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// view is ready to display
     override func viewDidAppear() {
         
         // note: This method will not be invoked on window tab change.
@@ -77,10 +75,10 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// deliver represented object to child view controllers
     override var representedObject: Any? {
         
         didSet {
+            // deliver represented object to child view controllers
             for viewController in self.children {
                 viewController.representedObject = representedObject
             }
@@ -88,9 +86,9 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// disable toggling sidebar in the tab overview mode
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
+        // disable toggling sidebar in the tab overview mode
         switch item.action {
             case #selector(toggleInspector):
                 let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"

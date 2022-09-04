@@ -270,7 +270,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Text View Methods
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -282,7 +281,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)

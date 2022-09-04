@@ -50,7 +50,6 @@ final class SidebarViewController: NSTabViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    /// prepare tabs
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -108,7 +107,6 @@ final class SidebarViewController: NSTabViewController {
     }
     
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -117,7 +115,6 @@ final class SidebarViewController: NSTabViewController {
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)

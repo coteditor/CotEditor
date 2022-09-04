@@ -72,7 +72,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     }
     
     
-    /// update content before display
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -86,7 +85,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     }
     
     
-    /// clear incompatible characters markup
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -99,7 +97,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     }
     
     
-    /// set delegate
     override var representedObject: Any? {
         
         willSet {

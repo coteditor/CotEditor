@@ -61,7 +61,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -100,7 +99,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// make find field initial first responder
     override func viewWillAppear() {
         
         super.viewWillAppear()

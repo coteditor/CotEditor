@@ -180,7 +180,6 @@ final class PrintTextView: NSTextView, Themable {
     }
     
     
-    /// draw
     override func draw(_ dirtyRect: NSRect) {
         
         // store graphics state to keep line number area drawable

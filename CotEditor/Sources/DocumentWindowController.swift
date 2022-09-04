@@ -64,7 +64,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: -
     // MARK: Window Controller Methods
     
-    /// prepare window
     override func windowDidLoad() {
         
         super.windowDidLoad()

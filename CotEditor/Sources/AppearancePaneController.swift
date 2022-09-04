@@ -60,7 +60,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -77,7 +76,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -126,21 +124,21 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    /// stop observations for UI update
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
         
+        // stop observations for UI update
         self.fontObserver = nil
         self.themeManagerObservers.removeAll()
     }
     
     
-    /// set delegate to ThemeViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
+        // set delegate to ThemeViewController
         if let destinationController = segue.destinationController as? ThemeViewController {
             self.themeViewController = destinationController
             destinationController.delegate = self

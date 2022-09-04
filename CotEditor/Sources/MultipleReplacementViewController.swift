@@ -62,7 +62,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// reset previous search result
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -72,11 +71,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// pass settings to advanced options popover
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         super.prepare(for: segue, sender: sender)
         
+        // pass settings to advanced options popover
         if segue.identifier == NSStoryboardSegue.Identifier("OptionsSegue"),
             let destinationController = segue.destinationController as? NSViewController
         {
@@ -85,11 +84,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// get settings from advanced options popover
     override func dismiss(_ viewController: NSViewController) {
         
         super.dismiss(viewController)
         
+        // get settings from advanced options popover
         if let object = viewController.representedObject as? MultipleReplacement.Settings.Object {
             guard self.definition.settings != object.settings else { return }
             
@@ -100,12 +99,12 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// commit unsaved changes
     @discardableResult
     override func commitEditing() -> Bool {
         
         guard super.commitEditing() else { return false }
         
+        // commit unsaved changes
         self.endEditing()
         self.updateNotificationDebouncer.fireNow()
         

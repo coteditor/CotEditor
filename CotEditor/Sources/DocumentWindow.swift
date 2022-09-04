@@ -68,7 +68,6 @@ final class DocumentWindow: NSWindow {
     // MARK: -
     // MARK: Window Methods
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -77,7 +76,6 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -88,7 +86,6 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    /// notify about opacity change
     override var isOpaque: Bool {
         
         willSet {
