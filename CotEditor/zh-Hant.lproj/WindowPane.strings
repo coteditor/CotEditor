@@ -73,8 +73,6 @@
 "JbR-gR-aiA.title" = "當前行";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "當前列";
-/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
-"ikB-dS-c4S.title" = "檔案尺寸";
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */

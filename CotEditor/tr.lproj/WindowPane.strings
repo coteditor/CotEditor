@@ -73,8 +73,6 @@
 "JbR-gR-aiA.title" = "Geçerli satır";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "Sütun";
-/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
-"ikB-dS-c4S.title" = "Dosya boyutu";
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */

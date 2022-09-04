@@ -55,7 +55,6 @@ extension DefaultKeys {
     static let showStatusBarLocation = DefaultKey<Bool>("showStatusBarLocation")
     static let showStatusBarLine = DefaultKey<Bool>("showStatusBarLine")
     static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
-    static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
     static let windowWidth = DefaultKey<CGFloat>("windowWidth")
     static let windowHeight = DefaultKey<CGFloat>("windowHeight")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")

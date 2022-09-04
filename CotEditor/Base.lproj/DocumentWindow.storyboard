@@ -359,11 +359,6 @@
                                             <string key="NSNullPlaceholder">-</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="fRY-Yr-EfV" name="hidden" keyPath="values.showStatusBarFileSize" id="enz-wO-blE">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </textField>
                         </subviews>

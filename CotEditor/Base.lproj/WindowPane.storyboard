@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21219" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21219"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="570" height="443"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="2rQ-L0-bX4">
-                                <rect key="frame" x="50" y="20" width="471" height="423"/>
+                                <rect key="frame" x="70" y="20" width="431" height="423"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4k-Qb-kRF">
                                         <rect key="frame" x="55" y="387" width="75" height="16"/>
@@ -55,7 +55,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dN2-g1-1rQ">
-                                        <rect key="frame" x="134" y="336" width="108" height="18"/>
+                                        <rect key="frame" x="134" y="336" width="277" height="18"/>
                                         <buttonCell key="cell" type="check" title="Line numbers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A9U-Sx-or3">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -189,7 +189,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <gridView verticalHuggingPriority="750" xPlacement="leading" yPlacement="top" rowAlignment="firstBaseline" columnSpacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DnL-UN-PAA">
-                                        <rect key="frame" x="136" y="146" width="315" height="60"/>
+                                        <rect key="frame" x="136" y="146" width="230" height="60"/>
                                         <rows>
                                             <gridRow id="A5a-1R-KNS"/>
                                             <gridRow id="f5f-3D-cza"/>
@@ -198,12 +198,14 @@
                                         <columns>
                                             <gridColumn id="k3e-ls-c6o"/>
                                             <gridColumn id="hlS-CI-3S4"/>
-                                            <gridColumn id="C5T-oh-dGs"/>
                                         </columns>
                                         <gridCells>
                                             <gridCell row="A5a-1R-KNS" column="k3e-ls-c6o" id="cIO-pn-eeQ">
                                                 <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W7e-Di-3ya">
                                                     <rect key="frame" x="-2" y="43" width="90" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="72" id="b9t-pc-aFy"/>
+                                                    </constraints>
                                                     <buttonCell key="cell" type="check" title="Line count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6jK-xX-8AH">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -222,18 +224,6 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <binding destination="NU0-2h-SUe" name="value" keyPath="values.showStatusBarLocation" id="hFG-Kw-mme"/>
-                                                    </connections>
-                                                </button>
-                                            </gridCell>
-                                            <gridCell row="A5a-1R-KNS" column="C5T-oh-dGs" id="XFO-3R-icF">
-                                                <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O64-k1-YJA">
-                                                    <rect key="frame" x="240" y="43" width="75" height="18"/>
-                                                    <buttonCell key="cell" type="check" title="File size" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ikB-dS-c4S">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <binding destination="NU0-2h-SUe" name="value" keyPath="values.showStatusBarFileSize" id="rJ4-gy-lbc"/>
                                                     </connections>
                                                 </button>
                                             </gridCell>
@@ -261,7 +251,6 @@
                                                     </connections>
                                                 </button>
                                             </gridCell>
-                                            <gridCell row="f5f-3D-cza" column="C5T-oh-dGs" id="Lfg-xp-XF3"/>
                                             <gridCell row="aTU-TR-NnE" column="k3e-ls-c6o" id="AwB-8O-vwM">
                                                 <button key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oLV-nM-Y3n">
                                                     <rect key="frame" x="-2" y="-1" width="97" height="18"/>
@@ -286,7 +275,6 @@
                                                     </connections>
                                                 </button>
                                             </gridCell>
-                                            <gridCell row="aTU-TR-NnE" column="C5T-oh-dGs" id="pTc-aA-lQP"/>
                                         </gridCells>
                                     </gridView>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="KaN-9u-fz0">
@@ -321,7 +309,7 @@
                                             <outlet property="formatter" destination="yn0-hn-qBW" id="WLI-uH-iqt"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-el-9xy">
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9xw-el-9xy">
                                         <rect key="frame" x="202" y="99" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="VCx-PO-Fnr">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -329,7 +317,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dlN-sO-hCs">
                                         <rect key="frame" x="233" y="99" width="46" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="height:" id="Zhk-Nt-kiD">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -358,7 +346,7 @@
                                             <outlet property="formatter" destination="yn0-hn-qBW" id="npc-OR-G5j"/>
                                         </connections>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-qH-I9N">
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kQy-qH-I9N">
                                         <rect key="frame" x="351" y="99" width="19" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="px" id="u8r-OW-Z1O">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -517,13 +505,13 @@
                                         </customSpacing>
                                     </stackView>
                                     <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="heB-2f-hH0" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="367" width="471" height="1"/>
+                                        <rect key="frame" x="0.0" y="367" width="431" height="1"/>
                                     </customView>
                                     <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-SP-zrK" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="220" width="471" height="1"/>
+                                        <rect key="frame" x="0.0" y="220" width="431" height="1"/>
                                     </customView>
                                     <customView verticalHuggingPriority="750" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="7BU-ks-EwZ" customClass="SeparatorGuideView" customModule="CotEditor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="129" width="471" height="1"/>
+                                        <rect key="frame" x="0.0" y="129" width="431" height="1"/>
                                     </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYL-DQ-n5Y">
                                         <rect key="frame" x="154" y="314" width="119" height="18"/>
@@ -532,8 +520,8 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showLineNumbers" id="ixu-Ti-hCz"/>
                                             <binding destination="NU0-2h-SUe" name="value" keyPath="values.showLineNumberSeparator" id="rbH-Xg-8V1"/>
+                                            <binding destination="NU0-2h-SUe" name="enabled" keyPath="values.showLineNumbers" id="ixu-Ti-hCz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -572,13 +560,13 @@
                                     <constraint firstAttribute="bottom" secondItem="dhU-V2-fZC" secondAttribute="bottom" constant="20" symbolic="YES" id="JZZ-SZ-0W2"/>
                                     <constraint firstItem="hfv-mJ-E2k" firstAttribute="leading" secondItem="KaN-9u-fz0" secondAttribute="trailing" constant="8" symbolic="YES" id="K0n-tw-KAc"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ExR-YZ-RPy" secondAttribute="trailing" constant="20" symbolic="YES" id="LAf-AJ-Uyn"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dN2-g1-1rQ" secondAttribute="trailing" constant="20" symbolic="YES" id="MGK-SO-UJa"/>
+                                    <constraint firstAttribute="trailing" secondItem="dN2-g1-1rQ" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="MGK-SO-UJa"/>
                                     <constraint firstItem="wv9-cn-NXQ" firstAttribute="trailing" secondItem="dgR-do-Wa7" secondAttribute="trailing" id="MOT-AW-sv0"/>
                                     <constraint firstItem="XGK-jf-PNq" firstAttribute="leading" secondItem="dlN-sO-hCs" secondAttribute="trailing" constant="8" symbolic="YES" id="NgF-fn-XNb"/>
                                     <constraint firstItem="Gi0-Gf-dth" firstAttribute="top" secondItem="dgR-do-Wa7" secondAttribute="bottom" constant="12" id="PJf-J9-N5Y"/>
                                     <constraint firstItem="1hW-gQ-vjs" firstAttribute="trailing" secondItem="Obi-8V-K8Q" secondAttribute="trailing" id="PoO-9p-hV6"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KWJ-gB-0KX" secondAttribute="trailing" constant="20" symbolic="YES" id="PoY-T2-BvL"/>
-                                    <constraint firstAttribute="trailing" secondItem="DnL-UN-PAA" secondAttribute="trailing" priority="750" constant="20" symbolic="YES" id="QW5-JF-lee"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DnL-UN-PAA" secondAttribute="trailing" constant="20" symbolic="YES" id="QW5-JF-lee"/>
                                     <constraint firstItem="SQY-QF-RyC" firstAttribute="centerY" secondItem="C9r-v1-hrx" secondAttribute="centerY" id="SAE-UF-IIl"/>
                                     <constraint firstItem="dlN-sO-hCs" firstAttribute="leading" secondItem="9xw-el-9xy" secondAttribute="trailing" constant="16" id="SDG-wL-GDn"/>
                                     <constraint firstItem="KWJ-gB-0KX" firstAttribute="baseline" secondItem="w4k-Qb-kRF" secondAttribute="baseline" id="TAb-vY-lbq"/>

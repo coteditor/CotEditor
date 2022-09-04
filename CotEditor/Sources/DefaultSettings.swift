@@ -55,7 +55,6 @@ struct DefaultSettings {
         .showStatusBarLocation: true,
         .showStatusBarLine: true,
         .showStatusBarColumn: false,
-        .showStatusBarFileSize: true,
 //        .windowWidth: 600.0,
 //        .windowHeight: 620.0,
         .splitViewVertical: false,
