@@ -366,9 +366,9 @@
 "dob-yj-jf3.title" = "Yorumu Kaldır";
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
-"4h9-iu-ehP.title" = "Girintileme";
+"4h9-iu-ehP.title" = "Girintile";
 /* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
-"YOd-Hk-eIa.title" = "Girintileme";
+"YOd-Hk-eIa.title" = "Girintile";
 /* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
 "454.title" = "Sağa Kaydır";
 /* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
@@ -519,7 +519,7 @@
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Vurgula";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Vurgulanmamış";
+"5is-7G-OVT.title" = "Vurguyu Kaldır";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Ana Hat Menüsünü Aç";
