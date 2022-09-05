@@ -225,7 +225,7 @@
 
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: new
+"Document has unsaved changes" = "文件內包含尚未存檔的內容變更";
 
 
 
@@ -714,8 +714,8 @@
 
 /* MARK: Pattern Sort View */
 // error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "Invalid pattern";  // FIXME: new
-"Empty pattern" = "Empty pattern";  // FIXME: new
+"Invalid pattern" = "不合法的範式";
+"Empty pattern" = "空白範式";
 
 
 
@@ -733,34 +733,33 @@
 
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
-"Advanced Character Count…" = "Advanced Character Count…";  // FIXME: new
-"Stop Advanced Character Count" = "Stop Advanced Character Count";  // FIXME: new
+"Advanced Character Count…" = "進階字元統計…";
+"Stop Advanced Character Count" = "停止進階字元統計";
 // error message when counting failed
-"failed" = "failed";  // FIXME: new
+"failed" = "已失敗";
 // tooltip
-"Show options" = "Show options";  // FIXME: new
+"Show options" = "顯示選項";
 // context menu item labels
 "Copy" = "複製";
-"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.  // FIXME: new
-
+"Stop Count" = "停止統計";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
 /* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Whitespace:";  // FIXME: new
-"Ignore line endings" = "Ignore line endings";  // FIXME: new
-"Ignore whitespace" = "Ignore whitespace";  // FIXME: new
-"Treat consecutive whitespace as one space" = "Treat consecutive whitespace as one space";  // FIXME: new
+"Whitespace:" = "空白字元:";
+"Ignore line endings" = "忽略行尾";
+"Ignore whitespace" = "忽略空白字元";
+"Treat consecutive whitespace as one space" = "將多個空白字元視為同一個";
 
-"Unit:" = "Unit:";  // FIXME: new
-"Grapheme cluster" = "Grapheme cluster";  // technical term defined in Unicode  // FIXME: new
-"Unicode scalar" = "Unicode scalar";  // FIXME: new
-"UTF-16" = "UTF-16";  // FIXME: new
-"Byte" = "Byte";  // FIXME: new
+"Unit:" = "單位:";
+"Grapheme cluster" = "書寫元素集";  // technical term defined in Unicode
+"Unicode scalar" = "Unicode 純量";
+"UTF-16" = "UTF-16";
+"Byte" = "位元組";
 
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character.";  // FIXME: new
-"Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";  // FIXME: new
-"Count Unicode code points but a surrogate pair as two characters." = "Count Unicode code points but a surrogate pair as two characters.";  // FIXME: new
-"Count bytes of the text encoded with the specified encoding." = "Count bytes of the text encoded with the specified encoding.";  // FIXME: new
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。";
+"Count Unicode code points. Same as counting UTF-32." = "統計萬國碼碼點數量（以 UTF-32 的方式）。";
+"Count Unicode code points but a surrogate pair as two characters." = "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。";
+"Count bytes of the text encoded with the specified encoding." = "以文本自身的編碼、來統計該文本的位元組數量。";
 
-"Encoding:" = "Encoding:";  // FIXME: new
-"Normalization:" = "Normalization:";  // FIXME: new
+"Encoding:" = "編碼:";
+"Normalization:" = "標準化:";
