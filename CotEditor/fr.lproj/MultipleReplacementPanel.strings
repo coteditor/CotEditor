@@ -70,7 +70,7 @@
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
 "KTe-1r-oHM.headerToolTip" = "Activer";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Sélectionnez pour activer la règle de remplacement.";  // FIXME: enable -> use
+"PuQ-No-wC1.ibShadowedToolTip" = "Sélectionnez pour utiliser cette règle de remplacement.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
 "zee-UW-TVR.headerCell.title" = "Rechercher";
