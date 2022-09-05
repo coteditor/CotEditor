@@ -147,7 +147,7 @@
 "Back Reference" = "Referência Inversa";
 "first match" = "primeira ocorrência";
 
-"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: new
+"The syntax conforms to the %@ specifications." = "A sintaxe está em conformidade com as especificações %@."; // %@ is the name of the regex engine (ICU Regular Expressions)
 
 
 
@@ -225,7 +225,7 @@
 
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: new
+"Document has unsaved changes" = "Documento contém alterações não salvas";
 
 
 
@@ -714,8 +714,8 @@
 
 /* MARK: Pattern Sort View */
 // error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "Invalid pattern";  // FIXME: new
-"Empty pattern" = "Empty pattern";  // FIXME: new
+"Invalid pattern" = "Padrão inválido";
+"Empty pattern" = "Padrão vazio";
 
 
 
@@ -733,34 +733,34 @@
 
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
-"Advanced Character Count…" = "Advanced Character Count…";  // FIXME: new
-"Stop Advanced Character Count" = "Stop Advanced Character Count";  // FIXME: new
+"Advanced Character Count…" = "Contagem avançada de caracteres…";
+"Stop Advanced Character Count" = "Parar Contagem Avançada de Caracteres";
 // error message when counting failed
-"failed" = "failed";  // FIXME: new
+"failed" = "falhou";
 // tooltip
-"Show options" = "Show options";  // FIXME: new
+"Show options" = "Mostrar opções";
 // context menu item labels
 "Copy" = "Copiar";
-"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.  // FIXME: new
+"Stop Count" = "Parar Contagem";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
 
 /* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Whitespace:";  // FIXME: new
-"Ignore line endings" = "Ignore line endings";  // FIXME: new
-"Ignore whitespace" = "Ignore whitespace";  // FIXME: new
-"Treat consecutive whitespace as one space" = "Treat consecutive whitespace as one space";  // FIXME: new
+"Whitespace:" = "Espaços em branco:";
+"Ignore line endings" = "Ignorar finais de linha";
+"Ignore whitespace" = "Ignorar espaços em branco";
+"Treat consecutive whitespace as one space" = "Tratar espaços em branco consecutivos como um espaço";
 
-"Unit:" = "Unit:";  // FIXME: new
-"Grapheme cluster" = "Grapheme cluster";  // technical term defined in Unicode  // FIXME: new
-"Unicode scalar" = "Unicode scalar";  // FIXME: new
-"UTF-16" = "UTF-16";  // FIXME: new
-"Byte" = "Byte";  // FIXME: new
+"Unit:" = "Unidade:";
+"Grapheme cluster" = "Agrupamentos de Grapheme";  // technical term defined in Unicode
+"Unicode scalar" = "Unicode escalar";
+"UTF-16" = "UTF-16";
+"Byte" = "Byte";
 
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character.";  // FIXME: new
-"Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";  // FIXME: new
-"Count Unicode code points but a surrogate pair as two characters." = "Count Unicode code points but a surrogate pair as two characters.";  // FIXME: new
-"Count bytes of the text encoded with the specified encoding." = "Count bytes of the text encoded with the specified encoding.";  // FIXME: new
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Conte da maneira intuitiva definida em Unicode. Um caractere que consiste em vários pontos de código Unicode, como emojis, é contado como um caractere.";
+"Count Unicode code points. Same as counting UTF-32." = "Contar pontos de código Unicode. O mesmo que contar UTF-32.";
+"Count Unicode code points but a surrogate pair as two characters." = "Conte os pontos de código Unicode, mas um par substituto como dois caracteres.";
+"Count bytes of the text encoded with the specified encoding." = "Contar bytes do texto codificado com a codificação especificada.";
 
-"Encoding:" = "Encoding:";  // FIXME: new
-"Normalization:" = "Normalization:";  // FIXME: new
+"Encoding:" = "Codificação:";
+"Normalization:" = "Normalização:";
