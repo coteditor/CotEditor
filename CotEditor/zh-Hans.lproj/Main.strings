@@ -441,9 +441,9 @@
 "x1F-KX-2de.title" = "转为大驼峰式";
 
 /* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
-"xxp-UD-STx.title" = "URL Encode";  // FIXME: new
+"xxp-UD-STx.title" = "URL编码";
 /* Class = "NSMenuItem"; title = "URL Decode"; ObjectID = "3VB-Bg-Ker"; */
-"3VB-Bg-Ker.title" = "URL Decode";  // FIXME: new
+"3VB-Bg-Ker.title" = "URL解码";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "半宽到全宽";
@@ -474,7 +474,7 @@
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "检视文字";
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
-"SPF-Mw-eZP.title" = "Advanced Character Count…";  // FIXME: new
+"SPF-Mw-eZP.title" = "绘制分隔线";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "编辑颜色代码…";
 

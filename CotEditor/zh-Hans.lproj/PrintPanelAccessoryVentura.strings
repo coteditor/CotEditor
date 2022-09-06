@@ -35,9 +35,9 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Print Line Numbers"; ObjectID = "L7u-ng-jC7"; */
-"L7u-ng-jC7.title" = "Print Line Numbers";  // FIXME: new
+"L7u-ng-jC7.title" = "打印行号";
 /* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
-"M5e-Tg-MlQ.title" = "Print Invisibles";  // FIXME: new
+"M5e-Tg-MlQ.title" = "打印不可见元素";
 
 
 

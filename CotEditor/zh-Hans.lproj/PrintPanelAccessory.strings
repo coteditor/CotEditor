@@ -34,7 +34,7 @@
 "Jff-bZ-Xbm.title" = "打印背景";
 
 /* Class = "NSTextFieldCell"; title = "Print:"; ObjectID = "716"; */
-"716.title" = "Print:";  // FIXME: new
+"716.title" = "打印：";
 /* Class = "NSButtonCell"; title = "line numbers"; ObjectID = "ZWa-GC-hpv"; */
 "ZWa-GC-hpv.title" = "行号";
 /* Class = "NSButtonCell"; title = "invisibles"; ObjectID = "oES-Vf-YlC"; */

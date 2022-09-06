@@ -147,7 +147,7 @@
 "Back Reference" = "回溯引用";
 "first match" = "首字匹配";
 
-"The syntax conforms to the %@ specifications." = "The syntax conforms to the %@ specifications.";  // %@ is the name of the regex engine (ICU Regular Expressions)  // FIXME: new
+"The syntax conforms to the %@ specifications." = "语法遵守%@规范";  // %@ is the name of the regex engine (ICU Regular Expressions)
 
 
 
@@ -225,7 +225,7 @@
 
 /* MARK: Document Window */
 // tooltip for the "edited" indicator in the window tab
-"Document has unsaved changes" = "Document has unsaved changes";  // FIXME: new
+"Document has unsaved changes" = "文档中存在未保存的更改";
 
 
 
@@ -714,8 +714,8 @@
 
 /* MARK: Pattern Sort View */
 // error messages ("pattern" is a regular expression pattern)
-"Invalid pattern" = "Invalid pattern";  // FIXME: new
-"Empty pattern" = "Empty pattern";  // FIXME: new
+"Invalid pattern" = "无效的表达式";
+"Empty pattern" = "空白的表达式";
 
 
 
@@ -733,34 +733,33 @@
 
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
-"Advanced Character Count…" = "Advanced Character Count…";  // FIXME: new
-"Stop Advanced Character Count" = "Stop Advanced Character Count";  // FIXME: new
+"Advanced Character Count…" = "高级字符计数…";
+"Stop Advanced Character Count" = "停止高级字符计数";
 // error message when counting failed
-"failed" = "failed";  // FIXME: new
+"failed" = "失败";
 // tooltip
-"Show options" = "Show options";  // FIXME: new
+"Show options" = "显示选项";
 // context menu item labels
-"Copy" = "拷贝";
-"Stop Count" = "Stop Count";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.  // FIXME: new
+"Copy" = "复制";
+"Stop Count" = "停止计数";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
 
-/* MARK: CharacterCountOptionsView */
-"Whitespace:" = "Whitespace:";  // FIXME: new
-"Ignore line endings" = "Ignore line endings";  // FIXME: new
-"Ignore whitespace" = "Ignore whitespace";  // FIXME: new
-"Treat consecutive whitespace as one space" = "Treat consecutive whitespace as one space";  // FIXME: new
+"Whitespace:" = "空格:";
+"Ignore line endings" = "忽略行尾";
+"Ignore whitespace" = "忽略空格";
+"Treat consecutive whitespace as one space" = "将连续空格视作一个空格";
 
-"Unit:" = "Unit:";  // FIXME: new
-"Grapheme cluster" = "Grapheme cluster";  // technical term defined in Unicode  // FIXME: new
-"Unicode scalar" = "Unicode scalar";  // FIXME: new
-"UTF-16" = "UTF-16";  // FIXME: new
-"Byte" = "Byte";  // FIXME: new
+"Unit:" = "单位:";
+"Grapheme cluster" = "字位簇";  // technical term defined in Unicode
+"Unicode scalar" = "Unicode标量";
+"UTF-16" = "UTF-16";
+"Byte" = "字节";
 
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character.";  // FIXME: new
-"Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";  // FIXME: new
-"Count Unicode code points but a surrogate pair as two characters." = "Count Unicode code points but a surrogate pair as two characters.";  // FIXME: new
-"Count bytes of the text encoded with the specified encoding." = "Count bytes of the text encoded with the specified encoding.";  // FIXME: new
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "以 Unicode 中定义的直观方式进行计数。如颜文字这样由多个Unicode码点组成的字符，计数为一个字符。";
+"Count Unicode code points. Same as counting UTF-32." = "计算Unicode码点，同UTF-32。";
+"Count Unicode code points but a surrogate pair as two characters." = "计算Unicode Unicode码点，但将一个代理对计算为两个字符。";
+"Count bytes of the text encoded with the specified encoding." = "计算文本按照指定编码方式后得到的字节数。";
 
-"Encoding:" = "Encoding:";  // FIXME: new
-"Normalization:" = "Normalization:";  // FIXME: new
+"Encoding:" = "编码：";
+"Normalization:" = "标准化：";

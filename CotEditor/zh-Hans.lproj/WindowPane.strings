@@ -42,7 +42,7 @@
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行号";
 /* Class = "NSButtonCell"; title = "Draw separator"; ObjectID = "zgz-Vf-91b"; */
-"zgz-Vf-91b.title" = "Draw separator";  // FIXME: new
+"zgz-Vf-91b.title" = "绘制分隔线";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
 "3352.title" = "列位置页面指示：";
 
