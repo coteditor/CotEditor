@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.4.0 (unreleased)
+4.4.0 (531)
 --------------------------
 
 ### New Features
@@ -38,7 +38,7 @@ Change Log
 - [trivial] Organize the editor's contextual menu.
 - [trivial] Improve the basic regular expression syntax reference.
 - [trivial] Improve the status bar display.
-- [dev] Update the build environment to Xcode 14.0.
+- [dev] Update the build environment to Xcode 14.0 beta 6.
 - [non-AppStore ver.] Update Sparkle to 2.2.2.
 
 
