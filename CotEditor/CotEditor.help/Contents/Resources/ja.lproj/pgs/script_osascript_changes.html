@@ -15,7 +15,23 @@
 
 
 <article>
+<h2>CotEditor 4.4.0での仕様改訂</h2>
+
+<section>
+	<h3><code>length</code>の廃止</h3>
+	<p>documentオブジェクトの<code>length</code>プロパティは廃止されました。</p>
+	<p>なお、後方互換性確保のためにCotEditor 4.4.0では、従来と同じ働きをするプロパティを隠し属性としてdocumentオブジェクトに付与していますが、このプロパティは将来予告なく削除される可能性があります。</p>
+</section>
+<section>
+	<h3><code>path</code>の後方互換性の削除</h3>
+	<p>CotEditor 2.0.0に廃止にされつつ後方互換性のために密かに対応されていた<code>path</code>は、このバージョンで完全に削除されました。</p>
+</section>
+</article>
+
+
+<article>
 <h2>CotEditor 4.1.0での仕様改訂</h2>
+
 <section>
 	<h3>ジャンプ</h3>
 	<p>documentオブジェクトに新しく<code>jump</code>コマンドが追加されました。</p>
@@ -31,8 +47,9 @@
 
 <article>
 <h2>CotEditor 4.0.7での仕様改訂</h2>
+
 <section>
-<h3><code>convert</code>/<code>reinterpret</code>でのエンコーデング指定方法</h3>
+	<h3><code>convert</code>/<code>reinterpret</code>でのエンコーデング指定方法</h3>
 	<p><code>convert</code>コマンドや<code>reinterpret</code>コマンドでのエンコーディング指定でIANA charset名も使えるようになりました。</p>
 </section>
 </article>
@@ -40,8 +57,9 @@
 
 <article>
 <h2>CotEditor 3.9.7での仕様改訂</h2>
+
 <section>
-<h3>スマート引用符</h3>
+	<h3>スマート引用符</h3>
 	<p>selectionオブジェクトに新しく以下のコマンドが追加されました。</p>
 	<ul class="nostyle">
 		<li><code>smarten quotes</code></li>
@@ -54,29 +72,39 @@
 
 <article>
 <h2>CotEditor 3.5.0での仕様改訂</h2>
+
+<section>
 	<h3>エディタの不透明度</h3>
 	<p><code>view opacity</code>プロパティはCotEditor 3.5.0で廃止されました。</p>
 	<p><strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
+</section>
 </article>
 
 
 <article>
 <h2>CotEditor 3.1.2での仕様改訂</h2>
+
+<section>
 	<h3>タブの自動展開</h3>
 	<p>documentオブジェクトに新しく<code>expands tab</code>プロパティが追加されました。</p>
+</section>
 </article>
 
 
 <article>
 <h2>CotEditor 2.6.0での仕様改訂</h2>
+
+<section>
 	<h3>行間プロパティ</h3>
 	<p><code>line spacing</code>プロパティはCotEditor 2.6.0で廃止されました。</p>
 	<p><strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
+</section>
 </article>
 
 
 <article>
 <h2>CotEditor 2.5.3での仕様改訂</h2>
+
 <section>
 	<h3>Unicode正規化</h3>
 	<p><code>normalize unicode</code>コマンドに新しく<code>Modified NFC</code>が追加されました。</p>
@@ -86,8 +114,9 @@
 
 <article>
 <h2>CotEditor 2.3.0での仕様改訂</h2>
+
 <section>
-<h3>選択行の編集</h3>
+	<h3>選択行の編集</h3>
 	<p>selectionオブジェクトに新しく以下のコマンドが追加されました。</p>
 	<ul class="nostyle">
 		<li><code>move line up</code></li>
@@ -102,6 +131,7 @@
 
 <article>
 <h2>CotEditor 2.2.2での仕様改訂</h2>
+
 <section>
 	<h3>Unicode正規化</h3>
 	<p><code>normalize unicode</code>コマンドに新しく<code>Modified NFD</code>が追加されました。</p>
@@ -111,6 +141,7 @@
 
 <article>
 <h2>CotEditor 2.2.0での仕様改訂</h2>
+
 <section>
 	<h3>Unicode正規化</h3>
 	<p><code>normalize unicode</code>コマンドに新しく<code>NFCK Casefold</code>が追加されました。</p>
@@ -120,6 +151,7 @@
 
 <article>
 <h2>CotEditor 2.1.0での仕様改訂</h2>
+
 <section>
 	<h3>タブ幅の操作</h3>
 	<p>documentオブジェクトに新しく<code>tab width</code>プロパティが追加されました。</p>
@@ -129,6 +161,7 @@
 
 <article>
 <h2>CotEditor 2.0.1での仕様改訂</h2>
+
 <section>
 	<h3>コメントアウトとコメント解除</h3>
 	<p>selectionオブジェクトに新しく<code>comment out</code>と<code>uncomment</code>コマンドが追加されました。</p>
@@ -138,6 +171,7 @@
 
 <article>
 <h2>CotEditor 2.0.0での仕様改訂</h2>
+
 <section>
 	<h3>Unicode正規化</h3>
 	<p>CotEditor 1.xでコマンド<code>unicode normalization</code>として実装されていたUnicode正規化コマンドは、 2.0で<code>normalize unicode</code>に改名されました。機能とパラメータに変更はありません。</p>
@@ -145,48 +179,49 @@
 </section>
 
 <section>
-<h3><code>path</code>プロパティの廃止</h3>
-<p>documentオブジェクトのファイルパスを得るための<code>path</code>プロパティは現在のモダンなAppleScript Standard Suiteではすでに削除になっています。かわりに<code>file</code>プロパティを使用してください。 <code>path</code>プロパティはtextオブジェクトでしたが<code>file</code>プロパティはfileオブジェクトを返します。</p>
+	<h3><code>path</code>プロパティの廃止</h3>
+	<p>documentオブジェクトのファイルパスを得るための<code>path</code>プロパティは現在のモダンなAppleScript Standard Suiteではすでに削除になっています。かわりに<code>file</code>プロパティを使用してください。 <code>path</code>プロパティはtextオブジェクトでしたが<code>file</code>プロパティはfileオブジェクトを返します。</p>
 <p>なお、後方互換性確保のためにCotEditor 2.0では、従来と同じ働きをする<code>file</code>プロパティを隠し属性として独自にdocumentオブジェクトに付与していますが、このプロパティは将来予告なく削除される可能性があります。</p>
 </section>
 
 <section>
-<h3><code>range</code>プロパティの内部コードの変更</h3>
-<p>selectionオブジェクトが持つ<code>range</code>プロパティを内部的に表すコードがCotEditor 2.0で変更されました。<code>range</code>プロパティは引き続き<code>range</code>というキーで操作するのでスクリプトを書く上では変更はありませんが、以前書かれたコンパイルされたスクリプト(.scpt)は新しい<code>range</code>プロパティを見つけられない可能性が高いです。</p>
+	<h3><code>range</code>プロパティの内部コードの変更</h3>
+	<p>selectionオブジェクトが持つ<code>range</code>プロパティを内部的に表すコードがCotEditor 2.0で変更されました。<code>range</code>プロパティは引き続き<code>range</code>というキーで操作するのでスクリプトを書く上では変更はありませんが、以前書かれたコンパイルされたスクリプト(.scpt)は新しい<code>range</code>プロパティを見つけられない可能性が高いです。</p>
 
-<h4>修正方法</h4>
-<p>以前の.scptファイルをAppleScript Editor (もしくはScript Editor)で開くと、従来<code>range</code>であった部分が<code>«class prng»</code>のような文字列に変更されているはずなのでその部分を再び<code>range</code>に書き戻してください。プレーンテキスト形式のスクリプト(.applescript)ではこの問題は発生しません。</p>
+	<h4>修正方法</h4>
+	<p>以前の.scptファイルをAppleScript Editor (もしくはScript Editor)で開くと、従来<code>range</code>であった部分が<code>«class prng»</code>のような文字列に変更されているはずなのでその部分を再び<code>range</code>に書き戻してください。プレーンテキスト形式のスクリプト(.applescript)ではこの問題は発生しません。</p>
 </section>
 </article>
 
 
 <article>
 <h2>CotEditor 1.5.0での仕様改訂</h2>
+
 <section>
-<h3>ウインドウ透明度</h3>
-<p>CotEditor 1.5でウインドウの不透明度設定の機構が変更されたのをうけて、不透明度設定に関するAppleScriptでの語句も変更されました。1.4までて使用できた<b>document</b>オブジェクトのプロパティ：</p>
+	<h3>ウインドウ透明度</h3>
+	<p>CotEditor 1.5でウインドウの不透明度設定の機構が変更されたのをうけて、不透明度設定に関するAppleScriptでの語句も変更されました。1.4までて使用できた<b>document</b>オブジェクトのプロパティ：</p>
 
-<ul class="nostyle">
-	<li><code>transparency</code>:ウインドウまたはテキストビューの透明度（real型、0.2から1.0の範囲）</li>
-	<li><code>alpha only textView</code>:透明度を設定するのはテキストビューだけかどうか（boolean型)</li>
-</ul>
+	<ul class="nostyle">
+		<li><code>transparency</code>:ウインドウまたはテキストビューの透明度（real型、0.2から1.0の範囲）</li>
+		<li><code>alpha only textView</code>:透明度を設定するのはテキストビューだけかどうか（boolean型)</li>
+	</ul>
 
-<p>は廃止され、新たに<b>window</b>オブジェクトにプロパティ：</p>
+	<p>は廃止され、新たに<b>window</b>オブジェクトにプロパティ：</p>
 
-<ul class="nostyle">
-	<li><code>view opacity</code>:テキストビューの不透明度（real型、0.2から1.0の範囲）</li>
-</ul>
+	<ul class="nostyle">
+		<li><code>view opacity</code>:テキストビューの不透明度（real型、0.2から1.0の範囲）</li>
+	</ul>
 
-<p>が追加されました。</p>
+	<p>が追加されました。</p>
 
-<p>プロパティ名称がtransparency (透明度)からopacity (不透明度)に変更されていますが、これは1.5以前の誤表現を訂正するものですので、実際に取る値に変更はありません。新旧とも1.0に近づくほど不透明度が増します。</p>
-<p>また、<strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
+	<p>プロパティ名称がtransparency (透明度)からopacity (不透明度)に変更されていますが、これは1.5以前の誤表現を訂正するものですので、実際に取る値に変更はありません。新旧とも1.0に近づくほど不透明度が増します。</p>
+	<p>また、<strong>この件に関しては後方互換性はありません</strong>のでご了承ください。</p>
 </section>
 
 <section>
-<h3>アプリケーション直下のselectionオブジェクト</h3>
-<p>CotEditorの最初のβ版0.6では、 selectionオブジェクトをドキュメントを明示しなくてもアプリケーション前面のドキュメントが指定されたと見なしていました。しかし実際にはうまく動かなかったために、これは将来廃止にする可能性が高く非推奨となり、後方互換性のために該当部分のコードのみは残したままにしていました。</p>
-<p>この仕様はCotEditor 1.5で正式に廃止され関連するコードも削除されました。最前面ドキュメントのselectionを得るためには例1または例2のようにそれを明示してください。</p>
+	<h3>アプリケーション直下のselectionオブジェクト</h3>
+	<p>CotEditorの最初のβ版0.6では、 selectionオブジェクトをドキュメントを明示しなくてもアプリケーション前面のドキュメントが指定されたと見なしていました。しかし実際にはうまく動かなかったために、これは将来廃止にする可能性が高く非推奨となり、後方互換性のために該当部分のコードのみは残したままにしていました。</p>
+	<p>この仕様はCotEditor 1.5で正式に廃止され関連するコードも削除されました。最前面ドキュメントのselectionを得るためには例1または例2のようにそれを明示してください。</p>
 
 <figure>
 <figcaption>例1)</figcaption>

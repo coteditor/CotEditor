@@ -59,7 +59,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     private var themeChangeObserver: AnyCancellable?
     
     private lazy var outlineParseDebouncer = Debouncer(delay: .seconds(0.4)) { [weak self] in self?.syntaxParser?.invalidateOutline() }
-    private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
@@ -130,7 +129,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -148,7 +146,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -201,7 +198,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             
             // start parsing syntax for highlighting and outlines
             self.outlineParseDebouncer.perform()
-            self.invalidateSyntaxHighlight()
+            document.syntaxParser.highlight()
             
             // detect indent style
             if UserDefaults.standard[.detectsIndentStyle],
@@ -236,13 +233,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// avoid showing draggable cursor
+    /// avoid showing draggable cursor for the status bar boundary
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        // -> Super's delegate method must be called anyway.
-        super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
-        
-        return .zero
+        .zero
     }
     
     
@@ -255,13 +249,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// apply current state to related UI items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-            case #selector(recolorAll):
-                return self.syntaxParser?.canParse ?? false
-            
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
                     item.state = (self.theme?.name == item.title) ? .on : .off
@@ -301,9 +291,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 (item as? NSMenuItem)?.title = self.wrapsLines
                     ? "Unwrap Lines".localized
                     : "Wrap Lines".localized
-                (item as? NSToolbarItem)?.toolTip = self.wrapsLines
-                    ? "Unwrap lines".localized
-                    : "Wrap lines".localized
+                if #available(macOS 13, *) {
+                    (item as? NSToolbarItem)?.label = self.wrapsLines
+                        ? "Unwrap lines".localized
+                        : "Wrap lines".localized
+                }
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
             
             case #selector(toggleInvisibleChars):
@@ -314,7 +306,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 
                 // disable if item cannot be enabled
                 let canActivateShowInvisibles = !UserDefaults.standard.showsInvisible.isEmpty
-                item.toolTip = canActivateShowInvisibles ? nil : "To show invisible characters, set them in Preferences".localized
+                item.toolTip = canActivateShowInvisibles ? nil : "To show invisible characters, set them in Settings".localized
                 if canActivateShowInvisibles {
                     (item as? NSToolbarItem)?.toolTip = self.showsInvisibles
                         ? "Hide invisible characters".localized
@@ -394,7 +386,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         // -> Perform in the next run loop to give layoutManagers time to update their values.
         let editedRange = textStorage.editedRange
         DispatchQueue.main.async { [weak self] in
-            self?.invalidateSyntaxHighlight(in: editedRange)
+            self?.syntaxParser?.highlight(around: editedRange)
         }
     }
     
@@ -402,10 +394,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// selection did change
     @objc private func textViewDidLiveChangeSelection(_ notification: Notification) {
         
-        let editedCharacters = (notification.object as? NSTextView)?.textStorage?.editedMask.contains(.editedCharacters) == true
-        
-        // update document information
-        self.document?.analyzer.invalidate(onlySelection: !editedCharacters)
+        self.document?.analyzer.invalidate(onlySelection: true)
     }
     
     
@@ -419,7 +408,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         self.outlineParseDebouncer.perform()
-        self.invalidateSyntaxHighlight()
+        syntaxParser.highlight()
     }
     
     
@@ -634,7 +623,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// recolor whole document
     @IBAction func recolorAll(_ sender: Any?) {
         
-        self.invalidateSyntaxHighlight()
+        self.syntaxParser?.highlight()
     }
     
     
@@ -795,9 +784,9 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// show editor opacity slider as popover
     @IBAction func showOpacitySlider(_ sender: Any?) {
         
-        guard let viewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? NSViewController else { return assertionFailure() }
+        guard let viewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? OpacityViewController else { return assertionFailure() }
         
-        viewController.representedObject = self.view.window
+        viewController.window = self.view.window
         
         self.present(viewController, asPopoverRelativeTo: .zero, of: self.view,
                      preferredEdge: .maxY, behavior: .transient)
@@ -874,31 +863,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     
     
     // MARK: Private Methods
-    
-    /// Invalidate the current syntax highlight.
-    ///
-    /// - Parameter range: The character range to invalidate syntax highlight, or `nil` when entire text is needed to re-highlight.
-    private func invalidateSyntaxHighlight(in range: NSRange? = nil) {
-        
-        assert(self.syntaxParser != nil)
-        
-        var range = range
-        
-        // retry entire syntax highlight if the last highlightAll has not finished yet
-        if let progress = self.syntaxHighlightProgress, !progress.isFinished, !progress.isCancelled {
-            progress.cancel()
-            range = nil
-        }
-        
-        // start parse
-        let progress = self.syntaxParser?.highlight(around: range)
-        
-        // make large update cancellable
-        if let length = range?.length ?? self.textStorage?.length, length > 10_000  {
-            self.syntaxHighlightProgress = progress
-        }
-    }
-    
     
     /// create and set-up new (split) editor view
     private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {

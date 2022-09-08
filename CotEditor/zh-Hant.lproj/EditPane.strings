@@ -91,7 +91,7 @@
 "c5j-0N-f2R.title" = "標準單字";
 
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
-"J1B-wA-rdr.title" = "忽略字串中的製表符和換行符";
+"J1B-wA-rdr.title" = "在輸入時建議關聯字";
 
-/* Class = "NSTextFieldCell"; title = "⚠️ Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
-"dmb-pc-4M5.title" = "⚠️ 至少選擇一個條目來啟用補全。";
+/* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "至少選擇一個條目來啟用補全。";

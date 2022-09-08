@@ -36,11 +36,11 @@
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
 "cZ9-i9-VsM.title" = "名前を変更";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
-"fN1-Tr-8T8.title" = "書き出し…";
+"fN1-Tr-8T8.title" = "書き出す…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
 "tLz-9S-3we.title" = "Finderに表示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
-"iZn-Pw-tgJ.title" = "読み込み…";
+"iZn-Pw-tgJ.title" = "読み込む…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
 "0ca-Jy-pHT.title" = "すべての定義を再読み込み";
 
@@ -53,11 +53,11 @@
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
 "M9A-ds-FNR.title" = "削除";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
-"5mf-DX-YT5.title" = "書き出し…";
+"5mf-DX-YT5.title" = "書き出す…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
 "sYx-dd-JiV.title" = "Finderに表示";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
-"8TG-QH-hxz.title" = "読み込み…";
+"8TG-QH-hxz.title" = "読み込む…";
 
 
 
@@ -69,8 +69,8 @@
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
 "KTe-1r-oHM.headerToolTip" = "有効";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "この置換条件を有効にする場合に選択";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
+"PuQ-No-wC1.ibShadowedToolTip" = "この置換条件を使う場合に選択";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
 "zee-UW-TVR.headerCell.title" = "検索";
@@ -86,7 +86,7 @@
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
 "d3o-yf-jB4.headerCell.title" = "IC";
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerToolTip" = "大文字小文字を無視";
+"d3o-yf-jB4.headerToolTip" = "大文字/小文字を無視";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
 "Rhy-iE-CIC.headerCell.title" = "説明";
@@ -100,8 +100,8 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "無効な条件はスキップされます。";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを設定";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを表示";
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "詳細オプション";
 
 

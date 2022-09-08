@@ -33,30 +33,17 @@
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
 "Jff-bZ-Xbm.title" = "Stampa sfondi";
 
-/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
-"716.title" = "Numeri righe:";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
-"420.title" = "Non stampare";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
-"419.title" = "Come da documento";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
-"418.title" = "Stampare";
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Caratteri invisibili:";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
-"427.title" = "Come da documento";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
-"428.title" = "Non stampare";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
-"426.title" = "Stampare";
+/* Class = "NSTextFieldCell"; title = "Print:"; ObjectID = "716"; */
+"716.title" = "Stampa:";
+/* Class = "NSButtonCell"; title = "line numbers"; ObjectID = "ZWa-GC-hpv"; */
+"ZWa-GC-hpv.title" = "Numeri righe";
+/* Class = "NSButtonCell"; title = "invisibles"; ObjectID = "oES-Vf-YlC"; */
+"oES-Vf-YlC.title" = "Caratteri invisibili";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "Intestazione stampa";
-
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
-"706.title" = "Primaria:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "Nessuna";
@@ -76,9 +63,6 @@
 "Aru-Gd-J0D.ibShadowedToolTips[1]" = "Centra";  /* Center */
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "Allinea a destra";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
-"707.title" = "Secondaria:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "Nessuna";
@@ -103,9 +87,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "Stampa pie’ di pagina";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
-"711.title" = "Primaria:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "Nessuna";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
@@ -124,9 +105,6 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Centra";  /* Center */
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Allinea a destra";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
-"712.title" = "Secondaria:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "Nessuna";

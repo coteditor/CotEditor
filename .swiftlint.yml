@@ -1,8 +1,7 @@
 deployment_target:
-  macOS_deployment_target: 11
+  macOS_deployment_target: 12
 
 excluded:
-  - Frameworks
   - SyntaxMapBuilder/.build
 
 opt_in_rules:
@@ -109,12 +108,8 @@ function_body_length:
   error: 500
 
 cyclomatic_complexity:
-  warning: 40
-  error: 50
-
-large_tuple:
-  warning: 3
-  error: 6
+  warning: 30
+  error: 40
 
 identifier_name:
   max_length:
@@ -126,7 +121,6 @@ identifier_name:
     - x
     - y
     - shiftJIS_X0213
-    - macOS10_15
 
 
 custom_rules:

@@ -37,7 +37,7 @@
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
 "pKE-GY-bD6.title" = "列";
 /* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
-"Ase-N7-QHB.title" = "正規表示式";
+"Ase-N7-QHB.title" = "常規表示式";
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
@@ -63,7 +63,7 @@
 /* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
 "d12-uy-VE0.title" = "模式：";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Un0-F8-2q0"; */
-"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "正規表示式";
+"Un0-F8-2q0.ibShadowedIsNilPlaceholder" = "常規表示式";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
 "Lr8-mD-svg.title" = "忽略大小寫";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */

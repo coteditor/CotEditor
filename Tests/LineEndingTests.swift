@@ -45,15 +45,6 @@ final class LineEndingTests: XCTestCase {
     }
     
     
-    func testCount() {
-        
-        XCTAssertEqual("".countExceptLineEnding, 0)
-        XCTAssertEqual("foo\nbar".countExceptLineEnding, 6)
-        XCTAssertEqual("\u{feff}".countExceptLineEnding, 1)
-        XCTAssertEqual("\u{feff}a".countExceptLineEnding, 2)
-    }
-    
-    
     func testLineEndingRanges() {
         
         let string = "\rfoo\r\nbar \n \nb \n\r uz\u{2029}moin\r\n"

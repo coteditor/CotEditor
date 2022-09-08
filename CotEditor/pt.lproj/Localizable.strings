@@ -28,6 +28,7 @@
 "OK" = "OK";
 "Cancel" = "Cancelar";
 "Done" = "OK";
+"Start" = "Iniciar";
 
 
 // Appending words in parentheses
@@ -78,15 +79,15 @@
 "Replace All" = "Substituir Tudo";
 "Highlight" = "Destacar";
 "Searching in text…" = "Buscando no texto…";
-"%@ string found." = "%@ string encontrada.";
-"%@ strings found." = "%@ strings encontradas.";
-"%@ string replaced." = "%@ string substituída.";
-"%@ strings replaced." = "%@ strings substituídas.";
+"%lld string found." = "%lld string encontrada.";
+"%lld strings found." = "%lld strings encontradas.";
+"%lld string replaced." = "%lld string substituída.";
+"%lld strings replaced." = "%lld strings substituídas.";
 "Invalid regular expression" = "Expressão regular inválida";
 "Empty find string" = "String de busca vazia";
-"The option “in selection” is enabled, although nothing is selected." = "A opção “Na Seleção” está habilitada, porém nada está selecionado.";
+"The option “in selection” is selected, although nothing is selected." = "A opção “Na Seleção” está habilitada, porém nada está selecionado.";
 "Input text to find." = "Digite o texto a buscar.";
-"Select the search scope in the document or turn off the “in selection” option." = "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção”.";
+"Select the search scope in the document or turn off the “in selection” option." = "Selecione o escopo da busca no documento ou desmarque a opção “Na Seleção.”";
 
 // accessibility announcement
 "Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
@@ -97,17 +98,17 @@
 "Replace the current selection with the replacement text, then find the next match." = "Substitua a seleção atual pelo texto de substituição e busque a ocorrência seguinte.";
 "Replace the current selection with the replacement text." = "Substitua a seleção atual pelo texto de substituição.";
 "Not Found" = "Não Encontrado";
-"%i found" = "%i encontrado(s)";  // %i is number of founds
+"%lld found" = "%lld encontrado(s)";  // %lld is number of founds
 "Not Replaced" = "Não Substituído";
-"%i replaced" = "%i substituído(s)";  // %i is number of replaced
+"%lld replaced" = "%lld substituído(s)";  // %lld is number of replaced
 
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "Nenhuma string encontrada em “%@”.";
-"Found one string in “%@”." = "1 string encontrada em “%@”.";
-"Found %i strings in “%@”." = "%i strings encontradas em “%@”.";
+"No strings found in “%@.”" = "Nenhuma string encontrada em “%@.”";
+"Found one string in “%@.”" = "1 string encontrada em “%@.”";
+"Found %lld strings in “%@.”" = "%lld strings encontradas em “%@.”";
 
 
 
@@ -145,6 +146,8 @@
 
 "Back Reference" = "Referência Inversa";
 "first match" = "primeira ocorrência";
+
+"The syntax conforms to the %@ specifications." = "A sintaxe está em conformidade com as especificações %@."; // %@ is the name of the regex engine (ICU Regular Expressions)
 
 
 
@@ -184,7 +187,7 @@
 "Reinterpret" = "Reinterpretar";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@.”";
 "Do you want to continue processing?" = "Deseja continuar o processamento?";
 "Save Available Text" = "Salvar Strings Disponíveis";
 "Show Incompatible Characters" = "Mostrar Caracteres Incompatíveis";
@@ -196,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "O documento não tem um arquivo para reinterpretar.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "A codificação de texto “%2$@” não pôde ser usada para reinterpretar o arquivo “%1$@”.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "A codificação de texto “%2$@” não pôde ser usada para reinterpretar o arquivo “%1$@.”";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "O arquivo pode ter sido salvo com outra codificação de texto ou não ser um arquivo de texto.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@”.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "Alguns caracteres teriam que ser alterados ou apagados ao salvar como “%@.”";
 "Do you want to change encoding and show incompatible characters?" = "Deseja alterar a codificação e mostrar os caracteres incompatíveis?";
 "Change Encoding" = "Alterar Codificação";
 
@@ -217,6 +220,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?";
 "Keep CotEditor’s Edition" = "Manter Edição do CotEditor";
 "Update" = "Atualizar";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in the window tab
+"Document has unsaved changes" = "Documento contém alterações não salvas";
 
 
 
@@ -365,10 +374,8 @@
 // Summary item values
 "On" = "Ativo";
 "Off" = "Inativo";
-"Don’t Print" = "Não Imprimir";
 "Same as Document’s Setting" = "Usar Ajustes do Documento";
 "Black and White" = "Preto e Branco";
-"Print" = "Imprimir";
 "Syntax Name" = "Nome da Sintaxe";
 "Document Name" = "Nome do Documento";
 "File Path" = "Caminho do Arquivo";
@@ -393,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Escaneando caracteres incompatíveis...";
 "Found an incompatible character." = "Encontrado caracter incompatível.";
-"Found %i incompatible characters." = "Encontrados %i caracteres incompatíveis.";  // %i is the number of characters
+"Found %lld incompatible characters." = "Encontrados %lld caracteres incompatíveis.";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "Foi encontrado um final de linha diferente de %@.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "Foram encontrados %i finais de linha diferentes de %@.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "Foram encontrados %lld finais de linha diferentes de %@.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -411,13 +418,6 @@
 "Convert Indentation" = "Converter Recuo";
 "Comment Out" = "Adicionar Comentário";
 "Uncomment" = "Remover Comentário";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Case Fold";
-"Modified NFC" = "NFC Modificado";
-"Modified NFD" = "NFD Modificado";
 "Inspect Character" = "Inspecionar Caractere";
 "Move Line" = "Mover Linha";
 "Sort Lines" = "Ordenar Linhas";
@@ -429,7 +429,6 @@
 "Trim Trailing Whitespace" = "Aparar Espaço em Branco à Direita";
 
 // Contextual menu items
-"Font" = "Fonte";
 "Text" = "Texto";
 "Copy as Rich Text" = "Copiar como Texto com Formatação";
 "Select All" = "Selecionar Tudo";
@@ -457,7 +456,7 @@
 "Wrap Lines" = "Ajustar Linhas";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "Para mostrar invisíveis, ative-os nas Preferências";
+"To show invisible characters, set them in Settings" = "Para mostrar invisíveis, ative-os nas Definições";
 
 
 
@@ -502,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "A alteração será aplicada quando o aplicativo for reaberto.";
@@ -572,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "Nenhum erro encontrado.";
 "An error found!" = "1 erro encontrado!";
-"%i errors found!" = "%i erros encontrados!";
+"%lld errors found!" = "%lld erros encontrados!";
 "outline" = "plano";
 
 
@@ -645,13 +644,13 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "Inserir Texto %li";
+"Insert Text %lld" = "Inserir Texto %lld";
 
 // Keyboard key name
 "Space" = "Espaço";
 
 // Warning messages
-"“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@”.";
+"“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@.”";
 "The Shift key can be used only with another modifier key." = "A tecla Shift só pode ser usada em conjunto com outra tecla de modificação.";
 "The combination “%@” is not supported for the key binding customization." = "A combinação “%@” não é suportada pela customização de combinações de teclas.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
@@ -713,12 +712,55 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "Importantes mudanças no CotEditor 4.2.0";
-"From this version, CotEditor handles line endings more strictly." = "Nessa versão, o CotEditor está mais rigoroso com os finais de linha.";
-"Due to this change, you may need manual migration for your settings below:" = "Devido a essa mudança, você pode precisar migrar manualmente suas configurações abaixo:";
-"Multiple replacement definitions" = "Múltiplas substituições de definições";
-"Syntax styles" = "Estilos de sintaxes";
-"CotEditor scripts" = "Scripts do CotEditor";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n` para combinações de expressões regulares apenas quando o final de linha for LF. Prefira usar`\\R` em qualquer outra combinação de final de linha.";
-"Learn More…" = "Saiba Mais…";
+/* MARK: Pattern Sort View */
+// error messages ("pattern" is a regular expression pattern)
+"Invalid pattern" = "Padrão inválido";
+"Empty pattern" = "Padrão vazio";
+
+
+
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Conflitos de Mapeamento de Estilos de Sintaxe";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "As seguintes regras de mapeamento de arquivo estão registradas em vários estilos. O CotEditor usa o primeiro estilo automaticamente. Para resolver conflitos, edite cada estilo de sintaxe.";
+"Extension" = "Extensão";
+"Filename" = "Nome do Arquivo";
+"Interpreter" = "Intérpretes";
+// table column headers
+"Used style" = "Estilo Usado";
+"Duplicated styles" = "Estilos Duplicados";
+
+
+
+/* MARK: AdvancedCharacterCounterView */
+// menu labels
+"Advanced Character Count…" = "Contagem avançada de caracteres…";
+"Stop Advanced Character Count" = "Parar Contagem Avançada de Caracteres";
+// error message when counting failed
+"failed" = "falhou";
+// tooltip
+"Show options" = "Mostrar opções";
+// context menu item labels
+"Copy" = "Copiar";
+"Stop Count" = "Parar Contagem";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
+
+
+
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "Espaços em branco:";
+"Ignore line endings" = "Ignorar finais de linha";
+"Ignore whitespace" = "Ignorar espaços em branco";
+"Treat consecutive whitespace as one space" = "Tratar espaços em branco consecutivos como um espaço";
+
+"Unit:" = "Unidade:";
+"Grapheme cluster" = "Agrupamentos de Grapheme";  // technical term defined in Unicode
+"Unicode scalar" = "Unicode escalar";
+"UTF-16" = "UTF-16";
+"Byte" = "Byte";
+
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Conte da maneira intuitiva definida em Unicode. Um caractere que consiste em vários pontos de código Unicode, como emojis, é contado como um caractere.";
+"Count Unicode code points. Same as counting UTF-32." = "Contar pontos de código Unicode. O mesmo que contar UTF-32.";
+"Count Unicode code points but a surrogate pair as two characters." = "Conte os pontos de código Unicode, mas um par substituto como dois caracteres.";
+"Count bytes of the text encoded with the specified encoding." = "Contar bytes do texto codificado com a codificação especificada.";
+
+"Encoding:" = "Codificação:";
+"Normalization:" = "Normalização:";

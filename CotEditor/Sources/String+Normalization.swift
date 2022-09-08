@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum UnicodeNormalizationForm {
+enum UnicodeNormalizationForm: String {
     
     case nfd
     case nfc
@@ -34,6 +34,66 @@ enum UnicodeNormalizationForm {
     case nfkcCasefold
     case modifiedNFD
     case modifiedNFC
+    
+    static let standardForms: [Self] = [.nfd, .nfc, .nfkd, .nfkc, .nfkcCasefold]
+    static let modifiedForms: [Self] = [.modifiedNFD, .modifiedNFC]
+    
+    
+    private static let localizationTable = "UnicodeNormalization"
+    
+    
+    /// Localized name.
+    var localizedName: String {
+        
+        let key: String
+        switch self {
+            case .nfd:
+                key = "NFD"
+            case .nfc:
+                key = "NFC"
+            case .nfkd:
+                key = "NFKD"
+            case .nfkc:
+                key = "NFKC"
+            case .nfkcCasefold:
+                key = "NFKC Casefold"
+            case .modifiedNFD:
+                key = "Modified NFD"
+            case .modifiedNFC:
+                key = "Modified NFC"
+        }
+        return key.localized(tableName: Self.localizationTable)
+    }
+    
+    
+    /// Localized description for user.
+    var localizedDescription: String {
+        
+        let table = Self.localizationTable
+        switch self {
+            case .nfd:
+                return "Canonical Decomposition"
+                    .localized(tableName: table, comment: "description for NFD")
+            case .nfc:
+                return "Canonical Decomposition, followed by Canonical Composition"
+                    .localized(tableName: table, comment: "description for NFC")
+            case .nfkd:
+                return "Compatibility Decomposition"
+                    .localized(tableName: table, comment: "description for NFKD")
+            case .nfkc:
+                return "Compatibility Decomposition, followed by Canonical Composition"
+                    .localized(tableName: table, comment: "description for NFKC")
+            case .nfkcCasefold:
+                return "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
+                    .localized(tableName: table, comment: "description for NFKD Casefold")
+            case .modifiedNFD:
+                return "Unofficial NFD-based normalization form used in HFS+"
+                    .localized(tableName: table, comment: "description for Modified NFD")
+            case .modifiedNFC:
+                return "Unofficial NFC-based normalization form corresponding to Modified NFD"
+                    .localized(tableName: table, comment: "description for Modified NFC")
+        }
+    }
 }
 
 
@@ -51,7 +111,7 @@ extension StringProtocol {
             case .nfkc:
                 return self.precomposedStringWithCompatibilityMapping
             case .nfkcCasefold:
-                return String(self).precomposedStringWithCompatibilityMappingWithCasefold
+                return self.precomposedStringWithCompatibilityMappingWithCasefold
             case .modifiedNFD:
                 return String(self).decomposedStringWithHFSPlusMapping
             case .modifiedNFC:
@@ -62,20 +122,20 @@ extension StringProtocol {
 }
 
 
-extension String {
-    
-    // MARK: Public Properties
+extension StringProtocol {
     
     /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. NFKC_Casefold or NFKC_CF.
     var precomposedStringWithCompatibilityMappingWithCasefold: String {
         
-        let mutable = NSMutableString(string: self) as CFMutableString
-        CFStringNormalize(mutable, .KC)
-        CFStringFold(mutable, .compareCaseInsensitive, nil)
-        
-        return mutable as String
+        self.precomposedStringWithCompatibilityMapping
+            .folding(options: .caseInsensitive, locale: nil)
     }
+}
+
+
+extension String {
     
+    // MARK: Public Properties
     
     /// A string made by normalizing the receiver’s contents using the normalization form adopted by HFS+, a.k.a. Apple Modified NFC.
     var precomposedStringWithHFSPlusMapping: String {

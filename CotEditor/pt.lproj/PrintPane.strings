@@ -61,9 +61,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Imprimir cabeçalho";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
-"3369.title" = "Primário:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "Nenhum";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
@@ -82,9 +79,6 @@
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
-"3373.title" = "Secundário:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "Nenhum";
@@ -109,9 +103,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Imprimir rodapé";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "Primário:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "Nenhum";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
@@ -130,9 +121,6 @@
 "Zgh-yF-xd2.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
 "Zgh-yF-xd2.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
-"3377.title" = "Secundário:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "Nenhum";

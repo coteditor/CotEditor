@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0x1-oE-Hn6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0x1-oE-Hn6">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -45,7 +45,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="420" minWidth="40" maxWidth="1000" id="hFj-1b-cNy">
+                                                <tableColumn width="391" minWidth="40" maxWidth="1000" id="hFj-1b-cNy">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Type">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -58,11 +58,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="v53-HN-2Ah">
-                                                            <rect key="frame" x="11" y="2" width="429" height="42"/>
+                                                            <rect key="frame" x="1" y="2" width="400" height="42"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nJD-cM-uUf">
-                                                                    <rect key="frame" x="25" y="22" width="35" height="16"/>
+                                                                    <rect key="frame" x="23" y="22" width="35" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Type" id="FZs-ra-kr1">
                                                                         <font key="font" metaFont="systemSemibold" size="13"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -83,16 +83,8 @@
                                                                         <binding destination="v53-HN-2Ah" name="value" keyPath="objectValue.failureReason" id="ZuM-Et-Nan"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eK7-2v-tsV">
-                                                                    <rect key="frame" x="2" y="22" width="23" height="16"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="⚠️" id="rVB-57-xcy">
-                                                                        <font key="font" usesAppearanceFont="YES"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vbu-QJ-zeu">
-                                                                    <rect key="frame" x="68" y="22" width="60" height="16"/>
+                                                                    <rect key="frame" x="66" y="22" width="60" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" title="^foobar$" id="8nz-I2-dL1">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -103,7 +95,7 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1wg-FE-xkW">
-                                                                    <rect key="frame" x="56" y="22" width="8" height="16"/>
+                                                                    <rect key="frame" x="54" y="22" width="8" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title=":" id="3Ek-Hr-eIx">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -111,7 +103,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ucl-fe-QlC">
-                                                                    <rect key="frame" x="132" y="22" width="88" height="16"/>
+                                                                    <rect key="frame" x="130" y="22" width="88" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="(Begin String)" id="aWr-K6-iuS">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -131,19 +123,25 @@
                                                                         </binding>
                                                                     </connections>
                                                                 </textField>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aBL-VQ-dVi">
+                                                                    <rect key="frame" x="4" y="22.5" width="17.5" height="15"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="f1A-8e-rQw">
+                                                                        <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
+                                                                    </imageCell>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="s4B-hc-j2A" secondAttribute="trailing" constant="20" symbolic="YES" id="0hg-ot-cbE"/>
-                                                                <constraint firstItem="eK7-2v-tsV" firstAttribute="leading" secondItem="v53-HN-2Ah" secondAttribute="leading" constant="4" id="1qq-RR-wy1"/>
                                                                 <constraint firstItem="ucl-fe-QlC" firstAttribute="leading" secondItem="vbu-QJ-zeu" secondAttribute="trailing" constant="8" symbolic="YES" id="8nT-BH-xOT"/>
+                                                                <constraint firstItem="nJD-cM-uUf" firstAttribute="firstBaseline" secondItem="aBL-VQ-dVi" secondAttribute="firstBaseline" id="Auh-FR-Eg6"/>
                                                                 <constraint firstItem="s4B-hc-j2A" firstAttribute="leading" secondItem="v53-HN-2Ah" secondAttribute="leading" constant="32" id="Bmb-5c-jHP"/>
                                                                 <constraint firstItem="s4B-hc-j2A" firstAttribute="top" secondItem="ucl-fe-QlC" secondAttribute="bottom" constant="4" id="CkC-BL-c1k"/>
                                                                 <constraint firstAttribute="bottom" secondItem="s4B-hc-j2A" secondAttribute="bottom" constant="4" id="EtE-3I-L27"/>
+                                                                <constraint firstItem="nJD-cM-uUf" firstAttribute="leading" secondItem="aBL-VQ-dVi" secondAttribute="trailing" constant="4" id="HjU-f9-NNq"/>
                                                                 <constraint firstItem="1wg-FE-xkW" firstAttribute="firstBaseline" secondItem="nJD-cM-uUf" secondAttribute="firstBaseline" id="JQ2-tG-k07"/>
-                                                                <constraint firstItem="nJD-cM-uUf" firstAttribute="leading" secondItem="eK7-2v-tsV" secondAttribute="trailing" constant="4" id="Klm-t1-BHx"/>
+                                                                <constraint firstItem="aBL-VQ-dVi" firstAttribute="leading" secondItem="v53-HN-2Ah" secondAttribute="leading" constant="4" id="MRD-gx-DDm"/>
                                                                 <constraint firstItem="vbu-QJ-zeu" firstAttribute="firstBaseline" secondItem="nJD-cM-uUf" secondAttribute="firstBaseline" id="MrT-Qn-rIT"/>
                                                                 <constraint firstItem="nJD-cM-uUf" firstAttribute="top" secondItem="v53-HN-2Ah" secondAttribute="top" constant="4" id="Q0u-Al-CMl"/>
-                                                                <constraint firstItem="nJD-cM-uUf" firstAttribute="firstBaseline" secondItem="eK7-2v-tsV" secondAttribute="firstBaseline" id="YB2-jn-9LG"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ucl-fe-QlC" secondAttribute="trailing" constant="4" id="b1F-QJ-68Z"/>
                                                                 <constraint firstItem="vbu-QJ-zeu" firstAttribute="leading" secondItem="1wg-FE-xkW" secondAttribute="trailing" constant="8" symbolic="YES" id="ct8-xd-rkt"/>
                                                                 <constraint firstItem="ucl-fe-QlC" firstAttribute="firstBaseline" secondItem="nJD-cM-uUf" secondAttribute="firstBaseline" id="eqv-AO-2Oa"/>
@@ -198,5 +196,6 @@
     </scenes>
     <resources>
         <image name="NSStatusAvailable" width="16" height="16"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
     </resources>
 </document>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="3oL-k6-e6i">
-                                <rect key="frame" x="57" y="0.0" width="456" height="544"/>
+                                <rect key="frame" x="58" y="0.0" width="455" height="544"/>
                                 <subviews>
                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7o-7Q-Iec">
                                         <rect key="frame" x="30" y="508" width="81" height="16"/>
@@ -25,7 +26,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqq-MP-8Cp">
-                                        <rect key="frame" x="115" y="507" width="133" height="18"/>
+                                        <rect key="frame" x="115" y="507" width="132" height="18"/>
                                         <buttonCell key="cell" type="check" title="Smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -35,7 +36,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Dj-HL-UJe">
-                                        <rect key="frame" x="115" y="485" width="321" height="18"/>
+                                        <rect key="frame" x="115" y="485" width="320" height="18"/>
                                         <buttonCell key="cell" type="check" title="Automatically insert closing brackets and quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="GRh-V2-hmW">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -359,8 +360,8 @@
                                         </connections>
                                     </button>
                                     <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DcX-sg-7bi">
-                                        <rect key="frame" x="115" y="20" width="263" height="14"/>
-                                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="⚠️ Select at least one item to enable completion." id="dmb-pc-4M5">
+                                        <rect key="frame" x="136" y="20" width="244" height="14"/>
+                                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Select at least one item to enable completion." id="dmb-pc-4M5">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -369,6 +370,15 @@
                                             <binding destination="6FT-QA-TTg" name="hidden" keyPath="isValidCompletion" id="TTK-bp-5Ql"/>
                                         </connections>
                                     </textField>
+                                    <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VFE-8n-7LR">
+                                        <rect key="frame" x="117" y="20.5" width="17.5" height="15"/>
+                                        <imageCell key="cell" controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="j6S-Pl-WpO">
+                                            <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
+                                        </imageCell>
+                                        <connections>
+                                            <binding destination="6FT-QA-TTg" name="hidden" keyPath="isValidCompletion" id="w9H-xT-opt"/>
+                                        </connections>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="t2q-cV-mtM" firstAttribute="leading" secondItem="EiF-pk-Dua" secondAttribute="trailing" constant="8" symbolic="YES" id="04l-Ip-qeQ"/>
@@ -382,6 +392,7 @@
                                     <constraint firstItem="DcM-VC-C52" firstAttribute="top" secondItem="X2i-kL-uLT" secondAttribute="bottom" constant="6" symbolic="YES" id="31t-9f-vCL"/>
                                     <constraint firstItem="8I5-Lh-Ofn" firstAttribute="trailing" secondItem="e7o-7Q-Iec" secondAttribute="trailing" id="4IC-e3-jpK"/>
                                     <constraint firstItem="LUh-bR-BEp" firstAttribute="leading" secondItem="PCw-Sh-dDO" secondAttribute="trailing" constant="8" symbolic="YES" id="5ms-OO-cJY"/>
+                                    <constraint firstItem="DcX-sg-7bi" firstAttribute="leading" secondItem="VFE-8n-7LR" secondAttribute="trailing" constant="4" id="6fc-uy-oqF"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BfR-6w-bx7" secondAttribute="trailing" constant="20" symbolic="YES" id="6sI-wU-7Ce"/>
                                     <constraint firstItem="d0U-hp-rcZ" firstAttribute="leading" secondItem="EiF-pk-Dua" secondAttribute="trailing" constant="8" symbolic="YES" id="7hx-oI-CrX"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="55Y-oF-UTC" secondAttribute="trailing" constant="20" symbolic="YES" id="7nl-xD-BZi"/>
@@ -408,13 +419,13 @@
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N1n-gE-ApS" secondAttribute="trailing" constant="20" symbolic="YES" id="NHW-Ng-xxf"/>
                                     <constraint firstItem="Vs4-ce-gbZ" firstAttribute="leading" secondItem="e7o-7Q-Iec" secondAttribute="trailing" constant="8" symbolic="YES" id="NMR-9t-Agl"/>
                                     <constraint firstItem="XNI-eS-U8G" firstAttribute="top" secondItem="DcM-VC-C52" secondAttribute="bottom" constant="16" id="OFb-iu-FwQ"/>
+                                    <constraint firstItem="DcX-sg-7bi" firstAttribute="firstBaseline" secondItem="VFE-8n-7LR" secondAttribute="firstBaseline" id="OR9-dy-qSc"/>
                                     <constraint firstItem="XNI-eS-U8G" firstAttribute="leading" secondItem="8I5-Lh-Ofn" secondAttribute="trailing" constant="8" symbolic="YES" id="R0H-Ge-4Nv"/>
                                     <constraint firstItem="Eul-Sk-7ow" firstAttribute="leading" secondItem="e7o-7Q-Iec" secondAttribute="trailing" constant="8" symbolic="YES" id="RTF-EK-rGB"/>
                                     <constraint firstItem="PeI-EQ-t3D" firstAttribute="leading" secondItem="I2h-Jb-whg" secondAttribute="trailing" constant="4" id="RUM-dP-0lD"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="q35-Kk-wlB" secondAttribute="trailing" constant="20" symbolic="YES" id="Rcn-h5-DQM"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WL7-y8-umX" secondAttribute="trailing" constant="20" symbolic="YES" id="SZj-sQ-Ar3"/>
                                     <constraint firstItem="D3Q-hS-szA" firstAttribute="top" secondItem="6Dj-HL-UJe" secondAttribute="bottom" constant="6" symbolic="YES" id="SoI-Qe-8E1"/>
-                                    <constraint firstItem="XNI-eS-U8G" firstAttribute="leading" secondItem="DcX-sg-7bi" secondAttribute="leading" id="SsF-Gk-4mk"/>
                                     <constraint firstItem="Eul-Sk-7ow" firstAttribute="top" secondItem="a9Q-Qg-ppv" secondAttribute="bottom" constant="6" symbolic="YES" id="SyE-lx-ScU"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XNI-eS-U8G" secondAttribute="trailing" constant="20" symbolic="YES" id="TcT-bX-yuA"/>
                                     <constraint firstItem="EiF-pk-Dua" firstAttribute="baseline" secondItem="d0U-hp-rcZ" secondAttribute="baseline" id="UzN-Wv-zg0"/>
@@ -461,13 +472,14 @@
                                     <constraint firstItem="a9Q-Qg-ppv" firstAttribute="leading" secondItem="Vs4-ce-gbZ" secondAttribute="trailing" constant="8" symbolic="YES" id="vPF-iv-opv"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DcM-VC-C52" secondAttribute="trailing" constant="20" symbolic="YES" id="vgo-RV-kVt"/>
                                     <constraint firstItem="I2h-Jb-whg" firstAttribute="centerY" secondItem="PeI-EQ-t3D" secondAttribute="centerY" id="vtL-KC-RNE"/>
+                                    <constraint firstItem="VFE-8n-7LR" firstAttribute="leading" secondItem="XNI-eS-U8G" secondAttribute="leading" id="wqq-0L-1nx"/>
                                     <constraint firstItem="q35-Kk-wlB" firstAttribute="top" secondItem="LUh-bR-BEp" secondAttribute="bottom" constant="6" symbolic="YES" id="yPG-DF-RRi"/>
                                     <constraint firstItem="55Y-oF-UTC" firstAttribute="top" secondItem="WL7-y8-umX" secondAttribute="bottom" constant="6" symbolic="YES" id="ydE-1s-uu0"/>
                                     <constraint firstItem="wCX-eB-XQx" firstAttribute="leading" secondItem="8I5-Lh-Ofn" secondAttribute="trailing" constant="8" symbolic="YES" id="ylN-hv-IyC"/>
                                     <constraint firstItem="8WW-uf-bLm" firstAttribute="baseline" secondItem="X2i-kL-uLT" secondAttribute="baseline" id="zAQ-rz-8hO"/>
                                 </constraints>
                             </customView>
-                            <button identifier="pref_edit" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ks6-yt-k9q">
+                            <button identifier="settings_edit" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ks6-yt-k9q">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Rz-Ie-QiJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -501,4 +513,7 @@
             <point key="canvasLocation" x="527" y="224"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
+    </resources>
 </document>

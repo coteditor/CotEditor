@@ -148,12 +148,36 @@ final class LineSortTests: XCTestCase {
     }
     
     
-    func testNumberFormatter() {
+    func testNumberParse() throws {
         
-        let formatter = NumberFormatter()
-        formatter.locale = .init(identifier: "de")
+        let options = SortOptions()
         
-        XCTAssertEqual(formatter.leadingDouble(from: "-1000,1 m/s"), -1000.1)
+        options.locale = .init(identifier: "en")
+        XCTAssertTrue(options.isLocalized)
+        XCTAssertTrue(options.numeric)
+        XCTAssertEqual(options.parse("0"), 0)
+        XCTAssertEqual(options.parse("10 000"), 10000)
+        XCTAssertEqual(options.parse("-1000.1 m/s"), -1000.1)
+        XCTAssertEqual(options.parse("-1000,1 m/s"), -1000)
+        XCTAssertEqual(options.parse("+1,000"), 1000)
+        XCTAssertNil(options.parse("dog 10"))
+        
+        options.locale = .init(identifier: "de")
+        XCTAssertTrue(options.numeric)
+        XCTAssertEqual(options.parse("0"), 0)
+        XCTAssertEqual(options.parse("10 000"), 10000)
+        XCTAssertEqual(options.parse("-1000.1 m/s"), -1000)
+        XCTAssertEqual(options.parse("-1000,1 m/s"), -1000.1)
+        XCTAssertEqual(options.parse("+1,000"), 1)
+        XCTAssertNil(options.parse("dog 10"))
+        
+        options.numeric = false
+        XCTAssertNil(options.parse("0"))
+        XCTAssertNil(options.parse("10 000"))
+        XCTAssertNil(options.parse("-1000.1 m/s"))
+        XCTAssertNil(options.parse("-1000,1 m/s"))
+        XCTAssertNil(options.parse("+1,000"))
+        XCTAssertNil(options.parse("dog 10"))
     }
     
 }

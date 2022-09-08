@@ -28,6 +28,7 @@ import Combine
 import Cocoa
 import AudioToolbox
 import UniformTypeIdentifiers
+import SwiftUI
 
 /// keys for styles controller
 private enum StyleKey: String {
@@ -60,7 +61,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -75,7 +75,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -91,11 +90,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// stop observations for UI update
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
         
+        // stop observations for UI update
         self.encodingChangeObserver = nil
         self.syntaxStyleChangeObserver = nil
     }
@@ -132,7 +131,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             case #selector(duplicateSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                    menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
             
@@ -141,21 +140,21 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             
             case #selector(restoreSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Restore “%@”".localized, name)
+                    menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (!isBundled || !itemSelected)
                 return isBundled && isCustomized
             
             case #selector(exportSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                    menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return isCustomized
             
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
-                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
+                    menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 return isCustomized
             
@@ -329,7 +328,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        let viewController = NSViewController.instantiate(storyboard: "SyntaxMappingConflictsView")
+        let view = SyntaxMappingConflictsView(dictionary: SyntaxManager.shared.mappingConflicts)
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
         
         self.presentAsSheet(viewController)
     }
@@ -564,7 +565,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     private func deleteSyntaxStyle(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: "Are you sure you want to delete “%@” syntax style?".localized, name)
+        alert.messageText = String(localized: "Are you sure you want to delete “\(name)” syntax style?")
         alert.informativeText = "This action cannot be undone.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)

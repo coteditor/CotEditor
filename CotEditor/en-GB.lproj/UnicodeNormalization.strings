@@ -1,0 +1,50 @@
+//
+//  UnicodeNormalization.strings (English (UK))
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2022-07-27.
+//  Localized by 1024jp
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// name
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
+"Modified NFC" = "Modified NFC";
+"Modified NFD" = "Modified NFD";
+
+
+// description for NFD
+"Canonical Decomposition" = "Canonical Decomposition";
+// description for NDC
+"Canonical Decomposition, followed by Canonical Composition" = "Canonical Decomposition, followed by Canonical Composition";
+// description for NFKD
+"Compatibility Decomposition" = "Compatibility Decomposition";
+// description for NFKC
+"Compatibility Decomposition, followed by Canonical Composition" = "Compatibility Decomposition, followed by Canonical Composition";
+// description for NFKC Casefold
+"Applying NFKC, CaseFolding, and removal of default-ignorable code points" = "Applying NFKC, CaseFolding, and removal of default-ignorable code points";
+// description for Modified NFC
+"Unofficial NFD-based normalization form used in HFS+" = "Unofficial NFD-based normalisation form used in HFS+";
+// description for Modified NFD
+"Unofficial NFC-based normalization form corresponding to Modified NFD" = "Unofficial NFC-based normalisation form corresponding to Modified NFD";

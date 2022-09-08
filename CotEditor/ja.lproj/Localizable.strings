@@ -28,6 +28,7 @@
 "OK" = "OK";
 "Cancel" = "キャンセル";
 "Done" = "完了";
+"Start" = "開始";
 
 
 // Appending words in parentheses
@@ -78,13 +79,13 @@
 "Replace All" = "すべて置換";
 "Highlight" = "ハイライト";
 "Searching in text…" = "テキストを検索しています…";
-"%@ string found." = "%@件見つかりました。";
-"%@ strings found." = "%@件見つかりました。";
-"%@ string replaced." = "%@件置換しました。";
-"%@ strings replaced." = "%@件置換しました。";
+"%lld string found." = "%lld件見つかりました。";
+"%lld strings found." = "%lld件見つかりました。";
+"%lld string replaced." = "%lld件置換しました。";
+"%lld strings replaced." = "%lld件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
-"The option “in selection” is enabled, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
+"The option “in selection” is selected, although nothing is selected." = "”選択範囲のみ”オプションが有効になっていますが、何も選択されていません。";
 "Input text to find." = "検索するテキストを入力してください。";
 "Select the search scope in the document or turn off the “in selection” option." = "検索範囲を選択するか”選択範囲のみ”オプションを無効にしてください。";
 
@@ -97,17 +98,17 @@
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
-"%i found" = "%i件見つかりました";  // %@ is number of founds
+"%lld found" = "%lld件見つかりました";  // %lld is number of founds
 "Not Replaced" = "見つかりません";
-"%i replaced" = "%i件置換しました";  // %@ is number of replaced
+"%lld replaced" = "%lld件置換しました";  // %lld is number of replaced
 
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "“%@”内に見つかりませんでした。";
-"Found one string in “%@”." = "“%@”内に1件見つかりました。";
-"Found %i strings in “%@”." = "“%2$@”内に%1$i件見つかりました。";
+"No strings found in “%@.”" = "“%@”内に見つかりませんでした。";
+"Found one string in “%@.”" = "“%@”内に1件見つかりました。";
+"Found %lld strings in “%@.”" = "“%2$@”内に%1$lld件見つかりました。";
 
 
 
@@ -145,6 +146,8 @@
 
 "Back Reference" = "後方参照";
 "first match" = "最初の一致";
+
+"The syntax conforms to the %@ specifications." = "文法は%@の仕様に準拠しています。";  // %@ is the name of the regex engine (ICU Regular Expressions)
 
 
 
@@ -184,7 +187,7 @@
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
 "Do you want to continue processing?" = "保存を続けますか?";
 "Save Available Text" = "有効なテキストを保存";
 "Show Incompatible Characters" = "非互換文字を表示";
@@ -196,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "再解釈をするファイルがありません。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "テキストエンコーディング“%1@”でファイル“%2@”を再解釈できませんでした。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "テキストエンコーディング“%1@”でファイル“%2@”を再解釈できませんでした。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "このファイルは、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
@@ -217,6 +220,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in the window tab
+"Document has unsaved changes" = "書類に保存されていない変更があります";
 
 
 
@@ -365,10 +374,8 @@
 // Summary item values
 "On" = "オン";
 "Off" = "オフ";
-"Don’t Print" = "プリントしない";
 "Same as Document’s Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
-"Print" = "プリント";
 "Syntax Name" = "シンタックス名";
 "Document Name" = "書類名";
 "File Path" = "ファイルパス";
@@ -393,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "非互換文字を走査中…";
 "Found an incompatible character." = "1個の非互換文字が見つかりました。";
-"Found %i incompatible characters." = "%i個の非互換文字が見つかりました。";  // %i is the number of characters
+"Found %lld incompatible characters." = "%lld個の非互換文字が見つかりました。";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "1個の%@でない改行コードが見つかりました。";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "%i個の%@でない改行コードが見つかりました。";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "%lld個の%@でない改行コードが見つかりました。";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -411,13 +418,6 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修正NFC";
-"Modified NFD" = "修正NFD";
 "Inspect Character" = "文字情報を表示";
 "Move Line" = "行を移動";
 "Sort Lines" = "行を並び替え";
@@ -429,7 +429,6 @@
 "Trim Trailing Whitespace" = "行末の空白を削除";
 
 // Contextual menu items
-"Font" = "フォント";
 "Text" = "テキスト";
 "Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
@@ -457,7 +456,7 @@
 "Wrap Lines" = "行を折り返す";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
+"To show invisible characters, set them in Settings" = "不可視文字を表示させるには設定を変更してください";
 
 
 
@@ -502,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
@@ -530,7 +529,7 @@
 // Format pane
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製…";
-"Export “%@”…" = "“%@”を書き出し…";
+"Export “%@”…" = "“%@”を書き出す…";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
 
@@ -572,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "エラーはありません。";
 "An error found!" = "1個のエラーがあります！";
-"%i errors found!" = "%i個のエラーがあります！";
+"%lld errors found!" = "%lld個のエラーがあります！";
 "outline" = "アウトライン";
 
 
@@ -607,7 +606,7 @@
 "Replace" = "置換";
 
 // Import syntax style file choose openPanel button
-"Import" = "読み込み";
+"Import" = "読み込む";
 // Importing same name style alert
 "A new style named “%@” will be installed, but a custom style with the same name already exists." = "新しいスタイル“%@”のインストールを試みましたが、同名のカスタムスタイルがすでに存在しています。";
 "Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか?\n置き換えたスタイルは元に戻せません。";
@@ -645,7 +644,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "テキストを挿入%li";
+"Insert Text %lld" = "テキストを挿入%lld";
 
 // Keyboard key name
 "Space" = "スペース";
@@ -713,12 +712,54 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0での重要な変更";
-"From this version, CotEditor handles line endings more strictly." = "このバージョンからCotEditorは改行コードをより厳密に扱うようになりました。";
-"Due to this change, you may need manual migration for your settings below:" = "この変更により、以下の設定のユーザによる移行処理が必要になる可能性があります:";
-"Multiple replacement definitions" = "複数置換定義";
-"Syntax styles" = "シンタックススタイル";
-"CotEditor scripts" = "CotEditorスクリプト";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "正規表現の`\\n`は実際に改行がLFのときのみ一致するようになりました。改行コードに関わらず改行に一致させたい場合は代わりに`\\R`を使ってください。";
-"Learn More…" = "詳しい情報…";
+/* MARK: Pattern Sort View */
+// error messages ("pattern" is a regular expression pattern)
+"Invalid pattern" = "無効なパターン";
+"Empty pattern" = "空のパターン";
+
+
+
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "ファイル関連付けのコンフリクト";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "以下のファイル関連付けルールはいくつかのスタイルで重複して登録されています。CotEditorは自動的に最初のスタイルを使用します。解決するには、それぞれのシンタックススタイルを編集してください。";
+"Extension" = "拡張子";
+"Filename" = "ファイル名";
+"Interpreter" = "インタープリタ";
+// table column headers
+"Used style" = "使用するスタイル";
+"Duplicated styles" = "重複しているスタイル";
+
+
+
+/* MARK: AdvancedCharacterCounterView */
+// menu labels
+"Advanced Character Count…" = "高度な文字カウント…";
+"Stop Advanced Character Count" = "高度な文字カウントを停止";
+// error message when counting failed
+"failed" = "失敗";
+// tooltip
+"Show options" = "オプションを表示";
+// context menu item labels
+"Copy" = "コピー";
+"Stop Count" = "カウントを停止";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
+
+
+
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "空白:";
+"Ignore line endings" = "改行を無視";
+"Ignore whitespace" = "空白を無視";
+"Treat consecutive whitespace as one space" = "連続する空白を1文字として扱う";
+"Unit:" = "単位:";
+
+"Grapheme cluster" = "書記素クラスタ";
+"Unicode scalar" = "Unicodeスカラー";
+"UTF-16" = "UTF-16";
+"Byte" = "バイト";
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。";
+"Count Unicode code points. Same as counting UTF-32." = "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。";
+"Count Unicode code points but a surrogate pair as two characters." = "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。";
+"Count bytes of the text encoded with the specified encoding." = "指定したエンコーディングでエンコードしたときのバイト長をカウントします。";
+
+"Encoding:" = "エンコーディング:";
+"Normalization:" = "正規化:";

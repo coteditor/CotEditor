@@ -38,7 +38,7 @@ import Yams
 
 enum BundledStyleName {
     
-    static let none: SyntaxManager.SettingName = "None".localized(comment: "syntax style name")
+    static let none: SyntaxManager.SettingName = String(localized: "None", comment: "syntax style name")
     static let xml: SyntaxManager.SettingName = "XML"
     static let markdown: SyntaxManager.SettingName = "Markdown"
 }
@@ -280,26 +280,6 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// Check if any of user settings that use `\n` in regular expression patterns exists.
-    ///
-    /// Don't forget to revert SyntaxStyle's .outlineDefinitions and .highlightDefinitions to private
-    /// when removing this method.
-    func needsLineEndingMigration() -> Bool {
-        
-        self.userSettingFileURLs.lazy
-            .compactMap { try? self.loadSetting(at: $0) }
-            .flatMap { setting in
-                setting.outlineDefinitions
-                    .map(\.pattern)
-                + setting.highlightDefinitions
-                    .flatMap(\.value)
-                    .filter(\.isRegularExpression)
-                    .flatMap { [$0.beginString, $0.endString].compactMap { $0 } }
-            }
-            .contains { $0.contains("\\n") }
-    }
-    
-    
     
     // MARK: Setting File Managing
     
@@ -318,7 +298,7 @@ final class SyntaxManager: SettingFileManaging {
             guard let url = self.urlForUsedSetting(name: name) else { return nil }
             
             let setting = try? self.loadSetting(at: url)
-            self.$cachedSettings.mutate({ $0[name] = setting })
+            self.$cachedSettings.mutate { $0[name] = setting }
             
             return setting
             }() else { return nil }
@@ -502,8 +482,7 @@ private extension SyntaxManager.StyleDictionary {
             case let array as [Any]:
                 return NSMutableArray(array: array.map(convertToCocoaBindable))
             case let date as Date:
-                return ISO8601DateFormatter.string(from: date, timeZone: .current,
-                                                   formatOptions: [.withFullDate, .withDashSeparatorInDate])
+                return date.formatted(.iso8601.year().month().day())
             default:
                 return item
         }

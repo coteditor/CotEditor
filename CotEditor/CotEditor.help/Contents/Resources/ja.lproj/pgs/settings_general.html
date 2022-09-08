@@ -1,0 +1,123 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="「一般」設定, 一般設定, 「一般」, 一般"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>CotEditorで「一般」設定を変更する</title>
+</head>
+
+<body>
+<a name="settings_general"></a>
+
+<h1>CotEditorで「一般」設定を変更する</h1>
+
+<p>MacのCotEidtorアプリケーション<img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/>で、起動時の動作などCotEditorの全体的な振る舞いを選択するには、「一般」設定を使用します。これらの設定を変更するには、「CotEditor」＞「設定」と選択してから「一般」をクリックします。</p>
+
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">CotEditorを開く</a></p>
+
+
+
+<table class="settings">
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>最後のセッションのウインドウを開く</th>
+		<td>CotEditorを起動したときに、前回の終了時に開いていた書類を自動的に開いて表示します。</td>
+	</tr>
+	
+	<tr>
+		<th>何も開かれていなければ</th>
+		<td>起動時に何も書類がない場合の振る舞いを設定します。
+			<ul>
+				<li><strong>新規書類を作成</strong>: 空の書類を開きます。</li>
+				<li><strong>「開く」ダイアログを表示</strong>: 開くダイアログを表示します。</li>
+				<li><strong>何もしない</strong>: ただアプリケーションを起動し何もしません。</li>
+			</ul></td>
+	</tr>
+	
+	<tr>
+		<th>オートセーブとバージョンを有効にする</th>
+		<td>書類の編集中適宜変更を自動的にファイルに上書き保存します。また同時に、過去のバージョンを復帰できるシステムの機能「バージョン」も有効化し、さらにウインドウのタイトルバーからファイル名や保存位置を変更できるようになります。<br/>
+		この機能がオフの場合も、CotEditorは予期しない終了に備えて常に最新版のバックアップを作成しています。</td>
+	</tr>
+	
+	<tr>
+		<th>書類が別のアプリケーションによって変更されたとき</th>
+		<td>CotEditorで編集している書類ファイルが別のアプリケーションによって変更され内容が競合したときの挙動を設定します。
+			<ul>
+				<li><strong>CotEditorの編集内容を保持</strong>: 現在の書類内容を保ったまま編集を続けます。書類を保存するときに改めてダイアログが出現し、上書きするかを尋ねます。</li>
+				
+				<li><strong>解決方法を確認</strong>: ファイルが別のアプリケーションによって変更されるとダイアログが出現し、エディタの内容を保つか新しいかファイルの内容にするかを選択できます。</li>
+				
+				<li><strong>変更された内容に更新</strong>: ファイルが別のアプリケーションによって更新されるとCotEditorのウインドウ内のテキストを自動的に新しいファイルの内容に更新します。更新されると今までのアンドゥ履歴がリセットされることに留意してください。</li>
+			</ul></td>
+	</tr>
+	
+	<tr>
+		<th>書類内のURLをリンク</th>
+		<td>書類中にURLが見つかったときそのURLに自動的にリンクします。</td>
+	</tr>
+	
+	<tr>
+		<th>入力中にスペルをチェック</th>
+		<td>テキスト入力中に自動的にスペルチェックされます。</td>
+	</tr>
+	
+	<tr>
+		<th>対応する括弧“( )” “[ ]” “{ }”をハイライト</th>
+		<td>閉じるカッコの位置をカーソルが通ったとき、開始のカッコをハイライト表示します。</td>
+	</tr>
+	
+	<tr>
+		<th>“&lt; &gt;”をハイライト</th>
+		<td>「&gt;」の位置をカーソルが通ったとき、対応する「&lt;」をハイライト表示します。</td>
+	</tr>
+	
+	<tr>
+		<th>選択した文字をハイライト</th>
+		<td>単語を選択したときに、一定の遅延後に同じテキストをハイライト表示します。ハイライトは選択したテキストが完全な単語から成り立つときのみ実行されます。</td>
+	</tr>
+	
+	<tr>
+		<th>コマンドラインツール</th>
+		<td><code>cot</code>コマンドラインツールのインストール状態を表示しています。詳しくは「<a href="about_cot.html">cotコマンドと連携する</a>」を参照してください。</td>
+	</tr>
+</tbody>
+</table>
+
+
+<table class="settings">
+<caption>ソフトウェアアップデート<span class="note">(非AppStore版のみ)</span></caption>
+
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>自動的にアップデートを確認</th>
+		<td>起動時にCotEditorの新しいバージョンがリリースされているかをインターネット経由で自動で確認します。新しいバージョンがある場合は、その情報をダイアログで通知します。</td>
+	</tr>
+	
+	<tr>
+		<th>プレリリース版を対象に含める</th>
+		<td>ベータ版などプレリリースのバージョンもアップデート確認の対象になります。これらのバージョンは安定版ではないことに留意してください。</td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings.html">設定を変更する</a></li>
+</ul>
+</section>
+
+</body>
+</html>

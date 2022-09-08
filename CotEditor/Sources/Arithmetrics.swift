@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021 1024jp
+//  © 2021-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,44 +23,22 @@
 //  limitations under the License.
 //
 
-import Darwin
-
 extension Int {
     
-    /// number of digits
-    var numberOfDigits: Int {
+    /// Array of digits from the ones place.
+    var digits: [Int] {
         
-        guard self > 0 else { return 1 }
+        assert(self >= 0)
         
-        return Int(log10(Double(self))) + 1
-    }
-    
-    
-    /// number at the desired place
-    func number(at place: Int) -> Int {
+        var number = self
+        var digits: [Int] = []
         
-        return (self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place)))
-    }
-    
-}
-
-
-extension FloatingPoint {
-    
-    func rounded(interval: Self) -> Self {
+        while number > 0 {
+            digits.append(number % 10)
+            number /= 10
+        }
         
-        return (self / interval).rounded() * interval
-    }
-}
-
-
-extension Double {
-    
-    /// round to decimal places value
-    func rounded(to places: Int) -> Double {
-        
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
+        return digits
     }
     
 }

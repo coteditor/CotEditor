@@ -39,13 +39,6 @@ final class ShortcutKeyField: NSTextField {
     // MARK: -
     // MARK: Text Field Methods
     
-    deinit {
-        if let monitor = self.keyDownMonitor {
-            NSEvent.removeMonitor(monitor)
-        }
-    }
-    
-    
     /// text field turns into edit mode
     override func becomeFirstResponder() -> Bool {
         
@@ -84,7 +77,6 @@ final class ShortcutKeyField: NSTextField {
             NSEvent.removeMonitor(monitor)
             self.keyDownMonitor = nil
         }
-        
         self.windowObserver = nil
         
         super.textDidEndEditing(notification)

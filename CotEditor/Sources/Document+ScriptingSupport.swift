@@ -84,26 +84,27 @@ extension Document {
     @objc var scriptTextStorage: Any {
         
         get {
-            let textStorage = NSTextStorage(string: self.string)
+            let textStorage = NSTextStorage(string: self.textStorage.string)
             
             textStorage.observeDirectEditing { [weak self] (editedString) in
-                self?.insert(string: editedString, at: .replaceAll)
+                self?.textView?.insert(string: editedString, at: .replaceAll)
             }
             
             return textStorage
         }
         
         set {
+            let string: String
             switch newValue {
                 case let textStorage as NSTextStorage:
-                    self.insert(string: textStorage.string, at: .replaceAll)
-                
-                case let string as String:
-                    self.insert(string: string, at: .replaceAll)
-                
+                    string = textStorage.string
+                case let str as String:
+                    string = str
                 default:
-                    assertionFailure()
+                    return assertionFailure()
             }
+            
+            self.textView?.insert(string: string, at: .replaceAll)
         }
     }
     
@@ -112,7 +113,7 @@ extension Document {
     @objc var contents: Any {
         
         get {
-            return self.scriptTextStorage
+            self.scriptTextStorage
         }
         
         set {
@@ -122,24 +123,18 @@ extension Document {
     
     
     /// selection-object (TextSelection)
-    @objc var selectionObject: Any {
+    @objc var selectionObject: TextSelection {
         
-        get {
-            return self.selection
-        }
-        
-        set {
-            guard let string = newValue as? String else { return }
-            
-            self.selection.contents = string
-        }
+        self.selection
     }
     
     
-    /// length of document (integer)
+    /// length of document in UTF-16 (integer)
+    ///
+    /// - Note: deprecated in CotEditor 4.4.0 (2022-10).
     @objc var length: Int {
         
-        return (self.string as NSString).length
+        self.textStorage.string.utf16.count
     }
     
     
@@ -147,7 +142,7 @@ extension Document {
     @objc var lineEndingChar: FourCharCode {
         
         get {
-            return (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue
+            (OSALineEnding(lineEnding: self.lineEnding) ?? .lf).rawValue
         }
         
         set {
@@ -161,14 +156,14 @@ extension Document {
     /// encoding name (Unicode text)
     @objc var encodingName: String {
         
-        return String.localizedName(of: self.fileEncoding.encoding)
+        String.localizedName(of: self.fileEncoding.encoding)
     }
     
     
     /// encoding in IANA CharSet name (Unicode text)
     @objc var IANACharSetName: String {
         
-        return self.fileEncoding.encoding.ianaCharSetName ?? ""
+        self.fileEncoding.encoding.ianaCharSetName ?? ""
     }
     
     
@@ -184,7 +179,7 @@ extension Document {
     @objc var coloringStyle: String {
         
         get {
-            return self.syntaxParser.style.name
+            self.syntaxParser.style.name
         }
         
         set {
@@ -197,7 +192,7 @@ extension Document {
     @objc var wrapsLines: Bool {
         
         get {
-            return self.viewController?.wrapsLines ?? false
+            self.viewController?.wrapsLines ?? false
         }
         
         set {
@@ -210,7 +205,7 @@ extension Document {
     @objc var tabWidth: Int {
         
         get {
-            return self.viewController?.tabWidth ?? 0
+            self.viewController?.tabWidth ?? 0
         }
         
         set {
@@ -223,7 +218,7 @@ extension Document {
     @objc var expandsTab: Bool {
         
         get {
-            return self.viewController?.isAutoTabExpandEnabled ?? false
+            self.viewController?.isAutoTabExpandEnabled ?? false
         }
         
         set {
@@ -299,19 +294,20 @@ extension Document {
         
         guard
             let arguments = command.evaluatedArguments,
-            let searchString = arguments["targetString"] as? String, !searchString.isEmpty
-            else { return false }
+            let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
+            let textView = self.textView
+        else { return false }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         // perform find
-        let string = self.string as NSString
-        guard let foundRange = string.range(of: searchString, selectedRange: self.selectedRange,
+        let string = self.textStorage.string as NSString
+        guard let foundRange = string.range(of: searchString, selectedRange: textView.selectedRange,
                                             options: options, isWrapSearch: isWrapSearch)
-            else { return false }
+        else { return false }
         
-        self.selectedRange = foundRange
+        textView.selectedRange = foundRange
         
         return true
     }
@@ -323,14 +319,15 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty,
-            let replacementString = arguments["newString"] as? String
-            else { return 0 }
+            let replacementString = arguments["newString"] as? String,
+            let textView = self.textView
+        else { return 0 }
         
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         let isAll = (arguments["all"] as? Bool) ?? false
         
-        let string = self.string
+        let string = self.textStorage.string
         
         guard !string.isEmpty else { return 0 }
         
@@ -353,15 +350,15 @@ extension Document {
             
             guard count > 0 else { return 0 }
             
-            self.insert(string: mutableString as String, at: .replaceAll)
-            self.selectedRange = NSRange()
+            textView.insert(string: mutableString as String, at: .replaceAll)
+            textView.selectedRange = NSRange()
             
             return count as NSNumber
             
         } else {
-            guard let foundRange = (string as NSString).range(of: searchString, selectedRange: self.selectedRange,
+            guard let foundRange = (string as NSString).range(of: searchString, selectedRange: textView.selectedRange,
                                                               options: options, isWrapSearch: isWrapSearch)
-                else { return 0 }
+            else { return 0 }
             
             let replacedString: String
             if options.contains(.regularExpression) {
@@ -379,8 +376,8 @@ extension Document {
                 replacedString = replacementString
             }
             
-            self.selectedRange = foundRange
-            self.insert(string: replacedString, at: .replaceSelection)
+            textView.selectedRange = foundRange
+            textView.insert(string: replacedString, at: .replaceSelection)
             
             return 1
         }
@@ -437,13 +434,13 @@ extension Document {
         
         let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
         
-        guard let range = self.string.range(in: fuzzyRange) else {
+        guard let range = self.textStorage.string.range(in: fuzzyRange) else {
             command.scriptErrorNumber = OSAParameterMismatch
             command.scriptErrorString = "Out of the range."
             return nil
         }
         
-        return (self.string as NSString).substring(with: range)
+        return (self.textStorage.string as NSString).substring(with: range)
     }
     
     

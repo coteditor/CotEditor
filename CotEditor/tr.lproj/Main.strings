@@ -237,7 +237,7 @@
 "404.title" = "Daha Küçük";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
 "574.title" = "Saptanmışlara Dön";
-/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
+/* Class = "NSMenuItem"; title = "Antialias"; ObjectID = "745"; */
 "745.title" = "Harf Yumuşatma";
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
 "viH-Eo-wKz.title" = "Birleşik Harfler";
@@ -256,7 +256,7 @@
 "9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "Özel…";
-/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Expand to Spaces Automatically"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Sekmeleri Kendiliğinden Genişlet";
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
@@ -366,9 +366,9 @@
 "dob-yj-jf3.title" = "Yorumu Kaldır";
 
 /* Class = "NSMenuItem"; title = "Indentation"; ObjectID = "4h9-iu-ehP"; */
-"4h9-iu-ehP.title" = "Girintileme";
+"4h9-iu-ehP.title" = "Girintile";
 /* Class = "NSMenu"; title = "Indentation"; ObjectID = "YOd-Hk-eIa"; */
-"YOd-Hk-eIa.title" = "Girintileme";
+"YOd-Hk-eIa.title" = "Girintile";
 /* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "454"; */
 "454.title" = "Sağa Kaydır";
 /* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "455"; */
@@ -440,6 +440,11 @@
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
 "x1F-KX-2de.title" = "Paskal Biçimi Yap";
 
+/* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
+"xxp-UD-STx.title" = "URL Kodla";
+/* Class = "NSMenuItem"; title = "URL Decode"; ObjectID = "3VB-Bg-Ker"; */
+"3VB-Bg-Ker.title" = "URL Kodu Çöz";
+
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Yarım Genişlikten Tam Genişliğe";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
@@ -461,35 +466,6 @@
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
 "599.title" = "Unicode Olağanlaştırmaları";
 
-/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
-"601.title" = "NFD";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition"; ObjectID = "601"; */
-"601.ibShadowedToolTip" = "Kurallara Uygun Kompozisyon";
-/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
-"602.title" = "NFC";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
-"602.ibShadowedToolTip" = "Kurallara Uygun Dekompozisyon, sonrasında Kurallara Uygun Kompozisyon";
-/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
-"603.title" = "NFKD";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition"; ObjectID = "603"; */
-"603.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu";
-/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
-"598.title" = "NFKC";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
-"598.ibShadowedToolTip" = "Uyumluluk Dekompozisyonu, sonrasında Kurallara Uygun Kompozisyon";
-/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.title" = "NFKC Biçim Kıvırması";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "NFKC, Biçim Kıvırması ve öntanımlı olarak yok sayılabilen kod noktalarının kaldırılması uygulanıyor";
-/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "Değiştirilmiş NFD (HFS+)";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+’da resmi olmayan NFD tabanlı olağanlaştırma biçimi kullanılır";
-/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "Değiştirilmiş NFC (HFS+)";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Değiştirilmiş NFD’ye karşılık gelen resmi olmayan NFC tabanlı olağanlaştırma biçimi";
-
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Kodlama Adı Gir";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Insert encoding name as IANA charset name"; ObjectID = "663"; */
@@ -497,6 +473,8 @@
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Karakter Denetle";
+/* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
+"SPF-Mw-eZP.title" = "Gelişmiş Karakter Sayımı…";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "Renk Kodu Düzenle…";
 
@@ -541,7 +519,7 @@
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Vurgula";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Vurgulanmamış";
+"5is-7G-OVT.title" = "Vurguyu Kaldır";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Ana Hat Menüsünü Aç";

@@ -312,29 +312,29 @@ span.variable {
 }
 
 
-/* preferences */
+/* settings */
 
 p img.appicon {
 	vertical-align: text-bottom;
 }
 
-table.preferences th {
+table.settings th {
 	width: 18em;
 	white-space: normal;
 }
-table.preferences tbody {
+table.settings tbody {
 	font-size: 95%;
 }
-table.preferences td dl > * {
+table.settings td dl > * {
 	margin-left: 0;
 }
-table.preferences td ul {
+table.settings td ul {
 	padding-left: 1.5em;
 }
-table.preferences td ul li strong {
+table.settings td ul li strong {
 	font-weight: 500;
 	font-style: italic;
 }
-table.preferences td ul li strong:lang(ja) {
+table.settings td ul li strong:lang(ja) {
 	font-style: normal;
 }

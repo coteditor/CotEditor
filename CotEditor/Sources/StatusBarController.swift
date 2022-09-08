@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,7 +57,6 @@ final class StatusBarController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -69,7 +68,6 @@ final class StatusBarController: NSViewController {
     }
     
     
-    /// request analyzer to update editor info
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -102,7 +100,6 @@ final class StatusBarController: NSViewController {
     }
     
     
-    /// request analyzer to stop updating editor info
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -162,22 +159,22 @@ final class StatusBarController: NSViewController {
         var status: [NSAttributedString] = []
         
         if types.contains(.lines) {
-            status.append(.formatted(label: "Lines") + .formatted(state: result?.format(\.lines)))
+            status.append(.formatted(label: "Lines") + .formatted(state: result?.lines.formatted))
         }
         if types.contains(.characters) {
-            status.append(.formatted(label: "Characters") + .formatted(state: result?.format(\.characters)))
+            status.append(.formatted(label: "Characters") + .formatted(state: result?.characters.formatted))
         }
         if types.contains(.words) {
-            status.append(.formatted(label: "Words") + .formatted(state: result?.format(\.words)))
+            status.append(.formatted(label: "Words") + .formatted(state: result?.words.formatted))
         }
         if types.contains(.location) {
-            status.append(.formatted(label: "Location") + .formatted(state: result?.format(\.location)))
+            status.append(.formatted(label: "Location") + .formatted(state: result?.location?.formatted()))
         }
         if types.contains(.line) {
-            status.append(.formatted(label: "Line") + .formatted(state: result?.format(\.line)))
+            status.append(.formatted(label: "Line") + .formatted(state: result?.line?.formatted()))
         }
         if types.contains(.column) {
-            status.append(.formatted(label: "Column") + .formatted(state: result?.format(\.column)))
+            status.append(.formatted(label: "Column") + .formatted(state: result?.column?.formatted()))
         }
         
         let attrStatus = status.joined(separator: "   ").mutable
@@ -228,15 +225,13 @@ private extension UserDefaults {
     /// info types needed to be calculated
     var statusBarEditorInfo: EditorInfoTypes {
         
-        var types = EditorInfoTypes()
-        if self[.showStatusBarChars]    { types.formUnion(.characters) }
-        if self[.showStatusBarLines]    { types.formUnion(.lines) }
-        if self[.showStatusBarWords]    { types.formUnion(.words) }
-        if self[.showStatusBarLocation] { types.formUnion(.location) }
-        if self[.showStatusBarLine]     { types.formUnion(.line) }
-        if self[.showStatusBarColumn]   { types.formUnion(.column) }
-        
-        return types
+        EditorInfoTypes()
+            .union(self[.showStatusBarChars] ? .characters : [])
+            .union(self[.showStatusBarLines] ? .lines : [])
+            .union(self[.showStatusBarWords] ? .words : [])
+            .union(self[.showStatusBarLocation] ? .location : [])
+            .union(self[.showStatusBarLine] ? .line : [])
+            .union(self[.showStatusBarColumn] ? .column : [])
     }
     
 }

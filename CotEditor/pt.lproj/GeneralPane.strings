@@ -28,7 +28,7 @@
 "zDW-aW-9G8.title" = "Na inicialização:";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "Reabrir janelas da última sessão";
+"QX9-BI-SIL.title" = "Reabrir as janelas da última sessão";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
 "wmw-xg-bSt.title" = "Quando não houver nada aberto:";
 
@@ -63,8 +63,6 @@
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "Análise de conteúdo:"; 
 
-/* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
-"3306.title" = "Ignorar finais de linha ao contar caracteres";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "Criar links de URLs no documento";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */

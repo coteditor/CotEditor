@@ -28,7 +28,7 @@
 "zDW-aW-9G8.title" = "启动时：";
 
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
-"QX9-BI-SIL.title" = "重新打开上次会话的窗口";
+"QX9-BI-SIL.title" = "重新打开最后关闭的窗口";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
 "wmw-xg-bSt.title" = "当无项目可以打开时：";
 
@@ -63,8 +63,6 @@
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "内容解析:";
 
-/* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
-"3306.title" = "字符计数时忽略行尾";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "链接文档中的 URL";
 /* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */

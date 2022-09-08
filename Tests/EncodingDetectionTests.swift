@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,8 +70,14 @@ final class EncodingDetectionTests: XCTestCase {
     
     func testISO2022() throws {
         
+        let data = try self.dataForFileName("ISO 2022-JP")
+        let encodings: [String.Encoding] = [.iso2022JP, .utf16]
+        let cfEncodings = encodings
+            .map(\.rawValue)
+            .map(CFStringConvertNSStringEncodingToEncoding)
+        
         var encoding: String.Encoding?
-        let string = try self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
+        let string = try String(data: data, suggestedCFEncodings: cfEncodings, usedEncoding: &encoding)
         
         XCTAssertEqual(string, "dog犬")
         XCTAssertEqual(encoding, .iso2022JP)
@@ -173,7 +179,14 @@ final class EncodingDetectionTests: XCTestCase {
         // IANA charset name conversion
         // CFStringEcoding -> IANA charset name
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS) as String, "shift_jis")
-        XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "Shift_JIS")
+        
+        // This returns "(null)" on macOS 13 Ventura Beta 5 (FB11201216)
+        if #available(macOS 13, *) {
+            XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "(null)")
+        } else {
+            XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "Shift_JIS")
+        }
+        
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(dosJapanese) as String, "cp932")
         // IANA charset name -> CFStringEcoding
         XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("SHIFT_JIS" as CFString), shiftJIS)

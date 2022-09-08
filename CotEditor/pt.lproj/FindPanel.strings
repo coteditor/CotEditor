@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 CotEditor Project
+//  © 2018-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@
 "8My-G5-daT.ibShadowedToolTip" = "Selecione para buscar com expressão regular.";
 
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "Ignorar Maiúsculas";
+"4wg-Cz-ozb.title" = "Ignorar Maiúsculas/Minúsculas";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
 "GvT-tD-Cbk.ibShadowedToolTip" = "Selecione para ignorar maiúsculas/minúsculas ao buscar.";
 
@@ -100,8 +100,8 @@
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Limpar Substituições Recentes";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Defina opções avançadas";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Mostrar opções avançadas";
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Opções avançadas";
 
 

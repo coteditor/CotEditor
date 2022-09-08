@@ -2,6 +2,52 @@
 Change Log
 ==========================
 
+4.4.0 (531)
+--------------------------
+
+### New Features
+
+- Add Advanced Character Count to the Text menu.
+- Dynamically prioritize the scripts in the subfolder whose name is the same as the frontmost document's syntax style when the same keyboard shortcut is determined in multiple CotEditor scripts.
+- Add URL Encode/Decode commands to the Text > Transformations submenu.
+- Display a dot in the window tab if the document has unsaved changes.
+- Add the option to draw the separator line between the line number view and the editor.
+- Add syntax style for TypeScript.
+
+
+### Improvements
+
+- Support __macOS 13 Ventura__.
+- Change the system requirement to __macOS 12 Monterey and later__.
+- Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.
+    - [for advanced users] Now you can also disable the feature entirely within the application by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
+- Deprecate the `length` property in AppleScript (Use `number of characters of contents` instead).
+- Support the split cursor for bidirectional languages in multi-cursor editing.
+- Update the CotEditor's setting view in the print panel.
+- Change the location and column count to start with zero.
+- Display the error message in the pattern sort dialog if the regular expression pattern is invalid.
+- Improve the algorithm to parse numbers in the Sort by Pattern command.
+- Improve the algorithm of uncommenting.
+- Improve the algorithm of encoding detection.
+- Improve VoiceOver support.
+- Deprecate the “Ignore line endings when counting characters” option.
+- Deprecate the option to hide file size in the status bar.
+- Remove the text length display in the document inspector.
+- [trivial] Adjust ticks in the line number view for vertical orientation.
+- [trivial] Save documents asynchronously.
+- [trivial] Organize the editor's contextual menu.
+- [trivial] Improve the basic regular expression syntax reference.
+- [trivial] Improve the status bar display.
+- [dev] Update the build environment to Xcode 14.0 beta 6.
+- [non-AppStore ver.] Update Sparkle to 2.2.2.
+
+
+### Fixes
+
+- Fix an issue that memory could leak when the opacity toolbar item is used.
+
+
+
 4.3.4 (527)
 --------------------------
 
@@ -17,7 +63,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application could hang up when an opened document shared in iCloud Drive was modified in another machine. 
-- Fix an issue that document windows sometimes did not shift the initial position from the last window. 
+- Fix an issue that document windows sometimes did not shift the initial position from the last window.
 - Fix an issue that the scrollable area of the editor in vertical layout orientation could be clipped wrongly when scaled.
 - Fix an issue that some text was not localized.
 
@@ -943,7 +989,7 @@ Change Log
 - [dev] Update the build environment to Xcode 11.5.
 - [beta.3] Improve reflecting the state of the Writing Direction toolbar button.
 - [beta.3] Adjust the width of toolbar items.
-- [beta] Add missing localizations for Simplified Chinese, Italien, and (a part of) Portuguese.
+- [beta] Add missing localizations for Simplified Chinese, Italian, and (a part of) Portuguese.
 
 
 ### Fixes

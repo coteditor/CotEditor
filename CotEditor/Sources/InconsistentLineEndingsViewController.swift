@@ -108,11 +108,8 @@ final class InconsistentLineEndingsViewController: NSViewController {
         messageField.stringValue = {
             switch self.lineEndings.count {
                 case 0:  return "No issues found.".localized
-                case 1:  return String(format: "Found a line ending other than %@.".localized,
-                                       self.documentLineEnding.name)
-                default: return String(format: "Found %i line endings other than %@.".localized,
-                                       locale: .current,
-                                       self.lineEndings.count, self.documentLineEnding.name)
+                case 1:  return String(localized: "Found a line ending other than \(self.documentLineEnding.name).")
+                default: return String(localized: "Found \(self.lineEndings.count) line endings other than \(self.documentLineEnding.name).")
             }
         }()
     }

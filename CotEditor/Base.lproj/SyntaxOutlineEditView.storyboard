@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="lwP-3N-c9s">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="lwP-3N-c9s">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -177,6 +177,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isReplacement" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="QHn-ch-mKE" id="wZS-mw-DAf"/>
                                     <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.keyString" id="yfw-aj-0bM"/>
                                 </connections>
                             </textField>

@@ -43,6 +43,15 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     // MARK: Private Properties
     
+    private lazy var editedIndicator: NSView = {
+        
+        let dotView = DotView()
+        dotView.color = .tertiaryLabelColor
+        dotView.toolTip = "Document has unsaved changes".localized
+        dotView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        return dotView
+    }()
+    
     private var opacityObserver: AnyCancellable?
     private var appearanceModeObserver: AnyCancellable?
     
@@ -55,7 +64,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     // MARK: -
     // MARK: Window Controller Methods
     
-    /// prepare window
     override func windowDidLoad() {
         
         super.windowDidLoad()
@@ -129,6 +137,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
     override func setDocumentEdited(_ dirtyFlag: Bool) {
         
+        self.window?.tab.accessoryView = dirtyFlag ? self.editedIndicator : nil
+        
         super.setDocumentEdited(self.isWhitepaper ? false : dirtyFlag)
     }
     
@@ -194,7 +204,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
-            labelItem.title = "Recently Used".localized(comment: "menu heading in syntax style list on toolbar popup")
+            labelItem.title = String(localized: "Recently Used", comment: "menu heading in syntax style list on toolbar popup")
             labelItem.isEnabled = false
             menu.addItem(labelItem)
             
@@ -366,14 +376,13 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let smallerItem = NSToolbarItem(itemIdentifier: .smaller)
                 smallerItem.label = "Smaller".localized
                 smallerItem.toolTip = "Smaller".localized
-                smallerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: smallerItem.label)!
-                    .withSymbolConfiguration(.init(scale: .small))
+                smallerItem.image = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: smallerItem.label)!
                 smallerItem.action = #selector(EditorTextView.smallerFont)
                 
                 let biggerItem = NSToolbarItem(itemIdentifier: .bigger)
                 biggerItem.label = "Bigger".localized
                 biggerItem.toolTip = "Bigger".localized
-                biggerItem.image = NSImage(systemSymbolName: "a", accessibilityDescription: biggerItem.label)!
+                biggerItem.image = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: biggerItem.label)!
                 biggerItem.action = #selector(EditorTextView.biggerFont)
                 
                 let item = NSToolbarItemGroup(itemIdentifier: itemIdentifier)
@@ -467,7 +476,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
-                        let item = NSMenuItem(title: String(format: "%li", locale: .current, width), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
+                        let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
                         item.indentationLevel = 1
                         return item
@@ -475,7 +484,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
                 menu.items.last?.indentationLevel = 1
                 menu.addItem(.separator())
-                menu.addItem(withTitle: "Auto-Expand Tabs".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
+                menu.addItem(withTitle: "Expand to Spaces Automatically".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 
                 let item = StatableMenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Tab Style".localized
@@ -492,6 +501,10 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = "Wrap Lines".localized
+                if #available(macOS 13, *) {
+                    item.possibleLabels = ["Wrap Lines".localized,
+                                           "Unwrap Lines".localized]
+                }
                 item.toolTip = "Wrap lines".localized
                 item.stateImages[.on] = NSImage(named: "text.unwrap")
                 item.stateImages[.off] = NSImage(named: "text.wrap")
@@ -522,8 +535,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let opacityViewController = self.storyboard!.instantiateController(withIdentifier: "Opacity Slider") as! NSViewController
-                opacityViewController.representedObject = self.window
+                let opacityViewController = self.storyboard!.instantiateController(withIdentifier: "Opacity Slider") as! OpacityViewController
+                opacityViewController.window = self.window
                 let menuItem = NSMenuItem()
                 menuItem.view = opacityViewController.view
                 menuItem.representedObject = opacityViewController

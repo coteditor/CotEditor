@@ -41,7 +41,6 @@ final class WindowContentViewController: NSSplitViewController {
     // MARK: -
     // MARK: Split View Controller Methods
     
-    /// setup view
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -62,7 +61,6 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// view is ready to display
     override func viewDidAppear() {
         
         // note: This method will not be invoked on window tab change.
@@ -77,10 +75,10 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// deliver represented object to child view controllers
     override var representedObject: Any? {
         
         didSet {
+            // deliver represented object to child view controllers
             for viewController in self.children {
                 viewController.representedObject = representedObject
             }
@@ -88,9 +86,9 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    /// disable toggling sidebar in the tab overview mode
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
+        // disable toggling sidebar in the tab overview mode
         switch item.action {
             case #selector(toggleInspector):
                 let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
@@ -138,7 +136,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// toggle visibility of inspector
     @IBAction func toggleInspector(_ sender: Any?) {
         
-        NSAnimationContext.current.withAnimation(true) {
+        NSAnimationContext.current.withAnimation {
             self.isSidebarShown.toggle()
         }
     }
@@ -171,20 +169,15 @@ final class WindowContentViewController: NSSplitViewController {
     /// split view item to view controller
     private var sidebarViewController: SidebarViewController? {
         
-        return self.sidebarViewItem?.viewController as? SidebarViewController
+        self.sidebarViewItem?.viewController as? SidebarViewController
     }
     
     
     /// sidebar thickness
     private var sidebarThickness: CGFloat {
         
-        get {
-            return self.sidebarViewController?.view.frame.width ?? 0
-        }
-        
-        set {
-            self.sidebarViewController?.view.frame.size.width = max(newValue, 0)  // avoid having a negative value
-        }
+        get { self.sidebarViewController?.view.frame.width ?? 0 }
+        set { self.sidebarViewController?.view.frame.size.width = max(newValue, 0) }
     }
     
     

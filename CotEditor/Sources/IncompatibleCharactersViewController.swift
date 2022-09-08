@@ -72,7 +72,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     }
     
     
-    /// update content before display
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -86,7 +85,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     }
     
     
-    /// clear incompatible characters markup
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -99,7 +97,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     }
     
     
-    /// set delegate
     override var representedObject: Any? {
         
         willSet {
@@ -214,9 +211,7 @@ final class IncompatibleCharactersViewController: NSViewController {
                 case _ where isScanning: return "Scanning incompatible characters…".localized
                 case 0:  return "No issues found.".localized
                 case 1:  return "Found an incompatible character.".localized
-                default: return String(format: "Found %i incompatible characters.".localized,
-                                       locale: .current,
-                                       self.incompatibleCharacters.count)
+                default: return String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.")
             }
         }()
     }

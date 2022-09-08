@@ -237,7 +237,7 @@
 "404.title" = "Plus petit";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
 "574.title" = "Réinitialiser";
-/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
+/* Class = "NSMenuItem"; title = "Antialias"; ObjectID = "745"; */
 "745.title" = "Anticrénelage";
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
 "viH-Eo-wKz.title" = "Ligatures";
@@ -256,7 +256,7 @@
 "9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "Personnalisée…";
-/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Expand to Spaces Automatically"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Convertir automatiquement les tabulations";
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
@@ -440,6 +440,11 @@
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
 "x1F-KX-2de.title" = "Mettre en Pascal Case";
 
+/* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
+"xxp-UD-STx.title" = "Encoder URL";
+/* Class = "NSMenuItem"; title = "URL Decode"; ObjectID = "3VB-Bg-Ker"; */
+"3VB-Bg-Ker.title" = "Décoder URL";
+
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Pleine chasse vers Demi-chasse";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
@@ -461,35 +466,6 @@
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
 "599.title" = "Normalisation Unicode";
 
-/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
-"601.title" = "NFD";
-/* Class = "NSMenuItem"; title = "Canonical Decomposition"; ObjectID = "601"; */
-"601.ibShadowedToolTip" = "Décomposition canonique";
-/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
-"602.title" = "NFC";
-/* Class = "NSMenuItem"; title = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
-"602.ibShadowedToolTip" = "Décomposition canonique";
-/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
-"603.title" = "NFKD";
-/* Class = "NSMenuItem"; title = "Compatibility Decomposition"; ObjectID = "603"; */
-"603.ibShadowedToolTip" = "Décomposition de compatibilité";
-/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
-"598.title" = "NFKC";
-/* Class = "NSMenuItem"; title = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
-"598.ibShadowedToolTip" = "Décomposition de compatibilité";
-/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.title" = "NFKC Casefold";
-/* Class = "NSMenuItem"; title = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "Application de NKFC, CaseFolding et suppression des points de code ignorables.";
-/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "NFD Modifié (HFS+)";
-/* Class = "NSMenuItem"; title = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "Normalisation non officielle basée sur NFD, utilisée dans HFS+";
-/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "NFC Modifié (HFS+)";
-/* Class = "NSMenuItem"; title = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "Normalisation non officielle basée sur NFC, correspondant au NFD modifié";
-
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Insérer le nom de l’encodage";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
@@ -497,6 +473,8 @@
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Inspecter le caractère";
+/* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
+"SPF-Mw-eZP.title" = "Comptage de caractères avancé…";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "Editer le code couleur…";
 
@@ -534,7 +512,7 @@
 /* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
 "KrV-3z-r5B.title" = "Remplacer et rechercher le suivant";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
-"5HV-xo-NTK.title" = "Remplacer tout";
+"5HV-xo-NTK.title" = "Tout remplacer";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "Remplacements multiples…";
 

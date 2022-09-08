@@ -117,7 +117,7 @@ extension UnicodeInputViewController: NSMenuDelegate {
         
         guard !UserDefaults.standard[.unicodeHistory].isEmpty else { return }
         
-        let font = menu.font?.monospacedDigit ?? NSFont.menuFont(ofSize: 0)
+        let font = NSFont.monospacedDigitSystemFont(ofSize: menu.font?.pointSize ?? 0, weight: .regular)
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.tabStops = []
         paragraphStyle.defaultTabInterval = 8 * font.width(of: "0")

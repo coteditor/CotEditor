@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSingleCharWithVSInfo() {
         
-        let charInfo = CharacterInfo("☺︎")
+        let charInfo = CharacterInfo(character: "☺︎")
         
         XCTAssertEqual(charInfo.character, "☺︎")
         XCTAssertFalse(charInfo.isComplex)
@@ -126,7 +126,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testCombiningCharacterInfo() {
         
-        let charInfo = CharacterInfo("1️⃣")
+        let charInfo = CharacterInfo(character: "1️⃣")
         
         XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+0031", "U+FE0F", "U+20E3"])
@@ -136,7 +136,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testNationalIndicatorInfo() {
         
-        let charInfo = CharacterInfo("🇯🇵")
+        let charInfo = CharacterInfo(character: "🇯🇵")
         
         XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+1F1EF", "U+1F1F5"])
@@ -145,7 +145,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testControlCharacterInfo() {
         
-        let charInfo = CharacterInfo(" ")
+        let charInfo = CharacterInfo(character: " ")
         
         XCTAssertEqual(charInfo.character, " ")
         XCTAssertEqual(charInfo.pictureString, "␠")

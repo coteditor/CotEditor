@@ -30,17 +30,19 @@
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "使用系统设定";
 /* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "永不";  // The same as the popup menu selection in System Preferences > General
+"o1f-vR-aFm.title" = "永不";  // The same as the popup menu selection in System Settings > General
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "自动";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
-"OJs-2q-bg5.title" = "总是";  // The same as the popup menu selection in System Preferences > General
+"OJs-2q-bg5.title" = "总是";  // The same as the popup menu selection in System Settings > General
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
 "iw9-Ba-eD2.title" = "显示：";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行号";
+/* Class = "NSButtonCell"; title = "Draw separator"; ObjectID = "zgz-Vf-91b"; */
+"zgz-Vf-91b.title" = "绘制分隔线";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
 "3352.title" = "列位置页面指示：";
 
@@ -71,8 +73,6 @@
 "JbR-gR-aiA.title" = "当前行";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "当前列";
-/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
-"ikB-dS-c4S.title" = "文件尺寸";
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */

@@ -25,10 +25,10 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline items"; ObjectID = "cBA-MO-VzQ"; */
-"cBA-MO-VzQ.title" = "用於提取大綱項的正規表示式";
+"cBA-MO-VzQ.title" = "用於提取大綱項的常規表示式";
 
 /* Class = "NSTableColumn"; headerCell.title = "Regular Expression String"; ObjectID = "vRg-cd-Ib2"; */
-"vRg-cd-Ib2.headerCell.title" = "正規表示式";
+"vRg-cd-Ib2.headerCell.title" = "常規表示式";
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "1tC-mo-cEL"; */
 "1tC-mo-cEL.headerCell.title" = "IC";  /* IC */

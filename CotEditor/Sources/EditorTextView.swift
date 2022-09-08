@@ -35,7 +35,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDetectable, MultiCursorEditing {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
     // MARK: Notification Names
     
@@ -88,8 +88,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
     
-    var urlDetectionTask: Task<Void, Error>?
-    
     
     // MARK: Private Properties
     
@@ -107,7 +105,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private lazy var overscrollResizingDebouncer = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private var instanceHighlightTask: Task<Void, Error>?
+    private var instanceHighlightTask: Task<Void, any Error>?
+    
+    private var urlDetectionTask: Task<Void, any Error>?
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
@@ -138,12 +138,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.tabWidth = defaults[.tabWidth]
         
         super.init(coder: coder)
-        
-        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13–10.15).
-        if !UserDefaults.standard.bool(forKey: "testsRescalingInTextView") {
-            self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
-            self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
-        }
         
         // setup layoutManager and textContainer
         let textContainer = TextContainer()
@@ -185,7 +179,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let font: NSFont = {
             let fontName = defaults[.fontName]
             let fontSize = defaults[.fontSize]
-            return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
+            return NSFont(name: fontName, size: fontSize) ?? .userFont(ofSize: fontSize) ?? .systemFont(ofSize: fontSize)
         }()
         super.font = font
         layoutManager.textFont = font
@@ -276,7 +270,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     // MARK: Text View Methods
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -288,7 +281,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -308,10 +300,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if tabWidth > 0 {
             self.tabWidth = tabWidth
         }
-        
-        // just ignore the last one
-        // because `decodeArrayOfObjects(ofClass:forKey:)` on macOS 11 breaks window display
-        guard #available(macOS 12, *) else { return }
         
         if let insertionLocations = (coder.decodeArrayOfObjects(ofClass: NSNumber.self, forKey: SerializationKey.insertionLocations) as? [Int])?
             .filter({ $0 <= self.string.length }),
@@ -797,6 +785,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             }
         }
         
+        let currentRanges = self.rangesForUserTextChange ?? self.selectedRanges
+        
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         
         // remove official selectedRanges from the sub insertion points
@@ -827,7 +817,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             }
         }
         
-        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+        // Sent notification on the next run loop
+        // -> `self.selectedRange` may not be updated yet at this timing.
+        DispatchQueue.main.async { [weak self] in
+            guard self?.rangesForUserTextChange ?? self?.selectedRanges != currentRanges else { return }
+            NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+        }
     }
     
     
@@ -845,9 +840,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard let menu = super.menu(for: event) else { return nil }
         
-        // remove unwanted "Font" menu and its submenus
-        if let fontMenuItem = menu.item(withTitle: "Font".localized(comment: "menu item title in the context menu")) {
-            menu.removeItem(fontMenuItem)
+        // remove unwanted menu items
+        for item in menu.items {
+            guard
+                let submenu = item.submenu,
+                submenu.items.contains(where: {
+                    $0.action == #selector(changeLayoutOrientation) ||  // Layout Orientation submenu
+                    $0.action == #selector(NSFontManager.orderFrontFontPanel)  // Font submenu
+                })
+            else { continue }
+            
+            menu.removeItem(item)
         }
         
         // add "Copy as Rich Text" menu item
@@ -860,7 +863,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         }
         
         // add "Select All" menu item
-        let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
+        let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste))
         if pasteIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Select All".localized,
                             action: #selector(selectAll),
@@ -961,41 +964,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// draw insersion point
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
-        var rect = rect
-        switch self.cursorType {
-            case .bar:
-                break
-            case .thickBar:
-                rect.size.width *= 2
-            case .block:
-                let index = self.characterIndexForInsertion(at: rect.mid)
-                rect.size.width = self.insertionBlockWidth(at: index)
-        }
+        let rect = self.insertionPointRect(in: rect, for: self.cursorType)
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
         
         // draw sub insertion rects
         self.insertionLocations
-            .map { self.insertionPointRect(at: $0) }
+            .flatMap { self.insertionPointRects(at: $0) }
+            .map { self.insertionPointRect(in: $0, for: self.cursorType) }
             .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
-    }
-    
-    
-    /// calculate rect for insartion point at index
-    override func insertionPointRect(at index: Int) -> NSRect {
-        
-        var rect = super.insertionPointRect(at: index)
-        
-        switch self.cursorType {
-            case .bar:
-                break
-            case .thickBar:
-                rect.size.width *= 2
-            case .block:
-                rect.size.width = self.insertionBlockWidth(at: index)
-        }
-        
-        return rect
     }
     
     
@@ -1035,7 +1012,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if self.needsDrawInsertionPoints {
             self.insertionRanges
                 .filter(\.isEmpty)
-                .map { self.insertionPointRect(at: $0.location) }
+                .flatMap { self.insertionPointRects(at: $0.location) }
+                .map { self.insertionPointRect(in: $0, for: self.cursorType) }
                 .filter { $0.intersects(dirtyRect) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
@@ -1075,10 +1053,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // reset text wrapping width
         if self.wrapsLines {
-            // -> Use scrollView's visibleRect to workaround bug in NSScrollView with the vertical layout (2020-04 macOS 10.14-, FB5703371).
-            let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
             let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
-            self.frame.size[keyPath: keyPath] = visibleRect.width * self.scale
+            self.frame.size[keyPath: keyPath] = self.visibleRect.width * self.scale
         }
     }
     
@@ -1183,11 +1159,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 return !self.selectedRange.isEmpty
             
             case #selector(toggleComment):
-                if let menuItem = item as? NSMenuItem {
-                    let canComment = self.canUncomment(partly: false)
-                    let title = canComment ? "Uncomment" : "Comment Out"
-                    menuItem.title = title.localized
-                }
+                (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
+                    ? "Uncomment".localized
+                    : "Comment Out".localized
                 return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
             
             case #selector(inlineCommentOut):
@@ -1362,6 +1336,24 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     
     
+    // MARK: Public Methods
+    
+    /// Detect URLs in content asynchronously.
+    func detectLink() {
+        
+        self.urlDetectionTask?.cancel()
+        self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
+            try? await self?.textStorage?.linkURLs()
+            
+            // remove the task itself when completed to use the `.urlDetectionTask` property as the task completion flag.
+            await MainActor.run { [weak self] in
+                self?.urlDetectionTask = nil
+            }
+        }
+    }
+    
+    
+    
     // MARK: Private Methods
     
     /// document object representing the text view contents
@@ -1493,10 +1485,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         let fileDropItems = UserDefaults.standard[.fileDropArray].map { FileDropItem(dictionary: $0) }
         let documentURL = self.document?.fileURL
-        let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxParser.style else { return nil }
-            return style.isNone ? nil : style.name
-        }()
+        let syntaxStyle = self.document?.syntaxParser.style.name
         
         let replacementString = urls.reduce(into: "") { (string, url) in
             if url.pathExtension == "textClipping", let textClipping = try? TextClipping(url: url) {
@@ -1528,6 +1517,30 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
+    /// Return the rect to draw insertion point by taking cursor type setting into the consideration.
+    ///
+    /// - Parameters:
+    ///   - rect: The proposed insertion point rect.
+    ///   - cursorType: The cursor type.
+    /// - Returns: Rect to draw insertion point.
+    private func insertionPointRect(in rect: NSRect, for cursorType: CursorType) -> NSRect {
+        
+        var rect = rect
+        
+        switch cursorType {
+            case .bar:
+                break
+            case .thickBar:
+                rect.size.width *= 2
+            case .block:
+                let index = self.characterIndexForInsertion(at: rect.mid)
+                rect.size.width = self.insertionBlockWidth(at: index)
+        }
+        
+        return rect
+    }
+    
+    
     /// Return the width of the insertion point to be drawn at the `index`.
     ///
     /// - Parameter index: The character index of the insertion point.
@@ -1544,7 +1557,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard
             layoutManager.isValidGlyphIndex(glyphIndex),
             layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
-            else { return layoutManager.spaceWidth }
+        else { return layoutManager.spaceWidth }
         
         return layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer).width
     }

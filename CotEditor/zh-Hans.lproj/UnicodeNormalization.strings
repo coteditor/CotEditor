@@ -1,0 +1,50 @@
+//
+//  UnicodeNormalization.strings (Simplified Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2022-07-27.
+//  Localized by onevcat
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+// name
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
+"Modified NFC" = "修改NFC";
+"Modified NFD" = "修改NFD";
+
+
+// description for NFD
+"Canonical Decomposition" = "以標準等價方式來分解";
+// description for NDC
+"Canonical Decomposition, followed by Canonical Composition" = "以標準等價方式來分解，然後以標準等價重組之";
+// description for NFKD
+"Compatibility Decomposition" = "以相容等價方式來分解";
+// description for NFKC
+"Compatibility Decomposition, followed by Canonical Composition" = "以相容等價方式來分解，然後以標準等價重組之";
+// description for NFKC Casefold
+"Applying NFKC, CaseFolding, and removal of default-ignorable code points" = "正在NFKC, CaseFolding, 并移除默认可忽略编码点";
+// description for Modified NFC
+"Unofficial NFD-based normalization form used in HFS+" = "在HFS+中使用了非官方的基于NFD的标准化形式。";
+// description for Modified NFD
+"Unofficial NFC-based normalization form corresponding to Modified NFD" = "非官方的基于NFD的标准化形式与修改后的NFD对应";

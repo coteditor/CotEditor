@@ -35,6 +35,7 @@ enum FileExtendedAttributeName {
     
     static let encoding = "com.apple.TextEncoding"
     static let verticalText = "com.coteditor.VerticalText"
+    static let allowLineEndingInconsistency = "com.coteditor.AllowLineEndingInconsistency"
 }
 
 
@@ -61,6 +62,7 @@ struct DocumentFile {
     let xattrEncoding: String.Encoding?
     let permissions: FilePermissions
     let isVerticalText: Bool
+    let allowsInconsistentLineEndings: Bool
     
     
     
@@ -81,6 +83,7 @@ struct DocumentFile {
         let extendedAttributes = attributes[.extendedAttributes] as? [String: Data]
         self.xattrEncoding = extendedAttributes?[FileExtendedAttributeName.encoding]?.decodingXattrEncoding
         self.isVerticalText = (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil)
+        self.allowsInconsistentLineEndings = (extendedAttributes?[FileExtendedAttributeName.allowLineEndingInconsistency] != nil)
         
         // decode Data to String
         let content: String

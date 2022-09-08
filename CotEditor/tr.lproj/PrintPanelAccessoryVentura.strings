@@ -1,0 +1,133 @@
+//
+//  PrintPanelAccessoryVentura.strings (Turkish)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2022-07-04.
+//  Localized by Emir SARI
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2022 CotEditor Project
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "yQ7-YE-ZK9"; */
+"yQ7-YE-ZK9.title" = "Renk";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "nUs-hp-672"; */
+"nUs-hp-672.title" = "Siyah - Beyaz";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "P9K-oM-I0Z"; */
+"P9K-oM-I0Z.title" = "Belge Ayarlarıyla Aynı";
+/* Class = "NSTextFieldCell"; title = "Print Background"; ObjectID = "5eL-Aw-LdI"; */
+"5eL-Aw-LdI.title" = "Arka planları yazdır";
+
+
+/* Class = "NSTextFieldCell"; title = "Print Line Numbers"; ObjectID = "L7u-ng-jC7"; */
+"L7u-ng-jC7.title" = "Satır Numaralarını Yazdır";
+/* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
+"M5e-Tg-MlQ.title" = "Görünmez Karakterleri Yazdır";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Print Header"; ObjectID = "l4b-D2-DDX"; */
+"l4b-D2-DDX.title" = "Üstbilgiyi yazdır";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "Y5Z-M5-b2b"; */
+"Y5Z-M5-b2b.title" = "Hiçbiri";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "fni-Se-oWa"; */
+"fni-Se-oWa.title" = "Sözdizim Adı";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "nGA-NN-REz"; */
+"nGA-NN-REz.title" = "Belge Adı";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "Pt8-CF-UKF"; */
+"Pt8-CF-UKF.title" = "Dosya Yolu";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "5pM-iD-yzY"; */
+"5pM-iD-yzY.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "AJ9-Ls-PY8"; */
+"AJ9-Ls-PY8.title" = "Sayfa Numarası";
+
+/* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[0] = "Align Left"; ObjectID = "wZK-fo-Sky"; */
+"wZK-fo-Sky.ibShadowedToolTips[0]" = "Sola Hizala";
+/* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[1] = "Center"; ObjectID = "wZK-fo-Sky"; */
+"wZK-fo-Sky.ibShadowedToolTips[1]" = "Ortala";
+/* Class = "NSSegmentedCell"; wZK-fo-Sky.ibShadowedToolTips[2] = "Align Right"; ObjectID = "wZK-fo-Sky"; */
+"wZK-fo-Sky.ibShadowedToolTips[2]" = "Sağa Hizala";
+
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "M42-Kl-i11"; */
+"M42-Kl-i11.title" = "Hiçbiri";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "VDr-rb-Yb7"; */
+"VDr-rb-Yb7.title" = "Sözdizim Adı";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "mUC-Ec-3CH"; */
+"mUC-Ec-3CH.title" = "Belge Adı";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "vb5-jb-jaf"; */
+"vb5-jb-jaf.title" = "Dosya Yolu";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "OlC-eq-RvC"; */
+"OlC-eq-RvC.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "SnR-fR-DZF"; */
+"SnR-fR-DZF.title" = "Sayfa Numarası";
+
+/* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[0] = "Align Left"; ObjectID = "phR-yp-SWP"; */
+"phR-yp-SWP.ibShadowedToolTips[0]" = "Sola Hizala";
+/* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[1] = "Center"; ObjectID = "phR-yp-SWP"; */
+"phR-yp-SWP.ibShadowedToolTips[1]" = "Ortala";
+/* Class = "NSSegmentedCell"; phR-yp-SWP.ibShadowedToolTips[2] = "Align Right"; ObjectID = "phR-yp-SWP"; */
+"phR-yp-SWP.ibShadowedToolTips[2]" = "Sağa Hizala";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Print Footer"; ObjectID = "mY6-Zh-2Uc"; */
+"mY6-Zh-2Uc.title" = "Altbilgiyi yazdır";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "qXf-Q9-bwe"; */
+"qXf-Q9-bwe.title" = "Hiçbiri";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "xgF-th-sHJ"; */
+"xgF-th-sHJ.title" = "Sözdizim Adı";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "q7l-X0-G9F"; */
+"q7l-X0-G9F.title" = "Belge Adı";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "sI8-qH-dUB"; */
+"sI8-qH-dUB.title" = "Dosya Yolu";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "Qcn-h2-Kj0"; */
+"Qcn-h2-Kj0.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "rsB-Kk-kBp"; */
+"rsB-Kk-kBp.title" = "Sayfa Numarası";
+
+
+/* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Qh8-SW-Qcm"; */
+"Qh8-SW-Qcm.ibShadowedToolTips[0]" = "Sola Hizala";
+/* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[1] = "Center"; ObjectID = "Qh8-SW-Qcm"; */
+"Qh8-SW-Qcm.ibShadowedToolTips[1]" = "Ortala";
+/* Class = "NSSegmentedCell"; Qh8-SW-Qcm.ibShadowedToolTips[2] = "Align Right"; ObjectID = "Qh8-SW-Qcm"; */
+"Qh8-SW-Qcm.ibShadowedToolTips[2]" = "Sağa Hizala";
+
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "VyN-kq-VID"; */
+"VyN-kq-VID.title" = "Hiçbiri";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "eTG-DT-1kN"; */
+"eTG-DT-1kN.title" = "Sözdizim Adı";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "3Gu-P5-h2x"; */
+"3Gu-P5-h2x.title" = "Belge Adı";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "3eZ-nZ-qLl"; */
+"3eZ-nZ-qLl.title" = "Dosya Yolu";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "li5-BL-b9F"; */
+"li5-BL-b9F.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "rNw-Nn-0WT"; */
+"rNw-Nn-0WT.title" = "Sayfa Numarası";
+
+/* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[0] = "Align Left"; ObjectID = "2gN-eY-bmu"; */
+"2gN-eY-bmu.ibShadowedToolTips[0]" = "Sola Hizala";
+/* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[1] = "Center"; ObjectID = "2gN-eY-bmu"; */
+"2gN-eY-bmu.ibShadowedToolTips[1]" = "Ortala";
+/* Class = "NSSegmentedCell"; 2gN-eY-bmu.ibShadowedToolTips[2] = "Align Right"; ObjectID = "2gN-eY-bmu"; */
+"2gN-eY-bmu.ibShadowedToolTips[2]" = "Sağa Hizala";

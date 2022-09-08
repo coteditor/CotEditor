@@ -66,7 +66,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: "PrintPanelAccessory")
+    private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 13 ? "PrintPanelAccessoryVentura" : "PrintPanelAccessory")
     private var savePanelAccessoryController: NSViewController?
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
@@ -97,8 +97,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
-        self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
-        self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
+        let style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
+        self.syntaxParser = SyntaxParser(textStorage: self.textStorage, style: style)
         
         // use the encoding selected by the user in the open panel, if exists
         self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
@@ -130,8 +130,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         
         // store unencoded string but only when incompatible
-        if !self.string.canBeConverted(to: self.fileEncoding.encoding) {
-            coder.encode(self.string, forKey: SerializationKey.originalContentString)
+        if !self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) {
+            coder.encode(self.textStorage.string, forKey: SerializationKey.originalContentString)
         }
     }
     
@@ -192,15 +192,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// can read document on a background thread?
     override class func canConcurrentlyReadDocuments(ofType: String) -> Bool {
         
-        return true
+        true
     }
     
     
     /// enable asynchronous saving
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) -> Bool {
         
-        // -> Async-saving may cause an occasional crash. (2017-10 macOS 10.13 SDK)
-        return UserDefaults.standard.bool(forKey: "enablesAsynchronousSaving")
+        true
     }
     
     
@@ -219,7 +218,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // store directory URL to avoid finding Autosaved Information directory every time
                 struct AutosaveDirectory {
                     
-                    static let URL = try! FileManager.default.url(for: .autosavedInformationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+                    static let url = try! FileManager.default.url(for: .autosavedInformationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
                 }
                 
                 let baseFileName = fileURL.deletingPathExtension().lastPathComponent
@@ -229,7 +228,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 let maxIdentifierLength = Int(NAME_MAX) - (baseFileName + " ()." + fileURL.pathExtension).length
                 let fileName = baseFileName + " (" + UUID().uuidString.prefix(maxIdentifierLength) + ")"
                 
-                super.autosavedContentsFileURL =  AutosaveDirectory.URL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
+                super.autosavedContentsFileURL =  AutosaveDirectory.url.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
             }
             
             return super.autosavedContentsFileURL
@@ -377,6 +376,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.isVerticalText = true
         }
         
+        if file.allowsInconsistentLineEndings {
+            self.suppressesInconsistentLineEndingAlert = true
+        }
+        
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.range, with: file.string)
@@ -399,15 +402,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to async-saving.
         
         let fileEncoding = self.fileEncoding
-        let string = self.string.immutable
+        let string = self.textStorage.string.immutable
         
         // unblock the user interface, since fetching current document state has been done here
         self.unblockUserInteraction()
         
         // get data from string to save
         guard var data = string.convertingYenSign(for: fileEncoding.encoding).data(using: fileEncoding.encoding, allowLossyConversion: true) else {
-            throw CocoaError.error(.fileWriteInapplicableStringEncoding,
-                                   userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
+            throw CocoaError(.fileWriteInapplicableStringEncoding,
+                             userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
         }
         
         // add UTF-8 BOM if needed
@@ -431,7 +434,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // workaround the issue that invoking the async version super blocks the save process
-        // with macOS 12.1 + Xcode 13.2.1 (2022-01).
+        // with macOS 12-13 + Xcode 13-14 (2022 FB11203469).
+        // To reproduce the issue:
+        //     1. Make a document unsaved ("Edited" status in the window subtitle).
+        //     2. Open the save panel once and cancel it.
+        //     3. Quit the application.
+        //     4. Then, the application hangs up.
         super.save(to: url, ofType: typeName, for: saveOperation) { (error) in
             defer {
                 completionHandler(error)
@@ -441,8 +449,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
                 if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                    ?? SyntaxManager.shared.settingName(documentContent: self.string)
-                // -> Due to the async-saving, self.string can be changed from the actual saved contents.
+                    ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
+                // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
                 //    But we don't care about that.
                 {
                     self.setSyntaxStyle(name: styleName)
@@ -471,6 +479,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if self.shouldSaveXattr {
             try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
         }
+        if self.suppressesInconsistentLineEndingAlert {
+            try url.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
+        }
         if UserDefaults.standard[.savesTextOrientation] {
             try url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
         }
@@ -480,8 +491,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
+            assert(self.lastSavedData != nil)
             self.fileData = self.lastSavedData
         }
+        self.lastSavedData = nil
     }
     
     
@@ -546,7 +559,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
             
-            // remove auto-saved file if exists
+            // remove autosaved file if exists
             if let url = self.fileURL {
                 var deletionError: NSError?
                 NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_READ
@@ -584,7 +597,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// close document
     override func close() {
         
-        self.syntaxParser.invalidateCurrentParse()
         self.textStorageObserver?.cancel()
         self.savePanelAccessoryController?.representedObject = nil
         
@@ -597,13 +609,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let viewController = self.viewController!
         
+        self.printPanelAccessoryController.documentShowsInvisibles = viewController.showsInvisibles
+        self.printPanelAccessoryController.documentShowsLineNumber = viewController.showsLineNumber
+        
         // create printView
         let printView = PrintTextView()
         printView.documentName = self.displayName
-        printView.filePath = self.fileURL?.path
+        printView.fileURL = self.fileURL
         printView.syntaxName = self.syntaxParser.style.name
-        printView.documentShowsInvisibles = viewController.showsInvisibles
-        printView.documentShowsLineNumber = viewController.showsLineNumber
         
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection
@@ -625,16 +638,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // detect URLs manually (2019-05 macOS 10.14).
         // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
         //    but then, multiline-URLs over a page break would be broken. (cf. #958)
-        printView.detectLink()
+        try? printView.textStorage?.linkURLs()
         
         // create print operation
         let printInfo = self.printInfo
         printInfo.dictionary().addEntries(from: printSettings)
         let printOperation = NSPrintOperation(view: printView, printInfo: printInfo)
         printOperation.showsProgressPanel = true
-        // -> This flag looks fancy but needs to disable
-        //    since NSTextView seems to cannot print in a background thraed (macOS -10.15).
-        printOperation.canSpawnSeparateThread = false
         
         // setup print panel
         printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
@@ -794,17 +804,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// Return whole string in the current text storage.
-    var string: String {
+    /// The view controller represents document.
+    var viewController: DocumentViewController? {
         
-        self.textStorage.string
+        (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
     }
     
     
-    /// return document window's editor wrapper
-    var viewController: DocumentViewController? {
+    /// The text view currently focused.
+    var textView: NSTextView? {
         
-        return (self.windowControllers.first?.contentViewController as? WindowContentViewController)?.documentViewController
+        self.viewController?.focusedTextView
     }
     
     
@@ -841,7 +851,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard fileEncoding != self.fileEncoding else { return }
         
         // check if conversion is lossy
-        guard lossy || self.string.canBeConverted(to: fileEncoding.encoding) else {
+        guard lossy || self.textStorage.string.canBeConverted(to: fileEncoding.encoding) else {
             throw EncodingError(kind: .lossyConversion, fileEncoding: fileEncoding, attempter: self)
         }
         
@@ -850,7 +860,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding] target in
                 try? target.changeEncoding(to: currentFileEncoding, lossy: lossy)
             }
-            undoManager.setActionName(String(format: "Encoding to “%@”".localized, fileEncoding.localizedName))
+            undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
         }
         
         // update encoding
@@ -869,24 +879,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard
             lineEnding != self.lineEnding ||
-            self.string.lineEndingRanges().count > 1
+                self.textStorage.string.lineEndingRanges().count > 1
         else { return }
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.string] target in
+            undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.changeLineEnding(to: currentLineEnding)
                 target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
             }
-            undoManager.setActionName(String(format: "Line Endings to “%@”".localized, lineEnding.name))
+            undoManager.setActionName(String(localized: "Line Endings to “\(lineEnding.name)”"))
         }
         
         // update line ending
         self.textStorage.replaceLineEndings(with: lineEnding)
         self.lineEnding = lineEnding
-        
-        // update UI
-        self.analyzer.invalidate()
     }
     
     
@@ -899,7 +906,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
-        self.syntaxParser.invalidateCurrentParse()
         self.syntaxParser.style = syntaxStyle
         
         // skip notification when initial style was set on file open
@@ -979,7 +985,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
             alert.messageText = "File encoding".localized
-            alert.informativeText = String(format: "Do you want to convert or reinterpret this document using “%@”?".localized, fileEncoding.localizedName)
+            alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
             alert.addButton(withTitle: "Convert".localized)
             alert.addButton(withTitle: "Reinterpret".localized)
             alert.addButton(withTitle: "Cancel".localized)
@@ -1001,7 +1007,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         if self.isDocumentEdited {
                             let alert = NSAlert()
                             alert.messageText = "The document has unsaved changes.".localized
-                            alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, fileEncoding.localizedName)
+                            alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?")
                             alert.addButton(withTitle: "Cancel".localized)
                             alert.addButton(withTitle: "Discard Changes".localized)
                             alert.buttons.last?.hasDestructiveAction = true
@@ -1048,7 +1054,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
         
-        self.insert(string: string, at: .replaceSelection)
+        self.textView?.insert(string: string, at: .replaceSelection)
     }
     
     
@@ -1057,9 +1063,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// transfer file information to UI
     private func applyContentToWindow() {
-        
-        // update status bar and document inspector
-        self.analyzer.invalidate()
         
         // update incompatible characters if pane is visible
         self.incompatibleCharacterScanner.invalidate()
@@ -1110,7 +1113,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// check if the content can be saved with the file encoding
     private func checkSavingSafetyForConverting() throws {
         
-        guard self.string.canBeConverted(to: self.fileEncoding.encoding) else {
+        guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
             throw EncodingError(kind: .lossySaving, fileEncoding: self.fileEncoding, attempter: self)
         }
     }
@@ -1121,13 +1124,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         assert(Thread.isMainThread)
         
-        guard !self.suppressesInconsistentLineEndingAlert else { return }
+        guard
+            !UserDefaults.standard[.suppressesInconsistentLineEndingAlert],
+            !self.suppressesInconsistentLineEndingAlert
+        else { return }
         guard let documentWindow = self.windowForSheet else { return assertionFailure() }
         
         let alert = NSAlert()
         alert.alertStyle = .warning
         alert.messageText = "The document has inconsistent line endings.".localized
-        alert.informativeText = String(format: "Do you want to convert all line endings to %@, the most common line endings in this document?".localized, self.lineEnding.name)
+        alert.informativeText = String(localized: "Do you want to convert all line endings to \(self.lineEnding.name), the most common line endings in this document?")
         alert.addButton(withTitle: "Convert".localized)
         alert.addButton(withTitle: "Review".localized)
         alert.showsSuppressionButton = true
@@ -1135,10 +1141,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.showsHelp = true
         alert.helpAnchor = "inconsistent_line_endings"
         
-        alert.beginSheetModal(for: documentWindow) { returnCode in
+        alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
             if alert.suppressionButton?.state == .on {
                 self.suppressesInconsistentLineEndingAlert = true
                 self.invalidateRestorableState()
+                
+                // save xattr
+                if let fileURL = self.fileURL {
+                    var error: NSError?
+                    NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in
+                        try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
+                    }
+                }
             }
             
             switch returnCode {
@@ -1185,7 +1199,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: documentWindow) { returnCode in
+            alert.beginSheetModal(for: documentWindow) { [unowned self] returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revertWithoutAsking()
                 }
@@ -1218,19 +1232,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
 
 
 
-// MARK: - Protocol
-
-extension Document: Editable {
-    
-    var textView: NSTextView? {
-        
-        return self.viewController?.focusedTextView
-    }
-    
-}
-
-
-
 // MARK: - Error
 
 private enum ReinterpretationError: LocalizedError {
@@ -1246,8 +1247,7 @@ private enum ReinterpretationError: LocalizedError {
                 return "The document doesn’t have a file to reinterpret.".localized
             
             case let .reinterpretationFailed(fileURL, encoding):
-                return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
-                              fileURL.lastPathComponent, String.localizedName(of: encoding))
+                return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
     }
     
@@ -1282,7 +1282,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     var errorDescription: String? {
         
-        return String(format: "Some characters would have to be changed or deleted in saving as “%@”.".localized, self.fileEncoding.localizedName)
+        return String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName).”")
     }
     
     

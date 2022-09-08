@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ extension CGPoint: Scalable {
     
     func scaled(to scale: CGFloat) -> CGPoint {
         
-        return CGPoint(x: scale * self.x, y: scale * self.y)
+        CGPoint(x: scale * self.x, y: scale * self.y)
     }
     
 }
@@ -47,7 +47,7 @@ extension CGSize: Scalable {
     
     func scaled(to scale: CGFloat) -> CGSize {
         
-        return CGSize(width: scale * self.width, height: scale * self.height)
+        CGSize(width: scale * self.width, height: scale * self.height)
     }
     
 }
@@ -57,7 +57,7 @@ extension CGRect: Scalable {
     
     func scaled(to scale: CGFloat) -> CGRect {
         
-        return CGRect(x: scale * self.origin.x, y: scale * self.origin.y, width: scale * self.width, height: scale * self.height)
+        CGRect(x: scale * self.origin.x, y: scale * self.origin.y, width: scale * self.width, height: scale * self.height)
     }
     
 }
@@ -70,25 +70,25 @@ extension CGPoint {
     
     static prefix func - (point: CGPoint) -> CGPoint {
         
-        return CGPoint(x: -point.x, y: -point.y)
+        CGPoint(x: -point.x, y: -point.y)
     }
     
     
     func offsetBy(dx: CGFloat = 0, dy: CGFloat = 0) -> CGPoint {
         
-        return CGPoint(x: self.x + dx, y: self.y + dy)
+        CGPoint(x: self.x + dx, y: self.y + dy)
     }
     
     
     func offset(by point: CGPoint) -> CGPoint {
         
-        return self.offsetBy(dx: point.x, dy: point.y)
+        self.offsetBy(dx: point.x, dy: point.y)
     }
     
     
     func offset(by size: CGSize) -> CGPoint {
         
-        return self.offsetBy(dx: size.width, dy: size.height)
+        self.offsetBy(dx: size.width, dy: size.height)
     }
     
 }
@@ -98,18 +98,12 @@ extension CGSize {
     
     static prefix func - (size: Self) -> Self {
         
-        return Self(width: -size.width, height: -size.height)
+        Self(width: -size.width, height: -size.height)
     }
     
     
     static let unit = CGSize(width: 1, height: 1)
     static let infinite = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-    
-    
-    var rotated: CGSize {
-        
-        return CGSize(width: self.height, height: self.width)
-    }
 }
 
 
@@ -117,31 +111,31 @@ extension CGRect {
     
     var mid: CGPoint {
         
-        return CGPoint(x: self.midX, y: self.midY)
+        CGPoint(x: self.midX, y: self.midY)
     }
     
     
     func offset(by point: CGPoint) -> CGRect {
         
-        return self.offsetBy(dx: point.x, dy: point.y)
+        self.offsetBy(dx: point.x, dy: point.y)
     }
     
     
     func offset(by size: CGSize) -> CGRect {
         
-        return self.offsetBy(dx: size.width, dy: size.height)
+        self.offsetBy(dx: size.width, dy: size.height)
     }
     
     
     func inset(by point: CGPoint) -> CGRect {
         
-        return self.insetBy(dx: point.x, dy: point.y)
+        self.insetBy(dx: point.x, dy: point.y)
     }
     
     
     func inset(by size: CGSize) -> CGRect {
         
-        return self.insetBy(dx: size.width, dy: size.height)
+        self.insetBy(dx: size.width, dy: size.height)
     }
     
 }

@@ -69,8 +69,8 @@
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
 "KTe-1r-oHM.headerToolTip" = "啟用";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "選擇以啟用該取代規則。";
+/* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
+"PuQ-No-wC1.ibShadowedToolTip" = "勾選此項以套用該取代規則。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
 "zee-UW-TVR.headerCell.title" = "檢索";
@@ -81,7 +81,7 @@
 /* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
 "VtR-Qz-MBf.headerCell.title" = "RE";
 /* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerToolTip" = "正規表示式";
+"VtR-Qz-MBf.headerToolTip" = "常規表示式";
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
 "d3o-yf-jB4.headerCell.title" = "IC";
@@ -92,7 +92,7 @@
 "Rhy-iE-CIC.headerCell.title" = "描述";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
-"Lk4-Ym-IrV.ibShadowedToolTip" = "選中以啟用正規表示式檢索。";
+"Lk4-Ym-IrV.ibShadowedToolTip" = "選中以啟用常規表示式檢索。";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
 "I23-3I-yq5.ibShadowedToolTip" = "選中以忽略大小寫。";
 
@@ -100,13 +100,14 @@
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
 "gRf-KM-GZo.title" = "無效的規則將被跳過。";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "設定進階選項";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
+"i8z-Xa-PxI.ibShadowedToolTip" = "顯示進階選項";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "i8z-Xa-PxI"; */
 "i8z-Xa-PxI.ibExternalAccessibilityDescription" = "進階選項";
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "選中範圍內";
+"4lm-Fu-Fcf.title" = "所選範圍";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "選中僅在選擇範圍內進行文字檢索。";
 
@@ -116,7 +117,7 @@
 "99C-Bz-ySi.ibShadowedToolTip" = "高亮所有匹配取代規則的文字。";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
-"LI2-Hh-D6g.title" = "取代全部";
+"LI2-Hh-D6g.title" = "全部取代";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
 "Nth-za-4Ad.ibShadowedToolTip" = "依據取代規則取代所有匹配文字。";
 
@@ -152,7 +153,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Regular Expression Search"; ObjectID = "eCk-TH-lBA"; */
-"eCk-TH-lBA.title" = "正規表示式檢索";
+"eCk-TH-lBA.title" = "常規表示式檢索";
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "ECw-cb-2hw"; */
 "ECw-cb-2hw.title" = "使點匹配換行";

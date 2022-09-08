@@ -25,6 +25,7 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 @objc protocol TextFinderClientProvider: AnyObject {
     
@@ -72,7 +73,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
-    private var searchTask: Task<Void, Error>?
+    private var searchTask: Task<Void, any Error>?
     private var applicationActivationObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
@@ -482,9 +483,19 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 if result.wrapped {
                     if let view = textView.enclosingScrollView?.superview {
-                        let hudController = HUDController.instantiate(storyboard: "HUDView")
-                        hudController.symbol = .wrap(reversed: !forward)
-                        hudController.show(in: view)
+                        let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, flipped: !forward))
+                        hudView.rootView.parent = hudView
+                        hudView.translatesAutoresizingMaskIntoConstraints = false
+                        
+                        // remove previous HUD if any
+                        for subview in view.subviews where subview is NSHostingView<HUDView> {
+                            subview.removeFromSuperview()
+                        }
+                        
+                        view.addSubview(hudView)
+                        hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                        hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+                        hudView.layout()
                     }
                     
                     if let window = NSApp.mainWindow {
@@ -559,7 +570,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 // highlight
                 highlights += matches.enumerated()
                     .filter { !$0.element.isEmpty }
-                    .map { ItemRange<NSColor>(item: highlightColors[$0.offset], range: $0.element) }
+                    .map { ItemRange(item: highlightColors[$0.offset], range: $0.element) }
                 
                 // build TextFindResult for table
                 if showsList {
@@ -661,7 +672,7 @@ private extension UserDefaults {
     /// - Parameters:
     ///   - value: The value to add.
     ///   - key: The default key to add the value.
-    func appendHistory<T>(_ value: T, forKey key: DefaultKey<[T]>) where T: Equatable {
+    func appendHistory<T: Equatable>(_ value: T, forKey key: DefaultKey<[T]>) {
         
         guard (value as? String)?.isEmpty != true else { return }
         
@@ -676,20 +687,20 @@ private extension UserDefaults {
     var textFindMode: TextFind.Mode {
         
         if self[.findUsesRegularExpression] {
-            var options = NSRegularExpression.Options()
-            if self[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
-            if self[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
-            if self[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
-            if self[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
+            let options = NSRegularExpression.Options()
+                .union(self[.findIgnoresCase] ? .caseInsensitive : [])
+                .union(self[.findRegexIsSingleline] ? .dotMatchesLineSeparators : [])
+                .union(self[.findRegexIsMultiline] ? .anchorsMatchLines : [])
+                .union(self[.findRegexUsesUnicodeBoundaries] ? .useUnicodeWordBoundaries : [])
             
             return .regularExpression(options: options, unescapesReplacement: self[.findRegexUnescapesReplacementString])
             
         } else {
-            var options = NSString.CompareOptions()
-            if self[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
-            if self[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
-            if self[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
-            if self[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
+            let options = NSString.CompareOptions()
+                .union(self[.findIgnoresCase] ? .caseInsensitive : [])
+                .union(self[.findTextIsLiteralSearch] ? .literal : [])
+                .union(self[.findTextIgnoresDiacriticMarks] ? .diacriticInsensitive : [])
+                .union(self[.findTextIgnoresWidth] ? .widthInsensitive : [])
             
             return .textual(options: options, fullWord: self[.findMatchesFullWord])
         }

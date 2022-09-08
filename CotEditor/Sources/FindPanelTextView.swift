@@ -112,7 +112,7 @@ class FindPanelTextView: NSTextView {
     override func insertNewline(_ sender: Any?) {
         
         // perform Find Next in find string field (standard NSTextField behavior)
-        if performsActionOnEnter {
+        if self.performsActionOnEnter {
             TextFinder.shared.findNext(self)
         }
     }

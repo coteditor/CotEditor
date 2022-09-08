@@ -41,16 +41,29 @@ final class SyntaxParser {
     
     // MARK: Public Properties
     
-    let textStorage: NSTextStorage
-    var style: SyntaxStyle
+    var style: SyntaxStyle {
+        
+        didSet {
+            self.outlineParseTask?.cancel()
+            self.highlightParseTask?.cancel()
+            self.outlineExtractors = style.outlineExtractors
+            self.highlightParser = style.highlightParser
+        }
+    }
     
     @Published private(set) var outlineItems: [OutlineItem]?
     
     
     // MARK: Private Properties
     
-    private var outlineParseTask: Task<Void, Error>?
-    private var highlightParseTask: Task<Void, Error>?
+    private let textStorage: NSTextStorage
+    
+    private lazy var outlineExtractors: [OutlineExtractor] = self.style.outlineExtractors
+    private lazy var highlightParser: HighlightParser = self.style.highlightParser
+    
+    private var outlineParseTask: Task<Void, any Error>?
+    private var highlightParseTask: Task<Void, any Error>?
+    private var isHighlighting = false
     
     private var textEditingObserver: AnyCancellable?
     
@@ -59,7 +72,7 @@ final class SyntaxParser {
     // MARK: -
     // MARK: Lifecycle
     
-    init(textStorage: NSTextStorage, style: SyntaxStyle = SyntaxStyle()) {
+    init(textStorage: NSTextStorage, style: SyntaxStyle) {
         
         self.textStorage = textStorage
         self.style = style
@@ -73,23 +86,6 @@ final class SyntaxParser {
     
     
     deinit {
-        self.invalidateCurrentParse()
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// Whether syntax should be parsed.
-    var canParse: Bool {
-        
-        !self.style.isNone
-    }
-    
-    
-    /// Cancel all syntax parse including ones in the queues.
-    func invalidateCurrentParse() {
-        
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
     }
@@ -108,8 +104,7 @@ extension SyntaxParser {
         self.outlineParseTask?.cancel()
         
         guard
-            self.canParse,
-            !self.style.outlineExtractors.isEmpty,
+            !self.outlineExtractors.isEmpty,
             !self.textStorage.range.isEmpty
         else {
             self.outlineItems = []
@@ -118,13 +113,12 @@ extension SyntaxParser {
         
         self.outlineItems = nil
         
-        let extractors = self.style.outlineExtractors
+        let extractors = self.outlineExtractors
         let string = self.textStorage.string.immutable
-        let range = self.textStorage.range
         self.outlineParseTask = Task.detached(priority: .utility) { [weak self] in
             self?.outlineItems = try await withThrowingTaskGroup(of: [OutlineItem].self) { group in
                 for extractor in extractors {
-                    _ = group.addTaskUnlessCancelled { try extractor.items(in: string, range: range) }
+                    group.addTask { try extractor.items(in: string, range: string.range) }
                 }
                 
                 return try await group.reduce(into: []) { $0 += $1 }
@@ -144,24 +138,28 @@ extension SyntaxParser {
     /// Update highlights around passed-in range.
     ///
     /// - Parameters:
-    ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
-    /// - Returns: The progress of the async highlight task if performed.
-    @MainActor func highlight(around editedRange: NSRange?) -> Progress? {
+    ///   - editedRange: The character range that was edited, or `nil` to highlight the entire range.
+    @MainActor func highlight(around editedRange: NSRange? = nil) {
         
-        guard !self.textStorage.string.isEmpty else { return nil }
+        // retry entire parsing if the last one has not finished yet
+        var editedRange = editedRange
+        if self.isHighlighting {
+            self.highlightParseTask?.cancel()
+            editedRange = nil
+        }
+        
+        guard !self.textStorage.string.isEmpty else { return }
         
         // in case that wholeRange length is changed from editedRange
         guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
-            assertionFailure("Invalid range \(editedRange?.description ?? "nil") is passed in to \(#function)")
-            return nil
+            return debugPrint("⚠️ Invalid range \(editedRange?.description ?? "nil") for \(self.textStorage.length) lentgh textStorage is passed in to \(#function)")
         }
         
         let wholeRange = self.textStorage.range
         
         // just clear current highlight and return if no coloring required
-        guard self.style.hasHighlightDefinition else {
-            self.apply(highlights: [], range: wholeRange)
-            return nil
+        guard !self.highlightParser.isEmpty else {
+            return self.apply(highlights: [], range: wholeRange)
         }
         
         let highlightRange: NSRange = {
@@ -186,14 +184,13 @@ extension SyntaxParser {
                 if highlightRange.lowerBound > 0,
                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
                 {
-                    highlightRange = NSRange(location: effectiveRange.lowerBound,
-                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
+                    highlightRange = NSRange(effectiveRange.lowerBound..<highlightRange.upperBound)
                 }
                 
                 if highlightRange.upperBound < wholeRange.upperBound,
                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
                 {
-                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
+                    highlightRange = NSRange(highlightRange.lowerBound..<effectiveRange.upperBound)
                 }
             }
             
@@ -203,7 +200,7 @@ extension SyntaxParser {
             
             return highlightRange
         }()
-        guard !highlightRange.isEmpty else { return nil }
+        guard !highlightRange.isEmpty else { return }
         
         // make sure the string is immutable
         // -> `string` of NSTextStorage is actually a mutable object
@@ -211,7 +208,7 @@ extension SyntaxParser {
         //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
-        return self.parse(string: string, range: highlightRange)
+        self.parse(string: string, range: highlightRange)
     }
     
     
@@ -219,42 +216,38 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    @MainActor private func parse(string: String, range highlightRange: NSRange) -> Progress {
+    private func parse(string: String, range: NSRange) {
         
-        assert(!(string as NSString).className.contains("MutableString"))
-        assert(!highlightRange.isEmpty)
-        assert(!self.style.isNone)
+        assert(!(string as NSString).className.contains("Mutable"))
+        assert(!range.isEmpty)
+        assert(!self.highlightParser.isEmpty)
         
-        let definition = HighlightParser.Definition(extractors: self.style.highlightExtractors,
-                                                    nestablePaires: self.style.nestablePaires,
-                                                    inlineCommentDelimiter: self.style.inlineCommentDelimiter,
-                                                    blockCommentDelimiters: self.style.blockCommentDelimiters)
-        let parser = HighlightParser(definition: definition, string: string, range: highlightRange)
-        let progress = Progress(totalUnitCount: 1)
+        let parser = self.highlightParser
         
-        let task = Task.detached(priority: .userInitiated) { [weak self] in
-            let highlights = try await parser.parse()
+        self.highlightParseTask?.cancel()
+        self.highlightParseTask = Task.detached(priority: .userInitiated) { [weak self] in
+            defer {
+                self?.isHighlighting = false
+            }
+            let highlights = try await parser.parse(string: string, range: range)
             
             try Task.checkCancellation()
             
-            await self?.apply(highlights: highlights, range: highlightRange)
-            
-            progress.completedUnitCount += 1
+            await self?.apply(highlights: highlights, range: range)
         }
-        progress.cancellationHandler = { task.cancel() }
         
-        self.highlightParseTask?.cancel()
-        self.highlightParseTask = task
-        
-        return progress
+        // make large parse cancellable
+        if range.length > 10_000 {
+            self.isHighlighting = true
+        }
     }
     
     
     /// apply highlights to all the layoutManagers.
-    @MainActor private func apply(highlights: [Highlight], range highlightRange: NSRange) {
+    @MainActor private func apply(highlights: [Highlight], range: NSRange) {
         
         for layoutManager in self.textStorage.layoutManagers {
-            layoutManager.apply(highlights: highlights, range: highlightRange)
+            layoutManager.apply(highlights: highlights, range: range)
         }
     }
     
@@ -288,21 +281,19 @@ extension NSLayoutManager {
     ///
     /// - Parameters:
     ///   - highlights: The highlight definitions to apply.
-    ///   - highlightRange: The range to update syntax highlight.
-    @MainActor func apply(highlights: [Highlight], range highlightRange: NSRange) {
+    ///   - range: The range to update syntax highlight.
+    @MainActor func apply(highlights: [Highlight], range: NSRange) {
         
-        // -> This condition is really, really important to reduce the time
-        //    to apply large number of temporary attributes. (2022-06, macOS 12)
         assert(highlights.sorted(\.range.location) == highlights)
         
         // skip if never colorlized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
-        guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { return }
+        guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }
         
         let theme = (self.firstTextView as? any Themable)?.theme
         
-        self.groupTemporaryAttributesUpdate(in: highlightRange) {
-            self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
-            self.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
+        self.groupTemporaryAttributesUpdate(in: range) {
+            self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+            self.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
             
             for highlight in highlights {
                 self.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)

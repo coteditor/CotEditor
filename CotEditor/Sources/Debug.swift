@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,29 +44,5 @@ func moof(_ items: Any..., function: String = #function) {
     } else {
         Swift.print(prefix, terminator: " ")
         Swift.debugPrint(items)
-    }
-}
-
-
-/// Measure execution time of process.
-func measureTime(work: () -> Void) -> TimeInterval {
-    
-    let date = Date()
-    work()
-    return -date.timeIntervalSinceNow
-}
-
-
-/// print execution time of process.
-func moofTime(_ label: String? = nil, work: () -> Void) {
-    
-    let icon = Thread.isMainThread ? "🐕" : "🐄"
-    let time = measureTime(work: work)
-    let timeString = String(format: "% 2.6fs", time)
-    
-    if let label = label {
-        Swift.print("\(icon) \(label): \(timeString)")
-    } else {
-        Swift.print("\(icon): \(timeString)")
     }
 }

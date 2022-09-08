@@ -36,7 +36,7 @@
 
 /* Class = "NSTableColumn"; ObjectID = "qJN-3P-dIu"; */
 "qJN-3P-dIu.headerCell.title" = "IC";  /* IC */
-"qJN-3P-dIu.headerToolTip" = "大文字小文字を無視";  /* Ignore Case (case-insensitive) */
+"qJN-3P-dIu.headerToolTip" = "大文字/小文字を無視";  /* Ignore Case (case-insensitive) */
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "0ah-vG-2QL"; */
 "0ah-vG-2QL.headerCell.title" = "説明";

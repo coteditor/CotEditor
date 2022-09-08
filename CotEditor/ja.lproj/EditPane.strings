@@ -61,7 +61,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "折り返し:";
+"P1I-gs-RgX.title" = "行の折り返し:";
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
 "3274.title" = "エディタの幅に合わせて行を折り返す";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
@@ -93,5 +93,5 @@
 /* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
 "J1B-wA-rdr.title" = "入力中に補完候補を表示";
 
-/* Class = "NSTextFieldCell"; title = "⚠️ Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
-"dmb-pc-4M5.title" = "⚠️ 入力補完を有効にするためには1つ以上の項目を選択する必要があります。";
+/* Class = "NSTextFieldCell"; title = "Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "入力補完を有効にするためには1つ以上の項目を選択する必要があります。";

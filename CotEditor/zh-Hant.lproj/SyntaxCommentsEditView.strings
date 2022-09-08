@@ -56,7 +56,7 @@
 "XJa-sc-hM6.headerCell.title" = "結束字串";
 /* Class = "NSTableColumn"; ObjectID = "XJj-U2-0se"; */
 "XJj-U2-0se.headerCell.title" = "RE";  /* RE */
-"XJj-U2-0se.headerToolTip" = "正規表示式";  /* Regular Expression */
+"XJj-U2-0se.headerToolTip" = "常規表示式";  /* Regular Expression */
 /* Class = "NSTableColumn"; ObjectID = "oI5-31-pDw"; */
 "oI5-31-pDw.headerCell.title" = "IC";  /* IC */
 "oI5-31-pDw.headerToolTip" = "忽略大小寫";  /* Ignore Case (case-insensitive) */

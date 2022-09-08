@@ -34,9 +34,46 @@ extension NSTextView {
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the content is not invalid.
     @discardableResult
-    func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
+    @MainActor func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
         
-        assert(Thread.isMainThread)
+        // avoid using TextKit 2 on macOS 12 because it does actually not work (2022-07).
+        guard
+            #available(macOS 13, *),
+            let layoutManager = self.textLayoutManager
+        else { return self.highlightAsRegularExpressionPatternWithLegacyTextKit(mode: mode, enabled: enabled) }
+        
+        // clear the last highlight anyway
+        layoutManager.removeRenderingAttribute(.foregroundColor, for: layoutManager.documentRange)
+        
+        guard enabled else { return true }
+        
+        // validate regex pattern
+        switch mode {
+            case .search:
+                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return false }
+            case .replacement:
+                break
+        }
+        
+        // highlight
+        for type in RegularExpressionSyntaxType.priority.reversed() {
+            for range in type.ranges(in: self.string, mode: mode) {
+                guard let textRange = layoutManager.textRange(for: range) else { continue }
+                layoutManager.addRenderingAttribute(.foregroundColor, value: type.color, for: textRange)
+            }
+        }
+        
+        return true
+    }
+    
+    
+    /// Legacy implementation that is the same as `highlightAsRegularExpressionPattern(mode:enabled:)` above.
+    ///
+    /// - Parameters:
+    ///   - mode: Parse mode of reguler expression.
+    ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
+    /// - Returns: Whether the content is not invalid.
+    @MainActor private func highlightAsRegularExpressionPatternWithLegacyTextKit(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
         
         guard let layoutManager = self.layoutManager else { assertionFailure(); return false }
         

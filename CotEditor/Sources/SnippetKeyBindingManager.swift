@@ -70,7 +70,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
+    /// create a KVO-compatible collection for outlineView in the settings from the key binding setting
     ///
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
@@ -79,7 +79,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
-            let title = String(format: "Insert Text %li".localized, locale: .current, index)
+            let title = String(localized: "Insert Text \(index)")
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             

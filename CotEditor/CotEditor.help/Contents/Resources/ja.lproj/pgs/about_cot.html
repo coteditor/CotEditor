@@ -26,7 +26,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 
 
 <h3>セキュリティ認証</h3>
-<p>macOSで別のアプリケーションから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム環境設定」＞「セキュリティとプライバシー」＞「プライバシー」＞「オートメーション」で、ターミナルなど利用するクライアントの下にある<strong>CotEditor</strong>（また、<code>--wait</code>オプションのためには<strong>System Events</strong>も）のチェックボックスを有効にしてください。</p>
+<p>macOSで別のアプリケーションから<code>cot</code>コマンドでCotEditorを操作するために、ユーザによる認証が必要です。この認証は通常<code>cot</code>コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。「システム設定」＞「セキュリティとプライバシー」＞「プライバシー」＞「オートメーション」で、ターミナルなど利用するクライアントの下にある<strong>CotEditor</strong>（また、<code>--wait</code>オプションのためには<strong>System Events</strong>も）のチェックボックスを有効にしてください。</p>
 
 
 <h3>Python 3のインストール</h3>
@@ -68,12 +68,12 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <pre class="source"><code>cot
 </code></pre>
 
-<p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目にカーソルを移動します。もしfoo.txtファイルが存在しない場合は、<code>cot</code>コマンドは何も行いません。</p>
+<p>以下のコマンドは、foo.txtファイルをCotEditorで開き200行目に挿入ポイントを移動します。もしfoo.txtファイルが存在しない場合は、<code>cot</code>コマンドは何も行いません。</p>
 
 <pre class="source"><code>cot --line 200 foo.txt
 </code></pre>
 
-<p>以下のコマンドは、foo.txtファイルをCotEditorで開き、書類末尾にカーソルを移動します。</p>
+<p>以下のコマンドは、foo.txtファイルをCotEditorで開き、書類末尾に挿入ポイントを移動します。</p>
 
 <pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
@@ -92,7 +92,7 @@ ln -s /Applications/CotEditor.app/Contents/SharedSupport/bin/cot /usr/local/bin/
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="pref_general.html">「一般」環境設定を変更する</a></li>
+	<li><a href="settings_general.html">「一般」設定を変更する</a></li>
 </ul>
 </section>
 

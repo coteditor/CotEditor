@@ -45,12 +45,6 @@ extension SortPattern {
         
         guard let lineEnding = string.firstLineEnding else { return string }
         
-        let compareOptions = options.compareOptions
-        let numberFormatter: NumberFormatter? = compareOptions.contains(.numeric) ? .init() : nil
-        numberFormatter?.localizesFormat = options.isLocalized
-        numberFormatter?.usesGroupingSeparator = true
-        numberFormatter?.groupingSize = 3
-        
         var lines = string.components(separatedBy: .newlines)
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
         
@@ -61,13 +55,13 @@ extension SortPattern {
                     case let (.some(key0), .some(key1)):
                         // sort items by evaluating as numbers
                         // -> This code still ignores numbers in the middle of keys.
-                        if let number0 = numberFormatter?.leadingDouble(from: key0),
-                           let number1 = numberFormatter?.leadingDouble(from: key1),
+                        if let number0 = options.parse(key0),
+                           let number1 = options.parse(key1),
                            number0 != number1
                         {
                             return number0 < number1
                         }
-                        return key0.compare(key1, options: compareOptions, locale: options.locale) == .orderedAscending
+                        return key0.compare(key1, options: options.compareOptions, locale: options.usedLocale) == .orderedAscending
                         
                     case (.none, .some):
                         return false
@@ -167,6 +161,7 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     @objc dynamic var usesCaptureGroup: Bool = false
     @objc dynamic var group: Int = 1
     
+    @objc private(set) dynamic var errorMessage: String?
     @objc private(set) dynamic var numberOfCaptureGroups: Int = 0
     
     
@@ -211,12 +206,18 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
         } catch {
             self.regex = nil
             self.numberOfCaptureGroups = 0
+            if self.searchPattern.isEmpty {
+                self.errorMessage = "Empty pattern".localized
+            } else {
+                self.errorMessage = "Invalid pattern".localized
+            }
             
             throw error
         }
         
         self.regex = regex
         self.numberOfCaptureGroups = regex.numberOfCaptureGroups
+        self.errorMessage = nil
     }
     
 }
@@ -234,25 +235,37 @@ final class SortOptions: NSObject {
     @objc dynamic var keepsFirstLine: Bool = false
     @objc dynamic var decending: Bool = false
     
+    var locale: Locale = .current
+    
     
     var compareOptions: String.CompareOptions {
         
-        var options: String.CompareOptions = [.forcedOrdering]
-        
-        if self.ignoresCase {
-            options.formUnion(.caseInsensitive)
-        }
-        if self.numeric {
-            options.formUnion(.numeric)
-        }
-        
-        return options
+        return .forcedOrdering
+            .union(self.ignoresCase ? .caseInsensitive : [])
+            .union(self.numeric ? .numeric : [])
     }
     
     
-    var locale: Locale? {
+    var usedLocale: Locale? {
         
-        return self.isLocalized ? .current: nil
+        self.isLocalized ? self.locale: nil
+    }
+    
+    
+    /// Interpret the given string as numeric value using the receiver's parsing strategy.
+    ///
+    /// If the receiver's `.numeric` property is `false`, it certainly returns `nil`.
+    ///
+    /// - Parameter value: The string to parse.
+    /// - Returns: The numerical value or `nil` if failed.
+    func parse(_ value: String) -> Double? {
+        
+        guard self.numeric else { return nil }
+        
+        let locale = self.isLocalized ? self.locale : .init(identifier: "en")
+        let numberParser = FloatingPointFormatStyle<Double>(locale: locale).parseStrategy
+        
+        return try? numberParser.parse(value)
     }
     
 }

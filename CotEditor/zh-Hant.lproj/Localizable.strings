@@ -28,6 +28,7 @@
 "OK" = "好";
 "Cancel" = "取消";
 "Done" = "完成";
+"Start" = "開始";
 
 
 // Appending words in parentheses
@@ -74,17 +75,17 @@
 
 /* MARK: Text Finder */
 "Replace" = "取代";
-"Find All" = "查找全部";
-"Replace All" = "取代全部";
+"Find All" = "全部查找";
+"Replace All" = "全部取代";
 "Highlight" = "高亮";
 "Searching in text…" = "正在文字中搜索…";
-"%@ string found." = "找到%@個匹配";
-"%@ strings found." = "找到%@個匹配";
-"%@ string replaced." = "已取代%@個匹配";
-"%@ strings replaced." = "已取代%@個匹配";
-"Invalid regular expression" = "無效的正規表達式";
+"%lld string found." = "找到%lld個匹配";
+"%lld strings found." = "找到%lld個匹配";
+"%lld string replaced." = "已取代%lld個匹配";
+"%lld strings replaced." = "已取代%lld個匹配";
+"Invalid regular expression" = "無效的常規表示式";
 "Empty find string" = "空的搜索字元串";
-"The option “in selection” is enabled, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
+"The option “in selection” is selected, although nothing is selected." = "「在選擇中搜索」選項被激活，但是並沒有內容被選中。";
 "Input text to find." = "輸入文字以查找。";
 "Select the search scope in the document or turn off the “in selection” option." = "在文件中選擇搜索範圍，或者禁用「在選擇中搜索」。";
 
@@ -97,22 +98,22 @@
 "Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
 "Replace the current selection with the replacement text." = "用取代文字取代當前選中內容";
 "Not Found" = "未找到";
-"%i found" = "找到%i項";  // %i is number of founds
+"%lld found" = "找到%lld項";  // %lld is number of founds
 "Not Replaced" = "沒有進行取代";
-"%i replaced" = "%i處被取代";  // %i is number of replaced
+"%lld replaced" = "%lld處被取代";  // %lld is number of replaced
 
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "在「%@」中沒有找到字元串。";
-"Found one string in “%@”." = "在「%@」中找到一個字元串。";
-"Found %i strings in “%@”." = "%i個字元串在「%@」中被找到。";
+"No strings found in “%@.”" = "在「%@」中沒有找到字元串。";
+"Found one string in “%@.”" = "在「%@」中找到一個字元串。";
+"Found %lld strings in “%@.”" = "%lld個字元串在「%@」中被找到。";
 
 
 
 /* MARK: Regular Expression Reference */
-"Basic Regular Expression Syntax" = "基本正規表達式文法";
+"Basic Regular Expression Syntax" = "基本常規表示式文法";
 
 "Characters" = "字元";
 "any character" = "任意字元";
@@ -145,6 +146,8 @@
 
 "Back Reference" = "回溯引用";
 "first match" = "首字匹配";
+
+"The syntax conforms to the %@ specifications." = "該文法遵循「%@」引擎之規範。";  // %@ is the name of the regex engine (ICU Regular Expressions)
 
 
 
@@ -184,7 +187,7 @@
 "Reinterpret" = "再次解釋";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
 "Do you want to continue processing?" = "繼續進行處理嗎？";
 "Save Available Text" = "儲存有效文字";
 "Show Incompatible Characters" = "顯示不兼容字元";
@@ -196,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "該文件沒有要用來再次解釋的檔案。";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "檔案「%@」無法使用「%@」編碼再次解釋。";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "檔案「%@」無法使用「%@」編碼再次解釋。";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "該檔案可能已使用了不同的文字編碼來存儲，或者可能不是文字檔案。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "儲存為「%@」時一些字元可能需要被更改或者刪除。";
 "Do you want to change encoding and show incompatible characters?" = "改變編碼並顯示不兼容字元嗎？";
 "Change Encoding" = "更改編碼";
 
@@ -217,6 +220,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "保留CotEditor的版本還是更新至被編輯過的版本？";
 "Keep CotEditor’s Edition" = "保留CotEditor編輯的內容";
 "Update" = "更新";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in the window tab
+"Document has unsaved changes" = "文件內包含尚未存檔的內容變更";
 
 
 
@@ -365,10 +374,8 @@
 // Summary item values
 "On" = "開";
 "Off" = "關";
-"Don’t Print" = "不列印";
 "Same as Document’s Setting" = "同文件設置一致";
 "Black and White" = "黑白";
-"Print" = "列印";
 "Syntax Name" = "文法名";
 "Document Name" = "文件名稱";
 "File Path" = "檔案路徑";
@@ -393,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "掃描不兼容字元…";
 "Found an incompatible character." = "發現1處不兼容字元。";
-"Found %i incompatible characters." = "發現%i處不兼容字元。";  // %i is the number of characters
+"Found %lld incompatible characters." = "發現%lld處不兼容字元。";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "發現1處不是%@的換行符";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "發現%i處不是%@的換行符";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "發現%lld處不是%@的換行符";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -411,13 +418,6 @@
 "Convert Indentation" = "轉換縮進";
 "Comment Out" = "註釋";
 "Uncomment" = "取消註釋";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修改NFC";
-"Modified NFD" = "修改NFD";
 "Inspect Character" = "顯示字元";
 "Move Line" = "移動行";
 "Sort Lines" = "排序行";
@@ -429,7 +429,6 @@
 "Trim Trailing Whitespace" = "移除行尾空白";
 
 // Contextual menu items
-"Font" = "字體";
 "Text" = "文字";
 "Copy as Rich Text" = "以富文字拷貝";
 "Select All" = "全部選擇";
@@ -457,7 +456,7 @@
 "Wrap Lines" = "換行";
 
 // Tooltip for "Show Invisibles" menu item and toolbar item
-"To show invisible characters, set them in Preferences" = "要顯示不可見元素，請在偏好設置中進行設定";
+"To show invisible characters, set them in Settings" = "要顯示不可見元素，請在設定中進行設定";
 
 
 
@@ -502,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "變更將在下次啟動時生效。";
@@ -572,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "沒有發現錯誤";
 "An error found!" = "發現1個錯誤";
-"%i errors found!" = "發現%i個錯誤";
+"%lld errors found!" = "發現%lld個錯誤";
 "outline" = "大綱";
 
 
@@ -619,9 +618,9 @@
 "Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
 "Begin string" = "開始字元串";
 "End string" = "結束字元串";
-"Regular expression" = "正規表達式";
+"Regular expression" = "常規表示式";
 "The same word is registered multiple times." = "重複註冊。";
-"Regular Expression: " = "正規表達式：";
+"Regular Expression: " = "常規表示式：";
 
 
 
@@ -645,7 +644,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "插入文字%li";
+"Insert Text %lld" = "插入文字%lld";
 
 // Keyboard key name
 "Space" = "空格鍵";
@@ -713,12 +712,54 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 重要變更";
-"From this version, CotEditor handles line endings more strictly." = "從該版本開始，CotEditor將會更嚴格地處理行尾。";
-"Due to this change, you may need manual migration for your settings below:" = "由於這個變更，你可能需要對下面的設定進行手動遷移：";
-"Multiple replacement definitions" = "多次取代的定義";
-"Syntax styles" = "文法風格";
-"CotEditor scripts" = "CotEditor腳本";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "`\\n`僅在行尾確實是LF時進行匹配。如需匹配任意行尾，請使用`\\R`。";
-"Learn More…" = "瞭解更多…";
+/* MARK: Pattern Sort View */
+// error messages ("pattern" is a regular expression pattern)
+"Invalid pattern" = "不合法的範式";
+"Empty pattern" = "空白範式";
+
+
+
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "文法樣式對映衝突";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列檔案對映規則被註冊了多種格式。CotEditor自動使用第一個格式。可以透過編輯每個文法格式來解決衝突。";
+"Extension" = "副檔名";
+"Filename" = "檔名";
+"Interpreter" = "直譯器";
+// table column headers
+"Used style" = "已使用樣式";
+"Duplicated styles" = "重複的樣式";
+
+
+
+/* MARK: AdvancedCharacterCounterView */
+// menu labels
+"Advanced Character Count…" = "進階字元統計…";
+"Stop Advanced Character Count" = "停止進階字元統計";
+// error message when counting failed
+"failed" = "已失敗";
+// tooltip
+"Show options" = "顯示選項";
+// context menu item labels
+"Copy" = "複製";
+"Stop Count" = "停止統計";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
+
+
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "空白字元:";
+"Ignore line endings" = "忽略行尾";
+"Ignore whitespace" = "忽略空白字元";
+"Treat consecutive whitespace as one space" = "將多個空白字元視為同一個";
+
+"Unit:" = "單位:";
+"Grapheme cluster" = "書寫元素集";  // technical term defined in Unicode
+"Unicode scalar" = "Unicode 純量";
+"UTF-16" = "UTF-16";
+"Byte" = "位元組";
+
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "以萬國碼的直觀方式來統計文字數量。哪怕像是繪文字這樣的高萬字，也都按照單個文字來計算。";
+"Count Unicode code points. Same as counting UTF-32." = "統計萬國碼碼點數量（以 UTF-32 的方式）。";
+"Count Unicode code points but a surrogate pair as two characters." = "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。";
+"Count bytes of the text encoded with the specified encoding." = "以文本自身的編碼、來統計該文本的位元組數量。";
+
+"Encoding:" = "編碼:";
+"Normalization:" = "標準化:";

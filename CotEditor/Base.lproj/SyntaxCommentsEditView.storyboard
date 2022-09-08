@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dQc-6h-PHn">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="dQc-6h-PHn">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -242,6 +242,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="SEW-h4-aL1" id="oHX-ZV-co3"/>
                                     <binding destination="zSU-F6-ULA" name="value" keyPath="selection.inlineDelimiter" id="Pcv-9r-6km">
                                         <dictionary key="options">
                                             <string key="NSNullPlaceholder">Not defined</string>
@@ -257,6 +258,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="WDn-Vx-yAe" id="hsr-s0-Kcu"/>
                                     <binding destination="zSU-F6-ULA" name="value" keyPath="selection.beginDelimiter" id="a3u-7k-1dd">
                                         <dictionary key="options">
                                             <string key="NSNullPlaceholder">Not defined</string>
@@ -273,6 +275,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="gGr-AE-CgQ" id="xQi-gc-ePA"/>
                                     <binding destination="zSU-F6-ULA" name="value" keyPath="selection.endDelimiter" id="dwo-oN-tBR">
                                         <dictionary key="options">
                                             <string key="NSNullPlaceholder">Not defined</string>

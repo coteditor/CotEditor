@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,13 +28,16 @@ import AppKit.NSCursor
 extension NSCursor {
     
     /// Fix i-beam for vertical text orientation (FB7722838).
+    @available(macOS, deprecated: 13, message: "The issue FB7722838 was fxed on macOS 13.")
     func fixIBeam() {
+        
+        guard #unavailable(macOS 13) else { return }
         
         if self == .iBeamCursorForVerticalLayout {
             // -> The system draws i-beam with custom colors correctly.
-            if #available(macOS 12, *), (NSCursor.outlineColor != nil || NSCursor.fillColor != nil) {
-                return
-            }
+            guard NSCursor.outlineColor == nil,
+                  NSCursor.fillColor == nil
+            else { return }
             
             Self.lightIBeamCursorForVerticalLayout.set()
         }
@@ -51,8 +54,7 @@ private extension NSCursor {
     static let lightIBeamCursorForVerticalLayout = NSCursor(image: #imageLiteral(resourceName: "LightIBeamCursorForVerticalLayout"), hotSpot: NSCursor.iBeamCursorForVerticalLayout.hotSpot)
     
     
-    /// The outline color for cursors that the user set in System Preferences > Accessibility > Display > Pointer.
-    @available(macOS 12, *)
+    /// The outline color for cursors that the user set in System Settings > Accessibility > Display > Pointer.
     static var outlineColor: NSColor? {
         
         guard
@@ -65,8 +67,7 @@ private extension NSCursor {
     }
     
     
-    /// The fill color for cursors that the user set in System Preferences > Accessibility > Display > Pointer
-    @available(macOS 12, *)
+    /// The fill color for cursors that the user set in System Settings > Accessibility > Display > Pointer
     static var fillColor: NSColor? {
         
         guard

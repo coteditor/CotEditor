@@ -42,7 +42,6 @@ final class PrintPaneController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -185,18 +184,17 @@ extension PrintPaneController: NSFontChanging {
         
         let name = UserDefaults.standard[.printFontName]
         let size = UserDefaults.standard[.printFontSize]
-        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
         
         guard
             let font = NSFont(name: name, size: size),
-            let displayFont = NSFont(name: name, size: min(size, maxDisplaySize)),
             let fontField = self.fontField
-            else { return }
+        else { return }
         
         let displayName = font.displayName ?? font.fontName
+        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
         
-        fontField.stringValue = displayName + " " + String(format: "%g", locale: .current, size)
-        fontField.font = displayFont
+        fontField.stringValue = displayName + " " + size.formatted()
+        fontField.font = font.withSize(min(size, maxDisplaySize))
     }
     
 }

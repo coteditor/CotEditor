@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016 CotEditor Project
+//  © 2016-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@
 "GvT-tD-Cbk.ibShadowedToolTip" = "Selezionare per ignorare maiuscole/minuscole nella ricerca.";
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
-"9bc-9Q-fhd.title" = "Nella selezione";
+"9bc-9Q-fhd.title" = "In selezione";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search text only from selection."; ObjectID = "tu7-IT-dA3"; */
 "tu7-IT-dA3.ibShadowedToolTip" = "Selezionare per ricercare testo solo all’interno della selezione.";
 
@@ -100,8 +100,8 @@
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
 "vfK-an-Qnl.title" = "Cancella sostituzioni recenti";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Imposta opzioni avanzate";
+/* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
+"ESq-ws-6H3.ibShadowedToolTip" = "Mostra opzioni avanzate";
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Opzioni avanzate";
 
 

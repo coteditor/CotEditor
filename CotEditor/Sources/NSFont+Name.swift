@@ -56,18 +56,6 @@ extension NSFont {
         return CTFontCopyGraphicsFont(self, nil)
     }
     
-    
-    /// Font variation of which numbers are monospaced.
-    var monospacedDigit: NSFont? {
-        
-        let monospaceSetting: [NSFontDescriptor.FeatureKey: NSNumber] = [.typeIdentifier: kNumberSpacingType,
-                                                                         .selectorIdentifier: kMonospacedNumbersSelector]
-            .mapValues { $0 as NSNumber }
-        let descriptor = self.fontDescriptor.addingAttributes([.featureSettings: [monospaceSetting]])
-        
-        return NSFont(descriptor: descriptor, size: self.pointSize)
-    }
-    
 }
 
 

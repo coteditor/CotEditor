@@ -312,15 +312,16 @@ extension OutlineViewController: NSOutlineViewDataSource {
         switch identifier {
             case .title:
                 let fontSize = UserDefaults.standard[.outlineViewFontSize]
-                let font = outlineView.font.flatMap { NSFont(name: $0.fontName, size: fontSize) } ?? .systemFont(ofSize: fontSize)
+                let font = outlineView.font?.withSize(fontSize) ?? .systemFont(ofSize: fontSize)
                 let attrTitle = outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
                 
                 guard let ranges = outlineItem.filteredRanges else { return attrTitle }
                 
                 let mutableAttrTitle = attrTitle.mutable
-                let boldFont = NSFontManager.shared.convertWeight(level: 2, of: font)
-                let attributes: [NSAttributedString.Key: Any] = [.font: boldFont,
-                                                                 .backgroundColor: NSColor.findHighlightColor]
+                let attributes: [NSAttributedString.Key: Any] = [
+                    .font: NSFont.systemFont(ofSize: fontSize, weight: .semibold),
+                    .backgroundColor: NSColor.findHighlightColor,
+                ]
                 for range in ranges {
                     mutableAttrTitle.addAttributes(attributes, range: range)
                 }

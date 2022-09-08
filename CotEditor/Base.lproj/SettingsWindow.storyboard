@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="5CU-Ph-YiJ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="oee-cm-yzv">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="5CU-Ph-YiJ" sceneMemberID="viewController">
+                    <window key="window" title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" toolbarStyle="preference" id="KjF-xP-N55" customClass="SettingsWindow" customModule="CotEditor" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="425" y="461" width="560" height="320"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="5CU-Ph-YiJ" id="ILx-yU-9ey"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="apc-An-nuW" kind="relationship" relationship="window.shadowedContentViewController" id="eO3-wU-KhT"/>
+                    </connections>
+                </windowController>
+                <customObject id="hma-Os-dsZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="38"/>
+        </scene>
+        <!--Settings Tab View Controller-->
+        <scene sceneID="OoS-fo-9bG">
+            <objects>
+                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" tabStyle="toolbar" id="apc-An-nuW" customClass="SettingsTabViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="General" identifier="General" image="gearshape" catalog="system" id="CNJ-6L-fga"/>
+                        <tabViewItem label="Window" identifier="Window" image="uiwindow.split.2x1" catalog="system" id="5fL-58-BrZ"/>
+                        <tabViewItem label="Appearance" identifier="Appearance" image="eyeglasses" catalog="system" id="icK-P1-6ta"/>
+                        <tabViewItem label="Edit" identifier="Edit" image="square.and.pencil" catalog="system" id="sh3-xI-elX"/>
+                        <tabViewItem label="Format" identifier="Format" image="doc.text" catalog="system" id="frU-Pc-xZT"/>
+                        <tabViewItem label="File Drop" identifier="FileDrop" image="arrow.down.doc" catalog="system" id="aO6-oS-ZGt"/>
+                        <tabViewItem label="Key Bindings" identifier="KeyBindings" image="keyboard" catalog="system" id="b8q-WN-1ls"/>
+                        <tabViewItem label="Print" identifier="Print" image="printer" catalog="system" id="UuB-iq-kOt"/>
+                    </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions"/>
+                    <tabView key="tabView" type="noTabsNoBorder" id="2ir-uf-iS5">
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="320"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="apc-An-nuW" id="fP6-MS-eML"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="2ir-uf-iS5" id="Dna-Ez-Gun"/>
+                        <segue destination="dfn-eb-mrX" kind="relationship" relationship="tabItems" id="AcJ-Ot-cN2"/>
+                        <segue destination="93r-aI-BXd" kind="relationship" relationship="tabItems" id="vnN-Zh-5Qh"/>
+                        <segue destination="muZ-kq-31V" kind="relationship" relationship="tabItems" id="8sj-Vn-SOp"/>
+                        <segue destination="IbF-nK-pxX" kind="relationship" relationship="tabItems" id="icq-RJ-TNM"/>
+                        <segue destination="M0Y-dh-44f" kind="relationship" relationship="tabItems" id="df2-3P-JWr"/>
+                        <segue destination="bZT-kf-2K1" kind="relationship" relationship="tabItems" id="OeU-vJ-0fq"/>
+                        <segue destination="SwV-mf-Kkp" kind="relationship" relationship="tabItems" id="jtp-AM-NQI"/>
+                        <segue destination="FEK-fe-svf" kind="relationship" relationship="tabItems" id="Se1-fr-9YR"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="rhG-T8-cni" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="476"/>
+        </scene>
+        <!--GeneralPane-->
+        <scene sceneID="elR-NT-Pqq">
+            <objects>
+                <controllerPlaceholder storyboardName="GeneralPane" id="dfn-eb-mrX" sceneMemberID="viewController"/>
+                <customObject id="2X3-Ec-6g9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540" y="330"/>
+        </scene>
+        <!--WindowPane-->
+        <scene sceneID="FvJ-gS-AIU">
+            <objects>
+                <controllerPlaceholder storyboardName="WindowPane" id="93r-aI-BXd" sceneMemberID="viewController"/>
+                <customObject id="y4T-Ea-6GG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540" y="368"/>
+        </scene>
+        <!--AppearancePane-->
+        <scene sceneID="37s-Nf-x3c">
+            <objects>
+                <controllerPlaceholder storyboardName="AppearancePane" id="muZ-kq-31V" sceneMemberID="viewController"/>
+                <customObject id="OMo-lp-Le4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="406"/>
+        </scene>
+        <!--EditPane-->
+        <scene sceneID="Y7L-aj-m05">
+            <objects>
+                <controllerPlaceholder storyboardName="EditPane" id="IbF-nK-pxX" sceneMemberID="viewController"/>
+                <customObject id="VJg-rZ-YZ6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="528" y="445"/>
+        </scene>
+        <!--FormatPane-->
+        <scene sceneID="3T4-vP-8q9">
+            <objects>
+                <controllerPlaceholder storyboardName="FormatPane" id="M0Y-dh-44f" sceneMemberID="viewController"/>
+                <customObject id="5Xt-Tj-oCA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="482"/>
+        </scene>
+        <!--FileDropPane-->
+        <scene sceneID="vqf-Zf-nWg">
+            <objects>
+                <controllerPlaceholder storyboardName="FileDropPane" id="bZT-kf-2K1" sceneMemberID="viewController"/>
+                <customObject id="Wd7-Yn-XJZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="542" y="520"/>
+        </scene>
+        <!--KeyBindingsPane-->
+        <scene sceneID="yTN-TS-OCR">
+            <objects>
+                <controllerPlaceholder storyboardName="KeyBindingsPane" id="SwV-mf-Kkp" sceneMemberID="viewController"/>
+                <customObject id="RyZ-OG-IaT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="557"/>
+        </scene>
+        <!--PrintPane-->
+        <scene sceneID="kIO-6p-9aP">
+            <objects>
+                <controllerPlaceholder storyboardName="PrintPane" id="FEK-fe-svf" sceneMemberID="viewController"/>
+                <customObject id="NFc-Tm-1QF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="531" y="593"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrow.down.doc" catalog="system" width="14" height="16"/>
+        <image name="doc.text" catalog="system" width="14" height="16"/>
+        <image name="eyeglasses" catalog="system" width="23" height="10"/>
+        <image name="gearshape" catalog="system" width="16" height="16"/>
+        <image name="keyboard" catalog="system" width="19" height="13"/>
+        <image name="printer" catalog="system" width="18" height="16"/>
+        <image name="square.and.pencil" catalog="system" width="17" height="15"/>
+        <image name="uiwindow.split.2x1" catalog="system" width="18" height="14"/>
+    </resources>
+</document>

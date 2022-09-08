@@ -42,7 +42,6 @@ final class EditorInfo: NSObject {
     @objc dynamic var lines: String?
     @objc dynamic var chars: String?
     @objc dynamic var words: String?
-    @objc dynamic var length: String?    // character length as UTF-16 string
     
     @objc dynamic var location: String?  // cursor location from the beginning of document
     @objc dynamic var line: String?      // current line
@@ -84,34 +83,32 @@ final class DocumentInspectorViewController: NSViewController {
     }
     
     
-    /// let documentAnalyzer autoupdate
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
         guard let document = self.document else { return assertionFailure() }
         
+        /// stop autoupdate documentAnalyzer
         self.subscribe(document)
-        self.analyzer?.shouldUpdate = true
+        self.analyzer?.updatesAll = true
         self.analyzer?.invalidate()
     }
     
     
-    /// stop autoupdate documentAnalyzer
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
         
         self.documentObservers.removeAll()
-        self.analyzer?.shouldUpdate = false
+        self.analyzer?.updatesAll = false
     }
     
     
-    /// set analyzer
     override var representedObject: Any? {
         
         willSet {
-            self.analyzer?.shouldUpdate = false
+            self.analyzer?.updatesAll = false
             self.documentObservers.removeAll()
         }
         
@@ -119,7 +116,7 @@ final class DocumentInspectorViewController: NSViewController {
             assert(representedObject == nil || representedObject is Document,
                    "representedObject of \(self.className) must be an instance of \(Document.className())")
             
-            self.analyzer?.shouldUpdate = self.isViewShown
+            self.analyzer?.updatesAll = self.isViewShown
             
             if self.isViewShown, let document = self.document {
                 self.subscribe(document)
@@ -167,13 +164,12 @@ final class DocumentInspectorViewController: NSViewController {
         document.analyzer.$result
             .receive(on: DispatchQueue.main)
             .sink { [info = self.editorInfo] (result) in
-                info.length = result.format(\.length)
-                info.chars = result.format(\.characters)
-                info.lines = result.format(\.lines)
-                info.words = result.format(\.words)
-                info.location = result.format(\.location)
-                info.line = result.format(\.line)
-                info.column = result.format(\.column)
+                info.chars = result.characters.formatted
+                info.lines = result.lines.formatted
+                info.words = result.words.formatted
+                info.location = result.location?.formatted()
+                info.line = result.line?.formatted()
+                info.column = result.column?.formatted()
                 info.unicode = result.unicode
             }
             .store(in: &self.documentObservers)

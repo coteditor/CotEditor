@@ -28,7 +28,7 @@
 "Z85-S9-uID.title" = "Fonte:";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "Selecionar…";
-/* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
+/* Class = "NSButtonCell"; title = "Antialias"; ObjectID = "3290"; */
 "3290.title" = "Antisserrilhado";
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
 "g3S-3v-6ZA.title" = "Ligadures";

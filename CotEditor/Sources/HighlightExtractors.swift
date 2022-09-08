@@ -114,10 +114,8 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     
     init(pattern: String, ignoresCase: Bool) throws {
         
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoresCase {
-            options.formUnion(.caseInsensitive)
-        }
+        let options: NSRegularExpression.Options = .anchorsMatchLines
+            .union(ignoresCase ? .caseInsensitive : [])
         
         self.regex = try NSRegularExpression(pattern: pattern, options: options)
     }
@@ -141,10 +139,8 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     
     init(beginPattern: String, endPattern: String, ignoresCase: Bool) throws {
         
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoresCase {
-            options.formUnion(.caseInsensitive)
-        }
+        let options: NSRegularExpression.Options = .anchorsMatchLines
+            .union(ignoresCase ? .caseInsensitive : [])
         
         self.beginRegex = try NSRegularExpression(pattern: beginPattern, options: options)
         self.endRegex = try NSRegularExpression(pattern: endPattern, options: options)

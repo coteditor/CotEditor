@@ -174,7 +174,7 @@ extension EditorTextView {
     /// - Parameters:
     ///   - pattern: The sort pattern.
     ///   - options: The sort options.
-    private func sortLines(pattern: SortPattern, options: SortOptions) {
+    private func sortLines(pattern: any SortPattern, options: SortOptions) {
         
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange

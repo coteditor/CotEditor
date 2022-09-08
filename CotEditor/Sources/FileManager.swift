@@ -32,8 +32,7 @@ extension FileManager {
     /// - Returns: The URL of the temporary directory created.
     func createTemporaryDirectory() -> URL {
         
-        let url = URL(fileURLWithPath: NSTemporaryDirectory())
-            .appendingPathComponent(UUID().uuidString)
+        let url = self.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         
         try! self.createDirectory(at: url, withIntermediateDirectories: true)
         

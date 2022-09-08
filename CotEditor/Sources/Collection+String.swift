@@ -36,7 +36,7 @@ struct StringComparisonOptions: OptionSet {
 }
 
 
-extension MutableCollection where Self: RandomAccessCollection, Element == String {
+extension MutableCollection where Self: RandomAccessCollection<String> {
     
     /// Sort the collection in place, using the string value that the given key path refers as the comparison between elements.
     ///
@@ -53,7 +53,7 @@ extension MutableCollection where Self: RandomAccessCollection, Element == Strin
 }
 
 
-extension Sequence where Element == String {
+extension Sequence<String> {
     
     /// Return the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison storategy.
     ///
@@ -91,7 +91,7 @@ private func compareFunction(options: StringComparisonOptions) -> (String, Strin
 
 // MARK: - File Name
 
-extension Collection where Element == String {
+extension Collection<String> {
     
     /// Create a unique name from the receiver's elements by adding the suffix and also a number if needed.
     ///

@@ -45,16 +45,11 @@ final class SidebarViewController: NSTabViewController {
     
     private var frameObserver: AnyCancellable?
     
-    @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
-    @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
-    @IBOutlet private weak var warningsTabViewItem: NSTabViewItem?
-    
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    /// prepare tabs
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -93,7 +88,7 @@ final class SidebarViewController: NSTabViewController {
         
         didSet {
             for item in self.tabViewItems {
-                item.viewController?.representedObject = representedObject as? Document
+                item.viewController?.representedObject = representedObject
             }
         }
     }
@@ -112,7 +107,6 @@ final class SidebarViewController: NSTabViewController {
     }
     
     
-    /// store UI state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -121,7 +115,6 @@ final class SidebarViewController: NSTabViewController {
     }
     
     
-    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -139,15 +132,17 @@ extension SidebarViewController: InspectorTabViewDelegate {
     
     func tabView(_ tabView: NSTabView, selectedImageForItem tabViewItem: NSTabViewItem) -> NSImage? {
         
-        switch tabViewItem {
-            case self.documentInspectorTabViewItem:
+        let index = tabView.indexOfTabViewItem(tabViewItem)
+        
+        switch TabIndex(rawValue: index) {
+            case .documentInspector:
                 return NSImage(systemSymbolName: "doc.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 
-            case self.outlineTabViewItem:
+            case .outline:
                 return nil  // -> bold version
                 
-            case self.warningsTabViewItem:
+            case .warnings:
                 return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 

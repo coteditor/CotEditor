@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,13 +40,13 @@ extension FuzzyRange {
     /// Create a FuzzyRange instance from a string representation joined by `:`.
     init?(string: String) {
         
-        let components = string.components(separatedBy: ":").map { Int($0) }
+        let components = string.components(separatedBy: ":").map(Int.init)
         
         guard
             (1...2).contains(components.count),
             let location = components[0],
             let length = (components.count > 1) ? components[1] : 0
-            else { return nil }
+        else { return nil }
         
         self.location = location
         self.length = length
@@ -58,7 +58,7 @@ extension FuzzyRange {
     /// The length is omitted when it is 0 or 1.
     var string: String {
         
-        return (0...1).contains(self.length)
+        (0...1).contains(self.length)
             ? String(self.location)
             : String(self.location) + ":" + String(self.length)
     }
@@ -91,7 +91,7 @@ extension String {
             newLocation >= 0,
             newLength >= 0,
             newLocation <= wholeLength
-            else { return nil }
+        else { return nil }
         
         return NSRange(newLocation..<min(newLocation + newLength, wholeLength))
     }
@@ -132,7 +132,7 @@ extension String {
         guard
             let firstLineRange = lineRanges[safe: newLocation],
             let lastLineRange = lineRanges[safe: newLocation + newLength]
-            else { return nil }
+        else { return nil }
         
         return NSRange(firstLineRange.lowerBound..<lastLineRange.upperBound)
     }

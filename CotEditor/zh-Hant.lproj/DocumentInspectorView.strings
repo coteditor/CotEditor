@@ -54,13 +54,11 @@
 "cbf-0f-9rd.title" = "計數";
 
 /* Class = "NSTextFieldCell"; title = "Lines"; ObjectID = "yRM-Y0-4Oq"; */
-"yRM-Y0-4Oq.title" = "行數";
+"yRM-Y0-4Oq.title" = "行";
 /* Class = "NSTextFieldCell"; title = "Characters"; ObjectID = "e1m-Uo-4UK"; */
-"e1m-Uo-4UK.title" = "字元數";
-/* Class = "NSTextFieldCell"; title = "Length"; ObjectID = "H0d-Eg-DcW"; */
-"H0d-Eg-DcW.title" = "長度";
+"e1m-Uo-4UK.title" = "字元";
 /* Class = "NSTextFieldCell"; title = "Words"; ObjectID = "tZ6-05-eKf"; */
-"tZ6-05-eKf.title" = "字數";
+"tZ6-05-eKf.title" = "字";
 
 /* Class = "NSTextFieldCell"; title = "Location"; ObjectID = "nXT-Oq-0l6"; */
 "nXT-Oq-0l6.title" = "位置";

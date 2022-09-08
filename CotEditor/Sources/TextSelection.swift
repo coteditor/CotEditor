@@ -88,7 +88,7 @@ final class TextSelection: NSObject {
     /// return object name which is determined in the sdef file
     override var objectSpecifier: NSScriptObjectSpecifier? {
         
-        return NSNameSpecifier(containerSpecifier: self.document!.objectSpecifier, key: "text selection")
+        NSNameSpecifier(containerSpecifier: self.document!.objectSpecifier, key: "text selection")
     }
     
     
@@ -99,12 +99,12 @@ final class TextSelection: NSObject {
     @objc var contents: Any? {
         
         get {
-            guard let string = self.document?.selectedString else { return nil }
+            guard let textView = self.textView else { return nil }
             
-            let textStorage = NSTextStorage(string: string)
+            let textStorage = NSTextStorage(string: textView.string)
             
-            textStorage.observeDirectEditing { [weak self] (editedString) in
-                self?.document?.insert(string: editedString, at: .replaceSelection)
+            textStorage.observeDirectEditing { (editedString) in
+                textView.insert(string: editedString, at: .replaceSelection)
             }
             
             return textStorage
@@ -121,7 +121,7 @@ final class TextSelection: NSObject {
                 }
             }() else { return }
             
-            self.document?.insert(string: string, at: .replaceSelection)
+            self.textView?.insert(string: string, at: .replaceSelection)
         }
     }
     
@@ -130,7 +130,7 @@ final class TextSelection: NSObject {
     @objc var range: [Int]? {
         
         get {
-            guard let range = self.document?.selectedRange else { return nil }
+            guard let range = self.textView?.selectedRange else { return nil }
             
             return [range.location, range.length]
         }
@@ -140,11 +140,11 @@ final class TextSelection: NSObject {
                 newValue?.count == 2,
                 let location = newValue?[0],
                 let length = newValue?[1],
-                let string = self.document?.string,
-                let range = string.range(in: FuzzyRange(location: location, length: length))
-                else { return }
+                let textView = self.textView,
+                let range = textView.string.range(in: FuzzyRange(location: location, length: length))
+            else { return }
             
-            self.document?.selectedRange = range
+            textView.selectedRange = range
         }
     }
     
@@ -153,10 +153,10 @@ final class TextSelection: NSObject {
     @objc var lineRange: [Int]? {
         
         get {
-            guard let document = self.document else { return nil }
+            guard let textView = self.textView else { return nil }
             
-            let selectedRange = document.selectedRange
-            let string = document.string
+            let selectedRange = textView.selectedRange
+            let string = textView.string
             
             let start = string.lineNumber(at: selectedRange.lowerBound)
             let end = string.lineNumber(at: selectedRange.upperBound)
@@ -168,8 +168,8 @@ final class TextSelection: NSObject {
             guard
                 let lineRange = newValue,
                 (1...2).contains(lineRange.count),
-                let textView = self.document?.textView
-                else { return }
+                let textView = self.textView
+            else { return }
             
             let fuzzyRange = FuzzyRange(location: lineRange[0], length: lineRange[safe: 1] ?? 1)
             
@@ -242,7 +242,7 @@ final class TextSelection: NSObject {
     /// swap selected lines with the line just below
     @objc func handleUncomment(_ command: NSScriptCommand) {
         
-        self.textView?.uncomment(fromLineHead: false)
+        self.textView?.uncomment()
     }
     
     
@@ -252,7 +252,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["caseType"] as? UInt32,
             let type = OSACaseType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .lowercase:
@@ -271,7 +272,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["widthType"] as? UInt32,
             let type = OSAWidthType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .half:
@@ -288,7 +290,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
             let type = OSAKanaType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .hiragana:
@@ -326,7 +329,8 @@ final class TextSelection: NSObject {
         guard
             let argument = command.evaluatedArguments?["unfType"] as? UInt32,
             let type = OSAUnicodeNormalizationType(rawValue: argument),
-            let textView = self.textView else { return }
+            let textView = self.textView
+        else { return }
         
         switch type {
             case .nfc:
@@ -352,7 +356,7 @@ final class TextSelection: NSObject {
     
     private var textView: EditorTextView? {
         
-        return self.document?.viewController?.focusedTextView
+        self.document?.textView as? EditorTextView
     }
     
 }

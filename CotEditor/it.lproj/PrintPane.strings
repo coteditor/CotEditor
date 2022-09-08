@@ -63,9 +63,6 @@
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Intestazione stampa";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
-"3369.title" = "Primaria:";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "Nessuna";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
@@ -84,9 +81,6 @@
 "Jap-f3-ehL.ibShadowedToolTips[1]" = "Centra";  /* Center */
 "Jap-f3-ehL.ibShadowedToolTips[2]" = "Allinea a destra";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
-"3373.title" = "Secondaria:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "Nessuna";
@@ -110,9 +104,6 @@
 
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
 "3375.title" = "Stampa pie’ di pagina";
-
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "Primaria:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "Nessuna";

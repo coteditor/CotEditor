@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -69,7 +69,9 @@ final class RegularExpressionFormatter: Formatter {
                         _ = try NSRegularExpression(pattern: string)
                     } catch {
                         if self.showsError {
-                            attributedString.replaceCharacters(in: NSRange(..<0), with: "⚠️ ")
+                            let alert = NSAttributedString(systemSymbolName: "exclamationmark.triangle.fill",
+                                                           configuration: .init(hierarchicalColor: .systemYellow))
+                            attributedString.replaceCharacters(in: NSRange(..<0), with: alert)
                         }
                         return attributedString
                     }

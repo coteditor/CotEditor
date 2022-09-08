@@ -74,6 +74,27 @@ extension EditorTextView {
     }
     
     
+    /// encode URL
+    @IBAction func encodeURL(_ sender: Any?) {
+        
+        let allowedCharacters = CharacterSet.alphanumerics.union(.init(charactersIn: "-._~"))
+        self.transformSelection {
+            $0.removingPercentEncoding?
+                .addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? $0
+        }
+        
+    }
+    
+    
+    /// decode URL
+    @IBAction func decodeURL(_ sender: Any?) {
+        
+        self.transformSelection {
+            $0.removingPercentEncoding ?? $0
+        }
+    }
+    
+    
     
     // MARK: Action Messages (Transformations)
     
@@ -137,8 +158,9 @@ extension EditorTextView {
     /// Unicode normalization (NFD)
     @IBAction func normalizeUnicodeWithNFD(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFD") {
-            $0.normalize(in: .nfd)
+        let form: UnicodeNormalizationForm = .nfd
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     
@@ -146,8 +168,9 @@ extension EditorTextView {
     /// Unicode normalization (NFC)
     @IBAction func normalizeUnicodeWithNFC(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFC") {
-            $0.normalize(in: .nfc)
+        let form: UnicodeNormalizationForm = .nfc
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     
@@ -155,8 +178,9 @@ extension EditorTextView {
     /// Unicode normalization (NFKD)
     @IBAction func normalizeUnicodeWithNFKD(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFKD") {
-            $0.normalize(in: .nfkd)
+        let form: UnicodeNormalizationForm = .nfkd
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     
@@ -164,8 +188,9 @@ extension EditorTextView {
     /// Unicode normalization (NFKC)
     @IBAction func normalizeUnicodeWithNFKC(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFKC") {
-            $0.normalize(in: .nfkc)
+        let form: UnicodeNormalizationForm = .nfkc
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     
@@ -173,8 +198,9 @@ extension EditorTextView {
     /// Unicode normalization (NFKC_Casefold)
     @IBAction func normalizeUnicodeWithNFKCCF(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFKC Casefold".localized) {
-            $0.normalize(in: .nfkcCasefold)
+        let form: UnicodeNormalizationForm = .nfkcCasefold
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     
@@ -182,8 +208,9 @@ extension EditorTextView {
     /// Unicode normalization (Modified NFC)
     @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: Any?) {
         
-        self.transformSelection(actionName: "Modified NFC".localized) {
-            $0.normalize(in: .modifiedNFC)
+        let form: UnicodeNormalizationForm = .modifiedNFC
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     
@@ -191,8 +218,9 @@ extension EditorTextView {
     /// Unicode normalization (Modified NFD)
     @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: Any?) {
         
-        self.transformSelection(actionName: "Modified NFD".localized) {
-            $0.normalize(in: .modifiedNFD)
+        let form: UnicodeNormalizationForm = .modifiedNFD
+        self.transformSelection(actionName: form.localizedName) {
+            $0.normalize(in: form)
         }
     }
     

@@ -64,7 +64,7 @@ final class TextFind {
                 case .emptyFindString:
                     return "Empty find string".localized
                 case .emptyInSelectionSearch:
-                    return "The option “in selection” is enabled, although nothing is selected.".localized
+                    return "The option “in selection” is selected, although nothing is selected.".localized
             }
         }
         
@@ -281,10 +281,12 @@ final class TextFind {
         
         for range in self.scopeRanges {
             self.enumerateMatchs(in: range) { (matchedRange, match, stop) in
-                var matches = [matchedRange]
+                let matches: [NSRange]
                 
-                if let match = match, numberOfGroups > 0 {
-                    matches += (1...numberOfGroups).map { match.range(at: $0) }
+                if let match = match {
+                    matches = (0...numberOfGroups).map { match.range(at: $0) }
+                } else {
+                    matches = [matchedRange]
                 }
                 
                 block(matches, &stop)

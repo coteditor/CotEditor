@@ -40,7 +40,7 @@ final class IncompatibleCharacterScanner {
     
     private weak var document: Document?
     
-    private var task: Task<Void, Error>?
+    private var task: Task<Void, any Error>?
     private lazy var updateDebouncer = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
     
@@ -80,12 +80,12 @@ final class IncompatibleCharacterScanner {
         guard let document = self.document else { return assertionFailure() }
         let encoding = document.fileEncoding.encoding
         
-        guard !document.string.canBeConverted(to: encoding) else {
+        guard !document.textStorage.string.canBeConverted(to: encoding) else {
             self.incompatibleCharacters = []
             return
         }
         
-        let string = document.string.immutable
+        let string = document.textStorage.string.immutable
         
         self.isScanning = true
         self.task = Task {

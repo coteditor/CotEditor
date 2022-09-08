@@ -149,8 +149,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSSupportsAutomaticGraphicsSwitching</key>
-	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
 		<key>iCloud.com.coteditor.CotEditor</key>

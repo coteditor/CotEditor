@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-"<a letter consisting of %d characters>" = "<%d字から成る文字>";
+"<a letter consisting of %lld characters>" = "<%lld字から成る文字>";
 
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";

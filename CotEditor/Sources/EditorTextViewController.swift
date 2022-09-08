@@ -26,8 +26,17 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 final class EditorTextViewController: NSViewController, NSTextViewDelegate {
+    
+    // MARK: Enums
+    
+    private enum SerializationKey {
+        
+        static let showsAdvancedCounter = "showsAdvancedCounter"
+    }
+    
     
     // MARK: Public Properties
     
@@ -35,6 +44,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: Private Properties
+    
+    private weak var advancedCounterView: NSView?
+    private weak var horizontalCounterConstraint: NSLayoutConstraint?
     
     private var orientationObserver: AnyCancellable?
     private var writingDirectionObserver: AnyCancellable?
@@ -89,6 +101,26 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 stackView.needsLayout = true
                 stackView.layoutSubtreeIfNeeded()
             }
+    }
+    
+    
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+        
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        
+        if self.advancedCounterView != nil {
+            coder.encode(true, forKey: SerializationKey.showsAdvancedCounter)
+        }
+    }
+    
+    
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if coder.decodeBool(forKey: SerializationKey.showsAdvancedCounter) {
+            self.showAdvancedCharacterCounter()
+        }
     }
     
     
@@ -189,6 +221,24 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    @IBAction func toggleAdvancedCounter(_ sender: Any?) {
+        
+        // hide counter
+        if self.advancedCounterView != nil {
+            return self.dismissAdvancedCharacterCounter()
+        }
+        
+        // show counter
+        let sheetView = CharacterCountOptionsSheetView { [weak self] (performs) in
+            guard performs else { return }
+            self?.showAdvancedCharacterCounter()
+        }
+        let optionViewController = NSHostingController(rootView: sheetView)
+        optionViewController.rootView.parent = optionViewController
+        self.presentAsSheet(optionViewController)
+    }
+    
+    
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
@@ -216,6 +266,48 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         set { self.lineNumberView?.isHidden = !newValue }
     }
     
+    
+    
+    // MARK: Private Methods
+    
+    /// Hide existing advanced character counter.
+    /// - Parameter counterView: The advanced character counter to dismiss.
+    private func dismissAdvancedCharacterCounter() {
+        
+        guard let counterView = self.advancedCounterView else { return assertionFailure() }
+        
+        NSAnimationContext.runAnimationGroup { _ in
+            counterView.animator().alphaValue = 0
+        } completionHandler: {
+            counterView.removeFromSuperview()
+        }
+        
+        self.invalidateRestorableState()
+    }
+    
+    
+    /// Setup and show advanced character counter.
+    private func showAdvancedCharacterCounter() {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let counter = AdvancedCharacterCounter(textView: textView)
+        let rootView = AdvancedCharacterCounterView(counter: counter) { [weak self] in
+            self?.dismissAdvancedCharacterCounter()
+        }
+        let counterView = DraggableHostingView(rootView: rootView)
+        counterView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(counterView)
+        self.advancedCounterView = counterView
+        
+        if textView.layoutOrientation == .horizontal, textView.baseWritingDirection != .rightToLeft {
+            counterView.frame.origin.x = self.view.frame.width - counterView.frame.width
+        }
+        
+        self.invalidateRestorableState()
+    }
+    
 }
 
 
@@ -225,6 +317,12 @@ extension EditorTextViewController: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(toggleAdvancedCounter):
+                (item as? NSMenuItem)?.title = (self.advancedCounterView == nil)
+                    ? "Advanced Character Count…".localized
+                    : "Stop Advanced Character Count".localized
+                return true
+                
             case #selector(showSelectionInfo):
                 return self.textView?.selectsSingleCharacter == true
                 

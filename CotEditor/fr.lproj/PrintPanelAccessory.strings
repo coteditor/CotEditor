@@ -33,30 +33,17 @@
 /* Class = "NSButtonCell"; title = "Print background"; ObjectID = "Jff-bZ-Xbm"; */
 "Jff-bZ-Xbm.title" = "Imprimer l’arrière-plan";
 
-/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
-"716.title" = "N° de ligne :";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
-"420.title" = "Ne pas imprimer";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
-"419.title" = "Identique aux paramètres du document";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
-"418.title" = "Imprimer";
 
-/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Caractères invisibles :";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
-"427.title" = "Identique aux paramètres du document";
-/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
-"428.title" = "Ne pas imprimer";
-/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
-"426.title" = "Imprimer";
+/* Class = "NSTextFieldCell"; title = "Print:"; ObjectID = "716"; */
+"716.title" = "Imprimer :";
+/* Class = "NSButtonCell"; title = "line numbers"; ObjectID = "ZWa-GC-hpv"; */
+"ZWa-GC-hpv.title" = "N° de ligne";
+/* Class = "NSButtonCell"; title = "invisibles"; ObjectID = "oES-Vf-YlC"; */
+"oES-Vf-YlC.title" = "Caractères invisibles";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
 "708.title" = "Imprimer l’en-tête";
-
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
-"706.title" = "Principal :";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
 "393.title" = "Aucun";
@@ -76,9 +63,6 @@
 "Aru-Gd-J0D.ibShadowedToolTips[1]" = "Centrer";  /* Center */
 "Aru-Gd-J0D.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
-"707.title" = "Secondaire :";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
 "395.title" = "Aucun";
@@ -103,9 +87,6 @@
 /* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
 "713.title" = "Imprimer le pied de page";
 
-/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
-"711.title" = "Principal :";
-
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
 "397.title" = "Aucun";
 /* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
@@ -124,9 +105,6 @@
 "njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Centrer";  /* Center */
 "njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
 
-
-/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
-"712.title" = "Secondaire :";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
 "399.title" = "Aucun";

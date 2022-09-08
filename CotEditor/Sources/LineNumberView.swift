@@ -55,7 +55,7 @@ final class LineNumberView: NSView {
             
             // calculate margins
             self.padding = self.charWidth
-            self.tickLength = (fontSize / 3).rounded(.up)
+            self.tickLength = scale * fontSize / 3
         }
         
     }
@@ -89,6 +89,7 @@ final class LineNumberView: NSView {
         case normal = 0.6
         case bold = 1.0
         case stroke = 0.4
+        case separator = 0.85
         
         static let highContrastCoefficient = 0.4
     }
@@ -99,9 +100,12 @@ final class LineNumberView: NSView {
     private var drawingInfo: DrawingInfo?
     private var thickness = 32.0
     
-    private var textColor: NSColor = .textColor  { didSet { self.needsDisplay = true } }
-    private var backgroundColor: NSColor = .textBackgroundColor  { didSet { self.needsDisplay = true } }
+    @Invalidating(.display) private var textColor: NSColor = .textColor
+    @Invalidating(.display) private var backgroundColor: NSColor = .textBackgroundColor
     
+    @Invalidating(.display) private var drawsSeparator = false
+    
+    private var settingObserver: AnyCancellable?
     private var opacityObserver: AnyCancellable?
     private var textViewSubscriptions: Set<AnyCancellable> = []
     
@@ -164,6 +168,10 @@ final class LineNumberView: NSView {
         // redraw on window opacity change
         self.opacityObserver = newWindow?.publisher(for: \.isOpaque)
             .sink { [weak self] _ in self?.needsDisplay = true }
+        
+        // redraw on setting change
+        self.settingObserver = UserDefaults.standard.publisher(for: .showLineNumberSeparator, initial: true)
+            .sink { [weak self] in self?.drawsSeparator = $0 }
     }
     
     
@@ -173,10 +181,28 @@ final class LineNumberView: NSView {
         // fill background
         if self.isOpaque {
             NSGraphicsContext.saveGraphicsState()
-            
             self.backgroundColor.setFill()
             dirtyRect.fill()
+            NSGraphicsContext.restoreGraphicsState()
+        }
+        
+        // draw separator
+        if self.drawsSeparator {
+            let lineRect: NSRect
+            switch (self.orientation, self.textView?.baseWritingDirection) {
+                case (.vertical, _):
+                    lineRect = NSRect(x: 0, y: 0, width: self.frame.width, height: 1)
+                case (_, .rightToLeft):
+                    lineRect = NSRect(x: 0, y: 0, width: 1, height: self.frame.height)
+                default:
+                    lineRect = NSRect(x: self.frame.width - 1, y: 0, width: 1, height: self.frame.height)
+            }
             
+            NSGraphicsContext.saveGraphicsState()
+            self.foregroundColor(.separator).set()
+            self.backingAlignedRect(lineRect, options: .alignAllEdgesOutward)
+                .intersection(dirtyRect)
+                .fill()
             NSGraphicsContext.restoreGraphicsState()
         }
         
@@ -213,10 +239,12 @@ final class LineNumberView: NSView {
     
     /// return line number font for selected lines by considering the current accesibility setting
     private var boldLineNumberFont: CGFont {
-        return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+        
+        NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
             ? Self.highContrastBoldLineNumberFont
             : Self.boldLineNumberFont
     }
+    
     
     /// draw line numbers
     private func drawNumbers(in rect: NSRect) {
@@ -226,7 +254,7 @@ final class LineNumberView: NSView {
             let textView = self.textView,
             let layoutManager = textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         context.saveGState()
         
@@ -259,18 +287,17 @@ final class LineNumberView: NSView {
                 case .new(let isSelected):
                     // draw line number
                     if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
-                        let digit = lineNumber.numberOfDigits
+                        let digits = lineNumber.digits
                         
                         // calculate base position
                         let basePosition: CGPoint = isVerticalText
-                            ? CGPoint(x: (y + drawingInfo.charWidth * CGFloat(digit) / 2).rounded(.up), y: 3 * drawingInfo.tickLength)
+                            ? CGPoint(x: (y + drawingInfo.charWidth * CGFloat(digits.count) / 2).rounded(.up), y: 3 * drawingInfo.tickLength)
                             : CGPoint(x: -drawingInfo.padding, y: y)
                         
                         // get glyphs and positions
-                        let positions: [CGPoint] = (0..<digit)
+                        let positions: [CGPoint] = (0..<digits.count)
                             .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
-                        let glyphs: [CGGlyph] = (0..<digit)
-                            .map { lineNumber.number(at: $0) }
+                        let glyphs: [CGGlyph] = digits
                             .map { drawingInfo.digitGlyphs[$0] }
                         
                         // draw
@@ -288,7 +315,7 @@ final class LineNumberView: NSView {
                     // draw tick
                     if isVerticalText {
                         let rect = CGRect(x: y.rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
-                        context.stroke(rect, width: 1)
+                        context.stroke(rect, width: scale)
                     }
                 
                 case .wrapped:
@@ -325,7 +352,7 @@ final class LineNumberView: NSView {
         let thickness: CGFloat = {
             switch self.orientation {
                 case .horizontal:
-                    let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                    let requiredNumberOfDigits = max(self.numberOfLines.digits.count, self.minNumberOfDigits)
                     let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
                     return max(thickness.rounded(.up), self.minVerticalThickness)
                 

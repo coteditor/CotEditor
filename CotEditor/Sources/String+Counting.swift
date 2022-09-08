@@ -86,6 +86,16 @@ extension StringProtocol {
         return count
     }
     
+    
+    /// Calculate the umber of characters from the beginning of the line where the given characer index locates (0-based).
+    ///
+    /// - Parameter index: The character index.
+    /// - Returns: The column number.
+    func columnNumber(at index: Index) -> Int {
+        
+        self.distance(from: self.lineStartIndex(at: index), to: index)
+    }
+    
 }
 
 
@@ -126,6 +136,67 @@ extension String {
         }
         
         return count
+    }
+    
+}
+
+
+
+// MARK: CharacterCountOptions
+
+struct CharacterCountOptions {
+    
+    enum CharacterUnit: String {
+        
+        case graphemeCluster
+        case unicodeScalar
+        case utf16
+        case byte
+    }
+    
+    
+    var unit: CharacterUnit = .graphemeCluster
+    var normalizationForm: UnicodeNormalizationForm?
+    var ignoresNewlines = false
+    var ignoresWhitespaces = false
+    var treatsConsecutiveWhitespaceAsSingle = false
+    var encoding: String.Encoding = .utf8
+}
+
+
+extension String {
+    
+    func count(options: CharacterCountOptions) -> Int? {
+        
+        guard !self.isEmpty else { return 0 }
+        
+        var string = self
+        
+        if options.ignoresNewlines {
+            string = string.replacingOccurrences(of: "\\R", with: "", options: .regularExpression)
+        }
+        if options.ignoresWhitespaces {
+            string = string.replacingOccurrences(of: "[\\t\\p{Zs}]", with: "", options: .regularExpression)
+        }
+        if options.treatsConsecutiveWhitespaceAsSingle, (!options.ignoresNewlines || !options.ignoresWhitespaces) {
+            // \s = [\t\n\f\r\p{Z}]
+            string = string.replacingOccurrences(of: "\\s{2,}", with: " ", options: .regularExpression)
+        }
+        
+        if let normalizationForm = options.normalizationForm {
+            string = string.normalize(in: normalizationForm)
+        }
+        
+        switch options.unit {
+            case .graphemeCluster:
+                return string.count
+            case .unicodeScalar:
+                return string.unicodeScalars.count
+            case .utf16:
+                return string.utf16.count
+            case .byte:
+                return string.data(using: options.encoding)?.count
+        }
     }
     
 }

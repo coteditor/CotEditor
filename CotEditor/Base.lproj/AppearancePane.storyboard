@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -55,23 +55,25 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I9r-vj-2gy">
-                                        <rect key="frame" x="103" y="216" width="102" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Anti-aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="3290">
+                                        <rect key="frame" x="103" y="216" width="78" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Antialias" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="3290">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="akE-EA-zGb"/>
                                             <action selector="updateFontField:" target="WBM-EY-ENr" id="zZp-TH-Xyb"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.shouldAntialias" id="WYd-vz-gCE"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4cD-mR-vJc">
-                                        <rect key="frame" x="223" y="216" width="83" height="18"/>
+                                        <rect key="frame" x="199" y="216" width="83" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ligatures" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="g3S-3v-6ZA">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
+                                            <accessibilityConnection property="title" destination="icl-ar-8yG" id="yEn-NR-Avf"/>
                                             <binding destination="IE5-39-jAY" name="value" keyPath="values.ligature" id="BcZ-Pb-BN1"/>
                                         </connections>
                                     </button>
@@ -621,7 +623,7 @@
                                 <color key="borderColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <button identifier="pref_appearance" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-5s-cbB">
+                            <button identifier="settings_appearance" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-5s-cbB">
                                 <rect key="frame" x="527" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="sFb-B9-3cy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

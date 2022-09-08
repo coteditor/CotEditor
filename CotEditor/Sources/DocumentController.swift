@@ -79,13 +79,13 @@ final class DocumentController: NSDocumentController {
     @MainActor override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // obtain transient document if exists
-        self.transientDocumentLock.lock()
-        let transientDocument = self.transientDocumentToReplace
-        if let transientDocument = transientDocument {
-            transientDocument.isTransient = false
+        let transientDocument: Document? = self.transientDocumentLock.withLock { [unowned self] in
+            guard let document = self.transientDocumentToReplace else { return nil }
+            
+            document.isTransient = false
             self.deferredDocuments.removeAll()
+            return document
         }
-        self.transientDocumentLock.unlock()
         
         let (document, documentWasAlreadyOpen) = try await super.openDocument(withContentsOf: url, display: false)
         
@@ -206,7 +206,6 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// return availability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
@@ -378,13 +377,11 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .binaryFile:
-                return String(format: "The file “%@” doesn’t appear to be text data.".localized,
-                              self.url.lastPathComponent)
+                return String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
             
             case .tooLarge(let size):
-                return String(format: "The file “%@” has a size of %@.".localized,
-                              self.url.lastPathComponent,
-                              ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file))
+                let byteSize = size.formatted(.byteCount(style: .file))
+                return String(localized: "The file “\(self.url.lastPathComponent)” has a size of \(byteSize).")
         }
     }
     
@@ -394,7 +391,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         switch self.kind {
             case .binaryFile(let type):
                 let localizedTypeName = type.localizedDescription ?? "unknown file type"
-                return String(format: "The file appears to be %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
+                return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?")
             
             case .tooLarge:
                 return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized

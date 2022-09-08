@@ -32,7 +32,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     var sampleLine: String?
     @objc dynamic var sampleFontName: String?
     
-    var completionHandler: ((_ pattern: SortPattern, _ options: SortOptions) -> Void)?
+    var completionHandler: ((_ pattern: any SortPattern, _ options: SortOptions) -> Void)?
     
     
     // MARK: Private Properties
@@ -101,7 +101,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     // MARK: Sort Pattern View Controller Delegate
     
     /// sort pattern setting did update
-    func didUpdate(sortPattern: SortPattern) {
+    func didUpdate(sortPattern: any SortPattern) {
         
         guard
             let sampleLine = self.sampleLine,
@@ -125,9 +125,9 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     // MARK: Private Methods
     
     /// SortPattern currently edited
-    private var sortPattern: SortPattern? {
+    private var sortPattern: (any SortPattern)? {
         
-        return self.tabViewController?.tabView.selectedTabViewItem?.viewController?.representedObject as? SortPattern
+        self.tabViewController?.tabView.selectedTabViewItem?.viewController?.representedObject as? any SortPattern
     }
     
 }
@@ -167,7 +167,7 @@ final class SortPatternTabViewController: NSTabViewController {
 
 protocol SortPatternViewControllerDelegate: AnyObject {
     
-    func didUpdate(sortPattern: SortPattern)
+    func didUpdate(sortPattern: any SortPattern)
 }
 
 

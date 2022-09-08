@@ -224,6 +224,30 @@ extension NSLayoutManager {
     }
     
     
+    /// Rects to draw insertion point for the given character index.
+    ///
+    /// - Note: The rects can be either in one or two when the cursor split at the boundary of the writing direction.
+    ///
+    /// - Parameter characterIndex: The character index.
+    /// - Returns: One-pixel-width rects to draw insertion point in the layout manager coordinate.
+    func insertionPointRects(at characterIndex: Int) -> [NSRect] {
+        
+        guard
+            let primaryRect = self.insertionPointRect(at: characterIndex, alternate: false)
+        else { assertionFailure(); return [] }
+        
+        guard
+            UserDefaults.standard.useSplitCursor,
+            let alternateRect = self.insertionPointRect(at: characterIndex, alternate: true)
+        else { return [primaryRect] }
+        
+        return [NSRect(x: primaryRect.minX, y: primaryRect.minY,
+                       width: primaryRect.width, height: primaryRect.height / 2),
+                NSRect(x: alternateRect.minX, y: alternateRect.minY + alternateRect.height / 2,
+                       width: alternateRect.width, height: alternateRect.height / 2)]
+    }
+    
+    
     /// Return the character indexes for the insertion points in the same line fragment of the given character index in display order.
     ///
     /// - Parameter characterIndex: The character index of one character within the line fragment.
@@ -236,6 +260,38 @@ extension NSLayoutManager {
         
         return characterIndexes
     }
+    
+    
+    /// Rect to draw insertion point for the given character index.
+    ///
+    /// - Parameters:
+    ///   - characterIndex: The character index.
+    ///   - alternate: If `true`, the secondary insertion point rect for split cursor will be returned.
+    /// - Returns: An one-pixel-width rect to draw the insertion point in the layout manager coordinate, or `nil` if no alternate insertion point is provided.
+    private func insertionPointRect(at characterIndex: Int, alternate: Bool) -> NSRect? {
+        
+        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: nil, characterIndexes: nil)
+        
+        var positions = [CGFloat](repeating: 0, count: count)
+        var characterIndexes = [Int](repeating: 0, count: count)
+        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: &positions, characterIndexes: &characterIndexes)
+        
+        guard let index = characterIndexes.firstIndex(of: characterIndex) else { return nil }
+        
+        let position = positions[index]
+        let glyphIndex = self.glyphIndexForCharacter(at: characterIndex)
+        let lineFragment = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
+        
+        return NSRect(x: lineFragment.minX + position, y: lineFragment.minY, width: 1, height: lineFragment.height)
+    }
+    
+}
+
+
+private extension UserDefaults {
+    
+    /// Whether the user enables the system-wide "Use split cursor" option in System Settings > Keyboard > Input Source.
+    var useSplitCursor: Bool  { self.bool(forKey: "NSUseSplitCursor") }
     
 }
 

@@ -37,79 +37,70 @@ final class EditorInfoCountOperationTests: XCTestCase {
     func testNoRequiredInfo() throws {
         
         let selectedRange = Range(NSRange(0..<3), in: self.testString)!
-        let counter = EditorInfoCounter(
+        let counter = EditorCounter(
             string: self.testString,
             selectedRange: selectedRange,
             requiredInfo: [],
-            countsLineEnding: true,
             countsWholeText: true)
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 0)
-        XCTAssertEqual(result.count.characters, 0)
-        XCTAssertEqual(result.count.lines, 0)
-        XCTAssertEqual(result.count.words, 0)
-        XCTAssertEqual(result.selectedCount.length, 0)
-        XCTAssertEqual(result.selectedCount.characters, 0)
-        XCTAssertEqual(result.selectedCount.lines, 0)
-        XCTAssertEqual(result.selectedCount.words, 0)
+        XCTAssertNil(result.lines.entire)
+        XCTAssertNil(result.characters.entire)
+        XCTAssertNil(result.words.entire)
+        XCTAssertNil(result.location)
+        XCTAssertNil(result.line)
+        XCTAssertNil(result.column)
     }
     
     
     func testAllRequiredInfo() throws {
         
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
-        let counter = EditorInfoCounter(
+        let counter = EditorCounter(
             string: self.testString,
             selectedRange: selectedRange,
             requiredInfo: .all,
-            countsLineEnding: true,
             countsWholeText: true)
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 36)
-        XCTAssertEqual(result.count.characters, 31)
-        XCTAssertEqual(result.count.lines, 3)
-        XCTAssertEqual(result.count.words, 6)
+        XCTAssertEqual(result.lines.entire, 3)
+        XCTAssertEqual(result.characters.entire, 31)
+        XCTAssertEqual(result.words.entire, 6)
         
-        XCTAssertEqual(result.selectedCount.length, 10)
-        XCTAssertEqual(result.selectedCount.characters, 9)
-        XCTAssertEqual(result.selectedCount.lines, 1)
-        XCTAssertEqual(result.selectedCount.words, 2)
+        XCTAssertEqual(result.characters.selected, 9)
+        XCTAssertEqual(result.lines.selected, 1)
+        XCTAssertEqual(result.words.selected, 2)
         
-        XCTAssertEqual(result.cursor.location, 11)
-        XCTAssertEqual(result.cursor.column, 1)
-        XCTAssertEqual(result.cursor.line, 2)
+        XCTAssertEqual(result.location, 10)
+        XCTAssertEqual(result.column, 0)
+        XCTAssertEqual(result.line, 2)
     }
     
     
     func testWholeTextSkip() throws {
         
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
-        let counter = EditorInfoCounter(
+        let counter = EditorCounter(
             string: self.testString,
             selectedRange: selectedRange,
             requiredInfo: .all,
-            countsLineEnding: true,
             countsWholeText: false)
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 0)
-        XCTAssertEqual(result.count.characters, 0)
-        XCTAssertEqual(result.count.lines, 0)
-        XCTAssertEqual(result.count.words, 0)
+        XCTAssertNil(result.lines.entire)
+        XCTAssertNil(result.characters.entire)
+        XCTAssertNil(result.words.entire)
         
-        XCTAssertEqual(result.selectedCount.length, 10)
-        XCTAssertEqual(result.selectedCount.characters, 9)
-        XCTAssertEqual(result.selectedCount.lines, 1)
-        XCTAssertEqual(result.selectedCount.words, 2)
+        XCTAssertEqual(result.lines.selected, 1)
+        XCTAssertEqual(result.characters.selected, 9)
+        XCTAssertEqual(result.words.selected, 2)
         
-        XCTAssertEqual(result.cursor.location, 11)
-        XCTAssertEqual(result.cursor.column, 1)
-        XCTAssertEqual(result.cursor.line, 2)
+        XCTAssertEqual(result.location, 10)
+        XCTAssertEqual(result.column, 0)
+        XCTAssertEqual(result.line, 2)
     }
     
     
@@ -117,57 +108,42 @@ final class EditorInfoCountOperationTests: XCTestCase {
         
         let string = "a\r\nb"
         let selectedRange = Range(NSRange(1..<4), in: string)!
-        let counter = EditorInfoCounter(
+        let counter = EditorCounter(
             string: string,
             selectedRange: selectedRange,
             requiredInfo: .all,
-            countsLineEnding: true,
             countsWholeText: true)
         
         let result = try counter.count()
         
-        XCTAssertEqual(result.count.length, 4)
-        XCTAssertEqual(result.count.characters, 3)
-        XCTAssertEqual(result.count.lines, 2)
-        XCTAssertEqual(result.count.words, 2)
+        XCTAssertEqual(result.lines.entire, 2)
+        XCTAssertEqual(result.characters.entire, 3)
+        XCTAssertEqual(result.words.entire, 2)
         
-        XCTAssertEqual(result.selectedCount.length, 3)
-        XCTAssertEqual(result.selectedCount.characters, 2)
-        XCTAssertEqual(result.selectedCount.lines, 2)
-        XCTAssertEqual(result.selectedCount.words, 1)
+        XCTAssertEqual(result.lines.selected, 2)
+        XCTAssertEqual(result.characters.selected, 2)
+        XCTAssertEqual(result.words.selected, 1)
         
-        XCTAssertEqual(result.cursor.location, 2)
-        XCTAssertEqual(result.cursor.column, 2)
-        XCTAssertEqual(result.cursor.line, 1)
+        XCTAssertEqual(result.location, 1)
+        XCTAssertEqual(result.column, 1)
+        XCTAssertEqual(result.line, 1)
     }
     
     
-    func testLineEndingsSkipping() throws {
+    func testCountFormatting() {
         
-        let string = "a\nb"
-        let selectedRange = Range(NSRange(1..<3), in: string)!
-        let counter = EditorInfoCounter(
-            string: string,
-            selectedRange: selectedRange,
-            requiredInfo: .all,
-            countsLineEnding: false,
-            countsWholeText: true)
+       var count = EditorCountResult.Count()
         
-        let result = try counter.count()
+        XCTAssertNil(count.formatted)
         
-        XCTAssertEqual(result.count.length, 3)
-        XCTAssertEqual(result.count.characters, 2)
-        XCTAssertEqual(result.count.lines, 2)
-        XCTAssertEqual(result.count.words, 2)
+        count.entire = 1000
+        XCTAssertEqual(count.formatted, "1,000")
         
-        XCTAssertEqual(result.selectedCount.length, 2)
-        XCTAssertEqual(result.selectedCount.characters, 1)
-        XCTAssertEqual(result.selectedCount.lines, 2)
-        XCTAssertEqual(result.selectedCount.words, 1)
+        count.selected = 100
+        XCTAssertEqual(count.formatted, "1,000 (100)")
         
-        XCTAssertEqual(result.cursor.location, 2)
-        XCTAssertEqual(result.cursor.column, 2)
-        XCTAssertEqual(result.cursor.line, 1)
+        count.entire = nil
+        XCTAssertEqual(count.formatted, "- (100)")
     }
     
 }

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2015 CotEditor Project
+//  © 2014-2022 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@
 
 /* Class = "NSTableColumn"; ObjectID = "hjj-zA-Yr9"; */
 "hjj-zA-Yr9.headerCell.title" = "RE";  /* RE */
-"hjj-zA-Yr9.headerToolTip" = "正規表示式";  /* Regular Expression */
+"hjj-zA-Yr9.headerToolTip" = "常規表示式";  /* Regular Expression */
 
 /* Class = "NSTableColumn"; ObjectID = "qJN-3P-dIu"; */
 "qJN-3P-dIu.headerCell.title" = "IC";  /* IC */

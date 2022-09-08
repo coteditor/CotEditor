@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -107,7 +108,7 @@ Gw
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
-                                <rect key="frame" x="100" y="168" width="392" height="101"/>
+                                <rect key="frame" x="100" y="168" width="372" height="101"/>
                                 <connections>
                                     <segue destination="UQP-be-J0h" kind="embed" id="Jqt-CD-otV"/>
                                 </connections>
@@ -244,7 +245,7 @@ Gw
                             <constraint firstItem="dx8-zl-dSu" firstAttribute="leading" secondItem="sc1-QB-34d" secondAttribute="trailing" constant="8" symbolic="YES" id="bfA-ij-0mz"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XDJ-2v-jYy" secondAttribute="trailing" constant="20" symbolic="YES" id="bvu-Pr-bjY"/>
                             <constraint firstItem="CQO-oZ-nKa" firstAttribute="leading" secondItem="pgB-9B-CeZ" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="d1y-Yd-imT"/>
-                            <constraint firstAttribute="trailing" secondItem="dBa-xL-w0w" secondAttribute="trailing" id="dH5-Kc-gkE"/>
+                            <constraint firstAttribute="trailing" secondItem="dBa-xL-w0w" secondAttribute="trailing" constant="20" symbolic="YES" id="dH5-Kc-gkE"/>
                             <constraint firstItem="fPh-fe-6Jh" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="eT7-i2-vIY"/>
                             <constraint firstItem="bN6-xc-HWj" firstAttribute="leading" secondItem="dx8-zl-dSu" secondAttribute="trailing" constant="12" id="fQc-Wt-6vB"/>
                             <constraint firstItem="dBa-xL-w0w" firstAttribute="leading" secondItem="oqP-25-2rA" secondAttribute="trailing" constant="8" symbolic="YES" id="gf2-zF-2Xp"/>
@@ -425,7 +426,7 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="56" y="54" width="244" height="21"/>
+                                <rect key="frame" x="56" y="54" width="264" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -468,6 +469,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Mfy-cT-iBU" id="oty-uR-Vn5"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="cDT-FV-4Vo" id="gHr-T5-9H1">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -482,6 +484,7 @@ Gw
                                 <rect key="frame" x="190" y="2" width="19" height="28"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Mfy-cT-iBU" id="SbB-y4-IdY"/>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.group" previousBinding="35M-Gp-zFo" id="NnC-Je-R8x"/>
                                     <binding destination="bCX-ZR-9aZ" name="maxValue" keyPath="selection.numberOfCaptureGroups" id="35M-Gp-zFo"/>
@@ -507,9 +510,41 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="fb7-9T-3g2">
+                                <rect key="frame" x="243" y="32" width="79" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Invalid pattern" id="aoG-Ov-SSQ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="bCX-ZR-9aZ" name="hidden" keyPath="selection.errorMessage" id="6be-Gb-vNL">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.errorMessage" id="V99-Rg-wB0"/>
+                                </connections>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZsF-yo-SL5">
+                                <rect key="frame" x="224" y="32.5" width="17.5" height="15"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="eEL-HN-geY">
+                                    <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="default" renderingMode="original"/>
+                                </imageCell>
+                                <connections>
+                                    <binding destination="bCX-ZR-9aZ" name="hidden" keyPath="selection.errorMessage" id="hI6-ZE-9rV">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Mfy-cT-iBU" firstAttribute="leading" secondItem="7vg-Vr-uMI" secondAttribute="leading" id="00V-au-TXG"/>
+                            <constraint firstItem="fb7-9T-3g2" firstAttribute="top" secondItem="kD8-MY-cO8" secondAttribute="bottom" constant="8" symbolic="YES" id="1no-gr-QIT"/>
+                            <constraint firstItem="fb7-9T-3g2" firstAttribute="firstBaseline" secondItem="ZsF-yo-SL5" secondAttribute="firstBaseline" id="6qZ-y6-gcn"/>
+                            <constraint firstItem="fb7-9T-3g2" firstAttribute="leading" secondItem="ZsF-yo-SL5" secondAttribute="trailing" constant="4" id="Blx-89-Lnh"/>
                             <constraint firstItem="kD8-MY-cO8" firstAttribute="leading" secondItem="AxG-SI-oKl" secondAttribute="trailing" constant="8" symbolic="YES" id="MQt-Oa-hzJ"/>
                             <constraint firstItem="Mfy-cT-iBU" firstAttribute="top" secondItem="bO8-kP-FOx" secondAttribute="bottom" constant="8" symbolic="YES" id="PMh-zI-xJe"/>
                             <constraint firstItem="vol-xC-ylG" firstAttribute="leading" secondItem="Mfy-cT-iBU" secondAttribute="trailing" constant="8" symbolic="YES" id="RF3-Ii-AnH"/>
@@ -519,12 +554,14 @@ Gw
                             <constraint firstItem="ooD-sC-3Cd" firstAttribute="centerY" secondItem="vol-xC-ylG" secondAttribute="centerY" id="k6Q-e4-elg"/>
                             <constraint firstItem="kD8-MY-cO8" firstAttribute="top" secondItem="7vg-Vr-uMI" secondAttribute="top" constant="8" id="ow4-NH-dRO"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ooD-sC-3Cd" secondAttribute="trailing" constant="20" symbolic="YES" id="ruo-xp-LLx"/>
+                            <constraint firstItem="ZsF-yo-SL5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bO8-kP-FOx" secondAttribute="trailing" constant="8" symbolic="YES" id="ryq-Tb-11N"/>
+                            <constraint firstAttribute="trailing" secondItem="fb7-9T-3g2" secondAttribute="trailing" id="s9e-gK-eTb"/>
                             <constraint firstItem="vol-xC-ylG" firstAttribute="baseline" secondItem="Mfy-cT-iBU" secondAttribute="baseline" id="tvf-9T-7T4"/>
                             <constraint firstItem="AxG-SI-oKl" firstAttribute="leading" secondItem="7vg-Vr-uMI" secondAttribute="leading" priority="750" id="uJk-Z5-sGf"/>
                             <constraint firstItem="kD8-MY-cO8" firstAttribute="baseline" secondItem="AxG-SI-oKl" secondAttribute="baseline" id="ukN-JC-C9v"/>
                             <constraint firstItem="ooD-sC-3Cd" firstAttribute="leading" secondItem="vol-xC-ylG" secondAttribute="trailing" constant="4" id="wQ4-2t-uM6"/>
                             <constraint firstItem="bO8-kP-FOx" firstAttribute="leading" secondItem="AxG-SI-oKl" secondAttribute="trailing" constant="8" symbolic="YES" id="x92-E8-Rrn"/>
-                            <constraint firstAttribute="trailing" secondItem="kD8-MY-cO8" secondAttribute="trailing" constant="20" symbolic="YES" id="xjp-hu-xUZ"/>
+                            <constraint firstAttribute="trailing" secondItem="kD8-MY-cO8" secondAttribute="trailing" id="xjp-hu-xUZ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -536,7 +573,10 @@ Gw
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="840" y="-340"/>
+            <point key="canvasLocation" x="840" y="-340.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="17" height="15"/>
+    </resources>
 </document>

@@ -30,7 +30,7 @@ final class CharacterPopoverController: NSViewController {
     // MARK: Private Properties
     
     @objc private let glyph: String
-    @objc private let unicodeName: String
+    @objc private let unicodeName: String?
     @objc private let unicodeBlockName: String?
     @objc private let unicodeCategoryName: String?
     @objc private let unicode: String
@@ -47,7 +47,7 @@ final class CharacterPopoverController: NSViewController {
     /// - Parameter info: The CharacterInfo instance to display.
     static func instantiate(for character: Character) -> Self {
         
-        let info = CharacterInfo(character)
+        let info = CharacterInfo(character: character)
         let storyboard = NSStoryboard(name: "CharacterPopover", bundle: nil)
         let creator: ((NSCoder) -> Self?) = { (coder) in Self(coder: coder, characterInfo: info) }
         

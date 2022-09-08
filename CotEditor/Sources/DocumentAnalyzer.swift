@@ -24,7 +24,6 @@
 //  limitations under the License.
 //
 
-import Combine
 import Cocoa
 
 final class DocumentAnalyzer {
@@ -33,7 +32,7 @@ final class DocumentAnalyzer {
     
     @Published private(set) var result: EditorCountResult = .init()
     
-    var shouldUpdate = false  // need to update all editor info
+    var updatesAll = false
     var statusBarRequirements: EditorInfoTypes = []
     
     
@@ -43,7 +42,7 @@ final class DocumentAnalyzer {
     
     private var needsCountWholeText = true
     private lazy var updateDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
-    private var countTask: Task<Void, Error>?
+    private var countTask: Task<Void, any Error>?
     
     
     
@@ -73,7 +72,7 @@ final class DocumentAnalyzer {
         
         guard !self.requiredInfoTypes.isEmpty else { return }
         
-        self.updateDebouncer.schedule(delay: onlySelection ? .milliseconds(10) : nil)
+        self.updateDebouncer.schedule(delay: self.needsCountWholeText ? nil : .milliseconds(10))
     }
     
     
@@ -81,47 +80,48 @@ final class DocumentAnalyzer {
     // MARK: Private Methods
     
     /// info types needed to be calculated
-    private var requiredInfoTypes: EditorInfoTypes {
+    var requiredInfoTypes: EditorInfoTypes {
         
-        return self.shouldUpdate ? .all : self.statusBarRequirements
+        self.updatesAll ? .all : self.statusBarRequirements
     }
     
     
     /// update editor info (only if really needed)
     private func updateEditorInfo() {
         
-        guard
-            let textView = self.document?.viewController?.focusedTextView,
-            !textView.hasMarkedText()
-            else { return }
+        guard !self.requiredInfoTypes.isEmpty else { return }
+        guard let textView = self.document?.textView else { return assertionFailure() }
         
         // do nothing if only cursor is moved but no need to calculate the cursor location.
         if !self.needsCountWholeText,
             self.requiredInfoTypes.isDisjoint(with: .cursors),
             textView.selectedRange.isEmpty
         {
-            self.result.selectedCount = .init()
+            self.result.lines.selected = 0
+            self.result.characters.selected = 0
+            self.result.words.selected = 0
             return
         }
         
         let string = textView.string.immutable
         let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
-        let countsWholeText = self.needsCountWholeText
-        let counter = EditorInfoCounter(string: string,
-                                        selectedRange: selectedRange,
-                                        requiredInfo: self.requiredInfoTypes,
-                                        countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],
-                                        countsWholeText: countsWholeText)
+        let counter = EditorCounter(string: string,
+                                    selectedRange: selectedRange,
+                                    requiredInfo: self.requiredInfoTypes,
+                                    countsWholeText: self.needsCountWholeText)
         
         self.countTask?.cancel()
         self.countTask = Task {
             var result = try counter.count()
             
-            if countsWholeText {
+            if counter.countsWholeText {
                 self.needsCountWholeText = false
             } else {
-                result.count = self.result.count
+                result.lines.entire = self.result.lines.entire
+                result.characters.entire = self.result.characters.entire
+                result.words.entire = self.result.words.entire
             }
+            
             self.result = result
         }
     }

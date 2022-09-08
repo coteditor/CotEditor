@@ -24,12 +24,11 @@
 //
 
 import SwiftUI
-import Combine
 
 private struct Definition: Identifiable {
     
     var term: String
-    var description: String
+    var description: LocalizedStringKey
     let id = UUID()
 }
 
@@ -79,11 +78,7 @@ struct RegularExpressionReferenceView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Text("Basic Regular Expression Syntax")
-                .font(.title3)
-                .foregroundColor(.secondary)
-            
+        Section {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     DefinitionList(Definition.characters, title: "Characters")
@@ -99,7 +94,21 @@ struct RegularExpressionReferenceView: View {
                     DefinitionList(Definition.backReference, title: "Back Reference")
                 }
             }
-            .font(.system(size: NSFont.smallSystemFontSize))
+            .controlSize(.small)
+            
+        } header: {
+            Text("Basic Regular Expression Syntax")
+                .font(.title3)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+        } footer: {
+            let icuLink = try! AttributedString(markdown: "[ICU Regular Expressions](https://unicode-org.github.io/icu/userguide/strings/regexp.html)")
+            Text("The syntax conforms to the \(icuLink) specifications.")
+                .font(.footnote)
+                .foregroundColor(.secondary)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .multilineTextAlignment(.leading)
         }
         .fixedSize(horizontal: true, vertical: false)
         .padding()
@@ -108,14 +117,13 @@ struct RegularExpressionReferenceView: View {
     
     private struct DefinitionList: View {
         
-        var title: String
-        var definitions: [Definition]
+        @State private var title: LocalizedStringKey
+        @State private var definitions: [Definition]
         
         @State private var width: CGFloat?
-        private let event = PassthroughSubject<CGFloat, Never>()
         
         
-        init(_ definitions: [Definition], title: String) {
+        init(_ definitions: [Definition], title: LocalizedStringKey) {
             
             self.definitions = definitions
             self.title = title
@@ -127,43 +135,27 @@ struct RegularExpressionReferenceView: View {
             Section {
                 VStack(alignment: .leading, spacing: 1) {
                     ForEach(self.definitions) { definition in
-                        HStack {
-                            Text(definition.term)
+                        HStack(alignment: .firstTextBaseline) {
+                            Text(verbatim: definition.term)
                                 .fontWeight(.medium)
                                 .frame(width: self.width, alignment: .leading)
-                                .background(WidthGetter(widthChanged: self.event))
-                            Text(definition.description.localized)
+                                .background(SizeGetter())
+                            Text(definition.description)
                         }
                         .fixedSize()
                     }
-                }.onReceive(self.event) { width in
-                    if width > (self.width ?? 0) {
-                        self.width = width
-                    }
                 }
+                .onPreferenceChange(SizeKey.self) { self.width = $0.map(\.width).max() }
                 
             } header: {
-                Text(self.title.localized)
+                Text(self.title)
                     .fontWeight(.semibold)
                     .foregroundColor(.secondary)
             }
+            .frame(minWidth: 200, alignment: .leading)
         }
     }
     
-}
-
-
-private struct WidthGetter: View {
-    
-    let widthChanged: PassthroughSubject<CGFloat, Never>
-    
-    var body: some View {
-    
-        GeometryReader { geometry -> Path in
-            self.widthChanged.send(geometry.frame(in: .global).width)
-            return Path()
-        }
-    }
 }
 
 

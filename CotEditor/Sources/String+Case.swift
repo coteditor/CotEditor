@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ extension String {
     /// Transform all camel and pascal case words to snake case.
     var snakecased: String {
         
-        return self.ranges(pattern: "(?<=\\w)(?=\\p{uppercase})")
+        self.ranges(pattern: "(?<=\\w)(?=\\p{uppercase})")
             .reversed()
             .reduce(into: self.lowercased()) { (string, range) in
                 string.replaceSubrange(range, with: "_")
@@ -41,12 +41,10 @@ extension String {
     /// Transform all snake and pascal case words to camel case.
     var camelcased: String {
         
-        return self.ranges(pattern: "(?<=\\w)(?:\\p{uppercase}|_\\w)")
+        self.ranges(pattern: "(?<=\\w)(?:\\p{uppercase}|_\\w)")
             .reversed()
             .reduce(into: self.lowercased()) { (string, range) in
-                let index = string.index(before: range.upperBound)
-                
-                string.replaceSubrange(range, with: string[index].uppercased())
+                string.replaceSubrange(range, with: string[range].last!.uppercased())
             }
     }
     
@@ -54,12 +52,10 @@ extension String {
     /// Transform all snake and pascal case words to pascal case.
     var pascalcased: String {
         
-        return self.ranges(pattern: "(?:\\b|(?<=\\w)_)\\w")
+        self.ranges(pattern: "(?:\\b|(?<=\\w)_)\\w")
             .reversed()
             .reduce(into: self) { (string, range) in
-                let index = string.index(before: range.upperBound)
-                
-                string.replaceSubrange(range, with: string[index].uppercased())
+                string.replaceSubrange(range, with: string[range].last!.uppercased())
             }
     }
     
@@ -69,7 +65,7 @@ extension String {
     
     private func ranges(pattern: String) -> [Range<Index>] {
         
-        return (try! NSRegularExpression(pattern: pattern))
+        (try! NSRegularExpression(pattern: pattern))
             .matches(in: self, range: self.nsRange)
             .map(\.range)
             .map { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }

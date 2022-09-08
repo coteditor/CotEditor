@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     init() { }
     
     
-    init<S: Sequence>(_ elements: S) where S.Element == Element {
+    init(_ elements: some Sequence<Element>) {
         
         self.append(contentsOf: elements)
     }
@@ -87,7 +87,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     
     /// return a new set with the elements that are common to both this set and the given sequence.
-    func intersection<S: Sequence>(_ other: S) -> Self where S.Element == Element {
+    func intersection(_ other: some Sequence<Element>) -> Self {
         
         var set = OrderedSet()
         set.elements = self.elements.filter { other.contains($0) }
@@ -109,7 +109,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     
     /// insert the given elements in the set only which it is not already present.
-    mutating func append<S: Sequence>(contentsOf elements: S) where S.Element == Element {
+    mutating func append(contentsOf elements: some Sequence<Element>) {
         
         for element in elements {
             self.append(element)
@@ -127,7 +127,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     
     /// remove the elements of the set that aren’t also in the given sequence.
-    mutating func formIntersection<S: Sequence>(_ other: S) where S.Element == Element {
+    mutating func formIntersection(_ other: some Sequence<Element>) {
         
         self.elements.removeAll { !other.contains($0) }
     }

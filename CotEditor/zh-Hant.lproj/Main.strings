@@ -237,7 +237,7 @@
 "404.title" = "較小";
 /* Class = "NSMenuItem"; title = "Reset to Default"; ObjectID = "574"; */
 "574.title" = "重置";
-/* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
+/* Class = "NSMenuItem"; title = "Antialias"; ObjectID = "745"; */
 "745.title" = "抗鋸齒";
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
 "viH-Eo-wKz.title" = "連字";
@@ -256,7 +256,7 @@
 "9e0-Q5-Oqh.title" = "8";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
 "gMO-5n-fiJ.title" = "自訂…";
-/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Expand to Spaces Automatically"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Tab轉為空格";
 
 /* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
@@ -440,6 +440,11 @@
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
 "x1F-KX-2de.title" = "轉為大駝峰式";
 
+/* Class = "NSMenuItem"; title = "URL Encode"; ObjectID = "xxp-UD-STx"; */
+"xxp-UD-STx.title" = "URL 編碼";
+/* Class = "NSMenuItem"; title = "URL Decode"; ObjectID = "3VB-Bg-Ker"; */
+"3VB-Bg-Ker.title" = "URL 解碼";
+
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "半形到全形";
 /* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
@@ -461,35 +466,6 @@
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
 "599.title" = "Unicode標準化";
 
-/* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
-"601.title" = "NFD";
-/* Class = "NSMenuItem"; title = "Canonical Decomposition"; ObjectID = "601"; */
-"601.ibShadowedToolTip" = "以標準等價方式來分解";
-/* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
-"602.title" = "NFC";
-/* Class = "NSMenuItem"; title = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
-"602.ibShadowedToolTip" = "以標準等價方式來分解，然後以標準等價重組之";
-/* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
-"603.title" = "NFKD";
-/* Class = "NSMenuItem"; title = "Compatibility Decomposition"; ObjectID = "603"; */
-"603.ibShadowedToolTip" = "以相容等價方式來分解";
-/* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
-"598.title" = "NFKC";
-/* Class = "NSMenuItem"; title = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
-"598.ibShadowedToolTip" = "以相容等價方式來分解，然後以標準等價重組之";
-/* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.title" = "NFKC Casefold";
-/* Class = "NSMenuItem"; title = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "正在NFKC, CaseFolding, 並移除預設可忽略編碼點";
-/* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "修改NFD (HFS+)";
-/* Class = "NSMenuItem"; title = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.ibShadowedToolTip" = "在HFS+中使用了非官方的基於NFD的標準化形式。";
-/* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "修改NFC (HFS+)";
-/* Class = "NSMenuItem"; title = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.ibShadowedToolTip" = "非官方的基於NFD的標準化形式與修改後的NFD對應";
-
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "插入編碼名稱";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
@@ -497,6 +473,8 @@
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "檢視文字";
+/* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */
+"SPF-Mw-eZP.title" = "進階字元統計…";
 /* Class = "NSMenuItem"; title = "Edit Color Code…"; ObjectID = "641"; */
 "641.title" = "編輯顏色程式碼…";
 
@@ -534,7 +512,7 @@
 /* Class = "NSMenuItem"; title = "Replace and Find Next"; ObjectID = "KrV-3z-r5B"; */
 "KrV-3z-r5B.title" = "取代並檢索下一個";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
-"5HV-xo-NTK.title" = "取代全部";
+"5HV-xo-NTK.title" = "全部取代";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "多重取代…";
 

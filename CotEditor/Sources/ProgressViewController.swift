@@ -98,13 +98,15 @@ final class ProgressViewController: NSViewController {
         if self.progress.isIndeterminate {
             indicator.startAnimation(nil)
         } else {
-            self.progress.publisher(for: \.fractionCompleted, options: .initial)
+            indicator.doubleValue = self.progress.fractionCompleted
+            self.progress.publisher(for: \.fractionCompleted)
                 .throttle(for: 0.2, scheduler: DispatchQueue.main, latest: true)
                 .assign(to: \.doubleValue, on: indicator)
                 .store(in: &self.progressSubscriptions)
         }
         
-        self.progress.publisher(for: \.localizedDescription, options: .initial)
+        descriptionField.stringValue = self.progress.localizedDescription
+        self.progress.publisher(for: \.localizedDescription)
             .throttle(for: 0.1, scheduler: DispatchQueue.main, latest: true)
             .assign(to: \.stringValue, on: descriptionField)
             .store(in: &self.progressSubscriptions)

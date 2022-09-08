@@ -50,7 +50,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     // MARK: -
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -80,7 +79,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// apply current settings to UI
     override func viewWillAppear() {
         
         super.viewWillAppear()
@@ -89,7 +87,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// finish current editing
     override func viewWillDisappear() {
         
         super.viewWillDisappear()
@@ -241,7 +238,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         let fileExtension = objects.first?[FileDropItem.CodingKeys.extensions] ?? ""
         
         let alert = NSAlert()
-        alert.messageText = String(format: "Are you sure you want to delete the file drop setting for “%@”?".localized, fileExtension)
+        alert.messageText = String(localized: "Are you sure you want to delete the file drop setting for “\(fileExtension)”?")
         alert.informativeText = "Deleted setting can’t be restored.".localized
         alert.addButton(withTitle: "Cancel".localized)
         alert.addButton(withTitle: "Delete".localized)

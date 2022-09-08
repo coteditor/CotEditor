@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var preferencesWindowController = NSWindowController.instantiate(storyboard: "PreferencesWindow")
+    private lazy var settingsWindowController = NSWindowController.instantiate(storyboard: "SettingsWindow")
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
@@ -76,7 +76,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
+    @IBOutlet private weak var normalizationMenu: NSMenu?
     @IBOutlet private weak var whatsNewMenuItem: NSMenuItem?
+    
+    
+    #if DEBUG
+    private let textKitObserver = NotificationCenter.default.publisher(for: NSTextView.didSwitchToNSLayoutManagerNotification)
+        .compactMap { $0.object as? NSTextView }
+        .sink { print("⚠️ \($0.className) did switch to NSLayoutManager.") }
+    #endif
     
     
     
@@ -103,8 +111,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         super.awakeFromNib()
         
         // append the current version number to "What’s New" menu item
-        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized,
-                                              Bundle.main.minorVersion)
+        self.whatsNewMenuItem?.title = String(localized: "What’s New in CotEditor \(Bundle.main.minorVersion)")
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -138,8 +145,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)
         
-        // build menus
         ScriptManager.shared.buildScriptMenu()
+        
+        // build Unicode normalizationi menu items
+        
+        self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
+                                         UnicodeNormalizationForm.modifiedForms)
+            .map { (form) in
+                guard let form = form else { return .separator() }
+                
+                let action: Selector
+                switch form {
+                    case .nfd:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFD)
+                    case .nfc:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFC)
+                    case .nfkd:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFKD)
+                    case .nfkc:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFKC)
+                    case .nfkcCasefold:
+                        action = #selector(EditorTextView.normalizeUnicodeWithNFKCCF)
+                    case .modifiedNFD:
+                        action = #selector(EditorTextView.normalizeUnicodeWithModifiedNFD)
+                    case .modifiedNFC:
+                        action = #selector(EditorTextView.normalizeUnicodeWithModifiedNFC)
+                }
+                
+                let item = NSMenuItem(title: form.localizedName, action: action, keyEquivalent: "")
+                item.toolTip = form.localizedDescription
+                return item
+            }
     }
     
     
@@ -170,24 +206,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         NSHelpManager.shared.registerBooks(in: .main)
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-        
-        // show notification panel for line ending migration on CotEditor 4.2.0
-        if let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init),
-           lastVersion < 494  // earlier than CotEditor 4.2.0
-        {
-            var migrationOptions: LineEndingMigrationOptions = []
-            if ReplacementManager.shared.needsLineEndingMigration() {
-                migrationOptions.insert(.replacement)
-            }
-            if SyntaxManager.shared.needsLineEndingMigration() {
-                migrationOptions.insert(.syntax)
-            }
-            if ScriptManager.shared.hasScripts {
-                migrationOptions.insert(.script)
-            }
-            
-            LineEndingMigrationPanel(options: migrationOptions).makeKeyAndOrderFront(nil)
-        }
     }
     
     
@@ -228,7 +246,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         assert(Thread.isMainThread)
         
-        let documentURLs = filenames.map { URL(fileURLWithPath: $0) }
+        let documentURLs = filenames.map(URL.init(fileURLWithPath:))
             .filter {
                 // ask installation if the file is CotEditor theme file
                 $0.conforms(to: .cotTheme) ? !self.askThemeInstallation(fileURL: $0) : true
@@ -317,10 +335,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// show preferences window
+    /// show Settings window
     @IBAction func showPreferences(_ sender: Any?) {
         
-        self.preferencesWindowController.showWindow(sender)
+        self.settingsWindowController.showWindow(sender)
     }
     
     
@@ -390,7 +408,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // open as document
         guard let document = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false) as? Document else { return assertionFailure() }
-        document.displayName = "Issue Report".localized(comment: "document title")
+        document.displayName = String(localized: "Issue Report", comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(0..<0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
@@ -411,7 +429,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(format: "“%@” is a CotEditor theme file.".localized, url.lastPathComponent)
+        alert.messageText = String(localized: "“\(url.lastPathComponent)” is a CotEditor theme file.")
         alert.informativeText = "Do you want to install this theme?".localized
         alert.addButton(withTitle: "Install".localized)
         alert.addButton(withTitle: "Open as Text File".localized)
@@ -434,7 +452,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // feedback for success
         let themeName = ThemeManager.shared.settingName(from: url)
         let feedbackAlert = NSAlert()
-        feedbackAlert.messageText = String(format: "A new theme named “%@” has been successfully installed.".localized, themeName)
+        feedbackAlert.messageText = String(localized: "A new theme named “\(themeName)” has been successfully installed.")
         
         NSSound.glass?.play()
         feedbackAlert.runModal()

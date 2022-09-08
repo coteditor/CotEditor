@@ -32,7 +32,6 @@ extension DefaultKeys {
     static let noDocumentOnLaunchBehavior = RawRepresentableDefaultKey<NoDocumentOnLaunchBehavior>("noDocumentOnLaunchBehavior")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let documentConflictOption = RawRepresentableDefaultKey<DocumentConflictOption>("documentConflictOption")
-    static let countLineEndingAsChar = DefaultKey<Bool>("countLineEndingAsChar")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
     static let highlightBraces = DefaultKey<Bool>("highlightBraces")
@@ -45,6 +44,7 @@ extension DefaultKeys {
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
+    static let showLineNumberSeparator = DefaultKey<Bool>("showLineNumberSeparator")
     static let showPageGuide = DefaultKey<Bool>("showPageGuide")
     static let pageGuideColumn = DefaultKey<Int>("pageGuideColumn")
     static let writingDirection = RawRepresentableDefaultKey<WritingDirection>("writingDirection")
@@ -55,7 +55,6 @@ extension DefaultKeys {
     static let showStatusBarLocation = DefaultKey<Bool>("showStatusBarLocation")
     static let showStatusBarLine = DefaultKey<Bool>("showStatusBarLine")
     static let showStatusBarColumn = DefaultKey<Bool>("showStatusBarColumn")
-    static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
     static let windowWidth = DefaultKey<CGFloat>("windowWidth")
     static let windowHeight = DefaultKey<CGFloat>("windowHeight")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
@@ -157,9 +156,9 @@ extension DefaultKeys {
     static let findRegexUsesUnicodeBoundaries = DefaultKey<Bool>("regexUsesUnicodeBoundaries")
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
-    // settings that are not in preferences
+    // settings that are not in the Settings window
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
-    static let lastPreferencesPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
+    static let lastSettingsPaneIdentifier = DefaultKey<String?>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
@@ -171,10 +170,9 @@ extension DefaultKeys {
     static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
+    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     
     // hidden settings
-    static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
-    static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")

@@ -33,7 +33,6 @@ struct DefaultSettings {
         .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
-        .countLineEndingAsChar: true,
         .autoLinkDetection: false,
         .checkSpellingAsType: false,
         .highlightBraces: true,
@@ -45,6 +44,7 @@ struct DefaultSettings {
         .windowTabbing: -1,  // = Respect System Setting
         .showNavigationBar: true,
         .showLineNumbers: true,
+        .showLineNumberSeparator: false,
         .showPageGuide: false,
         .pageGuideColumn: 80,
         .writingDirection: 0,
@@ -55,7 +55,6 @@ struct DefaultSettings {
         .showStatusBarLocation: true,
         .showStatusBarLine: true,
         .showStatusBarColumn: false,
-        .showStatusBarFileSize: true,
 //        .windowWidth: 600.0,
 //        .windowHeight: 620.0,
         .splitViewVertical: false,
@@ -101,7 +100,7 @@ struct DefaultSettings {
         .autoComplete: false,
         
         .lineEndCharCode: 0,
-        .encodingList: DefaultSettings.encodings.map { UInt($0) },
+        .encodingList: DefaultSettings.encodings.map(UInt.init),
         .encodingInNew: String.Encoding.utf8.rawValue,
         .saveUTF8BOM: false,
         .referToEncodingTag: true,
@@ -148,7 +147,7 @@ struct DefaultSettings {
         .secondaryFooterContent: PrintInfoType.pageNumber.rawValue,
         .secondaryFooterAlignment: AlignmentType.center.rawValue,
         
-        // ------ text finder ------
+        // text finder
         .findHistory: [],
         .replaceHistory: [],
         .findUsesRegularExpression: false,
@@ -167,7 +166,7 @@ struct DefaultSettings {
         .findRegexUsesUnicodeBoundaries: false,
         .findRegexUnescapesReplacementString: true,
         
-        // ------ settings not in preferences window ------
+        // settings not in the Settings window
         .pinsThemeAppearance: false,
         .colorCodeType: 1,
         .sidebarWidth: 220,
@@ -176,10 +175,9 @@ struct DefaultSettings {
         .selectedInspectorPaneIndex: 0,
         .outlineViewFontSize: NSFont.smallSystemFontSize,
         .findResultViewFontSize: NSFont.smallSystemFontSize,
+        .suppressesInconsistentLineEndingAlert: false,
         
-        // ------ hidden settings ------
-        .headerFooterDateFormat: "yyyy-MM-dd HH:mm",
-        .headerFooterPathAbbreviatingWithTilde: true,
+        // hidden settings
         .autoCompletionDelay: 0.25,
         .coloringRangeBufferLength: 5000,
         .largeFileAlertThreshold: 200 * pow(1024, 2),  // 200 MB

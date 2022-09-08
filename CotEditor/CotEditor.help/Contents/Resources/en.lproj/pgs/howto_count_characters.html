@@ -1,0 +1,47 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="count, characters, advanced character count,"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Count characters in CotEditor</title>
+</head>
+
+<body>
+<a name="howto_count_characters"></a>
+
+<h1>Count characters in CotEditor</h1>
+
+<p>CotEditor has a feature to live-count characters in the document during editing.</p>
+
+
+<h2>Standard character count</h2>
+
+<p>CotEditor can display the character count both in the status bar and the document inspector. By the standard character count, it counts each grapheme cluster, that is defined as the extended grapheme cluster in Unicode.</p>
+
+<p>A grapheme cluster is a sequence of one or more Unicode code points that should be treated as a single unit for humans. For instance, while a normal character, such as A, is naturally counted as one character, an emoji consisting of multiple Unicode code points, such as 1️⃣ (<code>U+0031</code> <code>U+FE0F</code> <code>U+20E3</code>), will also be counted as one character.</p>
+
+
+<h2>Advanced character count</h2>
+
+<p>From the Advanced Character Count command in the Text menu, you can count characters in various ways.</p>
+
+<figure>
+	<img src="../gfx/advancedCount@2x.png" width="725" alt="Advanced character count option dialog"/>
+</figure>
+
+<p>When starting the advanced character count, the counter appears at the bottom of the editor. The counter live-counts the characters in the way you set in the advanced character count option dialog. While text is selected in the editor, the counter displays the number of the selected characters; otherwise, it displays the number of the entire character in the document. You can drag the counter to put it out of the way.</p>
+<p>The options are shared in the application. When you changed the options in an editor, the way to count in other editors are also changed.</p>
+
+<p>Note that the advanced character count can affect the processing performance according to the combination of the settings especially when the document to count has a large size. To stop the count, choose Text &gt; Stop Advanced Character Count command.</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="howto_inspect_fileinfo.html">Get information about a document</a></li>
+</ul>
+</section>
+
+</body>
+</html>

@@ -115,7 +115,7 @@ private extension LineEnding {
 }
 
 
-private extension BidirectionalCollection where Element == LineEnding {
+private extension BidirectionalCollection<LineEnding> {
     
     var regexPattern: String {
         
@@ -134,20 +134,6 @@ private extension BidirectionalCollection where Element == LineEnding {
 
 
 extension StringProtocol {
-    
-    /// Count characters in the receiver but except all kinds of line endings.
-    var countExceptLineEnding: Int {
-        
-        // workarond for a bug since Swift 5 that removes BOM at the beginning (2019-05 Swift 5.1).
-        // cf. https://bugs.swift.org/browse/SR-10896
-        guard self.first != "\u{FEFF}" || self.compareCount(with: 16) == .greater else {
-            let startIndex = self.index(after: self.startIndex)
-            return self[startIndex...].replacingOccurrences(of: LineEnding.allCases.regexPattern, with: "", options: .regularExpression).count + 1
-        }
-        
-        return self.replacingOccurrences(of: LineEnding.allCases.regexPattern, with: "", options: .regularExpression).count
-    }
-    
     
     /// Return a new string in which all specified line ending characters in the receiver are replaced by another given line endings.
     ///

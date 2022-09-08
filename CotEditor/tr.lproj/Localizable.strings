@@ -28,6 +28,7 @@
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
 "Done" = "Bitti";
+"Start" = "Başlangıç";
 
 
 // Appending words in parentheses
@@ -78,13 +79,13 @@
 "Replace All" = "Tümünü Değiştir";
 "Highlight" = "Vurgula";
 "Searching in text…" = "Metinde aranıyor…";
-"%@ string found." = "%@ dizi bulundu.";
-"%@ strings found." = "%@ dizi bulundu.";
-"%@ string replaced." = "%@ dizi değiştirildi.";
-"%@ strings replaced." = "%@ dizi değiştirildi.";
+"%lld string found." = "%lld dizi bulundu.";
+"%lld strings found." = "%lld dizi bulundu.";
+"%lld string replaced." = "%lld dizi değiştirildi.";
+"%lld strings replaced." = "%lld dizi değiştirildi.";
 "Invalid regular expression" = "Geçersiz düzenli ifade";
 "Empty find string" = "Bulunacak dizi boş";
-"The option “in selection” is enabled, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
+"The option “in selection” is selected, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
 "Input text to find." = "Bulunacak girdi metni";
 "Select the search scope in the document or turn off the “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
 
@@ -97,17 +98,17 @@
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
 "Not Found" = "Bulunamadı";
-"%i found" = "%i bulundu";  // %i is number of founds
+"%lld found" = "%lld bulundu";  // %lld is number of founds
 "Not Replaced" = "Değiştirilmedi";
-"%i replaced" = "%i değiştirildi";  // %i is number of replaced
+"%lld replaced" = "%lld değiştirildi";  // %lld is number of replaced
 
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
-"No strings found in “%@”." = "%@ içinde dizi bulunamadı.";
-"Found one string in “%@”." = "%@ içinde bir dizi bulundu.";
-"Found %i strings in “%@”." = "%2$@ içinde %1$i dizi bulundu.";
+"No strings found in “%@.”" = "%@ içinde dizi bulunamadı.";
+"Found one string in “%@.”" = "%@ içinde bir dizi bulundu.";
+"Found %lld strings in “%@.”" = "%2$@ içinde %1$lld dizi bulundu.";
 
 
 
@@ -145,6 +146,8 @@
 
 "Back Reference" = "Geri Başvuru";
 "first match" = "ilk eşleşme";
+
+"The syntax conforms to the %@ specifications." = "Sözdizim, %@ belirtimine uyar.";  // %@ is the name of the regex engine (ICU Regular Expressions)
 
 
 
@@ -184,7 +187,7 @@
 "Reinterpret" = "Yeniden Yorumla";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
 "Do you want to continue processing?" = "İşlemi sürdürmek istiyor musunuz?";
 "Save Available Text" = "Kullanılabilir Metni Kaydet";
 "Show Incompatible Characters" = "Uyumsuz Karakterleri Göster";
@@ -196,11 +199,11 @@
 
 // Reinterpretation failed alert
 "The document doesn’t have a file to reinterpret." = "Belgede yeniden yorumlanacak bir dosya yok.";
-"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "“%1@” dosyası, “%2@” metin kodlaması kullanarak yeniden yorumlanamadı.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@.”" = "“%1@” dosyası, “%2@” metin kodlaması kullanarak yeniden yorumlanamadı.";
 "The file may have been saved using a different text encoding, or it may not be a text file." = "Dosya, başka bir metin kodlaması kullanarak kaydedilmiş olabilir veya bir metin dosyası olmayabilir.";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
+"Some characters would have to be changed or deleted in saving as “%@.”" = "“%@” olarak kaydederken bazı karakterler değiştirilmek veya silinmek zorunda olabilir.";
 "Do you want to change encoding and show incompatible characters?" = "Kodlamayı değiştirmek ve uyumsuz karakterleri göstermek istiyor musunuz?";
 "Change Encoding" = "Kodlamayı Değiştir";
 
@@ -217,6 +220,12 @@
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "CotEditor’da yapılan değişiklikler mi kullanılsın veya daha önce değiştirilen sürüme mi güncellensin?";
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
+
+
+
+/* MARK: Document Window */
+// tooltip for the "edited" indicator in the window tab
+"Document has unsaved changes" = "Belgede kaydedilmemiş değişiklikler var";
 
 
 
@@ -365,10 +374,8 @@
 // Summary item values
 "On" = "Açık";
 "Off" = "Kapalı";
-"Don’t Print" = "Yazdırma";
 "Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";
-"Black and White" = "Siyah ve Beyaz";
-"Print" = "Yazdır";
+"Black and White" = "Siyah - Beyaz";
 "Syntax Name" = "Sözdizim Adı";
 "Document Name" = "Belge Adı";
 "File Path" = "Dosya Yolu";
@@ -393,11 +400,11 @@
 // Incompatible characters
 "Scanning incompatible characters…" = "Uyumsuz karakterler taranıyor…";
 "Found an incompatible character." = "Bir uyumsuz karakter bulundu.";
-"Found %i incompatible characters." = "%i uyumsuz karakter bulundu.";  // %i is the number of characters
+"Found %lld incompatible characters." = "%lld uyumsuz karakter bulundu.";  // %lld is the number of characters
 
 // Inconsistent line endings
 "Found a line ending other than %@." = "%@ dışında başka bir satır sonu bulundu.";  // %@ is a line ending type, such as LF
-"Found %i line endings other than %@." = "%@ dışında %i başka satır sonu bulundu.";  // %i is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "%@ dışında %lld başka satır sonu bulundu.";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
@@ -411,13 +418,6 @@
 "Convert Indentation" = "Girintilemeyi Dönüştür";
 "Comment Out" = "Yorum Yap";
 "Uncomment" = "Yorumu Kaldır";
-"NFD" = "NFD";
-"NFC" = "NFC";
-"NFKD" = "NFKD";
-"NFKC" = "NFKC";
-"NFKC Casefold" = "NFKC Biçim Kıvır";
-"Modified NFC" = "Değiştirilmiş NFC";
-"Modified NFD" = "Değiştirilmiş NFD";
 "Inspect Character" = "Karakter Denetle";
 "Move Line" = "Satır Taşı";
 "Sort Lines" = "Satırları Sırala";
@@ -429,7 +429,6 @@
 "Trim Trailing Whitespace" = "İzleyen Boşluğu Kırp";
 
 // Contextual menu items
-"Font" = "Font";
 "Text" = "Metin";
 "Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
 "Select All" = "Tümünü Seç";
@@ -457,7 +456,7 @@
 "Wrap Lines" = "Satırları Kaydır";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Preferences" = "Görünmez karakterleri göstermek için ilgili ayarı Tercihler’den değiştirin";
+"To show invisible characters, set them in Settings" = "Görünmez karakterleri göstermek için ilgili ayarı Ayarlar'dan değiştirin";
 
 
 
@@ -502,7 +501,7 @@
 
 
 
-/* MARK: Preferences */
+/* MARK: Settings */
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
@@ -572,7 +571,7 @@
 // Syntax style validation results
 "No error found." = "Hata bulunamadı.";
 "An error found!" = "Bir hata bulundu!";
-"%i errors found!" = "%i hata bulundu!";
+"%lld errors found!" = "%lld hata bulundu!";
 "outline" = "ana hat";
 
 
@@ -645,7 +644,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %li" = "%li Metnini Ekle";
+"Insert Text %lld" = "%lld Metnini Ekle";
 
 // Keyboard key name
 "Space" = "Boşluk";
@@ -713,12 +712,55 @@
 
 
 
-/* MARK: Migration Panel */
-"Important change on CotEditor 4.2.0" = "CotEditor 4.2.0 sürümündeki önemli değişiklikler";
-"From this version, CotEditor handles line endings more strictly." = "Bu sürümden itibaren; CotEditor, satır sonlarını daha doğru bir biçimde işler.";
-"Due to this change, you may need manual migration for your settings below:" = "Bu değişiklikten dolayı, aşağıdaki ayarları el ile düzeltmeniz gerekebilir:";
-"Multiple replacement definitions" = "Çoklu değiştirme tanımları";
-"Syntax styles" = "Sözdizim biçemleri";
-"CotEditor scripts" = "CotEditor betikleri";
-"`\\n` for the regular expression matches only when the line ending is actually LF. Use `\\R` instead to match any kind of line ending." = "Satır sonu gerçekten LF iken yalnızca düzenli ifade eşleşmeleri için `\\n`. Her türden satır sonu ile eşleşmek için `\\R` kullanın.";
-"Learn More…" = "Daha Fazla Bilgi…";
+/* MARK: Pattern Sort View */
+// error messages ("pattern" is a regular expression pattern)
+"Invalid pattern" = "Geçersiz dizgi";
+"Empty pattern" = "Boş dizgi";
+
+
+
+/* MARK: Syntax Mapping Conflicts View */
+"Syntax Style Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";
+"The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";
+"Extension" = "Uzantı";
+"Filename" = "Dosya Adı";
+"Interpreter" = "Yorumlayıcı";
+// table column headers
+"Used style" = "Kullanılan Biçem";
+"Duplicated styles" = "Yinelenmiş Biçemler";
+
+
+
+/* MARK: AdvancedCharacterCounterView */
+// menu labels
+"Advanced Character Count…" = "Gelişmiş Karakter Sayımı…";
+"Stop Advanced Character Count" = "Gelişmiş Karakter Sayımını Durdur";
+// error message when counting failed
+"failed" = "başarısız";
+// tooltip
+"Show options" = "Seçenekleri göster";
+// context menu item labels
+"Copy" = "Kopyala";
+"Stop Count" = "Sayımı Durdur";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
+
+
+
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "Boşluk:";
+"Ignore line endings" = "Satır sonlarını yok say";
+"Ignore whitespace" = "Boşlukları yok say";
+"Treat consecutive whitespace as one space" = "Ardışık boşluklara tek boşluk olarak davran";
+
+"Unit:" = "Birim:";
+"Grapheme cluster" = "Yazıbirim demeti";
+"Unicode scalar" = "Unicode sayılı";
+"UTF-16" = "UTF-16";
+"Byte" = "Bayt";
+
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicode'da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır.";
+"Count Unicode code points. Same as counting UTF-32." = "Unicode kod noktalarını say. UTF-32 sayma ile aynıdır.";
+"Count Unicode code points but a surrogate pair as two characters." = "Unicode kod noktalarını say; ancak vekil çifti iki karakter olarak say.";
+"Count bytes of the text encoded with the specified encoding." = "Belirtilen kodlama ile kodlanmış metnin baytlarını say.";
+
+"Encoding:" = "Kodlama:";
+"Normalization:" = "Olağanlaştırma:";

@@ -190,7 +190,7 @@ extension MultiCursorEditing {
             .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
-        //    either a single empty range, a single non-empty range, or multiple nonempty ranges. (macOS 10.14)
+        //    either a single empty range, a single non-empty range, or multiple non-empty ranges. (macOS 10.14)
         let selectedRanges = nonemptyRanges.isEmpty ? [emptyRanges.removeFirst()] : nonemptyRanges
         
         return (selectedRanges as [NSValue], emptyRanges.map(\.location))
@@ -391,20 +391,19 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index where the insertion point will locate.
     /// - Returns: Rect where insertion point filled.
-    @objc func insertionPointRect(at index: Int) -> NSRect {
+    func insertionPointRects(at index: Int) -> [NSRect] {
         
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-            else { assertionFailure(); return .zero }
+        guard  let layoutManager = self.layoutManager else { assertionFailure(); return [] }
         
-        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
-            .offset(by: self.textContainerOrigin)
         let scale = self.scale
-        let minX = (rect.minX * scale).rounded(.down) / scale
-        
-        return NSRect(x: minX, y: rect.minY, width: 1 / scale, height: rect.height)
+        return layoutManager.insertionPointRects(at: index)
+            .map { $0.offset(by: self.textContainerOrigin) }
+            .map { (rect) in
+                NSRect(x: (rect.minX * scale).rounded(.down) / scale,
+                       y: rect.minY,
+                       width: 1 / scale,
+                       height: rect.height)
+            }
     }
     
     
