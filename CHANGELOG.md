@@ -20,7 +20,7 @@ Change Log
 - Support __macOS 13 Ventura__.
 - Change the system requirement to __macOS 12 Monterey and later__.
 - Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.
-    - [for advanced users] Now you can also disable the feature entirely by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
+    - [for advanced users] Now you can also disable the feature entirely within the application by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
 - Deprecate the `length` property in AppleScript (Use `number of characters of contents` instead).
 - Support the split cursor for bidirectional languages in multi-cursor editing.
 - Update the CotEditor's setting view in the print panel.
@@ -36,7 +36,7 @@ Change Log
 - [trivial] Adjust ticks in the line number view for vertical orientation.
 - [trivial] Save documents asynchronously.
 - [trivial] Organize the editor's contextual menu.
-- [trivial] Improve the basic regular expression syntax reference.]
+- [trivial] Improve the basic regular expression syntax reference.
 - [trivial] Improve the status bar display.
 - [dev] Update the build environment to Xcode 14.0.
 - [non-AppStore ver.] Update Sparkle to 2.2.2.

@@ -16,6 +16,70 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.4.0</h1>
+		<p>release: <time>2022-09</time></p>
+	</header>
+
+
+	<section>
+		<h2>New Features</h2>
+
+		<ul>
+			<li>Add Advanced Character Count to the Text menu.</li>
+			<li>Dynamically prioritize the scripts in the subfolder whose name is the same as the frontmost document's syntax style when the same keyboard shortcut is determined in multiple CotEditor scripts.</li>
+			<li>Add URL Encode/Decode commands to the Text &gt; Transformations submenu.</li>
+			<li>Display a dot in the window tab if the document has unsaved changes.</li>
+			<li>Add the option to draw the separator line between the line number view and the editor.</li>
+			<li>Add syntax style for TypeScript.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Support <strong>macOS 13 Ventura</strong>.</li>
+			<li>Change the system requirement to <strong>macOS 12 Monterey and later</strong>.</li>
+			<li>Store the state of the “Don’t ask again for this document” option for the inconsistent line endings alert and respect it for future open.<ul>
+				<li><strong>for advanced users</strong>: Now you can also disable the feature entirely within the application by running the following command in Terminal, though it is not recommended:<br/>
+					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
+    		</ul></li>
+			<li>Deprecate the <code>length</code> property in AppleScript (Use <code>number of characters of contents</code> instead).</li>
+			<li>Support the split cursor for bidirectional languages in multi-cursor editing.</li>
+			<li>Update the CotEditor's setting view in the print panel.</li>
+			<li>Change the location and column count to start with zero.</li>
+			<li>Display the error message in the pattern sort dialog if the regular expression pattern is invalid.</li>
+			<li>Improve the algorithm to parse numbers in the Sort by Pattern command.</li>
+			<li>Improve the algorithm of uncommenting.</li>
+			<li>Improve the algorithm of encoding detection.</li>
+			<li>Improve VoiceOver support.</li>
+			<li>Deprecate the “Ignore line endings when counting characters” option.</li>
+			<li>Deprecate the option to hide file size in the status bar.</li>
+			<li>Remove the text length display in the document inspector.</li>
+			<li><span class="trivial">trivial</span>: Adjust ticks in the line number view for vertical orientation.</li>
+			<li><span class="trivial">trivial</span>: Save documents asynchronously.</li>
+			<li><span class="trivial">trivial</span>: Organize the editor's contextual menu.</li>
+			<li><span class="trivial">trivial</span>: Improve the basic regular expression syntax reference.</li>
+			<li><span class="trivial">trivial</span>: Improve the status bar display.</li>
+			<li><span class="trivial">dev</span>: Update the build environment to Xcode 14.0.</li>
+			<li><span class="label">non-AppStore ver.</span>: Update Sparkle to 2.2.2.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that memory could leak when the opacity toolbar item is used.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.3.4</h1>
 		<p>release: <time>2022-08-26</time></p>
 	</header>
@@ -5980,7 +6044,7 @@
 			<li>From this, bundled syntax styles follow updates after CotEditor 1.5 as long as the styles are not customized.<ul>
 				<li>This is not applied to the syntax styles that were copied previous. To apply it to them, perform “Set to Factory Defaults” on style editing sheet of each bundled syntax style in Preferences &gt; Format pane &gt; Installed styles.</li>
 			</ul></li>
-			<li>for advanced users: “~/Application Support/CotEditor/SyntaxColorings (old)” will be created on the first launch of CotEditor 1.5, if you updated it from the previous version. This folder is just a backup data for this switching. you can generally remove it if you want.</li>
+			<li><strong>for advanced users</strong>: “~/Application Support/CotEditor/SyntaxColorings (old)” will be created on the first launch of CotEditor 1.5, if you updated it from the previous version. This folder is just a backup data for this switching. you can generally remove it if you want.</li>
 		</ul></li>
 		<li>Handle files Sandbox level safety on style import/export.</li>
 	</ul></li>
@@ -6092,7 +6156,7 @@
 <ul>
 	<li>Disable smart dash/quotes feature of Mavericks as default.
 	<ul>
-		<li>for advanced users: Run <code>defaults write com.aynimac.CotEditor enableSmartQuotes YES</code> in Terminal to enable this feature again.</li>
+		<li><strong>for advanced users</strong>: Run <code>defaults write com.aynimac.CotEditor enableSmartQuotes YES</code> in Terminal to enable this feature again.</li>
 		<li>On the next CotEditor 1.5, this feature will be able to be changed on Preferences.</li>
 	</ul></li>
 </ul>
