@@ -87,7 +87,7 @@ extension StringProtocol {
     }
     
     
-    /// Calculate the umber of characters from the beginning of the line where the given characer index locates (0-based).
+    /// Calculate the umber of characters from the beginning of the line where the given character index locates (0-based).
     ///
     /// - Parameter index: The character index.
     /// - Returns: The column number.
