@@ -71,10 +71,10 @@ extension LineRangeCacheable {
     /// Return the range of the line touched by the given index.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
-    /// there is a large performance disadbantage when just a single line range is needed.
+    /// there is a large performance disadvantage when just a single line range is needed.
     ///
     /// - Parameter index: The index of character for finding the line range.
-    /// - Returns: The characer range of the line.
+    /// - Returns: The character range of the line.
     func lineRange(at index: Int) -> NSRange {
         
         assert(index <= self.string.length)
