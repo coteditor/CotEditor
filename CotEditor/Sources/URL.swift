@@ -34,7 +34,7 @@ extension URL {
     }
     
     
-    /// Rturn relative-path string.
+    /// Return relative-path string.
     ///
     /// - Parameter baseURL: The URL the relative path based on.
     /// - Returns: A path string.

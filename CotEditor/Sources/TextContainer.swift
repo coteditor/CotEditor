@@ -148,7 +148,7 @@ private extension NSString {
         
         let characters: [unichar] = range.lazy
             .map { self.character(at: $0) }
-            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIONTAL TAB
+            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIZONTAL TAB
         
         return String(utf16CodeUnits: characters, count: characters.count)
     }

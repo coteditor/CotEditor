@@ -25,7 +25,7 @@
 
 extension Unicode.Scalar {
     
-    /// Alternate picture caracter for invisible control character.
+    /// Alternate picture character for invisible control character.
     var pictureRepresentation: Unicode.Scalar? {
         
         switch self.value {
