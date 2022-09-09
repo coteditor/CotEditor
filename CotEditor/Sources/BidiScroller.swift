@@ -64,7 +64,7 @@ final class BidiScroller: NSScroller {
         
         var partRect = super.rect(for: part)
         
-        // workaroud that the vertical scroller is cropped when .knobSlot is not shown (macOS 12)
+        // workaround that the vertical scroller is cropped when .knobSlot is not shown (macOS 12)
         if self.isVertical,
            self.scrollView?.scrollerDirection == .rightToLeft,
            self.scrollerStyle == .overlay,
