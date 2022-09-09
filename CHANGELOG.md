@@ -5,6 +5,10 @@ Change Log
 4.4.0-beta.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- [non-AppStore ver.] Fix an issue that a message about the software update in the General pane was hidden.
+
 
 
 4.4.0-beta (531)
