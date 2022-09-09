@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the width of the line number view was not updated when the content was changed on disk.
 - [non-AppStore ver.] Fix an issue that a message about the software update in the General pane was hidden.
 
 
