@@ -840,7 +840,7 @@ Change Log
 ### Fixes
 
 - Fix the jump button for theme URL.
-- [trivial] Fix an issue in the sytnax style toolbar item that the menu selected blank if the current style was deleted.
+- [trivial] Fix an issue in the syntax style toolbar item that the menu selected blank if the current style was deleted.
 
 
 ### Known Issues
