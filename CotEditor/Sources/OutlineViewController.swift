@@ -26,7 +26,7 @@
 import Combine
 import Cocoa
 
-/// outilneView column identifiers
+/// outlineView column identifiers
 private extension NSUserInterfaceItemIdentifier {
     
     static let title = NSUserInterfaceItemIdentifier("title")

@@ -35,7 +35,7 @@ protocol SortPattern: AnyObject {
 
 extension SortPattern {
     
-    /// Sort given lines with the receiver's parttern.
+    /// Sort given lines with the receiver's pattern.
     ///
     /// - Parameters:
     ///   - string: The string to sort.
