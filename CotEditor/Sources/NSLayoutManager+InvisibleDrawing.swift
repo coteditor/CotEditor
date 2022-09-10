@@ -142,15 +142,15 @@ extension InvisibleDrawing {
     /// Invalidate invisible character drawing.
     ///
     /// - Precondition:
-    ///   - The visivility of whole invisible characters is set by the implementer through `showsInvisibles` property.
-    ///   - The visivility of each invisible type is obtained directly from UserDefaults settings.
+    ///   - The visibility of whole invisible characters is set by the implementer through `showsInvisibles` property.
+    ///   - The visibility of each invisible type is obtained directly from UserDefaults settings.
     func invalidateInvisibleDisplay() {
         
-        // invalidate normal invisible characters visivilisty
+        // invalidate normal invisible characters visibility
         let wholeRange = self.attributedString().range
         self.invalidateDisplay(forCharacterRange: wholeRange)
         
-        // invalidate control characters visivilisty if needed
+        // invalidate control characters visibility if needed
         let showsControls = self.showsInvisibles && UserDefaults.standard[.showInvisibleControl]
         if showsControls != self.showsControls {
             self.showsControls = showsControls
