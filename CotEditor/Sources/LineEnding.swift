@@ -140,7 +140,7 @@ extension StringProtocol {
     /// - Parameters:
     ///     - lineEndings: The line endings type to replace. If nil, all kind of line endings are replaced.
     ///     - lineEnding: The line ending type with which to replace target.
-    /// - Returns: String replacing line ending characers.
+    /// - Returns: String replacing line ending characters.
     func replacingLineEndings(_ lineEndings: [LineEnding]? = nil, with lineEnding: LineEnding) -> String {
         
         let lineEndings = lineEndings ?? LineEnding.allCases
