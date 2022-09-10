@@ -381,7 +381,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Methods
     
-    /// Selected string in the current tareget.
+    /// Selected string in the current target.
     private var selectedString: String? {
         
         guard let textView = self.client else { return nil }
