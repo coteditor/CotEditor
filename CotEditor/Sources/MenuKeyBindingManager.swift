@@ -98,7 +98,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         let mainMenu = NSApp.mainMenu!
         
-        // at first, clear all current short cut sttings at first
+        // at first, clear all current short cut settings at first
         self.clearMenuKeyBindingRecurrently(menu: mainMenu)
         
         // then apply the latest settings
@@ -141,7 +141,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
             return false
         }
         
-        // spcific items
+        // specific items
         switch MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             case .recentDocuments:
                 return false
