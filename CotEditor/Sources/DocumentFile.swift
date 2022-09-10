@@ -118,7 +118,7 @@ struct DocumentFile {
     
     // MARK: Private Methods
     
-    /// Read string from dada by detecting the file encoding automatically.
+    /// Read string from data by detecting the file encoding automatically.
     ///
     /// - Parameters:
     ///   - data: The data to encode.
