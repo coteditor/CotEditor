@@ -99,7 +99,7 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// string did udpate via binding
+    /// string did update via binding
     override var string: String {
         
         didSet {
