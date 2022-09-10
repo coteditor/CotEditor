@@ -117,7 +117,7 @@ final class DocumentWindow: NSWindow {
         
         guard let titlebarView = self.standardWindowButton(.closeButton)?.superview else { return }
         
-        // dirty manupulation to avoid the title bar being dyed in the window background color (2016-01).
+        // dirty manipulation to avoid the title bar being dyed in the window background color (2016-01).
         titlebarView.wantsLayer = !self.isOpaque
         titlebarView.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
     }
