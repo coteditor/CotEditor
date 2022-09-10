@@ -488,7 +488,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// build sytnax style menus
+    /// build syntax style menus
     private func setupSyntaxStyleMenus() {
         
         let styleNames = SyntaxManager.shared.settingNames
