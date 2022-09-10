@@ -27,10 +27,10 @@ import AppKit
 
 extension NSTextView {
     
-    /// Invalidate content string as a reguler expression pattern and highlight them.
+    /// Invalidate content string as a regular expression pattern and highlight them.
     ///
     /// - Parameters:
-    ///   - mode: Parse mode of reguler expression.
+    ///   - mode: Parse mode of regular expression.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the content is not invalid.
     @discardableResult
@@ -70,7 +70,7 @@ extension NSTextView {
     /// Legacy implementation that is the same as `highlightAsRegularExpressionPattern(mode:enabled:)` above.
     ///
     /// - Parameters:
-    ///   - mode: Parse mode of reguler expression.
+    ///   - mode: Parse mode of regular expression.
     ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     /// - Returns: Whether the content is not invalid.
     @MainActor private func highlightAsRegularExpressionPatternWithLegacyTextKit(mode: RegularExpressionParseMode, enabled: Bool = true) -> Bool {
