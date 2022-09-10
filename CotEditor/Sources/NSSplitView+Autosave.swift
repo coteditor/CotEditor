@@ -27,7 +27,7 @@ import AppKit
 
 extension NSSplitViewController {
     
-    /// rsestore visibility of inspector
+    /// restore visibility of inspector
     func restoreAutosavingState() {
         
         assert(self.isViewLoaded)
