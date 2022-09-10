@@ -233,7 +233,7 @@ extension NSString {
     ///
     /// - Parameters:
     ///   - ranges: Ranges to include.
-    ///   - includingLastEmptyLine: Whether the last empty line sould be included; otherwise, return value can be empty.
+    ///   - includingLastEmptyLine: Whether the last empty line should be included; otherwise, return value can be empty.
     /// - Returns: Array of ranges of each indivisual line.
     func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
         
