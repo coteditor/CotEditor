@@ -42,7 +42,7 @@ final class CharacterPopoverController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Instantinate proper view controller for the given character info.
+    /// Instantiate proper view controller for the given character info.
     ///
     /// - Parameter info: The CharacterInfo instance to display.
     static func instantiate(for character: Character) -> Self {
