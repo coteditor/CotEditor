@@ -113,7 +113,7 @@ final class LineEndingScanner {
     
     // MARK: Private Methods
     
-    /// Update inconsistent line endings asuming the textStorage was edited.
+    /// Update inconsistent line endings assuming the textStorage was edited.
     ///
     /// - Parameters:
     ///   - editedRange: The edited range.
