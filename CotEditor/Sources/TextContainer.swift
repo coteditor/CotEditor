@@ -139,7 +139,7 @@ final class TextContainer: NSTextContainer {
 
 private extension NSString {
     
-    /// The fast way to find the indent charaters at the beginning of the given range.
+    /// The fast way to find the indent characters at the beginning of the given range.
     ///
     /// - Parameters:
     ///   - range: The UTF16-based character range where searching for the indent.
