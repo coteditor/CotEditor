@@ -180,7 +180,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// jump to style's destribution URL
+    /// jump to style's distribution URL
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
