@@ -125,9 +125,7 @@ struct DefaultSettings {
                          scope: "CSS"),
         ].map(\.dictionary),
         
-        .insertCustomTextArray: ["", "", "", "", "", "", "", "", "", "", "",
-                                 "", "", "", "", "", "", "", "", "", "",
-                                 "", "", "", "", "", "", "", "", "", ""],
+        .insertCustomTextArray: Array(repeating: "", count: 30),
         
         .setPrintFont: false,
         .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
@@ -175,7 +173,6 @@ struct DefaultSettings {
         .selectedInspectorPaneIndex: 0,
         .outlineViewFontSize: NSFont.smallSystemFontSize,
         .findResultViewFontSize: NSFont.smallSystemFontSize,
-        .suppressesInconsistentLineEndingAlert: false,
         
         // hidden settings
         .autoCompletionDelay: 0.25,
@@ -184,6 +181,7 @@ struct DefaultSettings {
         .savesTextOrientation: true,
         .maximumRecentStyleCount: 6,
         .minimumLengthForNonContiguousLayout: 5_000_000,
+        .suppressesInconsistentLineEndingAlert: false,
     ]
     
     
