@@ -55,7 +55,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Whetehr the receiver needs to draw insertion points by itself.
+    /// Whether the receiver needs to draw insertion points by itself.
     var needsDrawInsertionPoints: Bool {
         
         return !(self.insertionPointTimer?.isCancelled ?? true)
@@ -197,7 +197,7 @@ extension MultiCursorEditing {
     }
     
     
-    /// Add a new insrtion point at `point` or remove an existing if any.
+    /// Add a new insertion point at `point` or remove an existing if any.
     ///
     /// - Parameter point: The point where user clicked, in view coordinates.
     /// - Returns: Whether the insertion/removal succeed.
