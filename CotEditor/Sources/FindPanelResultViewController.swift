@@ -74,7 +74,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         super.viewWillAppear()
         
         // make sure the disclosure button points up before open result
-        // (The buttom may point down if the view was closed by dragging.)
+        // (The button may point down if the view was closed by dragging.)
         self.disclosureButton?.state = .on
         
         self.fontSizeObserver = UserDefaults.standard.publisher(for: .findResultViewFontSize, initial: true)

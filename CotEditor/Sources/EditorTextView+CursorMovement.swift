@@ -150,7 +150,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Option+Arrow
     
-    /// move cursor to the beginning of the word continuasly (opt←)
+    /// move cursor to the beginning of the word continuosly (opt←)
     override func moveWordLeft(_ sender: Any?) {
         
         // find word boundary myself
@@ -163,7 +163,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the word and modify selection continuasly (⇧opt←).
+    /// move cursor to the beginning of the word and modify selection continuosly (⇧opt←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -176,7 +176,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word continuasly (opt→)
+    /// move cursor to the end of the word continuosly (opt→)
     override func moveWordRight(_ sender: Any?) {
         
         // find word boundary myself (cf. moveWordLeft(_:))
@@ -187,7 +187,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word and modify selection continuasly (⇧opt→).
+    /// move cursor to the end of the word and modify selection continuosly (⇧opt→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -200,7 +200,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the logical line and modify selection continuasly (⇧opt↑).
+    /// move cursor to the beginning of the logical line and modify selection continuosly (⇧opt↑).
     override func moveParagraphBackwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -213,7 +213,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the logical line and modify selection continuasly (⇧opt↓).
+    /// move cursor to the end of the logical line and modify selection continuosly (⇧opt↓).
     override func moveParagraphForwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions || self.lineEnding == .crlf else {
@@ -655,7 +655,7 @@ extension EditorTextView {
     }
     
     
-    /// delete to the biginning of word (opt+delete)
+    /// delete to the beginning of word (opt+delete)
     override func deleteWordBackward(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {

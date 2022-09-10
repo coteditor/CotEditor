@@ -116,7 +116,7 @@ extension Commenting {
     /// Comment out selections by appending comment delimiters.
     ///
     /// - Parameters:
-    ///   - types: The type of commenting-out. When, `.both`, inline-style takes priprity over block-style.
+    ///   - types: The type of commenting-out. When, `.both`, inline-style takes priority over block-style.
     ///   - fromLineHead: When `true`, the receiver comments out from the beginning of the line.
     func commentOut(types: CommentTypes, fromLineHead: Bool) {
         

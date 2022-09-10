@@ -117,7 +117,7 @@ final class StatusBarController: NSViewController {
     
     /// Synchronize UI with related document values.
     ///
-    /// - Parameter document: The doucment to observe.
+    /// - Parameter document: The document to observe.
     private func subscribe(_ document: Document) {
         
         document.analyzer.statusBarRequirements = UserDefaults.standard.statusBarEditorInfo

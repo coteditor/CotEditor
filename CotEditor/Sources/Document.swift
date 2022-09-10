@@ -76,7 +76,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var shouldSaveXattr = true
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
-    private var sytnaxUpdateObserver: AnyCancellable?
+    private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
     private var windowObserver: AnyCancellable?
     
@@ -112,8 +112,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         
-        // observe sytnax style update
-        self.sytnaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
+        // observe syntax style update
+        self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
             .filter { [weak self] (change) in change.old == self?.syntaxParser.style.name }
             .sink { [weak self] (change) in self?.setSyntaxStyle(name: change.new ?? BundledStyleName.none) }
     }
@@ -843,7 +843,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// change file encoding registering process to the undo manager
     ///
-    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thorwn but only if `lossy` flag is `true`.
+    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `true`.
     func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
         assert(Thread.isMainThread)

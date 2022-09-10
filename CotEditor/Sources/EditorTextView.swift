@@ -373,7 +373,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// visible area did chage
+    /// visible area did change
     override func viewDidEndLiveResize() {
         
         super.viewDidEndLiveResize()
@@ -961,7 +961,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// draw insersion point
+    /// draw insertion point
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
         let rect = self.insertionPointRect(in: rect, for: self.cursorType)
@@ -1088,7 +1088,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return self.insertText(string, replacementRanges: ranges)
         }
         
-        // keep multiple cursors after pasting mutliple text
+        // keep multiple cursors after pasting multiple text
         if pboard.name == .general,
             let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
             let string = pboard.string(forType: .string),
@@ -1711,7 +1711,7 @@ extension EditorTextView {
             self.particalCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
-        // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
+        // raise flag to proceed word completion again, if a normal key input is performed during displaying the completion list
         // -> The flag will be used in `didChangeText()`.
         var movement = movement
         if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
@@ -1743,7 +1743,7 @@ extension EditorTextView {
                     didComplete = true
             }
             
-            // discard stored orignal word
+            // discard stored original word
             self.particalCompletionWord = nil
         }
         
