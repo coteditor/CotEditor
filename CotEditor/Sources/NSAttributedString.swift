@@ -82,7 +82,7 @@ extension Sequence<NSAttributedString> {
     
     /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.
     ///
-    /// - Parameter separator: An attributted string to insert between each of the elements in this sequence.
+    /// - Parameter separator: An attributed string to insert between each of the elements in this sequence.
     /// - Returns: A single, concatenated attributed string.
     func joined(separator: Element? = nil) -> Element {
         

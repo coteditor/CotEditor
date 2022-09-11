@@ -29,7 +29,7 @@ final class OpenPanelAccessoryController: NSViewController {
     
     // MARK: Public Properties
     
-    weak var openPanel: NSOpenPanel?  // keep open panel for hidden file visivility toggle
+    weak var openPanel: NSOpenPanel?  // keep open panel for hidden file visibility toggle
     
     
     // MARK: Private Properties
@@ -67,7 +67,7 @@ final class OpenPanelAccessoryController: NSViewController {
     
     // MARK: Action Messages
     
-    /// toggle visivility of hidden files
+    /// toggle visibility of hidden files
     @IBAction func toggleShowsHiddenFiles(_ sender: NSButton) {
         
         guard let openPanel = self.openPanel else { return assertionFailure() }

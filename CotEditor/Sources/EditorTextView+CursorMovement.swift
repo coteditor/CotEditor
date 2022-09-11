@@ -154,7 +154,7 @@ extension EditorTextView {
     override func moveWordLeft(_ sender: Any?) {
         
         // find word boundary myself
-        // -> The super.moveWordLef(_:) uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
+        // -> The super.moveWordLeft(_:) uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and it doesn't stop at punctuation marks, such as `.` and `:` (2019-06).
         
         self.moveCursors(affinity: .downstream) {

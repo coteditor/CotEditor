@@ -114,7 +114,7 @@ final class SyntaxStyleValidator {
     
     // MARK: Public Methods
     
-    /// check regular expression syntax and duplicatioin and return errors
+    /// check regular expression syntax and duplication and return errors
     static func validate(_ styleDictionary: SyntaxManager.StyleDictionary) -> [StyleError] {
         
         var results: [StyleError] = []

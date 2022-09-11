@@ -27,7 +27,7 @@ import AppKit
 
 /// Menu dinamically shows optional menu items by pressing the Option key.
 ///
-/// Optional items sould have an empty key equivalent and the Option key only modifier key.
+/// Optional items should have an empty key equivalent and the Option key only modifier key.
 final class OptionalMenu: NSMenu, NSMenuDelegate {
     
     // MARK: Private Properties

@@ -36,7 +36,7 @@ extension String {
     }
     
     
-    /// Unescaped version of the string by unescaing the characters with backslashes.
+    /// Unescaped version of the string by unescaping the characters with backslashes.
     var unescaped: String {
         
         // -> According to the Swift documentation, these are the all combinations with backslash except for \\ itself.

@@ -35,7 +35,7 @@ final class ThemeMetaDataViewController: NSViewController {
     
     // MARK: Action Messages
     
-    /// jump to theme's destribution URL
+    /// jump to theme's distribution URL
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard

@@ -27,7 +27,7 @@ import AppKit
 
 protocol StoryboardInstantiatable: AnyObject {
     
-    /// Instantinate control from a storyboard.
+    /// Instantiate control from a storyboard.
     ///
     /// - Parameters:
     ///   - name: The name of the storyboard.
@@ -40,7 +40,7 @@ protocol StoryboardInstantiatable: AnyObject {
 
 extension StoryboardInstantiatable {
     
-    /// instantinate control from a storyboard
+    /// instantiate control from a storyboard
     static func instantiate(storyboard name: NSStoryboard.Name, identifier: NSStoryboard.SceneIdentifier? = nil, bundle: Bundle? = nil) -> Self {
         
         let storyboard = NSStoryboard(name: name, bundle: bundle)
