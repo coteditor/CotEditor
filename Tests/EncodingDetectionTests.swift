@@ -179,13 +179,7 @@ final class EncodingDetectionTests: XCTestCase {
         // IANA charset name conversion
         // CFStringEcoding -> IANA charset name
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS) as String, "shift_jis")
-        
-        // This returns "(null)" on macOS 13 Ventura Beta 5 (FB11201216)
-        if #available(macOS 13, *) {
-            XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "(null)")
-        } else {
-            XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "Shift_JIS")
-        }
+        XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "Shift_JIS")
         
         XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(dosJapanese) as String, "cp932")
         // IANA charset name -> CFStringEcoding
