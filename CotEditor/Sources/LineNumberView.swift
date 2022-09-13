@@ -381,6 +381,7 @@ final class LineNumberView: NSView {
         // observe content change
         NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: nil)
             .compactMap { $0.object as? NSTextStorage }
+            .receive(on: RunLoop.main)  // touch textView on main thread
             .filter { [weak self] in $0 == self?.textView?.textStorage }
             .filter { $0.editedMask.contains(.editedCharacters) }
             .receive(on: DispatchQueue.main)
