@@ -7,6 +7,8 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the column of the outline pane was narrower than the list width.
+
 
 
 4.3.4 (527)
