@@ -110,7 +110,7 @@ final class UnixScript: Script {
         let outputType = OutputType(scanning: script)
         
         // prepare file path as argument if available
-        let arguments: [String] = await [document?.fileURL?.path].compactMap { $0 }
+        let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
         
         // create task
         let task = try NSUserUnixTask(url: self.url)
