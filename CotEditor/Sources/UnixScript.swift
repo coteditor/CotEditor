@@ -137,10 +137,10 @@ final class UnixScript: Script {
         }
         
         // read output asynchronously for safe with huge output
-        var outputData = Data()
+        let outputStorage = DataStorage()
         if outputType != nil {
             outPipe.fileHandleForReading.readabilityHandler = { (handle) in
-                outputData.append(handle.availableData)
+                Task { await outputStorage.append(handle.availableData) }
             }
         }
         
@@ -156,7 +156,7 @@ final class UnixScript: Script {
         outPipe.fileHandleForReading.readabilityHandler = nil
         
         // apply output
-        if let outputType = outputType, let output = String(data: outputData, encoding: .utf8) {
+        if let outputType = outputType, let output = String(data: await outputStorage.data, encoding: .utf8) {
             do {
                 try await self.applyOutput(output, type: outputType, editor: document?.textView)
             } catch {
@@ -232,6 +232,19 @@ final class UnixScript: Script {
         }
     }
     
+}
+
+
+
+private actor DataStorage {
+    
+    private(set) var data = Data()
+    
+    
+    func append(_ other: Data) {
+        
+        self.data.append(other)
+    }
 }
 
 
