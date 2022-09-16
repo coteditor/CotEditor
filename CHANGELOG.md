@@ -10,6 +10,7 @@ Change Log
 - Fix an issue that the column of the outline pane was narrower than the list width.
 - Fix an issue that the width of the line number view was not updated when the content was changed on disk.
 - Fix some typo.
+- [non-AppStore ver.] Update Sparkle to 2.2.2.
 
 
 
