@@ -5,6 +5,11 @@ Change Log
 4.3.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle to 2.2.2.
+
+
 ### Fixes
 
 - Address an issue since macOS 12.4 that the buttons in the save dialog became occasionally unresponsive when the application is running in the Japanese environment.
@@ -12,7 +17,7 @@ Change Log
 - Fix an issue that the column of the outline pane was narrower than the list width.
 - Fix an issue that the width of the line number view was not updated when the content was changed on disk.
 - Fix some typo.
-- [non-AppStore ver.] Update Sparkle to 2.2.2.
+- [non-AppStore ver.] Fix an issue that a message about the software update in the General pane was hidden.
 
 
 
