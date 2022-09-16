@@ -480,7 +480,7 @@
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
 /* Class = "NSMenuItem"; title = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
-"zuR-3K-9fs.ibShadowedToolTip" = "Application de NKFC, CaseFolding et suppression des points de code ignorables.";
+"zuR-3K-9fs.ibShadowedToolTip" = "Application de NFKC, CaseFolding et suppression des points de code ignorables.";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
 "NU7-EI-1Ct.title" = "NFD Modifié (HFS+)";
 /* Class = "NSMenuItem"; title = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */

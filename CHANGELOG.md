@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the column of the outline pane was narrower than the list width.
+- Fix some typo.
 
 
 
