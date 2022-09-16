@@ -218,6 +218,9 @@
 "Keep CotEditor’s Edition" = "保留CotEditor编辑的内容";
 "Update" = "更新";
 
+// Save panel options
+"Give execute permission" = "付与执行权限";
+
 
 
 /* MARK: Toolbar */

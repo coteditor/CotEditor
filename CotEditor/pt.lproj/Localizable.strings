@@ -218,6 +218,9 @@
 "Keep CotEditor’s Edition" = "Manter Edição do CotEditor";
 "Update" = "Atualizar";
 
+// Save panel options
+"Give execute permission" = "Conceder permissão de execução";
+
 
 
 /* MARK: Toolbar */

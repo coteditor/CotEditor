@@ -261,14 +261,6 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Private Methods
     
-    private struct DelegateContext {
-        
-        var delegate: Any?
-        var selector: Selector?
-        var contextInfo: UnsafeMutableRawPointer?
-    }
-    
-    
     /// transient document to be replaced or nil
     private var transientDocumentToReplace: Document? {
         

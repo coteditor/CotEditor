@@ -373,7 +373,6 @@
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
 		2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
-		2A86C47F2037312900B9357C /* SaveDocumentAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */; };
 		2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
 		2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
 		2A887A9020FA1D19002BFA34 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A887A8F20FA1D19002BFA34 /* String+Localization.swift */; };
@@ -611,7 +610,6 @@
 		2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */; };
 		2ACDE2A92406B9C000FC31EC /* PreferencesWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A44321E219AC235008A0A6B /* PreferencesWindow.storyboard */; };
 		2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
-		2ACDE2AC2406B9C000FC31EC /* SaveDocumentAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */; };
 		2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243C21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard */; };
 		2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
 		2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
@@ -659,6 +657,8 @@
 		2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */; };
 		2ADD0AEC2184AB6F00F78732 /* NSControl+Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */; };
 		2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
+		2ADF89B528D4177600F5F373 /* DelegateContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADF89B428D4177600F5F373 /* DelegateContext.swift */; };
+		2ADF89B628D4177600F5F373 /* DelegateContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADF89B428D4177600F5F373 /* DelegateContext.swift */; };
 		2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
 		2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFA1E7DB47000681F72 /* Collection+String.swift */; };
 		2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */; };
@@ -812,7 +812,6 @@
 		08C28F9A279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/WarningsView.strings; sourceTree = "<group>"; };
 		08C28F9B279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/EditorView.strings; sourceTree = "<group>"; };
 		08C28F9C279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
-		08C28F9D279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		08C28F9E279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		08C28F9F279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		08C28FA1279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/GoToLineView.strings; sourceTree = "<group>"; };
@@ -840,7 +839,6 @@
 		0D51D56F2274EAD800A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/WarningsView.strings; sourceTree = "<group>"; };
 		0D51D5702274EAD800A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/EditorView.strings; sourceTree = "<group>"; };
 		0D51D5712274EAD900A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
-		0D51D5722274EADA00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		0D51D5732274EADB00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		0D51D5752274EADC00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		0D51D5762274EADC00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
@@ -1166,12 +1164,6 @@
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMapBuilder; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
-		2A86C47E2037312900B9357C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SaveDocumentAccessory.storyboard; sourceTree = "<group>"; };
-		2A86C4812037330200B9357C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
-		2A86C4822037330300B9357C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
-		2A86C4832037330500B9357C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
-		2A86C4842037330600B9357C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
-		2A86C4852037330800B9357C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		2A887A8F20FA1D19002BFA34 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		2A88E7701E81A2C7000019C6 /* OrderedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
@@ -1402,6 +1394,7 @@
 		2ADF3C041E6D82E4009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropPane.strings"; sourceTree = "<group>"; };
 		2ADF3C051E6D82E7009125BB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		2ADF3C061E6D82EA009125BB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FileDropPane.strings; sourceTree = "<group>"; };
+		2ADF89B428D4177600F5F373 /* DelegateContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateContext.swift; sourceTree = "<group>"; };
 		2AE12DFA1E7DB47000681F72 /* Collection+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+String.swift"; sourceTree = "<group>"; };
 		2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCollectionTests.swift; sourceTree = "<group>"; };
 		2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+SurroundSelection.swift"; sourceTree = "<group>"; };
@@ -1524,7 +1517,6 @@
 		5B08850128296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WarningsView.strings"; sourceTree = "<group>"; };
 		5B08850228296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		5B08850328296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
-		5B08850428296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
 		5B08850528296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		5B08850628296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		5B08850828296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
@@ -1573,7 +1565,6 @@
 		98EAE82B27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/WarningsView.strings"; sourceTree = "<group>"; };
 		98EAE82C27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		98EAE82D27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
-		98EAE82E27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SaveDocumentAccessory.strings"; sourceTree = "<group>"; };
 		98EAE82F27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		98EAE83027A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		98EAE83227A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
@@ -1740,6 +1731,7 @@
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
 				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
+				2ADF89B428D4177600F5F373 /* DelegateContext.swift */,
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A34C5092807EC4E005E9AAB /* KeySortable.swift */,
@@ -2348,7 +2340,6 @@
 			isa = PBXGroup;
 			children = (
 				2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */,
-				2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */,
 				2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */,
 				2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */,
 				2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */,
@@ -2757,7 +2748,6 @@
 				2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */,
 				2ACDE2A92406B9C000FC31EC /* PreferencesWindow.storyboard in Resources */,
 				2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */,
-				2ACDE2AC2406B9C000FC31EC /* SaveDocumentAccessory.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */,
@@ -2833,7 +2823,6 @@
 				2ACA0C9521A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */,
 				2A443220219AC235008A0A6B /* PreferencesWindow.storyboard in Resources */,
 				2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
-				2A86C47F2037312900B9357C /* SaveDocumentAccessory.storyboard in Resources */,
 				2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2AB2245421A809A000F6201F /* SyntaxEditView.storyboard in Resources */,
 				2AB2241D21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */,
@@ -2986,6 +2975,7 @@
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
 				2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
+				2ADF89B528D4177600F5F373 /* DelegateContext.swift in Sources */,
 				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2ADCBBBB24F8952800A67DB2 /* DisableableTextField.swift in Sources */,
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
@@ -3313,6 +3303,7 @@
 				2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
 				2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
+				2ADF89B628D4177600F5F373 /* DelegateContext.swift in Sources */,
 				2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2ADCBBBC24F8952800A67DB2 /* DisableableTextField.swift in Sources */,
 				2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
@@ -3950,23 +3941,6 @@
 				5B0884E828296B5F003D4C2D /* zh-Hant */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A86C47E2037312900B9357C /* Base */,
-				2A86C4812037330200B9357C /* ja */,
-				2A86C4822037330300B9357C /* zh-Hans */,
-				2A86C4832037330500B9357C /* de */,
-				2A86C4842037330600B9357C /* it */,
-				2A86C4852037330800B9357C /* pt */,
-				0D51D5722274EADA00A5D747 /* fr */,
-				08C28F9D279CBE2F0016693E /* tr */,
-				98EAE82E27A5D7D900C6D571 /* en-GB */,
-				5B08850428296B61003D4C2D /* zh-Hant */,
-			);
-			name = SaveDocumentAccessory.storyboard;
 			sourceTree = "<group>";
 		};
 		2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */ = {

@@ -218,6 +218,9 @@
 "Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
 
+// Save panel options
+"Give execute permission" = "実行権を付与";
+
 
 
 /* MARK: Toolbar */
