@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.4.0-beta.2 (unreleased)
+4.4.0-beta.2 (533)
 --------------------------
 
 ### Improvements
@@ -13,7 +13,7 @@ Change Log
 ### Fixes
 
 - Port fixes in CotEditor 4.3.5.
-- [tirivial] Fix some typo.
+- [tirivial] Fix some typos.
 
 
 
