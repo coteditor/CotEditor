@@ -18,7 +18,7 @@ Change Log
 ### Fixes
 
 - Port fixes in CotEditor 4.3.5.
-- [tirivial] Fix some typos.
+- [trivial] Fix some typos.
 
 
 
@@ -812,7 +812,7 @@ Change Log
 
 - Round the corners of current line highlight.
 - [beta][Big Sur] Match the inspector background to desktop color.
-- [beta][tirivial] Update titlebar color.
+- [beta][trivial] Update titlebar color.
 
 
 ### Fixes
@@ -1875,7 +1875,7 @@ no change.
 - Fix an issue where the application crashed when splitting editors.
 - Fix an issue where a part of line numbers disappeared when Japanese text is being inputted.
 - Fix an issue where the context menu did not open under macOS 10.13 and earlier if the user has scripts.
-- [tirivial] Fix font style of“Italic” button in the outline menu editor.
+- [trivial] Fix font style of “Italic” button in the outline menu editor.
 
 
 
@@ -1954,7 +1954,7 @@ no change.
 - Avoid drawing variant sequence as invisible control characters.
 - Make line number view opaque if lines are unwrapped on macOS 10.14 to avoid drawing the editor's text over the line numbers.
 - Revoke the line counting behavior change with VoiceOver in CotEditor 3.6.3.
-- [tirivial] Draw vertical tabs as general invisible control characters.
+- [trivial] Draw vertical tabs as general invisible control characters.
 
 
 ### Fixes
@@ -2371,7 +2371,7 @@ no change.
 ### Fixes
 
 - [beta] Fix an issue the application could crash while typing.
-- [tirivial] Fix an issue on macOS 10.12 and earlier where the Japanese label of the menu item toggling toolbar visibility did not reflect the current visibility state.
+- [trivial] Fix an issue on macOS 10.12 and earlier where the Japanese label of the menu item toggling toolbar visibility did not reflect the current visibility state.
 
 
 
