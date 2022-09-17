@@ -92,6 +92,10 @@ final class OutlineViewController: NSViewController {
         
         super.viewWillAppear()
         
+        // Workaround a long-standing issue in single column table views.
+        // cf. [#1365](https://github.com/coteditor/CotEditor/pull/1365)
+        self.outlineView?.sizeLastColumnToFit()
+        
         self.fontSizeObserver = UserDefaults.standard.publisher(for: .outlineViewFontSize, initial: true)
             .sink { [weak self] _ in
                 self?.outlineView?.reloadData()

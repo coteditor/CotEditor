@@ -1,15 +1,14 @@
 //
-//  SaveDocumentAccessory.strings (Turkish)
+//  DelegateContext.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Emir SARI on 2022-01-28.
-//  Localized by Emir SARI
+//  Created by 1024jjp on 2022-09-16.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022 1024jjp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,5 +23,11 @@
 //  limitations under the License.
 //
 
-/* Class = "NSButtonCell"; title = "Give execute permission"; ObjectID = "KjO-BV-esE"; */
-"KjO-BV-esE.title" = "Çalıştırma izni ver";
+import Foundation.NSObjCRuntime
+
+struct DelegateContext {
+    
+    var delegate: Any?
+    var selector: Selector?
+    var contextInfo: UnsafeMutableRawPointer?
+}

@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-4.4.0 (531)
+4.4.0-beta (531)
 --------------------------
 
 ### New Features
@@ -39,12 +39,27 @@ Change Log
 - [trivial] Improve the basic regular expression syntax reference.
 - [trivial] Improve the status bar display.
 - [dev] Update the build environment to Xcode 14.0 beta 6.
-- [non-AppStore ver.] Update Sparkle to 2.2.2.
+
+
+
+4.3.5 (529)
+--------------------------
+
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.2.1 to 2.2.2.
 
 
 ### Fixes
 
 - Fix an issue that memory could leak when the opacity toolbar item is used.
+- Fix an issue that the option “Give execute permission” in the save dialog was applied to the document even when the save operation was canceled.
+- Address an issue since macOS 12.4 that the buttons in the save dialog became occasionally unresponsive when the application is running in some specific Japanese environment.
+- Fix an issue that memory could leak when the opacity toolbar item is used.
+- Fix an issue that the column of the outline pane was narrower than the list width.
+- Fix an issue that the width of the line number view was not updated when the content was changed on disk.
+- Fix some typos.
+- [non-AppStore ver.] Fix an issue that a message about the software update in the General pane was hidden.
 
 
 
@@ -62,7 +77,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that the application could hang up when an opened document shared in iCloud Drive was modified in another machine. 
+- Fix an issue that the application could hang up when an opened document shared in iCloud Drive was modified in another machine.
 - Fix an issue that document windows sometimes did not shift the initial position from the last window.
 - Fix an issue that the scrollable area of the editor in vertical layout orientation could be clipped wrongly when scaled.
 - Fix an issue that some text was not localized.

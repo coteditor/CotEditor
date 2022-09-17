@@ -378,7 +378,12 @@ final class LineNumberView: NSView {
         
         self.textViewSubscriptions.removeAll()
         
-        NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
+        // observe content change
+        NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: nil)
+            .compactMap { $0.object as? NSTextStorage }
+            .receive(on: RunLoop.main)  // touch textView on main thread
+            .filter { [weak self] in $0 == self?.textView?.textStorage }
+            .filter { $0.editedMask.contains(.editedCharacters) }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 // -> The digit of the line numbers affect thickness.
