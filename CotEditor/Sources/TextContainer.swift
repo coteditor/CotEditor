@@ -139,7 +139,7 @@ final class TextContainer: NSTextContainer {
 
 private extension NSString {
     
-    /// The fast way to find the indent charaters at the beginning of the given range.
+    /// The fast way to find the indent characters at the beginning of the given range.
     ///
     /// - Parameters:
     ///   - range: The UTF16-based character range where searching for the indent.
@@ -148,7 +148,7 @@ private extension NSString {
         
         let characters: [unichar] = range.lazy
             .map { self.character(at: $0) }
-            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIONTAL TAB
+            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIZONTAL TAB
         
         return String(utf16CodeUnits: characters, count: characters.count)
     }

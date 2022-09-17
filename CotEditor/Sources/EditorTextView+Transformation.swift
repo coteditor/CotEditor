@@ -60,14 +60,14 @@ extension EditorTextView {
     }
     
     
-    /// transform to snake case
+    /// transform to camel case
     @IBAction func camelcaseWord(_ sender: Any?) {
         
         self.transformSelection { $0.camelcased }
     }
     
     
-    /// transform to snake case
+    /// transform to pascal case
     @IBAction func pascalcaseWord(_ sender: Any?) {
         
         self.transformSelection { $0.pascalcased }

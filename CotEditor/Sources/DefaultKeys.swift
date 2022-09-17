@@ -170,7 +170,6 @@ extension DefaultKeys {
     static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
-    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     
     // hidden settings
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
@@ -179,6 +178,7 @@ extension DefaultKeys {
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
+    static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     
     static let lastVersion = DefaultKey<String?>("lastVersion")
     

@@ -65,7 +65,7 @@ class DefaultKey<Value>: DefaultKeys {
     
     func newValue(from value: Any?) throws -> Value {
         
-        // -> The seocnd Opional cast is important for in case if `Value` is already an optional type.
+        // -> The second Optional cast is important for in case if `Value` is already an optional type.
         guard let newValue = value as? Value ?? Optional<Any>.none as? Value else {
             throw Error.invalidValue
         }

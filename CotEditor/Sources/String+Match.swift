@@ -46,7 +46,7 @@ extension String {
         
         guard ranges.count == searchString.count else { return nil }
         
-        // just simply caluculate the length...
+        // just simply calculate the length...
         let score = self.distance(from: ranges.first!.lowerBound, to: ranges.last!.upperBound)
         
         return (ranges, score)

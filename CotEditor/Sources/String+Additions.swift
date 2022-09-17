@@ -36,7 +36,7 @@ extension String {
     }
     
     
-    /// Unescaped version of the string by unescaing the characters with backslashes.
+    /// Unescaped version of the string by unescaping the characters with backslashes.
     var unescaped: String {
         
         // -> According to the Swift documentation, these are the all combinations with backslash except for \\ itself.
@@ -74,7 +74,7 @@ extension StringProtocol {
     /// Range of the line containing a given index.
     ///
     /// - Parameter index: The character index within the receiver.
-    /// - Returns: The characer range of the line.
+    /// - Returns: The character range of the line.
     func lineRange(at index: Index) -> Range<Index> {
         
         return self.lineRange(for: index..<index)
@@ -84,7 +84,7 @@ extension StringProtocol {
     /// Range of the line containing a given index.
     ///
     /// - Parameter index: The character index within the receiver.
-    /// - Returns: The characer range of the line contents.
+    /// - Returns: The character range of the line contents.
     func lineContentsRange(at index: Index) -> Range<Index> {
         
         return self.lineContentsRange(for: index..<index)

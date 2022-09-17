@@ -93,7 +93,7 @@ enum Invisible {
 
 
 
-// MARK: User Deafults
+// MARK: User Defaults
 
 extension Invisible: CaseIterable {
     

@@ -45,7 +45,7 @@ final class FindPanelController: NSWindowController {
         // select text in find text field
         if self.window?.firstResponder == self.window?.initialFirstResponder {
             // force reset firstResponder to invoke becomeFirstResponder in FindPanelTextView every time
-            // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is alrady set as first responder.
+            // -> `becomeFirstResponder` will not be called on `makeFirstResponder:` if it given object is already set as first responder.
             self.window?.makeFirstResponder(nil)
         }
         self.window?.makeFirstResponder(self.window?.initialFirstResponder)

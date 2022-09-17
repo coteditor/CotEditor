@@ -49,7 +49,7 @@ extension String {
     }
     
     
-    /// Transform all snake and pascal case words to pascal case.
+    /// Transform all snake and camel case words to pascal case.
     var pascalcased: String {
         
         self.ranges(pattern: "(?:\\b|(?<=\\w)_)\\w")

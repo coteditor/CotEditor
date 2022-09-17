@@ -144,7 +144,7 @@ extension String {
     /// - Parameters:
     ///   - range: The range of selection.
     ///   - tabWidth: The number of spaces for the soft tab.
-    /// - Returns: Range to delete or nil if the caracter to delete is not soft-tab.
+    /// - Returns: Range to delete or nil if the character to delete is not soft-tab.
     func rangeForSoftTabDeletion(in range: NSRange, tabWidth: Int) -> NSRange? {
         
         assert(tabWidth > 0)

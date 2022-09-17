@@ -333,18 +333,9 @@ final class DocumentController: NSDocumentController {
         }
         
         // manually invoke the original delegate method
-        guard
-            let context: DelegateContext = bridgeUnwrapped(contextInfo),
-            let delegate = context.delegate as? NSObject,
-            let selector = context.selector,
-            let objcClass = objc_getClass(delegate.className) as? AnyClass,
-            let method = class_getMethodImplementation(objcClass, selector)
-        else { return assertionFailure() }
+        guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
         
-        typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
-        let function = unsafeBitCast(method, to: Signature.self)
-        
-        function(delegate, selector, self, didCloseAll, context.contextInfo)
+        context.perform(from: self, flag: didCloseAll)
     }
     
 }

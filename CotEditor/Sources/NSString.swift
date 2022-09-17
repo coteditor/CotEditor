@@ -233,7 +233,7 @@ extension NSString {
     ///
     /// - Parameters:
     ///   - ranges: Ranges to include.
-    ///   - includingLastEmptyLine: Whether the last empty line sould be included; otherwise, return value can be empty.
+    ///   - includingLastEmptyLine: Whether the last empty line should be included; otherwise, return value can be empty.
     /// - Returns: Array of ranges of each indivisual line.
     func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
         
@@ -316,9 +316,9 @@ extension NSString {
     /// Return the boundary of the composed character sequence by moving the offset by counting offset in composed character sequences.
     ///
     /// - Parameters:
-    ///   - index: The reference characer index in UTF-16.
+    ///   - index: The reference character index in UTF-16.
     ///   - offset: The number of composed character sequences to move index.
-    /// - Returns:A characer index in UTF-16.
+    /// - Returns: A character index in UTF-16.
     func boundaryOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
         
         assert(index >= 0 && index < self.length)

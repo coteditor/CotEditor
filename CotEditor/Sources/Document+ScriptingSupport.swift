@@ -420,7 +420,7 @@ extension Document {
     }
     
     
-    /// return sting in the specified range
+    /// return string in the specified range
     @objc func handleString(_ command: NSScriptCommand) -> String? {
         
         guard

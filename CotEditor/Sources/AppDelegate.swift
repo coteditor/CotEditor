@@ -147,7 +147,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         ScriptManager.shared.buildScriptMenu()
         
-        // build Unicode normalizationi menu items
+        // build Unicode normalization menu items
         
         self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
                                          UnicodeNormalizationForm.modifiedForms)

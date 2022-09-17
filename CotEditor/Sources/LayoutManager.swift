@@ -267,7 +267,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     }
     
     
-    /// treat control characers as whitespace to draw replacement glyphs
+    /// treat control characters as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
         // -> Then, the glyph width can be modified in `layoutManager(_:boundingBoxForControlGlyphAt:...)`.
@@ -303,7 +303,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     }
     
     
-    /// apply sytax highlighing on printing also
+    /// apply syntax highlighting on printing also
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
         return attrs

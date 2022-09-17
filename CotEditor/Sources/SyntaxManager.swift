@@ -409,7 +409,7 @@ final class SyntaxManager: SettingFileManaging {
 
 private extension StringProtocol {
     
-    /// Extract interepreter from the shebang line.
+    /// Extract interpreter from the shebang line.
     func scanInterpreterInShebang() -> String? {
         
         guard self.hasPrefix("#!") else { return nil }

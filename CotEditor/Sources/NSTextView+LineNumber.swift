@@ -46,7 +46,7 @@ extension NSTextView {
     
     /// The 1-based line number at the given character index.
     ///
-    /// This method has a performance advantage if the receiver's layoutManager confroms LineRangeCacheable.
+    /// This method has a performance advantage if the receiver's layoutManager conforms LineRangeCacheable.
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).
@@ -60,7 +60,7 @@ extension NSTextView {
     ///
     /// - Parameters:
     ///   - rect: The bounding rectangle for which to process lines.
-    ///   - range: The character range to procecc lines, or `nil` to enumerate whole in rect.
+    ///   - range: The character range to process lines, or `nil` to enumerate whole in rect.
     ///   - options: The options to skip invoking `body` in some specific fragments.
     ///   - body: The closure executed for each line in the enumeration.
     ///   - lineRect: The line fragment rect.
@@ -138,7 +138,7 @@ extension NSTextView {
     
     /// The 1-based line number at the given character index.
     ///
-    /// This method has a performance advantage if the receiver's layoutManager confroms LineRangeCacheable.
+    /// This method has a performance advantage if the receiver's layoutManager conforms LineRangeCacheable.
     ///
     /// - Parameter location: NSRange-based character index.
     /// - Returns: The number of lines (1-based).

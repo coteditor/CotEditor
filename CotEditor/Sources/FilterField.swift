@@ -64,7 +64,7 @@ final class FilterField: NSSearchField {
     
     override func draw(_ dirtyRect: NSRect) {
         
-        // workaround to upate icon while typing
+        // workaround to update icon while typing
         super.draw(dirtyRect)
     }
     

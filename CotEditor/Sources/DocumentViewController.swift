@@ -139,7 +139,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         coder.encode(self.writingDirection.rawValue, forKey: SerializationKey.writingDirection)
         
-        // manunally encode `restorableStateKeyPaths` for secure state restoration
+        // manually encode `restorableStateKeyPaths` for secure state restoration
         for keyPath in self.restorableBoolStateKeyPaths {
             coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
         }
@@ -166,7 +166,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             self.writingDirection = direction
         }
         
-        // manunally decode `restorableStateKeyPaths` for secure state restoration
+        // manually decode `restorableStateKeyPaths` for secure state restoration
         for keyPath in self.restorableBoolStateKeyPaths where coder.containsValue(forKey: keyPath) {
             let value = coder.decodeObject(of: NSNumber.self, forKey: keyPath)
             self.setValue(value, forKeyPath: keyPath)

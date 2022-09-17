@@ -27,7 +27,7 @@ import SwiftUI
 import Combine
 import AppKit
 
-final class CharacterCountOptionsSetting: ObservableObject {
+@MainActor final class CharacterCountOptionsSetting: ObservableObject {
     
     @AppStorage("countOption.unit") var unit: CharacterCountOptions.CharacterUnit = .graphemeCluster
     @AppStorage("countOption.normalizationForm") var normalizationForm: UnicodeNormalizationForm = .nfc
@@ -52,7 +52,7 @@ final class CharacterCountOptionsSetting: ObservableObject {
 
 
 
-final class AdvancedCharacterCounter: ObservableObject {
+@MainActor final class AdvancedCharacterCounter: ObservableObject {
     
     // MARK: Public Properties
     
@@ -70,7 +70,7 @@ final class AdvancedCharacterCounter: ObservableObject {
     
     // MARK: Lifecycle
     
-    @MainActor init(textView: NSTextView) {
+    init(textView: NSTextView) {
         
         self.textView = textView
         

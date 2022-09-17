@@ -44,7 +44,7 @@ extension RangeReplaceableCollection where Element: Equatable {
     ///
     /// - Parameters:
     ///   - element: The element to append.
-    ///   - maximum: The muximum number of the elements to keep in the collection. The overflowed elements will be removed.
+    ///   - maximum: The maximum number of the elements to keep in the collection. The overflowed elements will be removed.
     mutating func appendUnique(_ element: Element, maximum: Int) {
         
         self.removeAll { $0 == element }

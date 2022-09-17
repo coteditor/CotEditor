@@ -94,7 +94,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     }
     
     
-    /// treat control characers as whitespace to draw replacement glyphs
+    /// treat control characters as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
         return self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action

@@ -43,7 +43,7 @@
 // description for NFKC
 "Compatibility Decomposition, followed by Canonical Composition" = "Décomposition de compatibilité";
 // description for NFKC Casefold
-"Applying NFKC, CaseFolding, and removal of default-ignorable code points" = "Application de NKFC, CaseFolding et suppression des points de code ignorables.";
+"Applying NFKC, CaseFolding, and removal of default-ignorable code points" = "Application de NFKC, CaseFolding et suppression des points de code ignorables.";
 // description for Modified NFC
 "Unofficial NFD-based normalization form used in HFS+" = "Normalisation non officielle basée sur NFD, utilisée dans HFS+";
 // description for Modified NFD

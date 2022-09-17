@@ -31,7 +31,7 @@ final class StringCommentingTests: XCTestCase {
     
     // MARK: NSRange extension Tests
     
-    func testRangeInsrtion() {
+    func testRangeInsertion() {
         
         XCTAssertEqual(NSRange(0..<0).inserted(items: []), NSRange(0..<0))
         XCTAssertEqual(NSRange(0..<0).inserted(items: [.init(string: "", location: 0, forward: true)]), NSRange(0..<0))

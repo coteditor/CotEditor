@@ -76,7 +76,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     dynamic var isExecutable = false
     @objc private dynamic var isExecutableFromLastRunSavePanel = false  // bind in save panel accessory view
     
-    private var sytnaxUpdateObserver: AnyCancellable?
+    private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
     private var windowObserver: AnyCancellable?
     
@@ -112,8 +112,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         self.lineEndingScanner.observe(lineEnding: self.$lineEnding)
         
-        // observe sytnax style update
-        self.sytnaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
+        // observe syntax style update
+        self.syntaxUpdateObserver = SyntaxManager.shared.didUpdateSetting
             .filter { [weak self] (change) in change.old == self?.syntaxParser.style.name }
             .sink { [weak self] (change) in self?.setSyntaxStyle(name: change.new ?? BundledStyleName.none) }
     }
@@ -597,19 +597,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // manually call delegate but only when you wanna modify `shouldClose` flag
-        guard
-            shouldClose,
-            let selector = shouldCloseSelector,
-            let context = contextInfo,
-            let object = delegate as? NSObject,
-            let objcClass = objc_getClass(object.className) as? AnyClass,
-            let method = class_getMethodImplementation(objcClass, selector)
-            else { return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo) }
+        guard shouldClose else {
+            return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+        }
         
-        typealias Signature = @convention(c) (NSObject, Selector, NSDocument, Bool, UnsafeMutableRawPointer) -> Void
-        let function = unsafeBitCast(method, to: Signature.self)
-        
-        function(object, selector, self, shouldClose, context)
+        DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
+            .perform(from: self, flag: shouldClose)
     }
     
     
@@ -861,7 +854,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// change file encoding registering process to the undo manager
     ///
-    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thorwn but only if `lossy` flag is `true`.
+    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `true`.
     func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
@@ -1087,18 +1080,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // manually invoke the original delegate method
-        guard
-            let context: DelegateContext = bridgeUnwrapped(contextInfo),
-            let delegate = context.delegate as? NSObject,
-            let selector = context.selector,
-            let objcClass = objc_getClass(delegate.className) as? AnyClass,
-            let method = class_getMethodImplementation(objcClass, selector)
-        else { return assertionFailure() }
+        guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
         
-        typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
-        let function = unsafeBitCast(method, to: Signature.self)
-        
-        function(delegate, selector, self, didAccept, context.contextInfo)
+        context.perform(from: self, flag: didAccept)
     }
     
     

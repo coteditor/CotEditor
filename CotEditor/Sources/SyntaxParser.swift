@@ -286,7 +286,7 @@ extension NSLayoutManager {
         
         assert(highlights.sorted(\.range.location) == highlights)
         
-        // skip if never colorlized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
+        // skip if never colorized yet to avoid heavy `self.invalidateDisplay(forCharacterRange:)`
         guard !highlights.isEmpty || self.hasTemporaryAttribute(.syntaxType, in: range) else { return }
         
         let theme = (self.firstTextView as? any Themable)?.theme

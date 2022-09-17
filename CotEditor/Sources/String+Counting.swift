@@ -68,7 +68,7 @@ extension StringProtocol {
         
         if self.isEmpty || range.isEmpty { return 0 }
         
-        // workarond for a bug since Swift 5 that removes BOM at the beginning (2019-05 Swift 5.1).
+        // workaround for a bug since Swift 5 that removes BOM at the beginning (2019-05 Swift 5.1).
         // cf. https://bugs.swift.org/browse/SR-10896
         guard !self.starts(with: "\u{FEFF}") || self.compareCount(with: 16) == .greater else {
             return self[range].count { $0.isNewline } + 1
@@ -87,7 +87,7 @@ extension StringProtocol {
     }
     
     
-    /// Calculate the umber of characters from the beginning of the line where the given characer index locates (0-based).
+    /// Calculate the number of characters from the beginning of the line where the given character index locates (0-based).
     ///
     /// - Parameter index: The character index.
     /// - Returns: The column number.
@@ -106,7 +106,7 @@ extension String {
     
     /// Calculate the line number at the given character index (1-based).
     ///
-    /// - Parameter location: The UTF16-baesd character index.
+    /// - Parameter location: The UTF16-based character index.
     /// - Returns: The line number.
     func lineNumber(at location: Int) -> Int {
         

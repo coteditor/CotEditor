@@ -69,14 +69,14 @@ extension EditorTextView: Indenting {
     }
     
     
-    /// standardize inentation in selection to spaces
+    /// standardize indentation in selection to spaces
     @IBAction func convertIndentationToSpaces(_ sender: Any?) {
         
         self.convertIndentation(style: .space)
     }
     
     
-    /// standardize inentation in selection to tabs
+    /// standardize indentation in selection to tabs
     @IBAction func convertIndentationToTabs(_ sender: Any?) {
         
         self.convertIndentation(style: .tab)
@@ -186,7 +186,7 @@ extension Indenting {
     }
     
     
-    /// standardize inentation of given ranges
+    /// standardize indentation of given ranges
     func convertIndentation(style: IndentStyle) {
         
         guard !self.string.isEmpty else { return }
