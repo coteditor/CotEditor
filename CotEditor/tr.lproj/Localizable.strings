@@ -221,6 +221,9 @@
 "Keep CotEditor’s Edition" = "CotEditor Değişikliklerini Tut";
 "Update" = "Güncelle";
 
+// Save panel options
+"Give execute permission" = "Çalıştırma izni ver";
+
 
 
 /* MARK: Document Window */

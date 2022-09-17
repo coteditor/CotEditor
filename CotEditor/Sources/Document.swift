@@ -67,14 +67,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Private Properties
     
     private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: ProcessInfo.processInfo.operatingSystemVersion.majorVersion >= 13 ? "PrintPanelAccessoryVentura" : "PrintPanelAccessory")
-    private var savePanelAccessoryController: NSViewController?
     
     private var readingEncoding: String.Encoding?  // encoding to read document file
     private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
-    @objc private dynamic var isExecutable = false  // bind in save panel accessory view
+    dynamic var isExecutable = false
+    @objc private dynamic var isExecutableFromLastRunSavePanel = false  // bind in save panel accessory view
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
@@ -515,6 +515,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    override func runModalSavePanel(for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+        
+        self.isExecutableFromLastRunSavePanel = self.isExecutable
+        
+        let context = DelegateContext(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
+        super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didCloseSavePanel:contextInfo:)), contextInfo: bridgeWrapped(context))
+    }
+    
+    
     /// avoid let system add the standard save panel accessory (pop-up menu for document type change)
     override var shouldRunSavePanelWithAccessoryView: Bool {
         
@@ -543,9 +552,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set accessory view
-        self.savePanelAccessoryController = .instantiate(storyboard: "SaveDocumentAccessory")
-        self.savePanelAccessoryController?.representedObject = self
-        savePanel.accessoryView = self.savePanelAccessoryController?.view
+        let checkbox = NSButton(checkboxWithTitle: "Give execute permission".localized, target: nil, action: nil)
+        checkbox.bind(.value, to: self, withKeyPath: #keyPath(isExecutableFromLastRunSavePanel))
+        checkbox.translatesAutoresizingMaskIntoConstraints = false
+        let accessoryView = NSView()
+        accessoryView.addSubview(checkbox)
+        NSLayoutConstraint.activate([
+            checkbox.centerXAnchor.constraint(equalTo: accessoryView.centerXAnchor),
+            checkbox.leadingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: accessoryView.leadingAnchor, multiplier: 1),
+            accessoryView.trailingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: checkbox.trailingAnchor, multiplier: 1),
+            checkbox.topAnchor.constraint(equalToSystemSpacingBelow: accessoryView.topAnchor, multiplier: 0.5),
+            accessoryView.bottomAnchor.constraint(equalToSystemSpacingBelow: checkbox.bottomAnchor, multiplier: 0.5),
+        ])
+        savePanel.accessoryView = accessoryView
         
         return true
     }
@@ -598,7 +617,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func close() {
         
         self.textStorageObserver?.cancel()
-        self.savePanelAccessoryController?.representedObject = nil
         
         super.close()
     }
@@ -1060,6 +1078,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     // MARK: Private Methods
+    
+    /// callback from save panel after calling `runModalSavePanel(for:didSave:contextInfo)`.
+    @objc private func document(_ document: NSDocument, didCloseSavePanel didAccept: Bool, contextInfo: UnsafeMutableRawPointer) {
+        
+        if didAccept {
+            self.isExecutable = self.isExecutableFromLastRunSavePanel
+        }
+        
+        // manually invoke the original delegate method
+        guard
+            let context: DelegateContext = bridgeUnwrapped(contextInfo),
+            let delegate = context.delegate as? NSObject,
+            let selector = context.selector,
+            let objcClass = objc_getClass(delegate.className) as? AnyClass,
+            let method = class_getMethodImplementation(objcClass, selector)
+        else { return assertionFailure() }
+        
+        typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
+        let function = unsafeBitCast(method, to: Signature.self)
+        
+        function(delegate, selector, self, didAccept, context.contextInfo)
+    }
+    
     
     /// transfer file information to UI
     private func applyContentToWindow() {

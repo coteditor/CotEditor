@@ -5,13 +5,15 @@ Change Log
 4.4.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 14.1 beta.
+
+
 ### Fixes
 
-- Fix an issue that the width of the line number view was not updated when the content was changed on disk.
-- Fix an issue that the column of the outline pane was narrower than the list width.
-- [non-AppStore ver.] Fix an issue that a message about the software update in the General pane was hidden.
+- Port fixes in CotEditor 4.3.5.
 - [tirivial] Fix some typo.
-- [dev] Update the build environment to Xcode 14.1 beta.
 
 
 
@@ -52,12 +54,27 @@ Change Log
 - [trivial] Improve the basic regular expression syntax reference.
 - [trivial] Improve the status bar display.
 - [dev] Update the build environment to Xcode 14.0 beta 6.
-- [non-AppStore ver.] Update Sparkle to 2.2.2.
+
+
+
+4.3.5 (529)
+--------------------------
+
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.2.1 to 2.2.2.
 
 
 ### Fixes
 
 - Fix an issue that memory could leak when the opacity toolbar item is used.
+- Fix an issue that the option “Give execute permission” in the save dialog was applied to the document even when the save operation was canceled.
+- Address an issue since macOS 12.4 that the buttons in the save dialog became occasionally unresponsive when the application is running in some specific Japanese environment.
+- Fix an issue that memory could leak when the opacity toolbar item is used.
+- Fix an issue that the column of the outline pane was narrower than the list width.
+- Fix an issue that the width of the line number view was not updated when the content was changed on disk.
+- Fix some typos.
+- [non-AppStore ver.] Fix an issue that a message about the software update in the General pane was hidden.
 
 
 

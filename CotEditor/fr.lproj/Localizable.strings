@@ -221,6 +221,9 @@
 "Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
 "Update" = "Rafraîchir";
 
+// Save panel options
+"Give execute permission" = "Donner la permission d’éxécution";
+
 
 
 /* MARK: Document Window */
