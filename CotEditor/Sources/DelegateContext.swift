@@ -30,4 +30,29 @@ struct DelegateContext {
     var delegate: Any?
     var selector: Selector?
     var contextInfo: UnsafeMutableRawPointer?
+    
+    
+    /// Manually invoke the original delegate method stored as a DelegateContext.
+    ///
+    /// - SeeAlso: *Advice for Overriders of Methods that Follow the delegate:didSomethingSelector:contextInfo: Pattern* in
+    ///   <https://developer.apple.com/library/archive/releasenotes/AppKit/RN-AppKitOlderNotes/>.
+    ///
+    /// - Parameters:
+    ///   - caller: The object sent as the third argument.
+    ///   - flag: The boolean flag to tell the result state to the delegate.
+    func perform(from caller: AnyObject, flag: Bool) {
+        
+        guard
+            let delegate = self.delegate as? NSObject,
+            let selector = self.selector,
+            let objcClass = objc_getClass(delegate.className) as? AnyClass,
+            let method = class_getMethodImplementation(objcClass, selector)
+        else { return assertionFailure() }
+        
+        typealias Signature = @convention(c) (AnyObject, Selector, AnyObject, Bool, UnsafeMutableRawPointer?) -> Void
+        let function = unsafeBitCast(method, to: Signature.self)
+        
+        function(delegate, selector, caller, flag, self.contextInfo)
+    }
+    
 }
