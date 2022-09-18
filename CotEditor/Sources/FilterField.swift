@@ -45,6 +45,14 @@ final class FilterField: NSSearchField {
         
         self.validateImage()
         
+        // workaround the cancel button color is .labelColor (2022-09, macOS 13)
+        if let cancelButtonCell = (self.cell as? NSSearchFieldCell)?.cancelButtonCell {
+            cancelButtonCell.image = cancelButtonCell.image?
+                .withSymbolConfiguration(.init(paletteColors: [.secondaryLabelColor]))
+        }
+        
+        self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
+        
         let searchMenu = NSMenu(title: "Recent Filters".localized)
         searchMenu.addItem(withTitle: "Recent Filters".localized, action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
