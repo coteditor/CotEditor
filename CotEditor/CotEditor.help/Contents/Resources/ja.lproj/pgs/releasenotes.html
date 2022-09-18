@@ -25,9 +25,9 @@
 		<h2>新機能</h2>
 
 		<ul>
-			<li>「テキスト」メニューに「高度な文字カウント」を追加</li>
+			<li>「テキスト」メニューに「高度な文字カウント」機能を追加</li>
 			<li>複数のCotEditorスクリプトで同じキーボードショートカットが設定された場合、最前面の書類のシンタックススタイルと同じ名前のサブフォルダにあるスクリプトをショートカット入力時に優先的に使用</li>
-			<li>「テキスト」&gt;「変換」サブメニューに「URL絵エンコード/デコード」コマンドを追加</li>
+			<li>「テキスト」&gt;「変換」サブメニューに「URLエンコード/デコード」コマンドを追加</li>
 			<li>保存していない変更のある書類のウインドウタブにドット（黒丸）を表示</li>
 			<li>行番号ビューとエディタの間に区切り線を表示するオプションを追加</li>
 			<li>TypeScriptシンタックススタイルを追加</li>
@@ -41,9 +41,9 @@
 		<ul>
 			<li><strong>macOS 13 Ventura</strong>をサポート</li>
 			<li>システム要件を<strong>macOS 12 Monterey以上</strong>に変更</li>
-			<li>改行コードの不一致アラートの「この書類では次回から確認しない」オプションの状態を書類に記憶し、将来の同書類オープンでも設定を反映するように改良
-				<ul>
-					<li>[上級者向け] 下記のコマンドを実行することでこのアラート機能をアプリケーションレベルで完全に無効化できます（ただし推奨しません）: <br/><code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
+			<li>改行コードの不一致アラートの「この書類では次回から確認しない」オプションの状態を書類に記憶し、将来の同書類オープンでも設定を反映するように改良<ul>
+				<li>[上級者向け] 下記のコマンドを実行することでこのアラート機能をアプリケーションレベルで完全に無効化できます（ただし推奨しません）: <br/>
+					<code>defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES</code></li>
     		</ul></li>
 			<li>AppleScriptの<code>length</code>プロパティを廃止（代わりに <code>number of characters of contents</code>を使用してください）</li>
 			<li>マルチカーソル編集で双方向テキストの分割カーソルをサポート</li>
@@ -62,7 +62,7 @@
 			<li><span class="trivial">trivial</span>: エディタのコンテキストメニューを整理</li>
 			<li><span class="trivial">trivial</span>: 正規表現の基本文法表示を改良</li>
 			<li><span class="trivial">trivial</span>: ステータスバーの表示を最適化</li>
-			<li><span class="trivial">開発</span>: 開発環境をXcode 14.0 (macOS 13 SDK)に更新</li>
+			<li><span class="trivial">開発</span>: 開発環境をXcode 14.1 (macOS 13 SDK)に更新</li>
 		</ul>
 	</section>
 </article>
@@ -88,7 +88,6 @@
 		<h2>修正</h2>
 
 		<ul>
-			<li>不透明度ツールバー項目を表示しているとメモリリークが起こる可能性があった不具合を修正</li>
 			<li>保存ダイアログの「実行権を付与」オプションの変更が保存をキャンセルしたときにも引き継がれていた不具合を修正</li>
 			<li>特定の環境下で日本語環境のとき保存ダイアログのボタンが無反応になることがあるmacOS 12.4以降の不具合に対処</li>
 			<li>不透明度ツールバー項目を使用するとメモリがリークした不具合を修正</li>
