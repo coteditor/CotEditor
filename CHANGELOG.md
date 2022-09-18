@@ -5,6 +5,11 @@ Change Log
 4.4.0-beta.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Add history to the regular expression patterns in the custom sort dialog.
+
+
 
 
 4.4.0-beta.2 (533)

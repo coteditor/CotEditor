@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21503.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21503.1"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -417,20 +417,25 @@ Gw
             </objects>
             <point key="canvasLocation" x="840" y="-494"/>
         </scene>
-        <!--Sort Pattern View Controller-->
+        <!--Regular Expression Sort Pattern View Controller-->
         <scene sceneID="FSx-00-lyO">
             <objects>
-                <viewController id="mza-P2-Q5P" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mza-P2-Q5P" customClass="RegularExpressionSortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="7vg-Vr-uMI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="56" y="54" width="264" height="21"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="    Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn" customClass="PaddingTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="leadingPadding">
+                                            <real key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </textFieldCell>
                                 <connections>
                                     <accessibilityConnection property="title" destination="AxG-SI-oKl" id="zih-Yf-dDy"/>
@@ -539,18 +544,43 @@ Gw
                                     </binding>
                                 </connections>
                             </imageView>
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="zQG-S0-r5G">
+                                <rect key="frame" x="53" y="52" width="20" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="kq6-Bs-B0p"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="bevel" title="DUMMY" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="KUj-jq-0yX" id="tof-rQ-mTe">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" autoenablesItems="NO" id="caC-zj-mqG">
+                                        <items>
+                                            <menuItem title="DUMMY" state="on" hidden="YES" enabled="NO" id="KUj-jq-0yX">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Recents" enabled="NO" id="I0Y-TM-dfb">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                        <connections>
+                                            <outlet property="delegate" destination="mza-P2-Q5P" id="BsP-iw-zqq"/>
+                                        </connections>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Mfy-cT-iBU" firstAttribute="leading" secondItem="7vg-Vr-uMI" secondAttribute="leading" id="00V-au-TXG"/>
                             <constraint firstItem="fb7-9T-3g2" firstAttribute="top" secondItem="kD8-MY-cO8" secondAttribute="bottom" constant="8" symbolic="YES" id="1no-gr-QIT"/>
                             <constraint firstItem="fb7-9T-3g2" firstAttribute="firstBaseline" secondItem="ZsF-yo-SL5" secondAttribute="firstBaseline" id="6qZ-y6-gcn"/>
                             <constraint firstItem="fb7-9T-3g2" firstAttribute="leading" secondItem="ZsF-yo-SL5" secondAttribute="trailing" constant="4" id="Blx-89-Lnh"/>
+                            <constraint firstItem="zQG-S0-r5G" firstAttribute="leading" secondItem="kD8-MY-cO8" secondAttribute="leading" constant="2" id="ETT-pk-raK"/>
                             <constraint firstItem="kD8-MY-cO8" firstAttribute="leading" secondItem="AxG-SI-oKl" secondAttribute="trailing" constant="8" symbolic="YES" id="MQt-Oa-hzJ"/>
                             <constraint firstItem="Mfy-cT-iBU" firstAttribute="top" secondItem="bO8-kP-FOx" secondAttribute="bottom" constant="8" symbolic="YES" id="PMh-zI-xJe"/>
                             <constraint firstItem="vol-xC-ylG" firstAttribute="leading" secondItem="Mfy-cT-iBU" secondAttribute="trailing" constant="8" symbolic="YES" id="RF3-Ii-AnH"/>
                             <constraint firstAttribute="bottom" secondItem="Mfy-cT-iBU" secondAttribute="bottom" constant="8" id="Uru-S6-3Kb"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bO8-kP-FOx" secondAttribute="trailing" constant="20" symbolic="YES" id="ZYJ-Ai-obA"/>
                             <constraint firstItem="bO8-kP-FOx" firstAttribute="top" secondItem="kD8-MY-cO8" secondAttribute="bottom" constant="8" symbolic="YES" id="aSM-sl-BLk"/>
+                            <constraint firstItem="zQG-S0-r5G" firstAttribute="centerY" secondItem="kD8-MY-cO8" secondAttribute="centerY" id="cbp-BQ-xBJ"/>
                             <constraint firstItem="ooD-sC-3Cd" firstAttribute="centerY" secondItem="vol-xC-ylG" secondAttribute="centerY" id="k6Q-e4-elg"/>
                             <constraint firstItem="kD8-MY-cO8" firstAttribute="top" secondItem="7vg-Vr-uMI" secondAttribute="top" constant="8" id="ow4-NH-dRO"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ooD-sC-3Cd" secondAttribute="trailing" constant="20" symbolic="YES" id="ruo-xp-LLx"/>

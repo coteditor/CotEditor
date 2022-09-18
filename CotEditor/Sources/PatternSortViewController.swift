@@ -91,6 +91,10 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
             return NSSound.beep()
         }
         
+        if let pattern = pattern as? RegularExpressionSortPattern {
+                UserDefaults.standard[.regexPatternSortHistory].appendUnique(pattern.searchPattern, maximum: 10)
+        }
+        
         self.completionHandler?(pattern, self.sortOptions)
         
         self.dismiss(sender)
@@ -171,7 +175,7 @@ protocol SortPatternViewControllerDelegate: AnyObject {
 }
 
 
-final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
+class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     
     weak var delegate: SortPatternViewControllerDelegate?
     
@@ -198,6 +202,57 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
         guard let pattern = self.representedObject as? SortPattern else { return assertionFailure() }
         
         self.delegate?.didUpdate(sortPattern: pattern)
+    }
+    
+}
+
+
+
+final class RegularExpressionSortPatternViewController: SortPatternViewController, NSMenuDelegate {
+    
+    private let formatter = RegularExpressionFormatter()
+    
+    
+    /// Insert a regular expression pattern to the field
+    @IBAction func insertPattern(_ sender: NSMenuItem) {
+        
+        guard
+            let regexPattern = sender.representedObject as? String,
+            let sortPattern = self.representedObject as? RegularExpressionSortPattern
+        else { return assertionFailure() }
+        
+        sortPattern.searchPattern = regexPattern
+        self.valueDidUpdate(sender)
+    }
+    
+    
+    @IBAction func clearRecents(_ sender: Any?) {
+        
+        UserDefaults.standard[.regexPatternSortHistory].removeAll()
+    }
+    
+    
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        
+        menu.items.removeAll()
+        menu.addItem(.init())  // dummy item
+        menu.addItem(withTitle: "Recents".localized, action: nil, keyEquivalent: "")
+            .isEnabled = false
+        
+        guard !UserDefaults.standard[.regexPatternSortHistory].isEmpty else { return }
+        
+        menu.items += UserDefaults.standard[.regexPatternSortHistory]
+            .map {
+                let item = NSMenuItem()
+                item.attributedTitle = self.formatter.attributedString(for: $0)
+                item.representedObject = $0
+                item.action = #selector(insertPattern)
+                item.target = self
+                return item
+            }
+            .reversed()
+        menu.addItem(.separator())
+        menu.addItem(withTitle: "Clear Recents".localized, action: #selector(clearRecents), keyEquivalent: "")
     }
     
 }

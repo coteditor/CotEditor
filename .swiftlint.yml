@@ -91,6 +91,9 @@ function_parameter_count:
 vertical_whitespace:
   max_empty_lines: 3
 
+type_name:
+  max_length: 50
+
 file_length:
   warning: 2000
   error: 3000

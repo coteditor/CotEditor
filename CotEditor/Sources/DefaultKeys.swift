@@ -170,6 +170,7 @@ extension DefaultKeys {
     static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
+    static let regexPatternSortHistory = DefaultKey<[String]>("regexPatternSortHistory")
     
     // hidden settings
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
