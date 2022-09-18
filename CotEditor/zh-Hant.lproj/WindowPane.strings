@@ -47,7 +47,7 @@
 "3352.title" = "列位置頁面指示：";
 
 /* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
-"RwN-73-I8c.title" = "書寫方向:";
+"RwN-73-I8c.title" = "書寫方向：";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
 "3Kb-bF-CW0.title" = "從左到右";
 /* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */

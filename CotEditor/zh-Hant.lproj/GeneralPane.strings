@@ -61,7 +61,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "內容解析:";
+"lzy-Ei-xlT.title" = "內容解析：";
 
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "連結文件中的URL";

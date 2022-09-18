@@ -753,12 +753,13 @@
 "Ignore line endings" = "改行を無視";
 "Ignore whitespace" = "空白を無視";
 "Treat consecutive whitespace as one space" = "連続する空白を1文字として扱う";
-"Unit:" = "単位:";
 
+"Unit:" = "単位:";
 "Grapheme cluster" = "書記素クラスタ";
 "Unicode scalar" = "Unicodeスカラー";
 "UTF-16" = "UTF-16";
 "Byte" = "バイト";
+
 "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicodeで定義されている人の感覚に近い単位でカウントします。絵文字など複数のUnicodeコードポイントから成る文字も1文字で数えます。";
 "Count Unicode code points. Same as counting UTF-32." = "Unicodeコードポイント単位でカウントします。UTF-32のカウントと同一です。";
 "Count Unicode code points but a surrogate pair as two characters." = "Unicodeコードポイント単位でカウントしますがサロゲートペアは2文字でカウントします。";

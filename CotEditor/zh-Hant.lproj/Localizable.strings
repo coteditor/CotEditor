@@ -747,13 +747,14 @@
 "Stop Count" = "停止統計";  // This "Stop" should be translated the same as it is in the "Stop Advanced Character Count" menu label.
 
 
+
 /* MARK: CharacterCountOptionsView */
-"Whitespace:" = "空白字元:";
+"Whitespace:" = "空白字元：";
 "Ignore line endings" = "忽略行尾";
 "Ignore whitespace" = "忽略空白字元";
 "Treat consecutive whitespace as one space" = "將多個空白字元視為同一個";
 
-"Unit:" = "單位:";
+"Unit:" = "單位：";
 "Grapheme cluster" = "書寫元素集";  // technical term defined in Unicode
 "Unicode scalar" = "Unicode 純量";
 "UTF-16" = "UTF-16";
@@ -764,5 +765,5 @@
 "Count Unicode code points but a surrogate pair as two characters." = "統計萬國碼碼點數量，但將代理配對分別統計成兩個碼點。";
 "Count bytes of the text encoded with the specified encoding." = "以文本自身的編碼、來統計該文本的位元組數量。";
 
-"Encoding:" = "編碼:";
-"Normalization:" = "標準化:";
+"Encoding:" = "編碼：";
+"Normalization:" = "標準化：";

@@ -748,12 +748,13 @@
 
 
 
-"Whitespace:" = "空格:";
+/* MARK: CharacterCountOptionsView */
+"Whitespace:" = "空格：";
 "Ignore line endings" = "忽略行尾";
 "Ignore whitespace" = "忽略空格";
 "Treat consecutive whitespace as one space" = "将连续空格视作一个空格";
 
-"Unit:" = "单位:";
+"Unit:" = "单位：";
 "Grapheme cluster" = "字位簇";  // technical term defined in Unicode
 "Unicode scalar" = "Unicode标量";
 "UTF-16" = "UTF-16";

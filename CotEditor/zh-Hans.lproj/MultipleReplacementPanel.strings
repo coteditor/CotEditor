@@ -64,7 +64,7 @@
 // MARK: Editor View
 
 /* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "使用这些规则从上至下连续进行替换:";
+"5Ey-vx-5Sm.title" = "使用这些规则从上至下连续进行替换：";
 
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */

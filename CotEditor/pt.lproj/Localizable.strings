@@ -401,7 +401,7 @@
 "No issues found." = "Nenhum problema encontrado.";
 
 // Incompatible characters
-"Scanning incompatible characters…" = "Escaneando caracteres incompatíveis...";
+"Scanning incompatible characters…" = "Escaneando caracteres incompatíveis…";
 "Found an incompatible character." = "Encontrado caracter incompatível.";
 "Found %lld incompatible characters." = "Encontrados %lld caracteres incompatíveis.";  // %lld is the number of characters
 
