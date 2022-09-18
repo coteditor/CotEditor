@@ -43,7 +43,7 @@ struct DelegateContext {
     func perform(from caller: AnyObject, flag: Bool) {
         
         guard
-            let delegate = self.delegate as? NSObject,
+            let delegate = self.delegate as? AnyObject,
             let selector = self.selector,
             let objcClass = objc_getClass(delegate.className) as? AnyClass,
             let method = class_getMethodImplementation(objcClass, selector)
