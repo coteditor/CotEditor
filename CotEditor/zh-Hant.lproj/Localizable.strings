@@ -32,7 +32,7 @@
 
 
 // Appending words in parentheses
-" (%@)" = " (%@)";
+" (%@)" = "（%@）";
 
 
 // Accessibility labels
