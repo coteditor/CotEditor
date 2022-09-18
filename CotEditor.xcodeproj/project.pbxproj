@@ -2754,17 +2754,17 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
+				Base,
 				en,
+				"en-GB",
 				ja,
 				"zh-Hans",
-				Base,
+				"zh-Hant",
+				fr,
 				de,
 				it,
 				pt,
-				fr,
 				tr,
-				"en-GB",
-				"zh-Hant",
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
 			packageReferences = (
@@ -2811,8 +2811,8 @@
 				2ACDE28E2406B9C000FC31EC /* CharacterPopover.storyboard in Resources */,
 				2ACDE28F2406B9C000FC31EC /* ColorCodePanelAccessory.storyboard in Resources */,
 				2ACDE2912406B9C000FC31EC /* ConsolePanel.storyboard in Resources */,
-				2ACDE2922406B9C000FC31EC /* CustomTabWidthView.storyboard in Resources */,
 				2ACDE2932406B9C000FC31EC /* CustomSurroundStringView.storyboard in Resources */,
+				2ACDE2922406B9C000FC31EC /* CustomTabWidthView.storyboard in Resources */,
 				2ACDE2942406B9C000FC31EC /* DocumentInspectorView.storyboard in Resources */,
 				2ACDE2952406B9C000FC31EC /* DocumentWindow.storyboard in Resources */,
 				2ACDE2962406B9C000FC31EC /* EditorView.storyboard in Resources */,
@@ -2832,8 +2832,8 @@
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
 				2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */,
 				2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard in Resources */,
-				2ACDE2A92406B9C000FC31EC /* SettingsWindow.storyboard in Resources */,
 				2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */,
+				2ACDE2A92406B9C000FC31EC /* SettingsWindow.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */,
@@ -2887,8 +2887,8 @@
 				2ABC828421A9486A008F9229 /* CharacterPopover.storyboard in Resources */,
 				2ACA0CA521A3BFB700723073 /* ColorCodePanelAccessory.storyboard in Resources */,
 				2ADD0AE321800E2F00F78732 /* ConsolePanel.storyboard in Resources */,
-				2A25C51B20F068FD0003AE1A /* CustomTabWidthView.storyboard in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
+				2A25C51B20F068FD0003AE1A /* CustomTabWidthView.storyboard in Resources */,
 				2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 				2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */,
 				2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */,
@@ -2908,8 +2908,9 @@
 				2A10D1201E713BE60027192A /* PrintPane.storyboard in Resources */,
 				2ACA0C9521A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */,
 				2A7F4E002871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard in Resources */,
-				2A443220219AC235008A0A6B /* SettingsWindow.storyboard in Resources */,
 				2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
+				2A443220219AC235008A0A6B /* SettingsWindow.storyboard in Resources */,
+				2AB2243E21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */,
 				2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2AB2245421A809A000F6201F /* SyntaxEditView.storyboard in Resources */,
 				2AB2241D21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */,
@@ -2917,7 +2918,6 @@
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
 				2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */,
-				2AB2243E21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */,
 				2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */,
 				2A4144B8201397150061F653 /* WarningsView.storyboard in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
@@ -3301,8 +3301,8 @@
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A341D1A281EE23C00B85CB6 /* UserActivity.swift in Sources */,
-				2A1A4EAC24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2A222C3024FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
+				2A1A4EAC24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningsViewController.swift in Sources */,
@@ -3324,12 +3324,12 @@
 				2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */,
 				2ABEFB6A23DC0CA0008769F4 /* EditorInfoCountOperationTests.swift in Sources */,
 				2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */,
-				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
-				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
-				2A719F6623CD92370026F877 /* FuzzyRangeTests.swift in Sources */,
 				2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */,
 				2A9B134C27E2CE86009954A4 /* FileManagerTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */,
+				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
+				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
+				2A719F6623CD92370026F877 /* FuzzyRangeTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
 				2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */,
@@ -3501,9 +3501,9 @@
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A71BC7E1DDC70A80085AE1C /* NSAttributedString+Symbol.swift in Sources */,
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
-				2A48982D215B2BFD00A6CE8A /* NSCursor+Workaround.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
+				2A48982D215B2BFD00A6CE8A /* NSCursor+Workaround.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A9B134F27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
@@ -3564,9 +3564,9 @@
 				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A1814BB21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
+				2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */,
 				2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
-				2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */,
 				2AC72E8225342726001D3CA0 /* SegmentedArrayControl.swift in Sources */,
 				2A0AEA062124A83B00E4EC3D /* SelectionColorWell.swift in Sources */,
 				2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
@@ -3636,8 +3636,8 @@
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A341D1B281EE23C00B85CB6 /* UserActivity.swift in Sources */,
-				2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
+				2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
 				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningsViewController.swift in Sources */,
@@ -3675,15 +3675,15 @@
 		259C2316077678DE00BA61C5 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				2AE4658727A6BDCF00D2904F /* en-GB */,
 				6C1E212412C9E65600194313 /* ja */,
 				4B7998191A1F1BCD0088D167 /* zh-Hans */,
+				5B91B7D1282A679E005CBD5C /* zh-Hant */,
+				0D51D58F2274EE6F00A5D747 /* fr */,
 				2A69077A1B8443AB00D0F3A2 /* de */,
 				2A401FE71D9AF0A300ACE036 /* it */,
 				57ED31711FFD892900F16CAD /* pt */,
-				0D51D58F2274EE6F00A5D747 /* fr */,
 				08C28FAF279CBE440016693E /* tr */,
-				2AE4658727A6BDCF00D2904F /* en-GB */,
-				5B91B7D1282A679E005CBD5C /* zh-Hant */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -3692,15 +3692,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A10D1021E7088B00027192A /* Base */,
+				98EAE81427A5D7D700C6D571 /* en-GB */,
 				2A10D1041E7088B30027192A /* ja */,
 				2A10D1051E7088B60027192A /* zh-Hans */,
+				5B0884EB28296B5F003D4C2D /* zh-Hant */,
+				0D51D57B2274EADF00A5D747 /* fr */,
 				2A10D1061E7088B90027192A /* de */,
 				2A10D1071E7088BB0027192A /* it */,
 				57ED315A1FFD892700F16CAD /* pt */,
-				0D51D57B2274EADF00A5D747 /* fr */,
 				08C28F83279CBE2D0016693E /* tr */,
-				98EAE81427A5D7D700C6D571 /* en-GB */,
-				5B0884EB28296B5F003D4C2D /* zh-Hant */,
 			);
 			name = WindowPane.storyboard;
 			sourceTree = "<group>";
@@ -3709,15 +3709,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A10D1091E708CDF0027192A /* Base */,
+				98EAE81927A5D7D700C6D571 /* en-GB */,
 				2A10D10C1E7091D70027192A /* ja */,
 				2A10D10D1E7091D90027192A /* zh-Hans */,
+				5B0884F028296B60003D4C2D /* zh-Hant */,
+				0D51D5802274EAE100A5D747 /* fr */,
 				2A10D10E1E7091DB0027192A /* de */,
 				2A10D10F1E7091DE0027192A /* it */,
 				57ED315F1FFD892700F16CAD /* pt */,
-				0D51D5802274EAE100A5D747 /* fr */,
 				08C28F88279CBE2D0016693E /* tr */,
-				98EAE81927A5D7D700C6D571 /* en-GB */,
-				5B0884F028296B60003D4C2D /* zh-Hant */,
 			);
 			name = KeyBindingsPane.storyboard;
 			sourceTree = "<group>";
@@ -3726,15 +3726,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A10D11F1E713BE60027192A /* Base */,
+				98EAE81A27A5D7D700C6D571 /* en-GB */,
 				2A10D1221E713D0B0027192A /* ja */,
 				2A10D1231E713D0E0027192A /* zh-Hans */,
+				5B0884F128296B60003D4C2D /* zh-Hant */,
+				0D51D5812274EAE100A5D747 /* fr */,
 				2A10D1241E713D100027192A /* de */,
 				2A10D1251E713D110027192A /* it */,
 				57ED31601FFD892800F16CAD /* pt */,
-				0D51D5812274EAE100A5D747 /* fr */,
 				08C28F89279CBE2D0016693E /* tr */,
-				98EAE81A27A5D7D700C6D571 /* en-GB */,
-				5B0884F128296B60003D4C2D /* zh-Hant */,
 			);
 			name = PrintPane.storyboard;
 			sourceTree = "<group>";
@@ -3743,15 +3743,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A10D1271E714D230027192A /* Base */,
+				98EAE81527A5D7D700C6D571 /* en-GB */,
 				2A10D12A1E714F710027192A /* ja */,
 				2A10D12B1E714F720027192A /* zh-Hans */,
+				5B0884EC28296B5F003D4C2D /* zh-Hant */,
+				0D51D57C2274EADF00A5D747 /* fr */,
 				2A10D12C1E714F730027192A /* de */,
 				2A10D12D1E714F740027192A /* it */,
 				57ED315B1FFD892700F16CAD /* pt */,
-				0D51D57C2274EADF00A5D747 /* fr */,
 				08C28F84279CBE2D0016693E /* tr */,
-				98EAE81527A5D7D700C6D571 /* en-GB */,
-				5B0884EC28296B5F003D4C2D /* zh-Hant */,
 			);
 			name = AppearancePane.storyboard;
 			sourceTree = "<group>";
@@ -3760,15 +3760,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A10D12F1E7152F30027192A /* Base */,
+				98EAE81627A5D7D700C6D571 /* en-GB */,
 				2A10D1321E7154B40027192A /* ja */,
 				2A10D1331E7154B50027192A /* zh-Hans */,
+				5B0884ED28296B60003D4C2D /* zh-Hant */,
+				0D51D57D2274EAE000A5D747 /* fr */,
 				2A10D1341E7154B60027192A /* de */,
 				2A10D1351E7154B70027192A /* it */,
 				57ED315C1FFD892700F16CAD /* pt */,
-				0D51D57D2274EAE000A5D747 /* fr */,
 				08C28F85279CBE2D0016693E /* tr */,
-				98EAE81627A5D7D700C6D571 /* en-GB */,
-				5B0884ED28296B60003D4C2D /* zh-Hant */,
 			);
 			name = EditPane.storyboard;
 			sourceTree = "<group>";
@@ -3777,15 +3777,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A10D1371E715E5B0027192A /* Base */,
+				98EAE81727A5D7D700C6D571 /* en-GB */,
 				2A10D13A1E71B6390027192A /* ja */,
 				2A10D13B1E71B63B0027192A /* zh-Hans */,
+				5B0884EE28296B60003D4C2D /* zh-Hant */,
+				0D51D57E2274EAE000A5D747 /* fr */,
 				2A10D13C1E71B63C0027192A /* de */,
 				2A10D13D1E71B63D0027192A /* it */,
 				57ED315D1FFD892700F16CAD /* pt */,
-				0D51D57E2274EAE000A5D747 /* fr */,
 				08C28F86279CBE2D0016693E /* tr */,
-				98EAE81727A5D7D700C6D571 /* en-GB */,
-				5B0884EE28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FormatPane.storyboard;
 			sourceTree = "<group>";
@@ -3794,15 +3794,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A1893A31FFF15E000AD244F /* Base */,
+				98EAE83327A5D7DA00C6D571 /* en-GB */,
 				2AAFA57A1FFFCE2100E15768 /* ja */,
 				2AAFA57C1FFFCE2600E15768 /* zh-Hans */,
+				5B08850928296B61003D4C2D /* zh-Hant */,
+				0D51D5762274EADC00A5D747 /* fr */,
 				2AAFA57E1FFFCE2800E15768 /* de */,
 				2AAFA5801FFFCE2900E15768 /* it */,
 				2A03E699201457570093FDF1 /* pt */,
-				0D51D5762274EADC00A5D747 /* fr */,
 				08C28FA2279CBE2F0016693E /* tr */,
-				98EAE83327A5D7DA00C6D571 /* en-GB */,
-				5B08850928296B61003D4C2D /* zh-Hant */,
 			);
 			name = PatternSortView.storyboard;
 			sourceTree = "<group>";
@@ -3811,15 +3811,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A25C51A20F068FD0003AE1A /* Base */,
+				98EAE83527A5D7DA00C6D571 /* en-GB */,
 				2A25C51E20F06A8C0003AE1A /* ja */,
 				2A25C52020F06A8F0003AE1A /* zh-Hans */,
+				5B08850B28296B61003D4C2D /* zh-Hant */,
+				0D51D5782274EADD00A5D747 /* fr */,
 				2A25C52220F06A910003AE1A /* de */,
 				2A25C52420F06A930003AE1A /* it */,
 				2A25C52620F06A940003AE1A /* pt */,
-				0D51D5782274EADD00A5D747 /* fr */,
 				08C28FA4279CBE2F0016693E /* tr */,
-				98EAE83527A5D7DA00C6D571 /* en-GB */,
-				5B08850B28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CustomTabWidthView.storyboard;
 			sourceTree = "<group>";
@@ -3828,15 +3828,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A3D63FA1E769DDF00F538E1 /* Base */,
+				98EAE82727A5D7D900C6D571 /* en-GB */,
 				2AE439CF20A127DD00EED807 /* ja */,
 				2AE439D120A127EE00EED807 /* zh-Hans */,
+				5B0884FD28296B60003D4C2D /* zh-Hant */,
+				0D51D56B2274EAD600A5D747 /* fr */,
 				2AE439D320A1280500EED807 /* de */,
 				2AE439D520A1280700EED807 /* it */,
 				2AE439D720A1280800EED807 /* pt */,
-				0D51D56B2274EAD600A5D747 /* fr */,
 				08C28F96279CBE2E0016693E /* tr */,
-				98EAE82727A5D7D900C6D571 /* en-GB */,
-				5B0884FD28296B60003D4C2D /* zh-Hant */,
 			);
 			name = MultipleReplacementPanel.storyboard;
 			sourceTree = "<group>";
@@ -3845,15 +3845,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A4144B7201397150061F653 /* Base */,
+				98EAE82B27A5D7D900C6D571 /* en-GB */,
 				2A4144C62013A9180061F653 /* ja */,
 				2A4144C82013A91E0061F653 /* zh-Hans */,
+				5B08850128296B61003D4C2D /* zh-Hant */,
+				0D51D56F2274EAD800A5D747 /* fr */,
 				2A4144CA2013A91F0061F653 /* de */,
 				2A4144CC2013A9230061F653 /* it */,
 				2A4144CE2013A9250061F653 /* pt */,
-				0D51D56F2274EAD800A5D747 /* fr */,
 				08C28F9A279CBE2F0016693E /* tr */,
-				98EAE82B27A5D7D900C6D571 /* en-GB */,
-				5B08850128296B61003D4C2D /* zh-Hant */,
 			);
 			name = WarningsView.storyboard;
 			sourceTree = "<group>";
@@ -3862,15 +3862,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A4144BB201397D70061F653 /* Base */,
+				98EAE82927A5D7D900C6D571 /* en-GB */,
 				2A4144C02013A90B0061F653 /* ja */,
 				2A4144C12013A90D0061F653 /* zh-Hans */,
+				5B0884FF28296B60003D4C2D /* zh-Hant */,
+				0D51D56D2274EAD700A5D747 /* fr */,
 				2A4144C22013A90F0061F653 /* de */,
 				2A4144C32013A9110061F653 /* it */,
 				2A4144C42013A9140061F653 /* pt */,
-				0D51D56D2274EAD700A5D747 /* fr */,
 				08C28F98279CBE2F0016693E /* tr */,
-				98EAE82927A5D7D900C6D571 /* en-GB */,
-				5B0884FF28296B60003D4C2D /* zh-Hant */,
 			);
 			name = DocumentInspectorView.storyboard;
 			sourceTree = "<group>";
@@ -3879,15 +3879,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A44321F219AC235008A0A6B /* Base */,
+				98EAE81227A5D7D600C6D571 /* en-GB */,
 				2A443224219AC9DC008A0A6B /* ja */,
 				2A443225219AC9DE008A0A6B /* zh-Hans */,
+				5B0884E928296B5F003D4C2D /* zh-Hant */,
+				0D51D5792274EADD00A5D747 /* fr */,
 				2A443226219AC9DF008A0A6B /* de */,
 				2A443227219AC9E0008A0A6B /* it */,
 				2A443228219AC9E1008A0A6B /* pt */,
-				0D51D5792274EADD00A5D747 /* fr */,
 				08C28F81279CBE2C0016693E /* tr */,
-				98EAE81227A5D7D600C6D571 /* en-GB */,
-				5B0884E928296B5F003D4C2D /* zh-Hant */,
 			);
 			name = SettingsWindow.storyboard;
 			sourceTree = "<group>";
@@ -3896,15 +3896,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A456C431A1EDCFC00395158 /* en */,
+				98EAE83D27A5D7DA00C6D571 /* en-GB */,
 				2A456C441A1EDD0400395158 /* ja */,
 				4B79981C1A1F1BCD0088D167 /* zh-Hans */,
+				5B08851228296B61003D4C2D /* zh-Hant */,
+				2A5DD44122793B9B0057AAD1 /* fr */,
 				2A69077E1B8443AB00D0F3A2 /* de */,
 				2A401FE41D9AED8200ACE036 /* it */,
 				57ED31771FFD892A00F16CAD /* pt */,
-				2A5DD44122793B9B0057AAD1 /* fr */,
 				08C28FAC279CBE300016693E /* tr */,
-				98EAE83D27A5D7DA00C6D571 /* en-GB */,
-				5B08851228296B61003D4C2D /* zh-Hant */,
 			);
 			name = ReportTemplate.md;
 			sourceTree = "<group>";
@@ -3913,15 +3913,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A5D13411D1FE34F00D38E6A /* Base */,
+				98EAE82527A5D7D900C6D571 /* en-GB */,
 				2A0D64A11D20FFB0006B4937 /* ja */,
 				2A0D64A21D20FFB3006B4937 /* zh-Hans */,
+				5B0884FB28296B60003D4C2D /* zh-Hant */,
+				0D51D5682274EAD400A5D747 /* fr */,
 				2A0D64A31D20FFB6006B4937 /* de */,
 				2A401FB81D9AD76C00ACE036 /* it */,
 				57ED314B1FFD892600F16CAD /* pt */,
-				0D51D5682274EAD400A5D747 /* fr */,
 				08C28F94279CBE2E0016693E /* tr */,
-				98EAE82527A5D7D900C6D571 /* en-GB */,
-				5B0884FB28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FindPanel.storyboard;
 			sourceTree = "<group>";
@@ -3929,15 +3929,15 @@
 		2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				2AC4E5D027A6C02C0052A4DD /* en-GB */,
 				2A5E4D7B1A44F0D50072013F /* ja */,
 				2A5E4D7D1A44F4A30072013F /* zh-Hans */,
+				5B91B7D3282A681D005CBD5C /* zh-Hant */,
+				0D51D5912274EF4A00A5D747 /* fr */,
 				2A69077C1B8443AB00D0F3A2 /* de */,
 				2A401FE51D9AEE4500ACE036 /* it */,
 				57ED31731FFD892900F16CAD /* pt */,
-				0D51D5912274EF4A00A5D747 /* fr */,
 				08C28FB1279CBE4F0016693E /* tr */,
-				2AC4E5D027A6C02C0052A4DD /* en-GB */,
-				5B91B7D3282A681D005CBD5C /* zh-Hant */,
 			);
 			name = ServicesMenu.strings;
 			sourceTree = "<group>";
@@ -3946,15 +3946,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A5F7CA41D152589001D83BC /* Base */,
+				98EAE82C27A5D7D900C6D571 /* en-GB */,
 				2A5F7CAB1D157506001D83BC /* ja */,
 				2A5F7CAC1D157509001D83BC /* zh-Hans */,
+				5B08850228296B61003D4C2D /* zh-Hant */,
+				0D51D5702274EAD800A5D747 /* fr */,
 				2A5F7CAD1D15750B001D83BC /* de */,
 				2A401FBE1D9AD76D00ACE036 /* it */,
 				57ED31511FFD892600F16CAD /* pt */,
-				0D51D5702274EAD800A5D747 /* fr */,
 				08C28F9B279CBE2F0016693E /* tr */,
-				98EAE82C27A5D7D900C6D571 /* en-GB */,
-				5B08850228296B61003D4C2D /* zh-Hant */,
 			);
 			name = EditorView.storyboard;
 			sourceTree = "<group>";
@@ -3963,15 +3963,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A642CD02390C11C00BCA4C4 /* Base */,
+				98EAE83027A5D7D900C6D571 /* en-GB */,
 				2A642CD32390EC9F00BCA4C4 /* ja */,
 				2A642CD42390ECA200BCA4C4 /* zh-Hans */,
+				5B08850628296B61003D4C2D /* zh-Hant */,
+				2A642CD82390ECB200BCA4C4 /* fr */,
 				2A642CD52390ECA500BCA4C4 /* de */,
 				2A642CD62390ECA900BCA4C4 /* it */,
 				2A642CD72390ECAD00BCA4C4 /* pt */,
-				2A642CD82390ECB200BCA4C4 /* fr */,
 				08C28F9F279CBE2F0016693E /* tr */,
-				98EAE83027A5D7D900C6D571 /* en-GB */,
-				5B08850628296B61003D4C2D /* zh-Hant */,
 			);
 			name = ProgressView.storyboard;
 			sourceTree = "<group>";
@@ -3980,15 +3980,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A6602CF1D05BD72003E8D87 /* Base */,
+				98EAE82827A5D7D900C6D571 /* en-GB */,
 				2A6602D21D05BD84003E8D87 /* ja */,
 				2A6602D31D05BD86003E8D87 /* zh-Hans */,
+				5B0884FE28296B60003D4C2D /* zh-Hant */,
+				0D51D56C2274EAD700A5D747 /* fr */,
 				2A6602D41D05BD88003E8D87 /* de */,
 				2A401FBB1D9AD76C00ACE036 /* it */,
 				57ED314E1FFD892600F16CAD /* pt */,
-				0D51D56C2274EAD700A5D747 /* fr */,
 				08C28F97279CBE2F0016693E /* tr */,
-				98EAE82827A5D7D900C6D571 /* en-GB */,
-				5B0884FE28296B60003D4C2D /* zh-Hant */,
 			);
 			name = DocumentWindow.storyboard;
 			sourceTree = "<group>";
@@ -3997,15 +3997,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A68721E2887F0D8006D6B41 /* Base */,
+				2A687229288834FA006D6B41 /* en-GB */,
 				2A687222288834E4006D6B41 /* ja */,
 				2A687223288834E9006D6B41 /* zh-Hans */,
+				2A68722A288834FB006D6B41 /* zh-Hant */,
+				2A687227288834F3006D6B41 /* fr */,
 				2A687224288834EB006D6B41 /* de */,
 				2A687225288834EF006D6B41 /* it */,
 				2A687226288834F1006D6B41 /* pt */,
-				2A687227288834F3006D6B41 /* fr */,
 				2A687228288834F6006D6B41 /* tr */,
-				2A687229288834FA006D6B41 /* en-GB */,
-				2A68722A288834FB006D6B41 /* zh-Hant */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -4014,15 +4014,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A7F4E012871F46D0029CE66 /* Base */,
+				2A7F4E122871F4950029CE66 /* en-GB */,
 				2A7F4E042871F47A0029CE66 /* ja */,
 				2A7F4E062871F47F0029CE66 /* zh-Hans */,
+				2A7F4E142871F4980029CE66 /* zh-Hant */,
+				2A7F4E0E2871F48D0029CE66 /* fr */,
 				2A7F4E082871F4840029CE66 /* de */,
 				2A7F4E0A2871F4890029CE66 /* it */,
 				2A7F4E0C2871F48A0029CE66 /* pt */,
-				2A7F4E0E2871F48D0029CE66 /* fr */,
 				2A7F4E102871F4900029CE66 /* tr */,
-				2A7F4E122871F4950029CE66 /* en-GB */,
-				2A7F4E142871F4980029CE66 /* zh-Hant */,
 			);
 			name = PrintPanelAccessoryVentura.storyboard;
 			sourceTree = "<group>";
@@ -4031,15 +4031,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A80C65D1CEE33C100AA664D /* en */,
+				98EAE83B27A5D7DA00C6D571 /* en-GB */,
 				2A80C6601CEE351200AA664D /* ja */,
+				2AF4F57F1DE60B4200703525 /* zh-Hans */,
+				5B08851028296B61003D4C2D /* zh-Hant */,
+				2A08C889228E72DC002DC184 /* fr */,
 				2A80C6611CEE351400AA664D /* de */,
 				2A401FE21D9AD77400ACE036 /* it */,
-				2AF4F57F1DE60B4200703525 /* zh-Hans */,
 				57ED31751FFD892900F16CAD /* pt */,
-				2A08C889228E72DC002DC184 /* fr */,
 				08C28FAA279CBE300016693E /* tr */,
-				98EAE83B27A5D7DA00C6D571 /* en-GB */,
-				5B08851028296B61003D4C2D /* zh-Hant */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
@@ -4048,12 +4048,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A80C6671CEE540F00AA664D /* en */,
+				98EAE83C27A5D7DA00C6D571 /* en-GB */,
 				2A80C66A1CEE541400AA664D /* ja */,
 				2A80C66B1CEE541600AA664D /* zh-Hans */,
+				5B08851128296B61003D4C2D /* zh-Hant */,
 				57ED31761FFD892900F16CAD /* pt */,
 				08C28FAB279CBE300016693E /* tr */,
-				98EAE83C27A5D7DA00C6D571 /* en-GB */,
-				5B08851128296B61003D4C2D /* zh-Hant */,
 			);
 			name = Acknowledgments.html;
 			sourceTree = "<group>";
@@ -4062,15 +4062,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A836F7F1D572A5D0044E8EC /* Base */,
+				98EAE81027A5D7D600C6D571 /* en-GB */,
 				2A836F891D5734810044E8EC /* ja */,
 				2A836F8A1D5734840044E8EC /* zh-Hans */,
+				5B0884E828296B5F003D4C2D /* zh-Hant */,
+				0D51D5672274EAD300A5D747 /* fr */,
 				2A836F8B1D5734870044E8EC /* de */,
 				2A401FB61D9AD76C00ACE036 /* it */,
 				57ED314A1FFD892600F16CAD /* pt */,
-				0D51D5672274EAD300A5D747 /* fr */,
 				08C28F7F279CBE2C0016693E /* tr */,
-				98EAE81027A5D7D600C6D571 /* en-GB */,
-				5B0884E828296B5F003D4C2D /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -4086,15 +4086,15 @@
 		2AA2E0111BFE12620087BDD6 /* Unicode.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				2AC4E5D127A6C0300052A4DD /* en-GB */,
 				2AA2E0121BFE12620087BDD6 /* ja */,
 				2AA2E0151BFE14310087BDD6 /* zh-Hans */,
+				5B91B7D4282A6851005CBD5C /* zh-Hant */,
+				0D51D5922274EF5300A5D747 /* fr */,
 				2AA2E0161BFE14320087BDD6 /* de */,
 				2A401FE81D9AF7CA00ACE036 /* it */,
 				57ED31741FFD892900F16CAD /* pt */,
-				0D51D5922274EF5300A5D747 /* fr */,
 				08C28FB2279CBE530016693E /* tr */,
-				2AC4E5D127A6C0300052A4DD /* en-GB */,
-				5B91B7D4282A6851005CBD5C /* zh-Hant */,
 			);
 			name = Unicode.strings;
 			sourceTree = "<group>";
@@ -4103,15 +4103,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2241321A7CDEF00F6201F /* Base */,
+				98EAE82127A5D7D800C6D571 /* en-GB */,
 				2AB2241621A7CF3400F6201F /* ja */,
 				2AB2241721A7CF3500F6201F /* zh-Hans */,
+				5B0884F828296B60003D4C2D /* zh-Hant */,
+				0D51D5892274EAE400A5D747 /* fr */,
 				2AB2241821A7CF3600F6201F /* de */,
 				2AB2241921A7CF3700F6201F /* it */,
 				2AB2241A21A7CF3800F6201F /* pt */,
-				0D51D5892274EAE400A5D747 /* fr */,
 				08C28F90279CBE2E0016693E /* tr */,
-				98EAE82127A5D7D800C6D571 /* en-GB */,
-				5B0884F828296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxInfoEditView.storyboard;
 			sourceTree = "<group>";
@@ -4120,15 +4120,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2241C21A7CFC900F6201F /* Base */,
+				98EAE82027A5D7D800C6D571 /* en-GB */,
 				2AB2241F21A7D0CC00F6201F /* ja */,
 				2AB2242021A7D0CE00F6201F /* zh-Hans */,
+				5B0884F728296B60003D4C2D /* zh-Hant */,
+				0D51D5882274EAE300A5D747 /* fr */,
 				2AB2242121A7D0CF00F6201F /* de */,
 				2AB2242221A7D0D100F6201F /* it */,
 				2AB2242321A7D0D200F6201F /* pt */,
-				0D51D5882274EAE300A5D747 /* fr */,
 				08C28F8F279CBE2E0016693E /* tr */,
-				98EAE82027A5D7D800C6D571 /* en-GB */,
-				5B0884F728296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxFileMappingEditView.storyboard;
 			sourceTree = "<group>";
@@ -4137,15 +4137,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2242821A7D51800F6201F /* Base */,
+				98EAE81F27A5D7D800C6D571 /* en-GB */,
 				2AB2242B21A7D5E900F6201F /* ja */,
 				2AB2242C21A7D5EA00F6201F /* zh-Hans */,
+				5B0884F628296B60003D4C2D /* zh-Hant */,
+				0D51D5872274EAE300A5D747 /* fr */,
 				2AB2242D21A7D5EA00F6201F /* de */,
 				2AB2242E21A7D5EB00F6201F /* it */,
 				2AB2242F21A7D5EC00F6201F /* pt */,
-				0D51D5872274EAE300A5D747 /* fr */,
 				08C28F8E279CBE2E0016693E /* tr */,
-				98EAE81F27A5D7D800C6D571 /* en-GB */,
-				5B0884F628296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxCompletionsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4154,15 +4154,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2243421A7D78400F6201F /* Base */,
+				98EAE81E27A5D7D800C6D571 /* en-GB */,
 				2AB2243721A7D86100F6201F /* ja */,
 				2AB2243821A7D86100F6201F /* zh-Hans */,
+				5B0884F528296B60003D4C2D /* zh-Hant */,
+				0D51D5862274EAE300A5D747 /* fr */,
 				2AB2243921A7D86200F6201F /* de */,
 				2AB2243A21A7D86400F6201F /* it */,
 				2AB2243B21A7D86500F6201F /* pt */,
-				0D51D5862274EAE300A5D747 /* fr */,
 				08C28F8D279CBE2E0016693E /* tr */,
-				98EAE81E27A5D7D800C6D571 /* en-GB */,
-				5B0884F528296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxOutlineEditView.storyboard;
 			sourceTree = "<group>";
@@ -4171,15 +4171,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2243D21A7D8DF00F6201F /* Base */,
+				98EAE81D27A5D7D800C6D571 /* en-GB */,
 				2AB2244021A7D9D400F6201F /* ja */,
 				2AB2244121A7D9D500F6201F /* zh-Hans */,
+				5B0884F428296B60003D4C2D /* zh-Hant */,
+				0D51D5852274EAE200A5D747 /* fr */,
 				2AB2244221A7D9D600F6201F /* de */,
 				2AB2244321A7D9D700F6201F /* it */,
 				2AB2244421A7D9D800F6201F /* pt */,
-				0D51D5852274EAE200A5D747 /* fr */,
 				08C28F8C279CBE2E0016693E /* tr */,
-				98EAE81D27A5D7D800C6D571 /* en-GB */,
-				5B0884F428296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxCommentsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4188,15 +4188,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2244921A7DB9B00F6201F /* Base */,
+				98EAE81C27A5D7D800C6D571 /* en-GB */,
 				2AB2244C21A7DCA000F6201F /* ja */,
 				2AB2244D21A7DCA100F6201F /* zh-Hans */,
+				5B0884F328296B60003D4C2D /* zh-Hant */,
+				0D51D5842274EAE200A5D747 /* fr */,
 				2AB2244E21A7DCA200F6201F /* de */,
 				2AB2244F21A7DCA300F6201F /* it */,
 				2AB2245021A7DCA400F6201F /* pt */,
-				0D51D5842274EAE200A5D747 /* fr */,
 				08C28F8B279CBE2D0016693E /* tr */,
-				98EAE81C27A5D7D800C6D571 /* en-GB */,
-				5B0884F328296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxTermsEditView.storyboard;
 			sourceTree = "<group>";
@@ -4205,15 +4205,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AB2245321A809A000F6201F /* Base */,
+				98EAE81B27A5D7D800C6D571 /* en-GB */,
 				2AB2245621A809B200F6201F /* ja */,
 				2AB2245721A809B500F6201F /* zh-Hans */,
+				5B0884F228296B60003D4C2D /* zh-Hant */,
+				0D51D5832274EAE200A5D747 /* fr */,
 				2AB2245821A809B600F6201F /* de */,
 				2AB2245921A809B700F6201F /* it */,
 				2AB2245A21A809B800F6201F /* pt */,
-				0D51D5832274EAE200A5D747 /* fr */,
 				08C28F8A279CBE2D0016693E /* tr */,
-				98EAE81B27A5D7D800C6D571 /* en-GB */,
-				5B0884F228296B60003D4C2D /* zh-Hant */,
 			);
 			name = SyntaxEditView.storyboard;
 			sourceTree = "<group>";
@@ -4222,15 +4222,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ABC828321A9486A008F9229 /* Base */,
+				98EAE83627A5D7DA00C6D571 /* en-GB */,
 				2A15688A245C107B0055CD85 /* ja */,
 				2A15688C245C107E0055CD85 /* zh-Hans */,
+				5B08850C28296B61003D4C2D /* zh-Hant */,
+				2A156894245C10880055CD85 /* fr */,
 				2A15688E245C10800055CD85 /* de */,
 				2A156890245C10840055CD85 /* it */,
 				2A156892245C10860055CD85 /* pt */,
-				2A156894245C10880055CD85 /* fr */,
 				08C28FA5279CBE300016693E /* tr */,
-				98EAE83627A5D7DA00C6D571 /* en-GB */,
-				5B08850C28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CharacterPopover.storyboard;
 			sourceTree = "<group>";
@@ -4239,15 +4239,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AC20A701E70819E0093B9C6 /* Base */,
+				98EAE81327A5D7D700C6D571 /* en-GB */,
 				2A10D0F91E7085250027192A /* ja */,
 				2A10D0FA1E7085270027192A /* zh-Hans */,
+				5B0884EA28296B5F003D4C2D /* zh-Hant */,
+				0D51D57A2274EADE00A5D747 /* fr */,
 				2A10D0FB1E7085290027192A /* de */,
 				2A10D0FC1E70852B0027192A /* it */,
 				57ED31591FFD892700F16CAD /* pt */,
-				0D51D57A2274EADE00A5D747 /* fr */,
 				08C28F82279CBE2D0016693E /* tr */,
-				98EAE81327A5D7D700C6D571 /* en-GB */,
-				5B0884EA28296B5F003D4C2D /* zh-Hant */,
 			);
 			name = GeneralPane.storyboard;
 			sourceTree = "<group>";
@@ -4256,15 +4256,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AC60697204169F800F9C839 /* Base */,
+				98EAE82D27A5D7D900C6D571 /* en-GB */,
 				2AC6069D2041760000F9C839 /* ja */,
 				2AC6069E2041760200F9C839 /* zh-Hans */,
+				5B08850328296B61003D4C2D /* zh-Hant */,
+				0D51D5712274EAD900A5D747 /* fr */,
 				2AC6069F2041760400F9C839 /* de */,
 				2AC606A02041760700F9C839 /* it */,
 				2AC606A12041760900F9C839 /* pt */,
-				0D51D5712274EAD900A5D747 /* fr */,
 				08C28F9C279CBE2F0016693E /* tr */,
-				98EAE82D27A5D7D900C6D571 /* en-GB */,
-				5B08850328296B61003D4C2D /* zh-Hant */,
 			);
 			name = OpenDocumentAccessory.storyboard;
 			sourceTree = "<group>";
@@ -4273,15 +4273,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ACA0C7921A1982300723073 /* Base */,
+				98EAE82327A5D7D800C6D571 /* en-GB */,
 				2ACA0C7C21A19A9200723073 /* ja */,
 				2ACA0C7D21A19A9400723073 /* zh-Hans */,
+				5B0884F928296B60003D4C2D /* zh-Hant */,
+				0D51D58A2274EAE400A5D747 /* fr */,
 				2ACA0C7E21A19A9500723073 /* de */,
 				2ACA0C7F21A19A9600723073 /* it */,
 				2ACA0C8021A19A9700723073 /* pt */,
-				0D51D58A2274EAE400A5D747 /* fr */,
 				08C28F92279CBE2E0016693E /* tr */,
-				98EAE82327A5D7D800C6D571 /* en-GB */,
-				5B0884F928296B60003D4C2D /* zh-Hant */,
 			);
 			name = EncodingListView.storyboard;
 			sourceTree = "<group>";
@@ -4290,15 +4290,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ACA0C8B21A29D4800723073 /* Base */,
+				98EAE82627A5D7D900C6D571 /* en-GB */,
 				2ACA0C8E21A29E4700723073 /* ja */,
 				2ACA0C8F21A29E4900723073 /* zh-Hans */,
+				5B0884FC28296B60003D4C2D /* zh-Hant */,
+				0D51D56A2274EAD500A5D747 /* fr */,
 				2ACA0C9021A29E4A00723073 /* de */,
 				2ACA0C9121A29E4B00723073 /* it */,
 				2ACA0C9221A29E4C00723073 /* pt */,
-				0D51D56A2274EAD500A5D747 /* fr */,
 				08C28F95279CBE2E0016693E /* tr */,
-				98EAE82627A5D7D900C6D571 /* en-GB */,
-				5B0884FC28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FindSettingsView.storyboard;
 			sourceTree = "<group>";
@@ -4307,15 +4307,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ACA0C9421A2A03D00723073 /* Base */,
+				98EAE82F27A5D7D900C6D571 /* en-GB */,
 				2ACA0C9721A2A12F00723073 /* ja */,
 				2ACA0C9821A2A13100723073 /* zh-Hans */,
+				5B08850528296B61003D4C2D /* zh-Hant */,
+				0D51D5732274EADB00A5D747 /* fr */,
 				2ACA0C9921A2A13200723073 /* de */,
 				2ACA0C9A21A2A13400723073 /* it */,
 				2ACA0C9B21A2A13500723073 /* pt */,
-				0D51D5732274EADB00A5D747 /* fr */,
 				08C28F9E279CBE2F0016693E /* tr */,
-				98EAE82F27A5D7D900C6D571 /* en-GB */,
-				5B08850528296B61003D4C2D /* zh-Hant */,
 			);
 			name = PrintPanelAccessory.storyboard;
 			sourceTree = "<group>";
@@ -4324,15 +4324,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ACA0CA421A3BFB700723073 /* Base */,
+				98EAE83A27A5D7DA00C6D571 /* en-GB */,
 				2ACA0CA721A3C11F00723073 /* ja */,
 				2ACA0CA821A3C12100723073 /* zh-Hans */,
+				5B08850F28296B61003D4C2D /* zh-Hant */,
+				0D51D58E2274EAE700A5D747 /* fr */,
 				2ACA0CA921A3C12200723073 /* de */,
 				2ACA0CAA21A3C12300723073 /* it */,
 				2ACA0CAB21A3C12400723073 /* pt */,
-				0D51D58E2274EAE700A5D747 /* fr */,
 				08C28FA9279CBE300016693E /* tr */,
-				98EAE83A27A5D7DA00C6D571 /* en-GB */,
-				5B08850F28296B61003D4C2D /* zh-Hant */,
 			);
 			name = ColorCodePanelAccessory.storyboard;
 			sourceTree = "<group>";
@@ -4341,15 +4341,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AD940DB21A46B100076A28C /* Base */,
+				98EAE83727A5D7DA00C6D571 /* en-GB */,
 				2AD940DE21A46FC70076A28C /* ja */,
 				2AD940DF21A46FC90076A28C /* zh-Hans */,
+				5B08850D28296B61003D4C2D /* zh-Hant */,
+				0D51D58D2274EAE700A5D747 /* fr */,
 				2AD940E021A46FCA0076A28C /* de */,
 				2AD940E121A46FCC0076A28C /* it */,
 				2AD940E221A46FCD0076A28C /* pt */,
-				0D51D58D2274EAE700A5D747 /* fr */,
 				08C28FA6279CBE300016693E /* tr */,
-				98EAE83727A5D7DA00C6D571 /* en-GB */,
-				5B08850D28296B61003D4C2D /* zh-Hant */,
 			);
 			name = UnicodeInputView.storyboard;
 			sourceTree = "<group>";
@@ -4358,15 +4358,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AD940E621A47C4B0076A28C /* Base */,
+				98EAE83227A5D7DA00C6D571 /* en-GB */,
 				2AD940E921A47DD50076A28C /* ja */,
 				2AD940EA21A47DD60076A28C /* zh-Hans */,
+				5B08850828296B61003D4C2D /* zh-Hant */,
+				0D51D5752274EADC00A5D747 /* fr */,
 				2AD940EB21A47DD80076A28C /* de */,
 				2AD940EC21A47DD90076A28C /* it */,
 				2AD940ED21A47DDA0076A28C /* pt */,
-				0D51D5752274EADC00A5D747 /* fr */,
 				08C28FA1279CBE2F0016693E /* tr */,
-				98EAE83227A5D7DA00C6D571 /* en-GB */,
-				5B08850828296B61003D4C2D /* zh-Hant */,
 			);
 			name = GoToLineView.storyboard;
 			sourceTree = "<group>";
@@ -4383,15 +4383,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ADD0AE221800E2F00F78732 /* Base */,
+				98EAE83927A5D7DA00C6D571 /* en-GB */,
 				2ADD0AE52180161800F78732 /* ja */,
 				2ADD0AE62180161C00F78732 /* zh-Hans */,
+				5B08850E28296B61003D4C2D /* zh-Hant */,
+				0D51D58C2274EAE600A5D747 /* fr */,
 				2ADD0AE72180161F00F78732 /* de */,
 				2ADD0AE82180162200F78732 /* it */,
 				2ADD0AE92180162400F78732 /* pt */,
-				0D51D58C2274EAE600A5D747 /* fr */,
 				08C28FA8279CBE300016693E /* tr */,
-				98EAE83927A5D7DA00C6D571 /* en-GB */,
-				5B08850E28296B61003D4C2D /* zh-Hant */,
 			);
 			name = ConsolePanel.storyboard;
 			sourceTree = "<group>";
@@ -4400,15 +4400,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ADF3C001E6D7345009125BB /* Base */,
+				98EAE81827A5D7D700C6D571 /* en-GB */,
 				2ADF3C031E6D82E2009125BB /* ja */,
 				2ADF3C041E6D82E4009125BB /* zh-Hans */,
+				5B0884EF28296B60003D4C2D /* zh-Hant */,
+				0D51D57F2274EAE100A5D747 /* fr */,
 				2ADF3C051E6D82E7009125BB /* de */,
 				2ADF3C061E6D82EA009125BB /* it */,
 				57ED315E1FFD892700F16CAD /* pt */,
-				0D51D57F2274EAE100A5D747 /* fr */,
 				08C28F87279CBE2D0016693E /* tr */,
-				98EAE81827A5D7D700C6D571 /* en-GB */,
-				5B0884EF28296B60003D4C2D /* zh-Hant */,
 			);
 			name = FileDropPane.storyboard;
 			sourceTree = "<group>";
@@ -4417,15 +4417,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AE12E0A1E7DDF5100681F72 /* Base */,
+				98EAE83427A5D7DA00C6D571 /* en-GB */,
 				2AE12E0E1E7DE99D00681F72 /* ja */,
 				2AE12E101E7DE9A000681F72 /* zh-Hans */,
+				5B08850A28296B61003D4C2D /* zh-Hant */,
+				0D51D5772274EADC00A5D747 /* fr */,
 				2AE12E121E7DE9A100681F72 /* de */,
 				2AE12E141E7DE9A200681F72 /* it */,
 				57ED31571FFD892700F16CAD /* pt */,
-				0D51D5772274EADC00A5D747 /* fr */,
 				08C28FA3279CBE2F0016693E /* tr */,
-				98EAE83427A5D7DA00C6D571 /* en-GB */,
-				5B08850A28296B61003D4C2D /* zh-Hant */,
 			);
 			name = CustomSurroundStringView.storyboard;
 			sourceTree = "<group>";
@@ -4450,15 +4450,15 @@
 			isa = PBXVariantGroup;
 			children = (
 				2AE7A8D520450C0000830830 /* Base */,
+				98EAE82A27A5D7D900C6D571 /* en-GB */,
 				2AE7A8DC2045205A00830830 /* ja */,
 				2AE7A8DE2045205B00830830 /* zh-Hans */,
+				5B08850028296B61003D4C2D /* zh-Hant */,
+				0D51D56E2274EAD800A5D747 /* fr */,
 				2AE7A8E02045205C00830830 /* de */,
 				2AE7A8E22045205D00830830 /* it */,
 				2AE7A8E42045205E00830830 /* pt */,
-				0D51D56E2274EAD800A5D747 /* fr */,
 				08C28F99279CBE2F0016693E /* tr */,
-				98EAE82A27A5D7D900C6D571 /* en-GB */,
-				5B08850028296B61003D4C2D /* zh-Hant */,
 			);
 			name = OutlineView.storyboard;
 			sourceTree = "<group>";
@@ -4466,15 +4466,15 @@
 		2AF0A4732890BA48003B2148 /* UnicodeNormalization.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				2AF0A47A2890BABD003B2148 /* en-GB */,
 				2AF0A4722890BA48003B2148 /* ja */,
 				2AF0A4742890BA5C003B2148 /* zh-Hans */,
+				2AF0A47B2890BABE003B2148 /* zh-Hant */,
+				2AF0A4782890BAB6003B2148 /* fr */,
 				2AF0A4752890BAAD003B2148 /* de */,
 				2AF0A4762890BAB0003B2148 /* it */,
 				2AF0A4772890BAB2003B2148 /* pt */,
-				2AF0A4782890BAB6003B2148 /* fr */,
 				2AF0A4792890BAB8003B2148 /* tr */,
-				2AF0A47A2890BABD003B2148 /* en-GB */,
-				2AF0A47B2890BABE003B2148 /* zh-Hant */,
 			);
 			name = UnicodeNormalization.strings;
 			sourceTree = "<group>";
@@ -4482,15 +4482,15 @@
 		2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
+				2AC4E5CF27A6C0270052A4DD /* en-GB */,
 				2AF5C3BD1A55072E00C972B5 /* ja */,
 				2AF5C3BF1A5510F600C972B5 /* zh-Hans */,
+				5B91B7D2282A67F1005CBD5C /* zh-Hant */,
+				0D51D5902274EF3F00A5D747 /* fr */,
 				2A69077B1B8443AB00D0F3A2 /* de */,
 				2A401FE61D9AEEB700ACE036 /* it */,
 				57ED31721FFD892900F16CAD /* pt */,
-				0D51D5902274EF3F00A5D747 /* fr */,
 				08C28FB0279CBE4C0016693E /* tr */,
-				2AC4E5CF27A6C0270052A4DD /* en-GB */,
-				5B91B7D2282A67F1005CBD5C /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
