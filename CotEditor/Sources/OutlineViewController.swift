@@ -92,7 +92,7 @@ final class OutlineViewController: NSViewController {
         
         super.viewWillAppear()
         
-        // Workaround a long-standing issue in single column table views.
+        // workaround a long-standing issue in single column table views (2022-09, macOS 13)
         // cf. [#1365](https://github.com/coteditor/CotEditor/pull/1365)
         self.outlineView?.sizeLastColumnToFit()
         
