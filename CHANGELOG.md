@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Add history to the regular expression patterns in the custom sort dialog.
+- Improve stability.
 
 
 

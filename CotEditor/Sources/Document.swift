@@ -72,7 +72,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
-    private var shouldSaveXattr = true
+    private var shouldSaveEncodingXattr = true
     dynamic var isExecutable = false
     @objc private dynamic var isExecutableFromLastRunSavePanel = false  // bind in save panel accessory view
     
@@ -368,7 +368,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
-        self.shouldSaveXattr = (file.xattrEncoding != nil)
+        self.shouldSaveEncodingXattr = (file.xattrEncoding != nil)
         
         // set text orientation state
         // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
@@ -468,22 +468,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to async-saving.
         
-        // store current state here, since the main thread will already be unblocked after `data(ofType:)`
-        let encoding = self.fileEncoding.encoding
-        let isVerticalText = self.isVerticalText
-        
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
-        
-        // save document state to the extended file attributes
-        if self.shouldSaveXattr {
-            try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
-        }
-        if self.suppressesInconsistentLineEndingAlert {
-            try url.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
-        }
-        if UserDefaults.standard[.savesTextOrientation] {
-            try url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
-        }
         
         if saveOperation != .autosaveElsewhereOperation {
             // get the latest file attributes
@@ -508,6 +493,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if self.isExecutable, !saveOperation.isAutosave {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
+        }
+        
+        // save document state to the extended file attributes
+        var xattrs: [String: Data] = [:]
+        if self.shouldSaveEncodingXattr {
+            xattrs[FileExtendedAttributeName.encoding] = self.fileEncoding.encoding.xattrEncodingData
+        }
+        if self.suppressesInconsistentLineEndingAlert {
+            xattrs[FileExtendedAttributeName.allowLineEndingInconsistency] = Data([1])
+        }
+        if UserDefaults.standard[.savesTextOrientation] {
+            xattrs[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data([1]) : nil
+        }
+        if !xattrs.isEmpty {
+            attributes[FileAttributeKey.extendedAttributes.rawValue] = xattrs
         }
         
         return attributes
@@ -875,7 +875,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update encoding
         self.fileEncoding = fileEncoding
-        self.shouldSaveXattr = true
+        self.shouldSaveEncodingXattr = true
         
         // check encoding compatibility
         self.incompatibleCharacterScanner.scan()
