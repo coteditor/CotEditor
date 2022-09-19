@@ -200,6 +200,10 @@ final class DocumentController: NSDocumentController {
     
     override func closeAllDocuments(withDelegate delegate: Any?, didCloseAllSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
+        guard (NSApp.delegate as? AppDelegate)?.needsRelaunch == true else {
+            return super.closeAllDocuments(withDelegate: delegate, didCloseAllSelector: didCloseAllSelector, contextInfo: contextInfo)
+        }
+        
         let context = DelegateContext(delegate: delegate, selector: didCloseAllSelector, contextInfo: contextInfo)
         
         super.closeAllDocuments(withDelegate: self, didCloseAllSelector: #selector(documentController(_:didCloseAll:contextInfo:)), contextInfo: bridgeWrapped(context))
