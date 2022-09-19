@@ -79,7 +79,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that memory could leak when the opacity toolbar item is used.
-- Fix an issue that the option “Give execute permission” in the save dialog was applied to the document even when the save operation was canceled.
+- Fix an issue that the option “Give execute permission” in the save dialog was applied to the document even when the save operation was cancelled.
 - Address an issue since macOS 12.4 that the buttons in the save dialog became occasionally unresponsive when the application is running in some specific Japanese environment.
 - Fix an issue that memory could leak when the opacity toolbar item is used.
 - Fix an issue that the column of the outline pane was narrower than the list width.
