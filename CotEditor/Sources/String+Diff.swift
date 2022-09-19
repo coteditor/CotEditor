@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,10 @@ extension StringProtocol {
         
         guard !diff.isEmpty else { return ranges }
         
-        return ranges.map { NSRange(diff.move($0.lowerBound)..<diff.move($0.upperBound)) }
+        return ranges
+            .map { (diff.move($0.lowerBound), diff.move($0.upperBound)) }
+            .filter { $0 <= $1 }
+            .map { NSRange($0..<$1) }
     }
     
 }

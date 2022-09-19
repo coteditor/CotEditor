@@ -265,7 +265,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// return preferred file extension corresponding to the current syntax style
-    override func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
+    override nonisolated func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
         if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
             return pathExtension
@@ -285,7 +285,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.windowForSheet?.sheets.forEach { $0.close() }
         
         // store current selections
-        let lastString = self.textStorage.string
+        let lastString = self.textStorage.string.immutable
         let editorStates = self.textStorage.layoutManagers
             .compactMap(\.textViewForBeginningOfSelection)
             .map { (textView: $0, ranges: $0.selectedRanges.map(\.rangeValue)) }
@@ -300,7 +300,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // select previous ranges again
         // -> Taking performance issues into consideration,
-        //    the selection ranges will be adjusted only when the content size is enough small;
+        //    the selection ranges will be adjusted only when the content size is small enough;
         //    otherwise, just cut extra ranges off.
         let string = self.textStorage.string
         let range = self.textStorage.range
@@ -311,6 +311,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let selectedRanges = considersDiff
                 ? string.equivalentRanges(to: state.ranges, in: lastString)
                 : state.ranges.map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
+            
+            guard !selectedRanges.isEmpty else { continue }
             
             state.textView.selectedRanges = selectedRanges.unique as [NSValue]
         }
@@ -354,7 +356,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // .readingEncoding is only valid once
         self.readingEncoding = nil
         
-        let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_READ
+        let file = try DocumentFile(fileURL: url, encodingStorategy: storategy)  // FILE_ACCESS
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
@@ -463,7 +465,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// write file metadata to the new file (invoked in file saving process)
+    /// store the state of the new file (invoked in file saving process)
     override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {
         
         // [caution] This method may be called from a background thread due to async-saving.
@@ -472,7 +474,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         if saveOperation != .autosaveElsewhereOperation {
             // get the latest file attributes
-            self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+            do {
+                self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
+                let fileResources = try url.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey, .fileSizeKey])
+                
+            } catch {
+                assertionFailure(error.localizedDescription)
+            }
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             assert(self.lastSavedData != nil)
@@ -526,7 +534,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// avoid let system add the standard save panel accessory (pop-up menu for document type change)
     override var shouldRunSavePanelWithAccessoryView: Bool {
         
-        return false
+        false
     }
     
     
@@ -580,7 +588,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // remove autosaved file if exists
             if let url = self.fileURL {
                 var deletionError: NSError?
-                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_READ
+                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_ACCESS
                     do {
                         try FileManager.default.removeItem(at: url)
                     } catch {
@@ -1173,7 +1181,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 // save xattr
                 if let fileURL = self.fileURL {
                     var error: NSError?
-                    NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in
+                    NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .contentIndependentMetadataOnly, error: &error) { newURL in  // FILE_ACCESS
                         try? newURL.setExtendedAttribute(data: Data([1]), for: FileExtendedAttributeName.allowLineEndingInconsistency)
                     }
                 }
@@ -1243,7 +1251,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard
             let fileURL = self.fileURL,
             let fileType = self.fileType
-            else { return }
+        else { return }
         
         do {
             try self.revert(toContentsOf: fileURL, ofType: fileType)
