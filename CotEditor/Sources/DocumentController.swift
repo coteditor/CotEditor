@@ -70,12 +70,11 @@ final class DocumentController: NSDocumentController {
     /// automatically inserts Share menu
     override var allowsAutomaticShareMenu: Bool {
         
-        return true
+        true
     }
     
     
     /// open document
-
     @MainActor override func openDocument(withContentsOf url: URL, display displayDocument: Bool) async throws -> (NSDocument, Bool) {
         
         // obtain transient document if exists
@@ -151,7 +150,6 @@ final class DocumentController: NSDocumentController {
             }
         }
         
-        // make document
         let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
         (document as? any AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
@@ -229,17 +227,8 @@ final class DocumentController: NSDocumentController {
     /// open a new document as new window
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
         
-        let document: NSDocument
-        do {
-            document = try self.openUntitledDocumentAndDisplay(false)
-        } catch {
-            self.presentError(error)
-            return
-        }
-        
         DocumentWindow.tabbingPreference = .manual
-        document.makeWindowControllers()
-        document.showWindows()
+        self.newDocument(sender)
         DocumentWindow.tabbingPreference = nil
     }
     
@@ -247,17 +236,9 @@ final class DocumentController: NSDocumentController {
     /// open a new document as tab in the existing frontmost window
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
-        let document: NSDocument
-        do {
-            document = try self.openUntitledDocumentAndDisplay(false)
-        } catch {
-            self.presentError(error)
-            return
-        }
-        
-        document.makeWindowControllers()
-        document.windowControllers.first?.window?.tabbingMode = .preferred
-        document.showWindows()
+        DocumentWindow.tabbingPreference = .always
+        self.newDocument(sender)
+        DocumentWindow.tabbingPreference = nil
     }
     
     
@@ -272,7 +253,7 @@ final class DocumentController: NSDocumentController {
             let document = self.documents.first as? Document,
             document.isTransient,
             document.windowForSheet?.attachedSheet == nil
-            else { return nil }
+        else { return nil }
         
         return document
     }
