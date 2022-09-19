@@ -447,14 +447,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             if error != nil { return }
             
             // apply syntax style that is inferred from the file name or the shebang
-            if saveOperation == .saveAsOperation {
-                if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                    ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
+            if saveOperation == .saveAsOperation,
+               let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
+                ?? SyntaxManager.shared.settingName(documentContent: self.textStorage.string)
+            {
                 // -> Due to the async-saving, self.textStorage can be changed from the actual saved contents.
                 //    But we don't care about that.
-                {
-                    self.setSyntaxStyle(name: styleName)
-                }
+                self.setSyntaxStyle(name: styleName)
             }
             
             if !saveOperation.isAutosave {
