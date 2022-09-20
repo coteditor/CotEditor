@@ -764,11 +764,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let data: Data
         do {
             // ignore if file's modificationDate is the same as document's modificationDate
-            let fileModificationDate = try FileManager.default.attributesOfItem(atPath: fileURL.path)[.modificationDate] as? Date
+            let fileModificationDate = try FileManager.default.attributesOfItem(atPath: fileURL.path)[.modificationDate] as? Date  // FILE_ACCESS
             guard fileModificationDate != self.fileModificationDate else { return }
             
             // check if file contents was changed from the stored file data
-            data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])
+            data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_ACCESS
         } catch {
             return assertionFailure(error.localizedDescription)
         }
