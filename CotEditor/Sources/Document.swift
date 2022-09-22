@@ -527,7 +527,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.isExecutableFromLastRunSavePanel = self.isExecutable
         
         let context = DelegateContext(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
-        super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didCloseSavePanel:contextInfo:)), contextInfo: bridgeWrapped(context))
+        super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didSave:contextInfo:)), contextInfo: bridgeWrapped(context))
     }
     
     
@@ -1080,16 +1080,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Private Methods
     
     /// callback from save panel after calling `runModalSavePanel(for:didSave:contextInfo)`.
-    @objc private func document(_ document: NSDocument, didCloseSavePanel didAccept: Bool, contextInfo: UnsafeMutableRawPointer) {
+    @objc private func document(_ document: NSDocument, didSave didSaveSuccessfully: Bool, contextInfo: UnsafeMutableRawPointer) {
         
-        if didAccept {
+        if didSaveSuccessfully {
             self.isExecutable = self.isExecutableFromLastRunSavePanel
         }
         
         // manually invoke the original delegate method
         guard let context: DelegateContext = bridgeUnwrapped(contextInfo) else { return assertionFailure() }
         
-        context.perform(from: self, flag: didAccept)
+        context.perform(from: self, flag: didSaveSuccessfully)
     }
     
     
