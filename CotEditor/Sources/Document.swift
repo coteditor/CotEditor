@@ -580,36 +580,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// display dialogs about save before closing document
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        var shouldClose = false
-        // disable save dialog if content is empty and not saved explicitly
+        // suppress save dialog if content is empty and not saved explicitly
         if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
             
-            // remove autosaved file if exists
-            if let url = self.fileURL {
+            // delete autosaved file if exists
+            if let fileURL = self.fileURL {
                 var deletionError: NSError?
-                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_ACCESS
+                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &deletionError) { (newURL) in  // FILE_ACCESS
                     do {
-                        try FileManager.default.removeItem(at: url)
+                        try FileManager.default.removeItem(at: newURL)
                     } catch {
                         // do nothing and let super's `.canClose(withDelegate:shouldClose:contextInfo:)` handle the stuff
                         Swift.print("Failed empty file deletion: \(error)")
                         return
                     }
                     
-                    shouldClose = true
                     self.fileURL = nil
+                    self.isDraft = false
                 }
             }
         }
         
-        // manually call delegate but only when you wanna modify `shouldClose` flag
-        guard shouldClose else {
-            return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
-        }
-        
-        DelegateContext(delegate: delegate, selector: shouldCloseSelector, contextInfo: contextInfo)
-            .perform(from: self, flag: shouldClose)
+        super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
     }
     
     
