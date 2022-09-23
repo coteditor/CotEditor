@@ -363,6 +363,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         // set read values
         self.fileEncoding = file.fileEncoding
+        self.allowsLossySaving = false
         self.lineEnding = self.lineEndingScanner.majorLineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // determine syntax (only on the first file open)
@@ -867,6 +868,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
                 target.fileEncoding = currentFileEncoding
                 target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
+                target.allowsLossySaving = false
                 target.incompatibleCharacterScanner.invalidate()
                 
                 // register redo
