@@ -17,7 +17,7 @@
 <article>
 	<header>
 		<h1>CotEditor 4.4.0</h1>
-		<p>release: <time>2022-09</time></p>
+		<p>release: <time>2022-10</time></p>
 	</header>
 
 
@@ -49,6 +49,7 @@
 			<li>Support the split cursor for bidirectional languages in multi-cursor editing.</li>
 			<li>Update the CotEditor's setting view in the print panel.</li>
 			<li>Change the location and column count to start with zero.</li>
+			<li>Add the history menu to the regular expression patterns in the pattern sort dialog.</li>
 			<li>Display the error message in the pattern sort dialog if the regular expression pattern is invalid.</li>
 			<li>Improve the algorithm to parse numbers in the Sort by Pattern command.</li>
 			<li>Improve the algorithm of uncommenting.</li>
@@ -57,12 +58,23 @@
 			<li>Deprecate the “Ignore line endings when counting characters” option.</li>
 			<li>Deprecate the option to hide file size in the status bar.</li>
 			<li>Remove the text length display in the document inspector.</li>
+			<li>Improve stability.</li>
 			<li><span class="trivial">trivial</span>: Adjust ticks in the line number view for vertical orientation.</li>
 			<li><span class="trivial">trivial</span>: Save documents asynchronously.</li>
+			<li><span class="trivial">trivial</span>: Visually adjust the filter field in the outline inspector.</li>
 			<li><span class="trivial">trivial</span>: Organize the editor's contextual menu.</li>
 			<li><span class="trivial">trivial</span>: Improve the basic regular expression syntax reference.</li>
 			<li><span class="trivial">trivial</span>: Improve the status bar display.</li>
 			<li><span class="trivial">dev</span>: Update the build environment to Xcode 14.1 (macOS 13 SDK).</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue that the empty draft documents silently discarded remained in the Open Recents menu.</li>
 		</ul>
 	</section>
 </article>

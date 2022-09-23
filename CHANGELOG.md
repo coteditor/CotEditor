@@ -7,9 +7,9 @@ Change Log
 
 ### Improvements
 
-- Add history to the regular expression patterns in the custom sort dialog.
+- Add the history menu to the regular expression patterns in the pattern sort dialog.
 - Improve stability.
-- [trivial] Improve the filter field in the outline inspector.
+- [trivial] Visually adjust the filter field in the outline inspector.
 - [dev] Update the build environment to Xcode 14.1 beta 2.
 
 

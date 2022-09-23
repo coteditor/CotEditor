@@ -17,7 +17,7 @@
 <article>
 	<header>
 		<h1>CotEditor 4.4.0</h1>
-		<p>リリース: <time>2022-09</time></p>
+		<p>リリース: <time>2022-10</time></p>
 	</header>
 
 
@@ -49,6 +49,7 @@
 			<li>マルチカーソル編集で双方向テキストの分割カーソルをサポート</li>
 			<li>プリントパネルのCotEditor設定表示を更新</li>
 			<li>位置と列を1でなく0からカウントするように変更</li>
+			<li>条件で並び替えダイアログの正規表現パターンフィールドに履歴メニューを追加</li>
 			<li>条件で並び替えダイアログで正規表現パターンが無効なときにエラーメッセージを表示するように変更</li>
 			<li>「条件で並び替え」コマンドでの数字のパースアルゴリズムを改良</li>
 			<li>コメント解除のアルゴリズムを改良</li>
@@ -57,12 +58,23 @@
 			<li>「改行コードを文字としてカウントしない」オプションを廃止</li>
 			<li>ステータスバーのファイルサイズ表示を非表示にできるオプションを廃止</li>
 			<li>書類インスペクタの文字長表示を削除</li>
+			<li>安定性を向上</li>
 			<li><span class="trivial">trivial</span>: 縦書きのときの行番号ビューの目盛り表示を調整</li>
 			<li><span class="trivial">trivial</span>: 書類を非同期で保存</li>
+			<li><span class="trivial">trivial</span>: アウトラインインスペクタのフィルタフィールドの見た目を調整</li>
 			<li><span class="trivial">trivial</span>: エディタのコンテキストメニューを整理</li>
 			<li><span class="trivial">trivial</span>: 正規表現の基本文法表示を改良</li>
 			<li><span class="trivial">trivial</span>: ステータスバーの表示を最適化</li>
 			<li><span class="trivial">開発</span>: 開発環境をXcode 14.1 (macOS 13 SDK)に更新</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>暗黙的に削除された空の未保存書類が最近の書類メニューに残っていた不具合を修正</li>
 		</ul>
 	</section>
 </article>
