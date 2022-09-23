@@ -476,8 +476,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // get the latest file attributes
             do {
                 self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_ACCESS
-                let fileResources = try url.resourceValues(forKeys: [.creationDateKey, .contentModificationDateKey, .fileSizeKey])
-                
             } catch {
                 assertionFailure(error.localizedDescription)
             }
