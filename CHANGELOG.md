@@ -5,6 +5,10 @@ Change Log
 4.4.0-beta.4 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the empty draft documents silently discarded remained in the Open Recents menu.
+
 
 
 4.4.0-beta.3 (535)
@@ -16,11 +20,6 @@ Change Log
 - Improve stability.
 - [trivial] Visually adjust the filter field in the outline inspector.
 - [dev] Update the build environment to Xcode 14.1 beta 2.
-
-
-### Fixes
-
-- Fix an issue that the empty draft documents silently discarded remained in the Open Recents menu.
 
 
 

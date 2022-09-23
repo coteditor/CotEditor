@@ -594,6 +594,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         return
                     }
                     
+                    NSDocumentController.shared.removeRecentDocument(url: fileURL)
                     self.fileURL = nil
                     self.isDraft = false
                 }
