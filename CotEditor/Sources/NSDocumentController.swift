@@ -32,6 +32,8 @@ extension NSDocumentController {
     /// - Parameter url: The file URL of the document to remove.
     func removeRecentDocument(url: URL) {
         
+        guard self.recentDocumentURLs.contains(url) else { return }
+        
         let recentDocumentURLs = self.recentDocumentURLs
             .filter { $0 != url }
             .reversed()
