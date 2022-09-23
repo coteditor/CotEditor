@@ -35,6 +35,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     
     private enum SerializationKey {
         
+        static let allowsLossySaving = "allowsLossySaving"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
         static let suppressesInconsistentLineEndingAlert = "suppressesInconsistentLineEndingAlert"
@@ -77,6 +78,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
     private let saveOptions = SaveOptions()
     private var suppressesInconsistentLineEndingAlert = false
     private var isExternalUpdateAlertShown = false
+    fileprivate var allowsLossySaving = false
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
@@ -128,6 +130,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
+        coder.encode(self.allowsLossySaving, forKey: SerializationKey.allowsLossySaving)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         coder.encode(self.suppressesInconsistentLineEndingAlert, forKey: SerializationKey.suppressesInconsistentLineEndingAlert)
@@ -144,6 +147,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         
         super.restoreState(with: coder)
         
+        if coder.containsValue(forKey: SerializationKey.allowsLossySaving) {
+            self.allowsLossySaving = coder.decodeBool(forKey: SerializationKey.allowsLossySaving)
+        }
         if coder.containsValue(forKey: SerializationKey.isVerticalText) {
             self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
         }
@@ -379,6 +385,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
             .convertingYenSign(for: fileEncoding.encoding)
             .data(using: fileEncoding.encoding, allowLossyConversion: true)!
         
+        // reset `allowsLossySaving` flag if the compatibility issue is solved
+        if self.allowsLossySaving, self.textStorage.string.canBeConverted(to: fileEncoding.encoding) {
+            self.allowsLossySaving = false
+        }
+        
         self.unblockUserInteraction()
         
         // add UTF-8 BOM if needed
@@ -442,7 +453,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // [caution] This method may be called from a background thread due to async-saving.
         
         // check if the content can be saved with the current text encoding.
-        guard saveOperation.isAutosave || self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
+        guard saveOperation.isAutosave || self.allowsLossySaving || self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
             throw SavingError.lossyEncoding(self.fileEncoding, attempter: self)
         }
         
@@ -867,6 +878,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingChanging 
         // update encoding
         self.fileEncoding = fileEncoding
         self.shouldSaveEncodingXattr = true
+        self.allowsLossySaving = false
         
         // update incompatible characters inspector
         self.incompatibleCharacterScanner.invalidate()
@@ -1332,6 +1344,7 @@ private enum SavingError: LocalizedError, RecoverableError {
             case .lossyEncoding(_, let attempter):
                 switch recoveryOptionIndex {
                     case 0:  // == Save
+                        attempter.allowsLossySaving = true
                         return true
                     case 1:  // == Show Incompatible Characters
                         Task { @MainActor in

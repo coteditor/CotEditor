@@ -3,6 +3,9 @@
 4.7.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Suppress displaying the dialog for saving in an incompatible encoding when once allowed.
 
 
 4.7.2 (625)
