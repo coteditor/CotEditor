@@ -747,18 +747,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard
             UserDefaults.standard[.documentConflictOption] != .ignore,
             !self.isExternalUpdateAlertShown,  // don't check twice if already notified
-            let fileURL = self.fileURL
+            var fileURL = self.fileURL
         else { return }
         
         // check wheather the document content is really modified
         // -> Avoid using NSFileCoordinator although the document recommends
         //    because it cause deadlock when the document in the iCloud Document remotely modified.
         //    (2022-08 on macOS 12.5, Xcode 14, #1296)
+        fileURL.removeCachedResourceValue(forKey: .contentModificationDateKey)
         let data: Data
         do {
             // ignore if file's modificationDate is the same as document's modificationDate
-            let fileModificationDate = try FileManager.default.attributesOfItem(atPath: fileURL.path)[.modificationDate] as? Date  // FILE_ACCESS
-            guard fileModificationDate != self.fileModificationDate else { return }
+            let contentModificationDate = try fileURL.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate  // FILE_ACCESS
+            guard contentModificationDate != self.fileModificationDate else { return }
             
             // check if file contents was changed from the stored file data
             data = try Data(contentsOf: fileURL, options: [.mappedIfSafe])  // FILE_ACCESS
