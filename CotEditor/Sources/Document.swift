@@ -73,7 +73,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveEncodingXattr = true
-    dynamic var isExecutable = false
+    private var isExecutable = false
     @objc private dynamic var isExecutableFromLastRunSavePanel = false  // bind in save panel accessory view
     
     private var syntaxUpdateObserver: AnyCancellable?
