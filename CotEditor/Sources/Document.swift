@@ -584,6 +584,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             // delete autosaved file if exists
             if let fileURL = self.fileURL {
+                NSDocumentController.shared.removeRecentDocument(url: fileURL)
+                
                 var deletionError: NSError?
                 NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &deletionError) { (newURL) in  // FILE_ACCESS
                     do {
@@ -594,7 +596,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         return
                     }
                     
-                    NSDocumentController.shared.removeRecentDocument(url: fileURL)
                     self.fileURL = nil
                     self.isDraft = false
                 }
