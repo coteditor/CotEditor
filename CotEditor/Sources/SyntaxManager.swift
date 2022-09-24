@@ -378,6 +378,7 @@ final class SyntaxManager: SettingFileManaging {
         }
     }
     
+    
     /// Load StyleDictionary at file URL.
     ///
     /// - Parameter fileURL: URL to a setting file.
