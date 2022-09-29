@@ -5,6 +5,11 @@ Change Log
 4.4.0-beta.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev] Update the build environment to Xcode 14.1 beta 3.
+
+
 ### Fixes
 
 - Fix an issue that the empty draft documents silently discarded remained in the Open Recents menu.
