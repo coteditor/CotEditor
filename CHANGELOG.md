@@ -5,6 +5,11 @@ Change Log
 4.4.0-beta.4 (unreleased)
 --------------------------
 
+### New Features
+
+- Add syntax style for Graphviz (Thanks to usr-sse2!).
+
+
 ### Improvements
 
 - [dev] Update the build environment to Xcode 14.1 beta 3.
@@ -12,7 +17,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that the empty draft documents silently discarded remained in the Open Recents menu.
+- Fix an issue that the empty draft documents that were silently discarded remained in the Open Recents menu.
+- Fix an typo in PHP syntax style (Thanks to DAnn2012!).
 
 
 
