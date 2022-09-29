@@ -1910,7 +1910,7 @@ completions:
 - keyString: "mysql_fetch_assoc(int result)"
 - keyString: "mysql_fetch_field(int result, int [field_offset])"
 - keyString: "mysql_fetch_lengths(int result)"
-- keyString: "mysql_fetch_object(int result, int [result_typ])"
+- keyString: "mysql_fetch_object(int result, int [result_type])"
 - keyString: "mysql_fetch_row(int result)"
 - keyString: "mysql_field_flags(int result, int field_offset)"
 - keyString: "mysql_field_len(int result, int field_offset)"
