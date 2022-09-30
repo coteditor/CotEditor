@@ -18,7 +18,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the empty draft documents that were silently discarded remained in the Open Recents menu.
-- Fix an typo in PHP syntax style (Thanks to DAnn2012!).
+- Fix a typo in PHP syntax style (Thanks to DAnn2012!).
 
 
 
