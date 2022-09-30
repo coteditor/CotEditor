@@ -94,7 +94,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         
         self.indentGuideObserver = UserDefaults.standard.publisher(for: .showIndentGuides)
             .sink { [weak self] _ in
-                guard let self = self, self.showsInvisibles else { return }
+                guard let self, self.showsInvisibles else { return }
                 self.invalidateDisplay(forCharacterRange: self.attributedString().range)
             }
         

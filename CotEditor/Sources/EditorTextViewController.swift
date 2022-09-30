@@ -67,7 +67,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // observe text orientation for line number view
         self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] (orientation) in
-                guard let self = self else { return assertionFailure() }
+                guard let self else { return assertionFailure() }
                 
                 self.stackView?.orientation = {
                     switch orientation {

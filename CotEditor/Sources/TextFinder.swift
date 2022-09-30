@@ -308,7 +308,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
@@ -556,7 +556,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+            guard let self else { return }
             
             var highlights: [ItemRange<NSColor>] = []
             var results: [TextFindResult] = []  // not used if showsList is false

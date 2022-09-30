@@ -1581,7 +1581,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.instanceHighlightTask = Task.detached { [weak self] in
             try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))  // debounce
             
-            guard let self = self else { return }
+            guard let self else { return }
             
             let (string, selectedRange): (String, NSRange) = try await MainActor.run {
                 guard

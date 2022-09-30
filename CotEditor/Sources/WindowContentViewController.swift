@@ -194,7 +194,7 @@ final class WindowContentViewController: NSSplitViewController {
             // close sidebar inward if it opened so (because of insufficient space to open outward)
             let currentWidth = self.splitView.frame.width
             NSAnimationContext.current.completionHandler = { [weak self] in
-                guard let self = self else { return }
+                guard let self else { return }
                 
                 if newValue {
                     if self.splitView.frame.width == currentWidth {  // opened inward
