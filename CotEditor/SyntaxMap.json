@@ -156,6 +156,18 @@
 
     ]
   },
+  "DOT" : {
+    "extensions" : [
+      "dot",
+      "gv"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "DTD" : {
     "extensions" : [
       "dtd"
@@ -233,18 +245,6 @@
   "Go" : {
     "extensions" : [
       "go"
-    ],
-    "filenames" : [
-
-    ],
-    "interpreters" : [
-
-    ]
-  },
-  "Graphviz" : {
-    "extensions" : [
-      "dot",
-      "gv"
     ],
     "filenames" : [
 

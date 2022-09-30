@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add syntax style for Graphviz (Thanks to usr-sse2!).
+- Add syntax style for DOT (Thanks to usr-sse2!).
 
 
 ### Improvements
