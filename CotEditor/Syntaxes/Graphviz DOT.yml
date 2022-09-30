@@ -1,0 +1,176 @@
+attributes:
+- beginString: arrowhead
+- beginString: arrowsize
+- beginString: arrowtail
+- beginString: bgcolor
+- beginString: bottomlabel
+- beginString: center
+- beginString: clusterrank
+- beginString: color
+- beginString: color
+- beginString: color
+- beginString: comment
+- beginString: comment
+- beginString: comment
+- beginString: compound
+- beginString: concentrate
+- beginString: constraint
+- beginString: decorate
+- beginString: dir
+- beginString: distortion
+- beginString: fillcolor
+- beginString: fillcolor
+- beginString: fixedsize
+- beginString: fontcolor
+- beginString: fontcolor
+- beginString: fontname
+- beginString: fontname
+- beginString: fontname
+- beginString: fontpath
+- beginString: fontsize
+- beginString: fontsize
+- beginString: fontsize
+- beginString: group
+- beginString: headlabel
+- beginString: headport
+- beginString: headURL
+- beginString: height
+- beginString: label
+- beginString: label
+- beginString: label
+- beginString: labelangle
+- beginString: labelcolor
+- beginString: labeldistance
+- beginString: labelfloat
+- beginString: labelfontname
+- beginString: labelfontsize
+- beginString: labeljust
+- beginString: labelloc
+- beginString: layer
+- beginString: layer
+- beginString: layers
+- beginString: lhead
+- beginString: ltail
+- beginString: margin
+- beginString: mclimit
+- beginString: minlen
+- beginString: nodesep
+- beginString: nslimit
+- beginString: nslimit1
+- beginString: ordering
+- beginString: orientation
+- beginString: orientation
+- beginString: page
+- beginString: pagedir
+- beginString: peripheries
+- beginString: quantum
+- beginString: rank
+- beginString: rankdir
+- beginString: ranksep
+- beginString: ratio
+- beginString: regular
+- beginString: remincross
+- beginString: rotate
+- beginString: samehead
+- beginString: sametail
+- beginString: samplepoints
+- beginString: searchsize
+- beginString: shape
+- beginString: shapefile
+- beginString: sides
+- beginString: size
+- beginString: skew
+- beginString: splines
+- beginString: style
+- beginString: style
+- beginString: style
+- beginString: taillabel
+- beginString: tailport
+- beginString: tailURL
+- beginString: toplabel
+- beginString: URL
+- beginString: URL
+- beginString: weight
+- beginString: width
+- beginString: z
+characters: []
+commands: []
+commentDelimiters:
+  beginDelimiter: /*
+  endDelimiter: '*/'
+  inlineDelimiter: //
+comments:
+- beginString: ^#
+  endString: \n
+  regularExpression: true
+completions: []
+extensions:
+- keyString: dot
+- keyString: gv
+filenames: []
+interpreters: []
+keywords:
+- beginString: (<-|->|--)
+  regularExpression: true
+- beginString: node
+- beginString: edge
+- beginString: graph
+- beginString: digraph
+- beginString: subgraph
+- beginString: strict
+metadata:
+  author: usr-sse2
+  description: Graphviz DOT language, based on https://github.com/textmate/graphviz.tmbundle
+  distributionURL: https://coteditor.com
+  lastModified: 2022-09-28
+  license: Same as CotEditor
+  version: 3.0.0
+numbers: []
+outlineMenu:
+- beginString: \bsubgraph\s+([^\s]+)
+  keyString: $1
+- beginString: \b(graph|digraph)\s+([^\s\{]+)\s*\{
+  bold: true
+  keyString: $2
+strings:
+- beginString: '"'
+  endString: '"'
+types: []
+values: []
+variables:
+- beginString: box
+- beginString: box3d
+- beginString: circle
+- beginString: component
+- beginString: diamond
+- beginString: doublecircle
+- beginString: doubleoctagon
+- beginString: egg
+- beginString: ellipse
+- beginString: folder
+- beginString: hexagon
+- beginString: house
+- beginString: invhouse
+- beginString: invtrapezium
+- beginString: invtriangle
+- beginString: max
+- beginString: Mcircle
+- beginString: Mdiamond
+- beginString: min
+- beginString: Msquare
+- beginString: none
+- beginString: note
+- beginString: octagon
+- beginString: parallelogram
+- beginString: pentagon
+- beginString: plaintext
+- beginString: point
+- beginString: polygon
+- beginString: rect
+- beginString: rectangle
+- beginString: same
+- beginString: septagon
+- beginString: tab
+- beginString: trapezium
+- beginString: triangle
+- beginString: tripleoctagon

@@ -241,6 +241,18 @@
 
     ]
   },
+  "Graphviz" : {
+    "extensions" : [
+      "dot",
+      "gv"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "Haskell" : {
     "extensions" : [
       "hs",
