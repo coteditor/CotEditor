@@ -1,5 +1,5 @@
 
-Compilare il template che segue, e caricarlo su [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oppure inviarlo a <coteditor.github@gmail.com>. Si prega di notare che i contenuti della email inviata potrebbero essere condivisi sulla pagina dedicata alla risoluzione dei problemi (Issues). Please write the contents either in English or in Japanese.
+Compilare il template che segue, e caricarlo su [GitHub Issues](https://github.com/coteditor/CotEditor/issues) oppure inviarlo a <coteditor.github@gmail.com>. Si prega di notare che i contenuti della email inviata potrebbero essere condivisi sulla pagina dedicata alla risoluzione dei problemi (Issues). Scrivere il contenuto in inglese o giapponese.
 
 -----------------------------------------------
 
