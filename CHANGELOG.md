@@ -17,8 +17,8 @@ Change Log
 
 ### Fixes
 
+- Port fixes in CotEditor 4.3.6.
 - Fix an issue that the empty draft documents that were silently discarded remained in the Open Recents menu.
-- Fix a typo in PHP syntax style (Thanks to DAnn2012!).
 
 
 
@@ -86,6 +86,16 @@ Change Log
 - [trivial] Improve the basic regular expression syntax reference.
 - [trivial] Improve the status bar display.
 - [dev] Update the build environment to Xcode 14.0 beta 6.
+
+
+
+4.3.6 (530)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 4.3.5 that the option “Give execute permission” in the save dialog was occasionally ignored.
+- Fix a typo in PHP syntax style (Thanks to DAnn2012!).
 
 
 
