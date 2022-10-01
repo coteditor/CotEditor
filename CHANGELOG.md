@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue on CotEditor 4.3.5 that the option “Give execute permission” in the save dialog was occasionally ignored.
+- Fix a typo in PHP syntax style (Thanks to DAnn2012!).
 
 
 
