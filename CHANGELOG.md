@@ -19,6 +19,7 @@ Change Log
 
 - Port fixes in CotEditor 4.3.6.
 - Fix an issue that the empty draft documents that were silently discarded remained in the Open Recents menu.
+- [trivial] Fix some typos.
 
 
 
