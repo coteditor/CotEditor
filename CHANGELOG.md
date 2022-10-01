@@ -5,6 +5,10 @@ Change Log
 4.3.6 (530)
 --------------------------
 
+### Fixes
+
+- Fix an issue on CotEditor 4.3.5 that the option “Give execute permission” in the save dialog was occasionally ignored.
+
 
 
 4.3.5 (529)
