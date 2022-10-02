@@ -5,6 +5,10 @@ Change Log
 4.4.0-beta.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle from 2.2.2 to 2.3.0.
+
 
 
 4.4.0-beta.4 (537)
