@@ -67,11 +67,14 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        self.customSurroundStringViewController.completionHandler = { [weak self] (pair) in
-            self?.surroundSelections(begin: pair.begin, end: pair.end)
-        }
+        let viewController = NSStoryboard(name: "CustomSurroundStringView").instantiateInitialController { (coder) in
+            CustomSurroundStringViewController(coder: coder, pair: self.customSurroundPair) { [weak self] (pair) in
+                self?.surroundSelections(begin: pair.begin, end: pair.end)
+                self?.customSurroundPair = pair
+            }
+        }!
         
-        self.viewControllerForSheet?.presentAsSheet(self.customSurroundStringViewController)
+        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
     
 }
