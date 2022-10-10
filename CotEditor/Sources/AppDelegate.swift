@@ -77,7 +77,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
-    @IBOutlet private weak var whatsNewMenuItem: NSMenuItem?
     
     
     #if DEBUG
@@ -109,9 +108,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        
-        // append the current version number to "What’s New" menu item
-        self.whatsNewMenuItem?.title = String(localized: "What’s New in CotEditor \(Bundle.main.minorVersion)")
         
         // sync menus with setting list updates
         EncodingManager.shared.$encodings
@@ -148,7 +144,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // build Unicode normalization menu items
-        
         self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
                                          UnicodeNormalizationForm.modifiedForms)
             .map { (form) in

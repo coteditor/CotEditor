@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21506"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -1175,16 +1175,16 @@ CA
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="619"/>
-                                        <menuItem title="Release Notes" identifier="releasenotes" id="822">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="qQb-je-BMC"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="What’s New in CotEditor" identifier="whats_new" id="DCW-Ij-540">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="bTD-Xs-Jm8"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Release Notes" identifier="releasenotes" id="822">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openHelpAnchor:" target="Voe-Tx-rLC" id="qQb-je-BMC"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Acknowledgments" id="824">
@@ -1229,7 +1229,6 @@ CA
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
                         <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
-                        <outlet property="whatsNewMenuItem" destination="DCW-Ij-540" id="Hnl-Yn-pbG"/>
                     </connections>
                 </customObject>
                 <customObject id="1Vq-aI-bgB" customClass="NSFontManager"/>

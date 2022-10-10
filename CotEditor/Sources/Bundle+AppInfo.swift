@@ -30,28 +30,28 @@ extension Bundle {
     /// application name
     var bundleName: String {
         
-        return self.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
+        self.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     }
     
     
     /// human-friendly version expression (semantic versioning)
     var shortVersion: String {
         
-        return self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     }
     
     
     /// build number
     var bundleVersion: String {
         
-        return self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+        self.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
     }
     
     
     /// help book name
     var helpBookName: String? {
         
-        return self.object(forInfoDictionaryKey: "CFBundleHelpBookName") as? String
+        self.object(forInfoDictionaryKey: "CFBundleHelpBookName") as? String
     }
     
     
@@ -59,17 +59,7 @@ extension Bundle {
     var isPrerelease: Bool {
         
         // -> Pre-release versions contain non-digit letter.
-        return (self.shortVersion.range(of: "[^0-9.]", options: .regularExpression) != nil)
-    }
-    
-    
-    /// Human-readable version number indicates only major and minor version.
-    var minorVersion: String {
-        
-        let shortVersion = self.shortVersion
-        let range = shortVersion.range(of: "^[0-9]++\\.[0-9]++", options: .regularExpression)!
-        
-        return String(shortVersion[range])
+        self.shortVersion.range(of: "[^0-9.]", options: .regularExpression) != nil
     }
     
 }

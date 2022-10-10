@@ -581,10 +581,10 @@
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
 "620.title" = "AppleScript字典";
 
-/* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
-"822.title" = "釋出說明";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
 "DCW-Ij-540.title" = "CotEditor新特性";
+/* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
+"822.title" = "釋出說明";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "致謝";
 
