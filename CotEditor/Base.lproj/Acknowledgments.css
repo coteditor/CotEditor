@@ -20,6 +20,7 @@ h3 span           { font-size: 90%; font-weight: normal }
 
 details           { margin-top: 0.5em }
 details summary   { font-weight: 600; cursor: pointer; outline: none }
+details hr        { border: 0.25px solid -apple-system-grid }
 
 h3::before, h2::before   { margin-right: 0.4em }
 #Libraries    h3::before { content: '📦' }
