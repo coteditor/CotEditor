@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2020 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSWindow"; title = "Settings"; ObjectID = "KjF-xP-N55"; */
-"KjF-xP-N55.title" = "環境設定";
+"KjF-xP-N55.title" = "設定";
 
 /* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
 "CNJ-6L-fga.label" = "一般";
