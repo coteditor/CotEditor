@@ -39,7 +39,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Public Properties
     
-    static let shared = ColorCodePanelController.instantiate(storyboard: "ColorCodePanelAccessory")
+    static let shared: ColorCodePanelController = NSStoryboard(name: "ColorCodePanelAccessory").instantiateInitialController()!
     
     @objc private(set) dynamic var colorCode: String?
     

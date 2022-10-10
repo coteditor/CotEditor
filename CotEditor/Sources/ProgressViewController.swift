@@ -46,7 +46,7 @@ final class ProgressViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Initialize view with given progress instance.
+    /// Initialize view from a storyboard with given progress instance.
     ///
     /// - Parameters:
     ///   - coder: The coder to instantiate the view from a storyboard.

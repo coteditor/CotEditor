@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,26 +27,43 @@ import Cocoa
 
 final class CustomTabWidthViewController: NSViewController {
     
-    // MARK: Public Properties
-    
-    var defaultWidth: Int = 4
-    var completionHandler: ((_ tabWidth: Int) -> Void)?
-    
-    
     // MARK: Private Properties
+    
+    private let defaultWidth: Int
+    private let completionHandler: (_ tabWidth: Int) -> Void
     
     @IBOutlet private weak var tabWidthField: NSTextField?
     
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    /// Initialize view from a storyboard with given values.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - defaultWidth: The default tab width.
+    ///   - completionHandler: The callback method to perform when the command was accepted.
+    init?(coder: NSCoder, defaultWidth: Int, completionHandler: @escaping (_ tabWidth: Int) -> Void) {
+        
+        self.defaultWidth = defaultWidth
+        self.completionHandler = completionHandler
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // set default tab width to placeholder
         self.tabWidthField?.placeholderString = String(self.defaultWidth)
     }
     
@@ -57,14 +74,12 @@ final class CustomTabWidthViewController: NSViewController {
     /// apply
     @IBAction func apply(_ sender: Any?) {
         
-        assert(self.completionHandler != nil)
-        
         guard self.endEditing() else { return NSSound.beep() }
         
         let fieldValue = self.tabWidthField!.integerValue
         let width = (fieldValue > 0) ? fieldValue : self.defaultWidth
         
-        self.completionHandler?(width)
+        self.completionHandler(width)
         self.dismiss(sender)
     }
     

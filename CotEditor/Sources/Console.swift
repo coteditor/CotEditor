@@ -40,7 +40,7 @@ final class Console {
     
     static let shared = Console()
     
-    private(set) lazy var panelController = NSWindowController.instantiate(storyboard: "ConsolePanel")
+    private(set) lazy var panelController: NSWindowController = NSStoryboard(name: "ConsolePanel").instantiateInitialController()!
     
     
     

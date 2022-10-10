@@ -180,20 +180,20 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let viewController = GoToLineViewController.instantiate(storyboard: "GoToLineView")
-        
         let string = textView.string
         let lineNumber = string.lineNumber(at: textView.selectedRange.location)
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
-        viewController.lineRange = FuzzyRange(location: lineNumber, length: lineCount)
+        let lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
-        viewController.completionHandler = { (lineRange) in
-            guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
-            
-            textView.select(range: range)
-            
-            return true
-        }
+        let viewController = NSStoryboard(name: "GoToLineView").instantiateInitialController { (coder) in
+            GoToLineViewController(coder: coder, lineRange: lineRange) { (lineRange) in
+                guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
+                
+                textView.select(range: range)
+                
+                return true
+            }
+        }!
         
         self.presentAsSheet(viewController)
     }
@@ -204,14 +204,15 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
-        inputViewController.completionHandler = { [unowned textView] (character) in
-            // flag to skip line ending sanitization
-            textView.isApprovedTextChange = true
-            defer { textView.isApprovedTextChange = false }
-            
-            textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
-        }
+        let inputViewController = NSStoryboard(name: "UnicodeInputView").instantiateInitialController { (coder) in
+            UnicodeInputViewController(coder: coder) { [unowned textView] (character) in
+                // flag to skip line ending sanitization
+                textView.isApprovedTextChange = true
+                defer { textView.isApprovedTextChange = false }
+                
+                textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
+            }
+        }!
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY

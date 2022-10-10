@@ -37,43 +37,16 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     
     
-    // MARK: Public Properties
-    
-    var mode: Mode = .new {
-        
-        didSet {
-            let manager = SyntaxManager.shared
-            
-            let style: SyntaxManager.StyleDictionary = {
-                switch mode {
-                    case .edit(let name), .copy(let name):
-                        return manager.settingDictionary(name: name) ?? manager.blankSettingDictionary
-                    case .new:
-                        return manager.blankSettingDictionary
-                }
-            }()
-            self.style.setDictionary(style)
-            
-            if case .edit(let name) = mode {
-                let isBundled = manager.isBundledSetting(name: name)
-                let isCustomized = manager.isCustomizedSetting(name: name)
-                
-                self.isBundledStyle = isBundled
-                self.isRestoreble = isBundled && isCustomized
-            }
-        }
-    }
-    
-    
     // MARK: Private Properties
     
-    @objc private dynamic var menuTitles: [String] = []  // for binding
+    private let mode: Mode
+    private let style: NSMutableDictionary
+    @objc private let isRestoreble: Bool
+    @objc private let isBundledStyle: Bool
     
-    private let style = NSMutableDictionary(dictionary: SyntaxManager.shared.blankSettingDictionary)
+    @objc private dynamic var menuTitles: [String] = []  // for binding
     @objc private dynamic var message: String?
     @objc private dynamic var isStyleNameValid = true
-    @objc private dynamic var isRestoreble = false
-    @objc private dynamic var isBundledStyle = false
     
     private var tabViewController: NSTabViewController?
     
@@ -84,6 +57,46 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // MARK: -
     // MARK: Lifecycle
+    
+    /// Initialize view from a storyboard with the given mode.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - mode: The edit mode.
+    init?(coder: NSCoder, mode: Mode) {
+        
+        self.mode = mode
+        
+        let manager = SyntaxManager.shared
+        
+        let style: SyntaxManager.StyleDictionary = {
+            switch mode {
+                case .edit(let name), .copy(let name):
+                    return manager.settingDictionary(name: name) ?? manager.blankSettingDictionary
+                case .new:
+                    return manager.blankSettingDictionary
+            }
+        }()
+        self.style = NSMutableDictionary(dictionary: style)
+        
+        switch mode {
+            case .edit(let name):
+                self.isBundledStyle = manager.isBundledSetting(name: name)
+                self.isRestoreble = self.isBundledStyle && manager.isCustomizedSetting(name: name)
+            default:
+                self.isBundledStyle = false
+                self.isRestoreble = false
+        }
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         

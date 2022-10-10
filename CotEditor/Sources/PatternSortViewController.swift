@@ -27,15 +27,11 @@ import Cocoa
 
 final class PatternSortViewController: NSViewController, SortPatternViewControllerDelegate {
     
-    // MARK: Public Properties
-    
-    var sampleLine: String?
-    @objc dynamic var sampleFontName: String?
-    
-    var completionHandler: ((_ pattern: any SortPattern, _ options: SortOptions) -> Void)?
-    
-    
     // MARK: Private Properties
+    
+    private let sampleLine: String
+    @objc private let sampleFontName: String?
+    private let completionHandler: (_ pattern: any SortPattern, _ options: SortOptions) -> Void
     
     @objc private dynamic var sortOptions = SortOptions()
     
@@ -46,7 +42,30 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    /// Initialize view from a storyboard with given values.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - sampleLine: A line of target text to display as sample.
+    ///   - fontName: The name of the editor font.
+    ///   - completionHandler: The callback method to perform when the command was accepted.
+    init?(coder: NSCoder, sampleLine: String, fontName: String? = nil, completionHandler: @escaping (_ pattern: any SortPattern, _ options: SortOptions) -> Void) {
+        
+        self.sampleLine = sampleLine
+        self.sampleFontName = fontName
+        self.completionHandler = completionHandler
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     /// keep tabViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -56,7 +75,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
         guard
             self.tabViewController == nil,
             let tabViewController = segue.destinationController as? NSTabViewController
-            else { return }
+        else { return }
         
         self.tabViewController = tabViewController
         
@@ -79,8 +98,6 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     /// perform sort
     @IBAction func apply(_ sender: Any?) {
         
-        assert(self.completionHandler != nil)
-        
         guard self.endEditing() else { return NSSound.beep() }
         
         guard let pattern = self.sortPattern else { return assertionFailure() }
@@ -92,10 +109,10 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
         }
         
         if let pattern = pattern as? RegularExpressionSortPattern {
-                UserDefaults.standard[.regexPatternSortHistory].appendUnique(pattern.searchPattern, maximum: 10)
+            UserDefaults.standard[.regexPatternSortHistory].appendUnique(pattern.searchPattern, maximum: 10)
         }
         
-        self.completionHandler?(pattern, self.sortOptions)
+        self.completionHandler(pattern, self.sortOptions)
         
         self.dismiss(sender)
     }
@@ -107,17 +124,14 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     /// sort pattern setting did update
     func didUpdate(sortPattern: any SortPattern) {
         
-        guard
-            let sampleLine = self.sampleLine,
-            let field = self.sampleLineField
-            else { return }
+        guard let field = self.sampleLineField else { return }
         
-        let attributedLine = NSMutableAttributedString(string: sampleLine)
+        let attributedLine = NSMutableAttributedString(string: self.sampleLine)
         
         try? sortPattern.validate()  // invalidate regex
         
-        if let range = sortPattern.range(for: sampleLine) {
-            let nsRange = NSRange(range, in: sampleLine)
+        if let range = sortPattern.range(for: self.sampleLine) {
+            let nsRange = NSRange(range, in: self.sampleLine)
             attributedLine.addAttribute(.backgroundColor, value: NSColor.selectedTextBackgroundColor, range: nsRange)
         }
         
@@ -151,7 +165,7 @@ final class SortPatternTabViewController: NSTabViewController {
             let item = tabViewItem,
             let viewController = item.viewController,
             viewController.representedObject == nil
-            else { return }
+        else { return }
         
         viewController.representedObject = {
             switch tabView.indexOfTabViewItem(item) {

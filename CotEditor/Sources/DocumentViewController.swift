@@ -728,11 +728,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// change tab width to desired number through a sheet
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let viewController = CustomTabWidthViewController.instantiate(storyboard: "CustomTabWidthView")
-        viewController.defaultWidth = self.tabWidth
-        viewController.completionHandler = { [weak self] (tabWidth) in
-            self?.tabWidth = tabWidth
-        }
+        let viewController = NSStoryboard(name: "CustomTabWidthView").instantiateInitialController { (coder) in
+            CustomTabWidthViewController(coder: coder, defaultWidth: self.tabWidth) { [weak self] (tabWidth) in
+                self?.tabWidth = tabWidth
+            }
+        }!
         
         self.presentAsSheet(viewController)
     }
@@ -806,7 +806,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
+        let newEditorViewController = NSStoryboard(name: "EditorView").instantiateInitialController() as! EditorViewController
         splitViewController.addChild(newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         

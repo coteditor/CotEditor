@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,36 +27,49 @@ import Cocoa
 
 final class GoToLineViewController: NSViewController {
     
-    // MARK: Public Properties
-    
-    var completionHandler: ((_ lineRange: FuzzyRange) -> Bool)?
-    
-    var lineRange: FuzzyRange? {
-        
-        get { FuzzyRange(string: self.location) }
-        set { self.location = newValue?.string ?? "" }
-    }
-    
-    
     // MARK: Private Properties
     
-    @objc private dynamic var location: String = ""
+    private let completionHandler: (_ lineRange: FuzzyRange) -> Bool
+    
+    @objc private dynamic var location: String
     
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    /// Initialize view from a storyboard with given values.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - lineRange: The current line range.
+    ///   - completionHandler: The callback method to perform when the command was accepted.
+    init?(coder: NSCoder, lineRange: FuzzyRange, completionHandler: @escaping (_ lineRange: FuzzyRange) -> Bool) {
+        
+        self.completionHandler = completionHandler
+        self.location = lineRange.string
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// apply
     @IBAction func apply(_ sender: Any?) {
         
-        assert(self.completionHandler != nil)
-        
         guard
             self.endEditing(),
-            let lineRange = self.lineRange,
-            self.completionHandler?(lineRange) ?? false
-            else { return NSSound.beep() }
+            let lineRange = FuzzyRange(string: self.location),
+            self.completionHandler(lineRange)
+        else { return NSSound.beep() }
         
         self.dismiss(sender)
     }

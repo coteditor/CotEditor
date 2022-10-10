@@ -77,8 +77,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     private var applicationActivationObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
-    private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
-    private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
+    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel").instantiateInitialController()!
+    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel").instantiateInitialController()!
     
     
     

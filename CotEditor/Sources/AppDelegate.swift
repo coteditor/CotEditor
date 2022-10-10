@@ -64,11 +64,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var settingsWindowController = NSWindowController.instantiate(storyboard: "SettingsWindow")
+    private lazy var settingsWindowController: NSWindowController = NSStoryboard(name: "SettingsWindow").instantiateInitialController()!
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
-        let windowController = NSWindowController.instantiate(storyboard: "WebDocumentWindow")
+        let windowController = NSStoryboard(name: "WebDocumentWindow").instantiateInitialController() as! NSWindowController
         windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
         return windowController
     }()

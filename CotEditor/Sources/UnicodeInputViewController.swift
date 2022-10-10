@@ -27,12 +27,9 @@ import Cocoa
 
 final class UnicodeInputViewController: NSViewController {
     
-    // MARK: Public Properties
-    
-    var completionHandler: ((_ character: Character) -> Void)?
-    
-    
     // MARK: Private Properties
+    
+    private let completionHandler: (_ character: Character) -> Void
     
     private var character: Character?
     
@@ -44,7 +41,26 @@ final class UnicodeInputViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    /// Initialize view from a storyboard with given values.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - completionHandler: The callback method to perform when the command was accepted.
+    init?(coder: NSCoder, completionHandler: @escaping (_ character: Character) -> Void) {
+        
+        self.completionHandler = completionHandler
+        
+        super.init(coder: coder)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewWillAppear() {
         
@@ -60,11 +76,9 @@ final class UnicodeInputViewController: NSViewController {
     /// Input Unicode character to the parent text view.
     @IBAction func insertToDocument(_ sender: Any?) {
         
-        assert(self.completionHandler != nil)
-        
         guard let character = self.character else { return NSSound.beep() }
         
-        self.completionHandler?(character)
+        self.completionHandler(character)
         self.codePoint = ""
         
         if let codePoint = character.unicodeScalars.first?.codePoint {

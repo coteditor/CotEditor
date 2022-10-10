@@ -141,19 +141,19 @@ extension EditorTextView {
         
         guard self.isEditable else { return NSSound.beep() }
         
-        let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
-        
         // sample the first line
         let location = self.selectedRange.isEmpty
             ? self.string.startIndex
             : String.Index(utf16Offset: self.selectedRange.location, in: self.string)
         let lineRange = self.string.lineContentsRange(at: location)
-        viewController.sampleLine = String(self.string[lineRange])
-        viewController.sampleFontName = self.font?.fontName
+        let sampleLine = String(self.string[lineRange])
+        let fontName = self.font?.fontName
         
-        viewController.completionHandler = { [weak self] (pattern, options) in
-            self?.sortLines(pattern: pattern, options: options)
-        }
+        let viewController = NSStoryboard(name: "PatternSortView").instantiateInitialController { (coder) in
+            PatternSortViewController(coder: coder, sampleLine: sampleLine, fontName: fontName) { [weak self] (pattern, options) in
+                self?.sortLines(pattern: pattern, options: options)
+            }
+        }!
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
     }

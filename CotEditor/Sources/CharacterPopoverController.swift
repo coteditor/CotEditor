@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ final class CharacterPopoverController: NSViewController {
     
     /// Instantiate proper view controller for the given character info.
     ///
-    /// - Parameter info: The CharacterInfo instance to display.
+    /// - Parameter chraracter: The Character to inspect.
     static func instantiate(for character: Character) -> Self {
         
         let info = CharacterInfo(character: character)
@@ -57,6 +57,11 @@ final class CharacterPopoverController: NSViewController {
     }
     
     
+    /// Initialize view from a storyboard with given values.
+    ///
+    /// - Parameters:
+    ///   - coder: The coder to instantiate the view from a storyboard.
+    ///   - characterInfo: The CharacterInfo instance to display.
     private init?(coder: NSCoder, characterInfo info: CharacterInfo) {
         
         let unicodes = info.character.unicodeScalars
