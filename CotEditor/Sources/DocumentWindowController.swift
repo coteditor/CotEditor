@@ -117,7 +117,10 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         didSet {
             guard let document = document as? Document else { return }
             
-            self.contentViewController!.representedObject = document
+            // deliver represented object to child view controllers
+            for child in self.contentViewController!.children {
+                child.representedObject = document
+            }
             
             // -> In case when the window was created as a restored window (the right side ones in the browsing mode).
             if document.isInViewingMode {

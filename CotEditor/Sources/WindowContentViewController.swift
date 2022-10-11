@@ -75,17 +75,6 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    override var representedObject: Any? {
-        
-        didSet {
-            // deliver represented object to child view controllers
-            for viewController in self.children {
-                viewController.representedObject = representedObject
-            }
-        }
-    }
-    
-    
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         // disable toggling sidebar in the tab overview mode
