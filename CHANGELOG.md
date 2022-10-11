@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [non-AppStore ver.] Update Sparkle from 2.2.2 to 2.3.0.
+- [tirivial] Optimize the script menu update.
 
 
 

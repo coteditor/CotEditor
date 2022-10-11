@@ -51,12 +51,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Properties
     
-    private let scriptsDirectoryURL: URL?
+    private var scriptsDirectoryURL: URL?
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     private var currentContext: String?  { didSet { self.applyShortcuts() } }
     
-    private lazy var menuBuildingDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
-    private var applicationObserver: AnyCancellable?
+    private var debouncerTask: Task<Void, any Error>?
     private var documentObserver: AnyCancellable?
     private var syntaxObserver: AnyCancellable?
     
@@ -67,17 +66,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private override init() {
         
-        do {
-            self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        } catch {
-            self.scriptsDirectoryURL = nil
-            print("cannot create the scripts folder: \(error)")
-        }
-        
         super.init()
-        
-        // observe script folder change
-        NSFileCoordinator.addFilePresenter(self)
         
         // observe the frontmost syntax change
         self.documentObserver = NotificationCenter.default.publisher(for: NSWindow.didBecomeMainNotification)
@@ -100,22 +89,26 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: File Presenter Protocol
     
-    let presentedItemOperationQueue: OperationQueue = .main
+    let presentedItemOperationQueue: OperationQueue = .init()
     
     var presentedItemURL: URL?  { self.scriptsDirectoryURL }
     
     
-    /// script folder did change
-    func presentedSubitemDidChange(at url: URL) {
+    /// Contents of the script folder did change.
+    func presentedItemDidChange() {
         
-        if NSApp.isActive {
-            self.menuBuildingDebouncer.schedule()
-            
-        } else {
-            self.applicationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification, object: NSApp)
-                .receive(on: DispatchQueue.main)
-                .first()
-                .sink { [weak self] _ in self?.menuBuildingDebouncer.perform() }
+        self.debouncerTask?.cancel()
+        self.debouncerTask = .detached { [weak self] in
+            if await NSApp.isActive {
+                try await Task.sleep(nanoseconds: 200 * 1_000_000)  // 200 milliseconds
+                await self?.buildScriptMenu()
+                
+            } else {
+                for await _ in await NotificationCenter.default.notifications(named: NSApplication.didBecomeActiveNotification) {
+                    await self?.buildScriptMenu()
+                    return
+                }
+            }
         }
     }
     
@@ -138,23 +131,25 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Build the Script menu and scan script handlers.
-    func buildScriptMenu() {
+    /// Start observing the scripts directory.
+    ///
+    /// This method should be called only once.
+    func observeScriptsDirectory() {
         
-        assert(Thread.isMainThread)
+        assert(self.scriptsDirectoryURL == nil)
         
-        self.menuBuildingDebouncer.cancel()
-        self.applicationObserver = nil
-        self.scriptHandlersTable.removeAll()
-        
-        guard let directoryURL = self.scriptsDirectoryURL else { return }
-        
-        let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
-                                      action: #selector(openScriptFolder), keyEquivalent: "")
-        openMenuItem.target = self
-        
-        MainMenu.script.menu?.items = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
-        self.applyShortcuts()
+        Task.detached {
+            do {
+                self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            } catch {
+                assertionFailure("cannot create the scripts folder: \(error)")
+            }
+            
+            // observe script folder change
+            NSFileCoordinator.addFilePresenter(self)
+            
+            await self.buildScriptMenu()
+        }
     }
     
     
@@ -227,6 +222,28 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     // MARK: Private Methods
+    
+    /// Build the Script menu and scan script handlers.
+    private func buildScriptMenu() async {
+        
+        assert(!Thread.isMainThread)
+        
+        self.debouncerTask?.cancel()
+        self.scriptHandlersTable.removeAll()
+        
+        guard let directoryURL = self.scriptsDirectoryURL else { return }
+        
+        let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
+                                      action: #selector(self.openScriptFolder), keyEquivalent: "")
+        openMenuItem.target = self
+        let menuItems = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
+        
+        await MainActor.run {
+            MainMenu.script.menu?.items = menuItems
+            self.applyShortcuts()
+        }
+    }
+    
     
     /// Present the given error in the ordenery way by taking the error type in the concideration.
     ///

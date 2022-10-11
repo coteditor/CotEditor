@@ -141,7 +141,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)
         
-        ScriptManager.shared.buildScriptMenu()
+        ScriptManager.shared.observeScriptsDirectory()
         
         // build Unicode normalization menu items
         self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
