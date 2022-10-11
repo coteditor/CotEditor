@@ -80,7 +80,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         self.collapseView(isCollapsed, animate: false)
         
         self.scanner?.shouldScan = true
-        self.scanner?.scan()
+        self.scanner?.invalidate()
         self.updateMessage(isScanning: false)
     }
     

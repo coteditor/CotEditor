@@ -30,18 +30,17 @@ final class IncompatibleCharacterScanner {
     
     // MARK: Public Properties
     
-    var shouldScan = false
-    
     @Published private(set) var incompatibleCharacters: [IncompatibleCharacter] = []  // line endings applied
     @Published private(set) var isScanning = false
+    
+    var shouldScan = false
     
     
     // MARK: Private Properties
     
-    private weak var document: Document?
+    private weak var document: Document?  // weak to avoid cycle retain
     
     private var task: Task<Void, any Error>?
-    private lazy var updateDebouncer = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
     
     
@@ -67,14 +66,6 @@ final class IncompatibleCharacterScanner {
         
         guard self.shouldScan else { return }
         
-        self.updateDebouncer.schedule()
-    }
-    
-    
-    /// Scan immediately.
-    func scan() {
-        
-        self.updateDebouncer.cancel()
         self.task?.cancel()
         
         guard let document = self.document else { return assertionFailure() }
@@ -85,12 +76,14 @@ final class IncompatibleCharacterScanner {
             return
         }
         
-        let string = document.textStorage.string.immutable
-        
         self.isScanning = true
         self.task = Task {
             defer { self.isScanning = false }
-            self.incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
+            try await Task.sleep(nanoseconds: 400 * 1_000_000)  // debounce
+            
+            let string = document.textStorage.string.immutable
+            let incompatibleCharacters = try string.scanIncompatibleCharacters(with: encoding)
+            self.incompatibleCharacters = incompatibleCharacters
         }
     }
     

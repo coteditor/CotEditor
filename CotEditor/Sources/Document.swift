@@ -879,8 +879,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.fileEncoding = fileEncoding
         self.shouldSaveEncodingXattr = true
         
-        // check encoding compatibility
-        self.incompatibleCharacterScanner.scan()
+        // update incompatible characters inspector
+        self.incompatibleCharacterScanner.invalidate()
     }
     
     
