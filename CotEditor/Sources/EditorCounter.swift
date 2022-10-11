@@ -78,7 +78,7 @@ extension EditorCountResult.Count {
 
 // MARK: -
 
-final class EditorCounter {
+final actor EditorCounter {
     
     // MARK: Private Properties
     

@@ -26,7 +26,7 @@
 import Combine
 import Cocoa
 
-final class StatusBarController: NSViewController {
+@MainActor final class StatusBarController: NSViewController {
     
     // MARK: Public Properties
     
@@ -90,8 +90,9 @@ final class StatusBarController: NSViewController {
         self.defaultsObserver = Publishers.MergeMany(publishers)
             .map { _ in UserDefaults.standard.statusBarEditorInfo }
             .sink { [weak self] in
-                self?.document?.analyzer.statusBarRequirements = $0
-                self?.editorStatus = self?.statusAttributedString(result: self?.document?.analyzer.result, types: $0)
+                guard let document = self?.document else { return }
+                document.analyzer.statusBarRequirements = $0
+                self?.editorStatus = self?.statusAttributedString(result: document.analyzer.result, types: $0)
             }
         
         guard let document = self.document else { return assertionFailure() }
@@ -154,27 +155,27 @@ final class StatusBarController: NSViewController {
     
     
     /// update left side text
-    func statusAttributedString(result: EditorCountResult?, types: EditorInfoTypes) -> NSAttributedString {
+    @MainActor private func statusAttributedString(result: EditorCountResult, types: EditorInfoTypes) -> NSAttributedString {
         
         var status: [NSAttributedString] = []
         
         if types.contains(.lines) {
-            status.append(.formatted(label: "Lines") + .formatted(state: result?.lines.formatted))
+            status.append(.formatted(label: "Lines") + .formatted(state: result.lines.formatted))
         }
         if types.contains(.characters) {
-            status.append(.formatted(label: "Characters") + .formatted(state: result?.characters.formatted))
+            status.append(.formatted(label: "Characters") + .formatted(state: result.characters.formatted))
         }
         if types.contains(.words) {
-            status.append(.formatted(label: "Words") + .formatted(state: result?.words.formatted))
+            status.append(.formatted(label: "Words") + .formatted(state: result.words.formatted))
         }
         if types.contains(.location) {
-            status.append(.formatted(label: "Location") + .formatted(state: result?.location?.formatted()))
+            status.append(.formatted(label: "Location") + .formatted(state: result.location?.formatted()))
         }
         if types.contains(.line) {
-            status.append(.formatted(label: "Line") + .formatted(state: result?.line?.formatted()))
+            status.append(.formatted(label: "Line") + .formatted(state: result.line?.formatted()))
         }
         if types.contains(.column) {
-            status.append(.formatted(label: "Column") + .formatted(state: result?.column?.formatted()))
+            status.append(.formatted(label: "Column") + .formatted(state: result.column?.formatted()))
         }
         
         let attrStatus = status.joined(separator: "   ").mutable
@@ -189,7 +190,7 @@ final class StatusBarController: NSViewController {
     
     
     /// build encoding popup item
-    private func buildEncodingPopupButton() {
+    @MainActor private func buildEncodingPopupButton() {
         
         guard let popUpButton = self.encodingPopUpButton else { return }
         
@@ -200,14 +201,14 @@ final class StatusBarController: NSViewController {
     
     
     /// select item in the encoding popup menu
-    private func invalidateLineEndingSelection(to lineEnding: LineEnding) {
+    @MainActor private func invalidateLineEndingSelection(to lineEnding: LineEnding) {
         
         self.lineEndingPopUpButton?.selectItem(withTag: lineEnding.index)
     }
     
     
     /// select item in the line ending menu
-    private func invalidateEncodingSelection() {
+    @MainActor private func invalidateEncodingSelection() {
         
         guard let fileEncoding = self.document?.fileEncoding else { return }
         

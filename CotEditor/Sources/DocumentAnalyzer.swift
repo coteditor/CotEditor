@@ -39,10 +39,10 @@ final class DocumentAnalyzer {
     // MARK: Private Properties
     
     private weak var document: Document?  // weak to avoid cycle retain
+    private var requiredInfoTypes: EditorInfoTypes  { self.updatesAll ? .all : self.statusBarRequirements }
     
     private var needsCountWholeText = true
-    private lazy var updateDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
-    private var countTask: Task<Void, any Error>?
+    private var task: Task<Void, any Error>?
     
     
     
@@ -56,7 +56,7 @@ final class DocumentAnalyzer {
     
     
     deinit {
-        self.countTask?.cancel()
+        self.task?.cancel()
     }
     
     
@@ -66,36 +66,17 @@ final class DocumentAnalyzer {
     /// update editor info (only if really needed)
     func invalidate(onlySelection: Bool = false) {
         
+        guard !self.requiredInfoTypes.isEmpty else { return }
+        guard let textView = self.document?.textView else { return }
+        
         if !onlySelection {
             self.needsCountWholeText = true
         }
         
-        guard !self.requiredInfoTypes.isEmpty else { return }
-        
-        self.updateDebouncer.schedule(delay: self.needsCountWholeText ? nil : .milliseconds(10))
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// info types needed to be calculated
-    var requiredInfoTypes: EditorInfoTypes {
-        
-        self.updatesAll ? .all : self.statusBarRequirements
-    }
-    
-    
-    /// update editor info (only if really needed)
-    private func updateEditorInfo() {
-        
-        guard !self.requiredInfoTypes.isEmpty else { return }
-        guard let textView = self.document?.textView else { return assertionFailure() }
-        
         // do nothing if only cursor is moved but no need to calculate the cursor location.
         if !self.needsCountWholeText,
-            self.requiredInfoTypes.isDisjoint(with: .cursors),
-            textView.selectedRange.isEmpty
+           self.requiredInfoTypes.isDisjoint(with: .cursors),
+           textView.selectedRange.isEmpty
         {
             self.result.lines.selected = 0
             self.result.characters.selected = 0
@@ -103,16 +84,21 @@ final class DocumentAnalyzer {
             return
         }
         
-        let string = textView.string.immutable
-        let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
-        let counter = EditorCounter(string: string,
-                                    selectedRange: selectedRange,
-                                    requiredInfo: self.requiredInfoTypes,
-                                    countsWholeText: self.needsCountWholeText)
+        let delay: UInt64 = self.needsCountWholeText ? 10 : 200  // in milliseconds
         
-        self.countTask?.cancel()
-        self.countTask = Task {
-            var result = try counter.count()
+        self.task?.cancel()
+        self.task = Task {
+            try await Task.sleep(nanoseconds: delay * 1_000_000)  // debounce
+            
+            let string = await textView.string.immutable
+            let selectedRange = await textView.selectedRange
+            
+            let counter = EditorCounter(string: string,
+                                        selectedRange: Range(selectedRange, in: string) ?? string.startIndex..<string.startIndex,
+                                        requiredInfo: self.requiredInfoTypes,
+                                        countsWholeText: self.needsCountWholeText)
+            
+            var result = try await counter.count()
             
             if counter.countsWholeText {
                 self.needsCountWholeText = false

@@ -89,7 +89,6 @@ final class DocumentInspectorViewController: NSViewController {
         
         guard let document = self.document else { return assertionFailure() }
         
-        /// stop autoupdate documentAnalyzer
         self.subscribe(document)
         self.analyzer?.updatesAll = true
         self.analyzer?.invalidate()
