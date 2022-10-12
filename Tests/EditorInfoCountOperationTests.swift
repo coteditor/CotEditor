@@ -34,7 +34,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
         Both are 👍🏼.
         """
     
-    func testNoRequiredInfo() throws {
+    func testNoRequiredInfo() async throws {
         
         let selectedRange = Range(NSRange(0..<3), in: self.testString)!
         let counter = EditorCounter(
@@ -43,7 +43,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: [],
             countsWholeText: true)
         
-        let result = try counter.count()
+        let result = try await counter.count()
         
         XCTAssertNil(result.lines.entire)
         XCTAssertNil(result.characters.entire)
@@ -54,7 +54,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testAllRequiredInfo() throws {
+    func testAllRequiredInfo() async throws {
         
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
         let counter = EditorCounter(
@@ -63,7 +63,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: .all,
             countsWholeText: true)
         
-        let result = try counter.count()
+        let result = try await counter.count()
         
         XCTAssertEqual(result.lines.entire, 3)
         XCTAssertEqual(result.characters.entire, 31)
@@ -79,7 +79,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testWholeTextSkip() throws {
+    func testWholeTextSkip() async throws {
         
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
         let counter = EditorCounter(
@@ -88,7 +88,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: .all,
             countsWholeText: false)
         
-        let result = try counter.count()
+        let result = try await counter.count()
         
         XCTAssertNil(result.lines.entire)
         XCTAssertNil(result.characters.entire)
@@ -104,7 +104,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     }
     
     
-    func testCRLF() throws {
+    func testCRLF() async throws {
         
         let string = "a\r\nb"
         let selectedRange = Range(NSRange(1..<4), in: string)!
@@ -114,7 +114,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
             requiredInfo: .all,
             countsWholeText: true)
         
-        let result = try counter.count()
+        let result = try await counter.count()
         
         XCTAssertEqual(result.lines.entire, 2)
         XCTAssertEqual(result.characters.entire, 3)
