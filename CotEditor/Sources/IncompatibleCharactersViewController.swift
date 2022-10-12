@@ -68,7 +68,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("incompatible characters".localized)
+        self.view.setAccessibilityLabel("Incompatible Characters".localized)
     }
     
     

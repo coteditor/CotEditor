@@ -64,7 +64,7 @@ import Cocoa
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("status bar".localized)
+        self.view.setAccessibilityLabel("Status Bar".localized)
     }
     
     

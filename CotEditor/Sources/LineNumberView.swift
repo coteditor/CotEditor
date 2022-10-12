@@ -129,7 +129,7 @@ final class LineNumberView: NSView {
     /// view name for VoiceOver
     override func accessibilityLabel() -> String? {
         
-        return "line numbers".localized
+        return "Line Numbers".localized
     }
     
     

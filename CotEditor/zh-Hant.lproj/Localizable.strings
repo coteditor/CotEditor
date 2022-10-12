@@ -36,15 +36,15 @@
 
 
 // Accessibility labels
-"inspector" = "檢查器";
-"outline" = "大綱";
-"warnings" = "警告";
-"incompatible characters" = "不兼容字元";
-"status bar" = "狀態欄";
-"editor" = "編輯器";
-"navigation bar" = "巡覽列";
-"line numbers" = "行號";
-"find result" = "查找結果";
+"Inspector" = "檢查器";
+"Outline" = "大綱";
+"Warnings" = "警告";
+"Incompatible Characters" = "不兼容字元";
+"Status Bar" = "狀態欄";
+"Editor" = "編輯器";
+"Navigation Bar" = "巡覽列";
+"Line Numbers" = "行號";
+"Find Result" = "查找結果";
 "Use print font" = "使用列印字體";
 
 

@@ -76,7 +76,7 @@ final class SidebarViewController: NSTabViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("inspector".localized)
+        self.view.setAccessibilityLabel("Inspector".localized)
     }
     
     

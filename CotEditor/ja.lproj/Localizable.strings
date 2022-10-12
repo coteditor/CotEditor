@@ -36,15 +36,15 @@
 
 
 // Accessibility labels
-"inspector" = "インスペクタ";
-"outline" = "アウトライン";
-"warnings" = "警告";
-"incompatible characters" = "非互換文字";
-"status bar" = "ステータスバー";
-"editor" = "エディタ";
-"navigation bar" = "ナビゲーションバー";
-"line numbers" = "行番号";
-"find result" = "検索結果";
+"Inspector" = "インスペクタ";
+"Outline" = "アウトライン";
+"Warnings" = "警告";
+"Incompatible Characters" = "非互換文字";
+"Status Bar" = "ステータスバー";
+"Editor" = "エディタ";
+"Navigation Bar" = "ナビゲーションバー";
+"Line Numbers" = "行番号";
+"Find Result" = "検索結果";
 "Use print font" = "プリント用フォントを使う";
 
 

@@ -34,7 +34,7 @@ final class WarningsViewController: NSSplitViewController {
         super.viewDidLoad()
         
         // set accessibility
-        self.view.setAccessibilityLabel("warnings".localized)
+        self.view.setAccessibilityLabel("Warnings".localized)
     }
     
     

@@ -36,15 +36,15 @@
 
 
 // Accessibility labels
-"inspector" = "denetçi";
-"outline" = "ana hat";
-"warnings" = "uyarılar";
-"incompatible characters" = "uyumsuz karakterler";
-"status bar" = "durum çubuğu";
-"editor" = "düzenleyici";
-"navigation bar" = "dolaşım çubuğu";
-"line numbers" = "satır numaraları";
-"find result" = "arama sonucu";
+"Inspector" = "Denetçi";
+"Outline" = "Ana Hat";
+"Warnings" = "Uyarılar";
+"Incompatible Characters" = "Uyumsuz Karakterler";
+"Status Bar" = "Durum Çubuğu";
+"Editor" = "Düzenleyici";
+"Navigation Bar" = "Dolaşım Çubuğu";
+"Line Numbers" = "Satır Numaraları";
+"Find Result" = "Arama Sonucu";
 "Use print font" = "Baskı fontunu kullan";
 
 

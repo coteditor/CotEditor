@@ -36,15 +36,15 @@
 
 
 // Accessibility labels
-"inspector" = "Infofenster";
-"outline" = "Gliederung";
-"warnings" = "Vorwarnungen";
-"incompatible characters" = "Inkompatible Zeichen";
-"status bar" = "Statusleiste";
-"navigation bar" = "Navigationsleiste";
-"editor" = "Editor";
-"line numbers" = "Zeilennummern";
-"find result" = "Suchergebnis";
+"Inspector" = "Infofenster";
+"Outline" = "Gliederung";
+"Warnings" = "Vorwarnungen";
+"Incompatible Characters" = "Inkompatible Zeichen";
+"Status Bar" = "Statusleiste";
+"Navigation Bar" = "Navigationsleiste";
+"Editor" = "Editor";
+"Line Numbers" = "Zeilennummern";
+"Find Result" = "Suchergebnis";
 "Use print font" = "Schrift für drucken benutzen";
 
 

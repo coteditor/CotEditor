@@ -36,15 +36,15 @@
 
 
 // Accessibility labels
-"inspector" = "检查器";
-"outline" = "大纲";
-"warnings" = "警告";
-"incompatible characters" = "不兼容字符";
-"status bar" = "状态栏";
-"editor" = "编辑器";
-"navigation bar" = "导航栏";
-"line numbers" = "行号";
-"find result" = "查找结果";
+"Inspector" = "检查器";
+"Outline" = "大纲";
+"Warnings" = "警告";
+"Incompatible Characters" = "不兼容字符";
+"Status Bar" = "状态栏";
+"Editor" = "编辑器";
+"Navigation Bar" = "导航栏";
+"Line Numbers" = "行号";
+"Find Result" = "查找结果";
 "Use print font" = "使用打印字体";
 
 

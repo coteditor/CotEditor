@@ -65,7 +65,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("find result".localized)
+        self.view.setAccessibilityLabel("Find Result".localized)
     }
     
     
