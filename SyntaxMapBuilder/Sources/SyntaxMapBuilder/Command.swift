@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  Command.swift
 //
 //  SyntaxMapBuilder
 //  https://coteditor.com
@@ -25,6 +25,7 @@
 
 import Foundation
 import UniformTypeIdentifiers
+import ArgumentParser
 import Yams
 
 private struct SyntaxStyle: Codable {
@@ -40,10 +41,27 @@ private struct SyntaxStyle: Codable {
 }
 
 
-private func buildSyntaxMap(directoryPath: String) throws -> String {
+@main
+struct Command: ParsableCommand {
+    
+    @Argument(help: "A path to the Syntaxes directory.")
+    var directoryPath: String
+    
+    
+    func run() throws {
+        
+        let url = URL(fileURLWithPath: self.directoryPath, isDirectory: true)
+        let json = try buildSyntaxMap(directoryURL: url)
+        
+        print(json)
+    }
+    
+}
+
+
+func buildSyntaxMap(directoryURL: URL) throws -> String {
     
     // find syntax style files
-    let directoryURL = URL(fileURLWithPath: directoryPath, isDirectory: true)
     let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: [.contentTypeKey])
         .filter { try $0.resourceValues(forKeys: [.contentTypeKey]).contentType?.conforms(to: .yaml) == true }
     
@@ -58,7 +76,7 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
             "extensions": style.extensions,
             "filenames": style.filenames,
             "interpreters": style.interpreters,
-            ]
+        ]
             .mapValues { $0?.map(\.keyString) ?? [] }
     }
     
@@ -70,10 +88,3 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
     
     return json
 }
-
-
-guard CommandLine.arguments.count > 1 else { exit(1) }
-
-let json = try buildSyntaxMap(directoryPath: CommandLine.arguments[1])
-
-print(json)
