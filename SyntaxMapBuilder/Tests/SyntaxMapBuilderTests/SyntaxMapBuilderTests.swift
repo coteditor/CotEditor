@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,27 +24,13 @@
 //
 
 import XCTest
-import class Foundation.Bundle
+@testable import SyntaxMapBuilder
 
 final class SyntaxMapBuilderTests: XCTestCase {
     
-    func testExecutable() throws {
+    func testCommand() throws {
         
-        let executableURL = self.productsDirectory.appendingPathComponent("SyntaxMapBuilder")
-        let inputURL = self.testDirectory.appendingPathComponent("Resources")
-        
-        let process = Process()
-        process.executableURL = executableURL
-        process.arguments = [inputURL.path]
-        
-        let pipe = Pipe()
-        process.standardOutput = pipe
-        
-        try process.run()
-        process.waitUntilExit()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)
+        let syntaxesURL = Bundle.module.url(forResource: "Syntaxes", withExtension: nil)!
         
         let expectedResult = """
             {
@@ -73,34 +59,9 @@ final class SyntaxMapBuilderTests: XCTestCase {
                 ]
               }
             }
-            
             """
         
-        XCTAssertEqual(output, expectedResult)
-    }
-    
-}
-
-
-
-private extension XCTestCase {
-    
-    /// Path to the built products directory.
-    var productsDirectory: URL {
-        
-        return Bundle.allBundles
-            .first { $0.bundlePath.hasSuffix(".xctest") }!
-            .bundleURL
-            .deletingLastPathComponent()
-    }
-    
-    
-    /// Path to the test directory in package.
-    var testDirectory: URL {
-        
-        return URL(fileURLWithPath: #file)
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
+        XCTAssertEqual(try buildSyntaxMap(directoryURL: syntaxesURL), expectedResult)
     }
     
 }

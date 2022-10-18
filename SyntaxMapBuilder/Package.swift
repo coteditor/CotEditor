@@ -19,6 +19,9 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]),
         
-        .testTarget(name: "SyntaxMapBuilderTests", dependencies: ["SyntaxMapBuilder"]),
+        .testTarget(
+            name: "SyntaxMapBuilderTests",
+            dependencies: ["SyntaxMapBuilder"],
+            resources: [.copy("Syntaxes")]),
     ]
 )
