@@ -62,7 +62,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     override func addSplitViewItem(_ splitViewItem: NSSplitViewItem) {
         
-        // use FindPanelButtonView.storyboard on macOS 13 Venture
+        // use FindPanelButtonView.storyboard on macOS 13 Ventura
         if #available(macOS 13, *),
            splitViewItem.viewController is FindPanelButtonViewController,
            let viewController = NSStoryboard(name: "FindPanelButtonView")
