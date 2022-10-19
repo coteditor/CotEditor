@@ -14,6 +14,11 @@ Change Log
 - [dev] Migrate helpindex to cshelpindex.
 
 
+### Fixes
+
+- [beta] Fix an issue on macOS 13 that some icons were drawn wrongly.
+
+
 
 4.4.0-beta.4 (537)
 --------------------------
