@@ -50,7 +50,7 @@ struct Command: ParsableCommand {
     
     func run() throws {
         
-        let url = URL(fileURLWithPath: self.directoryPath, isDirectory: true)
+        let url = URL(filePath: self.directoryPath, directoryHint: .isDirectory)
         let json = try buildSyntaxMap(directoryURL: url)
         
         print(json)
