@@ -66,7 +66,7 @@ final class SyntaxTests: XCTestCase {
         
         // load test file
         let sourceURL = bundle.url(forResource: "sample", withExtension: "html")
-        self.htmlSource = try String(contentsOf: sourceURL!, encoding: .utf8)
+        self.htmlSource = try String(contentsOf: sourceURL!)
         
         XCTAssertNotNil(self.htmlSource)
     }

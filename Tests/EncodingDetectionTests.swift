@@ -101,8 +101,8 @@ final class EncodingDetectionTests: XCTestCase {
         let data = try self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
-        let invalidInt = UInt32(kCFStringEncodingInvalidId)
-        let utf8Int = UInt32(CFStringBuiltInEncodings.UTF8.rawValue)
+        let invalidInt = kCFStringEncodingInvalidId
+        let utf8Int = CFStringBuiltInEncodings.UTF8.rawValue
         let string = try String(data: data, suggestedCFEncodings: [invalidInt, utf8Int], usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
@@ -215,7 +215,7 @@ final class EncodingDetectionTests: XCTestCase {
     func testYenConvertion() {
         
         XCTAssertTrue(String.Encoding.utf8.canConvertYenSign)
-        XCTAssertTrue(toNSEncoding(.shiftJIS).canConvertYenSign)
+        XCTAssertTrue(String.Encoding(cfEncodings: .shiftJIS).canConvertYenSign)
         XCTAssertFalse(String.Encoding.japaneseEUC.canConvertYenSign)  // ? (U+003F)
         XCTAssertFalse(String.Encoding.ascii.canConvertYenSign)  // Y (U+0059)
         
@@ -302,13 +302,6 @@ private extension EncodingDetectionTests {
         let fileURL = self.bundle.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
         
         return try Data(contentsOf: fileURL!)
-    }
-    
-    
-    func toNSEncoding(_ cfEncodings: CFStringEncodings) -> String.Encoding {
-        
-        let rawValue = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue))
-        return String.Encoding(rawValue: rawValue)
     }
     
 }
