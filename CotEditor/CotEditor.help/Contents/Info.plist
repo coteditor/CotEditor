@@ -17,13 +17,13 @@
 	<key>CFBundleSignature</key>
 	<string>hbwr</string>
 	<key>CFBundleVersion</key>
-	<string>538</string>
+	<string>539</string>
 	<key>HPDBookAccessPath</key>
 	<string>CotEditor.html</string>
 	<key>HPDBookIconPath</key>
 	<string>../Shared/gfx/icon_32x32@2x.png</string>
-	<key>HPDBookIndexPath</key>
-	<string>CotEditor.helpindex</string>
+	<key>HPDBookCSIndexPath</key>
+	<string>CotEditor.cshelpindex</string>
 	<key>HPDBookTitle</key>
 	<string>CotEditor User Guide</string>
 	<key>HPDBookType</key>

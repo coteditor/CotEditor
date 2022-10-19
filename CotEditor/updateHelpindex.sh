@@ -30,9 +30,8 @@ for dir in *.lproj; do
     [ $lang == 'ja' ] && min_length=1 || min_length=3
     [ $lang == 'ja' ] && stopwords="" || stopwords="--stopwords ${lang}"
     
-    
     echo "📦 Indexing ${dir}..."
-    hiutil --index-format corespotlight -avv --create $dir --file "${dir}/CotEditor.helpindex" --min-term-length=$min_length $stopwords 2>&1 | \
+    hiutil -I corespotlight -vv -Caf "${dir}/CotEditor.cshelpindex" "${dir}/pgs/" --min-term-length=$min_length $stopwords 2>&1 | \
     awk "{ if (/error:/) {err = 1}; print} END {exit err}"
     if [ $? -gt 0 ]; then
         exit 1
