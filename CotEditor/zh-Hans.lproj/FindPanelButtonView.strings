@@ -1,0 +1,47 @@
+//
+//  FindPanelButtonView.strings (Simplified Chinese)
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2022-07-23.
+//  Localized by onevcat
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2022 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "HT3-83-M9A"; */
+"HT3-83-M9A.title" = "全部查找";
+/* Class = "NSComboButton"; ibShadowedToolTip = "List all matches."; ObjectID = "s5c-oi-12M"; */
+"s5c-oi-12M.ibShadowedToolTip" = "列出所有匹配。";
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "GCq-pe-9wt"; */
+"GCq-pe-9wt.title" = "Select All";  // FIXME: new
+/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "w4l-Dh-SV9"; */
+"w4l-Dh-SV9.title" = "高亮";
+
+/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "C1t-ig-Fbd"; */
+"C1t-ig-Fbd.title" = "全部替换";
+/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "XLa-O2-IFh"; */
+"XLa-O2-IFh.ibShadowedToolTip" = "将所有匹配用替换文本替换。";
+
+/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "N86-Y5-b4j"; */
+"N86-Y5-b4j.title" = "替换";
+
+/* Class = "NSSegmentedCell"; llr-mj-aZX.ibShadowedToolTips[0] = "Find previous match."; ObjectID = "llr-mj-aZX"; */
+"llr-mj-aZX.ibShadowedToolTips[0]" = "查找前一个匹配。";
+/* Class = "NSSegmentedCell"; llr-mj-aZX.ibShadowedToolTips[1] = "Find next match."; ObjectID = "llr-mj-aZX"; */
+"llr-mj-aZX.ibShadowedToolTips[1]" = "查找后一个匹配。";
