@@ -9,6 +9,7 @@ Change Log
 
 - [non-AppStore ver.] Update Sparkle from 2.2.2 to 2.3.0.
 - [tirivial] Optimize the script menu update.
+- [dev] Update the build environment to Xcode 14.1.
 
 
 
