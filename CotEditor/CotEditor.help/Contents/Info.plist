@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en-US</string>
+	<string>en-us</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.coteditor.CotEditor.help</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -13,13 +13,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.2.0</string>
+	<string>4.4.0</string>
 	<key>CFBundleSignature</key>
-	<string>CEHb</string>
+	<string>hbwr</string>
 	<key>CFBundleVersion</key>
-	<string>491</string>
-	<key>CFBundleHelpTOCFile</key>
-	<string>CotEditor.html</string>
+	<string>538</string>
 	<key>HPDBookAccessPath</key>
 	<string>CotEditor.html</string>
 	<key>HPDBookIconPath</key>
@@ -30,7 +28,5 @@
 	<string>CotEditor User Guide</string>
 	<key>HPDBookType</key>
 	<string>3</string>
-	<key>HPDBookKBURL</key>
-	<string>https://coteditor.com/</string>
 </dict>
 </plist>
