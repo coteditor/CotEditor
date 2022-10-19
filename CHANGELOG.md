@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Improve the Find All button only on macOS 13 Venture (and later) to enable performing additional commands.
+- Improve the Find All button only on macOS 13 Ventura (and later) to enable performing additional commands.
 - [non-AppStore ver.] Update Sparkle from 2.2.2 to 2.3.0.
 - [tirivial] Optimize the script menu update.
 - [dev] Update the build environment to Xcode 14.1.
