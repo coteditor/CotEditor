@@ -345,8 +345,8 @@
 		2A719F6623CD92370026F877 /* FuzzyRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */; };
 		2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */; };
 		2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */; };
-		2A71BC7E1DDC70A80085AE1C /* NSAttributedString+Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7D1DDC70A80085AE1C /* NSAttributedString+Symbol.swift */; };
-		2A71BC7F1DDC70A80085AE1C /* NSAttributedString+Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7D1DDC70A80085AE1C /* NSAttributedString+Symbol.swift */; };
+		2A71BC7E1DDC70A80085AE1C /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7D1DDC70A80085AE1C /* NSImage.swift */; };
+		2A71BC7F1DDC70A80085AE1C /* NSImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7D1DDC70A80085AE1C /* NSImage.swift */; };
 		2A72DA10209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */; };
 		2A72DA11209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */; };
 		2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
@@ -1171,7 +1171,7 @@
 		2A715E21261AC5960060CF84 /* CotEditor-Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-Sparkle.entitlements"; sourceTree = "<group>"; };
 		2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzyRangeTests.swift; sourceTree = "<group>"; };
 		2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DocumentViewController+TouchBar.swift"; sourceTree = "<group>"; };
-		2A71BC7D1DDC70A80085AE1C /* NSAttributedString+Symbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Symbol.swift"; sourceTree = "<group>"; };
+		2A71BC7D1DDC70A80085AE1C /* NSImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImage.swift; sourceTree = "<group>"; };
 		2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultiCursor.swift"; sourceTree = "<group>"; };
 		2A733E8820BBB4AC0090D7CB /* String+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Case.swift"; sourceTree = "<group>"; };
 		2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+ControlCharacter.swift"; sourceTree = "<group>"; };
@@ -1986,12 +1986,12 @@
 			isa = PBXGroup;
 			children = (
 				2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */,
-				2A71BC7D1DDC70A80085AE1C /* NSAttributedString+Symbol.swift */,
 				2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */,
 				2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */,
+				2A71BC7D1DDC70A80085AE1C /* NSImage.swift */,
 				2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */,
 				2A10B6F421450A3B00B4205E /* NSAppearance.swift */,
 				2A9003B8267715E500EC766F /* NSApplication.swift */,
@@ -3184,7 +3184,6 @@
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2A9003B9267715E600EC766F /* NSApplication.swift in Sources */,
 				2AE3F3191D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
-				2A71BC7F1DDC70A80085AE1C /* NSAttributedString+Symbol.swift in Sources */,
 				2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2ADD0AEC2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
@@ -3194,6 +3193,7 @@
 				2A9B134E27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
+				2A71BC7F1DDC70A80085AE1C /* NSImage.swift in Sources */,
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
@@ -3519,7 +3519,6 @@
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2A9003BA267715E600EC766F /* NSApplication.swift in Sources */,
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
-				2A71BC7E1DDC70A80085AE1C /* NSAttributedString+Symbol.swift in Sources */,
 				2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */,
 				2ADD0AEB2184AB6F00F78732 /* NSControl+Binding.swift in Sources */,
@@ -3529,6 +3528,7 @@
 				2A9B134F27E2D84E009954A4 /* NSDraggingInfo.swift in Sources */,
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
+				2A71BC7E1DDC70A80085AE1C /* NSImage.swift in Sources */,
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
