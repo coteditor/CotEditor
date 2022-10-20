@@ -105,7 +105,7 @@ characters:
 - beginString: "(?<!\\\\)(\\`{1,2})[^ \\t`]((?!\\R{2})(?:.|\\R))*?(?<![\\\\ ])\\1"
   description: "code"
   regularExpression: true
-- beginString: "^[~]{3,}[{[:space:]](?!~~~)(?:.|\\R)*?\\R[\\t ]*[~]{3,}[\\t ]*$"
+- beginString: "(?:\R{2,}|\A)((?:([ ]{4}|\t)(.*(?:\R+|\Z)))+)((?=^[ ]{0,4}\S)|\Z)"
   description: "[extra] codeblock"
   regularExpression: true
 - beginString: "^```[^`](?!```)(?:.|\\R)*?\\R[\\t ]*```"
