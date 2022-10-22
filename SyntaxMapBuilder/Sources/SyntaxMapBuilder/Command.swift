@@ -45,13 +45,12 @@ private struct SyntaxStyle: Codable {
 struct Command: ParsableCommand {
     
     @Argument(help: "A path to the Syntaxes directory.")
-    var directoryPath: String
+    var url: URL
     
     
     func run() throws {
         
-        let url = URL(filePath: self.directoryPath, directoryHint: .isDirectory)
-        let json = try buildSyntaxMap(directoryURL: url)
+        let json = try buildSyntaxMap(directoryURL: self.url)
         
         print(json)
     }
@@ -87,4 +86,14 @@ func buildSyntaxMap(directoryURL: URL) throws -> String {
     let json = String(data: data, encoding: .utf8)!
     
     return json
+}
+
+
+
+extension URL: ExpressibleByArgument {
+    
+    public init?(argument: String) {
+        
+        self.init(filePath: argument)
+    }
 }
