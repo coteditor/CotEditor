@@ -5,6 +5,10 @@ Change Log
 4.4.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- [tirivial] Disable the Select All command when no documents are available.
+
 
 
 4.4.0 (540)
