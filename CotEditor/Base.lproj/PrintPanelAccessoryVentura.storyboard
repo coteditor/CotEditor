@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,9 +38,9 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin">
-                                <rect key="frame" x="321" y="315" width="119" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Black and White" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="bRC-3n-rin" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="230" y="308" width="214" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Black and White" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" selectedItem="nUs-hp-672" id="2oE-V0-Tbw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="e9h-Of-563">
@@ -119,9 +119,9 @@
                                     <binding destination="bU7-R8-ocO" name="value" keyPath="printsFooter" id="GY5-ob-Xvf"/>
                                 </connections>
                             </switch>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha">
-                                <rect key="frame" x="233" y="136" width="123" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Document Name" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="nGA-NN-REz" id="jk3-rE-AyP">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="219" y="129" width="141" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="nGA-NN-REz" id="jk3-rE-AyP">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="3uu-24-iga">
@@ -195,9 +195,9 @@
                                     </binding>
                                 </connections>
                             </segmentedControl>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW">
-                                <rect key="frame" x="233" y="105" width="123" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Page Number" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SnR-fR-DZF" id="Vqj-Po-rB8">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="219" y="99" width="141" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="5" imageScaling="proportionallyDown" inset="2" selectedItem="SnR-fR-DZF" id="Vqj-Po-rB8">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="Bk3-uv-jzy">
@@ -245,9 +245,9 @@
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="bL4-Ga-QAw"/>
                                 </connections>
                             </segmentedControl>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM">
-                                <rect key="frame" x="233" y="32" width="123" height="18"/>
-                                <popUpButtonCell key="cell" type="bevel" title="Page Number" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="rsB-Kk-kBp" id="inp-eT-VVY">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="219" y="27" width="141" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="5" imageScaling="proportionallyDown" inset="2" selectedItem="rsB-Kk-kBp" id="inp-eT-VVY">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="TfU-Pz-bEH">
@@ -269,9 +269,9 @@
                                     <binding destination="bU7-R8-ocO" name="enabled" keyPath="printsFooter" id="QF3-LY-9Ag"/>
                                 </connections>
                             </popUpButton>
-                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O">
-                                <rect key="frame" x="233" y="4" width="123" height="16"/>
-                                <popUpButtonCell key="cell" type="bevel" title="None" bezelStyle="rounded" alignment="right" lineBreakMode="truncatingTail" state="on" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="VyN-kq-VID" id="mh2-B1-LxR">
+                            <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="219" y="-3" width="141" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="fhH-st-yT7">
@@ -354,7 +354,6 @@
                             <constraint firstItem="Yho-OF-r7g" firstAttribute="top" secondItem="dK7-a2-oXG" secondAttribute="bottom" constant="10" id="HJ7-Np-mPI"/>
                             <constraint firstItem="dpB-O3-zLC" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="20" symbolic="YES" id="Hqr-ur-Fe1"/>
                             <constraint firstItem="3Af-55-FYV" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="IKR-q2-dNG"/>
-                            <constraint firstItem="BMN-9W-V2O" firstAttribute="width" secondItem="f1I-iq-7Ha" secondAttribute="width" id="JGA-l7-BeI"/>
                             <constraint firstAttribute="trailing" secondItem="SdK-De-aPG" secondAttribute="trailing" id="JN2-wh-ZXK"/>
                             <constraint firstItem="NX9-Wy-k9a" firstAttribute="firstBaseline" secondItem="Yho-OF-r7g" secondAttribute="firstBaseline" id="K5Q-SK-sKc"/>
                             <constraint firstItem="zau-Af-OBf" firstAttribute="top" secondItem="Y6C-KD-Qlx" secondAttribute="bottom" constant="8" symbolic="YES" id="K70-QO-QcT"/>
@@ -363,7 +362,6 @@
                             <constraint firstItem="NX9-Wy-k9a" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yho-OF-r7g" secondAttribute="trailing" constant="8" symbolic="YES" id="OLR-px-2Qe"/>
                             <constraint firstItem="dK7-a2-oXG" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="Oia-l9-e1F"/>
                             <constraint firstItem="50N-5Y-LZQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3Af-55-FYV" secondAttribute="trailing" constant="8" symbolic="YES" id="OrB-LP-osE"/>
-                            <constraint firstItem="lW8-WA-sUW" firstAttribute="width" secondItem="f1I-iq-7Ha" secondAttribute="width" id="PRt-Gh-sfm"/>
                             <constraint firstItem="5oG-pS-6uI" firstAttribute="firstBaseline" secondItem="QKu-nK-alH" secondAttribute="firstBaseline" id="Rcw-hE-223"/>
                             <constraint firstItem="NmH-od-2G4" firstAttribute="top" secondItem="zau-Af-OBf" secondAttribute="bottom" constant="10" id="S6u-Cu-a1w"/>
                             <constraint firstItem="BB8-10-llF" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="SQ6-TE-9ct"/>
@@ -387,7 +385,6 @@
                             <constraint firstItem="SdK-De-aPG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wT3-Se-Vox" secondAttribute="trailing" constant="8" symbolic="YES" id="ivi-76-MAv"/>
                             <constraint firstItem="kYV-zv-wrQ" firstAttribute="top" secondItem="27f-Ln-A2D" secondAttribute="bottom" constant="10" id="jnm-CR-eHG"/>
                             <constraint firstItem="QKu-nK-alH" firstAttribute="leading" secondItem="tOy-S4-hL0" secondAttribute="leading" id="kHz-AO-dQM"/>
-                            <constraint firstItem="JEM-Eg-bfM" firstAttribute="width" secondItem="f1I-iq-7Ha" secondAttribute="width" id="lLi-bv-Tm5"/>
                             <constraint firstItem="f1I-iq-7Ha" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tOy-S4-hL0" secondAttribute="leading" constant="20" symbolic="YES" id="ldR-dZ-2wy"/>
                             <constraint firstItem="xyB-Z8-pVB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kYV-zv-wrQ" secondAttribute="trailing" constant="8" symbolic="YES" id="nlv-JQ-5ao"/>
                             <constraint firstItem="qqp-Os-uMO" firstAttribute="firstBaseline" secondItem="JEM-Eg-bfM" secondAttribute="firstBaseline" id="p8N-Zb-ZtO"/>
@@ -416,6 +413,6 @@
     <resources>
         <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
         <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
-        <image name="arrow.right.and.line.vertical.and.arrow.left" width="26" height="16"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" width="20" height="12"/>
     </resources>
 </document>

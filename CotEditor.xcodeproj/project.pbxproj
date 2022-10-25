@@ -129,6 +129,8 @@
 		2A231A371E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */; };
 		2A231A391E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */; };
 		2A231A3A1E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */; };
+		2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */; };
+		2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */; };
 		2A25C51B20F068FD0003AE1A /* CustomTabWidthView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A25C51920F068FD0003AE1A /* CustomTabWidthView.storyboard */; };
 		2A25C52820F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */; };
 		2A25C52920F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */; };
@@ -992,6 +994,7 @@
 		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementListViewController.swift; sourceTree = "<group>"; };
+		2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkPopUpButton.swift; sourceTree = "<group>"; };
 		2A25C51A20F068FD0003AE1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CustomTabWidthView.storyboard; sourceTree = "<group>"; };
 		2A25C51E20F06A8C0003AE1A /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CustomTabWidthView.strings; sourceTree = "<group>"; };
 		2A25C52020F06A8F0003AE1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CustomTabWidthView.strings"; sourceTree = "<group>"; };
@@ -1819,6 +1822,7 @@
 				2A0A602A27ABD74500725B70 /* FilterField.swift */,
 				2A10D1471E7477D30027192A /* StyledButton.swift */,
 				2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */,
+				2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */,
 				2A63A9D724E8C8F70017ACBB /* OutlinePopUpButton.swift */,
 				2AC72E8025342726001D3CA0 /* SegmentedArrayControl.swift */,
 				2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */,
@@ -3266,6 +3270,7 @@
 				2A62F3762699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
+				2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
 				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
@@ -3601,6 +3606,7 @@
 				2A62F3772699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
+				2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,

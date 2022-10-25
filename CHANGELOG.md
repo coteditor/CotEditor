@@ -7,7 +7,8 @@ Change Log
 
 ### Improvements
 
-- [tirivial] Disable the Select All command when no documents are available.
+- Tweak CotEditor's setting view in the print dialog.
+- [trivial] Disable the Select All command when no documents are available.
 
 
 
@@ -25,7 +26,7 @@ Change Log
 
 - Improve the Find All button only on macOS 13 Ventura (and later) to enable performing additional commands.
 - [non-AppStore ver.] Update Sparkle from 2.2.2 to 2.3.0.
-- [tirivial] Optimize the script menu update.
+- [trivial] Optimize the script menu update.
 - [dev] Update the build environment to Xcode 14.1.
 - [dev] Migrate helpindex to cshelpindex.
 
@@ -105,7 +106,7 @@ Change Log
     - [for advanced users] Now you can also disable the feature entirely within the application by running the following command in Terminal: `defaults write com.coteditor.CotEditor suppressesInconsistentLineEndingAlert -bool YES`, though it is not recommended.
 - Deprecate the `length` property in AppleScript (Use `number of characters of contents` instead).
 - Support the split cursor for bidirectional languages in multi-cursor editing.
-- Update the CotEditor's setting view in the print panel.
+- Update the CotEditor's setting view in the print dialog.
 - Change the location and column count to start with zero.
 - Display the error message in the pattern sort dialog if the regular expression pattern is invalid.
 - Improve the algorithm to parse numbers in the Sort by Pattern command.
