@@ -10,6 +10,10 @@ Change Log
 - Tweak CotEditor's setting view in the print dialog.
 - [trivial] Disable the Select All command when no documents are available.
 
+### Fixes
+
+- Fix an issue on macOS 13 that the Find All button in the find panel was not localized.
+
 
 
 4.4.0 (540)

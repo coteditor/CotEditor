@@ -32,6 +32,7 @@ final class FindPanelButtonViewController: NSViewController {
     
     private var findNextAfterReplaceObserver: AnyCancellable?
     
+    @IBOutlet private weak var findAllButton: NSButton?
     @IBOutlet private weak var replaceButton: NSButton?
     
     
@@ -42,6 +43,9 @@ final class FindPanelButtonViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // workaround an issue that NSComboButton cannnot be localized by .strings file
+        self.findAllButton?.title = NSLocalizedString("Find All", comment: "")
         
         // change "Replace" button behavior depending on the user setting
         self.findNextAfterReplaceObserver = UserDefaults.standard.publisher(for: .findNextAfterReplace, initial: true)
