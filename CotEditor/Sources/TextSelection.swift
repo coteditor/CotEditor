@@ -101,7 +101,8 @@ final class TextSelection: NSObject {
         get {
             guard let textView = self.textView else { return nil }
             
-            let textStorage = NSTextStorage(string: textView.string)
+            let string = (textView.string as NSString).substring(with: textView.selectedRange)
+            let textStorage = NSTextStorage(string: string)
             
             textStorage.observeDirectEditing { (editedString) in
                 textView.insert(string: editedString, at: .replaceSelection)

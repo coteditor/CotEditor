@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue on macOS 13 that the Find All button in the find panel was not localized.
+- Fix an issue on CotEditor 4.4.0 that `contents of selection` of a document object returned its entire contents.
 
 
 
