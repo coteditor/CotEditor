@@ -270,6 +270,8 @@ extension NSLayoutManager {
     /// - Returns: An one-pixel-width rect to draw the insertion point in the layout manager coordinate, or `nil` if no alternate insertion point is provided.
     private func insertionPointRect(at characterIndex: Int, alternate: Bool) -> NSRect? {
         
+        assert(characterIndex > 0)
+        
         let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: alternate, inDisplayOrder: true, positions: nil, characterIndexes: nil)
         
         var positions = [CGFloat](repeating: 0, count: count)
@@ -280,7 +282,8 @@ extension NSLayoutManager {
         
         let position = positions[index]
         let glyphIndex = self.glyphIndexForCharacter(at: characterIndex)
-        let lineFragment = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
+        let lastGlyphIndex = self.isValidGlyphIndex(glyphIndex) ? glyphIndex : glyphIndex - 1
+        let lineFragment = self.lineFragmentRect(forGlyphAt: lastGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
         
         return NSRect(x: lineFragment.minX + position, y: lineFragment.minY, width: 1, height: lineFragment.height)
     }
