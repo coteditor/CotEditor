@@ -95,6 +95,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     private lazy var braceHighlightDebouncer = Debouncer { [weak self] in self?.highlightMatchingBrace() }
+    private var isTypingPairedQuotes = false
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -557,6 +558,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
                     !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
                 {
+                    // raise frag to manipulate the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
+                    if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
+                        self.isTypingPairedQuotes = true
+                    }
+                    
                     super.insertText(String(pair.begin) + String(pair.end), replacementRange: replacementRange)
                     self.setSelectedRangesWithUndo([NSRange(location: self.selectedRange.location - 1, length: 0)])
                     self.textStorage?.addAttribute(.autoBalancedClosingBracket, value: true,
@@ -751,6 +757,24 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.selectedRanges = set.selectedRanges
         self.insertionLocations = set.insertionLocations
+    }
+    
+    
+    /// Perform automatic corrections
+    override func handleTextCheckingResults(_ results: [NSTextCheckingResult], forRange range: NSRange, types checkingTypes: NSTextCheckingTypes, options: [NSSpellChecker.OptionKey: Any] = [:], orthography: NSOrthography, wordCount: Int) {
+        
+        super.handleTextCheckingResults(results, forRange: range, types: checkingTypes, options: options, orthography: orthography, wordCount: wordCount)
+        
+        // move the cursor back into the middle of quotes if the paired close quote was automatically inserted
+        // because the cursor is automatically moved after the close quote by this method (#1384)
+        if self.isTypingPairedQuotes,
+           self.isAutomaticQuoteSubstitutionEnabled,
+           self.selectedRange.isEmpty,
+           results.map(\.resultType).contains(where: { $0.contains(.quote) })
+        {
+            self.selectedRange.location -= 1
+        }
+        self.isTypingPairedQuotes = false
     }
     
     
