@@ -517,7 +517,7 @@
 "o7K-sI-KJA.title" = "Çoklu Değiştir…";
 
 /* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "Tümünü Vurgula";  // FIXME: native check required
+"JAO-3o-fRo.title" = "Tümünü Vurgula";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "Vurguyu Kaldır";
 

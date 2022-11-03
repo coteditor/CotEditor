@@ -496,7 +496,7 @@
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
 "l33-Nz-UAw.title" = "Cerca testo selezionato";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
-"HgR-ke-6gq.title" = "Cerca tutti";
+"HgR-ke-6gq.title" = "Cerca tutto";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
 "ULf-cT-Xvb.title" = "Seleziona tutte le corrispondenze";
 
@@ -517,7 +517,7 @@
 "o7K-sI-KJA.title" = "Sostituzione multipla…";
 
 /* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "Evidenzia tutto";  // FIXME: native check required
+"JAO-3o-fRo.title" = "Evidenzia tutto";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "Rimuovi evidenziazione";
 

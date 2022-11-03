@@ -112,7 +112,7 @@
 "pfM-xk-MrN.ibShadowedToolTip" = "選中僅在選擇範圍內進行文字檢索。";
 
 /* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "全部高亮";  // FIXME: native check required
+"kdu-Ni-M64.title" = "全部高亮";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
 "99C-Bz-ySi.ibShadowedToolTip" = "高亮所有匹配取代規則的文字。";
 

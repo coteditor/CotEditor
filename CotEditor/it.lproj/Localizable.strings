@@ -75,9 +75,9 @@
 
 /* MARK: Text Finder */
 "Replace" = "Sostituisci";
-"Find All" = "Cerca tutti";
-"Replace All" = "Sostituisci tutti";
-"Highlight All" = "Evidenzia tutti";  // FIXME: native check required
+"Find All" = "Cerca tutto";
+"Replace All" = "Sostituisci tutto";
+"Highlight All" = "Evidenzia tutto";
 "Searching in text…" = "Ricerca nel testo…";
 "%lld string found." = "%lld stringa trovata.";
 "%lld strings found." = "%lld stringhe trovate.";

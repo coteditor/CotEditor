@@ -77,7 +77,7 @@
 "Replace" = "Değiştir";
 "Find All" = "Tümünü Bul";
 "Replace All" = "Tümünü Değiştir";
-"Highlight All" = "Tümünü Vurgula";  // FIXME: native check required
+"Highlight All" = "Tümünü Vurgula";
 "Searching in text…" = "Metinde aranıyor…";
 "%lld string found." = "%lld dizi bulundu.";
 "%lld strings found." = "%lld dizi bulundu.";
