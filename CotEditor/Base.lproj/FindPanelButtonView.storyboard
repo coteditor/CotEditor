@@ -53,7 +53,7 @@
                                 <rect key="frame" x="17" y="18" width="79" height="24"/>
                                 <menu key="menu" id="6sq-kk-5QZ">
                                     <items>
-                                        <menuItem title="Highlight" id="w4l-Dh-SV9">
+                                        <menuItem title="Highlight All" id="w4l-Dh-SV9">
                                             <connections>
                                                 <action selector="highlight:" target="rO2-C3-Eze" id="799-1i-4Na"/>
                                             </connections>

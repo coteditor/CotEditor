@@ -110,8 +110,8 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "Selezionare per ricercare testo solo all’interno della selezione.";
 
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "Evidenzia";
+/* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
+"kdu-Ni-M64.title" = "Evidenzia tutto";  // FIXME: native check required
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
 "99C-Bz-ySi.ibShadowedToolTip" = "Evidenzia tutti i risultati delle regole di sostituzione.";
 

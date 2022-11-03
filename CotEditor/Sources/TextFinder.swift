@@ -247,7 +247,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Highlight all matched strings.
     @IBAction func highlight(_ sender: Any?) {
         
-        self.findAll(showsList: false, actionName: "Highlight".localized)
+        self.findAll(showsList: false, actionName: "Highlight All".localized)
     }
     
     

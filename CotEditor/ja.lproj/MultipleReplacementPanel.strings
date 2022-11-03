@@ -110,8 +110,8 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "現在の選択範囲のみを置換対象とする場合に選択";
 
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "ハイライト";
+/* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
+"kdu-Ni-M64.title" = "すべてハイライト";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
 "99C-Bz-ySi.ibShadowedToolTip" = "すべての置換条件の一致をハイライト";
 

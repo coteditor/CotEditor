@@ -110,8 +110,8 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "Auswählen, um nur in der Auswahl zu suchen.";
 
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "Hervorheben";
+/* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
+"kdu-Ni-M64.title" = "Alles hervorheben";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
 "99C-Bz-ySi.ibShadowedToolTip" = "Alle Übereinstimmungen der Ersetzungsregeln hervorheben.";
 

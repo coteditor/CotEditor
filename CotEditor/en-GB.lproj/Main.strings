@@ -516,8 +516,8 @@
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "Multiple Replace…";
 
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "Highlight";
+/* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
+"JAO-3o-fRo.title" = "Highlight All";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "Unhighlight";
 

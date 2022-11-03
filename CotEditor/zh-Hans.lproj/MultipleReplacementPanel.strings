@@ -110,8 +110,8 @@
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
 "pfM-xk-MrN.ibShadowedToolTip" = "选中仅在选择范围内进行文本查找。";
 
-/* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "高亮";
+/* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
+"kdu-Ni-M64.title" = "全部高亮";  // FIXME: native check required
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
 "99C-Bz-ySi.ibShadowedToolTip" = "高亮所有匹配替换规则的文本。";
 

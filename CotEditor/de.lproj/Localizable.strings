@@ -77,7 +77,7 @@
 "Replace" = "Ersetzen";
 "Find All" = "Alles suchen";
 "Replace All" = "Alles ersetzen";
-"Highlight" = "Hervorheben";
+"Highlight All" = "Alles hervorheben";
 "Searching in text…" = "Im Text suchen …";
 "%lld string found." = "%lld Zeichenkette gefunden.";
 "%lld strings found." = "%lld Zeichenketten gefunden.";

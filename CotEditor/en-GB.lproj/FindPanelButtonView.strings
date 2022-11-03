@@ -30,8 +30,8 @@
 "s5c-oi-12M.ibShadowedToolTip" = "List all matches.";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "GCq-pe-9wt"; */
 "GCq-pe-9wt.title" = "Select All";
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "w4l-Dh-SV9"; */
-"w4l-Dh-SV9.title" = "Highlight";
+/* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "w4l-Dh-SV9"; */
+"w4l-Dh-SV9.title" = "Highlight All";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "C1t-ig-Fbd"; */
 "C1t-ig-Fbd.title" = "Replace All";

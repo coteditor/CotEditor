@@ -77,7 +77,7 @@
 "Replace" = "Replace";
 "Find All" = "Find All";
 "Replace All" = "Replace All";
-"Highlight" = "Highlight";
+"Highlight All" = "Highlight All";
 "Searching in text…" = "Searching in text…";
 "%lld string found." = "%lld string found.";
 "%lld strings found." = "%lld strings found.";

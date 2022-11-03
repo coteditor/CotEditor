@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Rename the Highlight command to Highlight All.
 - Tweak CotEditor's setting view in the print dialog.
 - [trivial] Disable the Select All command when no documents are available.
 

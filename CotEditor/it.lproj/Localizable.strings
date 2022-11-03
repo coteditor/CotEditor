@@ -77,7 +77,7 @@
 "Replace" = "Sostituisci";
 "Find All" = "Cerca tutti";
 "Replace All" = "Sostituisci tutti";
-"Highlight" = "Evidenzia";
+"Highlight All" = "Evidenzia tutti";  // FIXME: native check required
 "Searching in text…" = "Ricerca nel testo…";
 "%lld string found." = "%lld stringa trovata.";
 "%lld strings found." = "%lld stringhe trovate.";

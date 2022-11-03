@@ -77,7 +77,7 @@
 "Replace" = "置換";
 "Find All" = "すべて検索";
 "Replace All" = "すべて置換";
-"Highlight" = "ハイライト";
+"Highlight All" = "すべてハイライト";
 "Searching in text…" = "テキストを検索しています…";
 "%lld string found." = "%lld件見つかりました。";
 "%lld strings found." = "%lld件見つかりました。";

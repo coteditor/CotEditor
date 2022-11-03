@@ -43,7 +43,7 @@ extension MultipleReplacement {
         let progress = TextFindProgress(format: .find)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: "Highlight".localized, closesAutomatically: closesAutomatically)
+            ProgressViewController(coder: coder, progress: progress, message: "Highlight All".localized, closesAutomatically: closesAutomatically)
         }!
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         

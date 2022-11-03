@@ -77,7 +77,7 @@
 "Replace" = "取代";
 "Find All" = "全部查找";
 "Replace All" = "全部取代";
-"Highlight" = "高亮";
+"Highlight All" = "全部高亮";
 "Searching in text…" = "正在文字中搜索…";
 "%lld string found." = "找到%lld個匹配";
 "%lld strings found." = "找到%lld個匹配";

@@ -516,8 +516,8 @@
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "多重取代…";
 
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "高亮";
+/* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
+"JAO-3o-fRo.title" = "全部高亮";  // FIXME: native check required
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "取消高亮";
 

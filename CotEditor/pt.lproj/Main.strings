@@ -516,8 +516,8 @@
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
 "o7K-sI-KJA.title" = "Substituição Múltipla…";
 
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "Adicionar Destaque";
+/* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
+"JAO-3o-fRo.title" = "Adicionar Destaque";  // FIXME: Highlight -> Highlight All
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
 "5is-7G-OVT.title" = "Remover Destaque";
 

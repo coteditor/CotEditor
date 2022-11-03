@@ -30,8 +30,8 @@
 "s5c-oi-12M.ibShadowedToolTip" = "すべての一致を検索しリストアップ";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "GCq-pe-9wt"; */
 "GCq-pe-9wt.title" = "すべて選択";
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "w4l-Dh-SV9"; */
-"w4l-Dh-SV9.title" = "ハイライト";
+/* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "w4l-Dh-SV9"; */
+"w4l-Dh-SV9.title" = "すべてハイライト";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "C1t-ig-Fbd"; */
 "C1t-ig-Fbd.title" = "すべて置換";

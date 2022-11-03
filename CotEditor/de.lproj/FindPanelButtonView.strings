@@ -30,8 +30,8 @@
 "s5c-oi-12M.ibShadowedToolTip" = "Alle Übereinstimmungen listen.";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "GCq-pe-9wt"; */
 "GCq-pe-9wt.title" = "Alles auswählen";
-/* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "w4l-Dh-SV9"; */
-"w4l-Dh-SV9.title" = "Hervorheben";
+/* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "w4l-Dh-SV9"; */
+"w4l-Dh-SV9.title" = "Alles hervorheben";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "C1t-ig-Fbd"; */
 "C1t-ig-Fbd.title" = "Alles ersetzen";
