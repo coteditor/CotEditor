@@ -111,7 +111,7 @@
 "pfM-xk-MrN.ibShadowedToolTip" = "Yalnızca seçimde metin değiştirmek için seçin.";
 
 /* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "Tümünü Vurgula";  // FIXME: native check required
+"kdu-Ni-M64.title" = "Tümünü Vurgula";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
 "99C-Bz-ySi.ibShadowedToolTip" = "Değişim kurallarının tüm eşleşmelerini vurgula";
 
