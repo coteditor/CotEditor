@@ -71,26 +71,26 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         self.shouldCascadeWindows = true
         self.windowFrameAutosaveName = "Document"
         
+        let window = self.window as! DocumentWindow
+        
         // set window frame manually to workaround the issue that
         // the window cascading randomly fails with window frame autosave. (2022-08, macOS 12.5)
         if let descriptor = UserDefaults.standard.string(forKey: "NSWindow Frame \(self.windowFrameAutosaveName)") {
-            self.window?.setFrame(from: descriptor)
+            window.setFrame(from: descriptor)
         }
         
         // set window size
         let width = UserDefaults.standard[.windowWidth]
         let height = UserDefaults.standard[.windowHeight]
-        if let window = self.window, width > 0 || height > 0 {
+        if width > 0 || height > 0 {
             let frameSize = NSSize(width: width > window.minSize.width ? width : window.frame.width,
                                    height: height > window.minSize.height ? height : window.frame.height)
             window.setFrame(.init(origin: window.frame.origin, size: frameSize), display: false)
         }
         
         // observe opacity setting change
-        if let window = self.window as? DocumentWindow {
-            self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
-                .assign(to: \.backgroundAlpha, on: window)
-        }
+        self.opacityObserver = UserDefaults.standard.publisher(for: .windowAlpha, initial: true)
+            .assign(to: \.backgroundAlpha, on: window)
         
         // observe appearance setting change
         self.appearanceModeObserver = UserDefaults.standard.publisher(for: .documentAppearance, initial: true)
