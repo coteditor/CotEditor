@@ -109,6 +109,19 @@ final class DocumentWindow: NSWindow {
     }
     
     
+    override func setFrame(_ frameRect: NSRect, display displayFlag: Bool, animate animateFlag: Bool) {
+        
+        // workaround the issue that the initial window height could differ from the user-specified value
+        // (macOS 13, 2022-11)
+        if self.windowController?.isWindowLoaded == true,
+           self.windowController?.document == nil,
+           UserDefaults.standard[.windowHeight] > 0
+        { return }
+        
+        super.setFrame(frameRect, display: displayFlag, animate: animateFlag)
+    }
+    
+    
     
     // MARK: Private Methods
     

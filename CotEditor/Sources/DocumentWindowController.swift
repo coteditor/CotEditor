@@ -75,9 +75,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         // set window frame manually to workaround the issue that
         // the window cascading randomly fails with window frame autosave. (2022-08, macOS 12.5)
-        if let descriptor = UserDefaults.standard.string(forKey: "NSWindow Frame \(self.windowFrameAutosaveName)") {
-            window.setFrame(from: descriptor)
-        }
+        window.setFrameUsingName(self.windowFrameAutosaveName)
         
         // set window size
         let width = UserDefaults.standard[.windowWidth]
