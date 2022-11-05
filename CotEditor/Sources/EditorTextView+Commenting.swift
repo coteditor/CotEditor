@@ -189,7 +189,7 @@ extension Commenting {
     
     /// Whether selected ranges can be uncommented.
     ///
-    /// - Parameter partly: When `true`, the method returns true when a part of slections is commented-out,
+    /// - Parameter partly: When `true`, the method returns true when a part of selections is commented-out,
     ///                     otherwise only when the entire selections can be commented out.
     /// - Returns: `true` when selection can be uncommented.
     func canUncomment(partly: Bool) -> Bool {

@@ -278,7 +278,13 @@ extension MultiCursorEditing {
             
             newOrigins.append(origin ?? newOrigin)
             
-            return (newCursor <= newOrigin) ? NSRange(newCursor..<newOrigin) : NSRange(newOrigin..<newCursor)
+            if (newCursor < newOrigin && newOrigin < cursor) || (cursor < newOrigin && newOrigin < newCursor) {
+                return NSRange(newOrigin..<newOrigin)
+            } else if newOrigin < newCursor {
+                return NSRange(newOrigin..<newCursor)
+            } else {
+                return NSRange(newCursor..<newOrigin)
+            }
         }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }

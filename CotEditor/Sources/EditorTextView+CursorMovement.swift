@@ -226,20 +226,19 @@ extension EditorTextView {
     }
     
     
-    /// Expand/reduce single selection to next word boundary by taking additional word separators into consideration.
+    /// Expand/reduce a single selection to the next word boundary by considering additional word separators.
     ///
     /// - Parameter sender: The sender of the action.
     /// - Parameter isLeft: `true` if this method is invoked from `moveWordLeftAndModifySelection(_:)`, otherwise `false`.
     ///
     /// - Note:
-    /// Because the other selection modification keybindings for single cursor use the textView's methods,
-    /// this method changes the selection by using only super's slection modification methods
-    /// to let the textView remember the correct cursor origin for following single selection modification.
+    /// this method changes the selection by using only the super's selection modification methods
+    /// to let the textView remember the correct cursor origin for following single selection modifications.
     private func moveWordAndModifySelection(_ sender: Any?, left isLeft: Bool) {
         
         assert(!self.hasMultipleInsertions)
         
-        // let super change the selection to figure out the direction to expand (or reduce)
+        // let the super change the selection to figure out the direction to expand (or reduce)
         let currentRange = self.selectedRange
         if isLeft {
             super.moveWordLeftAndModifySelection(sender)
@@ -264,7 +263,15 @@ extension EditorTextView {
         
         // calculate original selected range by taking additional word separators into consideration
         let newCursor = self.textStorage!.nextWord(from: cursor, forward: !isLeft, delimiters: .additionalWordSeparators)
-        let newRange = (origin < newCursor) ? NSRange(origin..<newCursor) : NSRange(newCursor..<origin)
+        let newRange: NSRange = {
+            if (newCursor < origin && origin < cursor) || (cursor < origin && origin < newCursor) {
+                return NSRange(origin..<origin)
+            } else if origin < newCursor {
+                return NSRange(origin..<newCursor)
+            } else {
+                return NSRange(newCursor..<origin)
+            }
+        }()
         
         // adjust selection range character by character
         while self.selectedRange != newRange {
