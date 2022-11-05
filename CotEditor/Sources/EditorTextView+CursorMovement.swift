@@ -719,7 +719,7 @@ extension EditorTextView {
 
 private extension CharacterSet {
     
-    static let additionalWordSeparators = CharacterSet(charactersIn: ".")
+    static let additionalWordSeparators = CharacterSet(charactersIn: ".;")
 }
 
 
