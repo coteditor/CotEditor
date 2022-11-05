@@ -517,9 +517,9 @@
 "o7K-sI-KJA.title" = "Remplacements multiples…";
 
 /* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
-"JAO-3o-fRo.title" = "Mettre en surbrillance";  // FIXME: Highlight -> Highlight All
+"JAO-3o-fRo.title" = "Tout surligner";
 /* Class = "NSMenuItem"; title = "Unhighlight"; ObjectID = "5is-7G-OVT"; */
-"5is-7G-OVT.title" = "Ne pas mettre en surbrillance";
+"5is-7G-OVT.title" = "Ne pas surligner";
 
 /* Class = "NSMenuItem"; title = "Open Outline Menu"; ObjectID = "PmT-ho-UU7"; */
 "PmT-ho-UU7.title" = "Ouvrir le menu de structure";

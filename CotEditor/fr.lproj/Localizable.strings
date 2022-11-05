@@ -77,7 +77,7 @@
 "Replace" = "Remplacer";
 "Find All" = "Tout rechercher";
 "Replace All" = "Tout remplacer";
-"Highlight All" = "Tout surligner";  // FIXME: native check required
+"Highlight All" = "Tout surligner";
 "Searching in text…" = "Recherche en cours…";
 "%lld string found." = "%lld élément trouvé.";
 "%lld strings found." = "%lld éléments trouvés.";

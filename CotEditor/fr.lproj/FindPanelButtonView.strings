@@ -29,9 +29,9 @@
 /* Class = "NSComboButton"; ibShadowedToolTip = "List all matches."; ObjectID = "s5c-oi-12M"; */
 "s5c-oi-12M.ibShadowedToolTip" = "Liste tous les résultats.";
 /* Class = "NSMenuItem"; title = "Select All"; ObjectID = "GCq-pe-9wt"; */
-"GCq-pe-9wt.title" = "Select All";  // FIXME: new
+"GCq-pe-9wt.title" = "Tout sélectionner";
 /* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "w4l-Dh-SV9"; */
-"w4l-Dh-SV9.title" = "Mettre en surbrillance";  // FIXME: Highlight -> Highlight All
+"w4l-Dh-SV9.title" = "Tout surligner";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "C1t-ig-Fbd"; */
 "C1t-ig-Fbd.title" = "Tout remplacer";
