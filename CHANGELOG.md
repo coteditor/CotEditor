@@ -17,6 +17,7 @@ Change Log
 
 - Fix an issue on macOS 13 that the Find All button in the find panel was not localized.
 - Fix an issue on CotEditor 4.4.0 that `contents of selection` of a document object returned its entire contents.
+- Fix an issue that the application could hang up when the insertion point moved over invisible control characters by the Control-Shift-arrow keys.
 - Fix an issue that the last of multiple insertion points locates at the end of the document was not drawn.
 - Fix an issue that the insertion point immediately exited automatically closed quote marks when the smart quote feature is enabled.
 - Fix an issue that the initial window height could differ from the user-specified setting.

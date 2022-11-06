@@ -250,9 +250,13 @@ extension EditorTextView {
         // do nothing if the cursor has already reached the beginning/end
         guard currentRange != superRange else { return }
         
+        // give up if both bounds are moved
+        guard
+            currentRange.lowerBound == superRange.lowerBound ||
+            currentRange.upperBound == superRange.upperBound
+        else { return }
+        
         // find selection direction
-        // -> use superRange for the origin to take the case into consideration
-        //    when the character next to the cursor is an invisible character
         let isLowerOrigin = (currentRange.lowerBound == superRange.lowerBound)
         let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
         let origin = isLowerOrigin ? superRange.lowerBound : superRange.upperBound
@@ -272,6 +276,11 @@ extension EditorTextView {
                 return NSRange(newCursor..<origin)
             }
         }()
+        
+        // manipulate only when the difference stemmed from the additional word boundaries
+        let superCursor = isLowerOrigin ? superRange.upperBound : superRange.lowerBound
+        let diffRange = (superCursor < newCursor) ? NSRange(superCursor..<newCursor) : NSRange(newCursor..<superCursor)
+        guard (self.string as NSString).rangeOfCharacter(from: .additionalWordSeparators, range: diffRange) != .notFound else { return }
         
         // adjust selection range character by character
         while self.selectedRange != newRange {
