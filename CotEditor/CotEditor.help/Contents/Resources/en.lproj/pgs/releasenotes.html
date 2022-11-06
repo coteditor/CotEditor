@@ -16,8 +16,43 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.4.1</h1>
+		<p>release: <time>2022-11-06</time></p>
+	</header>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Rename the Highlight command to Highlight All.</li>
+			<li>Tweak CotEditor's setting view in the print dialog.</li>
+			<li>Update Markdown syntax style to highlight code blocks with indentation (Thanks to Rafael Viotti!).</li>
+			<li><span class="trivial">trivial</span>: Improve the text selection behavior with key bindings.</li>
+			<li><span class="trivial">trivial</span>: Disable the Select All command when no documents are available.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue on macOS 13 that the Find All button in the find panel was not localized.</li>
+			<li>Fix an issue on CotEditor 4.4.0 that <code>contents of selection</code> of a document object returned its entire contents.</li>
+			<li>Fix an issue that the application could hang up when the insertion point moved over invisible control characters by the Control-Shift-arrow keys.</li>
+			<li>Fix an issue that the last of multiple insertion points locates at the end of the document was not drawn.</li>
+			<li>Fix an issue that the insertion point immediately exited automatically closed quote marks when the smart quote feature is enabled.</li>
+			<li>Fix an issue that the initial window height could differ from the user-specified setting.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.4.0</h1>
-		<p>release: <time>2022-10</time></p>
+		<p>release: <time>2022-10-22</time></p>
 	</header>
 
 

@@ -16,8 +16,43 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.4.1</h1>
+		<p>リリース: <time>2022-11-06</time></p>
+	</header>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>「ハイライト」コマンドを「すべてハイライト」に改名</li>
+			<li>プリントダイアログのCotEditor設定ビューを調整</li>
+			<li>シンタックススタイルを更新しインデントでのコードブロックハイライトに対応（Rafael Viottiさんに感謝!）</li>
+			<li><span class="trivial">trivial</span>: キーバインディングでのテキスト選択の挙動を改良</li>
+			<li><span class="trivial">trivial</span>: 書類が開かれていないときは「すべて選択」コマンドを無効に</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>macOS 13で「すべて選択」ボタンが一部ローカライズされていなかったCotEditor 4.4.0の不具合を修正</li>
+			<li>スクリプティングでdocumentオブジェクトの<code>contents of selection</code>が書類の内容全体を返していたCotEditor 4.4.0の不具合を修正</li>
+			<li>Control+Shift+矢印キーで選択範囲を変更したときに選択範囲が不可視文字をを跨ぐとアプリケーションがハングすることがあった不具合を修正.</li>
+			<li>マルチカーソルの一つが書類の最後に位置したときにそれが描画されなかった不具合を修正</li>
+			<li>スマート引用符が有効だと自動的に閉じる引用符が挿入されるとカーソルがすぐに引用符の外に移動してしまった不具合を修正</li>
+			<li>開いたウインドウの高さがユーザ設定値からズレることがあった不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.4.0</h1>
-		<p>リリース: <time>2022-10</time></p>
+		<p>リリース: <time>2022-10-22</time></p>
 	</header>
 
 
