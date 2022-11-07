@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,15 +27,6 @@ import Foundation
 import AppKit.NSMenuItem
 import Sparkle
 
-private enum AppCast {
-    
-    static let url = URL(string: "https://coteditor.com/appcast.xml")!
-}
-
-
-
-// MARK: -
-
 final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Public Properties
@@ -45,7 +36,10 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Private Properties
     
+    private static let appCastURL = URL(string: "https://coteditor.com/appcast.xml")!
+    
     private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
+    
     
     
     // MARK: -
@@ -56,9 +50,6 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         super.init()
     }
     
-    
-    
-    // MARK: Public Methods
     
     /// setup Sparkle
     func setup() {
@@ -74,7 +65,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         applicationMenu.insertItem(menuItem, at: 1)
         
         // set feed
-        self.controller.updater.setFeedURL(AppCast.url)
+        self.controller.updater.setFeedURL(Self.appCastURL)
         self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)  // daily
     }
     
