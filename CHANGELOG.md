@@ -5,6 +5,10 @@ Change Log
 4.4.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that an file extension was appended to the file by saving even when the syntax style has no extensions.
+
 
 
 4.4.1 (542)

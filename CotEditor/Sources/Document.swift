@@ -554,6 +554,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             DispatchQueue.main.async {
                 savePanel.allowedContentTypes = []
             }
+        } else {
+            // just keep no extension
+            savePanel.allowedContentTypes = []
         }
         
         // set accessory view
