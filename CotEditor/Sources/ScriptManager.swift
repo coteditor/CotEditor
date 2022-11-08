@@ -158,7 +158,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// - Parameters:
     ///   - eventType: The event trigger to perform script.
     ///   - document: The target document.
-    func dispatch(event eventType: ScriptingEventType, document: Document) {
+    func dispatch(event eventType: ScriptingEventType, document: NSDocument) {
         
         guard
             let scripts = self.scriptHandlersTable[eventType],

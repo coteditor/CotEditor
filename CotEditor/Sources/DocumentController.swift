@@ -107,11 +107,11 @@ final class DocumentController: NSDocumentController {
             
         } else if displayDocument {
             if self.deferredDocuments.isEmpty {
-                // display the document immediately, because the transient document has been replaced.
+                // display the document immediately, because the transient document has been replaced
                 document.makeWindowControllers()
                 document.showWindows()
             } else {
-                // defer displaying this document, because the transient document has not yet been replaced.
+                // defer displaying this document, because the transient document has not yet been replaced
                 self.deferredDocuments.append(document)
             }
         }
@@ -260,9 +260,7 @@ final class DocumentController: NSDocumentController {
     
     
     /// replace window controllers in documents
-    private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
-        
-        assert(Thread.isMainThread)
+    @MainActor private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
         
         for controller in transientDocument.windowControllers {
             document.addWindowController(controller)

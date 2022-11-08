@@ -713,7 +713,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 .map(\.rangeValue)
                 .map(NSStringFromRange)
             activity.addUserInfoEntries(from: [
-                UserActivityInfo.selectedRanges.key: selectedRanges
+                UserActivityInfo.selectedRanges.key: selectedRanges,
             ])
             activity.needsSave = true
         }
