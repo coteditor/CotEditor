@@ -30,8 +30,7 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Constants
     
-    static let verticalPrintMargin = 56.0    // default 90.0
-    static let horizontalPrintMargin = 24.0  // default 72.0
+    static let margin = NSEdgeInsets(top: 56, left: 24, bottom: 56, right: 24)
     
     private let lineFragmentPadding = 18.0
     private let lineNumberPadding = 10.0
@@ -102,35 +101,35 @@ final class PrintTextView: NSTextView, Themable {
     /// the top/left point of text container
     override var textContainerOrigin: NSPoint {
         
-        return NSPoint(x: self.xOffset, y: 0)
+        NSPoint(x: self.xOffset, y: 0)
     }
     
     
     /// view's opacity
     override var isOpaque: Bool {
         
-        return true
+        true
     }
     
     
     /// job title
     override var printJobTitle: String {
         
-        return self.documentName ?? super.printJobTitle
+        self.documentName ?? super.printJobTitle
     }
     
     
     /// return page header attributed string
     override var pageHeader: NSAttributedString {
         
-        return self.headerFooter(for: .header)
+        self.headerFooter(for: .header)
     }
     
     
     /// return page footer attributed string
     override var pageFooter: NSAttributedString {
         
-        return self.headerFooter(for: .footer)
+        self.headerFooter(for: .footer)
     }
     
     
