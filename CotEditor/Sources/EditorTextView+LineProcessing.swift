@@ -198,8 +198,12 @@ extension EditorTextView {
 
 extension String {
     
-    typealias EditingInfo = (strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?)
-    
+    struct EditingInfo {
+        
+        var strings: [String]
+        var ranges: [NSRange]
+        var selectedRanges: [NSRange]?
+    }
     
     
     /// move selected line up
@@ -245,7 +249,7 @@ extension String {
         
         let replacementString = string.substring(with: replacementRange)
         
-        return (strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
+        return EditingInfo(strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
     }
     
     
@@ -295,7 +299,7 @@ extension String {
         
         let replacementString = string.substring(with: replacementRange)
         
-        return (strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
+        return EditingInfo(strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
     }
     
     
@@ -346,7 +350,7 @@ extension String {
         
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
-        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
+        return EditingInfo(strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
     }
     
     
@@ -391,7 +395,7 @@ extension String {
             }
         }
         
-        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
+        return EditingInfo(strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
     
@@ -411,7 +415,7 @@ extension String {
         }
         selectedRanges = selectedRanges.unique.sorted(\.location)
         
-        return (strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
+        return EditingInfo(strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
     
     
@@ -440,7 +444,7 @@ extension String {
         let newString = predicate(lines)
             .joined(separator: lineEnding)
         
-        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
+        return EditingInfo(strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
     
 }

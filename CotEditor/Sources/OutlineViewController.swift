@@ -48,7 +48,7 @@ final class OutlineViewController: NSViewController {
         }
     }
     
-    private var filteredOutlineItems: [OutlineItem] = [] { didSet { self.outlineView?.reloadData() } }
+    private var filteredOutlineItems: [OutlineItem] = []  { didSet { self.outlineView?.reloadData() } }
     @objc dynamic var filteringMessage: String?
     
     private var documentObserver: AnyCancellable?

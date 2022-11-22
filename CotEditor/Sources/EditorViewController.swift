@@ -32,7 +32,7 @@ final class EditorViewController: NSSplitViewController {
     
     var textView: EditorTextView? {
         
-        return self.textViewController?.textView
+        self.textViewController?.textView
     }
     
     var outlineItems: [OutlineItem]? {
@@ -58,7 +58,7 @@ final class EditorViewController: NSSplitViewController {
         guard
             let textStorage = self.textView?.textStorage,
             let layoutManager = self.textView?.layoutManager
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         textStorage.removeLayoutManager(layoutManager)
     }
@@ -195,13 +195,13 @@ final class EditorViewController: NSSplitViewController {
     
     private var navigationBarController: NavigationBarController? {
         
-        return self.navigationBarItem?.viewController as? NavigationBarController
+        self.navigationBarItem?.viewController as? NavigationBarController
     }
     
     
     private var textViewController: EditorTextViewController? {
         
-        return self.textViewItem?.viewController as? EditorTextViewController
+        self.textViewItem?.viewController as? EditorTextViewController
     }
     
 }

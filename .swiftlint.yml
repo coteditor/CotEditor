@@ -2,10 +2,9 @@ deployment_target:
   macOS_deployment_target: 12
 
 excluded:
-  - SyntaxMapBuilder/.build
+  - "*/.build"
 
 opt_in_rules:
-  - anyobject_protocol
   - array_init
   - attributes
   - capture_variable
@@ -69,7 +68,6 @@ disabled_rules:
   - block_based_kvo
   - force_cast
   - force_try
-  - nesting
   - opening_brace
   - trailing_comma
 
@@ -88,11 +86,16 @@ attributes:
 function_parameter_count:
   warning: 6
 
+nesting:
+  type_level:
+    warning: 2
+
 vertical_whitespace:
   max_empty_lines: 3
 
 type_name:
   max_length: 50
+  allowed_symbols: ['`']
 
 file_length:
   warning: 2000
@@ -107,8 +110,11 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 300
-  error: 500
+  warning: 250
+  error: 300
+
+large_tuple:
+  warning: 3
 
 cyclomatic_complexity:
   warning: 30

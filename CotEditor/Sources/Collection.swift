@@ -130,7 +130,7 @@ extension Dictionary {
     ///
     /// - Parameter key: The raw representable whose raw value is the one of the receiver's key.
     /// - Returns: The value corresponding to the given key.
-    subscript<K>(_ key: K) -> Value? where K: RawRepresentable, K.RawValue == Key  {
+    subscript<K>(_ key: K) -> Value? where K: RawRepresentable, K.RawValue == Key {
         
         get { self[key.rawValue] }
         set { self[key.rawValue] = newValue }
