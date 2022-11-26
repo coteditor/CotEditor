@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that an file extension was appended to the file by saving even when the syntax style has no extensions.
+- Fix an issue that the line number view did not widen even when the number exceeds 4 digits. 
 
 
 
