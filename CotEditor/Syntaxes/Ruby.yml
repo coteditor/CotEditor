@@ -109,6 +109,7 @@ commands:
 - beginString: "readlines"
 - beginString: "remove_instance_variable"
 - beginString: "require"
+- beginString: "require_relative"
 - beginString: "respond_to?"
 - beginString: "scan"
 - beginString: "select"
