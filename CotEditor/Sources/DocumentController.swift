@@ -79,7 +79,10 @@ final class DocumentController: NSDocumentController {
         
         // obtain transient document if exists
         let transientDocument: Document? = self.transientDocumentLock.withLock { [unowned self] in
-            guard let document = self.transientDocumentToReplace else { return nil }
+            guard
+                let document = self.transientDocument,
+                document.windowForSheet?.attachedSheet == nil
+            else { return nil }
             
             document.isTransient = false
             self.deferredDocuments.removeAll()
@@ -163,11 +166,7 @@ final class DocumentController: NSDocumentController {
         
         // clear the first document's transient status when a second document is added
         // -> This happens when the user selects "New" when a transient document already exists.
-        if self.documents.count == 1,
-            let firstDocument = self.documents.first as? Document,
-            firstDocument.isTransient {
-            firstDocument.isTransient = false
-        }
+        self.transientDocument?.isTransient = false
         
         super.addDocument(document)
     }
@@ -246,14 +245,15 @@ final class DocumentController: NSDocumentController {
     // MARK: Private Methods
     
     /// transient document to be replaced or nil
-    private var transientDocumentToReplace: Document? {
+    private var transientDocument: Document? {
         
         guard
             self.documents.count == 1,
             let document = self.documents.first as? Document,
-            document.isTransient,
-            document.windowForSheet?.attachedSheet == nil
+            document.isTransient
         else { return nil }
+        
+        assert(document.textStorage.length == 0)
         
         return document
     }
