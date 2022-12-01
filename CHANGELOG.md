@@ -5,11 +5,16 @@ Change Log
 4.4.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update Ruby syntax style (thanks to kojix2!).
+
+
 ### Fixes
 
-- Fix an issue on macOS 13 that the table in the Multiple Replace dialog was corrupted when switch the set.
-- Fix an issue that an file extension was appended to the file by saving even when the syntax style has no extensions.
-- Fix an issue that the line number view did not widen even when the number exceeds 4 digits. 
+- Fix an issue on macOS 13 that the table in the Multiple Replace dialog was corrupted when switching the set.
+- Fix an issue that a file extension was appended to the file by saving even when the syntax style has no extensions.
+- Fix an issue that the line number view did occasioinally not widen even when the number exceeds 4 digits.
 
 
 
