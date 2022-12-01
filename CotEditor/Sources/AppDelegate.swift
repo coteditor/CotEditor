@@ -396,18 +396,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             else { return assertionFailure() }
         
         // fill template with user environment info
+        let title = String(localized: "Issue Report", comment: "document title")
         let report = template
             .replacingOccurrences(of: "%BUNDLE_VERSION%", with: Bundle.main.bundleVersion)
             .replacingOccurrences(of: "%SHORT_VERSION%", with: Bundle.main.shortVersion)
             .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
-        guard let document = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false) as? Document else { return assertionFailure() }
-        document.displayName = String(localized: "Issue Report", comment: "document title")
-        document.textStorage.replaceCharacters(in: NSRange(0..<0), with: report)
-        document.setSyntaxStyle(name: BundledStyleName.markdown)
-        document.makeWindowControllers()
-        document.showWindows()
+        do {
+            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(contents: report, title: title, display: true)
+            document.setSyntaxStyle(name: BundledStyleName.markdown)
+        } catch {
+            NSApp.presentError(error)
+        }
     }
     
     

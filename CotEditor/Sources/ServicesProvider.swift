@@ -34,21 +34,13 @@ final class ServicesProvider: NSObject {
         
         guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
         
-        let document: NSDocument
         do {
-            document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(false)
-            
+            try (NSDocumentController.shared as! DocumentController).openUntitledDocument(contents: selection, display: true)
         } catch {
             errorPointer.pointee = error.localizedDescription as NSString
             NSApp.presentError(error)
             return
         }
-        
-        guard let document = document as? Document else { return assertionFailure() }
-        
-        document.textStorage.replaceCharacters(in: NSRange(0..<0), with: selection)
-        document.makeWindowControllers()
-        document.showWindows()
     }
     
     

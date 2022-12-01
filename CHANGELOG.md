@@ -15,6 +15,7 @@ Change Log
 - Fix an issue on macOS 13 that the table in the Multiple Replace dialog was corrupted when switching the set.
 - Fix an issue that a file extension was appended to the file by saving even when the syntax style has no extensions.
 - Fix an issue that the line number view did occasioinally not widen even when the number exceeds 4 digits.
+- Fix an issue that an unwanted extra blank document was created when creating a new document with the selection by Services under specific conditions.
 
 
 
