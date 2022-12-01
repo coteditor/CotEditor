@@ -140,7 +140,9 @@ final class UnixScript: Script {
         let outputStorage = DataStorage()
         if outputType != nil {
             outPipe.fileHandleForReading.readabilityHandler = { (handle) in
-                Task { await outputStorage.append(handle.availableData) }
+                let data = handle.availableData
+                guard !data.isEmpty else { return }
+                Task { await outputStorage.append(data) }
             }
         }
         
