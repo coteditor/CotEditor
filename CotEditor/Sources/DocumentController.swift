@@ -233,8 +233,6 @@ final class DocumentController: NSDocumentController {
     @discardableResult
     func openUntitledDocument(contents: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
         
-        assert(!contents.isEmpty)
-        
         let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(displayDocument) as! Document)
         
         document.textStorage.replaceCharacters(in: NSRange(0..<0), with: contents)

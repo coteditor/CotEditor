@@ -113,52 +113,17 @@ final class UnixScript: Script {
         let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
         
         // create task
-        let task = try NSUserUnixTask(url: self.url)
-        let inPipe = Pipe()
-        let outPipe = Pipe()
-        let errPipe = Pipe()
-        task.standardInput = inPipe.fileHandleForReading
-        task.standardOutput = outPipe.fileHandleForWriting
-        task.standardError = errPipe.fileHandleForWriting
+        let task = try UserUnixTask(url: self.url)
         
-        // set input data if available
-        if let data = input?.data(using: .utf8) {
-            inPipe.fileHandleForWriting.writeabilityHandler = { (handle) in
-                // write input data chunk by chunk
-                // -> to avoid freeze by a huge input data, whose length is more than 65,536 (2^16).
-                for chunk in data.components(length: 65_536) {
-                    handle.write(chunk)
-                }
-                handle.closeFile()
-                
-                // inPipe must avoid releasing before `writeabilityHandler` is invocated
-                inPipe.fileHandleForWriting.writeabilityHandler = nil
-            }
-        }
-        
-        // read output asynchronously for safe with huge output
-        let outputStorage = DataStorage()
-        if outputType != nil {
-            outPipe.fileHandleForReading.readabilityHandler = { (handle) in
-                let data = handle.availableData
-                guard !data.isEmpty else { return }
-                Task { await outputStorage.append(data) }
-            }
+        if let input = input {
+            await task.pipe(input: input)
         }
         
         // execute
-        do {
-            try await task.execute(withArguments: arguments)
-        } catch where (error as? POSIXError)?.code == .ENOTBLK {  // on user cancellation
-            return
-        } catch {
-            throw error
-        }
-        
-        outPipe.fileHandleForReading.readabilityHandler = nil
+        try await task.execute(arguments: arguments)
         
         // apply output
-        if let outputType = outputType, let output = String(data: await outputStorage.data, encoding: .utf8) {
+        if let outputType = outputType, let output = await task.output {
             do {
                 try await self.applyOutput(output, type: outputType, editor: document?.textView)
             } catch {
@@ -167,9 +132,8 @@ final class UnixScript: Script {
         }
         
         // obtain standard error
-        let errorData = errPipe.fileHandleForReading.readDataToEndOfFile()
-        if let errorString = String(data: errorData, encoding: .utf8), !errorString.isEmpty {
-            throw ScriptError.standardError(errorString)
+        if let error = await task.error {
+            throw ScriptError.standardError(error)
         }
     }
     
@@ -224,9 +188,7 @@ final class UnixScript: Script {
                 editor.insert(string: output, at: .afterAll)
             
             case .newDocument:
-                guard let editor = try (NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as? Document)?.textView else { throw ScriptError.noOutputTarget }
-                editor.insert(string: output, at: .replaceAll)
-                editor.selectedRange = NSRange(0..<0)
+                try (DocumentController.shared as! DocumentController).openUntitledDocument(contents: output, display: true)
             
             case .pasteBoard:
                 NSPasteboard.general.clearContents()
@@ -234,19 +196,6 @@ final class UnixScript: Script {
         }
     }
     
-}
-
-
-
-private actor DataStorage {
-    
-    private(set) var data = Data()
-    
-    
-    func append(_ other: Data) {
-        
-        self.data.append(other)
-    }
 }
 
 

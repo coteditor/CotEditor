@@ -69,21 +69,6 @@ extension Collection {
         return self.indices.contains(index) ? self[index] : nil
     }
     
-    
-    /// Split receiver into buffer sized chunks.
-    ///
-    /// - Parameter length: The buffer size to split.
-    /// - Returns: Split subsequences.
-    func components(length: Int) -> [SubSequence] {
-        
-        return stride(from: 0, to: self.count, by: length).map {
-            let start = self.index(self.startIndex, offsetBy: $0)
-            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
-            
-            return self[start..<end]
-        }
-    }
-    
 }
 
 

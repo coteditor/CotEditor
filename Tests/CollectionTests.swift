@@ -29,15 +29,6 @@ import XCTest
 
 final class CollectionTests: XCTestCase {
     
-    func testComponents() {
-        
-        let data = Data([0, 1, 2, 3, 4, 5, 6])
-        let subdata = data.components(length: 3)
-        
-        XCTAssertEqual(subdata, [Data([0, 1, 2]), Data([3, 4, 5]), Data([6])])
-    }
-    
-    
     func testAppendUnique() {
         
         var array = [0, 1, 2, 3, 4]
