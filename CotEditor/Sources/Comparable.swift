@@ -31,7 +31,7 @@ extension Comparable {
     /// - Returns: Processed value.
     func clamped(to range: ClosedRange<Self>) -> Self {
         
-        return max(range.lowerBound, min(self, range.upperBound))
+        max(range.lowerBound, min(self, range.upperBound))
     }
     
     

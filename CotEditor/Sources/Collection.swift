@@ -66,7 +66,7 @@ extension Collection {
     /// - Parameter index: The position of the element to obtain.
     subscript(safe index: Index) -> Element? {
         
-        return self.indices.contains(index) ? self[index] : nil
+        self.indices.contains(index) ? self[index] : nil
     }
     
 }
@@ -97,7 +97,7 @@ extension Dictionary {
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
     func mapKeys<T>(transform: (Key) throws -> T) rethrows -> [T: Value] {
         
-        return try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
+        try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
     }
     
     
@@ -107,7 +107,7 @@ extension Dictionary {
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
     func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
         
-        return self.mapKeys { $0[keyPath: keyPath] }
+        self.mapKeys { $0[keyPath: keyPath] }
     }
     
     
@@ -173,7 +173,7 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate.
     func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        return try self.filter(predicate).count
+        try self.filter(predicate).count
     }
     
     
@@ -185,7 +185,7 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
     func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        return try self.lazy.prefix(while: predicate).count
+        try self.prefix(while: predicate).count
     }
     
     

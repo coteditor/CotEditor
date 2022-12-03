@@ -30,7 +30,7 @@ extension Publisher {
     /// Wraps this publisher with a type eraser.
     func eraseToVoid() -> AnyPublisher<Void, Never> where Failure == Never {
         
-        return self.map { _ in () }.eraseToAnyPublisher()
+        self.map { _ in () }.eraseToAnyPublisher()
     }
     
 }
