@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.
+- Fix an issue on macOS 13 the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.
 - Fix an issue that timestamps in the Console window do not reflect the local time zone.
 
 
