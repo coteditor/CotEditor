@@ -5,6 +5,10 @@ Change Log
 4.4.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue the total page did not update when changing the print scope option to Selection in CotEditor in the print dialog.
+
 
 
 4.4.2 (544)

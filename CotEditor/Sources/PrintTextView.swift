@@ -157,13 +157,17 @@ final class PrintTextView: NSTextView, Themable {
     /// return the number of pages available for printing
     override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
-        // adjust content size based on print setting
-        if let paperContentSize = NSPrintOperation.current?.printInfo.paperContentSize,
-           self.lastPaperContentSize != paperContentSize
-        {
-            self.lastPaperContentSize = paperContentSize
-            self.frame.size = paperContentSize
-            self.layoutManager?.doForegroundLayout()
+        if let printInfo = NSPrintOperation.current?.printInfo {
+            // set scope to print
+            (self.layoutManager as? PrintLayoutManager)?.showsSelectionOnly = printInfo.isSelectionOnly
+            
+            // adjust content size based on print setting
+            let paperContentSize = printInfo.paperContentSize
+            if self.lastPaperContentSize != paperContentSize {
+                self.lastPaperContentSize = paperContentSize
+                self.frame.size = paperContentSize
+                self.layoutManager?.doForegroundLayout()
+            }
         }
         
         return super.knowsPageRange(range)
@@ -265,12 +269,9 @@ final class PrintTextView: NSTextView, Themable {
     private func applyPrintSettings() {
         
         guard
-            let layoutManager = self.layoutManager as? PrintLayoutManager,
+            let layoutManager = self.layoutManager as? LayoutManager,
             let printInfo = NSPrintOperation.current?.printInfo
         else { return assertionFailure() }
-        
-        // set scope to print
-        layoutManager.showsSelectionOnly = printInfo.isSelectionOnly
         
         // set line numbers
         self.printsLineNumber = printInfo[.printsLineNumbers] ?? false
