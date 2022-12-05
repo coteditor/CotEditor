@@ -30,7 +30,7 @@ final class ArithmetricsTests: XCTestCase {
     
     func testDigits() {
         
-        XCTAssertEqual(0.digits, [])
+        XCTAssertEqual(0.digits, [0])
         XCTAssertEqual(1024.digits, [4, 2, 0, 1])
     }
     

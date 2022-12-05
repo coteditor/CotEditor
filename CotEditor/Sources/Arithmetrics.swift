@@ -30,6 +30,8 @@ extension Int {
         
         assert(self >= 0)
         
+        if self == 0 { return [0] }
+        
         var number = self
         var digits: [Int] = []
         
