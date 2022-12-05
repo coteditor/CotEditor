@@ -27,11 +27,12 @@ import Foundation
 
 final actor UserUnixTask {
     
+    // MARK: Private Properties
+    
     private let task: NSUserUnixTask
     private let inputPipe = Pipe()
     private let outputPipe = Pipe()
     private let errorPipe = Pipe()
-    
     private var buffer: AsyncStream<Data>?
     
     
@@ -53,9 +54,10 @@ final actor UserUnixTask {
     /// Execute the user script.
     ///
     /// - Parameter arguments: An array of Strings containing the script arguments.
-    func execute(arguments: [String]) async throws {
+    func execute(arguments: [String] = []) async throws {
         
-        self.buffer = self.outputStream
+        // read output asynchronously for safe with huge output
+        self.buffer = self.outputPipe.readingStream
         
         do {
             try await self.task.execute(withArguments: arguments)
@@ -67,6 +69,8 @@ final actor UserUnixTask {
     }
     
     /// Send the input as the standard input to the script.
+    ///
+    /// - Parameter input: The string to input.
     func pipe(input: String) {
         
         guard let data = input.data(using: .utf8) else { return assertionFailure() }
@@ -108,16 +112,17 @@ final actor UserUnixTask {
         return string
     }
     
-    
-    
-    // MARK: Private Methods
+}
+
+
+
+private extension Pipe {
     
     /// Create asynchronous stream for the standard output.
-    private var outputStream: AsyncStream<Data> {
+    var readingStream: AsyncStream<Data> {
         
-        // read output asynchronously for safe with huge output
         AsyncStream { (continuation) in
-            self.outputPipe.fileHandleForReading.readabilityHandler = { (handle) in
+            self.fileHandleForReading.readabilityHandler = { (handle) in
                 let data = handle.availableData
                 if data.isEmpty {
                     handle.readabilityHandler = nil
