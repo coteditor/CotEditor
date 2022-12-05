@@ -31,7 +31,7 @@ final class Console {
         
         var message: String
         var title: String?
-        var date: Date = .init()
+        var date: Date = .now
     }
     
     
@@ -124,7 +124,8 @@ final class ConsoleViewController: NSViewController {
         guard let textView = self.textView else { return assertionFailure() }
         
         let lastLocation = (textView.string as NSString).length
-        let date = log.date.formatted(.iso8601.year().month().day().dateTimeSeparator(.space).time(includingFractionalSeconds: false))
+        let date = log.date.formatted(Date.ISO8601FormatStyle(timeZone: .current).year().month().day().dateTimeSeparator(.space).time(includingFractionalSeconds: false))
+        
         let attrString = NSMutableAttributedString(string: "[" + date + "]")
         
         // append bold title
