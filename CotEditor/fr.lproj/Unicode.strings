@@ -304,51 +304,51 @@
 
 
 // The following blocks are (mostly newly added to Unicode and therefore) not in the glosseries.
-"Syriac Supplement" = "Syriac Supplement";
+"Syriac Supplement" = "Supplément syriaque";
 "Cyrillic Extended-C" = "Cyrillique étendu-C";
 "High Private Use Surrogates" = "High Private Use Surrogates";
-"Georgian Extended" = "Georgian Extended";
+"Georgian Extended" = "Géorgien étendu";
 "Osage" = "Osage";
-"Hanifi Rohingya" = "Hanifi Rohingya";
+"Hanifi Rohingya" = "Hanifi du Rohingya";
 "Yezidi" = "Yezidi";
-"Old Sogdian" = "Old Sogdian";
-"Sogdian" = "Sogdian";
-"Chorasmian" = "Chorasmian";
-"Elymaic" = "Elymaic";
+"Old Sogdian" = "Vieux sogdien";
+"Sogdian" = "Sogdien";
+"Chorasmian" = "Chorasmien";
+"Elymaic" = "Élymaïque";
 "Newa" = "Newa";
-"Mongolian Supplement" = "Mongolian Supplement";
+"Mongolian Supplement" = "Supplément mongol";
 "Dogra" = "Dogra";
 "Dives Akuru" = "Dives Akuru";
 "Nandinagari" = "Nandinagari";
-"Zanabazar Square" = "Zanabazar Square";
+"Zanabazar Square" = "Zanabazar carré";
 "Soyombo" = "Soyombo";
 "Bhaiksuki" = "Bhaiksuki";
 "Marchen" = "Marchen";
-"Masaram Gondi" = "Masaram Gondi";
-"Gunjala Gondi" = "Gunjala Gondi";
-"Makasar" = "Makasar";
-"Lisu Supplement" = "Lisu Supplement";
-"Tamil Supplement" = "Tamil Supplement";
-"Egyptian Hieroglyph Format Controls" = "Egyptian Hieroglyph Format Controls";
-"Medefaidrin" = "Medefaidrin";
-"Ideographic Symbols and Punctuation" = "Ideographic Symbols and Punctuation";
+"Masaram Gondi" = "Gondi de Masaram";
+"Gunjala Gondi" = "Gondi de Gunjala";
+"Makasar" = "Makassar";
+"Lisu Supplement" = "Supplément lisu";
+"Tamil Supplement" = "Supplément tamoul";
+"Egyptian Hieroglyph Format Controls" = "Commandes de formatage des hiéroglyphes égyptiens";
+"Medefaidrin" = "Medefidrin";
+"Ideographic Symbols and Punctuation" = "Symboles idéographiques et ponctuation";
 "Tangut" = "Tangut";
-"Tangut Components" = "Tangut Components";
-"Khitan Small Script" = "Khitan Small Script";
-"Tangut Supplement" = "Tangut Supplement";
+"Tangut Components" = "Composants tangoutes";
+"Khitan Small Script" = "Petite écriture khitan";
+"Tangut Supplement" = "Supplément tangoute";
 "Kana Extended-A" = "Kana étendu-A";
-"Small Kana Extension" = "Small Kana Extension";
-"Nushu" = "Nushu";
-"Mayan Numerals" = "Mayan Numerals";
-"Glagolitic Supplement" = "Glagolitic Supplement";
-"Nyiakeng Puachue Hmong" = "Nyiakeng Puachue Hmong";
+"Small Kana Extension" = "Kana en minuscule étendu";
+"Nushu" = "Nüshu";
+"Mayan Numerals" = "Numération maya";
+"Glagolitic Supplement" = "Supplément glagolitique";
+"Nyiakeng Puachue Hmong" = "Nyiakeng Puatchue Khmong";
 "Wancho" = "Wancho";
 "Adlam" = "Adlam";
-"Indic Siyaq Numbers" = "Indic Siyaq Numbers";
-"Ottoman Siyaq Numbers" = "Ottoman Siyaq Numbers";
-"Chess Symbols" = "Chess Symbols";
-"Symbols and Pictographs Extended-A" = "Symbols and Pictographs Extended-A";
-"Symbols for Legacy Computing" = "Symbols for Legacy Computing";
+"Indic Siyaq Numbers" = "Nombres siyaq indiens";
+"Ottoman Siyaq Numbers" = "Nombres siyaq ottomans";
+"Chess Symbols" = "Symboles d’échecs";
+"Symbols and Pictographs Extended-A" = "Symboles et pictogrammes étendus-A";
+"Symbols for Legacy Computing" = "Symboles pour anciens systèmes informatiques";
 "CJK Unified Ideographs Ext. F" = "Idéogr. unifiés CJK d’ext. F";
 "CJK Unified Ideographs Ext. G" = "Idéogr. unifiés CJK d’ext. G";
 
@@ -366,3 +366,13 @@
 "Latin Extended-G" = "Latin étendu-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Éthiopique étendu-B";
+
+
+// Blocks added in Unicode 15.0.0 (2022-01)
+"Arabic Extended-C" = "Arabe étendu-C";
+"Devanagari Extended-A" = "Devanagari étendu-A";
+"Kawi" = "Kawi";
+"Kaktovik Numerals" = "Kaktovik Numerals";
+"Cyrillic Extended-D" = "Cyrillique étendu-D";
+"Nag Mundari" = "Nag Mundari";
+"CJK Unified Ideographs Ext. H" = "Idéogr. unifiés CJK d’ext. H";

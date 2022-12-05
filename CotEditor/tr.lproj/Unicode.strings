@@ -305,51 +305,51 @@
 
 
 // The following blocks are (mostly newly added to Unicode and therefore) not in the glosseries.
-"Syriac Supplement" = "Syriac Supplement";
+"Syriac Supplement" = "Süryanice Eki";
 "Cyrillic Extended-C" = "Genişletilmiş Kiril C";
 "High Private Use Surrogates" = "High Private Use Surrogates";
-"Georgian Extended" = "Georgian Extended";
+"Georgian Extended" = "Genişletilmiş Gürcüce";
 "Osage" = "Osage";
 "Hanifi Rohingya" = "Hanifi Rohingya";
 "Yezidi" = "Yezidi";
-"Old Sogdian" = "Old Sogdian";
-"Sogdian" = "Sogdian";
-"Chorasmian" = "Chorasmian";
-"Elymaic" = "Elymaic";
+"Old Sogdian" = "Eski Soğdca";
+"Sogdian" = "Soğdca";
+"Chorasmian" = "Harezmce";
+"Elymaic" = "Elamca";
 "Newa" = "Newa";
-"Mongolian Supplement" = "Mongolian Supplement";
+"Mongolian Supplement" = "Moğolca Eki";
 "Dogra" = "Dogra";
 "Dives Akuru" = "Dives Akuru";
 "Nandinagari" = "Nandinagari";
-"Zanabazar Square" = "Zanabazar Square";
+"Zanabazar Square" = "Kare Zanabazar";
 "Soyombo" = "Soyombo";
 "Bhaiksuki" = "Bhaiksuki";
 "Marchen" = "Marchen";
 "Masaram Gondi" = "Masaram Gondi";
 "Gunjala Gondi" = "Gunjala Gondi";
 "Makasar" = "Makasar";
-"Lisu Supplement" = "Lisu Supplement";
-"Tamil Supplement" = "Tamil Supplement";
-"Egyptian Hieroglyph Format Controls" = "Egyptian Hieroglyph Format Controls";
+"Lisu Supplement" = "Lisu Eki";
+"Tamil Supplement" = "Tamilce Eki";
+"Egyptian Hieroglyph Format Controls" = "Mısır Hiyeroglifleri Biçim Denetimleri";
 "Medefaidrin" = "Medefaidrin";
-"Ideographic Symbols and Punctuation" = "Ideographic Symbols and Punctuation";
+"Ideographic Symbols and Punctuation" = "İdeogram Sembolleri ve Noktalama";
 "Tangut" = "Tangut";
-"Tangut Components" = "Tangut Components";
-"Khitan Small Script" = "Khitan Small Script";
-"Tangut Supplement" = "Tangut Supplement";
+"Tangut Components" = "Tangut Dili Bileşenleri";
+"Khitan Small Script" = "Hitayca Küçük Yazı";
+"Tangut Supplement" = "Tangut Dili Eki";
 "Kana Extended-A" = "Genişletilmiş Kana A";
-"Small Kana Extension" = "Small Kana Extension";
+"Small Kana Extension" = "Küçük Kana Genişletmesi";
 "Nushu" = "Nushu";
-"Mayan Numerals" = "Mayan Numerals";
-"Glagolitic Supplement" = "Glagolitic Supplement";
+"Mayan Numerals" = "Maya Rakamları";
+"Glagolitic Supplement" = "Glagol Alfabesi Eki";
 "Nyiakeng Puachue Hmong" = "Nyiakeng Puachue Hmong";
 "Wancho" = "Wancho";
 "Adlam" = "Adlam";
-"Indic Siyaq Numbers" = "Indic Siyaq Numbers";
-"Ottoman Siyaq Numbers" = "Ottoman Siyaq Numbers";
-"Chess Symbols" = "Chess Symbols";
-"Symbols and Pictographs Extended-A" = "Symbols and Pictographs Extended-A";
-"Symbols for Legacy Computing" = "Symbols for Legacy Computing";
+"Indic Siyaq Numbers" = "Hintçe Siyak Rakamları";
+"Ottoman Siyaq Numbers" = "Osmanlıca Siyak Rakamları";
+"Chess Symbols" = "Satranç Sembolleri";
+"Symbols and Pictographs Extended-A" = "Semboller ve Piktograflar Genişletilmiş A";
+"Symbols for Legacy Computing" = "Eski İşlemler İçin Semboller";
 "CJK Unified Ideographs Ext. F" = "CJK Birleştirilmiş İdeogramları Ek F";
 "CJK Unified Ideographs Ext. G" = "CJK Birleştirilmiş İdeogramları Ek G";
 
@@ -367,3 +367,13 @@
 "Latin Extended-G" = "Genişletilmiş Latin-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Genişletilmiş Etiyopyaca-B";
+
+
+// Blocks added in Unicode 15.0.0 (2022-01)
+"Arabic Extended-C" = "Arapça Genişletilmiş-C";
+"Devanagari Extended-A" = "Genişletilmiş Devanagari A";
+"Kawi" = "Kawi";
+"Kaktovik Numerals" = "Kaktovik Numerals";
+"Cyrillic Extended-D" = "Genişletilmiş Kiril D";
+"Nag Mundari" = "Nag Mundari";
+"CJK Unified Ideographs Ext. H" = "CJK Birleştirilmiş İdeogramları Ek H";

@@ -367,3 +367,13 @@
 "Latin Extended-G" = "Latin Extended-G";
 "Toto" = "Toto";
 "Ethiopic Extended-B" = "Ethiopic Extended-B";
+
+
+// Blocks added in Unicode 15.0.0 (2022-01)
+"Arabic Extended-C" = "Arabic Extended-C";
+"Devanagari Extended-A" = "Devanagari Extended-A";
+"Kawi" = "Kawi";
+"Kaktovik Numerals" = "Kaktovik Numerals";
+"Cyrillic Extended-D" = "Cyrillic Extended-D";
+"Nag Mundari" = "Nag Mundari";
+"CJK Unified Ideographs Ext. H" = "CJK Unified Ideographs Ext. H";

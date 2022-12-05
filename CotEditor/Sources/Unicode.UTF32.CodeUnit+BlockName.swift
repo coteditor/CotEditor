@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2021 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ extension Unicode.UTF32.CodeUnit {
     
     /// Unicode block name.
     ///
-    /// Based on Unicode 14.0.0 (2021-01-22)
+    /// Based on Unicode 15.0.0 (2022-01-28)
     /// cf. <http://www.unicode.org/Public/UNIDATA/Blocks.txt>
     var blockName: String? {
         
@@ -241,6 +241,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x10D00...0x10D3F: return "Hanifi Rohingya"
             case 0x10E60...0x10E7F: return "Rumi Numeral Symbols"
             case 0x10E80...0x10EBF: return "Yezidi"
+            case 0x10EC0...0x10EFF: return "Arabic Extended-C"
             case 0x10F00...0x10F2F: return "Old Sogdian"
             case 0x10F30...0x10F6F: return "Sogdian"
             case 0x10F70...0x10FAF: return "Old Uyghur"
@@ -272,11 +273,13 @@ extension Unicode.UTF32.CodeUnit {
             case 0x11A50...0x11AAF: return "Soyombo"
             case 0x11AB0...0x11ABF: return "Unified Canadian Aboriginal Syllabics Extended-A"
             case 0x11AC0...0x11AFF: return "Pau Cin Hau"
+            case 0x11B00...0x11B5F: return "Devanagari Extended-A"
             case 0x11C00...0x11C6F: return "Bhaiksuki"
             case 0x11C70...0x11CBF: return "Marchen"
             case 0x11D00...0x11D5F: return "Masaram Gondi"
             case 0x11D60...0x11DAF: return "Gunjala Gondi"
             case 0x11EE0...0x11EFF: return "Makasar"
+            case 0x11F00...0x11F5F: return "Kawi"
             case 0x11FB0...0x11FBF: return "Lisu Supplement"
             case 0x11FC0...0x11FFF: return "Tamil Supplement"
             case 0x12000...0x123FF: return "Cuneiform"
@@ -284,7 +287,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x12480...0x1254F: return "Early Dynastic Cuneiform"
             case 0x12F90...0x12FFF: return "Cypro-Minoan"
             case 0x13000...0x1342F: return "Egyptian Hieroglyphs"
-            case 0x13430...0x1343F: return "Egyptian Hieroglyph Format Controls"
+            case 0x13430...0x1345F: return "Egyptian Hieroglyph Format Controls"
             case 0x14400...0x1467F: return "Anatolian Hieroglyphs"
             case 0x16800...0x16A3F: return "Bamum Supplement"
             case 0x16A40...0x16A6F: return "Mro"
@@ -309,6 +312,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1D000...0x1D0FF: return "Byzantine Musical Symbols"
             case 0x1D100...0x1D1FF: return "Musical Symbols"
             case 0x1D200...0x1D24F: return "Ancient Greek Musical Notation"
+            case 0x1D2C0...0x1D2DF: return "Kaktovik Numerals"
             case 0x1D2E0...0x1D2FF: return "Mayan Numerals"
             case 0x1D300...0x1D35F: return "Tai Xuan Jing Symbols"
             case 0x1D360...0x1D37F: return "Counting Rod Numerals"
@@ -316,9 +320,11 @@ extension Unicode.UTF32.CodeUnit {
             case 0x1D800...0x1DAAF: return "Sutton SignWriting"
             case 0x1DF00...0x1DFFF: return "Latin Extended-G"
             case 0x1E000...0x1E02F: return "Glagolitic Supplement"
+            case 0x1E030...0x1E08F: return "Cyrillic Extended-D"
             case 0x1E100...0x1E14F: return "Nyiakeng Puachue Hmong"
             case 0x1E290...0x1E2BF: return "Toto"
             case 0x1E2C0...0x1E2FF: return "Wancho"
+            case 0x1E4D0...0x1E4FF: return "Nag Mundari"
             case 0x1E7E0...0x1E7FF: return "Ethiopic Extended-B"
             case 0x1E800...0x1E8DF: return "Mende Kikakui"
             case 0x1E900...0x1E95F: return "Adlam"
@@ -348,6 +354,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0x2CEB0...0x2EBEF: return "CJK Unified Ideographs Extension F"
             case 0x2F800...0x2FA1F: return "CJK Compatibility Ideographs Supplement"
             case 0x30000...0x3134F: return "CJK Unified Ideographs Extension G"
+            case 0x31350...0x323AF: return "CJK Unified Ideographs Extension H"
             case 0xE0000...0xE007F: return "Tags"
             case 0xE0100...0xE01EF: return "Variation Selectors Supplement"
             case 0xF0000...0xFFFFF: return "Supplementary Private Use Area-A"
