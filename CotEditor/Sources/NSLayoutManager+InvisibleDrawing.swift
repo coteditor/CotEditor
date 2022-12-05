@@ -24,7 +24,7 @@
 //
 
 import Combine
-import Cocoa
+import AppKit
 
 protocol InvisibleDrawing: NSLayoutManager {
     

@@ -1840,7 +1840,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		2A15832D18E3A3E000601026 /* Settings */ = {
+		2A15832D18E3A3E000601026 /* Settings Window */ = {
 			isa = PBXGroup;
 			children = (
 				2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */,
@@ -1850,7 +1850,7 @@
 				2A2E03481A4BF820006ABE9F /* Keybindings Edit Pane */,
 				2A91C3231D1C5840007CF8BE /* Other View Controllers */,
 			);
-			name = Settings;
+			name = "Settings Window";
 			sourceTree = "<group>";
 		};
 		2A15832F18E3A4AB00601026 /* Application */ = {
@@ -2016,7 +2016,6 @@
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2A9B134D27E2D84E009954A4 /* NSDraggingInfo.swift */,
-				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -2025,10 +2024,9 @@
 			isa = PBXGroup;
 			children = (
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
+				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
 				2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */,
 				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
-				2A8DA9461D28ED93003D0C4B /* URL.swift */,
-				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
 				2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
 				2AA761341D45634400031AAF /* String+Counting.swift */,
@@ -2043,13 +2041,15 @@
 				2A6FD9EC1D3A85D700A59784 /* NSString.swift */,
 				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
 				2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */,
-				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
+				2A8DA9461D28ED93003D0C4B /* URL.swift */,
+				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
 				2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
 				2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */,
 				2A9B134827E2C90F009954A4 /* FileManager.swift */,
 				2AFD218927E0434100E83E88 /* UTType.swift */,
+				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -2078,11 +2078,11 @@
 			children = (
 				2A15832F18E3A4AB00601026 /* Application */,
 				2A15832A18E3A1EC00601026 /* Managers */,
-				2A15832D18E3A3E000601026 /* Settings */,
+				2A15832D18E3A3E000601026 /* Settings Window */,
 				2A7CF2441A5747F400D09249 /* Text Finder */,
 				2A42825318FCC22100386899 /* Document */,
 				2A80BE9327FFFBAB00D2F7FF /* Scanners */,
-				2A9F58E628AAB07500346A98 /* ScriptingSupport */,
+				2A9F58E628AAB07500346A98 /* Scripting Support */,
 				2A42825418FCC23400386899 /* Document Window */,
 				2A42825218FCC1C100386899 /* Text View */,
 				2A15832C18E3A29A00601026 /* Views */,
@@ -2377,7 +2377,7 @@
 			name = "Other View Controllers";
 			sourceTree = "<group>";
 		};
-		2A9F58E628AAB07500346A98 /* ScriptingSupport */ = {
+		2A9F58E628AAB07500346A98 /* Scripting Support */ = {
 			isa = PBXGroup;
 			children = (
 				2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */,
@@ -2386,7 +2386,7 @@
 				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
 			);
-			name = ScriptingSupport;
+			name = "Scripting Support";
 			sourceTree = "<group>";
 		};
 		2AA14CFA1FA47E9000EAF586 /* Script */ = {
