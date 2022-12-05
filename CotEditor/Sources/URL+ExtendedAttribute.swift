@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ extension URL {
     /// get extended attribute
     func extendedAttribute(for name: String) throws -> Data {
         
-        return try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
-            
+        try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
             // check buffer size
             let length = getxattr(fileSystemPath, name, nil, 0, 0, XATTR_NOFOLLOW)
             
@@ -55,12 +54,10 @@ extension URL {
         
         // remove if nil is passed
         guard let data = data else {
-            try? self.removeExtendedAttribute(for: name)
-            return
+            return try self.removeExtendedAttribute(for: name)
         }
         
         try self.withUnsafeFileSystemRepresentation { fileSystemPath in
-            
             let size = data.withUnsafeBytes {
                 setxattr(fileSystemPath, name, $0.baseAddress, data.count, 0, XATTR_NOFOLLOW)
             }
@@ -71,10 +68,9 @@ extension URL {
     
     
     /// remove extended attribute
-    func removeExtendedAttribute(for name: String) throws {
+    private func removeExtendedAttribute(for name: String) throws {
         
         try self.withUnsafeFileSystemRepresentation { fileSystemPath in
-            
             let size = removexattr(fileSystemPath, name, XATTR_NOFOLLOW)
             
             guard size >= 0 else { throw POSIXError(err: errno) }
@@ -89,10 +85,7 @@ private extension POSIXError {
     
     init(err: Int32) {
         
-        let description = String(cString: strerror(errno))
-        
-        self = NSError(domain: POSIXError.errorDomain, code: Int(err),
-                       userInfo: [NSLocalizedDescriptionKey: description]) as! POSIXError
+        self.init(Code(rawValue: err)!)
     }
     
 }
