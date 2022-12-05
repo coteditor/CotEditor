@@ -365,14 +365,10 @@
 "Invisibles" = "Invisíveis";
 "Print Header" = "Imprimir Cabeçalho";
 "Primary Header" = "Cabeçalho Primário";
-"Primary Header Alignment" = "Alinhamento do Cabeçalho Primário";
 "Secondary Header" = "Cabeçalho Secundário";
-"Secondary Header Alignment" = "Alinhamento do Cabeçalho Secundário";
 "Print Footer" = "Imprimir Rodapé";
 "Primary Footer" = "Rodapé Primário";
-"Primary Footer Alignment" = "Alinhamento do Rodapé Primário";
 "Secondary Footer" = "Rodapé Secundário";
-"Secondary Footer Alignment" = "Alinhamento do Rodapé Secundário";
 
 // Summary item values
 "On" = "Ativo";

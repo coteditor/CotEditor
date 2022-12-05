@@ -365,14 +365,10 @@
 "Invisibles" = "Steuerzeichen";
 "Print Header" = "Kopfzeilen drucken";
 "Primary Header" = "Primäre Kopfzeile";
-"Primary Header Alignment" = "Ausrichtung der primären Kopfzeile";
 "Secondary Header" = "Sekundäre Kopfzeile";
-"Secondary Header Alignment" = "Ausrichtung der sekundären Kopfzeile";
 "Print Footer" = "Fußzeilen drucken";
 "Primary Footer" = "Primäre Fußzeile";
-"Primary Footer Alignment" = "Ausrichtung der primären Fußzeile";
 "Secondary Footer" = "Sekundäre Fußzeile";
-"Secondary Footer Alignment" = "Ausrichtung der sekundären Fußzeile";
 
 // Summary item values
 "On" = "Ein";

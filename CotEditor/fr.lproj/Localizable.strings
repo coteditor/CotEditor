@@ -365,14 +365,10 @@
 "Invisibles" = "Caractères invisibles";
 "Print Header" = "Imprimer l’en-tête";
 "Primary Header" = "En-tête principal";
-"Primary Header Alignment" = "Alignement de l’en-tête principal";
 "Secondary Header" = "En-tête secondaire";
-"Secondary Header Alignment" = "Alignement de l’en-tête secondaire";
 "Print Footer" = "Imprimer le pied de page";
 "Primary Footer" = "Pied de page principal";
-"Primary Footer Alignment" = "Alignement du pied de page";
 "Secondary Footer" = "Pied de page secondaire";
-"Secondary Footer Alignment" = "Alignement du pied de page secondaire";
 
 // Summary item values
 "On" = "Oui";

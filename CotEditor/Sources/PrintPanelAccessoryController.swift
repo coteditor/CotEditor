@@ -157,10 +157,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             #keyPath(secondaryHeaderAlignment),
             
             #keyPath(printsFooter),
-            #keyPath(primaryFooterAlignment),
             #keyPath(primaryFooterContent),
-            #keyPath(secondaryFooterAlignment),
+            #keyPath(primaryFooterAlignment),
             #keyPath(secondaryFooterContent),
+            #keyPath(secondaryFooterAlignment),
         ]
     }
     
@@ -168,38 +168,75 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// localized descriptions for print settings
     func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
-        [
+        var items: [[NSPrintPanel.AccessorySummaryKey: String]] = [
             [.itemName: "Color".localized,
-             .itemDescription: self.theme.localized],
-            [.itemName: "Print Background".localized,
-             .itemDescription: self.printsBackground ? "On".localized : "Off".localized],
-            [.itemName: "Line Number".localized,
-             .itemDescription: self.printsLineNumbers ? "On".localized : "Off".localized],
-            [.itemName: "Invisibles".localized,
-             .itemDescription: self.printsInvisibles ? "On".localized : "Off".localized],
-            
-            [.itemName: "Print Header".localized,
-             .itemDescription: self.printsHeader ? "On" .localized : "Off".localized],
-            [.itemName: "Primary Header".localized,
-             .itemDescription: self.primaryHeaderContent.localizedDescription],
-            [.itemName: "Primary Header Alignment".localized,
-             .itemDescription: self.primaryHeaderContent.localizedDescription],
-            [.itemName: "Primary Header".localized,
-             .itemDescription: self.secondaryHeaderContent.localizedDescription],
-            [.itemName: "Primary Header Alignment".localized,
-             .itemDescription: self.secondaryHeaderAlignment.localizedDescription],
-            
-            [.itemName: "Print Footer".localized,
-             .itemDescription: self.printsFooter ? "On".localized : "Off".localized],
-            [.itemName: "Primary Footer".localized,
-             .itemDescription: self.primaryFooterContent.localizedDescription],
-            [.itemName: "Primary Footer Alignment".localized,
-             .itemDescription: self.primaryFooterAlignment.localizedDescription],
-            [.itemName: "Primary Footer".localized,
-             .itemDescription: self.secondaryFooterContent.localizedDescription],
-            [.itemName: "Primary Footer Alignment".localized,
-             .itemDescription: self.secondaryFooterAlignment.localizedDescription],
+             .itemDescription: self.theme.localized]
         ]
+        
+        if #available(macOS 13, *) {
+            if self.printsBackground {
+                items += [[.itemName: "Print Background".localized,
+                           .itemDescription: "On".localized]]
+            }
+            if self.printsLineNumbers {
+                items += [[.itemName: "Line Number".localized,
+                           .itemDescription: "On".localized]]
+            }
+            if self.printsInvisibles {
+                items += [[.itemName: "Invisibles".localized,
+                           .itemDescription: "On".localized]]
+            }
+            if self.printsHeader, self.primaryHeaderContent != .none {
+                items += [[.itemName: "Primary Header".localized,
+                           .itemDescription: self.primaryHeaderContent.localizedDescription
+                           + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")]]
+            }
+            if self.printsHeader, self.secondaryHeaderContent != .none {
+                items += [[.itemName: "Secondary Header".localized,
+                           .itemDescription: self.secondaryHeaderContent.localizedDescription
+                           + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")]]
+            }
+            if self.printsFooter, self.primaryFooterContent != .none {
+                items += [[.itemName: "Primary Footer".localized,
+                           .itemDescription: self.primaryFooterContent.localizedDescription
+                           + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")]]
+            }
+            if self.printsFooter, self.secondaryFooterContent != .none {
+                items += [[.itemName: "Secondary Footer".localized,
+                           .itemDescription: self.secondaryFooterContent.localizedDescription
+                           + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")]]
+            }
+            
+        } else {
+            items += [
+                [.itemName: "Print Background".localized,
+                 .itemDescription: self.printsBackground ? "On".localized : "Off".localized],
+                [.itemName: "Line Number".localized,
+                 .itemDescription: self.printsLineNumbers ? "On".localized : "Off".localized],
+                [.itemName: "Invisibles".localized,
+                 .itemDescription: self.printsInvisibles ? "On".localized : "Off".localized],
+                
+                [.itemName: "Print Header".localized,
+                 .itemDescription: self.printsHeader ? "On" .localized : "Off".localized],
+                [.itemName: "Primary Header".localized,
+                 .itemDescription: self.primaryHeaderContent.localizedDescription
+                 + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")],
+                [.itemName: "Secondary Header".localized,
+                 .itemDescription: self.secondaryHeaderContent.localizedDescription
+                 + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")],
+                
+                [.itemName: "Print Footer".localized,
+                 .itemDescription: self.printsFooter ? "On".localized : "Off".localized],
+                [.itemName: "Primary Footer".localized,
+                 .itemDescription: self.primaryFooterContent.localizedDescription
+                 + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")],
+                [.itemName: "Secondary Footer".localized,
+                 .itemDescription: self.secondaryFooterContent.localizedDescription
+                 + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")],
+            ]
+        }
+        
+        return items
     }
     
     
@@ -231,7 +268,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         for themeName in themeNames {
             popupButton.addItem(withTitle: themeName)
-            popupButton.lastItem?.indentationLevel = 1
         }
         
         // select menu item

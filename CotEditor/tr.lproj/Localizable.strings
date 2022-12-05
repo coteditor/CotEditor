@@ -365,14 +365,10 @@
 "Invisibles" = "Görünmez Karakterler";
 "Print Header" = "Üstbilgiyi Yazdır";
 "Primary Header" = "Birincil Üstbilgi";
-"Primary Header Alignment" = "Birincil Üstbilgi Hizalaması";
 "Secondary Header" = "İkincil Üstbilgi";
-"Secondary Header Alignment" = "İkincil Üstbilgi Hizalaması";
 "Print Footer" = "Altbilgiyi Yazdır";
 "Primary Footer" = "Birincil Altbilgi";
-"Primary Footer Alignment" = "Birincil Altbilgi Hizalaması";
 "Secondary Footer" = "İkincil Altbilgi";
-"Secondary Footer Alignment" = "İkincil Altbilgi Hizalaması";
 
 // Summary item values
 "On" = "Açık";

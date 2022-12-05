@@ -365,14 +365,10 @@
 "Invisibles" = "Invisibles";
 "Print Header" = "Print Header";
 "Primary Header" = "Primary Header";
-"Primary Header Alignment" = "Primary Header Alignment";
 "Secondary Header" = "Secondary Header";
-"Secondary Header Alignment" = "Secondary Header Alignment";
 "Print Footer" = "Print Footer";
 "Primary Footer" = "Primary Footer";
-"Primary Footer Alignment" = "Primary Footer Alignment";
 "Secondary Footer" = "Secondary Footer";
-"Secondary Footer Alignment" = "Secondary Footer Alignment";
 
 // Summary item values
 "On" = "On";

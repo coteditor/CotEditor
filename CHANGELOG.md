@@ -8,11 +8,12 @@ Change Log
 ### Improvements
 
 - Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.
+- [trivial] Tweak the setting summary display in the print dialog.
 
 
 ### Fixes
 
-- Fix an issue the total page did not update when changing the print scope option to Selection in CotEditor in the print dialog.
+- Fix an issue the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.
 
 
 

@@ -365,14 +365,10 @@
 "Invisibles" = "不可視文字";
 "Print Header" = "ヘッダをプリント";
 "Primary Header" = "主ヘッダ";
-"Primary Header Alignment" = "主ヘッダの位置";
 "Secondary Header" = "副ヘッダ";
-"Secondary Header Alignment" = "副ヘッダの位置";
 "Print Footer" = "フッタをプリント";
 "Primary Footer" = "主フッタ";
-"Primary Footer Alignment" = "主フッタの位置";
 "Secondary Footer" = "副フッタ";
-"Secondary Footer Alignment" = "副フッタの位置";
 
 // Summary item values
 "On" = "オン";

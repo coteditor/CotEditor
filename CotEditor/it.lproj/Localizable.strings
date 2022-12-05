@@ -365,14 +365,10 @@
 "Invisibles" = "Caratteri invisibili";
 "Print Header" = "Stampa intestazione";
 "Primary Header" = "Intestazione primaria";
-"Primary Header Alignment" = "Allineamento intestazione primaria";
 "Secondary Header" = "Intestazione secondaria";
-"Secondary Header Alignment" = "Allineamento intestazione secondaria";
 "Print Footer" = "Stampa pie’ di pagina";
 "Primary Footer" = "Pie’ di pagina primario";
-"Primary Footer Alignment" = "Allineamento pie’ di pagina primario";
 "Secondary Footer" = "Pie’ di pagina secondario";
-"Secondary Footer Alignment" = "Allineamento pie’ di pagina secondario";
 
 // Summary item values
 "On" = "Acceso";

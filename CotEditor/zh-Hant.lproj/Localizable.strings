@@ -365,14 +365,10 @@
 "Invisibles" = "不可見元素";
 "Print Header" = "列印頁眉";
 "Primary Header" = "主頁眉";
-"Primary Header Alignment" = "主頁眉對齊";
 "Secondary Header" = "次頁眉";
-"Secondary Header Alignment" = "次頁眉對齊";
 "Print Footer" = "列印頁腳";
 "Primary Footer" = "主頁腳";
-"Primary Footer Alignment" = "主頁腳對齊";
 "Secondary Footer" = "次頁腳";
-"Secondary Footer Alignment" = "次頁腳對齊";
 
 // Summary item values
 "On" = "開";
