@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -801,7 +801,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="MTv-9U-AKe">
-                                <rect key="frame" x="95" y="220" width="40" height="22"/>
+                                <rect key="frame" x="92" y="218" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="qAn-mW-nYM" id="64s-qP-SvT"/>
@@ -825,7 +825,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="YYD-xa-M68">
-                                <rect key="frame" x="95" y="246" width="40" height="22"/>
+                                <rect key="frame" x="92" y="244" width="46" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="3w8-JA-kw5"/>
                                     <constraint firstAttribute="width" constant="40" id="5cI-By-dT0"/>
@@ -837,7 +837,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="GF9-4S-gLx">
-                                <rect key="frame" x="95" y="194" width="40" height="22"/>
+                                <rect key="frame" x="92" y="192" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="TKF-33-73c" id="epV-Ol-SSk"/>
@@ -845,7 +845,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UgX-sS-Fcp">
-                                <rect key="frame" x="290" y="246" width="40" height="22"/>
+                                <rect key="frame" x="287" y="244" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="JD4-b2-5Lb" id="qqS-Ul-Tkv"/>
@@ -853,7 +853,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gmI-f2-jT4">
-                                <rect key="frame" x="290" y="220" width="40" height="22"/>
+                                <rect key="frame" x="287" y="218" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="f2f-d6-jlt" id="j8B-8D-TCR"/>
@@ -861,7 +861,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lph-a7-WhS" customClass="SelectionColorWell" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="290" y="194" width="40" height="22"/>
+                                <rect key="frame" x="287" y="192" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="DSW-GJ-cJL" id="5Bb-LD-x72"/>
@@ -906,7 +906,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="m2v-Lx-2AN">
-                                <rect key="frame" x="290" y="107" width="40" height="22"/>
+                                <rect key="frame" x="287" y="105" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="Iu1-dd-heI" id="JNd-gb-XzI"/>
@@ -914,7 +914,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-uU-ZVc">
-                                <rect key="frame" x="290" y="55" width="40" height="22"/>
+                                <rect key="frame" x="287" y="53" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="yWa-sB-Ala" id="Fqj-Wc-zIY"/>
@@ -930,7 +930,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="Lb4-EB-Ihl">
-                                <rect key="frame" x="290" y="81" width="40" height="22"/>
+                                <rect key="frame" x="287" y="79" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="ITJ-dM-gUs" id="hCY-cW-BBA"/>
@@ -938,7 +938,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i2u-jb-gDm">
-                                <rect key="frame" x="290" y="29" width="40" height="22"/>
+                                <rect key="frame" x="287" y="27" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="QrC-63-7c6" id="Hd1-xo-Z4I"/>
@@ -946,7 +946,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="mOJ-0i-G0x">
-                                <rect key="frame" x="95" y="133" width="40" height="22"/>
+                                <rect key="frame" x="92" y="131" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="Yza-AH-dWQ" id="Fgo-Zw-ckd"/>
@@ -954,7 +954,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="FcM-kz-UdO">
-                                <rect key="frame" x="95" y="107" width="40" height="22"/>
+                                <rect key="frame" x="92" y="105" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="r0Y-ri-e5S" id="PsZ-3C-Mgh"/>
@@ -962,7 +962,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="3oY-wN-WmV">
-                                <rect key="frame" x="95" y="55" width="40" height="22"/>
+                                <rect key="frame" x="92" y="53" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="PkG-8c-DFp" id="Xr6-v5-igm"/>
@@ -978,7 +978,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="qAi-YR-6Uq">
-                                <rect key="frame" x="95" y="81" width="40" height="22"/>
+                                <rect key="frame" x="92" y="79" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="8QY-g0-UOv" id="ipx-Yq-8Aj"/>
@@ -986,7 +986,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TM9-hz-gN9">
-                                <rect key="frame" x="95" y="29" width="40" height="22"/>
+                                <rect key="frame" x="92" y="27" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="zVV-lR-gIW" id="w8l-YB-Sdb"/>
@@ -1002,7 +1002,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="zro-cN-SiM">
-                                <rect key="frame" x="290" y="133" width="40" height="22"/>
+                                <rect key="frame" x="287" y="131" width="46" height="26"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <accessibilityConnection property="title" destination="KeE-qE-PVX" id="zWw-KI-zKD"/>
@@ -1359,10 +1359,10 @@
         <image name="Insertion Point/Bar" width="8" height="11"/>
         <image name="Insertion Point/Block" width="8" height="11"/>
         <image name="Insertion Point/ThickBar" width="8" height="11"/>
-        <image name="NSActionTemplate" width="15" height="15"/>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="NSFollowLinkFreestandingTemplate" width="15" height="15"/>
-        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSActionTemplate" width="20" height="20"/>
+        <image name="NSAddTemplate" width="18" height="17"/>
+        <image name="NSFollowLinkFreestandingTemplate" width="20" height="20"/>
+        <image name="NSRemoveTemplate" width="18" height="5"/>
         <image name="info.circle" catalog="system" width="15" height="15"/>
     </resources>
 </document>
