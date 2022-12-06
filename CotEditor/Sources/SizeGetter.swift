@@ -25,23 +25,37 @@
 
 import SwiftUI
 
-struct SizeGetter: View {
+struct WidthGetter<Key: PreferenceKey>: View where Key.Value == CGFloat {
+    
+    let key: Key.Type
+    
     
     var body: some View {
         
         GeometryReader { (geometry) in
-            Path().preference(key: SizeKey.self, value: [geometry.size])
+            Color.clear.preference(key: self.key.self, value: geometry.size.width)
         }
     }
+    
 }
 
 
-struct SizeKey: PreferenceKey {
+protocol MaxWidthKey: PreferenceKey {
     
-    static var defaultValue: [CGSize] = []
+    static var defaultValue: CGFloat { get }
+}
+
+
+extension MaxWidthKey {
     
-    static func reduce(value: inout [CGSize], nextValue: () -> [CGSize]) {
+    static var defaultValue: CGFloat { 0 }
+    
+    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         
-        value.append(contentsOf: nextValue())
+        value = max(value, nextValue())
     }
 }
+
+
+struct WidthKey: MaxWidthKey { }

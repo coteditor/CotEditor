@@ -45,8 +45,8 @@ struct CharacterCountOptionsView: View {
                         .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
                 }
                 .alignmentGuide(.column) { $0[.leading] }
-                .background(SizeGetter())
-                .onPreferenceChange(SizeKey.self) { self.contentWidth = $0.map(\.width).max() }
+                .background(WidthGetter(key: WidthKey.self))
+                .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }
             }.fixedSize()
             
             HStack(alignment: .firstTextBaseline) {
@@ -72,8 +72,8 @@ struct CharacterCountOptionsView: View {
                                 }
                             }
                         }.fixedSize()
-                            .background(SizeGetter())
-                            .onPreferenceChange(SizeKey.self) { self.contentWidth = $0.map(\.width).max() }
+                            .background(WidthGetter(key: WidthKey.self))
+                            .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }
                     }
                     
                     Text(self.setting.unit.description)

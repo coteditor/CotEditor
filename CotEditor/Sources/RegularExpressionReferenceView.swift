@@ -139,13 +139,13 @@ struct RegularExpressionReferenceView: View {
                             Text(verbatim: definition.term)
                                 .fontWeight(.medium)
                                 .frame(width: self.width, alignment: .leading)
-                                .background(SizeGetter())
+                                .background(WidthGetter(key: WidthKey.self))
                             Text(definition.description)
                         }
                         .fixedSize()
                     }
                 }
-                .onPreferenceChange(SizeKey.self) { self.width = $0.map(\.width).max() }
+                .onPreferenceChange(WidthKey.self) { self.width = $0 }
                 
             } header: {
                 Text(self.title)
