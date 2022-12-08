@@ -425,21 +425,21 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// return textView focused on
     var focusedTextView: EditorTextView? {
         
-        return self.splitViewController?.focusedChild?.textView
+        self.splitViewController?.focusedChild?.textView ?? self.editorViewControllers.first?.textView
     }
     
     
     /// coloring theme
     var theme: Theme? {
         
-        return self.focusedTextView?.theme
+        self.focusedTextView?.theme
     }
     
     
     /// body font
     var font: NSFont? {
         
-        return self.focusedTextView?.font
+        self.focusedTextView?.font
     }
     
     
@@ -447,7 +447,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     var isStatusBarShown: Bool {
         
         get {
-            return self.statusBarItem?.isCollapsed == false
+            self.statusBarItem?.isCollapsed == false
         }
         
         set {

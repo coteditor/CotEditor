@@ -15,6 +15,7 @@ Change Log
 
 - Fix an issue on macOS 13 the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.
 - Fix an issue that timestamps in the Console window do not reflect the local time zone.
+- Fix an issue that the right-to-left writing direciton option for new documents was not applied.
 
 
 
