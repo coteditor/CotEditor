@@ -44,51 +44,40 @@ struct EncodingListView: View {
     @State private var encodingItems: [EncodingItem] = UserDefaults.standard[.encodingList].map(EncodingItem.init(encoding:))
     @State private var selectedItems: Set<EncodingItem.ID> = []
     
-    @State private var separatorButtonWidth: CGFloat?
-    
     
     var body: some View {
         
         VStack(alignment: .leading) {
             Text("Drag encodings to change the order:")
             
-            HStack(alignment: .top) {
-                List(selection: $selectedItems) {
-                    ForEach(self.encodingItems) { item in
-                        VStack(alignment: .leading, spacing: 8) {
-                            if item.isSeparator {
-                                Divider()
-                            } else if item.encoding == .utf8 {
-                                EncodingView(encoding: item.encoding)
-                                EncodingView(encoding: item.encoding, withUTF8BOM: true)
-                            } else {
-                                EncodingView(encoding: item.encoding)
-                            }
+            List(selection: $selectedItems) {
+                ForEach(self.encodingItems) { item in
+                    VStack(alignment: .leading, spacing: 8) {
+                        if item.isSeparator {
+                            Divider()
+                        } else if item.encoding == .utf8 {
+                            EncodingView(encoding: item.encoding)
+                            EncodingView(encoding: item.encoding, withUTF8BOM: true)
+                        } else {
+                            EncodingView(encoding: item.encoding)
                         }
-                    }.onMove { (indexes, index) in
-                        withAnimation {
-                            self.encodingItems.move(fromOffsets: indexes, toOffset: index)
-                        }
+                    }.listRowSeparator(.hidden)
+                }.onMove { (indexes, index) in
+                    withAnimation {
+                        self.encodingItems.move(fromOffsets: indexes, toOffset: index)
                     }
                 }
-                .listStyle(.bordered)
-                .environment(\.defaultMinListRowHeight, 14)
-                .frame(minHeight: 250, idealHeight: 250)
-                
-                VStack(alignment: .leading) {
-                    Button(action: self.addSeparator) {
-                        Text("Add Separator")
-                            .background(WidthGetter(key: WidthKey.self))
-                            .frame(width: self.separatorButtonWidth)
-                    }
-                    Button(action: self.deleteSeparators) {
-                        Text("Delete Separator")
-                            .background(WidthGetter(key: WidthKey.self))
-                            .frame(width: self.separatorButtonWidth)
-                    }.disabled(!self.canDeleteSeparators)
-                }.controlSize(.small)
-                    .onPreferenceChange(WidthKey.self) { self.separatorButtonWidth = $0 }
             }
+            .listStyle(.bordered)
+            .environment(\.defaultMinListRowHeight, 14)
+            .frame(minHeight: 250, idealHeight: 250)
+                
+            HStack {
+                Spacer()
+                Button("Add Separator", action: self.addSeparator)
+                Button("Delete Separator", action: self.deleteSeparators)
+                    .disabled(!self.canDeleteSeparators)
+            }.controlSize(.small)
             
             Text("This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.")
                 .controlSize(.small)
@@ -112,7 +101,7 @@ struct EncodingListView: View {
             }
         }
         .scenePadding()
-        .frame(minWidth: 420)
+        .frame(minWidth: 360)
     }
     
     
@@ -180,7 +169,7 @@ private struct EncodingView: View {
             Text(self.name)
             Text(verbatim: self.ianaCharsetName)
                 .foregroundColor(.secondary)  // prefer .secondary over .secondaryLabel to change color when selected
-        }.frame(height: 12)
+        }.frame(height: 13)
     }
     
     

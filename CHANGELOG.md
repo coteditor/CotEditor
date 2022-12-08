@@ -26,6 +26,7 @@ Change Log
 - [trivial] Reduce the maximum number to split editor.
 - [trivial] Change the behavior of the duplication command for syntax definitions to just create a duplicated syntax instead of opening the syntax editor dialog.
 - [trivial] Rename “syntax style” with just “syntax.”
+- [trivial] Rearrange the layout of the encoding list.
 
 
 ### Fixes
