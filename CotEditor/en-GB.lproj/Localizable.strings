@@ -718,6 +718,15 @@
 
 
 
+/* MARK: Encoding List View */
+"Drag encodings to change the order:" = "Drag encodings to change the order:";
+"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritised.";
+"Add Separator" = "Add Separator";
+"Delete Separator" = "Delete Separator";
+"Restore Defaults" = "Restore Defaults";
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "Syntax Style Mapping Conflicts";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style.";

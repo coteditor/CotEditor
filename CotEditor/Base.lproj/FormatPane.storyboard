@@ -72,17 +72,14 @@
                                         </connections>
                                     </popUpButton>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MwE-73-7AJ">
-                                        <rect key="frame" x="161" y="232" width="110" height="32"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="ac6-yE-gFi"/>
-                                        </constraints>
+                                        <rect key="frame" x="161" y="232" width="94" height="32"/>
                                         <buttonCell key="cell" type="push" title="Edit List…" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="3275">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <accessibilityConnection property="title" destination="LQO-NI-fGx" id="3QR-Jo-t7t"/>
-                                            <segue destination="mo3-YF-637" kind="sheet" id="Jxd-Th-IZG"/>
+                                            <action selector="showEncodingList:" target="Lgm-sL-YIF" id="2RF-5p-lnA"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-LF-z0j">
@@ -519,14 +516,6 @@
                 </menu>
             </objects>
             <point key="canvasLocation" x="-76" y="62.5"/>
-        </scene>
-        <!--EncodingListView-->
-        <scene sceneID="ycH-eP-fHB">
-            <objects>
-                <controllerPlaceholder storyboardName="EncodingListView" id="mo3-YF-637" sceneMemberID="viewController"/>
-                <customObject id="Kde-Ve-SlV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="359" y="63"/>
         </scene>
     </scenes>
     <resources>

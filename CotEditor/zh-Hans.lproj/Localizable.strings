@@ -718,6 +718,15 @@
 
 
 
+/* MARK: Encoding List View */
+"Drag encodings to change the order:" = "拖拽以改变编码顺序：";
+"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "这个列表是为编码菜单中的自动检测准备的。\n通过检测，较高的项目将获得较高的优先级。";
+"Add Separator" = "添加分隔线";
+"Delete Separator" = "删除分隔线";
+"Restore Defaults" = "恢复默认";
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "语法样式映射冲突";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "下列文件映射规则被注册了多种格式。CotEditor自动使用第一个格式。可以通过编辑每个语法格式来解决冲突。";

@@ -718,6 +718,15 @@
 
 
 
+/* MARK: Encoding List View */
+"Drag encodings to change the order:" = "Sıralamayı değiştirmek için kodlamaları sürükleyin:";
+"This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Bu sıralama, kodlama menüsü ve dosya açılışındaki kodlama algılaması içindir. Algılama ile, daha yüksek olasılıklı ögelere öncelik verilir.";
+"Add Separator" = "Ayırıcı Ekle";
+"Delete Separator" = "Ayırıcı Sil";
+"Restore Defaults" = "Saptanmışlara Dön";
+
+
+
 /* MARK: Syntax Mapping Conflicts View */
 "Syntax Style Mapping Conflicts" = "Sözdizim Biçemli Eşlemleme Çakışmaları";
 "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." = "Aşağıdaki dosya eşlemleme kuralları birden çok biçemde kayıtlıdır. CotEditor, kendiliğinden ilk biçemi kullanır. Çakışmaları çözmek için her bir sözdizim biçemini düzenleyin.";

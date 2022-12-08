@@ -325,6 +325,16 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
+    @IBAction func showEncodingList(_ sender: Any?) {
+        
+        let view = EncodingListView()
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
+        
+        self.presentAsSheet(viewController)
+    }
+    
+    
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
