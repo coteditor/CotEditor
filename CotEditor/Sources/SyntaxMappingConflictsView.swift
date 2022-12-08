@@ -72,13 +72,13 @@ struct SyntaxMappingConflictsView: View {
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
-                self.listView(name: "Extension".localized, conflicts: self.extensionConflicts)
+                self.listView(name: "Extension", conflicts: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                self.listView(name: "Filename".localized, conflicts: self.filenameConflicts)
+                self.listView(name: "Filename", conflicts: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                self.listView(name: "Interpreter".localized, conflicts: self.interpreterConflicts)
+                self.listView(name: "Interpreter", conflicts: self.interpreterConflicts)
             }
             
             HStack {
@@ -86,8 +86,7 @@ struct SyntaxMappingConflictsView: View {
                 Spacer()
                 Button("OK") {
                     self.parent?.dismiss(nil)
-                }
-                .keyboardShortcut(.defaultAction)
+                }.keyboardShortcut(.defaultAction)
             }
         }.padding()
             .frame(width: 400, height: 500, alignment: .trailing)
@@ -97,8 +96,7 @@ struct SyntaxMappingConflictsView: View {
     }
     
     
-    
-    private func listView(name: String, conflicts: [FileMappingConflict]) -> some View {
+    private func listView(name: LocalizedStringKey, conflicts: [FileMappingConflict]) -> some View {
         
         Section {
             Table(conflicts) {
