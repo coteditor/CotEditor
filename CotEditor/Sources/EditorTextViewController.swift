@@ -194,7 +194,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             return true
         }
         let viewController = NSHostingController(rootView: view)
-        viewController.rootView?.parent = viewController
+        viewController.rootView.parent = viewController
         
         self.presentAsSheet(viewController)
     }

@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 private let maximumNumberOfSplitEditors = 8
 
@@ -728,11 +729,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// change tab width to desired number through a sheet
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: "CustomTabWidthView").instantiateInitialController { (coder) in
-            CustomTabWidthViewController(coder: coder, defaultWidth: self.tabWidth) { [weak self] (tabWidth) in
-                self?.tabWidth = tabWidth
-            }
-        }!
+        let view = CustomTabWidthView(tabWidth: self.tabWidth) { [weak self] (tabWidth) in
+            self?.tabWidth = tabWidth
+        }
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
         
         self.presentAsSheet(viewController)
     }

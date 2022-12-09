@@ -746,6 +746,11 @@
 
 
 
+/* MARK: Custom Tab Width View */
+"Tab width:" = "Sekme genişliği:";  // label
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Gelişmiş Karakter Sayımı…";

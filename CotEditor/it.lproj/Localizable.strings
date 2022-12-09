@@ -746,6 +746,11 @@
 
 
 
+/* MARK: Custom Tab Width View */
+"Tab width:" = "Larghezza Tab:";  // label
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Conteggio caratteri avanzato…";

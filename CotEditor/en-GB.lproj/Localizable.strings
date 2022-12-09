@@ -746,6 +746,11 @@
 
 
 
+/* MARK: Custom Tab Width View */
+"Tab width:" = "Tab width:";  // label
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Advanced Character Count…";

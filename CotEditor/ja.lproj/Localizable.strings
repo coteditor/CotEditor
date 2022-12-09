@@ -746,6 +746,11 @@
 
 
 
+/* MARK: Custom Tab Width View */
+"Tab width:" = "タブ幅:";  // label
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高度な文字カウント…";
