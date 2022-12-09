@@ -205,21 +205,26 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let inputViewController = NSStoryboard(name: "UnicodeInputView").instantiateInitialController { (coder) in
-            UnicodeInputViewController(coder: coder) { [unowned textView] (character) in
-                // flag to skip line ending sanitization
-                textView.isApprovedTextChange = true
-                defer { textView.isApprovedTextChange = false }
-                
-                textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
-            }
-        }!
+        let view = UnicodeInputView { [unowned textView] (character) in
+            // flag to skip line ending sanitization
+            textView.isApprovedTextChange = true
+            defer { textView.isApprovedTextChange = false }
+            
+            textView.replace(with: String(character), range: textView.rangeForUserTextChange, selectedRange: nil)
+        }
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
+        
+        // -> Needs to set the size beforehand
+        //    to display the popover at the desired position (Xcode 14.0, FB10926162)
+        assert(viewController.view.frame.isEmpty)
+        viewController.view.frame.size = viewController.view.intrinsicContentSize
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
         
         textView.scrollRangeToVisible(textView.selectedRange)
-        self.present(inputViewController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: edge, behavior: .transient)
+        self.present(viewController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: edge, behavior: .transient)
     }
     
     

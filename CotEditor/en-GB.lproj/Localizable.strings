@@ -739,6 +739,11 @@
 
 
 
+/* MARK: Unicode Input View */
+"Invalid code" = "Invalid code";
+
+
+
 /* MARK: Go to Line View */
 "Line:" = "Line:";  // label
 "Line Number" = "Line Number";  // placeholder

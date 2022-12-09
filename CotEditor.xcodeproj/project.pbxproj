@@ -47,6 +47,8 @@
 		2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
 		2A0FCEF4288BE73200E2AA04 /* FindPanelButtonView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A0FCEF7288BE73200E2AA04 /* FindPanelButtonView.storyboard */; };
 		2A0FCEF5288BE73200E2AA04 /* FindPanelButtonView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A0FCEF7288BE73200E2AA04 /* FindPanelButtonView.storyboard */; };
+		2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1083EF2944837E00751DAE /* InsetTextField.swift */; };
+		2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1083EF2944837E00751DAE /* InsetTextField.swift */; };
 		2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
 		2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
 		2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10C5F61FD19237002AB5AE /* KeyBinding.swift */; };
@@ -192,8 +194,8 @@
 		2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257A61D22E0660086DAAD /* EncodingManager.swift */; };
 		2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */; };
 		2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */; };
-		2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */; };
-		2A4257B71D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */; };
+		2A4257B61D23153B0086DAAD /* UnicodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputView.swift */; };
+		2A4257B71D23153B0086DAAD /* UnicodeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputView.swift */; };
 		2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */; };
 		2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */; };
 		2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
@@ -633,7 +635,6 @@
 		2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243321A7D78400F6201F /* SyntaxOutlineEditView.storyboard */; };
 		2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
 		2ACDE2B52406B9C000FC31EC /* SyntaxValidationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */; };
-		2ACDE2B62406B9C000FC31EC /* UnicodeInputView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */; };
 		2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2ACF23AE26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
@@ -658,7 +659,6 @@
 		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
-		2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */; };
 		2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */; };
 		2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
 		2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
@@ -827,7 +827,6 @@
 		08C28F9F279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		08C28FA2279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		08C28FA5279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
-		08C28FA6279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
 		08C28FA8279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		08C28FA9279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		08C28FAA279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = tr; path = tr.lproj/Credits.html; sourceTree = "<group>"; };
@@ -866,7 +865,6 @@
 		0D51D5882274EAE300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
 		0D51D5892274EAE400A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		0D51D58C2274EAE600A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
-		0D51D58D2274EAE700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
 		0D51D58E2274EAE700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		0D51D58F2274EE6F00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D51D5902274EF3F00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -898,6 +896,7 @@
 		2A0FCF09288BE76100E2AA04 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
 		2A0FCF0B288BE76C00E2AA04 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/FindPanelButtonView.strings"; sourceTree = "<group>"; };
 		2A0FCF0F288BE7A200E2AA04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FindPanelButtonView.strings"; sourceTree = "<group>"; };
+		2A1083EF2944837E00751DAE /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		2A10B6F421450A3B00B4205E /* NSAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppearance.swift; sourceTree = "<group>"; };
 		2A10C5F61FD19237002AB5AE /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
 		2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Selector+Codable.swift"; sourceTree = "<group>"; };
@@ -1036,7 +1035,7 @@
 		2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+TouchBar.swift"; sourceTree = "<group>"; };
 		2A4257A61D22E0660086DAAD /* EncodingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingManager.swift; sourceTree = "<group>"; };
 		2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCodePanelController.swift; sourceTree = "<group>"; };
-		2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputViewController.swift; sourceTree = "<group>"; };
+		2A4257B51D23153B0086DAAD /* UnicodeInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputView.swift; sourceTree = "<group>"; };
 		2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+ColorCode.swift"; sourceTree = "<group>"; };
 		2A4257BB1D239F850086DAAD /* Invisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
 		2A44321B219AC1F8008A0A6B /* SettingsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
@@ -1388,12 +1387,6 @@
 		2AD69B871D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
-		2AD940DB21A46B100076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UnicodeInputView.storyboard; sourceTree = "<group>"; };
-		2AD940DE21A46FC70076A28C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
-		2AD940DF21A46FC90076A28C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodeInputView.strings"; sourceTree = "<group>"; };
-		2AD940E021A46FCA0076A28C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
-		2AD940E121A46FCC0076A28C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
-		2AD940E221A46FCD0076A28C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
 		2AD940EF21A7CBF50076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxValidationView.storyboard; sourceTree = "<group>"; };
 		2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+IndexSet.swift"; sourceTree = "<group>"; };
 		2ADBC91421C9F30000B884FF /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
@@ -1539,7 +1532,6 @@
 		5B08850628296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		5B08850928296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		5B08850C28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
-		5B08850D28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/UnicodeInputView.strings"; sourceTree = "<group>"; };
 		5B08850E28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
 		5B08850F28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ColorCodePanelAccessory.strings"; sourceTree = "<group>"; };
 		5B08851028296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/Credits.html"; sourceTree = "<group>"; };
@@ -1582,7 +1574,6 @@
 		98EAE83027A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		98EAE83327A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		98EAE83627A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
-		98EAE83727A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/UnicodeInputView.strings"; sourceTree = "<group>"; };
 		98EAE83927A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
 		98EAE83A27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ColorCodePanelAccessory.strings"; sourceTree = "<group>"; };
 		98EAE83B27A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "en-GB"; path = "en-GB.lproj/Credits.html"; sourceTree = "<group>"; };
@@ -2223,6 +2214,7 @@
 		2A53F5692758912600ED16DF /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				2A1083EF2944837E00751DAE /* InsetTextField.swift */,
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
 				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
@@ -2261,7 +2253,7 @@
 				2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */,
 				2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */,
 				2AE12E061E7DDF0700681F72 /* CustomSurroundStringView.swift */,
-				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
+				2A4257B51D23153B0086DAAD /* UnicodeInputView.swift */,
 				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
 				2AB1BD22287D789800C6FEAF /* Advanced Character Count */,
 			);
@@ -2377,7 +2369,6 @@
 				2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */,
 				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
 				2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */,
-				2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */,
 			);
 			name = "Document Accessories";
 			sourceTree = "<group>";
@@ -2804,7 +2795,6 @@
 				2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */,
 				2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */,
 				2ACDE2B52406B9C000FC31EC /* SyntaxValidationView.storyboard in Resources */,
-				2ACDE2B62406B9C000FC31EC /* UnicodeInputView.storyboard in Resources */,
 				2ACDE2A02406B9C000FC31EC /* WarningsView.storyboard in Resources */,
 				2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */,
 				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
@@ -2877,7 +2867,6 @@
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
 				2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */,
-				2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */,
 				2A4144B8201397150061F653 /* WarningsView.storyboard in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
@@ -3092,6 +3081,7 @@
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */,
+				2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
@@ -3257,7 +3247,7 @@
 				2A73B5B71D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
 				2A1235472121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift in Sources */,
-				2A4257B71D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
+				2A4257B71D23153B0086DAAD /* UnicodeInputView.swift in Sources */,
 				2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
@@ -3429,6 +3419,7 @@
 				2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */,
+				2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
@@ -3594,7 +3585,7 @@
 				2A73B5B61D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
 				2A73B5BC1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
 				2A1235462121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift in Sources */,
-				2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
+				2A4257B61D23153B0086DAAD /* UnicodeInputView.swift in Sources */,
 				2AA14CFF1FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
@@ -4283,23 +4274,6 @@
 				08C28FA9279CBE300016693E /* tr */,
 			);
 			name = ColorCodePanelAccessory.storyboard;
-			sourceTree = "<group>";
-		};
-		2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AD940DB21A46B100076A28C /* Base */,
-				98EAE83727A5D7DA00C6D571 /* en-GB */,
-				2AD940DE21A46FC70076A28C /* ja */,
-				2AD940DF21A46FC90076A28C /* zh-Hans */,
-				5B08850D28296B61003D4C2D /* zh-Hant */,
-				0D51D58D2274EAE700A5D747 /* fr */,
-				2AD940E021A46FCA0076A28C /* de */,
-				2AD940E121A46FCC0076A28C /* it */,
-				2AD940E221A46FCD0076A28C /* pt */,
-				08C28FA6279CBE300016693E /* tr */,
-			);
-			name = UnicodeInputView.storyboard;
 			sourceTree = "<group>";
 		};
 		2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */ = {

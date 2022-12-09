@@ -739,6 +739,11 @@
 
 
 
+/* MARK: Unicode Input View */
+"Invalid code" = "Codice non valido";
+
+
+
 /* MARK: Go to Line View */
 "Line:" = "Riga:";  // label
 "Line Number" = "Numero di riga";  // placeholder

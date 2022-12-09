@@ -739,6 +739,11 @@
 
 
 
+/* MARK: Unicode Input View */
+"Invalid code" = "Geçersiz Kod";
+
+
+
 /* MARK: Go to Line View */
 "Line:" = "Satır:";  // label
 "Line Number" = "Satır Numarası";  // placeholder

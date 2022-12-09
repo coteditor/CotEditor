@@ -739,6 +739,11 @@
 
 
 
+/* MARK: Unicode Input View */
+"Invalid code" = "無効なコード";
+
+
+
 /* MARK: Go to Line View */
 "Line:" = "行:";  // label
 "Line Number" = "行番号";  // placeholder
