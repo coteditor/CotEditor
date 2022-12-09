@@ -751,6 +751,13 @@
 
 
 
+/* MARK: Custom Surround String View */
+"Surround with:" = "Umgeben mit:";
+"Begin:" = "Beginnt:";
+"End:" = "Endet:";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Erweiterte Zeichenanzahl …";

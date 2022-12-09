@@ -24,6 +24,7 @@
 //
 
 import Cocoa
+import SwiftUI
 
 extension EditorTextView {
     
@@ -67,12 +68,12 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: "CustomSurroundStringView").instantiateInitialController { (coder) in
-            CustomSurroundStringViewController(coder: coder, pair: self.customSurroundPair) { [weak self] (pair) in
-                self?.surroundSelections(begin: pair.begin, end: pair.end)
-                self?.customSurroundPair = pair
-            }
-        }!
+        let view = CustomSurroundStringView(pair: self.customSurroundPair) { [weak self] (pair) in
+            self?.surroundSelections(begin: pair.begin, end: pair.end)
+            self?.customSurroundPair = pair
+        }
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
     }

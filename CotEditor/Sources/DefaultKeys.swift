@@ -167,8 +167,6 @@ extension DefaultKeys {
     static let outlineViewFontSize = DefaultKey<CGFloat>("outlineViewFontSize")
     static let findResultViewFontSize = DefaultKey<CGFloat>("findResultViewFontSize")
     static let selectedMultipleReplacementSettingName = DefaultKey<String?>("selectedMultipleReplacementSettingName")
-    static let beginCustomSurroundString = DefaultKey<String?>("beginCustomSurroundString")
-    static let endCustomSurroundString = DefaultKey<String?>("endCustomSurroundString")
     static let unicodeHistory = DefaultKey<[String]>("unicodeHistory")
     static let regexPatternSortHistory = DefaultKey<[String]>("regexPatternSortHistory")
     

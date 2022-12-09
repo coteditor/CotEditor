@@ -751,6 +751,13 @@
 
 
 
+/* MARK: Custom Surround String View */
+"Surround with:" = "Şunlarla sar:";
+"Begin:" = "Başlangıç:";
+"End:" = "Bitiş:";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Gelişmiş Karakter Sayımı…";

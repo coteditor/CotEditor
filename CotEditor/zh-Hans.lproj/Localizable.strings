@@ -751,6 +751,13 @@
 
 
 
+/* MARK: Custom Surround String View */
+"Surround with:" = "进行环绕：";
+"Begin:" = "开头：";
+"End:" = "结尾：";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高级字符计数…";

@@ -751,6 +751,13 @@
 
 
 
+/* MARK: Custom Surround String View */
+"Surround with:" = "Circonda con:";
+"Begin:" = "Inizio:";
+"End:" = "Fine:";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Conteggio caratteri avanzato…";

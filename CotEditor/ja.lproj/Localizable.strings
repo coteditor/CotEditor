@@ -751,6 +751,13 @@
 
 
 
+/* MARK: Custom Surround String View */
+"Surround with:" = "文字で囲む:";
+"Begin:" = "開始:";
+"End:" = "終了:";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高度な文字カウント…";
