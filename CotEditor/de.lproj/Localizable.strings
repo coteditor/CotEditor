@@ -739,6 +739,13 @@
 
 
 
+/* MARK: Go to Line View */
+"Line:" = "Zeile:";  // label
+"Line Number" = "Zeilennummer";  // placeholder
+"Go" = "Los";  // submit button
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Erweiterte Zeichenanzahl …";

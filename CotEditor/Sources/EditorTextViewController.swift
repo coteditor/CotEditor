@@ -186,15 +186,15 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
         let lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
-        let viewController = NSStoryboard(name: "GoToLineView").instantiateInitialController { (coder) in
-            GoToLineViewController(coder: coder, lineRange: lineRange) { (lineRange) in
-                guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
-                
-                textView.select(range: range)
-                
-                return true
-            }
-        }!
+        let view = GoToLineView(lineRange: lineRange) { (lineRange) in
+            guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
+            
+            textView.select(range: range)
+            
+            return true
+        }
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView?.parent = viewController
         
         self.presentAsSheet(viewController)
     }

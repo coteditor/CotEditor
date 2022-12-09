@@ -739,6 +739,13 @@
 
 
 
+/* MARK: Go to Line View */
+"Line:" = "行：";  // label
+"Line Number" = "行號";  // placeholder
+"Go" = "跳轉";  // submit button
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "進階字元統計…";

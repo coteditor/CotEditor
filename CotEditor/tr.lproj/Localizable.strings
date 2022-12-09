@@ -739,6 +739,13 @@
 
 
 
+/* MARK: Go to Line View */
+"Line:" = "Satır:";  // label
+"Line Number" = "Satır Numarası";  // placeholder
+"Go" = "Git";  // submit button
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Gelişmiş Karakter Sayımı…";

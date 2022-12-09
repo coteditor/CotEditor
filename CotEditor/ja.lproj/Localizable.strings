@@ -739,6 +739,13 @@
 
 
 
+/* MARK: Go to Line View */
+"Line:" = "行:";  // label
+"Line Number" = "行番号";  // placeholder
+"Go" = "移動";  // submit button
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高度な文字カウント…";

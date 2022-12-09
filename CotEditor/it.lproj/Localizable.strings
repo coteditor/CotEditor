@@ -739,6 +739,13 @@
 
 
 
+/* MARK: Go to Line View */
+"Line:" = "Riga:";  // label
+"Line Number" = "Numero di riga";  // placeholder
+"Go" = "Vai";  // submit button
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Conteggio caratteri avanzato…";

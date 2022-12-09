@@ -739,6 +739,13 @@
 
 
 
+/* MARK: Go to Line View */
+"Line:" = "Ligne :";  // label
+"Line Number" = "Numéro de ligne";  // placeholder
+"Go" = "Aller";  // submit button
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Comptage de caractères avancé…";
