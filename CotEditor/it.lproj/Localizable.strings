@@ -97,7 +97,7 @@
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Sostituisci la selezione attuale con il testo sostitutivo, poi passa al risultato successivo.";
 "Replace the current selection with the replacement text." = "Sostituisci la selezione attuale con il testo sostitutivo.";
-"Not Found" = "Non trovato";
+"Not found" = "Non trovato";
 "%lld found" = "%lld trovati";  // %lld is number of founds
 "Not Replaced" = "Non sostituiti";
 "%lld replaced" = "%lld sostituzioni";  // %lld is number of replaced

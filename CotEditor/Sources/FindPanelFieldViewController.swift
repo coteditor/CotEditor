@@ -210,7 +210,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         let message: String = {
             switch numberOfFound {
                 case ..<0:
-                    return "Not Found".localized
+                    return "Not found".localized
                 default:
                     return String(localized: "\(numberOfFound) found")
             }

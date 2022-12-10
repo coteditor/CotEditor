@@ -1,15 +1,14 @@
 //
-//  ProgressView.strings (Traditional Chinese)
+//  FindProgress.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2014-12-12.
-//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//  Created by 1024jp on 2022-12-11.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014 CotEditor Project
+//  © 2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,5 +23,20 @@
 //  limitations under the License.
 //
 
-/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "58"; */
-"58.title" = "取消";
+import Foundation
+
+final class FindProgress: ObservableObject {
+    
+    var count = 0
+    
+    @Published var isCancelled = false
+    @Published var isFinished = false
+    
+    
+    /// The fraction of task completed in between 0...1.0.
+    var fractionCompleted: Double? {
+        
+        self.isFinished ? 1 : nil
+    }
+    
+}

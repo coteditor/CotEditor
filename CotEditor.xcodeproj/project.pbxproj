@@ -125,8 +125,8 @@
 		2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */; };
 		2A231A281E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */; };
 		2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */; };
-		2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
-		2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
+		2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
+		2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
 		2A231A361E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */; };
 		2A231A371E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */; };
 		2A231A391E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */; };
@@ -250,8 +250,8 @@
 		2A5C00352814698000700CAE /* Collection+BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5C00332814698000700CAE /* Collection+BinarySearch.swift */; };
 		2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
 		2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
-		2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
-		2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
+		2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */; };
+		2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */; };
 		2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDView.swift */; };
 		2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDView.swift */; };
 		2A5D13161D1EF5AA00D38E6A /* GoToLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */; };
@@ -295,7 +295,6 @@
 		2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */; };
 		2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */; };
 		2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */; };
-		2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
 		2A643BB3245172EB00B2AD54 /* NSBezierPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A643BB2245172EB00B2AD54 /* NSBezierPathTests.swift */; };
 		2A64A2362387754000646BE4 /* UserDefaultsObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */; };
 		2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
@@ -626,7 +625,6 @@
 		2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D11E1E713BE60027192A /* PrintPane.storyboard */; };
 		2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */; };
 		2ACDE2A92406B9C000FC31EC /* SettingsWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A44321E219AC235008A0A6B /* SettingsWindow.storyboard */; };
-		2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
 		2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243C21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard */; };
 		2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
 		2ACDE2AF2406B9C000FC31EC /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
@@ -824,7 +822,6 @@
 		08C28F9B279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/EditorView.strings; sourceTree = "<group>"; };
 		08C28F9C279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		08C28F9E279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
-		08C28F9F279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		08C28FA2279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		08C28FA5279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
 		08C28FA8279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
@@ -976,7 +973,7 @@
 		2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.Publisher.swift; sourceTree = "<group>"; };
 		2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement+Codable.swift"; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement.Settings+Object.swift"; sourceTree = "<group>"; };
-		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
+		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
 		2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementSplitViewController.swift; sourceTree = "<group>"; };
 		2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementListViewController.swift; sourceTree = "<group>"; };
 		2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkPopUpButton.swift; sourceTree = "<group>"; };
@@ -1072,7 +1069,7 @@
 		2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+NamedColors.swift"; sourceTree = "<group>"; };
 		2A5C00332814698000700CAE /* Collection+BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+BinarySearch.swift"; sourceTree = "<group>"; };
 		2A5D13091D1ED10400D38E6A /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
-		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgressView.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineView.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
@@ -1103,13 +1100,6 @@
 		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
 		2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberView.swift; sourceTree = "<group>"; };
-		2A642CD02390C11C00BCA4C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProgressView.storyboard; sourceTree = "<group>"; };
-		2A642CD32390EC9F00BCA4C4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2A642CD42390ECA200BCA4C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressView.strings"; sourceTree = "<group>"; };
-		2A642CD52390ECA500BCA4C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2A642CD62390ECA900BCA4C4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2A642CD72390ECAD00BCA4C4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2A642CD82390ECB200BCA4C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2A643BB2245172EB00B2AD54 /* NSBezierPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPathTests.swift; sourceTree = "<group>"; };
 		2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsObservationTests.swift; sourceTree = "<group>"; };
 		2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuKeyBindingManager.swift; sourceTree = "<group>"; };
@@ -1529,7 +1519,6 @@
 		5B08850228296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		5B08850328296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
 		5B08850528296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
-		5B08850628296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		5B08850928296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		5B08850C28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
 		5B08850E28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
@@ -1571,7 +1560,6 @@
 		98EAE82C27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		98EAE82D27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
 		98EAE82F27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
-		98EAE83027A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ProgressView.strings"; sourceTree = "<group>"; };
 		98EAE83327A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		98EAE83627A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
 		98EAE83927A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
@@ -2248,7 +2236,6 @@
 			isa = PBXGroup;
 			children = (
 				2A47955D27A3F9C6006751E0 /* OpacityViewController.swift */,
-				2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */,
 				2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */,
 				2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */,
 				2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */,
@@ -2265,7 +2252,7 @@
 			children = (
 				2A18560A1D47FA37008FA79E /* TextFinder.swift */,
 				2AED466F1E425CD200751C45 /* TextFind.swift */,
-				2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */,
+				2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */,
 				2AB1BD21287D752300C6FEAF /* View */,
 				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
@@ -2366,7 +2353,6 @@
 				2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */,
 				2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */,
 				2A7F4E022871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard */,
-				2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */,
 				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
 				2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */,
 			);
@@ -2377,6 +2363,7 @@
 			isa = PBXGroup;
 			children = (
 				2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */,
+				2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2785,7 +2772,6 @@
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
 				2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */,
 				2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard in Resources */,
-				2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */,
 				2ACDE2A92406B9C000FC31EC /* SettingsWindow.storyboard in Resources */,
 				2ACDE2AD2406B9C000FC31EC /* SyntaxCommentsEditView.storyboard in Resources */,
 				2ACDE2AE2406B9C000FC31EC /* SyntaxCompletionsEditView.storyboard in Resources */,
@@ -2857,7 +2843,6 @@
 				2A10D1201E713BE60027192A /* PrintPane.storyboard in Resources */,
 				2ACA0C9521A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */,
 				2A7F4E002871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard in Resources */,
-				2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
 				2A443220219AC235008A0A6B /* SettingsWindow.storyboard in Resources */,
 				2AB2243E21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */,
 				2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
@@ -3064,6 +3049,8 @@
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
+				2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
+				2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
 				2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
@@ -3172,7 +3159,6 @@
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
-				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A1814BF21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
@@ -3232,7 +3218,6 @@
 				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
 				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
-				2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
@@ -3402,6 +3387,8 @@
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
+				2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
+				2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
 				2AF0C1251D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
@@ -3510,7 +3497,6 @@
 				2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
-				2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A1814BE21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
@@ -3570,7 +3556,6 @@
 				2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */,
 				2AED46701E425CD200751C45 /* TextFind.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,
-				2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */,
@@ -3913,23 +3898,6 @@
 				08C28F9B279CBE2F0016693E /* tr */,
 			);
 			name = EditorView.storyboard;
-			sourceTree = "<group>";
-		};
-		2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A642CD02390C11C00BCA4C4 /* Base */,
-				98EAE83027A5D7D900C6D571 /* en-GB */,
-				2A642CD32390EC9F00BCA4C4 /* ja */,
-				2A642CD42390ECA200BCA4C4 /* zh-Hans */,
-				5B08850628296B61003D4C2D /* zh-Hant */,
-				2A642CD82390ECB200BCA4C4 /* fr */,
-				2A642CD52390ECA500BCA4C4 /* de */,
-				2A642CD62390ECA900BCA4C4 /* it */,
-				2A642CD72390ECAD00BCA4C4 /* pt */,
-				08C28F9F279CBE2F0016693E /* tr */,
-			);
-			name = ProgressView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */ = {

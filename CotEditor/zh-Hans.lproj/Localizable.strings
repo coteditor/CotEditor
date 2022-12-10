@@ -97,7 +97,7 @@
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "用替换文本替换当前选中内容，然后查找下一个匹配项目";
 "Replace the current selection with the replacement text." = "用替换文本替换当前选中内容";
-"Not Found" = "未找到";
+"Not found" = "未找到";
 "%lld found" = "找到%lld项";  // %lld is number of founds
 "Not Replaced" = "没有进行替换";
 "%lld replaced" = "%lld处被替换";  // %lld is number of replaced

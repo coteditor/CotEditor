@@ -97,7 +97,7 @@
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Remplacer la sélection avec le texte de remplacement, puis chercher la prochaine correspondance.";
 "Replace the current selection with the replacement text." = "Remplacer la sélection avec le texte de remplacement.";
-"Not Found" = "Introuvable";
+"Not found" = "Introuvable";
 "%lld found" = "%lld trouvé(s)";  // %lld is number of founds
 "Not Replaced" = "Non remplacé(s)";
 "%lld replaced" = "%lld remplacé(s)";  // %lld is number of replaced

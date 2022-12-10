@@ -97,7 +97,7 @@
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Replace the current selection with the replacement text." = "Geçerli seçimi değiştirilecek metinle değiştir.";
-"Not Found" = "Bulunamadı";
+"Not found" = "Bulunamadı";
 "%lld found" = "%lld bulundu";  // %lld is number of founds
 "Not Replaced" = "Değiştirilmedi";
 "%lld replaced" = "%lld değiştirildi";  // %lld is number of replaced

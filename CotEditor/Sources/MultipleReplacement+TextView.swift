@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 
 extension MultipleReplacement {
     
@@ -40,11 +41,11 @@ extension MultipleReplacement {
         textView.isEditable = false
         
         // setup progress sheet
-        let progress = TextFindProgress(format: .find)
+        let progress = FindProgress()
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: "Highlight All".localized, closesAutomatically: closesAutomatically)
-        }!
+        let indicatorView = FindProgressView("Highlight All", unit: .find, progress: progress)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -56,7 +57,7 @@ extension MultipleReplacement {
                     return
                 }
                 
-                progress.completedUnitCount += 1
+                progress.count += 1
             }
                 .sorted(\.location)
             
@@ -79,12 +80,15 @@ extension MultipleReplacement {
                     
                 } else {
                     NSSound.beep()
-                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 let resultMessage = String(localized: result.isEmpty ? "Not Found" : "\(result.count) found")
                 
-                indicator.done()
+                progress.isFinished = true
+                
+                if closesAutomatically {
+                    indicator.dismiss(nil)
+                }
                 
                 completionHandler(resultMessage)
             }
@@ -106,11 +110,11 @@ extension MultipleReplacement {
         textView.isEditable = false
         
         // setup progress sheet
-        let progress = TextFindProgress(format: .replacement)
+        let progress = FindProgress()
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: "Replace All".localized, closesAutomatically: closesAutomatically)
-        }!
+        let indicatorView = FindProgressView("Replace All", unit: .replacement, progress: progress)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -122,7 +126,7 @@ extension MultipleReplacement {
                     return
                 }
                 
-                progress.completedUnitCount += 1
+                progress.count += 1
             }
             
             DispatchQueue.main.async {
@@ -137,12 +141,15 @@ extension MultipleReplacement {
                                      actionName: "Replace All".localized)
                 } else {
                     NSSound.beep()
-                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 let resultMessage = String(localized: (result.count == 0) ? "Not Replaced" : "\(result.count) replaced")
                 
-                indicator.done()
+                progress.isFinished = true
+                
+                if closesAutomatically {
+                    indicator.dismiss(nil)
+                }
                 
                 completionHandler(resultMessage)
             }

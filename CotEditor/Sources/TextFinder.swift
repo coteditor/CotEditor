@@ -240,14 +240,14 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Find all matched strings and show results in a table.
     @IBAction func findAll(_ sender: Any?) {
         
-        self.findAll(showsList: true, actionName: "Find All".localized)
+        self.findAll(showsList: true, actionName: "Find All")
     }
     
     
     /// Highlight all matched strings.
     @IBAction func highlight(_ sender: Any?) {
         
-        self.findAll(showsList: false, actionName: "Highlight All".localized)
+        self.findAll(showsList: false, actionName: "Highlight All")
     }
     
     
@@ -301,11 +301,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let replacementString = self.replacementString
         
         // setup progress sheet
-        let progress = TextFindProgress(format: .replacement)
+        let progress = FindProgress()
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: "Replace All".localized, closesAutomatically: closesAutomatically)
-        }!
+        let indicatorView = FindProgressView("Replace All", unit: .replacement, progress: progress)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -321,7 +321,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     case .findProgress:
                         break
                     case .replacementProgress:
-                        progress.completedUnitCount += 1
+                        progress.count += 1
                 }
             }
             
@@ -341,17 +341,19 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 if replacementItems.isEmpty {
                     NSSound.beep()
-                    progress.localizedDescription = "Not Found".localized
                 }
                 
-                indicator.done()
+                progress.isFinished = true
                 
-                if closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
-                    panel.makeKey()
+                if closesAutomatically {
+                    indicator.dismiss(nil)
+                    
+                    if let panel = self.findPanelController.window, panel.isVisible {
+                        panel.makeKey()
+                    }
                 }
                 
-                let count = Int(progress.completedUnitCount)
-                self.delegate?.textFinder(self, didReplace: count, textView: textView)
+                self.delegate?.textFinder(self, didReplace: progress.count, textView: textView)
             }
         }
         
@@ -539,7 +541,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
     ///   - actionName: The name of the action to display in the progress sheet.
-    private func findAll(showsList: Bool, actionName: String) {
+    private func findAll(showsList: Bool, actionName: LocalizedStringKey) {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
@@ -549,11 +551,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
-        let progress = TextFindProgress(format: .find)
+        let progress = FindProgress()
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicator = NSStoryboard(name: "ProgressView").instantiateInitialController { (coder) in
-            ProgressViewController(coder: coder, progress: progress, message: actionName, closesAutomatically: closesAutomatically)
-        }!
+        let indicatorView = FindProgressView(actionName, unit: .find, progress: progress)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -597,7 +599,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
                 
-                progress.completedUnitCount += 1
+                progress.count += 1
             }
             
             DispatchQueue.main.sync {
@@ -618,10 +620,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 if highlights.isEmpty {
                     NSSound.beep()
-                    progress.localizedDescription = "Not Found".localized
                 }
                 
-                indicator.done()
+                progress.isFinished = true
                 
                 if showsList {
                     self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
