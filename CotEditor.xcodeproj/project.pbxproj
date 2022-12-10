@@ -2255,6 +2255,7 @@
 		2A6602EB1D05E04E003E8D87 /* Accessory Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A47955D27A3F9C6006751E0 /* OpacityViewController.swift */,
 				2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */,
 				2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */,
 				2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */,
@@ -2262,7 +2263,6 @@
 				2AE12E061E7DDF0700681F72 /* CustomSurroundStringView.swift */,
 				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
 				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
-				2A47955D27A3F9C6006751E0 /* OpacityViewController.swift */,
 				2AB1BD22287D789800C6FEAF /* Advanced Character Count */,
 			);
 			name = "Accessory Views";
