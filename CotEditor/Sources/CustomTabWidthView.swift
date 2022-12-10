@@ -62,7 +62,7 @@ struct CustomTabWidthView: View {
             HStack(alignment: .firstTextBaseline) {
                 Spacer()
                 
-                Button {
+                Button(role: .cancel) {
                     self.parent?.dismiss(nil)
                 } label: {
                     Text("Cancel")

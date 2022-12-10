@@ -62,7 +62,7 @@ struct GoToLineView: View {
                 
                 Spacer()
                 
-                Button {
+                Button(role: .cancel) {
                     self.parent?.dismiss(nil)
                 } label: {
                     Text("Cancel")
