@@ -70,9 +70,10 @@ final class CharacterPopoverController: NSViewController {
         self.unicodeName = info.localizedDescription
         self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
         self.unicodeCategoryName = {
-            guard !info.isComplex,
+            guard
+                !info.isComplex,
                 let category = unicodes.first?.properties.generalCategory
-                else { return nil }
+            else { return nil }
             
             return "\(category.longName) (\(category.shortName))"
         }()
@@ -117,7 +118,7 @@ extension CharacterPopoverController: NSPopoverDelegate {
     /// make popover detachable
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
-        return true
+        true
     }
     
 }

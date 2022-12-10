@@ -29,7 +29,7 @@ extension NSAppearance {
     
     var isDark: Bool {
         
-        return self.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
+        self.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
     }
     
     

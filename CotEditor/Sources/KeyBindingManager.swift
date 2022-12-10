@@ -59,7 +59,7 @@ struct InvalidShortcutError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        return "Please combine with other keys.".localized
+        "Please combine with other keys.".localized
     }
     
 }
@@ -88,7 +88,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         guard
             let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
             let customKeyBindings = try? PropertyListDecoder().decode([KeyBinding].self, from: data)
-            else { return self.defaultKeyBindings }
+        else { return self.defaultKeyBindings }
         
         let keyBindings = customKeyBindings.filter { $0.shortcut?.isValid ?? true }
         let defaultKeyBindings = self.defaultKeyBindings
@@ -127,14 +127,14 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     /// file URL to save custom key bindings file
     final var keyBindingSettingFileURL: URL {
         
-        return self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName, conformingTo: .propertyList)
+        self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName, conformingTo: .propertyList)
     }
     
     
     /// whether key bindings are not customized
     var usesDefaultKeyBindings: Bool {
         
-        return self.keyBindings == self.defaultKeyBindings
+        self.keyBindings == self.defaultKeyBindings
     }
     
     
@@ -220,7 +220,7 @@ private extension Collection<NSTreeNode> {
             guard
                 let keyItem = node.representedObject as? KeyBindingItem,
                 let shortcut = keyItem.shortcut
-                else { return [] }
+            else { return [] }
             
             return [KeyBinding(name: keyItem.name, action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
         }

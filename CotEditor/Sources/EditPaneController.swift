@@ -66,10 +66,9 @@ final class EditPaneController: NSViewController {
     /// update hint for word completion
     private func validateCompletionSetting() -> Bool {
         
-        return (UserDefaults.standard[.completesDocumentWords] ||
-                UserDefaults.standard[.completesSyntaxWords] ||
-                UserDefaults.standard[.completesStandartWords]
-            )
+        (UserDefaults.standard[.completesDocumentWords] ||
+         UserDefaults.standard[.completesSyntaxWords] ||
+         UserDefaults.standard[.completesStandartWords])
     }
     
 }

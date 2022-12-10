@@ -164,7 +164,7 @@ extension String {
         guard
             range.location >= targetLength,
             (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " })
-            else { return nil }
+        else { return nil }
         
         return targetRange
     }

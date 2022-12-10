@@ -98,7 +98,7 @@ extension MultipleReplacement {
         guard
             let textView = TextFinder.shared.client, textView.isEditable,
             textView.window?.attachedSheet == nil
-            else { return NSSound.beep() }
+        else { return NSSound.beep() }
         
         let string = textView.string.immutable
         let selectedRanges = textView.selectedRanges.map(\.rangeValue)

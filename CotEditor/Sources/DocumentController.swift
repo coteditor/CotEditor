@@ -394,14 +394,14 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        return ["Open".localized,
-                "Cancel".localized]
+        ["Open".localized,
+         "Cancel".localized]
     }
     
     
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
-        return (recoveryOptionIndex == 0)
+        (recoveryOptionIndex == 0)
     }
     
 }

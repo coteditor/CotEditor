@@ -32,7 +32,7 @@ final class DetachablePopoverViewController: NSViewController, NSPopoverDelegate
     /// make popover detachable
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
-        return true
+        true
     }
     
 }

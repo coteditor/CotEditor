@@ -47,7 +47,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
                     return (column, textField)
                 }).first,
             textField.stringValue.isEmpty
-            else { return }
+        else { return }
         
         tableView.scrollRowToVisible(row)
         tableView.editColumn(column, row: row, with: nil, select: true)
@@ -67,7 +67,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
             let tableView = superview as? NSTableView,
             tableView.numberOfSelectedRows > 1,
             tableView.selectedRowIndexes.contains(tableView.row(for: checkbox))
-            else { return }
+        else { return }
         
         let columnIndex = tableView.column(for: checkbox)
         
@@ -80,7 +80,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
             guard
                 rowView.isSelected,
                 let view = rowView.view(atColumn: columnIndex) as? NSTableCellView
-                else { return }
+            else { return }
             
             (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier.rawValue)
         }

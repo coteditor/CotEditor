@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ extension NSTextView {
     /// calculate visible range
     var visibleRange: NSRange? {
         
-        return self.range(for: self.visibleRect, withoutAdditionalLayout: true)
+        self.range(for: self.visibleRect, withoutAdditionalLayout: true)
     }
     
     
@@ -42,7 +42,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { return nil }
+        else { return nil }
         
         let visibleRect = rect.offset(by: -self.textContainerOrigin)
         let glyphRange = withoutAdditionalLayout
@@ -59,7 +59,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { return nil }
+        else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
@@ -77,7 +77,7 @@ extension NSTextView {
             let textContainer = self.textContainer,
             let rectArray = layoutManager.rectArray(forCharacterRange: range, withinSelectedCharacterRange: range,
                                                     in: textContainer, rectCount: &count)
-            else { return [] }
+        else { return [] }
         
         return (0..<count).map { rectArray[$0].offset(by: self.textContainerOrigin) }
     }
@@ -98,7 +98,7 @@ extension NSTextView {
     @objc var scale: CGFloat {
         
         get {
-            return self.convert(.unit, to: nil).width
+            self.convert(.unit, to: nil).width
         }
         
         set {
@@ -142,7 +142,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         // store current coordinate
         let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: self.textContainerOrigin), in: textContainer)
@@ -182,7 +182,7 @@ extension NSTextView {
     var wrapsLines: Bool {
         
         get {
-            return self.textContainer?.widthTracksTextView ?? false
+            self.textContainer?.widthTracksTextView ?? false
         }
         
         set {
@@ -227,7 +227,9 @@ extension NSTextView {
     var infiniteSize: CGSize {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).
-        return (self.baseWritingDirection == .rightToLeft) ? CGSize(width: 9_999_999, height: CGSize.infinite.height) : .infinite
+        (self.baseWritingDirection == .rightToLeft)
+            ? CGSize(width: 9_999_999, height: CGSize.infinite.height)
+            : .infinite
     }
     
 }

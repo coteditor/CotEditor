@@ -43,7 +43,7 @@ extension UserDefaults {
     /// - Returns: The initial value.
     func registeredValue<T>(for key: DefaultKey<T>) -> T {
         
-        return self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as! T
+        self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as! T
     }
     
     

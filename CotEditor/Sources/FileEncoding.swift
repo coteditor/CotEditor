@@ -55,7 +55,7 @@ extension FileEncoding {
     
     var tag: Int {
         
-        return (self.withUTF8BOM ? -1 : 1) * Int(self.encoding.rawValue)
+        (self.withUTF8BOM ? -1 : 1) * Int(self.encoding.rawValue)
     }
     
 }

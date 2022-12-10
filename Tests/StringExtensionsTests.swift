@@ -396,7 +396,7 @@ private extension String {
     
     func trim(ranges: [NSRange]) -> String {
         
-        return ranges.reversed()
+        ranges.reversed()
             .map { Range($0, in: self)! }
             .reduce(self) { $0.replacingCharacters(in: $1, with: "") }
     }

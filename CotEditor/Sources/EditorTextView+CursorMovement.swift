@@ -595,7 +595,7 @@ extension EditorTextView {
         guard
             event.modifierFlags.intersection([.shift, .control, .option, .command]) == [.shift, .control],
             let key = event.specialKey
-            else { return false }
+        else { return false }
         
         switch (key, self.layoutOrientation) {
             case (.upArrow, .horizontal),

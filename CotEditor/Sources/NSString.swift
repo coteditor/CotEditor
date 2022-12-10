@@ -30,13 +30,13 @@ extension StringProtocol {
     /// Whole range in NSRange.
     var nsRange: NSRange {
         
-        return NSRange(location: 0, length: self.length)
+        NSRange(location: 0, length: self.length)
     }
     
     
     var length: Int {
         
-        return self.utf16.count
+        self.utf16.count
     }
     
 }
@@ -51,7 +51,7 @@ extension NSRange {
     /// A boolean value indicating whether the range contains no elements.
     var isEmpty: Bool {
         
-        return (self.length == 0)
+        self.length == 0
     }
     
     
@@ -60,7 +60,7 @@ extension NSRange {
     /// - Parameter index: The index to test.
     func touches(_ index: Int) -> Bool {
         
-        return self.lowerBound <= index && index <= self.upperBound
+        self.lowerBound <= index && index <= self.upperBound
     }
     
     
@@ -69,7 +69,7 @@ extension NSRange {
     /// - Parameter other: The other range.
     func intersects(_ other: NSRange) -> Bool {
         
-        return self.intersection(other) != nil
+        self.intersection(other) != nil
     }
     
     
@@ -94,7 +94,7 @@ extension NSRange {
     /// - Returns: A new NSRange.
     func shifted(by offset: Int) -> NSRange {
         
-        return NSRange(location: self.location + offset, length: self.length)
+        NSRange(location: self.location + offset, length: self.length)
     }
     
 }
@@ -106,7 +106,7 @@ extension NSString {
     /// Whole range in NSRange
     var range: NSRange {
         
-        return NSRange(location: 0, length: self.length)
+        NSRange(location: 0, length: self.length)
     }
     
     
@@ -175,14 +175,14 @@ extension NSString {
     /// line range containing a given location
     func lineRange(at location: Int) -> NSRange {
         
-        return self.lineRange(for: NSRange(location: location, length: 0))
+        self.lineRange(for: NSRange(location: location, length: 0))
     }
     
     
     /// line range containing a given location
     func lineContentsRange(at location: Int) -> NSRange {
         
-        return self.lineContentsRange(for: NSRange(location: location, length: 0))
+        self.lineContentsRange(for: NSRange(location: location, length: 0))
     }
     
     

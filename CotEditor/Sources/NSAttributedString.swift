@@ -30,7 +30,7 @@ extension NSAttributedString {
     /// whole range
     var range: NSRange {
         
-        return NSRange(location: 0, length: self.length)
+        NSRange(location: 0, length: self.length)
     }
     
     
@@ -110,7 +110,7 @@ extension Sequence<NSAttributedString> {
     /// - Returns: A single, concatenated attributed string.
     func joined(separator: String) -> Element {
         
-        return self.joined(separator: .init(string: separator))
+        self.joined(separator: .init(string: separator))
     }
     
 }

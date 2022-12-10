@@ -43,7 +43,7 @@ final class WebDocumentViewController: NSViewController {
             guard
                 let url = representedObject as? URL,
                 let webView = self.webView
-                else { return assertionFailure() }
+            else { return assertionFailure() }
             
             self.loadingNavigation = webView.loadFileURL(url, allowingReadAccessTo: url)
             webView.isHidden = true
@@ -82,7 +82,7 @@ final class WebDocumentViewController: NSViewController {
     /// content web view
     private var webView: WKWebView? {
         
-        return self.view as? WKWebView
+        self.view as? WKWebView
     }
     
 }
@@ -109,7 +109,7 @@ extension WebDocumentViewController: WKNavigationDelegate {
             navigationAction.navigationType == .linkActivated,
             let url = navigationAction.request.url, url.host != nil,
             NSWorkspace.shared.open(url)
-            else { return decisionHandler(.allow) }
+        else { return decisionHandler(.allow) }
         
         decisionHandler(.cancel)
     }

@@ -196,7 +196,7 @@ extension String {
         guard
             let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
             let matchedRange = Range(match.range(at: 1), in: self)
-            else { return nil }
+        else { return nil }
         
         let ianaCharSetName = self[matchedRange]
         
@@ -260,7 +260,7 @@ extension Data {
                 return nil
             }(),
             cfEncoding != kCFStringEncodingInvalidId
-            else { return nil }
+        else { return nil }
         
         return String.Encoding(cfEncoding: cfEncoding)
     }
@@ -275,9 +275,10 @@ extension String.Encoding {
         
         let cfEncoding = CFStringConvertNSStringEncodingToEncoding(self.rawValue)
         
-        guard cfEncoding != kCFStringEncodingInvalidId,
+        guard
+            cfEncoding != kCFStringEncodingInvalidId,
             let ianaCharSetName = CFStringConvertEncodingToIANACharSetName(cfEncoding)
-            else { return nil }
+        else { return nil }
         
         let string = String(format: "%@;%u", ianaCharSetName as String, cfEncoding)
         

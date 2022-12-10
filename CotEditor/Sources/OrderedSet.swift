@@ -49,25 +49,25 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     /// return the element at the specified position.
     subscript(_ index: Index) -> Element {
         
-        return self.elements[index]
+        self.elements[index]
     }
     
     
     var startIndex: Index {
         
-        return self.elements.startIndex
+        self.elements.startIndex
     }
     
     
     var endIndex: Index {
         
-        return self.elements.endIndex
+        self.elements.endIndex
     }
     
     
     func index(after index: Index) -> Index {
         
-        return self.elements.index(after: index)
+        self.elements.index(after: index)
     }
     
     
@@ -76,13 +76,13 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     var array: [Element] {
         
-        return self.elements
+        self.elements
     }
     
     
     var set: Set<Element> {
         
-        return Set(self.elements)
+        Set(self.elements)
     }
     
     
@@ -137,7 +137,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     @discardableResult
     mutating func remove(at index: Index) -> Element {
         
-        return self.elements.remove(at: index)
+        self.elements.remove(at: index)
     }
     
     

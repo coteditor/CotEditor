@@ -115,7 +115,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     let self = self,
                     let latestTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
                     latestTheme.name == self.themeViewController?.theme?.name
-                    else { return }
+                else { return }
                 
                 self.themeViewController?.theme = latestTheme
             }
@@ -225,14 +225,14 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// number of themes
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return self.themeNames.count
+        self.themeNames.count
     }
     
     
     /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        return self.themeNames[safe: row]
+        self.themeNames[safe: row]
     }
     
     
@@ -751,7 +751,7 @@ extension AppearancePaneController: NSFontChanging {
     /// restrict items in the font panel toolbar
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
-        return [.collection, .face, .size]
+        [.collection, .face, .size]
     }
     
     

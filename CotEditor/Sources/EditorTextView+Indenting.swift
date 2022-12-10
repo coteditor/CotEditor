@@ -104,7 +104,7 @@ extension Indenting {
         guard
             self.tabWidth > 0,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
-            else { return false }
+        else { return false }
         
         // get indent target
         let string = self.string as NSString
@@ -139,7 +139,7 @@ extension Indenting {
         guard
             self.tabWidth > 0,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
-            else { return false }
+        else { return false }
         
         // get indent target
         let string = self.string as NSString

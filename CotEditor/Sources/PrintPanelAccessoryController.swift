@@ -246,7 +246,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// cast representedObject to NSPrintInfo
     private var printInfo: NSPrintInfo? {
         
-        return self.representedObject as? NSPrintInfo
+        self.representedObject as? NSPrintInfo
     }
     
     

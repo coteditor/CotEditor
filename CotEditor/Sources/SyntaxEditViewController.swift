@@ -184,7 +184,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         guard
             case .edit(let name) = self.mode,
             let style = SyntaxManager.shared.bundledSettingDictionary(name: name)
-            else { return }
+        else { return }
         
         self.style.setDictionary(style)
         
@@ -200,7 +200,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             let metadata = self.style[SyntaxKey.metadata] as? [String: Any],
             let urlString = metadata[MetadataKey.distributionURL] as? String,
             let url = URL(string: urlString)
-            else { return NSSound.beep() }
+        else { return NSSound.beep() }
         
         NSWorkspace.shared.open(url)
     }

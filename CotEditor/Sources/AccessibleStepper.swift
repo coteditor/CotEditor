@@ -31,7 +31,7 @@ final class AccessibleStepper: NSStepper {
         
         // workaround the issue that the value is read in percent in VoiceOver
         // (macOS 11, 2021)
-        return self.stringValue
+        self.stringValue
     }
     
 }

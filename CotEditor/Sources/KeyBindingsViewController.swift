@@ -72,21 +72,21 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        return self.children(of: item)?.count ?? 0
+        self.children(of: item)?.count ?? 0
     }
     
     
     /// return if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        return (self.children(of: item) != nil)
+        (self.children(of: item) != nil)
     }
     
     
     /// return child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        return self.children(of: item)![index]
+        self.children(of: item)![index]
     }
     
     
@@ -96,7 +96,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         guard
             let identifier = tableColumn?.identifier,
             let node = item as? NamedTreeNode
-            else { return "" }
+        else { return "" }
         
         switch identifier {
             case .title:
@@ -143,7 +143,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         guard
             let textField = obj.object as? NSTextField,
             let outlineView = self.outlineView
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         let row = outlineView.row(for: textField)
         let column = outlineView.column(for: textField)
@@ -151,7 +151,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         guard
             let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf,
             let item = node.representedObject as? KeyBindingItem
-            else { return }
+        else { return }
         
         let oldShortcut = item.shortcut
         let input = textField.stringValue
@@ -220,7 +220,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// corresponding key binding manager
     fileprivate var manager: KeyBindingManager {
         
-        return MenuKeyBindingManager.shared
+        MenuKeyBindingManager.shared
     }
     
     
@@ -304,7 +304,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     /// corresponding key binding manager
     fileprivate override var manager: KeyBindingManager {
         
-        return SnippetKeyBindingManager.shared
+        SnippetKeyBindingManager.shared
     }
     
     
@@ -335,7 +335,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         guard
             let arrayController = self.snippetArrayController,
             let outlineView = notification.object as? NSOutlineView
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         guard outlineView.selectedRow >= 0 else { return }
         

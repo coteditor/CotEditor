@@ -33,7 +33,7 @@ extension NSTextView {
         guard
             !self.string.isEmpty,
             let selectedRanges = self.rangesForUserTextChange?.map(\.rangeValue)
-            else { return }
+        else { return }
         
         let cursorIndexes = selectedRanges
             .filter { $0.isEmpty }
@@ -44,7 +44,7 @@ extension NSTextView {
             !cursorIndexes.isEmpty,
             let visibleRange = self.visibleRange,
             let range = Range(visibleRange, in: self.string)
-            else { return }
+        else { return }
         
         cursorIndexes
             .map { self.string.index(before: $0) }

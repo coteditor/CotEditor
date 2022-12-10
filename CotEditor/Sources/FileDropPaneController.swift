@@ -120,7 +120,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             let cellView = rowView.view(atColumn: 1) as? NSTableCellView,
             let menu = cellView.subviews.first as? NSPopUpButton,
             let item = cellView.objectValue as? [String: String]
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         // reset attributed string for "All" item
         // -> Otherwise, the title isn't localized.
@@ -218,7 +218,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// trim extension string format
     private static func sanitize(extensionsString: String) -> String {
         
-        return extensionsString
+        extensionsString
             .components(separatedBy: CharacterSet.alphanumerics.inverted)  // separator + typical invalid characters
             .filter { !$0.isEmpty }
             .map { $0.lowercased() }
@@ -232,7 +232,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         guard
             let objects = self.fileDropController?.selectedObjects as? [[String: String]],
             !objects.isEmpty
-            else { return }
+        else { return }
         
         // obtain extension to delete for display
         let fileExtension = objects.first?[FileDropItem.CodingKeys.extensions] ?? ""

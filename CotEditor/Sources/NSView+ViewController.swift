@@ -29,7 +29,7 @@ extension NSView {
     
     var viewControllerForSheet: NSViewController? {
         
-        return self.window?.windowController?.contentViewController
+        self.window?.windowController?.contentViewController
     }
     
 }

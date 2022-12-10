@@ -393,7 +393,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard
             let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md"),
             let template = try? String(contentsOf: url)
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         // fill template with user environment info
         let title = String(localized: "Issue Report", comment: "document title")

@@ -62,7 +62,7 @@ final class SyntaxStyleValidator {
         
         var errorDescription: String? {
             
-            return self.type.localized + ": " + self.string
+            self.type.localized + ": " + self.string
         }
         
         
@@ -83,7 +83,7 @@ final class SyntaxStyleValidator {
         
         @objc var localizedType: String {
             
-            return self.type.localized
+            self.type.localized
         }
         
         
@@ -133,7 +133,8 @@ final class SyntaxStyleValidator {
                     }
                     guard
                         let endString1 = $1.endString,
-                        let endString0 = $0.endString else { return true }
+                        let endString0 = $0.endString
+                    else { return true }
                     
                     return endString0 < endString1
                 }
@@ -149,14 +150,14 @@ final class SyntaxStyleValidator {
                 guard
                     definition.beginString != lastDefinition?.beginString ||
                     definition.endString != lastDefinition?.endString
-                    else {
-                        results.append(StyleError(kind: .duplicated,
-                                                  type: key,
-                                                  role: .begin,
-                                                  string: definition.beginString))
-                        
-                        continue
-                    }
+                else {
+                    results.append(StyleError(kind: .duplicated,
+                                              type: key,
+                                              role: .begin,
+                                              string: definition.beginString))
+                    
+                    continue
+                }
                 
                 if definition.isRegularExpression {
                     do {

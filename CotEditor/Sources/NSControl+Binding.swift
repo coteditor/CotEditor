@@ -36,7 +36,7 @@ extension NSControl {
             let bindingInfo = self.infoForBinding(binding),
             let object = bindingInfo[.observedObject] as? NSUserDefaultsController,
             let keyPath = bindingInfo[.observedKeyPath] as? String
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         let key = keyPath.replacingOccurrences(of: #keyPath(NSUserDefaultsController.values) + ".", with: "")
         
@@ -62,7 +62,7 @@ private extension NSObject {
             let bindingInfo = self.infoForBinding(binding),
             let object = bindingInfo[.observedObject],
             let keyPath = bindingInfo[.observedKeyPath] as? String
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         var options = bindingInfo[.options] as? [NSBindingOption: Any] ?? [:]
         updateHandler(&options)

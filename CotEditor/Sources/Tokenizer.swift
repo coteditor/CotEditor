@@ -40,19 +40,19 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     
     var token: String {
         
-        return Self.prefix + self.rawValue + Self.suffix
+        Self.prefix + self.rawValue + Self.suffix
     }
     
     
     var localizedDescription: String {
         
-        return self.description.localized
+        self.description.localized
     }
     
     
     static var tokenizer: Tokenizer {
         
-        return Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
+        Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }
     
 }

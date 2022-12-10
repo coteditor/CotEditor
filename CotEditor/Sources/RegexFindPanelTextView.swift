@@ -59,7 +59,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
             granularity == .selectByWord,
             proposedCharRange.isEmpty,  // not on expanding selection
             range.length == 1  // clicked character can be a brace
-            else { return range }
+        else { return range }
         
         let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         
@@ -88,7 +88,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
             self.isRegularExpressionMode,
             case .search = self.parseMode,
             !stillSelectingFlag
-            else { return }
+        else { return }
         
         self.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
     }

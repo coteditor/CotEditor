@@ -93,13 +93,13 @@ final class EntireLineSortPattern: NSObject, SortPattern {
     
     func sortKey(for line: String) -> String? {
         
-        return line
+        line
     }
     
     
     func range(for line: String) -> Range<String.Index>? {
         
-        return line.startIndex..<line.endIndex
+        line.startIndex..<line.endIndex
     }
     
     
@@ -185,7 +185,7 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
         guard
             let regex = self.regex,
             let match = regex.firstMatch(in: line, range: line.nsRange)
-            else { return nil }
+        else { return nil }
         
         if self.usesCaptureGroup {
             guard match.numberOfRanges > self.group else { return nil }
@@ -240,7 +240,7 @@ final class SortOptions: NSObject {
     
     var compareOptions: String.CompareOptions {
         
-        return .forcedOrdering
+        .forcedOrdering
             .union(self.ignoresCase ? .caseInsensitive : [])
             .union(self.numeric ? .numeric : [])
     }

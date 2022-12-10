@@ -63,7 +63,7 @@ final class SeparatorTextField: NSTextField {
     /// whether it is a separator item
     private var isSeparator: Bool {
         
-        return self.stringValue == .separator
+        self.stringValue == .separator
     }
     
 }

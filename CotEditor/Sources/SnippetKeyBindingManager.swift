@@ -59,14 +59,14 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// name of file to save custom key bindings in the plist file form (without extension)
     override var settingFileName: String {
         
-        return "SnippetKeyBindings"
+        "SnippetKeyBindings"
     }
     
     
     /// default key bindings
     override var defaultKeyBindings: Set<KeyBinding> {
         
-        return _defaultKeyBindings
+        _defaultKeyBindings
     }
     
     
@@ -93,7 +93,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// whether key bindings are not customized
     override var usesDefaultKeyBindings: Bool {
         
-        return (self.snippets == self.defaultSnippets) && super.usesDefaultKeyBindings
+        (self.snippets == self.defaultSnippets) && super.usesDefaultKeyBindings
     }
     
     
@@ -107,7 +107,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
             let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }),
             let index = self.snippetIndex(for: keyBinding.action),
             let snippetString = self.snippets[safe: index]
-            else { return nil }
+        else { return nil }
         
         return Snippet(snippetString)
     }
@@ -127,7 +127,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// build selector name for index
     private func action(index: Int) -> Selector {
         
-        return Selector(String(format: "insertCustomText_%02li:", index))
+        Selector(String(format: "insertCustomText_%02li:", index))
     }
     
     
@@ -138,7 +138,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         guard
             let range = selector.range(of: "(?<=^insertCustomText_)[0-9]{2}(?=:$)", options: .regularExpression)
-            else { return nil }
+        else { return nil }
         
         return Int(selector[range])
     }

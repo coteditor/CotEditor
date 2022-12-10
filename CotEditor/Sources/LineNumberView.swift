@@ -128,14 +128,14 @@ final class LineNumberView: NSView {
     /// view name for VoiceOver
     override func accessibilityLabel() -> String? {
         
-        return "Line Numbers".localized
+        "Line Numbers".localized
     }
     
     
     /// make background transparent
     override var isOpaque: Bool {
         
-        return self.textView?.isOpaque ?? true
+        self.textView?.isOpaque ?? true
     }
     
     
@@ -334,7 +334,7 @@ final class LineNumberView: NSView {
         guard
             let textView = self.textView,
             let textFont = textView.font
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         self.drawingInfo = DrawingInfo(fontSize: textFont.pointSize, scale: textView.scale)
         
@@ -457,7 +457,7 @@ extension LineNumberView {
         guard
             let window = self.window,
             let textView = self.textView
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         // get start point
         let point = window.convertPoint(toScreen: event.locationInWindow)
@@ -496,7 +496,7 @@ extension LineNumberView {
             let window = self.window,
             let textView = self.textView,
             let draggingInfo = self.draggingInfo
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         // scroll text view if needed
         let point = textView.convert(event.locationInWindow, from: nil)  // textView-based

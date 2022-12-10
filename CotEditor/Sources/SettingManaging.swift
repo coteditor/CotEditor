@@ -38,7 +38,7 @@ extension SettingManaging {
     /// user setting directory URL in Application Support
     var userSettingDirectoryURL: URL {
         
-        return supportDirectoryURL.appendingPathComponent(Self.directoryName)
+        supportDirectoryURL.appendingPathComponent(Self.directoryName)
     }
     
     

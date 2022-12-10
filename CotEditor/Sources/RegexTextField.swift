@@ -112,13 +112,13 @@ final class RegexTextField: NSTextField {
     
     private var regexFormatter: RegularExpressionFormatter? {
         
-        return self.formatter as? RegularExpressionFormatter
+        self.formatter as? RegularExpressionFormatter
     }
     
     
     private var parseMode: RegularExpressionParseMode {
         
-        return self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search
+        self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search
     }
     
     

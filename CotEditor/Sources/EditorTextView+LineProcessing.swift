@@ -35,7 +35,7 @@ extension EditorTextView {
         guard
             let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             let editingInfo = self.string.moveLineUp(in: ranges)
-            else { return NSSound.beep() }
+        else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
         self.scrollRangeToVisible(self.selectedRange)
@@ -48,7 +48,7 @@ extension EditorTextView {
         guard
             let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
             let editingInfo = self.string.moveLineDown(in: ranges)
-            else { return NSSound.beep() }
+        else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
         self.scrollRangeToVisible(self.selectedRange)

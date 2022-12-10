@@ -97,14 +97,14 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     /// treat control characters as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
-        return self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
+        self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
     }
     
     
     /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        return self.boundingBoxForControlGlyph
+        self.boundingBoxForControlGlyph
     }
     
     

@@ -150,7 +150,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             let string = sender?.representedObject as? String,
             let textView = self.findTextView,
             textView.shouldChangeText(in: textView.string.nsRange, replacementString: string)
-            else { return }
+        else { return }
         
         textView.string = string
         textView.didChangeText()
@@ -164,7 +164,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             let string = sender?.representedObject as? String,
             let textView = self.replacementTextView,
             textView.shouldChangeText(in: textView.string.nsRange, replacementString: string)
-            else { return }
+        else { return }
         
         textView.string = string
         textView.didChangeText()

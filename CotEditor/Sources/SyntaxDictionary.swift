@@ -38,7 +38,7 @@ enum SyntaxType: String, CaseIterable {
     
     var localizedName: String {
         
-        return self.rawValue.localized
+        self.rawValue.localized
     }
     
 }

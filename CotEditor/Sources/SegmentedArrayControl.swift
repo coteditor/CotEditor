@@ -58,7 +58,7 @@ final class SegmentedArrayControl: NSSegmentedControl {
         guard
             sender == self,
             let arrayController = self.arrayController
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         switch sender.selectedSegment {
             case 0:  // add

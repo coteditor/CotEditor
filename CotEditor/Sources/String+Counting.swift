@@ -42,7 +42,7 @@ extension StringProtocol {
     /// The number of lines in the whole string including the last blank line.
     var numberOfLines: Int {
         
-        return self.numberOfLines()
+        self.numberOfLines()
     }
     
     

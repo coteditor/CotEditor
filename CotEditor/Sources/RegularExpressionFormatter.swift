@@ -48,7 +48,7 @@ final class RegularExpressionFormatter: Formatter {
     /// convert to plain string
     override func string(for obj: Any?) -> String? {
         
-        return obj as? String
+        obj as? String
     }
     
     
@@ -93,7 +93,7 @@ final class RegularExpressionFormatter: Formatter {
                 guard
                     let invisible = Invisible(codeUnit: codeUnit),
                     self.invisibles.contains(invisible)
-                    else { continue }
+                else { continue }
                 
                 let attributedInvisible = NSAttributedString(string: String(invisible.symbol), attributes: attributes)
                 attributedString.replaceCharacters(in: NSRange(location: index, length: 1), with: attributedInvisible)

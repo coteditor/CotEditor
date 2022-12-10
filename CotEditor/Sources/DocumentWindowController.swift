@@ -304,7 +304,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        return [
+        [
             .syntaxStyle,
             .inspectorTrackingSeparator,
             .inspector,
@@ -314,7 +314,7 @@ extension DocumentWindowController: NSToolbarDelegate {
     
     func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
         
-        return [
+        [
             .syntaxStyle,
             .inspector,
             .textSize,
@@ -644,7 +644,7 @@ extension NSDocument: NSSharingServicePickerToolbarItemDelegate {
     
     public func items(for pickerToolbarItem: NSSharingServicePickerToolbarItem) -> [Any] {
         
-        return [self]
+        [self]
     }
     
 }

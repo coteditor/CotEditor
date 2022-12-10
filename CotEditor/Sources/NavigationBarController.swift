@@ -85,7 +85,7 @@ final class NavigationBarController: NSViewController {
         guard
             let splitViewController = self.splitViewController,
             let textView = self.textView
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         splitViewController.$isVertical
             .map { $0 ? "split.add-vertical" : "split.add" }
@@ -162,7 +162,7 @@ final class NavigationBarController: NSViewController {
         guard
             let textView = self.textView,
             let range = sender.representedObject as? NSRange
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         textView.select(range: range)
     }
@@ -195,13 +195,13 @@ final class NavigationBarController: NSViewController {
     
     private var prevButton: NSButton? {
         
-        return (self.textView?.layoutOrientation == .vertical) ? self.rightButton : self.leftButton
+        (self.textView?.layoutOrientation == .vertical) ? self.rightButton : self.leftButton
     }
     
     
     private var nextButton: NSButton? {
         
-        return (self.textView?.layoutOrientation == .vertical) ? self.leftButton : self.rightButton
+        (self.textView?.layoutOrientation == .vertical) ? self.leftButton : self.rightButton
     }
     
     
@@ -245,13 +245,13 @@ final class NavigationBarController: NSViewController {
             self.showsOutlineMenu,
             let location = self.textView?.selectedRange.location,
             let popUp = self.outlineMenu, popUp.isEnabled
-            else { return }
+        else { return }
         
         let selectedItem = popUp.itemArray.last { menuItem in
             guard
                 menuItem.isEnabled,
                 let itemRange = menuItem.representedObject as? NSRange
-                else { return false }
+            else { return false }
             
             return itemRange.location <= location
         } ?? popUp.itemArray.first

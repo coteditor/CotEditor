@@ -424,7 +424,7 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
             let replacement = self.definition.replacements[safe: row],
             let identifier = tableColumn?.identifier,
             let cellView = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
-            else { return nil }
+        else { return nil }
         
         switch identifier {
             case .isEnabled:
@@ -546,7 +546,7 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return self.definition.replacements.count
+        self.definition.replacements.count
     }
     
     
@@ -593,7 +593,7 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
         guard
             let data = info.draggingPasteboard.data(forType: .rows),
             let sourceRows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
-            else { return false }
+        else { return false }
         
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + sourceRows.count))
@@ -613,7 +613,7 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
                 guard
                     let data = session.draggingPasteboard.data(forType: .rows),
                     let rows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
-                    else { return }
+                else { return }
                 
                 self.removeReplacements(at: rows)
             

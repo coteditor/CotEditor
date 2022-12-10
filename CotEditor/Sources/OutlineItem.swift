@@ -46,7 +46,7 @@ struct OutlineItem: Equatable {
     
     var isSeparator: Bool {
         
-        return self.title == .separator
+        self.title == .separator
     }
     
 }
@@ -86,7 +86,7 @@ extension BidirectionalCollection<OutlineItem> {
     /// - Returns: The index of the corresponding outline item, or `nil` if not exist.
     func indexOfItem(at location: Int, allowsSeparator: Bool = false) -> Index? {
         
-        return self.lastIndex { $0.range.location <= location && (allowsSeparator || !$0.isSeparator) }
+        self.lastIndex { $0.range.location <= location && (allowsSeparator || !$0.isSeparator) }
     }
     
     

@@ -43,7 +43,7 @@ final class FilePermissionsFormatter: Formatter {
     /// disable backwards formatting
     override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         
-        return false
+        false
     }
     
 }

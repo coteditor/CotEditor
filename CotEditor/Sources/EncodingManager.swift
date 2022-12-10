@@ -73,7 +73,7 @@ final class EncodingManager {
     /// returns corresponding NSStringEncoding from an encoding name
     func encoding(name encodingName: String) -> String.Encoding? {
         
-        return DefaultSettings.encodings.lazy
+        DefaultSettings.encodings.lazy
             .filter { $0 != kCFStringEncodingInvalidId }  // = separator
             .map { String.Encoding(cfEncoding: $0) }
             .first { encodingName == String.localizedName(of: $0) }
@@ -82,7 +82,7 @@ final class EncodingManager {
     /// returns corresponding NSStringEncoding from an IANA char set name
     func encoding(ianaCharSetName: String) -> String.Encoding? {
         
-        return DefaultSettings.encodings.lazy
+        DefaultSettings.encodings.lazy
             .filter { $0 != kCFStringEncodingInvalidId }  // = separator
             .map { String.Encoding(cfEncoding: $0) }
             .first { $0.ianaCharSetName?.caseInsensitiveCompare(ianaCharSetName) == .orderedSame }
@@ -92,7 +92,7 @@ final class EncodingManager {
     /// return copied encoding menu items
     func createEncodingMenuItems() -> [NSMenuItem] {
         
-        return self.encodings.map { encoding in
+        self.encodings.map { encoding in
             guard let encoding = encoding else {
                 return .separator()
             }

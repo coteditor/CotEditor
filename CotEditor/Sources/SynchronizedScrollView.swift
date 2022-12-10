@@ -61,7 +61,7 @@ final class SynchronizedScrollView: NSScrollView {
     /// auto-founded scroll views to sync (including the receiver itself)
     private var siblings: [SynchronizedScrollView] {
         
-        return self.superview?.subviews.compactMap { $0 as? SynchronizedScrollView } ?? [self]
+        self.superview?.subviews.compactMap { $0 as? SynchronizedScrollView } ?? [self]
     }
     
     

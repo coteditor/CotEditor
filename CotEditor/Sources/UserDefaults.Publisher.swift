@@ -36,7 +36,7 @@ extension UserDefaults {
     /// - Returns: A publisher that emits elements each time the defaults’ value changes.
     func publisher<Value>(for key: DefaultKey<Value>, initial: Bool = false) -> Publisher<Value> {
         
-        return Publisher(userDefaults: self, key: key, initial: initial)
+        Publisher(userDefaults: self, key: key, initial: initial)
     }
     
     
@@ -134,12 +134,12 @@ private extension UserDefaults.Publisher {
                 let change = change,
                 keyPath == self.key.rawValue,
                 object as? NSObject == self.userDefaults
-                else { return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }
+            else { return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }
             
             guard
                 self.demand > 0,
                 let subscriber = self.subscriber
-                else { return }
+            else { return }
             
             let newValue: Value
             do {

@@ -35,7 +35,7 @@ extension Validatable where Self: NSToolbarItem {
         guard
             let validator = self.target
                 ?? self.action.flatMap({ NSApp.target(forAction: $0, to: self.target, from: self) }) as AnyObject?
-            else { return false }
+        else { return false }
         
         switch validator {
             case let validator as NSToolbarItemValidation:

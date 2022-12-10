@@ -85,7 +85,7 @@ final class TextContainer: NSTextContainer {
         guard
             self.isHangingIndentEnabled,
             let layoutManager = self.layoutManager as? LayoutManager
-            else { return rect }
+        else { return rect }
         
         let lineStartIndex = layoutManager.lineStartIndex(at: characterIndex)
         

@@ -122,7 +122,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                     let currentThemeName = self.theme?.name,
                     let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: appearance.isDark),
                     currentThemeName != themeName
-                    else { return }
+                else { return }
                 
                 self.setTheme(name: themeName)
             }
@@ -418,7 +418,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// setup document
     var document: Document? {
         
-        return self.representedObject as? Document
+        self.representedObject as? Document
     }
     
     
@@ -555,7 +555,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     var writingDirection: NSWritingDirection {
         
         get {
-            return self.focusedTextView?.baseWritingDirection ?? .leftToRight
+            self.focusedTextView?.baseWritingDirection ?? .leftToRight
         }
         
         set {
@@ -571,7 +571,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     var tabWidth: Int {
         
         get {
-            return self.focusedTextView?.tabWidth ?? 0
+            self.focusedTextView?.tabWidth ?? 0
         }
         
         set {
@@ -586,7 +586,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     @objc var isAutoTabExpandEnabled: Bool {
         
         get {
-            return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
+            self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
         }
         
         set {
@@ -606,7 +606,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         guard
             let textView = self.focusedTextView,
             let textStorage = textView.textStorage
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         guard textStorage.length > 0 else { return }
         
         textStorage.addAttributes(textView.typingAttributes, range: textStorage.range)
@@ -799,7 +799,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         guard
             let splitViewController = self.splitViewController,
             let currentEditorViewController = self.baseEditorViewController(for: sender)
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         guard splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
         
@@ -838,7 +838,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             let splitViewController = self.splitViewController,
             let currentEditorViewController = self.baseEditorViewController(for: sender),
             let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController)
-            else { return }
+        else { return }
         
         if let textView = currentEditorViewController.textView {
             NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
@@ -905,28 +905,28 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     /// split view controller
     private var splitViewController: SplitViewController? {
         
-        return self.splitViewItem?.viewController as? SplitViewController
+        self.splitViewItem?.viewController as? SplitViewController
     }
     
     
     /// text storage
     private var textStorage: NSTextStorage? {
         
-        return self.document?.textStorage
+        self.document?.textStorage
     }
     
     
     /// document's syntax parser
     private var syntaxParser: SyntaxParser? {
         
-        return self.document?.syntaxParser
+        self.document?.syntaxParser
     }
     
     
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.children.compactMap { $0 as? EditorViewController } ?? []
+        self.splitViewController?.children.compactMap { $0 as? EditorViewController } ?? []
     }
     
     
@@ -973,6 +973,6 @@ extension DocumentViewController: TextFinderClientProvider {
     /// Tell text finder in which text view the text find should perform.
     func textFinderClient() -> NSTextView? {
         
-        return self.focusedTextView
+        self.focusedTextView
     }
 }

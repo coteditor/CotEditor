@@ -108,7 +108,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// deliver editor to outer view controllers
     var documentViewController: DocumentViewController? {
         
-        return self.documentViewItem?.viewController as? DocumentViewController
+        self.documentViewItem?.viewController as? DocumentViewController
     }
     
     
@@ -174,7 +174,7 @@ final class WindowContentViewController: NSSplitViewController {
     private var isSidebarShown: Bool {
         
         get {
-            return self.sidebarViewItem?.isCollapsed == false
+            self.sidebarViewItem?.isCollapsed == false
         }
         
         set {
@@ -230,7 +230,7 @@ final class WindowContentViewController: NSSplitViewController {
     /// whether the given pane in the sidebar is currently shown
     private func isSidebarShown(index: SidebarViewController.TabIndex) -> Bool {
         
-        return self.isSidebarShown && (self.sidebarViewController?.selectedTabViewItemIndex == index.rawValue)
+        self.isSidebarShown && (self.sidebarViewController?.selectedTabViewItemIndex == index.rawValue)
     }
     
     

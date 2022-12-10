@@ -254,7 +254,7 @@ private extension NSAttributedString {
     /// Formatted label for status bar.
     static func formatted(label: String) -> Self {
         
-        return Self(string: (label + ": ").localized, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
+        Self(string: (label + ": ").localized, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
     }
     
 }

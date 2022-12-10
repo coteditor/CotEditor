@@ -203,7 +203,7 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
             let control = self.control,
             let validator = control.target
                 ?? control.action.flatMap({ NSApp.target(forAction: $0, to: control.target, from: self) }) as AnyObject?
-            else { return }
+        else { return }
         
         switch validator {
             case let validator as TouchBarItemValidations:
@@ -220,13 +220,13 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
     public var action: Selector? {
         
-        return self.control?.action
+        self.control?.action
     }
     
     
     public var tag: Int {
         
-        return self.control?.tag ?? 0
+        self.control?.tag ?? 0
     }
     
     
@@ -235,7 +235,7 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
     private var control: NSControl? {
         
-        return self.view as? NSControl
+        self.view as? NSControl
     }
     
 }

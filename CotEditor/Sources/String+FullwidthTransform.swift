@@ -33,7 +33,7 @@ extension StringProtocol {
     /// - Returns: A transformed string.
     func fullwidthRoman(reverse: Bool = false) -> String {
         
-        return self.unicodeScalars
+        self.unicodeScalars
             .map { $0.convertedToFullwidthRoman(reverse: reverse) ?? $0 }
             .reduce(into: "") { $0.unicodeScalars.append($1) }
     }

@@ -165,7 +165,7 @@ final class Theme: NSObject {
         guard
             let textColor = self.text.color.usingColorSpace(.genericRGB),
             let backgroundColor = self.background.color.usingColorSpace(.genericRGB)
-            else { return false }
+        else { return false }
         
         return backgroundColor.lightnessComponent < textColor.lightnessComponent
     }
@@ -177,7 +177,7 @@ final class Theme: NSObject {
         guard
             !self.selection.usesSystemSetting,
             let color = self.selection.color.usingColorSpace(.genericRGB)
-            else { return nil }
+        else { return nil }
         
         return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
     }

@@ -271,14 +271,14 @@ extension LayoutManager: NSLayoutManagerDelegate {
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
         // -> Then, the glyph width can be modified in `layoutManager(_:boundingBoxForControlGlyphAt:...)`.
-        return self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
+        self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
     }
     
     
     /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        return self.boundingBoxForControlGlyph
+        self.boundingBoxForControlGlyph
     }
     
     
@@ -306,7 +306,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     /// apply syntax highlighting on printing also
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
-        return attrs
+        attrs
     }
     
 }
@@ -413,8 +413,8 @@ private extension CGPoint {
     /// - Returns: An adjusted point.
     func aligned(scale: CGFloat = 1) -> Self {
         
-        return Self(x: (self.x * scale).rounded() / scale,
-                    y: (self.y * scale).rounded() / scale)
+        Self(x: (self.x * scale).rounded() / scale,
+             y: (self.y * scale).rounded() / scale)
     }
     
 }

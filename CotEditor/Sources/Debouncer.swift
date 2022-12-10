@@ -29,7 +29,7 @@ extension DispatchTimeInterval {
     
     static func seconds(_ interval: Double) -> DispatchTimeInterval {
         
-        return .milliseconds(Int(interval * 1000))
+        .milliseconds(Int(interval * 1000))
     }
 }
 

@@ -32,7 +32,7 @@ final class TokenFormatter: Formatter {
     /// convert to plain string
     override func string(for obj: Any?) -> String? {
         
-        return obj as? String
+        obj as? String
     }
     
     
@@ -48,7 +48,7 @@ final class TokenFormatter: Formatter {
     
     override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
         
-        return false
+        false
     }
     
 }

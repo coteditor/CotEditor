@@ -177,7 +177,7 @@ extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
         
-        return [self]
+        [self]
     }
 }
 

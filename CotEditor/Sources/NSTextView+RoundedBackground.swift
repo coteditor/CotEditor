@@ -42,7 +42,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let dirtyRange = self.range(for: dirtyRect)
-            else { return }
+        else { return }
         
         var coloredPaths: [NSColor: [NSBezierPath]] = [:]
         layoutManager.enumerateTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange) { (value, range, _) in
@@ -77,7 +77,7 @@ extension NSTextView {
     /// return fragment bezier paths of which a rounded rect for given range consists.
     private func roundedRectPaths(for range: NSRange) -> [NSBezierPath] {
         
-        let rects = self.boundingRects(for: range).map { self.centerScanRect($0) }
+        let rects = self.boundingRects(for: range).map(self.centerScanRect)
         
         return rects.map { rect in
             let corners: RectCorner = {

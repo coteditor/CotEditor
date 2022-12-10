@@ -194,7 +194,7 @@ private extension NSTabViewItem {
     
     var selectedImage: NSImage? {
         
-        return self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
+        self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }
     
 }

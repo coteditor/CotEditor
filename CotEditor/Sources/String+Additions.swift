@@ -32,7 +32,7 @@ extension String {
     /// Copied string to make sure the string is not a kind of NSMutableString.
     var immutable: String {
         
-        return NSString(string: self) as String
+        NSString(string: self) as String
     }
     
     
@@ -77,7 +77,7 @@ extension StringProtocol {
     /// - Returns: The character range of the line.
     func lineRange(at index: Index) -> Range<Index> {
         
-        return self.lineRange(for: index..<index)
+        self.lineRange(for: index..<index)
     }
     
     
@@ -87,7 +87,7 @@ extension StringProtocol {
     /// - Returns: The character range of the line contents.
     func lineContentsRange(at index: Index) -> Range<Index> {
         
-        return self.lineContentsRange(for: index..<index)
+        self.lineContentsRange(for: index..<index)
     }
     
     

@@ -58,7 +58,7 @@ extension NSColor {
     /// - Returns: An array of created colors.
     func decomposite(into number: Int) -> [NSColor] {
         
-        return (0..<number)
+        (0..<number)
             .map { CGFloat($0) / CGFloat(number) }
             .map { (self.hueComponent + $0).truncatingRemainder(dividingBy: 1) }
             .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }

@@ -98,9 +98,10 @@ private extension Color {
     
     init?(dictionary: [String: Any]) {
         
-        guard let red = dictionary["red"] as? Double,
-              let green = dictionary["green"] as? Double,
-              let blue = dictionary["blue"] as? Double
+        guard
+            let red = dictionary["red"] as? Double,
+            let green = dictionary["green"] as? Double,
+            let blue = dictionary["blue"] as? Double
         else { return nil }
         
         self.red = red

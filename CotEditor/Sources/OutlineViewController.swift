@@ -147,7 +147,7 @@ final class OutlineViewController: NSViewController {
     /// Current outline items.
     private var document: Document? {
         
-        return self.representedObject as? Document
+        self.representedObject as? Document
     }
     
     
@@ -230,7 +230,7 @@ final class OutlineViewController: NSViewController {
             let textView = textView ?? self.document?.textView,
             let row = self.outlineItems.indexOfItem(at: textView.selectedRange.location),
             outlineView.numberOfRows > row
-            else { return outlineView.deselectAll(nil) }
+        else { return outlineView.deselectAll(nil) }
         
         self.isOwnSelectionChange = true
         outlineView.selectRowIndexes([row], byExtendingSelection: false)
@@ -262,7 +262,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
         guard
             !self.isOwnSelectionChange,
             let outlineView = notification.object as? NSOutlineView
-            else { return }
+        else { return }
         
         self.selectOutlineItem(at: outlineView.selectedRow)
     }
@@ -271,7 +271,7 @@ extension OutlineViewController: NSOutlineViewDelegate {
     /// avoid selecting separator item
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
         
-        return (item as? OutlineItem)?.title != .separator
+        (item as? OutlineItem)?.title != .separator
     }
     
 }
@@ -292,7 +292,7 @@ extension OutlineViewController: NSOutlineViewDataSource {
     /// return if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        return false
+        false
     }
     
     
@@ -311,7 +311,7 @@ extension OutlineViewController: NSOutlineViewDataSource {
         guard
             let identifier = tableColumn?.identifier,
             let outlineItem = item as? OutlineItem
-            else { return nil }
+        else { return nil }
         
         switch identifier {
             case .title:

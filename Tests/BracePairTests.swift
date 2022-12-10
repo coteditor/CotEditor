@@ -62,7 +62,7 @@ private extension String {
     
     func index(_ index: Int) -> Index {
         
-        return self.index(self.startIndex, offsetBy: index)
+        self.index(self.startIndex, offsetBy: index)
     }
     
 }

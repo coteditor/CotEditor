@@ -64,8 +64,9 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // obtain original rows from pasteboard
         var sourceRows = IndexSet()
         info.enumerateDraggingItems(options: .concurrent, for: tableView, classes: [NSPasteboardItem.self]) { (item, _, _) in
-            guard let string = (item.item as? NSPasteboardItem)?.string(forType: .string),
-                  let row = Int(string)
+            guard
+                let string = (item.item as? NSPasteboardItem)?.string(forType: .string),
+                let row = Int(string)
             else { return }
             
             sourceRows.insert(row)

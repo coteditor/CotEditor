@@ -41,9 +41,9 @@ struct FilePermissions {
         
         var humanReadable: String {
             
-            return (self.contains(.read) ? "r" : "-") +
-                   (self.contains(.write) ? "w" : "-") +
-                   (self.contains(.execute) ? "x" : "-")
+            (self.contains(.read) ? "r" : "-") +
+            (self.contains(.write) ? "w" : "-") +
+            (self.contains(.execute) ? "x" : "-")
         }
     }
     
@@ -69,7 +69,7 @@ struct FilePermissions {
     /// human-readable permission expression like "rwxr--r--"
     var humanReadable: String {
         
-        return self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
+        self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
     }
     
 }
@@ -80,7 +80,7 @@ extension FilePermissions: CustomStringConvertible {
     
     var description: String {
         
-        return self.humanReadable
+        self.humanReadable
     }
     
 }

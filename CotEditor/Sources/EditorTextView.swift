@@ -322,7 +322,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// use sub-insertion points also for multi-text editing
     override var rangesForUserTextChange: [NSValue]? {
         
-        return self.insertionRanges as [NSValue]
+        self.insertionRanges as [NSValue]
     }
     
     
@@ -655,7 +655,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         guard
             self.isEditable,
             self.isAutomaticIndentEnabled
-            else { return self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange) }
+        else { return self.insertText(self.lineEnding.string, replacementRange: self.rangeForUserTextChange) }
         
         let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
         let ranges = self.rangesForUserTextChange?.map(\.rangeValue) ?? [self.rangeForUserTextChange]
@@ -666,7 +666,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                     let indentRange = self.string.rangeOfIndent(at: range.location),
                     !indentRange.isEmpty,
                     let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
-                    else { return (range, "", 0) }
+                else { return (range, "", 0) }
                 
                 var indent = (self.string as NSString).substring(with: autoIndentRange)
                 var insertion = indent.count
@@ -948,7 +948,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let fontManager = sender as? NSFontManager,
             let currentFont = self.font,
             let textStorage = self.textStorage
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         let font = fontManager.convert(currentFont)
         
@@ -1052,9 +1052,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
         //    in the noncontiguous layout mode. (2018-12 macOS 10.14)
         guard NSEvent.modifierFlags.contains(.numericPad),
-            range.upperBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
-            let rect = self.boundingRect(for: range)
-            else { return super.scrollRangeToVisible(range) }
+              range.upperBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
+              let rect = self.boundingRect(for: range)
+        else { return super.scrollRangeToVisible(range) }
         
         super.scrollToVisible(rect)  // move minimum distance
     }
@@ -1255,7 +1255,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var showsIndentGuides: Bool {
         
         get {
-            return (self.layoutManager as? LayoutManager)?.showsIndentGuides ?? true
+            (self.layoutManager as? LayoutManager)?.showsIndentGuides ?? true
         }
         
         set {
@@ -1269,7 +1269,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var usesAntialias: Bool {
         
         get {
-            return (self.layoutManager as? LayoutManager)?.usesAntialias ?? true
+            (self.layoutManager as? LayoutManager)?.usesAntialias ?? true
         }
         
         set {
@@ -1283,7 +1283,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var showsInvisibles: Bool {
         
         get {
-            return (self.layoutManager as? LayoutManager)?.showsInvisibles ?? false
+            (self.layoutManager as? LayoutManager)?.showsInvisibles ?? false
         }
         
         set {
@@ -1574,7 +1574,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         guard
             let layoutManager = self.layoutManager as? LayoutManager,
             let textContainer = self.textContainer
-            else { assertionFailure(); return 1 }
+        else { assertionFailure(); return 1 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         
@@ -1791,10 +1791,11 @@ extension EditorTextView {
     private func performCompletion() {
         
         // abord if:
-        guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
+        guard
+            !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.isEmpty,  // selected
             let lastCharacter = self.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
-            else { return }
+        else { return }
         
         if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // cursor is (probably) at the middle of a word
         
@@ -1829,7 +1830,7 @@ extension EditorTextView {
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
             range.length == 1  // clicked character can be a brace
-            else { return range }
+        else { return range }
         
         let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         let clickedCharacter = self.string[characterIndex]

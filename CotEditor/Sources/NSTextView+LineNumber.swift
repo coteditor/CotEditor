@@ -52,7 +52,7 @@ extension NSTextView {
     /// - Returns: The number of lines (1-based).
     func lineNumber(at location: Int) -> Int {
         
-        return (self.layoutManager as? any LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
+        (self.layoutManager as? any LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
     }
     
     
@@ -71,7 +71,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         // get glyph range of which line number should be drawn
         // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
@@ -124,7 +124,7 @@ extension NSTextView {
             !options.contains(.bySkippingExtraLine),
             (!layoutManager.isValidGlyphIndex(glyphRangeToDraw.upperBound) || lineNumber == 1),
             layoutManager.extraLineFragmentTextContainer != nil
-            else { return }
+        else { return }
         
         let lastLineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
         let isSelected = (selectedRanges.last?.lowerBound == string.length)
@@ -144,7 +144,7 @@ extension NSTextView {
     /// - Returns: The number of lines (1-based).
     private func lineRange(at location: Int) -> NSRange {
         
-        return (self.layoutManager as? any LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
+        (self.layoutManager as? any LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
     }
     
 }

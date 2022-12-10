@@ -105,7 +105,7 @@ extension EditorTextView {
         guard
             let candidate = anItem.candidates[index] as? String,
             self.shouldChangeText(in: range, replacementString: candidate)
-            else { return super.candidateListTouchBarItem(anItem, endSelectingCandidateAt: index) }
+        else { return super.candidateListTouchBarItem(anItem, endSelectingCandidateAt: index) }
         
         self.replaceCharacters(in: range, with: candidate)
         self.didChangeText()
@@ -125,7 +125,7 @@ extension EditorTextViewController {
         guard
             let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index),
             !candidates.isEmpty
-            else { return nil }
+        else { return nil }
         
         return candidates
     }

@@ -53,11 +53,11 @@ extension InvisibleDrawing {
         guard
             self.showsInvisibles,
             !types.isEmpty
-            else { return }
+        else { return }
         
         guard
             let textContainer = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         let string = self.attributedString().string as NSString
         let isRTL = textContainer.textView?.baseWritingDirection == .rightToLeft
@@ -82,7 +82,7 @@ extension InvisibleDrawing {
                 let invisible = Invisible(codeUnit: codeUnit),
                 types.contains(invisible),
                 !(codeUnit == 0xA && lastCodeUnit == 0xD)  // skip LF for CRLF
-                else { continue }
+            else { continue }
             
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
@@ -181,7 +181,7 @@ extension InvisibleDrawing {
         guard
             self.showsControls,
             action.contains(.zeroAdvancement)
-            else { return false }
+        else { return false }
         
         let codeUnit = (self.attributedString().string as NSString).character(at: charIndex)
         

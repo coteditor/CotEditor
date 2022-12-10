@@ -84,8 +84,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.writingDirectionObserver = self.textView!.publisher(for: \.baseWritingDirection)
             .removeDuplicates()
             .sink { [weak self] (writingDirection) in
-                guard let stackView = self?.stackView,
-                      let lineNumberView = self?.lineNumberView
+                guard
+                    let stackView = self?.stackView,
+                    let lineNumberView = self?.lineNumberView
                 else { return assertionFailure() }
                 
                 // set scroller location
@@ -346,7 +347,7 @@ extension EditorTextViewController: NSFontChanging {
     /// restrict items in the font panel toolbar
     func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
         
-        return [.collection, .face, .size]
+        [.collection, .face, .size]
     }
     
 }
@@ -359,7 +360,7 @@ private extension MultiCursorEditing {
     
     var selectsSingleCharacter: Bool {
         
-        return !self.hasMultipleInsertions && (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
+        !self.hasMultipleInsertions && (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
     }
     
 }

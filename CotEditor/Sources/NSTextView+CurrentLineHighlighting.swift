@@ -56,7 +56,7 @@ extension CurrentLineHighlighting {
         guard
             !paths.isEmpty,
             let color = self.lineHighLightColor
-            else { return }
+        else { return }
         
         NSGraphicsContext.saveGraphicsState()
         color.setFill()
@@ -100,7 +100,7 @@ extension CurrentLineHighlighting {
         guard
             let textContainer = self.textContainer,
             let layoutManager = self.layoutManager
-            else { assertionFailure(); return .zero }
+        else { assertionFailure(); return .zero }
         
         return layoutManager.lineFragmentsRect(for: range)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
@@ -118,7 +118,7 @@ private extension NSLayoutManager {
         guard
             self.attributedString().length > 0,
             self.extraLineFragmentTextContainer == nil || range.lowerBound < self.attributedString().length
-            else { return self.extraLineFragmentRect }
+        else { return self.extraLineFragmentRect }
         
         let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         let safeLowerIndex = self.isValidGlyphIndex(glyphRange.lowerBound) ? glyphRange.lowerBound : glyphRange.lowerBound - 1

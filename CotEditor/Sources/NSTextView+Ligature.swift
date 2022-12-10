@@ -42,7 +42,7 @@ extension NSTextView {
             guard
                 let rawValue = self.typingAttributes[.ligature] as? Int,
                 let mode = LigatureMode(rawValue: rawValue)
-                else { return .standard }
+            else { return .standard }
             
             return mode
         }

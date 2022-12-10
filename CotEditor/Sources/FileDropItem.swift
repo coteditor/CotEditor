@@ -94,7 +94,7 @@ extension FileDropItem {
     
     var dictionary: [String: String] {
         
-        return [
+        [
             CodingKeys.format: self.format,
             CodingKeys.extensions: self.extensions.isEmpty ? nil : self.extensions.joined(separator: ", "),
             CodingKeys.scope: self.scope,

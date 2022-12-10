@@ -134,9 +134,9 @@ extension SettingFileManaging {
     /// file urls for user settings
     var userSettingFileURLs: [URL] {
         
-        return (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
-                                                             includingPropertiesForKeys: nil,
-                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
+        (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
+                                                      includingPropertiesForKeys: nil,
+                                                      options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
             .filter { $0.conforms(to: self.fileType) } ?? []
     }
     
@@ -144,21 +144,21 @@ extension SettingFileManaging {
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {
         
-        return fileURL.deletingPathExtension().lastPathComponent
+        fileURL.deletingPathExtension().lastPathComponent
     }
     
     
     /// return a valid setting file URL for the setting name or nil if not exists
     func urlForUsedSetting(name: String) -> URL? {
         
-        return self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
+        self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
     }
     
     
     /// return a setting file URL in the application's Resources domain or nil if not exists
     func urlForBundledSetting(name: String) -> URL? {
         
-        return Bundle.main.url(forResource: name, withExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
+        Bundle.main.url(forResource: name, withExtension: self.fileType.preferredFilenameExtension, subdirectory: Self.directoryName)
     }
     
     
@@ -174,21 +174,21 @@ extension SettingFileManaging {
     /// return a setting file URL in the user's Application Support domain (don't care if it exists)
     func preparedURLForUserSetting(name: String) -> URL {
         
-        return self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: self.fileType)
+        self.userSettingDirectoryURL.appendingPathComponent(name, conformingTo: self.fileType)
     }
     
     
     /// whether the setting name is one of the bundled settings
     func isBundledSetting(name: String) -> Bool {
         
-        return self.bundledSettingNames.contains(name)
+        self.bundledSettingNames.contains(name)
     }
     
     
     /// whether the setting name is customized by the user
     func isCustomizedSetting(name: String) -> Bool {
         
-        return self.urlForUserSetting(name: name) != nil
+        self.urlForUserSetting(name: name) != nil
     }
     
     
@@ -468,7 +468,7 @@ enum InvalidNameError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        return "Please choose another name.".localized
+        "Please choose another name.".localized
     }
     
 }
@@ -504,7 +504,7 @@ struct SettingFileError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        return self.error?.localizedRecoverySuggestion
+        self.error?.localizedRecoverySuggestion
     }
     
 }
@@ -550,8 +550,8 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        return ["Cancel".localized,
-                "Replace".localized]
+        ["Cancel".localized,
+         "Replace".localized]
     }
     
     

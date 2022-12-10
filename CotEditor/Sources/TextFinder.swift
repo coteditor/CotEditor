@@ -409,10 +409,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         guard
             let textView = self.client,
             (!forEditing || (textView.isEditable && textView.window?.attachedSheet == nil))
-            else {
-                NSSound.beep()
-                return nil
-            }
+        else {
+            NSSound.beep()
+            return nil
+        }
         
         guard self.findPanelController.window?.attachedSheet == nil else {
             self.findPanelController.showWindow(self)
@@ -524,7 +524,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         guard
             let (textView, textFind) = self.prepareTextFind(forEditing: true),
             let result = textFind.replace(with: self.replacementString)
-            else { return false }
+        else { return false }
         
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,

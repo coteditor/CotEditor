@@ -28,7 +28,7 @@ extension Unicode.Scalar {
     /// Code point string in format like `U+000F`.
     var codePoint: String {
         
-        return String(format: "U+%04tX", self.value)
+        String(format: "U+%04tX", self.value)
     }
     
     
@@ -45,14 +45,14 @@ extension Unicode.Scalar {
     /// Boolean value indicating whether character becomes a surrogate pair in UTF-16.
     var isSurrogatePair: Bool {
         
-        return (UTF16.width(self) == 2)
+        (UTF16.width(self) == 2)
     }
     
     
     /// Unicode name.
     var name: String? {
         
-        return self.properties.nameAlias
+        self.properties.nameAlias
             ?? self.properties.name
             ?? self.controlCharacterName  // get control character name from special table
     }
@@ -61,7 +61,7 @@ extension Unicode.Scalar {
     /// Unicode block name.
     var blockName: String? {
         
-        return self.value.blockName
+        self.value.blockName
     }
     
     
@@ -71,7 +71,7 @@ extension Unicode.Scalar {
         // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
         //    Otherwise, we cannot localize block names correctly. (2015-11)
         
-        return self.blockName?
+        self.blockName?
             .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
             .replacingOccurrences(of: "Description", with: "Desc.")
             .localized(tableName: "Unicode")

@@ -37,7 +37,7 @@ final class IncompatibleCharacterFormatter: Formatter {
     /// convert to plain string
     override func string(for obj: Any?) -> String? {
         
-        return obj as? String
+        obj as? String
     }
     
     

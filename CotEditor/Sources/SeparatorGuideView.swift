@@ -29,7 +29,7 @@ final class SeparatorGuideView: NSView {
     
     override var intrinsicContentSize: NSSize {
         
-        return NSSize(width: NSView.noIntrinsicMetric, height: 1)
+        NSSize(width: NSView.noIntrinsicMetric, height: 1)
     }
     
 }

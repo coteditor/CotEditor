@@ -70,7 +70,7 @@ extension NSTextView {
                 let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue),
                 insertionRanges.count > 1,
                 insertionRanges == ranges
-                else { return nil }
+            else { return nil }
             
             var offset = 0
             return zip(ranges, strings).map { (range, string) in

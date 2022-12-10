@@ -51,7 +51,7 @@ extension String {
         guard
             let data = self.data(using: encoding, allowLossyConversion: true),  // lossy conversion must always success
             let convertedString = String(data: data, encoding: encoding)
-            else { assertionFailure(); return [] }
+        else { assertionFailure(); return [] }
         
         try Task.checkCancellation()
         

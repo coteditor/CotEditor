@@ -38,7 +38,7 @@ extension MutableCopying {
     
     var mutable: MutableType {
         
-        return self.mutableCopy() as! MutableType
+        self.mutableCopy() as! MutableType
     }
 }
 

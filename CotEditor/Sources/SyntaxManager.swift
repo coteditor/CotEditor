@@ -113,7 +113,7 @@ final class SyntaxManager: SettingFileManaging {
     /// return style name corresponding to given variables
     func settingName(documentFileName fileName: String, content: String) -> SettingName {
         
-        return self.settingName(documentFileName: fileName)
+        self.settingName(documentFileName: fileName)
             ?? self.settingName(documentContent: content)
             ?? BundledStyleName.none
     }
@@ -176,7 +176,7 @@ final class SyntaxManager: SettingFileManaging {
         guard
             let url = self.urlForUsedSetting(name: name),
             let dictionary = try? self.loadSettingDictionary(at: url)
-            else { return nil }
+        else { return nil }
         
         return dictionary.cocoaBindable
     }
@@ -188,7 +188,7 @@ final class SyntaxManager: SettingFileManaging {
         guard
             let url = self.urlForBundledSetting(name: name),
             let dictionary = try? self.loadSettingDictionary(at: url)
-            else { return nil }
+        else { return nil }
         
         return dictionary.cocoaBindable
     }
@@ -258,7 +258,7 @@ final class SyntaxManager: SettingFileManaging {
     /// empty style dictionary
     var blankSettingDictionary: StyleDictionary {
         
-        return [
+        [
             SyntaxKey.metadata.rawValue: NSMutableDictionary(),
             SyntaxKey.extensions.rawValue: NSMutableArray(),
             SyntaxKey.filenames.rawValue: NSMutableArray(),
@@ -444,14 +444,14 @@ private extension SyntaxManager.StyleDictionary {
     /// Convert to NSObject-based collection for Cocoa-Bindings recursively.
     var cocoaBindable: Self {
         
-        return self.mapValues(Self.convertToCocoaBindable)
+        self.mapValues(Self.convertToCocoaBindable)
     }
     
     
     /// Convert to YAML serialization comaptible colletion recursively.
     var yamlEncodable: Self {
         
-        return self.mapValues(Self.convertToYAMLEncodable)
+        self.mapValues(Self.convertToYAMLEncodable)
     }
     
     
@@ -499,7 +499,7 @@ private extension SyntaxManager.StyleDictionary {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         
-        return areEqual(lhs, rhs)
+        areEqual(lhs, rhs)
     }
     
     

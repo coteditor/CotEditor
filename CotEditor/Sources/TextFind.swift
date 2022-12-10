@@ -168,7 +168,7 @@ final class TextFind {
     /// The number of capture groups in the regular expression.
     var numberOfCaptureGroups: Int {
         
-        return self.regex?.numberOfCaptureGroups ?? 0
+        self.regex?.numberOfCaptureGroups ?? 0
     }
     
     
@@ -381,7 +381,7 @@ final class TextFind {
     /// chack if the given range is a range of whole word
     private func isFullWord(range: NSRange) -> Bool {
         
-        return self.fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
+        self.fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
     }
     
     

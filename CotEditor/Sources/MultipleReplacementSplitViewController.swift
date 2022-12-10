@@ -32,13 +32,13 @@ extension MultipleReplacementPanelViewControlling {
     
     var contentListViewController: MultipleReplacementListViewController? {
         
-        return self.parentSplitViewController?.contentListSplitViewItem?.viewController as? MultipleReplacementListViewController
+        self.parentSplitViewController?.contentListSplitViewItem?.viewController as? MultipleReplacementListViewController
     }
     
     
     var mainViewController: MultipleReplacementViewController? {
         
-        return self.parentSplitViewController?.mainSplitViewItem?.viewController as? MultipleReplacementViewController
+        self.parentSplitViewController?.mainSplitViewItem?.viewController as? MultipleReplacementViewController
     }
     
     
@@ -46,7 +46,7 @@ extension MultipleReplacementPanelViewControlling {
     
     private var parentSplitViewController: MultipleReplacementSplitViewController? {
         
-        return self.parent as? MultipleReplacementSplitViewController
+        self.parent as? MultipleReplacementSplitViewController
     }
     
 }

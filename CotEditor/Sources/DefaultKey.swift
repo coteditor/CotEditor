@@ -48,7 +48,7 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     
     var description: String {
         
-        return self.rawValue
+        self.rawValue
     }
     
 }

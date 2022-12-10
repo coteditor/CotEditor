@@ -33,7 +33,7 @@ extension NSAppleEventManager {
         guard
             let event = self.currentAppleEvent,
             event.eventClass == kCoreEventClass
-            else { return false }
+        else { return false }
         
         return (event.eventID == kAEOpenApplication || event.eventID == kAEReopenApplication)
     }

@@ -55,11 +55,11 @@ func bridgeUnwrapped<T: Any>(_ ptr: UnsafeRawPointer) -> T {
 
 private func bridgeRetained<T: AnyObject>(_ obj: T) -> UnsafeMutableRawPointer {
     
-    return Unmanaged.passRetained(obj).toOpaque()
+    Unmanaged.passRetained(obj).toOpaque()
 }
 
 
 private func bridgeTransfer<T: AnyObject>(_ ptr: UnsafeRawPointer) -> T {
     
-    return Unmanaged<T>.fromOpaque(ptr).takeRetainedValue()
+    Unmanaged<T>.fromOpaque(ptr).takeRetainedValue()
 }

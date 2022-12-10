@@ -60,14 +60,14 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// name of file to save custom key bindings in the plist file form (without extension)
     override var settingFileName: String {
         
-        return "Shortcuts"
+        "Shortcuts"
     }
     
     
     /// default key bindings
     override var defaultKeyBindings: Set<KeyBinding> {
         
-        return _defaultKeyBindings
+        _defaultKeyBindings
     }
     
     
@@ -76,7 +76,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
-        return self.outlineTree(menu: NSApp.mainMenu!, defaults: usesDefaults)
+        self.outlineTree(menu: NSApp.mainMenu!, defaults: usesDefaults)
     }
     
     

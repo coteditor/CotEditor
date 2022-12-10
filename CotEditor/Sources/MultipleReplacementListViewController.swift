@@ -71,7 +71,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             guard
                 let lastSelectedName = UserDefaults.standard[.selectedMultipleReplacementSettingName],
                 let row = self.settingNames.firstIndex(of: lastSelectedName)
-                else { return 0 }
+            else { return 0 }
             
             return row
         }()
@@ -179,7 +179,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         guard
             let settingName = self.targetSettingName(for: sender),
             let row = self.settingNames.firstIndex(of: settingName)
-            else { return }
+        else { return }
         
         self.tableView?.editColumn(0, row: row, with: nil, select: false)
     }
@@ -243,7 +243,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         guard
             let settingName = self.targetSettingName(for: sender),
             let url = ReplacementManager.shared.urlForUserSetting(name: settingName)
-            else { return }
+        else { return }
         
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
@@ -350,7 +350,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         guard
             let name = settingName,
             let row = self.settingNames.firstIndex(of: name)
-            else { return }
+        else { return }
+        
         tableView.selectRowIndexes([row], byExtendingSelection: false)
         if selectingName != nil {
             tableView.scrollRowToVisible(row)
@@ -395,14 +396,14 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     /// number of settings
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return self.settingNames.count
+        self.settingNames.count
     }
     
     
     /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        return self.settingNames[row]
+        self.settingNames[row]
     }
     
     
@@ -514,7 +515,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
         guard
             let settingName = self.selectedSettingName,
             let setting = ReplacementManager.shared.setting(name: settingName)
-            else { return }
+        else { return }
         
         self.mainViewController?.change(setting: setting)
         UserDefaults.standard[.selectedMultipleReplacementSettingName] = settingName
@@ -536,7 +537,7 @@ extension MultipleReplacementListViewController: NSTextFieldDelegate {
         guard
             !newName.isEmpty,
             let oldName = self.selectedSettingName
-            else { return true }
+        else { return true }
         
         do {
             try ReplacementManager.shared.renameSetting(name: oldName, to: newName)

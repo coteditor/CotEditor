@@ -45,7 +45,7 @@ extension NSFont {
     /// return the font used for line number views, in the specified size.
     static func lineNumberFont(ofSize size: CGFloat = 0, weight: NSFont.Weight = .regular) -> NSFont {
         
-        return NSFont(named: .avenirNextCondensed, weight: weight, size: size)
+        NSFont(named: .avenirNextCondensed, weight: weight, size: size)
             ?? .monospacedDigitSystemFont(ofSize: size, weight: weight)
     }
     
@@ -53,7 +53,7 @@ extension NSFont {
     /// Core Graphics font object corresponding to the font
     var cgFont: CGFont {
         
-        return CTFontCopyGraphicsFont(self, nil)
+        CTFontCopyGraphicsFont(self, nil)
     }
     
 }

@@ -164,7 +164,7 @@ final class ThemeManager: SettingFileManaging {
     /// return whether given setting name is dark theme
     func isDark(name: String) -> Bool {
         
-        return name.range(of: "(Dark)", options: [.anchored, .backwards]) != nil
+        name.range(of: "(Dark)", options: [.anchored, .backwards]) != nil
     }
     
     
@@ -197,7 +197,7 @@ final class ThemeManager: SettingFileManaging {
     /// load setting from the file at given URL
     func loadSetting(at fileURL: URL) throws -> Setting {
         
-        return try Theme.theme(contentsOf: fileURL)
+        try Theme.theme(contentsOf: fileURL)
     }
     
     

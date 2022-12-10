@@ -918,7 +918,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard
             let syntaxStyle = SyntaxManager.shared.setting(name: name),
             syntaxStyle != self.syntaxParser.style
-            else { return }
+        else { return }
         
         // update
         self.syntaxParser.style = syntaxStyle
@@ -1311,7 +1311,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     var errorDescription: String? {
         
-        return String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName).”")
+        String(localized: "Some characters would have to be changed or deleted in saving as “\(self.fileEncoding.localizedName).”")
     }
     
     

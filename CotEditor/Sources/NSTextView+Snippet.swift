@@ -32,7 +32,7 @@ extension NSTextView {
         guard
             !snippet.string.isEmpty,
             let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue)
-            else { return }
+        else { return }
         
         // insert indent to every newline
         let snippets: [Snippet] = insertionRanges.map { (range) in

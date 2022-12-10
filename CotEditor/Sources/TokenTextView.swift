@@ -67,7 +67,7 @@ final class TokenTextView: NSTextView {
             self.selectedRange.location > 0,
             let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: self.selectedRange.location - 1),
             effectiveRange.upperBound == self.selectedRange.location
-            else { return super.deleteBackward(sender) }
+        else { return super.deleteBackward(sender) }
         
         self.replace(with: "", range: effectiveRange, selectedRange: nil)
     }
@@ -88,7 +88,7 @@ final class TokenTextView: NSTextView {
         guard
             granularity == .selectByWord,
             let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: proposedCharRange.location)
-            else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
+        else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
         
         return effectiveRange
     }
@@ -97,8 +97,11 @@ final class TokenTextView: NSTextView {
     /// validate insertion menu
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        if item.action == #selector(insertVariable) {
-            return self.isEditable
+        switch item.action {
+            case #selector(insertVariable):
+                return self.isEditable
+            default:
+                break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -132,7 +135,7 @@ final class TokenTextView: NSTextView {
         guard
             let tokenizer = self.tokenizer,
             let layoutManager = self.layoutManager
-            else { return }
+        else { return }
         
         let wholeRange = self.string.nsRange
         layoutManager.removeTemporaryAttribute(.token, forCharacterRange: wholeRange)

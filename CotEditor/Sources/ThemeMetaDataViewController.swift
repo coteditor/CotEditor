@@ -42,7 +42,7 @@ final class ThemeMetaDataViewController: NSViewController {
             let theme = self.representedObject as? Theme.Metadata,
             let address = theme.distributionURL,
             let url = URL(string: address)
-            else { return NSSound.beep() }
+        else { return NSSound.beep() }
         
         NSWorkspace.shared.open(url)
     }

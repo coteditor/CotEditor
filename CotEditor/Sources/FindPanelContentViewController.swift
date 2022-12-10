@@ -154,14 +154,14 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// unwrap viewController from split view item
     private var fieldViewController: FindPanelFieldViewController? {
         
-        return self.fieldSplitViewItem?.viewController as? FindPanelFieldViewController
+        self.fieldSplitViewItem?.viewController as? FindPanelFieldViewController
     }
     
     
     /// unwrap viewController from split view item
     private var resultViewController: FindPanelResultViewController? {
         
-        return self.resultSplitViewItem?.viewController as? FindPanelResultViewController
+        self.resultSplitViewItem?.viewController as? FindPanelResultViewController
     }
     
     
@@ -171,7 +171,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         guard
             let resultViewItem = self.resultSplitViewItem,
             let panel = self.splitView.window
-            else { return assertionFailure() }
+        else { return assertionFailure() }
         
         let resultView = resultViewItem.viewController.view
         let height = resultView.bounds.height
@@ -215,7 +215,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
             let resultViewController = self.resultViewController,
             resultViewController.isViewShown,
             resultViewController.view.visibleRect.isEmpty
-            else { return }
+        else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
         self.splitView.needsDisplay = true

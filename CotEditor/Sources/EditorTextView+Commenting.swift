@@ -315,7 +315,7 @@ extension String {
     /// - Returns: Items that contain editing information to insert comment delimiters.
     func blockCommentOut(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange.InsertionItem] {
         
-        return ranges.flatMap {
+        ranges.flatMap {
             [NSRange.InsertionItem(string: delimiters.begin + spacer, location: $0.lowerBound, forward: true),
              NSRange.InsertionItem(string: spacer + delimiters.end, location: $0.upperBound, forward: false)]
         }

@@ -41,7 +41,7 @@ extension MultiCursorEditing {
     /// Whether the receiver has multiple points to insert text.
     var hasMultipleInsertions: Bool {
         
-        return (self.insertionLocations.count + self.selectedRanges.count) > 1
+        (self.insertionLocations.count + self.selectedRanges.count) > 1
     }
     
     
@@ -58,7 +58,7 @@ extension MultiCursorEditing {
     /// Whether the receiver needs to draw insertion points by itself.
     var needsDrawInsertionPoints: Bool {
         
-        return !(self.insertionPointTimer?.isCancelled ?? true)
+        self.insertionPointTimer?.isCancelled == false
     }
     
     
@@ -149,7 +149,7 @@ extension MultiCursorEditing {
         guard
             ranges.count == 1,
             let range = ranges.first as? NSRange
-            else { return nil }
+        else { return nil }
         
         guard let layoutManager = self.layoutManager else { assertionFailure(); return nil }
         
@@ -305,7 +305,6 @@ extension MultiCursorEditing {
         
         if self.isPerformingRectangularSelection || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ !$0.rangeValue.isEmpty })) {
             self.enableOwnInsertionPointTimer()
-            
         } else {
             self.insertionPointTimer?.cancel()
         }
@@ -320,7 +319,7 @@ extension MultiCursorEditing {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { assertionFailure(); return }
+        else { assertionFailure(); return }
         
         let insertionRanges = self.insertionRanges
         let glyphRanges = insertionRanges.map { layoutManager.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
@@ -333,7 +332,7 @@ extension MultiCursorEditing {
             !(affinity == .upstream && (
                 (layoutManager.extraLineFragmentTextContainer == nil && !layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound)) ||
                 (layoutManager.extraLineFragmentTextContainer != nil && insertionRanges.last?.lowerBound == self.string.length)))
-            else { return }
+        else { return }
         
         // get new visual line to append
         // -> Use line fragment to allow placing insertion points even when the line is shorter than the origin insertion columns.
@@ -399,7 +398,7 @@ extension NSTextView {
     /// - Returns: Rect where insertion point filled.
     func insertionPointRects(at index: Int) -> [NSRect] {
         
-        guard  let layoutManager = self.layoutManager else { assertionFailure(); return [] }
+        guard let layoutManager = self.layoutManager else { assertionFailure(); return [] }
         
         let scale = self.scale
         return layoutManager.insertionPointRects(at: index)
@@ -422,7 +421,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { assertionFailure(); return 0 }
+        else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
@@ -442,7 +441,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { assertionFailure(); return 0 }
+        else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)

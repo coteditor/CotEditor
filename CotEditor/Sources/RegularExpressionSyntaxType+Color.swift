@@ -29,7 +29,7 @@ extension RegularExpressionSyntaxType {
     
     var color: NSColor {
         
-        return NSColor(named: "RegexColor/" + self.colorName)!
+        NSColor(named: "RegexColor/" + self.colorName)!
     }
     
     

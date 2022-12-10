@@ -99,7 +99,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     /// return number of row (required)
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return self.results.count
+        self.results.count
     }
     
     
@@ -187,7 +187,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         guard
             let textView = self.target,
             textView.string.nsRange.upperBound >= range.upperBound
-            else { return }
+        else { return }
         
         textView.select(range: range)
     }
