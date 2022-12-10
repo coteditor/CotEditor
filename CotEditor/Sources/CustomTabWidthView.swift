@@ -37,6 +37,7 @@ struct CustomTabWidthView: View {
     @State private var buttonWidth: CGFloat?
     
     
+    // MARK: View
     
     /// Initialize view with given values.
     ///
@@ -57,6 +58,7 @@ struct CustomTabWidthView: View {
             Form {
                 TextField("Tab width:", value: $value, format: .number, prompt: Text(self.defaultWidth, format: .number))
                     .font(.body.monospacedDigit())
+                    .onSubmit(self.submit)
             }
             
             HStack(alignment: .firstTextBaseline) {
@@ -70,13 +72,7 @@ struct CustomTabWidthView: View {
                         .frame(width: self.buttonWidth)
                 }.keyboardShortcut(.cancelAction)
                 
-                Button {
-                    let width = (self.value > 0) ? self.value : self.defaultWidth
-                    
-                    self.completionHandler(width)
-                    
-                    self.parent?.dismiss(nil)
-                } label: {
+                Button(action: self.submit) {
                     Text("OK")
                         .background(WidthGetter(key: WidthKey.self))
                         .frame(width: self.buttonWidth)
@@ -85,6 +81,19 @@ struct CustomTabWidthView: View {
         }
         .fixedSize()
         .padding()
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Submit the current input.
+    private func submit() {
+        
+        let width = (self.value > 0) ? self.value : self.defaultWidth
+        
+        self.completionHandler(width)
+        
+        self.parent?.dismiss(nil)
     }
     
 }

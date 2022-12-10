@@ -36,6 +36,7 @@ struct GoToLineView: View {
     @State private var buttonWidth: CGFloat?
     
     
+    // MARK: View
     
     /// Initialize view with given values.
     ///
@@ -55,6 +56,7 @@ struct GoToLineView: View {
             Form {
                 TextField("Line:", text: $value, prompt: Text("Line Number"))
                     .font(.body.monospacedDigit())
+                    .onSubmit(self.submit)
             }
             
             HStack(alignment: .firstTextBaseline) {
@@ -70,14 +72,7 @@ struct GoToLineView: View {
                         .frame(width: self.buttonWidth)
                 }.keyboardShortcut(.cancelAction)
                 
-                Button {
-                    guard
-                        let lineRange = FuzzyRange(string: self.value),
-                        self.completionHandler(lineRange)
-                    else { return NSSound.beep() }
-                    
-                    self.parent?.dismiss(nil)
-                } label: {
+                Button(action: self.submit) {
                     Text("Go")
                         .background(WidthGetter(key: WidthKey.self))
                         .frame(width: self.buttonWidth)
@@ -86,6 +81,20 @@ struct GoToLineView: View {
         }
         .fixedSize()
         .padding()
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Submit the current input.
+    private func submit() {
+        guard
+            let lineRange = FuzzyRange(string: self.value),
+            self.completionHandler(lineRange)
+        else { return NSSound.beep() }
+        
+        self.parent?.dismiss(nil)
+        
     }
     
 }

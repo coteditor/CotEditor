@@ -39,6 +39,7 @@ struct CustomSurroundStringView: View {
     @State private var buttonWidth: CGFloat?
     
     
+    // MARK: View
     
     /// Initialize view from a storyboard with given values.
     ///
@@ -66,11 +67,13 @@ struct CustomSurroundStringView: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("Begin:")
                 TextField("", text: $pair.begin)
+                    .onSubmit(self.submit)
                     .frame(width: 48)
                     .padding(.trailing)
                 
                 Text("End:")
                 TextField("", text: $pair.end, prompt: Text(verbatim: self.pair.begin))
+                    .onSubmit(self.submit)
                     .frame(width: 48)
             }
             
@@ -85,18 +88,7 @@ struct CustomSurroundStringView: View {
                         .frame(width: self.buttonWidth)
                 }.keyboardShortcut(.cancelAction)
                 
-                Button {
-                    self.parent?.commitEditing()
-                    
-                    guard !self.pair.begin.isEmpty else { return NSSound.beep() }
-                    
-                    // use beginString also for end delimiter if endString is empty
-                    let endString = self.pair.end.isEmpty ? self.pair.begin : self.pair.end
-                    
-                    self.completionHandler(Pair(self.pair.begin, endString))
-                    self.save()
-                    self.parent?.dismiss(nil)
-                } label: {
+                Button(action: self.submit) {
                     Text("OK")
                         .background(WidthGetter(key: WidthKey.self))
                         .frame(width: self.buttonWidth)
@@ -108,11 +100,25 @@ struct CustomSurroundStringView: View {
     }
     
     
-    /// Store last used string pair.
-    private func save() {
+    // MARK: Private Methods
+    
+    /// Submit the current input.
+    private func submit() {
         
+        self.parent?.commitEditing()
+        
+        guard !self.pair.begin.isEmpty else { return NSSound.beep() }
+        
+        // use beginString also for end delimiter if endString is empty
+        let endString = self.pair.end.isEmpty ? self.pair.begin : self.pair.end
+        
+        self.completionHandler(Pair(self.pair.begin, endString))
+        
+        /// store the last used string pair
         self.defaultBeginString = self.pair.begin
         self.defaultEndString = self.pair.end
+        
+        self.parent?.dismiss(nil)
     }
     
 }
