@@ -172,6 +172,13 @@ final class TextFind {
     }
     
     
+    /// The range large enough to contain all scope ranges.
+    var scopeRange: Range<Int> {
+        
+        self.scopeRanges.map(\.lowerBound).min()!..<self.scopeRanges.map(\.upperBound).max()!
+    }
+    
+    
     /// Return the nearest match from the insertion point.
     ///
     /// - Parameters:
@@ -301,11 +308,12 @@ final class TextFind {
     ///   - replacementString: The string with which to replace.
     ///   - block: The Block enumerates the matches.
     ///   - flag: The current state of the replacing progress.
+    ///   - range: The matched range.
     ///   - stop: The Block can set the value to true to stop further processing of the array.
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: @escaping (_ flag: ReplacingFlag, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    func replaceAll(with replacementString: String, using block: @escaping (_ flag: ReplacingFlag, _ range: NSRange, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
@@ -324,7 +332,7 @@ final class TextFind {
                 
                 items.append(ReplacementItem(string: replacedString, range: matchedRange))
                 
-                block(.findProgress, &ioStop)
+                block(.findProgress, matchedRange, &ioStop)
                 stop = ioStop
             }
             
@@ -338,7 +346,7 @@ final class TextFind {
                 let replacedString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
                 for item in items.reversed() {
                     var ioStop = false
-                    block(.replacementProgress, &ioStop)
+                    block(.replacementProgress, item.range, &ioStop)
                     if ioStop { break }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.

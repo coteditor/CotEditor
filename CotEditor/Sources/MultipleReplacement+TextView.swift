@@ -41,7 +41,7 @@ extension MultipleReplacement {
         textView.isEditable = false
         
         // setup progress sheet
-        let progress = FindProgress()
+        let progress = FindProgress(scope: 0..<self.replacements.count)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView("Highlight All", unit: .find, progress: progress)
         let indicator = NSHostingController(rootView: indicatorView)
@@ -56,8 +56,10 @@ extension MultipleReplacement {
                     stop = true
                     return
                 }
-                
                 progress.count += 1
+                
+            } unitChanged: {
+                progress.completedUnit += 1
             }
                 .sorted(\.location)
             
@@ -110,7 +112,7 @@ extension MultipleReplacement {
         textView.isEditable = false
         
         // setup progress sheet
-        let progress = FindProgress()
+        let progress = FindProgress(scope: 0..<self.replacements.count)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView("Replace All", unit: .replacement, progress: progress)
         let indicator = NSHostingController(rootView: indicatorView)
@@ -125,8 +127,10 @@ extension MultipleReplacement {
                     stop = true
                     return
                 }
-                
                 progress.count += 1
+                
+            } unitChanged: {
+                progress.completedUnit += 1
             }
             
             DispatchQueue.main.async {

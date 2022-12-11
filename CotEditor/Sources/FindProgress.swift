@@ -29,14 +29,32 @@ final class FindProgress: ObservableObject {
     
     var count = 0
     
+    var scope: Range<Int>
+    var completedUnit = 0
+    
     @Published var isCancelled = false
     @Published var isFinished = false
     
     
-    /// The fraction of task completed in between 0...1.0.
-    var fractionCompleted: Double? {
+    /// Instantiate a progress.
+    ///
+    /// - Parameter scope: The range of progress unit to work with.
+    init(scope: Range<Int>) {
         
-        self.isFinished ? 1 : nil
+        self.scope = scope
+    }
+    
+    
+    /// The fraction of task completed in between 0...1.0.
+    var fractionCompleted: Double {
+        
+        if self.isFinished {
+            return 1
+        } else if self.scope.isEmpty {
+            return 0
+        } else {
+            return Double(self.completedUnit) / Double(self.scope.count)
+        }
     }
     
 }

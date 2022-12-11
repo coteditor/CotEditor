@@ -158,7 +158,7 @@ struct FindProgressView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        FindProgressView("Label", unit: .find, progress: .init())
+        FindProgressView("Label", unit: .find, progress: .init(scope: 0..<100))
     }
     
 }

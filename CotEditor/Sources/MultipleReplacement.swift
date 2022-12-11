@@ -87,8 +87,9 @@ extension MultipleReplacement {
     ///   - inSelection: Whether find only in selection.
     ///   - block: The block enumerates the matches.
     ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
+    ///   - unitChanged: The block invoked when the task did change to the next replecement definition.
     /// - Returns: The found ranges. This method will return first all search finished.
-    func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
+    func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ stop: inout Bool) -> Void, unitChanged: () -> Void) -> [NSRange] {
         
         var result: [NSRange] = []
         
@@ -110,6 +111,9 @@ extension MultipleReplacement {
             }
             
             guard !isCancelled else { return [] }
+            
+            // notify
+            unitChanged()
         }
         
         return result
@@ -124,8 +128,9 @@ extension MultipleReplacement {
     ///   - inSelection: Whether replace only in selection.
     ///   - block: The block enumerates the matches.
     ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
+    ///   - unitChanged: The block invoked when the task did change to the next replecement definition.
     /// - Returns: The result of the replacement. This method will return first all replacement finished.
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ stop: inout Bool) -> Void) -> Result {
+    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ stop: inout Bool) -> Void, unitChanged: () -> Void) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -140,7 +145,7 @@ extension MultipleReplacement {
             
             // process replacement
             var isCancelled = false
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, stop) in
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, _, stop) in
                 
                 switch flag {
                     case .findProgress:
@@ -162,6 +167,9 @@ extension MultipleReplacement {
             
             // update selected ranges
             result.selectedRanges = selectedRanges
+            
+            // notify
+            unitChanged()
         }
         
         return result

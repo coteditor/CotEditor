@@ -301,7 +301,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let replacementString = self.replacementString
         
         // setup progress sheet
-        let progress = FindProgress()
+        let progress = FindProgress(scope: textFind.scopeRange)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView("Replace All", unit: .replacement, progress: progress)
         let indicator = NSHostingController(rootView: indicatorView)
@@ -311,7 +311,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self else { return }
             
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, range, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
@@ -321,6 +321,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     case .findProgress:
                         break
                     case .replacementProgress:
+                        progress.completedUnit = range.upperBound
                         progress.count += 1
                 }
             }
@@ -551,7 +552,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
-        let progress = FindProgress()
+        let progress = FindProgress(scope: textFind.scopeRange)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView(actionName, unit: .find, progress: progress)
         let indicator = NSHostingController(rootView: indicatorView)
@@ -599,6 +600,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
                 
+                progress.completedUnit = matches[0].upperBound
                 progress.count += 1
             }
             
