@@ -948,16 +948,16 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="evb-xT-L0u"/>
-                                                    <menuItem title="Japanese Text" enabled="NO" id="XWV-by-mnw">
+                                                    <menuItem title="Japanese Text" enabled="NO" id="XWV-by-mnw" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Hiragana to Katakana" indentationLevel="1" id="592">
+                                                    <menuItem title="Hiragana to Katakana" id="592">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeKatakana:" target="Ady-hI-5gd" id="pfD-db-6kI"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Katakana to Hiragana" indentationLevel="1" id="594">
+                                                    <menuItem title="Katakana to Hiragana" id="594">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="exchangeHiragana:" target="Ady-hI-5gd" id="cKm-Ib-McK"/>

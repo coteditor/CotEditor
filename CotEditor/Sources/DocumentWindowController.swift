@@ -204,10 +204,8 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         menu.addItem(.separator())
         
         if !recentStyleNames.isEmpty {
-            let labelItem = NSMenuItem()
-            labelItem.title = String(localized: "Recently Used", comment: "menu heading in syntax style list on toolbar popup")
-            labelItem.isEnabled = false
-            menu.addItem(labelItem)
+            let title = String(localized: "Recently Used", comment: "menu heading in syntax style list on toolbar popup")
+            menu.addItem(HeadingMenuItem(title: title))
             
             menu.items += recentStyleNames.map { NSMenuItem(title: $0, action: action, keyEquivalent: "") }
             menu.addItem(.separator())
@@ -474,16 +472,14 @@ extension DocumentWindowController: NSToolbarDelegate {
                 
             case .tabStyle:
                 let menu = NSMenu()
-                menu.addItem(withTitle: "Tab Width".localized, action: nil, keyEquivalent: "")
+                menu.addItem(HeadingMenuItem(title: "Tab Width".localized))
                 menu.items += [2, 3, 4, 8]
                     .map { (width) in
                         let item = NSMenuItem(title: width.formatted(), action: #selector(DocumentViewController.changeTabWidth), keyEquivalent: "")
                         item.tag = width
-                        item.indentationLevel = 1
                         return item
                     }
                 menu.addItem(withTitle: "Custom…".localized, action: #selector(DocumentViewController.customizeTabWidth), keyEquivalent: "")
-                menu.items.last?.indentationLevel = 1
                 menu.addItem(.separator())
                 menu.addItem(withTitle: "Expand to Spaces Automatically".localized, action: #selector(DocumentViewController.toggleAutoTabExpand), keyEquivalent: "")
                 

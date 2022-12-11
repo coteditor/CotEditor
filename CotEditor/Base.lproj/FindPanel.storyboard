@@ -218,7 +218,7 @@
                                             <menuItem title="DUMMY" image="magnifyingglass" catalog="system" hidden="YES" id="oXp-Kg-hET">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Recent Searches" enabled="NO" id="cdV-rY-hCN">
+                                            <menuItem title="Recent Searches" enabled="NO" id="cdV-rY-hCN" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" tag="-1" id="9ex-ep-oaq"/>
@@ -242,7 +242,7 @@
                                             <menuItem title="DUMMY" image="pencil" catalog="system" hidden="YES" id="pDj-vD-VPN">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Recent Replacements" enabled="NO" id="7cw-iQ-0LM">
+                                            <menuItem title="Recent Replacements" enabled="NO" id="7cw-iQ-0LM" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" tag="-1" id="dFE-4K-Okr"/>

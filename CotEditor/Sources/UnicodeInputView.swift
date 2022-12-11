@@ -64,6 +64,7 @@ struct UnicodeInputView: View {
                 
                 Menu("") {
                     Text("Recents")
+                        .font(.system(size: NSFont.smallSystemFontSize, weight: .medium))
                     let scalars = UserDefaults.standard[.unicodeHistory]
                         .compactMap(UTF32.CodeUnit.init(codePoint:))
                         .compactMap(UnicodeScalar.init)

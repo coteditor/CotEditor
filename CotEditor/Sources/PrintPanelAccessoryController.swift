@@ -261,10 +261,9 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         popupButton.removeAllItems()
         
         popupButton.addItem(withTitle: ThemeName.blackAndWhite)
-        popupButton.menu?.addItem(.separator())
         
-        popupButton.addItem(withTitle: "Theme".localized)
-        popupButton.lastItem?.isEnabled = false
+        popupButton.menu?.addItem(.separator())
+        popupButton.menu?.addItem(HeadingMenuItem(title: "Theme".localized))
         
         for themeName in themeNames {
             popupButton.addItem(withTitle: themeName)
