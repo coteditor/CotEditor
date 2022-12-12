@@ -485,6 +485,13 @@
 
 
 
+/* MARK: Opacity View */
+"Editor’s Opacity" = "編輯器透明度";
+"Transparent" = "透明";
+"Opaque" = "不透明";
+
+
+
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "插入顏色代碼";

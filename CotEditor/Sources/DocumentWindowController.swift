@@ -26,6 +26,7 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 
 final class DocumentWindowController: NSWindowController, NSWindowDelegate {
     
@@ -532,12 +533,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return item
                 
             case .opacity:
-                let opacityViewController = self.storyboard!.instantiateController(withIdentifier: "Opacity Slider") as! OpacityViewController
-                opacityViewController.window = self.window
                 let menuItem = NSMenuItem()
-                menuItem.view = opacityViewController.view
-                menuItem.representedObject = opacityViewController
-                
+                menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
                 let item = MenuToolbarItem(itemIdentifier: itemIdentifier)
                 item.label = "Opacity".localized
                 item.toolTip = "Change editor’s opacity".localized

@@ -32,14 +32,6 @@
 "JZo-ok-Dks.label" = "警告";
 
 
-/* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
-"Are-7I-6OR.title" = "編輯器透明度";
-/* Class = "NSView"; ibShadowedToolTip = "Transparent"; ObjectID = "EVo-Ee-gQ1"; */
-"EVo-Ee-gQ1.ibShadowedToolTip" = "透明";
-/* Class = "NSView"; ibShadowedToolTip = "Opaque"; ObjectID = "8NN-KX-RmA"; */
-"8NN-KX-RmA.ibShadowedToolTip" = "不透明";
-
-
 /* Class = "NSPopUpButton"; title = "File encoding"; ObjectID = "CUv-So-9Og"; */
 "CUv-So-9Og.ibShadowedToolTip" = "檔案編碼";
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "mS8-3F-93y"; */

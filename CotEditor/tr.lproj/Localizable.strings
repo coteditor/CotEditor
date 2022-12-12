@@ -485,6 +485,13 @@
 
 
 
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Düzenleyici Matlığı";
+"Transparent" = "Saydam";
+"Opaque" = "Mat";
+
+
+
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "Renk Kodu Ekle";

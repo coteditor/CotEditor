@@ -1,86 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21223" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21223"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Opacity View Controller-->
-        <scene sceneID="Yfj-JT-7D8">
-            <objects>
-                <viewController storyboardIdentifier="Opacity Slider" id="ZLM-Nl-Z29" customClass="OpacityViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="bOA-H3-R5s">
-                        <rect key="frame" x="0.0" y="0.0" width="168" height="58"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK" customClass="WorkaroundOpacitySlider" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="32" y="4" width="104" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="IyE-hB-aRv"/>
-                                </constraints>
-                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="nH9-7k-ekd"/>
-                                <connections>
-                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="window.backgroundAlpha" id="hcK-Yp-Ia1">
-                                        <dictionary key="options">
-                                            <bool key="NSValidatesImmediately" value="YES"/>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </slider>
-                            <customView toolTip="Opaque" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="142" y="12" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="fKr-dw-ydI"/>
-                                    <constraint firstAttribute="width" secondItem="8NN-KX-RmA" secondAttribute="height" multiplier="1:1" id="z4I-AJ-XUY"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </customView>
-                            <customView toolTip="Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="EVo-Ee-gQ1" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="10" y="12" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="Ua8-gn-INm"/>
-                                    <constraint firstAttribute="width" secondItem="EVo-Ee-gQ1" secondAttribute="height" multiplier="1:1" id="ffh-fp-NbT"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
-                                        <real key="value" value="0.20000000000000001"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </customView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w6y-xp-bly">
-                                <rect key="frame" x="8" y="36" width="101" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Editor’s Opacity" id="Are-7I-6OR">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="w6y-xp-bly" firstAttribute="leading" secondItem="bOA-H3-R5s" secondAttribute="leading" constant="10" id="8ZK-7g-gVK"/>
-                            <constraint firstAttribute="trailing" secondItem="8NN-KX-RmA" secondAttribute="trailing" constant="10" id="B8y-Wd-GeZ"/>
-                            <constraint firstItem="EVo-Ee-gQ1" firstAttribute="leading" secondItem="bOA-H3-R5s" secondAttribute="leading" constant="10" id="PNF-bq-CpF"/>
-                            <constraint firstItem="8NN-KX-RmA" firstAttribute="centerY" secondItem="EVo-Ee-gQ1" secondAttribute="centerY" id="Qk8-Dg-YoV"/>
-                            <constraint firstItem="EVo-Ee-gQ1" firstAttribute="top" secondItem="w6y-xp-bly" secondAttribute="bottom" constant="8" symbolic="YES" id="Tdv-Pe-xeS"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w6y-xp-bly" secondAttribute="trailing" constant="20" symbolic="YES" id="ZOb-kt-9qP"/>
-                            <constraint firstAttribute="bottom" secondItem="ZFD-Ne-lGK" secondAttribute="bottom" constant="10" id="b4K-7o-CYA"/>
-                            <constraint firstItem="w6y-xp-bly" firstAttribute="top" secondItem="bOA-H3-R5s" secondAttribute="top" constant="6" id="bha-wT-AWy"/>
-                            <constraint firstItem="8NN-KX-RmA" firstAttribute="leading" secondItem="ZFD-Ne-lGK" secondAttribute="trailing" constant="8" symbolic="YES" id="frb-pU-Ioy"/>
-                            <constraint firstItem="ZFD-Ne-lGK" firstAttribute="leading" secondItem="EVo-Ee-gQ1" secondAttribute="trailing" constant="8" symbolic="YES" id="g88-0H-jxA"/>
-                            <constraint firstItem="ZFD-Ne-lGK" firstAttribute="centerY" secondItem="EVo-Ee-gQ1" secondAttribute="centerY" id="v3v-iY-csa"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="5Ob-vN-y5O" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="44" y="-190"/>
-        </scene>
         <!--Window Controller-->
         <scene sceneID="sAX-Gn-44h">
             <objects>

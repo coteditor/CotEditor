@@ -485,6 +485,13 @@
 
 
 
+/* MARK: Opacity View */
+"Editor’s Opacity" = "Opacidade do Editor";
+"Transparent" = "Transparente";
+"Opaque" = "Opaco";
+
+
+
 /* MARK: ColorCodePanelController */
 // Undo action name
 "Insert Color Code" = "Inserir Código de Cor";
