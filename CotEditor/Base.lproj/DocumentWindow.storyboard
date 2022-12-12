@@ -200,7 +200,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" autoenablesItems="NO" id="2cU-Cq-rxZ" customClass="OptionalMenu" customModule="CotEditor" customModuleProvider="target">
                                         <items>
-                                            <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y">
+                                            <menuItem title="Line Endings" tag="-1" enabled="NO" id="mS8-3F-93y" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="LF" state="on" toolTip="macOS / Unix" id="YT7-vd-3ih">
@@ -253,7 +253,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                     <menu key="menu" autoenablesItems="NO" id="E76-Et-IKc">
                                         <items>
-                                            <menuItem title="File Encoding" tag="-1" enabled="NO" id="q4F-Uw-VL4">
+                                            <menuItem title="File Encoding" tag="-1" enabled="NO" id="q4F-Uw-VL4" customClass="HeadingMenuItem" customModule="CotEditor" customModuleProvider="target">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Unicode (UTF-8)" state="on" id="fc5-iy-HpH">
