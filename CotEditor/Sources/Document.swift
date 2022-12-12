@@ -27,6 +27,7 @@
 import Combine
 import Cocoa
 import UniformTypeIdentifiers
+import SwiftUI
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
@@ -74,7 +75,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var fileData: Data?
     private var shouldSaveEncodingXattr = true
     private var isExecutable = false
-    @objc private dynamic var isExecutableFromLastRunSavePanel = false  // bind in save panel accessory view
+    private let saveOptions = SaveOptions()
     
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
@@ -496,7 +497,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.isExecutableFromLastRunSavePanel, !saveOperation.isAutosave {
+        if self.saveOptions.isExecutable, !saveOperation.isAutosave {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions] = permissions | S_IXUSR
         }
@@ -522,7 +523,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     override func runModalSavePanel(for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        self.isExecutableFromLastRunSavePanel = self.isExecutable
+        self.saveOptions.isExecutable = self.isExecutable
         
         let context = DelegateContext(delegate: delegate, selector: didSaveSelector, contextInfo: contextInfo)
         super.runModalSavePanel(for: saveOperation, delegate: self, didSave: #selector(document(_:didSave:contextInfo:)), contextInfo: bridgeWrapped(context))
@@ -560,18 +561,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set accessory view
-        let checkbox = NSButton(checkboxWithTitle: "Give execute permission".localized, target: nil, action: nil)
-        checkbox.bind(.value, to: self, withKeyPath: #keyPath(isExecutableFromLastRunSavePanel))
-        checkbox.translatesAutoresizingMaskIntoConstraints = false
-        let accessoryView = NSView()
-        accessoryView.addSubview(checkbox)
-        NSLayoutConstraint.activate([
-            checkbox.centerXAnchor.constraint(equalTo: accessoryView.centerXAnchor),
-            checkbox.leadingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: accessoryView.leadingAnchor, multiplier: 1),
-            accessoryView.trailingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: checkbox.trailingAnchor, multiplier: 1),
-            checkbox.topAnchor.constraint(equalToSystemSpacingBelow: accessoryView.topAnchor, multiplier: 0.5),
-            accessoryView.bottomAnchor.constraint(equalToSystemSpacingBelow: checkbox.bottomAnchor, multiplier: 0.5),
-        ])
+        let accessory = SavePanelAccessory(options: self.saveOptions)
+        let accessoryView = NSHostingView(rootView: accessory)
+        accessoryView.ensureFrameSize()
         savePanel.accessoryView = accessoryView
         
         return true
@@ -1080,7 +1072,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @objc private func document(_ document: NSDocument, didSave didSaveSuccessfully: Bool, contextInfo: UnsafeMutableRawPointer) {
         
         if didSaveSuccessfully {
-            self.isExecutable = self.isExecutableFromLastRunSavePanel
+            self.isExecutable = self.saveOptions.isExecutable
         }
         
         // manually invoke the original delegate method
