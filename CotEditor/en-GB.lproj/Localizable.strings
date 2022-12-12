@@ -862,6 +862,33 @@
 "Invalid pattern" = "Invalid pattern";
 "Empty pattern" = "Empty pattern";
 
+"Sample:" = "Sample:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Sample line to check which part in a line will be used for sort comparison.";
+
+"Sort key:" = "Sort key:";
+"Entire line" = "Entire line";
+"Column" = "Column";
+"Regular expression" = "Regular expression";
+
+"Sort option:" = "Sort option:";
+"Ignore Case" = "Ignore Case";
+"Respect language rules" = "Respect language rules";
+"Treat numbers as numeric value" = "Treat numbers as numeric value";
+"Keep the first line at the top" = "Keep the first line at the top";
+"In descending order" = "In descending order";
+
+"Delimiter:" = "Delimiter:";
+"Position:" = "Position:";
+
+"Pattern:" = "Pattern:";
+"Regular Expression" = "Regular Expression";
+"Ignore case" = "Ignore case";
+"Use captured group:" = "Use captured group:";
+
+// button label
+"Sort" = "Sort";
+
 
 
 /* MARK: Encoding List View */

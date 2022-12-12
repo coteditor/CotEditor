@@ -24,6 +24,7 @@
 //
 
 import AppKit
+import SwiftUI
 
 extension EditorTextView {
     
@@ -149,11 +150,11 @@ extension EditorTextView {
         let sampleLine = String(self.string[lineRange])
         let fontName = self.font?.fontName
         
-        let viewController = NSStoryboard(name: "PatternSortView").instantiateInitialController { (coder) in
-            PatternSortViewController(coder: coder, sampleLine: sampleLine, fontName: fontName) { [weak self] (pattern, options) in
-                self?.sortLines(pattern: pattern, options: options)
-            }
-        }!
+        let view = PatternSortView(sampleLine: sampleLine, sampleFontName: fontName) { [weak self] (pattern, options) in
+            self?.sortLines(pattern: pattern, options: options)
+        }
+        let viewController = NSHostingController(rootView: view)
+        viewController.rootView.parent = viewController
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
     }

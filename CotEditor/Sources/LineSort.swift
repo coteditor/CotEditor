@@ -25,7 +25,24 @@
 
 import Foundation
 
-protocol SortPattern: AnyObject {
+enum SortPatternError: LocalizedError {
+    
+    case emptyPattern
+    case invalidRegularExpressionPattern
+    
+    var errorDescription: String? {
+        
+        switch self {
+            case .emptyPattern:
+                String(localized: "Empty pattern")
+            case .invalidRegularExpressionPattern:
+                String(localized: "Invalid pattern")
+        }
+    }
+}
+
+
+protocol SortPattern: Equatable {
     
     func sortKey(for line: String) -> String?
     func range(for line: String) -> Range<String.Index>?
@@ -53,7 +70,7 @@ extension SortPattern {
             .sorted {
                 switch ($0.key, $1.key) {
                     case let (.some(key0), .some(key1)):
-                        // sort items by evaluating as numbers
+                        // sort items by evaluating values as numbers
                         // -> This code still ignores numbers in the middle of keys.
                         if let number0 = options.parse(key0),
                            let number1 = options.parse(key1),
@@ -88,7 +105,7 @@ extension SortPattern {
 
 // MARK: -
 
-final class EntireLineSortPattern: NSObject, SortPattern {
+struct EntireLineSortPattern: SortPattern {
     
     func sortKey(for line: String) -> String? {
         
@@ -107,10 +124,10 @@ final class EntireLineSortPattern: NSObject, SortPattern {
 
 
 
-final class CSVSortPattern: NSObject, SortPattern {
+struct CSVSortPattern: SortPattern {
     
-    @objc dynamic var delimiter: String = ","
-    @objc dynamic var column: Int = 1
+    var delimiter: String = ","
+    var column: Int = 1
     
     
     func sortKey(for line: String) -> String? {
@@ -153,18 +170,14 @@ final class CSVSortPattern: NSObject, SortPattern {
 }
 
 
-final class RegularExpressionSortPattern: NSObject, SortPattern {
+struct RegularExpressionSortPattern: SortPattern {
     
-    @objc dynamic var searchPattern: String = ""
-    @objc dynamic var ignoresCase: Bool = true
-    @objc dynamic var usesCaptureGroup: Bool = false
-    @objc dynamic var group: Int = 1
+    var searchPattern: String = ""
+    var ignoresCase: Bool = true
+    var usesCaptureGroup: Bool = false
+    var group: Int = 1
     
-    @objc private(set) dynamic var errorMessage: String?
-    @objc private(set) dynamic var numberOfCaptureGroups: Int = 0
-    
-    
-    private var regex: NSRegularExpression?
+    var numberOfCaptureGroups: Int  { (try? self.regex)?.numberOfCaptureGroups ?? 0 }
     
     
     func sortKey(for line: String) -> String? {
@@ -177,12 +190,8 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     
     func range(for line: String) -> Range<String.Index>? {
         
-        if self.regex == nil {
-            try? self.validate()
-        }
-        
         guard
-            let regex = self.regex,
+            let regex = try? self.regex,
             let match = regex.firstMatch(in: line, range: line.nsRange)
         else { return nil }
         
@@ -195,28 +204,26 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
     }
     
     
-    /// test regex pattern is valid
+    /// Test the regular expression pattern is valid.
     func validate() throws {
         
-        let options: NSRegularExpression.Options = self.ignoresCase ? [.caseInsensitive] : []
-        let regex: NSRegularExpression
-        do {
-            regex = try NSRegularExpression(pattern: self.searchPattern, options: options)
-        } catch {
-            self.regex = nil
-            self.numberOfCaptureGroups = 0
-            if self.searchPattern.isEmpty {
-                self.errorMessage = String(localized: "Empty pattern")
-            } else {
-                self.errorMessage = String(localized: "Invalid pattern")
-            }
-            
-            throw error
+        if self.searchPattern.isEmpty {
+            throw SortPatternError.emptyPattern
         }
         
-        self.regex = regex
-        self.numberOfCaptureGroups = regex.numberOfCaptureGroups
-        self.errorMessage = nil
+        do {
+            _ = try self.regex
+        } catch {
+            throw SortPatternError.invalidRegularExpressionPattern
+        }
+    }
+    
+    
+    private var regex: NSRegularExpression? {
+        
+        get throws {
+            try NSRegularExpression(pattern: self.searchPattern, options: self.ignoresCase ? [.caseInsensitive] : [])
+        }
     }
 }
 
@@ -224,16 +231,16 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
 
 // MARK: -
 
-final class SortOptions: NSObject {
+struct SortOptions: Equatable {
     
-    @objc dynamic var ignoresCase: Bool = true
-    @objc dynamic var numeric: Bool = true
+    var ignoresCase: Bool = true
+    var numeric: Bool = true
     
-    @objc dynamic var isLocalized: Bool = true
-    @objc dynamic var keepsFirstLine: Bool = false
-    @objc dynamic var descending: Bool = false
+    var isLocalized: Bool = true
+    var keepsFirstLine: Bool = false
+    var descending: Bool = false
     
-    var locale: Locale = .current
+    private var locale: Locale = .current
     
     
     var compareOptions: String.CompareOptions {
@@ -246,7 +253,7 @@ final class SortOptions: NSObject {
     
     var usedLocale: Locale? {
         
-        self.isLocalized ? self.locale: nil
+        self.isLocalized ? self.locale : nil
     }
     
     
@@ -260,7 +267,7 @@ final class SortOptions: NSObject {
         
         guard self.numeric else { return nil }
         
-        let locale = self.isLocalized ? self.locale : .init(identifier: "en")
+        let locale = self.usedLocale ?? .init(identifier: "en")
         let numberParser = FloatingPointFormatStyle<Double>(locale: locale).parseStrategy
         
         return try? numberParser.parse(value)

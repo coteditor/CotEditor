@@ -31,14 +31,14 @@ struct InsetTextField: NSViewRepresentable {
     typealias NSViewType = PaddingTextField
     
     @Binding private var text: String
-    private let prompt: String?
+    private let prompt: LocalizedStringResource?
     
     private var insets: EdgeInsets = .init()
     private var usesMonospacedDigit = false
     private var onSubmit: () -> Void = {}
     
     
-    init(text: Binding<String>, prompt: String? = nil) {
+    init(text: Binding<String>, prompt: LocalizedStringResource? = nil) {
         
         self._text = text
         self.prompt = prompt
@@ -51,7 +51,7 @@ struct InsetTextField: NSViewRepresentable {
         textField.leadingPadding = self.insets.leading
         textField.trailingPadding = self.insets.trailing
         textField.delegate = context.coordinator
-        textField.placeholderString = self.prompt
+        textField.placeholderString = self.prompt.flatMap(String.init(localized:))
         textField.isEditable = true
         
         return textField

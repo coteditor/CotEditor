@@ -863,6 +863,33 @@
 "Invalid pattern" = "不合法的範式";
 "Empty pattern" = "空白範式";
 
+"Sample:" = "示例：";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "檢查行中哪個部分將被用於比較排序的示例行。";
+
+"Sort key:" = "排序鍵：";
+"Entire line" = "整行";
+"Column" = "列";
+"Regular expression" = "常規表示式";
+
+"Sort option:" = "排序選項：";
+"Ignore Case" = "忽略大小寫";
+"Respect language rules" = "遵守語言規則";
+"Treat numbers as numeric value" = "將陣列視為數值";
+"Keep the first line at the top" = "首行置頂";
+"In descending order" = "降序";
+
+"Delimiter:" = "分界符：";
+"Position:" = "位置：";
+
+"Pattern:" = "模式：";
+"Regular Expression" = "常規表示式";
+"Ignore case" = "忽略大小寫";
+"Use captured group:" = "使用捕獲組：";
+
+// button label
+"Sort" = "排序";
+
 
 
 /* MARK: Encoding List View */

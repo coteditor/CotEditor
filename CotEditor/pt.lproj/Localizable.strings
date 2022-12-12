@@ -863,6 +863,33 @@
 "Invalid pattern" = "Padrão inválido";
 "Empty pattern" = "Padrão vazio";
 
+"Sample:" = "Amostra:";
+// tooltip
+"Sample line to check which part in a line will be used for sort comparison." = "Linha de amostra para verificar qual parte de uma linha será usada ao ordenar a comparação.";
+
+"Sort key:" = "Ordenar por:";
+"Entire line" = "Toda a linha";
+"Column" = "Coluna";
+"Regular expression" = "Expressão regular";
+
+"Sort option:" = "Opções de ordenação:";
+"Ignore Case" = "Ignorar Maiúsculas/Minúsculas";
+"Respect language rules" = "Respeitar regras do idioma";
+"Treat numbers as numeric value" = "Tratar números como valor numérico";
+"Keep the first line at the top" = "Manter primeira linha no topo";
+"In descending order" = "Em ordem decrescente";
+
+"Delimiter:" = "Delimitador:";
+"Position:" = "Posição:";
+
+"Pattern:" = "Padrão:";
+"Regular Expression" = "Expressão Regular";
+"Ignore case" = "Ignorar maiúsculas/minúsculas";
+"Use captured group:" = "Usar grupo capturado:";
+
+// button label
+"Sort" = "Ordenar";
+
 
 
 /* MARK: Encoding List View */
