@@ -214,11 +214,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         let viewController = NSHostingController(rootView: view)
         viewController.rootView.parent = viewController
-        
-        // -> Needs to set the size beforehand
-        //    to display the popover at the desired position (Xcode 14.0, FB10926162)
-        assert(viewController.view.frame.isEmpty)
-        viewController.view.frame.size = viewController.view.intrinsicContentSize
+        viewController.ensureFrameSize()
         
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
         let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
