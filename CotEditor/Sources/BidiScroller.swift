@@ -4,11 +4,11 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by imanishi on 2022/03/27.
+//  Created by 1024jp on 2022-03-27.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 CotEditor Project
+//  © 2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
