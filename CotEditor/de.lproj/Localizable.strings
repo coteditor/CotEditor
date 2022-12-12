@@ -160,6 +160,12 @@
 
 
 
+/* MARK: Open Panel Accessory */
+"Encoding:" = "Codierung:";
+"Show hidden files" = "Versteckte Dateien anzeigen";
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Automatic" = "Automatisch";

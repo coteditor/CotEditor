@@ -160,6 +160,12 @@
 
 
 
+/* MARK: Open Panel Accessory */
+"Encoding:" = "エンコーディング:";
+"Show hidden files" = "不可視ファイルを表示";
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Automatic" = "自動";

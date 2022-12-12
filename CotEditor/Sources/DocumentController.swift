@@ -25,6 +25,7 @@
 //
 
 import Cocoa
+import SwiftUI
 import UniformTypeIdentifiers
 
 protocol AdditionalDocumentPreparing: NSDocument {
@@ -175,20 +176,18 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     @MainActor override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?) async -> Int {
         
-        let accessoryController: OpenPanelAccessoryController = NSStoryboard(name: "OpenDocumentAccessory").instantiateInitialController()!
+        let options = OpenOptions()
+        let accessory = OpenPanelAccessory(options: options, openPanel: openPanel, encodings: EncodingManager.shared.encodings)
+        let accessoryView = NSHostingView(rootView: accessory)
+        accessoryView.ensureFrameSize()
         
-        // initialize encoding menu and set the accessory view
-        accessoryController.openPanel = openPanel
-        openPanel.accessoryView = accessoryController.view
-        
-        // force accessory view visible
+        openPanel.accessoryView = accessoryView
         openPanel.isAccessoryViewDisclosed = true
         
-        // run non-modal open panel
         let result = await super.beginOpenPanel(openPanel, forTypes: inTypes)
         
         if result == NSApplication.ModalResponse.OK.rawValue {
-            self.accessorySelectedEncoding = accessoryController.selectedEncoding
+            self.accessorySelectedEncoding = options.encoding
         }
         
         return result

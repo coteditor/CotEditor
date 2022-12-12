@@ -160,6 +160,12 @@
 
 
 
+/* MARK: Open Panel Accessory */
+"Encoding:" = "编码：";
+"Show hidden files" = "显示隐藏文件";
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Automatic" = "自动";

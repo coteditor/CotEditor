@@ -568,9 +568,8 @@
 		2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */; };
 		2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
 		2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */; };
-		2AC60698204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */; };
-		2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
-		2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
+		2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
+		2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */; };
 		2AC6BFD121D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */; };
 		2AC6BFD221D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */; };
 		2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */; };
@@ -623,7 +622,6 @@
 		2ACDE2A02406B9C000FC31EC /* WarningsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* WarningsView.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
 		2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */; };
-		2ACDE2A42406B9C000FC31EC /* OpenDocumentAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */; };
 		2ACDE2A52406B9C000FC31EC /* OutlineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D420450C0000830830 /* OutlineView.storyboard */; };
 		2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */; };
 		2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D11E1E713BE60027192A /* PrintPane.storyboard */; };
@@ -824,7 +822,6 @@
 		08C28F99279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OutlineView.strings; sourceTree = "<group>"; };
 		08C28F9A279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/WarningsView.strings; sourceTree = "<group>"; };
 		08C28F9B279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/EditorView.strings; sourceTree = "<group>"; };
-		08C28F9C279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		08C28F9E279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		08C28FA2279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		08C28FA5279CBE300016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
@@ -846,7 +843,6 @@
 		0D51D56E2274EAD800A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OutlineView.strings; sourceTree = "<group>"; };
 		0D51D56F2274EAD800A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/WarningsView.strings; sourceTree = "<group>"; };
 		0D51D5702274EAD800A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/EditorView.strings; sourceTree = "<group>"; };
-		0D51D5712274EAD900A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		0D51D5732274EADB00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		0D51D5762274EADC00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		0D51D5792274EADD00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SettingsWindow.strings; sourceTree = "<group>"; };
@@ -1329,13 +1325,7 @@
 		2AC4E5D027A6C02C0052A4DD /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/ServicesMenu.strings"; sourceTree = "<group>"; };
 		2AC4E5D127A6C0300052A4DD /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Unicode.strings"; sourceTree = "<group>"; };
 		2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
-		2AC60697204169F800F9C839 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OpenDocumentAccessory.storyboard; sourceTree = "<group>"; };
-		2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessoryController.swift; sourceTree = "<group>"; };
-		2AC6069D2041760000F9C839 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
-		2AC6069E2041760200F9C839 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
-		2AC6069F2041760400F9C839 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
-		2AC606A02041760700F9C839 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
-		2AC606A12041760900F9C839 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
+		2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenPanelAccessory.swift; sourceTree = "<group>"; };
 		2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RegexParse.swift"; sourceTree = "<group>"; };
 		2AC7044724EBB76B00454706 /* NSToolbarItem+Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSToolbarItem+Validatable.swift"; sourceTree = "<group>"; };
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1523,7 +1513,6 @@
 		5B08850028296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OutlineView.strings"; sourceTree = "<group>"; };
 		5B08850128296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/WarningsView.strings"; sourceTree = "<group>"; };
 		5B08850228296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/EditorView.strings"; sourceTree = "<group>"; };
-		5B08850328296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
 		5B08850528296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		5B08850928296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		5B08850C28296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
@@ -1564,7 +1553,6 @@
 		98EAE82A27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/OutlineView.strings"; sourceTree = "<group>"; };
 		98EAE82B27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/WarningsView.strings"; sourceTree = "<group>"; };
 		98EAE82C27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/EditorView.strings"; sourceTree = "<group>"; };
-		98EAE82D27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/OpenDocumentAccessory.strings"; sourceTree = "<group>"; };
 		98EAE82F27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		98EAE83327A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		98EAE83627A5D7DA00C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
@@ -2144,7 +2132,6 @@
 			isa = PBXGroup;
 			children = (
 				2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */,
-				2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */,
 				2A1679E51D3CE07100E8261D /* Document.swift */,
 				2A50AA61204D513500D10A10 /* DocumentFile.swift */,
 			);
@@ -2243,6 +2230,7 @@
 		2A6602EB1D05E04E003E8D87 /* Accessory Views */ = {
 			isa = PBXGroup;
 			children = (
+				2AC6069A20416ADE00F9C839 /* OpenPanelAccessory.swift */,
 				2A158C212945F54B000A4EC1 /* OpacityView.swift */,
 				2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */,
 				2A5D13151D1EF5AA00D38E6A /* GoToLineView.swift */,
@@ -2358,7 +2346,6 @@
 		2AAEA6A01A4342A800A930CA /* Document Accessories */ = {
 			isa = PBXGroup;
 			children = (
-				2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */,
 				2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */,
 				2A7F4E022871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard */,
 				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
@@ -2774,7 +2761,6 @@
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
 				2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */,
 				2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */,
-				2ACDE2A42406B9C000FC31EC /* OpenDocumentAccessory.storyboard in Resources */,
 				2ACDE2A52406B9C000FC31EC /* OutlineView.storyboard in Resources */,
 				2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */,
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
@@ -2845,7 +2831,6 @@
 				2AC20A711E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
 				2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */,
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */,
-				2AC60698204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
 				2AE7A8D620450C0000830830 /* OutlineView.storyboard in Resources */,
 				2A1893A41FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A10D1201E713BE60027192A /* PrintPane.storyboard in Resources */,
@@ -3154,7 +3139,7 @@
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
-				2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
+				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
@@ -3494,7 +3479,8 @@
 				2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
-				2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */,
+				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
+				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
@@ -4186,23 +4172,6 @@
 				08C28F82279CBE2D0016693E /* tr */,
 			);
 			name = GeneralPane.storyboard;
-			sourceTree = "<group>";
-		};
-		2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AC60697204169F800F9C839 /* Base */,
-				98EAE82D27A5D7D900C6D571 /* en-GB */,
-				2AC6069D2041760000F9C839 /* ja */,
-				2AC6069E2041760200F9C839 /* zh-Hans */,
-				5B08850328296B61003D4C2D /* zh-Hant */,
-				0D51D5712274EAD900A5D747 /* fr */,
-				2AC6069F2041760400F9C839 /* de */,
-				2AC606A02041760700F9C839 /* it */,
-				2AC606A12041760900F9C839 /* pt */,
-				08C28F9C279CBE2F0016693E /* tr */,
-			);
-			name = OpenDocumentAccessory.storyboard;
 			sourceTree = "<group>";
 		};
 		2ACA0C8A21A29D4800723073 /* FindSettingsView.storyboard */ = {
