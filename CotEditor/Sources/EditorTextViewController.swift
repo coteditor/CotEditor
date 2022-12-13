@@ -232,8 +232,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // show counter
-        let sheetView = CharacterCountOptionsSheetView { [weak self] (performs) in
-            guard performs else { return }
+        let sheetView = CharacterCountOptionsSheetView { [weak self] in
             self?.showAdvancedCharacterCounter()
         }
         let optionViewController = NSHostingController(rootView: sheetView)

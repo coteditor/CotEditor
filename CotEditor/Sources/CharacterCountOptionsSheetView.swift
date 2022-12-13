@@ -28,29 +28,43 @@ import SwiftUI
 struct CharacterCountOptionsSheetView: View {
     
     weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
-    let completionHandler: (Bool) -> Void
+    let completionHandler: () -> Void
     
+    @State private var buttonWidth: CGFloat?
+    
+    
+    // MARK: View
     
     var body: some View {
         
         VStack {
             CharacterCountOptionsView()
+                .padding(.bottom, 20)
             
             HStack {
                 HelpButton(anchor: "howto_count_characters")
+                
                 Spacer()
-                Button("Cancel", role: .cancel) {
+                
+                Button(role: .cancel) {
                     self.parent?.dismiss(nil)
-                    self.completionHandler(false)
-                }
-                .keyboardShortcut(.cancelAction)
-                Button("Start") {
+                } label: {
+                    Text("Cancel")
+                        .background(WidthGetter(key: WidthKey.self))
+                        .frame(width: self.buttonWidth)
+                }.keyboardShortcut(.cancelAction)
+                
+                Button {
+                    self.completionHandler()
                     self.parent?.dismiss(nil)
-                    self.completionHandler(true)
-                }
-                .keyboardShortcut(.defaultAction)
+                } label: {
+                    Text("Start")
+                        .background(WidthGetter(key: WidthKey.self))
+                        .frame(width: self.buttonWidth)
+                }.keyboardShortcut(.defaultAction)
             }
         }
         .padding()
     }
+    
 }

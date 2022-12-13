@@ -46,7 +46,6 @@ struct CharacterCountOptionsView: View {
                 }
                 .alignmentGuide(.column) { $0[.leading] }
                 .background(WidthGetter(key: WidthKey.self))
-                .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }
             }.fixedSize()
             
             HStack(alignment: .firstTextBaseline) {
@@ -73,7 +72,6 @@ struct CharacterCountOptionsView: View {
                             }
                         }.fixedSize()
                             .background(WidthGetter(key: WidthKey.self))
-                            .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }
                     }
                     
                     Text(self.setting.unit.description)
@@ -102,6 +100,7 @@ struct CharacterCountOptionsView: View {
                 .alignmentGuide(.column) { $0[.leading] }
             }
         }
+        .onPreferenceChange(WidthKey.self) { self.contentWidth = $0 }
         .animation(.default, value: self.setting.unit)
     }
 }
