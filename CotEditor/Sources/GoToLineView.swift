@@ -59,7 +59,7 @@ struct GoToLineView: View {
                     .onSubmit(self.submit)
             }
             
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 HelpButton(anchor: "howto_jump")
                 
                 Spacer()

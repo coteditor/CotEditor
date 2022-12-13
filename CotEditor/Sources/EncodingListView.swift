@@ -99,7 +99,7 @@ struct EncodingListView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.bottom)
             
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 HelpButton(anchor: "howto_customize_encoding_order")
                 
                 Button("Restore Defaults", action: self.restore)
