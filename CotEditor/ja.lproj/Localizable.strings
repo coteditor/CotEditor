@@ -776,6 +776,12 @@
 
 
 
+/* MARK: Character Inspector View */
+"Unknown" = "不明";
+"No Block" = "ブロックなし";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高度な文字カウント…";

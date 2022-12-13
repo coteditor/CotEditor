@@ -251,7 +251,12 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             let character = (textView.string as NSString).substring(with: textView.selectedRange).first
         else { return assertionFailure() }
         
-        let popoverController = CharacterPopoverController.instantiate(for: character)
+        let characterInfo = CharacterInfo(character: character)
+        let popoverController = DetachablePopoverViewController()
+        let hostingView = NSHostingView(rootView: CharacterInspectorView(info: characterInfo))
+        hostingView.ensureFrameSize()
+        popoverController.view = hostingView
+        
         let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         
         textView.scrollRangeToVisible(textView.selectedRange)

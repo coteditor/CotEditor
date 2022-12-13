@@ -776,6 +776,12 @@
 
 
 
+/* MARK: Character Inspector View */
+"Unknown" = "Sconosciuta";
+"No Block" = "Nessun Blocco";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Conteggio caratteri avanzato…";

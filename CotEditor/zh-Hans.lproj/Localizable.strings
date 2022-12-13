@@ -776,6 +776,12 @@
 
 
 
+/* MARK: Character Inspector View */
+"Unknown" = "未知";
+"No Block" = "无 Block";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "高级字符计数…";

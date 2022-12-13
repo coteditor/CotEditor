@@ -776,6 +776,12 @@
 
 
 
+/* MARK: Character Inspector View */
+"Unknown" = "Unknown";
+"No Block" = "No Block";
+
+
+
 /* MARK: AdvancedCharacterCounterView */
 // menu labels
 "Advanced Character Count…" = "Advanced Character Count…";
