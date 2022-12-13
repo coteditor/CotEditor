@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Cocoa
 
 struct CustomTabWidthView: View {
     
@@ -57,7 +56,7 @@ struct CustomTabWidthView: View {
         VStack {
             Form {
                 TextField("Tab width:", value: $value, format: .number, prompt: Text(self.defaultWidth, format: .number))
-                    .font(.body.monospacedDigit())
+                    .monospacedDigit()
                     .onSubmit(self.submit)
             }
             

@@ -34,6 +34,7 @@ struct InsetTextField: NSViewRepresentable {
     let prompt: String?
     
     var insets: EdgeInsets = .init()
+    var usesMonospacedDigit = false
     var onSubmit: () -> Void = {}
     
     
@@ -56,6 +57,9 @@ struct InsetTextField: NSViewRepresentable {
         nsView.stringValue = self.text
         nsView.leadingPadding = self.insets.leading
         nsView.trailingPadding = self.insets.trailing
+        if self.usesMonospacedDigit, let font = nsView.font {
+            nsView.font = .monospacedDigitSystemFont(ofSize: font.pointSize, weight: font.weight)
+        }
     }
     
     
@@ -93,7 +97,7 @@ struct InsetTextField: NSViewRepresentable {
                 self.onSubmit()
             }
             
-            return true
+            return false
         }
     }
     
@@ -139,6 +143,15 @@ extension InsetTextField {
         
         var view = self
         view.onSubmit = action
+        return view
+    }
+    
+    
+    /// Modifiy the font to use fixed-width digits.
+    func monospacedDigit() -> Self {
+        
+        var view = self
+        view.usesMonospacedDigit = true
         return view
     }
 }

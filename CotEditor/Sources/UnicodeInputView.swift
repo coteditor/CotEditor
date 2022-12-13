@@ -60,7 +60,7 @@ struct UnicodeInputView: View {
                 InsetTextField(text: $codePoint, prompt: "U+1F600")
                     .onSubmit(self.submit)
                     .inset(.leading, 18)
-                    .font(.body.monospacedDigit())
+                    .monospacedDigit()
                 
                 Menu("") {
                     Text("Recents")
@@ -74,7 +74,7 @@ struct UnicodeInputView: View {
                             self.codePoint = scalar.codePoint
                         } label: {
                             Text(verbatim: scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
-                                .font(.body.monospacedDigit()) +
+                                .monospacedDigit() +
                             Text(verbatim: scalar.name ?? "–")
                                 .font(.system(size: NSFont.smallSystemFontSize))
                                 .foregroundColor(.secondaryLabel)

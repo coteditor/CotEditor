@@ -55,7 +55,7 @@ struct GoToLineView: View {
         VStack {
             Form {
                 TextField("Line:", text: $value, prompt: Text("Line Number"))
-                    .font(.body.monospacedDigit())
+                    .monospacedDigit()
                     .onSubmit(self.submit)
             }
             

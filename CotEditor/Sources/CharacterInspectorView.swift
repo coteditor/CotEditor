@@ -63,6 +63,7 @@ struct CharacterInspectorView: View {
                         Text(verbatim: scalar.codePoint)
                     }
                 }
+                .monospacedDigit()
                 .controlSize(.small)
                 .foregroundColor(.label)
                 .textSelection(.enabled)
@@ -132,7 +133,9 @@ private struct CharacterView: NSViewRepresentable {
         
         let character = self.info.pictureString ?? String(self.info.character)
         let nsView = CharacterField(labelWithString: character)
-        nsView.font = NSFont(name: "Times New Roman", size: self.fontSize)
+        nsView.font = NSFont.systemFont(ofSize: self.fontSize).fontDescriptor
+            .withDesign(.serif)
+            .flatMap { NSFont(descriptor: $0, size: self.fontSize) }
         
         return nsView
     }
