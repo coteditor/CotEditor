@@ -76,7 +76,7 @@ struct FindProgressView: View {
             HStack {
                 Text(self.description)
                     .font(.system(size: NSFont.smallSystemFontSize).monospacedDigit())
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.secondaryLabel)
                     
                 Spacer()
                 

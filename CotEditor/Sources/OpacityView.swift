@@ -68,7 +68,7 @@ struct OpacityView: View {
         
         VStack(alignment: .leading) {
             Text("Editor’s Opacity")
-                .foregroundColor(.secondary)
+                .foregroundColor(.secondaryLabel)
             
             HStack(alignment: .center) {
                 OpacitySample(opacity: 0.2)

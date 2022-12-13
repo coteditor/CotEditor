@@ -46,7 +46,7 @@ struct CharacterInspectorView: View {
         VStack(alignment: .leading, spacing: 2) {
             Text(self.info.localizedDescription ?? "Unknown")
                 .fontWeight(self.info.isComplex ? .regular : .semibold)
-                .foregroundColor(.primary)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746).
+                .foregroundColor(.label)  // Workaround to keep text color when selected (2022-12, macOS 13, FB10747746).
                 .textSelection(.enabled)
             
             if !self.info.isComplex {
@@ -64,7 +64,7 @@ struct CharacterInspectorView: View {
                     }
                 }
                 .controlSize(.small)
-                .foregroundColor(.primary)
+                .foregroundColor(.label)
                 .textSelection(.enabled)
             }
         }.fixedSize()
@@ -86,11 +86,11 @@ private struct ScalarDetailView: View {
                 HStack(alignment: .firstTextBaseline) {
                     if let surrogates = self.scalar.surrogateCodePoints {
                         Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
-                            .foregroundColor(.primary)
+                            .foregroundColor(.label)
                             .textSelection(.enabled)
                     } else {
                         Text(verbatim: self.scalar.codePoint)
-                            .foregroundColor(.primary)
+                            .foregroundColor(.label)
                             .textSelection(.enabled)
                     }
                 }
@@ -99,18 +99,18 @@ private struct ScalarDetailView: View {
             HStack(alignment: .firstTextBaseline) {
                 if let blockName = self.scalar.localizedBlockName {
                     Text(blockName)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.label)
                         .textSelection(.enabled)
                 } else {
                     Text("No Block")
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.secondaryLabel)
                 }
             }
             
             HStack(alignment: .firstTextBaseline) {
                 let category = self.scalar.properties.generalCategory
                 Text("\(category.longName) (\(category.shortName))")
-                    .foregroundColor(.primary)
+                    .foregroundColor(.label)
                     .textSelection(.enabled)
             }
         }.fixedSize()

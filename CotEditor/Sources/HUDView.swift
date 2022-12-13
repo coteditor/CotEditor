@@ -46,7 +46,7 @@ struct HUDView: View {
             Image(systemName: self.symbol.imageName)
                 .resizable()
                 .scaledToFit()
-                .foregroundColor(.secondary)
+                .foregroundColor(.secondaryLabel)
                 .frame(width: 72, height: 72)
                 .scaleEffect(y: self.flipped ? -1 : 1)
                 .padding(28)

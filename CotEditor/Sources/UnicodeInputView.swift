@@ -42,12 +42,12 @@ struct UnicodeInputView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 Text(verbatim: (self.character?.isNewline == true) ? " " : self.character.map(String.init) ?? "⬚")
-                    .foregroundColor(self.character != nil ? .primary : .secondary)
+                    .foregroundColor(self.character != nil ? .label : .secondaryLabel)
                     .font(.system(size: 26))
                     .frame(minWidth: 30, minHeight: 30)
                 
                 Text(verbatim: self.unicodeName ?? "Invalid code")
-                    .foregroundColor(self.unicodeName != nil ? .primary : .secondary)
+                    .foregroundColor(self.unicodeName != nil ? .label : .secondaryLabel)
                     .help(self.unicodeName ?? "")
                     .controlSize(.small)
                     .textSelection(.enabled)
@@ -77,7 +77,7 @@ struct UnicodeInputView: View {
                                 .font(.body.monospacedDigit()) +
                             Text(verbatim: scalar.name ?? "–")
                                 .font(.system(size: NSFont.smallSystemFontSize))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.secondaryLabel)
                         }
                     }
                     

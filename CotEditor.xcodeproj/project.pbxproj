@@ -748,6 +748,8 @@
 		2AFD218A27E0434100E83E88 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218927E0434100E83E88 /* UTType.swift */; };
 		2AFD218B27E0434100E83E88 /* UTType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218927E0434100E83E88 /* UTType.swift */; };
 		2AFD218D27E0442B00E83E88 /* UTTypeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */; };
+		2AFD328929482D53000ED1C5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD328829482D53000ED1C5 /* Color.swift */; };
+		2AFD328A29482D53000ED1C5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD328829482D53000ED1C5 /* Color.swift */; };
 		2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
@@ -1450,6 +1452,7 @@
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
 		2AFD218927E0434100E83E88 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTTypeExtensionTests.swift; sourceTree = "<group>"; };
+		2AFD328829482D53000ED1C5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2AFE848522AE71130001C4ED /* TextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1605,6 +1608,7 @@
 			children = (
 				2A04E9BE27FEF72E008C82D8 /* Alignments.swift */,
 				2A158C242946CC20000A4EC1 /* NSHostingView.swift */,
+				2AFD328829482D53000ED1C5 /* Color.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -2966,6 +2970,7 @@
 				2A5C00342814698000700CAE /* Collection+BinarySearch.swift in Sources */,
 				2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
+				2AFD328929482D53000ED1C5 /* Color.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A1A4EB024FB9D9300B50AA0 /* Combine.swift in Sources */,
 				2AC13A0924F112D800799A93 /* CommandLineToolManager.swift in Sources */,
@@ -3307,13 +3312,13 @@
 				2A5C00352814698000700CAE /* Collection+BinarySearch.swift in Sources */,
 				2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
+				2AFD328A29482D53000ED1C5 /* Color.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A1A4EB124FB9D9300B50AA0 /* Combine.swift in Sources */,
 				2AC13A0A24F112D800799A93 /* CommandLineToolManager.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringView.swift in Sources */,
-				2A158C232945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */,
 				2AFB30DF1E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
 				2AC186DD1E2F4264002F4D27 /* Debug.swift in Sources */,
@@ -3469,6 +3474,7 @@
 				2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
+				2A158C232945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,

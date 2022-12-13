@@ -45,17 +45,17 @@ struct AdvancedCharacterCounterView: View {
                 }()
                 let attributes = AttributeContainer
                     .font(.body.monospacedDigit().weight(.medium))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.label)
                 let attributedCount = AttributedString(localized: key, locale: .current)
                     .replacingAttributes(AttributeContainer.inlinePresentationIntent(.emphasized), with: attributes)
                 
                 Text(attributedCount)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.secondaryLabel)
                 
             } else {
                 Label("failed", systemImage: "exclamationmark.triangle.fill")
                     .symbolRenderingMode(.multicolor)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.secondaryLabel)
             }
             
             Spacer()
@@ -66,7 +66,7 @@ struct AdvancedCharacterCounterView: View {
                 Image(systemName: "gearshape.fill")
             }
             .buttonStyle(.plain)
-            .foregroundColor(.secondary)
+            .foregroundColor(.secondaryLabel)
             .help("Show options")
             .popover(isPresented: self.$isSettingPresented) {
                 VStack {

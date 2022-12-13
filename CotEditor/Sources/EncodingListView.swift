@@ -195,7 +195,7 @@ private struct EncodingView: View {
         HStack(alignment: .firstTextBaseline) {
             Text(self.name)
             Text(verbatim: self.ianaCharsetName)
-                .foregroundColor(.secondary)
+                .foregroundColor(.secondaryLabel)
         }.frame(height: 12)
     }
     

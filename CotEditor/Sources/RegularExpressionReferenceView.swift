@@ -99,14 +99,14 @@ struct RegularExpressionReferenceView: View {
         } header: {
             Text("Basic Regular Expression Syntax")
                 .font(.title3)
-                .foregroundColor(.secondary)
+                .foregroundColor(.secondaryLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
         } footer: {
             let icuLink = try! AttributedString(markdown: "[ICU Regular Expressions](https://unicode-org.github.io/icu/userguide/strings/regexp.html)")
             Text("The syntax conforms to the \(icuLink) specifications.")
                 .font(.footnote)
-                .foregroundColor(.secondary)
+                .foregroundColor(.secondaryLabel)
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .multilineTextAlignment(.leading)
         }
@@ -150,7 +150,7 @@ struct RegularExpressionReferenceView: View {
             } header: {
                 Text(self.title)
                     .fontWeight(.semibold)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.secondaryLabel)
             }
             .frame(minWidth: 200, alignment: .leading)
         }
