@@ -57,6 +57,7 @@ struct CustomTabWidthView: View {
             Form {
                 TextField("Tab width:", value: $value, format: .number, prompt: Text(self.defaultWidth, format: .number))
                     .monospacedDigit()
+                    .multilineTextAlignment(.trailing)
                     .onSubmit(self.submit)
             }
             

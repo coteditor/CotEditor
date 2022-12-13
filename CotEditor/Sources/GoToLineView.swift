@@ -56,6 +56,7 @@ struct GoToLineView: View {
             Form {
                 TextField("Line:", text: $value, prompt: Text("Line Number"))
                     .monospacedDigit()
+                    .multilineTextAlignment(.trailing)
                     .onSubmit(self.submit)
             }
             
