@@ -83,7 +83,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             case .edit(let name):
                 self.isBundledStyle = manager.isBundledSetting(name: name)
                 self.isRestoreble = self.isBundledStyle && manager.isCustomizedSetting(name: name)
-            default:
+            case .copy, .new:
                 self.isBundledStyle = false
                 self.isRestoreble = false
         }

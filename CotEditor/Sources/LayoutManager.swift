@@ -236,10 +236,11 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         switch layoutOrientation {
             case .vertical:
                 return self.lineHeight / 2
-            default:
+            case .horizontal:
                 // remove the space above to make glyphs visually center
                 let diff = self.textFont.ascender - self.textFont.capHeight
                 return (self.lineHeight + self.defaultBaselineOffset - diff) / 2
+            @unknown default: fatalError()
         }
     }
 }

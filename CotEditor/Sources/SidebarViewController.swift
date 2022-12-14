@@ -145,7 +145,7 @@ extension SidebarViewController: InspectorTabViewDelegate {
                 return NSImage(systemSymbolName: "exclamationmark.triangle.fill", accessibilityDescription: nil)?
                     .withSymbolConfiguration(.init(pointSize: 0, weight: .semibold))
                 
-            default:
+            case nil:
                 preconditionFailure()
         }
     }

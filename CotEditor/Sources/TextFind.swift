@@ -379,7 +379,7 @@ final class TextFind {
         switch self.mode {
             case .regularExpression(_, let unescapes) where unescapes:
                 return string.unescaped
-            default:
+            case .regularExpression, .textual:
                 return string
         }
     }
