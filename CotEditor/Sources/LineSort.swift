@@ -82,7 +82,6 @@ extension SortPattern {
         
         return lines.joined(separator: String(lineEnding))
     }
-    
 }
 
 
@@ -219,7 +218,6 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
         self.numberOfCaptureGroups = regex.numberOfCaptureGroups
         self.errorMessage = nil
     }
-    
 }
 
 
@@ -267,5 +265,4 @@ final class SortOptions: NSObject {
         
         return try? numberParser.parse(value)
     }
-    
 }

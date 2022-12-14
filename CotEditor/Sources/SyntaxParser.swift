@@ -89,7 +89,6 @@ final class SyntaxParser {
         self.outlineParseTask?.cancel()
         self.highlightParseTask?.cancel()
     }
-    
 }
 
 
@@ -126,7 +125,6 @@ extension SyntaxParser {
             }
         }
     }
-    
 }
 
 
@@ -250,7 +248,6 @@ extension SyntaxParser {
             layoutManager.apply(highlights: highlights, range: range)
         }
     }
-    
 }
 
 
@@ -328,5 +325,4 @@ extension NSLayoutManager {
             }
         }
     }
-    
 }

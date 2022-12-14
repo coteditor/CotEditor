@@ -35,5 +35,4 @@ extension NSApplication {
         
         Process.launchedProcess(launchPath: "/bin/sh", arguments: ["-c", command])
     }
-    
 }

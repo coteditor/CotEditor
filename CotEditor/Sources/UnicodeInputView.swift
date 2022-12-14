@@ -134,7 +134,6 @@ struct UnicodeInputView: View {
         
         UserDefaults.standard[.unicodeHistory].removeAll()
     }
-    
 }
 
 
@@ -152,7 +151,6 @@ private extension UTF32.CodeUnit {
         
         self.init(hexString, radix: 16)
     }
-    
 }
 
 
@@ -180,5 +178,4 @@ struct UnicodeInputView_Previews: PreviewProvider {
         UnicodeInputView(codePoint: "U+1318F")
             .previewDisplayName("𓆏")
     }
-    
 }

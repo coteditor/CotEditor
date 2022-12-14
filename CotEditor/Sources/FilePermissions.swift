@@ -71,7 +71,6 @@ struct FilePermissions {
         
         self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
     }
-    
 }
 
 
@@ -82,5 +81,4 @@ extension FilePermissions: CustomStringConvertible {
         
         self.humanReadable
     }
-    
 }

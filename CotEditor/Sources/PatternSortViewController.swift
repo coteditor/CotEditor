@@ -147,7 +147,6 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
         
         self.tabViewController?.tabView.selectedTabViewItem?.viewController?.representedObject as? any SortPattern
     }
-    
 }
 
 
@@ -176,7 +175,6 @@ final class SortPatternTabViewController: NSTabViewController {
             }
         }()
     }
-    
 }
 
 
@@ -217,7 +215,6 @@ class SortPatternViewController: NSViewController, NSTextFieldDelegate {
         
         self.delegate?.didUpdate(sortPattern: pattern)
     }
-    
 }
 
 
@@ -267,7 +264,6 @@ final class RegularExpressionSortPatternViewController: SortPatternViewControlle
         menu.addItem(.separator())
         menu.addItem(withTitle: "Clear Recents".localized, action: #selector(clearRecents), keyEquivalent: "")
     }
-    
 }
 
 
@@ -286,5 +282,4 @@ extension CSVSortPattern {
                 super.setNilValueForKey(key)
         }
     }
-    
 }

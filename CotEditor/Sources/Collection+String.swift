@@ -49,7 +49,6 @@ extension MutableCollection where Self: RandomAccessCollection<String> {
         
         self.sort { compare($0[keyPath: keyPath], $1[keyPath: keyPath]) == .orderedAscending }
     }
-    
 }
 
 
@@ -67,7 +66,6 @@ extension Sequence<String> {
         
         return self.sorted { compare($0[keyPath: keyPath], $1[keyPath: keyPath]) == .orderedAscending }
     }
-    
 }
 
 
@@ -127,5 +125,4 @@ extension Collection<String> {
             .map { baseName + " " + String($0) }
             .first { !self.contains($0) }!
     }
-    
 }

@@ -36,5 +36,4 @@ final class FindPanelSplitView: NSSplitView {
         
         super.drawDivider(in: rect)
     }
-    
 }

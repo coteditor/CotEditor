@@ -85,5 +85,4 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
             (view.objectValue as AnyObject?)?.setValue(NSNumber(value: isChecked), forKey: identifier.rawValue)
         }
     }
-    
 }

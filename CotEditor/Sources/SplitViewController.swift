@@ -161,5 +161,4 @@ final class SplitViewController: NSSplitViewController {
         
         self.view.window?.makeFirstResponder(nextChild.textView)
     }
-    
 }

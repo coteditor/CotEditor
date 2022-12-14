@@ -173,5 +173,4 @@ final class DocumentInspectorViewController: NSViewController {
             }
             .store(in: &self.documentObservers)
     }
-    
 }

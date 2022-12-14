@@ -71,5 +71,4 @@ extension NSDraggingInfo {
         
         return urls.isEmpty ? nil : urls
     }
-    
 }

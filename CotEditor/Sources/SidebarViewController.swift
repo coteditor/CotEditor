@@ -123,7 +123,6 @@ final class SidebarViewController: NSTabViewController {
             self.selectedTabViewItemIndex = coder.decodeInteger(forKey: #keyPath(selectedTabViewItemIndex))
         }
     }
-    
 }
 
 
@@ -150,5 +149,4 @@ extension SidebarViewController: InspectorTabViewDelegate {
                 preconditionFailure()
         }
     }
-    
 }

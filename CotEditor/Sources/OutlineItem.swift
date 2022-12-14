@@ -48,7 +48,6 @@ struct OutlineItem: Equatable {
         
         self.title == .separator
     }
-    
 }
 
 
@@ -74,7 +73,6 @@ extension OutlineItem {
         
         return NSAttributedString(string: self.title, attributes: attributes)
     }
-    
 }
 
 
@@ -136,5 +134,4 @@ extension BidirectionalCollection<OutlineItem> {
             return item
         }
     }
-    
 }

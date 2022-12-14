@@ -82,7 +82,6 @@ extension EditorTextView {
             $0.removingPercentEncoding?
                 .addingPercentEncoding(withAllowedCharacters: allowedCharacters) ?? $0
         }
-        
     }
     
     
@@ -236,7 +235,6 @@ extension EditorTextView {
               .replacingOccurrences(of: "[‘’‛‚]", with: "'", options: .regularExpression)
         }
     }
-    
 }
 
 
@@ -276,5 +274,4 @@ private extension NSTextView {
         
         self.scrollRangeToVisible(self.selectedRange)
     }
-    
 }

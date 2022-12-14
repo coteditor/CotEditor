@@ -251,5 +251,4 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             self.saveSetting()
         }
     }
-    
 }

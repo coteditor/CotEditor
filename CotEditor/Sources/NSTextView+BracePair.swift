@@ -58,5 +58,4 @@ extension NSTextView {
             .map { NSRange($0...$0, in: self.string) }
             .forEach { self.showFindIndicator(for: $0) }
     }
-    
 }

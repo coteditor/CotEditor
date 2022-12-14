@@ -55,5 +55,4 @@ struct SavePanelAccessory_Previews: PreviewProvider {
         
         SavePanelAccessory(options: SaveOptions())
     }
-    
 }

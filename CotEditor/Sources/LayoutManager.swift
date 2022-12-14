@@ -242,7 +242,6 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
                 return (self.lineHeight + self.defaultBaselineOffset - diff) / 2
         }
     }
-    
 }
 
 
@@ -308,7 +307,6 @@ extension LayoutManager: NSLayoutManagerDelegate {
         
         attrs
     }
-    
 }
 
 
@@ -401,7 +399,6 @@ private extension NSLayoutManager {
         
         NSGraphicsContext.restoreGraphicsState()
     }
-    
 }
 
 
@@ -416,5 +413,4 @@ private extension CGPoint {
         Self(x: (self.x * scale).rounded() / scale,
              y: (self.y * scale).rounded() / scale)
     }
-    
 }

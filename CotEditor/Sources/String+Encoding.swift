@@ -61,7 +61,6 @@ extension Unicode {
                     return .utf16
             }
         }
-        
     }
 }
 
@@ -112,7 +111,6 @@ extension String.Encoding {
         
         CFStringConvertEncodingToIANACharSetName(self.cfEncoding) as String?
     }
-    
 }
 
 
@@ -233,7 +231,6 @@ extension String {
         // replace Yen signs to backslashs if encoding cannot convert Yen sign
         return self.replacingOccurrences(of: "¥", with: "\\")
     }
-    
 }
 
 
@@ -264,7 +261,6 @@ extension Data {
         
         return String.Encoding(cfEncoding: cfEncoding)
     }
-    
 }
 
 
@@ -284,5 +280,4 @@ extension String.Encoding {
         
         return string.data(using: .ascii)
     }
-    
 }

@@ -214,7 +214,6 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info?.ranges, [NSRange(3, 5), NSRange(8, 3)])
         XCTAssertEqual(info?.selectedRanges, [NSRange(3, 0)])
     }
-
 }
 
 
@@ -227,5 +226,4 @@ private extension NSRange {
         
         self.init(location: location, length: length)
     }
-    
 }

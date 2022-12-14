@@ -370,7 +370,6 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             print(error.localizedDescription)
         }
     }
-    
 }
 
 
@@ -384,7 +383,6 @@ extension MultipleReplacementListViewController: MultipleReplacementViewControll
         
         self.saveSetting(setting: setting)
     }
-    
 }
 
 
@@ -462,7 +460,6 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
         
         return provider
     }
-    
 }
 
 
@@ -491,7 +488,6 @@ extension MultipleReplacementListViewController: NSFilePromiseProviderDelegate {
         
         self.filePromiseQueue
     }
-    
 }
 
 
@@ -520,7 +516,6 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
         self.mainViewController?.change(setting: setting)
         UserDefaults.standard[.selectedMultipleReplacementSettingName] = settingName
     }
-    
 }
 
 
@@ -553,7 +548,6 @@ extension MultipleReplacementListViewController: NSTextFieldDelegate {
         
         return true
     }
-    
 }
 
 
@@ -571,5 +565,4 @@ extension MultipleReplacementListViewController: NSMenuDelegate {
             shareMenuItem.sharingItems = ReplacementManager.shared.urlForUserSetting(name: settingName).flatMap { [$0] }
         }
     }
-    
 }

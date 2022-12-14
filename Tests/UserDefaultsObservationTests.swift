@@ -130,5 +130,4 @@ final class UserDefaultsObservationTests: XCTestCase {
         UserDefaults.standard[key] = .dog
         XCTAssertEqual(UserDefaults.standard[key], .dog)
     }
-    
 }

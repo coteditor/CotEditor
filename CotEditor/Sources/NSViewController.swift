@@ -35,5 +35,4 @@ extension NSViewController {
         
         self.isViewLoaded && !self.view.isHiddenOrHasHiddenAncestor
     }
-    
 }

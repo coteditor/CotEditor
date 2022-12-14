@@ -92,7 +92,6 @@ final class CommandLineToolManager {
         // link destination is unreachable
         return .invalidTarget
     }
-    
 }
 
 
@@ -112,5 +111,4 @@ extension CommandLineToolManager.Status {
                 return "The current 'cot' symbolic link may target an invalid path.".localized
         }
     }
-    
 }

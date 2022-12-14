@@ -51,7 +51,6 @@ extension NSFont {
         
         return NSFont.Weight(weightTrait)
     }
-    
 }
 
 
@@ -87,5 +86,4 @@ extension CTFont {
         
         return advance
     }
-    
 }

@@ -47,5 +47,4 @@ final class WarningsViewController: NSSplitViewController {
             }
         }
     }
-    
 }

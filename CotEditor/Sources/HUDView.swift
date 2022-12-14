@@ -74,5 +74,4 @@ private extension HUDView.Symbol {
                 return "arrow.triangle.capsulepath"
         }
     }
-    
 }

@@ -134,7 +134,6 @@ extension DocumentViewController: NSTouchBarDelegate {
         self.view.window?.toolbar?.validateVisibleItems()
         self.touchBar?.validateVisibleItems()
     }
-    
 }
 
 
@@ -168,7 +167,6 @@ extension DocumentViewController: TouchBarItemValidations {
         
         return true
     }
-    
 }
 
 

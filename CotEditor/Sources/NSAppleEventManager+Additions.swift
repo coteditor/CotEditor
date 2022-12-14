@@ -37,5 +37,4 @@ extension NSAppleEventManager {
         
         return (event.eventID == kAEOpenApplication || event.eventID == kAEReopenApplication)
     }
-    
 }

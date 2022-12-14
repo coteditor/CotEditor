@@ -77,7 +77,5 @@ extension MultipleReplacement.Settings {
                                                 matchesFullWord: self.textMatchesFullWord,
                                                 unescapesReplacementString: self.regexUnescapesReplacementString)
         }
-        
     }
-    
 }

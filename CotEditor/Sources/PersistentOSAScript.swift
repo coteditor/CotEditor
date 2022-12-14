@@ -98,5 +98,4 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
             throw ScriptError.standardError(errorDescription)
         }
     }
-    
 }

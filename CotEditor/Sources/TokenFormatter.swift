@@ -50,7 +50,6 @@ final class TokenFormatter: Formatter {
         
         false
     }
-    
 }
 
 
@@ -115,5 +114,4 @@ final private class TokenCell: NSTextAttachmentCell {
         
         NSGraphicsContext.restoreGraphicsState()
     }
-    
 }

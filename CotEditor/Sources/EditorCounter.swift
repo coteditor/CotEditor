@@ -71,7 +71,6 @@ extension EditorCountResult.Count {
             return "\(self.entire?.formatted() ?? "-") (\(self.selected.formatted()))"
         }
     }
-    
 }
 
 
@@ -169,5 +168,4 @@ final actor EditorCounter {
         
         return result
     }
-    
 }

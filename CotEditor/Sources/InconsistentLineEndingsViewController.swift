@@ -128,7 +128,6 @@ final class InconsistentLineEndingsViewController: NSViewController {
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-    
 }
 
 
@@ -141,7 +140,6 @@ extension InconsistentLineEndingsViewController: NSTableViewDelegate {
         
         self.selectItem(at: tableView.selectedRow)
     }
-    
 }
 
 
@@ -183,7 +181,6 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
         self.lineEndings.sort(using: tableView.sortDescriptors)
         tableView.reloadData()
     }
-    
 }
 
 

@@ -42,7 +42,6 @@ struct Snippet {
                     return "The insertion point after inserting the snippet."
             }
         }
-        
     }
     
     
@@ -101,5 +100,4 @@ struct Snippet {
         
         (self.format as NSString).ranges(of: variable.token)
     }
-    
 }

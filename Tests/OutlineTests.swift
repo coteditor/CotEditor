@@ -87,5 +87,4 @@ final class OutlineTests: XCTestCase {
         XCTAssertEqual(self.items.filterItems(with: "dog").count, 2)
         XCTAssertEqual(self.items.filterItems(with: "dow").count, 1)
     }
-
 }

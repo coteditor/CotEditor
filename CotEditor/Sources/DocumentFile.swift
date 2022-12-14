@@ -155,5 +155,4 @@ struct DocumentFile {
         
         return (string, encoding)
     }
-    
 }

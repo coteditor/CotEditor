@@ -47,5 +47,4 @@ final class SelectionColorWell: NSColorWell {
         
         self.color = .selectedTextBackgroundColor
     }
-    
 }

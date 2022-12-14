@@ -70,7 +70,6 @@ final class SynchronizedScrollView: NSScrollView {
         
         super.smartMagnify(with: event)
     }
-    
 }
 
 
@@ -119,5 +118,4 @@ extension SynchronizedScrollView: NSUserInterfaceValidations {
             scrollView.animator().magnification = 1.0
         }
     }
-    
 }

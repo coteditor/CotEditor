@@ -49,5 +49,4 @@ final class ImageRadioButton: NSButton {
             + NSAttributedString(string: " ")
             + self.attributedTitle
     }
-    
 }

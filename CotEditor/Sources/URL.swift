@@ -59,7 +59,6 @@ extension URL {
         
         return (parentComponents + diffComponents).joined(separator: "/")
     }
-    
 }
 
 
@@ -76,5 +75,4 @@ extension URL {
         
         self.path.replacingOccurrences(of: Self.homeDirectory, with: "~", options: .anchored)
     }
-    
 }

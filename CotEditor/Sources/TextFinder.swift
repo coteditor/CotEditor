@@ -642,7 +642,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
-    
 }
 
 
@@ -659,7 +658,6 @@ private final class LineCounter: LineRangeCacheable {
         
         self.string = string
     }
-    
 }
 
 
@@ -682,7 +680,6 @@ private extension UserDefaults {
         
         self[key].appendUnique(value, maximum: Self.maximumRecents)
     }
-    
 }
 
 
@@ -709,7 +706,6 @@ private extension UserDefaults {
             return .textual(options: options, fullWord: self[.findMatchesFullWord])
         }
     }
-    
 }
 
 
@@ -734,5 +730,4 @@ private extension NSPasteboard {
             pasteboard.setString(string, forType: .string)
         }
     }
-    
 }

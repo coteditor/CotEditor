@@ -51,7 +51,6 @@ extension HighlightDefinition {
             }
         }
     }
-    
 }
 
 
@@ -102,7 +101,6 @@ private struct BeginEndStringExtractor: HighlightExtractable {
         
         return ranges
     }
-    
 }
 
 
@@ -126,7 +124,6 @@ private struct RegularExpressionExtractor: HighlightExtractable {
         try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range)
             .map(\.range)
     }
-    
 }
 
 
@@ -160,5 +157,4 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
                 return beginRange.union(endRange)
             }
     }
-    
 }

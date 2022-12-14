@@ -72,7 +72,6 @@ private enum OSALineEnding: FourCharCode {
                 self = .ps
         }
     }
-    
 }
 
 
@@ -478,7 +477,6 @@ extension Document {
             viewController[keyPath: keyPath] = value
         }
     }
-    
 }
 
 
@@ -505,7 +503,6 @@ private extension NSString.CompareOptions {
             self.formUnion(.backwards)
         }
     }
-    
 }
 
 
@@ -548,5 +545,4 @@ private extension NSString {
         
         return foundRange
     }
-    
 }

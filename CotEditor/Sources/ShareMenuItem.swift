@@ -83,5 +83,4 @@ final class ShareMenuItem: NSMenuItem {
         
         container.service.perform(withItems: container.items)
     }
-    
 }

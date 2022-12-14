@@ -101,7 +101,6 @@ struct AdvancedCharacterCounterView: View {
         
         return (selectionCount > 0) ? selectionCount : self.counter.entireCount
     }
-    
 }
 
 
@@ -114,5 +113,4 @@ struct AdvancedCharacterCounterView_Previews: PreviewProvider {
         
         AdvancedCharacterCounterView(counter: .init(textView: .init())) { }
     }
-    
 }

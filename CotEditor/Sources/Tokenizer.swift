@@ -54,7 +54,6 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
         
         Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }
-    
 }
 
 
@@ -113,5 +112,4 @@ final class Tokenizer {
             block(token, match.range, match.range(at: 1))
         }
     }
-    
 }

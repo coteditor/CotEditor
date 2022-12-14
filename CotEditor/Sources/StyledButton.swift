@@ -55,5 +55,4 @@ final class StyledButton: NSButton {
             self.attributedTitle = attributedTitle
         }
     }
-    
 }

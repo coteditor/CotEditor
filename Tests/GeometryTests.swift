@@ -57,5 +57,4 @@ final class GeometryTests: XCTestCase {
         XCTAssertEqual(CGPoint(x: 2, y: 3).offset(by: -CGPoint(x: 2, y: 3)), .zero)
         XCTAssertEqual(CGPoint(x: 2, y: 3).offset(by: -CGSize(width: 2, height: 3)), .zero)
     }
-    
 }

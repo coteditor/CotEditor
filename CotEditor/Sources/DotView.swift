@@ -61,5 +61,4 @@ final class DotView: NSView {
         
         NSGraphicsContext.restoreGraphicsState()
     }
-    
 }

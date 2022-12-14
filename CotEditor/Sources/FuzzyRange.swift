@@ -62,7 +62,6 @@ extension FuzzyRange {
             ? String(self.location)
             : String(self.location) + ":" + String(self.length)
     }
-    
 }
 
 
@@ -162,7 +161,6 @@ extension String {
         
         return lineRange.location + rangeInLine.location
     }
-    
 }
 
 
@@ -182,5 +180,4 @@ enum FuzzyLocationError: Error {
                 return "The column number \(column) is out of the range."
         }
     }
-    
 }

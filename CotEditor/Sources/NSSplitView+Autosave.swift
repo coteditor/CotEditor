@@ -40,7 +40,6 @@ extension NSSplitViewController {
             self.splitView.setPosition(state.frame.maxX, ofDividerAt: index)
         }
     }
-    
 }
 
 
@@ -74,5 +73,4 @@ private extension NSSplitView {
             return AutosavingSubviewState(frame: NSRectFromString(string), isCollapsed: isCollapsed)
         }
     }
-    
 }

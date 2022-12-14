@@ -68,7 +68,6 @@ extension NSTouchBar {
             }
         }
     }
-    
 }
 
 
@@ -186,7 +185,6 @@ private final class TouchBarValidator {
             self.validationTimer?.tolerance = 0.1 * delay.rawValue
         }
     }
-    
 }
 
 
@@ -237,5 +235,4 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         
         self.view as? NSControl
     }
-    
 }

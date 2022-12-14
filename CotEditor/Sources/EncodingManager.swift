@@ -145,5 +145,4 @@ final class EncodingManager {
         
         UserDefaults.standard[.encodingList] = list.map { CFStringEncoding(exactly: $0) ?? kCFStringEncodingInvalidId }
     }
-    
 }

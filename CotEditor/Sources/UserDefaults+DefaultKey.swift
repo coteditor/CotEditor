@@ -115,5 +115,4 @@ extension UserDefaults {
         get { T(rawValue: self.integer(forKey: key.rawValue)) ?? T(rawValue: 0)! }
         set { self.set(newValue.rawValue, forKey: key.rawValue) }
     }
-    
 }

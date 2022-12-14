@@ -118,7 +118,6 @@ extension StringProtocol {
                 return String(self).precomposedStringWithHFSPlusMapping
         }
     }
-    
 }
 
 
@@ -162,5 +161,4 @@ extension String {
         
         return String(cString: buffer)
     }
-    
 }

@@ -56,5 +56,4 @@ extension NSTextStorage {
             self.endEditing()
         }
     }
-    
 }

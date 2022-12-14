@@ -124,5 +124,4 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertEqual(try string.fuzzyLocation(line: 5, column: -1), 16)
         XCTAssertEqual(try string.fuzzyLocation(line: 5, column: -2), 15)
     }
-    
 }

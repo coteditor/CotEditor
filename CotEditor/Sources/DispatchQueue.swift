@@ -50,5 +50,4 @@ extension DispatchQueue {
             return try DispatchQueue.main.sync(execute: work)
         }
     }
-    
 }

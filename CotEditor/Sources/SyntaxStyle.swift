@@ -72,7 +72,6 @@ struct HighlightDefinition: Equatable {
         self.isRegularExpression = true
         self.ignoreCase = ignoreCase
     }
-    
 }
 
 
@@ -119,7 +118,6 @@ struct OutlineDefinition: Equatable {
         self.italic = dictionary[CodingKeys.italic] as? Bool ?? false
         self.underline = dictionary[CodingKeys.underline] as? Bool ?? false
     }
-    
 }
 
 
@@ -273,5 +271,4 @@ struct SyntaxStyle: Equatable {
         
         return .init(extractors: extractors, nestables: nestables)
     }
-    
 }

@@ -146,5 +146,4 @@ extension NSTextView {
         
         (self.layoutManager as? any LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
     }
-    
 }

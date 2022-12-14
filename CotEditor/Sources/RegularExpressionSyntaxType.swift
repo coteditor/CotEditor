@@ -137,7 +137,6 @@ enum RegularExpressionSyntaxType {
                 }
         }
     }
-    
 }
 
 
@@ -164,5 +163,4 @@ private extension StringProtocol {
         
         return braceRanges
     }
-    
 }

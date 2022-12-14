@@ -55,7 +55,6 @@ extension MutableCollection where Self: RandomAccessCollection, Element: KeySort
             return false
         }
     }
-    
 }
 
 
@@ -83,7 +82,6 @@ extension Sequence where Element: KeySortable {
             return false
         }
     }
-    
 }
 
 
@@ -103,5 +101,4 @@ extension Comparable {
             return .orderedSame
         }
     }
-    
 }

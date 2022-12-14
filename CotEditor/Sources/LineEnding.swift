@@ -91,7 +91,6 @@ enum LineEnding: Character, CaseIterable {
                 return "Unicode Paragraph Separator (PS)".localized
         }
     }
-    
 }
 
 
@@ -111,7 +110,6 @@ private extension LineEnding {
                 return self.string
         }
     }
-    
 }
 
 
@@ -129,7 +127,6 @@ private extension BidirectionalCollection<LineEnding> {
             .map { multiples.isEmpty ? $0.regexPattern : $0.string }
             .joined(separator: "|")
     }
-    
 }
 
 
@@ -147,7 +144,6 @@ extension StringProtocol {
         
         return self.replacingOccurrences(of: lineEndings.regexPattern, with: lineEnding.string, options: .regularExpression)
     }
-    
 }
 
 
@@ -182,7 +178,6 @@ extension String {
         
         return lineEndingRanges
     }
-    
 }
 
 
@@ -200,5 +195,4 @@ extension NSMutableAttributedString {
         
         self.mutableString.replaceOccurrences(of: lineEndings.regexPattern, with: newLineEnding.string, options: .regularExpression, range: self.range)
     }
-    
 }

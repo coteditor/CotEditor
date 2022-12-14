@@ -68,5 +68,4 @@ final class Atomic<T> {
             transform(&self.value)
         }
     }
-    
 }

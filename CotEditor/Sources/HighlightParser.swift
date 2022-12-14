@@ -212,5 +212,4 @@ struct HighlightParser {
             .flatMap { (type, ranges) in ranges.map { ItemRange(item: type, range: $0) } }
             .sorted(\.range.location)
     }
-    
 }

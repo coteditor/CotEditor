@@ -46,7 +46,6 @@ extension Validatable where Self: NSToolbarItem {
                 return true
         }
     }
-    
 }
 
 
@@ -58,7 +57,6 @@ final class MenuToolbarItem: NSMenuToolbarItem, Validatable {
         
         self.isEnabled = self.validate()
     }
-    
 }
 
 
@@ -68,5 +66,4 @@ final class ToolbarItemGroup: NSToolbarItemGroup, Validatable {
         
         self.isEnabled = self.validate()
     }
-    
 }

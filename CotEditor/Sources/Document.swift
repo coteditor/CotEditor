@@ -1248,7 +1248,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.presentErrorAsSheetSafely(error)
         }
     }
-    
 }
 
 
@@ -1283,7 +1282,6 @@ private enum ReinterpretationError: LocalizedError {
                 return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
         }
     }
-    
 }
 
 
@@ -1372,5 +1370,4 @@ private struct EncodingError: LocalizedError, RecoverableError {
             windowContentController?.showSidebarPane(index: .warnings)
         }
     }
-    
 }

@@ -50,5 +50,4 @@ enum MainMenu: Int {
         
         NSApp.mainMenu?.item(at: self.rawValue)?.submenu
     }
-    
 }

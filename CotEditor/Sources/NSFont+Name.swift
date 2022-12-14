@@ -55,7 +55,6 @@ extension NSFont {
         
         CTFontCopyGraphicsFont(self, nil)
     }
-    
 }
 
 
@@ -93,5 +92,4 @@ private extension NSFont.Name {
                 }
         }
     }
-    
 }

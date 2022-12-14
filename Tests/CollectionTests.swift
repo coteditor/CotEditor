@@ -124,5 +124,4 @@ final class CollectionTests: XCTestCase {
             }
         }
     }
-    
 }

@@ -88,7 +88,6 @@ enum Invisible {
             case .otherControl: return "�"
         }
     }
-    
 }
 
 
@@ -109,7 +108,6 @@ extension Invisible: CaseIterable {
             case .otherControl: return .showInvisibleControl
         }
     }
-    
 }
 
 
@@ -122,5 +120,4 @@ extension UserDefaults {
         
         return Set(invisibles)
     }
-    
 }

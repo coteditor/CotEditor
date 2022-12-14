@@ -111,5 +111,4 @@ final class RegularExpressionFormatter: Formatter {
         
         return true
     }
-    
 }

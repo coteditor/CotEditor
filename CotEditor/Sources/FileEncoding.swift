@@ -40,7 +40,6 @@ struct FileEncoding: Equatable {
             ? String(localized: "\(localizedName) with BOM", comment: "Unicode (UTF-8) with BOM")
             : localizedName
     }
-    
 }
 
 
@@ -57,5 +56,4 @@ extension FileEncoding {
         
         (self.withUTF8BOM ? -1 : 1) * Int(self.encoding.rawValue)
     }
-    
 }

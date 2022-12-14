@@ -64,7 +64,6 @@ private extension Unicode.Scalar {
                 return nil
         }
     }
-    
 }
 
 
@@ -118,7 +117,6 @@ struct CharacterInfo {
         (self.character.unicodeScalars.count == 2 &&
          self.character.unicodeScalars.last?.variantDescription != nil)
     }
-    
 }
 
 
@@ -129,5 +127,4 @@ extension CharacterInfo: CustomStringConvertible {
         
         String(self.character)
     }
-    
 }

@@ -39,5 +39,4 @@ extension KeyBinding: Comparable {
         
         lhs.action.description < rhs.action.description
     }
-    
 }

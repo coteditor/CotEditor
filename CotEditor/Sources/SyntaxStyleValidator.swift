@@ -100,7 +100,6 @@ final class SyntaxStyleValidator {
                     return nil
             }
         }
-        
     }
     
     
@@ -210,5 +209,4 @@ final class SyntaxStyleValidator {
         
         return results
     }
-    
 }

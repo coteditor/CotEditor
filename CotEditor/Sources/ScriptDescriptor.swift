@@ -38,7 +38,6 @@ enum ScriptingFileType: CaseIterable {
             case .unixScript: return [.shellScript, .perlScript, .phpScript, .rubyScript, .pythonScript, .javaScript, .swiftSource]
         }
     }
-    
 }
 
 
@@ -64,7 +63,6 @@ enum ScriptingEventType: String, Decodable {
             case .documentSaved: return "edsd"
         }
     }
-    
 }
 
 
@@ -90,7 +88,6 @@ private struct ScriptInfo: Decodable {
         
         self = try PropertyListDecoder().decode(ScriptInfo.self, from: data)
     }
-    
 }
 
 
@@ -162,5 +159,4 @@ struct ScriptDescriptor {
             case .unixScript: return UnixScript.self
         }
     }
-    
 }

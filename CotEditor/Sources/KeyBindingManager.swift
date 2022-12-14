@@ -61,7 +61,6 @@ struct InvalidShortcutError: LocalizedError {
         
         "Please combine with other keys.".localized
     }
-    
 }
 
 
@@ -203,7 +202,6 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
             throw InvalidShortcutError(kind: .alreadyTaken(name: name), shortcut: shortcut)
         }
     }
-    
 }
 
 
@@ -227,5 +225,4 @@ private extension Collection<NSTreeNode> {
         
         return Set(keyBindings)
     }
-    
 }

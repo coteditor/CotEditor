@@ -79,5 +79,4 @@ final class UITests: XCTestCase {
             XCUIApplication().launch()
         }
     }
-    
 }

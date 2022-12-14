@@ -32,7 +32,6 @@ private final class Wrapper<T> {
         
         self.value = value
     }
-    
 }
 
 

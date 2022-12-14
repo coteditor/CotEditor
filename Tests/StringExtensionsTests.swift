@@ -387,7 +387,6 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(string.abbreviatedMatch(with: "ow")?.score, 29)
         XCTAssertEqual(string.abbreviatedMatch(with: "ow")?.ranges.count, 2)
     }
-    
 }
 
 

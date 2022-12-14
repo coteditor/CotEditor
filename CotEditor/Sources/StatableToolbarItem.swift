@@ -53,5 +53,4 @@ final class StatableToolbarItem: NSToolbarItem, StatableItem {
         
         super.image = self.stateImages[self.state]
     }
-    
 }

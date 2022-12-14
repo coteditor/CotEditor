@@ -93,5 +93,4 @@ extension NSTextView {
             return NSBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadius: radius)
         }
     }
-    
 }

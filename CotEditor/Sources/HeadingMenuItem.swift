@@ -56,5 +56,4 @@ final class HeadingMenuItem: NSMenuItem {
             .foregroundColor: NSColor.disabledControlTextColor,
         ])
     }
-    
 }

@@ -68,7 +68,6 @@ extension NSLayoutManager {
         
         return enclosingRect
     }
-    
 }
 
 
@@ -142,7 +141,6 @@ extension NSLayoutManager {
         
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
-    
 }
 
 
@@ -287,7 +285,6 @@ extension NSLayoutManager {
         
         return NSRect(x: lineFragment.minX + position, y: lineFragment.minY, width: 1, height: lineFragment.height)
     }
-    
 }
 
 
@@ -295,7 +292,6 @@ private extension UserDefaults {
     
     /// Whether the user enables the system-wide "Use split cursor" option in System Settings > Keyboard > Input Source.
     var useSplitCursor: Bool  { self.bool(forKey: "NSUseSplitCursor") }
-    
 }
 
 
@@ -337,5 +333,4 @@ extension NSLayoutManager {
         
         NSGraphicsContext.restoreGraphicsState()
     }
-    
 }

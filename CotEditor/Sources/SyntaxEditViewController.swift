@@ -284,5 +284,4 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         return self.isStyleNameValid
     }
-    
 }

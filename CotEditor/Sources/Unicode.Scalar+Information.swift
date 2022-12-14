@@ -76,7 +76,6 @@ extension Unicode.Scalar {
             .replacingOccurrences(of: "Description", with: "Desc.")
             .localized(tableName: "Unicode")
     }
-    
 }
 
 
@@ -106,5 +105,4 @@ extension UTF32.CodeUnit {
         
         return nil
     }
-    
 }

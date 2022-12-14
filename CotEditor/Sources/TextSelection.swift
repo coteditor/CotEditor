@@ -359,5 +359,4 @@ final class TextSelection: NSObject {
         
         self.document?.textView as? EditorTextView
     }
-    
 }

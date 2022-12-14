@@ -76,7 +76,6 @@ extension URL {
             guard size >= 0 else { throw POSIXError(err: errno) }
         }
     }
-    
 }
 
 
@@ -87,5 +86,4 @@ private extension POSIXError {
         
         self.init(Code(rawValue: err)!)
     }
-    
 }

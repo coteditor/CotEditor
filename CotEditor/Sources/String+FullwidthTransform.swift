@@ -37,7 +37,6 @@ extension StringProtocol {
             .map { $0.convertedToFullwidthRoman(reverse: reverse) ?? $0 }
             .reduce(into: "") { $0.unicodeScalars.append($1) }
     }
-    
 }
 
 
@@ -62,5 +61,4 @@ private extension Unicode.Scalar {
         
         return Self(newScalar)
     }
-    
 }

@@ -33,5 +33,4 @@ final class AccessibleStepper: NSStepper {
         // (macOS 11, 2021)
         self.stringValue
     }
-    
 }

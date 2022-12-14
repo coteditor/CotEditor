@@ -81,5 +81,4 @@ final class ShortcutKeyField: NSTextField {
         
         super.textDidEndEditing(notification)
     }
-    
 }

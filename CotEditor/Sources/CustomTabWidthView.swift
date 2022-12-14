@@ -95,7 +95,6 @@ struct CustomTabWidthView: View {
         
         self.parent?.dismiss(nil)
     }
-    
 }
 
 
@@ -108,5 +107,4 @@ struct CustomTabWidthView_Previews: PreviewProvider {
         
         CustomTabWidthView(tabWidth: 4) { _ in }
     }
-    
 }

@@ -140,5 +140,4 @@ final class SyntaxTests: XCTestCase {
         parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
     }
-    
 }

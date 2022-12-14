@@ -64,5 +64,4 @@ extension NSTextStorage {
             }
         }
     }
-    
 }

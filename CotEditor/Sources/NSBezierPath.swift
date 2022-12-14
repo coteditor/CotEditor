@@ -63,7 +63,6 @@ extension NSBezierPath {
             self.transform(using: transform)
         }
     }
-    
 }
 
 
@@ -110,5 +109,4 @@ extension NSBezierPath {
         self.appendArc(from: bottomLeft, to: topLeft, radius: corners.contains(.bottomLeft) ? radius : 0)
         self.close()
     }
-    
 }

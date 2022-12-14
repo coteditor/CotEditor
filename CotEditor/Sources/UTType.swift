@@ -49,5 +49,4 @@ extension URL {
             .map { $0.lowercased() }
             .contains(self.pathExtension.lowercased())
     }
-    
 }

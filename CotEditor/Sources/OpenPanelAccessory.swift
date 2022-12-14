@@ -27,7 +27,7 @@ import SwiftUI
 import AppKit.NSOpenPanel
 
 final class OpenOptions: ObservableObject {
-
+    
     @Published var encoding: String.Encoding?
 }
 
@@ -70,7 +70,6 @@ struct OpenPanelAccessory: View {
             }.fixedSize(horizontal: true, vertical: true)
         }.padding()
     }
-    
 }
 
 
@@ -83,5 +82,4 @@ struct OpenPanelAccessory_Previews: PreviewProvider {
         
         OpenPanelAccessory(options: .init(), openPanel: .init(), encodings: [.utf8])
     }
-    
 }

@@ -98,7 +98,6 @@ struct ScriptFileError: LocalizedError {
                 return "Check the script file.".localized
         }
     }
-    
 }
 
 
@@ -121,5 +120,4 @@ enum ScriptError: Error {
                 return "No document to put output.".localized
         }
     }
-    
 }

@@ -118,7 +118,6 @@ struct FindProgressView: View {
         
         self.description = self.unit.format(self.progress)
     }
-    
 }
 
 
@@ -161,5 +160,4 @@ struct FindProgressView_Previews: PreviewProvider {
         
         FindProgressView("Label", unit: .find, progress: .init(scope: 0..<100))
     }
-    
 }

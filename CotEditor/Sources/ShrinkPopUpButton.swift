@@ -35,5 +35,4 @@ final class ShrinkPopUpButton: NSPopUpButton {
         
         return NSSize(width: currentCell.titleWidth + 30, height: size.height)
     }
-    
 }

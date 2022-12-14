@@ -155,7 +155,6 @@ struct RegularExpressionReferenceView: View {
             .frame(minWidth: 200, alignment: .leading)
         }
     }
-    
 }
 
 
@@ -168,5 +167,4 @@ struct RegularExpressionReferenceView_Previews: PreviewProvider {
         
         RegularExpressionReferenceView()
     }
-    
 }

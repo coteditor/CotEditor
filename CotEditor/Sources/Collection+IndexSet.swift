@@ -56,5 +56,4 @@ extension RangeReplaceableCollection where Index == Int {
             self.insert(element, at: index)
         }
     }
-    
 }

@@ -63,5 +63,4 @@ extension NSColor {
             .map { (self.hueComponent + $0).truncatingRemainder(dividingBy: 1) }
             .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }
     }
-    
 }

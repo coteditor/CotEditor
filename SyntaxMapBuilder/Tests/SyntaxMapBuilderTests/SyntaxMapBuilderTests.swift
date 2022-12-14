@@ -63,5 +63,4 @@ final class SyntaxMapBuilderTests: XCTestCase {
         
         XCTAssertEqual(try buildSyntaxMap(directoryURL: syntaxesURL), expectedResult)
     }
-    
 }

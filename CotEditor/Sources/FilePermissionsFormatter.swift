@@ -45,5 +45,4 @@ final class FilePermissionsFormatter: Formatter {
         
         false
     }
-    
 }

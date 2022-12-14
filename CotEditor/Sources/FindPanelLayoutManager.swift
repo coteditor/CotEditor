@@ -115,5 +115,4 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
         
         false
     }
-    
 }

@@ -385,7 +385,6 @@ extension MultiCursorEditing {
         
         return NSRange(min(minBound, maxBound)..<max(minBound, maxBound))
     }
-    
 }
 
 
@@ -450,7 +449,6 @@ extension NSTextView {
         
         return self.characterIndexForInsertion(at: point)
     }
-    
 }
 
 
@@ -474,7 +472,6 @@ private extension UserDefaults {
         return BlinkPeriod(on: (onPeriod > 0) ? onPeriod : 500,
                            off: (offPeriod > 0) ? offPeriod : 500)
     }
-    
 }
 
 
@@ -500,7 +497,6 @@ private extension MultiCursorEditing {
         self.insertionPointTimer?.cancel()
         self.insertionPointTimer = timer
     }
-    
 }
 
 
@@ -562,5 +558,4 @@ private extension NSLayoutManager {
         
         return rects.unique
     }
-    
 }

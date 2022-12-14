@@ -80,7 +80,6 @@ final class TextFind {
                     return "Select the search scope in the document or turn off the “in selection” option.".localized
             }
         }
-        
     }
     
     
@@ -474,5 +473,4 @@ final class TextFind {
             }
         }
     }
-    
 }

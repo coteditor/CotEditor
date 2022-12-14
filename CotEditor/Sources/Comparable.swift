@@ -42,5 +42,4 @@ extension Comparable {
         
         self = self.clamped(to: range)
     }
-    
 }

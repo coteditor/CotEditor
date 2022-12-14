@@ -629,5 +629,4 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             self.presentError(error)
         }
     }
-    
 }

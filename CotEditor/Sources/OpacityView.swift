@@ -52,7 +52,6 @@ import SwiftUI
         
         super.init(rootView: rootView)
     }
-    
 }
 
 
@@ -139,7 +138,6 @@ private struct OpacitySample: View {
             }
         }
     }
-    
 }
 
 
@@ -155,5 +153,4 @@ struct OpacityView_Previews: PreviewProvider {
         OpacitySample(opacity: 0.5)
             .frame(width: 16, height: 16)
     }
-    
 }

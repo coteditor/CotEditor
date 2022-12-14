@@ -119,5 +119,4 @@ extension Unicode.Scalar {
                 return nil
         }
     }
-    
 }

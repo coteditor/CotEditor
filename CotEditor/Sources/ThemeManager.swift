@@ -216,5 +216,4 @@ final class ThemeManager: SettingFileManaging {
             UserDefaults.standard.restore(key: .theme)
         }
     }
-    
 }

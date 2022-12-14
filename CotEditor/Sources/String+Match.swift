@@ -51,5 +51,4 @@ extension String {
         
         return (ranges, score)
     }
-    
 }

@@ -214,7 +214,6 @@ final class StringCommentingTests: XCTestCase {
         XCTAssertFalse(textView.canUncomment(partly: false))
         XCTAssertTrue(textView.canUncomment(partly: true))
     }
-    
 }
 
 
@@ -242,5 +241,4 @@ private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditi
         
         return (selectedRanges + insertionRanges).sorted(\.location) as [NSValue]
     }
-    
 }

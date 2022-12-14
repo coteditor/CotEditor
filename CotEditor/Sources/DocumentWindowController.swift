@@ -249,7 +249,6 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
             popUpButton.item(at: 1)?.tag = deletedTag
         }
     }
-    
 }
 
 
@@ -614,7 +613,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
         }
     }
-    
 }
 
 
@@ -629,7 +627,6 @@ extension DocumentWindowController: NSToolbarItemValidation {
                 return item.action == nil
         }
     }
-    
 }
 
 
@@ -639,5 +636,4 @@ extension NSDocument: NSSharingServicePickerToolbarItemDelegate {
         
         [self]
     }
-    
 }

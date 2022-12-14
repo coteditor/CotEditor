@@ -39,7 +39,6 @@ final class OutlinePopUpButton: NSPopUpButton {
         
         return size
     }
-    
 }
 
 
@@ -61,5 +60,4 @@ final class OutlinePopUpButtonCell: NSPopUpButtonCell {
             super.attributedTitle = newValue
         }
     }
-    
 }

@@ -36,5 +36,4 @@ extension DefaultInitializable {
         
         self = Self(rawValue: rawValue ?? Self.defaultValue.rawValue) ?? Self.defaultValue
     }
-    
 }

@@ -38,7 +38,6 @@ extension NSDocument.SaveOperationType {
                 fatalError()
         }
     }
-    
 }
 
 
@@ -94,5 +93,4 @@ extension NSDocument {
         
         recoveryHandler(didRecover)
     }
-    
 }

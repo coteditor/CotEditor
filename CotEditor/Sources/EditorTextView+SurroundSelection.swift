@@ -77,7 +77,6 @@ extension EditorTextView {
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
     }
-    
 }
 
 
@@ -99,5 +98,4 @@ extension NSTextView {
         
         return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)
     }
-    
 }

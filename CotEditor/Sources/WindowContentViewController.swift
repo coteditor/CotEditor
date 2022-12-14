@@ -262,5 +262,4 @@ final class WindowContentViewController: NSSplitViewController {
         
         return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
     }
-    
 }

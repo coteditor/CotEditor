@@ -1645,7 +1645,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             }
         }
     }
-    
 }
 
 
@@ -1801,7 +1800,6 @@ extension EditorTextView {
         
         self.complete(self)
     }
-    
 }
 
 
@@ -1880,5 +1878,4 @@ extension EditorTextView {
         // treat `.` and `:` as word delimiter
         return (self.string as NSString).rangeOfCharacter(until: CharacterSet(charactersIn: ".:"), at: location, range: proposedWordRange)
     }
-    
 }

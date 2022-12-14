@@ -91,5 +91,4 @@ final class WindowPaneController: NSViewController {
         
         UserDefaults.standard[.writingDirection] = WritingDirection(rawValue: sender.tag)!
     }
-    
 }

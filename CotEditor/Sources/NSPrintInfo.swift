@@ -44,5 +44,4 @@ extension NSPrintInfo {
         get { self.dictionary().value(forKey: key.rawValue) as? Value }
         set { self.dictionary().setValue(newValue, forKey: key.rawValue) }
     }
-    
 }

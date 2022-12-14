@@ -46,5 +46,4 @@ extension RegularExpressionSyntaxType {
             case .anchor: return "Anchor"
         }
     }
-    
 }

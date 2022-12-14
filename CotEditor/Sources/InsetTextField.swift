@@ -100,7 +100,6 @@ struct InsetTextField: NSViewRepresentable {
             return false
         }
     }
-    
 }
 
 
@@ -178,7 +177,6 @@ final class PaddingTextField: NSTextField {
         get { (self.cell as? PaddingTextFieldCell)?.trailingPadding ?? 0 }
         set { (self.cell as? PaddingTextFieldCell)?.trailingPadding = newValue }
     }
-    
 }
 
 
@@ -195,5 +193,4 @@ struct InsetTextField_Previews: PreviewProvider {
         InsetTextField(text: $text, prompt: "Prompt")
             .inset(.leading, 20)
     }
-    
 }

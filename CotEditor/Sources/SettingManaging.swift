@@ -47,7 +47,6 @@ extension SettingManaging {
         
         try FileManager.default.createDirectory(at: self.userSettingDirectoryURL, withIntermediateDirectories: true)
     }
-    
 }
 
 

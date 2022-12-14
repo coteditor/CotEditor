@@ -99,5 +99,4 @@ extension NSTextView {
         
         return true
     }
-    
 }

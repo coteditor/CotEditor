@@ -150,7 +150,6 @@ extension LineRangeCacheable {
         self.lineRangeCache.parsedIndexes.insert(integersIn: lowerParseBound..<index)
         self.lineRangeCache.invalidateFirstUncoundedIndex()
     }
-    
 }
 
 
@@ -182,5 +181,4 @@ private extension LineRangeCache {
         
         self.firstUncoundedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
     }
-    
 }

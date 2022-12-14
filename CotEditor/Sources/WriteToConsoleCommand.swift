@@ -37,5 +37,4 @@ final class WriteToConsoleCommand: NSScriptCommand {
         
         return true
     }
-    
 }

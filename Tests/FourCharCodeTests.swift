@@ -34,5 +34,4 @@ final class FourCharCodeTests: XCTestCase {
         XCTAssertEqual(FourCharCode(stringLiteral: "TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
         XCTAssertEqual("rtfd", NSHFSTypeCodeFromFileType("'rtfd'"))
     }
-    
 }

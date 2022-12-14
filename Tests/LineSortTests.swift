@@ -179,5 +179,4 @@ final class LineSortTests: XCTestCase {
         XCTAssertNil(options.parse("+1,000"))
         XCTAssertNil(options.parse("dog 10"))
     }
-    
 }

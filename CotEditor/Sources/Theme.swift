@@ -181,7 +181,6 @@ final class Theme: NSObject {
         
         return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
     }
-    
 }
 
 
@@ -212,7 +211,6 @@ extension Theme: Codable {
         
         case metadata
     }
-    
 }
 
 
@@ -244,7 +242,6 @@ extension Theme.Style: Codable {
         
         try container.encode(color.colorCode(type: .hex), forKey: .color)
     }
-    
 }
 
 
@@ -280,5 +277,4 @@ extension Theme.SelectionStyle: Codable {
         try container.encode(color.colorCode(type: .hex), forKey: .color)
         try container.encode(self.usesSystemSetting, forKey: .usesSystemSetting)
     }
-    
 }

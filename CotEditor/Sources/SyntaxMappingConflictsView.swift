@@ -109,7 +109,6 @@ struct SyntaxMappingConflictsView: View {
             Text(name).fontWeight(.medium)
         }
     }
-    
 }
 
 
@@ -122,5 +121,4 @@ struct SyntaxMappingConflictsView_Previews: PreviewProvider {
         
         SyntaxMappingConflictsView(dictionary: [:])
     }
-    
 }

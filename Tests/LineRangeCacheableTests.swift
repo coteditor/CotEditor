@@ -193,7 +193,6 @@ final class LineRangeCacheableTests: XCTestCase {
         XCTAssertEqual(lineString.lineRange(at: index), NSRange(location: 3, length: 3))
         XCTAssertEqual(lineString.lineStartIndex(at: index), 3)
     }
-    
 }
 
 
@@ -217,5 +216,4 @@ private final class LineString: LineRangeCacheable {
         self.invalidateLineRanges(in: NSRange(location: range.location, length: replacement.length),
                                   changeInLength: replacement.length - range.length)
     }
-    
 }

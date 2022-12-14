@@ -75,5 +75,4 @@ final class SegmentedArrayControl: NSSegmentedControl {
                 preconditionFailure()
         }
     }
-    
 }

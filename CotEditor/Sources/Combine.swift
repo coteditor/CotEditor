@@ -32,5 +32,4 @@ extension Publisher {
         
         self.map { _ in () }.eraseToAnyPublisher()
     }
-    
 }

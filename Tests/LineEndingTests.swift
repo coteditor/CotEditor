@@ -70,7 +70,6 @@ final class LineEndingTests: XCTestCase {
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings(with: .cr), "foo\rbar\r")
         XCTAssertEqual("foo\r\nbar\n".replacingLineEndings([.lf], with: .cr), "foo\r\nbar\r")
     }
-    
 }
 
 
@@ -81,5 +80,4 @@ private extension ItemRange where Item == LineEnding {
         
         self.init(item: item, range: NSRange(location: location, length: item.length))
     }
-    
 }

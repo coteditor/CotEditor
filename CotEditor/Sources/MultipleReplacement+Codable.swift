@@ -71,7 +71,6 @@ extension MultipleReplacement.Replacement: Codable {
             try container.encode(description, forKey: .description)
         }
     }
-    
 }
 
 
@@ -112,5 +111,4 @@ extension MultipleReplacement.Settings: Codable {
         try container.encode(self.matchesFullWord, forKey: .matchesFullWord)
         try container.encode(self.unescapesReplacementString, forKey: .unescapesReplacementString)
     }
-    
 }

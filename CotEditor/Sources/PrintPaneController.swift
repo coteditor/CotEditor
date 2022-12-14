@@ -112,7 +112,6 @@ final class PrintPaneController: NSViewController {
             }
         }
     }
-    
 }
 
 
@@ -194,5 +193,4 @@ extension PrintPaneController: NSFontChanging {
         fontField.stringValue = displayName + " " + size.formatted()
         fontField.font = font.withSize(min(size, maxDisplaySize))
     }
-    
 }

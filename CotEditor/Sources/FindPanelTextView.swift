@@ -166,5 +166,4 @@ class FindPanelTextView: NSTextView {
         
         self.didChangeText()
     }
-    
 }

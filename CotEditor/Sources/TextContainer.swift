@@ -130,7 +130,6 @@ final class TextContainer: NSTextContainer {
         
         layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
     }
-    
 }
 
 
@@ -152,5 +151,4 @@ private extension NSString {
         
         return String(utf16CodeUnits: characters, count: characters.count)
     }
-    
 }

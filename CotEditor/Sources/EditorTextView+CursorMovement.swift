@@ -626,7 +626,6 @@ extension EditorTextView {
         
         self.addSelectedColumn(affinity: .upstream)
     }
-    
 }
 
 
@@ -728,7 +727,6 @@ extension EditorTextView {
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
-    
 }
 
 
@@ -769,5 +767,4 @@ private extension NSAttributedString {
         
         return isForward ? trimmedRange.lowerBound : trimmedRange.upperBound
     }
-    
 }

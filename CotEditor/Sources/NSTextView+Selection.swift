@@ -78,5 +78,4 @@ extension NSTextView {
         self.scrollRangeToVisible(range)
         self.window?.makeFirstResponder(self)
     }
-    
 }

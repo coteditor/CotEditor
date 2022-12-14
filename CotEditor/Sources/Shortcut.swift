@@ -77,7 +77,6 @@ enum ModifierKey: CaseIterable {
             case .command: return "@"
         }
     }
-    
 }
 
 
@@ -262,7 +261,6 @@ struct Shortcut: Hashable {
         .help: "Help",
         .space: String(localized: "Space", comment: "keyboard key name"),
     ].mapKeys(\.unicodeScalar)
-    
 }
 
 private extension NSEvent.SpecialKey {
@@ -279,7 +277,6 @@ extension Shortcut: CustomStringConvertible {
         
         (self.modifierMaskSymbols + [self.keyEquivalentSymbol]).joined(separator: .thinSpace)
     }
-    
 }
 
 
@@ -299,5 +296,4 @@ extension Shortcut: Codable {
         
         try container.encode(self.keySpecChars)
     }
-    
 }

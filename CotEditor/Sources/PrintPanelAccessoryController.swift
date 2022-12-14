@@ -391,7 +391,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get { AlignmentType(self.printInfo?[.secondaryFooterAlignment]) }
         set { self.printInfo?[.secondaryFooterAlignment] = newValue.rawValue }
     }
-    
 }
 
 

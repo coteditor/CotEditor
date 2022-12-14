@@ -180,5 +180,4 @@ extension DefaultKeys {
     static let suppressesInconsistentLineEndingAlert = DefaultKey<Bool>("suppressesInconsistentLineEndingAlert")
     
     static let lastVersion = DefaultKey<String?>("lastVersion")
-    
 }

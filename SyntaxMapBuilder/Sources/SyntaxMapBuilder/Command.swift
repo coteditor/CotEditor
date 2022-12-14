@@ -54,7 +54,6 @@ struct Command: ParsableCommand {
         
         print(json)
     }
-    
 }
 
 

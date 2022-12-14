@@ -46,5 +46,4 @@ final class NSBezierPathTests: XCTestCase {
             XCTAssertEqual(points1, points2)
         }
     }
-    
 }

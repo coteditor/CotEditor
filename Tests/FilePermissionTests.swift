@@ -46,5 +46,4 @@ final class FilePermissionTests: XCTestCase {
         XCTAssertEqual(formatter.string(for: 0o777 as NSNumber), "777 (-rwxrwxrwx)")
         XCTAssertEqual(formatter.string(for: 0o643 as NSNumber), "643 (-rw-r---wx)")
     }
-    
 }

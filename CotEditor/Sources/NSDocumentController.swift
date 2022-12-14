@@ -41,5 +41,4 @@ extension NSDocumentController {
         self.clearRecentDocuments(self)
         recentDocumentURLs.forEach { self.noteNewRecentDocumentURL($0) }
     }
-    
 }

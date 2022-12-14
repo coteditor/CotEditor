@@ -723,7 +723,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
-    
 }
 
 
@@ -814,5 +813,4 @@ extension AppearancePaneController: NSFontChanging {
         fontField.font = font.withSize(min(size, maxDisplaySize))
         fontField.disablesAntialiasing = !shouldAntiailias
     }
-    
 }

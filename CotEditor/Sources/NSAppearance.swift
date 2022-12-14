@@ -45,5 +45,4 @@ extension NSAppearance {
                 return false
         }
     }
-    
 }

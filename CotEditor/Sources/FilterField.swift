@@ -105,5 +105,4 @@ final class FilterField: NSSearchField {
         
         buttonCell.image = self.stringValue.isEmpty ? self.image : self.filteringImage
     }
-    
 }

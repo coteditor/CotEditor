@@ -58,5 +58,4 @@ final class ServicesProvider: NSObject {
             }
         }
     }
-    
 }

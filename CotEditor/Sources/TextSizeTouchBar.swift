@@ -138,5 +138,4 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         self.textView?.setScaleKeepingVisibleArea(1.0)
     }
-    
 }

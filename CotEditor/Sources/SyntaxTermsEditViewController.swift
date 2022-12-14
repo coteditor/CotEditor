@@ -53,5 +53,4 @@ final class SyntaxTermsEditViewController: NSViewController {
         
         self.termsController?.unbind(.contentArray)
     }
-    
 }

@@ -79,5 +79,4 @@ final class SyntaxValidationViewController: NSViewController {
             }
         }()
     }
-    
 }

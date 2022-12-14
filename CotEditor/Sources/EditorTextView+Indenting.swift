@@ -81,7 +81,6 @@ extension EditorTextView: Indenting {
         
         self.convertIndentation(style: .tab)
     }
-    
 }
 
 
@@ -210,5 +209,4 @@ extension Indenting {
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
                      actionName: "Convert Indentation".localized)
     }
-    
 }

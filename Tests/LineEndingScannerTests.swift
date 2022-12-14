@@ -151,7 +151,6 @@ final class LineEndingScannerTests: XCTestCase {
             }
         }
     }
-    
 }
 
 

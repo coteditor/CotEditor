@@ -136,7 +136,6 @@ final class ThemeViewController: NSViewController {
         
         self.delegate?.didUpdate(theme: theme)
     }
-    
 }
 
 
@@ -151,5 +150,4 @@ extension Theme {
         
         NotificationCenter.default.post(name: Theme.didChangeNotification, object: self)
     }
-    
 }

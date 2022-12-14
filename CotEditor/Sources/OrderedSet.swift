@@ -149,5 +149,4 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
         
         return self.remove(at: index)
     }
-    
 }

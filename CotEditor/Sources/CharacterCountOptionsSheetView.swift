@@ -66,5 +66,4 @@ struct CharacterCountOptionsSheetView: View {
         }
         .padding()
     }
-    
 }

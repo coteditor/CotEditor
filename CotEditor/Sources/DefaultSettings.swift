@@ -186,5 +186,4 @@ struct DefaultSettings {
     
     
     private init() { }
-    
 }

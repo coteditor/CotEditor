@@ -54,7 +54,6 @@ extension RangeReplaceableCollection where Element: Equatable {
             self.removeFirst(self.count - maximum)
         }
     }
-    
 }
 
 
@@ -68,7 +67,6 @@ extension Collection {
         
         self.indices.contains(index) ? self[index] : nil
     }
-    
 }
 
 
@@ -84,7 +82,6 @@ extension Sequence where Element: Equatable {
             unique.append(element)
         }
     }
-    
 }
 
 
@@ -120,7 +117,6 @@ extension Dictionary {
         get { self[key.rawValue] }
         set { self[key.rawValue] = newValue }
     }
-    
 }
 
 
@@ -137,7 +133,6 @@ extension Sequence {
         
         self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
-    
 }
 
 
@@ -150,7 +145,6 @@ extension MutableCollection where Self: RandomAccessCollection {
         
         self.sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
-    
 }
 
 
@@ -209,5 +203,4 @@ extension Sequence {
         
         return (count == number) ? .equal : .less
     }
-    
 }

@@ -61,7 +61,6 @@ extension Pair where T == Character {
         case end(String.Index)
         case odd
     }
-    
 }
 
 
@@ -201,5 +200,4 @@ extension StringProtocol {
         
         return nil
     }
-    
 }

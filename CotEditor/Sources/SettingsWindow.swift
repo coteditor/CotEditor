@@ -40,5 +40,4 @@ final class SettingsWindow: NSPanel {
                 return super.validateMenuItem(menuItem)
         }
     }
-    
 }

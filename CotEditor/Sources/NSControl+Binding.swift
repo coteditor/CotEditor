@@ -48,7 +48,6 @@ extension NSControl {
             options[.nullPlaceholder] = placeholder
         }
     }
-    
 }
 
 
@@ -70,5 +69,4 @@ private extension NSObject {
         self.unbind(binding)
         self.bind(binding, to: object, withKeyPath: keyPath, options: options)
     }
-    
 }

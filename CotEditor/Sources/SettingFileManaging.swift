@@ -63,7 +63,6 @@ enum SettingChange {
                 return nil
         }
     }
-    
 }
 
 
@@ -103,7 +102,6 @@ protocol SettingFileManaging: SettingManaging {
     
     /// load settings in the user domain
     func checkUserSettings()
-    
 }
 
 
@@ -436,7 +434,6 @@ extension SettingFileManaging {
         self.updateSettingList(change: change)
         self.didUpdateSetting.send(change)
     }
-    
 }
 
 
@@ -470,7 +467,6 @@ enum InvalidNameError: LocalizedError {
         
         "Please choose another name.".localized
     }
-    
 }
 
 
@@ -506,7 +502,6 @@ struct SettingFileError: LocalizedError {
         
         self.error?.localizedRecoverySuggestion
     }
-    
 }
 
 
@@ -574,5 +569,4 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
                 preconditionFailure()
         }
     }
-    
 }

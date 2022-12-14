@@ -84,5 +84,4 @@ final class FindPanelButtonViewController: NSViewController {
                 assertionFailure("Number of the find button segments must be 2.")
         }
     }
-    
 }

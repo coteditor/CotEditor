@@ -403,7 +403,6 @@ final class SyntaxManager: SettingFileManaging {
         
         return style == bundledStyle
     }
-    
 }
 
 
@@ -432,7 +431,6 @@ private extension StringProtocol {
         
         return interpreter
     }
-    
 }
 
 
@@ -488,7 +486,6 @@ private extension SyntaxManager.StyleDictionary {
                 return item
         }
     }
-    
 }
 
 
@@ -535,5 +532,4 @@ private extension SyntaxManager.StyleDictionary {
                 return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
         }
     }
-    
 }

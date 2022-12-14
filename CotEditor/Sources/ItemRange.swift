@@ -50,7 +50,6 @@ struct ItemRange<Item> {
         
         self.range.location += offset
     }
-    
 }
 
 

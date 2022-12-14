@@ -195,7 +195,6 @@ final class UnixScript: Script {
                 NSPasteboard.general.setString(output, forType: .string)
         }
     }
-    
 }
 
 
@@ -222,5 +221,4 @@ private extension ScriptToken where Self: RawRepresentable, Self.RawValue == Str
         
         self.init(rawValue: type)
     }
-    
 }

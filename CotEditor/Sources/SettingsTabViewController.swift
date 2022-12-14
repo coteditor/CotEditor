@@ -93,7 +93,6 @@ final class SettingsTabViewController: NSTabViewController {
             window.title = tabViewItem.label
         })
     }
-    
 }
 
 
@@ -109,5 +108,4 @@ private extension NSWindow {
         
         self.setFrame(frame, display: flag)
     }
-    
 }

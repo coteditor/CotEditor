@@ -81,7 +81,6 @@ extension EditorTextView: Commenting {
         
         self.uncomment()
     }
-    
 }
 
 
@@ -218,7 +217,6 @@ extension Commenting {
         
         return false
     }
-    
 }
 
 
@@ -280,7 +278,6 @@ extension NSRange {
         
         return NSRange(location: location, length: length)
     }
-    
 }
 
 
@@ -376,5 +373,4 @@ extension String {
         
         return delimiterRanges.isEmpty ? nil : delimiterRanges
     }
-    
 }

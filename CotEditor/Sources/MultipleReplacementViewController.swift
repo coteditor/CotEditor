@@ -384,7 +384,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         // notify modification
         self.updateNotificationDebouncer.schedule()
     }
-    
 }
 
 
@@ -538,7 +537,6 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
         
         self.updateReplacements(replacements, at: rowIndexes)
     }
-    
 }
 
 
@@ -621,5 +619,4 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
                 break
         }
     }
-    
 }

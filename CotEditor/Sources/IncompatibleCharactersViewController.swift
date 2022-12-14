@@ -230,7 +230,6 @@ final class IncompatibleCharactersViewController: NSViewController {
         textView.selectedRange = item.range
         textView.centerSelectionInVisibleArea(self)
     }
-    
 }
 
 
@@ -243,7 +242,6 @@ extension IncompatibleCharactersViewController: NSTableViewDelegate {
         
         self.selectItem(at: tableView.selectedRow)
     }
-    
 }
 
 
@@ -286,7 +284,6 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
         self.incompatibleCharacters.sort(using: tableView.sortDescriptors)
         tableView.reloadData()
     }
-    
 }
 
 
@@ -347,5 +344,4 @@ private extension NSTextStorage {
             manager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: range)
         }
     }
-    
 }

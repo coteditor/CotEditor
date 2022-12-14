@@ -61,5 +61,4 @@ extension EditorTextView: ColorCodeReceiver {
         self.selectedRange = NSRange(location: range.location, length: colorCode.length)
         self.scrollRangeToVisible(self.selectedRange)
     }
-    
 }

@@ -36,7 +36,6 @@ struct WidthGetter<Key: PreferenceKey>: View where Key.Value == CGFloat {
             Color.clear.preference(key: self.key.self, value: geometry.size.width)
         }
     }
-    
 }
 
 

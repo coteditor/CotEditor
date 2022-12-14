@@ -220,7 +220,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         self.resultSplitViewItem?.isCollapsed = true
         self.splitView.needsDisplay = true
     }
-    
 }
 
 

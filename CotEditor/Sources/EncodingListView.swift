@@ -180,7 +180,6 @@ struct EncodingListView: View {
             self.encodingItems.removeAll { $0.isSeparator && self.selectedItems.contains($0.id) }
         }
     }
-    
 }
 
 
@@ -211,7 +210,6 @@ private struct EncodingView: View {
         
         CFStringConvertEncodingToIANACharSetName(self.encoding) as String? ?? "–"
     }
-    
 }
 
 
@@ -230,5 +228,4 @@ struct EncodingListView_Previews: PreviewProvider {
         
         EncodingListView()
     }
-    
 }

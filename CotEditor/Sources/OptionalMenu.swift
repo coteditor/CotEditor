@@ -72,5 +72,4 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
         
         self.trackingTimer?.invalidate()
     }
-    
 }

@@ -95,7 +95,6 @@ extension StringProtocol {
         
         self.distance(from: self.lineStartIndex(at: index), to: index)
     }
-    
 }
 
 
@@ -137,7 +136,6 @@ extension String {
         
         return count
     }
-    
 }
 
 
@@ -198,5 +196,4 @@ extension String {
                 return string.data(using: options.encoding)?.count
         }
     }
-    
 }

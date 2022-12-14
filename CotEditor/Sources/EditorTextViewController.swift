@@ -314,7 +314,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         self.invalidateRestorableState()
     }
-    
 }
 
 
@@ -340,7 +339,6 @@ extension EditorTextViewController: NSUserInterfaceValidations {
                 return true
         }
     }
-    
 }
 
 
@@ -354,7 +352,6 @@ extension EditorTextViewController: NSFontChanging {
         
         [.collection, .face, .size]
     }
-    
 }
 
 
@@ -367,5 +364,4 @@ private extension MultiCursorEditing {
         
         !self.hasMultipleInsertions && (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
     }
-    
 }

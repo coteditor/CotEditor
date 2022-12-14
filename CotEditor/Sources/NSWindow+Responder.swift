@@ -48,7 +48,6 @@ extension NSWindow {
         
         return sucsess
     }
-    
 }
 
 
@@ -63,5 +62,4 @@ extension NSViewController {
         
         return self.view.window?.endEditing() ?? false
     }
-    
 }

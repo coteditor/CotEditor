@@ -44,5 +44,4 @@ struct HelpButton: NSViewRepresentable {
     
     
     func updateNSView(_ nsView: NSButton, context: Context) { }
-    
 }

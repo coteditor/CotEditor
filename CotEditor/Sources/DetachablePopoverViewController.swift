@@ -34,5 +34,4 @@ final class DetachablePopoverViewController: NSViewController, NSPopoverDelegate
         
         true
     }
-    
 }

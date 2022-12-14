@@ -75,5 +75,4 @@ struct OutlineExtractor {
             return OutlineItem(title: title, range: result.range, style: self.style)
         }
     }
-    
 }

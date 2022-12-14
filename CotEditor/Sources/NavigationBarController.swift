@@ -289,7 +289,6 @@ final class NavigationBarController: NSViewController {
         self.nextButton?.toolTip = "Jump to next outline item".localized
         self.nextButton?.isEnabled = self.canSelectNextItem
     }
-    
 }
 
 

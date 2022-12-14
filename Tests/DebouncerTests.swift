@@ -90,5 +90,4 @@ final class DebouncerTests: XCTestCase {
         
         self.waitForExpectations(timeout: 1)
     }
-
 }

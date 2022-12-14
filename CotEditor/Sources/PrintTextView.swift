@@ -393,7 +393,6 @@ final class PrintTextView: NSTextView, Themable {
                 return nil
         }
     }
-    
 }
 
 
@@ -410,7 +409,6 @@ private extension NSLayoutManager {
         // cause layout by asking a question which has to determine where the glyph is
         self.textContainer(forGlyphAt: self.numberOfGlyphs - 1, effectiveRange: nil)
     }
-    
 }
 
 
@@ -469,7 +467,6 @@ private final class PrintLayoutManager: LayoutManager {
         
         return super.layoutManager(layoutManager, shouldUse: action, forControlCharacterAt: charIndex)
     }
-    
 }
 
 
@@ -510,7 +507,6 @@ private enum HeaderFooterLocation {
                             secondaryAlignment: .secondaryFooterAlignment)
         }
     }
-    
 }
 
 

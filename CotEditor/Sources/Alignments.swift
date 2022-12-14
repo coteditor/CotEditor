@@ -39,5 +39,4 @@ extension HorizontalAlignment {
             context[.leading]
         }
     }
-    
 }

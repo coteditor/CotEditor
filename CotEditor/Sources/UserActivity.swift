@@ -36,5 +36,4 @@ enum UserActivityInfo: String {
         
         return bundleIdentifier + "." + self.rawValue
     }
-    
 }

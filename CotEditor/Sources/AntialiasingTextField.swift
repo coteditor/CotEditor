@@ -50,5 +50,4 @@ final class AntialiasingTextField: NSTextField {
             NSGraphicsContext.restoreGraphicsState()
         }
     }
-    
 }

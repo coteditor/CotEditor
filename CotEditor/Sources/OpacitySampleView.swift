@@ -77,5 +77,4 @@ final class OpacitySampleView: NSView {
         
         NSGraphicsContext.restoreGraphicsState()
     }
-    
 }

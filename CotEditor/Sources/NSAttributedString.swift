@@ -73,7 +73,6 @@ extension NSAttributedString {
         
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
-    
 }
 
 
@@ -112,5 +111,4 @@ extension Sequence<NSAttributedString> {
         
         self.joined(separator: .init(string: separator))
     }
-    
 }

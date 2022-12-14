@@ -78,7 +78,6 @@ private extension NSCursor {
         
         return color == .black ? nil : NSColor(color: color)
     }
-    
 }
 
 

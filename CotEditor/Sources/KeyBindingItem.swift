@@ -43,7 +43,6 @@ final class KeyBindingItem {
         self.shortcut = shortcut
         self.defaultShortcut = defaultShortcut
     }
-    
 }
 
 
@@ -67,5 +66,4 @@ final class NamedTreeNode: NSTreeNode {
         
         super.init(representedObject: representedObject)
     }
-    
 }

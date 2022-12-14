@@ -281,7 +281,6 @@ final class EncodingDetectionTests: XCTestCase {
             XCTAssert(availableEncodings.contains(encoding), "\(String.localizedName(of: encoding))")
         }
     }
-    
 }
 
 
@@ -303,5 +302,4 @@ private extension EncodingDetectionTests {
         
         return try Data(contentsOf: fileURL!)
     }
-    
 }

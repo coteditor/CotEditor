@@ -159,5 +159,4 @@ extension MultipleReplacement {
             }
         }
     }
-    
 }

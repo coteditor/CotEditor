@@ -35,5 +35,4 @@ final class TextClippingTests: XCTestCase {
         
         XCTAssertEqual(textClipping.string, "🐕moof🐄")
     }
-
 }

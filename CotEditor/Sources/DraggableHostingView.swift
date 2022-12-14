@@ -155,5 +155,4 @@ final class DraggableHostingView<Content>: NSHostingView<Content> where Content:
             self.frame.origin.y.clamp(to: self.margin...maxY)
         }
     }
-    
 }

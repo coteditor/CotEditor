@@ -106,7 +106,6 @@ extension CurrentLineHighlighting {
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
             .offset(by: self.textContainerOrigin)
     }
-    
 }
 
 
@@ -131,5 +130,4 @@ private extension NSLayoutManager {
         
         return lowerRect.union(upperRect)
     }
-    
 }

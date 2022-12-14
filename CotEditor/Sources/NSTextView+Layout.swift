@@ -81,7 +81,6 @@ extension NSTextView {
         
         return (0..<count).map { rectArray[$0].offset(by: self.textContainerOrigin) }
     }
-    
 }
 
 
@@ -169,7 +168,6 @@ extension NSTextView {
         
         self.setScale(scale, centeredAt: self.visibleRect.mid)
     }
-    
 }
 
 
@@ -231,5 +229,4 @@ extension NSTextView {
             ? CGSize(width: 9_999_999, height: CGSize.infinite.height)
             : .infinite
     }
-    
 }

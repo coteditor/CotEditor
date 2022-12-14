@@ -129,5 +129,4 @@ final class RegexTextField: NSTextField {
         
         editor.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.parsesRegularExpression)
     }
-    
 }

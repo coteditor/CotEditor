@@ -962,7 +962,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         
         return self.splitViewController?.focusedChild
     }
-    
 }
 
 

@@ -89,15 +89,14 @@ struct GoToLineView: View {
     
     /// Submit the current input.
     private func submit() {
+        
         guard
             let lineRange = FuzzyRange(string: self.value),
             self.completionHandler(lineRange)
         else { return NSSound.beep() }
         
         self.parent?.dismiss(nil)
-        
     }
-    
 }
 
 
@@ -110,5 +109,4 @@ struct GoToLineView_Previews: PreviewProvider {
         
         GoToLineView(lineRange: FuzzyRange(location: 1, length: 1)) { _ in true }
     }
-    
 }

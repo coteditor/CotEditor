@@ -40,7 +40,6 @@ enum SyntaxType: String, CaseIterable {
         
         self.rawValue.localized
     }
-    
 }
 
 

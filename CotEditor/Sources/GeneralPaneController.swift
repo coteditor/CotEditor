@@ -162,7 +162,6 @@ final class GeneralPaneController: NSViewController {
         self.cltPathField?.isHidden = !status.installed
         self.cltPathField?.stringValue = String(localized: "installed at \(CommandLineToolManager.shared.linkURL.path)")
     }
-    
 }
 
 
@@ -181,5 +180,4 @@ final class UpdatesViewController: NSViewController {
             }
         }
     }
-    
 }

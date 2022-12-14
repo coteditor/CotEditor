@@ -41,5 +41,4 @@ extension Selector: Codable {
         
         try container.encode(NSStringFromSelector(self))
     }
-    
 }

@@ -52,7 +52,6 @@ extension String {
         
         return entities.reduce(self) { $0.replacingOccurrences(of: #"(?<!\\)((?:\\\\)*)\\"# + $1.value, with: "$1" + $1.key, options: .regularExpression) }
     }
-    
 }
 
 
@@ -152,7 +151,6 @@ extension StringProtocol {
         
         return !escapes.count.isMultiple(of: 2)
     }
-    
 }
 
 
@@ -186,5 +184,4 @@ extension String {
         
         return !escapes.count.isMultiple(of: 2)
     }
-    
 }

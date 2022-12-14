@@ -75,5 +75,4 @@ final class AppleScript: Script, AppleEventReceivable {
             throw ScriptError.standardError(error.localizedDescription)
         }
     }
-    
 }

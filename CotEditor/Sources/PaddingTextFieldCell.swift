@@ -52,5 +52,4 @@ final class PaddingTextFieldCell: NSTextFieldCell {
         
         return super.drawingRect(forBounds: newRect)
     }
-    
 }

@@ -61,5 +61,4 @@ extension Bundle {
         // -> Pre-release versions contain non-digit letter.
         self.shortVersion.range(of: "[^0-9.]", options: .regularExpression) != nil
     }
-    
 }

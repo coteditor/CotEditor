@@ -70,16 +70,15 @@ struct CharacterInspectorView: View {
             }
         }.fixedSize()
     }
-    
 }
 
 
 private struct ScalarDetailView: View {
-
+    
     let scalar: Unicode.Scalar
     var showsCodePoint = true
-
-
+    
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 2) {
@@ -116,7 +115,6 @@ private struct ScalarDetailView: View {
             }
         }.fixedSize()
     }
-    
 }
 
 
@@ -146,7 +144,6 @@ private struct CharacterView: NSViewRepresentable {
         nsView.stringValue = self.info.pictureString ?? String(self.info.character)
         nsView.textColor = (self.info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
     }
-    
 }
 
 

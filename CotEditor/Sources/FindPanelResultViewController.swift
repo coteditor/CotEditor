@@ -191,7 +191,6 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         textView.select(range: range)
     }
-    
 }
 
 
@@ -219,5 +218,4 @@ extension FindPanelResultViewController {
         
         UserDefaults.standard.restore(key: .findResultViewFontSize)
     }
-    
 }

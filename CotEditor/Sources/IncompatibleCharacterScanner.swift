@@ -86,5 +86,4 @@ final class IncompatibleCharacterScanner {
             self.incompatibleCharacters = incompatibleCharacters
         }
     }
-    
 }

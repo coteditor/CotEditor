@@ -38,5 +38,4 @@ extension NSAnimationContext {
         
         self.allowsImplicitAnimation = allowsImplicitAnimation
     }
-    
 }

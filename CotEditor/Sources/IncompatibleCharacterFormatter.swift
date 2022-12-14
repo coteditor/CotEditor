@@ -55,5 +55,4 @@ final class IncompatibleCharacterFormatter: Formatter {
         
         return NSAttributedString(string: unicode.codePoint, attributes: attributes)
     }
-    
 }

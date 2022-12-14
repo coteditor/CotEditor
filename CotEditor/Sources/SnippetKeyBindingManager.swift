@@ -142,5 +142,4 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         return Int(selector[range])
     }
-    
 }

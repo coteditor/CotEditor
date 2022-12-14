@@ -57,7 +57,6 @@ final class LineNumberView: NSView {
             self.padding = self.charWidth
             self.tickLength = scale * fontSize / 3
         }
-        
     }
     
     
@@ -425,7 +424,6 @@ final class LineNumberView: NSView {
             .sink { [weak self] _ in self?.invalidateDrawingInfo() }
             .store(in: &self.textViewSubscriptions)
     }
-    
 }
 
 
@@ -567,5 +565,4 @@ extension LineNumberView {
         
         textView.setSelectedRange(range, affinity: affinity, stillSelecting: false)
     }
-    
 }

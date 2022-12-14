@@ -46,5 +46,4 @@ final class ThemeMetaDataViewController: NSViewController {
         
         NSWorkspace.shared.open(url)
     }
-    
 }

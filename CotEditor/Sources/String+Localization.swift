@@ -39,5 +39,4 @@ extension String {
         
         NSLocalizedString(self, tableName: tableName, comment: comment)
     }
-    
 }

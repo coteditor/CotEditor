@@ -45,7 +45,6 @@ extension StringProtocol {
             .filter { $0 <= $1 }
             .map { NSRange($0..<$1) }
     }
-    
 }
 
 
@@ -61,7 +60,6 @@ private extension CollectionDifference {
         
         return index + insertionCount - removalCount
     }
-    
 }
 
 
@@ -74,5 +72,4 @@ private extension CollectionDifference.Change {
                 return offset
         }
     }
-    
 }

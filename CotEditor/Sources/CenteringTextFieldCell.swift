@@ -45,5 +45,4 @@ final class CenteringTextFieldCell: NSTextFieldCell {
         
         self.attributedStringValue.draw(in: self.titleRect(forBounds: cellFrame))
     }
-    
 }

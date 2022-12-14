@@ -56,5 +56,4 @@ final class FindProgress: ObservableObject {
             return Double(self.completedUnit) / Double(self.scope.count)
         }
     }
-    
 }

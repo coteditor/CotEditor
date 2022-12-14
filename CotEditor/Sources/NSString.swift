@@ -38,7 +38,6 @@ extension StringProtocol {
         
         self.utf16.count
     }
-    
 }
 
 
@@ -96,7 +95,6 @@ extension NSRange {
         
         NSRange(location: self.location + offset, length: self.length)
     }
-    
 }
 
 
@@ -344,7 +342,6 @@ extension NSString {
         
         return boundary
     }
-    
 }
 
 
@@ -362,5 +359,4 @@ extension unichar {
                 return false
         }
     }
-    
 }

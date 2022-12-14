@@ -79,5 +79,4 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         
         return checksBeta ? ["prerelease"] : []
     }
-    
 }

@@ -102,5 +102,4 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         self.isValid = self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)
     }
-    
 }

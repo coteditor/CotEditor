@@ -184,5 +184,4 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         get { ColorCodeType(rawValue: UserDefaults.standard[.colorCodeType]) ?? .hex }
         set { UserDefaults.standard[.colorCodeType] = newValue.rawValue }
     }
-    
 }

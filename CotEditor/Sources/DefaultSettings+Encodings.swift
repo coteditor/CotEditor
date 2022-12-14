@@ -121,5 +121,4 @@ extension DefaultSettings {
                     preconditionFailure()
             }
         }
-    
 }

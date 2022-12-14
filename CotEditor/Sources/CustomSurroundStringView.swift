@@ -119,7 +119,6 @@ struct CustomSurroundStringView: View {
         
         self.parent?.dismiss(nil)
     }
-    
 }
 
 
@@ -132,5 +131,4 @@ struct CustomSurroundStringView_Previews: PreviewProvider {
         
         CustomSurroundStringView(pair: nil) { _ in }
     }
-    
 }

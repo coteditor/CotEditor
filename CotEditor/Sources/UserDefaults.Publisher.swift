@@ -64,9 +64,7 @@ extension UserDefaults {
             subscriber.receive(subscription: subscription)
             subscription.register(initial: self.initial)  // regsiter after assigning to subscriber to pass the initial emission
         }
-        
     }
-    
 }
 
 
@@ -154,7 +152,5 @@ private extension UserDefaults.Publisher {
             self.demand -= 1
             self.demand += subscriber.receive(newValue)
         }
-        
     }
-    
 }

@@ -127,5 +127,4 @@ final class NSLayoutManagerTests: XCTestCase {
         XCTAssertEqual(layoutManager.rightCharacterIndex(of: 7, baseWritingDirection: .leftToRight), 8)
         XCTAssertEqual(layoutManager.rightCharacterIndex(of: 8, baseWritingDirection: .leftToRight), 8)
     }
-    
 }

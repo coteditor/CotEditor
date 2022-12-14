@@ -112,5 +112,4 @@ final class Debouncer {
         self.currentWorkItem?.cancel()
         self.currentWorkItem = nil
     }
-    
 }

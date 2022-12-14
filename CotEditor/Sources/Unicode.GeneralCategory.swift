@@ -181,5 +181,4 @@ extension Unicode.GeneralCategory {
                 return "?"
         }
     }
-    
 }

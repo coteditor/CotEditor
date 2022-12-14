@@ -46,5 +46,4 @@ struct TextClipping: Decodable {
         
         self = textClipping
     }
-    
 }

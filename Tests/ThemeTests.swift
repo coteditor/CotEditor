@@ -80,7 +80,6 @@ final class ThemeTests: XCTestCase {
             XCTAssertNoThrow(try Theme.theme(contentsOf: url))
         }
     }
-    
 }
 
 
@@ -93,5 +92,4 @@ private extension ThemeTests {
         
         return try Theme.theme(contentsOf: url!)
     }
-    
 }

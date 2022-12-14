@@ -46,5 +46,4 @@ final class UTTypeExtensionTests: XCTestCase {
         let svgzURL = URL(filePath: "FOO.SVGZ")
         XCTAssertTrue(svgzURL.conforms(to: .svg))
     }
-    
 }

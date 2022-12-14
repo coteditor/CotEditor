@@ -174,7 +174,6 @@ extension MultipleReplacement {
         
         return result
     }
-    
 }
 
 
@@ -194,7 +193,6 @@ private extension MultipleReplacement.Replacement {
             return .textual(options: options, fullWord: settings.matchesFullWord)
         }
     }
-    
 }
 
 
@@ -220,5 +218,4 @@ extension MultipleReplacement.Replacement {
             }
         }
     }
-    
 }

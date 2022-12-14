@@ -111,5 +111,4 @@ final class DocumentAnalyzer {
             self.result = result
         }
     }
-    
 }

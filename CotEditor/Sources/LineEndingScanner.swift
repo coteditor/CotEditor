@@ -136,7 +136,6 @@ final class LineEndingScanner {
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
     }
-    
 }
 
 
@@ -161,5 +160,4 @@ private extension Array where Element == ItemRange<LineEnding> {
         
         self.insert(contentsOf: items, at: lowerEditedIndex)
     }
-    
 }

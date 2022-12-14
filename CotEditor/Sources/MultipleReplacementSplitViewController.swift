@@ -48,7 +48,6 @@ extension MultipleReplacementPanelViewControlling {
         
         self.parent as? MultipleReplacementSplitViewController
     }
-    
 }
 
 

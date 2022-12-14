@@ -122,5 +122,4 @@ final class ReplacementManager: SettingFileManaging {
             .map { self.settingName(from: $0) }
             .sorted(options: [.localized, .caseInsensitive])
     }
-    
 }

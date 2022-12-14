@@ -214,7 +214,6 @@ import Cocoa
         
         self.encodingPopUpButton?.selectItem(withTag: fileEncoding.tag)
     }
-    
 }
 
 
@@ -234,7 +233,6 @@ private extension UserDefaults {
             .union(self[.showStatusBarLine] ? .line : [])
             .union(self[.showStatusBarColumn] ? .column : [])
     }
-    
 }
 
 
@@ -256,5 +254,4 @@ private extension NSAttributedString {
         
         Self(string: (label + ": ").localized, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
     }
-    
 }

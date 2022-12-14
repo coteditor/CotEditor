@@ -186,7 +186,6 @@ final class InspectorTabView: NSTabView {
         self.segmentedControl.sizeToFit()
         self.invalidateControlSelection()
     }
-    
 }
 
 
@@ -196,5 +195,4 @@ private extension NSTabViewItem {
         
         self.image?.withSymbolConfiguration(.init(pointSize: 0, weight: .bold))
     }
-    
 }

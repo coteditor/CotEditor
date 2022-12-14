@@ -72,7 +72,6 @@ final class BidiScrollView: NSScrollView {
             self.contentView.frame.origin.x = scrollerThickness
         }
     }
-    
 }
 
 
@@ -89,5 +88,4 @@ extension NSEdgeInsets: Equatable {
         lhs.right == rhs.right &&
         lhs.bottom == rhs.bottom
     }
-    
 }

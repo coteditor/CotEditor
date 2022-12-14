@@ -387,7 +387,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         // apply shortcuts for the rest
         menu.items.forEach { $0.applyShortcut(recursively: true, exclude: usedShortcuts) }
     }
-    
 }
 
 
@@ -431,5 +430,4 @@ private extension NSMenuItem {
             return []
         }
     }
-    
 }

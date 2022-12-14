@@ -65,5 +65,4 @@ final class SeparatorTextField: NSTextField {
         
         self.stringValue == .separator
     }
-    
 }

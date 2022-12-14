@@ -59,7 +59,6 @@ final class Console {
         self.panelController.showWindow(nil)
         (self.panelController.contentViewController as? ConsoleViewController)?.append(log: log)
     }
-    
 }
 
 
@@ -78,7 +77,6 @@ final class ConsolePanelController: NSWindowController {
         
         self.windowFrameAutosaveName = "Console"
     }
-    
 }
 
 
@@ -159,7 +157,6 @@ final class ConsoleViewController: NSViewController {
         textView.string = ""
         NSAccessibility.post(element: textView, notification: .valueChanged)
     }
-    
 }
 
 
@@ -195,5 +192,4 @@ extension ConsoleViewController {
         
         self.textFinder?.performAction(.setSearchString)
     }
-    
 }

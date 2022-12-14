@@ -189,7 +189,6 @@ extension EditorTextView {
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
                      actionName: "Sort Lines".localized)
     }
-    
 }
 
 
@@ -446,5 +445,4 @@ extension String {
         
         return EditingInfo(strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
-    
 }

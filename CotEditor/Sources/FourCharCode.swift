@@ -34,5 +34,4 @@ extension FourCharCode: ExpressibleByStringLiteral {
         
         self = value.utf16.reduce(0) { (code, character) in (code << 8) + FourCharCode(character) }
     }
-    
 }

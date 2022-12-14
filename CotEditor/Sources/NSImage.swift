@@ -50,7 +50,6 @@ extension NSImage {
         
         return image
     }
-    
 }
 
 
@@ -65,5 +64,4 @@ extension NSAttributedString {
         
         self.init(attachment: attachment)
     }
-    
 }

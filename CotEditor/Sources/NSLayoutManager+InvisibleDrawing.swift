@@ -198,7 +198,6 @@ extension InvisibleDrawing {
         
         return NSRect(origin: .zero, size: advancement)
     }
-    
 }
 
 
@@ -304,5 +303,4 @@ private extension Invisible {
                 return path
         }
     }
-    
 }

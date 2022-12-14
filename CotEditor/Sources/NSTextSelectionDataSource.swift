@@ -55,5 +55,4 @@ extension NSTextSelectionDataSource {
         
         return NSRange(location: location, length: length)
     }
-    
 }

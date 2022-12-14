@@ -363,5 +363,4 @@ extension Unicode.UTF32.CodeUnit {
             default: return nil  // return nil instead of "No_Block"
         }
     }
-    
 }

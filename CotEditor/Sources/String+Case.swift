@@ -70,5 +70,4 @@ extension String {
             .map(\.range)
             .map { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }
     }
-    
 }

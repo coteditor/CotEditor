@@ -31,5 +31,4 @@ final class SeparatorGuideView: NSView {
         
         NSSize(width: NSView.noIntrinsicMetric, height: 1)
     }
-    
 }

@@ -54,5 +54,4 @@ struct DelegateContext {
         
         function(delegate, selector, caller, flag, self.contextInfo)
     }
-    
 }

@@ -58,5 +58,4 @@ extension NSTextView {
         self.replace(with: string, range: replacementRange, selectedRange: selectedRange,
                      actionName: "Insert Text".localized)
     }
-    
 }

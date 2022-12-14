@@ -153,7 +153,6 @@ final class TokenTextView: NSTextView {
             layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.tokenTextColor, forCharacterRange: keywordRange)
         }
     }
-    
 }
 
 
@@ -186,7 +185,6 @@ extension TokenRepresentable {
         
         return item
     }
-    
 }
 
 
@@ -204,5 +202,4 @@ private extension NSColor {
     static let tokenBackgroundColor = NSColor(name: nil) { (appearance) in
         NSColor.selectedControlColor.withAlphaComponent(appearance.isDark ? 0.5 : 0.3)
     }
-    
 }

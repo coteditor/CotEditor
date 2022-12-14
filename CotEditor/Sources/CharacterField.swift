@@ -69,7 +69,6 @@ final class CharacterField: NSTextField {
         self.drawsGuide.toggle()
     }
     #endif
-    
 }
 
 

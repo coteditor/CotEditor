@@ -90,7 +90,6 @@ final class StringIndentationTests: XCTestCase {
         XCTAssertEqual(string.rangeForSoftTabDeletion(in: NSRange(11..<11), tabWidth: 2)!, NSRange(9..<11))
         XCTAssertNil(string.rangeForSoftTabDeletion(in: NSRange(16..<16), tabWidth: 2))
     }
-    
 }
 
 
@@ -103,5 +102,4 @@ private extension String {
         
         return self.indentLevel(at: index, tabWidth: tabWidth)
     }
-    
 }

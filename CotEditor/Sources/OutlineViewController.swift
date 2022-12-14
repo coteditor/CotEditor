@@ -249,7 +249,6 @@ final class OutlineViewController: NSViewController {
             ? "No Filter Results".localized
             : nil
     }
-    
 }
 
 
@@ -273,7 +272,6 @@ extension OutlineViewController: NSOutlineViewDelegate {
         
         (item as? OutlineItem)?.title != .separator
     }
-    
 }
 
 
@@ -336,7 +334,6 @@ extension OutlineViewController: NSOutlineViewDataSource {
                 preconditionFailure()
         }
     }
-    
 }
 
 
@@ -364,5 +361,4 @@ extension OutlineViewController {
         
         UserDefaults.standard.restore(key: .outlineViewFontSize)
     }
-    
 }

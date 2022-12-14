@@ -87,7 +87,6 @@ extension EditorTextView {
                 return super.touchBar(touchBar, makeItemForIdentifier: identifier)
         }
     }
-    
 }
 
 
@@ -110,7 +109,6 @@ extension EditorTextView {
         self.replaceCharacters(in: range, with: candidate)
         self.didChangeText()
     }
-    
 }
 
 
@@ -129,5 +127,4 @@ extension EditorTextViewController {
         
         return candidates
     }
-    
 }

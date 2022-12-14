@@ -39,7 +39,6 @@ extension CGPoint: Scalable {
         
         CGPoint(x: scale * self.x, y: scale * self.y)
     }
-    
 }
 
 
@@ -49,7 +48,6 @@ extension CGSize: Scalable {
         
         CGSize(width: scale * self.width, height: scale * self.height)
     }
-    
 }
 
 
@@ -59,7 +57,6 @@ extension CGRect: Scalable {
         
         CGRect(x: scale * self.origin.x, y: scale * self.origin.y, width: scale * self.width, height: scale * self.height)
     }
-    
 }
 
 
@@ -90,7 +87,6 @@ extension CGPoint {
         
         self.offsetBy(dx: size.width, dy: size.height)
     }
-    
 }
 
 
@@ -137,5 +133,4 @@ extension CGRect {
         
         self.insetBy(dx: size.width, dy: size.height)
     }
-    
 }

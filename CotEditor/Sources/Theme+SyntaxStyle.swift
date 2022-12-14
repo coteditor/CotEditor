@@ -45,5 +45,4 @@ extension Theme {
             case .comments: return self.comments
         }
     }
-    
 }

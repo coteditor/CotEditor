@@ -84,7 +84,6 @@ final class WebDocumentViewController: NSViewController {
         
         self.view as? WKWebView
     }
-    
 }
 
 
@@ -113,5 +112,4 @@ extension WebDocumentViewController: WKNavigationDelegate {
         
         decisionHandler(.cancel)
     }
-    
 }

@@ -50,5 +50,4 @@ final class FindPanelController: NSWindowController {
         }
         self.window?.makeFirstResponder(self.window?.initialFirstResponder)
     }
-    
 }

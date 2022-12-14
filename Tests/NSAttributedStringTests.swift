@@ -85,5 +85,4 @@ final class NSAttributedStringTests: XCTestCase {
         XCTAssertFalse(singleJoined is NSMutableAttributedString)
         XCTAssertEqual(singleJoined.string, "foo")
     }
-    
 }

@@ -62,5 +62,4 @@ final class FindPanelTextClipView: NSClipView {
             frame.size.width -= self.leadingPadding + self.trailingPadding
         }
     }
-    
 }

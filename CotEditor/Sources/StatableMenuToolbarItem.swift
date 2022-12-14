@@ -59,5 +59,4 @@ final class StatableMenuToolbarItem: NSMenuToolbarItem, StatableItem, Validatabl
         
         super.image = self.stateImages[self.state]
     }
-    
 }

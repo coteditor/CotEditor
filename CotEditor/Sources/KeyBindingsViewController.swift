@@ -244,7 +244,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         self.isRestoreble = !self.manager.usesDefaultKeyBindings
     }
-    
 }
 
 
@@ -354,5 +353,4 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
             self.saveSettings()
         }
     }
-    
 }

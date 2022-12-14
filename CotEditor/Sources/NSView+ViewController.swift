@@ -31,5 +31,4 @@ extension NSView {
         
         self.window?.windowController?.contentViewController
     }
-    
 }

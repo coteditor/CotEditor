@@ -104,7 +104,6 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
         
         return selected ? cache.selected : cache.regular
     }
-    
 }
 
 
@@ -118,5 +117,4 @@ final private class InspectorTabSegmentedCell: NSSegmentedCell {
         // draw only inside
         self.drawInterior(withFrame: cellFrame, in: controlView)
     }
-    
 }

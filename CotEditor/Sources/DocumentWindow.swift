@@ -134,7 +134,6 @@ final class DocumentWindow: NSWindow {
         titlebarView.wantsLayer = !self.isOpaque
         titlebarView.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
     }
-    
 }
 
 
@@ -209,5 +208,4 @@ extension DocumentWindow {
         
         return super.validateMenuItem(menuItem)
     }
-    
 }

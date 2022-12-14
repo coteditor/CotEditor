@@ -203,5 +203,4 @@ extension String {
             .map { $0 == "\t" ? tabWidth : $0.utf16.count }
             .reduce(0, +)
     }
-    
 }

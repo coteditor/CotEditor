@@ -49,5 +49,4 @@ extension Collection {
         
         return try self.binarySearchedFirstIndex(in: nextRange, where: predicate)
     }
-    
 }

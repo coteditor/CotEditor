@@ -145,5 +145,4 @@ final class EditorInfoCountOperationTests: XCTestCase {
         count.entire = nil
         XCTAssertEqual(count.formatted, "- (100)")
     }
-    
 }

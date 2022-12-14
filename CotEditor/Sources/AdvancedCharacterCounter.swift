@@ -47,7 +47,6 @@ import AppKit
               treatsConsecutiveWhitespaceAsSingle: self.treatsConsecutiveWhitespaceAsSingle,
               encoding: .init(rawValue: UInt(self.encoding)))
     }
-    
 }
 
 
@@ -98,5 +97,4 @@ import AppKit
             .receive(on: DispatchQueue.main)
             .assign(to: &self.$selectionCount)
     }
-    
 }

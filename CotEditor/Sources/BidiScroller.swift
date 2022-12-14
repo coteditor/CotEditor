@@ -131,7 +131,6 @@ final class BidiScroller: NSScroller {
         flip.scaleX(by: -1, yBy: 1)
         flip.concat()
     }
-    
 }
 
 
@@ -149,5 +148,4 @@ private extension NSBorderType {
             @unknown default: return 0
         }
     }
-    
 }

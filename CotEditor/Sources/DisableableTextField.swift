@@ -35,5 +35,4 @@ final class DisableableTextField: NSTextField {
             self.textColor = isEnabled ? .controlTextColor : .disabledControlTextColor
         }
     }
-    
 }

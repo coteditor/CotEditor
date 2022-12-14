@@ -103,5 +103,4 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         
         return true
     }
-    
 }

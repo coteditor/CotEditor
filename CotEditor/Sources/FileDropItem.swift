@@ -58,7 +58,6 @@ struct FileDropItem {
             ? true
             : self.extensions.contains { $0.lowercased() == pathExtension?.lowercased() }
     }
-    
 }
 
 
@@ -103,7 +102,6 @@ extension FileDropItem {
         .mapKeys(\.rawValue)
         .compactMapValues { $0 }
     }
-    
 }
 
 
@@ -161,7 +159,6 @@ extension FileDropItem {
                     return "(If the dropped file is an image) image height."
             }
         }
-        
     }
 
     
@@ -210,5 +207,4 @@ extension FileDropItem {
         
         return dropText
     }
-    
 }

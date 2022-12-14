@@ -80,7 +80,6 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(incompatibles[1].convertedCharacter, "??")
         XCTAssertEqual(incompatibles[1].location, 21)
     }
-    
 }
 
 

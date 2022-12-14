@@ -243,5 +243,4 @@ final class TextFindTests: XCTestCase {
         XCTAssertEqual(selectedRanges![0], NSRange(location: 1, length: 12))
         XCTAssertEqual(selectedRanges![1], NSRange(location: 14, length: 5))
     }
-    
 }

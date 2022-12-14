@@ -277,5 +277,4 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 return NamedTreeNode(name: menuItem.title, representedObject: item)
             }
     }
-    
 }

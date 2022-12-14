@@ -34,5 +34,4 @@ final class NumberTextField: NSTextField {
         let size = self.font?.pointSize ?? NSFont.systemFontSize(for: self.controlSize)
         self.font = .monospacedDigitSystemFont(ofSize: size, weight: .regular)
     }
-    
 }

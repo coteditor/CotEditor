@@ -158,7 +158,6 @@ extension NSTextView {
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                      actionName: "Trim Trailing Whitespace".localized)
     }
-    
 }
 
 
@@ -179,7 +178,6 @@ extension String {
                 preconditionFailure()
         }
     }
-    
 }
 
 
@@ -192,5 +190,4 @@ extension String {
         
         return regex.matches(in: self, range: self.nsRange).map(\.range)
     }
-    
 }

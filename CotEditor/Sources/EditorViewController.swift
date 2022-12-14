@@ -203,5 +203,4 @@ final class EditorViewController: NSSplitViewController {
         
         self.textViewItem?.viewController as? EditorTextViewController
     }
-    
 }

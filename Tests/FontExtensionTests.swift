@@ -62,5 +62,4 @@ final class FontExtensionTests: XCTestCase {
         XCTAssertEqual(avenirNextCondensed, NSFont(name: "AvenirNextCondensed-Bold", size: 11))
         XCTAssertEqual(avenirNextCondensed!.weight.rawValue, NSFont.Weight.bold.rawValue, accuracy: 0.00001)
     }
-    
 }

@@ -58,5 +58,4 @@ final class StringCollectionTests: XCTestCase {
         XCTAssertEqual(string1.equivalentRanges(to: [NSRange(16..<19)], in: string2), [NSRange(16..<19)])  // and
         XCTAssertEqual(string1.equivalentRanges(to: [NSRange(16..<20)], in: string2), [NSRange(16..<21)])  // and_
     }
-    
 }

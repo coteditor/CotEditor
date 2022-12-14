@@ -60,5 +60,4 @@ final class FileDropItemTests: XCTestCase {
         XCTAssertFalse(item.supports(extension: "JPG", scope: nil))
         XCTAssertFalse(item.supports(extension: nil, scope: nil))
     }
-
 }

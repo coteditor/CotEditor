@@ -346,7 +346,6 @@ final class DocumentController: NSDocumentController {
         
         context.perform(from: self, flag: didCloseAll)
     }
-    
 }
 
 
@@ -402,5 +401,4 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         (recoveryOptionIndex == 0)
     }
-    
 }
