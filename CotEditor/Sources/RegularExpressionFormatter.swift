@@ -79,7 +79,7 @@ final class RegularExpressionFormatter: Formatter {
             }
             
             // syntax highlight
-            for type in RegularExpressionSyntaxType.priority.reversed() {
+            for type in RegularExpressionSyntaxType.allCases.reversed() {
                 for range in type.ranges(in: string, mode: self.mode) {
                     attributedString.addAttribute(.foregroundColor, value: type.color, range: range)
                 }

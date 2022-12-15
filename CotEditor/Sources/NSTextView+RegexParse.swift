@@ -56,7 +56,7 @@ extension NSTextView {
         }
         
         // highlight
-        for type in RegularExpressionSyntaxType.priority.reversed() {
+        for type in RegularExpressionSyntaxType.allCases.reversed() {
             for range in type.ranges(in: self.string, mode: mode) {
                 guard let textRange = layoutManager.textRange(for: range) else { continue }
                 layoutManager.addRenderingAttribute(.foregroundColor, value: type.color, for: textRange)
@@ -91,7 +91,7 @@ extension NSTextView {
         }
         
         // highlight
-        for type in RegularExpressionSyntaxType.priority.reversed() {
+        for type in RegularExpressionSyntaxType.allCases.reversed() {
             for range in type.ranges(in: self.string, mode: mode) {
                 layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
             }
