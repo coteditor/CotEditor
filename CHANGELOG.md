@@ -21,7 +21,7 @@ Change Log
 - Fix an issue that timestamps in the Console window do not reflect the local time zone.
 - Fix an issue that the right-to-left writing direciton option for new documents was not applied.
 - Fix an issue that the regular expression pattern was wrongly highlighted in a specific condition.
-- FIx an issue that the advanced option view in the multiple replacement panel could display multiple times when clicked the button repeatedly.
+- FIx an issue that the advanced option view in the find panel could display multiple times when clicked the button repeatedly.
 - Fix the drawing of the editor opacity toolbar item when collapsed.
 
 

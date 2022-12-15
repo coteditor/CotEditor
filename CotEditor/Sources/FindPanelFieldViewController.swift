@@ -198,6 +198,20 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    /// show the advanced find options view as popover
+    @IBAction func showFindSettings(_ sender: NSButton) {
+        
+        if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<FindSettingsView> }) {
+            return self.dismiss(viewController)
+        }
+        
+        let viewController = NSHostingController(rootView: FindSettingsView())
+        viewController.ensureFrameSize()
+        
+        self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxX, behavior: .transient)
+    }
+    
+    
     
     // MARK: Public Methods
     

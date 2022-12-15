@@ -154,6 +154,13 @@
 /* MARK: Find Settings View */
 "Advanced Find Options" = "Erweiterte Suchoptionen";
 
+// checkbox labels
+"Wrap search around" = "Gesamtes Dokument";
+"Select next match after replace" = "Nach der Ersetzung nächste Übereinstimmung auswählen";
+"Search incrementally" = "Inkrementell suchen";
+"Close progress dialog automatically" = "Statusanzeige automatisch schließen";
+
+
 "Textual Search" = "Textuelle Suche";
 
 // pairs of checkbox label and its tooltip

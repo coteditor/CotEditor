@@ -154,6 +154,13 @@
 /* MARK: Find Settings View */
 "Advanced Find Options" = "進階檢索選項";
 
+// checkbox labels
+"Wrap search around" = "折行檢索";
+"Select next match after replace" = "取代後選擇下一個匹配";
+"Search incrementally" = "增量檢索";
+"Close progress dialog automatically" = "自動關閉進度表";
+
+
 "Textual Search" = "文字檢索";
 
 // pairs of checkbox label and its tooltip

@@ -191,7 +191,7 @@
                                 </buttonCell>
                                 <accessibility description="Advanced options"/>
                                 <connections>
-                                    <segue destination="qrF-VN-jgm" kind="popover" popoverAnchorView="ESq-ws-6H3" popoverBehavior="t" preferredEdge="maxX" id="qwL-bu-RuM"/>
+                                    <action selector="showFindSettings:" target="fdE-8e-ywb" id="ayV-P6-9Y8"/>
                                 </connections>
                             </button>
                             <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
@@ -357,14 +357,6 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="773" y="444"/>
-        </scene>
-        <!--FindSettingsView-->
-        <scene sceneID="otw-IE-cg6">
-            <objects>
-                <controllerPlaceholder storyboardName="FindSettingsView" id="qrF-VN-jgm" sceneMemberID="viewController"/>
-                <customObject id="RCr-zH-1qK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1184" y="503"/>
         </scene>
         <!--Find Panel Result View Controller-->
         <scene sceneID="Emr-ob-ZO3">

@@ -154,6 +154,13 @@
 /* MARK: Find Settings View */
 "Advanced Find Options" = "Gelişmiş Bul Seçenekleri";
 
+// checkbox labels
+"Wrap search around" = "Aramayı başa sar";
+"Select next match after replace" = "Değişim sonrası bir sonraki eşleşmeyi seç";
+"Search incrementally" = "Aşamalı olarak ara";
+"Close progress dialog automatically" = "İlerleme iletişim kutusunu kendiliğinden kapat";
+
+
 "Textual Search" = "Metin Araması";
 
 // pairs of checkbox label and its tooltip

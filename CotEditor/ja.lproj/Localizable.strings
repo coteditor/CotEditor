@@ -154,6 +154,13 @@
 /* MARK: Find Settings View */
 "Advanced Find Options" = "詳細検索オプション";
 
+// checkbox labels
+"Wrap search around" = "検索を折り返す";
+"Select next match after replace" = "置換後に次の一致を選択";
+"Search incrementally" = "インクリメンタルに検索";
+"Close progress dialog automatically" = "完了後自動的に進行状況表示を閉じる";
+
+
 "Textual Search" = "テキスト検索";
 
 // pairs of checkbox label and its tooltip

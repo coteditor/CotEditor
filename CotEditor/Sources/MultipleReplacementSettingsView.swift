@@ -60,64 +60,6 @@ struct MultipleReplacementSettingsView: View {
 }
 
 
-struct FindTextualOptionsView: View {
-    
-    @Binding var matchesFullWord: Bool
-    @Binding var isLiteralSearch: Bool
-    @Binding var ignoresDiacriticMarks: Bool
-    @Binding var ignoresWidth: Bool
-    
-    
-    var body: some View {
-        
-        VStack(alignment: .leading, spacing: 6) {
-            Section {
-                Toggle("Match only whole word", isOn: $matchesFullWord)
-                    .help("Restrict search results to the whole words.")
-                Toggle("Distinguish characters strictly", isOn: $isLiteralSearch)
-                    .help("Exact character-by-character equivalence.")
-                Toggle("Ignore diacritical marks", isOn: $ignoresDiacriticMarks)
-                    .help("Search ignores diacritical marks (e.g., ö = o).")
-                Toggle("Ignore width differences", isOn: $ignoresWidth)
-                    .help("Search ignores width differences in character forms (e.g., ａ = a).")
-            } header: {
-                Text("Regular Expression Search")
-                    .fontWeight(.semibold)
-            }
-        }
-    }
-}
-
-
-struct FindRegularExpressionOptionsView: View {
-    
-    @Binding var isSingleLine: Bool
-    @Binding var isMultiline: Bool
-    @Binding var usesUnicodeBoundaries: Bool
-    @Binding var unescapesReplacementString: Bool
-    
-    
-    var body: some View {
-        
-        VStack(alignment: .leading, spacing: 6) {
-            Section {
-                Toggle("Dot matches line separators", isOn: $isSingleLine)
-                    .help("Allow . to match any character, including newline characters (singleline).")
-                Toggle("Anchors match lines", isOn: $isMultiline)
-                    .help("Allow ^ and $ to match the start and end of lines (multiline).")
-                Toggle("Use Unicode word boundaries", isOn: $usesUnicodeBoundaries)
-                    .help("Use Unicode TR#29 to specify word boundaries")
-                Toggle("Unescape replacement string", isOn: $unescapesReplacementString)
-                    .help("Unescape meta characters with backslash in replacement string.")
-            } header: {
-                Text("Regular Expression Search")
-                    .fontWeight(.semibold)
-            }
-        }
-    }
-}
-
-
 
 // MARK: - Preview
 
