@@ -32,16 +32,13 @@ import ColorCode
 }
 
 
-
-// MARK: -
-
 final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Public Properties
     
     static let shared: ColorCodePanelController = NSStoryboard(name: "ColorCodePanelAccessory").instantiateInitialController()!
     
-    @objc private(set) dynamic var colorCode: String?
+    @objc private(set) dynamic var colorCode: String = ""
     
     
     // MARK: Private Properties
@@ -50,30 +47,60 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) { $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword) }
     
     private weak var panel: NSColorPanel?
-    @objc private dynamic var color: NSColor?
     
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Window Delegate
     
-    override func viewDidLoad() {
+    func windowWillClose(_ notification: Notification) {
         
-        super.viewDidLoad()
+        guard let panel = notification.object as? NSColorPanel else { return assertionFailure() }
         
-        self.view.translatesAutoresizingMaskIntoConstraints = false
+        panel.detachColorList(self.stylesheetColorList)
+        panel.showsAlpha = false
+        panel.delegate = nil
+        panel.setAction(nil)
+        panel.setTarget(nil)
+        panel.accessoryView = nil
     }
     
     
     
     // MARK: Public Methods
     
+    /// Show the shared color panel with the color code accessory.
+    func showWindow() {
+        
+        // setup the shared color panel
+        let panel = NSColorPanel.shared
+        panel.attachColorList(self.stylesheetColorList)
+        panel.showsAlpha = true
+        panel.delegate = self
+        panel.setAction(#selector(updateCode))
+        panel.setTarget(self)
+        panel.accessoryView = self.view
+        
+        // make position of accessory view center
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        if let superview = panel.accessoryView?.superview {
+            NSLayoutConstraint.activate([
+                superview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                superview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            ])
+        }
+        
+        self.panel = panel
+        self.updateCode(self)
+        
+        panel.orderFront(self)
+    }
+    
+    
     /// Set color to color panel with color code.
     ///
     /// - Parameter code: The color code of the color to set.
-    func setColor(code: String?) {
-        
-        guard let code = code?.trimmingCharacters(in: .whitespacesAndNewlines), !code.isEmpty else { return }
+    func setColor(code: String) {
         
         var codeType: ColorCodeType?
         guard let color = NSColor(colorCode: code, type: &codeType) else { return }
@@ -84,71 +111,15 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     
-    // MARK: Window Delegate
-    
-    /// panel will close
-    func windowWillClose(_ notification: Notification) {
-        
-        guard let panel = self.panel else { return assertionFailure() }
-        
-        panel.delegate = nil
-        panel.accessoryView = nil
-        panel.detachColorList(self.stylesheetColorList)
-        panel.showsAlpha = false
-    }
-    
-    
-    
     // MARK: Action Messages
-    
-    /// on show color panel
-    @IBAction func showWindow(_ sender: Any?) {
-        
-        // setup the shared color panel
-        let panel = NSColorPanel.shared
-        panel.isRestorable = false
-        panel.delegate = self
-        panel.accessoryView = self.view
-        panel.attachColorList(self.stylesheetColorList)
-        panel.showsAlpha = true
-        
-        panel.setAction(#selector(selectColor))
-        panel.setTarget(self)
-        
-        // make position of accessory view center
-        if let superview = panel.accessoryView?.superview {
-            NSLayoutConstraint.activate([
-                superview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                superview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            ])
-        }
-        
-        self.panel = panel
-        self.color = panel.color
-        self.updateCode(self)
-        
-        panel.orderFront(self)
-    }
-    
     
     /// insert color code to the selection of the frontmost document
     @IBAction func insertCodeToDocument(_ sender: Any?) {
         
-        guard self.colorCode != nil else { return }
-        
-        guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode)) as? ColorCodeReceiver else {
-            return NSSound.beep()
-        }
-        
-        receiver.insertColorCode(self)
-    }
-    
-    
-    /// a new color was selected on the panel
-    @IBAction func selectColor(_ sender: NSColorPanel) {
-        
-        self.color = sender.color
-        self.updateCode(sender)
+        guard
+            !self.colorCode.isEmpty,
+            NSApp.sendAction(#selector(ColorCodeReceiver.insertColorCode), to: nil, from: self)
+        else { return NSSound.beep() }
     }
     
     
@@ -163,12 +134,12 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     @IBAction func updateCode(_ sender: Any?) {
         
         let codeType = self.selectedCodeType
-        let color = self.color?.usingColorSpace(.genericRGB)
-        var code = color?.colorCode(type: codeType)
+        
+        guard var code = self.panel?.color.usingColorSpace(.genericRGB)?.colorCode(type: codeType) else { return assertionFailure() }
         
         // keep lettercase if current Hex code is uppercase
-        if (codeType == .hex || codeType == .shortHex), self.colorCode?.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {
-            code = code?.uppercased()
+        if (codeType == .hex || codeType == .shortHex), self.colorCode.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {
+            code = code.uppercased()
         }
         
         self.colorCode = code

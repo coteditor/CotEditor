@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ extension EditorTextView: ColorCodeReceiver {
         
         let selected = (self.string as NSString).substring(with: self.selectedRange)
         
-        ColorCodePanelController.shared.showWindow(self)
+        ColorCodePanelController.shared.showWindow()
         ColorCodePanelController.shared.setColor(code: selected)
     }
     
@@ -49,8 +49,7 @@ extension EditorTextView: ColorCodeReceiver {
     /// insert color code from color code panel
     @IBAction func insertColorCode(_ sender: ColorCodePanelController) {
         
-        guard let colorCode = sender.colorCode else { return }
-        
+        let colorCode = sender.colorCode
         let range = self.rangeForUserTextChange
         
         guard self.shouldChangeText(in: range, replacementString: colorCode) else { return }
