@@ -750,6 +750,7 @@
 		2AFD218D27E0442B00E83E88 /* UTTypeExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */; };
 		2AFD328929482D53000ED1C5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD328829482D53000ED1C5 /* Color.swift */; };
 		2AFD328A29482D53000ED1C5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD328829482D53000ED1C5 /* Color.swift */; };
+		2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */; };
 		2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
@@ -1453,6 +1454,7 @@
 		2AFD218927E0434100E83E88 /* UTType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTType.swift; sourceTree = "<group>"; };
 		2AFD218C27E0442B00E83E88 /* UTTypeExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTTypeExtensionTests.swift; sourceTree = "<group>"; };
 		2AFD328829482D53000ED1C5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxTests.swift; sourceTree = "<group>"; };
 		2AFE848522AE71130001C4ED /* TextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -2436,6 +2438,7 @@
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
 				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
+				2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3267,6 +3270,7 @@
 				2A643BB3245172EB00B2AD54 /* NSBezierPathTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 				2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */,
+				2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
 				2A04E9BB27FD6911008C82D8 /* SnippetTests.swift in Sources */,
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,

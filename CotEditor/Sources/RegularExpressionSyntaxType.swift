@@ -44,17 +44,21 @@ enum RegularExpressionSyntaxType: CaseIterable {
     
     // MARK: Public Methods
     
-    func ranges(in string: String, mode: RegularExpressionParseMode) -> [NSRange] {
+    func ranges(in string: String, mode: RegularExpressionParseMode = .search) -> [NSRange] {
         
         var ranges = self.patterns(for: mode)
             .map { try! NSRegularExpression(pattern: $0) }
             .flatMap { $0.matches(in: string, range: string.nsRange) }
             .map(\.range)
         
-        if self == .character, case .search = mode {
-            ranges += string.ranges(bracePair: BracePair("[", "]"))
-                .map { (string[$0.lowerBound] == "^") ? string.index(after: $0.lowerBound)..<$0.upperBound : $0 }
-                .map { NSRange($0, in: string) }
+        if case .search = mode {
+            switch self {
+                case .character:
+                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: false)
+                case .symbol:
+                    ranges += string.rangesForRegularExpressionBrackets(includingSymbols: true)
+                default: break
+            }
         }
         
         return ranges
@@ -96,10 +100,10 @@ enum RegularExpressionSyntaxType: CaseIterable {
                             escapeIgnorer + "\\\\k<[a-zA-Z][a-zA-Z0-9]+>",  // \k<name>
                         ]
                     case .symbol:
+                        // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
                         return [
                             escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?|<[a-zA-Z][a-zA-Z0-9]*>)",  // (?...
                             escapeIgnorer + "[()|]",  // () |
-                            escapeIgnorer + "(\\[\\^?|\\])",  // [^ ]
                             escapeIgnorer + "\\\\[QE]",  // \Q ... \E
                         ]
                     case .quantifier:
@@ -134,24 +138,71 @@ enum RegularExpressionSyntaxType: CaseIterable {
 
 private extension StringProtocol {
     
-    /// ranges of inside of the most outer pairs of brace
-    func ranges(bracePair: BracePair) -> [Range<Index>] {
+    /// Find the ranges of `[^abc]` pattern in the regular expression.
+    ///
+    /// - Parameter includingSymbols: Whether the result ranges including `[]` and `^`.
+    /// - Returns: The matched ranges.
+    func rangesForRegularExpressionBrackets(includingSymbols: Bool) -> [NSRange] {
         
         var index = self.startIndex
         var braceRanges: [Range<Index>] = []
         
         while index != self.endIndex {
-            guard self[index] == bracePair.begin, !self.isCharacterEscaped(at: index) else {
-                index = self.index(after: index)
-                continue
+            guard let (range, isNegative) = self.rangeForRegularExpressionBrackets(starting: index) else { break }
+            
+            if includingSymbols {
+                braceRanges.append(range)
+            } else {
+                braceRanges.append(self.index(range.lowerBound, offsetBy: isNegative ? 2 : 1)..<self.index(before: range.upperBound))
             }
             
-            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: bracePair) else { break }
-            
-            braceRanges.append(self.index(after: index)..<endIndex)
-            index = self.index(after: endIndex)
+            index = range.upperBound
         }
         
-        return braceRanges
+        return braceRanges.map { NSRange($0, in: self) }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// Find the range of the first `[^abc]` pattern in the regular expression after the given index.
+    ///
+    /// - Parameter searchIndex: The character index to start finding.
+    /// - Returns: The found range and if the found pattern is a negative pattern (not `[abc]` but `[^abc]`), or `nil` if not found.
+    private func rangeForRegularExpressionBrackets(starting searchIndex: Index) -> (range: Range<Index>, isNegative: Bool)? {
+        
+        assert(searchIndex == self.startIndex || self[self.index(before: searchIndex)] != "\\")
+        
+        var startIndex: Index?
+        var isFirst = false  // flag wtheter the index is just after the opening
+        var isNegative = false
+        var isEscaped = false
+        
+        for index in self[searchIndex...].indices {
+            switch (self[index], startIndex) {
+                case ("\\", _):
+                    isFirst = false
+                    isEscaped.toggle()
+                    
+                case ("[", .none) where !isEscaped:
+                    startIndex = index
+                    isFirst = true
+                    isEscaped = false
+                    
+                case ("]", .some(let startIndex)) where !isEscaped && !isFirst:
+                    return (startIndex..<self.index(after: index), isNegative)
+                    
+                case ("^", _) where isFirst && !isNegative:
+                    isNegative = true
+                    isEscaped = false
+                    
+                default:
+                    isFirst = false
+                    isEscaped = false
+            }
+        }
+        
+        return nil
     }
 }
