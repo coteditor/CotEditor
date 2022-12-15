@@ -12,6 +12,7 @@ Change Log
 - Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.
 - [trivial] Tweak the style of headings in menus.
 - [trivial] Tweak the setting summary display in the print dialog.
+- [dev] Migrate the most of sheets and popovers to SwiftUI.
 
 
 ### Fixes
@@ -38,7 +39,7 @@ Change Log
 - Fix an issue that a file extension was appended to the file by saving even when the syntax style has no extensions.
 - Fix an issue that the line number view did occasionally not widen even when the number exceeds 4 digits.
 - Fix an issue that an unwanted extra blank document was created when creating a new document with the selection by Services under specific conditions.
-- Address an issue that the scripting result could be corrupted under some specific conditions.
+- Fix an issue that the scripting result could be corrupted under some specific conditions.
 
 
 
