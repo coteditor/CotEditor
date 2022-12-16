@@ -31,13 +31,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private lazy var regularExpressionReferenceViewController: NSViewController = {
-        
-        let controller = DetachablePopoverViewController()
-        controller.view = NSHostingView(rootView: RegularExpressionReferenceView())
-        return controller
-    }()
-    
     @objc private dynamic let textFinder = TextFinder.shared
     
     private var scrollerStyleObserver: AnyCancellable?
@@ -191,11 +184,17 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    /// show the regular expression refecence view as popover
     @IBAction func showRegularExpressionReference(_ sender: NSButton) {
         
-        guard self.regularExpressionReferenceViewController.presentingViewController == nil else { return }
+        if let viewController = self.presentedViewControllers?.first(where: { $0.view is NSHostingView<RegularExpressionReferenceView> }) {
+            return self.dismiss(viewController)
+        }
         
-        self.present(self.regularExpressionReferenceViewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxY, behavior: .transient)
+        let viewController = DetachablePopoverViewController()
+        viewController.view = NSHostingView(rootView: RegularExpressionReferenceView())
+        
+        self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxY, behavior: .transient)
     }
     
     
