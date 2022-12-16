@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "進階檢索選項";
+
+"Textual Search" = "文字檢索";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "僅全字匹配";
+"Restrict search results to the whole words." = "將檢索結果限定於全字。";
+
+"Distinguish characters strictly" = "嚴格區分字元";
+"Exact character-by-character equivalence." = "逐字元相等檢索";
+
+"Ignore diacritical marks" = "忽略變音符號";
+"Search ignores diacritical marks (ex. ö = o)." = "忽略變音符號進行檢索 (例如ö = o)。";
+
+"Ignore width differences" = "忽略字元寬度";
+"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字元形式的寬度進行檢索 (例如ａ = a)。";
+
+
+"Regular Expression Search" = "常規表示式檢索";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "使點匹配換行";
+"Allow . to match any character, including newline characters (singleline)." = "允許.匹配包括 (單行) 換行符在內的任意字元。";
+
+"Anchors match lines" = "使錨點匹配行";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "允許^和$匹配 (多行的) 行首和行尾。";
+
+"Use Unicode word boundaries" = "使用Unicode字詞邊界";
+"Use Unicode TR#29 to specify word boundaries" = "使用Unicode TR#29指定字詞邊界";
+
+"Unescape replacement string" = "解碼取代字串";
+"Unescape meta characters with backslash in replacement string." = "使用反斜槓元字元解碼取代字串";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "插入規則";
 "Delete Rules" = "刪除規則";

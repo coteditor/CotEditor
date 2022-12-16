@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Options avancées de recherche";
+
+"Textual Search" = "Recherche textuelle";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Rechercher le mot entier";
+"Restrict search results to the whole words." = "Restreint les résultats de recherche aux mots entiers.";
+
+"Distinguish characters strictly" = "Equivalence stricte des caractères";
+"Exact character-by-character equivalence." = "Exacte équivalence caractère par caractère";
+
+"Ignore diacritical marks" = "Ignorer les signes diacritiques";
+"Search ignores diacritical marks (ex. ö = o)." = "La recherche ignore les signes diacritiques (par exemple : ö = o)";
+
+"Ignore width differences" = "Ignorer les différences de chasse";
+"Search ignores width differences in character forms (ex. ａ = a)." = "Ignore les différences de forme des caractères (par exemple : ａ = a).";
+
+
+"Regular Expression Search" = "Expressions régulières";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Le point capture les séparateurs de ligne";
+"Allow . to match any character, including newline characters (singleline)." = "Le caractère . capture n’importe quel caractère, y compris les caractères de nouvelle ligne.";
+
+"Anchors match lines" = "Ancrage de ligne";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "Les caractères ^ et $ capturent respectivement le début et la fin d’une ligne.";
+
+"Use Unicode word boundaries" = "Utiliser les Word Boundaries Unicode";
+"Use Unicode TR#29 to specify word boundaries" = "Utilise Unicode TR#29 pour spécifier les extrémités de mots.";
+
+"Unescape replacement string" = "Dé-échapper le texte de remplacement";
+"Unescape meta characters with backslash in replacement string." = "Dé-échappe les métacaractères précédés d’un antislash dans le texte de remplacement.";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "Nouvelle règle";
 "Delete Rules" = "Supprimer les règles";

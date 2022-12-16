@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "詳細検索オプション";
+
+"Textual Search" = "テキスト検索";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "単語に完全一致";
+"Restrict search results to the whole words." = "入力した単語と完全に一致する単語のみに限定";
+
+"Distinguish characters strictly" = "文字を厳密に判別";
+"Exact character-by-character equivalence." = "バイトレベルで完全一致する文字列にのみ一致";
+
+"Ignore diacritical marks" = "発音区別記号を無視";
+"Search ignores diacritical marks (ex. ö = o)." = "文字の発音記号を無視して検索（例: ö = o）";
+
+"Ignore width differences" = "全角/半角を無視";
+"Search ignores width differences in character forms (ex. ａ = a)." = "文字の全角/半角を無視して検索（例: ａ = a）";
+
+
+"Regular Expression Search" = "正規表現検索";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "ドットが改行に一致";
+"Allow . to match any character, including newline characters (singleline)." = ".が改行記号を含むすべての文字に一致（単一行モード）";
+
+"Anchors match lines" = "アンカーが行頭/行末に一致";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "^と$がそれぞれ行頭と行末にも一致（複数行モード）";
+
+"Use Unicode word boundaries" = "Unicode単語境界を使用";
+"Use Unicode TR#29 to specify word boundaries" = "単語の区切りにUnicode TR#29定義を使用";
+
+"Unescape replacement string" = "置換文字列のエスケープ文字を解釈";
+"Unescape meta characters with backslash in replacement string." = "置換文字列のバックスラッシュをエスケープ文字として解釈";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "条件を追加";
 "Delete Rules" = "条件を削除";

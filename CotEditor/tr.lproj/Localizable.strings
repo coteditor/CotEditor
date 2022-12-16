@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Gelişmiş Bul Seçenekleri";
+
+"Textual Search" = "Metin Araması";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Yalnızca tam sözcükleri eşleştir";
+"Restrict search results to the whole words." = "Arama sonuçlarını tam sonuçlarla sınırla.";
+
+"Distinguish characters strictly" = "Karakterleri açıkça birbirinden ayırt et";
+"Exact character-by-character equivalence." = "Tam karakter eşliği.";
+
+"Ignore diacritical marks" = "Aksan imlerini yok say";
+"Search ignores diacritical marks (ex. ö = o)." = "Arama, aksan imlerini yok sayar (örn. ö = o).";
+
+"Ignore width differences" = "Genişlik ayrımlarını yok say";
+"Search ignores width differences in character forms (ex. ａ = a)." = "Arama, karakter biçimlerindeki genişlik ayrımlarını yok sayar (örn. ａ = a).";
+
+
+"Regular Expression Search" = "Düzenli İfade Araması";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Nokta, satır ayırıcıları ile eşleşir";
+"Allow . to match any character, including newline characters (singleline)." = ". karakterinin yenisatır karakteri dahil herhangi bir karakteri eşlemesine izin ver (tek satır).";
+
+"Anchors match lines" = "Çapalar satırlarla eşleşir";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "^ ve $ karakterlerinin satır başı ve sonu ile eşleşmesine izin ver (çoklu satır).";
+
+"Use Unicode word boundaries" = "Unicode sözcük sınırlarını kullan";
+"Use Unicode TR#29 to specify word boundaries" = "Sözcük sınırlarını belirtmek için Unicode TR#29 kullan";
+
+"Unescape replacement string" = "Değişim dizisini kaçırma";
+"Unescape meta characters with backslash in replacement string." = "Değişim dizisinde meta karakterlerini ters eğik çizgi ile kaçırma.";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "Kural Ekle";
 "Delete Rules" = "Kural Sil";

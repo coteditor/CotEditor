@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Opzioni di ricerca avanzata";
+
+"Textual Search" = "Ricerca testuale";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Solo parole intere";
+"Restrict search results to the whole words." = "Limita i risultati della ricerca alle parole intere.";
+
+"Distinguish characters strictly" = "Distingui i caratteri con precisione";
+"Exact character-by-character equivalence." = "Equivalenza assoluta dei caratteri.";
+
+"Ignore diacritical marks" = "Ignora segni diacritici";
+"Search ignores diacritical marks (ex. ö = o)." = "La ricerca ignora i segni diacritici (es. ö = o).";
+
+"Ignore width differences" = "Ignora le differenze di ampiezza";
+"Search ignores width differences in character forms (ex. ａ = a)." = "La ricerca ignora le differenze di ampiezza nei caratteri (es. ａ = a).";
+
+
+"Regular Expression Search" = "Ricerca espressioni regolari";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Il punto vale come separatore di riga";
+"Allow . to match any character, including newline characters (singleline)." = "Consente al . di equivalere a qualunque carattere, anche quello di nuova riga (singola).";
+
+"Anchors match lines" = "Le Anchors valgono come righe";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "Consente a ^ e $ di valere come inizio e fine riga (multipla).";
+
+"Use Unicode word boundaries" = "Usa Word Boundary Unicode";
+"Use Unicode TR#29 to specify word boundaries" = "Usa Unicode TR#29 per specificare i Word Boundary";
+
+"Unescape replacement string" = "Stringa di sostituzione Unescape";
+"Unescape meta characters with backslash in replacement string." = "Metacaratteri Unescape con backslash nella stringa di sostituzione.";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "Inserisci Regola";
 "Delete Rules" = "Elimina Regole";

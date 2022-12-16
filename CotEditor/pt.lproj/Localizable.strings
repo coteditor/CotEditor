@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Opções Avançadas de Busca";
+
+"Textual Search" = "Busca Textual";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Apenas ocorrências da palavra completa";
+"Restrict search results to the whole words." = "Restrinja os resultados da busca a palavras completas.";
+
+"Distinguish characters strictly" = "Distinguir caracteres estritamente";
+"Exact character-by-character equivalence." = "Exige a equivalência exata, caractere por caractere.";
+
+"Ignore diacritical marks" = "Ignorar sinais diacríticos";
+"Search ignores diacritical marks (ex. ö = o)." = "A busca ignora sinais diacríticos (ö = o).";
+
+"Ignore width differences" = "Ignorar diferenças de largura";
+"Search ignores width differences in character forms (ex. ａ = a)." = "A busca ignora as diferenças de largura nas formas dos caracteres (ａ = a).";
+
+
+"Regular Expression Search" = "Busca com Expressão Regular";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Ponto corresponde a separadores de linha";
+"Allow . to match any character, including newline characters (singleline)." = "Permite que . corresponda a qualquer caractere, incluindo caracteres de nova linha (linha única).";
+
+"Anchors match lines" = "Âncoras correspondem a linhas";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "Permite que ^ e $ correspondam ao início e final de linhas (multilinha).";
+
+"Use Unicode word boundaries" = "Usar limite de palavra Unicode";
+"Use Unicode TR#29 to specify word boundaries" = "Usa o TR#29 do Unicode para especificar os limites de palavras";
+
+"Unescape replacement string" = "Remover escape da string de substituição";
+"Unescape meta characters with backslash in replacement string." = "Remove o escape de barra invertida dos metacaracteres da string de substituição.";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "Inserir Regra";
 "Delete Rules" = "Apagar Regras";

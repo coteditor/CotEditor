@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "高级查找选项";
+
+"Textual Search" = "文本查找";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "仅全字匹配";
+"Restrict search results to the whole words." = "将查找结果限定于全字。";
+
+"Distinguish characters strictly" = "严格区分字符";
+"Exact character-by-character equivalence." = "逐字符相等查找";
+
+"Ignore diacritical marks" = "忽略变音符号";
+"Search ignores diacritical marks (ex. ö = o)." = "忽略变音符号进行查找 (例如ö = o)。";
+
+"Ignore width differences" = "忽略字符宽度";
+"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字符形式的宽度进行查找 (例如ａ = a)。";
+
+
+"Regular Expression Search" = "正则表达式查找";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "使点匹配换行";
+"Allow . to match any character, including newline characters (singleline)." = "允许.匹配包括 (单行) 换行符在内的任意字符。";
+
+"Anchors match lines" = "使锚点匹配行";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "允许^和$匹配 (多行的) 行首和行尾。";
+
+"Use Unicode word boundaries" = "使用Unicode字词边界";
+"Use Unicode TR#29 to specify word boundaries" = "使用Unicode TR#29指定字词边界";
+
+"Unescape replacement string" = "解码替换字符串";
+"Unescape meta characters with backslash in replacement string." = "使用反斜杠元字符解码替换字符串";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "插入规则";
 "Delete Rules" = "删除规则";

@@ -737,6 +737,8 @@
 		2AF5D0E5286D9AB3000BE826 /* ArithmetricsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */; };
 		2AF6A5C728053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
+		2AF98CAF294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */; };
+		2AF98CB0294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
@@ -1447,6 +1449,7 @@
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmetricsTests.swift; sourceTree = "<group>"; };
 		2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsViewController.swift; sourceTree = "<group>"; };
+		2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacementSettingsView.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
@@ -1715,6 +1718,7 @@
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A34C5092807EC4E005E9AAB /* KeySortable.swift */,
 				2AD238792939AC7200209834 /* UserUnixTask.swift */,
+				2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
 			);
@@ -1900,6 +1904,7 @@
 			isa = PBXGroup;
 			children = (
 				2A231A2A1E7BD92F00C2A909 /* Models */,
+				2AF98CAD294C063E009AD47F /* Views */,
 				2A231A2B1E7BD93600C2A909 /* View Controllers */,
 			);
 			name = "Multiple Replacement";
@@ -2247,7 +2252,7 @@
 				2A18560A1D47FA37008FA79E /* TextFinder.swift */,
 				2AED466F1E425CD200751C45 /* TextFind.swift */,
 				2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */,
-				2AB1BD21287D752300C6FEAF /* View */,
+				2AB1BD21287D752300C6FEAF /* Views */,
 				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
 				2A3581931E597AFE00762AA5 /* Multiple Replacement */,
@@ -2351,13 +2356,13 @@
 			name = "Document Accessories";
 			sourceTree = "<group>";
 		};
-		2AB1BD21287D752300C6FEAF /* View */ = {
+		2AB1BD21287D752300C6FEAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */,
 				2A5D130F1D1EE66500D38E6A /* FindProgressView.swift */,
 			);
-			name = View;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		2AB1BD22287D789800C6FEAF /* Advanced Character Count */ = {
@@ -2461,7 +2466,6 @@
 				2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */,
 				2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */,
 				2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */,
-				2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */,
 				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
 			);
 			name = "View Controllers";
@@ -2506,6 +2510,14 @@
 				2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */,
 			);
 			name = "Inspector Tab View";
+			sourceTree = "<group>";
+		};
+		2AF98CAD294C063E009AD47F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		2AFB5AEA1D597AFC003895A7 /* Defaults */ = {
@@ -3084,6 +3096,7 @@
 				2A3A19E02068A76600516DE4 /* MultipleReplacement+TextView.swift in Sources */,
 				2A231A3A1E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */,
 				2A4D47C02070D42500AB1E7E /* MultipleReplacementPanelController.swift in Sources */,
+				2AF98CAF294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */,
 				2A231A371E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
 				2ACC5E421E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */,
 				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
@@ -3426,6 +3439,7 @@
 				2A3A19DF2068A76600516DE4 /* MultipleReplacement+TextView.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */,
 				2A4D47BF2070D42500AB1E7E /* MultipleReplacementPanelController.swift in Sources */,
+				2AF98CB0294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */,
 				2A231A361E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
 				2ACC5E411E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */,
 				2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */,

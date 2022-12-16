@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Erweiterte Suchoptionen";
+
+"Textual Search" = "Textuelle Suche";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Nur ganze Wörter";
+"Restrict search results to the whole words." = "Suchergebnisse auf ganze Wörter beschrenken.";
+
+"Distinguish characters strictly" = "Zeichen streng unterscheiden";
+"Exact character-by-character equivalence." = "Äquivalenz Zeichen für Zeichen vergleichen.";
+
+"Ignore diacritical marks" = "Diakritische Zeichen ignorieren";
+"Search ignores diacritical marks (ex. ö = o)." = "Suche ignoriert diakritische Zeichen (z. B. ö = o).";
+
+"Ignore width differences" = "Breitenunterschiede ignorieren";
+"Search ignores width differences in character forms (ex. ａ = a)." = "Suche ignoriert den Unterschied der Breite der Zeichenform (z. B. ａ = a).";
+
+
+"Regular Expression Search" = "Regulärer-Ausdruck-Suche";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Punkt entspricht Zeilenumbrüchen";
+"Allow . to match any character, including newline characters (singleline)." = ". mit jedem Zeichen einschließlich Zeilenumbrüchen übereinstimmen lassen (singleline).";
+
+"Anchors match lines" = "Anker entsprechen Zeilen";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "^ und $ auch mit Zeilenanfang und -ende übereinstimmen lassen (multiline).";
+
+"Use Unicode word boundaries" = "Unicode-Wortgrenzen verwenden";
+"Use Unicode TR#29 to specify word boundaries" = "Unicode TR#29 verwenden, um Wortgrenzen zu spezifizieren.";
+
+"Unescape replacement string" = "Ersetzungstext maskieren";
+"Unescape meta characters with backslash in replacement string." = "Backslash im Ersetzungstext als Maskierungszeichen interpretieren.";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "Regel hinzufügen";
 "Delete Rules" = "Regeln löschen";

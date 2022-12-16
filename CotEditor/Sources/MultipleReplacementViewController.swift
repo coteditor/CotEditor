@@ -24,6 +24,7 @@
 //
 
 import Cocoa
+import SwiftUI
 
 protocol MultipleReplacementViewControllerDelegate: AnyObject {
     
@@ -68,34 +69,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         self.updateNotificationDebouncer.fireNow()
         self.resultMessage = nil
-    }
-    
-    
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        
-        super.prepare(for: segue, sender: sender)
-        
-        // pass settings to advanced options popover
-        if segue.identifier == NSStoryboardSegue.Identifier("OptionsSegue"),
-            let destinationController = segue.destinationController as? NSViewController
-        {
-            destinationController.representedObject = MultipleReplacement.Settings.Object(settings: self.definition.settings)
-        }
-    }
-    
-    
-    override func dismiss(_ viewController: NSViewController) {
-        
-        super.dismiss(viewController)
-        
-        // get settings from advanced options popover
-        if let object = viewController.representedObject as? MultipleReplacement.Settings.Object {
-            guard self.definition.settings != object.settings else { return }
-            
-            self.definition.settings = object.settings
-            self.tableView?.reloadData()  // update regex highlight for replacement string
-            self.updateNotificationDebouncer.schedule()
-        }
     }
     
     
@@ -159,6 +132,28 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         if self.definition.replacements.isEmpty {
             self.add(nil)
         }
+    }
+    
+    
+    // show advanced options view
+    @IBAction func showOptions(_ sender: NSButton) {
+        
+        if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<MultipleReplacementSettingsView> }) {
+            return self.dismiss(viewController)
+        }
+        
+        let options = MultipleReplacement.Settings.Object(settings: self.definition.settings)
+        let view = MultipleReplacementSettingsView(options: options) { settings in
+            guard self.definition.settings != settings else { return }
+            
+            self.definition.settings = settings
+            self.tableView?.reloadData()  // update regex highlight for replacement string
+            self.updateNotificationDebouncer.schedule()
+        }
+        let viewController = NSHostingController(rootView: view)
+        viewController.ensureFrameSize()
+        
+        self.present(viewController, asPopoverRelativeTo: sender.bounds, of: sender, preferredEdge: .maxX, behavior: .transient)
     }
     
     

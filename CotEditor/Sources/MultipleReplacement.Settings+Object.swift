@@ -27,19 +27,18 @@ import Foundation
 
 extension MultipleReplacement.Settings {
     
-    /// KVO-compatible object for MultipleReplacement.Settings to use with the Cocoa-binding in a popover with checkboxes
-    final class Object: NSObject {
+    final class Object: ObservableObject {
         
-        @objc dynamic var textIsLiteralSearch: Bool
-        @objc dynamic var textIgnoresDiacriticMarks: Bool
-        @objc dynamic var textIgnoresWidth: Bool
+        @Published var textIsLiteralSearch: Bool
+        @Published var textIgnoresDiacriticMarks: Bool
+        @Published var textIgnoresWidth: Bool
         
-        @objc dynamic var regexIsSingleline: Bool
-        @objc dynamic var regexIsMultiline: Bool
-        @objc dynamic var regexUsesUnicodeBoundaries: Bool
+        @Published var regexIsSingleline: Bool
+        @Published var regexIsMultiline: Bool
+        @Published var regexUsesUnicodeBoundaries: Bool
         
-        @objc dynamic var textMatchesFullWord: Bool
-        @objc dynamic var regexUnescapesReplacementString: Bool
+        @Published var textMatchesFullWord: Bool
+        @Published var regexUnescapesReplacementString: Bool
         
         
         

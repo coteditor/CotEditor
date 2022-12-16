@@ -151,7 +151,43 @@
 
 
 
-/* MARK: Multiple Replacement View Controller */
+/* MARK: Find Settings View */
+"Advanced Find Options" = "Advanced Find Options";
+
+"Textual Search" = "Textual Search";
+
+// pairs of checkbox label and its tooltip
+"Match only whole word" = "Match only whole word";
+"Restrict search results to the whole words." = "Restrict search results to the whole words.";
+
+"Distinguish characters strictly" = "Distinguish characters strictly";
+"Exact character-by-character equivalence." = "Exact character-by-character equivalence.";
+
+"Ignore diacritical marks" = "Ignore diacritical marks";
+"Search ignores diacritical marks (ex. ö = o)." = "Search ignores diacritical marks (ex. ö = o).";
+
+"Ignore width differences" = "Ignore width differences";
+"Search ignores width differences in character forms (ex. ａ = a)." = "Search ignores width differences in character forms (ex. ａ = a).";
+
+
+"Regular Expression Search" = "Regular Expression Search";
+
+// pairs of checkbox label and its tooltip
+"Dot matches line separators" = "Dot matches line separators";
+"Allow . to match any character, including newline characters (singleline)." = "Allow . to match any character, including newline characters (singleline).";
+
+"Anchors match lines" = "Anchors match lines";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "Allow ^ and $ to match the start and end of lines (multiline).";
+
+"Use Unicode word boundaries" = "Use Unicode word boundaries";
+"Use Unicode TR#29 to specify word boundaries" = "Use Unicode TR#29 to specify word boundaries";
+
+"Unescape replacement string" = "Unescape replacement string";
+"Unescape meta characters with backslash in replacement string." = "Unescape meta characters with backslash in replacement string.";
+
+
+
+/* MARK: Multiple Replacement View */
 // Undo action names
 "Insert Rule" = "Insert Rule";
 "Delete Rules" = "Delete Rules";
