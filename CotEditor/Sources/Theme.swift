@@ -74,7 +74,7 @@ final class Theme: NSObject {
         
         var isEmpty: Bool {
             
-            return self.author == nil && self.distributionURL == nil && self.license == nil && self.comment == nil
+            self.author == nil && self.distributionURL == nil && self.license == nil && self.comment == nil
         }
         
         

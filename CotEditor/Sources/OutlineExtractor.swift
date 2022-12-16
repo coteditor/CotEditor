@@ -59,7 +59,7 @@ struct OutlineExtractor {
     /// - Returns: An array of `OutlineItem`.
     func items(in string: String, range parseRange: NSRange) throws -> [OutlineItem] {
         
-        return try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
+        try self.regex.cancellableMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).lazy.map { result in
             
             // separator
             if self.template == .separator {
