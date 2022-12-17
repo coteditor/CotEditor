@@ -147,7 +147,8 @@
 "Back Reference" = "Back Reference";
 "first match" = "primo risultato";
 
-"The syntax conforms to the %@ specifications." = "La sintassi rispetta le specifiche %@";  // %@ is the name of the regex engine (ICU Regular Expressions)
+"The syntax conforms to the %@ specifications." = "La sintassi rispetta le specifiche %@";  // %@ is the name of the regex engine below (ICU Regular Expressions)
+"ICU Regular Expressions" = "ICU Regular Expressions";
 
 
 

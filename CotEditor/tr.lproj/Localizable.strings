@@ -147,7 +147,8 @@
 "Back Reference" = "Geri Başvuru";
 "first match" = "ilk eşleşme";
 
-"The syntax conforms to the %@ specifications." = "Sözdizim, %@ belirtimine uyar.";  // %@ is the name of the regex engine (ICU Regular Expressions)
+"The syntax conforms to the %@ specifications." = "Sözdizim, %@ belirtimine uyar.";  // %@ is the name of the regex engine below (ICU Regular Expressions)
+"ICU Regular Expressions" = "ICU Regular Expressions";
 
 
 

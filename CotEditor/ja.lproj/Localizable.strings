@@ -147,7 +147,8 @@
 "Back Reference" = "後方参照";
 "first match" = "最初の一致";
 
-"The syntax conforms to the %@ specifications." = "文法は%@の仕様に準拠しています。";  // %@ is the name of the regex engine (ICU Regular Expressions)
+"The syntax conforms to the %@ specifications." = "文法は%@の仕様に準拠しています。";  // %@ is the name of the regex engine below (ICU Regular Expressions)
+"ICU Regular Expressions" = "ICU正規表現";
 
 
 

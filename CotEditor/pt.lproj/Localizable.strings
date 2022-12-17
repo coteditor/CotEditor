@@ -147,7 +147,8 @@
 "Back Reference" = "Referência Inversa";
 "first match" = "primeira ocorrência";
 
-"The syntax conforms to the %@ specifications." = "A sintaxe está em conformidade com as especificações %@."; // %@ is the name of the regex engine (ICU Regular Expressions)
+"The syntax conforms to the %@ specifications." = "A sintaxe está em conformidade com as especificações %@."; // %@ is the name of the regex engine below (ICU Regular Expressions)
+"ICU Regular Expressions" = "ICU Regular Expressions";
 
 
 

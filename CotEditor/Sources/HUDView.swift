@@ -52,14 +52,14 @@ struct HUDView: View {
                 .padding(28)
                 .background(.ultraThinMaterial)
                 .cornerRadius(14)
-                .onAppear(perform: {
+                .onAppear {
                     withAnimation(.default.delay(0.5)) {
                         self.isPresented = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                             self.parent?.removeFromSuperview()
                         }
                     }
-                })
+                }
         }
     }
 }

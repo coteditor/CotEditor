@@ -53,7 +53,8 @@ struct AdvancedCharacterCounterView: View {
                     .foregroundColor(.secondaryLabel)
                 
             } else {
-                Label("failed", systemImage: "exclamationmark.triangle.fill")
+                Label("failed", systemImage: "exclamationmark.triangle")
+                    .symbolVariant(.fill)
                     .symbolRenderingMode(.multicolor)
                     .foregroundColor(.secondaryLabel)
             }
@@ -63,7 +64,8 @@ struct AdvancedCharacterCounterView: View {
             Button {
                 self.isSettingPresented.toggle()
             } label: {
-                Image(systemName: "gearshape.fill")
+                Image(systemName: "gearshape")
+                    .symbolVariant(.fill)
             }
             .buttonStyle(.plain)
             .foregroundColor(.secondaryLabel)

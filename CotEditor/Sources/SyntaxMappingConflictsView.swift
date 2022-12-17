@@ -119,6 +119,9 @@ struct SyntaxMappingConflictsView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        SyntaxMappingConflictsView(dictionary: [:])
+        SyntaxMappingConflictsView(dictionary: [
+            .extensions: ["svg": ["SVG", "XML"]],
+            .filenames: ["foo": ["SVG", "XML"]],
+        ])
     }
 }

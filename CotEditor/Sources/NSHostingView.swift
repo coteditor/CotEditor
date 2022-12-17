@@ -27,7 +27,13 @@ import SwiftUI
 
 extension NSHostingController {
     
+    @available(macOS, deprecated: 13, message: "Use .sizingOptions straightforward.")
     func ensureFrameSize() {
+        
+        if #available(macOS 13, *) {
+            self.sizingOptions = .preferredContentSize
+            return
+        }
         
         // -> Needs to set the size beforehand
         //    to display the popover at the desired position (Xcode 14.0, FB10926162)
@@ -39,7 +45,13 @@ extension NSHostingController {
 
 extension NSHostingView {
     
+    @available(macOS, deprecated: 13, message: "Use .sizingOptions straightforward.")
     func ensureFrameSize() {
+        
+        if #available(macOS 13, *) {
+            self.sizingOptions = .preferredContentSize
+            return
+        }
         
         // -> Needs to set the size beforehand
         //    to display the popover at the desired position (Xcode 14.0, FB10926162)
