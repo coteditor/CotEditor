@@ -211,7 +211,7 @@ class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     /// notify value change to delegate
     @IBAction func valueDidUpdate(_ sender: Any?) {
         
-        guard let pattern = self.representedObject as? SortPattern else { return assertionFailure() }
+        guard let pattern = self.representedObject as? any SortPattern else { return assertionFailure() }
         
         self.delegate?.didUpdate(sortPattern: pattern)
     }
