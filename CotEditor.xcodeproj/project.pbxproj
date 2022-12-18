@@ -250,6 +250,9 @@
 		2A53F56727585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
 		2A53F56827585A0E00ED16DF /* RegularExpressionReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */; };
 		2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */; };
+		2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */; };
+		2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */; };
+		2A57B992294EDD9600771696 /* FormatStylesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57B991294EDD9600771696 /* FormatStylesTests.swift */; };
 		2A5ADE841D2168FC00F6CE26 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Collection.swift */; };
 		2A5ADE851D2168FC00F6CE26 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Collection.swift */; };
 		2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */; };
@@ -1067,6 +1070,8 @@
 		2A51329A28DDE337009FF910 /* NSDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDocumentController.swift; sourceTree = "<group>"; };
 		2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionReferenceView.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
+		2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangedIntegerFormatStyle.swift; sourceTree = "<group>"; };
+		2A57B991294EDD9600771696 /* FormatStylesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatStylesTests.swift; sourceTree = "<group>"; };
 		2A5ADE831D2168FC00F6CE26 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+NamedColors.swift"; sourceTree = "<group>"; };
 		2A5C00332814698000700CAE /* Collection+BinarySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+BinarySearch.swift"; sourceTree = "<group>"; };
@@ -2065,6 +2070,7 @@
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
 				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
+				2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */,
 			);
 			name = Formatters;
 			sourceTree = "<group>";
@@ -2439,6 +2445,7 @@
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
 				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
 				2AFD328E2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift */,
+				2A57B991294EDD9600771696 /* FormatStylesTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3159,6 +3166,7 @@
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A1856131D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
+				2A57B98F294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76820759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A1814BF21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
@@ -3267,6 +3275,7 @@
 				2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */,
 				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
+				2A57B992294EDD9600771696 /* FormatStylesTests.swift in Sources */,
 				2A719F6623CD92370026F877 /* FuzzyRangeTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
@@ -3505,6 +3514,7 @@
 				2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
+				2A57B990294ED75900771696 /* RangedIntegerFormatStyle.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
 				2A1814BE21CFC9CF00602214 /* RegexTextField.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
