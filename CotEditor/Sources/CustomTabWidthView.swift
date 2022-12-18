@@ -55,8 +55,10 @@ struct CustomTabWidthView: View {
         
         VStack {
             Form {
-                TextField("Tab width:", value: $value, format: .number, prompt: Text(self.defaultWidth, format: .number))
-                    .monospacedDigit()
+                TextField("Tab width:", value: $value,
+                          format: .ranged(1...99, defaultValue: self.defaultWidth),
+                          prompt: Text(self.defaultWidth, format: .number))
+                .monospacedDigit()
                     .multilineTextAlignment(.trailing)
                     .onSubmit(self.submit)
             }
@@ -89,10 +91,7 @@ struct CustomTabWidthView: View {
     /// Submit the current input.
     private func submit() {
         
-        let width = (self.value > 0) ? self.value : self.defaultWidth
-        
-        self.completionHandler(width)
-        
+        self.completionHandler(self.value)
         self.parent?.dismiss(nil)
     }
 }
