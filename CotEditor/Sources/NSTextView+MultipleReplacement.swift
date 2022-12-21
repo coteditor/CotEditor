@@ -45,7 +45,6 @@ extension NSTextView {
         
         // setup progress sheet
         let progress = FindProgress(scope: 0..<definition.replacements.count)
-        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView("Highlight All", progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
@@ -76,10 +75,6 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        if closesAutomatically {
-            indicator.dismiss(nil)
-        }
-        
         return String(localized: result.isEmpty ? "Not Found" : "\(progress.count) found")
     }
     
@@ -101,7 +96,6 @@ extension NSTextView {
         
         // setup progress sheet
         let progress = FindProgress(scope: 0..<(definition.replacements.count))
-        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
@@ -122,10 +116,6 @@ extension NSTextView {
         }
         
         progress.isFinished = true
-        
-        if closesAutomatically {
-            indicator.dismiss(nil)
-        }
         
         return String(localized: (progress.count == 0) ? "Not Replaced" : "\(progress.count) replaced")
     }

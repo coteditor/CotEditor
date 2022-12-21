@@ -38,9 +38,10 @@ final class FindProgress: ObservableObject {
     /// Instantiate a progress.
     ///
     /// - Parameter scope: The range of progress unit to work with.
-    init(scope: Range<Int>) {
+    init(scope: Range<Int>, completedUnit: Int = 0) {
         
         self.scope = scope
+        self.completedUnit = completedUnit
     }
     
     

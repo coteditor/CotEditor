@@ -66,29 +66,29 @@ struct FindProgressView: View {
     var body: some View {
         
         VStack {
-            ProgressView(value: self.progress.fractionCompleted) {
-                Text(self.label)
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity, alignment: .center)
-            }.progressViewStyle(.linear)
+            Text(self.label)
+                .fontWeight(.semibold)
             
             HStack {
-                Text(self.description)
-                    .monospacedDigit()
-                    .foregroundColor(.secondaryLabel)
-                    
-                Spacer()
+                ProgressView(value: self.progress.fractionCompleted)
+                    .progressViewStyle(.linear)
                 
-                if self.progress.isFinished {
-                    Button("Done") {
-                        self.parent?.dismiss(nil)
-                    }.keyboardShortcut(.defaultAction)
-                } else {
-                    Button("Cancel", role: .cancel) {
-                        self.progress.isCancelled = true
-                    }
-                }
-            }.controlSize(.small)
+                Button(role: .cancel) {
+                    self.progress.isCancelled = true
+                } label: {
+                    Image(systemName: "xmark")
+                        .symbolVariant(.circle)
+                        .symbolVariant(.fill)
+                        .foregroundColor(.tertiaryLabel)
+                        .accessibilityLabel("Cancel")
+                }.buttonStyle(.borderless)
+            }
+            
+            Text(self.description)
+                .monospacedDigit()
+                .foregroundColor(.secondaryLabel)
+                .controlSize(.small)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .onAppear {
             self.updateDescription()
@@ -96,15 +96,15 @@ struct FindProgressView: View {
         .onReceive(self.timer) { _ in
             self.updateDescription()
         }
-        .onChange(of: self.progress.isCancelled) { isCancelled in
-            if isCancelled {
+        .onChange(of: self.progress.isCancelled) { newValue in
+            if newValue {
                 self.parent?.dismiss(nil)
             }
         }
-        .onChange(of: self.progress.isFinished) { isFinished in
-            if isFinished {
+        .onChange(of: self.progress.isFinished) { newValue in
+            if newValue {
                 self.updateDescription()
-                self.timer.upstream.connect().cancel()
+                self.parent?.dismiss(nil)
             }
         }
         .padding()
@@ -117,35 +117,31 @@ struct FindProgressView: View {
     /// Update the progress description.
     private func updateDescription() {
         
-        self.description = self.unit.format(self.progress)
+        self.description = self.unit.format(self.progress.count)
     }
 }
 
 
 private extension FindProgressView.Unit {
     
-    func format(_ progress: FindProgress) -> LocalizedStringKey {
+    func format(_ count: Int) -> LocalizedStringKey {
         
-        switch progress.count {
+        switch count {
             case 0:
-                if progress.isFinished {
-                    return "Not found"
-                } else {
-                    return "Searching in text…"
-                }
+                return "Searching in text…"
             case 1:
                 switch self {
                     case .find:
-                        return "\(progress.count) string found."
+                        return "\(count) string found."
                     case .replacement:
-                        return "\(progress.count) string replaced."
+                        return "\(count) string replaced."
                 }
             default:
                 switch self {
                     case .find:
-                        return "\(progress.count) strings found."
+                        return "\(count) strings found."
                     case .replacement:
-                        return "\(progress.count) strings replaced."
+                        return "\(count) strings replaced."
                 }
         }
     }
@@ -159,6 +155,6 @@ struct FindProgressView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        FindProgressView("Label", progress: .init(scope: 0..<100), unit: .find)
+        FindProgressView("Label", progress: .init(scope: 0..<100, completedUnit: 30), unit: .find)
     }
 }

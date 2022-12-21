@@ -30,7 +30,6 @@ final private class FindSettings: ObservableObject {
     @AppStorage(.findIsWrap) var findIsWrap: Bool
     @AppStorage(.findNextAfterReplace) var findNextAfterReplace: Bool
     @AppStorage(.findSearchesIncrementally) var findSearchesIncrementally: Bool
-    @AppStorage(.findClosesIndicatorWhenDone) var findClosesIndicatorWhenDone: Bool
     
     @AppStorage(.findMatchesFullWord) var findMatchesFullWord: Bool
     @AppStorage(.findTextIsLiteralSearch) var findTextIsLiteralSearch: Bool
@@ -64,7 +63,6 @@ struct FindSettingsView: View {
                         Toggle("Wrap search around", isOn: $settings.findIsWrap)
                         Toggle("Select next match after replace", isOn: $settings.findNextAfterReplace)
                         Toggle("Search incrementally", isOn: $settings.findSearchesIncrementally)
-                        Toggle("Close progress dialog automatically", isOn: $settings.findClosesIndicatorWhenDone)
                     }
                 }
                 

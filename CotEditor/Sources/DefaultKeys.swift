@@ -146,7 +146,6 @@ extension DefaultKeys {
     static let findMatchesFullWord = DefaultKey<Bool>("findMatchesFullWord")
     static let findNextAfterReplace = DefaultKey<Bool>("findsNextAfterReplace")
     static let findSearchesIncrementally = DefaultKey<Bool>("findSearchesIncrementally")
-    static let findClosesIndicatorWhenDone = DefaultKey<Bool>("findClosesIndicatorWhenDone")
     
     static let findTextIsLiteralSearch = DefaultKey<Bool>("findTextIsLiteralSearch")
     static let findTextIgnoresDiacriticMarks = DefaultKey<Bool>("findTextIgnoresDiacriticMarks")

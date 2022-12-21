@@ -154,7 +154,6 @@ struct DefaultSettings {
         .findMatchesFullWord: false,
         .findNextAfterReplace: true,
         .findSearchesIncrementally: true,
-        .findClosesIndicatorWhenDone: true,
         .findIgnoresCase: false,
         .findTextIsLiteralSearch: false,
         .findTextIgnoresDiacriticMarks: false,

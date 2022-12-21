@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "OK";
 "Cancel" = "Annulla";
-"Done" = "Fine";
 "Start" = "Inizio";
 
 
@@ -159,7 +158,6 @@
 "Wrap search around" = "Manda a capo la ricerca";
 "Select next match after replace" = "Seleziona il prossimo risultato dopo la sostituzione";
 "Search incrementally" = "Ricerca incrementale";
-"Close progress dialog automatically" = "Chiudi automaticamente la finestra di avanzamento";
 
 
 "Textual Search" = "Ricerca testuale";

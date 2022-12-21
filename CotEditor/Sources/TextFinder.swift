@@ -302,7 +302,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
@@ -346,12 +345,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 progress.isFinished = true
                 
-                if closesAutomatically {
-                    indicator.dismiss(nil)
-                    
-                    if let panel = self.findPanelController.window, panel.isVisible {
-                        panel.makeKey()
-                    }
+                if let panel = self.findPanelController.window, panel.isVisible {
+                    panel.makeKey()
                 }
                 
                 self.delegate?.textFinder(self, didReplace: progress.count, textView: textView)
@@ -553,7 +548,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
-        let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
@@ -630,12 +624,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
-                // close also if result view has been shown
-                if closesAutomatically || !results.isEmpty {
-                    indicator.dismiss(nil)
-                    if let panel = self.findPanelController.window, panel.isVisible {
-                        panel.makeKey()
-                    }
+                if !results.isEmpty, let panel = self.findPanelController.window, panel.isVisible {
+                    panel.makeKey()
                 }
             }
         }

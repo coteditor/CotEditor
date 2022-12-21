@@ -10,6 +10,7 @@ Change Log
 - Optimize large find/replace task performance.
 - Display the concrete progress of the find/replace task in the progress dialog.
 - Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.
+- Deprecate the option to keep the progress dialog for find/replacement after finishing the task.
 - [trivial] Tweak the style of headings in menus.
 - [trivial] Tweak the setting summary display in the print dialog.
 - [dev] Migrate the most of sheets and popovers to SwiftUI.

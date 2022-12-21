@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
-"Done" = "Bitti";
 "Start" = "Başlangıç";
 
 
@@ -159,7 +158,6 @@
 "Wrap search around" = "Aramayı başa sar";
 "Select next match after replace" = "Değişim sonrası bir sonraki eşleşmeyi seç";
 "Search incrementally" = "Aşamalı olarak ara";
-"Close progress dialog automatically" = "İlerleme iletişim kutusunu kendiliğinden kapat";
 
 
 "Textual Search" = "Metin Araması";

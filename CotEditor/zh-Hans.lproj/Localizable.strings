@@ -27,7 +27,6 @@
 // Basic button titles
 "OK" = "好";
 "Cancel" = "取消";
-"Done" = "完成";
 "Start" = "开始";
 
 
@@ -159,7 +158,6 @@
 "Wrap search around" = "折行查找";
 "Select next match after replace" = "替换后选择下一个匹配";
 "Search incrementally" = "增量搜索";
-"Close progress dialog automatically" = "自动关闭进度表";
 
 
 "Textual Search" = "文本查找";
