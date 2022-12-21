@@ -199,7 +199,12 @@ extension SettingFileManaging {
     }
     
     
-    /// validate whether the setting name is valid (for a file name) and throw an error if not
+    /// Validate whether the setting name is valid (for a file name) and throw an error if not.
+    ///
+    /// - Parameters:
+    ///   - settingName: The setting name to validate.
+    ///   - originalName: The original name of the setting file if it was renamed.
+    /// - Throws: `InvalidNameError`
     func validate(settingName: String, originalName: String?) throws {
         
         // just case difference is OK
@@ -225,7 +230,7 @@ extension SettingFileManaging {
     }
     
     
-    /// delete user's setting file for the setting name
+    /// Delete user's setting file for the setting name.
     ///
     /// - Throws: `SettingFileError`
     func removeSetting(name: String) throws {
@@ -234,9 +239,8 @@ extension SettingFileManaging {
         
         do {
             try FileManager.default.trashItem(at: url, resultingItemURL: nil)
-            
-        } catch let error as NSError {
-            throw SettingFileError(kind: .deletionFailed, name: name, error: error)
+        } catch {
+            throw SettingFileError(kind: .deletionFailed, name: name, error: error as NSError)
         }
         
         self.cachedSettings[name] = nil
@@ -387,8 +391,8 @@ extension SettingFileManaging {
     /// Reload internal cache data from the user domain.
     func reloadCache() {
         
-        DispatchQueue.global(qos: .utility).async { [weak self] in
-            self?.checkUserSettings()
+        Task.detached(priority: .utility) {
+            self.checkUserSettings()
         }
     }
     
