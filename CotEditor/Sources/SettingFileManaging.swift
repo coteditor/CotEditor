@@ -400,8 +400,9 @@ extension SettingFileManaging {
     
     // MARK: Private Methods
     
-    /// force import setting at passed-in URL
+    /// Force importing the setting at the passed-in URL.
     ///
+    /// - Parameter fileURL: The URL of the file to import.
     /// - Throws: `SettingFileError`
     private func overwriteSetting(fileURL: URL) throws {
         

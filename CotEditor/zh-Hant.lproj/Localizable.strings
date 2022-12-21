@@ -95,7 +95,6 @@
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
-"Replace the current selection with the replacement text." = "用取代文字取代當前選中內容";
 "Not found" = "未找到";
 "%lld found" = "找到%lld項";  // %lld is number of founds
 "Not Replaced" = "沒有進行取代";
@@ -156,7 +155,6 @@
 
 // checkbox labels
 "Wrap search around" = "折行檢索";
-"Select next match after replace" = "取代後選擇下一個匹配";
 "Search incrementally" = "增量檢索";
 
 

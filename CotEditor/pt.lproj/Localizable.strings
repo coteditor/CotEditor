@@ -95,7 +95,6 @@
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Substitua a seleção atual pelo texto de substituição e busque a ocorrência seguinte.";
-"Replace the current selection with the replacement text." = "Substitua a seleção atual pelo texto de substituição.";
 "Not found" = "Não encontrado";
 "%lld found" = "%lld encontrado(s)";  // %lld is number of founds
 "Not Replaced" = "Não Substituído";
@@ -156,7 +155,6 @@
 
 // checkbox labels
 "Wrap search around" = "Voltar busca ao início";
-"Select next match after replace" = "Selecionar ocorrência seguinte ao substituir";
 "Search incrementally" = "Buscar incrementalmente";
 
 

@@ -570,7 +570,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="replace:" target="gbq-TJ-lot" id="6JE-YN-i3u"/>
+                                    <action selector="replaceAndFind:" target="J4W-5i-DqB" id="rBw-9r-oLZ"/>
                                 </connections>
                             </button>
                             <segmentedControl verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="v89-ki-GCc">

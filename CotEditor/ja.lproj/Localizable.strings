@@ -95,7 +95,6 @@
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
-"Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not found" = "見つかりません";
 "%lld found" = "%lld件見つかりました";  // %lld is number of founds
 "Not Replaced" = "見つかりません";
@@ -156,7 +155,6 @@
 
 // checkbox labels
 "Wrap search around" = "検索を折り返す";
-"Select next match after replace" = "置換後に次の一致を選択";
 "Search incrementally" = "インクリメンタルに検索";
 
 

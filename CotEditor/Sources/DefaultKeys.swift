@@ -144,7 +144,6 @@ extension DefaultKeys {
     static let findInSelection = DefaultKey<Bool>("findInSelection")
     static let findIsWrap = DefaultKey<Bool>("findIsWrap")
     static let findMatchesFullWord = DefaultKey<Bool>("findMatchesFullWord")
-    static let findNextAfterReplace = DefaultKey<Bool>("findsNextAfterReplace")
     static let findSearchesIncrementally = DefaultKey<Bool>("findSearchesIncrementally")
     
     static let findTextIsLiteralSearch = DefaultKey<Bool>("findTextIsLiteralSearch")

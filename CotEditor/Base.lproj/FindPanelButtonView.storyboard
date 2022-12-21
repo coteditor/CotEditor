@@ -23,7 +23,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="replace:" target="AbQ-kX-NdR" id="dnP-3Z-bKL"/>
+                                    <action selector="replaceAndFind:" target="rO2-C3-Eze" id="mNs-df-Ey0"/>
                                 </connections>
                             </button>
                             <segmentedControl verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="7B8-hP-LWJ">
