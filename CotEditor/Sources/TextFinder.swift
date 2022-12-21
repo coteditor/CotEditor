@@ -303,30 +303,30 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicatorView = FindProgressView("Replace All", unit: .replacement, progress: progress)
+        let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        Task.detached(priority: .userInitiated) { [weak self] in
             guard let self else { return }
             
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, range, stop) in
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (status, range, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                switch flag {
-                    case .findProgress:
+                switch status {
+                    case .found:
                         break
-                    case .replacementProgress:
+                    case .replaced:
                         progress.completedUnit = range.upperBound
                         progress.count += 1
                 }
             }
             
-            DispatchQueue.main.sync {
+            await MainActor.run {
                 textView.isEditable = true
                 
                 guard !progress.isCancelled else { return }
@@ -554,12 +554,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicatorView = FindProgressView(actionName, unit: .find, progress: progress)
+        let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        Task.detached(priority: .userInitiated) { [weak self] in
             guard let self else { return }
             
             var highlights: [ItemRange<NSColor>] = []
@@ -604,7 +604,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 progress.count += 1
             }
             
-            DispatchQueue.main.sync {
+            await MainActor.run { [highlights, results] in
                 textView.isEditable = true
                 
                 guard !progress.isCancelled else { return }
@@ -697,7 +697,7 @@ private extension UserDefaults {
             return .regularExpression(options: options, unescapesReplacement: self[.findRegexUnescapesReplacementString])
             
         } else {
-            let options = NSString.CompareOptions()
+            let options = String.CompareOptions()
                 .union(self[.findIgnoresCase] ? .caseInsensitive : [])
                 .union(self[.findTextIsLiteralSearch] ? .literal : [])
                 .union(self[.findTextIgnoresDiacriticMarks] ? .diacriticInsensitive : [])

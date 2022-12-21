@@ -27,10 +27,9 @@ import Foundation
 
 final class FindProgress: ObservableObject {
     
-    var count = 0
-    
-    var scope: Range<Int>
+    let scope: Range<Int>
     var completedUnit = 0
+    var count = 0
     
     @Published var isCancelled = false
     @Published var isFinished = false

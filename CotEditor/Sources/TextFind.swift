@@ -42,10 +42,10 @@ final class TextFind {
     }
     
     
-    enum ReplacingFlag {
+    enum ReplacingStatus {
         
-        case findProgress
-        case replacementProgress
+        case found
+        case replaced
     }
     
     
@@ -283,14 +283,11 @@ final class TextFind {
     ///   - stop: The Block can set the value to true to stop further processing of the array.
     func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
-        let numberOfGroups = self.numberOfCaptureGroups
-        
         for range in self.scopeRanges {
             self.enumerateMatchs(in: range) { (matchedRange, match, stop) in
                 let matches: [NSRange]
-                
                 if let match = match {
-                    matches = (0...numberOfGroups).map { match.range(at: $0) }
+                    matches = (0..<match.numberOfRanges).map(match.range(at:))
                 } else {
                     matches = [matchedRange]
                 }
@@ -306,13 +303,13 @@ final class TextFind {
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
     ///   - block: The Block enumerates the matches.
-    ///   - flag: The current state of the replacing progress.
+    ///   - status: The current state of the replacing progress.
     ///   - range: The matched range.
     ///   - stop: The Block can set the value to true to stop further processing of the array.
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: @escaping (_ flag: ReplacingFlag, _ range: NSRange, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    func replaceAll(with replacementString: String, using block: @escaping (_ status: ReplacingStatus, _ range: NSRange, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
@@ -331,7 +328,7 @@ final class TextFind {
                 
                 items.append(ReplacementItem(string: replacedString, range: matchedRange))
                 
-                block(.findProgress, matchedRange, &ioStop)
+                block(.found, matchedRange, &ioStop)
                 stop = ioStop
             }
             
@@ -345,7 +342,7 @@ final class TextFind {
                 let replacedString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
                 for item in items.reversed() {
                     var ioStop = false
-                    block(.replacementProgress, item.range, &ioStop)
+                    block(.replaced, item.range, &ioStop)
                     if ioStop { break }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.

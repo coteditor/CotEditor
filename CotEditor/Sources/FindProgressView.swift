@@ -50,9 +50,9 @@ struct FindProgressView: View {
     ///
     /// - Parameters:
     ///   - label: The text to display as the label of the indicator.
-    ///   - unit: The unit to count results in the description.
     ///   - progress: The progress instance to indicate.
-    init(_ label: LocalizedStringKey, unit: Unit, progress: FindProgress) {
+    ///   - unit: The unit to count results in the description.
+    init(_ label: LocalizedStringKey, progress: FindProgress, unit: Unit) {
         
         assert(!progress.isCancelled)
         assert(!progress.isFinished)
@@ -60,24 +60,22 @@ struct FindProgressView: View {
         self.progress = progress
         self.unit = unit
         self.label = label
-        
-        self.updateDescription()
     }
     
     
     var body: some View {
         
-        VStack(alignment: .center) {
+        VStack {
             ProgressView(value: self.progress.fractionCompleted) {
                 Text(self.label)
                     .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }.progressViewStyle(.linear)
             
             HStack {
                 Text(self.description)
                     .monospacedDigit()
                     .foregroundColor(.secondaryLabel)
-                    .controlSize(.small)
                     
                 Spacer()
                 
@@ -91,6 +89,9 @@ struct FindProgressView: View {
                     }
                 }
             }.controlSize(.small)
+        }
+        .onAppear {
+            self.updateDescription()
         }
         .onReceive(self.timer) { _ in
             self.updateDescription()
@@ -111,7 +112,7 @@ struct FindProgressView: View {
     }
     
     
-    // MARK: Public Methods
+    // MARK: Private Methods
     
     /// Update the progress description.
     private func updateDescription() {
@@ -158,6 +159,6 @@ struct FindProgressView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        FindProgressView("Label", unit: .find, progress: .init(scope: 0..<100))
+        FindProgressView("Label", progress: .init(scope: 0..<100), unit: .find)
     }
 }

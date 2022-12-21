@@ -43,7 +43,7 @@ extension MultipleReplacement {
         // setup progress sheet
         let progress = FindProgress(scope: 0..<self.replacements.count)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicatorView = FindProgressView("Highlight All", unit: .find, progress: progress)
+        let indicatorView = FindProgressView("Highlight All", progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
@@ -114,7 +114,7 @@ extension MultipleReplacement {
         // setup progress sheet
         let progress = FindProgress(scope: 0..<self.replacements.count)
         let closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
-        let indicatorView = FindProgressView("Replace All", unit: .replacement, progress: progress)
+        let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
