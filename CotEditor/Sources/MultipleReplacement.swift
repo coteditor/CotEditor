@@ -27,10 +27,10 @@ import Foundation
 
 final class MultipleReplacement: Codable {
     
-    struct Replacement {
+    struct Replacement: Equatable {
         
-        var findString: String
-        var replacementString: String
+        var findString: String = ""
+        var replacementString: String = ""
         var usesRegularExpression: Bool = false
         var ignoresCase: Bool = false
         var description: String?
@@ -53,17 +53,6 @@ final class MultipleReplacement: Codable {
 
 
 
-extension MultipleReplacement.Replacement {
-    
-    init() {
-        
-        self.findString = ""
-        self.replacementString = ""
-    }
-}
-
-
-
 // MARK: - Replacement
 
 extension MultipleReplacement {
@@ -72,24 +61,28 @@ extension MultipleReplacement {
         
         var string: String
         var selectedRanges: [NSRange]?
-        var count = 0
     }
     
+    
+    enum Status {
+        
+        case processed
+        case unitChagned
+    }
     
     
     // MARK: Public Methods
     
-    /// Batch-find in given string.
+    /// Batch-find in the given string.
     ///
     /// - Parameters:
     ///   - string: The string to find in.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether find only in selection.
-    ///   - block: The block enumerates the matches.
-    ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
-    ///   - unitChanged: The block invoked when the task did change to the next replecement definition.
+    ///   - progress: The progress object to observe cancellation by the user and notify the find progress.
     /// - Returns: The found ranges. This method will return first all search finished.
-    func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ stop: inout Bool) -> Void, unitChanged: () -> Void) -> [NSRange] {
+    /// - Throws: `CancellationError`
+    func find(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws -> [NSRange] {
         
         var result: [NSRange] = []
         
@@ -102,35 +95,37 @@ extension MultipleReplacement {
             guard let textFind = try? TextFind(for: string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: ranges) else { continue }
             
             // process find
-            var isCancelled = false
             textFind.findAll { (ranges, stop) in
-                block(&stop)
-                isCancelled = stop
+                guard progress?.isCancelled != true else {
+                    stop = true
+                    return
+                }
                 
                 result.append(ranges.first!)
+                progress?.count += 1
             }
             
-            guard !isCancelled else { return [] }
+            // finish if cancelled
+            guard progress?.isCancelled != true else { throw CancellationError() }
             
             // notify
-            unitChanged()
+            progress?.completedUnit += 1
         }
         
         return result
     }
     
     
-    /// Batch-replace matches in given string.
+    /// Batch-replace matches in the given string.
     ///
     /// - Parameters:
     ///   - string: The string to replace.
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether replace only in selection.
-    ///   - block: The block enumerates the matches.
-    ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
-    ///   - unitChanged: The block invoked when the task did change to the next replecement definition.
+    ///   - progress: The progress object to observe cancellation by the user and notify the replacement progress.
     /// - Returns: The result of the replacement. This method will return first all replacement finished.
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ stop: inout Bool) -> Void, unitChanged: () -> Void) -> Result {
+    /// - Throws: `CancellationError`
+    func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -144,21 +139,22 @@ extension MultipleReplacement {
             guard let textFind = try? TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges) else { continue }
             
             // process replacement
-            var isCancelled = false
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (status, _, stop) in
+                guard progress?.isCancelled != true else {
+                    stop = true
+                    return
+                }
                 
                 switch status {
                     case .found:
                         break
                     case .replaced:
-                        result.count += 1
-                        block(&stop)
-                        isCancelled = stop
+                        progress?.count += 1
                 }
             }
             
             // finish if cancelled
-            guard !isCancelled else { return Result(string: string, selectedRanges: ranges) }
+            guard progress?.isCancelled != true else { throw CancellationError() }
             
             // update string
             for item in replacementItems.reversed() {
@@ -169,7 +165,7 @@ extension MultipleReplacement {
             result.selectedRanges = selectedRanges
             
             // notify
-            unitChanged()
+            progress?.completedUnit += 1
         }
         
         return result
@@ -179,7 +175,10 @@ extension MultipleReplacement {
 
 private extension MultipleReplacement.Replacement {
     
-    /// create TextFind.Mode with Replacement
+    /// Create TextFind.Mode with Replacement.
+    ///
+    /// - Parameter settings: The replacement settings to obtain the mode.
+    /// - Returns: A TextFind.Mode.
     func mode(settings: MultipleReplacement.Settings) -> TextFind.Mode {
         
         if self.usesRegularExpression {

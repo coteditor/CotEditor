@@ -11,8 +11,8 @@
         <!--Window Controller-->
         <scene sceneID="WvZ-bY-kAi">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" customClass="MultipleReplacementPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Multiple Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
+                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" sceneMemberID="viewController">
+                    <window key="window" title="Multiple Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Multiple Replacement Panel" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="rFC-87-Fxd" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="520" height="300"/>
@@ -158,7 +158,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135.5" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="136" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
@@ -749,7 +749,7 @@
             <objects>
                 <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="MultipleReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem holdingPriority="260" id="t6n-9g-dQO"/>
+                        <splitViewItem holdingPriority="260" separatorStyle="none" id="t6n-9g-dQO"/>
                         <splitViewItem id="RVu-VR-TJq"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" vertical="YES" id="IVS-tk-SwU">
@@ -760,8 +760,7 @@
                         </connections>
                     </splitView>
                     <connections>
-                        <outlet property="contentListSplitViewItem" destination="t6n-9g-dQO" id="Eak-Om-c5w"/>
-                        <outlet property="mainSplitViewItem" destination="RVu-VR-TJq" id="hDt-SB-Dk9"/>
+                        <outlet property="detailSplitViewItem" destination="RVu-VR-TJq" id="DFr-YF-k6L"/>
                         <segue destination="y8N-kI-aI7" kind="relationship" relationship="splitItems" id="EKi-ev-pps"/>
                         <segue destination="uzB-9o-Idl" kind="relationship" relationship="splitItems" id="3RV-RK-z1q"/>
                     </connections>

@@ -27,6 +27,7 @@ import Foundation
 
 extension MultipleReplacement.Settings {
     
+    /// Observable object to modify settings in the UI.
     final class Object: ObservableObject {
         
         @Published var textIsLiteralSearch: Bool
@@ -61,7 +62,7 @@ extension MultipleReplacement.Settings {
         
         var settings: MultipleReplacement.Settings {
             
-            let textualOptions = NSString.CompareOptions()
+            let textualOptions = String.CompareOptions()
                 .union(self.textIsLiteralSearch ? .literal : [])
                 .union(self.textIgnoresDiacriticMarks ? .diacriticInsensitive : [])
                 .union(self.textIgnoresWidth ? .widthInsensitive : [])

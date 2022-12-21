@@ -32,7 +32,7 @@ protocol MultipleReplacementViewControllerDelegate: AnyObject {
 }
 
 
-final class MultipleReplacementViewController: NSViewController, MultipleReplacementPanelViewControlling {
+final class MultipleReplacementViewController: NSViewController {
     
     // MARK: Public Properties
     
@@ -88,6 +88,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     // MARK: Actions
     
+    /// The segmented control for the add/remove actions was clicked.
     @IBAction func addRemove(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
@@ -98,7 +99,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// add a new replacement rule at the end
+    /// Add a new replacement rule at the end.
     @IBAction func add(_ sender: Any?) {
         
         self.endEditing()
@@ -118,7 +119,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// remove selected replacement rules
+    /// Remove selected replacement rules.
     @IBAction func remove(_ sender: Any?) {
         
         self.endEditing()
@@ -135,15 +136,14 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    // show advanced options view
+    /// Show the advanced options view.
     @IBAction func showOptions(_ sender: NSButton) {
         
         if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<MultipleReplacementSettingsView> }) {
             return self.dismiss(viewController)
         }
         
-        let options = MultipleReplacement.Settings.Object(settings: self.definition.settings)
-        let view = MultipleReplacementSettingsView(options: options) { settings in
+        let view = MultipleReplacementSettingsView(settings: self.definition.settings) { settings in
             guard self.definition.settings != settings else { return }
             
             self.definition.settings = settings
@@ -157,39 +157,52 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// highlight all matches in the target textView
+    /// Highlight all matches in the target textView.
     @IBAction func highlight(_ sender: Any?) {
         
         self.endEditing()
         self.validateObject()
         self.resultMessage = nil
         
+        guard let textView = TextFinder.shared.client else { return NSSound.beep() }
+        
         let inSelection = UserDefaults.standard[.findInSelection]
-        self.definition.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
-            self?.resultMessage = resultMessage
+        
+        Task {
+            guard let message = try? await textView.highlight(self.definition, inSelection: inSelection) else { return }
+            
+            self.resultMessage = message
             
             // feedback for VoiceOver
             if let window = NSApp.mainWindow {
-                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
+                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
             }
         }
     }
     
     
-    /// perform replacement with current set
+    /// Perform replacement with current set.
     @IBAction func batchReplaceAll(_ sender: Any?) {
         
         self.endEditing()
         self.validateObject()
         self.resultMessage = nil
         
+        guard let textView = TextFinder.shared.client,
+              textView.isEditable,
+              textView.window?.attachedSheet == nil
+        else { return NSSound.beep() }
+        
         let inSelection = UserDefaults.standard[.findInSelection]
-        self.definition.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
-            self?.resultMessage = resultMessage
+        
+        Task {
+            guard let message = try? await textView.replaceAll(self.definition, inSelection: inSelection) else { return }
+            
+            self.resultMessage = message
             
             // feedback for VoiceOver
             if let window = NSApp.mainWindow {
-                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
+                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
             }
         }
     }
@@ -198,7 +211,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     // MARK: Public Methods
     
-    /// set another replacement definition
+    /// Set another replacement definition.
+    ///
+    /// - Parameter setting: The setting to replace.
     func change(setting: MultipleReplacement) {
         
         self.definition = setting
@@ -223,14 +238,14 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     // MARK: Private Methods
     
-    /// notify update to delegate
+    /// Notify update to delegate.
     private func notifyUpdate() {
         
         self.delegate?.didUpdate(setting: self.definition)
     }
     
     
-    /// validate the availability of the remove button.
+    /// Validate the availability of the remove button.
     private func invalidateRemoveButton() {
         
         let canRemove = self.tableView?.selectedRowIndexes.isEmpty == false
@@ -238,7 +253,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// validate current setting
+    /// Validate the current setting.
     private func validateObject() {
         
         self.hasInvalidSetting = self.definition.replacements.contains {

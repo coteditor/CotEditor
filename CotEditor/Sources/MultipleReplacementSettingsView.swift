@@ -27,9 +27,23 @@ import SwiftUI
 
 struct MultipleReplacementSettingsView: View {
     
-    @ObservedObject var options: MultipleReplacement.Settings.Object
+    @StateObject private var options: MultipleReplacement.Settings.Object
     
-    let completionHandler: (MultipleReplacement.Settings) -> Void
+    private let completionHandler: (MultipleReplacement.Settings) -> Void
+    
+    
+    // MARK: View
+    
+    /// Initialize view with given values.
+    ///
+    /// - Parameters:
+    ///   - settings: The current settings use as the initial values.
+    ///   - completionHandler: The callback method to perform when the view was dismissed.
+    init(settings: MultipleReplacement.Settings, completionHandler: @escaping (MultipleReplacement.Settings) -> Void) {
+        
+        self._options = StateObject(wrappedValue: .init(settings: settings))
+        self.completionHandler = completionHandler
+    }
     
     
     var body: some View {
@@ -67,6 +81,6 @@ struct MultipleReplacementSettingsView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        MultipleReplacementSettingsView(options: .init(settings: .init())) { _ in }
+        MultipleReplacementSettingsView(settings: .init()) { _ in }
     }
 }
