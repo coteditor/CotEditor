@@ -16,6 +16,47 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.4.3</h1>
+		<p>release: <time>2022-12-23</time></p>
+	</header>
+
+
+	<section>
+		<h2>Improvements</h2>
+
+		<ul>
+			<li>Optimize performance of find/replace with large documents.</li>
+			<li>Display the concrete progress of the find/replace task in the progress dialog.</li>
+			<li>Draw link underlines on the left side by the vertical text orientation.</li>
+			<li>Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.</li>
+			<li>Deprecate the option to keep the progress dialog for find/replacement after finishing the task.</li>
+			<li>Deprecate the option not to select the next match after the replacement when clicking the Replace button in the Find window.</li>
+			<li><span class="trivial">trivial</span>: Make the target document the key window when selecting a matched line in the find result view.</li>
+			<li><span class="trivial">trivial</span>: Tweak the style of headings in menus.</li>
+			<li><span class="trivial">trivial</span>: Tweak the setting summary display in the print dialog.</li>
+			<li><span class="trivial">dev</span>: Migrate the most of sheets and popovers to SwiftUI.</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>Fixes</h2>
+
+		<ul>
+			<li>Fix an issue on macOS 13 the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.</li>
+			<li>Fix an issue that timestamps in the Console window do not reflect the local time zone.</li>
+			<li>Fix an issue that the right-to-left writing direction option for new documents was not applied.</li>
+			<li>Fix an issue that the regular expression pattern was wrongly highlighted in a specific condition.</li>
+			<li>Fix an issue that the regular expression find/replace was not performed if the document is empty.</li>
+			<li>Fix an issue that the advanced options view in the find panel could display multiple times when clicking the button repeatedly.</li>
+			<li>Fix the drawing of the editor opacity toolbar item when collapsed.</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.4.2</h1>
 		<p>release: <time>2022-12-03</time></p>
 	</header>

@@ -12,7 +12,7 @@ Change Log
 - Draw link underlines on the left side by the vertical text orientation.
 - Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.
 - Deprecate the option to keep the progress dialog for find/replacement after finishing the task.
-- Deprecate the option not to select the next match after the replacement when clicking the Replace button.
+- Deprecate the option not to select the next match after the replacement when clicking the Replace button in the Find window.
 - [trivial] Make the target document the key window when selecting a matched line in the find result view.
 - [trivial] Tweak the style of headings in menus.
 - [trivial] Tweak the setting summary display in the print dialog.
@@ -23,10 +23,10 @@ Change Log
 
 - Fix an issue on macOS 13 the total page did not update when changing the print scope option to “Selection in CotEditor” in the print dialog.
 - Fix an issue that timestamps in the Console window do not reflect the local time zone.
-- Fix an issue that the right-to-left writing direciton option for new documents was not applied.
+- Fix an issue that the right-to-left writing direction option for new documents was not applied.
 - Fix an issue that the regular expression pattern was wrongly highlighted in a specific condition.
 - Fix an issue that the regular expression find/replace was not performed if the document is empty.
-- Fix an issue that the advanced option view in the find panel could display multiple times when clicked the button repeatedly.
+- Fix an issue that the advanced options view in the find panel could display multiple times when clicking the button repeatedly.
 - Fix the drawing of the editor opacity toolbar item when collapsed.
 
 
