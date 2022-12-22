@@ -67,6 +67,7 @@ struct OpacityView: View {
         
         VStack(alignment: .leading) {
             Text("Editor’s Opacity")
+                .fontWeight(.semibold)
                 .foregroundColor(.secondaryLabel)
             
             HStack(alignment: .center) {
@@ -100,7 +101,8 @@ struct OpacityView: View {
 private struct OpacitySample: View {
     
     let opacity: Double
-    var inset: Double = 3
+    
+    private let inset: Double = 3
     
     
     var body: some View {

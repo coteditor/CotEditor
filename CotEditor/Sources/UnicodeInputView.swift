@@ -63,27 +63,28 @@ struct UnicodeInputView: View {
                     .monospacedDigit()
                 
                 Menu("") {
-                    Text("Recents")
-                        .font(.system(size: NSFont.smallSystemFontSize, weight: .medium))
                     let scalars = UserDefaults.standard[.unicodeHistory]
                         .compactMap(UTF32.CodeUnit.init(codePoint:))
                         .compactMap(UnicodeScalar.init)
                     
-                    ForEach(scalars, id: \.self) { scalar in
-                        Button {
-                            self.codePoint = scalar.codePoint
-                        } label: {
-                            Text(verbatim: scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
-                                .monospacedDigit() +
-                            Text(verbatim: scalar.name ?? "–")
-                                .font(.system(size: NSFont.smallSystemFontSize))
-                                .foregroundColor(.secondaryLabel)
+                    Section("Recents") {
+                        ForEach(scalars, id: \.self) { scalar in
+                            Button {
+                                self.codePoint = scalar.codePoint
+                            } label: {
+                                Text(verbatim: scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
+                                    .monospacedDigit() +
+                                Text(verbatim: scalar.name ?? "–")
+                                    .font(.system(size: NSFont.smallSystemFontSize))
+                                    .foregroundColor(.secondaryLabel)
+                            }
                         }
                     }
                     
                     if !scalars.isEmpty {
-                        Divider()
-                        Button("Clear Recents", role: .destructive, action: self.clearRecents)
+                        Section {
+                            Button("Clear Recents", role: .destructive, action: self.clearRecents)
+                        }
                     }
                 }.menuStyle(.borderlessButton)
                     .frame(width: 16)

@@ -37,7 +37,7 @@ struct HUDView: View {
     
     @State var symbol: Symbol
     @State var flipped = false
-    @State var isPresented = true
+    @State private var isPresented = true
     
     
     var body: some View {
@@ -73,5 +73,17 @@ private extension HUDView.Symbol {
             case .wrap:
                 return "arrow.triangle.capsulepath"
         }
+    }
+}
+
+
+
+// MARK: - Preview
+
+struct HUDView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        
+        HUDView(symbol: .wrap)
     }
 }

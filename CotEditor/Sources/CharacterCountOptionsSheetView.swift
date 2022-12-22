@@ -37,9 +37,8 @@ struct CharacterCountOptionsSheetView: View {
     
     var body: some View {
         
-        VStack {
+        VStack(spacing: 20) {
             CharacterCountOptionsView()
-                .padding(.bottom, 20)
             
             HStack {
                 HelpButton(anchor: "howto_count_characters")
@@ -63,7 +62,21 @@ struct CharacterCountOptionsSheetView: View {
                         .frame(width: self.buttonWidth)
                 }.keyboardShortcut(.defaultAction)
             }
+            .onPreferenceChange(WidthKey.self) { self.buttonWidth = $0 }
         }
+        .fixedSize()
         .padding()
+    }
+}
+
+
+
+// MARK: - Preview
+
+struct CharacterCountOptionsSheetView_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        
+        CharacterCountOptionsSheetView { }
     }
 }

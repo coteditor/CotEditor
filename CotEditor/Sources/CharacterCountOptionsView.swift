@@ -38,7 +38,7 @@ struct CharacterCountOptionsView: View {
             HStack(alignment: .firstTextBaseline) {
                 Text("Whitespace:")
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 6) {
                     Toggle("Ignore line endings", isOn: self.setting.$ignoresNewlines)
                     Toggle("Ignore whitespace", isOn: self.setting.$ignoresWhitespaces)
                     Toggle("Treat consecutive whitespace as one space", isOn: self.setting.$treatsConsecutiveWhitespaceAsSingle)
@@ -85,18 +85,22 @@ struct CharacterCountOptionsView: View {
                         HStack(alignment: .firstTextBaseline) {
                             Toggle("Normalization:", isOn: self.setting.$normalizes)
                             Picker("Normalization:", selection: self.setting.$normalizationForm) {
-                                ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { (form) in
-                                    Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                Section {
+                                    ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { (form) in
+                                        Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                    }
                                 }
-                                Divider()
-                                ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { (form) in
-                                    Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                Section {
+                                    ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { (form) in
+                                        Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                    }
                                 }
                             }.labelsHidden()
                                 .disabled(!self.setting.normalizes)
                         }.fixedSize()
                     }
                 }
+                .background(WidthGetter(key: WidthKey.self))
                 .alignmentGuide(.column) { $0[.leading] }
             }
         }

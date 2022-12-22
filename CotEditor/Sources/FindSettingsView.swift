@@ -53,7 +53,6 @@ struct FindSettingsView: View {
             Text("Advanced Find Options")
                 .fontWeight(.semibold)
                 .foregroundColor(.secondaryLabel)
-                .controlSize(.regular)
                 .padding(.bottom, 2)
             
             VStack(alignment: .leading, spacing: 14) {
@@ -79,7 +78,9 @@ struct FindSettingsView: View {
                     HelpButton(anchor: "howto_find")
                 }
             }.controlSize(.small)
-        }.padding()
+        }
+        .fixedSize()
+        .padding()
     }
 }
 

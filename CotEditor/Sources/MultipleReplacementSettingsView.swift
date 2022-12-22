@@ -69,6 +69,7 @@ struct MultipleReplacementSettingsView: View {
         .onDisappear {
             self.completionHandler(self.options.settings)
         }
+        .fixedSize()
         .padding()
     }
 }
