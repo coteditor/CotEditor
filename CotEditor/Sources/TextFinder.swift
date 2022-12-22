@@ -127,13 +127,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                  #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
                  #selector(centerSelectionInVisibleArea(_:)):
                 return self.client != nil
-            
+                
             case #selector(useSelectionForFind(_:)):
                 return self.selectedString != nil
-            
+                
             case nil:
                 return false
-            
+                
             default:
                 return true
         }
@@ -225,7 +225,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
         var matchedRanges: [NSRange] = []
-        textFind.findAll { (matches: [NSRange], _) in
+        textFind.findAll { (matches, _) in
             matchedRanges.append(matches[0])
         }
         
@@ -240,25 +240,25 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Find all matched strings and show results in a table.
     @IBAction func findAll(_ sender: Any?) {
         
-        self.findAll(showsList: true, actionName: "Find All")
+        Task {
+            await self.findAll(showsList: true, actionName: "Find All")
+        }
     }
     
     
     /// Highlight all matched strings.
     @IBAction func highlight(_ sender: Any?) {
         
-        self.findAll(showsList: false, actionName: "Highlight All")
+        Task {
+            await self.findAll(showsList: false, actionName: "Highlight All")
+        }
     }
     
     
     /// Remove all of current highlights in the frontmost textView.
     @IBAction func unhighlight(_ sender: Any?) {
         
-        guard let textView = self.client else { return }
-        
-        let range = textView.string.nsRange
-        
-        textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: range)
+        self.client?.unhighlight()
     }
     
     
@@ -294,67 +294,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Replace all matched strings with given string.
     @IBAction func replaceAll(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: true) else { return }
-        
-        textView.isEditable = false
-        
-        let replacementString = self.replacementString
-        
-        // setup progress sheet
-        let progress = FindProgress(scope: textFind.scopeRange)
-        let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
-        let indicator = NSHostingController(rootView: indicatorView)
-        indicator.rootView.parent = indicator
-        textView.viewControllerForSheet?.presentAsSheet(indicator)
-        
-        Task.detached(priority: .userInitiated) { [weak self] in
-            guard let self else { return }
-            
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (status, range, stop) in
-                guard !progress.isCancelled else {
-                    stop = true
-                    return
-                }
-                
-                switch status {
-                    case .found:
-                        break
-                    case .replaced:
-                        progress.completedUnit = range.upperBound
-                        progress.count += 1
-                }
-            }
-            
-            await MainActor.run {
-                textView.isEditable = true
-                
-                guard !progress.isCancelled else { return }
-                
-                if !replacementItems.isEmpty {
-                    let replacementStrings = replacementItems.map(\.string)
-                    let replacementRanges = replacementItems.map(\.range)
-                    
-                    // apply found strings to the text view
-                    textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
-                                     actionName: "Replace All".localized)
-                }
-                
-                if replacementItems.isEmpty {
-                    NSSound.beep()
-                }
-                
-                progress.isFinished = true
-                
-                if let panel = self.findPanelController.window, panel.isVisible {
-                    panel.makeKey()
-                }
-                
-                self.delegate?.textFinder(self, didReplace: progress.count, textView: textView)
-            }
+        Task {
+            await self.replaceAll()
         }
-        
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
-        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
     }
     
     
@@ -449,75 +391,77 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     ///   - forward: The flag whether finds forward or backward.
     ///   - marksAllMatches: Whether marks all matches in the editor.
     ///   - isIncremental: Whether is the incremental search.
-    private nonisolated func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) async throws {
+    /// - Throws: `CancellationError`
+    @MainActor private func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) async throws {
         
         assert(forward || !isIncremental)
         
-        guard let (textView, textFind) = await self.prepareTextFind(forEditing: false) else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
-        let result = try textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
+        // find in background thread
+        let result = try await Task.detached(priority: .userInitiated) {
+            try textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
+        }.value
         
-        Task { @MainActor in
-            // mark all matches
-            if marksAllMatches, let layoutManager = textView.layoutManager {
-                layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
-                    for range in result.ranges {
-                        layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
-                    }
+        // mark all matches
+        if marksAllMatches, let layoutManager = textView.layoutManager {
+            layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
+                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
+                for range in result.ranges {
+                    layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
                 }
-                
-                // unmark either when the client view resigned the key window or when the Find panel closed
-                self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
-                    .sink { [weak self, weak textView] _ in
-                        textView?.unhighlight()
-                        self?.highlightObserver = nil
-                    }
             }
             
-            // found feedback
-            if let range = result.range {
-                textView.select(range: range)
-                textView.showFindIndicator(for: range)
-                
-                if result.wrapped {
-                    if let view = textView.enclosingScrollView?.superview {
-                        let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, flipped: !forward))
-                        hudView.rootView.parent = hudView
-                        hudView.translatesAutoresizingMaskIntoConstraints = false
-                        
-                        // remove previous HUD if any
-                        for subview in view.subviews where subview is NSHostingView<HUDView> {
-                            subview.removeFromSuperview()
-                        }
-                        
-                        view.addSubview(hudView)
-                        hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-                        hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-                        hudView.layout()
+            // unmark either when the client view resigned the key window or when the Find panel closed
+            self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
+                .sink { [weak self, weak textView] _ in
+                    textView?.unhighlight()
+                    self?.highlightObserver = nil
+                }
+        }
+        
+        // found feedback
+        if let range = result.range {
+            textView.select(range: range)
+            textView.showFindIndicator(for: range)
+            
+            if result.wrapped {
+                if let view = textView.enclosingScrollView?.superview {
+                    let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, flipped: !forward))
+                    hudView.rootView.parent = hudView
+                    hudView.translatesAutoresizingMaskIntoConstraints = false
+                    
+                    // remove previous HUD if any
+                    for subview in view.subviews where subview is NSHostingView<HUDView> {
+                        subview.removeFromSuperview()
                     }
                     
-                    if let window = NSApp.mainWindow {
-                        NSAccessibility.post(element: window, notification: .announcementRequested,
-                                             userInfo: [.announcement: "Search wrapped.".localized])
-                    }
+                    view.addSubview(hudView)
+                    hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                    hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+                    hudView.layout()
                 }
-            } else if !isIncremental {
-                NSSound.beep()
+                
+                if let window = NSApp.mainWindow {
+                    NSAccessibility.post(element: window, notification: .announcementRequested,
+                                         userInfo: [.announcement: "Search wrapped.".localized])
+                }
             }
-            
-            self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
-            
-            if !isIncremental {
-                UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
-            }
+        } else if !isIncremental {
+            NSSound.beep()
+        }
+        
+        self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
+        
+        if !isIncremental {
+            UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         }
     }
     
     
     /// Replace matched string in selection with replacementString.
     @discardableResult
-    private func replace() -> Bool {
+    @MainActor private func replace() -> Bool {
         
         guard
             let (textView, textFind) = self.prepareTextFind(forEditing: true),
@@ -537,7 +481,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// - Parameters:
     ///   - showsList: Whether shows the result view when finished.
     ///   - actionName: The name of the action to display in the progress sheet.
-    private func findAll(showsList: Bool, actionName: LocalizedStringKey) {
+    @MainActor private func findAll(showsList: Bool, actionName: LocalizedStringKey) async {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
@@ -553,9 +497,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        Task.detached(priority: .userInitiated) { [weak self] in
-            guard let self else { return }
-            
+        let (highlights, results) = await Task.detached(priority: .userInitiated) {
             var highlights: [ItemRange<NSColor>] = []
             var results: [TextFindResult] = []  // not used if showsList is false
             
@@ -582,10 +524,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (index, range) in matches.enumerated() where !range.isEmpty {
-                        let color = highlightColors[index]
-                        let inlineRange = range.shifted(by: -lineRange.location)
-                        
-                        attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
+                        attrLineString.addAttribute(.backgroundColor,
+                                                    value: highlightColors[index],
+                                                    range: range.shifted(by: -lineRange.location))
                     }
                     
                     // calculate inline range
@@ -598,39 +539,106 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 progress.count += 1
             }
             
-            await MainActor.run { [highlights, results] in
-                textView.isEditable = true
-                
-                guard !progress.isCancelled else { return }
-                
-                // highlight
-                if let layoutManager = textView.layoutManager {
-                    let wholeRange = textFind.string.nsRange
-                    layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
-                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
-                        for highlight in highlights {
-                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.item, forCharacterRange: highlight.range)
-                        }
-                    }
-                }
-                
-                if highlights.isEmpty {
-                    NSSound.beep()
-                }
-                
-                progress.isFinished = true
-                
-                if showsList {
-                    self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
-                }
-                
-                if !results.isEmpty, let panel = self.findPanelController.window, panel.isVisible {
-                    panel.makeKey()
+            return (highlights, results)
+        }.value
+        
+        textView.isEditable = true
+        
+        guard !progress.isCancelled else { return }
+        
+        // highlight
+        if let layoutManager = textView.layoutManager {
+            let wholeRange = textFind.string.nsRange
+            layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
+                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
+                for highlight in highlights {
+                    layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.item, forCharacterRange: highlight.range)
                 }
             }
         }
         
+        if highlights.isEmpty {
+            NSSound.beep()
+        }
+        
+        progress.isFinished = true
+        
+        if showsList {
+            self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
+        }
+        
+        if !results.isEmpty, let panel = self.findPanelController.window, panel.isVisible {
+            panel.makeKey()
+        }
+        
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+    }
+    
+    
+    /// Replace all matched strings and apply the result to views.
+    @MainActor private func replaceAll() async {
+        
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: true) else { return }
+        
+        textView.isEditable = false
+        
+        let replacementString = self.replacementString
+        
+        // setup progress sheet
+        let progress = FindProgress(scope: textFind.scopeRange)
+        let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
+        let indicator = NSHostingController(rootView: indicatorView)
+        indicator.rootView.parent = indicator
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
+        
+        let (replacementItems, selectedRanges) = await Task.detached(priority: .userInitiated) {
+            textFind.replaceAll(with: replacementString) { (range, stop) in
+                guard !progress.isCancelled else {
+                    stop = true
+                    return
+                }
+                
+                progress.completedUnit = range.upperBound
+                progress.count += 1
+            }
+        }.value
+        
+        textView.isEditable = true
+        
+        guard !progress.isCancelled else { return }
+        
+        if !replacementItems.isEmpty {
+            // apply found strings to the text view
+            textView.replace(with: replacementItems.map(\.string), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
+                             actionName: "Replace All".localized)
+        }
+        
+        if progress.count > 0 {
+            NSSound.beep()
+        }
+        
+        progress.isFinished = true
+        
+        if let panel = self.findPanelController.window, panel.isVisible {
+            panel.makeKey()
+        }
+        
+        self.delegate?.textFinder(self, didReplace: progress.count, textView: textView)
+        
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
+    }
+}
+
+
+
+// MARK: -
+
+extension NSTextView {
+    
+    @MainActor func unhighlight() {
+        
+        self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
     }
 }
 

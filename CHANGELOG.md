@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Optimize large find/replace task performance.
+- Optimize performance of find/replace with large documents.
 - Display the concrete progress of the find/replace task in the progress dialog.
 - Draw link underlines on the left side by the vertical text orientation.
 - Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.

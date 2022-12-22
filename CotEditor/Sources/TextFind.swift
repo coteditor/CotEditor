@@ -42,13 +42,6 @@ final class TextFind {
     }
     
     
-    enum ReplacingStatus {
-        
-        case found
-        case replaced
-    }
-    
-    
     enum `Error`: LocalizedError {
         
         case regularExpression(reason: String)
@@ -280,7 +273,7 @@ final class TextFind {
     /// - Parameters:
     ///   - block: The Block enumerates the matches.
     ///   - matches: The array of matches including group matches.
-    ///   - stop: The Block can set the value to true to stop further processing of the array.
+    ///   - stop: The `block` can set the value to true to stop further processing.
     func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
         for range in self.scopeRanges {
@@ -302,23 +295,24 @@ final class TextFind {
     ///
     /// - Parameters:
     ///   - replacementString: The string with which to replace.
-    ///   - block: The Block enumerates the matches.
-    ///   - status: The current state of the replacing progress.
+    ///   - block: The block notifying the replacement progress.
     ///   - range: The matched range.
-    ///   - stop: The Block can set the value to true to stop further processing of the array.
+    ///   - stop: The `block` can set the value to true to stop further processing.
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
     ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: @escaping (_ status: ReplacingStatus, _ range: NSRange, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
         var selectedRanges: [NSRange] = []
-        var ioStop = false
         
         for scopeRange in self.scopeRanges {
-            var items: [ReplacementItem] = []
+            let scopeString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
+            var offset = 0
+            var ioStop = false
             
+            // replace string
             self.enumerateMatchs(in: scopeRange) { (matchedRange, match, stop) in
                 let replacedString: String = {
                     guard let match = match, let regex = match.regularExpression else { return replacementString }
@@ -326,41 +320,28 @@ final class TextFind {
                     return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
                 }()
                 
-                items.append(ReplacementItem(string: replacedString, range: matchedRange))
+                let localRange = matchedRange.shifted(by: -scopeRange.location - offset)
+                scopeString.replaceCharacters(in: localRange, with: replacedString)
+                offset += matchedRange.length - replacedString.length
                 
-                block(.found, matchedRange, &ioStop)
+                block(matchedRange, &ioStop)
                 stop = ioStop
             }
             
-            if ioStop { break }
+            guard !ioStop else { break }
             
-            let length: Int
-            if items.isEmpty {
-                length = scopeRange.length
-            } else {
-                // build replacementString
-                let replacedString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
-                for item in items.reversed() {
-                    var ioStop = false
-                    block(.replaced, item.range, &ioStop)
-                    if ioStop { break }
-                    
-                    // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
-                    let substringRange = item.range.shifted(by: -scopeRange.location)
-                    replacedString.replaceCharacters(in: substringRange, with: item.string)
-                }
-                replacementItems.append(ReplacementItem(string: replacedString.copy() as! String, range: scopeRange))
-                length = replacedString.length
+            // append only when actually modified
+            if (self.string as NSString).substring(with: scopeRange) != scopeString as String {
+                replacementItems.append(ReplacementItem(string: scopeString.copy() as! String, range: scopeRange))
             }
             
-            if ioStop { break }
-            
             // build selectedRange
-            let locationDelta = zip(selectedRanges, self.selectedRanges)
-                .map { $0.0.length - $0.1.length }
-                .reduce(scopeRange.location, +)
-            let selectedRange = NSRange(location: locationDelta, length: length)
-            selectedRanges.append(selectedRange)
+            if self.inSelection {
+                let location = zip(selectedRanges, self.selectedRanges)
+                    .map { $0.0.length - $0.1.length }
+                    .reduce(scopeRange.location, +)
+                selectedRanges.append(NSRange(location: location, length: scopeString.length))
+            }
         }
         
         return (replacementItems, self.inSelection ? selectedRanges : nil)
@@ -370,7 +351,11 @@ final class TextFind {
     
     // MARK: Private Methods
     
-    /// unescape given string for replacement string only if needed
+    /// Unescape the given string for replacement string as needed.
+    ///
+    /// - Parameters:
+    ///   - string: The string to use as the replacement template.
+    /// - Returns: Unescaped replacement string.
     private func replacementString(from string: String) -> String {
         
         switch self.mode {
@@ -382,7 +367,11 @@ final class TextFind {
     }
     
     
-    /// chack if the given range is a range of whole word
+    /// Chack if the given range is a range of whole word.
+    ///
+    /// - Parameters:
+    ///   - range: The charater range to test.
+    /// - Returns: Whether the substring of the given range is full word.
     private func isFullWord(range: NSRange) -> Bool {
         
         self.fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
@@ -411,7 +400,11 @@ final class TextFind {
     }
     
     
-    /// enumerate matchs in string using current settings
+    /// Enumerate matchs in string using current settings.
+    ///
+    /// - Parameters:
+    ///   - range: The range of the string to search.
+    ///   - block: The block that enumerates the matches.
     private func enumerateMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         switch self.mode {
@@ -423,7 +416,11 @@ final class TextFind {
     }
     
     
-    /// enumerate matchs in string using textual search
+    /// Enumerate matchs in string using textual search
+    ///
+    /// - Parameters:
+    ///   - range: The range of the string to search.
+    ///   - block: The block that enumerates the matches.
     private func enumerateTextualMatchs(in range: NSRange, options: String.CompareOptions, fullWord: Bool, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         guard !self.string.isEmpty else { return }
@@ -449,7 +446,11 @@ final class TextFind {
     }
     
     
-    /// enumerate matchs in string using regular expression
+    /// Enumerate matchs in string using regular expression.
+    ///
+    /// - Parameters:
+    ///   - range: The range of the string to search.
+    ///   - block: The block that enumerates the matches.
     private func enumerateRegularExpressionMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         let string = self.string

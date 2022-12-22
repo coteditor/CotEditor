@@ -221,12 +221,3 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         self.splitView.needsDisplay = true
     }
 }
-
-
-extension NSTextView {
-    
-    func unhighlight() {
-        
-        self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
-    }
-}
