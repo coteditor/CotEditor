@@ -319,7 +319,7 @@ extension NSString {
     /// - Returns: A character index in UTF-16.
     func boundaryOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
         
-        assert(index >= 0 && index < self.length)
+        assert((0...self.length).contains(index))
         
         let reverse = (offset <= 0)
         let range = reverse ? NSRange(location: 0, length: min(index + 1, self.length)) : NSRange(location: index, length: self.length - index)

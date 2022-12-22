@@ -415,8 +415,8 @@ final class TextFind {
     private func enumerateMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         switch self.mode {
-            case .textual:
-                self.enumerateTextualMatchs(in: range, using: block)
+            case let .textual(options, fullWord):
+                self.enumerateTextualMatchs(in: range, options: options, fullWord: fullWord, using: block)
             case .regularExpression:
                 self.enumerateRegularExpressionMatchs(in: range, using: block)
         }
@@ -424,11 +424,9 @@ final class TextFind {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
+    private func enumerateTextualMatchs(in range: NSRange, options: String.CompareOptions, fullWord: Bool, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
         guard !self.string.isEmpty else { return }
-        
-        guard case let .textual(options, fullWord) = self.mode else { return assertionFailure() }
         
         let string = self.string as NSString
         var searchRange = range
@@ -454,17 +452,15 @@ final class TextFind {
     /// enumerate matchs in string using regular expression
     private func enumerateRegularExpressionMatchs(in range: NSRange, using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void) {
         
-        guard !self.string.isEmpty else { return }
-        
         let string = self.string
-        let regex = self.regex!
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
-        regex.enumerateMatches(in: string, options: options, range: range) { (result, _, stop) in
+        self.regex!.enumerateMatches(in: string, options: options, range: range) { (result, _, stop) in
             guard let result = result else { return }
             
             var ioStop = false
             block(result.range, result, &ioStop)
+            
             if ioStop {
                 stop.pointee = ObjCBool(ioStop)
             }
