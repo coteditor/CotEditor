@@ -149,8 +149,8 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         self.findString = findString
         self.results = results
         
-        let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
         let resultMessage: String = {
+            let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
             switch results.count {
                 case 0:
                     return String(localized: "No strings found in “\(documentName).”")
@@ -190,6 +190,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         else { return }
         
         textView.select(range: range)
+        textView.window?.makeKeyAndOrderFront(nil)
     }
 }
 

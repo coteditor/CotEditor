@@ -13,6 +13,7 @@ Change Log
 - Update the Unicode block name list for the character inspector from Unicode 14.0.0 to Unicode 15.0.0.
 - Deprecate the option to keep the progress dialog for find/replacement after finishing the task.
 - Deprecate the option not to select the next match after the replacement when clicking the Replace button.
+- [trivial] Make the target document the key window when selecting a matched line in the find result view.
 - [trivial] Tweak the style of headings in menus.
 - [trivial] Tweak the setting summary display in the print dialog.
 - [dev] Migrate the most of sheets and popovers to SwiftUI.
