@@ -147,6 +147,24 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
+    /// draw underline
+    override func drawUnderline(forGlyphRange glyphRange: NSRange, underlineType underlineVal: NSUnderlineStyle, baselineOffset: CGFloat, lineFragmentRect lineRect: NSRect, lineFragmentGlyphRange lineGlyphRange: NSRange, containerOrigin: NSPoint) {
+        
+        // move single underline position on the vertical orientation to the left side.
+        if underlineVal == .single,
+           let container = self.textContainer(forGlyphAt: glyphRange.location, effectiveRange: nil),
+           container.layoutOrientation == .vertical
+        {
+            let rect = self.boundingRect(forGlyphRange: glyphRange, in: container).offset(by: containerOrigin)
+            let underlineRect = NSRect(x: rect.minX, y: rect.midY + self.defaultLineHeight / 2 - 1, width: rect.width, height: 1)
+            
+            return underlineRect.fill()
+        }
+        
+        super.drawUnderline(forGlyphRange: glyphRange, underlineType: underlineVal, baselineOffset: baselineOffset, lineFragmentRect: lineRect, lineFragmentGlyphRange: lineGlyphRange, containerOrigin: containerOrigin)
+    }
+    
+    
     /// fill background rectangles with a color
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
