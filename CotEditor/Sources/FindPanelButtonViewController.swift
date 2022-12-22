@@ -42,9 +42,9 @@ final class FindPanelButtonViewController: NSViewController {
         super.viewDidLoad()
         
         // workaround an issue that NSComboButton cannnot be localized by .strings file
-        self.findAllButton?.title = NSLocalizedString("Find All", comment: "")
+        self.findAllButton?.title = String(localized: "Find All")
         
-        self.replaceButton?.toolTip = "Replace the current selection with the replacement text, then find the next match.".localized
+        self.replaceButton?.toolTip = String(localized: "Replace the current selection with the replacement text, then find the next match.")
     }
     
     

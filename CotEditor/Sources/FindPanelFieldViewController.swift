@@ -170,7 +170,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.view.window?.makeKeyAndOrderFront(self)
         
         UserDefaults.standard.removeObject(forKey: DefaultKeys.findHistory.rawValue)
-        self.updateFindHistoryMenu()
     }
     
     
@@ -180,7 +179,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.view.window?.makeKeyAndOrderFront(self)
         
         UserDefaults.standard.removeObject(forKey: DefaultKeys.replaceHistory.rawValue)
-        self.updateReplaceHistoryMenu()
     }
     
     
@@ -283,16 +281,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // clear current history items
         menu.items
-            .filter { $0.action == action || $0.isSeparatorItem }
+            .filter { $0.action == action }
             .forEach { menu.removeItem($0) }
         
-        let history = UserDefaults.standard[key]
-        
-        guard !history.isEmpty else { return }
-        
-        menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
-        
-        for string in history {
+        for string in UserDefaults.standard[key] {
             let title = (string.count <= 64) ? string : (String(string.prefix(64)) + "…")
             let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
             item.representedObject = string
