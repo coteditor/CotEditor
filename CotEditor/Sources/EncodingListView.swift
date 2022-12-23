@@ -194,7 +194,7 @@ private struct EncodingView: View {
         HStack(alignment: .firstTextBaseline) {
             Text(self.name)
             Text(verbatim: self.ianaCharsetName)
-                .foregroundColor(.secondaryLabel)
+                .foregroundColor(.secondary)  // prefer .secondary over .secondaryLabel to change color when selected
         }.frame(height: 12)
     }
     
