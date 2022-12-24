@@ -94,11 +94,26 @@
 
 
 /* MARK: FindPanelController */
-"Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match.";
 "Not found" = "Not found";
 "%lld found" = "%lld found";  // %lld is number of founds
 "Not Replaced" = "Not Replaced";
 "%lld replaced" = "%lld replaced";  // %lld is number of replaced
+
+// pairs of button label and its tooltip
+"Find All" = "Find All";
+"List all matches." = "List all matches.";
+
+"Replace All" = "Replace All";
+"Replace all matches with the replacement text." = "Replace all matches with the replacement text.";
+
+"Replace" = "Replace";
+"Replace the current selection with the replacement text, then find the next match." = "Replace the current selection with the replacement text, then find the next match.";
+
+"Find Previous" = "Find Previous";
+"Find previous match." = "Find previous match.";
+
+"Find Next" = "Find Next";
+"Find next match." = "Find next match.";
 
 
 

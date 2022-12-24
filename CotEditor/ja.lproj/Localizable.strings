@@ -94,11 +94,26 @@
 
 
 /* MARK: FindPanelController */
-"Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
 "Not found" = "見つかりません";
 "%lld found" = "%lld件見つかりました";  // %lld is number of founds
 "Not Replaced" = "見つかりません";
 "%lld replaced" = "%lld件置換しました";  // %lld is number of replaced
+
+// pairs of button label and its tooltip
+"Find All" = "すべて検索";
+"List all matches." = "すべての一致を検索しリストアップ";
+
+"Replace All" = "すべて置換";
+"Replace all matches with the replacement text." = "すべての一致を置換テキストで置き換え";
+
+"Replace" = "置換";
+"Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
+
+"Find Previous" = "前を検索";
+"Find previous match." = "前の一致を検索";
+
+"Find Next" = "次を検索";
+"Find next match." = "次の一致を検索";
 
 
 

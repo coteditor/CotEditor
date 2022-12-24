@@ -69,25 +69,6 @@
 
 // Buttons
 
-/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
-"XLZ-92-VVF.title" = "Tümünü Bul";
-/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
-"OCv-Y5-8XR.ibShadowedToolTip" = "Tüm eşleşmeleri listele.";
-
-/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
-"5gU-5y-iLn.title" = "Tümünü Değiştir";
-/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
-"RR6-rj-B8P.ibShadowedToolTip" = "Tüm eşleşmeleri değişim metniyle değiştir.";
-
-/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
-"W4Z-S2-wvv.title" = "Değiştir";
-// Note: The tooltip for "Replace button is set the in FindPanelController.
-
-/* Class = "NSSegmentedCell"; u6p-Hz-aK5.ibShadowedToolTips[0] = "Find previous match."; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[0]" = "Bir önceki eşleşmeyi bul.";
-/* Class = "NSSegmentedCell"; u6p-Hz-aK5.ibShadowedToolTips[1] = "Find next match."; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[1]" = "Bir sonraki eşleşmeyi bul.";
-
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
 "3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Son Aramalar";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */

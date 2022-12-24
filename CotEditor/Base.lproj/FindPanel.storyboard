@@ -33,7 +33,7 @@
                     <splitViewItems>
                         <splitViewItem holdingPriority="251" id="fLf-rT-Hpl"/>
                         <splitViewItem canCollapse="YES" collapsed="YES" id="QW9-eM-ZIB"/>
-                        <splitViewItem id="aiM-dr-0gg"/>
+                        <splitViewItem id="ATY-bi-fQb"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="jKV-b0-yX6" customClass="FindPanelSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="460" height="197"/>
@@ -47,7 +47,7 @@
                         <outlet property="resultSplitViewItem" destination="QW9-eM-ZIB" id="vT0-nW-yHp"/>
                         <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
                         <segue destination="2MH-SD-abc" kind="relationship" relationship="splitItems" id="Nvl-ZW-Th5"/>
-                        <segue destination="gbq-TJ-lot" kind="relationship" relationship="splitItems" id="LIf-yS-NOX"/>
+                        <segue destination="ANM-on-X4z" kind="relationship" relationship="splitItems" id="SsC-kC-1UV"/>
                     </connections>
                 </splitViewController>
                 <customObject id="vTS-S6-K0K" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -544,85 +544,18 @@
             </objects>
             <point key="canvasLocation" x="772" y="659"/>
         </scene>
-        <!--Find Panel Button View Controller-->
-        <scene sceneID="YMJ-TJ-Z4x">
+        <!--Find Panel Button View Hosting Controller-->
+        <scene sceneID="x2J-1Q-IuO">
             <objects>
-                <customObject id="J4W-5i-DqB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController showSeguePresentationStyle="single" id="gbq-TJ-lot" customClass="FindPanelButtonViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="g9T-ld-EHt">
-                        <rect key="frame" x="0.0" y="0.0" width="460" height="50"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <button toolTip="List all matches." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OCv-Y5-8XR">
-                                <rect key="frame" x="13" y="13" width="79" height="32"/>
-                                <buttonCell key="cell" type="push" title="Find All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XLZ-92-VVF">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="findAll:" target="J4W-5i-DqB" id="hHj-o7-RcD"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vX8-lQ-g9B">
-                                <rect key="frame" x="291" y="13" width="83" height="32"/>
-                                <buttonCell key="cell" type="push" title="Replace" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W4Z-S2-wvv">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="replaceAndFind:" target="J4W-5i-DqB" id="rBw-9r-oLZ"/>
-                                </connections>
-                            </button>
-                            <segmentedControl verticalHuggingPriority="750" mirrorLayoutDirectionWhenInternationalizing="never" translatesAutoresizingMaskIntoConstraints="NO" id="v89-ki-GCc">
-                                <rect key="frame" x="372" y="18" width="71" height="24"/>
-                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="u6p-Hz-aK5">
-                                    <font key="font" metaFont="system"/>
-                                    <segments>
-                                        <segment toolTip="Find previous match." image="chevron.backward" catalog="system" width="32" tag="3"/>
-                                        <segment toolTip="Find next match." image="chevron.forward" catalog="system" width="32" tag="2"/>
-                                    </segments>
-                                </segmentedCell>
-                                <connections>
-                                    <action selector="clickSegmentedFindButton:" target="gbq-TJ-lot" id="jwK-C6-5NR"/>
-                                </connections>
-                            </segmentedControl>
-                            <button toolTip="Replace all matches with the replacement text." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-rj-B8P">
-                                <rect key="frame" x="90" y="13" width="101" height="32"/>
-                                <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5gU-5y-iLn">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="replaceAll:" target="J4W-5i-DqB" id="Dqk-n3-PzE"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="vX8-lQ-g9B" secondAttribute="bottom" constant="20" symbolic="YES" id="FiI-7K-zfG"/>
-                            <constraint firstItem="v89-ki-GCc" firstAttribute="top" secondItem="g9T-ld-EHt" secondAttribute="top" constant="10" id="RIy-fH-bKa"/>
-                            <constraint firstAttribute="bottom" secondItem="RR6-rj-B8P" secondAttribute="bottom" constant="20" symbolic="YES" id="UgY-H8-E6X"/>
-                            <constraint firstItem="v89-ki-GCc" firstAttribute="leading" secondItem="vX8-lQ-g9B" secondAttribute="trailing" constant="8" symbolic="YES" id="Yu3-cc-yrU"/>
-                            <constraint firstAttribute="bottom" secondItem="v89-ki-GCc" secondAttribute="bottom" constant="20" symbolic="YES" id="eOj-lh-2hz"/>
-                            <constraint firstItem="OCv-Y5-8XR" firstAttribute="leading" secondItem="g9T-ld-EHt" secondAttribute="leading" constant="20" symbolic="YES" id="fm7-5x-oJK"/>
-                            <constraint firstItem="vX8-lQ-g9B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RR6-rj-B8P" secondAttribute="trailing" constant="12" symbolic="YES" id="h69-Aa-dR5"/>
-                            <constraint firstAttribute="bottom" secondItem="OCv-Y5-8XR" secondAttribute="bottom" constant="20" symbolic="YES" id="hBV-63-uIo"/>
-                            <constraint firstAttribute="trailing" secondItem="v89-ki-GCc" secondAttribute="trailing" constant="20" symbolic="YES" id="nrI-3V-pDt"/>
-                            <constraint firstItem="RR6-rj-B8P" firstAttribute="leading" secondItem="OCv-Y5-8XR" secondAttribute="trailing" constant="12" symbolic="YES" id="o19-ma-aPj"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="replaceButton" destination="vX8-lQ-g9B" id="cp4-Me-ymK"/>
-                    </connections>
-                </viewController>
+                <hostingController id="ANM-on-X4z" customClass="FindPanelButtonViewHostingController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController"/>
+                <customObject id="MCg-oQ-Dbs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="773" y="825"/>
+            <point key="canvasLocation" x="198" y="1051"/>
         </scene>
     </scenes>
     <resources>
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSStopProgressFreestandingTemplate" width="20" height="20"/>
-        <image name="chevron.backward" catalog="system" width="10" height="14"/>
-        <image name="chevron.forward" catalog="system" width="10" height="14"/>
         <image name="magnifyingglass" catalog="system" width="16" height="15"/>
         <image name="pencil" catalog="system" width="14" height="13"/>
     </resources>

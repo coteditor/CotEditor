@@ -43,8 +43,6 @@
 		2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */; };
 		2A0F3EC027A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
 		2A0F3EC127A26D1200FB27A3 /* TokenFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */; };
-		2A0FCEF4288BE73200E2AA04 /* FindPanelButtonView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A0FCEF7288BE73200E2AA04 /* FindPanelButtonView.storyboard */; };
-		2A0FCEF5288BE73200E2AA04 /* FindPanelButtonView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A0FCEF7288BE73200E2AA04 /* FindPanelButtonView.storyboard */; };
 		2A1083F02944837E00751DAE /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1083EF2944837E00751DAE /* InsetTextField.swift */; };
 		2A1083F12944837E00751DAE /* InsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1083EF2944837E00751DAE /* InsetTextField.swift */; };
 		2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10B6F421450A3B00B4205E /* NSAppearance.swift */; };
@@ -276,8 +274,8 @@
 		2A5D13381D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */; };
 		2A5D13391D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */; };
 		2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */; };
-		2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */; };
-		2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */; };
+		2A5D13451D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */; };
+		2A5D13461D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */; };
 		2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
 		2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */; };
 		2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
@@ -885,16 +883,6 @@
 		2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenTextView.swift; sourceTree = "<group>"; };
 		2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenFormatter.swift; sourceTree = "<group>"; };
-		2A0FCEF6288BE73200E2AA04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanelButtonView.storyboard; sourceTree = "<group>"; };
-		2A0FCEF9288BE73700E2AA04 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
-		2A0FCEFB288BE73B00E2AA04 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPanelButtonView.strings"; sourceTree = "<group>"; };
-		2A0FCEFD288BE73F00E2AA04 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
-		2A0FCEFF288BE74200E2AA04 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
-		2A0FCF01288BE74400E2AA04 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
-		2A0FCF07288BE76000E2AA04 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
-		2A0FCF09288BE76100E2AA04 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FindPanelButtonView.strings; sourceTree = "<group>"; };
-		2A0FCF0B288BE76C00E2AA04 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/FindPanelButtonView.strings"; sourceTree = "<group>"; };
-		2A0FCF0F288BE7A200E2AA04 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FindPanelButtonView.strings"; sourceTree = "<group>"; };
 		2A1083EF2944837E00751DAE /* InsetTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetTextField.swift; sourceTree = "<group>"; };
 		2A10B6F421450A3B00B4205E /* NSAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppearance.swift; sourceTree = "<group>"; };
 		2A10C5F61FD19237002AB5AE /* KeyBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBinding.swift; sourceTree = "<group>"; };
@@ -1080,7 +1068,7 @@
 		2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelTextClipView.swift; sourceTree = "<group>"; };
 		2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelResultViewController.swift; sourceTree = "<group>"; };
 		2A5D13411D1FE34F00D38E6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPanel.storyboard; sourceTree = "<group>"; };
-		2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonViewController.swift; sourceTree = "<group>"; };
+		2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonView.swift; sourceTree = "<group>"; };
 		2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelFieldViewController.swift; sourceTree = "<group>"; };
 		2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelController.swift; sourceTree = "<group>"; };
 		2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Name.swift"; sourceTree = "<group>"; };
@@ -1864,7 +1852,6 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
-				2A0FCEF7288BE73200E2AA04 /* FindPanelButtonView.storyboard */,
 				2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */,
 			);
 			name = "Text Finder";
@@ -2459,7 +2446,7 @@
 				2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */,
 				2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */,
 				2A5D13371D1FCBDE00D38E6A /* FindPanelResultViewController.swift */,
-				2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */,
+				2A5D13441D1FE66300D38E6A /* FindPanelButtonView.swift */,
 				2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */,
 			);
 			name = "View Controllers";
@@ -2757,7 +2744,6 @@
 				2ACDE2962406B9C000FC31EC /* EditorView.storyboard in Resources */,
 				2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */,
 				2ACDE2992406B9C000FC31EC /* FileDropPane.storyboard in Resources */,
-				2A0FCEF4288BE73200E2AA04 /* FindPanelButtonView.storyboard in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanel.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
@@ -2825,7 +2811,6 @@
 				2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */,
 				2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */,
 				2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */,
-				2A0FCEF5288BE73200E2AA04 /* FindPanelButtonView.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2AC20A711E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
@@ -3036,7 +3021,7 @@
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2A0A602B27ABD74500725B70 /* FilterField.swift in Sources */,
-				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
+				2A5D13461D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */,
 				2ACFE58C1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
@@ -3381,7 +3366,7 @@
 				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
 				2A0A602C27ABD74500725B70 /* FilterField.swift in Sources */,
-				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
+				2A5D13451D1FE66300D38E6A /* FindPanelButtonView.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */,
 				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
@@ -3634,23 +3619,6 @@
 				08C28FAF279CBE440016693E /* tr */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		2A0FCEF7288BE73200E2AA04 /* FindPanelButtonView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A0FCEF6288BE73200E2AA04 /* Base */,
-				2A0FCF0B288BE76C00E2AA04 /* en-GB */,
-				2A0FCEF9288BE73700E2AA04 /* ja */,
-				2A0FCEFB288BE73B00E2AA04 /* zh-Hans */,
-				2A0FCF0F288BE7A200E2AA04 /* zh-Hant */,
-				2A0FCF07288BE76000E2AA04 /* fr */,
-				2A0FCEFD288BE73F00E2AA04 /* de */,
-				2A0FCEFF288BE74200E2AA04 /* it */,
-				2A0FCF01288BE74400E2AA04 /* pt */,
-				2A0FCF09288BE76100E2AA04 /* tr */,
-			);
-			name = FindPanelButtonView.storyboard;
 			sourceTree = "<group>";
 		};
 		2A10D1031E7088B00027192A /* WindowPane.storyboard */ = {

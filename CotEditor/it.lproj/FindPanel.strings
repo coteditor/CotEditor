@@ -68,24 +68,6 @@
 
 // Buttons
 
-/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
-"XLZ-92-VVF.title" = "Cerca tutto";
-/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
-"OCv-Y5-8XR.ibShadowedToolTip" = "Mostra tutti i risultati di ricerca.";
-
-/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
-"5gU-5y-iLn.title" = "Sostituisci tutto";
-/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
-"RR6-rj-B8P.ibShadowedToolTip" = "Applica il testo sostitutivo a tutti i risultati di ricerca.";
-
-/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
-"W4Z-S2-wvv.title" = "Sostituisci";
-// Note: The tooltip for "Replace button is set the in FindPanelController.
-
-/* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[0]" = "Cerca l’occorrenza precedente.";  /* "Find previous match." */
-"u6p-Hz-aK5.ibShadowedToolTips[1]" = "Cerca l’occorrenza successivo.";  /* "Find next match." */
-
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
 "3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Ricerche recenti";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */

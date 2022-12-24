@@ -94,11 +94,26 @@
 
 
 /* MARK: FindPanelController */
-"Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
 "Not found" = "未找到";
 "%lld found" = "找到%lld項";  // %lld is number of founds
 "Not Replaced" = "沒有進行取代";
 "%lld replaced" = "%lld處被取代";  // %lld is number of replaced
+
+// pairs of button label and its tooltip
+"Find All" = "檢索全部";
+"Find and list up all matches." = "列出所有匹配。";
+
+"Replace All" = "全部取代";
+"Replace all matches with the replacement text." = "將所有匹配用取代文字取代。";
+
+"Replace" = "取代";
+"Replace the current selection with the replacement text, then find the next match." = "用取代文字取代當前選中內容，然後查找下一個匹配項目";
+
+"Find Previous" = "檢索上一個";
+"Find previous match." = "檢索前一個匹配。";
+
+"Find Next" = "檢索下一個";
+"Find next match." = "檢索後一個匹配。";
 
 
 

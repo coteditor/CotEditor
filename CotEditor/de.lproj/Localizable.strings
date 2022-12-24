@@ -94,11 +94,26 @@
 
 
 /* MARK: FindPanelController */
-"Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
 "Not found" = "Nicht gefunden";
 "%lld found" = "%lld gefunden";  // %lld is number of founds
 "Not Replaced" = "Nicht ersetzt";
 "%lld replaced" = "%lld ersetzt";  // %lld is number of replaced
+
+// pairs of button label and its tooltip
+"Find All" = "Alles suchen";
+"List all matches." = "Alle Übereinstimmungen listen.";
+
+"Replace All" = "Alles ersetzen";
+"Replace all matches with the replacement text." = "Alle Übereinstimmungen durch den Ersetzungstext ersetzen.";
+
+"Replace" = "Ersetzen";
+"Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
+
+"Find Previous" = "Weitersuchen (rückwärts)";
+"Find previous match." = "Vorherige Übereinstimmung suchen.";
+
+"Find Next" = "Weitersuchen (vorwärts)";
+"Find next match." = "Nächste Übereinstimmung suchen.";
 
 
 

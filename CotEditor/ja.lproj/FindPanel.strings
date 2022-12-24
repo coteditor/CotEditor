@@ -69,24 +69,6 @@
 
 // Buttons
 
-/* Class = "NSButtonCell"; title = "Find All"; ObjectID = "XLZ-92-VVF"; */
-"XLZ-92-VVF.title" = "すべて検索";
-/* Class = "NSButton"; ibShadowedToolTip = "List all matches."; ObjectID = "OCv-Y5-8XR"; */
-"OCv-Y5-8XR.ibShadowedToolTip" = "すべての一致を検索しリストアップ";
-
-/* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "5gU-5y-iLn"; */
-"5gU-5y-iLn.title" = "すべて置換";
-/* Class = "NSButton"; ibShadowedToolTip = "Replace all matches with the replacement text."; ObjectID = "RR6-rj-B8P"; */
-"RR6-rj-B8P.ibShadowedToolTip" = "すべての一致を置換テキストで置き換え";
-
-/* Class = "NSButtonCell"; title = "Replace"; ObjectID = "W4Z-S2-wvv"; */
-"W4Z-S2-wvv.title" = "置換";
-// Note: The tooltip for "Replace button is set the in FindPanelController.
-
-/* Class = "NSSegmentedCell"; ObjectID = "u6p-Hz-aK5"; */
-"u6p-Hz-aK5.ibShadowedToolTips[0]" = "前の一致を検索";  /* "Find previous match." */
-"u6p-Hz-aK5.ibShadowedToolTips[1]" = "次の一致を検索";  /* "Find next match." */
-
 /* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
 "3ZH-bg-rl5.ibExternalAccessibilityDescription" = "検索履歴";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */

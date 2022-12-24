@@ -94,11 +94,26 @@
 
 
 /* MARK: FindPanelController */
-"Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
 "Not found" = "Bulunamadı";
 "%lld found" = "%lld bulundu";  // %lld is number of founds
 "Not Replaced" = "Değiştirilmedi";
 "%lld replaced" = "%lld değiştirildi";  // %lld is number of replaced
+
+// pairs of button label and its tooltip
+"Find All" = "Tümünü Bul";
+"List all matches." = "Tüm eşleşmeleri listele.";
+
+"Replace All" = "Tümünü Değiştir";
+"Replace all matches with the replacement text." = "Tüm eşleşmeleri değişim metniyle değiştir.";
+
+"Replace" = "Değiştir";
+"Replace the current selection with the replacement text, then find the next match." = "Geçerli seçimi değiştirilecek metinle değiştir, sonrasında bir sonraki eşleşmeyi bul.";
+
+"Find Previous" = "Öncekini Bul";
+"Find previous match." = "Bir önceki eşleşmeyi bul.";
+
+"Find Next" = "Sonrakini Bul";
+"Find next match." = "Bir sonraki eşleşmeyi bul.";
 
 
 
