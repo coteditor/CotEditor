@@ -283,17 +283,17 @@ private struct ThemeMetadataView: View {
             .frame(width: self.columnWidth, alignment: .trailing)
         
         if self.isEditable {
-            Text(text.wrappedValue)
-                .foregroundColor(.label)
-                .textSelection(.enabled)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        } else {
             if let lineLimit, #available(macOS 13, *) {
                 TextField(title, text: text, prompt: Text("Not defined"), axis: .vertical)
                     .lineLimit(lineLimit)
             } else {
                 TextField(title, text: text, prompt: Text("Not defined"))
             }
+        } else {
+            Text(text.wrappedValue)
+                .foregroundColor(.label)
+                .textSelection(.enabled)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
 }
