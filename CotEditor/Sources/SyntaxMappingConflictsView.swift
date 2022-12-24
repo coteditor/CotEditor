@@ -88,11 +88,12 @@ struct SyntaxMappingConflictsView: View {
                     self.parent?.dismiss(nil)
                 }.keyboardShortcut(.defaultAction)
             }
-        }.padding()
-            .frame(width: 400, height: 500, alignment: .trailing)
-            .onExitCommand {
-                self.parent?.dismiss(nil)
-            }
+        }
+        .onExitCommand {
+            self.parent?.dismiss(nil)
+        }
+        .padding()
+        .frame(width: 400, height: 500, alignment: .trailing)
     }
     
     
@@ -101,8 +102,8 @@ struct SyntaxMappingConflictsView: View {
         Section {
             Table(conflicts) {
                 TableColumn(name, value: \.name)
-                TableColumn("Used style") { Text("\($0.primaryStyle)").fontWeight(.semibold) }
-                TableColumn("Duplicated styles") { Text("\($0.duplicatedStyles.joined(separator: " ,"))") }
+                TableColumn("Used style") { Text($0.primaryStyle).fontWeight(.semibold) }
+                TableColumn("Duplicated styles") { Text($0.duplicatedStyles.joined(separator: " ,")) }
             }.tableStyle(.bordered)
             
         } header: {
