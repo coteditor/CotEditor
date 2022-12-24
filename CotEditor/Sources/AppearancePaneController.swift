@@ -26,15 +26,15 @@
 
 import Combine
 import Cocoa
+import SwiftUI
 import AudioToolbox
 import UniformTypeIdentifiers
 
-final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate, NSMenuDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate, NSMenuDelegate {
     
     // MARK: Private Properties
     
     private var themeNames: [String] = []
-    private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     
     private var fontObserver: AnyCancellable?
@@ -54,6 +54,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private var themeTableMenu: NSMenu?
+    @IBOutlet private var themeViewContainer: NSBox?
     
     
     
@@ -110,14 +111,15 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             .sink { [weak self] _ in self?.updateThemeList() }
             .store(in: &self.themeManagerObservers)
         ThemeManager.shared.didUpdateSetting
-            .sink { [weak self] _ in
+            .compactMap(\.new)
+            .receive(on: RunLoop.main)
+            .sink { [weak self] (name) in
                 guard
-                    let self = self,
-                    let latestTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
-                    latestTheme.name == self.themeViewController?.theme?.name
+                    name == self?.selectedThemeName,
+                    let latestTheme = ThemeManager.shared.setting(name: name)
                 else { return }
                 
-                self.themeViewController?.theme = latestTheme
+                self?.setTheme(latestTheme, name: name)
             }
             .store(in: &self.themeManagerObservers)
         self.themeTableView?.scrollToBeginningOfDocument(nil)
@@ -131,18 +133,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // stop observations for UI update
         self.fontObserver = nil
         self.themeManagerObservers.removeAll()
-    }
-    
-    
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        
-        super.prepare(for: segue, sender: sender)
-        
-        // set delegate to ThemeViewController
-        if let destinationController = segue.destinationController as? ThemeViewController {
-            self.themeViewController = destinationController
-            destinationController.delegate = self
-        }
     }
     
     
@@ -323,19 +313,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     // MARK: Delegate
-    
-    // ThemeViewControllerDelegate
-    
-    /// theme did update
-    func didUpdate(theme: Theme) {
-        
-        do {
-            try ThemeManager.shared.save(setting: theme, name: self.selectedThemeName)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
     
     // NSTableViewDelegate  < themeTableView
     
@@ -521,7 +498,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// export selected theme
-    @IBAction @MainActor func exportTheme(_ sender: Any?) {
+    @IBAction func exportTheme(_ sender: Any?) {
         
         let settingName = self.targetThemeName(for: sender)
         
@@ -546,7 +523,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// import theme file via open panel
-    @IBAction @MainActor func importTheme(_ sender: Any?) {
+    @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
         openPanel.prompt = "Import".localized
@@ -620,8 +597,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// set given theme
     private func setTheme(name: String) {
         
-        let theme = ThemeManager.shared.setting(name: name)
-        let isBundled = ThemeManager.shared.isBundledSetting(name: name)
+        guard
+            let theme = ThemeManager.shared.setting(name: name)
+        else { return assertionFailure() }
         
         // update default theme setting
         let isDarkTheme = ThemeManager.shared.isDark(name: name)
@@ -629,10 +607,28 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != usesDarkAppearance)
         UserDefaults.standard[.theme] = name
         
-        self.themeViewController?.theme = theme
-        self.themeViewController?.isBundled = isBundled
-        self.themeViewController?.view.setAccessibilityLabel(name)
+        self.setTheme(theme, name: name)
+    }
+    
+    
+    /// Set the given theme to theme view.
+    ///
+    /// - Parameters:
+    ///   - theme: The theme to set to the view.
+    ///   - name: The name of the theme.
+    private func setTheme(_ theme: Theme, name: String) {
         
+        let isBundled = ThemeManager.shared.isBundledSetting(name: name)
+        
+        let view = ThemeView(theme, isBundled: isBundled) { theme in
+            do {
+                try ThemeManager.shared.save(setting: theme, name: name)
+            } catch {
+                assertionFailure(error.localizedDescription)
+            }
+        }
+        
+        self.themeViewContainer?.contentView = NSHostingView(rootView: view)
         self.isBundled = isBundled
     }
     

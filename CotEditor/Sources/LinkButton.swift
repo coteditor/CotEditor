@@ -1,14 +1,14 @@
 //
-//  SelectionColorWell.swift
+//  LinkButton.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2018-08-16.
+//  Created by 1024jp on 2022-12-24.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,28 +23,27 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import SwiftUI
 
-final class SelectionColorWell: NSColorWell {
+struct LinkButton: View {
     
-    // MARK: Color Well Methods
+    let url: String
     
-    override func viewWillDraw() {
+    @Environment(\.openURL) private var openURL
+    
+    
+    var body: some View {
         
-        super.viewWillDraw()
-        
-        self.invalidateColor()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// apply system selection color if disabled
-    private func invalidateColor() {
-        
-        guard !self.isEnabled else { return }
-        
-        self.color = .selectedTextBackgroundColor
+        Button {
+            guard let url = URL(string: self.url) else { return NSSound.beep() }
+            self.openURL(url)
+        } label: {
+            Image(systemName: "arrow.forward")
+                .symbolVariant(.circle)
+                .accessibilityLabel("Jump to URL")
+        }
+        .buttonStyle(.borderless)
+        .disabled(self.url.isEmpty)
+        .help("Jump to URL")
     }
 }

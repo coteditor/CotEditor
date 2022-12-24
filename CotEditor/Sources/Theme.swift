@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2022 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,57 +34,29 @@ protocol Themable: AnyObject {
 
 
 
-final class Theme: NSObject {
+struct Theme {
     
-    final class Style: NSObject {
+    struct Style {
         
-        @objc dynamic var color: NSColor
+        var color: NSColor
         
         fileprivate static let invalidColor = NSColor.gray.usingColorSpace(.genericRGB)!
-        
-        
-        init(color: NSColor) {
-            
-            self.color = color
-        }
     }
     
     
-    final class SelectionStyle: NSObject {
+    struct SelectionStyle {
         
-        @objc dynamic var color: NSColor
-        @objc dynamic var usesSystemSetting: Bool
-        
-        
-        init(color: NSColor, usesSystemSetting: Bool = false) {
-            
-            self.color = color
-            self.usesSystemSetting = usesSystemSetting
-        }
+        var color: NSColor
+        var usesSystemSetting: Bool
     }
     
     
-    final class Metadata: NSObject, Codable {
+    struct Metadata: Codable {
         
-        @objc dynamic var author: String?
-        @objc dynamic var distributionURL: String?
-        @objc dynamic var license: String?
-        @objc dynamic var comment: String?
-        
-        
-        var isEmpty: Bool {
-            
-            self.author == nil && self.distributionURL == nil && self.license == nil && self.comment == nil
-        }
-        
-        
-        enum CodingKeys: String, CodingKey {
-            
-            case author
-            case distributionURL
-            case license
-            case comment = "description"  // `description` conflicts with NSObject's method.
-        }
+        var author: String?
+        var distributionURL: String?
+        var license: String?
+        var description: String?
     }
     
     
@@ -95,23 +67,23 @@ final class Theme: NSObject {
     var name: String?
     
     // basic colors
-    @objc dynamic var text: Style
-    @objc dynamic var background: Style
-    @objc dynamic var invisibles: Style
-    @objc dynamic var selection: SelectionStyle
-    @objc dynamic var insertionPoint: Style
-    @objc dynamic var lineHighlight: Style
+    var text: Style
+    var background: Style
+    var invisibles: Style
+    var selection: SelectionStyle
+    var insertionPoint: Style
+    var lineHighlight: Style
     
-    @objc dynamic var keywords: Style
-    @objc dynamic var commands: Style
-    @objc dynamic var types: Style
-    @objc dynamic var attributes: Style
-    @objc dynamic var variables: Style
-    @objc dynamic var values: Style
-    @objc dynamic var numbers: Style
-    @objc dynamic var strings: Style
-    @objc dynamic var characters: Style
-    @objc dynamic var comments: Style
+    var keywords: Style
+    var commands: Style
+    var types: Style
+    var attributes: Style
+    var variables: Style
+    var values: Style
+    var numbers: Style
+    var strings: Style
+    var characters: Style
+    var comments: Style
     
     var metadata: Metadata?
     
@@ -144,15 +116,13 @@ final class Theme: NSObject {
     }
     
     
-    static func theme(contentsOf fileURL: URL) throws -> Theme {
+    init(contentsOf fileURL: URL) throws {
         
         let data = try Data(contentsOf: fileURL)
         let decoder = JSONDecoder()
         
-        let theme = try decoder.decode(Theme.self, from: data)
-        theme.name = fileURL.deletingPathExtension().lastPathComponent
-        
-        return theme
+        self = try decoder.decode(Theme.self, from: data)
+        self.name = fileURL.deletingPathExtension().lastPathComponent
     }
     
     
@@ -171,7 +141,7 @@ final class Theme: NSObject {
     }
     
     
-    /// selection color for inactive text view
+    /// Selection color for inactive text view.
     var secondarySelectionColor: NSColor? {
         
         guard
@@ -187,31 +157,7 @@ final class Theme: NSObject {
 
 // MARK: - Codable
 
-extension Theme: Codable {
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case text
-        case background
-        case invisibles
-        case selection
-        case insertionPoint
-        case lineHighlight
-        
-        case keywords
-        case commands
-        case types
-        case attributes
-        case variables
-        case values
-        case numbers
-        case strings
-        case characters
-        case comments
-        
-        case metadata
-    }
-}
+extension Theme: Codable { }
 
 
 
@@ -223,7 +169,7 @@ extension Theme.Style: Codable {
     }
     
     
-    convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -255,7 +201,7 @@ extension Theme.SelectionStyle: Codable {
     }
     
     
-    convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

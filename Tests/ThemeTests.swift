@@ -77,7 +77,7 @@ final class ThemeTests: XCTestCase {
         XCTAssertFalse(urls.isEmpty)
         
         for url in urls {
-            XCTAssertNoThrow(try Theme.theme(contentsOf: url))
+            XCTAssertNoThrow(try Theme(contentsOf: url))
         }
     }
 }
@@ -90,6 +90,6 @@ private extension ThemeTests {
         
         let url = self.bundle.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
         
-        return try Theme.theme(contentsOf: url!)
+        return try Theme(contentsOf: url!)
     }
 }

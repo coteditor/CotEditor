@@ -578,6 +578,41 @@
 "Restore" = "還原";
 
 
+/* Theme View */
+"Characters:" = "文字：";
+"Cursor:" = "游標：";
+"Invisibles:" = "不可見元素：";
+"Background:" = "背景：";
+"Current Line:" = "當前行：";
+"Selection:" = "選中：";
+"Use system color" = "使用系統顏色";
+
+"Syntax" = "文法";
+"Keywords:" = "關鍵字：";
+"Commands:" = "命令：";
+"Types:" = "型別：";
+"Attributes:" = "標記：";
+"Variables:" = "變數：";
+"Values:" = "值：";
+"Numbers:" = "數字：";
+"Strings:" = "字串：";
+"Text:" = "字元：";
+"Characters:" = "文字：";
+"Comments:" = "註釋：";
+
+"Show theme file information" = "顯示主題檔案資訊";
+
+// Theme metadata
+"Author:" = "作者：";
+"URL:" = "URL：";
+"License:" = "許可證：";
+"Description:" = "描述：";
+// placeholder
+"Not defined" = "未定義";
+// tooltip
+"Jump to URL" = "跳轉到URL";
+
+
 // Format pane
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷貝「%@」…";

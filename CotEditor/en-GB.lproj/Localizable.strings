@@ -577,6 +577,40 @@
 "Delete" = "Delete";
 "Restore" = "Restore";
 
+/* Theme View */
+"Text:" = "Text:";
+"Cursor:" = "Cursor:";
+"Invisibles:" = "Invisibles:";
+"Background:" = "Background:";
+"Current Line:" = "Current Line:";
+"Selection:" = "Selection:";
+"Use system color" = "Use system colour";
+
+"Syntax" = "Syntax";
+"Keywords:" = "Keywords:";
+"Commands:" = "Commands:";
+"Types:" = "Types:";
+"Attributes:" = "Attributes:";
+"Variables:" = "Variables:";
+"Values:" = "Values:";
+"Numbers:" = "Numbers:";
+"Strings:" = "Strings:";
+"Comments:" = "Comments:";
+"Characters:" = "Characters:";
+
+"Show theme file information" = "Show theme file information";
+
+// Theme metadata
+"Author:" = "Author:";
+"URL:" = "URL:";
+"License:" = "Licence:";
+"Description:" = "Description:";
+// placeholder
+"Not defined" = "Not defined";
+// tooltip
+"Jump to URL" = "Jump to URL";
+
+
 
 // Format pane
 // Installed syntax styles action menu items

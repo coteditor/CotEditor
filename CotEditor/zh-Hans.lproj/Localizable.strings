@@ -578,6 +578,41 @@
 "Restore" = "还原";
 
 
+/* Theme View */
+"Characters:" = "文本：";
+"Cursor:" = "光标：";
+"Invisibles:" = "不可见元素：";
+"Background:" = "背景：";
+"Current Line:" = "当前行：";
+"Selection:" = "选中：";
+"Use system color" = "使用系统颜色";
+
+"Syntax" = "语法";
+"Keywords:" = "关键字：";
+"Commands:" = "命令：";
+"Types:" = "类型：";
+"Attributes:" = "标记：";
+"Variables:" = "变量：";
+"Values:" = "值：";
+"Numbers:" = "数字：";
+"Strings:" = "字符串：";
+"Text:" = "字符：";
+"Characters:" = "文本：";
+"Comments:" = "注释：";
+
+"Show theme file information" = "显示主题文件信息";
+
+// Theme metadata
+"Author:" = "作者：";
+"URL:" = "URL：";
+"License:" = "许可证：";
+"Description:" = "描述：";
+// placeholder
+"Not defined" = "未定义";
+// tooltip
+"Jump to URL" = "跳转到URL";
+
+
 // Format pane
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";

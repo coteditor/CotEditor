@@ -577,6 +577,39 @@
 "Delete" = "Apagar";
 "Restore" = "Restaurar";
 
+/* Theme View */
+"Text:" = "Texto:";
+"Cursor:" = "Cursor:";
+"Invisibles:" = "Invisíveis:";
+"Background:" = "Fundo:";
+"Current Line:" = "Linha Atual:";
+"Selection:" = "Seleção:";
+"Use system color" = "Usar cor do sistema";
+
+"Syntax" = "Sintaxe";
+"Keywords:" = "Palavras-chave:";
+"Commands:" = "Comandos:";
+"Types:" = "Tipos:";
+"Attributes:" = "Atributos:";
+"Variables:" = "Variáveis:";
+"Values:" = "Valores:";
+"Numbers:" = "Números:";
+"Strings:" = "Strings:";
+"Characters:" = "Caracteres:";
+"Comments:" = "Comentários:";
+
+"Show theme file information" = "Mostre o arquivo de informações do tema";
+
+// Theme metadata
+"Author:" = "Autor:";
+"URL:" = "URL:";
+"License:" = "Licença:";
+"Description:" = "Descrição:";
+// placeholder
+"Not defined" = "Não definido";
+// tooltip
+"Jump to URL" = "Visite o URL";
+
 
 // Format pane
 // Installed syntax styles action menu items

@@ -577,6 +577,39 @@
 "Delete" = "Sil";
 "Restore" = "Geri Yükle";
 
+/* Theme View */
+"Text:" = "Metin:";
+"Cursor:" = "İmleç:";
+"Invisibles:" = "Görünmez Karakterler:";
+"Background:" = "Arka Plan:";
+"Current Line:" = "Geçerli Satır:";
+"Selection:" = "Seçim:";
+"Use system color" = "Sistem rengini kullan";
+
+"Syntax" = "Sözdizim";
+"Keywords:" = "Anahtar Sözcükler:";
+"Commands:" = "Komutlar:";
+"Types:" = "Türler:";
+"Attributes:" = "Öznitelikler:";
+"Variables:" = "Değişkenler:";
+"Values:" = "Değerler:";
+"Numbers:" = "Sayılar:";
+"Strings:" = "Diziler:";
+"Comments:" = "Yorumlar:";
+"Characters:" = "Karakterler:";
+
+"Show theme file information" = "Tema dosyası bilgisini göster";
+
+// Theme metadata
+"Author:" = "Yazar:";
+"URL:" = "URL:";
+"License:" = "Lisans:";
+"Description:" = "Açıklama:";
+// placeholder
+"Not defined" = "Tanımlanmamış";
+// tooltip
+"Jump to URL" = "URL’ye Atla";
+
 
 // Format pane
 // Installed syntax styles action menu items

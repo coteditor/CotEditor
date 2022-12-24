@@ -578,6 +578,40 @@
 "Restore" = "元に戻す";
 
 
+/* Theme View */
+"Text:" = "文字:";
+"Cursor:" = "カーソル:";
+"Invisibles:" = "不可視文字:";
+"Background:" = "背景:";
+"Current Line:" = "現在の行:";
+"Selection:" = "選択範囲:";
+"Use system color" = "システムカラーを使う";
+
+"Syntax" = "シンタックス";
+"Keywords:" = "キーワード:";
+"Commands:" = "コマンド:";
+"Types:" = "タイプ:";
+"Attributes:" = "属性:";
+"Variables:" = "変数:";
+"Values:" = "値:";
+"Numbers:" = "数値:";
+"Strings:" = "文字列:";
+"Characters:" = "文字:";
+"Comments:" = "コメント:";
+
+"Show theme file information" = "テーマファイル情報を表示";
+
+// Theme metadata
+"Author:" = "作者:";
+"URL:" = "URL:";
+"License:" = "ライセンス:";
+"Description:" = "説明:";
+// placeholder
+"Not defined" = "未設定";
+// tooltip
+"Jump to URL" = "URLにジャンプ";
+
+
 // Format pane
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製…";
