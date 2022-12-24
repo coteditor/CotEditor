@@ -79,8 +79,8 @@ struct FindProgressView: View {
                     Image(systemName: "xmark")
                         .symbolVariant(.circle)
                         .symbolVariant(.fill)
+                        .accessibilityLabel("Cancel")
                 }.buttonStyle(.borderless)
-                    .accessibilityLabel("Cancel")
             }
             
             Text(self.description)

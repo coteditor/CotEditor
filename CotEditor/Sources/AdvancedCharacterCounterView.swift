@@ -66,6 +66,7 @@ struct AdvancedCharacterCounterView: View {
             } label: {
                 Image(systemName: "gearshape")
                     .symbolVariant(.fill)
+                    .accessibilityLabel("Show options")
             }
             .buttonStyle(.plain)
             .foregroundColor(.secondaryLabel)
