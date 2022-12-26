@@ -128,7 +128,7 @@ final class TextFind {
             throw TextFind.Error.emptyFindString
         }
         
-        guard !inSelection || selectedRanges.contains(where: { !$0.isEmpty }) else {
+        guard !inSelection || !selectedRanges.allSatisfy(\.isEmpty) else {
             throw TextFind.Error.emptyInSelectionSearch
         }
         
@@ -136,7 +136,7 @@ final class TextFind {
             case .textual(let options, _):
                 assert(!options.contains(.backwards))
                 self.regex = nil
-            
+                
             case .regularExpression(let options, _):
                 do {
                     self.regex = try NSRegularExpression(pattern: findString, options: options)
@@ -171,6 +171,27 @@ final class TextFind {
     }
     
     
+    /// All matched ranges.
+    ///
+    /// - Throws: `CancellationError`
+    var matches: [NSRange] {
+        
+        get throws {
+            var ranges: [NSRange] = []
+            for range in self.scopeRanges {
+                self.enumerateMatchs(in: range) { (matchedRange, _, stop) in
+                    if Task.isCancelled {
+                        stop = true
+                        return
+                    }
+                    ranges.append(matchedRange)
+                }
+            }
+            return ranges
+        }
+    }
+    
+    
     /// Return the nearest match from the insertion point.
     ///
     /// - Parameters:
@@ -183,18 +204,7 @@ final class TextFind {
         
         assert(forward || !includingSelection)
         
-        var ranges: [NSRange] = []
-        for range in self.scopeRanges {
-            self.enumerateMatchs(in: range) { (matchedRange, _, stop) in
-                if Task.isCancelled {
-                    stop = true
-                    return
-                }
-                ranges.append(matchedRange)
-            }
-        }
-        
-        try Task.checkCancellation()
+        let ranges = try self.matches
         
         if self.inSelection {
             let foundRange = forward ? ranges.first : ranges.last
@@ -256,7 +266,7 @@ final class TextFind {
     /// Find all matches in the scopes.
     ///
     /// - Parameters:
-    ///   - block: The Block enumerates the matches.
+    ///   - block: The block enumerates the matches.
     ///   - matches: The array of matches including group matches.
     ///   - stop: The `block` can set the value to true to stop further processing.
     func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {

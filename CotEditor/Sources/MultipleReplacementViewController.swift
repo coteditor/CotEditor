@@ -25,18 +25,13 @@
 
 import Cocoa
 import SwiftUI
-
-protocol MultipleReplacementViewControllerDelegate: AnyObject {
-    
-    func didUpdate(setting: MultipleReplacement)
-}
-
+import Combine
 
 final class MultipleReplacementViewController: NSViewController {
     
     // MARK: Public Properties
     
-    weak var delegate: MultipleReplacementViewControllerDelegate?
+    let didSettingUpdate: PassthroughSubject<MultipleReplacement, Never> = .init()
     
     
     // MARK: Private Properties
@@ -169,14 +164,7 @@ final class MultipleReplacementViewController: NSViewController {
         let inSelection = UserDefaults.standard[.findInSelection]
         
         Task {
-            guard let message = try? await textView.highlight(self.definition, inSelection: inSelection) else { return }
-            
-            self.resultMessage = message
-            
-            // feedback for VoiceOver
-            NSAccessibility.post(element: textView, notification: .announcementRequested,
-                                 userInfo: [.announcement: message,
-                                            .priority: NSAccessibilityPriorityLevel.high.rawValue])
+            self.resultMessage = try? await textView.highlight(self.definition, inSelection: inSelection)
         }
     }
     
@@ -188,22 +176,16 @@ final class MultipleReplacementViewController: NSViewController {
         self.validateObject()
         self.resultMessage = nil
         
-        guard let textView = TextFinder.shared.client,
-              textView.isEditable,
-              textView.window?.attachedSheet == nil
+        guard
+            let textView = TextFinder.shared.client,
+            textView.isEditable,
+            textView.window?.attachedSheet == nil
         else { return NSSound.beep() }
         
         let inSelection = UserDefaults.standard[.findInSelection]
         
         Task {
-            guard let message = try? await textView.replaceAll(self.definition, inSelection: inSelection) else { return }
-            
-            self.resultMessage = message
-            
-            // feedback for VoiceOver
-            NSAccessibility.post(element: textView, notification: .announcementRequested,
-                                 userInfo: [.announcement: message,
-                                            .priority: NSAccessibilityPriorityLevel.high.rawValue])
+            self.resultMessage = try? await textView.replaceAll(self.definition, inSelection: inSelection)
         }
     }
     
@@ -241,7 +223,7 @@ final class MultipleReplacementViewController: NSViewController {
     /// Notify update to delegate.
     private func notifyUpdate() {
         
-        self.delegate?.didUpdate(setting: self.definition)
+        self.didSettingUpdate.send(self.definition)
     }
     
     

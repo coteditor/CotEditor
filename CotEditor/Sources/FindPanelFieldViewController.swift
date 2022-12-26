@@ -35,8 +35,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
-    
-    private var resultClosingTrigerObserver: AnyCancellable?
+    private var resultObserver: AnyCancellable?
     
     private lazy var incrementalDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.textFinder.incrementalSearch() }
     
@@ -57,6 +56,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.resultObserver = self.textFinder.$result
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in self?.updateResult($0) }
         
         // adjust clear button position according to the visiblity of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
@@ -104,15 +107,15 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Text View Delegate
     
-    /// find string did change
+    /// find/replacement string did change
     func textDidChange(_ notification: Notification) {
         
         guard let textView = notification.object as? RegexFindPanelTextView else { return assertionFailure() }
         
         switch textView {
             case self.findTextView!:
-                self.clearNumberOfReplaced()
-                self.clearNumberOfFound()
+                self.updateFoundMessage(nil)
+                self.updateReplacedMessage(nil)
                 
                 // perform incremental search
                 guard
@@ -126,7 +129,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                 self.incrementalDebouncer.schedule()
                 
             case self.replacementTextView!:
-                self.clearNumberOfReplaced()
+                self.updateReplacedMessage(nil)
+                
             default:
                 break
         }
@@ -211,71 +215,43 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     
-    // MARK: Public Methods
-    
-    /// receive number of found
-    func updateResultCount(_ numberOfFound: Int, target: NSTextView) {
-        
-        self.clearNumberOfFound()
-        
-        let message: String = {
-            switch numberOfFound {
-                case ...0:
-                    return "Not found".localized
-                default:
-                    return String(localized: "\(numberOfFound) found")
-            }
-        }()
-        self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
-        
-        self.resultClosingTrigerObserver = Publishers.Merge(
-            NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: target.textStorage),
-            NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: target.window))
-            .sink { [weak self] _ in self?.clearNumberOfFound() }
-    }
-    
-    
-    /// receive number of replaced
-    func updateReplacedCount(_ numberOfReplaced: Int, target: NSTextView) {
-        
-        self.clearNumberOfReplaced()
-        
-        let message: String = {
-            switch numberOfReplaced {
-                case ...0:
-                    return "Not replaced".localized
-                default:
-                    return String(localized: "\(numberOfReplaced) replaced")
-            }
-        }()
-        self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
-        
-        // feedback for VoiceOver
-        NSAccessibility.post(element: target, notification: .announcementRequested,
-                             userInfo: [.announcement: message,
-                                        .priority: NSAccessibilityPriorityLevel.high.rawValue])
-    }
-    
-    
-    
     // MARK: Private Methods
     
-    /// update find history menu
-    private func updateFindHistoryMenu() {
+    /// Update result count in the input fields.
+    ///
+    /// - Parameter result: The find/replace result.
+    @MainActor private func updateResult(_ result: TextFindResult?) {
+        
+        switch result {
+            case .found:
+                self.updateFoundMessage(result?.message)
+                self.updateReplacedMessage(nil)
+            case .replaced:
+                self.updateFoundMessage(nil)
+                self.updateReplacedMessage(result?.message)
+            case nil:
+                self.updateFoundMessage(nil)
+                self.updateReplacedMessage(nil)
+        }
+    }
+    
+    
+    /// Update find history menu.
+    @MainActor private func updateFindHistoryMenu() {
         
         self.buildHistoryMenu(self.findHistoryMenu!, defaultsKey: .findHistory, action: #selector(selectFindHistory))
     }
     
     
-    /// update replace history menu
-    private func updateReplaceHistoryMenu() {
+    /// Update replace history menu.
+    @MainActor private func updateReplaceHistoryMenu() {
         
         self.buildHistoryMenu(self.replaceHistoryMenu!, defaultsKey: .replaceHistory, action: #selector(selectReplaceHistory))
     }
     
     
     /// apply history to UI
-    private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
+    @MainActor private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
         
         assert(Thread.isMainThread)
         
@@ -295,30 +271,37 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// number of found in find string field becomes no more valid
-    private func clearNumberOfFound() {
+    /// Update the find result message on the input field.
+    ///
+    /// - Parameter message: The message to display in the input field, or `nil` to clear.
+    @MainActor private func updateFoundMessage(_ message: String?) {
         
-        self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
-        
-        self.resultClosingTrigerObserver = nil
+        self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
     }
     
     
-    /// number of replaced in replacement string field becomes no more valid
-    private func clearNumberOfReplaced(_ notification: Notification? = nil) {
+    /// Update the replacement result message on the input field.
+    ///
+    /// - Parameter message: The message to display in the input field, or `nil` to clear.
+    @MainActor private func updateReplacedMessage(_ message: String?) {
         
-        self.applyResult(message: nil, textField: self.replacementResultField!, textView: self.replacementTextView!)
+        self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
     }
     
     
-    /// apply message to UI
-    private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
+    /// Apply result message on the input field.
+    ///
+    /// - Parameters:
+    ///   - message: The localized message to display.
+    ///   - textField: The text field displaying the message.
+    ///   - textView: The input text view where shows the message.
+    @MainActor private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
         
         textField.isHidden = (message == nil)
         textField.stringValue = message ?? ""
         textField.sizeToFit()
         
-        // add extra scroll margin to the right side of the textView, so that entire input can be read
+        // add extra scroll margin to the right side of the textView, so that the entire input can be read
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
     }
 }

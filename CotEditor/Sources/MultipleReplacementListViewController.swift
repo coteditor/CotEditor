@@ -34,6 +34,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     private var settingNames: [String] = []
     
+    private var settingUpdateObserver: AnyCancellable?
     private var listUpdateObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
@@ -48,7 +49,9 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         super.viewDidLoad()
         
-        self.detailViewController?.delegate = self
+        // observe editing replacement definition in the main view
+        self.settingUpdateObserver = self.detailViewController?.didSettingUpdate
+            .sink { [weak self] in self?.saveSetting(setting: $0) }
         
         // register drag & drop types
         let receiverTypes = NSFilePromiseReceiver.readableDraggedTypes.map { NSPasteboard.PasteboardType($0) }
@@ -387,19 +390,6 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         } catch {
             print(error.localizedDescription)
         }
-    }
-}
-
-
-
-// MARK: - MultipleReplacementViewController Delegate
-
-extension MultipleReplacementListViewController: MultipleReplacementViewControllerDelegate {
-    
-    /// replacement definition being edited in the main view did update
-    func didUpdate(setting: MultipleReplacement) {
-        
-        self.saveSetting(setting: setting)
     }
 }
 

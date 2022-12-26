@@ -26,14 +26,6 @@
 import Cocoa
 import Combine
 
-/// the maximum number of characters to add to the left of the matched string
-private let maxLeftMargin = 16
-
-/// maximal number of characters for the result line
-private let maxMatchedStringLength = 256
-
-
-
 final class FindPanelResultViewController: NSViewController, NSTableViewDataSource {
     
     // MARK: Public Properties
@@ -43,7 +35,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: Private Properties
     
-    private var results: [TextFindResult] = []
+    private var matches: [TextFindAllResult.Match] = []
     @objc private dynamic var findString: String?
     @objc private dynamic var resultMessage: String?
     @objc private dynamic var fontSize: CGFloat = NSFont.smallSystemFontSize
@@ -89,6 +81,9 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         super.viewWillDisappear()
         
+        // remove also find result highlights in the text view
+        self.target?.unhighlight()
+        
         self.fontSizeObserver = nil
     }
     
@@ -99,42 +94,28 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     /// return number of row (required)
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        self.results.count
+        self.matches.count
     }
     
     
     /// return value of cell (required)
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        guard row < self.results.count else { return nil }
-        
-        let result = self.results[row]
+        guard let match = self.matches[safe: row] else { return nil }
         
         switch tableColumn?.identifier {
             case NSUserInterfaceItemIdentifier("line"):
-                return result.lineNumber
+                return match.lineNumber
             
             default:
-                let lineAttrString = result.attributedLineString.mutable
-                
-                // truncate
-                let headTruncationIndex = (lineAttrString.string as NSString)
-                    .boundaryOfComposedCharacterSequence(result.inlineRange.location, offsetBy: -maxLeftMargin)
-                if headTruncationIndex > 0 {
-                    lineAttrString.replaceCharacters(in: NSRange(..<headTruncationIndex), with: "…")
-                }
-                let tailTruncationIndex = (lineAttrString.string as NSString)
-                    .boundaryOfComposedCharacterSequence(0, offsetBy: maxMatchedStringLength)
-                if tailTruncationIndex > lineAttrString.string.length {
-                    lineAttrString.replaceCharacters(in: NSRange(tailTruncationIndex..<lineAttrString.length), with: "…")
-                }
+                let attrString = match.truncatedAttributedString.mutable
                 
                 // truncate tail
                 let paragraphStyle = NSParagraphStyle.default.mutable
                 paragraphStyle.lineBreakMode = .byTruncatingTail
-                lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.range)
+                attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: attrString.range)
                 
-                return lineAttrString
+                return attrString
         }
     }
     
@@ -142,30 +123,13 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: Public Methods
     
-    /// set new find results
-    func setResults(_ results: [TextFindResult], findString: String, target: NSTextView) {
+    /// set new find matches
+    func setResult(_ result: TextFindAllResult) {
         
-        self.target = target
-        self.findString = findString
-        self.results = results
-        
-        let resultMessage: String = {
-            let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
-            switch results.count {
-                case 0:
-                    return String(localized: "No strings found in “\(documentName).”")
-                case 1:
-                    return String(localized: "Found one string in “\(documentName).”")
-                default:
-                    return String(localized: "Found \(results.count) strings in “\(documentName).”")
-            }
-        }()
-        self.resultMessage = resultMessage
-        
-        // feedback for VoiceOver
-        NSAccessibility.post(element: target, notification: .announcementRequested,
-                             userInfo: [.announcement: resultMessage,
-                                        .priority: NSAccessibilityPriorityLevel.high.rawValue])
+        self.target = result.textView
+        self.findString = result.findString
+        self.matches = result.matches
+        self.resultMessage = result.message
         
         self.tableView?.reloadData()
     }
@@ -179,9 +143,9 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         let row = tableView.clickedRow
         
-        guard -1 < row, row < self.results.count else { return }
+        guard -1 < row, row < self.matches.count else { return }
         
-        let range = self.results[row].range
+        let range = self.matches[row].range
         
         // abandon if text became shorter than range to select
         guard
@@ -218,5 +182,46 @@ extension FindPanelResultViewController {
     @IBAction func resetFont(_ sender: Any?) {
         
         UserDefaults.standard.restore(key: .findResultViewFontSize)
+    }
+}
+
+
+
+// MARK: TextFindAllResult extensions
+
+private extension TextFindAllResult {
+    
+    var message: String {
+        
+        let documentName = (self.textView?.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
+        switch self.matches.count {
+            case 0:
+                return String(localized: "No strings found in “\(documentName).”")
+            case 1:
+                return String(localized: "Found one string in “\(documentName).”")
+            default:
+                return String(localized: "Found \(self.matches.count) strings in “\(documentName).”")
+        }
+    }
+}
+
+
+private extension TextFindAllResult.Match {
+    
+    /// The maximum number of characters to add to the left of the matched string.
+    private static let maxHeadOffset = 16
+    
+    
+    /// Return an attributed string around the matched area in the line.
+    var truncatedAttributedString: NSAttributedString {
+        
+        guard self.inlineRange.location > Self.maxHeadOffset else { return self.attributedLineString }
+        
+        let attrString = self.attributedLineString.mutable
+        let truncationIndex = (attrString.string as NSString)
+            .boundaryOfComposedCharacterSequence(self.inlineRange.location, offsetBy: -Self.maxHeadOffset)
+        attrString.replaceCharacters(in: NSRange(..<truncationIndex), with: "…")
+        
+        return attrString
     }
 }

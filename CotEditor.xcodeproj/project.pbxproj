@@ -545,8 +545,8 @@
 		2AB2245421A809A000F6201F /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
 		2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
 		2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
-		2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
-		2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
+		2AB541DA20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
+		2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView.swift */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -1295,7 +1295,7 @@
 		2AB2245921A809B700F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AB2245A21A809B800F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unicode.GeneralCategory.swift; sourceTree = "<group>"; };
-		2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ViewController.swift"; sourceTree = "<group>"; };
+		2AB541D920A5B6A400367DD5 /* NSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSView.swift; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorInfoCountOperationTests.swift; sourceTree = "<group>"; };
@@ -1906,7 +1906,7 @@
 				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
 				2A51329A28DDE337009FF910 /* NSDocumentController.swift */,
 				2A05081223D6B9E900602F5E /* NSViewController.swift */,
-				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
+				2AB541D920A5B6A400367DD5 /* NSView.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
 				2A1ABCA727F07CED0054795D /* NSScroller.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
@@ -3123,7 +3123,7 @@
 				2AC7044824EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
-				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
+				2AB541DB20A5B6A400367DD5 /* NSView.swift in Sources */,
 				2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
@@ -3468,7 +3468,7 @@
 				2AC7044924EBB76B00454706 /* NSToolbarItem+Validatable.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */,
-				2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
+				2AB541DA20A5B6A400367DD5 /* NSView.swift in Sources */,
 				2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,

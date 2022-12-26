@@ -26,17 +26,15 @@
 import Cocoa
 import Combine
 
-private let defaultResultViewHeight: CGFloat = 200.0
+private let defaultResultViewHeight: CGFloat = 200
 
-final class FindPanelContentViewController: NSSplitViewController, TextFinderDelegate {
+final class FindPanelContentViewController: NSSplitViewController {
     
     // MARK: Private Properties
     
     private var isUncollapsing = false
+    private var resultObserver: AnyCancellable?
     
-    private var resultViewObserver: AnyCancellable?
-    
-    @IBOutlet private weak var fieldSplitViewItem: NSSplitViewItem?
     @IBOutlet private weak var resultSplitViewItem: NSSplitViewItem?
     
     
@@ -48,7 +46,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         super.viewDidLoad()
         
-        TextFinder.shared.delegate = self
+        self.resultObserver = TextFinder.shared.didFindAll
+            .sink { [weak self] in self?.didFinishFindAll($0) }
     }
     
     
@@ -86,44 +85,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     
     
-    // MARK: TextFinder Delegate
-    
-    /// complemention notification for "Find All"
-    func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView) {
-        
-        self.fieldViewController?.updateResultCount(results.count, target: textView)
-        self.resultViewController?.setResults(results, findString: findString, target: textView)
-        
-        guard !results.isEmpty else { return }
-        
-        self.setResultShown(true, animate: true)
-        self.splitView.window?.windowController?.showWindow(self)
-        
-        // remove also find result highlights in the text view
-        self.resultViewObserver = self.resultViewController?.view.publisher(for: \.isHiddenOrHasHiddenAncestor)
-            .filter { $0 }
-            .sink { [weak self, weak textView] _ in
-                textView?.unhighlight()
-                self?.resultViewObserver = nil
-            }
-    }
-    
-    
-    /// receive number of found
-    func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView) {
-        
-        self.fieldViewController?.updateResultCount(numberOfFound, target: textView)
-    }
-    
-    
-    /// receive number of replaced
-    func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView) {
-        
-        self.fieldViewController?.updateReplacedCount(numberOfReplaced, target: textView)
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// close opening find result view
@@ -136,17 +97,24 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     // MARK: Private Methods
     
-    /// unwrap viewController from split view item
-    private var fieldViewController: FindPanelFieldViewController? {
-        
-        self.fieldSplitViewItem?.viewController as? FindPanelFieldViewController
-    }
-    
-    
-    /// unwrap viewController from split view item
+    /// Unwrap view controller from the split view item.
     private var resultViewController: FindPanelResultViewController? {
         
         self.resultSplitViewItem?.viewController as? FindPanelResultViewController
+    }
+    
+    
+    /// Completion notification of the Find All command.
+    ///
+    /// - Parameter result: The result.
+    private func didFinishFindAll(_ result: TextFindAllResult) {
+        
+        self.resultViewController?.setResult(result)
+        
+        guard !result.matches.isEmpty else { return }
+        
+        self.setResultShown(true, animate: true)
+        self.splitView.window?.windowController?.showWindow(self)
     }
     
     

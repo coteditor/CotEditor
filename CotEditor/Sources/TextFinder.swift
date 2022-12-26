@@ -33,20 +33,63 @@ import SwiftUI
 }
 
 
-protocol TextFinderDelegate: AnyObject {
+enum TextFindResult {
     
-    func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
-    func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
-    func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView)
+    case found(_ matches: [NSRange])
+    case replaced(_ count: Int)
+    
+    
+    /// The number of processed.
+    var count: Int {
+        
+        switch self {
+            case .found(let ranges):
+                return ranges.count
+            case .replaced(let count):
+                return count
+        }
+    }
+    
+    
+    /// Short result message for user.
+    var message: String {
+        
+        switch self {
+            case .found:
+                switch self.count {
+                    case ...0:
+                        return String(localized: "Not found")
+                    default:
+                        return String(localized: "\(self.count) found")
+                }
+                
+            case .replaced:
+                switch self.count {
+                    case ...0:
+                        return String(localized: "Not replaced")
+                    default:
+                        return String(localized: "\(self.count) replaced")
+                }
+        }
+    }
 }
 
 
-struct TextFindResult {
+
+struct TextFindAllResult {
     
-    var range: NSRange
-    var lineNumber: Int
-    var attributedLineString: NSAttributedString
-    var inlineRange: NSRange
+    struct Match {
+        
+        var range: NSRange
+        var lineNumber: Int
+        var attributedLineString: NSAttributedString
+        var inlineRange: NSRange
+    }
+    
+    
+    var findString: String
+    var matches: [Match]
+    weak var textView: NSTextView?
 }
 
 
@@ -68,13 +111,15 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     @objc dynamic var replacementString = ""
     
-    weak var delegate: TextFinderDelegate?
+    @Published private(set) var result: TextFindResult?
+    let didFindAll: PassthroughSubject<TextFindAllResult, Never> = .init()
     
-    
+
     // MARK: Private Properties
     
     private var searchTask: Task<Void, any Error>?
     private var applicationActivationObserver: AnyCancellable?
+    private var resultAvailabilityObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel").instantiateInitialController()!
@@ -222,16 +267,14 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Select all matched strings.
     @IBAction func selectAllMatches(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
-        
-        var matchedRanges: [NSRange] = []
-        textFind.findAll { (matches, _) in
-            matchedRanges.append(matches[0])
-        }
+        guard
+            let (textView, textFind) = self.prepareTextFind(forEditing: false),
+            let matchedRanges = try? textFind.matches
+        else { return }
         
         textView.selectedRanges = matchedRanges as [NSValue]
         
-        self.delegate?.textFinder(self, didFind: matchedRanges.count, textView: textView)
+        self.notifyResult(.found(matchedRanges), textView: textView)
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
@@ -400,7 +443,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // find in background thread
         let result = try await Task.detached(priority: .userInitiated) {
-            try textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
+            return try textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
         }.value
         
         // mark all matches
@@ -443,15 +486,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 // feedback for VoiceOver
-                NSAccessibility.post(element: textView, notification: .announcementRequested,
-                                     userInfo: [.announcement: "Search wrapped.".localized,
-                                                .priority: NSAccessibilityPriorityLevel.high.rawValue])
+                textView.requestAccessibilityAnnouncement("Search wrapped.".localized)
             }
         } else if !isIncremental {
             NSSound.beep()
         }
         
-        self.delegate?.textFinder(self, didFind: result.ranges.count, textView: textView)
+        self.notifyResult(.found(result.ranges), textView: textView)
         
         if !isIncremental {
             UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
@@ -476,6 +517,32 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
+    /// Notify find/replacement result to the user.
+    ///
+    /// - Parameters:
+    ///   - result: The result of the process.
+    ///   - textView: The text view where find/replacement was performed.
+    private func notifyResult(_ result: TextFindResult, textView: NSTextView) {
+        
+        self.resultAvailabilityObserver = nil
+        self.result = result
+        
+        // feedback for VoiceOver
+        textView.requestAccessibilityAnnouncement(result.message)
+        
+        // observe target textView to know the timing to remove the result
+        if case .found = result {
+            self.resultAvailabilityObserver = Publishers.Merge(
+                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage),
+                NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: textView.window))
+            .sink { [weak self] _ in
+                self?.result = nil
+                self?.resultAvailabilityObserver = nil
+            }
+        }
+    }
+    
+    
     /// Find all matched strings and apply the result to views.
     ///
     /// - Parameters:
@@ -497,9 +564,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         indicator.rootView.parent = indicator
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        let (highlights, results) = await Task.detached(priority: .userInitiated) {
+        let (highlights, matches) = await Task.detached(priority: .userInitiated) {
             var highlights: [ItemRange<NSColor>] = []
-            var results: [TextFindResult] = []  // not used if showsList is false
+            var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
                 guard !progress.isCancelled else {
@@ -532,14 +599,14 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     // calculate inline range
                     let inlineRange = matchedRange.shifted(by: -lineRange.location)
                     
-                    results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
+                    resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
                 
                 progress.completedUnit = matches[0].upperBound
                 progress.count += 1
             }
             
-            return (highlights, results)
+            return (highlights, resultMatches)
         }.value
         
         textView.isEditable = true
@@ -564,10 +631,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         progress.isFinished = true
         
         if showsList {
-            self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
+            self.notifyResult(.found(matches.map(\.range)), textView: textView)
+            self.didFindAll.send(.init(findString: textFind.findString, matches: matches, textView: textView))
         }
         
-        if !results.isEmpty, let panel = self.findPanelController.window, panel.isVisible {
+        if !matches.isEmpty, let panel = self.findPanelController.window, panel.isVisible {
             panel.makeKey()
         }
         
@@ -623,7 +691,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             panel.makeKey()
         }
         
-        self.delegate?.textFinder(self, didReplace: progress.count, textView: textView)
+        self.notifyResult(.replaced(progress.count), textView: textView)
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
         UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)

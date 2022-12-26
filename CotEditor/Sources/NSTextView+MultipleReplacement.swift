@@ -51,7 +51,7 @@ extension NSTextView {
         self.viewControllerForSheet?.presentAsSheet(indicator)
         
         // find in background thread
-        let result = try await Task.detached(priority: .userInitiated) {
+        let ranges = try await Task.detached(priority: .userInitiated) {
             try definition.find(string: string, ranges: selectedRanges, inSelection: inSelection, progress: progress)
                 .sorted(\.location)
         }.value
@@ -64,7 +64,7 @@ extension NSTextView {
                 let color = NSColor.textHighlighterColor
                 layoutManager.groupTemporaryAttributesUpdate(in: string.nsRange) {
                     layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
-                    for range in result {
+                    for range in ranges {
                         layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
                     }
                 }
@@ -75,7 +75,11 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        return String(localized: result.isEmpty ? "Not found" : "\(progress.count) found")
+        let message = String(localized: (progress.count == 0) ? "Not found" : "\(progress.count) found")
+        
+        self.requestAccessibilityAnnouncement(message)
+        
+        return message
     }
     
     
@@ -117,6 +121,10 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        return String(localized: (progress.count == 0) ? "Not replaced" : "\(progress.count) replaced")
+        let message = String(localized: (progress.count == 0) ? "Not replaced" : "\(progress.count) replaced")
+        
+        self.requestAccessibilityAnnouncement(message)
+        
+        return message
     }
 }

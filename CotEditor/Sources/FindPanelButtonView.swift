@@ -36,47 +36,50 @@ final class FindPanelButtonViewHostingController: NSHostingController<FindPanelB
 
 struct FindPanelButtonView: View {
     
+    private let textFinder: TextFinder = .shared
+    
+    
     var body: some View {
         
         HStack(alignment: .firstTextBaseline) {
             if #available(macOS 13, *) {
                 Menu("Find All") {
                     Button("Highlight All") {
-                        TextFinder.shared.highlight(nil)
+                        self.textFinder.highlight(nil)
                     }
                     Button("Select All") {
-                        TextFinder.shared.selectAllMatches(nil)
+                        self.textFinder.selectAllMatches(nil)
                     }
                 } primaryAction: {
-                    TextFinder.shared.findAll(nil)
+                    self.textFinder.findAll(nil)
                 }
                 .help("List all matches.")
                 .fixedSize()
             } else {
                 Button("Find All") {
-                    TextFinder.shared.findAll(nil)
+                    self.textFinder.findAll(nil)
                 }.help("List all matches.")
             }
             
             Button("Replace All") {
-                TextFinder.shared.replaceAll(nil)
+                self.textFinder.replaceAll(nil)
             }.help("Replace all matches with the replacement text.")
             
             Spacer()
             
             Button("Replace") {
-                TextFinder.shared.replace(nil)
+                self.textFinder.replace(nil)
             }.help("Replace the current selection with the replacement text, then find the next match.")
             
             ControlGroup {
                 Button {
-                    TextFinder.shared.findPrevious(nil)
+                    self.textFinder.findPrevious(nil)
                 } label: {
                     Label("Find Previous", systemImage: "chevron.backward")
                 }.help("Find previous match.")
                 
                 Button {
-                    TextFinder.shared.findNext(nil)
+                    self.textFinder.findNext(nil)
                 } label: {
                     Label("Find Next", systemImage: "chevron.forward")
                 }.help("Find next match.")
@@ -84,8 +87,8 @@ struct FindPanelButtonView: View {
             .labelStyle(.iconOnly)
             .frame(width: 70)
         }
-        .padding(.top, 10)
-        .padding(.horizontal)
+        .padding(.top, 8)
+        .padding(.horizontal, 20)
         .padding(.bottom)
     }
 }
