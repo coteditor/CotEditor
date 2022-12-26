@@ -40,6 +40,7 @@ struct LinkButton: View {
         } label: {
             Image(systemName: "arrow.forward")
                 .symbolVariant(.circle)
+                .contentShape(.focusEffect, Circle())
                 .accessibilityLabel("Jump to URL")
         }
         .buttonStyle(.borderless)
