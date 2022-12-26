@@ -75,7 +75,7 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        return String(localized: result.isEmpty ? "Not Found" : "\(progress.count) found")
+        return String(localized: result.isEmpty ? "Not found" : "\(progress.count) found")
     }
     
     
@@ -117,6 +117,6 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        return String(localized: (progress.count == 0) ? "Not Replaced" : "\(progress.count) replaced")
+        return String(localized: (progress.count == 0) ? "Not replaced" : "\(progress.count) replaced")
     }
 }

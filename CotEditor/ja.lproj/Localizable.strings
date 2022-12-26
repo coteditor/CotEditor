@@ -96,7 +96,7 @@
 /* MARK: FindPanelController */
 "Not found" = "見つかりません";
 "%lld found" = "%lld件見つかりました";  // %lld is number of founds
-"Not Replaced" = "見つかりません";
+"Not replaced" = "見つかりません";
 "%lld replaced" = "%lld件置換しました";  // %lld is number of replaced
 
 // pairs of button label and its tooltip

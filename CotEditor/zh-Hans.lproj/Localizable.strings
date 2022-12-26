@@ -96,7 +96,7 @@
 /* MARK: FindPanelController */
 "Not found" = "未找到";
 "%lld found" = "找到%lld项";  // %lld is number of founds
-"Not Replaced" = "没有进行替换";
+"Not replaced" = "没有进行替换";
 "%lld replaced" = "%lld处被替换";  // %lld is number of replaced
 
 // pairs of button label and its tooltip

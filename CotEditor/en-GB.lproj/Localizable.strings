@@ -96,7 +96,7 @@
 /* MARK: FindPanelController */
 "Not found" = "Not found";
 "%lld found" = "%lld found";  // %lld is number of founds
-"Not Replaced" = "Not Replaced";
+"Not replaced" = "Not replaced";
 "%lld replaced" = "%lld replaced";  // %lld is number of replaced
 
 // pairs of button label and its tooltip
