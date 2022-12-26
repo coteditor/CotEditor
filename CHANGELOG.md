@@ -10,6 +10,11 @@ Change Log
 - [non-AppStore ver.] Update Sparkle from 2.3.0 to 2.3.1.
 
 
+### Fixes
+
+- Fix an issue that the Find window expanded unnecessarily in some specific conditions.
+
+
 
 4.4.3 (546)
 --------------------------

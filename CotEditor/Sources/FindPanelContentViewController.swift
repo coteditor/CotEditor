@@ -52,10 +52,11 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     }
     
     
-    override func viewDidDisappear() {
+    override func viewWillAppear() {
         
-        super.viewDidDisappear()
+        super.viewWillAppear()
         
+        // make sure the result view is closed
         self.setResultShown(false, animate: false)
     }
     
