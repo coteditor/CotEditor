@@ -442,10 +442,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     hudView.layout()
                 }
                 
-                if let window = NSApp.mainWindow {
-                    NSAccessibility.post(element: window, notification: .announcementRequested,
-                                         userInfo: [.announcement: "Search wrapped.".localized])
-                }
+                // feedback for VoiceOver
+                NSAccessibility.post(element: textView, notification: .announcementRequested,
+                                     userInfo: [.announcement: "Search wrapped.".localized,
+                                                .priority: NSAccessibilityPriorityLevel.high.rawValue])
             }
         } else if !isIncremental {
             NSSound.beep()

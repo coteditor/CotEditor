@@ -251,9 +251,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
         
         // feedback for VoiceOver
-        if let window = NSApp.mainWindow {
-            NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
-        }
+        NSAccessibility.post(element: target, notification: .announcementRequested,
+                             userInfo: [.announcement: message,
+                                        .priority: NSAccessibilityPriorityLevel.high.rawValue])
     }
     
     

@@ -163,9 +163,9 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         self.resultMessage = resultMessage
         
         // feedback for VoiceOver
-        if let findPanel = self.view.window {
-            NSAccessibility.post(element: findPanel, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
-        }
+        NSAccessibility.post(element: target, notification: .announcementRequested,
+                             userInfo: [.announcement: resultMessage,
+                                        .priority: NSAccessibilityPriorityLevel.high.rawValue])
         
         self.tableView?.reloadData()
     }

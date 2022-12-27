@@ -174,9 +174,9 @@ final class MultipleReplacementViewController: NSViewController {
             self.resultMessage = message
             
             // feedback for VoiceOver
-            if let window = NSApp.mainWindow {
-                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
-            }
+            NSAccessibility.post(element: textView, notification: .announcementRequested,
+                                 userInfo: [.announcement: message,
+                                            .priority: NSAccessibilityPriorityLevel.high.rawValue])
         }
     }
     
@@ -201,9 +201,9 @@ final class MultipleReplacementViewController: NSViewController {
             self.resultMessage = message
             
             // feedback for VoiceOver
-            if let window = NSApp.mainWindow {
-                NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
-            }
+            NSAccessibility.post(element: textView, notification: .announcementRequested,
+                                 userInfo: [.announcement: message,
+                                            .priority: NSAccessibilityPriorityLevel.high.rawValue])
         }
     }
     
