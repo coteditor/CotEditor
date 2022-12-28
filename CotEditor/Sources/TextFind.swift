@@ -183,8 +183,23 @@ final class TextFind {
         
         assert(forward || !includingSelection)
         
+        var ranges: [NSRange] = []
+        for range in self.scopeRanges {
+            self.enumerateMatchs(in: range) { (matchedRange, _, stop) in
+                if Task.isCancelled {
+                    stop = true
+                    return
+                }
+                ranges.append(matchedRange)
+            }
+        }
+        
+        try Task.checkCancellation()
+        
         if self.inSelection {
-            return self.findInSelection(forward: forward)
+            let foundRange = forward ? ranges.first : ranges.last
+            
+            return .init(range: foundRange, ranges: ranges, wrapped: false)
         }
         
         let selectedRange = self.selectedRanges.first!
@@ -192,47 +207,17 @@ final class TextFind {
             ? (includingSelection ? selectedRange.lowerBound : selectedRange.upperBound)
             : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
-        var forwardMatches: [NSRange] = []  // matches after the start location
-        let forwardRange = NSRange(startLocation..<self.string.length)
-        self.enumerateMatchs(in: forwardRange) { (matchedRange, _, stop) in
-            if Task.isCancelled {
-                stop = true
-                return
-            }
-            forwardMatches.append(matchedRange)
-        }
-        
-        try Task.checkCancellation()
-        
-        var wrappedMatches: [NSRange] = []  // matches before the start location
-        var intersectionMatches: [NSRange] = []  // matches including the start location
-        self.enumerateMatchs(in: self.string.range) { (matchedRange, _, stop) in
-            if Task.isCancelled {
-                stop = true
-                return
-            }
-            if matchedRange.location >= startLocation {
-                stop = true
-                return
-            }
-            if matchedRange.contains(startLocation) {
-                intersectionMatches.append(matchedRange)
-            } else {
-                wrappedMatches.append(matchedRange)
-            }
-        }
-        
-        try Task.checkCancellation()
-        
-        var foundRange = forward ? forwardMatches.first : wrappedMatches.last
+        var foundRange = forward
+            ? ranges.first { $0.lowerBound >= startLocation }
+            : ranges.last { $0.upperBound <= startLocation }
         
         // wrap search
         let isWrapped = (foundRange == nil && isWrap)
         if isWrapped {
-            foundRange = forward ? (wrappedMatches + intersectionMatches).first : (intersectionMatches + forwardMatches).last
+            foundRange = forward ? ranges.first : ranges.last
         }
         
-        let ranges = wrappedMatches + intersectionMatches + forwardMatches
+        try Task.checkCancellation()
         
         return .init(range: foundRange, ranges: ranges, wrapped: isWrapped)
     }
@@ -375,28 +360,6 @@ final class TextFind {
     private func isFullWord(range: NSRange) -> Bool {
         
         self.fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
-    }
-    
-    
-    /// Return a match in selection ranges.
-    ///
-    /// - Parameters:
-    ///   - forward: Whether searchs forward from the insertion.
-    /// - Returns:An FindResult object.
-    private func findInSelection(forward: Bool) -> FindResult {
-        
-        assert(self.inSelection)
-        
-        var matches: [NSRange] = []
-        for range in self.selectedRanges {
-            self.enumerateMatchs(in: range) { (matchedRange, _, _) in
-                matches.append(matchedRange)
-            }
-        }
-        
-        let foundRange = forward ? matches.first : matches.last
-        
-        return .init(range: foundRange, ranges: matches, wrapped: false)
     }
     
     
