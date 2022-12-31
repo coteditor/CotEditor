@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-final class FindPanelButtonViewHostingController: NSHostingController<FindPanelButtonView> {
+final class FindPanelButtonViewController: NSHostingController<FindPanelButtonView> {
     
     required init?(coder aDecoder: NSCoder) {
         
@@ -58,18 +58,24 @@ struct FindPanelButtonView: View {
             } else {
                 Button("Find All") {
                     self.textFinder.findAll(nil)
-                }.help("List all matches.")
+                }
+                .help("List all matches.")
+                .fixedSize()
             }
             
             Button("Replace All") {
                 self.textFinder.replaceAll(nil)
-            }.help("Replace all matches with the replacement text.")
+            }
+            .help("Replace all matches with the replacement text.")
+            .fixedSize()
             
             Spacer()
             
             Button("Replace") {
                 self.textFinder.replace(nil)
-            }.help("Replace the current selection with the replacement text, then find the next match.")
+            }
+            .help("Replace the current selection with the replacement text, then find the next match.")
+            .fixedSize()
             
             ControlGroup {
                 Button {

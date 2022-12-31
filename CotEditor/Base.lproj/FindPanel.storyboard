@@ -543,10 +543,10 @@
             </objects>
             <point key="canvasLocation" x="772" y="659"/>
         </scene>
-        <!--Find Panel Button View Hosting Controller-->
+        <!--Find Panel Button View Controller-->
         <scene sceneID="x2J-1Q-IuO">
             <objects>
-                <hostingController id="ANM-on-X4z" customClass="FindPanelButtonViewHostingController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController"/>
+                <hostingController id="ANM-on-X4z" customClass="FindPanelButtonViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController"/>
                 <customObject id="MCg-oQ-Dbs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="198" y="1051"/>
