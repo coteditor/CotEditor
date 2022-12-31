@@ -86,8 +86,6 @@ extension MultipleReplacement {
         
         var result: [NSRange] = []
         
-        guard !string.isEmpty else { return result }
-        
         for replacement in self.replacements where replacement.isEnabled {
             let mode = replacement.mode(settings: self.settings)
             
@@ -128,8 +126,6 @@ extension MultipleReplacement {
     func replace(string: String, ranges: [NSRange], inSelection: Bool, progress: FindProgress? = nil) throws -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
-        
-        guard !string.isEmpty else { return result }
         
         for replacement in self.replacements where replacement.isEnabled {
             let mode = replacement.mode(settings: self.settings)
