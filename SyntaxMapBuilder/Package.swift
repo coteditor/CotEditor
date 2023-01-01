@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SyntaxMapBuilder",
     platforms: [
-        .macOS(.v13),
+        .macOS(.v12),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: Version(1, 1, 0)),
