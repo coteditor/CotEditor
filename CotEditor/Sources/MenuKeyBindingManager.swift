@@ -48,7 +48,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
             fatalError("MenuKeyBindingManager should be initialized after Main.storyboard is loaded.")
         }
         
-        _defaultKeyBindings = Set(Self.scanMenuKeyBindingRecurrently(menu: mainMenu))
+        self._defaultKeyBindings = Set(Self.scanMenuKeyBindingRecurrently(menu: mainMenu))
         
         super.init()
     }
@@ -67,7 +67,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     /// default key bindings
     override var defaultKeyBindings: Set<KeyBinding> {
         
-        _defaultKeyBindings
+        self._defaultKeyBindings
     }
     
     

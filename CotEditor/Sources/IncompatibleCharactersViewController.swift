@@ -152,7 +152,7 @@ final class IncompatibleCharactersViewController: NSViewController {
             self.collapseView(incompatibleCharacters.isEmpty, animate: true)
         }
         
-        self.incompatibleCharacters = incompatibleCharacters.sorted(using: tableView?.sortDescriptors ?? [])
+        self.incompatibleCharacters = incompatibleCharacters.sorted(using: self.tableView?.sortDescriptors ?? [])
         self.tableView?.reloadData()
         
         self.updateMessage(isScanning: false)

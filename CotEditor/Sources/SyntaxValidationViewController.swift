@@ -75,7 +75,7 @@ final class SyntaxValidationViewController: NSViewController {
                 case 1:
                     return "An error found!".localized
                 default:
-                    return String(localized: "\(errors.count) errors found!")
+                    return String(localized: "\(self.errors.count) errors found!")
             }
         }()
     }

@@ -46,7 +46,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     override private init() {
         
-        _defaultKeyBindings = []
+        self._defaultKeyBindings = []
         self.defaultSnippets = UserDefaults.standard.registeredValue(for: .insertCustomTextArray)
         
         super.init()
@@ -66,7 +66,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// default key bindings
     override var defaultKeyBindings: Set<KeyBinding> {
         
-        _defaultKeyBindings
+        self._defaultKeyBindings
     }
     
     

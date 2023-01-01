@@ -4,10 +4,14 @@ deployment_target:
 excluded:
   - "*/.build"
 
+analyzer_rules:
+  - capture_variable
+  - typesafe_array_init
+  - unused_declaration
+
 opt_in_rules:
   - array_init
   - attributes
-  - capture_variable
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
@@ -21,7 +25,6 @@ opt_in_rules:
   - empty_string
   - empty_xctest_method
   - explicit_init
-  - explicit_self
   - extension_access_modifier
   - fallthrough
   - file_header
@@ -58,8 +61,6 @@ opt_in_rules:
   - sorted_first_last
   - static_operator
   - toggle_bool
-  - unused_declaration
-  - unused_import
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher
   - yoda_condition
