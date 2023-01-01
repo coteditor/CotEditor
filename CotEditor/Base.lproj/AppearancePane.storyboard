@@ -409,7 +409,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="169" height="254"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <tableView focusRingType="none" verticalHuggingPriority="750" misplaced="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="3yq-Qd-FKt" viewBased="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Dt-hO9">
+                                                    <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="3yq-Qd-FKt" viewBased="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Dt-hO9">
                                                         <rect key="frame" x="0.0" y="0.0" width="169" height="226"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="4"/>
@@ -651,7 +651,6 @@
                     </connections>
                 </viewController>
                 <customObject id="6Aq-a8-hQi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="1lZ-My-8Zc"/>
                 <menu id="M4k-Ev-Myg" userLabel="Theme Table Menu">
                     <items>
                         <menuItem title="New Theme" id="sJb-7g-2FN">
