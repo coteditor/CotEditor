@@ -109,14 +109,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         }
         
         let itemSelected = (representedSettingName != nil)
-        let isBundled: Bool
-        let isCustomized: Bool
-        if let representedSettingName = representedSettingName {
-            isBundled = SyntaxManager.shared.isBundledSetting(name: representedSettingName)
-            isCustomized = SyntaxManager.shared.isCustomizedSetting(name: representedSettingName)
-        } else {
-            (isBundled, isCustomized) = (false, false)
-        }
+        let state = representedSettingName.flatMap(SyntaxManager.shared.state(of:))
         
         // append target setting name to menu titles
         switch menuItem.action {
@@ -130,27 +123,27 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                 menuItem.isHidden = !itemSelected
             
             case #selector(deleteSyntaxStyle(_:)):
-                menuItem.isHidden = (isBundled || !itemSelected)
+                menuItem.isHidden = (state?.isBundled == true || !itemSelected)
             
             case #selector(restoreSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Restore “\(name)”")
                 }
-                menuItem.isHidden = (!isBundled || !itemSelected)
-                return isBundled && isCustomized
+                menuItem.isHidden = (state?.isBundled == false || !itemSelected)
+                return state?.isRestorable ?? false
             
             case #selector(exportSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
-                return isCustomized
+                return state?.isCustomized ?? false
             
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
-                return isCustomized
+                return state?.isCustomized ?? false
             
             case nil:
                 return false
@@ -179,7 +172,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard let name = self.styleNames[safe: row] else { return nil }
         
         return ["name": name,
-                "state": SyntaxManager.shared.isCustomizedSetting(name: name)]
+                "state": SyntaxManager.shared.state(of: name)?.isCustomized == true]
     }
     
     
@@ -189,7 +182,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         guard notification.object as? NSTableView == self.syntaxTableView else { return }
         
-        self.isBundled = SyntaxManager.shared.isBundledSetting(name: self.selectedStyleName)
+        self.isBundled = SyntaxManager.shared.state(of: self.selectedStyleName)?.isBundled == true
     }
     
     
@@ -202,9 +195,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         let styleName = self.styleNames[row]
         
         // do nothing on undeletable style
-        guard SyntaxManager.shared.isCustomizedSetting(name: styleName) else { return [] }
+        guard let state = SyntaxManager.shared.state(of: styleName), state.isCustomized else { return [] }
         
-        if SyntaxManager.shared.isBundledSetting(name: styleName) {
+        if state.isBundled {
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
                                          handler: { [weak self] (_, _) in
@@ -355,8 +348,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @IBAction func editSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
+        let state = SyntaxManager.shared.state(of: styleName)!
         let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
-            SyntaxEditViewController(coder: coder, mode: .edit(styleName))
+            SyntaxEditViewController(coder: coder, mode: .edit(state))
         }!
         
         self.presentAsSheet(viewController)
@@ -367,8 +361,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @IBAction func duplicateSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
+        let state = SyntaxManager.shared.state(of: styleName)!
         let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
-            SyntaxEditViewController(coder: coder, mode: .copy(styleName))
+            SyntaxEditViewController(coder: coder, mode: .copy(state))
         }!
         
         self.presentAsSheet(viewController)

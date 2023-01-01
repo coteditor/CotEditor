@@ -148,14 +148,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         menuItem.representedObject = representedSettingName
         
         let itemSelected = (representedSettingName != nil)
-        let isBundled: Bool
-        let isCustomized: Bool
-        if let representedSettingName = representedSettingName {
-            isBundled = ThemeManager.shared.isBundledSetting(name: representedSettingName)
-            isCustomized = ThemeManager.shared.isCustomizedSetting(name: representedSettingName)
-        } else {
-            (isBundled, isCustomized) = (false, false)
-        }
+        let state = representedSettingName.flatMap(ThemeManager.shared.state(of:))
         
         // append target setting name to menu titles
         switch menuItem.action {
@@ -167,7 +160,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     menuItem.title = String(localized: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-                return !isBundled
+                return state?.isBundled == false
                 
             case #selector(duplicateTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
@@ -176,27 +169,27 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 menuItem.isHidden = !itemSelected
             
             case #selector(deleteTheme(_:)):
-                menuItem.isHidden = (isBundled || !itemSelected)
+                menuItem.isHidden = (state?.isBundled == true || !itemSelected)
             
             case #selector(restoreTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Restore “\(name)”")
                 }
-                menuItem.isHidden = (!isBundled || !itemSelected)
-                return isBundled && isCustomized
+                menuItem.isHidden = (state?.isBundled == false || !itemSelected)
+                return state?.isRestorable == true
             
             case #selector(exportTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
-                return isCustomized
+                return state?.isCustomized == true
             
             case #selector(revealThemeInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
-                return isCustomized
+                return state?.isCustomized == true
             
             case nil:
                 return false
@@ -331,7 +324,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         guard let view = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? NSTableCellView else { return }
         
         let themeName = self.themeNames[row]
-        let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
+        let isBundled = ThemeManager.shared.state(of: themeName)?.isBundled == true
         
         view.textField?.isSelectable = false
         view.textField?.isEditable = !isBundled
@@ -347,9 +340,12 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let themeName = self.themeNames[row]
         
         // do nothing on undeletable theme
-        guard ThemeManager.shared.isCustomizedSetting(name: themeName) else { return [] }
+        guard
+            let state = ThemeManager.shared.state(of: themeName),
+            state.isCustomized
+        else { return [] }
         
-        if ThemeManager.shared.isBundledSetting(name: themeName) {
+        if state.isRestorable {
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
                                          handler: { [weak self] (_, _) in
@@ -617,7 +613,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     ///   - name: The name of the theme.
     private func setTheme(_ theme: Theme, name: String) {
         
-        let isBundled = ThemeManager.shared.isBundledSetting(name: name)
+        let isBundled = ThemeManager.shared.state(of: name)?.isBundled == true
         
         let view = ThemeDetailView(theme, isBundled: isBundled) { theme in
             do {

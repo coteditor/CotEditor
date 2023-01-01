@@ -31,8 +31,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     enum Mode {
         
-        case edit(_ name: String)
-        case copy(_ name: String)
+        case edit(_ state: SettingState)
+        case copy(_ state: SettingState)
         case new
     }
     
@@ -73,8 +73,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         let style: SyntaxManager.StyleDictionary = {
             switch mode {
-                case .edit(let name), .copy(let name):
-                    return manager.settingDictionary(name: name) ?? manager.blankSettingDictionary
+                case .edit(let state), .copy(let state):
+                    return manager.settingDictionary(name: state.name) ?? manager.blankSettingDictionary
                 case .new:
                     return manager.blankSettingDictionary
             }
@@ -82,9 +82,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         self.style = NSMutableDictionary(dictionary: style)
         
         switch mode {
-            case .edit(let name):
-                self.isBundledStyle = manager.isBundledSetting(name: name)
-                self.isRestorable = self.isBundledStyle && manager.isCustomizedSetting(name: name)
+            case .edit(let state):
+                self.isBundledStyle = state.isBundled
+                self.isRestorable = state.isRestorable
             case .copy, .new:
                 self.isBundledStyle = false
                 self.isRestorable = false
@@ -128,8 +128,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // setup style name field
         self.styleNameField?.stringValue = {
             switch self.mode {
-                case .edit(let name): return name
-                case .copy(let name): return SyntaxManager.shared.savableSettingName(for: name, appendingCopySuffix: true)
+                case .edit(let state): return state.name
+                case .copy(let state): return SyntaxManager.shared.savableSettingName(for: state.name, appendingCopySuffix: true)
                 case .new: return ""
             }
         }()
@@ -189,8 +189,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         guard
-            case .edit(let name) = self.mode,
-            let style = SyntaxManager.shared.bundledSettingDictionary(name: name)
+            case .edit(let state) = self.mode,
+            let style = SyntaxManager.shared.bundledSettingDictionary(name: state.name)
         else { return }
         
         self.style.setDictionary(style)
@@ -247,8 +247,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }
         
         let oldName: String? = {
-            guard case .edit(let name) = self.mode else { return nil }
-            return name
+            guard case .edit(let state) = self.mode else { return nil }
+            return state.name
         }()
         
         do {
@@ -273,11 +273,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         self.isStyleNameValid = true
         self.message = nil
         
-        if case .edit(let name) = self.mode, (styleName.caseInsensitiveCompare(name) == .orderedSame) { return true }
+        if case .edit(let state) = self.mode, (styleName.caseInsensitiveCompare(state.name) == .orderedSame) { return true }
         
         let originalName: String? = {
-            guard case .edit(let name) = self.mode else { return nil }
-            return name
+            guard case .edit(let state) = self.mode else { return nil }
+            return state.name
         }()
         
         do {

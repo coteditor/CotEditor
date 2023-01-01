@@ -58,6 +58,16 @@ enum SettingChange {
 }
 
 
+struct SettingState: Equatable {
+    
+    var name: String
+    var isBundled: Bool
+    var isCustomized: Bool
+    
+    var isRestorable: Bool  { self.isBundled && self.isCustomized }
+}
+
+
 
 // MARK: -
 
@@ -171,16 +181,11 @@ extension SettingFileManaging {
     
     
     /// whether the setting name is one of the bundled settings
-    func isBundledSetting(name: String) -> Bool {
+    func state(of name: String) -> SettingState? {
         
-        self.bundledSettingNames.contains(name)
-    }
-    
-    
-    /// whether the setting name is customized by the user
-    func isCustomizedSetting(name: String) -> Bool {
-        
-        self.urlForUserSetting(name: name) != nil
+        SettingState(name: name,
+                     isBundled: self.bundledSettingNames.contains(name),
+                     isCustomized: self.urlForUserSetting(name: name) != nil)
     }
     
     
@@ -247,7 +252,7 @@ extension SettingFileManaging {
     /// restore the setting with name
     func restoreSetting(name: String) throws {
         
-        guard self.isBundledSetting(name: name) else { return }  // only bundled setting can be restored
+        guard self.state(of: name)?.isRestorable == true else { return }  // only bundled setting can be restored
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
         
