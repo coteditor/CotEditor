@@ -38,12 +38,12 @@ final class UTTypeExtensionTests: XCTestCase {
     
     func testURLConformance() {
         
-        let xmlURL = URL(filePath: "foo.xml")
+        let xmlURL = URL(fileURLWithPath: "foo.xml")
         XCTAssertFalse(xmlURL.conforms(to: .svg))
         XCTAssertTrue(xmlURL.conforms(to: .xml))
         XCTAssertFalse(xmlURL.conforms(to: .plainText))
         
-        let svgzURL = URL(filePath: "FOO.SVGZ")
+        let svgzURL = URL(fileURLWithPath: "FOO.SVGZ")
         XCTAssertTrue(svgzURL.conforms(to: .svg))
     }
 }

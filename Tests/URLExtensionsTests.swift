@@ -31,8 +31,8 @@ final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreation() {
         
-        let url = URL(filePath: "/foo/bar/file.txt")
-        let baseURL = URL(filePath: "/foo/buz/file.txt")
+        let url = URL(fileURLWithPath: "/foo/bar/file.txt")
+        let baseURL = URL(fileURLWithPath: "/foo/buz/file.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseURL), "../bar/file.txt")
         XCTAssertNil(url.path(relativeTo: nil))
@@ -41,8 +41,8 @@ final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreation2() {
         
-        let url = URL(filePath: "/file1.txt")
-        let baseURL = URL(filePath: "/file2.txt")
+        let url = URL(fileURLWithPath: "/file1.txt")
+        let baseURL = URL(fileURLWithPath: "/file2.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseURL), "file1.txt")
     }
@@ -50,8 +50,8 @@ final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreationWithSameURLs() {
         
-        let url = URL(filePath: "/file1.txt")
-        let baseURL = URL(filePath: "/file1.txt")
+        let url = URL(fileURLWithPath: "/file1.txt")
+        let baseURL = URL(fileURLWithPath: "/file1.txt")
         
         XCTAssertEqual(url.path(relativeTo: baseURL), "file1.txt")
     }
