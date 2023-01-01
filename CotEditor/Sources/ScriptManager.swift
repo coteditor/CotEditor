@@ -82,7 +82,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     deinit {
-        NSFileCoordinator.removeFilePresenter(self)
+        if self.presentedItemURL != nil {
+            NSFileCoordinator.removeFilePresenter(self)
+        }
     }
     
     
@@ -139,18 +141,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
         assert(self.scriptsDirectoryURL == nil)
         
         Task.detached {
-            do {
-                // -> The application scripts folder will be created automatically by the first launch.
-                //    In addition, individual applicaitons cannot create its script folder for in case
-                //    when user explicitly delete the folder.
-                //    cf. https://developer.apple.com/forums/thread/79384
-                self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                
-                // observe script folder change
+            // -> The application scripts folder will be created automatically by the first launch.
+            //    In addition, individual applicaitons cannot create its script folder for in case
+            //    when user explicitly delete the folder.
+            //    cf. https://developer.apple.com/forums/thread/79384
+            self.scriptsDirectoryURL = try? FileManager.default.url(for: .applicationScriptsDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            
+            // observe script folder change if it exists
+            if self.presentedItemURL != nil {
                 NSFileCoordinator.addFilePresenter(self)
-                
-            } catch {
-                assertionFailure("cannot create the scripts folder: \(error)")
             }
             
             await self.buildScriptMenu()
