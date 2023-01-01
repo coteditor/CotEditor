@@ -1,5 +1,5 @@
 //
-//  ThemeView.swift
+//  ThemeDetailView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,7 +120,7 @@ private final class ThemeObject: ObservableObject {
 
 
 
-struct ThemeView: View {
+struct ThemeDetailView: View {
     
     @StateObject private var theme: ThemeObject
     @State private var isBundled: Bool
@@ -302,11 +302,11 @@ private struct ThemeMetadataView: View {
 
 // MARK: - Preview
 
-struct ThemeView_Previews: PreviewProvider {
+struct ThemeDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        ThemeView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
+        ThemeDetailView(ThemeManager.shared.setting(name: "Anura")!, isBundled: false) { _ in }
             .frame(width: 360, height: 280)
         
         ThemeMetadataView(author: .constant("Clarus"),

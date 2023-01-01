@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -620,7 +620,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let isBundled = ThemeManager.shared.isBundledSetting(name: name)
         
-        let view = ThemeView(theme, isBundled: isBundled) { theme in
+        let view = ThemeDetailView(theme, isBundled: isBundled) { theme in
             do {
                 try ThemeManager.shared.save(setting: theme, name: name)
             } catch {
