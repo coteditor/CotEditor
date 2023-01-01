@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Update C++ syntax style to fix highlighting attributes (thanks to Luke McKenzie!).
 - [non-AppStore ver.] Update Sparkle from 2.3.0 to 2.3.1.
 
 
