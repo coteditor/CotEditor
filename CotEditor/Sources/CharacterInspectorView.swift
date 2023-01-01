@@ -58,12 +58,13 @@ struct CharacterInspectorView: View {
             if self.info.character.unicodeScalars.count > 1 {
                 ForEach(Array(self.info.character.unicodeScalars.enumerated()), id: \.offset) { (_, scalar) in
                     if let name = scalar.name {
-                        Text(verbatim: scalar.codePoint + "\t" + name)
+                        Text(verbatim: scalar.codePoint.padding(toLength: 7, withPad: " ", startingAt: 0))
+                            .monospacedDigit() + Text(verbatim: " " + name)
                     } else {
                         Text(verbatim: scalar.codePoint)
+                            .monospacedDigit()
                     }
                 }
-                .monospacedDigit()
                 .controlSize(.small)
                 .foregroundColor(.label)
                 .textSelection(.enabled)
@@ -86,14 +87,13 @@ private struct ScalarDetailView: View {
                 HStack(alignment: .firstTextBaseline) {
                     if let surrogates = self.scalar.surrogateCodePoints {
                         Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
-                            .foregroundColor(.label)
-                            .textSelection(.enabled)
                     } else {
                         Text(verbatim: self.scalar.codePoint)
-                            .foregroundColor(.label)
-                            .textSelection(.enabled)
                     }
                 }
+                .monospacedDigit()
+                .foregroundColor(.label)
+                .textSelection(.enabled)
             }
             
             HStack(alignment: .firstTextBaseline) {
