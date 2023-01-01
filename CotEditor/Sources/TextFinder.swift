@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -169,12 +169,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                  #selector(replaceAndFind(_:)),
                  #selector(replaceAll(_:)),
                  #selector(selectAllMatches(_:)),
-                 #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
+                 #selector(useSelectionForFind(_:)),
+                 #selector(useSelectionForReplace(_:)),
                  #selector(centerSelectionInVisibleArea(_:)):
                 return self.client != nil
-                
-            case #selector(useSelectionForFind(_:)):
-                return self.selectedString != nil
                 
             case nil:
                 return false

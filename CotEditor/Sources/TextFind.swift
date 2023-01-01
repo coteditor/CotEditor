@@ -35,7 +35,7 @@ struct ReplacementItem {
 
 final class TextFind {
     
-    enum Mode {
+    enum Mode: Equatable {
         
         case textual(options: String.CompareOptions, fullWord: Bool)  // don't include .backwards to options
         case regularExpression(options: NSRegularExpression.Options, unescapesReplacement: Bool)
@@ -92,11 +92,12 @@ final class TextFind {
     
     // MARK: Public Properties
     
-    let mode: TextFind.Mode
     let findString: String
+    let mode: TextFind.Mode
+    let inSelection: Bool
+    
     let string: String
     let selectedRanges: [NSRange]
-    let inSelection: Bool
     
     
     // MARK: Private Properties
@@ -111,7 +112,7 @@ final class TextFind {
     // MARK: -
     // MARK: Lifecycle
     
-    /// Return an initialized TextFind instance with the specified options.
+    /// Return a TextFind instance with the specified options.
     ///
     /// - Parameters:
     ///   - string: The string to search.
@@ -152,7 +153,6 @@ final class TextFind {
         self.inSelection = inSelection
         self.scopeRanges = inSelection ? selectedRanges : [string.nsRange]
     }
-    
     
     
     // MARK: Public Methods
