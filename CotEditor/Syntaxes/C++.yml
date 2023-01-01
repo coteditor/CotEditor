@@ -129,7 +129,6 @@ attributes:
 - beginString: "#pragma"
 - beginString: "#undef"
 commands: []
-attributes: []
 values:
 - beginString: "false"
 - beginString: "NULL"
