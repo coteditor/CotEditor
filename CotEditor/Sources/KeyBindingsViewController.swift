@@ -39,7 +39,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     private var outlineTree: [NSTreeNode] = []
     @objc private dynamic var warningMessage: String?  // for binding
-    @objc private dynamic var isRestoreble: Bool = false  // for binding
+    @objc private dynamic var isRestorable: Bool = false  // for binding
     
     @IBOutlet fileprivate weak var outlineView: NSOutlineView?
     
@@ -53,7 +53,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         super.viewWillAppear()
         
         self.outlineTree = self.manager.outlineTree(defaults: false)
-        self.isRestoreble = !self.manager.usesDefaultKeyBindings
+        self.isRestorable = !self.manager.usesDefaultKeyBindings
         self.outlineView?.reloadData()
     }
     
@@ -210,7 +210,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         self.outlineView?.deselectAll(nil)
         self.outlineView?.reloadData()
         self.warningMessage = nil
-        self.isRestoreble = false
+        self.isRestorable = false
     }
     
     
@@ -242,7 +242,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             Swift.print(error)
         }
         
-        self.isRestoreble = !self.manager.usesDefaultKeyBindings
+        self.isRestorable = !self.manager.usesDefaultKeyBindings
     }
 }
 

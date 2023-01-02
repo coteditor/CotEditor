@@ -41,7 +41,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     private let mode: Mode
     private let style: NSMutableDictionary
-    @objc private let isRestoreble: Bool
+    @objc private let isRestorable: Bool
     @objc private let isBundledStyle: Bool
     
     @objc private dynamic var menuTitles: [String] = []  // for binding
@@ -82,10 +82,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         switch mode {
             case .edit(let name):
                 self.isBundledStyle = manager.isBundledSetting(name: name)
-                self.isRestoreble = self.isBundledStyle && manager.isCustomizedSetting(name: name)
+                self.isRestorable = self.isBundledStyle && manager.isCustomizedSetting(name: name)
             case .copy, .new:
                 self.isBundledStyle = false
-                self.isRestoreble = false
+                self.isRestorable = false
         }
         
         super.init(coder: coder)

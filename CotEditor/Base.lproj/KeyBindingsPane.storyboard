@@ -152,7 +152,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="bQJ-P8-Oc8">
-                                                            <rect key="frame" x="339.5" y="1" width="111" height="16"/>
+                                                            <rect key="frame" x="340" y="1" width="111" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="TE0-Ap-drx" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
@@ -211,7 +211,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="setToFactoryDefaults:" target="sBQ-LT-Rwm" id="AGX-OY-wxG"/>
-                                    <binding destination="sBQ-LT-Rwm" name="enabled" keyPath="restoreble" id="vHw-kA-B8G"/>
+                                    <binding destination="sBQ-LT-Rwm" name="enabled" keyPath="restorable" id="TBn-ma-3js"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9m2-IX-4UY">
@@ -1205,7 +1205,7 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="setToFactoryDefaults:" target="9kQ-W2-4kw" id="vvi-m7-PAs"/>
-                                    <binding destination="9kQ-W2-4kw" name="enabled" keyPath="restoreble" id="Wit-wD-sZz"/>
+                                    <binding destination="9kQ-W2-4kw" name="enabled" keyPath="restorable" id="jL6-wT-FoS"/>
                                 </connections>
                             </button>
                         </subviews>
