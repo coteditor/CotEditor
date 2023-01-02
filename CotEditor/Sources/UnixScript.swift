@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -127,7 +127,8 @@ final class UnixScript: Script {
             do {
                 try await self.applyOutput(output, type: outputType, editor: document?.textView)
             } catch {
-                await Console.shared.show(message: error.localizedDescription, title: self.name)
+                let log = Console.Log(message: error.localizedDescription, title: self.name)
+                await Console.shared.show(log: log)
             }
         }
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import Cocoa
 
 final class Console {
     
-    fileprivate struct Log {
+    struct Log {
         
         var message: String
         var title: String?
@@ -50,11 +50,8 @@ final class Console {
     /// Append given message to the console.
     ///
     /// - Parameters:
-    ///   - message: The messege to show.
-    ///   - title: The title of the message.
-    @MainActor func show(message: String, title: String?) {
-        
-        let log = Console.Log(message: message, title: title)
+    ///   - log: The console log to show.
+    @MainActor func show(log: Log) {
         
         self.panelController.showWindow(nil)
         (self.panelController.contentViewController as? ConsoleViewController)?.append(log: log)
@@ -85,18 +82,6 @@ final class ConsoleViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private static let fontSize: CGFloat = 11
-    
-    private let messageFont: NSFont = .monospacedSystemFont(ofSize: ConsoleViewController.fontSize, weight: .regular)
-    
-    private let messageParagraphStyle: NSParagraphStyle = {
-        // indent for message body
-        let paragraphStyle = NSParagraphStyle.default.mutable
-        paragraphStyle.headIndent = ConsoleViewController.fontSize
-        paragraphStyle.firstLineHeadIndent = ConsoleViewController.fontSize
-        return paragraphStyle
-    }()
-    
     @IBOutlet private weak var textView: NSTextView?
     @IBOutlet private weak var textFinder: NSTextFinder?
     
@@ -122,30 +107,13 @@ final class ConsoleViewController: NSViewController {
         guard let textView = self.textView else { return assertionFailure() }
         
         let lastLocation = (textView.string as NSString).length
-        let date = log.date.formatted(Date.ISO8601FormatStyle(timeZone: .current).year().month().day().dateTimeSeparator(.space).time(includingFractionalSeconds: false))
+        let attributedString = NSAttributedString(log.attributedString)
         
-        let attrString = NSMutableAttributedString(string: "[" + date + "]")
-        
-        // append bold title
-        if let title = log.title {
-            let attrTitle = NSMutableAttributedString(string: " " + title)
-            attrTitle.applyFontTraits(.boldFontMask, range: NSRange(1..<attrTitle.length))
-            attrString.append(attrTitle)
-        }
-        
-        // append indented message
-        let attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: self.messageParagraphStyle,
-                                                         .font: self.messageFont]
-        let attrMessage = NSAttributedString(string: "\n" + log.message + "\n", attributes: attributes)
-        attrString.append(attrMessage)
-        
-        attrString.addAttribute(.foregroundColor, value: NSColor.labelColor, range: attrString.range)
-        
-        textView.textStorage?.append(attrString)
+        textView.textStorage?.append(attributedString)
         NSAccessibility.post(element: textView, notification: .valueChanged)
         
-        // scroll to make message visible
-        textView.scrollRangeToVisible(NSRange(location: lastLocation, length: attrString.length))
+        // scroll to make the message visible
+        textView.scrollRangeToVisible(NSRange(location: lastLocation, length: attributedString.length))
     }
     
     
@@ -156,6 +124,51 @@ final class ConsoleViewController: NSViewController {
         
         textView.string = ""
         NSAccessibility.post(element: textView, notification: .valueChanged)
+    }
+}
+
+
+
+private extension Console.Log {
+    
+    private static let fontSize: Double = 11
+    
+    private static let paragraphStyle: NSParagraphStyle = {
+        
+        let paragraphStyle = NSParagraphStyle.default.mutable
+        paragraphStyle.headIndent = Self.fontSize
+        paragraphStyle.firstLineHeadIndent = Self.fontSize
+        
+        return paragraphStyle
+    }()
+    
+    
+    var attributedString: AttributedString {
+        
+        let dateFormat = Date.ISO8601FormatStyle(timeZone: .current)
+            .year()
+            .month()
+            .day()
+            .dateTimeSeparator(.space)
+            .time(includingFractionalSeconds: false)
+        var string = AttributedString("[\(self.date.formatted(dateFormat))]")
+        
+        // append bold title
+        if let title = self.title {
+            var attrTitle = AttributedString(title)
+            attrTitle.font = .systemFont(ofSize: 0, weight: .semibold)
+            string += " " + attrTitle
+        }
+        
+        // append indented message
+        var message = AttributedString(self.message)
+        message.font = .monospacedSystemFont(ofSize: Self.fontSize, weight: .regular)
+        message.paragraphStyle = Self.paragraphStyle
+        string += "\n" + message + "\n"
+        
+        string.foregroundColor = .labelColor
+        
+        return string
     }
 }
 
