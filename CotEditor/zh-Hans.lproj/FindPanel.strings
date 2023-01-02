@@ -38,7 +38,7 @@
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
 "ObJ-nS-x0g.ibExternalAccessibilityDescription" = "清除";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "VUA-ld-ABD"; */
 "VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "替换";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "输入用来替换查找到的文本。";

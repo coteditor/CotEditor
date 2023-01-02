@@ -125,11 +125,11 @@
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <accessibility description="Replace"/>
                                             <connections>
-                                                <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="VUA-ld-ABD">
+                                                <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="zVr-vP-4Py">
                                                     <dictionary key="options">
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                        <string key="NSNullPlaceholder">Replace</string>
+                                                        <string key="NSNullPlaceholder">Replace with</string>
                                                         <bool key="NSValidatesImmediately" value="YES"/>
                                                     </dictionary>
                                                 </binding>

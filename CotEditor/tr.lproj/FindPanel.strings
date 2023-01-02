@@ -39,7 +39,7 @@
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
 "ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Temizle";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
+/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "VUA-ld-ABD"; */
 "VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Değiştir";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibExternalAccessibilityDescription" = "Değiştir";
