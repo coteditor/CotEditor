@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ struct KeyBinding: Hashable, Codable {
     
     var name: String
     var action: Selector
+    var tag: Int = 0
     var shortcut: Shortcut?
 }
 

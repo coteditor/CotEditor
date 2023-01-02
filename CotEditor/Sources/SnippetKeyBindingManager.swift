@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
-            let item = KeyBindingItem(name: title, action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
+            let item = KeyBindingItem(name: title, action: action, tag: 0, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
             
             return NamedTreeNode(name: title, representedObject: item)
         }

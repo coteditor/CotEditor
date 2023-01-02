@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -91,7 +91,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         
         let keyBindings = customKeyBindings.filter { $0.shortcut?.isValid ?? true }
         let defaultKeyBindings = self.defaultKeyBindings
-            .filter { kb in !keyBindings.contains { $0.action == kb.action || $0.shortcut == kb.shortcut } }
+            .filter { kb in !keyBindings.contains { ($0.action == kb.action && $0.tag == kb.tag) || $0.shortcut == kb.shortcut } }
         
         return Set(defaultKeyBindings + keyBindings).filter { $0.shortcut != nil }
     }()
@@ -220,7 +220,7 @@ private extension Collection<NSTreeNode> {
                 let shortcut = keyItem.shortcut
             else { return [] }
             
-            return [KeyBinding(name: keyItem.name, action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
+            return [KeyBinding(name: keyItem.name, action: keyItem.action, tag: keyItem.tag, shortcut: shortcut.isValid ? shortcut : nil)]
         }
         
         return Set(keyBindings)

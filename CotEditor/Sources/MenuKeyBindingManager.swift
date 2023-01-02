@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,9 +108,9 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// keyEquivalent and modifierMask for passed-in selector
-    func shortcut(for action: Selector) -> Shortcut {
+    func shortcut(for action: Selector, tag: Int) -> Shortcut {
         
-        let shortcut = self.shortcut(for: action, defaults: false)
+        let shortcut = self.shortcut(for: action, tag: tag, defaults: false)
         
         return shortcut.isValid ? shortcut : .none
     }
@@ -120,10 +120,10 @@ final class MenuKeyBindingManager: KeyBindingManager {
     // MARK: Private Methods
     
     /// return key bindings for selector
-    private func shortcut(for action: Selector, defaults usesDefaults: Bool) -> Shortcut {
+    private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool) -> Shortcut {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
-        let keyBinding = keyBindings.first { $0.action == action }
+        let keyBinding = keyBindings.first { $0.action == action && $0.tag == tag }
         
         return keyBinding?.shortcut ?? .none
     }
@@ -205,7 +205,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
                                         keyEquivalent: menuItem.keyEquivalent)
                 
-                return [KeyBinding(name: menuItem.title, action: action, shortcut: shortcut.isValid ? shortcut : nil)]
+                return [KeyBinding(name: menuItem.title, action: action, tag: menuItem.tag, shortcut: shortcut.isValid ? shortcut : nil)]
             }
     }
     
@@ -238,7 +238,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 guard let action = menuItem.action else { return }
                 
-                let shortcut = self.shortcut(for: action)
+                let shortcut = self.shortcut(for: action, tag: menuItem.tag)
                 
                 // apply only if both keyEquivalent and modifierMask exist
                 guard shortcut.isValid else { return }
@@ -267,12 +267,12 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 guard let action = menuItem.action else { return nil }
                 
-                let defaultShortcut = self.shortcut(for: action, defaults: true)
+                let defaultShortcut = self.shortcut(for: action, tag: menuItem.tag, defaults: true)
                 let shortcut = usesDefaults
                     ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(name: menuItem.title, action: action, shortcut: shortcut, defaultShortcut: defaultShortcut)
+                let item = KeyBindingItem(name: menuItem.title, action: action, tag: menuItem.tag, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
                 return NamedTreeNode(name: menuItem.title, representedObject: item)
             }
