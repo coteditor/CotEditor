@@ -30,13 +30,6 @@ import AudioToolbox
 import UniformTypeIdentifiers
 import SwiftUI
 
-/// keys for styles controller
-private enum StyleKey: String {
-    case name
-    case state
-}
-
-
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
@@ -44,17 +37,18 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
 
     // MARK: Private Properties
     
+    private var styleNames: [String] = []
+    @objc private dynamic var isBundled = false  // binded to remove button
+    
     private var encodingChangeObserver: AnyCancellable?
     private var syntaxStyleChangeObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     
-    @IBOutlet private var stylesController: NSArrayController?
     @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
     @IBOutlet private weak var syntaxStylesDefaultPopup: NSPopUpButton?
-    @IBOutlet private weak var syntaxStyleDeleteButton: NSButton?
     
     
     
@@ -172,12 +166,30 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Delegate & Data Source
     
+    /// number of styles
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+        self.styleNames.count
+    }
+    
+    
+    /// content of table cell
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        guard let name = self.styleNames[safe: row] else { return nil }
+        
+        return ["name": name,
+                "state": SyntaxManager.shared.isCustomizedSetting(name: name)]
+    }
+    
+    
+    
     /// selected syntax style in "Installed styles" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
         guard notification.object as? NSTableView == self.syntaxTableView else { return }
         
-        self.validateRemoveSyntaxStyleButton()
+        self.isBundled = SyntaxManager.shared.isBundledSetting(name: self.selectedStyleName)
     }
     
     
@@ -187,8 +199,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard edge == .trailing else { return [] }
         
         // get swiped style
-        let arrangedObjects = self.stylesController!.arrangedObjects as! [[String: Any]]
-        let styleName = arrangedObjects[row][StyleKey.name] as! String
+        let styleName = self.styleNames[row]
         
         // do nothing on undeletable style
         guard SyntaxManager.shared.isCustomizedSetting(name: styleName) else { return [] }
@@ -264,10 +275,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
         
-        guard
-            let arrangedObjects = self.stylesController?.arrangedObjects as? [[String: Any]],
-            let settingName = arrangedObjects[safe: row]?[StyleKey.name] as? String
-        else { return nil }
+        guard let settingName = self.styleNames[safe: row] else { return nil }
         
         let provider = NSFilePromiseProvider(fileType: UTType.yaml.identifier, delegate: self)
         provider.userInfo = settingName
@@ -506,15 +514,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleNames = SyntaxManager.shared.settingNames
         
-        let styleStates: [[String: Any]] = styleNames.map {
-            [StyleKey.name.rawValue: $0,
-             StyleKey.state.rawValue: SyntaxManager.shared.isCustomizedSetting(name: $0)]
-        }
-        
         // update installed style list table
-        self.stylesController?.content = styleStates
-        self.validateRemoveSyntaxStyleButton()
+        let selectedStyleName = self.selectedStyleName
+        self.styleNames = styleNames
         self.syntaxTableView?.reloadData()
+        if let index = styleNames.firstIndex(of: selectedStyleName) {
+            self.syntaxTableView?.selectRowIndexes([index], byExtendingSelection: false)
+        }
         
         // update default style popup menu
         if let popup = self.syntaxStylesDefaultPopup {
@@ -533,13 +539,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// return syntax style name which is currently selected in the list table
-    @objc private dynamic var selectedStyleName: String {
+    /// syntax style name which is currently selected in the list table
+    private var selectedStyleName: String {
         
-        guard let styleInfo = self.stylesController?.selectedObjects.first as? [String: Any] else {
+        guard let tableView = self.syntaxTableView, tableView.selectedRow >= 0 else {
             return UserDefaults.standard[.syntaxStyle]
         }
-        return styleInfo[StyleKey.name] as! String
+        return self.styleNames[tableView.selectedRow]
     }
     
     
@@ -561,16 +567,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         guard let clickedRow = self.syntaxTableView?.clickedRow, clickedRow != -1 else { return nil }  // clicked blank area
         
-        guard let arrangedObjects = self.stylesController!.arrangedObjects as? [[String: Any]] else { return nil }
-        
-        return arrangedObjects[clickedRow][StyleKey.name] as? String
-    }
-    
-    
-    /// update button that deletes syntax style
-    private func validateRemoveSyntaxStyleButton() {
-        
-        self.syntaxStyleDeleteButton?.isEnabled = !SyntaxManager.shared.isBundledSetting(name: self.selectedStyleName)
+        return self.styleNames[safe: clickedRow]
     }
     
     
