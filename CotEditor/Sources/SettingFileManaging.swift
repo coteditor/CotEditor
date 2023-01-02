@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,14 +27,6 @@ import Combine
 import Foundation
 import AppKit.NSApplication
 import UniformTypeIdentifiers
-
-enum SettingFileType {
-    
-    case syntaxStyle
-    case theme
-    case replacement
-}
-
 
 enum SettingChange {
     
@@ -78,30 +70,30 @@ protocol SettingFileManaging: SettingManaging {
     var didUpdateSetting: PassthroughSubject<SettingChange, Never> { get }
     
     
-    /// directory name in both Application Support and bundled Resources
+    /// Directory name in both Application Support and bundled Resources.
     static var directoryName: String { get }
     
     /// UTType of user setting file
     var fileType: UTType { get }
     
-    /// list of names of setting file name (without extension)
+    /// List of names of setting file name (without extension).
     var settingNames: [String] { get set }
     
-    /// list of names of setting file name which are bundled (without extension)
+    /// List of names of setting file name which are bundled (without extension).
     var bundledSettingNames: [String] { get }
     
-    /// stored settings to avoid loading frequently-used setting files multiple times
+    /// Stored settings to avoid loading frequently-used setting files multiple times.
     var cachedSettings: [String: Setting] { get set }
     
     
-    /// return setting instance corresponding to the given setting name
+    /// Return setting instance corresponding to the given setting name.
     func setting(name: String) -> Setting?
     
-    /// load settings in the user domain
+    /// Load setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting
     
-    /// load settings in the user domain
-    func checkUserSettings()
+    /// Load settings in the user domain.
+    func loadUserSettings()
 }
 
 
@@ -165,7 +157,9 @@ extension SettingFileManaging {
         
         guard self.settingNames.contains(name) else { return nil }
         
-        return self.userSettingFileURLs.first { self.settingName(from: $0) == name }
+        let url = self.preparedURLForUserSetting(name: name)
+        
+        return url.isReachable ? url : nil
     }
     
     
@@ -247,7 +241,6 @@ extension SettingFileManaging {
         
         let change: SettingChange = .removed(name)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
     
     
@@ -264,7 +257,6 @@ extension SettingFileManaging {
         
         let change: SettingChange = .updated(from: name, to: name)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
     
     
@@ -286,7 +278,6 @@ extension SettingFileManaging {
         
         let change: SettingChange = .added(newName)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
         
         return newName
     }
@@ -307,7 +298,6 @@ extension SettingFileManaging {
         
         let change: SettingChange = .updated(from: name, to: newName)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
     
     
@@ -345,7 +335,7 @@ extension SettingFileManaging {
     }
     
     
-    /// import setting at passed-in URL
+    /// Import setting at passed-in URL.
     ///
     /// - Throws: `SettingFileError`
     func importSetting(fileURL: URL) throws {
@@ -367,8 +357,14 @@ extension SettingFileManaging {
     }
     
     
-    /// Reload internal cache data from the user domain.
+    /// Update the managed setting list by applying the given change.
+    ///
+    /// - Parameter change: The change.
     func updateSettingList(change: SettingChange) {
+        
+        defer {
+            self.didUpdateSetting.send(change)
+        }
         
         guard change.old != change.new else { return }
         
@@ -385,15 +381,6 @@ extension SettingFileManaging {
         guard settingNames != self.settingNames else { return }
         
         self.settingNames = settingNames
-    }
-    
-    
-    /// Reload internal cache data from the user domain.
-    func reloadCache() {
-        
-        Task.detached(priority: .utility) {
-            self.checkUserSettings()
-        }
     }
     
     
@@ -435,9 +422,10 @@ extension SettingFileManaging {
         }
         
         // update internal cache
-        let change: SettingChange = self.settingNames.contains(name) ? .updated(from: name, to: name) : .added(name)
+        let change: SettingChange = self.settingNames.contains(name)
+            ? .updated(from: name, to: name)
+            : .added(name)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
 }
 

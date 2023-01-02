@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ final class ReplacementManager: SettingFileManaging {
     
     private init() {
         
-        self.checkUserSettings()
+        self.loadUserSettings()
     }
     
     
@@ -82,7 +82,6 @@ final class ReplacementManager: SettingFileManaging {
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
     
     
@@ -103,7 +102,7 @@ final class ReplacementManager: SettingFileManaging {
     
     // MARK: Setting File Managing
     
-    /// load setting from the file at given URL
+    /// Load setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         let decoder = JSONDecoder()
@@ -113,8 +112,8 @@ final class ReplacementManager: SettingFileManaging {
     }
     
     
-    /// load settings in the user domain
-    func checkUserSettings() {
+    /// Load settings in the user domain.
+    func loadUserSettings() {
         
         // get user setting names if exists
         self.settingNames = self.userSettingFileURLs

@@ -35,7 +35,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // MARK: Private Properties
     
     private var themeNames: [String] = []
-    @objc private dynamic var isBundled = false
+    @objc private dynamic var isBundled = false  // binded to remove button
     
     private var fontObserver: AnyCancellable?
     private var themeManagerObservers: Set<AnyCancellable> = []
@@ -161,14 +161,14 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         switch menuItem.action {
             case #selector(addTheme), #selector(importTheme(_:)):
                 menuItem.isHidden = (isContextualMenu && itemSelected)
-            
+                
             case #selector(renameTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
                 return !isBundled
-            
+                
             case #selector(duplicateTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Duplicate “\(name)”")
@@ -350,7 +350,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         guard ThemeManager.shared.isCustomizedSetting(name: themeName) else { return [] }
         
         if ThemeManager.shared.isBundledSetting(name: themeName) {
-            // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
                                          handler: { [weak self] (_, _) in
@@ -359,9 +358,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                                             // finish swiped mode anyway
                                             tableView.rowActionsVisible = false
                                          })]
-            
         } else {
-            // Delete
             return [NSTableViewRowAction(style: .destructive,
                                          title: "Delete".localized,
                                          handler: { [weak self] (_, _) in
@@ -555,14 +552,16 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     @IBAction func reloadAllThemes(_ sender: Any?) {
         
-        ThemeManager.shared.reloadCache()
+        Task.detached(priority: .utility) {
+            ThemeManager.shared.loadUserSettings()
+        }
     }
     
     
     
     // MARK: Private Methods
     
-    /// return theme name which is currently selected in the list table
+    /// Theme name which is currently selected in the list table.
     private var selectedThemeName: String {
         
         guard let tableView = self.themeTableView, tableView.selectedRow >= 0 else {

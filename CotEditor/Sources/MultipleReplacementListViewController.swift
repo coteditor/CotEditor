@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -255,7 +255,9 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     /// Reload all setting files in Application Support.
     @IBAction func reloadAllSettings(_ sender: Any?) {
         
-        ReplacementManager.shared.reloadCache()
+        Task.detached(priority: .utility) {
+            ReplacementManager.shared.loadUserSettings()
+        }
     }
     
     

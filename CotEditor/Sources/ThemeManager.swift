@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ final class ThemeManager: SettingFileManaging {
             .sorted(options: [.localized, .caseInsensitive])
         
         // cache user setting names
-        self.checkUserSettings()
+        self.loadUserSettings()
     }
     
     
@@ -143,7 +143,6 @@ final class ThemeManager: SettingFileManaging {
             ? .updated(from: name, to: name)
             : .added(name)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
     
     
@@ -194,15 +193,15 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Setting File Managing
     
-    /// load setting from the file at given URL
+    /// Load setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         try Theme(contentsOf: fileURL)
     }
     
     
-    /// load settings in the user domain
-    func checkUserSettings() {
+    /// Load settings in the user domain.
+    func loadUserSettings() {
         
         // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs

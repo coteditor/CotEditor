@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -194,7 +194,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard SyntaxManager.shared.isCustomizedSetting(name: styleName) else { return [] }
         
         if SyntaxManager.shared.isBundledSetting(name: styleName) {
-            // Restore
             return [NSTableViewRowAction(style: .regular,
                                          title: "Restore".localized,
                                          handler: { [weak self] (_, _) in
@@ -203,9 +202,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                                             // finish swiped mode anyway
                                             tableView.rowActionsVisible = false
                                          })]
-            
         } else {
-            // Delete
             return [NSTableViewRowAction(style: .destructive,
                                          title: "Delete".localized,
                                          handler: { [weak self] (_, _) in
@@ -457,7 +454,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     @IBAction func reloadAllStyles(_ sender: Any?) {
         
-        SyntaxManager.shared.reloadCache()
+        Task.detached(priority: .utility) {
+            SyntaxManager.shared.loadUserSettings()
+        }
     }
     
     

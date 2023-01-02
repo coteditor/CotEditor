@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -99,11 +99,11 @@ final class SyntaxManager: SettingFileManaging {
         try? self.sanitizeUserSettings()
         
         // cache user styles
-        self.checkUserSettings()
+        self.loadUserSettings()
         
         // update also .mappingTables
         self.settingUpdateObserver = self.didUpdateSetting
-            .sink { [weak self] _ in self?.checkUserSettings() }
+            .sink { [weak self] _ in self?.loadUserSettings() }
     }
     
     
@@ -242,7 +242,6 @@ final class SyntaxManager: SettingFileManaging {
         // update internal cache
         let change: SettingChange = oldName.flatMap { .updated(from: $0, to: name) } ?? .added(name)
         self.updateSettingList(change: change)
-        self.didUpdateSetting.send(change)
     }
     
     
@@ -314,7 +313,7 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// load setting from the file at given URL
+    /// Load setting from the file at the given URL.
     func loadSetting(at fileURL: URL) throws -> Setting {
         
         let dictionary = try self.loadSettingDictionary(at: fileURL)
@@ -324,8 +323,8 @@ final class SyntaxManager: SettingFileManaging {
     }
     
     
-    /// load settings in the user domain
-    func checkUserSettings() {
+    /// Load settings in the user domain.
+    func loadUserSettings() {
         
         // load mapping definitions from style files in user domain
         let mappingKeys = SyntaxKey.mappingKeys.map(\.rawValue)
