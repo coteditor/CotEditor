@@ -1,5 +1,5 @@
 //
-//  MultipleReplacement+Codable.swift
+//  MultipleReplace+Codable.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension MultipleReplacement.Replacement: Codable {
+extension MultipleReplace.Replacement: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -75,7 +75,7 @@ extension MultipleReplacement.Replacement: Codable {
 
 
 
-extension MultipleReplacement.Settings: Codable {
+extension MultipleReplace.Settings: Codable {
     
     private enum CodingKeys: String, CodingKey {
         

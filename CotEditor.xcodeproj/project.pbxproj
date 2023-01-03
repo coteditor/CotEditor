@@ -125,16 +125,16 @@
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
 		2A222C3024FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */; };
 		2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */; };
-		2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */; };
-		2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */; };
-		2A231A281E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */; };
-		2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */; };
+		2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
+		2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */; };
+		2A231A281E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */; };
+		2A231A291E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */; };
 		2A231A2D1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
 		2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */; };
-		2A231A361E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */; };
-		2A231A371E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */; };
-		2A231A391E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */; };
-		2A231A3A1E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */; };
+		2A231A361E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
+		2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */; };
+		2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
+		2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */; };
 		2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */; };
 		2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */; };
 		2A25C52820F06BE80003AE1A /* CustomTabWidthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */; };
@@ -165,8 +165,8 @@
 		2A341D1B281EE23C00B85CB6 /* UserActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A341D19281EE23C00B85CB6 /* UserActivity.swift */; };
 		2A34C50A2807EC4E005E9AAB /* KeySortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34C5092807EC4E005E9AAB /* KeySortable.swift */; };
 		2A34C50B2807EC4E005E9AAB /* KeySortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34C5092807EC4E005E9AAB /* KeySortable.swift */; };
-		2A3581981E597ECE00762AA5 /* MultipleReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* MultipleReplacement.swift */; };
-		2A3581991E597ECE00762AA5 /* MultipleReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* MultipleReplacement.swift */; };
+		2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* MultipleReplace.swift */; };
+		2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* MultipleReplace.swift */; };
 		2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
 		2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
 		2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */; };
@@ -179,12 +179,12 @@
 		2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
 		2A39F15726F74C2500B52876 /* AccessibleStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39F15626F74C2500B52876 /* AccessibleStepper.swift */; };
 		2A39F15826F74C2500B52876 /* AccessibleStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A39F15626F74C2500B52876 /* AccessibleStepper.swift */; };
-		2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplacement.swift */; };
-		2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplacement.swift */; };
+		2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
+		2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */; };
 		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
 		2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
-		2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */; };
+		2A3D63FB1E769DDF00F538E1 /* MultipleReplacePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacePanel.storyboard */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
 		2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */; };
@@ -592,8 +592,8 @@
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
 		2ACC21B61E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
-		2ACC5E411E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* MultipleReplacementViewController.swift */; };
-		2ACC5E421E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* MultipleReplacementViewController.swift */; };
+		2ACC5E411E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */; };
+		2ACC5E421E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
 		2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BC22A87EFD00893051 /* ColorCode */; };
 		2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BE22A87F0400893051 /* ColorCode */; };
@@ -622,7 +622,7 @@
 		2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */; };
 		2ACDE2A02406B9C000FC31EC /* WarningsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* WarningsView.storyboard */; };
 		2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1081E708CDF0027192A /* KeyBindingsPane.storyboard */; };
-		2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */; };
+		2ACDE2A32406B9C000FC31EC /* MultipleReplacePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* MultipleReplacePanel.storyboard */; };
 		2ACDE2A52406B9C000FC31EC /* OutlineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D420450C0000830830 /* OutlineView.storyboard */; };
 		2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */; };
 		2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D11E1E713BE60027192A /* PrintPane.storyboard */; };
@@ -738,8 +738,8 @@
 		2AF6A5C828053179005F580B /* InconsistentLineEndingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */; };
 		2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAA294B9488009AD47F /* FindSettingsView.swift */; };
 		2AF98CAC294B9488009AD47F /* FindSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAA294B9488009AD47F /* FindSettingsView.swift */; };
-		2AF98CAF294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */; };
-		2AF98CB0294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */; };
+		2AF98CAF294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */; };
+		2AF98CB0294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
@@ -821,7 +821,7 @@
 		08C28F8F279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
 		08C28F90279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/SyntaxInfoEditView.strings; sourceTree = "<group>"; };
 		08C28F94279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		08C28F96279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
+		08C28F96279CBE2E0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
 		08C28F97279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		08C28F98279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		08C28F99279CBE2F0016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OutlineView.strings; sourceTree = "<group>"; };
@@ -840,7 +840,7 @@
 		08C28FB2279CBE530016693E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Unicode.strings; sourceTree = "<group>"; };
 		0D51D5672274EAD300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		0D51D5682274EAD400A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		0D51D56B2274EAD600A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
+		0D51D56B2274EAD600A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
 		0D51D56C2274EAD700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		0D51D56D2274EAD700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DocumentInspectorView.strings; sourceTree = "<group>"; };
 		0D51D56E2274EAD800A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OutlineView.strings; sourceTree = "<group>"; };
@@ -961,11 +961,11 @@
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A222C2F24FA8E0500251084 /* UserDefaults.Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.Publisher.swift; sourceTree = "<group>"; };
-		2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement+Codable.swift"; sourceTree = "<group>"; };
-		2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement.Settings+Object.swift"; sourceTree = "<group>"; };
+		2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplace+Codable.swift"; sourceTree = "<group>"; };
+		2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplace.Settings+Object.swift"; sourceTree = "<group>"; };
 		2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindProgress.swift; sourceTree = "<group>"; };
-		2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementSplitViewController.swift; sourceTree = "<group>"; };
-		2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementListViewController.swift; sourceTree = "<group>"; };
+		2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSplitViewController.swift; sourceTree = "<group>"; };
+		2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceListViewController.swift; sourceTree = "<group>"; };
 		2A2391E42907B03800BCFEC9 /* ShrinkPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkPopUpButton.swift; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthView.swift; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
@@ -981,17 +981,17 @@
 		2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxDictionary.swift; sourceTree = "<group>"; };
 		2A341D19281EE23C00B85CB6 /* UserActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivity.swift; sourceTree = "<group>"; };
 		2A34C5092807EC4E005E9AAB /* KeySortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeySortable.swift; sourceTree = "<group>"; };
-		2A3581971E597ECE00762AA5 /* MultipleReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacement.swift; sourceTree = "<group>"; };
+		2A3581971E597ECE00762AA5 /* MultipleReplace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplace.swift; sourceTree = "<group>"; };
 		2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Responder.swift"; sourceTree = "<group>"; };
 		2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplacementManager.swift; sourceTree = "<group>"; };
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
 		2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTableViewDelegate.swift; sourceTree = "<group>"; };
 		2A39F15626F74C2500B52876 /* AccessibleStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibleStepper.swift; sourceTree = "<group>"; };
-		2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultipleReplacement.swift"; sourceTree = "<group>"; };
+		2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultipleReplace.swift"; sourceTree = "<group>"; };
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
-		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplacementPanel.storyboard; sourceTree = "<group>"; };
+		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MultipleReplacePanel.storyboard; sourceTree = "<group>"; };
 		2A3E61BE27C3795B00C6E5B6 /* OptionalMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalMenu.swift; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1338,7 +1338,7 @@
 		2ACA0CAB21A3C12400723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		2ACC21B11E52B7920078241F /* DefaultOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
-		2ACC5E401E7B08D300109ABC /* MultipleReplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementViewController.swift; sourceTree = "<group>"; };
+		2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplaceViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
@@ -1379,11 +1379,11 @@
 		2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+SurroundSelection.swift"; sourceTree = "<group>"; };
 		2AE12E061E7DDF0700681F72 /* CustomSurroundStringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSurroundStringView.swift; sourceTree = "<group>"; };
 		2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
-		2AE439CF20A127DD00EED807 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
-		2AE439D120A127EE00EED807 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MultipleReplacementPanel.strings"; sourceTree = "<group>"; };
-		2AE439D320A1280500EED807 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
-		2AE439D520A1280700EED807 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
-		2AE439D720A1280800EED807 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
+		2AE439CF20A127DD00EED807 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
+		2AE439D120A127EE00EED807 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MultipleReplacePanel.strings"; sourceTree = "<group>"; };
+		2AE439D320A1280500EED807 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
+		2AE439D520A1280700EED807 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
+		2AE439D720A1280800EED807 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/MultipleReplacePanel.strings; sourceTree = "<group>"; };
 		2AE4658627A5A7CE00D2904F /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		2AE4658727A6BDCF00D2904F /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
@@ -1435,7 +1435,7 @@
 		2AF5D0E4286D9AB3000BE826 /* ArithmetricsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArithmetricsTests.swift; sourceTree = "<group>"; };
 		2AF6A5C528053179005F580B /* InconsistentLineEndingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InconsistentLineEndingsViewController.swift; sourceTree = "<group>"; };
 		2AF98CAA294B9488009AD47F /* FindSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindSettingsView.swift; sourceTree = "<group>"; };
-		2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacementSettingsView.swift; sourceTree = "<group>"; };
+		2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplaceSettingsView.swift; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
@@ -1493,7 +1493,7 @@
 		5B0884F728296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
 		5B0884F828296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
 		5B0884FB28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/FindPanel.strings"; sourceTree = "<group>"; };
-		5B0884FD28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MultipleReplacementPanel.strings"; sourceTree = "<group>"; };
+		5B0884FD28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/MultipleReplacePanel.strings"; sourceTree = "<group>"; };
 		5B0884FE28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
 		5B0884FF28296B60003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
 		5B08850028296B61003D4C2D /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/OutlineView.strings"; sourceTree = "<group>"; };
@@ -1531,7 +1531,7 @@
 		98EAE82027A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxFileMappingEditView.strings"; sourceTree = "<group>"; };
 		98EAE82127A5D7D800C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/SyntaxInfoEditView.strings"; sourceTree = "<group>"; };
 		98EAE82527A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/FindPanel.strings"; sourceTree = "<group>"; };
-		98EAE82727A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/MultipleReplacementPanel.strings"; sourceTree = "<group>"; };
+		98EAE82727A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/MultipleReplacePanel.strings"; sourceTree = "<group>"; };
 		98EAE82827A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
 		98EAE82927A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/DocumentInspectorView.strings"; sourceTree = "<group>"; };
 		98EAE82A27A5D7D900C6D571 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/OutlineView.strings"; sourceTree = "<group>"; };
@@ -1833,10 +1833,10 @@
 		2A231A2A1E7BD92F00C2A909 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A3581971E597ECE00762AA5 /* MultipleReplacement.swift */,
-				2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */,
-				2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */,
-				2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplacement.swift */,
+				2A3581971E597ECE00762AA5 /* MultipleReplace.swift */,
+				2A231A241E7B4EDC00C2A909 /* MultipleReplace+Codable.swift */,
+				2A231A271E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift */,
+				2A3A19DE2068A76600516DE4 /* NSTextView+MultipleReplace.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1844,9 +1844,9 @@
 		2A231A2B1E7BD93600C2A909 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2A231A351E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift */,
-				2A231A381E7C31F400C2A909 /* MultipleReplacementListViewController.swift */,
-				2ACC5E401E7B08D300109ABC /* MultipleReplacementViewController.swift */,
+				2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */,
+				2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */,
+				2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1855,7 +1855,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
-				2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */,
+				2A3D63F91E769DDF00F538E1 /* MultipleReplacePanel.storyboard */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -1881,14 +1881,14 @@
 			name = "Keybindings Edit Pane";
 			sourceTree = "<group>";
 		};
-		2A3581931E597AFE00762AA5 /* Multiple Replacement */ = {
+		2A3581931E597AFE00762AA5 /* Multiple Replace */ = {
 			isa = PBXGroup;
 			children = (
 				2A231A2A1E7BD92F00C2A909 /* Models */,
 				2AF98CAD294C063E009AD47F /* Views */,
 				2A231A2B1E7BD93600C2A909 /* View Controllers */,
 			);
-			name = "Multiple Replacement";
+			name = "Multiple Replace";
 			sourceTree = "<group>";
 		};
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
@@ -2239,7 +2239,7 @@
 				2AB1BD21287D752300C6FEAF /* Views */,
 				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
-				2A3581931E597AFE00762AA5 /* Multiple Replacement */,
+				2A3581931E597AFE00762AA5 /* Multiple Replace */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -2500,7 +2500,7 @@
 		2AF98CAD294C063E009AD47F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2AF98CAE294C0670009AD47F /* MultipleReplacementSettingsView.swift */,
+				2AF98CAE294C0670009AD47F /* MultipleReplaceSettingsView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2752,7 +2752,7 @@
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
 				2ACDE29D2406B9C000FC31EC /* GeneralPane.storyboard in Resources */,
 				2ACDE2A22406B9C000FC31EC /* KeyBindingsPane.storyboard in Resources */,
-				2ACDE2A32406B9C000FC31EC /* MultipleReplacementPanel.storyboard in Resources */,
+				2ACDE2A32406B9C000FC31EC /* MultipleReplacePanel.storyboard in Resources */,
 				2ACDE2A52406B9C000FC31EC /* OutlineView.storyboard in Resources */,
 				2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */,
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
@@ -2819,7 +2819,7 @@
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2AC20A711E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
 				2A10D10A1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */,
-				2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */,
+				2A3D63FB1E769DDF00F538E1 /* MultipleReplacePanel.storyboard in Resources */,
 				2AE7A8D620450C0000830830 /* OutlineView.storyboard in Resources */,
 				2A1893A41FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A10D1201E713BE60027192A /* PrintPane.storyboard in Resources */,
@@ -3074,13 +3074,13 @@
 				2A59B7032957089A0094F03B /* LinkButton.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
-				2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
-				2A3581991E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
-				2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
-				2A231A3A1E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */,
-				2AF98CAF294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */,
-				2A231A371E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
-				2ACC5E421E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */,
+				2A231A291E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */,
+				2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
+				2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
+				2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
+				2AF98CAF294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
+				2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */,
+				2ACC5E421E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
 				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
@@ -3117,7 +3117,7 @@
 				2A478F4022BE743200AEA45E /* NSTextView+Ligature.swift in Sources */,
 				2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2A72DA11209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */,
-				2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplacement.swift in Sources */,
+				2A3A19E02068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */,
 				2AC6BFD221D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */,
 				2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2AD69B891D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift in Sources */,
@@ -3420,13 +3420,13 @@
 				2A59B7042957089A0094F03B /* LinkButton.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
-				2A231A281E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
-				2A3581981E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
-				2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
-				2A231A391E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */,
-				2AF98CB0294C0670009AD47F /* MultipleReplacementSettingsView.swift in Sources */,
-				2A231A361E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
-				2ACC5E411E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */,
+				2A231A281E7BD82700C2A909 /* MultipleReplace.Settings+Object.swift in Sources */,
+				2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
+				2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
+				2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
+				2AF98CB0294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
+				2A231A361E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */,
+				2ACC5E411E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
 				2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
@@ -3463,7 +3463,7 @@
 				2A478F3F22BE743200AEA45E /* NSTextView+Ligature.swift in Sources */,
 				2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2A72DA10209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */,
-				2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplacement.swift in Sources */,
+				2A3A19DF2068A76600516DE4 /* NSTextView+MultipleReplace.swift in Sources */,
 				2AC6BFD121D00ABD00FF325C /* NSTextView+RegexParse.swift in Sources */,
 				2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* NSTextView+ScriptingSupport.swift in Sources */,
@@ -3746,7 +3746,7 @@
 			name = PatternSortView.storyboard;
 			sourceTree = "<group>";
 		};
-		2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */ = {
+		2A3D63F91E769DDF00F538E1 /* MultipleReplacePanel.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2A3D63FA1E769DDF00F538E1 /* Base */,
@@ -3760,7 +3760,7 @@
 				2AE439D720A1280800EED807 /* pt */,
 				08C28F96279CBE2E0016693E /* tr */,
 			);
-			name = MultipleReplacementPanel.storyboard;
+			name = MultipleReplacePanel.storyboard;
 			sourceTree = "<group>";
 		};
 		2A4144B6201397150061F653 /* WarningsView.storyboard */ = {

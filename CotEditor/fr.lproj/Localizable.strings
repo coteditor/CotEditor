@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2022 CotEditor Project
+//  © 2019-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -206,7 +206,7 @@
 
 
 
-/* MARK: Multiple Replacement View */
+/* MARK: Multiple Replace View */
 // Undo action names
 "Insert Rule" = "Nouvelle règle";
 "Delete Rules" = "Supprimer les règles";

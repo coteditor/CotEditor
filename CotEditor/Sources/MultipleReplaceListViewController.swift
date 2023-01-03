@@ -1,5 +1,5 @@
 //
-//  MultipleReplacementListViewController.swift
+//  MultipleReplaceListViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -28,7 +28,7 @@ import Cocoa
 import AudioToolbox
 import UniformTypeIdentifiers
 
-final class MultipleReplacementListViewController: NSViewController, NSMenuItemValidation {
+final class MultipleReplaceListViewController: NSViewController, NSMenuItemValidation {
     
     // MARK: Private Properties
     
@@ -72,7 +72,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         // select an item in list
         let row: Int = {
             guard
-                let lastSelectedName = UserDefaults.standard[.selectedMultipleReplacementSettingName],
+                let lastSelectedName = UserDefaults.standard[.selectedMultipleReplaceSettingName],
                 let row = self.settingNames.firstIndex(of: lastSelectedName)
             else { return 0 }
             
@@ -265,9 +265,9 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     // MARK: Private Methods
     
     /// Return the view controller for the detail view on the right side in the panel.
-    private var detailViewController: MultipleReplacementViewController? {
+    private var detailViewController: MultipleReplaceViewController? {
         
-        (self.parent as? MultipleReplacementSplitViewController)?.detailSplitViewItem?.viewController as? MultipleReplacementViewController
+        (self.parent as? MultipleReplaceSplitViewController)?.detailSplitViewItem?.viewController as? MultipleReplaceViewController
     }
     
     
@@ -383,7 +383,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     /// Save the given setting as the current selected name.
     ///
     /// - Parameter setting: The setting to save.
-    private func saveSetting(setting: MultipleReplacement) {
+    private func saveSetting(setting: MultipleReplace) {
         
         guard let name = self.selectedSettingName else { return }
         
@@ -399,7 +399,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
 
 // MARK: - TableView Data Source
 
-extension MultipleReplacementListViewController: NSTableViewDataSource {
+extension MultipleReplaceListViewController: NSTableViewDataSource {
     
     /// number of settings
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -475,7 +475,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
 
 // MARK: - File Promise Provider Delegate
 
-extension MultipleReplacementListViewController: NSFilePromiseProviderDelegate {
+extension MultipleReplaceListViewController: NSFilePromiseProviderDelegate {
     
     func filePromiseProvider(_ filePromiseProvider: NSFilePromiseProvider, fileNameForType fileType: String) -> String {
         
@@ -503,7 +503,7 @@ extension MultipleReplacementListViewController: NSFilePromiseProviderDelegate {
 
 // MARK: - TableView Delegate
 
-extension MultipleReplacementListViewController: NSTableViewDelegate {
+extension MultipleReplaceListViewController: NSTableViewDelegate {
     
     /// selection of setting table will change
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
@@ -524,7 +524,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
         else { return }
         
         self.detailViewController?.change(setting: setting)
-        UserDefaults.standard[.selectedMultipleReplacementSettingName] = settingName
+        UserDefaults.standard[.selectedMultipleReplaceSettingName] = settingName
     }
 }
 
@@ -532,7 +532,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
 
 // MARK: - TextField Delegate
 
-extension MultipleReplacementListViewController: NSTextFieldDelegate {
+extension MultipleReplaceListViewController: NSTextFieldDelegate {
     
     /// setting name was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
@@ -564,7 +564,7 @@ extension MultipleReplacementListViewController: NSTextFieldDelegate {
 
 // MARK: - Menu Delegate
 
-extension MultipleReplacementListViewController: NSMenuDelegate {
+extension MultipleReplaceListViewController: NSMenuDelegate {
     
     func menuWillOpen(_ menu: NSMenu) {
         

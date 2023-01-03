@@ -29,7 +29,7 @@ import UniformTypeIdentifiers
 
 final class ReplacementManager: SettingFileManaging {
     
-    typealias Setting = MultipleReplacement
+    typealias Setting = MultipleReplace
     
     
     // MARK: Public Properties

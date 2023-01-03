@@ -1,5 +1,5 @@
 //
-//  NSTextView+MultipleReplacement.swift
+//  NSTextView+MultipleReplace.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`
-    @MainActor func highlight(_ definition: MultipleReplacement, inSelection: Bool) async throws -> String {
+    @MainActor func highlight(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         self.isEditable = false
         defer { self.isEditable = true }
@@ -90,7 +90,7 @@ extension NSTextView {
     ///   - inSelection: Whether find string only in selectedRanges.
     /// - Returns: A result message.
     /// - Throws: `CancellationError`
-    @MainActor func replaceAll(_ definition: MultipleReplacement, inSelection: Bool) async throws -> String {
+    @MainActor func replaceAll(_ definition: MultipleReplace, inSelection: Bool) async throws -> String {
         
         self.isEditable = false
         defer { self.isEditable = true }

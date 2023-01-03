@@ -1,5 +1,5 @@
 //
-//  MultipleReplacement.swift
+//  MultipleReplace.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class MultipleReplacement: Codable {
+final class MultipleReplace: Codable {
     
     struct Replacement: Equatable {
         
@@ -55,7 +55,7 @@ final class MultipleReplacement: Codable {
 
 // MARK: - Replacement
 
-extension MultipleReplacement {
+extension MultipleReplace {
     
     struct Result {
         
@@ -164,13 +164,13 @@ extension MultipleReplacement {
 }
 
 
-private extension MultipleReplacement.Replacement {
+private extension MultipleReplace.Replacement {
     
     /// Create TextFind.Mode with Replacement.
     ///
     /// - Parameter settings: The replacement settings to obtain the mode.
     /// - Returns: A TextFind.Mode.
-    func mode(settings: MultipleReplacement.Settings) -> TextFind.Mode {
+    func mode(settings: MultipleReplace.Settings) -> TextFind.Mode {
         
         if self.usesRegularExpression {
             let options = settings.regexOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
@@ -189,7 +189,7 @@ private extension MultipleReplacement.Replacement {
 
 // MARK: - Validation
 
-extension MultipleReplacement.Replacement {
+extension MultipleReplace.Replacement {
     
     /// Check if replacement rule is valid.
     ///

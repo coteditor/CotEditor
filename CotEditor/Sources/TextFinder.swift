@@ -139,7 +139,7 @@ final class TextFinder {
     private var highlightObserver: AnyCancellable?
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel").instantiateInitialController()!
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel").instantiateInitialController()!
+    private lazy var multipleReplacePanelController: NSWindowController = NSStoryboard(name: "MultipleReplacePanel").instantiateInitialController()!
     
     
     
@@ -264,7 +264,7 @@ final class TextFinder {
                 self.unhighlight()
                 
             case .showMultipleReplaceInterface:
-                self.multipleReplacementPanelController.showWindow(nil)
+                self.multipleReplacePanelController.showWindow(nil)
         }
     }
     

@@ -1,5 +1,5 @@
 //
-//  MultipleReplacementViewController.swift
+//  MultipleReplaceViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,16 +27,16 @@ import Cocoa
 import SwiftUI
 import Combine
 
-final class MultipleReplacementViewController: NSViewController {
+final class MultipleReplaceViewController: NSViewController {
     
     // MARK: Public Properties
     
-    let didSettingUpdate: PassthroughSubject<MultipleReplacement, Never> = .init()
+    let didSettingUpdate: PassthroughSubject<MultipleReplace, Never> = .init()
     
     
     // MARK: Private Properties
     
-    private var definition = MultipleReplacement()
+    private var definition = MultipleReplace()
     private lazy var updateNotificationDebouncer = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
     
     @objc private dynamic var hasInvalidSetting = false
@@ -100,7 +100,7 @@ final class MultipleReplacementViewController: NSViewController {
         self.endEditing()
         
         let row = self.tableView?.selectedRowIndexes.last.flatMap { $0 + 1 } ?? self.definition.replacements.endIndex
-        let replacements = [MultipleReplacement.Replacement()]
+        let replacements = [MultipleReplace.Replacement()]
         
         self.insertReplacements(replacements, at: [row])
         
@@ -134,11 +134,11 @@ final class MultipleReplacementViewController: NSViewController {
     /// Show the advanced options view.
     @IBAction func showOptions(_ sender: NSButton) {
         
-        if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<MultipleReplacementSettingsView> }) {
+        if let viewController = self.presentedViewControllers?.first(where: { $0 is NSHostingController<MultipleReplaceSettingsView> }) {
             return self.dismiss(viewController)
         }
         
-        let view = MultipleReplacementSettingsView(settings: self.definition.settings) { settings in
+        let view = MultipleReplaceSettingsView(settings: self.definition.settings) { settings in
             guard self.definition.settings != settings else { return }
             
             self.definition.settings = settings
@@ -196,7 +196,7 @@ final class MultipleReplacementViewController: NSViewController {
     /// Set another replacement definition.
     ///
     /// - Parameter setting: The setting to replace.
-    func change(setting: MultipleReplacement) {
+    func change(setting: MultipleReplace) {
         
         self.definition = setting
         self.hasInvalidSetting = false
@@ -250,7 +250,7 @@ final class MultipleReplacementViewController: NSViewController {
     /// - Parameters:
     ///   - replacements: New replacement definitions to insert.
     ///   - rowIndexes: Rows of definitions to insert.
-    private func insertReplacements(_ replacements: [MultipleReplacement.Replacement], at rowIndexes: IndexSet) {
+    private func insertReplacements(_ replacements: [MultipleReplace.Replacement], at rowIndexes: IndexSet) {
         
         assert(replacements.count == rowIndexes.count)
         
@@ -310,7 +310,7 @@ final class MultipleReplacementViewController: NSViewController {
     /// - Parameters:
     ///   - replacements: New replacement definitions to update.
     ///   - rowIndexes: Rows of definitions to be updated.
-    private func updateReplacements(_ replacements: [MultipleReplacement.Replacement], at rowIndexes: IndexSet) {
+    private func updateReplacements(_ replacements: [MultipleReplace.Replacement], at rowIndexes: IndexSet) {
         
         assert(replacements.count == rowIndexes.count)
         
@@ -399,7 +399,7 @@ private extension NSPasteboard.PasteboardType {
 }
 
 
-extension MultipleReplacementViewController: NSTableViewDelegate {
+extension MultipleReplaceViewController: NSTableViewDelegate {
     
     /// selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -488,7 +488,7 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
         
         let identifier = tableView.tableColumns[column].identifier
         
-        let replacements: [MultipleReplacement.Replacement] = rowIndexes
+        let replacements: [MultipleReplace.Replacement] = rowIndexes
             .map { self.definition.replacements[$0] }
             .map { replacement in
                 var replacement = replacement
@@ -532,7 +532,7 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
 }
 
 
-extension MultipleReplacementViewController: NSTableViewDataSource {
+extension MultipleReplaceViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         

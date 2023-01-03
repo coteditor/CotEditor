@@ -1,5 +1,5 @@
 //
-//  MultipleReplacement.Settings+Object.swift
+//  MultipleReplace.Settings+Object.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension MultipleReplacement.Settings {
+extension MultipleReplace.Settings {
     
     /// Observable object to modify settings in the UI.
     final class Object: ObservableObject {
@@ -45,7 +45,7 @@ extension MultipleReplacement.Settings {
         
         // MARK: - Lifecycle
         
-        init(settings: MultipleReplacement.Settings) {
+        init(settings: MultipleReplace.Settings) {
             
             self.textIsLiteralSearch = settings.textualOptions.contains(.literal)
             self.textIgnoresDiacriticMarks = settings.textualOptions.contains(.diacriticInsensitive)
@@ -60,7 +60,7 @@ extension MultipleReplacement.Settings {
         }
         
         
-        var settings: MultipleReplacement.Settings {
+        var settings: MultipleReplace.Settings {
             
             let textualOptions = String.CompareOptions()
                 .union(self.textIsLiteralSearch ? .literal : [])
@@ -72,7 +72,7 @@ extension MultipleReplacement.Settings {
                 .union(self.regexIsMultiline ? .anchorsMatchLines : [])
                 .union(self.regexUsesUnicodeBoundaries ? .useUnicodeWordBoundaries : [])
             
-            return MultipleReplacement.Settings(textualOptions: textualOptions,
+            return MultipleReplace.Settings(textualOptions: textualOptions,
                                                 regexOptions: regexOptions,
                                                 matchesFullWord: self.textMatchesFullWord,
                                                 unescapesReplacementString: self.regexUnescapesReplacementString)

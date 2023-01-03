@@ -1,15 +1,15 @@
 //
-//  MultipleReplacementPanel.strings (Traditional Chinese)
+//  MultipleReplacePanel.strings (Portuguese)
 //
 //  CotEditor
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2018-05-08.
-//  zh-Hant localization by Shiki Suen based on OnevCat's zh-Hans localization.
+//  Localized by BR Lingo
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,98 +25,97 @@
 //
 
 /* Class = "NSWindow"; title = "Multiple Replace"; ObjectID = "rFC-87-Fxd"; */
-"rFC-87-Fxd.title" = "多重取代";
+"rFC-87-Fxd.title" = "Substituição Múltipla";
 
 
 
 // MARK: Content list
 
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "mF9-q3-LmX"; */
-"mF9-q3-LmX.title" = "複製";
+"mF9-q3-LmX.title" = "Duplicar";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
-"cZ9-i9-VsM.title" = "重新命名";
+"cZ9-i9-VsM.title" = "Renomear";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
-"fN1-Tr-8T8.title" = "匯入…";
+"fN1-Tr-8T8.title" = "Exportar…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
-"tLz-9S-3we.title" = "在訪達中顯示";
+"tLz-9S-3we.title" = "Mostrar no Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
-"iZn-Pw-tgJ.title" = "匯出…";
+"iZn-Pw-tgJ.title" = "Importar…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
-"0ca-Jy-pHT.title" = "過載全部定義";
+"0ca-Jy-pHT.title" = "Recarregar Todas as Definições";
 
 /* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
-"ah0-d7-MIb.title" = "新增定義";
+"ah0-d7-MIb.title" = "Nova Definição";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "zRC-iK-Noh"; */
-"zRC-iK-Noh.title" = "複製";
+"zRC-iK-Noh.title" = "Duplicar";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
-"KGb-Yh-gXR.title" = "重新命名";
+"KGb-Yh-gXR.title" = "Renomear";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
-"M9A-ds-FNR.title" = "刪除";
+"M9A-ds-FNR.title" = "Apagar";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
-"5mf-DX-YT5.title" = "匯入…";
+"5mf-DX-YT5.title" = "Exportar…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "在訪達中顯示";
+"sYx-dd-JiV.title" = "Mostrar no Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
-"8TG-QH-hxz.title" = "匯出…";
+"8TG-QH-hxz.title" = "Importar…";
 
 
 
 // MARK: Editor View
 
 /* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "使用這些規則從上至下連續進行取代:";
+"5Ey-vx-5Sm.title" = "Usar estas regras consecutivamente para substituir:";
 
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
-"KTe-1r-oHM.headerToolTip" = "啟用";
+"KTe-1r-oHM.headerToolTip" = "Ative";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "勾選此項以套用該取代規則。";
+"PuQ-No-wC1.ibShadowedToolTip" = "Selecione esta regra na para usar na substituição";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
-"zee-UW-TVR.headerCell.title" = "檢索";
+"zee-UW-TVR.headerCell.title" = "Buscar";
 
 /* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
-"nRC-aM-NZ2.headerCell.title" = "取代";
+"nRC-aM-NZ2.headerCell.title" = "Substituir por";
 
 /* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerCell.title" = "RE";
+"VtR-Qz-MBf.headerCell.title" = "ER";
 /* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerToolTip" = "常規表示式";
+"VtR-Qz-MBf.headerToolTip" = "Expressão Regular";
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerCell.title" = "IC";
+"d3o-yf-jB4.headerCell.title" = "IM";
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerToolTip" = "忽略大小寫";
+"d3o-yf-jB4.headerToolTip" = "Ignorar Maiúsculas/Minúsculas (sem distinção)";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
-"Rhy-iE-CIC.headerCell.title" = "描述";
+"Rhy-iE-CIC.headerCell.title" = "Descrição";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
-"Lk4-Ym-IrV.ibShadowedToolTip" = "選中以啟用常規表示式檢索。";
+"Lk4-Ym-IrV.ibShadowedToolTip" = "Selecione para buscar com expressão regular.";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
-"I23-3I-yq5.ibShadowedToolTip" = "選中以忽略大小寫。";
+"I23-3I-yq5.ibShadowedToolTip" = "Selecione para ignorar maiúsculas/minúsculas ao buscar.";
 
 
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
-"gRf-KM-GZo.title" = "無效的規則將被跳過。";
+"gRf-KM-GZo.title" = "Regras inválidas serão ignoradas.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "顯示進階選項";
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "進階選項";
+"i8z-Xa-PxI.ibShadowedToolTip" = "Mostrar opções avançadas";
+"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Opções avançadas";
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "所選範圍";
+"4lm-Fu-Fcf.title" = "Na Seleção";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
-"pfM-xk-MrN.ibShadowedToolTip" = "選中僅在選擇範圍內進行文字檢索。";
+"pfM-xk-MrN.ibShadowedToolTip" = "Selecione para buscar apenas no texto da seleção.";
 
 /* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "全部高亮";
+"kdu-Ni-M64.title" = "Destacar Tudo";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "高亮所有匹配取代規則的文字。";
+"99C-Bz-ySi.ibShadowedToolTip" = "Destaque todas as ocorrências das regras de substituição.";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
-"LI2-Hh-D6g.title" = "全部取代";
+"LI2-Hh-D6g.title" = "Substituir Tudo";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
-"Nth-za-4Ad.ibShadowedToolTip" = "依據取代規則取代所有匹配文字。";
+"Nth-za-4Ad.ibShadowedToolTip" = "Substitua todas as ocorrências conforme as regras de substituição.";

@@ -1,5 +1,5 @@
 //
-//  MultipleReplacementSettingsView.swift
+//  MultipleReplaceSettingsView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@
 
 import SwiftUI
 
-struct MultipleReplacementSettingsView: View {
+struct MultipleReplaceSettingsView: View {
     
-    @StateObject private var options: MultipleReplacement.Settings.Object
+    @StateObject private var options: MultipleReplace.Settings.Object
     
-    private let completionHandler: (MultipleReplacement.Settings) -> Void
+    private let completionHandler: (MultipleReplace.Settings) -> Void
     
     
     // MARK: View
@@ -39,7 +39,7 @@ struct MultipleReplacementSettingsView: View {
     /// - Parameters:
     ///   - settings: The current settings use as the initial values.
     ///   - completionHandler: The callback method to perform when the view was dismissed.
-    init(settings: MultipleReplacement.Settings, completionHandler: @escaping (MultipleReplacement.Settings) -> Void) {
+    init(settings: MultipleReplace.Settings, completionHandler: @escaping (MultipleReplace.Settings) -> Void) {
         
         self._options = StateObject(wrappedValue: .init(settings: settings))
         self.completionHandler = completionHandler
@@ -78,10 +78,10 @@ struct MultipleReplacementSettingsView: View {
 
 // MARK: - Preview
 
-struct MultipleReplacementSettingsView_Previews: PreviewProvider {
+struct MultipleReplaceSettingsView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        MultipleReplacementSettingsView(settings: .init()) { _ in }
+        MultipleReplaceSettingsView(settings: .init()) { _ in }
     }
 }

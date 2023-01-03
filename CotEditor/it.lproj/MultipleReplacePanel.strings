@@ -1,15 +1,15 @@
 //
-//  MultipleReplacementPanel.strings (Turkish)
+//  MultipleReplacePanel.strings (Italian)
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by Emir SARI on 2022-01-28.
-//  Localized by Emir SARI
+//  Created by 1024jp on 2018-05-08.
+//  Localized by Agostino Maiello
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,97 +25,97 @@
 //
 
 /* Class = "NSWindow"; title = "Multiple Replace"; ObjectID = "rFC-87-Fxd"; */
-"rFC-87-Fxd.title" = "Çoklu Değiştir";
+"rFC-87-Fxd.title" = "Sostituzione multipla";
 
 
 
 // MARK: Content list
 
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "mF9-q3-LmX"; */
-"mF9-q3-LmX.title" = "Çoğalt";
+"mF9-q3-LmX.title" = "Duplica";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
-"cZ9-i9-VsM.title" = "Yeniden Adlandır";
+"cZ9-i9-VsM.title" = "Rinomina";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
-"fN1-Tr-8T8.title" = "Dışa Aktar…";
+"fN1-Tr-8T8.title" = "Esporta…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
-"tLz-9S-3we.title" = "Finder’da Göster";
+"tLz-9S-3we.title" = "Mostra nel Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
-"iZn-Pw-tgJ.title" = "İçe Aktar…";
+"iZn-Pw-tgJ.title" = "Importa…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
-"0ca-Jy-pHT.title" = "Tüm Tanımları Yeniden Yükle";
+"0ca-Jy-pHT.title" = "Ricarica tutte le definizioni";
 
 /* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
-"ah0-d7-MIb.title" = "Yeni Tanım";
+"ah0-d7-MIb.title" = "Nuova definizione";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "zRC-iK-Noh"; */
-"zRC-iK-Noh.title" = "Çoğalt";
+"zRC-iK-Noh.title" = "Duplica";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
-"KGb-Yh-gXR.title" = "Yeniden Adlandır";
+"KGb-Yh-gXR.title" = "Rinomina";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
-"M9A-ds-FNR.title" = "Sil";
+"M9A-ds-FNR.title" = "Elimina";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
-"5mf-DX-YT5.title" = "Dışa Aktar…";
+"5mf-DX-YT5.title" = "Esporta…";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "Finder’da Göster";
+"sYx-dd-JiV.title" = "Mostra nel Finder";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
-"8TG-QH-hxz.title" = "İçe Aktar…";
+"8TG-QH-hxz.title" = "Importa…";
 
 
 
 // MARK: Editor View
 
 /* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "Değişimi bu kuralları yukarıdan aşağı sırada kullanarak gerçekleştir:";
+"5Ey-vx-5Sm.title" = "Effettua la sostituzione usando queste regole in sequenza partendo dall’alto:";
 
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
-"KTe-1r-oHM.headerToolTip" = "Etkinleştir";
+"KTe-1r-oHM.headerToolTip" = "Abilita";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Bu değişim kuralını kullanmak için seç.";
+"PuQ-No-wC1.ibShadowedToolTip" = "Seleziona per usare questa regola di sostituzione.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
-"zee-UW-TVR.headerCell.title" = "Bul";
+"zee-UW-TVR.headerCell.title" = "Trova";
 
 /* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
-"nRC-aM-NZ2.headerCell.title" = "Şununla Değiştir";
+"nRC-aM-NZ2.headerCell.title" = "Sostituisci con";
 
 /* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerCell.title" = "Dİ";
+"VtR-Qz-MBf.headerCell.title" = "RE";
 /* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerToolTip" = "Düzenli İfade";
+"VtR-Qz-MBf.headerToolTip" = "Espressione regolare";
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerCell.title" = "BY";
+"d3o-yf-jB4.headerCell.title" = "IC";
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerToolTip" = "Harf Biçimlerini Yok Say";
+"d3o-yf-jB4.headerToolTip" = "Ignora maiuscole/minuscole";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
-"Rhy-iE-CIC.headerCell.title" = "Açıklama";
+"Rhy-iE-CIC.headerCell.title" = "Descrizione";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
-"Lk4-Ym-IrV.ibShadowedToolTip" = "Düzenli ifade ile aramak için seçin.";
+"Lk4-Ym-IrV.ibShadowedToolTip" = "Selezionare per la ricerca di un’espressione regolare.";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
-"I23-3I-yq5.ibShadowedToolTip" = "Aramada harf biçimini yok saymak için seçin.";
+"I23-3I-yq5.ibShadowedToolTip" = "Selezionare per ignorare maiuscole/minuscole nella ricerca.";
 
 
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
-"gRf-KM-GZo.title" = "Geçersiz kurallar atlanacaktır.";
+"gRf-KM-GZo.title" = "Le regole non valide saranno ignorate.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "Gelişmiş seçenekleri göster";
-/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Gelişmiş seçenekler";
+"i8z-Xa-PxI.ibShadowedToolTip" = "Mostra opzioni avanzate";
+"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Opzioni avanzate";
+
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "Seçimde Bul";
+"4lm-Fu-Fcf.title" = "In selezione";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
-"pfM-xk-MrN.ibShadowedToolTip" = "Yalnızca seçimde metin değiştirmek için seçin.";
+"pfM-xk-MrN.ibShadowedToolTip" = "Selezionare per ricercare testo solo all’interno della selezione.";
 
 /* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "Tümünü Vurgula";
+"kdu-Ni-M64.title" = "Evidenzia tutto";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "Değişim kurallarının tüm eşleşmelerini vurgula";
+"99C-Bz-ySi.ibShadowedToolTip" = "Evidenzia tutti i risultati delle regole di sostituzione.";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
-"LI2-Hh-D6g.title" = "Tümünü Değiştir";
+"LI2-Hh-D6g.title" = "Sostituisci tutto";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
-"Nth-za-4Ad.ibShadowedToolTip" = "Tüm eşleşmeleri değişim kurallarına göre değiştir.";
+"Nth-za-4Ad.ibShadowedToolTip" = "Sostituisci tutti i risultati delle regole di sostituzione.";

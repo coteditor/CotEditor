@@ -1,5 +1,5 @@
 //
-//  MultipleReplacementPanel.strings (Japanese)
+//  MultipleReplacePanel.strings (German)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,97 +25,97 @@
 //
 
 /* Class = "NSWindow"; title = "Multiple Replace"; ObjectID = "rFC-87-Fxd"; */
-"rFC-87-Fxd.title" = "複数置換";
+"rFC-87-Fxd.title" = "Multiples Ersetzen";
 
 
 
 // MARK: Content list
 
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "mF9-q3-LmX"; */
-"mF9-q3-LmX.title" = "複製";
+"mF9-q3-LmX.title" = "Duplizieren";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "cZ9-i9-VsM"; */
-"cZ9-i9-VsM.title" = "名前を変更";
+"cZ9-i9-VsM.title" = "Umbenennen";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "fN1-Tr-8T8"; */
-"fN1-Tr-8T8.title" = "書き出す…";
+"fN1-Tr-8T8.title" = "Exportieren …";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "tLz-9S-3we"; */
-"tLz-9S-3we.title" = "Finderに表示";
+"tLz-9S-3we.title" = "Im Finder anzeigen";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
-"iZn-Pw-tgJ.title" = "読み込む…";
+"iZn-Pw-tgJ.title" = "Importieren …";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
-"0ca-Jy-pHT.title" = "すべての定義を再読み込み";
+"0ca-Jy-pHT.title" = "Alle Definitionen neu laden";
 
 /* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
-"ah0-d7-MIb.title" = "新規定義";
+"ah0-d7-MIb.title" = "Neue Definition";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "zRC-iK-Noh"; */
-"zRC-iK-Noh.title" = "複製";
+"zRC-iK-Noh.title" = "Duplizieren";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
-"KGb-Yh-gXR.title" = "名前を変更";
+"KGb-Yh-gXR.title" = "Umbenennen";
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "M9A-ds-FNR"; */
-"M9A-ds-FNR.title" = "削除";
+"M9A-ds-FNR.title" = "Löschen";
 /* Class = "NSMenuItem"; title = "Export…"; ObjectID = "5mf-DX-YT5"; */
-"5mf-DX-YT5.title" = "書き出す…";
+"5mf-DX-YT5.title" = "Exportieren …";
 /* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "sYx-dd-JiV"; */
-"sYx-dd-JiV.title" = "Finderに表示";
+"sYx-dd-JiV.title" = "Im Finder anzeigen";
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "8TG-QH-hxz"; */
-"8TG-QH-hxz.title" = "読み込む…";
+"8TG-QH-hxz.title" = "Importieren …";
 
 
 
 // MARK: Editor View
 
 /* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "以下の条件を上から順に適用して置換:";
+"5Ey-vx-5Sm.title" = "Unter Verwendung dieser Regeln nacheinander von oben nach unten durch ersetzen:";
 
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
-"KTe-1r-oHM.headerToolTip" = "有効";
+"KTe-1r-oHM.headerToolTip" = "Aktivieren";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to use this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "この置換条件を使う場合に選択";
+"PuQ-No-wC1.ibShadowedToolTip" = "Auswählen, um dieser Regel zu benutzen.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
-"zee-UW-TVR.headerCell.title" = "検索";
+"zee-UW-TVR.headerCell.title" = "Suche";
 
 /* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
-"nRC-aM-NZ2.headerCell.title" = "置換";
+"nRC-aM-NZ2.headerCell.title" = "Ersetze mit";
 
 /* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
 "VtR-Qz-MBf.headerCell.title" = "RE";
 /* Class = "NSTableColumn"; headerToolTip = "Regular Expression"; ObjectID = "VtR-Qz-MBf"; */
-"VtR-Qz-MBf.headerToolTip" = "正規表現";
+"VtR-Qz-MBf.headerToolTip" = "Regulärer Ausdruck";
 
 /* Class = "NSTableColumn"; headerCell.title = "IC"; ObjectID = "d3o-yf-jB4"; */
 "d3o-yf-jB4.headerCell.title" = "IC";
 /* Class = "NSTableColumn"; headerToolTip = "Ignore Cases"; ObjectID = "d3o-yf-jB4"; */
-"d3o-yf-jB4.headerToolTip" = "大文字/小文字を無視";
+"d3o-yf-jB4.headerToolTip" = "Groß-/Kleinschreibung ignorieren";
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "Rhy-iE-CIC"; */
-"Rhy-iE-CIC.headerCell.title" = "説明";
+"Rhy-iE-CIC.headerCell.title" = "Beschreibung";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Select to search with regular expression."; ObjectID = "Lk4-Ym-IrV"; */
-"Lk4-Ym-IrV.ibShadowedToolTip" = "検索に正規表現を使う場合に選択";
+"Lk4-Ym-IrV.ibShadowedToolTip" = "Auswählen, um mit regulärem Ausdruck zu suchen.";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "I23-3I-yq5"; */
-"I23-3I-yq5.ibShadowedToolTip" = "大文字/小文字を区別せずに検索する場合に選択";
+"I23-3I-yq5.ibShadowedToolTip" = "Auswählen, um beim Suchen Groß-/Kleinschreibung zu ignorieren.";
 
 
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
-"gRf-KM-GZo.title" = "無効な条件はスキップされます。";
+"gRf-KM-GZo.title" = "Ungültige Regeln werden übersprungen.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "i8z-Xa-PxI"; */
-"i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを表示";
-"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "詳細オプション";
+"i8z-Xa-PxI.ibShadowedToolTip" = "Erweitere Optionen einblenden";
+"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "Erweitere Optionen";
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
-"4lm-Fu-Fcf.title" = "選択範囲のみ";
+"4lm-Fu-Fcf.title" = "In der Auswahl";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to replace text only in selection."; ObjectID = "pfM-xk-MrN"; */
-"pfM-xk-MrN.ibShadowedToolTip" = "現在の選択範囲のみを置換対象とする場合に選択";
+"pfM-xk-MrN.ibShadowedToolTip" = "Auswählen, um nur in der Auswahl zu suchen.";
 
 /* Class = "NSButtonCell"; title = "Highlight All"; ObjectID = "kdu-Ni-M64"; */
-"kdu-Ni-M64.title" = "すべてハイライト";
+"kdu-Ni-M64.title" = "Alles hervorheben";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "すべての置換条件の一致をハイライト";
+"99C-Bz-ySi.ibShadowedToolTip" = "Alle Übereinstimmungen der Ersetzungsregeln hervorheben.";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
-"LI2-Hh-D6g.title" = "すべて置換";
+"LI2-Hh-D6g.title" = "Alles ersetzen";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
-"Nth-za-4Ad.ibShadowedToolTip" = "置換条件ですべてを置き換え";
+"Nth-za-4Ad.ibShadowedToolTip" = "Alle Übereinstimmungen gemäß den Ersetzungsregeln ersetzen.";
