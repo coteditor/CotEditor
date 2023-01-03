@@ -36,8 +36,7 @@ final class FindPanelButtonViewController: NSHostingController<FindPanelButtonVi
 
 struct FindPanelButtonView: View {
     
-    private let textFinder: TextFinder = .shared
-    
+    // MARK: View
     
     var body: some View {
         
@@ -45,26 +44,26 @@ struct FindPanelButtonView: View {
             if #available(macOS 13, *) {
                 Menu("Find All") {
                     Button("Highlight All") {
-                        self.textFinder.performAction(.highlight)
+                        self.performAction(.highlight)
                     }
                     Button("Select All") {
-                        self.textFinder.performAction(.selectAll)
+                        self.performAction(.selectAll)
                     }
                 } primaryAction: {
-                    self.textFinder.performAction(.findAll)
+                    self.performAction(.findAll)
                 }
                 .help("List all matches.")
                 .fixedSize()
             } else {
                 Button("Find All") {
-                    self.textFinder.performAction(.findAll)
+                    self.performAction(.findAll)
                 }
                 .help("List all matches.")
                 .fixedSize()
             }
             
             Button("Replace All") {
-                self.textFinder.performAction(.replaceAll)
+                self.performAction(.replaceAll)
             }
             .help("Replace all matches with the replacement text.")
             .fixedSize()
@@ -72,20 +71,20 @@ struct FindPanelButtonView: View {
             Spacer()
             
             Button("Replace") {
-                self.textFinder.performAction(.replace)
+                self.performAction(.replace)
             }
             .help("Replace the current selection with the replacement text, then find the next match.")
             .fixedSize()
             
             ControlGroup {
                 Button {
-                    self.textFinder.performAction(.previousMatch)
+                    self.performAction(.previousMatch)
                 } label: {
                     Label("Find Previous", systemImage: "chevron.backward")
                 }.help("Find previous match.")
                 
                 Button {
-                    self.textFinder.performAction(.nextMatch)
+                    self.performAction(.nextMatch)
                 } label: {
                     Label("Find Next", systemImage: "chevron.forward")
                 }.help("Find next match.")
@@ -96,6 +95,14 @@ struct FindPanelButtonView: View {
         .padding(.top, 8)
         .padding(.horizontal, 20)
         .padding(.bottom)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    @MainActor private func performAction(_ action: TextFinder.Action) {
+        
+        TextFinder.shared.performAction(action)
     }
 }
 

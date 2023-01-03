@@ -323,6 +323,8 @@
 		2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */; };
 		2A6876A82963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
 		2A6876A92963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
+		2A6876AB29641547006257A6 /* MultipleReplacePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */; };
+		2A6876AC29641547006257A6 /* MultipleReplacePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */; };
 		2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
@@ -1116,6 +1118,7 @@
 		2A68722A288834FB006D6B41 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
 		2A6876A72963DE38006257A6 /* TextFinderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFinderSettings.swift; sourceTree = "<group>"; };
+		2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacePanelController.swift; sourceTree = "<group>"; };
 		2A69077A1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A69077B1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A69077C1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
@@ -1844,6 +1847,7 @@
 		2A231A2B1E7BD93600C2A909 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */,
 				2A231A351E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift */,
 				2A231A381E7C31F400C2A909 /* MultipleReplaceListViewController.swift */,
 				2ACC5E401E7B08D300109ABC /* MultipleReplaceViewController.swift */,
@@ -3078,6 +3082,7 @@
 				2A3581991E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A3A1E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
+				2A6876AB29641547006257A6 /* MultipleReplacePanelController.swift in Sources */,
 				2AF98CAF294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
 				2A231A371E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */,
 				2ACC5E421E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
@@ -3424,6 +3429,7 @@
 				2A3581981E597ECE00762AA5 /* MultipleReplace.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplace+Codable.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplaceListViewController.swift in Sources */,
+				2A6876AC29641547006257A6 /* MultipleReplacePanelController.swift in Sources */,
 				2AF98CB0294C0670009AD47F /* MultipleReplaceSettingsView.swift in Sources */,
 				2A231A361E7C30F000C2A909 /* MultipleReplaceSplitViewController.swift in Sources */,
 				2ACC5E411E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,

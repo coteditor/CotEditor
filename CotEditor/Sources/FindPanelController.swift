@@ -27,6 +27,9 @@ import Cocoa
 
 final class FindPanelController: NSWindowController {
     
+    static let shared: FindPanelController = NSStoryboard(name: "FindPanel").instantiateInitialController()!
+    
+    
     // MARK: Window Controller Methods
     
     override func windowDidLoad() {

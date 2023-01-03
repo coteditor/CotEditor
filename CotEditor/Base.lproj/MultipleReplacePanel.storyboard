@@ -11,7 +11,7 @@
         <!--Window Controller-->
         <scene sceneID="WvZ-bY-kAi">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" customClass="MultipleReplacePanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Multiple Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="Multiple Replace Panel" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="rFC-87-Fxd" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -158,7 +158,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="M9b-zX-U8A">
-                                                            <rect key="frame" x="135.5" y="1" width="103" height="16"/>
+                                                            <rect key="frame" x="135" y="1" width="103" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">

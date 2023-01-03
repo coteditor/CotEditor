@@ -138,9 +138,6 @@ final class TextFinder {
     private var resultAvailabilityObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel").instantiateInitialController()!
-    private lazy var multipleReplacePanelController: NSWindowController = NSStoryboard(name: "MultipleReplacePanel").instantiateInitialController()!
-    
     
     
     // MARK: -
@@ -220,7 +217,7 @@ final class TextFinder {
         
         switch action {
             case .showFindInterface:
-                self.findPanelController.showWindow(nil)
+                FindPanelController.shared.showWindow(nil)
                 
             case .nextMatch:
                 self.nextMatch()
@@ -264,7 +261,7 @@ final class TextFinder {
                 self.unhighlight()
                 
             case .showMultipleReplaceInterface:
-                self.multipleReplacePanelController.showWindow(nil)
+                MultipleReplacePanelController.shared.showWindow(nil)
         }
     }
     
@@ -399,8 +396,8 @@ final class TextFinder {
     /// - Returns: The target textView and a TextFind object.
     @MainActor private func prepareTextFind(for client: NSTextView) -> TextFind? {
         
-        guard self.findPanelController.window?.attachedSheet == nil else {
-            self.findPanelController.showWindow(self)
+        guard FindPanelController.shared.window?.attachedSheet == nil else {
+            FindPanelController.shared.showWindow(self)
             return nil
         }
         
@@ -419,8 +416,8 @@ final class TextFinder {
         } catch let error as TextFind.Error {
             switch error {
                 case .regularExpression, .emptyInSelectionSearch:
-                    self.findPanelController.showWindow(self)
-                    self.findPanelController.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
+                    FindPanelController.shared.showWindow(self)
+                    FindPanelController.shared.presentError(error, modalFor: FindPanelController.shared.window!, delegate: nil, didPresent: nil, contextInfo: nil)
                 case .emptyFindString:
                     break
             }
@@ -648,7 +645,7 @@ final class TextFinder {
             self.didFindAll.send(.init(findString: textFind.findString, matches: matches, textView: textView))
         }
         
-        if !matches.isEmpty, let panel = self.findPanelController.window, panel.isVisible {
+        if !matches.isEmpty, let panel = FindPanelController.shared.window, panel.isVisible {
             panel.makeKey()
         }
         
@@ -703,7 +700,7 @@ final class TextFinder {
         
         progress.isFinished = true
         
-        if let panel = self.findPanelController.window, panel.isVisible {
+        if let panel = FindPanelController.shared.window, panel.isVisible {
             panel.makeKey()
         }
         
