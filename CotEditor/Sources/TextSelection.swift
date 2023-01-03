@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -101,7 +101,7 @@ final class TextSelection: NSObject {
         get {
             guard let textView = self.textView else { return nil }
             
-            let string = (textView.string as NSString).substring(with: textView.selectedRange)
+            let string = textView.selectedString
             let textStorage = NSTextStorage(string: string)
             
             textStorage.observeDirectEditing { (editedString) in

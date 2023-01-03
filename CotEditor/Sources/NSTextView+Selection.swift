@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@
 import Cocoa
 
 extension NSTextView {
+    
+    /// The first selected string
+    var selectedString: String {
+        
+        (self.string as NSString).substring(with: self.selectedRange)
+    }
+    
     
     /// character just before the given range
     func character(before range: NSRange) -> Unicode.Scalar? {

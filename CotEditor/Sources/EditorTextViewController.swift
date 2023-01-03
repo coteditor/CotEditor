@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -247,7 +247,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard
             let textView = self.textView,
             textView.selectsSingleCharacter,
-            let character = (textView.string as NSString).substring(with: textView.selectedRange).first
+            let character = textView.selectedString.first
         else { return assertionFailure() }
         
         let characterInfo = CharacterInfo(character: character)
@@ -362,6 +362,6 @@ private extension MultiCursorEditing {
     
     var selectsSingleCharacter: Bool {
         
-        !self.hasMultipleInsertions && (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
+        !self.hasMultipleInsertions && self.selectedString.compareCount(with: 1) == .equal
     }
 }

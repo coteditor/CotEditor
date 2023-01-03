@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -90,8 +90,7 @@ import AppKit
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .receive(on: DispatchQueue.main)
-            .compactMap { [weak self] in self?.textView }
-            .map { ($0.string as NSString).substring(with: $0.selectedRange) }
+            .compactMap { [weak self] in self?.textView.selectedString }
             .receive(on: DispatchQueue.global())
             .map { [unowned self] in $0.count(options: self.setting.options) }
             .receive(on: DispatchQueue.main)

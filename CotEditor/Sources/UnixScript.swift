@@ -155,7 +155,7 @@ final class UnixScript: Script {
         
         switch type {
             case .selection:
-                return (editor.string as NSString).substring(with: editor.selectedRange)
+                return editor.selectedString
             case .allText:
                 return editor.string
         }

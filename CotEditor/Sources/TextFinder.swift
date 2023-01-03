@@ -373,9 +373,9 @@ final class TextFinder {
     /// Set selected string to find field.
     @MainActor private func setSearchString() {
         
-        guard let selectedString = self.selectedString else { return NSSound.beep() }
+        guard let client = self.client else { return }
         
-        TextFinderSettings.shared.findString = selectedString
+        TextFinderSettings.shared.findString = client.selectedString
         TextFinderSettings.shared.usesRegularExpression = false  // auto-disable regex
     }
     
@@ -383,21 +383,14 @@ final class TextFinder {
     /// Set selected string to replace field.
     @MainActor private func setReplaceString() {
         
-        TextFinderSettings.shared.replacementString = self.selectedString ?? ""
+        guard let client = self.client else { return }
+        
+        TextFinderSettings.shared.replacementString = client.selectedString
     }
     
     
     
     // MARK: Private Methods
-    
-    /// Selected string in the current target.
-    private var selectedString: String? {
-        
-        guard let textView = self.client else { return nil }
-        
-        return (textView.string as NSString).substring(with: textView.selectedRange)
-    }
-    
     
     /// Check Find can be performed and alert if needed.
     ///

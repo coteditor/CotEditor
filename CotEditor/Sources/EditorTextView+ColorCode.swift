@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,10 +32,8 @@ extension EditorTextView: ColorCodeReceiver {
     /// show Unicode input panel
     @IBAction func editColorCode(_ sender: Any?) {
         
-        let selected = (self.string as NSString).substring(with: self.selectedRange)
-        
         ColorCodePanelController.shared.showWindow()
-        ColorCodePanelController.shared.setColor(code: selected)
+        ColorCodePanelController.shared.setColor(code: self.selectedString)
     }
     
     
