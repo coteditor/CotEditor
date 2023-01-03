@@ -493,8 +493,6 @@
 "NwE-Cf-L9F.title" = "檢索下一個";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
 "wiV-Hh-7xU.title" = "檢索上一個";
-/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
-"l33-Nz-UAw.title" = "在選擇文字中檢索";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "檢索全部";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */

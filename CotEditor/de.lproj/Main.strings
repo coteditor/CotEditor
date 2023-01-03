@@ -493,8 +493,6 @@
 "NwE-Cf-L9F.title" = "Weitersuchen (vorwärts)";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
 "wiV-Hh-7xU.title" = "Weitersuchen (rückwärts)";
-/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
-"l33-Nz-UAw.title" = "Auswahl suchen";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Alles suchen";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */

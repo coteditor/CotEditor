@@ -493,8 +493,6 @@
 "NwE-Cf-L9F.title" = "Sonrakini Bul";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
 "wiV-Hh-7xU.title" = "Öncekini Bul";
-/* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
-"l33-Nz-UAw.title" = "Seçili Metni Bul";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Tümünü Bul";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */

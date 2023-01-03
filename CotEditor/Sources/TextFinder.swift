@@ -254,14 +254,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// Perform find action with the selected string.
-    @IBAction func findSelectedText(_ sender: Any?) {
-        
-        self.useSelectionForFind(sender)
-        self.findNext(sender)
-    }
-    
-    
     /// Select all matched strings.
     @IBAction func selectAllMatches(_ sender: Any?) {
         

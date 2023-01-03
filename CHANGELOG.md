@@ -8,6 +8,8 @@ Change Log
 ### Improvements
 
 - Update C++ syntax style to fix highlighting attributes (thanks to Luke McKenzie!).
+- Deprecate the Find Selected Text command.
+- [trivial] Reset custom key bindings for find commands were reset.
 - [non-AppStore ver.] Update Sparkle from 2.3.0 to 2.3.1.
 
 

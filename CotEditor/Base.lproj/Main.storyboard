@@ -1016,12 +1016,6 @@ CA
                                                 <action selector="findPrevious:" target="Ady-hI-5gd" id="se4-B6-ilt"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Find Selected Text" tag="3" id="l33-Nz-UAw">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="findSelectedText:" target="Ady-hI-5gd" id="EJ6-ZU-h8d"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Find All" tag="4" keyEquivalent="F" id="HgR-ke-6gq">
                                             <connections>
                                                 <action selector="findAll:" target="Ady-hI-5gd" id="WzO-gP-yJo"/>
