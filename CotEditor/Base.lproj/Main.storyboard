@@ -1001,83 +1001,83 @@ CA
                             <menuItem title="Find" id="538">
                                 <menu key="submenu" title="Find" id="kGA-vM-cdL">
                                     <items>
-                                        <menuItem title="Find…" keyEquivalent="f" id="eP6-ss-sUG">
+                                        <menuItem title="Find…" tag="1" keyEquivalent="f" id="eP6-ss-sUG">
                                             <connections>
-                                                <action selector="showFindPanel:" target="Ady-hI-5gd" id="Zwx-4h-RdL"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hZQ-VJ-TKb"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Find Next" tag="1" keyEquivalent="g" id="NwE-Cf-L9F">
+                                        <menuItem title="Find Next" tag="2" keyEquivalent="g" id="NwE-Cf-L9F">
                                             <connections>
-                                                <action selector="findNext:" target="Ady-hI-5gd" id="zcL-MP-Iiq"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hcA-Ha-iw3"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Find Previous" tag="2" keyEquivalent="G" id="wiV-Hh-7xU">
+                                        <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="wiV-Hh-7xU">
                                             <connections>
-                                                <action selector="findPrevious:" target="Ady-hI-5gd" id="se4-B6-ilt"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="f6R-hK-boE"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Find All" tag="4" keyEquivalent="F" id="HgR-ke-6gq">
+                                        <menuItem title="Find All" tag="101" keyEquivalent="F" id="HgR-ke-6gq">
                                             <connections>
-                                                <action selector="findAll:" target="Ady-hI-5gd" id="WzO-gP-yJo"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="8Wd-wU-npV"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select All Find Matches" id="ULf-cT-Xvb">
+                                        <menuItem title="Select All Find Matches" tag="9" id="ULf-cT-Xvb">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="selectAllMatches:" target="Ady-hI-5gd" id="9kA-Y9-dWK"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="vi6-IJ-g8q"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="K3C-uf-Ew4"/>
-                                        <menuItem title="Use Selection for Find" tag="5" keyEquivalent="e" id="hTx-ef-3T2">
+                                        <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="hTx-ef-3T2">
                                             <connections>
-                                                <action selector="useSelectionForFind:" target="Ady-hI-5gd" id="iwi-NH-zAM"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="PUK-3s-EWW"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Use Selection for Replace" tag="5" keyEquivalent="E" id="kwa-lu-0Fz">
+                                        <menuItem title="Use Selection for Replace" tag="102" keyEquivalent="E" id="kwa-lu-0Fz">
                                             <connections>
-                                                <action selector="useSelectionForReplace:" target="Ady-hI-5gd" id="GdH-ja-sug"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="6he-BV-8dN"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Jump to Selection" tag="6" keyEquivalent="j" id="p4A-mE-Ve3">
+                                        <menuItem title="Jump to Selection" keyEquivalent="j" id="p4A-mE-Ve3">
                                             <connections>
                                                 <action selector="centerSelectionInVisibleArea:" target="Ady-hI-5gd" id="Weu-Fm-VgW"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="RmP-uk-9Kf"/>
-                                        <menuItem title="Replace" tag="7" id="bnD-BP-sPi">
+                                        <menuItem title="Replace" tag="5" id="bnD-BP-sPi">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="replace:" target="Ady-hI-5gd" id="ULb-2e-SWj"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="7jV-Uv-tUj"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Replace and Find Next" tag="8" keyEquivalent="g" id="KrV-3z-r5B">
+                                        <menuItem title="Replace and Find Next" tag="6" keyEquivalent="g" id="KrV-3z-r5B">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
-                                                <action selector="replaceAndFind:" target="Ady-hI-5gd" id="Ndp-Ff-2hC"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="ELM-Ov-cW2"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Replace All" tag="9" id="5HV-xo-NTK">
+                                        <menuItem title="Replace All" tag="4" id="5HV-xo-NTK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="replaceAll:" target="Ady-hI-5gd" id="TsH-hC-9Nj"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="pda-dk-WF2"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Multiple Replace…" id="o7K-sI-KJA">
+                                        <menuItem title="Multiple Replace…" tag="105" id="o7K-sI-KJA">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="showMultipleReplacementPanel:" target="Ady-hI-5gd" id="xbE-mx-rZm"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="hfZ-b9-U43"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg"/>
-                                        <menuItem title="Highlight All" tag="10" keyEquivalent="H" id="JAO-3o-fRo">
+                                        <menuItem title="Highlight All" tag="103" keyEquivalent="H" id="JAO-3o-fRo">
                                             <connections>
-                                                <action selector="highlight:" target="Ady-hI-5gd" id="pro-je-Mz9"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="dTZ-B1-rbb"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Unhighlight" tag="11" keyEquivalent="H" id="5is-7G-OVT">
+                                        <menuItem title="Unhighlight" tag="104" keyEquivalent="H" id="5is-7G-OVT">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
-                                                <action selector="unhighlight:" target="Ady-hI-5gd" id="kbm-FN-Z42"/>
+                                                <action selector="performTextFinderAction:" target="Ady-hI-5gd" id="Ifa-Ul-lRg"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Z9B-Wz-WiE"/>

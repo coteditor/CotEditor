@@ -171,38 +171,3 @@ private extension Console.Log {
         return string
     }
 }
-
-
-
-// MARK: - TextFinder Support
-
-/// Map find actions to NSTextFinder, since find action key bindings are configured for TextFinder.
-extension ConsoleViewController {
-    
-    /// bridge find action to NSTextFinder
-    @IBAction func showFindPanel(_ sender: Any?) {
-        
-        self.textFinder?.performAction(.showFindInterface)
-    }
-    
-    
-    /// bridge find action to NSTextFinder
-    @IBAction func findNext(_ sender: Any?) {
-        
-        self.textFinder?.performAction(.nextMatch)
-    }
-    
-    
-    /// bridge find action to NSTextFinder
-    @IBAction func findPrevious(_ sender: Any?) {
-        
-        self.textFinder?.performAction(.previousMatch)
-    }
-    
-    
-    /// bridge find action to NSTextFinder
-    @IBAction func useSelectionForFind(_ sender: Any?) {
-        
-        self.textFinder?.performAction(.setSearchString)
-    }
-}

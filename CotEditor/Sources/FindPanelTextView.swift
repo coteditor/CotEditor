@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2020 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -113,7 +113,9 @@ class FindPanelTextView: NSTextView {
         
         // perform Find Next in find string field (standard NSTextField behavior)
         if self.performsActionOnEnter {
-            TextFinder.shared.findNext(self)
+            // find backwards if Shift key pressed
+            let isShiftPressed = NSEvent.modifierFlags.contains(.shift)
+            TextFinder.shared.performAction(isShiftPressed ? .previousMatch : .nextMatch)
         }
     }
     
@@ -150,6 +152,17 @@ class FindPanelTextView: NSTextView {
         }
         
         super.insertText(string, replacementRange: replacementRange)
+    }
+    
+    
+    override func responds(to aSelector: Selector!) -> Bool {
+        
+        // ignore text find action
+        if aSelector == #selector(performTextFinderAction) {
+            return false
+        }
+        
+        return super.responds(to: aSelector)
     }
     
     

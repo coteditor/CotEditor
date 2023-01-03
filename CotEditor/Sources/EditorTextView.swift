@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -90,6 +90,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     
     // MARK: Private Properties
+    
+    private let textFinder = TextFinder.shared
     
     private static let textContainerInset = NSSize(width: 4, height: 6)
     
@@ -760,6 +762,18 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// Deliver text find actions to the TextFinder instance.
+    override func performTextFinderAction(_ sender: Any?) {
+        
+        guard
+            let item = sender as? NSValidatedUserInterfaceItem,
+            let action = TextFinder.Action(rawValue: item.tag)
+        else { return super.performTextFinderAction(sender) }
+        
+        self.textFinder.performAction(action)
+    }
+    
+    
     /// Perform automatic corrections
     override func handleTextCheckingResults(_ results: [NSTextCheckingResult], forRange range: NSRange, types checkingTypes: NSTextCheckingTypes, options: [NSSpellChecker.OptionKey: Any] = [:], orthography: NSOrthography, wordCount: Int) {
         
@@ -1174,6 +1188,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(performTextFinderAction):
+                if let action = TextFinder.Action(rawValue: item.tag) {
+                    return self.textFinder.validateAction(action)
+                }
+                return false
+                
             case #selector(copyWithStyle):
                 return !self.selectedRange.isEmpty
             

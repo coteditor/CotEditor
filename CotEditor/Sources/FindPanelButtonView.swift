@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,26 +45,26 @@ struct FindPanelButtonView: View {
             if #available(macOS 13, *) {
                 Menu("Find All") {
                     Button("Highlight All") {
-                        self.textFinder.highlight(nil)
+                        self.textFinder.performAction(.highlight)
                     }
                     Button("Select All") {
-                        self.textFinder.selectAllMatches(nil)
+                        self.textFinder.performAction(.selectAll)
                     }
                 } primaryAction: {
-                    self.textFinder.findAll(nil)
+                    self.textFinder.performAction(.findAll)
                 }
                 .help("List all matches.")
                 .fixedSize()
             } else {
                 Button("Find All") {
-                    self.textFinder.findAll(nil)
+                    self.textFinder.performAction(.findAll)
                 }
                 .help("List all matches.")
                 .fixedSize()
             }
             
             Button("Replace All") {
-                self.textFinder.replaceAll(nil)
+                self.textFinder.performAction(.replaceAll)
             }
             .help("Replace all matches with the replacement text.")
             .fixedSize()
@@ -72,20 +72,20 @@ struct FindPanelButtonView: View {
             Spacer()
             
             Button("Replace") {
-                self.textFinder.replace(nil)
+                self.textFinder.performAction(.replace)
             }
             .help("Replace the current selection with the replacement text, then find the next match.")
             .fixedSize()
             
             ControlGroup {
                 Button {
-                    self.textFinder.findPrevious(nil)
+                    self.textFinder.performAction(.previousMatch)
                 } label: {
                     Label("Find Previous", systemImage: "chevron.backward")
                 }.help("Find previous match.")
                 
                 Button {
-                    self.textFinder.findNext(nil)
+                    self.textFinder.performAction(.nextMatch)
                 } label: {
                     Label("Find Next", systemImage: "chevron.forward")
                 }.help("Find next match.")

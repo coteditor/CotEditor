@@ -96,12 +96,37 @@ struct TextFindAllResult {
 
 // MARK: -
 
-final class TextFinder: NSResponder, NSMenuItemValidation {
+final class TextFinder: NSObject {
     
-    static let shared = TextFinder()
+    enum Action: Int {
+        
+        // NSTextFinder.Action
+        case showFindInterface = 1
+        case nextMatch = 2
+        case previousMatch = 3
+        case replaceAll = 4
+        case replace = 5
+        case replaceAndFind = 6
+        case setSearchString = 7
+        case replaceAllInSelection = 8  // not supported
+        case selectAll = 9
+        case selectAllInSelection = 10  // not supported
+        case hideFindInterface = 11     // not supported
+        case showReplaceInterface = 12  // not supported
+        case hideReplaceInterface = 13  // not supported
+        
+        // TextFinder.Action
+        case findAll = 101
+        case setReplaceString = 102
+        case highlight = 103
+        case unhighlight = 104
+        case showMultipleReplaceInterface = 105
+    }
     
     
     // MARK: Public Properties
+    
+    static let shared = TextFinder()
     
     @objc dynamic var findString = "" {
         
@@ -134,9 +159,6 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         super.init()
         
-        // add to responder chain
-        NSApp.nextResponder = self
-        
         // observe application activation to sync find string with other apps
         self.applicationActivationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)
             .sink { [weak self] _ in
@@ -147,38 +169,45 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    required init?(coder: NSCoder) {
+    
+    // MARK: UI Validations
+    
+    /// Allows validation of the find action before performing.
+    ///
+    /// - Parameter action: The sender’s tag.
+    /// - Returns: `true` if the operation is valid; otherwise `false`.
+    func validateAction(_ action: Action) -> Bool {
         
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    // MARK: Menu Item Validation
-    
-    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        switch menuItem.action {
-            case #selector(findNext(_:)),
-                 #selector(findPrevious(_:)),
-                 #selector(findSelectedText(_:)),
-                 #selector(findAll(_:)),
-                 #selector(highlight(_:)),
-                 #selector(unhighlight(_:)),
-                 #selector(replace(_:)),
-                 #selector(replaceAndFind(_:)),
-                 #selector(replaceAll(_:)),
-                 #selector(selectAllMatches(_:)),
-                 #selector(useSelectionForFind(_:)),
-                 #selector(useSelectionForReplace(_:)),
-                 #selector(centerSelectionInVisibleArea(_:)):
+        switch action {
+            case .showFindInterface,
+                 .showMultipleReplaceInterface:
+                return true
+                
+            case .nextMatch,
+                 .previousMatch,
+                 .setSearchString,
+                 .selectAll,
+                 .findAll,
+                 .setReplaceString:
+                return self.client?.isSelectable == true
+                
+            case .replaceAll,
+                 .replace,
+                 .replaceAndFind:
+                return self.client?.isEditable == true &&
+                       self.client?.window?.attachedSheet == nil
+                
+            case .highlight,
+                 .unhighlight:
                 return self.client != nil
                 
-            case nil:
+            case .selectAllInSelection,
+                 .replaceAllInSelection,
+                 .hideFindInterface,
+                 .showReplaceInterface,
+                 .hideReplaceInterface:
+                // not supported in TextFinder
                 return false
-                
-            default:
-                return true
         }
     }
     
@@ -195,57 +224,92 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     }
     
     
-    /// Perform incremental search.
-    ///
-    /// - Returns: The number of found.
+    /// Schedule incremental search.
     func incrementalSearch() {
         
         self.searchTask?.cancel()
-        self.searchTask = Task(priority: .userInitiated) {
-            try await self.find(forward: true, marksAllMatches: true, isIncremental: true)
+        self.searchTask = Task.detached(priority: .userInitiated) {
+            // debounce
+            try await Task.sleep(nanoseconds: 200_000_000)  // 200 milliseconds
+            
+            try await self.find(forward: true, isIncremental: true)
+        }
+    }
+    
+    
+    /// Performs the specified text finding action.
+    ///
+    /// - Parameter action: The text finding action.
+    @MainActor func performAction(_ action: Action) {
+        
+        guard self.validateAction(action) else { return }
+        
+        switch action {
+            case .showFindInterface:
+                self.findPanelController.showWindow(nil)
+                
+            case .nextMatch:
+                self.nextMatch()
+                
+            case .previousMatch:
+                self.previousMatch()
+                
+            case .replaceAll:
+                self.replaceAll()
+                
+            case .replace:
+                self.replace()
+                
+            case .replaceAndFind:
+                self.replaceAndFind()
+                
+            case .setSearchString:
+                self.setSearchString()
+                
+            case .selectAll:
+                self.selectAllMatches()
+                
+            case .replaceAllInSelection,
+                 .selectAllInSelection,
+                 .hideFindInterface,
+                 .showReplaceInterface,
+                 .hideReplaceInterface:
+                // not supported in TextFinder
+                assertionFailure()
+                
+            case .findAll:
+                self.findAll()
+                
+            case .setReplaceString:
+                self.setReplaceString()
+                
+            case .highlight:
+                self.highlight()
+                
+            case .unhighlight:
+                self.unhighlight()
+                
+            case .showMultipleReplaceInterface:
+                self.multipleReplacementPanelController.showWindow(nil)
         }
     }
     
     
     
-    // MARK: Action Messages
-    
-    /// Jump to selection in client.
-    @IBAction override func centerSelectionInVisibleArea(_ sender: Any?) {
-        
-        self.client?.centerSelectionInVisibleArea(sender)
-    }
-    
-    
-    /// Activate find panel.
-    @IBAction func showFindPanel(_ sender: Any?) {
-        
-        self.findPanelController.showWindow(sender)
-    }
-    
-    
-    /// Activate multiple replacement panel.
-    @IBAction func showMultipleReplacementPanel(_ sender: Any?) {
-        
-        self.multipleReplacementPanelController.showWindow(sender)
-    }
-    
+    // MARK: Private Actions
     
     /// Find next matched string.
-    @IBAction func findNext(_ sender: Any?) {
-        
-        // find backwards if Shift key pressed
-        let isShiftPressed = NSEvent.modifierFlags.contains(.shift)
+    @MainActor private func nextMatch() {
         
         self.searchTask?.cancel()
         self.searchTask = Task(priority: .userInitiated) {
-            try await self.find(forward: !isShiftPressed)
+            try await self.find(forward: true)
         }
     }
     
     
     /// Find previous matched string.
-    @IBAction func findPrevious(_ sender: Any?) {
+    @MainActor private func previousMatch() {
         
         self.searchTask?.cancel()
         self.searchTask = Task(priority: .userInitiated) {
@@ -255,12 +319,14 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Select all matched strings.
-    @IBAction func selectAllMatches(_ sender: Any?) {
+    @MainActor private func selectAllMatches() {
         
         guard
-            let (textView, textFind) = self.prepareTextFind(forEditing: false),
-            let matchedRanges = try? textFind.matches
-        else { return }
+            let textView = self.client,
+            let textFind = self.prepareTextFind(for: textView)
+        else { return NSSound.beep() }
+        
+        guard let matchedRanges = try? textFind.matches else { return }
         
         textView.selectedRanges = matchedRanges as [NSValue]
         
@@ -271,7 +337,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Find all matched strings and show results in a table.
-    @IBAction func findAll(_ sender: Any?) {
+    @MainActor private func findAll() {
         
         Task {
             await self.findAll(showsList: true, actionName: "Find All")
@@ -280,7 +346,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Highlight all matched strings.
-    @IBAction func highlight(_ sender: Any?) {
+    @MainActor private func highlight() {
         
         Task {
             await self.findAll(showsList: false, actionName: "Highlight All")
@@ -289,16 +355,16 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Remove all of current highlights in the frontmost textView.
-    @IBAction func unhighlight(_ sender: Any?) {
+    @MainActor private func unhighlight() {
         
-        self.client?.unhighlight()
+        self.client?.unhighlight(nil)
     }
     
     
     /// Replace matched string in selection with replacementString.
-    @IBAction func replace(_ sender: Any?) {
+    @MainActor private func replace() {
         
-        if self.replace() {
+        if self.replaceSelected() {
             self.client?.centerSelectionInVisibleArea(self)
         } else {
             NSSound.beep()
@@ -310,9 +376,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Replace matched string with replacementString and select the next match.
-    @IBAction func replaceAndFind(_ sender: Any?) {
+    @MainActor private func replaceAndFind() {
         
-        self.replace()
+        self.replaceSelected()
         
         self.searchTask?.cancel()
         self.searchTask = Task(priority: .userInitiated) {
@@ -325,7 +391,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Replace all matched strings with given string.
-    @IBAction func replaceAll(_ sender: Any?) {
+    @MainActor private func replaceAll() {
         
         Task {
             await self.replaceAll()
@@ -334,7 +400,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Set selected string to find field.
-    @IBAction func useSelectionForFind(_ sender: Any?) {
+    @MainActor private func setSearchString() {
         
         guard let selectedString = self.selectedString else { return NSSound.beep() }
         
@@ -346,7 +412,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// Set selected string to replace field.
-    @IBAction func useSelectionForReplace(_ sender: Any?) {
+    @MainActor private func setReplaceString() {
         
         self.replacementString = self.selectedString ?? ""
     }
@@ -375,46 +441,37 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     /// Check Find can be performed and alert if needed.
     ///
-    /// - Parameter forEditing: When true, perform only when the textView is editable.
+    /// - Parameters:
+    ///   - client: The client view where perform action.
     /// - Returns: The target textView and a TextFind object.
-    @MainActor private func prepareTextFind(forEditing: Bool) -> (NSTextView, TextFind)? {
-        
-        guard
-            let textView = self.client,
-            (!forEditing || (textView.isEditable && textView.window?.attachedSheet == nil))
-        else {
-            NSSound.beep()
-            return nil
-        }
+    @MainActor private func prepareTextFind(for client: NSTextView) -> TextFind? {
         
         guard self.findPanelController.window?.attachedSheet == nil else {
             self.findPanelController.showWindow(self)
-            NSSound.beep()
             return nil
         }
         
-        let string = textView.string.immutable
+        let string = client.string.immutable
         let mode = UserDefaults.standard.textFindMode
         let inSelection = UserDefaults.standard[.findInSelection]
-        let textFind: TextFind
+        
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges.map(\.rangeValue))
+            return try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: client.selectedRanges.map(\.rangeValue))
+            
         } catch let error as TextFind.Error {
             switch error {
                 case .regularExpression, .emptyInSelectionSearch:
                     self.findPanelController.showWindow(self)
-                    self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
+                    self.findPanelController.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
                 case .emptyFindString:
                     break
             }
-            NSSound.beep()
             return nil
+            
         } catch {
             assertionFailure(error.localizedDescription)
             return nil
         }
-        
-        return (textView, textFind)
     }
     
     
@@ -422,14 +479,16 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     ///
     /// - Parameters:
     ///   - forward: The flag whether finds forward or backward.
-    ///   - marksAllMatches: Whether marks all matches in the editor.
     ///   - isIncremental: Whether is the incremental search.
     /// - Throws: `CancellationError`
-    @MainActor private func find(forward: Bool, marksAllMatches: Bool = false, isIncremental: Bool = false) async throws {
+    @MainActor private func find(forward: Bool, isIncremental: Bool = false) async throws {
         
         assert(forward || !isIncremental)
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
+        guard
+            let textView = self.client,
+            let textFind = self.prepareTextFind(for: textView)
+        else { return NSSound.beep() }
         
         // find in background thread
         let result = try await Task.detached(priority: .userInitiated) {
@@ -437,7 +496,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         }.value
         
         // mark all matches
-        if marksAllMatches, let layoutManager = textView.layoutManager {
+        if isIncremental, let layoutManager = textView.layoutManager {
             layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
                 for range in result.ranges {
@@ -448,7 +507,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             // unmark either when the client view resigned the key window or when the Find panel closed
             self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
                 .sink { [weak self, weak textView] _ in
-                    textView?.unhighlight()
+                    textView?.unhighlight(nil)
                     self?.highlightObserver = nil
                 }
         }
@@ -492,12 +551,14 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     /// Replace matched string in selection with replacementString.
     @discardableResult
-    @MainActor private func replace() -> Bool {
+    @MainActor private func replaceSelected() -> Bool {
         
         guard
-            let (textView, textFind) = self.prepareTextFind(forEditing: true),
-            let result = textFind.replace(with: self.replacementString)
-        else { return false }
+            let textView = self.client,
+            let textFind = self.prepareTextFind(for: textView)
+        else { NSSound.beep(); return false }
+        
+        guard let result = textFind.replace(with: self.replacementString) else { return false }
         
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,
@@ -540,7 +601,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     ///   - actionName: The name of the action to display in the progress sheet.
     @MainActor private func findAll(showsList: Bool, actionName: LocalizedStringKey) async {
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
+        guard
+            let textView = self.client,
+            let textFind = self.prepareTextFind(for: textView)
+        else { return NSSound.beep() }
         
         textView.isEditable = false
         
@@ -636,7 +700,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// Replace all matched strings and apply the result to views.
     @MainActor private func replaceAll() async {
         
-        guard let (textView, textFind) = self.prepareTextFind(forEditing: true) else { return }
+        guard
+            let textView = self.client,
+            let textFind = self.prepareTextFind(for: textView)
+        else { return NSSound.beep() }
         
         textView.isEditable = false
         
@@ -694,7 +761,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 
 extension NSTextView {
     
-    @MainActor func unhighlight() {
+    @IBAction func unhighlight(_ sender: Any?) {
         
         self.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: self.string.nsRange)
     }

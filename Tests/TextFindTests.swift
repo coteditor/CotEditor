@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,39 @@ import XCTest
 @testable import CotEditor
 
 final class TextFindTests: XCTestCase {
+    
+    func testTextFinderActions() {
+        
+        XCTAssertEqual(TextFinder.Action.showFindInterface.rawValue,
+                       NSTextFinder.Action.showFindInterface.rawValue)
+        XCTAssertEqual(TextFinder.Action.nextMatch.rawValue,
+                       NSTextFinder.Action.nextMatch.rawValue)
+        XCTAssertEqual(TextFinder.Action.previousMatch.rawValue,
+                       NSTextFinder.Action.previousMatch.rawValue)
+        XCTAssertEqual(TextFinder.Action.replaceAll.rawValue,
+                       NSTextFinder.Action.replaceAll.rawValue)
+        XCTAssertEqual(TextFinder.Action.replace.rawValue,
+                       NSTextFinder.Action.replace.rawValue)
+        XCTAssertEqual(TextFinder.Action.replaceAndFind.rawValue,
+                       NSTextFinder.Action.replaceAndFind.rawValue)
+        XCTAssertEqual(TextFinder.Action.setSearchString.rawValue,
+                       NSTextFinder.Action.setSearchString.rawValue)
+        XCTAssertEqual(TextFinder.Action.replaceAllInSelection.rawValue,
+                       NSTextFinder.Action.replaceAllInSelection.rawValue)
+        XCTAssertEqual(TextFinder.Action.selectAll.rawValue,
+                       NSTextFinder.Action.selectAll.rawValue)
+        XCTAssertEqual(TextFinder.Action.selectAllInSelection.rawValue,
+                       NSTextFinder.Action.selectAllInSelection.rawValue)
+        XCTAssertEqual(TextFinder.Action.hideFindInterface.rawValue,
+                       NSTextFinder.Action.hideFindInterface.rawValue)
+        XCTAssertEqual(TextFinder.Action.showReplaceInterface.rawValue,
+                       NSTextFinder.Action.showReplaceInterface.rawValue)
+        XCTAssertEqual(TextFinder.Action.showReplaceInterface.rawValue,
+                       NSTextFinder.Action.showReplaceInterface.rawValue)
+        XCTAssertEqual(TextFinder.Action.hideReplaceInterface.rawValue,
+                       NSTextFinder.Action.hideReplaceInterface.rawValue)
+    }
+    
     
     func testCaptureGroupCount() throws {
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,8 +36,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
     private var resultObserver: AnyCancellable?
-    
-    private lazy var incrementalDebouncer = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.textFinder.incrementalSearch() }
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
@@ -126,7 +124,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                     textView.isValid
                 else { return }
                 
-                self.incrementalDebouncer.schedule()
+                self.textFinder.incrementalSearch()
                 
             case self.replacementTextView!:
                 self.updateReplacedMessage(nil)

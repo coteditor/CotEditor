@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2022 1024jp
+//  © 2013-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -586,7 +586,8 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.label = "Find".localized
                 item.toolTip = "Show Find and Replace".localized
                 item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
-                item.action = #selector(TextFinder.showFindPanel)
+                item.action = #selector(performTextFinderAction)
+                item.tag = TextFinder.Action.showFindInterface.rawValue
                 return item
                 
             case .print:
