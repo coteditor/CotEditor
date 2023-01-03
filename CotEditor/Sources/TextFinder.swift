@@ -96,7 +96,7 @@ struct TextFindAllResult {
 
 // MARK: -
 
-final class TextFinder: NSObject {
+final class TextFinder {
     
     enum Action: Int {
         
@@ -128,14 +128,6 @@ final class TextFinder: NSObject {
     
     static let shared = TextFinder()
     
-    @objc dynamic var findString = "" {
-        
-        didSet {
-            NSPasteboard.findString = findString
-        }
-    }
-    @objc dynamic var replacementString = ""
-    
     @Published private(set) var result: TextFindResult?
     let didFindAll: PassthroughSubject<TextFindAllResult, Never> = .init()
     
@@ -143,7 +135,6 @@ final class TextFinder: NSObject {
     // MARK: Private Properties
     
     private var searchTask: Task<Void, any Error>?
-    private var applicationActivationObserver: AnyCancellable?
     private var resultAvailabilityObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
@@ -153,23 +144,6 @@ final class TextFinder: NSObject {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    private override init() {
-        
-        super.init()
-        
-        // observe application activation to sync find string with other apps
-        self.applicationActivationObserver = NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)
-            .sink { [weak self] _ in
-                if let sharedFindString = NSPasteboard.findString {
-                    self?.findString = sharedFindString
-                }
-            }
-    }
-    
-    
-    
     // MARK: UI Validations
     
     /// Allows validation of the find action before performing.
@@ -331,8 +305,7 @@ final class TextFinder: NSObject {
         textView.selectedRanges = matchedRanges as [NSValue]
         
         self.notifyResult(.found(matchedRanges), textView: textView)
-        
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        TextFinderSettings.shared.noteFindHistory()
     }
     
     
@@ -370,8 +343,7 @@ final class TextFinder: NSObject {
             NSSound.beep()
         }
         
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
-        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
+        TextFinderSettings.shared.noteReplaceHistory()
     }
     
     
@@ -385,8 +357,7 @@ final class TextFinder: NSObject {
             try await self.find(forward: true)
         }
         
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
-        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
+        TextFinderSettings.shared.noteReplaceHistory()
     }
     
     
@@ -404,17 +375,15 @@ final class TextFinder: NSObject {
         
         guard let selectedString = self.selectedString else { return NSSound.beep() }
         
-        self.findString = selectedString
-        
-        // auto-disable regex
-        UserDefaults.standard[.findUsesRegularExpression] = false
+        TextFinderSettings.shared.findString = selectedString
+        TextFinderSettings.shared.usesRegularExpression = false  // auto-disable regex
     }
     
     
     /// Set selected string to replace field.
     @MainActor private func setReplaceString() {
         
-        self.replacementString = self.selectedString ?? ""
+        TextFinderSettings.shared.replacementString = self.selectedString ?? ""
     }
     
     
@@ -430,15 +399,6 @@ final class TextFinder: NSObject {
     }
     
     
-    /// Find string of which line endings are standardized to the document line ending.
-    private var sanitizedFindString: String {
-        
-        let lineEnding = (self.client as? EditorTextView)?.lineEnding ?? .lf
-        
-        return self.findString.replacingLineEndings(with: lineEnding)
-    }
-    
-    
     /// Check Find can be performed and alert if needed.
     ///
     /// - Parameters:
@@ -451,12 +411,17 @@ final class TextFinder: NSObject {
             return nil
         }
         
+        // apply the client's line ending to the find string
+        let lineEnding = (client as? EditorTextView)?.lineEnding ?? .lf
+        let findString = TextFinderSettings.shared.findString
+            .replacingLineEndings(with: lineEnding)
+        
         let string = client.string.immutable
-        let mode = UserDefaults.standard.textFindMode
-        let inSelection = UserDefaults.standard[.findInSelection]
+        let mode = TextFinderSettings.shared.mode
+        let inSelection = TextFinderSettings.shared.inSelection
         
         do {
-            return try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: client.selectedRanges.map(\.rangeValue))
+            return try TextFind(for: string, findString: findString, mode: mode, inSelection: inSelection, selectedRanges: client.selectedRanges.map(\.rangeValue))
             
         } catch let error as TextFind.Error {
             switch error {
@@ -492,7 +457,7 @@ final class TextFinder: NSObject {
         
         // find in background thread
         let result = try await Task.detached(priority: .userInitiated) {
-            return try textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap], includingSelection: isIncremental)
+            return try textFind.find(forward: forward, isWrap: TextFinderSettings.shared.isWrap, includingSelection: isIncremental)
         }.value
         
         // mark all matches
@@ -542,9 +507,8 @@ final class TextFinder: NSObject {
         }
         
         self.notifyResult(.found(result.ranges), textView: textView)
-        
         if !isIncremental {
-            UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+            TextFinderSettings.shared.noteFindHistory()
         }
     }
     
@@ -558,7 +522,9 @@ final class TextFinder: NSObject {
             let textFind = self.prepareTextFind(for: textView)
         else { NSSound.beep(); return false }
         
-        guard let result = textFind.replace(with: self.replacementString) else { return false }
+        let replacementString = TextFinderSettings.shared.replacementString
+        
+        guard let result = textFind.replace(with: replacementString) else { return false }
         
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,
@@ -693,7 +659,7 @@ final class TextFinder: NSObject {
             panel.makeKey()
         }
         
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        TextFinderSettings.shared.noteFindHistory()
     }
     
     
@@ -707,7 +673,7 @@ final class TextFinder: NSObject {
         
         textView.isEditable = false
         
-        let replacementString = self.replacementString
+        let replacementString = TextFinderSettings.shared.replacementString
         
         // setup progress sheet
         let progress = FindProgress(scope: textFind.scopeRange)
@@ -749,9 +715,7 @@ final class TextFinder: NSObject {
         }
         
         self.notifyResult(.replaced(progress.count), textView: textView)
-        
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
-        UserDefaults.standard.appendHistory(self.replacementString, forKey: .replaceHistory)
+        TextFinderSettings.shared.noteReplaceHistory()
     }
 }
 
@@ -780,77 +744,5 @@ private final class LineCounter: LineRangeCacheable {
     init(_ string: NSString) {
         
         self.string = string
-    }
-}
-
-
-
-// MARK: - UserDefaults
-
-private extension UserDefaults {
-    
-    private static let maximumRecents = 20
-    
-    
-    /// Add a new value to history as the latest item with the user defaults key.
-    ///
-    /// - Parameters:
-    ///   - value: The value to add.
-    ///   - key: The default key to add the value.
-    func appendHistory<T: Equatable>(_ value: T, forKey key: DefaultKey<[T]>) {
-        
-        guard (value as? String)?.isEmpty != true else { return }
-        
-        self[key].appendUnique(value, maximum: Self.maximumRecents)
-    }
-}
-
-
-private extension UserDefaults {
-    
-    var textFindMode: TextFind.Mode {
-        
-        if self[.findUsesRegularExpression] {
-            let options = NSRegularExpression.Options()
-                .union(self[.findIgnoresCase] ? .caseInsensitive : [])
-                .union(self[.findRegexIsSingleline] ? .dotMatchesLineSeparators : [])
-                .union(self[.findRegexIsMultiline] ? .anchorsMatchLines : [])
-                .union(self[.findRegexUsesUnicodeBoundaries] ? .useUnicodeWordBoundaries : [])
-            
-            return .regularExpression(options: options, unescapesReplacement: self[.findRegexUnescapesReplacementString])
-            
-        } else {
-            let options = String.CompareOptions()
-                .union(self[.findIgnoresCase] ? .caseInsensitive : [])
-                .union(self[.findTextIsLiteralSearch] ? .literal : [])
-                .union(self[.findTextIgnoresDiacriticMarks] ? .diacriticInsensitive : [])
-                .union(self[.findTextIgnoresWidth] ? .widthInsensitive : [])
-            
-            return .textual(options: options, fullWord: self[.findMatchesFullWord])
-        }
-    }
-}
-
-
-
-// MARK: Pasteboard
-
-private extension NSPasteboard {
-    
-    /// Find string from global domain.
-    class var findString: String? {
-        
-        get {
-            let pasteboard = NSPasteboard(name: .find)
-            return pasteboard.string(forType: .string)
-        }
-        
-        set {
-            guard let string = newValue, !string.isEmpty else { return }
-            
-            let pasteboard = NSPasteboard(name: .find)
-            pasteboard.clearContents()
-            pasteboard.setString(string, forType: .string)
-        }
     }
 }

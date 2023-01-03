@@ -321,6 +321,8 @@
 		2A6872202887F0D8006D6B41 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 2A68721D2887F0D8006D6B41 /* Localizable.stringsdict */; };
 		2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */; };
 		2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */; };
+		2A6876A82963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
+		2A6876A92963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
 		2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
@@ -1113,6 +1115,7 @@
 		2A687229288834FA006D6B41 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB"; path = "en-GB.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		2A68722A288834FB006D6B41 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
+		2A6876A72963DE38006257A6 /* TextFinderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFinderSettings.swift; sourceTree = "<group>"; };
 		2A69077A1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A69077B1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A69077C1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
@@ -2230,6 +2233,7 @@
 			isa = PBXGroup;
 			children = (
 				2A18560A1D47FA37008FA79E /* TextFinder.swift */,
+				2A6876A72963DE38006257A6 /* TextFinderSettings.swift */,
 				2AED466F1E425CD200751C45 /* TextFind.swift */,
 				2A231A2C1E7BE8B700C2A909 /* FindProgress.swift */,
 				2AB1BD21287D752300C6FEAF /* Views */,
@@ -3203,6 +3207,7 @@
 				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
 				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
+				2A6876A82963DE38006257A6 /* TextFinderSettings.swift in Sources */,
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
@@ -3549,6 +3554,7 @@
 				2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */,
 				2AED46701E425CD200751C45 /* TextFind.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,
+				2A6876A92963DE38006257A6 /* TextFinderSettings.swift in Sources */,
 				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */,

@@ -82,7 +82,7 @@
                                             </userDefinedRuntimeAttributes>
                                             <accessibility description="Find"/>
                                             <connections>
-                                                <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.findString" id="3sL-0v-4Cy">
+                                                <binding destination="fdE-8e-ywb" name="value" keyPath="settings.findString" id="ISG-Ev-a6H">
                                                     <dictionary key="options">
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -125,7 +125,7 @@
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <accessibility description="Replace"/>
                                             <connections>
-                                                <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="zVr-vP-4Py">
+                                                <binding destination="fdE-8e-ywb" name="value" keyPath="settings.replacementString" id="2Xr-us-IiG">
                                                     <dictionary key="options">
                                                         <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
