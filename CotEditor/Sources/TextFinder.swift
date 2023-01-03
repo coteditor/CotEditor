@@ -134,7 +134,7 @@ final class TextFinder {
 
     // MARK: Private Properties
     
-    private var searchTask: Task<Void, any Error>?
+    private var findTask: Task<Void, any Error>?
     private var resultAvailabilityObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
@@ -198,8 +198,8 @@ final class TextFinder {
     /// Schedule incremental search.
     func incrementalSearch() {
         
-        self.searchTask?.cancel()
-        self.searchTask = Task.detached(priority: .userInitiated) {
+        self.findTask?.cancel()
+        self.findTask = Task.detached(priority: .userInitiated) {
             // debounce
             try await Task.sleep(nanoseconds: 200_000_000)  // 200 milliseconds
             
@@ -272,8 +272,8 @@ final class TextFinder {
     /// Find next matched string.
     @MainActor private func nextMatch() {
         
-        self.searchTask?.cancel()
-        self.searchTask = Task(priority: .userInitiated) {
+        self.findTask?.cancel()
+        self.findTask = Task(priority: .userInitiated) {
             try await self.find(forward: true)
         }
     }
@@ -282,8 +282,8 @@ final class TextFinder {
     /// Find previous matched string.
     @MainActor private func previousMatch() {
         
-        self.searchTask?.cancel()
-        self.searchTask = Task(priority: .userInitiated) {
+        self.findTask?.cancel()
+        self.findTask = Task(priority: .userInitiated) {
             try await self.find(forward: false)
         }
     }
@@ -349,8 +349,8 @@ final class TextFinder {
         
         self.replaceSelected()
         
-        self.searchTask?.cancel()
-        self.searchTask = Task(priority: .userInitiated) {
+        self.findTask?.cancel()
+        self.findTask = Task(priority: .userInitiated) {
             try await self.find(forward: true)
         }
         
