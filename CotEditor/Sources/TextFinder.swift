@@ -27,12 +27,6 @@ import Combine
 import Cocoa
 import SwiftUI
 
-@objc protocol TextFinderClientProvider: AnyObject {
-    
-    func textFinderClient() -> NSTextView?
-}
-
-
 @objc protocol TextFinderClient: AnyObject {
     
     func performEditorTextFinderAction(_ sender: Any?)
@@ -196,11 +190,13 @@ final class TextFinder {
     // MARK: Public Methods
     
     /// Target text view.
+    
     var client: NSTextView? {
         
-        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
-        
-        return provider.textFinderClient()
+        NSApp.mainWindow?.firstResponder
+            .flatMap { sequence(first: $0, next: \.nextResponder) }?
+            .compactMap { $0 as? NSTextView }
+            .first { $0 is TextFinderClient }
     }
     
     

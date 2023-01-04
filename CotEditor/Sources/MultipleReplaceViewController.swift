@@ -159,7 +159,7 @@ final class MultipleReplaceViewController: NSViewController {
         self.validateObject()
         self.resultMessage = nil
         
-        guard let textView = TextFinder.shared.client else { return NSSound.beep() }
+        guard let textView = self.client else { return NSSound.beep() }
         
         let inSelection = UserDefaults.standard[.findInSelection]
         
@@ -177,7 +177,7 @@ final class MultipleReplaceViewController: NSViewController {
         self.resultMessage = nil
         
         guard
-            let textView = TextFinder.shared.client,
+            let textView = self.client,
             textView.isEditable,
             textView.window?.attachedSheet == nil
         else { return NSSound.beep() }
@@ -219,6 +219,16 @@ final class MultipleReplaceViewController: NSViewController {
     
     
     // MARK: Private Methods
+    
+    /// Target text view.
+    var client: NSTextView? {
+        
+        NSApp.mainWindow?.firstResponder
+            .flatMap { sequence(first: $0, next: \.nextResponder) }?
+            .compactMap { $0 as? NSTextView }
+            .first { $0 is TextFinderClient }
+    }
+    
     
     /// Notify update to delegate.
     private func notifyUpdate() {

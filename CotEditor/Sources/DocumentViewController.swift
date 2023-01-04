@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -961,18 +961,5 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         
         return self.splitViewController?.focusedChild
-    }
-}
-
-
-
-// MARK: Protocol
-
-extension DocumentViewController: TextFinderClientProvider {
-    
-    /// Tell text finder in which text view the text find should perform.
-    func textFinderClient() -> NSTextView? {
-        
-        self.focusedTextView
     }
 }
