@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Enable walking through all the controls in the Find window by the Tab key.
 - Update C++ syntax style to fix highlighting attributes (thanks to Luke McKenzie!).
 - Deprecate the Find Selected Text command.
 - [trivial] Reset custom key bindings for find commands were reset.

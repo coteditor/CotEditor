@@ -10,7 +10,7 @@
         <scene sceneID="lwx-CG-VEr">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="2Yd-sK-nho" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="findPanel" title="Find &amp; Replace" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
+                    <window key="window" identifier="findPanel" title="Find &amp; Replace" separatorStyle="line" allowsToolTipsWhenApplicationIsInactive="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <rect key="contentRect" x="425" y="461" width="460" height="197"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -88,7 +88,6 @@
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="delegate" destination="fdE-8e-ywb" id="v4C-dI-JPd"/>
-                                                <outlet property="nextKeyView" destination="qiQ-tb-XCa" id="cvy-Ew-3PD"/>
                                             </connections>
                                         </textView>
                                     </subviews>
@@ -131,7 +130,6 @@
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="delegate" destination="fdE-8e-ywb" id="Qg1-pY-DT6"/>
-                                                <outlet property="nextKeyView" destination="hxw-DS-gxQ" id="34Q-n2-dJB"/>
                                             </connections>
                                         </textView>
                                     </subviews>
@@ -206,7 +204,7 @@
                                     <constraint firstAttribute="height" constant="17" id="Bpd-iM-B9o"/>
                                     <constraint firstAttribute="width" constant="34" id="a1V-ce-Ane"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vE8-oK-xlC" id="Jj5-Gl-NDD" userLabel="Recent Searches">
+                                <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="vE8-oK-xlC" id="Jj5-Gl-NDD" userLabel="Recent Searches">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="hj8-ZE-vCT">
@@ -230,7 +228,7 @@
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
                                 <rect key="frame" x="14" y="55" width="39" height="17"/>
-                                <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="5v5-WE-Zk4" userLabel="Recent Replacements">
+                                <popUpButtonCell key="cell" type="smallSquare" title="DUMMY" bezelStyle="smallSquare" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" refusesFirstResponder="YES" inset="2" pullsDown="YES" preferredEdge="maxX" autoenablesItems="NO" altersStateOfSelectedItem="NO" id="5v5-WE-Zk4" userLabel="Recent Replacements">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="vPb-fy-Hh6">
@@ -274,7 +272,7 @@
                                     <constraint firstAttribute="height" constant="14" id="9ek-RA-xWp"/>
                                     <constraint firstAttribute="width" secondItem="ObJ-nS-x0g" secondAttribute="height" multiplier="1:1" id="T9W-SF-Lok"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="jxx-at-moE">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="jxx-at-moE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -290,7 +288,7 @@
                                     <constraint firstAttribute="width" secondItem="Y5M-CG-n0V" secondAttribute="height" multiplier="1:1" id="YC9-gF-7eS"/>
                                     <constraint firstAttribute="height" constant="14" id="e2p-u6-YCM"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="zCK-87-9kX">
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" refusesFirstResponder="YES" imageScaling="proportionallyUpOrDown" inset="2" id="zCK-87-9kX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

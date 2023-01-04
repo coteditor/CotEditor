@@ -119,27 +119,27 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// jump to the next responder with tab key (standard NSTextField behavior)
+    /// jump to the next key view by the Tab key (standard NSTextField behavior)
     override func insertTab(_ sender: Any?) {
         
-        self.window?.makeFirstResponder(self.nextKeyView)
+        self.window?.selectNextKeyView(nil)
     }
     
     
-    /// jump to the previous responder with tab key (standard NSTextField behavior)
+    /// jump to the previous key view by the Tab key (standard NSTextField behavior)
     override func insertBacktab(_ sender: Any?) {
         
-        self.window?.makeFirstResponder(self.previousKeyView)
+        self.window?.selectPreviousKeyView(nil)
     }
     
     
-    /// swap '¥' with '\' if needed
+    /// swap `¥` with `\` if needed
     override func insertText(_ string: Any, replacementRange: NSRange) {
         
         // cast input to String
         var string = String(anyString: string)
         
-        // swap '¥' with '\' if needed
+        // swap `¥` with `\` if needed
         if UserDefaults.standard[.swapYenAndBackSlash] {
             switch string {
                 case "\\":
@@ -156,7 +156,7 @@ class FindPanelTextView: NSTextView {
     
     override func responds(to aSelector: Selector!) -> Bool {
         
-        // ignore text find action
+        // ignore text find action (standard NSTextField behavior)
         if aSelector == #selector(performTextFinderAction) {
             return false
         }
