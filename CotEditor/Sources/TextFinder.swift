@@ -238,7 +238,7 @@ final class TextFinder {
                 self.setSearchString()
                 
             case .selectAll:
-                self.selectAllMatches()
+                self.selectAll()
                 
             case .replaceAllInSelection,
                  .selectAllInSelection,
@@ -290,7 +290,7 @@ final class TextFinder {
     
     
     /// Select all matched strings.
-    @MainActor private func selectAllMatches() {
+    @MainActor private func selectAll() {
         
         guard
             let textView = self.client,
@@ -524,32 +524,6 @@ final class TextFinder {
     }
     
     
-    /// Notify find/replacement result to the user.
-    ///
-    /// - Parameters:
-    ///   - result: The result of the process.
-    ///   - textView: The text view where find/replacement was performed.
-    private func notifyResult(_ result: TextFindResult, textView: NSTextView) {
-        
-        self.resultAvailabilityObserver = nil
-        self.result = result
-        
-        // feedback for VoiceOver
-        textView.requestAccessibilityAnnouncement(result.message)
-        
-        // observe target textView to know the timing to remove the result
-        if case .found = result {
-            self.resultAvailabilityObserver = Publishers.Merge(
-                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage),
-                NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: textView.window))
-            .sink { [weak self] _ in
-                self?.result = nil
-                self?.resultAvailabilityObserver = nil
-            }
-        }
-    }
-    
-    
     /// Find all matched strings and apply the result to views.
     ///
     /// - Parameters:
@@ -706,6 +680,32 @@ final class TextFinder {
         
         self.notifyResult(.replaced(progress.count), textView: textView)
         TextFinderSettings.shared.noteReplaceHistory()
+    }
+    
+    
+    /// Notify find/replacement result to the user.
+    ///
+    /// - Parameters:
+    ///   - result: The result of the process.
+    ///   - textView: The text view where find/replacement was performed.
+    private func notifyResult(_ result: TextFindResult, textView: NSTextView) {
+        
+        self.resultAvailabilityObserver = nil
+        self.result = result
+        
+        // feedback for VoiceOver
+        textView.requestAccessibilityAnnouncement(result.message)
+        
+        // observe target textView to know the timing to remove the result
+        if case .found = result {
+            self.resultAvailabilityObserver = Publishers.Merge(
+                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage),
+                NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: textView.window))
+            .sink { [weak self] _ in
+                self?.result = nil
+                self?.resultAvailabilityObserver = nil
+            }
+        }
     }
 }
 
