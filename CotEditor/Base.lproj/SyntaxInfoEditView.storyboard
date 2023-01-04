@@ -38,7 +38,6 @@
                                 <connections>
                                     <accessibilityConnection property="title" destination="LkV-qO-uNb" id="67V-ub-G3j"/>
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.version" id="8nB-bQ-W9H"/>
-                                    <outlet property="nextKeyView" destination="7aU-lg-CUg" id="fTG-JI-dcB"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="teT-gX-wAf">
@@ -65,7 +64,6 @@
                                 <connections>
                                     <accessibilityConnection property="title" destination="teT-gX-wAf" id="Q5I-uC-qgt"/>
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.lastModified" id="L71-Yr-RrH"/>
-                                    <outlet property="nextKeyView" destination="BI9-H4-gcs" id="dlC-hm-rks"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yh-gb9">
@@ -91,7 +89,6 @@
                                 <connections>
                                     <accessibilityConnection property="title" destination="OBM-Yh-gb9" id="S0g-gS-F9G"/>
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.distributionURL" id="EWJ-Nd-TE2"/>
-                                    <outlet property="nextKeyView" destination="93A-h6-vCG" id="hXE-yK-kbO"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-D2-K5S">
@@ -112,7 +109,6 @@
                                 <connections>
                                     <accessibilityConnection property="title" destination="2Ku-D2-K5S" id="b8Z-F1-DCD"/>
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.author" id="5Hw-2j-v3B"/>
-                                    <outlet property="nextKeyView" destination="o0U-5A-8FS" id="eQh-dl-7Xg"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="QlB-f2-NG3">
@@ -136,7 +132,6 @@
                                 <connections>
                                     <accessibilityConnection property="title" destination="QlB-f2-NG3" id="YSA-9L-QUN"/>
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.license" id="sYa-5D-BaH"/>
-                                    <outlet property="nextKeyView" destination="sNf-iG-xYO" id="zws-gQ-34V"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-Zr-mnv">
@@ -157,7 +152,6 @@
                                 <connections>
                                     <accessibilityConnection property="title" destination="lhp-Zr-mnv" id="ANc-yB-3Qf"/>
                                     <binding destination="YVG-yW-9Ua" name="value" keyPath="selection.description" id="nWU-KE-lNb"/>
-                                    <outlet property="nextKeyView" destination="yqJ-k5-0CH" id="J0m-62-pdR"/>
                                 </connections>
                             </textField>
                             <button toolTip="Jump to URL" translatesAutoresizingMaskIntoConstraints="NO" id="KlI-NS-4x6">

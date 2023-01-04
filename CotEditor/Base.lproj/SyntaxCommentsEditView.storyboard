@@ -179,11 +179,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Wgn-aa-28Y">
-                                                            <rect key="frame" x="352" y="1" width="68" height="17"/>
+                                                            <rect key="frame" x="352" y="1" width="67" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="0iQ-u5-KRq">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="note" usesSingleLineMode="YES" id="CWN-H0-LVV">
                                                                         <font key="font" metaFont="system"/>
@@ -264,7 +264,6 @@
                                             <string key="NSNullPlaceholder">Not defined</string>
                                         </dictionary>
                                     </binding>
-                                    <outlet property="nextKeyView" destination="teO-CT-cDt" id="VYv-UL-8VL"/>
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teO-CT-cDt">
@@ -281,7 +280,6 @@
                                             <string key="NSNullPlaceholder">Not defined</string>
                                         </dictionary>
                                     </binding>
-                                    <outlet property="nextKeyView" destination="ska-c0-sx2" id="gEr-Ks-fpU"/>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K52-O0-Gy1">
