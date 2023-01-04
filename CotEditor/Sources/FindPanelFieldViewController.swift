@@ -31,7 +31,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private let textFinder = TextFinder.shared
     @objc private dynamic let settings = TextFinderSettings.shared
     
     private var scrollerStyleObserver: AnyCancellable?
@@ -56,9 +55,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        self.resultObserver = self.textFinder.$result
+        self.resultObserver = TextFinder.shared.$result
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.updateResult($0) }
+        
+        self.findTextView?.action = #selector(performFind)
+        self.findTextView?.target = self
         
         // adjust clear button position according to the visiblity of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
@@ -125,7 +127,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                     textView.isValid
                 else { return }
                 
-                self.textFinder.incrementalSearch()
+                NSApp.sendAction(#selector(TextFinderClient.incrementalSearch), to: nil, from: self)
                 
             case self.replacementTextView!:
                 self.updateReplacedMessage(nil)
@@ -138,6 +140,16 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: Action Messages
+    
+    /// perform find action (designed to be used by the find string field)
+    @IBAction func performFind(_ sender: Any?) {
+        
+        // find backwards if the Shift key pressed
+        let action = NSEvent.modifierFlags.contains(.shift) ? #selector(TextFinderClient.matchPrevious) : #selector(TextFinderClient.matchNext)
+        
+        NSApp.sendAction(action, to: nil, from: self)
+    }
+    
     
     /// set selected history string to find field
     @IBAction func selectFindHistory(_ sender: NSMenuItem?) {

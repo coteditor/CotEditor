@@ -77,9 +77,6 @@
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="10000000" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="performsActionOnEnter" value="YES"/>
-                                            </userDefinedRuntimeAttributes>
                                             <accessibility description="Find"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="settings.findString" id="ISG-Ev-a6H">

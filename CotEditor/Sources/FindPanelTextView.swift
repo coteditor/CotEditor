@@ -28,9 +28,11 @@ import Cocoa
 /// text view that behaves like a NSTextField
 class FindPanelTextView: NSTextView {
     
-    // MARK: Private Properties
+    var action: Selector?
+    var target: AnyObject?
     
-    @IBInspectable private var performsActionOnEnter: Bool = false
+    
+    // MARK: Private Properties
     
     @objc private dynamic var isEmpty: Bool = true
     
@@ -108,14 +110,11 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// perform Find Next with return
+    /// perform the action with return (standard NSTextField behavior)
     override func insertNewline(_ sender: Any?) {
         
-        // perform Find Next in find string field (standard NSTextField behavior)
-        if self.performsActionOnEnter {
-            // find backwards if Shift key pressed
-            let isShiftPressed = NSEvent.modifierFlags.contains(.shift)
-            TextFinder.shared.performAction(isShiftPressed ? .previousMatch : .nextMatch)
+        if let action {
+            NSApp.sendAction(action, to: self.target, from: self)
         }
     }
     

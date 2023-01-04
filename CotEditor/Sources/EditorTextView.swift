@@ -762,18 +762,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// Deliver text find actions to the TextFinder instance.
-    override func performTextFinderAction(_ sender: Any?) {
-        
-        guard
-            let item = sender as? NSValidatedUserInterfaceItem,
-            let action = TextFinder.Action(rawValue: item.tag)
-        else { return super.performTextFinderAction(sender) }
-        
-        self.textFinder.performAction(action)
-    }
-    
-    
     /// Perform automatic corrections
     override func handleTextCheckingResults(_ results: [NSTextCheckingResult], forRange range: NSRange, types checkingTypes: NSTextCheckingTypes, options: [NSSpellChecker.OptionKey: Any] = [:], orthography: NSOrthography, wordCount: Int) {
         
@@ -1664,6 +1652,54 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 }
             }
         }
+    }
+}
+
+
+
+// MARK: - Text Find
+
+extension EditorTextView: TextFinderClient {
+    
+    /// Deliver the Cocoa standard text find action messages to the TextFinder instance.
+    override func performTextFinderAction(_ sender: Any?) {
+        
+        self.performEditorTextFinderAction(sender)
+    }
+    
+    
+    /// Deliver text find actions for EditorTextView to the TextFinder instance.
+    @IBAction func performEditorTextFinderAction(_ sender: Any?) {
+        
+        guard
+            let tag = (sender as? NSValidatedUserInterfaceItem)?.tag ?? (sender as? NSControl)?.tag,
+            let action = TextFinder.Action(rawValue: tag)
+        else { return }
+        
+        self.textFinder.performAction(action)
+    }
+    
+    
+    /// Perform find next.
+    @IBAction func matchNext(_ sender: Any?) {
+        
+        
+        self.textFinder.performAction(.nextMatch)
+    }
+    
+    
+    /// Perform find previous.
+    @IBAction func matchPrevious(_ sender: Any?) {
+        
+        
+        self.textFinder.performAction(.previousMatch)
+    }
+    
+    
+    /// Perform incremental search.
+    @IBAction func incrementalSearch(_ sender: Any?) {
+        
+        self.textFinder.incrementalSearch()
     }
 }
 

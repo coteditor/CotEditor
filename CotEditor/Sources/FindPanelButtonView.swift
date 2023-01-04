@@ -36,6 +36,9 @@ final class FindPanelButtonViewController: NSHostingController<FindPanelButtonVi
 
 struct FindPanelButtonView: View {
     
+    @FirstResponder private var firstResponder
+    
+    
     // MARK: View
     
     var body: some View {
@@ -92,6 +95,7 @@ struct FindPanelButtonView: View {
             .labelStyle(.iconOnly)
             .frame(width: 70)
         }
+        .responderChain(to: self.firstResponder)
         .padding(.top, 8)
         .padding(.horizontal, 20)
         .padding(.bottom)
@@ -102,7 +106,7 @@ struct FindPanelButtonView: View {
     
     @MainActor private func performAction(_ action: TextFinder.Action) {
         
-        TextFinder.shared.performAction(action)
+        self.firstResponder.performAction(#selector(TextFinderClient.performEditorTextFinderAction), tag: action.rawValue)
     }
 }
 

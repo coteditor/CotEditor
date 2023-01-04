@@ -33,6 +33,15 @@ import SwiftUI
 }
 
 
+@objc protocol TextFinderClient: AnyObject {
+    
+    func performEditorTextFinderAction(_ sender: Any?)
+    func matchNext(_ sender: Any?)
+    func matchPrevious(_ sender: Any?)
+    func incrementalSearch(_ sender: Any?)
+}
+
+
 enum TextFindResult {
     
     case found(_ matches: [NSRange])

@@ -325,6 +325,8 @@
 		2A6876A92963DE38006257A6 /* TextFinderSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876A72963DE38006257A6 /* TextFinderSettings.swift */; };
 		2A6876AB29641547006257A6 /* MultipleReplacePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */; };
 		2A6876AC29641547006257A6 /* MultipleReplacePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */; };
+		2A6876AE296505BC006257A6 /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AD296505BC006257A6 /* FirstResponder.swift */; };
+		2A6876AF296505BC006257A6 /* FirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6876AD296505BC006257A6 /* FirstResponder.swift */; };
 		2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
@@ -1119,6 +1121,7 @@
 		2A68722E288A5C44006D6B41 /* DraggableHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableHostingView.swift; sourceTree = "<group>"; };
 		2A6876A72963DE38006257A6 /* TextFinderSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFinderSettings.swift; sourceTree = "<group>"; };
 		2A6876AA29641547006257A6 /* MultipleReplacePanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacePanelController.swift; sourceTree = "<group>"; };
+		2A6876AD296505BC006257A6 /* FirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponder.swift; sourceTree = "<group>"; };
 		2A69077A1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A69077B1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A69077C1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
@@ -2190,6 +2193,7 @@
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
 				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
+				2A6876AD296505BC006257A6 /* FirstResponder.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -3015,7 +3019,6 @@
 				2A9082EA1D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A41EC1B1DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift in Sources */,
-				2A158C222945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AA45A4C1D2E871900A1A401 /* EditorViewController.swift in Sources */,
@@ -3041,6 +3044,7 @@
 				2A231A2E1E7BE8B700C2A909 /* FindProgress.swift in Sources */,
 				2A5D13111D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAB294B9488009AD47F /* FindSettingsView.swift in Sources */,
+				2A6876AE296505BC006257A6 /* FirstResponder.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
 				2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
@@ -3137,6 +3141,7 @@
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
 				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
+				2A158C222945F54B000A4EC1 /* OpacityView.swift in Sources */,
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
@@ -3389,6 +3394,7 @@
 				2A5D13101D1EE66500D38E6A /* FindProgressView.swift in Sources */,
 				2AF98CAC294B9488009AD47F /* FindSettingsView.swift in Sources */,
 				2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
+				2A6876AF296505BC006257A6 /* FirstResponder.swift in Sources */,
 				2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
 				2AF0C1251D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
 				2AAD61F01D2B0856008FE772 /* FuzzyRange.swift in Sources */,
