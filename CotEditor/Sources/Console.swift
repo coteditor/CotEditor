@@ -83,7 +83,6 @@ final class ConsoleViewController: NSViewController {
     // MARK: Private Properties
     
     @IBOutlet private weak var textView: NSTextView?
-    @IBOutlet private weak var textFinder: NSTextFinder?
     
     
     
