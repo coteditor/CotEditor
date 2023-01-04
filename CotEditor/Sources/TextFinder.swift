@@ -132,7 +132,7 @@ final class TextFinder {
     static let didFindNotification = Notification.Name("didFindNotification")
     static let didFindAllNotification = Notification.Name("didFindAllNotification")
     
-    static let shared = TextFinder()
+    weak var client: NSTextView?
     
 
     // MARK: Private Properties
@@ -188,17 +188,6 @@ final class TextFinder {
     
     
     // MARK: Public Methods
-    
-    /// Target text view.
-    
-    var client: NSTextView? {
-        
-        NSApp.mainWindow?.firstResponder
-            .flatMap { sequence(first: $0, next: \.nextResponder) }?
-            .compactMap { $0 as? NSTextView }
-            .first { $0 is TextFinderClient }
-    }
-    
     
     /// Schedule incremental search.
     func incrementalSearch() {

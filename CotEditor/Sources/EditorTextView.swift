@@ -91,7 +91,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Private Properties
     
-    private let textFinder = TextFinder.shared
+    private let textFinder = TextFinder()
     
     private static let textContainerInset = NSSize(width: 4, height: 6)
     
@@ -141,6 +141,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.tabWidth = defaults[.tabWidth]
         
         super.init(coder: coder)
+        
+        self.textFinder.client = self
         
         // setup layoutManager and textContainer
         let textContainer = TextContainer()
