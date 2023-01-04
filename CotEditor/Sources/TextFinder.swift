@@ -135,10 +135,10 @@ final class TextFinder {
     
     // MARK: Public Properties
     
-    static let shared = TextFinder()
+    static let didFindNotification = Notification.Name("didFindNotification")
+    static let didFindAllNotification = Notification.Name("didFindAllNotification")
     
-    @Published private(set) var result: TextFindResult?
-    let didFindAll: PassthroughSubject<TextFindAllResult, Never> = .init()
+    static let shared = TextFinder()
     
 
     // MARK: Private Properties
@@ -623,9 +623,11 @@ final class TextFinder {
         
         progress.isFinished = true
         
+        self.notifyResult(.found(matches.map(\.range)), textView: textView)
+        
         if showsList {
-            self.notifyResult(.found(matches.map(\.range)), textView: textView)
-            self.didFindAll.send(.init(findString: textFind.findString, matches: matches, textView: textView))
+            let findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches, textView: textView)
+            NotificationCenter.default.post(name: TextFinder.didFindAllNotification, object: self, userInfo: ["result": findAllResult])
         }
         
         if !matches.isEmpty, let panel = FindPanelController.shared.window, panel.isVisible {
@@ -699,8 +701,7 @@ final class TextFinder {
     ///   - textView: The text view where find/replacement was performed.
     private func notifyResult(_ result: TextFindResult, textView: NSTextView) {
         
-        self.resultAvailabilityObserver = nil
-        self.result = result
+        NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self, userInfo: ["result": result])
         
         // feedback for VoiceOver
         textView.requestAccessibilityAnnouncement(result.message)
@@ -711,9 +712,11 @@ final class TextFinder {
                 NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage),
                 NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: textView.window))
             .sink { [weak self] _ in
-                self?.result = nil
+                NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
                 self?.resultAvailabilityObserver = nil
             }
+        } else {
+            self.resultAvailabilityObserver = nil
         }
     }
 }

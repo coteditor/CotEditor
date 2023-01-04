@@ -55,7 +55,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        self.resultObserver = TextFinder.shared.$result
+        self.resultObserver = NotificationCenter.default.publisher(for: TextFinder.didFindNotification)
+            .map { $0.userInfo?["result"] as? TextFindResult }
             .receive(on: RunLoop.main)
             .sink { [weak self] in self?.updateResult($0) }
         
