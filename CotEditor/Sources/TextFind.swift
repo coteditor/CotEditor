@@ -198,7 +198,7 @@ final class TextFind {
     ///   - forward: Whether searchs forward from the insertion.
     ///   - isWrap: Whether the search wraps  around.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
-    /// - Returns:An FindResult object.
+    /// - Returns: An FindResult object.
     /// - Throws: `CancellationError`
     func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) throws -> FindResult {
         

@@ -60,7 +60,7 @@ final class AppleScript: Script, AppleEventReceivable {
     ///
     /// - Parameters:
     ///   - event: The Apple event.
-    /// - Throws:`ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
+    /// - Throws: `ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         
         guard self.url.isReachable else {
