@@ -73,9 +73,9 @@ extension MultipleReplace.Settings {
                 .union(self.regexUsesUnicodeBoundaries ? .useUnicodeWordBoundaries : [])
             
             return MultipleReplace.Settings(textualOptions: textualOptions,
-                                                regexOptions: regexOptions,
-                                                matchesFullWord: self.textMatchesFullWord,
-                                                unescapesReplacementString: self.regexUnescapesReplacementString)
+                                            regexOptions: regexOptions,
+                                            matchesFullWord: self.textMatchesFullWord,
+                                            unescapesReplacementString: self.regexUnescapesReplacementString)
         }
     }
 }
