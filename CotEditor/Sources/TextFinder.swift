@@ -134,7 +134,7 @@ final class TextFinder {
     
     weak var client: NSTextView?
     
-
+    
     // MARK: Private Properties
     
     private var findTask: Task<Void, any Error>?
@@ -144,7 +144,28 @@ final class TextFinder {
     
     
     // MARK: -
-    // MARK: UI Validations
+    // MARK: Lifecycle
+    
+    deinit {
+        self.findTask?.cancel()
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    /// Schedule incremental search.
+    func incrementalSearch() {
+        
+        self.findTask?.cancel()
+        self.findTask = Task.detached(priority: .userInitiated) {
+            // debounce
+            try await Task.sleep(nanoseconds: 200_000_000)  // 200 milliseconds
+            
+            try await self.find(forward: true, isIncremental: true)
+        }
+    }
+    
     
     /// Allows validation of the find action before performing.
     ///
@@ -182,22 +203,6 @@ final class TextFinder {
                  .hideReplaceInterface:
                 // not supported in TextFinder
                 return false
-        }
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// Schedule incremental search.
-    func incrementalSearch() {
-        
-        self.findTask?.cancel()
-        self.findTask = Task.detached(priority: .userInitiated) {
-            // debounce
-            try await Task.sleep(nanoseconds: 200_000_000)  // 200 milliseconds
-            
-            try await self.find(forward: true, isIncremental: true)
         }
     }
     
@@ -287,15 +292,15 @@ final class TextFinder {
     @MainActor private func selectAll() {
         
         guard
-            let textView = self.client,
-            let textFind = self.prepareTextFind(for: textView)
+            let client = self.client,
+            let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
         guard let matchedRanges = try? textFind.matches else { return }
         
-        textView.selectedRanges = matchedRanges as [NSValue]
+        client.selectedRanges = matchedRanges as [NSValue]
         
-        self.notifyResult(.found(matchedRanges), textView: textView)
+        self.notifyResult(.found(matchedRanges))
         TextFinderSettings.shared.noteFindHistory()
     }
     
@@ -385,10 +390,10 @@ final class TextFinder {
     
     /// Check Find can be performed and alert if needed.
     ///
-    /// - Parameters:
-    ///   - client: The client view where perform action.
     /// - Returns: The target textView and a TextFind object.
-    @MainActor private func prepareTextFind(for client: NSTextView) -> TextFind? {
+    @MainActor private func prepareTextFind() -> TextFind? {
+        
+        guard let client = self.client else { assertionFailure(); return nil }
         
         guard FindPanelController.shared.window?.attachedSheet == nil else {
             FindPanelController.shared.showWindow(self)
@@ -435,19 +440,19 @@ final class TextFinder {
         assert(forward || !isIncremental)
         
         guard
-            let textView = self.client,
-            let textFind = self.prepareTextFind(for: textView)
+            let client = self.client,
+            let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
         // find in background thread
         let result = try await Task.detached(priority: .userInitiated) {
-            return try textFind.find(forward: forward, isWrap: TextFinderSettings.shared.isWrap, includingSelection: isIncremental)
+            try textFind.find(forward: forward, isWrap: TextFinderSettings.shared.isWrap, includingSelection: isIncremental)
         }.value
         
         // mark all matches
-        if isIncremental, let layoutManager = textView.layoutManager {
-            layoutManager.groupTemporaryAttributesUpdate(in: textView.string.nsRange) {
-                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textView.string.nsRange)
+        if isIncremental, let layoutManager = client.layoutManager {
+            layoutManager.groupTemporaryAttributesUpdate(in: client.string.nsRange) {
+                layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.nsRange)
                 for range in result.ranges {
                     layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
                 }
@@ -455,19 +460,19 @@ final class TextFinder {
             
             // unmark either when the client view resigned the key window or when the Find panel closed
             self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
-                .sink { [weak self, weak textView] _ in
-                    textView?.unhighlight(nil)
+                .sink { [weak self] _ in
+                    self?.client?.unhighlight(nil)
                     self?.highlightObserver = nil
                 }
         }
         
         // found feedback
         if let range = result.range {
-            textView.select(range: range)
-            textView.showFindIndicator(for: range)
+            client.select(range: range)
+            client.showFindIndicator(for: range)
             
             if result.wrapped {
-                if let view = textView.enclosingScrollView?.superview {
+                if let view = client.enclosingScrollView?.superview {
                     let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, flipped: !forward))
                     hudView.rootView.parent = hudView
                     hudView.translatesAutoresizingMaskIntoConstraints = false
@@ -484,13 +489,13 @@ final class TextFinder {
                 }
                 
                 // feedback for VoiceOver
-                textView.requestAccessibilityAnnouncement("Search wrapped.".localized)
+                client.requestAccessibilityAnnouncement("Search wrapped.".localized)
             }
         } else if !isIncremental {
             NSSound.beep()
         }
         
-        self.notifyResult(.found(result.ranges), textView: textView)
+        self.notifyResult(.found(result.ranges))
         if !isIncremental {
             TextFinderSettings.shared.noteFindHistory()
         }
@@ -502,8 +507,8 @@ final class TextFinder {
     @MainActor private func replaceSelected() -> Bool {
         
         guard
-            let textView = self.client,
-            let textFind = self.prepareTextFind(for: textView)
+            let client = self.client,
+            let textFind = self.prepareTextFind()
         else { NSSound.beep(); return false }
         
         let replacementString = TextFinderSettings.shared.replacementString
@@ -511,10 +516,10 @@ final class TextFinder {
         guard let result = textFind.replace(with: replacementString) else { return false }
         
         // apply replacement to text view
-        return textView.replace(with: result.string, range: result.range,
-                                selectedRange: NSRange(location: result.range.location,
-                                                       length: result.string.length),
-                                actionName: "Replace".localized)
+        return client.replace(with: result.string, range: result.range,
+                              selectedRange: NSRange(location: result.range.location,
+                                                     length: result.string.length),
+                              actionName: "Replace".localized)
     }
     
     
@@ -526,11 +531,11 @@ final class TextFinder {
     @MainActor private func findAll(showsList: Bool, actionName: LocalizedStringKey) async {
         
         guard
-            let textView = self.client,
-            let textFind = self.prepareTextFind(for: textView)
+            let client = self.client,
+            let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
-        textView.isEditable = false
+        client.isEditable = false
         
         let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
@@ -540,7 +545,7 @@ final class TextFinder {
         let indicatorView = FindProgressView(actionName, progress: progress, unit: .find)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
-        textView.viewControllerForSheet?.presentAsSheet(indicator)
+        client.viewControllerForSheet?.presentAsSheet(indicator)
         
         let (highlights, matches) = await Task.detached(priority: .userInitiated) {
             var highlights: [ItemRange<NSColor>] = []
@@ -587,12 +592,12 @@ final class TextFinder {
             return (highlights, resultMatches)
         }.value
         
-        textView.isEditable = true
+        client.isEditable = true
         
         guard !progress.isCancelled else { return }
         
         // highlight
-        if let layoutManager = textView.layoutManager {
+        if let layoutManager = client.layoutManager {
             let wholeRange = textFind.string.nsRange
             layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
@@ -608,10 +613,10 @@ final class TextFinder {
         
         progress.isFinished = true
         
-        self.notifyResult(.found(matches.map(\.range)), textView: textView)
+        self.notifyResult(.found(matches.map(\.range)))
         
         if showsList {
-            let findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches, textView: textView)
+            let findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches, textView: client)
             NotificationCenter.default.post(name: TextFinder.didFindAllNotification, object: self, userInfo: ["result": findAllResult])
         }
         
@@ -627,11 +632,11 @@ final class TextFinder {
     @MainActor private func replaceAll() async {
         
         guard
-            let textView = self.client,
-            let textFind = self.prepareTextFind(for: textView)
+            let client = self.client,
+            let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
-        textView.isEditable = false
+        client.isEditable = false
         
         let replacementString = TextFinderSettings.shared.replacementString
         
@@ -640,7 +645,7 @@ final class TextFinder {
         let indicatorView = FindProgressView("Replace All", progress: progress, unit: .replacement)
         let indicator = NSHostingController(rootView: indicatorView)
         indicator.rootView.parent = indicator
-        textView.viewControllerForSheet?.presentAsSheet(indicator)
+        client.viewControllerForSheet?.presentAsSheet(indicator)
         
         let (replacementItems, selectedRanges) = await Task.detached(priority: .userInitiated) {
             textFind.replaceAll(with: replacementString) { (range, stop) in
@@ -654,14 +659,14 @@ final class TextFinder {
             }
         }.value
         
-        textView.isEditable = true
+        client.isEditable = true
         
         guard !progress.isCancelled else { return }
         
         if !replacementItems.isEmpty {
             // apply found strings to the text view
-            textView.replace(with: replacementItems.map(\.string), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
-                             actionName: "Replace All".localized)
+            client.replace(with: replacementItems.map(\.string), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
+                           actionName: "Replace All".localized)
         }
         
         if progress.count > 0 {
@@ -674,7 +679,7 @@ final class TextFinder {
             panel.makeKey()
         }
         
-        self.notifyResult(.replaced(progress.count), textView: textView)
+        self.notifyResult(.replaced(progress.count))
         TextFinderSettings.shared.noteReplaceHistory()
     }
     
@@ -683,19 +688,20 @@ final class TextFinder {
     ///
     /// - Parameters:
     ///   - result: The result of the process.
-    ///   - textView: The text view where find/replacement was performed.
-    private func notifyResult(_ result: TextFindResult, textView: NSTextView) {
+    private func notifyResult(_ result: TextFindResult) {
         
         NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self, userInfo: ["result": result])
         
-        // feedback for VoiceOver
-        textView.requestAccessibilityAnnouncement(result.message)
+        guard let client = self.client else { return assertionFailure() }
         
-        // observe target textView to know the timing to remove the result
+        // feedback for VoiceOver
+        client.requestAccessibilityAnnouncement(result.message)
+        
+        // observe client to know the timing to remove the result
         if case .found = result {
             self.resultAvailabilityObserver = Publishers.Merge(
-                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textView.textStorage),
-                NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: textView.window))
+                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: client.textStorage),
+                NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: client.window))
             .sink { [weak self] _ in
                 NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
                 self?.resultAvailabilityObserver = nil
