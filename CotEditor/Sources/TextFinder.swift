@@ -571,7 +571,7 @@ final class TextFinder {
                     let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
                     
                     // build a highlighted line string for result table
-                    let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
+                    let lineRange = lineCounter.lineRange(for: matchedRange)
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
                     for (index, range) in matches.enumerated() where !range.isEmpty {
@@ -597,7 +597,7 @@ final class TextFinder {
         
         guard !progress.isCancelled else { return }
         
-        // highlight
+        // highlight in client
         if let layoutManager = client.layoutManager {
             let wholeRange = textFind.string.nsRange
             layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
