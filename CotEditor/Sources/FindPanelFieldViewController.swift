@@ -35,7 +35,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: Set<AnyCancellable> = []
-    private var resultObserver: AnyCancellable?
+    private var resultObservers: Set<AnyCancellable> = []
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
     @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
@@ -55,10 +55,15 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        self.resultObserver = NotificationCenter.default.publisher(for: TextFinder.didFindNotification)
+        // observe find result notifications from TextFinder and its expiration
+        NotificationCenter.default.publisher(for: TextFinder.didFindNotification)
             .map { $0.userInfo?["result"] as? TextFindResult }
             .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.updateResult($0) }
+            .sink { [weak self] in self?.update(result: $0) }
+            .store(in: &self.resultObservers)
+        NotificationCenter.default.publisher(for: NSWindow.didResignMainNotification)
+            .sink { [weak self] _ in self?.update(result: nil) }
+            .store(in: &self.resultObservers)
         
         self.findTextView?.action = #selector(performFind)
         self.findTextView?.target = self
@@ -231,8 +236,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     /// Update result count in the input fields.
     ///
-    /// - Parameter result: The find/replace result.
-    @MainActor private func updateResult(_ result: TextFindResult?) {
+    /// - Parameter result: The find/replace result or `nil` to clear.
+    @MainActor private func update(result: TextFindResult?) {
         
         switch result {
             case .found:

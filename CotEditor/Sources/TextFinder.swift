@@ -138,7 +138,6 @@ final class TextFinder {
     // MARK: Private Properties
     
     private var findTask: Task<Void, any Error>?
-    private var resultAvailabilityObserver: AnyCancellable?
     private var highlightObserver: AnyCancellable?
     
     
@@ -300,7 +299,7 @@ final class TextFinder {
         
         client.selectedRanges = matchedRanges as [NSValue]
         
-        self.notifyResult(.found(matchedRanges))
+        self.notify(result: .found(matchedRanges))
         TextFinderSettings.shared.noteFindHistory()
     }
     
@@ -489,14 +488,13 @@ final class TextFinder {
                     hudView.layout()
                 }
                 
-                // feedback for VoiceOver
                 client.requestAccessibilityAnnouncement("Search wrapped.".localized)
             }
         } else if !isIncremental {
             NSSound.beep()
         }
         
-        self.notifyResult(.found(result.ranges))
+        self.notify(result: .found(result.ranges))
         if !isIncremental {
             TextFinderSettings.shared.noteFindHistory()
         }
@@ -614,7 +612,7 @@ final class TextFinder {
         
         progress.isFinished = true
         
-        self.notifyResult(.found(matches.map(\.range)))
+        self.notify(result: .found(matches.map(\.range)))
         
         if showsList {
             let findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches, textView: client)
@@ -672,7 +670,7 @@ final class TextFinder {
         
         progress.isFinished = true
         
-        self.notifyResult(.replaced(progress.count))
+        self.notify(result: .replaced(progress.count))
         TextFinderSettings.shared.noteReplaceHistory()
     }
     
@@ -681,27 +679,12 @@ final class TextFinder {
     ///
     /// - Parameters:
     ///   - result: The result of the process.
-    private func notifyResult(_ result: TextFindResult) {
+    private func notify(result: TextFindResult) {
         
+        // to find panel
         NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self, userInfo: ["result": result])
         
-        guard let client = self.client else { return assertionFailure() }
-        
-        // feedback for VoiceOver
-        client.requestAccessibilityAnnouncement(result.message)
-        
-        // observe client to know the timing to remove the result
-        if case .found = result {
-            self.resultAvailabilityObserver = Publishers.Merge(
-                NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: client.textStorage),
-                NotificationCenter.default.publisher(for: NSWindow.willCloseNotification, object: client.window))
-            .sink { [weak self] _ in
-                NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
-                self?.resultAvailabilityObserver = nil
-            }
-        } else {
-            self.resultAvailabilityObserver = nil
-        }
+        self.client?.requestAccessibilityAnnouncement(result.message)
     }
 }
 
