@@ -460,10 +460,8 @@ final class TextFinder {
             
             // unmark either when the client view resigned the key window or when the Find panel closed
             self.highlightObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)
-                .sink { [weak self] _ in
-                    self?.client?.unhighlight(nil)
-                    self?.highlightObserver = nil
-                }
+                .first()
+                .sink { [weak client] _ in client?.unhighlight(nil) }
         }
         
         // found feedback
