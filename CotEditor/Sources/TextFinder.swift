@@ -395,10 +395,8 @@ final class TextFinder {
         
         guard let client = self.client else { assertionFailure(); return nil }
         
-        guard FindPanelController.shared.window?.attachedSheet == nil else {
-            FindPanelController.shared.showWindow(self)
-            return nil
-        }
+        // close previous error dialog if any exists
+        FindPanelController.shared.window?.attachedSheet?.close()
         
         // apply the client's line ending to the find string
         let lineEnding = (client as? EditorTextView)?.lineEnding ?? .lf
@@ -442,7 +440,10 @@ final class TextFinder {
         guard
             let client = self.client,
             let textFind = self.prepareTextFind()
-        else { return NSSound.beep() }
+        else {
+            if !isIncremental { NSSound.beep() }
+            return
+        }
         
         // find in background thread
         let result = try await Task.detached(priority: .userInitiated) {
@@ -620,10 +621,6 @@ final class TextFinder {
             NotificationCenter.default.post(name: TextFinder.didFindAllNotification, object: self, userInfo: ["result": findAllResult])
         }
         
-        if !matches.isEmpty, let panel = FindPanelController.shared.window, panel.isVisible {
-            panel.makeKey()
-        }
-        
         TextFinderSettings.shared.noteFindHistory()
     }
     
@@ -674,10 +671,6 @@ final class TextFinder {
         }
         
         progress.isFinished = true
-        
-        if let panel = FindPanelController.shared.window, panel.isVisible {
-            panel.makeKey()
-        }
         
         self.notifyResult(.replaced(progress.count))
         TextFinderSettings.shared.noteReplaceHistory()
