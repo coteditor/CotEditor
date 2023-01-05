@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -77,12 +77,28 @@ extension LineRangeCacheable {
     /// - Returns: The character range of the line.
     func lineRange(at index: Int) -> NSRange {
         
-        assert(index <= self.string.length)
+        return self.lineRange(for: NSRange(location: index, length: 0))
+    }
+    
+    
+    /// Return the range of the lines including the given range.
+    ///
+    /// Because this method count up all the line ranges up to the given index when not cached yet,
+    /// there is a large performance disadvantage when just a single line range is needed.
+    ///
+    /// - Parameter range: The range of character for finding the line range.
+    /// - Returns: The character range of the line.
+    func lineRange(for range: NSRange) -> NSRange {
         
-        self.ensureLineRanges(upTo: index)
+        assert(range.upperBound <= self.string.length)
         
-        let lowerBound = self.lineRangeCache.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
-        let upperBound = self.lineRangeCache.lineStartIndexes.integerGreaterThan(index) ?? self.string.length
+        self.ensureLineRanges(upTo: range.upperBound)
+        
+        let indexes = self.lineRangeCache.lineStartIndexes
+        let lowerBound = indexes.integerLessThanOrEqualTo(range.lowerBound) ?? 0
+        let upperBound = range.isEmpty
+            ? indexes.integerGreaterThan(range.upperBound) ?? self.string.length
+            : indexes.integerGreaterThanOrEqualTo(range.upperBound) ?? self.string.length
         
         return NSRange(location: lowerBound, length: upperBound - lowerBound)
     }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ final class LineRangeCacheableTests: XCTestCase {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
-            for index in (0..<string.length).shuffled() {
+            for index in (0...string.length).shuffled() {
                 let result = (string as NSString).lineNumber(at: index)
                 XCTAssertEqual(lineString.lineNumber(at: index), result, "At \(index) with string \"\(string)\"")
             }
@@ -59,7 +59,7 @@ final class LineRangeCacheableTests: XCTestCase {
     }
     
     
-    func testLineRangeCalculation() {
+    func testIndexToLineRangeCalculation() {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
         XCTAssertEqual(lineString.lineRange(at: 0), NSRange(0..<5))
@@ -79,10 +79,44 @@ final class LineRangeCacheableTests: XCTestCase {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
-            for index in (0..<string.length).shuffled() {
+            for index in (0...string.length).shuffled() {
                 let result = (string as NSString).lineRange(at: index)
                 XCTAssertEqual(lineString.lineRange(at: index), result, "At \(index) with string \"\(string)\"")
                 XCTAssertEqual(lineString.lineStartIndex(at: index), result.lowerBound, "At \(index) with string \"\(string)\"")
+            }
+        }
+    }
+    
+    
+    func testRangeToLineRangeCalculation() {
+
+        let lineString = LineString("dog \n\n cat \n cow \n")
+        XCTAssertEqual(lineString.lineRange(for: NSRange(0..<3)), NSRange(0..<5))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(0..<5)), NSRange(0..<5))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(0..<6)), NSRange(0..<6))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(5..<5)), NSRange(5..<6))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(5..<6)), NSRange(5..<6))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(5..<7)), NSRange(5..<12))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(6..<6)), NSRange(6..<12))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(6..<7)), NSRange(6..<12))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(6..<17)), NSRange(6..<18))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(17..<17)), NSRange(12..<18))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(17..<18)), NSRange(12..<18))
+        XCTAssertEqual(lineString.lineRange(for: NSRange(18..<18)), NSRange(18..<18))
+
+        let lineString2 = LineString("dog \n\n cat \n cow ")
+        XCTAssertEqual(lineString2.lineRange(for: NSRange(15..<17)), NSRange(12..<17))
+        XCTAssertEqual(lineString2.lineRange(for: NSRange(17..<17)), NSRange(12..<17))
+
+        for _ in 0..<self.repeatCount {
+            let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
+            let lineString = LineString(string)
+
+            for index in (0...string.length).shuffled() {
+                let range = NSRange(index..<(index...string.length).randomElement()!)
+                let result = (string as NSString).lineRange(for: range)
+                
+                XCTAssertEqual(lineString.lineRange(for: range), result, "At \(index) with string \"\(string)\"")
             }
         }
     }
@@ -100,7 +134,7 @@ final class LineRangeCacheableTests: XCTestCase {
         for _ in 0..<self.repeatCount {
             let lineString = LineString(String(" 🐶 \n 🐱 \n 🐮 \n".shuffled()))
             
-            for index in (0..<lineString.string.length).shuffled() {
+            for index in (0...lineString.string.length).shuffled() {
                 let lineNumber = lineString.lineNumber(at: index)
                 let lineRange = lineString.lineRange(at: index)
                 let range = NSRange(Int.random(in: 0..<lineString.string.length)..<lineString.string.length)
@@ -167,7 +201,7 @@ final class LineRangeCacheableTests: XCTestCase {
             
             lineString.replaceCharacters(in: range, with: replacement)
             
-            for index in (0..<lineString.string.length).shuffled() {
+            for index in (0...lineString.string.length).shuffled() {
                 XCTAssertEqual(lineString.lineNumber(at: index), lineString.string.lineNumber(at: index),
                                "at \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineRange(at: index), lineString.string.lineRange(at: index),
