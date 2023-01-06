@@ -131,7 +131,7 @@ final class TextFinder {
     static let didFindNotification = Notification.Name("didFindNotification")
     static let didFindAllNotification = Notification.Name("didFindAllNotification")
     
-    weak var client: NSTextView?
+    weak var client: NSTextView!
     
     
     // MARK: Private Properties
@@ -182,17 +182,16 @@ final class TextFinder {
                  .selectAll,
                  .findAll,
                  .setReplaceString:
-                return self.client?.isSelectable == true
+                return self.client.isSelectable
                 
             case .replaceAll,
                  .replace,
                  .replaceAndFind:
-                return self.client?.isEditable == true &&
-                       self.client?.window?.attachedSheet == nil
+                return self.client.isEditable
                 
             case .highlight,
                  .unhighlight:
-                return self.client != nil
+                return true
                 
             case .selectAllInSelection,
                  .replaceAllInSelection,
@@ -290,13 +289,12 @@ final class TextFinder {
     @MainActor private func selectAll() {
         
         guard
-            let client = self.client,
             let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
         guard let matchedRanges = try? textFind.matches else { return }
         
-        client.selectedRanges = matchedRanges as [NSValue]
+        self.client.selectedRanges = matchedRanges as [NSValue]
         
         self.notify(result: .found(matchedRanges))
         TextFinderSettings.shared.noteFindHistory()
@@ -324,7 +322,7 @@ final class TextFinder {
     /// Remove all of current highlights in the frontmost textView.
     @MainActor private func unhighlight() {
         
-        self.client?.unhighlight(nil)
+        self.client.unhighlight(nil)
     }
     
     
@@ -332,7 +330,7 @@ final class TextFinder {
     @MainActor private func replace() {
         
         if self.replaceSelected() {
-            self.client?.centerSelectionInVisibleArea(self)
+            self.client.centerSelectionInVisibleArea(self)
         } else {
             NSSound.beep()
         }
@@ -367,9 +365,7 @@ final class TextFinder {
     /// Set selected string to find field.
     @MainActor private func setSearchString() {
         
-        guard let client = self.client else { return }
-        
-        TextFinderSettings.shared.findString = client.selectedString
+        TextFinderSettings.shared.findString = self.client.selectedString
         TextFinderSettings.shared.usesRegularExpression = false  // auto-disable regex
     }
     
@@ -377,9 +373,7 @@ final class TextFinder {
     /// Set selected string to replace field.
     @MainActor private func setReplaceString() {
         
-        guard let client = self.client else { return }
-        
-        TextFinderSettings.shared.replacementString = client.selectedString
+        TextFinderSettings.shared.replacementString = self.client.selectedString
     }
     
     
@@ -388,10 +382,10 @@ final class TextFinder {
     
     /// Check Find can be performed and alert if needed.
     ///
-    /// - Returns: The target textView and a TextFind object.
+    /// - Returns: A TextFind object with the current state, or `nil` if not ready.
     @MainActor private func prepareTextFind() -> TextFind? {
         
-        guard let client = self.client else { assertionFailure(); return nil }
+        let client = self.client!
         
         // close previous error dialog if any exists
         FindPanelController.shared.window?.attachedSheet?.close()
@@ -404,9 +398,10 @@ final class TextFinder {
         let string = client.string.immutable
         let mode = TextFinderSettings.shared.mode
         let inSelection = TextFinderSettings.shared.inSelection
+        let selectedRanges = client.selectedRanges.map(\.rangeValue)
         
         do {
-            return try TextFind(for: string, findString: findString, mode: mode, inSelection: inSelection, selectedRanges: client.selectedRanges.map(\.rangeValue))
+            return try TextFind(for: string, findString: findString, mode: mode, inSelection: inSelection, selectedRanges: selectedRanges)
             
         } catch let error as TextFind.Error {
             switch error {
@@ -436,12 +431,13 @@ final class TextFinder {
         assert(forward || !isIncremental)
         
         guard
-            let client = self.client,
             let textFind = self.prepareTextFind()
         else {
             if !isIncremental { NSSound.beep() }
             return
         }
+        
+        let client = self.client!
         
         // find in background thread
         let result = try await Task.detached(priority: .userInitiated) {
@@ -503,7 +499,6 @@ final class TextFinder {
     @MainActor private func replaceSelected() -> Bool {
         
         guard
-            let client = self.client,
             let textFind = self.prepareTextFind()
         else { NSSound.beep(); return false }
         
@@ -512,10 +507,10 @@ final class TextFinder {
         guard let result = textFind.replace(with: replacementString) else { return false }
         
         // apply replacement to text view
-        return client.replace(with: result.string, range: result.range,
-                              selectedRange: NSRange(location: result.range.location,
-                                                     length: result.string.length),
-                              actionName: "Replace".localized)
+        return self.client.replace(with: result.string, range: result.range,
+                                   selectedRange: NSRange(location: result.range.location,
+                                                          length: result.string.length),
+                                   actionName: "Replace".localized)
     }
     
     
@@ -527,10 +522,10 @@ final class TextFinder {
     @MainActor private func findAll(showsList: Bool, actionName: LocalizedStringKey) async {
         
         guard
-            let client = self.client,
             let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
+        let client = self.client!
         client.isEditable = false
         
         let highlightColors = NSColor.textHighlighterColor.usingColorSpace(.genericRGB)!.decomposite(into: textFind.numberOfCaptureGroups + 1)
@@ -621,10 +616,10 @@ final class TextFinder {
     @MainActor private func replaceAll() async {
         
         guard
-            let client = self.client,
             let textFind = self.prepareTextFind()
         else { return NSSound.beep() }
         
+        let client = self.client!
         client.isEditable = false
         
         let replacementString = TextFinderSettings.shared.replacementString
