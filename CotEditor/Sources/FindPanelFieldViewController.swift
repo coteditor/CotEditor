@@ -57,9 +57,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // observe find result notifications from TextFinder and its expiration
         NotificationCenter.default.publisher(for: TextFinder.didFindNotification)
-            .map { $0.userInfo?["result"] as? TextFindResult }
+            .map { $0.object as? TextFinder }
             .receive(on: RunLoop.main)
-            .sink { [weak self] in self?.update(result: $0) }
+            .sink { [weak self] in self?.update(result: $0?.findResult) }
             .store(in: &self.resultObservers)
         NotificationCenter.default.publisher(for: NSWindow.didResignMainNotification)
             .sink { [weak self] _ in self?.update(result: nil) }

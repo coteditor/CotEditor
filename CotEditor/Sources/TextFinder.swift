@@ -85,13 +85,11 @@ struct TextFindAllResult {
         
         var range: NSRange
         var attributedLineString: NSAttributedString
-        var inlineRange: NSRange
     }
     
     
     var findString: String
     var matches: [Match]
-    weak var textView: NSTextView?
 }
 
 
@@ -132,6 +130,9 @@ final class TextFinder {
     static let didFindAllNotification = Notification.Name("didFindAllNotification")
     
     weak var client: NSTextView!
+    
+    private(set) var findResult: TextFindResult?
+    private(set) var findAllResult: TextFindAllResult?
     
     
     // MARK: Private Properties
@@ -566,11 +567,9 @@ final class TextFinder {
                                                     value: highlightColors[index],
                                                     range: range.shifted(by: -lineRange.location))
                     }
+                    attrLineString.truncateHead(until: matchedRange.location - lineRange.location, offset: 16)
                     
-                    // calculate inline range
-                    let inlineRange = matchedRange.shifted(by: -lineRange.location)
-                    
-                    resultMatches.append(.init(range: matchedRange, attributedLineString: attrLineString, inlineRange: inlineRange))
+                    resultMatches.append(.init(range: matchedRange, attributedLineString: attrLineString))
                 }
                 
                 progress.completedUnit = matches[0].upperBound
@@ -604,8 +603,8 @@ final class TextFinder {
         self.notify(result: .found(matches.map(\.range)))
         
         if showsList {
-            let findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches, textView: client)
-            NotificationCenter.default.post(name: TextFinder.didFindAllNotification, object: self, userInfo: ["result": findAllResult])
+            self.findAllResult = TextFindAllResult(findString: textFind.findString, matches: matches)
+            NotificationCenter.default.post(name: TextFinder.didFindAllNotification, object: self)
         }
         
         TextFinderSettings.shared.noteFindHistory()
@@ -670,8 +669,8 @@ final class TextFinder {
     ///   - result: The result of the process.
     private func notify(result: TextFindResult) {
         
-        // to find panel
-        NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self, userInfo: ["result": result])
+        self.findResult = result
+        NotificationCenter.default.post(name: TextFinder.didFindNotification, object: self)
         
         self.client?.requestAccessibilityAnnouncement(result.message)
     }

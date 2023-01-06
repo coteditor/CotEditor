@@ -94,7 +94,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     /// return number of row (required)
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        self.matches.count
+        (self.target != nil) ? self.matches.count : 0
     }
     
     
@@ -108,7 +108,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
                 return self.target?.lineNumber(at: match.range.location)
             
             default:
-                let attrString = match.truncatedAttributedString.mutable
+                let attrString = match.attributedLineString.mutable
                 
                 // truncate tail
                 let paragraphStyle = NSParagraphStyle.default.mutable
@@ -124,12 +124,12 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     // MARK: Public Methods
     
     /// set new find matches
-    func setResult(_ result: TextFindAllResult) {
+    func setResult(_ result: TextFindAllResult, for client: NSTextView) {
         
-        self.target = result.textView
+        self.target = client
         self.findString = result.findString
         self.matches = result.matches
-        self.resultMessage = result.message
+        self.resultMessage = self.message
         
         self.tableView?.reloadData()
     }
@@ -155,6 +155,24 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         textView.select(range: range)
         textView.window?.makeKeyAndOrderFront(nil)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private var message: String? {
+        
+        guard let documentName = (self.target?.window?.windowController?.document as? NSDocument)?.displayName else { return nil }
+            
+        switch self.matches.count {
+            case 0:
+                return String(localized: "No strings found in “\(documentName).”")
+            case 1:
+                return String(localized: "Found one string in “\(documentName).”")
+            default:
+                return String(localized: "Found \(self.matches.count) strings in “\(documentName).”")
+        }
     }
 }
 
@@ -182,46 +200,5 @@ extension FindPanelResultViewController {
     @IBAction func resetFont(_ sender: Any?) {
         
         UserDefaults.standard.restore(key: .findResultViewFontSize)
-    }
-}
-
-
-
-// MARK: TextFindAllResult extensions
-
-private extension TextFindAllResult {
-    
-    var message: String {
-        
-        let documentName = (self.textView?.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
-        switch self.matches.count {
-            case 0:
-                return String(localized: "No strings found in “\(documentName).”")
-            case 1:
-                return String(localized: "Found one string in “\(documentName).”")
-            default:
-                return String(localized: "Found \(self.matches.count) strings in “\(documentName).”")
-        }
-    }
-}
-
-
-private extension TextFindAllResult.Match {
-    
-    /// The maximum number of characters to add to the left of the matched string.
-    private static let maxHeadOffset = 16
-    
-    
-    /// Return an attributed string around the matched area in the line.
-    var truncatedAttributedString: NSAttributedString {
-        
-        guard self.inlineRange.location > Self.maxHeadOffset else { return self.attributedLineString }
-        
-        let attrString = self.attributedLineString.mutable
-        let truncationIndex = (attrString.string as NSString)
-            .boundaryOfComposedCharacterSequence(self.inlineRange.location, offsetBy: -Self.maxHeadOffset)
-        attrString.replaceCharacters(in: NSRange(..<truncationIndex), with: "…")
-        
-        return attrString
     }
 }

@@ -47,8 +47,8 @@ final class FindPanelContentViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.resultObserver = NotificationCenter.default.publisher(for: TextFinder.didFindAllNotification)
-            .compactMap { $0.userInfo?["result"] as? TextFindAllResult }
-            .sink { [weak self] in self?.didFinishFindAll($0) }
+            .compactMap { $0.object as? TextFinder }
+            .sink { [weak self] in self?.didFinishFindAll(in: $0) }
     }
     
     
@@ -107,10 +107,12 @@ final class FindPanelContentViewController: NSSplitViewController {
     
     /// Completion notification of the Find All command.
     ///
-    /// - Parameter result: The result.
-    private func didFinishFindAll(_ result: TextFindAllResult) {
+    /// - Parameter textFinder: The TextFinder that did Find All.
+    private func didFinishFindAll(in textFinder: TextFinder) {
         
-        self.resultViewController?.setResult(result)
+        guard let result = textFinder.findAllResult else { return }
+        
+        self.resultViewController?.setResult(result, for: textFinder.client)
         
         guard !result.matches.isEmpty else { return }
         
