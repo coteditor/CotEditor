@@ -84,7 +84,6 @@ struct TextFindAllResult {
     struct Match {
         
         var range: NSRange
-        var lineNumber: Int
         var attributedLineString: NSAttributedString
         var inlineRange: NSRange
     }
@@ -563,9 +562,6 @@ final class TextFinder {
                 if showsList {
                     let matchedRange = matches[0]
                     
-                    // calculate line number
-                    let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
-                    
                     // build a highlighted line string for result table
                     let lineRange = lineCounter.lineRange(for: matchedRange)
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
@@ -579,7 +575,7 @@ final class TextFinder {
                     // calculate inline range
                     let inlineRange = matchedRange.shifted(by: -lineRange.location)
                     
-                    resultMatches.append(.init(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
+                    resultMatches.append(.init(range: matchedRange, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
                 
                 progress.completedUnit = matches[0].upperBound

@@ -105,7 +105,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         
         switch tableColumn?.identifier {
             case NSUserInterfaceItemIdentifier("line"):
-                return match.lineNumber
+                return self.target?.lineNumber(at: match.range.location)
             
             default:
                 let attrString = match.truncatedAttributedString.mutable
