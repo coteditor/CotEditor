@@ -745,7 +745,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             var fileURL = self.fileURL
         else { return }
         
-        // check wheather the document content is really modified
+        // check whether the document content is really modified
         // -> Avoid using NSFileCoordinator although the document recommends
         //    because it cause deadlock when the document in the iCloud Document remotely modified.
         //    (2022-08 on macOS 12.5, Xcode 14, #1296)
