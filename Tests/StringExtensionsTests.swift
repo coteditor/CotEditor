@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -311,26 +311,28 @@ final class StringExtensionsTests: XCTestCase {
     
     func testComposedCharacterSequence() {
         
-        let blackDog = "🐕‍⬛️" as NSString  // 5
-        XCTAssertEqual(blackDog.boundaryOfComposedCharacterSequence(2, offsetBy: -1), 0)
-        XCTAssertEqual(blackDog.boundaryOfComposedCharacterSequence(1, offsetBy: 1), blackDog.length)
+        let blackDog = "🐕‍⬛"  // 4
+        XCTAssertEqual(blackDog.lowerBoundOfComposedCharacterSequence(2, offsetBy: 1), 0)
         
-        let string = "🐕🏴‍☠️🇯🇵🧑‍💻" as NSString  // 2 5 4 5
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: -3), 0)
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: -2), 0)
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: -1), "🐕".utf16.count)
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 0), "🐕🏴‍☠️".utf16.count)
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 1), "🐕🏴‍☠️🇯🇵".utf16.count)
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 2), "🐕🏴‍☠️🇯🇵🧑‍💻".utf16.count)
-        XCTAssertEqual(string.boundaryOfComposedCharacterSequence(9, offsetBy: 3), "🐕🏴‍☠️🇯🇵🧑‍💻".utf16.count)
+        let abcDog = "🐕‍⬛abc"  // 4 1 1 1
+        XCTAssertEqual(abcDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1), "🐕‍⬛a".utf16.count)
+        XCTAssertEqual(abcDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1), "🐕‍⬛".utf16.count)
         
-        let abc = "abc" as NSString
-        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: -2), 0)
-        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: -1), 0)
-        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 0), 1)
-        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 1), 2)
-        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 2), 3)
-        XCTAssertEqual(abc.boundaryOfComposedCharacterSequence(1, offsetBy: 3), 3)
+        let dogDog = "🐕‍⬛🐕"  // 4 2
+        XCTAssertEqual(dogDog.lowerBoundOfComposedCharacterSequence(5, offsetBy: 1), 0)
+        XCTAssertEqual(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 1), "🐕‍⬛".utf16.count)
+        XCTAssertEqual(dogDog.lowerBoundOfComposedCharacterSequence(6, offsetBy: 0), "🐕‍⬛🐕".utf16.count)
+        
+        let string = "🐕🏴‍☠️🇯🇵🧑‍💻"  // 2 5 4 5
+        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 3), 0)
+        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 2), 0)
+        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 1), "🐕".utf16.count)
+        XCTAssertEqual(string.lowerBoundOfComposedCharacterSequence(9, offsetBy: 0), "🐕🏴‍☠️".utf16.count)
+        
+        let abc = "abc"
+        XCTAssertEqual(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 2), 0)
+        XCTAssertEqual(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 1), 0)
+        XCTAssertEqual(abc.lowerBoundOfComposedCharacterSequence(1, offsetBy: 0), 1)
     }
     
     

@@ -311,30 +311,29 @@ extension NSString {
     }
     
     
-    /// Return the boundary of the composed character sequence by moving the offset by counting offset in composed character sequences.
+    /// Return the lower bound of the composed character sequence by moving the bound in the head direction by counting offset in composed character sequences.
     ///
     /// - Parameters:
     ///   - index: The reference character index in UTF-16.
     ///   - offset: The number of composed character sequences to move index.
     /// - Returns: A character index in UTF-16.
-    func boundaryOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
+    func lowerBoundOfComposedCharacterSequence(_ index: Int, offsetBy offset: Int) -> Int {
         
         assert((0...self.length).contains(index))
+        assert(offset >= 0)
         
-        let reverse = (offset <= 0)
-        let range = reverse ? NSRange(location: 0, length: min(index + 1, self.length)) : NSRange(location: index, length: self.length - index)
-        var options: EnumerationOptions = [.byComposedCharacterSequences, .substringNotRequired]
-        if reverse {
-            options.formUnion(.reverse)
-        }
+        if index == self.length, offset == 0 { return index }
         
+        var remainingCount = (index == self.length) ? offset : offset + 1
         var boundary = index
-        var remainingCount = reverse ? -offset + 1 : offset
+        
+        let range = NSRange(..<min(index + 1, self.length))
+        let options: EnumerationOptions = [.byComposedCharacterSequences, .substringNotRequired, .reverse]
         self.enumerateSubstrings(in: range, options: options) { (_, range, _, stop) in
             
-            boundary = reverse ? range.lowerBound : range.upperBound
-            
+            boundary = range.lowerBound
             remainingCount -= 1
+            
             if remainingCount <= 0 {
                 stop.pointee = true
             }

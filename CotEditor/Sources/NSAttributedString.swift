@@ -77,6 +77,31 @@ extension NSAttributedString {
 
 
 
+extension NSMutableAttributedString {
+    
+    /// Truncate head with an ellipsis symbol until the specific `location` if the length before the location is the longer than the `maxOffset`.
+    ///
+    /// - Parameters:
+    ///   - location: The character index to start truncation.
+    ///   - offset: The maximum number of composed characters to leave on the left of the `location`.
+    func truncateHead(until location: Int, offset: Int) {
+        
+        assert(location >= 0)
+        assert(offset >= 0)
+        
+        guard location > offset else { return }
+        
+        let truncationIndex = (self.string as NSString)
+            .lowerBoundOfComposedCharacterSequence(location, offsetBy: offset)
+        moof(self.string, location, offset, truncationIndex)
+        guard truncationIndex > 0 else { return }
+        
+        self.replaceCharacters(in: NSRange(..<truncationIndex), with: "…")
+    }
+}
+
+
+
 extension Sequence<NSAttributedString> {
     
     /// Return a new attributed string by concatenating the elements of the sequence, adding the given separator between each element.

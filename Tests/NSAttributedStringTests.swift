@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -50,6 +50,38 @@ final class NSAttributedStringTests: XCTestCase {
         XCTAssertEqual(fooBar.string, "foobar")
         XCTAssertEqual(fooBar.attribute(.toolTip, at: 1, effectiveRange: nil) as? String, "moof")
         XCTAssertNil(fooBar.attribute(.toolTip, at: 3, effectiveRange: nil))
+    }
+    
+    
+    func testTruncation() throws {
+        
+        let string1 = NSMutableAttributedString(string: "0123456")
+        string1.truncateHead(until: 5, offset: 2)
+        XCTAssertEqual(string1.string, "…3456")
+        
+        let string2 = NSMutableAttributedString(string: "0123456")
+        string2.truncateHead(until: 2, offset: 3)
+        XCTAssertEqual(string2.string, "0123456")
+        
+        let string3 = NSMutableAttributedString(string: "🐱🐶🐮")
+        string3.truncateHead(until: 4, offset: 1)
+        XCTAssertEqual(string3.string, "…🐶🐮")
+        
+        let string4 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
+        string4.truncateHead(until: 4, offset: 1)
+        XCTAssertEqual(string4.string, "🐈‍⬛🐕🐄")
+        
+        let string5 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
+        string5.truncateHead(until: 5, offset: 1)
+        XCTAssertEqual(string5.string, "🐈‍⬛🐕🐄")
+        
+        let string6 = NSMutableAttributedString(string: "🐈‍⬛ab")
+        string6.truncateHead(until: 5, offset: 1)
+        XCTAssertEqual(string6.string, "…ab")
+        
+        let string7 = NSMutableAttributedString(string: "🐈‍⬛🐕🐄")
+        string7.truncateHead(until: 6, offset: 1)
+        XCTAssertEqual(string7.string, "…🐕🐄")
     }
     
     
