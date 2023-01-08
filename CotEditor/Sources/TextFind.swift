@@ -295,8 +295,8 @@ final class TextFind {
     ///   - stop: The `block` can set the value to true to stop further processing.
     /// - Returns:
     ///   - replacementItems: ReplacementItem per selectedRange.
-    ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, nil.
-    func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
+    ///   - selectedRanges: New selections for textView only if the replacement is performed within selection. Otherwise, `nil`.
+    func replaceAll(with replacementString: String, using block: @escaping (_ range: NSRange, _ count: Int, _ stop: inout Bool) -> Void) -> (replacementItems: [ReplacementItem], selectedRanges: [NSRange]?) {
         
         let replacementString = self.replacementString(from: replacementString)
         var replacementItems: [ReplacementItem] = []
@@ -304,23 +304,31 @@ final class TextFind {
         
         for scopeRange in self.scopeRanges {
             let scopeString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
-            var offset = 0
             var ioStop = false
             
             // replace string
-            self.enumerateMatchs(in: scopeRange) { (matchedRange, match, stop) in
-                let replacedString: String = {
-                    guard let match = match, let regex = match.regularExpression else { return replacementString }
+            switch self.mode {
+                case let .textual(options: options, fullWord: fullWord) where !fullWord:
+                    // use .replaceOccurrences(of:with:range:) for performance
+                    let count = scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
+                    block(scopeRange, count, &ioStop)
                     
-                    return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
-                }()
-                
-                let localRange = matchedRange.shifted(by: -scopeRange.location - offset)
-                scopeString.replaceCharacters(in: localRange, with: replacedString)
-                offset += matchedRange.length - replacedString.length
-                
-                block(matchedRange, &ioStop)
-                stop = ioStop
+                default:
+                    var offset = 0
+                    self.enumerateMatchs(in: scopeRange) { (matchedRange, match, stop) in
+                        let replacedString: String = {
+                            guard let match = match, let regex = match.regularExpression else { return replacementString }
+                            
+                            return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
+                        }()
+                        
+                        let localRange = matchedRange.shifted(by: -scopeRange.location - offset)
+                        scopeString.replaceCharacters(in: localRange, with: replacedString)
+                        offset += matchedRange.length - replacedString.length
+                        
+                        block(matchedRange, 1, &ioStop)
+                        stop = ioStop
+                    }
             }
             
             guard !ioStop else { break }

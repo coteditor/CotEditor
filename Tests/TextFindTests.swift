@@ -254,7 +254,7 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)",
                                 mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _)  in }
+        (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _, _)  in }
         XCTAssertEqual(replacementItems.count, 1)
         XCTAssertEqual(replacementItems[0].string, "ac\\tdefg AC\\tDEFG")
         XCTAssertEqual(replacementItems[0].range, NSRange(location: 0, length: 15))
@@ -267,7 +267,7 @@ final class TextFindTests: XCTestCase {
                                 selectedRanges: [NSRange(location: 1, length: 14),
                                                  NSRange(location: 16, length: 7)])
         
-        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _)  in }
+        (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _, _)  in }
         XCTAssertEqual(replacementItems.count, 2)
         XCTAssertEqual(replacementItems[0].string, "bcdefg _defg")
         XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 14))

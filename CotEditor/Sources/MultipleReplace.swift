@@ -135,13 +135,13 @@ extension MultipleReplace {
             guard let textFind = try? TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges) else { continue }
             
             // process replacement
-            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (_, stop) in
+            let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (_, count, stop) in
                 guard progress?.isCancelled != true else {
                     stop = true
                     return
                 }
                 
-                progress?.count += 1
+                progress?.count += count
             }
             
             // finish if cancelled

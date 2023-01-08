@@ -616,14 +616,14 @@ final class TextFinder {
         client.viewControllerForSheet?.presentAsSheet(indicator)
         
         let (replacementItems, selectedRanges) = await Task.detached(priority: .userInitiated) {
-            textFind.replaceAll(with: replacementString) { (range, stop) in
+            textFind.replaceAll(with: replacementString) { (range, count, stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
                 progress.completedUnit = range.upperBound
-                progress.count += 1
+                progress.count += count
             }
         }.value
         
