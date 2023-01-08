@@ -466,22 +466,7 @@ final class TextFinder {
             client.showFindIndicator(for: range)
             
             if result.wrapped {
-                if let view = client.enclosingScrollView?.superview {
-                    let hudView = NSHostingView(rootView: HUDView(symbol: .wrap, flipped: !forward))
-                    hudView.rootView.parent = hudView
-                    hudView.translatesAutoresizingMaskIntoConstraints = false
-                    
-                    // remove previous HUD if any
-                    for subview in view.subviews where subview is NSHostingView<HUDView> {
-                        subview.removeFromSuperview()
-                    }
-                    
-                    view.addSubview(hudView)
-                    hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-                    hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-                    hudView.layout()
-                }
-                
+                client.enclosingScrollView?.superview?.showHUD(symbol: .wrap, flipped: !forward)
                 client.requestAccessibilityAnnouncement("Search wrapped.".localized)
             }
         } else if !isIncremental {

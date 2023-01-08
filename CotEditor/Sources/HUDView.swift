@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,34 @@
 //
 
 import SwiftUI
+import AppKit
+
+extension NSView {
+    
+    /// Show a HUD view as a chid view.
+    ///
+    /// - Parameters:
+    ///   - symbol: The symbol to display in the HUD.
+    ///   - flipped: Whether the symbol is flipped.
+    func showHUD(symbol: HUDView.Symbol, flipped: Bool = false) {
+        
+        let hudView = NSHostingView(rootView: HUDView(symbol: symbol, flipped: flipped))
+        hudView.rootView.parent = hudView
+        hudView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // remove previous HUD if any
+        for subview in self.subviews where subview is NSHostingView<HUDView> {
+            subview.removeFromSuperview()
+        }
+        
+        self.addSubview(hudView)
+        hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        hudView.layout()
+    }
+}
+
+
 
 struct HUDView: View {
     
