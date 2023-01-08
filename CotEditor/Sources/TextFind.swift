@@ -78,13 +78,7 @@ final class TextFind {
     
     struct FindResult {
         
-        /// The range of matched or nil if not found.
-        var range: NSRange?
-        
-        /// The ranges of all matches in the scopes.
-        var ranges: [NSRange]
-        
-        /// Whether the search was wrapped to find the result.
+        var range: NSRange
         var wrapped: Bool
     }
     
@@ -192,24 +186,24 @@ final class TextFind {
     }
     
     
-    /// Return the nearest match from the insertion point.
+    /// Return the nearest match in `matches` from the insertion point.
     ///
     /// - Parameters:
-    ///   - forward: Whether searchs forward from the insertion.
-    ///   - isWrap: Whether the search wraps  around.
+    ///   - matches: The matched ranges to find in.
+    ///   - forward: Whether searchs forward.
+    ///   - isWrap: Whether the search wraps around.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
-    /// - Returns: An FindResult object.
-    /// - Throws: `CancellationError`
-    func find(forward: Bool, isWrap: Bool, includingSelection: Bool = false) throws -> FindResult {
+    /// - Returns: A FindResult object.
+    func find(in ranges: [NSRange], forward: Bool, isWrap: Bool, includingSelection: Bool = false) -> FindResult? {
         
         assert(forward || !includingSelection)
         
-        let ranges = try self.matches
+        guard !ranges.isEmpty else { return nil }
         
         if self.inSelection {
-            let foundRange = forward ? ranges.first : ranges.last
+            guard let foundRange = forward ? ranges.first : ranges.last else { return nil }
             
-            return .init(range: foundRange, ranges: ranges, wrapped: false)
+            return .init(range: foundRange, wrapped: false)
         }
         
         let selectedRange = self.selectedRanges.first!
@@ -217,19 +211,19 @@ final class TextFind {
             ? (includingSelection ? selectedRange.lowerBound : selectedRange.upperBound)
             : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
-        var foundRange = forward
+        let foundRange = forward
             ? ranges.first { $0.lowerBound >= startLocation }
             : ranges.last { $0.upperBound <= startLocation }
         
-        // wrap search
-        let isWrapped = (foundRange == nil && isWrap)
-        if isWrapped {
-            foundRange = forward ? ranges.first : ranges.last
+        if let foundRange {
+            return .init(range: foundRange, wrapped: false)
         }
         
-        try Task.checkCancellation()
+        guard isWrap,
+              let foundRange = forward ? ranges.first : ranges.last
+        else { return nil }
         
-        return .init(range: foundRange, ranges: ranges, wrapped: isWrapped)
+        return .init(range: foundRange, wrapped: true)
     }
     
     

@@ -441,15 +441,17 @@ final class TextFinder {
         let client = self.client!
         
         // find in background thread
-        let result = try await Task.detached(priority: .userInitiated) {
-            try textFind.find(forward: forward, isWrap: TextFinderSettings.shared.isWrap, includingSelection: isIncremental)
+        let (matches, result) = try await Task.detached(priority: .userInitiated) {
+            let matches = try textFind.matches
+            let result = textFind.find(in: matches, forward: forward, isWrap: TextFinderSettings.shared.isWrap, includingSelection: isIncremental)
+            return (matches, result)
         }.value
         
         // mark all matches
         if isIncremental, let layoutManager = client.layoutManager {
             layoutManager.groupTemporaryAttributesUpdate(in: client.string.nsRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: client.string.nsRange)
-                for range in result.ranges {
+                for range in matches {
                     layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.unemphasizedSelectedTextBackgroundColor, forCharacterRange: range)
                 }
             }
@@ -461,9 +463,9 @@ final class TextFinder {
         }
         
         // found feedback
-        if let range = result.range {
-            client.select(range: range)
-            client.showFindIndicator(for: range)
+        if let result {
+            client.select(range: result.range)
+            client.showFindIndicator(for: result.range)
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap, flipped: !forward)
@@ -473,7 +475,7 @@ final class TextFinder {
             NSSound.beep()
         }
         
-        self.notify(result: .found(result.ranges))
+        self.notify(result: .found(matches))
         if !isIncremental {
             TextFinderSettings.shared.noteFindHistory()
         }
