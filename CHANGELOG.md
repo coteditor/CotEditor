@@ -19,6 +19,7 @@ Change Log
 
 - Fix an issue that multiple replacements were not performed if the document is empty.
 - Fix an issue that the Find window expanded unnecessarily in some specific conditions.
+- Fix a label in the Advanced Find Options view.
 
 
 

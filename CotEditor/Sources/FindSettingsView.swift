@@ -106,7 +106,7 @@ struct FindTextualOptionsView: View {
                 Toggle("Ignore width differences", isOn: $ignoresWidth)
                     .help("Search ignores width differences in character forms (e.g., ａ = a).")
             } header: {
-                Text("Regular Expression Search")
+                Text("Textural Search")
                     .fontWeight(.semibold)
             }
         }
