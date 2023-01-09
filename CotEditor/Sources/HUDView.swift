@@ -32,10 +32,9 @@ extension NSView {
     ///
     /// - Parameters:
     ///   - symbol: The symbol to display in the HUD.
-    ///   - flipped: Whether the symbol is flipped.
-    func showHUD(symbol: HUDView.Symbol, flipped: Bool = false) {
+    func showHUD(symbol: HUDView.Symbol) {
         
-        let hudView = NSHostingView(rootView: HUDView(symbol: symbol, flipped: flipped))
+        let hudView = NSHostingView(rootView: HUDView(symbol: symbol))
         hudView.rootView.parent = hudView
         hudView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -57,29 +56,30 @@ struct HUDView: View {
     
     enum Symbol {
         
-        case wrap
+        case wrap(flipped: Bool = false)
+        case reachTop
+        case reachBottom
     }
     
     
-    weak var parent: NSHostingView<Self>?  // workaround presentationMode.dismiss() doesn't work
+    fileprivate weak var parent: NSHostingView<Self>?  // workaround presentationMode.dismiss() doesn't work
     
     @State var symbol: Symbol
-    @State var flipped = false
     @State private var isPresented = true
     
     
     var body: some View {
         
         if self.isPresented {
-            Image(systemName: self.symbol.imageName)
+            Image(systemName: self.symbol.systemName)
                 .resizable()
                 .scaledToFit()
-                .foregroundColor(.secondaryLabel)
                 .frame(width: 72, height: 72)
-                .scaleEffect(y: self.flipped ? -1 : 1)
+                .scaleEffect(y: self.symbol.isFlipped ? -1 : 1)
                 .padding(28)
+                .foregroundColor(.secondary)
                 .background(.ultraThinMaterial)
-                .cornerRadius(14)
+                .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 .onAppear {
                     withAnimation(.default.delay(0.5)) {
                         self.isPresented = false
@@ -95,11 +95,26 @@ struct HUDView: View {
 
 private extension HUDView.Symbol {
     
-    var imageName: String {
+    var systemName: String {
         
         switch self {
             case .wrap:
                 return "arrow.triangle.capsulepath"
+            case .reachTop:
+                return "arrow.up.to.line"
+            case .reachBottom:
+                return "arrow.down.to.line"
+        }
+    }
+    
+    
+    var isFlipped: Bool {
+        
+        switch self {
+            case .wrap(let flipped):
+                return flipped
+            default:
+                return false
         }
     }
 }
@@ -112,6 +127,6 @@ struct HUDView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        HUDView(symbol: .wrap)
+        HUDView(symbol: .wrap())
     }
 }

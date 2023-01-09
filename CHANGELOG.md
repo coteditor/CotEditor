@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Optimize the performance of the Find/Replace All command.
+- Add visual feedback that the search reached the end.
 - Enable walking through all the controls in the Find window by the Tab key.
 - Update C++ syntax style to fix highlighting attributes (thanks to Luke McKenzie!).
 - Deprecate the Find Selected Text command.

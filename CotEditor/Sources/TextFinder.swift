@@ -468,10 +468,11 @@ final class TextFinder {
             client.showFindIndicator(for: result.range)
             
             if result.wrapped {
-                client.enclosingScrollView?.superview?.showHUD(symbol: .wrap, flipped: !forward)
+                client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
                 client.requestAccessibilityAnnouncement("Search wrapped.".localized)
             }
         } else if !isIncremental {
+            client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)
             NSSound.beep()
         }
         
