@@ -341,6 +341,8 @@ final class TextFind {
             }
         }
         
+        selectedRanges.formUnique()
+        
         return (replacementItems, self.inSelection ? selectedRanges : nil)
     }
     
