@@ -93,12 +93,12 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
         matches = try textFind.matches
         
-        result = textFind.find(in: matches, forward: true, isWrap: false)
+        result = textFind.find(in: matches, forward: true, wraps: false)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 0, length: 3))
         XCTAssertFalse(result!.wrapped)
         
-        result = textFind.find(in: matches, forward: false, isWrap: false)
+        result = textFind.find(in: matches, forward: false, wraps: false)
         XCTAssertEqual(matches.count, 2)
         XCTAssertNil(result)
         
@@ -106,12 +106,12 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         matches = try textFind.matches
         
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 8, length: 3))
         XCTAssertFalse(result!.wrapped)
         
-        result = textFind.find(in: matches, forward: false, isWrap: true)
+        result = textFind.find(in: matches, forward: false, wraps: true)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 8, length: 3))
         XCTAssertTrue(result!.wrapped)
@@ -120,7 +120,7 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         matches = try textFind.matches
         
-        result = textFind.find(in: matches, forward: false, isWrap: true)
+        result = textFind.find(in: matches, forward: false, wraps: true)
         XCTAssertEqual(matches.count, 3)
         XCTAssertEqual(result!.range, NSRange(location: 16, length: 3))
         XCTAssertTrue(result!.wrapped)
@@ -136,28 +136,28 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "apples apple Apple", findString: "apple",
                                 mode: .textual(options: .caseInsensitive, fullWord: true))
         matches = try textFind.matches
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 7, length: 5))
         
         textFind = try TextFind(for: "apples apple Apple", findString: "apple",
                                 mode: .textual(options: [.caseInsensitive, .literal], fullWord: true))
         matches = try textFind.matches
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 7, length: 5))
         
         textFind = try TextFind(for: "Apfel Äpfel Äpfelchen", findString: "Äpfel",
                                 mode: .textual(options: .diacriticInsensitive, fullWord: true))
         matches = try textFind.matches
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 0, length: 5))
         
         textFind = try TextFind(for: "イヌら ｲﾇ イヌ", findString: "イヌ",
                                 mode: .textual(options: .widthInsensitive, fullWord: true))
         matches = try textFind.matches
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 2)
         XCTAssertEqual(result!.range, NSRange(location: 4, length: 2))
     }
@@ -186,12 +186,12 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "abcdefg abcdefg ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
         matches = try textFind.matches
         
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 3)
         XCTAssertEqual(result!.range, NSRange(location: 9, length: 2))
         XCTAssertFalse(result!.wrapped)
         
-        result = textFind.find(in: matches, forward: false, isWrap: true)
+        result = textFind.find(in: matches, forward: false, wraps: true)
         XCTAssertEqual(matches.count, 3)
         XCTAssertEqual(result!.range, NSRange(location: 17, length: 2))
         XCTAssertTrue(result!.wrapped)
@@ -200,12 +200,12 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
         matches = try textFind.matches
         
-        result = textFind.find(in: matches, forward: true, isWrap: true)
+        result = textFind.find(in: matches, forward: true, wraps: true)
         XCTAssertEqual(matches.count, 1)
         XCTAssertEqual(result!.range, NSRange(location: 1, length: 2))
         XCTAssertTrue(result!.wrapped)
         
-        result = textFind.find(in: matches, forward: false, isWrap: true)
+        result = textFind.find(in: matches, forward: false, wraps: true)
         XCTAssertEqual(matches.count, 1)
         XCTAssertEqual(result!.range, NSRange(location: 1, length: 2))
         XCTAssertTrue(result!.wrapped)

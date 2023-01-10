@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -140,11 +140,11 @@ final class TextFind {
                 }
         }
         
+        self.findString = findString
         self.mode = mode
+        self.inSelection = inSelection
         self.string = string
         self.selectedRanges = selectedRanges
-        self.findString = findString
-        self.inSelection = inSelection
         self.scopeRanges = inSelection ? selectedRanges : [string.nsRange]
     }
     
@@ -191,17 +191,17 @@ final class TextFind {
     /// - Parameters:
     ///   - matches: The matched ranges to find in.
     ///   - forward: Whether searchs forward.
-    ///   - isWrap: Whether the search wraps around.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
+    ///   - wraps: Whether the search wraps around.
     /// - Returns: A FindResult object.
-    func find(in ranges: [NSRange], forward: Bool, isWrap: Bool, includingSelection: Bool = false) -> FindResult? {
+    func find(in matches: [NSRange], forward: Bool, includingSelection: Bool = false, wraps: Bool) -> FindResult? {
         
         assert(forward || !includingSelection)
         
-        guard !ranges.isEmpty else { return nil }
+        guard !matches.isEmpty else { return nil }
         
         if self.inSelection {
-            guard let foundRange = forward ? ranges.first : ranges.last else { return nil }
+            guard let foundRange = forward ? matches.first : matches.last else { return nil }
             
             return .init(range: foundRange, wrapped: false)
         }
@@ -212,15 +212,15 @@ final class TextFind {
             : (includingSelection ? selectedRange.upperBound : selectedRange.lowerBound)
         
         let foundRange = forward
-            ? ranges.first { $0.lowerBound >= startLocation }
-            : ranges.last { $0.upperBound <= startLocation }
+            ? matches.first { $0.lowerBound >= startLocation }
+            : matches.last { $0.upperBound <= startLocation }
         
         if let foundRange {
             return .init(range: foundRange, wrapped: false)
         }
         
-        guard isWrap,
-              let foundRange = forward ? ranges.first : ranges.last
+        guard wraps,
+              let foundRange = forward ? matches.first : matches.last
         else { return nil }
         
         return .init(range: foundRange, wrapped: true)
@@ -303,7 +303,7 @@ final class TextFind {
             // replace string
             switch self.mode {
                 case let .textual(options: options, fullWord: fullWord) where !fullWord:
-                    // use .replaceOccurrences(of:with:range:) for performance
+                    // replace at once for performance
                     let count = scopeString.replaceOccurrences(of: self.findString, with: replacementString, options: options, range: scopeString.range)
                     block(scopeRange, count, &ioStop)
                     

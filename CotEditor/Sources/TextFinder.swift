@@ -443,7 +443,7 @@ final class TextFinder {
         // find in background thread
         let (matches, result) = try await Task.detached(priority: .userInitiated) {
             let matches = try textFind.matches
-            let result = textFind.find(in: matches, forward: forward, isWrap: TextFinderSettings.shared.isWrap, includingSelection: isIncremental)
+            let result = textFind.find(in: matches, forward: forward, includingSelection: isIncremental, wraps: TextFinderSettings.shared.isWrap)
             return (matches, result)
         }.value
         
