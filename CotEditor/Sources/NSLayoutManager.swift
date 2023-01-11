@@ -290,7 +290,7 @@ extension NSLayoutManager {
 
 private extension UserDefaults {
     
-    /// Whether the user enables the system-wide "Use split cursor" option in System Settings > Keyboard > Input Source.
+    /// Whether the user enables the system-wide "Use split cursor" option in System Settings > Keyboard > Text Input > Input Source.
     var useSplitCursor: Bool  { self.bool(forKey: "NSUseSplitCursor") }
 }
 
