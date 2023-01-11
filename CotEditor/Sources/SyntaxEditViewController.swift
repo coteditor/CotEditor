@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 //
 
 import Cocoa
+import SwiftUI
 
 final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
@@ -41,6 +42,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     private let mode: Mode
     private let style: NSMutableDictionary
+    private let validator: SyntaxStyleValidator
     @objc private let isRestorable: Bool
     @objc private let isBundledStyle: Bool
     
@@ -88,6 +90,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
                 self.isRestorable = false
         }
         
+        self.validator = SyntaxStyleValidator(style: self.style)
+        
         super.init(coder: coder)
     }
     
@@ -103,10 +107,16 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         super.prepare(for: segue, sender: sender)
         
         // prepare embeded TabViewController
-        if let destinationController = segue.destinationController as? NSTabViewController {
-            self.tabViewController = destinationController
-            self.menuTitles = destinationController.tabViewItems.map(\.label.localized)
-            destinationController.children.forEach { $0.representedObject = self.style }
+        if let tabViewController = segue.destinationController as? NSTabViewController {
+            let validationView = SyntaxValidationView(validator: self.validator)
+            let validationTabItem = NSTabViewItem(viewController: NSHostingController(rootView: validationView))
+            validationTabItem.identifier = "validation"
+            validationTabItem.label = "Syntax Validation".localized
+            tabViewController.addTabViewItem(validationTabItem)
+            
+            self.tabViewController = tabViewController
+            self.menuTitles = tabViewController.tabViewItems.map(\.label.localized)
+            tabViewController.children.forEach { $0.representedObject = self.style }
         }
     }
     
@@ -124,14 +134,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             }
         }()
         if self.isBundledStyle {
-            self.styleNameField?.drawsBackground = false
             self.styleNameField?.isBezeled = false
             self.styleNameField?.isSelectable = false
             self.styleNameField?.isEditable = false
             self.styleNameField?.isBordered = true
-        }
-        
-        if self.isBundledStyle {
+            
             self.message = "Bundled styles can’t be renamed.".localized
         }
     }
@@ -171,7 +178,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // separator cannot be selected
-        return (self.menuTitles[row] != .separator)
+        (self.menuTitles[row] != .separator)
     }
     
     
@@ -189,7 +196,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         self.style.setDictionary(style)
         
         // update validation result if displayed
-        (self.tabViewController?.tabView.selectedTabViewItem?.viewController as? SyntaxValidationViewController)?.validateStyle()
+        self.validator.validate()
     }
     
     
@@ -225,7 +232,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }
         
         // validate syntax and display errors
-        guard SyntaxStyleValidator.validate(self.style as! SyntaxManager.StyleDictionary).isEmpty else {
+        guard self.validator.validate() else {
             // show "Validation" pane
             let index = self.tabViewController!.tabViewItems.firstIndex { ($0.identifier as? String) == "validation" }!
             self.menuTableView?.selectRowIndexes([index], byExtendingSelection: false)

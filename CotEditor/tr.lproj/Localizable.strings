@@ -670,8 +670,8 @@
 
 // Syntax style validation results
 "No error found." = "Hata bulunamadı.";
-"An error found!" = "Bir hata bulundu!";
-"%lld errors found!" = "%lld hata bulundu!";
+"An error found." = "Bir hata bulundu.";
+"%lld errors found." = "%lld hata bulundu.";
 "outline" = "ana hat";
 
 
@@ -718,9 +718,8 @@
 "Block comment needs both begin delimiter and end delimiter." = "Blok yorumlar hem başlangıç hem bitiş sınırlayıcısı gerektirir.";
 "Begin string" = "Başlangıç dizisi";
 "End string" = "Bitiş dizisi";
-"Regular expression" = "Düzenli ifade";
 "The same word is registered multiple times." = "Aynı sözcük birden çok kez kayıt edilmiş.";
-"Regular Expression: " = "Düzenli İfade: ";
+"Invalid regular expression." = "Geçersiz düzenli ifade.";
 
 
 

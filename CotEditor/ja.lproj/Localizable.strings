@@ -671,8 +671,8 @@
 
 // Syntax style validation results
 "No error found." = "エラーはありません。";
-"An error found!" = "1個のエラーがあります！";
-"%lld errors found!" = "%lld個のエラーがあります！";
+"An error found." = "1個のエラーがあります。";
+"%lld errors found." = "%lld個のエラーがあります。";
 "outline" = "アウトライン";
 
 
@@ -719,9 +719,8 @@
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
 "Begin string" = "開始文字列";
 "End string" = "終了文字列";
-"Regular expression" = "正規表現";
 "The same word is registered multiple times." = "重複して登録されています。";
-"Regular Expression: " = "正規表現: ";
+"Invalid regular expression." = "無効な正規表現です。";
 
 
 

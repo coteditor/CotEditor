@@ -671,9 +671,9 @@
 "Syntax Validation" = "文法驗證";
 
 // Syntax style validation results
-"No error found." = "沒有發現錯誤";
-"An error found!" = "發現1個錯誤";
-"%lld errors found!" = "發現%lld個錯誤";
+"No error found." = "沒有發現錯誤。";
+"An error found." = "發現1個錯誤。";
+"%lld errors found." = "發現%lld個錯誤。";
 "outline" = "大綱";
 
 
@@ -720,9 +720,8 @@
 "Block comment needs both begin delimiter and end delimiter." = "塊註釋需要同時有起始符號和終止符號。";
 "Begin string" = "開始字元串";
 "End string" = "結束字元串";
-"Regular expression" = "常規表示式";
 "The same word is registered multiple times." = "重複註冊。";
-"Regular Expression: " = "常規表示式：";
+"Invalid regular expression." = "無效的常規表示式。";
 
 
 

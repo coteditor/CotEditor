@@ -671,8 +671,8 @@
 
 // Syntax style validation results
 "No error found." = "Nessun errore rilevato.";
-"An error found!" = "Trovato un errore.";
-"%lld errors found!" = "Trovati %lld errori.";
+"An error found." = "Trovato un errore.";
+"%lld errors found." = "Trovati %lld errori.";
 "outline" = "outline";
 
 
@@ -719,9 +719,8 @@
 "Block comment needs both begin delimiter and end delimiter." = "Un blocco di commento richiede un delimitatore iniziale ed uno finale.";
 "Begin string" = "Inizio stringa";
 "End string" = "Fine stringa";
-"Regular expression" = "Espressione regolare";
 "The same word is registered multiple times." = "La stessa parola risulta registrata più volte.";
-"Regular Expression: " = "Espressione regolare: ";
+"Invalid regular expression." = "Espressione regolare non valida.";
 
 
 

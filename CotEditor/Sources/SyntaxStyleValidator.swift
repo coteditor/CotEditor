@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,94 +29,65 @@ import Foundation
 final class SyntaxStyleValidator {
     
     /// model object for syntax validation result
-    final class StyleError: NSObject, LocalizedError {
+    struct StyleError: LocalizedError {
         
         enum ErrorKind {
+            
             case duplicated
-            case regularExpression(error: Swift.Error)
+            case regularExpression
             case blockComment
         }
         
+        
         enum Role {
+            
             case begin
             case end
-            case regularExpression
         }
+        
         
         let kind: ErrorKind
         let type: String
-        let role: Role
-        @objc let string: String
-        
-        
-        init(kind: ErrorKind, type: String, role: Role, string: String) {
-            
-            self.kind = kind
-            self.type = type
-            self.role = role
-            self.string = string
-            
-            super.init()
-        }
-        
-        
-        var errorDescription: String? {
-            
-            self.type.localized + ": " + self.string
-        }
-        
-        
-        @objc var failureReason: String? {
-            
-            switch self.kind {
-                case .duplicated:
-                    return "The same word is registered multiple times.".localized
-                
-                case .regularExpression(let error):
-                    return "Regular Expression: ".localized + error.localizedDescription
-                
-                case .blockComment:
-                    return "Block comment needs both begin delimiter and end delimiter.".localized
-            }
-        }
-        
-        
-        @objc var localizedType: String {
-            
-            self.type.localized
-        }
-        
-        
-        @objc var localizedRole: String? {
-            
-            switch self.role {
-                case .begin:
-                    return "Begin string".localized
-                
-                case .end:
-                    return "End string".localized
-                
-                case .regularExpression:
-                    return nil
-            }
-        }
+        let role: Role?
+        let string: String
     }
     
     
     
-    // MARK: -
-    // MARK: Lifecycle
+    // MARK: Public Properties
     
-    private init() { }
+    @Published private(set) var errors: [StyleError] = []
+    
+    
+    // MARK: Private Properties
+    
+    private let style: NSMutableDictionary
+    
+    
+    
+    // MARK: -
+    // MARK: Lyfestyle
+    
+    init(style: NSMutableDictionary) {
+        
+        assert(style is SyntaxManager.StyleDictionary)
+        
+        self.style = style
+    }
     
     
     
     // MARK: Public Methods
     
-    /// check regular expression syntax and duplication and return errors
-    static func validate(_ styleDictionary: SyntaxManager.StyleDictionary) -> [StyleError] {
+    /// Check style and update `errors`.
+    ///
+    /// - Returns: `true` when the style is valid; otherwise `false`.``
+    @discardableResult
+    func validate() -> Bool {
         
-        var results: [StyleError] = []
+        guard let styleDictionary = self.style as? SyntaxManager.StyleDictionary else { return false }
+        
+        self.errors.removeAll()
         
         let syntaxDictKeys = SyntaxType.allCases.map(\.rawValue) + [SyntaxKey.outlineMenu.rawValue]
         
@@ -150,11 +121,10 @@ final class SyntaxStyleValidator {
                     definition.beginString != lastDefinition?.beginString ||
                     definition.endString != lastDefinition?.endString
                 else {
-                    results.append(StyleError(kind: .duplicated,
-                                              type: key,
-                                              role: .begin,
-                                              string: definition.beginString))
-                    
+                    self.errors.append(StyleError(kind: .duplicated,
+                                                  type: key,
+                                                  role: .begin,
+                                                  string: definition.beginString))
                     continue
                 }
                 
@@ -162,20 +132,20 @@ final class SyntaxStyleValidator {
                     do {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
-                        results.append(StyleError(kind: .regularExpression(error: error),
-                                                  type: key,
-                                                  role: .begin,
-                                                  string: definition.beginString))
+                        self.errors.append(StyleError(kind: .regularExpression,
+                                                      type: key,
+                                                      role: .begin,
+                                                      string: definition.beginString))
                     }
                     
                     if let endString = definition.endString {
                         do {
                             _ = try NSRegularExpression(pattern: endString)
                         } catch {
-                            results.append(StyleError(kind: .regularExpression(error: error),
-                                                      type: key,
-                                                      role: .end,
-                                                      string: endString))
+                            self.errors.append(StyleError(kind: .regularExpression,
+                                                          type: key,
+                                                          role: .end,
+                                                          string: endString))
                         }
                     }
                 }
@@ -184,10 +154,10 @@ final class SyntaxStyleValidator {
                     do {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
-                        results.append(StyleError(kind: .regularExpression(error: error),
-                                                  type: "outline",
-                                                  role: .regularExpression,
-                                                  string: definition.beginString))
+                        self.errors.append(StyleError(kind: .regularExpression,
+                                                      type: "outline",
+                                                      role: nil,
+                                                      string: definition.beginString))
                     }
                 }
             }
@@ -199,14 +169,59 @@ final class SyntaxStyleValidator {
             let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter]
             let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
-            if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
-                results.append(StyleError(kind: .blockComment,
-                                          type: "comments",
-                                          role: beginDelimiterExists ? .begin : .end,
-                                          string: beginDelimiter ?? endDelimiter!))
+            if beginDelimiterExists != endDelimiterExists {
+                self.errors.append(StyleError(kind: .blockComment,
+                                              type: "comments",
+                                              role: beginDelimiterExists ? .begin : .end,
+                                              string: beginDelimiter ?? endDelimiter!))
             }
         }
         
-        return results
+        return self.errors.isEmpty
+    }
+}
+
+
+extension SyntaxStyleValidator.StyleError {
+    
+    var errorDescription: String? {
+        
+        self.type.localized + ": " + self.string
+    }
+    
+    
+    var failureReason: String? {
+        
+        switch self.kind {
+            case .duplicated:
+                return "The same word is registered multiple times.".localized
+                
+            case .regularExpression:
+                return "Invalid regular expression.".localized
+                
+            case .blockComment:
+                return "Block comment needs both begin delimiter and end delimiter.".localized
+        }
+    }
+    
+    
+    var localizedType: String {
+        
+        self.type.localized
+    }
+    
+    
+    var localizedRole: String? {
+        
+        switch self.role {
+            case .begin:
+                return "Begin string".localized
+                
+            case .end:
+                return "End string".localized
+                
+            case .none:
+                return nil
+        }
     }
 }

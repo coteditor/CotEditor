@@ -671,8 +671,8 @@
 
 // Syntax style validation results
 "No error found." = "No error found.";
-"An error found!" = "An error found!";
-"%lld errors found!" = "%lld errors found!";
+"An error found." = "An error found.";
+"%lld errors found." = "%lld errors found.";
 "outline" = "outline";
 
 
@@ -719,9 +719,8 @@
 "Block comment needs both begin delimiter and end delimiter." = "Block comment needs both begin delimiter and end delimiter.";
 "Begin string" = "Begin string";
 "End string" = "End string";
-"Regular expression" = "Regular expression";
 "The same word is registered multiple times." = "The same word is registered multiple times.";
-"Regular Expression: " = "Regular Expression: ";
+"Invalid regular expression." = "Invalid regular expression.";
 
 
 

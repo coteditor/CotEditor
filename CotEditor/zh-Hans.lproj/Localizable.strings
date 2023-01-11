@@ -671,9 +671,9 @@
 "Syntax Validation" = "语法验证";
 
 // Syntax style validation results
-"No error found." = "没有发现错误";
-"An error found!" = "发现1个错误";
-"%lld errors found!" = "发现%lld个错误";
+"No error found." = "没有发现错误。";
+"An error found." = "发现1个错误。";
+"%lld errors found." = "发现%lld个错误。";
 "outline" = "大纲";
 
 
@@ -720,9 +720,8 @@
 "Block comment needs both begin delimiter and end delimiter." = "块注释需要同时有起始符号和终止符号。";
 "Begin string" = "开始字符串";
 "End string" = "结束字符串";
-"Regular expression" = "正则表达式";
 "The same word is registered multiple times." = "重复注册。";
-"Regular Expression: " = "正则表达式：";
+"Invalid regular expression." = "无效的正则表达式。";
 
 
 

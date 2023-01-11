@@ -27,14 +27,6 @@
             </objects>
             <point key="canvasLocation" x="1580" y="-297"/>
         </scene>
-        <!--SyntaxValidationView-->
-        <scene sceneID="HBs-SV-1c0">
-            <objects>
-                <controllerPlaceholder storyboardName="SyntaxValidationView" id="h9E-mw-xBs" sceneMemberID="viewController"/>
-                <customObject id="cOp-wY-5Yv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1296" y="119"/>
-        </scene>
         <!--SyntaxOutlineEditView-->
         <scene sceneID="SbB-kN-1fX">
             <objects>
@@ -97,7 +89,6 @@
                         <tabViewItem label="File Mapping" id="zFQ-sy-EQR"/>
                         <tabViewItem label="-" id="cmd-Pi-Czf"/>
                         <tabViewItem label="Style Info" id="ijG-Rs-ukM"/>
-                        <tabViewItem label="Syntax Validation" identifier="validation" id="kO4-FK-nNc"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsBezelBorder" id="Xkl-Ua-3Wq">
@@ -126,7 +117,6 @@
                         <segue destination="K5v-c4-BzE" kind="relationship" relationship="tabItems" id="oKA-nb-cOv"/>
                         <segue destination="aQl-En-Wbe" kind="relationship" relationship="tabItems" id="oWW-tk-Ap2"/>
                         <segue destination="Acd-43-iJP" kind="relationship" relationship="tabItems" id="QSv-c7-riG"/>
-                        <segue destination="h9E-mw-xBs" kind="relationship" relationship="tabItems" id="8Re-Ja-hcW"/>
                     </connections>
                 </tabViewController>
             </objects>
@@ -362,7 +352,7 @@ DQ
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="evB-SF-2md"/>
-        <segue reference="zM9-LR-mh8"/>
+        <segue reference="oWW-tk-Ap2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="NSInvalidDataFreestandingTemplate" width="20" height="20"/>
