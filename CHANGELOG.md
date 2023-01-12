@@ -12,13 +12,13 @@ Change Log
 - Enable walking through all the controls in the Find window by the Tab key.
 - Update C++ syntax style to fix attributes highlight (thanks to Luke McKenzie!).
 - Deprecate the Find Selected Text command.
-- [trivial] Reset custom key bindings for find commands were reset.
+- [trivial] Reset custom shortcuts for the find commands.
 - [non-AppStore ver.] Update Sparkle from 2.3.0 to 2.3.1.
 
 
 ### Fixes
 
-- Fix an issue that found string was occasionally not focused.
+- Fix an issue that found string in the editor was occasionally not focused.
 - Fix an issue that multiple replacements were not performed if the document is empty.
 - Fix an issue that the Find window expanded unnecessarily in some specific conditions.
 - Fix a label in the Advanced Find Options view.
