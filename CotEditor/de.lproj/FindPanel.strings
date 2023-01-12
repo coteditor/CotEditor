@@ -24,10 +24,9 @@
 //  limitations under the License.
 //
 
-// Find Panel
-
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "Suchen & Ersetzen";
+
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
 "3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Suchen";
@@ -84,6 +83,7 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibShadowedToolTip" = "Erweiterte Optionen einblenden";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Erweiterte Optionen";
 
 

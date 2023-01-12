@@ -24,8 +24,6 @@
 //  limitations under the License.
 //
 
-// Find Panel
-
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "Rechercher et Remplacer";
 
@@ -85,6 +83,7 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Show advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibShadowedToolTip" = "Afficher les options avancées";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibExternalAccessibilityDescription" = "Options avancées";
 
 

@@ -24,10 +24,9 @@
 //  limitations under the License.
 //
 
-// Find Panel
-
 /* Class = "NSPanel"; title = "Find & Replace"; ObjectID = "Wal-Sg-6d6"; */
 "Wal-Sg-6d6.title" = "檢索 & 取代";
+
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
 "3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "檢索";
