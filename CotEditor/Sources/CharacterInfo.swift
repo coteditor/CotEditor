@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,10 +96,10 @@ struct CharacterInfo {
     }
     
     
-    var pictureString: String? {
+    var pictureCharacter: Character? {
         
         self.character.unicodeScalars.count == 1  // ignore CRLF
-            ? self.character.unicodeScalars.first?.pictureRepresentation.flatMap(String.init)
+            ? self.character.unicodeScalars.first?.pictureRepresentation.flatMap(Character.init)
             : nil
     }
     

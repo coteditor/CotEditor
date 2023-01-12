@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ final class CharacterInfoTests: XCTestCase {
         let charInfo = CharacterInfo(character: " ")
         
         XCTAssertEqual(charInfo.character, " ")
-        XCTAssertEqual(charInfo.pictureString, "␠")
+        XCTAssertEqual(charInfo.pictureCharacter, "␠")
         XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name!), ["SPACE"])
     }
 }
