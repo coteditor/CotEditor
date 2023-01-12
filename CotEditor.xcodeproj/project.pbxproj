@@ -1676,7 +1676,7 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		2A15832A18E3A1EC00601026 /* Managers */ = {
+		2A15832A18E3A1EC00601026 /* Setting Managers */ = {
 			isa = PBXGroup;
 			children = (
 				2AD49C251D0BEF0400FF4CC9 /* Protocols */,
@@ -1689,7 +1689,7 @@
 				2AC13A0824F112D800799A93 /* CommandLineToolManager.swift */,
 				2A91C31A1D1BFE47007CF8BE /* UTType+SettingFile.swift */,
 			);
-			name = Managers;
+			name = "Setting Managers";
 			sourceTree = "<group>";
 		};
 		2A15832B18E3A25C00601026 /* Utilities */ = {
@@ -1752,7 +1752,7 @@
 				2AA79C7721CB7251005AD6AD /* SettingsWindow.swift */,
 				2A149DC619018F9200A9D6EF /* Panes */,
 				2A2E03471A4BF808006ABE9F /* Syntax Edit Sheet */,
-				2A2E03481A4BF820006ABE9F /* Keybindings Edit Pane */,
+				2A2E03481A4BF820006ABE9F /* Key Bindings Edit Pane */,
 				2A91C3231D1C5840007CF8BE /* Other Views */,
 			);
 			name = "Settings Window";
@@ -1876,13 +1876,13 @@
 			name = "Syntax Edit Sheet";
 			sourceTree = "<group>";
 		};
-		2A2E03481A4BF820006ABE9F /* Keybindings Edit Pane */ = {
+		2A2E03481A4BF820006ABE9F /* Key Bindings Edit Pane */ = {
 			isa = PBXGroup;
 			children = (
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */,
 				2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */,
 			);
-			name = "Keybindings Edit Pane";
+			name = "Key Bindings Edit Pane";
 			sourceTree = "<group>";
 		};
 		2A3581931E597AFE00762AA5 /* Multiple Replace */ = {
@@ -1982,7 +1982,7 @@
 			isa = PBXGroup;
 			children = (
 				2A15832F18E3A4AB00601026 /* Application */,
-				2A15832A18E3A1EC00601026 /* Managers */,
+				2A15832A18E3A1EC00601026 /* Setting Managers */,
 				2A15832D18E3A3E000601026 /* Settings Window */,
 				2A7CF2441A5747F400D09249 /* Text Finder */,
 				2A42825318FCC22100386899 /* Document */,
@@ -2184,12 +2184,8 @@
 		2A53F5692758912600ED16DF /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				2A1083EF2944837E00751DAE /* InsetTextField.swift */,
-				2A59B7022957089A0094F03B /* LinkButton.swift */,
-				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
-				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
-				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
-				2A6876AD296505BC006257A6 /* FirstResponder.swift */,
+				2AF601CB296F925200F6F1E8 /* Views */,
+				2AF601CC296F925900F6F1E8 /* Helpers */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -2499,6 +2495,26 @@
 				2ACDC0A21D173250009B72D6 /* InspectorTabSegmentedControl.swift */,
 			);
 			name = "Inspector Tab View";
+			sourceTree = "<group>";
+		};
+		2AF601CB296F925200F6F1E8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2A1083EF2944837E00751DAE /* InsetTextField.swift */,
+				2A59B7022957089A0094F03B /* LinkButton.swift */,
+				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
+				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2AF601CC296F925900F6F1E8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */,
+				2A6876AD296505BC006257A6 /* FirstResponder.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		2AF98CAD294C063E009AD47F /* Views */ = {
