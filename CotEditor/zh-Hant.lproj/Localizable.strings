@@ -183,20 +183,20 @@
 "Exact character-by-character equivalence." = "逐字元相等檢索";
 
 "Ignore diacritical marks" = "忽略變音符號";
-"Search ignores diacritical marks (ex. ö = o)." = "忽略變音符號進行檢索 (例如ö = o)。";
+"Search ignores diacritical marks (ex. ö = o)." = "忽略變音符號進行檢索（例如ö = o）。";
 
 "Ignore width differences" = "忽略字元寬度";
-"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字元形式的寬度進行檢索 (例如ａ = a)。";
+"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字元形式的寬度進行檢索（例如ａ = a）。";
 
 
 "Regular Expression Search" = "常規表示式檢索";
 
 // pairs of checkbox label and its tooltip
 "Dot matches line separators" = "使點匹配換行";
-"Allow . to match any character, including newline characters (singleline)." = "允許.匹配包括 (單行) 換行符在內的任意字元。";
+"Allow . to match any character, including newline characters (singleline)." = "允許.匹配包括（單行）換行符在內的任意字元。";
 
 "Anchors match lines" = "使錨點匹配行";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "允許^和$匹配 (多行的) 行首和行尾。";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "允許^和$匹配（多行的）行首和行尾。";
 
 "Use Unicode word boundaries" = "使用Unicode字詞邊界";
 "Use Unicode TR#29 to specify word boundaries" = "使用Unicode TR#29指定字詞邊界";
@@ -270,7 +270,7 @@
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "文件包含不一致的換行符。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要將所有換行符都取代為文件中最常使用的 %@ 嗎？";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要將所有換行符都取代為文件中最常使用的%@嗎？";
 "Don’t ask again for this document" = "對該文件不再詢問";
 "Convert" = "轉換";
 "Review" = "檢查";
@@ -382,7 +382,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "顯示查找 & 取代";
+"Show Find & Replace" = "顯示查找與取代";
 
 "Print" = "列印";
 // tooltip

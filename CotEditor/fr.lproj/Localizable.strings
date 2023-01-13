@@ -751,7 +751,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "« %@ » est déjà associé à la commande « %@ ».";
 "The Shift key can be used only with another modifier key." = "La touche Maj ne peut être utilisée que avec une autre touche de modification.";
-"The combination “%@” is not supported for the key binding customization." = "La combinaison « %@ » n'est pas supportée comme combinaison de raccourci clavier.";
+"The combination “%@” is not supported for the key binding customization." = "La combinaison « %@ » n’est pas supportée comme combinaison de raccourci clavier.";
 "Single type is invalid for a shortcut." = "Un raccourci clavier ne peut pas être composé que d’une seule touche.";
 "Please combine with other keys." = "Veuillez combiner avec d’autres touches.";
 
@@ -898,7 +898,7 @@
 "Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Comptage intuitif tel que défini par Unicode. Un caractère comprenant plusieurs points de code Unicode, par exemple un emoji, sont comptés comme un seul caractère.";
 "Count Unicode code points. Same as counting UTF-32." = "Count Unicode code points. Same as counting UTF-32.";
 "Count Unicode code points but a surrogate pair as two characters." = "Compter les points de code Unicode, mais les paires de caractères de substitution comme deux caractères.";
-"Count bytes of the text encoded with the specified encoding." = "Compter les bytes de texte encodé selon l'encodage spécifié.";
+"Count bytes of the text encoded with the specified encoding." = "Compter les bytes de texte encodé selon l’encodage spécifié.";
 
 "Encoding:" = "Encodage :";
 "Normalization:" = "Normalisation :";

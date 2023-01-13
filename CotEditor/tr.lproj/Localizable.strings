@@ -84,9 +84,9 @@
 "%lld strings replaced." = "%lld dizi değiştirildi.";
 "Invalid regular expression" = "Geçersiz düzenli ifade";
 "Empty find string" = "Bulunacak dizi boş";
-"The option “in selection” is selected, although nothing is selected." = "'seçimde' seçeneği etkin; ancak hiçbir şey seçilmemiş.";
+"The option “in selection” is selected, although nothing is selected." = "“seçimde” seçeneği etkin; ancak hiçbir şey seçilmemiş.";
 "Input text to find." = "Bulunacak girdi metni";
-"Select the search scope in the document or turn off the “in selection” option." = "Belgedeki arama kapsamını değiştir veya 'seçimde' seçeneğini devre dışı bırak.";
+"Select the search scope in the document or turn off the “in selection” option." = "Belgedeki arama kapsamını değiştir veya “seçimde” seçeneğini devre dışı bırak.";
 
 // accessibility announcement
 "Search wrapped." = "Arama baştan sürüyor";  // announced when the search restarted from the beginning.
@@ -516,7 +516,7 @@
 "Wrap Lines" = "Satırları Kaydır";
 
 // Tooltip for "Show Invisibles" menu item
-"To show invisible characters, set them in Settings" = "Görünmez karakterleri göstermek için ilgili ayarı Ayarlar'dan değiştirin";
+"To show invisible characters, set them in Settings" = "Görünmez karakterleri göstermek için ilgili ayarı Ayarlar’dan değiştirin";
 
 
 
@@ -895,7 +895,7 @@
 "UTF-16" = "UTF-16";
 "Byte" = "Bayt";
 
-"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicode'da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır.";
+"Count in the intuitive way defined in Unicode. A character consisting of multiple Unicode code points, such as emojis, is counted as one character." = "Unicode’da tanımlandığı üzere sezgisel olarak say. Birden çok Unicode kod noktasından oluşan bir karakter; örneğin Emojiler, bir karakter olarak sayılır.";
 "Count Unicode code points. Same as counting UTF-32." = "Unicode kod noktalarını say. UTF-32 sayma ile aynıdır.";
 "Count Unicode code points but a surrogate pair as two characters." = "Unicode kod noktalarını say; ancak vekil çifti iki karakter olarak say.";
 "Count bytes of the text encoded with the specified encoding." = "Belirtilen kodlama ile kodlanmış metnin baytlarını say.";

@@ -304,7 +304,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// activate self and perform "Open..." menu action
+    /// activate self and perform the Open menu command
     @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)

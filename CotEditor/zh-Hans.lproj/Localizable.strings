@@ -121,7 +121,7 @@
 // Find result (“%@” is filename)
 "No strings found in “%@.”" = "在“%@”中没有找到字符串。";
 "Found one string in “%@.”" = "在“%@”中找到一个字符串。";
-"Found %lld strings in “%@.”" = "%lld 个字符串在“%@”中被找到。";
+"Found %lld strings in “%@.”" = "%lld个字符串在“%@”中被找到。";
 
 
 
@@ -183,20 +183,20 @@
 "Exact character-by-character equivalence." = "逐字符相等查找";
 
 "Ignore diacritical marks" = "忽略变音符号";
-"Search ignores diacritical marks (ex. ö = o)." = "忽略变音符号进行查找 (例如ö = o)。";
+"Search ignores diacritical marks (ex. ö = o)." = "忽略变音符号进行查找（例如ö = o）。";
 
 "Ignore width differences" = "忽略字符宽度";
-"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字符形式的宽度进行查找 (例如ａ = a)。";
+"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字符形式的宽度进行查找（例如ａ = a）。";
 
 
 "Regular Expression Search" = "正则表达式查找";
 
 // pairs of checkbox label and its tooltip
 "Dot matches line separators" = "使点匹配换行";
-"Allow . to match any character, including newline characters (singleline)." = "允许.匹配包括 (单行) 换行符在内的任意字符。";
+"Allow . to match any character, including newline characters (singleline)." = "允许.匹配包括（单行）换行符在内的任意字符。";
 
 "Anchors match lines" = "使锚点匹配行";
-"Allow ^ and $ to match the start and end of lines (multiline)." = "允许^和$匹配 (多行的) 行首和行尾。";
+"Allow ^ and $ to match the start and end of lines (multiline)." = "允许^和$匹配（多行的）行首和行尾。";
 
 "Use Unicode word boundaries" = "使用Unicode字词边界";
 "Use Unicode TR#29 to specify word boundaries" = "使用Unicode TR#29指定字词边界";
@@ -270,7 +270,7 @@
 
 // Inconsistent line ending alert
 "The document has inconsistent line endings." = "文档包含不一致的换行符。";
-"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文档中最常使用的 %@ 吗？";
+"Do you want to convert all line endings to %@, the most common line endings in this document?" = "需要将所有换行符都替换为文档中最常使用的%@吗？";
 "Don’t ask again for this document" = "对该文档不再询问";
 "Convert" = "转换";
 "Review" = "检查";
@@ -382,7 +382,7 @@
 
 "Find" = "查找";
 // tooltip
-"Show Find & Replace" = "显示查找 & 替换";
+"Show Find & Replace" = "显示查找与替换";
 
 "Print" = "打印";
 // tooltip
@@ -459,12 +459,12 @@
 
 // Incompatible characters
 "Scanning incompatible characters…" = "扫描不兼容字符…";
-"Found an incompatible character." = "发现 1 处不兼容字符。";
-"Found %lld incompatible characters." = "发现 %lld 处不兼容字符。";  // %lld is the number of characters
+"Found an incompatible character." = "发现1处不兼容字符。";
+"Found %lld incompatible characters." = "发现%lld处不兼容字符。";  // %lld is the number of characters
 
 // Inconsistent line endings
-"Found a line ending other than %@." = "发现 1 处不是 %@ 的换行符";  // %@ is a line ending type, such as LF
-"Found %lld line endings other than %@." = "发现 %lld 处不是 %@ 的换行符";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
+"Found a line ending other than %@." = "发现1处不是%@的换行符";  // %@ is a line ending type, such as LF
+"Found %lld line endings other than %@." = "发现%lld处不是%@的换行符";  // %lld is the number of inconsistent line endings and %@ is a line ending type, such as LF
 
 
 
