@@ -29,25 +29,25 @@ extension EditorTextView: ColorCodeReceiver {
     
     // MARK: Action Messages
     
-    /// show Unicode input panel
+    /// Show the Color panel with the color code control.
     @IBAction func editColorCode(_ sender: Any?) {
         
-        ColorCodePanelController.shared.showWindow()
-        ColorCodePanelController.shared.setColor(code: self.selectedString)
+        ColorCodePanelController.shared.showWindow(colorCode: self.selectedString)
     }
     
     
-    /// avoid changing text color by color panel
+    /// Avoid changing text color by the color panel.
     @IBAction override func changeColor(_ sender: Any?) { }
     
     
     
     // MARK: Protocol
     
-    /// insert color code from color code panel
-    @IBAction func insertColorCode(_ sender: ColorCodePanelController) {
+    /// Insert color code from color code panel.
+    ///
+    /// - Parameter colorCode: The color code to insert.
+    func insertColorCode(_ colorCode: String) {
         
-        let colorCode = sender.colorCode
         let range = self.rangeForUserTextChange
         
         guard self.shouldChangeText(in: range, replacementString: colorCode) else { return }

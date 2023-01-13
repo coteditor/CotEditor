@@ -36,7 +36,15 @@ extension AppStorage {
     /// - Parameters:
     ///   - key: The DefaultKey to read and write the value to in the user defaults store.
     ///   - store: The user defaults store to read and write to. A value of `nil` will use the user default store from the environment.
-    init(_ key: DefaultKey<Bool>, store: UserDefaults? = nil) where Value == Bool {
+    init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value == Bool {
+        
+        let defaultValue = (store ?? UserDefaults.standard).registeredValue(for: key)
+        
+        self.init(wrappedValue: defaultValue, key.rawValue, store: store)
+    }
+    
+    
+    init(_ key: DefaultKey<Value>, store: UserDefaults? = nil) where Value == Int {
         
         let defaultValue = (store ?? UserDefaults.standard).registeredValue(for: key)
         

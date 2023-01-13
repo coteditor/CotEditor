@@ -553,11 +553,23 @@
 
 
 
-/* MARK: ColorCodePanelController */
-// Undo action name
-"Insert Color Code" = "Inserire codice colore";
+/* MARK: ColorCodePanelAccessory */
+"color code" = "Codice colore";
+
+"Hexadecimal" = "Esadecimale";
+"Hexadecimal (Short)" = "Esadecimale (breve)";
+"CSS RGB" = "CSS RGB";
+"CSS RGBa" = "CSS RGBa";
+"CSS HSL" = "CSS HSL";
+"CSS HSLa" = "CSS HSLa";
+"CSS Keyword" = "CSS Parola chiave";
+
+// button
+"Insert" = "Inserisci";
 // Color list name
 "Stylesheet Keywords" = "Parole chiave CSS";
+// Undo action name
+"Insert Color Code" = "Inserire codice colore";
 
 
 

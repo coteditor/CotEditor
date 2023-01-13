@@ -553,11 +553,23 @@
 
 
 
-/* MARK: ColorCodePanelController */
-// Undo action name
-"Insert Color Code" = "Renk Kodu Ekle";
+/* MARK: ColorCodePanelAccessory */
+"color code" = "renk kodu";
+
+"Hexadecimal" = "Onaltılık";
+"Hexadecimal (short)" = "Onaltılık (kısa)";
+"CSS RGB" = "CSS RGB";
+"CSS RGBa" = "CSS RGBa";
+"CSS HSL" = "CSS HSL";
+"CSS HSLa" = "CSS HSLa";
+"CSS Keyword" = "CSS Anahtar Sözcük";
+
+// button
+"Insert" = "Ekle";
 // Color list name
 "Stylesheet Keywords" = "Stil Sayfası Anahtar Sözcükleri";
+// Undo action name
+"Insert Color Code" = "Renk Kodu Ekle";
 
 
 

@@ -553,11 +553,23 @@
 
 
 
-/* MARK: ColorCodePanelController */
-// Undo action name
-"Insert Color Code" = "カラーコードを挿入";
+/* MARK: ColorCodePanelAccessory */
+"color code" = "カラーコード";
+
+"Hex" = "16進法";
+"Hexadecimal (Short)" = "16進法（ショート）";
+"CSS RGB" = "CSS RGB";
+"CSS RGBa" = "CSS RGBa";
+"CSS HSL" = "CSS HSL";
+"CSS HSLa" = "CSS HSLa";
+"CSS Keyword" = "CSSキーワード";
+
+// button
+"Insert" = "挿入";
 // Color list name
 "Stylesheet Keywords" = "スタイルシートキーワード";
+// Undo action name
+"Insert Color Code" = "カラーコードを挿入";
 
 
 

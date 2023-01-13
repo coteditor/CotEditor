@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,30 +24,26 @@
 //
 
 import Cocoa
+import SwiftUI
 import ColorCode
 
 @objc protocol ColorCodeReceiver: AnyObject {
     
-    func insertColorCode(_ sender: ColorCodePanelController)
+    func insertColorCode(_ colorCode: String)
 }
 
 
-final class ColorCodePanelController: NSViewController, NSWindowDelegate {
+final class ColorCodePanelController: NSObject, NSWindowDelegate {
     
-    // MARK: Public Properties
-    
-    static let shared: ColorCodePanelController = NSStoryboard(name: "ColorCodePanelAccessory").instantiateInitialController()!
-    
-    @objc private(set) dynamic var colorCode: String = ""
+    static let shared = ColorCodePanelController()
     
     
     // MARK: Private Properties
     
     private let stylesheetColorList: NSColorList = KeywordColor.stylesheetColors
-        .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) { $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword) }
-    
-    private weak var panel: NSColorPanel?
-    
+        .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) {
+            $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword)
+        }
     
     
     // MARK: -
@@ -60,99 +56,200 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         panel.detachColorList(self.stylesheetColorList)
         panel.showsAlpha = false
         panel.delegate = nil
-        panel.setAction(nil)
-        panel.setTarget(nil)
         panel.accessoryView = nil
     }
     
     
-    
     // MARK: Public Methods
     
-    /// Show the shared color panel with the color code accessory.
-    func showWindow() {
+    /// Show the color panel with the color code accessory.
+    ///
+    /// - Parameter colorCode: The color code of the color to set to the panel.
+    func showWindow(colorCode: String? = nil) {
         
         // setup the shared color panel
         let panel = NSColorPanel.shared
         panel.attachColorList(self.stylesheetColorList)
         panel.showsAlpha = true
         panel.delegate = self
-        panel.setAction(#selector(updateCode))
-        panel.setTarget(self)
-        panel.accessoryView = self.view
+        
+        let accessory = ColorCodePanelAccessory(colorCode: colorCode, panel: panel)
+        let view = NSHostingView(rootView: accessory)
+        view.ensureFrameSize()
+        panel.accessoryView = view
         
         // make position of accessory view center
-        self.view.translatesAutoresizingMaskIntoConstraints = false
-        if let superview = panel.accessoryView?.superview {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        if let superview = view.superview {
             NSLayoutConstraint.activate([
-                superview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                superview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                superview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                superview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             ])
         }
         
-        self.panel = panel
-        self.updateCode(self)
-        
         panel.orderFront(self)
     }
+}
+
+
+
+// MARK: -
+
+private struct ColorCodePanelAccessory: View {
+    
+    @State private var colorCode: String = ""
+    @AppStorage(.colorCodeType) private var colorCodeType: Int
+    
+    private var panel: NSColorPanel
     
     
-    /// Set color to color panel with color code.
-    ///
-    /// - Parameter code: The color code of the color to set.
-    func setColor(code: String) {
+    // MARK: View
+    
+    init(colorCode: String?, panel: NSColorPanel) {
+        
+        self.panel = panel
         
         var codeType: ColorCodeType?
-        guard let color = NSColor(colorCode: code, type: &codeType) else { return }
-        
-        self.selectedCodeType = codeType ?? .hex
-        self.panel?.color = color
+        if let colorCode, let color = NSColor(colorCode: colorCode, type: &codeType), let codeType {
+            self.colorCode = colorCode
+            self.colorCodeType = codeType.rawValue
+            panel.color = color
+        }
     }
     
     
+    var body: some View {
+        
+        VStack {
+            TextField("color code", text: $colorCode)
+                .font(.system(size: 14, design: .monospaced))
+                .multilineTextAlignment(.center)
+                .onSubmit {
+                    self.apply(colorCode: self.colorCode)
+                }
+            
+            HStack {
+                Picker("", selection: $colorCodeType) {
+                    Section {
+                        ForEach(ColorCodeType.hexTypes, id: \.self) { type in
+                            Text(type.label).tag(type.rawValue)
+                        }
+                    }
+                    Section {
+                        ForEach(ColorCodeType.cssTypes, id: \.self) { type in
+                            Text(type.label).tag(type.rawValue)
+                        }
+                    }
+                }
+                .labelsHidden()
+                .onChange(of: self.colorCodeType) { newValue in
+                    guard
+                        let type = ColorCodeType(rawValue: newValue),
+                        let color = self.panel.color.usingColorSpace(.genericRGB),
+                        let colorCode = color.colorCode(type: type)
+                    else { return }
+                    
+                    self.colorCode = colorCode
+                }
+                
+                Button("Insert", action: self.submit)
+                    .keyboardShortcut(.defaultAction)
+            }.controlSize(.small)
+        }
+        .onReceive(self.panel.publisher(for: \.color), perform: self.apply(color:))
+        .padding(.top, 8)
+        .padding(.horizontal, 10)
+        .padding(.bottom, 16)
+    }
     
-    // MARK: Action Messages
     
-    /// insert color code to the selection of the frontmost document
-    @IBAction func insertCodeToDocument(_ sender: Any?) {
+    // MARK: Private Methods
+    
+    /// Insert the color code to the selection of the frontmost document.
+    private func submit() {
+        
+        self.apply(colorCode: self.colorCode)
         
         guard
             !self.colorCode.isEmpty,
-            NSApp.sendAction(#selector(ColorCodeReceiver.insertColorCode), to: nil, from: self)
+            NSApp.sendAction(#selector(ColorCodeReceiver.insertColorCode), to: nil, from: self.colorCode)
         else { return NSSound.beep() }
     }
     
     
-    /// set color from the color code field in the panel
-    @IBAction func applayColorCode(_ sender: Any?) {
+    /// Set the color representing the given code to the color panel and select the corresponding color code type.
+    ///
+    /// - Parameter colorCode: The color code of the color to set.
+    private func apply(colorCode: String) {
         
-        self.setColor(code: self.colorCode)
+        var codeType: ColorCodeType?
+        guard
+            let color = NSColor(colorCode: colorCode, type: &codeType),
+            let codeType
+        else { return }
+        
+        self.panel.color = color
+        self.colorCodeType = codeType.rawValue
     }
     
     
-    /// update color code in the field
-    @IBAction func updateCode(_ sender: Any?) {
+    /// Update color code for new color.
+    ///
+    /// - Parameter color: The color.
+    private func apply(color: NSColor) {
         
-        let codeType = self.selectedCodeType
+        let codeType = ColorCodeType(rawValue: self.colorCodeType) ?? .hex
+        let color = color.usingColorSpace(.genericRGB)
         
-        guard var code = self.panel?.color.usingColorSpace(.genericRGB)?.colorCode(type: codeType) else { return assertionFailure() }
+        guard var code = color?.colorCode(type: codeType) else { return assertionFailure() }
         
-        // keep lettercase if current Hex code is uppercase
-        if (codeType == .hex || codeType == .shortHex), self.colorCode.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {
+        // keep lettercase for current hex code
+        if ColorCodeType.hexTypes.contains(codeType), self.colorCode.contains(where: \.isUppercase) {
             code = code.uppercased()
         }
         
         self.colorCode = code
     }
+}
+
+
+
+private extension ColorCodeType {
+    
+    static let hexTypes: [Self] = [.hex, .shortHex]
+    static let cssTypes: [Self] = [.cssRGB, .cssRGBa, .cssHSL, .cssHSLa, .cssKeyword]
     
     
-    
-    // MARK: Private Accessors
-    
-    /// current color code type selection
-    private var selectedCodeType: ColorCodeType {
+    var label: LocalizedStringKey {
         
-        get { ColorCodeType(rawValue: UserDefaults.standard[.colorCodeType]) ?? .hex }
-        set { UserDefaults.standard[.colorCodeType] = newValue.rawValue }
+        switch self {
+            case .hex:
+                return "Hexadecimal"
+            case .shortHex:
+                return "Hexadecimal (short)"
+            case .cssRGB:
+                return "CSS RGB"
+            case .cssRGBa:
+                return "CSS RGBa"
+            case .cssHSL:
+                return "CSS HSL"
+            case .cssHSLa:
+                return "CSS HSLa"
+            case .cssKeyword:
+                return "CSS Keyword"
+        }
+    }
+}
+
+
+
+// MARK: - Preview
+
+struct ColorCodePanelAccessory_Previews: PreviewProvider {
+
+    static var previews: some View {
+
+        ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
+            .frame(width: 240)
     }
 }

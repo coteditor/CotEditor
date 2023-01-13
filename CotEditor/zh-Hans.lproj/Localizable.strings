@@ -553,11 +553,23 @@
 
 
 
-/* MARK: ColorCodePanelController */
-// Undo action name
-"Insert Color Code" = "插入颜色代码";
+/* MARK: ColorCodePanelAccessory */
+"color code" = "颜色码";
+
+"Hexadecimal" = "Hex";
+"Hexadecimal (Short)" = "Hex（短）";
+"CSS RGB" = "CSS RGB";
+"CSS RGBa" = "CSS RGBa";
+"CSS HSL" = "CSS HSL";
+"CSS HSLa" = "CSS HSLa";
+"CSS Keyword" = "CSS关键字";
+
+// button
+"Insert" = "插入";
 // Color list name
 "Stylesheet Keywords" = "样式表关键字";
+// Undo action name
+"Insert Color Code" = "插入颜色代码";
 
 
 
