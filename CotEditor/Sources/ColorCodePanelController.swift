@@ -65,7 +65,7 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
     /// Show the color panel with the color code accessory.
     ///
     /// - Parameter colorCode: The color code of the color to set to the panel.
-    func showWindow(colorCode: String? = nil) {
+    func showWindow(colorCode: String?) {
         
         // setup the shared color panel
         let panel = NSColorPanel.shared
@@ -98,7 +98,7 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
 private struct ColorCodePanelAccessory: View {
     
     @State private var colorCode: String = ""
-    @AppStorage(.colorCodeType) private var colorCodeType: Int
+    @AppStorage(.colorCodeType) private var type: Int
     
     private var panel: NSColorPanel
     
@@ -109,10 +109,10 @@ private struct ColorCodePanelAccessory: View {
         
         self.panel = panel
         
-        var codeType: ColorCodeType?
-        if let colorCode, let color = NSColor(colorCode: colorCode, type: &codeType), let codeType {
+        var type: ColorCodeType?
+        if let colorCode, let color = NSColor(colorCode: colorCode, type: &type), let type {
             self.colorCode = colorCode
-            self.colorCodeType = codeType.rawValue
+            self.type = type.rawValue
             panel.color = color
         }
     }
@@ -129,7 +129,7 @@ private struct ColorCodePanelAccessory: View {
                 }
             
             HStack {
-                Picker("", selection: $colorCodeType) {
+                Picker("", selection: $type) {
                     Section {
                         ForEach(ColorCodeType.hexTypes, id: \.self) { type in
                             Text(type.label).tag(type.rawValue)
@@ -141,16 +141,8 @@ private struct ColorCodePanelAccessory: View {
                         }
                     }
                 }
+                .onChange(of: self.type, perform: self.apply(type:))
                 .labelsHidden()
-                .onChange(of: self.colorCodeType) { newValue in
-                    guard
-                        let type = ColorCodeType(rawValue: newValue),
-                        let color = self.panel.color.usingColorSpace(.genericRGB),
-                        let colorCode = color.colorCode(type: type)
-                    else { return }
-                    
-                    self.colorCode = colorCode
-                }
                 
                 Button("Insert", action: self.submit)
                     .keyboardShortcut(.defaultAction)
@@ -182,14 +174,28 @@ private struct ColorCodePanelAccessory: View {
     /// - Parameter colorCode: The color code of the color to set.
     private func apply(colorCode: String) {
         
-        var codeType: ColorCodeType?
+        var type: ColorCodeType?
         guard
-            let color = NSColor(colorCode: colorCode, type: &codeType),
-            let codeType
+            let color = NSColor(colorCode: colorCode, type: &type),
+            let type
         else { return }
         
         self.panel.color = color
-        self.colorCodeType = codeType.rawValue
+        self.type = type.rawValue
+    }
+    
+    
+    /// Convert the color code to the specified code type.
+    /// - Parameter rawValue: The rawValue of ColorCodeType.
+    private func apply(type rawValue: Int) {
+        
+        guard
+            let type = ColorCodeType(rawValue: rawValue),
+            let color = self.panel.color.usingColorSpace(.genericRGB),
+            let colorCode = color.colorCode(type: type)
+        else { return }
+        
+        self.colorCode = colorCode
     }
     
     
@@ -198,17 +204,17 @@ private struct ColorCodePanelAccessory: View {
     /// - Parameter color: The color.
     private func apply(color: NSColor) {
         
-        let codeType = ColorCodeType(rawValue: self.colorCodeType) ?? .hex
+        let type = ColorCodeType(rawValue: self.type) ?? .hex
         let color = color.usingColorSpace(.genericRGB)
         
-        guard var code = color?.colorCode(type: codeType) else { return assertionFailure() }
+        guard var colorCode = color?.colorCode(type: type) else { return assertionFailure() }
         
-        // keep lettercase for current hex code
-        if ColorCodeType.hexTypes.contains(codeType), self.colorCode.contains(where: \.isUppercase) {
-            code = code.uppercased()
+        // keep lettercase
+        if ColorCodeType.hexTypes.contains(type), self.colorCode.contains(where: \.isUppercase) {
+            colorCode = colorCode.uppercased()
         }
         
-        self.colorCode = code
+        self.colorCode = colorCode
     }
 }
 
