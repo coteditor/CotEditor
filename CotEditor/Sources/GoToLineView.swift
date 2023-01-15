@@ -24,7 +24,6 @@
 //
 
 import SwiftUI
-import Cocoa
 
 struct GoToLineView: View {
     
