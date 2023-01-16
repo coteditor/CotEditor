@@ -40,7 +40,7 @@ final class Console {
     
     static let shared = Console()
     
-    private(set) lazy var panelController: NSWindowController = NSStoryboard(name: "ConsolePanel").instantiateInitialController()!
+    private(set) lazy var panelController = ConsolePanelController()
     
     
     
@@ -64,48 +64,107 @@ final class Console {
 
 final class ConsolePanelController: NSWindowController {
     
-    // MARK: Window Controller Methods
+    // MARK: Lifecycle
     
-    override func windowDidLoad() {
+    convenience init() {
         
-        super.windowDidLoad()
+        let viewController = ConsoleViewController()
+        let panel = NSPanel(contentViewController: viewController)
+        panel.styleMask = [.closable, .resizable, .titled, .fullSizeContentView, .utilityWindow]
+        panel.isFloatingPanel = false
+        panel.title = "Console".localized
+        panel.setContentSize(NSSize(width: 360, height: 200))
         
-        (self.window as! NSPanel).isFloatingPanel = false
+        self.init(window: panel)
         
         self.windowFrameAutosaveName = "Console"
+        
+        let toolbar = NSToolbar()
+        toolbar.delegate = self
+        toolbar.isVisible = true
+        toolbar.displayMode = .iconOnly
+        panel.toolbar = toolbar
+        panel.toolbarStyle = .unifiedCompact
     }
 }
 
 
 
-final class ConsoleViewController: NSViewController {
+private extension NSToolbarItem.Identifier {
+    
+    private static let prefix = "com.coteditor.CotEditor.Console.ToolbarItem."
+    
+    static let clear = Self(Self.prefix + "clear")
+}
+
+
+extension ConsolePanelController: NSToolbarDelegate {
+    
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        
+        [.clear]
+    }
+    
+    
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        
+        [.clear]
+    }
+    
+    
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        
+        switch itemIdentifier {
+            case .clear:
+                let item = NSToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
+                item.label = "Clear Log".localized
+                item.toolTip = "Clear error log".localized
+                item.image = NSImage(systemSymbolName: "trash", accessibilityDescription: item.label)
+                item.action = #selector(ConsoleViewController.clear)
+                return item
+                
+            default:
+                return nil
+        }
+    }
+}
+
+
+
+// MARK: -
+
+private final class ConsoleViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var textView: NSTextView?
+    private weak var textView: NSTextView?
     
     
-    
-    // MARK: -
     // MARK: Lifecycle
     
-    override func viewDidLoad() {
+    override func loadView() {
         
-        super.viewDidLoad()
-        
-        self.textView!.textContainerInset = NSSize(width: 0, height: 4)
+        let scrollView = NSTextView.scrollablePlainDocumentContentTextView()
+        let textView = scrollView.documentView as! NSTextView
+        textView.textContainerInset = NSSize(width: 0, height: 4)
+        textView.isEditable = false
+        textView.isIncrementalSearchingEnabled = true
+        self.textView = textView
+        self.view = scrollView
     }
-    
     
     
     // MARK: Public Methods
     
-    /// append given message to the console
-    fileprivate func append(log: Console.Log) {
+    /// Append the given log message to the console.
+    ///
+    /// - Parameter log: The log to append.
+    func append(log: Console.Log) {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let lastLocation = (textView.string as NSString).length
+        let lastLocation = textView.string.length
         let attributedString = NSAttributedString(log.attributedString)
         
         textView.textStorage?.append(attributedString)
@@ -116,7 +175,7 @@ final class ConsoleViewController: NSViewController {
     }
     
     
-    /// flush console
+    /// Flush existing log.
     @IBAction func clear(_ sender: Any?) {
         
         guard let textView = self.textView else { return assertionFailure() }

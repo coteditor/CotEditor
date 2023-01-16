@@ -796,6 +796,13 @@
 
 
 
+/* MARK: Console */
+"Console" = "コンソール";
+"Clear Log" = "ログを消去";
+"Clear error log" = "エラーログを消去";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";

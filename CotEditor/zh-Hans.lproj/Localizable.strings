@@ -797,6 +797,13 @@
 
 
 
+/* MARK: Console */
+"Console" = "控制台";
+"Clear Log" = "清空记录";
+"Clear error log" = "清空错误记录";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";

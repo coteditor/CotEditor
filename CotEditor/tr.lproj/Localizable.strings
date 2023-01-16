@@ -795,6 +795,13 @@
 
 
 
+/* MARK: Console */
+"Console" = "Konsol";
+"Clear Log" = "Günlüğü Temizle";
+"Clear error log" = "Hata günlüğünü temizle";
+
+
+
 /* MARK: FileDropItem */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Bırakılan dosya mutlak yolu.";
