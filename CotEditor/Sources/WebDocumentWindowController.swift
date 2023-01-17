@@ -1,5 +1,5 @@
 //
-//  WebDocumentViewController.swift
+//  WebDocumentWindowController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,66 +26,69 @@
 import Cocoa
 import WebKit
 
-final class WebDocumentViewController: NSViewController {
+final class WebDocumentWindowController: NSWindowController {
+    
+    // MARK: Lifecycle
+    
+    convenience init(fileURL: URL) {
+        
+        let viewController = WebDocumentViewController(fileURL: fileURL)
+        let window = NSWindow(contentViewController: viewController)
+        window.setContentSize(NSSize(width: 480, height: 480))
+        window.styleMask = [.closable, .resizable, .titled]
+        window.titlebarAppearsTransparent = true
+        window.backgroundColor = .textBackgroundColor
+        window.center()
+        
+        self.init(window: window)
+    }
+}
+
+
+
+// MARK: -
+
+private final class WebDocumentViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var loadingNavigation: WKNavigation?
+    private let fileURL: URL
     
     
+    // MARK: Lifecycle
     
-    // MARK: -
-    // MARK: View Controller Methods
-    
-    override var representedObject: Any? {
+    init(fileURL: URL) {
         
-        didSet {
-            guard
-                let url = representedObject as? URL,
-                let webView = self.webView
-            else { return assertionFailure() }
-            
-            self.loadingNavigation = webView.loadFileURL(url, allowingReadAccessTo: url)
-            webView.isHidden = true
-        }
+        self.fileURL = fileURL
+        
+        super.init(nibName: nil, bundle: nil)
     }
     
     
-    override func viewDidLoad() {
+    required init?(coder: NSCoder) {
         
-        super.viewDidLoad()
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    override func loadView() {
+        
+        let webView = WKWebView()
+        webView.navigationDelegate = self
+        webView.isHidden = true
+        webView.loadFileURL(self.fileURL, allowingReadAccessTo: self.fileURL)
+        
+        self.view = webView
         
         // hide Sparkle if not used
         #if !SPARKLE
             let source = "document.querySelector('.Sparkle').style.display='none'"
             let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
-            self.webView?.configuration.userContentController.addUserScript(script)
+            webView.configuration.userContentController.addUserScript(script)
         #endif
     }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        // set window here since `self.view.window` is still nil in `viewDidLoad()`.
-        assert(self.view.window != nil)
-        self.view.window?.backgroundColor = .textBackgroundColor
-        self.view.window?.bind(.title, to: self.webView!, withKeyPath: #keyPath(title))
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// content web view
-    private var webView: WKWebView? {
-        
-        self.view as? WKWebView
-    }
 }
-
 
 
 extension WebDocumentViewController: WKNavigationDelegate {
@@ -94,14 +97,16 @@ extension WebDocumentViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        // avoid flashing view on the first launch in Dark Mode
-        if navigation == self.loadingNavigation {
-            webView.animator().isHidden = false
+        if let title = webView.title {
+            webView.window?.title = title
         }
+        
+        // avoid flashing view on the first launch in Dark Mode
+        webView.animator().isHidden = false
     }
     
     
-    /// open external link in default browser
+    /// Open external link in default browser.
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         guard

@@ -383,8 +383,8 @@
 		2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */; };
 		2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */; };
 		2A78BFAE1D1B138D00A583D2 /* EditPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */; };
-		2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */; };
-		2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */; };
+		2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
+		2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */; };
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
@@ -448,7 +448,6 @@
 		2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
-		2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
 		2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */; };
 		2A9B134927E2C90F009954A4 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9B134827E2C90F009954A4 /* FileManager.swift */; };
@@ -636,7 +635,6 @@
 		2ACDE2B12406B9C000FC31EC /* SyntaxInfoEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241221A7CDEF00F6201F /* SyntaxInfoEditView.storyboard */; };
 		2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243321A7D78400F6201F /* SyntaxOutlineEditView.storyboard */; };
 		2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
-		2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2ACF23AE26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
 		2ACF23AF26302A4C002B5E10 /* Theme+SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */; };
@@ -1145,7 +1143,7 @@
 		2A78BFA31D1B02ED00A583D2 /* WindowPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowPaneController.swift; sourceTree = "<group>"; };
 		2A78BFA61D1B05FB00A583D2 /* GeneralPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPaneController.swift; sourceTree = "<group>"; };
 		2A78BFAC1D1B138D00A583D2 /* EditPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPaneController.swift; sourceTree = "<group>"; };
-		2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentViewController.swift; sourceTree = "<group>"; };
+		2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentWindowController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		2A7B279824E435FE00F02304 /* OutlineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineTests.swift; sourceTree = "<group>"; };
@@ -1198,7 +1196,6 @@
 		2A91C31D1D1C3963007CF8BE /* PrintPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintPaneController.swift; sourceTree = "<group>"; };
 		2A91C3201D1C40E4007CF8BE /* FileDropPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropPaneController.swift; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = cot/cot; sourceTree = SOURCE_ROOT; };
-		2A97849E2034561B00482647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WebDocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A9AC936244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+InvisibleDrawing.swift"; sourceTree = "<group>"; };
 		2A9B134827E2C90F009954A4 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		2A9B134B27E2CE86009954A4 /* FileManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerTests.swift; sourceTree = "<group>"; };
@@ -1633,7 +1630,6 @@
 			isa = PBXGroup;
 			children = (
 				2A836F7E1D572A5D0044E8EC /* Main.storyboard */,
-				2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */,
 				2A149DAE19016AC500A9D6EF /* Settings */,
 				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
@@ -1731,7 +1727,7 @@
 				2A8961911DB76A3400E9E0EC /* MainMenu.swift */,
 				2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */,
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
-				2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */,
+				2A78BFAF1D1B168E00A583D2 /* WebDocumentWindowController.swift */,
 				2AFB5AEA1D597AFC003895A7 /* Defaults */,
 			);
 			name = Application;
@@ -2751,7 +2747,6 @@
 				2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */,
 				2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */,
 				2ACDE2A02406B9C000FC31EC /* WarningsView.storyboard in Resources */,
-				2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */,
 				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2815,7 +2810,6 @@
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
 				2A4144B8201397150061F653 /* WarningsView.storyboard in Resources */,
-				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3214,7 +3208,7 @@
 				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningsViewController.swift in Sources */,
-				2A78BFB11D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
+				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA51D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
@@ -3564,7 +3558,7 @@
 				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningsViewController.swift in Sources */,
-				2A78BFB01D1B168E00A583D2 /* WebDocumentViewController.swift in Sources */,
+				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
@@ -3962,14 +3956,6 @@
 				08C28F7F279CBE2C0016693E /* tr */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A97849E2034561B00482647 /* Base */,
-			);
-			name = WebDocumentWindow.storyboard;
 			sourceTree = "<group>";
 		};
 		2AA2E0111BFE12620087BDD6 /* Unicode.strings */ = {
