@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,12 +41,12 @@ struct UnicodeInputView: View {
         
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
-                Text(verbatim: (self.character?.isNewline == true) ? " " : self.character.map(String.init) ?? "⬚")
+                Text((self.character?.isNewline == true) ? " " : self.character.map(String.init) ?? "⬚")
                     .foregroundColor(self.character != nil ? .label : .secondaryLabel)
                     .font(.system(size: 26))
                     .frame(minWidth: 30, minHeight: 30)
                 
-                Text(verbatim: self.unicodeName ?? "Invalid code")
+                Text(self.unicodeName ?? "Invalid code")
                     .foregroundColor(self.unicodeName != nil ? .label : .secondaryLabel)
                     .help(self.unicodeName ?? "")
                     .controlSize(.small)
@@ -72,9 +72,9 @@ struct UnicodeInputView: View {
                             Button {
                                 self.codePoint = scalar.codePoint
                             } label: {
-                                Text(verbatim: scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
+                                Text(scalar.codePoint.padding(toLength: 9, withPad: " ", startingAt: 0))
                                     .monospacedDigit() +
-                                Text(verbatim: scalar.name ?? "–")
+                                Text(scalar.name ?? "–")
                                     .font(.system(size: NSFont.smallSystemFontSize))
                                     .foregroundColor(.secondaryLabel)
                             }
@@ -82,12 +82,11 @@ struct UnicodeInputView: View {
                     }
                     
                     if !scalars.isEmpty {
-                        Section {
-                            Button("Clear Recents", role: .destructive, action: self.clearRecents)
-                        }
+                        Button("Clear Recents", role: .destructive, action: self.clearRecents)
                     }
-                }.menuStyle(.borderlessButton)
-                    .frame(width: 16)
+                }
+                .menuStyle(.borderlessButton)
+                .frame(width: 16)
             }
         }
         .padding(10)

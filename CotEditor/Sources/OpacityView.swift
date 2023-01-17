@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,20 +31,22 @@ import SwiftUI
         
         assert(window != nil)
         
-        self.init(rootView: OpacityView())
+        self.init(rootView: OpacityView(window: window))
         
         self.ensureFrameSize()
-        self.rootView.window = window
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         
         // Implementing `init(coder:)` is required for toolbar item menu representation.
-        super.init(rootView: OpacityView())
+        
+        let window = NSDocumentController.shared.currentDocument?.windowControllers.first?.window as? DocumentWindow
+        assert(window != nil)
+        
+        super.init(rootView: OpacityView(window: window))
         
         self.ensureFrameSize()
-        self.rootView.window = NSDocumentController.shared.currentDocument?.windowControllers.first?.window as? DocumentWindow
     }
     
     
@@ -69,30 +71,59 @@ struct OpacityView: View {
             Text("Editor’s Opacity")
                 .fontWeight(.semibold)
                 .foregroundColor(.secondaryLabel)
+                .labelsHidden()
             
-            HStack(alignment: .center) {
-                OpacitySample(opacity: 0.2)
-                    .help("Transparent")
-                    .frame(width: 16, height: 16)
-                
-                Slider(value: $opacity, in: 0.2...1)
-                    .controlSize(.small)
-                    .frame(width: 100)
-                
-                OpacitySample(opacity: 1)
-                    .help("Opaque")
-                    .frame(width: 16, height: 16)
-            }
+            OpacitySlider(value: $opacity)
+                .onChange(of: self.opacity) { newValue in
+                    self.window?.backgroundAlpha = newValue
+                }
+                .controlSize(.small)
+                .frame(width: 160)
         }
         .onAppear {
             if let window {
                 self.opacity = window.backgroundAlpha
             }
         }
-        .onChange(of: self.opacity) { newValue in
-            self.window?.backgroundAlpha = newValue
-        }
         .padding(10)
+    }
+}
+
+
+
+private struct OpacitySlider: View {
+    
+    @Binding private var value: Double
+    
+    private let bounds: ClosedRange<Double>
+    private let label: LocalizedStringKey?
+    
+    
+    init(_ label: LocalizedStringKey? = nil, value: Binding<Double>, in bounds: ClosedRange<Double> = 0.2...1) {
+        
+        self._value = value
+        self.bounds = bounds
+        self.label = label
+    }
+    
+    
+    var body: some View {
+        
+        Slider(value: $value, in: self.bounds) {
+            if let label {
+                Text(label)
+            } else {
+                EmptyView()
+            }
+        } minimumValueLabel: {
+            OpacitySample(opacity: self.bounds.lowerBound)
+                .help("Transparent")
+                .frame(width: 16, height: 16)
+        } maximumValueLabel: {
+            OpacitySample(opacity: self.bounds.upperBound)
+                .help("Opaque")
+                .frame(width: 16, height: 16)
+        }
     }
 }
 

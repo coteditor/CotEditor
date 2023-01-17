@@ -52,8 +52,8 @@ struct OpenPanelAccessory: View {
                     Text("Automatic").tag(String.Encoding?.none)
                     Divider()
                     
-                    ForEach(Array(self.encodings.indices), id: \.self) { index in
-                        if let encoding = self.encodings[index] {
+                    ForEach(Array(self.encodings.enumerated()), id: \.offset) { (_, encoding) in
+                        if let encoding {
                             Text(String.localizedName(of: encoding)).tag(String.Encoding?.some(encoding))
                         } else {
                             Divider()

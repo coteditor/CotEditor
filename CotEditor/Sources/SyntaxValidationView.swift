@@ -90,29 +90,32 @@ struct SyntaxValidationView: View {
         
         var body: some View {
             
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(alignment: .firstTextBaseline, spacing: 6) {
-                    Image(systemName: "exclamationmark.triangle")
-                        .symbolVariant(.fill)
-                        .symbolRenderingMode(.multicolor)
-                    Text("\(self.error.localizedType):")
-                        .fontWeight(.semibold)
-                    Text(self.error.string)
-                        .foregroundColor(.label)
-                        .textSelection(.enabled)
-                        .lineLimit(1)
-                    if let role = self.error.localizedRole {
-                        Text("(\(role))")
-                            .foregroundColor(.secondaryLabel)
+            Label {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("\(self.error.localizedType):")
+                            .fontWeight(.semibold)
+                        Text(self.error.string)
+                            .foregroundColor(.label)
+                            .textSelection(.enabled)
+                            .help(self.error.string)
+                            .lineLimit(1)
+                        if let role = self.error.localizedRole {
+                            Text("(\(role))")
+                                .foregroundColor(.secondaryLabel)
+                        }
+                    }
+                    if let failureReason = self.error.failureReason {
+                        Text(failureReason)
+                            .controlSize(.small)
+                            .foregroundColor(.label)
+                            .textSelection(.enabled)
                     }
                 }
-                if let failureReason = self.error.failureReason {
-                    Text(failureReason)
-                        .controlSize(.small)
-                        .foregroundColor(.label)
-                        .textSelection(.enabled)
-                        .padding(.leading, 28)
-                }
+            } icon: {
+                Image(systemName: "exclamationmark.triangle")
+                    .symbolVariant(.fill)
+                    .symbolRenderingMode(.multicolor)
             }
         }
     }
