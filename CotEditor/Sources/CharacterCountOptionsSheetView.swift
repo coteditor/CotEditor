@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,8 +30,6 @@ struct CharacterCountOptionsSheetView: View {
     weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
     let completionHandler: () -> Void
     
-    @State private var buttonWidth: CGFloat?
-    
     
     // MARK: View
     
@@ -45,24 +43,13 @@ struct CharacterCountOptionsSheetView: View {
                 
                 Spacer()
                 
-                Button(role: .cancel) {
-                    self.parent?.dismiss(nil)
-                } label: {
-                    Text("Cancel")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.buttonWidth)
-                }.keyboardShortcut(.cancelAction)
-                
-                Button {
+                SubmitButtonGroup("Start") {
                     self.completionHandler()
                     self.parent?.dismiss(nil)
-                } label: {
-                    Text("Start")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.buttonWidth)
-                }.keyboardShortcut(.defaultAction)
+                } cancelAction: {
+                    self.parent?.dismiss(nil)
+                }
             }
-            .onPreferenceChange(WidthKey.self) { self.buttonWidth = $0 }
         }
         .fixedSize()
         .padding()

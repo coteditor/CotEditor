@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,8 +34,6 @@ struct CustomSurroundStringView: View {
     
     @State private var pair: Pair<String> = .init("", "")
     private let completionHandler: (_ pair: Pair<String>) -> Void
-    
-    @State private var buttonWidth: CGFloat?
     
     
     // MARK: View
@@ -76,23 +74,12 @@ struct CustomSurroundStringView: View {
                     .frame(width: 48)
             }
             
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 Spacer()
-                
-                Button(role: .cancel) {
+                SubmitButtonGroup(action: self.submit) {
                     self.parent?.dismiss(nil)
-                } label: {
-                    Text("Cancel")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.buttonWidth)
-                }.keyboardShortcut(.cancelAction)
-                
-                Button(action: self.submit) {
-                    Text("OK")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.buttonWidth)
-                }.keyboardShortcut(.defaultAction)
-            }.onPreferenceChange(WidthKey.self) { self.buttonWidth = $0 }
+                }
+            }
         }
         .fixedSize()
         .padding()

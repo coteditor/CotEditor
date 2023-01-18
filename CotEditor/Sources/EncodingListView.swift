@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,7 +48,6 @@ struct EncodingListView: View {
     @State private var selectedItems: Set<EncodingItem.ID> = []
     
     @State private var separatorButtonWidth: CGFloat?
-    @State private var submitButtonWidth: CGFloat?
     
     
     var body: some View {
@@ -107,24 +106,13 @@ struct EncodingListView: View {
                 
                 Spacer()
                 
-                Button(role: .cancel) {
-                    self.parent?.dismiss(nil)
-                } label: {
-                    Text("Cancel")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.submitButtonWidth)
-                }.keyboardShortcut(.cancelAction)
-                
-                Button {
+                SubmitButtonGroup {
                     self.save()
                     self.parent?.dismiss(nil)
-                } label: {
-                    Text("OK")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.submitButtonWidth)
-                }.keyboardShortcut(.defaultAction)
+                } cancelAction: {
+                    self.parent?.dismiss(nil)
+                }
             }
-            .onPreferenceChange(WidthKey.self) { self.submitButtonWidth = $0 }
         }
         .padding()
         .frame(minWidth: 420)

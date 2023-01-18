@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,8 +31,6 @@ struct GoToLineView: View {
     
     @State private var value: String
     private let completionHandler: (_ lineRange: FuzzyRange) -> Bool
-    
-    @State private var buttonWidth: CGFloat?
     
     
     // MARK: View
@@ -64,20 +62,10 @@ struct GoToLineView: View {
                 
                 Spacer()
                 
-                Button(role: .cancel) {
+                SubmitButtonGroup("Go", action: self.submit) {
                     self.parent?.dismiss(nil)
-                } label: {
-                    Text("Cancel")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.buttonWidth)
-                }.keyboardShortcut(.cancelAction)
-                
-                Button(action: self.submit) {
-                    Text("Go")
-                        .background(WidthGetter(key: WidthKey.self))
-                        .frame(width: self.buttonWidth)
-                }.keyboardShortcut(.defaultAction)
-            }.onPreferenceChange(WidthKey.self) { self.buttonWidth = $0 }
+                }
+            }
         }
         .fixedSize()
         .padding()
