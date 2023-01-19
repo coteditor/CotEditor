@@ -349,11 +349,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleName = self.targetStyleName(for: sender)
         let state = SyntaxManager.shared.state(of: styleName)!
-        let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
-            SyntaxEditViewController(coder: coder, mode: .edit(state))
-        }!
         
-        self.presentAsSheet(viewController)
+        self.presentStyleEditor(mode: .edit(state))
     }
     
     
@@ -362,24 +359,16 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleName = self.targetStyleName(for: sender)
         let state = SyntaxManager.shared.state(of: styleName)!
-        let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
-            SyntaxEditViewController(coder: coder, mode: .copy(state))
-        }!
         
-        self.presentAsSheet(viewController)
+        self.presentStyleEditor(mode: .copy(state))
     }
     
     
     /// show syntax style edit sheet in new mode
     @IBAction func createSyntaxStyle(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
-            SyntaxEditViewController(coder: coder, mode: .new)
-        }!
-        
-        self.presentAsSheet(viewController)
+        self.presentStyleEditor(mode: .new)
     }
-    
     
     /// delete selected syntax style
     @IBAction func deleteSyntaxStyle(_ sender: Any?) {
@@ -619,5 +608,18 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)
         }
+    }
+    
+    
+    /// Present the sytnax style edit sheet.
+    ///
+    /// - Parameter mode: The edit mode.
+    private func presentStyleEditor(mode: SyntaxEditViewController.Mode) {
+        
+        let viewController = NSStoryboard(name: "SyntaxEditView").instantiateInitialController { (coder) in
+            SyntaxEditViewController(coder: coder, mode: mode)
+        }!
+        
+        self.presentAsSheet(viewController)
     }
 }
