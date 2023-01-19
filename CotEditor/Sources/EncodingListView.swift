@@ -39,9 +39,6 @@ private struct EncodingItem: Identifiable {
 
 struct EncodingListView: View {
     
-    private struct SeparatorButtonKey: MaxWidthKey { }
-    
-    
     weak var parent: NSHostingController<Self>?
     
     @State private var encodingItems: [EncodingItem] = UserDefaults.standard[.encodingList].map(EncodingItem.init(encoding:))
@@ -81,16 +78,16 @@ struct EncodingListView: View {
                 VStack(alignment: .leading) {
                     Button(action: self.addSeparator) {
                         Text("Add Separator")
-                            .background(WidthGetter(key: SeparatorButtonKey.self))
+                            .background(WidthGetter(key: WidthKey.self))
                             .frame(width: self.separatorButtonWidth)
                     }
                     Button(action: self.deleteSeparators) {
                         Text("Delete Separator")
-                            .background(WidthGetter(key: SeparatorButtonKey.self))
+                            .background(WidthGetter(key: WidthKey.self))
                             .frame(width: self.separatorButtonWidth)
                     }.disabled(!self.canDeleteSeparators)
                 }.controlSize(.small)
-                    .onPreferenceChange(SeparatorButtonKey.self) { self.separatorButtonWidth = $0 }
+                    .onPreferenceChange(WidthKey.self) { self.separatorButtonWidth = $0 }
             }
             
             Text("This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized.")
