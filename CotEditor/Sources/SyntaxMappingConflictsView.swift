@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ struct SyntaxMappingConflictsView: View {
                 .controlSize(.small)
             
             if !self.extensionConflicts.isEmpty {
-                self.listView(name: "Extension", conflicts: self.extensionConflicts)
+                self.listView("Extension", conflicts: self.extensionConflicts)
             }
             if !self.filenameConflicts.isEmpty {
-                self.listView(name: "Filename", conflicts: self.filenameConflicts)
+                self.listView("Filename", conflicts: self.filenameConflicts)
             }
             if !self.interpreterConflicts.isEmpty {
-                self.listView(name: "Interpreter", conflicts: self.interpreterConflicts)
+                self.listView("Interpreter", conflicts: self.interpreterConflicts)
             }
             
             HStack {
@@ -97,7 +97,7 @@ struct SyntaxMappingConflictsView: View {
     }
     
     
-    private func listView(name: LocalizedStringKey, conflicts: [FileMappingConflict]) -> some View {
+    @ViewBuilder private func listView(_ name: LocalizedStringKey, conflicts: [FileMappingConflict]) -> some View {
         
         Section {
             Table(conflicts) {
