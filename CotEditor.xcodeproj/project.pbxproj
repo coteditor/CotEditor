@@ -2468,8 +2468,8 @@
 				2A1083EF2944837E00751DAE /* InsetTextField.swift */,
 				2A59B7022957089A0094F03B /* LinkButton.swift */,
 				2A4A7D122856FF340085D2E7 /* HelpButton.swift */,
-				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
 				2A2615882977FCF6008C2240 /* SubmitButtonGroup.swift */,
+				2A5D13121D1EE8FF00D38E6A /* HUDView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

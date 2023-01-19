@@ -58,6 +58,7 @@ struct SubmitButtonGroup: View {
                     .background(WidthGetter(key: WidthKey.self))
                     .frame(width: self.buttonWidth)
             }.keyboardShortcut(.cancelAction)
+                .environment(\.isEnabled, true)  // Cancel button is always active
             
             Button(action: self.submitAction) {
                 Text(self.submitLabel)
