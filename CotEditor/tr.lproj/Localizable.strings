@@ -28,6 +28,7 @@
 "OK" = "Tamam";
 "Cancel" = "Vazgeç";
 "Start" = "Başlangıç";
+"Restore Defaults" = "Saptanmışlara Dön";
 
 
 // Appending words in parentheses
@@ -842,7 +843,6 @@
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "Bu sıralama, kodlama menüsü ve dosya açılışındaki kodlama algılaması içindir. Algılama ile, daha yüksek olasılıklı ögelere öncelik verilir.";
 "Add Separator" = "Ayırıcı Ekle";
 "Delete Separator" = "Ayırıcı Sil";
-"Restore Defaults" = "Saptanmışlara Dön";
 
 
 

@@ -28,6 +28,7 @@
 "OK" = "OK";
 "Cancel" = "Cancel";
 "Start" = "Start";
+"Restore Defaults" = "Restore Defaults";
 
 
 // Appending words in parentheses
@@ -843,7 +844,6 @@
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritised.";
 "Add Separator" = "Add Separator";
 "Delete Separator" = "Delete Separator";
-"Restore Defaults" = "Restore Defaults";
 
 
 

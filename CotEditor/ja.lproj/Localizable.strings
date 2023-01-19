@@ -28,6 +28,7 @@
 "OK" = "OK";
 "Cancel" = "キャンセル";
 "Start" = "開始";
+"Restore Defaults" = "デフォルトに戻す";
 
 
 // Appending words in parentheses
@@ -843,7 +844,6 @@
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "この順序はエンコーディングメニューや書類を開くときのエンコーディング認識で使われます。自動認識では上位のエンコーディングがより優先して適用されます。";
 "Add Separator" = "区切り線を追加";
 "Delete Separator" = "区切り線を削除";
-"Restore Defaults" = "デフォルトに戻す";
 
 
 

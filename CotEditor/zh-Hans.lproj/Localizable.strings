@@ -28,6 +28,7 @@
 "OK" = "好";
 "Cancel" = "取消";
 "Start" = "开始";
+"Restore Defaults" = "恢复默认";
 
 
 // Appending words in parentheses
@@ -844,7 +845,6 @@
 "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized." = "这个列表是为编码菜单中的自动检测准备的。\n通过检测，较高的项目将获得较高的优先级。";
 "Add Separator" = "添加分隔线";
 "Delete Separator" = "删除分隔线";
-"Restore Defaults" = "恢复默认";
 
 
 
