@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,13 +30,19 @@ struct InsetTextField: NSViewRepresentable {
     
     typealias NSViewType = PaddingTextField
     
-    @Binding var text: String
-    let prompt: String?
+    @Binding private var text: String
+    private let prompt: String?
     
-    var insets: EdgeInsets = .init()
-    var usesMonospacedDigit = false
-    var onSubmit: () -> Void = {}
+    private var insets: EdgeInsets = .init()
+    private var usesMonospacedDigit = false
+    private var onSubmit: () -> Void = {}
     
+    
+    init(text: Binding<String>, prompt: String? = nil) {
+        
+        self._text = text
+        self.prompt = prompt
+    }
     
     
     func makeNSView(context: Context) -> PaddingTextField {
