@@ -32,7 +32,6 @@ struct UnicodeInputView: View {
     let completionHandler: (_ character: Character) -> Void
     
     @State private var codePoint: String = ""
-    @State private var selectedHistory: String = ""
     
     
     // MARK: View
@@ -42,21 +41,19 @@ struct UnicodeInputView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 Text((self.character?.isNewline == true) ? " " : self.character.map(String.init) ?? "⬚")
-                    .foregroundColor(self.character != nil ? .label : .secondaryLabel)
                     .font(.system(size: 26))
                     .frame(minWidth: 30, minHeight: 30)
                 
                 Text(self.unicodeName ?? "Invalid code")
-                    .foregroundColor(self.unicodeName != nil ? .label : .secondaryLabel)
                     .help(self.unicodeName ?? "")
                     .controlSize(.small)
                     .textSelection(.enabled)
                     .lineLimit(2)
                     .fixedSize(horizontal: false, vertical: true)
             }
+            .foregroundColor(self.unicodeName != nil ? .label : .secondaryLabel)
             
             ZStack(alignment: .leadingFirstTextBaseline) {
-                
                 InsetTextField(text: $codePoint, prompt: "U+1F600")
                     .onSubmit(self.submit)
                     .inset(.leading, 18)
