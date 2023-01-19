@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2022 1024jp
+//  © 2021-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,9 +39,9 @@ struct CharacterCountOptionsView: View {
                 Text("Whitespace:")
                 
                 VStack(alignment: .leading, spacing: 6) {
-                    Toggle("Ignore line endings", isOn: self.setting.$ignoresNewlines)
-                    Toggle("Ignore whitespace", isOn: self.setting.$ignoresWhitespaces)
-                    Toggle("Treat consecutive whitespace as one space", isOn: self.setting.$treatsConsecutiveWhitespaceAsSingle)
+                    Toggle("Ignore line endings", isOn: $setting.ignoresNewlines)
+                    Toggle("Ignore whitespace", isOn: $setting.ignoresWhitespaces)
+                    Toggle("Treat consecutive whitespace as one space", isOn: $setting.treatsConsecutiveWhitespaceAsSingle)
                         .disabled(self.setting.ignoresNewlines && self.setting.ignoresWhitespaces)
                 }
                 .alignmentGuide(.column) { $0[.leading] }
@@ -53,11 +53,10 @@ struct CharacterCountOptionsView: View {
                     .fixedSize()
                 
                 VStack(alignment: .leading) {
-                    Picker("Unit:", selection: self.setting.$unit) {
-                        Text("Grapheme cluster").tag(CharacterCountOptions.CharacterUnit.graphemeCluster)
-                        Text("Unicode scalar").tag(CharacterCountOptions.CharacterUnit.unicodeScalar)
-                        Text("UTF-16").tag(CharacterCountOptions.CharacterUnit.utf16)
-                        Text("Byte").tag(CharacterCountOptions.CharacterUnit.byte)
+                    Picker("Unit:", selection: $setting.unit) {
+                        ForEach(CharacterCountOptions.CharacterUnit.allCases, id: \.self) {
+                            Text($0.label).tag($0)
+                        }
                     }.labelsHidden()
                         .fixedSize()
                     
@@ -65,7 +64,8 @@ struct CharacterCountOptionsView: View {
                         Picker("Encoding:", selection: self.$setting.encoding) {
                             ForEach(0..<String.sortedAvailableStringEncodings.count, id: \.self) { index in
                                 if let encoding = String.sortedAvailableStringEncodings[index] {
-                                    Text(String.localizedName(of: encoding)).tag(Int(encoding.rawValue))
+                                    Text(String.localizedName(of: encoding))
+                                        .tag(Int(encoding.rawValue))
                                 } else {
                                     Divider()
                                 }
@@ -83,20 +83,23 @@ struct CharacterCountOptionsView: View {
                     
                     if self.setting.unit != .graphemeCluster {
                         HStack(alignment: .firstTextBaseline) {
-                            Toggle("Normalization:", isOn: self.setting.$normalizes)
-                            Picker("Normalization:", selection: self.setting.$normalizationForm) {
+                            Toggle("Normalization:", isOn: $setting.normalizes)
+                            Picker("Normalization:", selection: $setting.normalizationForm) {
                                 Section {
                                     ForEach(UnicodeNormalizationForm.standardForms, id: \.self) { (form) in
-                                        Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                        Text(form.localizedName).tag(form)
+                                            .help(form.localizedDescription)
                                     }
                                 }
                                 Section {
                                     ForEach(UnicodeNormalizationForm.modifiedForms, id: \.self) { (form) in
-                                        Text(form.localizedName).tag(form).help(form.localizedDescription)
+                                        Text(form.localizedName).tag(form)
+                                            .help(form.localizedDescription)
                                     }
                                 }
-                            }.labelsHidden()
-                                .disabled(!self.setting.normalizes)
+                            }
+                            .labelsHidden()
+                            .disabled(!self.setting.normalizes)
                         }.fixedSize()
                     }
                 }
@@ -114,6 +117,21 @@ struct CharacterCountOptionsView: View {
 // MARK: Model
 
 private extension CharacterCountOptions.CharacterUnit {
+    
+    var label: LocalizedStringKey {
+        
+        switch self {
+            case .graphemeCluster:
+                return "Grapheme cluster"
+            case .unicodeScalar:
+                return "Unicode scalar"
+            case .utf16:
+                return "UTF-16"
+            case .byte:
+                return "Byte"
+        }
+    }
+    
     
     var description: LocalizedStringKey {
         
