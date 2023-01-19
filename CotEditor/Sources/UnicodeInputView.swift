@@ -27,7 +27,7 @@ import SwiftUI
 
 struct UnicodeInputView: View {
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
     
     let completionHandler: (_ character: Character) -> Void
     

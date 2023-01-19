@@ -42,7 +42,7 @@ struct EncodingListView: View {
     private struct SeparatorButtonKey: MaxWidthKey { }
     
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
     
     @State private var encodingItems: [EncodingItem] = UserDefaults.standard[.encodingList].map(EncodingItem.init(encoding:))
     @State private var selectedItems: Set<EncodingItem.ID> = []

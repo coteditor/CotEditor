@@ -27,7 +27,7 @@ import SwiftUI
 
 struct CustomTabWidthView: View {
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
     
     @State private var value: Int
     private let defaultWidth: Int

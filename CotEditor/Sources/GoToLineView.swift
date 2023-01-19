@@ -27,7 +27,7 @@ import SwiftUI
 
 struct GoToLineView: View {
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
     
     @State private var value: String
     private let completionHandler: (_ lineRange: FuzzyRange) -> Bool

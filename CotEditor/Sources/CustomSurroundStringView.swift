@@ -27,7 +27,7 @@ import SwiftUI
 
 struct CustomSurroundStringView: View {
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
     
     @AppStorage("beginCustomSurroundString") private var defaultBeginString: String?
     @AppStorage("endCustomSurroundString") private var defaultEndString: String?

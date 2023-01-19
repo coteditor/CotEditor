@@ -62,7 +62,7 @@ struct HUDView: View {
     }
     
     
-    fileprivate weak var parent: NSHostingView<Self>?  // workaround presentationMode.dismiss() doesn't work
+    fileprivate weak var parent: NSHostingView<Self>?
     
     @State var symbol: Symbol
     @State private var isPresented = true

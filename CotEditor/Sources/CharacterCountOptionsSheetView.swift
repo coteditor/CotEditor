@@ -27,7 +27,8 @@ import SwiftUI
 
 struct CharacterCountOptionsSheetView: View {
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
+    
     let completionHandler: () -> Void
     
     

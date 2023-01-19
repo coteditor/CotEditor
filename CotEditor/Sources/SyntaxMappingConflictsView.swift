@@ -48,7 +48,7 @@ private struct FileMappingConflict: Identifiable {
 
 struct SyntaxMappingConflictsView: View {
     
-    weak var parent: NSHostingController<Self>?  // workaround presentationMode.dismiss() doesn't work
+    weak var parent: NSHostingController<Self>?
     
     private var extensionConflicts: [FileMappingConflict]
     private var filenameConflicts: [FileMappingConflict]
