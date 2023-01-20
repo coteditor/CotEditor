@@ -39,7 +39,7 @@ struct FilePermissions {
         static let execute = Self(rawValue: 0b001)
         
         
-        var humanReadable: String {
+        var symbolic: String {
             
             (self.contains(.read) ? "r" : "-") +
             (self.contains(.write) ? "w" : "-") +
@@ -67,9 +67,16 @@ struct FilePermissions {
     
     
     /// human-readable permission expression like "rwxr--r--"
-    var humanReadable: String {
+    var symbolic: String {
         
-        self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
+        self.user.symbolic + self.group.symbolic + self.others.symbolic
+    }
+    
+    
+    /// octal value expression like "644"
+    var octal: String {
+        
+        String(self.mask, radix: 8)
     }
 }
 
@@ -79,6 +86,6 @@ extension FilePermissions: CustomStringConvertible {
     
     var description: String {
         
-        self.humanReadable
+        self.symbolic
     }
 }

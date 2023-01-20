@@ -33,7 +33,7 @@ final class FileInfo: NSObject {
     @objc dynamic var fileSize: String?
     @objc dynamic var path: String?
     @objc dynamic var owner: String?
-    @objc dynamic var permission: NSNumber?
+    @objc dynamic var permission: String?
 }
 
 
@@ -64,7 +64,6 @@ final class DocumentInspectorViewController: NSViewController {
     @objc private(set) dynamic var lineEndings: String = "–"
     @objc private(set) dynamic var editorInfo: EditorInfo = .init()
     
-    @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
     @IBOutlet private var tokenFormatter: TokenFormatter?
     
     
@@ -145,7 +144,7 @@ final class DocumentInspectorViewController: NSViewController {
                 info.modificationDate = (attributes?[.modificationDate] as? Date)?.formatted(dateFormat)
                 info.fileSize = (attributes?[.size] as? UInt64)?.formatted(.byteCount(style: .file, includesActualByteCount: true))
                 info.owner = attributes?[.ownerAccountName] as? String
-                info.permission = attributes?[.posixPermissions] as? NSNumber
+                info.permission = (attributes?[.posixPermissions] as? UInt16)?.formatted(.filePermissions)
             }
             .store(in: &self.documentObservers)
         

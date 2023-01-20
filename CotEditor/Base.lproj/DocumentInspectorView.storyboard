@@ -174,7 +174,6 @@
                                                         <string key="NSNullPlaceholder">-</string>
                                                     </dictionary>
                                                 </binding>
-                                                <outlet property="formatter" destination="Kne-Bi-Pd2" id="zWt-rR-1Ep"/>
                                             </connections>
                                         </textField>
                                         <box autoresizesSubviews="NO" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6Jg-D8-WcV" userLabel="Horizontal Line">
@@ -595,7 +594,6 @@
                         </scroller>
                     </scrollView>
                     <connections>
-                        <outlet property="filePermissionsFormatter" destination="Kne-Bi-Pd2" id="ltc-Kk-2yJ"/>
                         <outlet property="tokenFormatter" destination="Pa0-sr-GTs" id="DfO-ij-9oB"/>
                     </connections>
                 </viewController>
@@ -612,7 +610,6 @@
                         <binding destination="NoI-km-aN6" name="contentObject" keyPath="editorInfo" id="892-iH-YsH"/>
                     </connections>
                 </objectController>
-                <customFormatter id="Kne-Bi-Pd2" customClass="FilePermissionsFormatter" customModule="CotEditor" customModuleProvider="target"/>
                 <customFormatter id="Pa0-sr-GTs" customClass="TokenFormatter" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="45" y="131.5"/>

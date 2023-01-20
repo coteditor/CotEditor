@@ -64,10 +64,10 @@ extension FormatStyle where Self == RangedIntegerFormatStyle {
     
     /// Clamp the value in between the given range.
     ///
-    /// - Returns: A RangedIntegerFormatStyle.
     /// - Parameters:
     ///   - range: The condition which the value should be in between.
     ///   - defaultValue: The value used when the input value is invalid.
+    /// - Returns: A RangedIntegerFormatStyle.
     static func ranged(_ range: ClosedRange<Int>, defaultValue: Int? = nil) -> RangedIntegerFormatStyle {
         
         assert(defaultValue == nil || range.contains(defaultValue!))
