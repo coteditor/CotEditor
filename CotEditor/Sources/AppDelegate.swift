@@ -91,8 +91,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         UserDefaults.standard.register(defaults: defaults)
         NSUserDefaultsController.shared.initialValues = defaults
         
-        ProcessInfo.processInfo.automaticTerminationSupportEnabled = true
-        
         // instantiate shared instances
         _ = DocumentController.shared
     }
