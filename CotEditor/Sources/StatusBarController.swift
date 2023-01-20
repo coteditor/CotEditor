@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import Cocoa
     private var defaultsObserver: AnyCancellable?
     
     @objc private dynamic var editorStatus: NSAttributedString?
-    @objc private dynamic var fileSize: NSNumber?
+    @objc private dynamic var fileSize: String?
     
     @IBOutlet private weak var encodingPopUpButton: NSPopUpButton?
     @IBOutlet private weak var lineEndingPopUpButton: NSPopUpButton?
@@ -136,8 +136,9 @@ import Cocoa
         
         // observe file size
         document.$fileAttributes
-            .map { $0?[.size] as? NSNumber }
+            .map { $0?[.size] as? UInt64 }
             .removeDuplicates()
+            .map { $0?.formatted(.byteCount(style: .file, spellsOutZero: false)) }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in self?.fileSize = $0 }
             .store(in: &self.documentObservers)

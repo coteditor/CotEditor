@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,10 +28,10 @@ import Cocoa
 
 final class FileInfo: NSObject {
     
-    @objc dynamic var creationDate: Date?
-    @objc dynamic var modificationDate: Date?
-    @objc dynamic var fileSize: NSNumber?
-    @objc dynamic var url: URL?
+    @objc dynamic var creationDate: String?
+    @objc dynamic var modificationDate: String?
+    @objc dynamic var fileSize: String?
+    @objc dynamic var path: String?
     @objc dynamic var owner: String?
     @objc dynamic var permission: NSNumber?
 }
@@ -64,8 +64,6 @@ final class DocumentInspectorViewController: NSViewController {
     @objc private(set) dynamic var lineEndings: String = "–"
     @objc private(set) dynamic var editorInfo: EditorInfo = .init()
     
-    @IBOutlet private var dateFormatter: DateFormatter?
-    @IBOutlet private var byteCountFormatter: ByteCountFormatter?
     @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
     @IBOutlet private var tokenFormatter: TokenFormatter?
     
@@ -133,16 +131,19 @@ final class DocumentInspectorViewController: NSViewController {
     private func subscribe(_ document: Document) {
         
         document.publisher(for: \.fileURL, options: .initial)
+            .map { $0?.path }
             .receive(on: DispatchQueue.main)
-            .assign(to: \.url, on: self.fileInfo)
+            .assign(to: \.path, on: self.fileInfo)
             .store(in: &self.documentObservers)
         
         document.$fileAttributes
             .receive(on: DispatchQueue.main)
             .sink { [info = self.fileInfo] (attributes) in
-                info.creationDate = attributes?[.creationDate] as? Date
-                info.modificationDate = attributes?[.modificationDate] as? Date
-                info.fileSize = attributes?[.size] as? NSNumber
+                let dateFormat = Date.FormatStyle(date: .abbreviated, time: .shortened)
+                
+                info.creationDate = (attributes?[.creationDate] as? Date)?.formatted(dateFormat)
+                info.modificationDate = (attributes?[.modificationDate] as? Date)?.formatted(dateFormat)
+                info.fileSize = (attributes?[.size] as? UInt64)?.formatted(.byteCount(style: .file, includesActualByteCount: true))
                 info.owner = attributes?[.ownerAccountName] as? String
                 info.permission = attributes?[.posixPermissions] as? NSNumber
             }
