@@ -34,8 +34,8 @@ final class FilePermissionTests: XCTestCase {
         XCTAssertEqual(FilePermissions(mask: 0o777).mask, 0o777)
         XCTAssertEqual(FilePermissions(mask: 0o643).mask, 0o643)
         
-        XCTAssertEqual(FilePermissions(mask: 0o777).humanReadable, "rwxrwxrwx")
-        XCTAssertEqual(FilePermissions(mask: 0o643).humanReadable, "rw-r---wx")
+        XCTAssertEqual(FilePermissions(mask: 0o777).symbolic, "rwxrwxrwx")
+        XCTAssertEqual(FilePermissions(mask: 0o643).symbolic, "rw-r---wx")
     }
     
     
