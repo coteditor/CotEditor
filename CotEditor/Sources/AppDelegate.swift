@@ -317,7 +317,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
         
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
-        NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
+        NSApp.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
     
     
