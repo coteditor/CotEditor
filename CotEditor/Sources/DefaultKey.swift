@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     
-    let rawValue: String
+    final let rawValue: String
     
     
     required init(rawValue: String) {
@@ -40,13 +40,13 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     }
     
     
-    func hash(into hasher: inout Hasher) {
+    final func hash(into hasher: inout Hasher) {
         
         hasher.combine(self.rawValue)
     }
     
     
-    var description: String {
+    final var description: String {
         
         self.rawValue
     }
