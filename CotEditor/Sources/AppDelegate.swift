@@ -64,7 +64,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var menuUpdateObservers: Set<AnyCancellable> = []
     
-    private lazy var settingsWindowController: NSWindowController = NSStoryboard(name: "SettingsWindow").instantiateInitialController()!
+    private lazy var settingsWindowController = SettingsWindowController()
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(fileURL: Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")!)
     
     @IBOutlet private weak var encodingsMenu: NSMenu?

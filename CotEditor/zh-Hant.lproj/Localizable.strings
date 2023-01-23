@@ -582,6 +582,16 @@
 
 
 /* MARK: Settings */
+// Panes
+"General" = "通用";
+"Window" = "視窗";
+"Appearance" = "外觀";
+"Edit" = "編輯";
+"Format" = "格式";
+"File Drop" = "檔案拖拽";
+"Key Bindings" = "按鍵繫結";
+"Print" = "列印";
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "變更將在下次啟動時生效。";

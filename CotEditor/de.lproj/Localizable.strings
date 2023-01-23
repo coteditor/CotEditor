@@ -582,6 +582,16 @@
 
 
 /* MARK: Settings */
+// Panes
+"General" = "Allgemein";
+"Window" = "Fenster";
+"Appearance" = "Aussehen";
+"Edit" = "Bearbeiten";
+"Format" = "Format";
+"File Drop" = "Datei-Drop";
+"Key Bindings" = "Kurzbefehle";
+"Print" = "Drucken";
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";

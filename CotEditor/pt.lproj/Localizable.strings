@@ -583,6 +583,16 @@
 
 
 /* MARK: Settings */
+// Panes
+"General" = "Geral";
+"Window" = "Janela";
+"Appearance" = "Aparência";
+"Edit" = "Edição";
+"Format" = "Formato";
+"File Drop" = "Arquivos Soltos";
+"Key Bindings" = "Atalhos";
+"Print" = "Impressão";
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "A alteração será aplicada quando o aplicativo for reaberto.";

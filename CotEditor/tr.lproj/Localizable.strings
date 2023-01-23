@@ -582,6 +582,16 @@
 
 
 /* MARK: Settings */
+// Panes
+"General" = "Genel";
+"Window" = "Pencere";
+"Appearance" = "Görünüş";
+"Edit" = "Düzenle";
+"Format" = "Biçim";
+"File Drop" = "Dosya Bırak";
+"Key Bindings" = "Düğme Bağıntıları";
+"Print" = "Yazdır";
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";

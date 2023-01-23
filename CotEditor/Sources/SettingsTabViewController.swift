@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,14 +84,14 @@ final class SettingsTabViewController: NSTabViewController {
             return
         }
         
-        NSAnimationContext.runAnimationGroup({ _ in
+        NSAnimationContext.runAnimationGroup { _ in
             self.view.isHidden = true
             window.animator().setFrame(for: contentSize)
             
-        }, completionHandler: { [weak self] in
+        } completionHandler: { [weak self] in
             self?.view.isHidden = false
             window.title = tabViewItem.label
-        })
+        }
     }
 }
 
