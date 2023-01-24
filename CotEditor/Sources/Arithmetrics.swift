@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2021-2022 1024jp
+//  © 2021-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,14 +32,8 @@ extension Int {
         
         if self == 0 { return [0] }
         
-        var number = self
-        var digits: [Int] = []
-        
-        while number > 0 {
-            digits.append(number % 10)
-            number /= 10
-        }
-        
-        return digits
+        return sequence(first: self) { $0 / 10 }
+            .prefix { $0 > 0 }
+            .map { $0 % 10 }
     }
 }
