@@ -496,9 +496,9 @@ final class TextFinder {
         guard let result = textFind.replace(with: replacementString) else { return false }
         
         // apply replacement to text view
-        return self.client.replace(with: result.string, range: result.range,
+        return self.client.replace(with: result.item, range: result.range,
                                    selectedRange: NSRange(location: result.range.location,
-                                                          length: result.string.length),
+                                                          length: result.item.length),
                                    actionName: "Replace".localized)
     }
     
@@ -636,7 +636,7 @@ final class TextFinder {
         
         if !replacementItems.isEmpty {
             // apply found strings to the text view
-            client.replace(with: replacementItems.map(\.string), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
+            client.replace(with: replacementItems.map(\.item), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
                            actionName: "Replace All".localized)
         }
         

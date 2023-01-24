@@ -149,7 +149,7 @@ extension MultipleReplace {
             
             // update string
             for item in replacementItems.reversed() {
-                result.string = (result.string as NSString).replacingCharacters(in: item.range, with: item.string)
+                result.string = (result.string as NSString).replacingCharacters(in: item.range, with: item.item)
             }
             
             // update selected ranges

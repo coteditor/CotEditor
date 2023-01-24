@@ -25,15 +25,10 @@
 
 import Foundation
 
-struct ReplacementItem {
-    
-    let string: String
-    let range: NSRange
-}
-
-
-
 final class TextFind {
+    
+    typealias ReplacementItem = ItemRange<String>
+    
     
     enum Mode: Equatable {
         
@@ -73,13 +68,6 @@ final class TextFind {
                     return "Select the search scope in the document or turn off the “in selection” option.".localized
             }
         }
-    }
-    
-    
-    struct FindResult {
-        
-        var range: NSRange
-        var wrapped: Bool
     }
     
     
@@ -193,8 +181,8 @@ final class TextFind {
     ///   - forward: Whether searchs forward.
     ///   - includingCurrentSelection: Whether includes the current selection to search.
     ///   - wraps: Whether the search wraps around.
-    /// - Returns: A FindResult object.
-    func find(in matches: [NSRange], forward: Bool, includingSelection: Bool = false, wraps: Bool) -> FindResult? {
+    /// - Returns: A character range and flag whether the search wrapped; or `nil` when not found.
+    func find(in matches: [NSRange], forward: Bool, includingSelection: Bool = false, wraps: Bool) -> (range: NSRange, wrapped: Bool)? {
         
         assert(forward || !includingSelection)
         
@@ -203,7 +191,7 @@ final class TextFind {
         if self.inSelection {
             guard let foundRange = forward ? matches.first : matches.last else { return nil }
             
-            return .init(range: foundRange, wrapped: false)
+            return (range: foundRange, wrapped: false)
         }
         
         let selectedRange = self.selectedRanges.first!
@@ -216,14 +204,14 @@ final class TextFind {
             : matches.last { $0.upperBound <= startLocation }
         
         if let foundRange {
-            return .init(range: foundRange, wrapped: false)
+            return (range: foundRange, wrapped: false)
         }
         
         guard wraps,
               let foundRange = forward ? matches.first : matches.last
         else { return nil }
         
-        return .init(range: foundRange, wrapped: true)
+        return (range: foundRange, wrapped: true)
     }
     
     
@@ -243,7 +231,7 @@ final class TextFind {
                 guard matchedRange.location != NSNotFound else { return nil }
                 guard !fullWord || self.isFullWord(range: matchedRange) else { return nil }
                 
-                return ReplacementItem(string: replacementString, range: matchedRange)
+                return ReplacementItem(item: replacementString, range: matchedRange)
             
             case .regularExpression:
                 let regex = self.regex!
@@ -252,7 +240,7 @@ final class TextFind {
                 let template = self.replacementString(from: replacementString)
                 let replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
                 
-                return ReplacementItem(string: replacedString, range: match.range)
+                return ReplacementItem(item: replacedString, range: match.range)
         }
     }
     
@@ -329,7 +317,7 @@ final class TextFind {
             
             // append only when actually modified
             if (self.string as NSString).substring(with: scopeRange) != scopeString as String {
-                replacementItems.append(ReplacementItem(string: scopeString.copy() as! String, range: scopeRange))
+                replacementItems.append(ReplacementItem(item: scopeString.copy() as! String, range: scopeRange))
             }
             
             // build selectedRange
