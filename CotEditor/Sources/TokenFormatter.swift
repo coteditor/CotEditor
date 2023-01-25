@@ -71,7 +71,7 @@ private extension NSTextAttachment {
 
 
 
-final private class TokenCell: NSTextAttachmentCell {
+private final class TokenCell: NSTextAttachmentCell {
     
     // MARK: Private Properties
     

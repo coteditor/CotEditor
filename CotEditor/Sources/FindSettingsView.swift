@@ -25,7 +25,7 @@
 
 import SwiftUI
 
-@MainActor final private class FindSettings: ObservableObject {
+@MainActor private final class FindSettings: ObservableObject {
     
     @AppStorage(.findIsWrap) var findIsWrap: Bool
     @AppStorage(.findSearchesIncrementally) var findSearchesIncrementally: Bool

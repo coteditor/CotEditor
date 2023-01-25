@@ -108,7 +108,7 @@ final class InspectorTabSegmentedControl: NSSegmentedControl {
 
 
 
-final private class InspectorTabSegmentedCell: NSSegmentedCell {
+private final class InspectorTabSegmentedCell: NSSegmentedCell {
     
     // MARK: Segmented Cell Methods
     
