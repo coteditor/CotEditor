@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -141,7 +141,7 @@ final class GeneralPaneController: NSViewController {
     /// Apply command-line tool availability to UI.
     private func validateCommandLineTool() {
         
-        let status = CommandLineToolManager.shared.validateSymLink()
+        let status = CommandLineToolManager.shared.validateSymlink()
         
         let imageName: NSImage.Name = {
             switch status {

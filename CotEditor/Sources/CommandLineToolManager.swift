@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class CommandLineToolManager {
+final class CommandLineToolManager: Sendable {
     
     enum Status {
         
@@ -33,6 +33,8 @@ final class CommandLineToolManager {
         case validTarget
         case differentTarget
         case invalidTarget
+        
+        var installed: Bool { self != .none }
     }
     
     
@@ -43,11 +45,11 @@ final class CommandLineToolManager {
     
     // MARK: Public Properties
     
-    private(set) var linkURL: URL
+    let linkURL: URL
     
-    private let commandURL: URL
+    private let bundledCommandURL: URL
     private let preferredLinkURL: URL
-    private let preferredLinkTargetURL: URL  // path to .app in /Applications directory
+    private let preferredApplicationURL: URL  // path to .app in /Applications directory
     
     
     
@@ -56,9 +58,9 @@ final class CommandLineToolManager {
     
     init(bundle: Bundle) {
         
-        self.commandURL = bundle.sharedSupportURL!.appendingPathComponent("bin/cot").standardizedFileURL
+        self.bundledCommandURL = bundle.cotURL!
         self.preferredLinkURL = URL(fileURLWithPath: "/usr/local/bin/cot")
-        self.preferredLinkTargetURL = try! FileManager.default
+        self.preferredApplicationURL = try! FileManager.default
             .url(for: .applicationDirectory, in: .localDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(bundle.bundleName, conformingTo: .application)
         
@@ -67,38 +69,26 @@ final class CommandLineToolManager {
     }
     
     
-    /// check the destination of symlink and return whether 'cot' command is exists at '/usr/local/bin/'
-    func validateSymLink() -> Status {
+    /// Check the destination of symlink and return whether `cot` command is exists at '/usr/local/bin/'.
+    func validateSymlink() -> Status {
         
-        // not installed yet (= can install)
         if !self.linkURL.isReachable { return .none }
         
-        let linkDestinationURL = self.linkURL.resolvingSymlinksInPath()
+        let url = self.linkURL.resolvingSymlinksInPath()
         
-        // treat symlink as "installed"
-        if linkDestinationURL == self.linkURL { return .validTarget }
+        guard url.isReachable else { return .invalidTarget }
         
-        // link to bundled cot is, of course, valid
-        if linkDestinationURL == self.commandURL { return .validTarget }
+        if url == self.linkURL ||
+           url == self.bundledCommandURL ||
+           url == Bundle(url: self.preferredApplicationURL)?.cotURL
+        { return .validTarget }
         
-        // link to '/Applications/CotEditor.app' is always valid
-        if linkDestinationURL == self.preferredLinkTargetURL { return .validTarget }
-        
-        // link destination is not running CotEditor
-        if linkDestinationURL.isReachable {
-            return .differentTarget
-        }
-        
-        // link destination is unreachable
-        return .invalidTarget
+        return .differentTarget
     }
 }
 
 
 extension CommandLineToolManager.Status {
-    
-    var installed: Bool { self != .none }
-    
     
     var message: String? {
         
@@ -110,5 +100,14 @@ extension CommandLineToolManager.Status {
             case .invalidTarget:
                 return "The current 'cot' symbolic link may target an invalid path.".localized
         }
+    }
+}
+
+
+private extension Bundle {
+    
+    var cotURL: URL? {
+        
+        self.sharedSupportURL?.appendingPathComponent("bin/cot").standardizedFileURL
     }
 }
