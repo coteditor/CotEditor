@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -155,11 +155,11 @@ extension String {
     /// - Parameters:
     ///     - range: The range to parse.
     /// - Returns: Ranges of line endings.
-    func lineEndingRanges(in range: NSRange? = nil) -> [ItemRange<LineEnding>] {
+    func lineEndingRanges(in range: NSRange? = nil) -> [ValueRange<LineEnding>] {
         
         guard !self.isEmpty else { return [] }
         
-        var lineEndingRanges: [ItemRange<LineEnding>] = []
+        var lineEndingRanges: [ValueRange<LineEnding>] = []
         let string = self as NSString
         
         string.enumerateSubstrings(in: range ?? string.range, options: [.byLines, .substringNotRequired]) { (_, substringRange, enclosingRange, _) in
@@ -173,7 +173,7 @@ extension String {
                 let lineEnding = LineEnding(rawValue: lastCharacter)
             else { return }
             
-            lineEndingRanges.append(.init(item: lineEnding, range: lineEndingRange))
+            lineEndingRanges.append(.init(value: lineEnding, range: lineEndingRange))
         }
         
         return lineEndingRanges

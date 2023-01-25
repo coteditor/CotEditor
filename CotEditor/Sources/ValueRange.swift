@@ -1,5 +1,5 @@
 //
-//  ItemRange.swift
+//  ValueRange.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,25 +25,25 @@
 
 import struct Foundation.NSRange
 
-struct ItemRange<Item> {
+struct ValueRange<Value> {
     
-    var item: Item
+    var value: Value
     var range: NSRange
     
     var location: Int  { self.range.location }
     
     
-    /// Return a copy by shifting the range location toward the given offset .
+    /// Return a copy by shifting the range location toward the given offset.
     ///
     /// - Parameter offset: The offset to shift.
-    /// - Returns: A new ItemRange.
+    /// - Returns: A new ValueRange.
     func shifted(by offset: Int) -> Self {
         
-        Self(item: self.item, range: self.range.shifted(by: offset))
+        Self(value: self.value, range: self.range.shifted(by: offset))
     }
     
     
-    /// Shift the range location toward the given offset .
+    /// Shift the range location toward the given offset.
     ///
     /// - Parameter offset: The offset to shift.
     mutating func shift(by offset: Int) {
@@ -53,5 +53,5 @@ struct ItemRange<Item> {
 }
 
 
-extension ItemRange: Equatable where Item: Equatable { }
-extension ItemRange: Hashable where Item: Hashable { }
+extension ValueRange: Equatable where Value: Equatable { }
+extension ValueRange: Hashable where Value: Hashable { }

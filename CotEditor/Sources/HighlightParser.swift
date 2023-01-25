@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 
 import Foundation
 
-typealias Highlight = ItemRange<SyntaxType>
+typealias Highlight = ValueRange<SyntaxType>
 
 
 enum NestableToken: Equatable, Hashable {
@@ -209,7 +209,7 @@ struct HighlightParser {
                 dict[type] = dict.values.reduce(into: indexes) { $0.subtract($1) }
             }
             .mapValues { $0.rangeView.map(NSRange.init) }
-            .flatMap { (type, ranges) in ranges.map { ItemRange(item: type, range: $0) } }
+            .flatMap { (type, ranges) in ranges.map { ValueRange(value: type, range: $0) } }
             .sorted(\.range.location)
     }
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,10 +37,10 @@ extension NSTextStorage {
         let string = self.string.immutable
         
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let links: [ItemRange<URL>] = try detector.cancellableMatches(in: string, range: string.range)
+        let links: [ValueRange<URL>] = try detector.cancellableMatches(in: string, range: string.range)
             .compactMap { (result) in
                 guard let url = result.url else { return nil }
-                return ItemRange(item: url, range: result.range)
+                return ValueRange(value: url, range: result.range)
             }
         
         Task { @MainActor in
@@ -51,7 +51,7 @@ extension NSTextStorage {
             self.beginEditing()
             self.removeAttribute(.link, range: self.range)
             for link in links {
-                self.addAttribute(.link, value: link.item, range: link.range)
+                self.addAttribute(.link, value: link.value, range: link.range)
             }
             self.endEditing()
         }

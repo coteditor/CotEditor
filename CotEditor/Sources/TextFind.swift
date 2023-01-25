@@ -27,7 +27,7 @@ import Foundation
 
 final class TextFind {
     
-    typealias ReplacementItem = ItemRange<String>
+    typealias ReplacementItem = ValueRange<String>
     
     
     enum Mode: Equatable {
@@ -231,7 +231,7 @@ final class TextFind {
                 guard matchedRange.location != NSNotFound else { return nil }
                 guard !fullWord || self.isFullWord(range: matchedRange) else { return nil }
                 
-                return ReplacementItem(item: replacementString, range: matchedRange)
+                return ReplacementItem(value: replacementString, range: matchedRange)
             
             case .regularExpression:
                 let regex = self.regex!
@@ -240,7 +240,7 @@ final class TextFind {
                 let template = self.replacementString(from: replacementString)
                 let replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
                 
-                return ReplacementItem(item: replacedString, range: match.range)
+                return ReplacementItem(value: replacedString, range: match.range)
         }
     }
     
@@ -317,7 +317,7 @@ final class TextFind {
             
             // append only when actually modified
             if (self.string as NSString).substring(with: scopeRange) != scopeString as String {
-                replacementItems.append(ReplacementItem(item: scopeString.copy() as! String, range: scopeRange))
+                replacementItems.append(ReplacementItem(value: scopeString.copy() as! String, range: scopeRange))
             }
             
             // build selectedRange

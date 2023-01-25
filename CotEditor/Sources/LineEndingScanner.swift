@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,18 +29,18 @@ import Combine
 
 final class LineEndingScanner {
     
-    @Published private(set) var inconsistentLineEndings: [ItemRange<LineEnding>]
+    @Published private(set) var inconsistentLineEndings: [ValueRange<LineEnding>]
     
     
     // MARK: Private Properties
     
     private let textStorage: NSTextStorage
-    private var lineEndings: [ItemRange<LineEnding>]
+    private var lineEndings: [ValueRange<LineEnding>]
     
-    private var documentLineEnding: LineEnding  {
+    private var documentLineEnding: LineEnding {
         
         didSet {
-            self.inconsistentLineEndings = self.lineEndings.filter { $0.item != documentLineEnding }
+            self.inconsistentLineEndings = self.lineEndings.filter { $0.value != documentLineEnding }
         }
     }
     
@@ -58,7 +58,7 @@ final class LineEndingScanner {
         self.documentLineEnding = lineEnding
         
         self.lineEndings = textStorage.string.lineEndingRanges()
-        self.inconsistentLineEndings = self.lineEndings.filter { $0.item != lineEnding }
+        self.inconsistentLineEndings = self.lineEndings.filter { $0.value != lineEnding }
         
         self.storageObserver = NotificationCenter.default.publisher(for: NSTextStorage.didProcessEditingNotification, object: textStorage)
             .compactMap { $0.object as? NSTextStorage }
@@ -81,7 +81,7 @@ final class LineEndingScanner {
     /// The line endings mostly occurred in the stoage.
     var majorLineEnding: LineEnding? {
         
-        Dictionary(grouping: self.lineEndings, by: \.item)
+        Dictionary(grouping: self.lineEndings, by: \.value)
             .sorted(\.value.first!.location)
             .max { $0.value.count < $1.value.count }?
             .key
@@ -131,7 +131,7 @@ final class LineEndingScanner {
         let scanRange = NSRange(lowerScanBound..<upperScanBound)
         
         let insertedLineEndings = self.textStorage.string.lineEndingRanges(in: scanRange)
-        let inconsistentLineEndings = insertedLineEndings.filter { $0.item != self.documentLineEnding }
+        let inconsistentLineEndings = insertedLineEndings.filter { $0.value != self.documentLineEnding }
         
         self.lineEndings.replace(items: insertedLineEndings, in: scanRange, changeInLength: delta)
         self.inconsistentLineEndings.replace(items: inconsistentLineEndings, in: scanRange, changeInLength: delta)
@@ -140,7 +140,7 @@ final class LineEndingScanner {
 
 
 
-private extension Array where Element == ItemRange<LineEnding> {
+private extension Array where Element == ValueRange<LineEnding> {
     
     mutating func replace(items: [Element], in editedRange: NSRange, changeInLength delta: Int) {
         

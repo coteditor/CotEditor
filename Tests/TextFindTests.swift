@@ -87,7 +87,7 @@ final class TextFindTests: XCTestCase {
         let findString = "abc"
         
         var textFind: TextFind
-        var result: TextFind.FindResult?
+        var result: (range: NSRange, wrapped: Bool)?
         var matches: [NSRange]
         
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
@@ -130,7 +130,7 @@ final class TextFindTests: XCTestCase {
     func testFullWord() throws {
         
         var textFind: TextFind
-        var result: TextFind.FindResult?
+        var result: (range: NSRange, wrapped: Bool)?
         var matches: [NSRange]
         
         textFind = try TextFind(for: "apples apple Apple", findString: "apple",
@@ -168,7 +168,7 @@ final class TextFindTests: XCTestCase {
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
         let textFind = try TextFind(for: "1", findString: "1", mode: mode, selectedRanges: [NSRange(0..<1)])
         let replacementResult = textFind.replace(with: #"foo：\n1"#)
-        XCTAssertEqual(replacementResult!.string, "foo：\n1")
+        XCTAssertEqual(replacementResult!.value, "foo：\n1")
     }
     
     
@@ -178,9 +178,9 @@ final class TextFindTests: XCTestCase {
         let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
         
         var textFind: TextFind
-        var result: TextFind.FindResult?
+        var result: (range: NSRange, wrapped: Bool)?
         var matches: [NSRange]
-        var replacementResult: ReplacementItem?
+        var replacementResult: TextFind.ReplacementItem?
         
         
         textFind = try TextFind(for: "abcdefg abcdefg ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
@@ -217,7 +217,7 @@ final class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 2)])
         
         replacementResult = textFind.replace(with: "$1\\t")
-        XCTAssertEqual(replacementResult!.string, "C\t")
+        XCTAssertEqual(replacementResult!.value, "C\t")
         XCTAssertEqual(replacementResult!.range, NSRange(location: 1, length: 2))
     }
     
@@ -259,7 +259,7 @@ final class TextFindTests: XCTestCase {
     func testReplaceAll() throws {
         
         var textFind: TextFind
-        var replacementItems: [ReplacementItem]
+        var replacementItems: [TextFind.ReplacementItem]
         var selectedRanges: [NSRange]?
         
         textFind = try TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)",
@@ -267,7 +267,7 @@ final class TextFindTests: XCTestCase {
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _, _)  in }
         XCTAssertEqual(replacementItems.count, 1)
-        XCTAssertEqual(replacementItems[0].string, "ac\\tdefg AC\\tDEFG")
+        XCTAssertEqual(replacementItems[0].value, "ac\\tdefg AC\\tDEFG")
         XCTAssertEqual(replacementItems[0].range, NSRange(location: 0, length: 15))
         XCTAssertNil(selectedRanges)
         
@@ -280,9 +280,9 @@ final class TextFindTests: XCTestCase {
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _, _)  in }
         XCTAssertEqual(replacementItems.count, 2)
-        XCTAssertEqual(replacementItems[0].string, "bcdefg _defg")
+        XCTAssertEqual(replacementItems[0].value, "bcdefg _defg")
         XCTAssertEqual(replacementItems[0].range, NSRange(location: 1, length: 14))
-        XCTAssertEqual(replacementItems[1].string, "_defg")
+        XCTAssertEqual(replacementItems[1].value, "_defg")
         XCTAssertEqual(replacementItems[1].range, NSRange(location: 16, length: 7))
         XCTAssertEqual(selectedRanges![0], NSRange(location: 1, length: 12))
         XCTAssertEqual(selectedRanges![1], NSRange(location: 14, length: 5))

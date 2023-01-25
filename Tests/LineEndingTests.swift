@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,15 +48,15 @@ final class LineEndingTests: XCTestCase {
     func testLineEndingRanges() {
         
         let string = "\rfoo\r\nbar \n \nb \n\r uz\u{2029}moin\r\n"
-        let expected: [ItemRange<LineEnding>] = [
-            .init(item: .cr, location: 0),
-            .init(item: .crlf, location: 4),
-            .init(item: .lf, location: 10),
-            .init(item: .lf, location: 12),
-            .init(item: .lf, location: 15),
-            .init(item: .cr, location: 16),
-            .init(item: .paragraphSeparator, location: 20),
-            .init(item: .crlf, location: 25),
+        let expected: [ValueRange<LineEnding>] = [
+            .init(value: .cr, location: 0),
+            .init(value: .crlf, location: 4),
+            .init(value: .lf, location: 10),
+            .init(value: .lf, location: 12),
+            .init(value: .lf, location: 15),
+            .init(value: .cr, location: 16),
+            .init(value: .paragraphSeparator, location: 20),
+            .init(value: .crlf, location: 25),
         ]
         
         XCTAssert("".lineEndingRanges().isEmpty)
@@ -74,10 +74,10 @@ final class LineEndingTests: XCTestCase {
 
 
 
-private extension ItemRange where Item == LineEnding {
+private extension ValueRange where Value == LineEnding {
     
-    init(item: LineEnding, location: Int) {
+    init(value: LineEnding, location: Int) {
         
-        self.init(item: item, range: NSRange(location: location, length: item.length))
+        self.init(value: value, range: NSRange(location: location, length: value.length))
     }
 }

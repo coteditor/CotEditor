@@ -496,9 +496,9 @@ final class TextFinder {
         guard let result = textFind.replace(with: replacementString) else { return false }
         
         // apply replacement to text view
-        return self.client.replace(with: result.item, range: result.range,
+        return self.client.replace(with: result.value, range: result.range,
                                    selectedRange: NSRange(location: result.range.location,
-                                                          length: result.item.length),
+                                                          length: result.value.length),
                                    actionName: "Replace".localized)
     }
     
@@ -528,7 +528,7 @@ final class TextFinder {
         client.viewControllerForSheet?.presentAsSheet(indicator)
         
         let (highlights, matches) = await Task.detached(priority: .userInitiated) {
-            var highlights: [ItemRange<NSColor>] = []
+            var highlights: [ValueRange<NSColor>] = []
             var resultMatches: [TextFindAllResult.Match] = []  // not used if showsList is false
             
             textFind.findAll { (matches: [NSRange], stop) in
@@ -540,7 +540,7 @@ final class TextFinder {
                 // highlight
                 highlights += matches.enumerated()
                     .filter { !$0.element.isEmpty }
-                    .map { ItemRange(item: highlightColors[$0.offset], range: $0.element) }
+                    .map { ValueRange(value: highlightColors[$0.offset], range: $0.element) }
                 
                 // build TextFindResult for table
                 if showsList {
@@ -577,7 +577,7 @@ final class TextFinder {
             layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
                 layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
                 for highlight in highlights {
-                    layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.item, forCharacterRange: highlight.range)
+                    layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.value, forCharacterRange: highlight.range)
                 }
             }
         }
@@ -636,7 +636,7 @@ final class TextFinder {
         
         if !replacementItems.isEmpty {
             // apply found strings to the text view
-            client.replace(with: replacementItems.map(\.item), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
+            client.replace(with: replacementItems.map(\.value), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
                            actionName: "Replace All".localized)
         }
         

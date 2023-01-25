@@ -392,8 +392,8 @@
 		2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B279824E435FE00F02304 /* OutlineTests.swift */; };
 		2A7F4DFF2871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard */; };
 		2A7F4E002871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7F4E022871F46D0029CE66 /* PrintPanelAccessoryVentura.storyboard */; };
-		2A7FCC46280A367C0070EAB3 /* ItemRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ItemRange.swift */; };
-		2A7FCC47280A367C0070EAB3 /* ItemRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ItemRange.swift */; };
+		2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ValueRange.swift */; };
+		2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7FCC45280A367C0070EAB3 /* ValueRange.swift */; };
 		2A80BE8D27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE8E27FFA61700D2F7FF /* LineEndingScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */; };
 		2A80BE9227FFFA8900D2F7FF /* LineEndingScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */; };
@@ -1154,7 +1154,7 @@
 		2A7F4E102871F4900029CE66 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PrintPanelAccessoryVentura.strings; sourceTree = "<group>"; };
 		2A7F4E122871F4950029CE66 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/PrintPanelAccessoryVentura.strings"; sourceTree = "<group>"; };
 		2A7F4E142871F4980029CE66 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/PrintPanelAccessoryVentura.strings"; sourceTree = "<group>"; };
-		2A7FCC45280A367C0070EAB3 /* ItemRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRange.swift; sourceTree = "<group>"; };
+		2A7FCC45280A367C0070EAB3 /* ValueRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueRange.swift; sourceTree = "<group>"; };
 		2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScanner.swift; sourceTree = "<group>"; };
 		2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineEndingScannerTests.swift; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
@@ -2129,7 +2129,7 @@
 				2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */,
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
-				2A7FCC45280A367C0070EAB3 /* ItemRange.swift */,
+				2A7FCC45280A367C0070EAB3 /* ValueRange.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
 				2A4682B11D2F6B580005410E /* FileDropItem.swift */,
 				2ABF49E2221A54AD00239278 /* TextClipping.swift */,
@@ -3030,7 +3030,6 @@
 				2ACDC0A41D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
-				2A7FCC46280A367C0070EAB3 /* ItemRange.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */,
@@ -3207,6 +3206,7 @@
 				2AD2387A2939AC7200209834 /* UserUnixTask.swift in Sources */,
 				2AFD218A27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
+				2A7FCC46280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2A2B086028046E3B0028D733 /* WarningsViewController.swift in Sources */,
 				2A78BFB11D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
@@ -3382,7 +3382,6 @@
 				2ACDC0A31D173250009B72D6 /* InspectorTabSegmentedControl.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
-				2A7FCC47280A367C0070EAB3 /* ItemRange.swift in Sources */,
 				2A10C5F71FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A64F2481D26327C001B229F /* KeyBindingManager.swift in Sources */,
@@ -3560,6 +3559,7 @@
 				2AD2387B2939AC7200209834 /* UserUnixTask.swift in Sources */,
 				2AFD218B27E0434100E83E88 /* UTType.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* UTType+SettingFile.swift in Sources */,
+				2A7FCC47280A367C0070EAB3 /* ValueRange.swift in Sources */,
 				2A2B086128046E3B0028D733 /* WarningsViewController.swift in Sources */,
 				2A78BFB01D1B168E00A583D2 /* WebDocumentWindowController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,

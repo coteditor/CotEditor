@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,8 +39,8 @@ final class LineEndingScannerTests: XCTestCase {
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
             .sink { (lineEndings) in
-                XCTAssertEqual(lineEndings, [ItemRange(item: .nel, range: NSRange(location: 3, length: 1)),
-                                             ItemRange(item: .crlf, range: NSRange(location: 11, length: 2))])
+                XCTAssertEqual(lineEndings, [ValueRange(value: .nel, range: NSRange(location: 3, length: 1)),
+                                             ValueRange(value: .crlf, range: NSRange(location: 11, length: 2))])
                 expectation.fulfill()
             }
         self.wait(for: [expectation], timeout: .zero)
@@ -54,7 +54,7 @@ final class LineEndingScannerTests: XCTestCase {
         let storage = NSTextStorage(string: "\r")
         let scanner = LineEndingScanner(textStorage: storage, lineEnding: .lf)
         
-        XCTAssertEqual(scanner.inconsistentLineEndings, [ItemRange(item: .cr, range: NSRange(location: 0, length: 1))])
+        XCTAssertEqual(scanner.inconsistentLineEndings, [ValueRange(value: .cr, range: NSRange(location: 0, length: 1))])
         
         // test scanRange does not expand to the out of range
         storage.replaceCharacters(in: NSRange(0..<1), with: "")
@@ -86,8 +86,8 @@ final class LineEndingScannerTests: XCTestCase {
         let expectation = self.expectation(description: "didScanLineEndings")
         let observer = scanner.$inconsistentLineEndings
             .sink { (lineEndings) in
-                XCTAssertEqual(lineEndings, [ItemRange(item: .crlf, range: NSRange(location: 3, length: 2)),
-                                             ItemRange(item: .cr, range: NSRange(location: 8, length: 1))])
+                XCTAssertEqual(lineEndings, [ValueRange(value: .crlf, range: NSRange(location: 3, length: 2)),
+                                             ValueRange(value: .cr, range: NSRange(location: 8, length: 1))])
                 expectation.fulfill()
             }
         self.wait(for: [expectation], timeout: .zero)

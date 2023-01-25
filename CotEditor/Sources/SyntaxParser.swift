@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -265,7 +265,7 @@ extension NSLayoutManager {
         self.enumerateTemporaryAttribute(.syntaxType, in: targetRange) { (type, range, _) in
             guard let type = type as? SyntaxType else { return }
             
-            highlights.append(Highlight(item: type, range: range))
+            highlights.append(Highlight(value: type, range: range))
         }
         
         return highlights
@@ -293,9 +293,9 @@ extension NSLayoutManager {
             self.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
             
             for highlight in highlights {
-                self.addTemporaryAttribute(.syntaxType, value: highlight.item, forCharacterRange: highlight.range)
+                self.addTemporaryAttribute(.syntaxType, value: highlight.value, forCharacterRange: highlight.range)
                 
-                if let color = theme?.style(for: highlight.item)?.color {
+                if let color = theme?.style(for: highlight.value)?.color {
                     self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: highlight.range)
                 }
             }
