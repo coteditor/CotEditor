@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class AppleScript: Script, AppleEventReceivable {
+final class AppleScript: Script, AppleEventReceivable, Sendable {
     
     // MARK: Script Properties
     

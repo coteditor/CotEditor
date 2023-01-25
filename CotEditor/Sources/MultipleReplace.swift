@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class MultipleReplace: Codable {
+struct MultipleReplace: Codable {
     
     struct Replacement: Equatable {
         

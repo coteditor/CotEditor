@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
 
 // MARK: -
 
-final class Tokenizer {
+final class Tokenizer: Sendable {
     
     let tokens: [String]
     let prefix: String

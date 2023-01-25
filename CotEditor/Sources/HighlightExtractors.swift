@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Foundation
 
-protocol HighlightExtractable {
+protocol HighlightExtractable: Sendable {
     
     func ranges(in: String, range: NSRange) throws -> [NSRange]
 }
