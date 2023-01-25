@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@ extension Sequence<NSAttributedString> {
             result.append(first)
             
             while let next = iterator.next() {
-                if let separator = separator {
+                if let separator {
                     result.append(separator)
                 }
                 result.append(next)

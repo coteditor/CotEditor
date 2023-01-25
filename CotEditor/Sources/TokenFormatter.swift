@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ final private class TokenCell: NSTextAttachmentCell {
     
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView?) {
         
-        guard let controlView = controlView else { return }
+        guard let controlView else { return }
         
         let rect = cellFrame.insetBy(dx: NSBezierPath.defaultLineWidth / 2,
                                      dy: NSBezierPath.defaultLineWidth / 2)

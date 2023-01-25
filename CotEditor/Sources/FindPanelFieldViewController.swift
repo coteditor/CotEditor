@@ -73,7 +73,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
             .sink { [weak self, weak scroller] (scrollerStyle) in
                 var inset = 5.0
-                if scrollerStyle == .legacy, let scroller = scroller {
+                if scrollerStyle == .legacy, let scroller {
                     inset += scroller.thickness
                 }
                 

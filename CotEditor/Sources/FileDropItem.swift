@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -191,7 +191,7 @@ extension FileDropItem {
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in
                 imageRep = NSImageRep(contentsOf: newURL)
             }
-            if let imageRep = imageRep {
+            if let imageRep {
                 dropText = dropText
                     .replacingOccurrences(of: Token.imageWidth.token, with: String(imageRep.pixelsWide))
                     .replacingOccurrences(of: Token.imageHeight.token, with: String(imageRep.pixelsHigh))

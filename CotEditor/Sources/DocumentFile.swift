@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -129,7 +129,7 @@ struct DocumentFile {
     private static func string(data: Data, xattrEncoding: String.Encoding?, suggestedCFEncodings: [CFStringEncoding], refersToEncodingTag: Bool) throws -> (String, String.Encoding) {
         
         // try interpreting with xattr encoding
-        if let xattrEncoding = xattrEncoding {
+        if let xattrEncoding {
             // just trust xattr encoding if content is empty
             if let string = data.isEmpty ? "" : String(bomCapableData: data, encoding: xattrEncoding) {
                 return (string, xattrEncoding)

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,14 +56,14 @@ extension NSTextView {
         guard self.shouldChangeText(inRanges: ranges as [NSValue], replacementStrings: strings) else { return false }
         
         // set action name
-        if let actionName = actionName {
+        if let actionName {
             self.undoManager?.setActionName(actionName)
         }
         
         // manually calculate the cursor locations after the replacement for multiple insertions
         let selectedRanges: [NSRange]? = {
             // use ones when explicitly specified
-            if let selectedRanges = selectedRanges { return selectedRanges }
+            if let selectedRanges { return selectedRanges }
             
             // let NSTextView culculate by single insertion editing
             guard

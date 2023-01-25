@@ -77,7 +77,7 @@ extension LineRangeCacheable {
     /// - Returns: The character range of the line.
     func lineRange(at index: Int) -> NSRange {
         
-        return self.lineRange(for: NSRange(location: index, length: 0))
+        self.lineRange(for: NSRange(location: index, length: 0))
     }
     
     

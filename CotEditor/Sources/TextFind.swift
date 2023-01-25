@@ -256,7 +256,7 @@ final class TextFind {
         for range in self.scopeRanges {
             self.enumerateMatchs(in: range) { (matchedRange, match, stop) in
                 let matches: [NSRange]
-                if let match = match {
+                if let match {
                     matches = (0..<match.numberOfRanges).map(match.range(at:))
                 } else {
                     matches = [matchedRange]
@@ -299,7 +299,7 @@ final class TextFind {
                     var offset = 0
                     self.enumerateMatchs(in: scopeRange) { (matchedRange, match, stop) in
                         let replacedString: String = {
-                            guard let match = match, let regex = match.regularExpression else { return replacementString }
+                            guard let match, let regex = match.regularExpression else { return replacementString }
                             
                             return regex.replacementString(for: match, in: self.string, offset: 0, template: replacementString)
                         }()
@@ -422,7 +422,7 @@ final class TextFind {
         let options: NSRegularExpression.MatchingOptions = [.withTransparentBounds, .withoutAnchoringBounds]
         
         self.regex!.enumerateMatches(in: string, options: options, range: range) { (result, _, stop) in
-            guard let result = result else { return }
+            guard let result else { return }
             
             var ioStop = false
             block(result.range, result, &ioStop)

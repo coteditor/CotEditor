@@ -207,7 +207,7 @@ extension SettingFileManaging {
     func validate(settingName: String, originalName: String?) throws {
         
         // just case difference is OK
-        if let originalName = originalName, settingName.caseInsensitiveCompare(originalName) != .orderedSame {
+        if let originalName, settingName.caseInsensitiveCompare(originalName) != .orderedSame {
             return
         }
         

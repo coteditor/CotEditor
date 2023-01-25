@@ -64,7 +64,7 @@ final class SettingsTabViewController: NSTabViewController {
         
         super.tabView(tabView, willSelect: tabViewItem)
         
-        guard let tabViewItem = tabViewItem else { return assertionFailure() }
+        guard let tabViewItem else { return assertionFailure() }
         
         self.switchPane(to: tabViewItem)
     }

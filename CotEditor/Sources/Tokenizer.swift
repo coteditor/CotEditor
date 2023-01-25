@@ -105,7 +105,7 @@ final class Tokenizer: Sendable {
         
         self.regex.enumerateMatches(in: string, range: range ?? string.nsRange) { (match, _, _) in
             
-            guard let match = match else { return }
+            guard let match else { return }
             
             let token = (string as NSString).substring(with: match.range(at: 1))
             

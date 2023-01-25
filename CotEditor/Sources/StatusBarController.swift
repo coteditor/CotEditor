@@ -33,7 +33,7 @@ import Cocoa
     weak var document: Document? {
         
         didSet {
-            if let document = document, self.isViewShown {
+            if let document, self.isViewShown {
                 self.subscribe(document)
             }
         }
@@ -242,7 +242,7 @@ private extension NSAttributedString {
     /// Formatted state for status bar.
     static func formatted(state: String?) -> Self {
         
-        if let state = state {
+        if let state {
             return Self(string: state)
         } else {
             return Self(string: "-", attributes: [.foregroundColor: NSColor.disabledControlTextColor])

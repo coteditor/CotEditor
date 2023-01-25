@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ extension NSTextView {
             let layoutRect = rect.offset(by: -self.textContainerOrigin)
             let rectGlyphRange = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
             
-            guard let range = range else { return rectGlyphRange }
+            guard let range else { return rectGlyphRange }
             
             return layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil).intersection(rectGlyphRange)
         }() else { return }

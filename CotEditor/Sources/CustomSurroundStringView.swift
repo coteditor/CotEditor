@@ -47,7 +47,7 @@ struct CustomSurroundStringView: View {
         
         self.completionHandler = completionHandler
         
-        if let pair = pair {
+        if let pair {
             self.pair = pair
         } else if let begin = self.defaultBeginString, let end = self.defaultEndString {
             self.pair = Pair(begin, end)

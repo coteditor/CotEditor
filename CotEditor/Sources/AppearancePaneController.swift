@@ -246,7 +246,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             
             for receiver in receivers {
                 receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
-                    if let error = error {
+                    if let error {
                         self?.presentError(error)
                         return
                     }
@@ -764,7 +764,7 @@ extension AppearancePaneController: NSFontChanging {
     /// font in font panel did update
     @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let sender = sender else { return assertionFailure() }
+        guard let sender else { return assertionFailure() }
         
         let newFont = sender.convert(.systemFont(ofSize: 0))
         

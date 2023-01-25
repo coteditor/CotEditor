@@ -161,7 +161,7 @@ extension SyntaxParser {
         }
         
         let highlightRange: NSRange = {
-            guard let editedRange = editedRange, editedRange != wholeRange else { return wholeRange }
+            guard let editedRange, editedRange != wholeRange else { return wholeRange }
             
             // highlight whole if string is enough short
             let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]

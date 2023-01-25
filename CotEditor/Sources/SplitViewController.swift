@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ final class SplitViewController: NSSplitViewController {
         let splitViewItem = NSSplitViewItem(viewController: editorViewController)
         splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
         
-        if let otherEditorViewController = otherEditorViewController {
+        if let otherEditorViewController {
             guard let baseIndex = self.children.firstIndex(of: otherEditorViewController) else {
                 return assertionFailure("The base editor view is not belong to the same window.")
             }

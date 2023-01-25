@@ -217,7 +217,7 @@ final class SyntaxManager: SettingFileManaging {
         let saveURL = self.preparedURLForUserSetting(name: name)
         
         // move old file to new place to overwrite when style name is also changed
-        if let oldName = oldName, name != oldName {
+        if let oldName, name != oldName {
             try self.renameSetting(name: oldName, to: name)
         }
         
@@ -235,7 +235,7 @@ final class SyntaxManager: SettingFileManaging {
         
         // invalidate current cache
         self.$cachedSettings.mutate { $0[name] = nil }
-        if let oldName = oldName {
+        if let oldName {
             self.$cachedSettings.mutate { $0[oldName] = nil }
         }
         
@@ -300,7 +300,7 @@ final class SyntaxManager: SettingFileManaging {
             self.$cachedSettings.mutate { $0[name] = setting }
             
             return setting
-            }() else { return nil }
+        }() else { return nil }
         
         // add to recent styles list
         let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])

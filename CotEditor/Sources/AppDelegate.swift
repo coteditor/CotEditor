@@ -138,7 +138,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.normalizationMenu?.items = (UnicodeNormalizationForm.standardForms + [nil] +
                                          UnicodeNormalizationForm.modifiedForms)
             .map { (form) in
-                guard let form = form else { return .separator() }
+                guard let form else { return .separator() }
                 
                 let action: Selector
                 switch form {
@@ -252,7 +252,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     dispatchGroup.leave()
                 }
                 
-                if let error = error {
+                if let error {
                     let cancelled = (error as? CocoaError)?.code == .userCancelled
                     reply = cancelled ? .cancel : .failure
                     

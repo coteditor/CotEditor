@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ extension NSTextStorage {
         
         weak var observer: NSObjectProtocol?
         observer = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self, queue: .main) { [weak self] notification in
-            if let observer = observer {
+            if let observer {
                 NotificationCenter.default.removeObserver(observer)
             }
             
@@ -59,7 +59,7 @@ extension NSTextStorage {
         
         // disconnect the observation after 0.5 sec. anyway (otherwise app may crash)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if let observer = observer {
+            if let observer {
                 NotificationCenter.default.removeObserver(observer)
             }
         }

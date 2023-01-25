@@ -442,7 +442,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
             
             for receiver in receivers {
                 receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in
-                    if let error = error {
+                    if let error {
                         self?.presentError(error)
                         return
                     }

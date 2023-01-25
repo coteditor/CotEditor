@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -83,7 +83,7 @@ final class PersistentOSAScript: Script, AppleEventReceivable {
     /// - Throws: `ScriptError` by the script, `ScriptFileError`, or any errors on `NSUserAppleScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?) async throws {
         
-        guard let event = event else {
+        guard let event else {
             return try await self.run()
         }
         

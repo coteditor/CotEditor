@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ extension URL {
     func setExtendedAttribute(data: Data?, for name: String) throws {
         
         // remove if nil is passed
-        guard let data = data else {
+        guard let data else {
             return try self.removeExtendedAttribute(for: name)
         }
         

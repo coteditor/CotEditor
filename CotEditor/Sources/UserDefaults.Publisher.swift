@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -129,7 +129,7 @@ private extension UserDefaults.Publisher {
         override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
             
             guard
-                let change = change,
+                let change,
                 keyPath == self.key.rawValue,
                 object as? NSObject == self.userDefaults
             else { return super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context) }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ extension NSDocument {
         // close previous sheet if exists
         window.attachedSheet?.orderOut(self)
         
-        if let recoveryHandler = recoveryHandler {
+        if let recoveryHandler {
             self.presentError(error, modalFor: window,
                               delegate: self,
                               didPresent: #selector(didPresentErrorWithRecovery(didRecover:contextInfo:)),

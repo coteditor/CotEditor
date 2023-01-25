@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -209,7 +209,7 @@ extension NSTextView {
                 textContainer.size = self.infiniteSize
             }
             
-            if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
+            if let visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
                 if self.baseWritingDirection == .rightToLeft {
                     visibleRect.origin.x = self.frame.width
                 }

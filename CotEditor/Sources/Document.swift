@@ -966,7 +966,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
             
             let completionHandler = { [weak self] (didChange: Bool) in
-                if !didChange, let self = self {
+                if !didChange, let self {
                     // reset status bar selection for in case if the operation was invoked from the popup button in the bar
                     let originalEncoding = self.fileEncoding
                     self.fileEncoding = originalEncoding

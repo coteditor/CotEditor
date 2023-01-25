@@ -438,7 +438,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // restore the first empty insertion if it seems to disappear
         if event.modifierFlags.contains(.command),
             !self.selectedRange.isEmpty,
-            let selectedRange = selectedRange,
+            let selectedRange,
             selectedRange.isEmpty,
             !self.selectedRange.contains(selectedRange.location),
             self.selectedRange.upperBound != selectedRange.location

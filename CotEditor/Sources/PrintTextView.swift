@@ -137,7 +137,7 @@ final class PrintTextView: NSTextView, Themable {
     override var font: NSFont? {
         
         didSet {
-            guard let font = font else { return }
+            guard let font else { return }
             
             // setup paragraph style
             let paragraphStyle = (self.defaultParagraphStyle ?? .default).mutable
@@ -298,7 +298,7 @@ final class PrintTextView: NSTextView, Themable {
         self.textColor = theme?.text.color ?? .textColor
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
-        if let theme = theme {
+        if let theme {
             layoutManager.invalidateHighlight(theme: theme)
         } else {
             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.range)

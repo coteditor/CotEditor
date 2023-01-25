@@ -117,7 +117,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
             .sink { [weak self] (appearance) in
                 guard
-                    let self = self,
+                    let self,
                     !UserDefaults.standard[.pinsThemeAppearance],
                     self.view.window != nil,
                     let currentThemeName = self.theme?.name,

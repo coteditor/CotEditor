@@ -115,7 +115,7 @@ final class UnixScript: Script {
         // create task
         let task = try UserUnixTask(url: self.url)
         
-        if let input = input {
+        if let input {
             await task.pipe(input: input)
         }
         
@@ -123,7 +123,7 @@ final class UnixScript: Script {
         try await task.execute(arguments: arguments)
         
         // apply output
-        if let outputType = outputType, let output = await task.output {
+        if let outputType, let output = await task.output {
             do {
                 try await self.applyOutput(output, type: outputType, editor: document?.textView)
             } catch {
@@ -151,7 +151,7 @@ final class UnixScript: Script {
     /// - Throws: `ScriptError`
     @MainActor private func readInput(type: InputType, editor: NSTextView?) throws -> String {
         
-        guard let editor = editor else { throw ScriptError.noInputTarget }
+        guard let editor else { throw ScriptError.noInputTarget }
         
         switch type {
             case .selection:
@@ -173,19 +173,19 @@ final class UnixScript: Script {
         
         switch type {
             case .replaceSelection:
-                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .replaceSelection)
             
             case .replaceAllText:
-                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .replaceAll)
             
             case .insertAfterSelection:
-                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .afterSelection)
             
             case .appendToAllText:
-                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .afterAll)
             
             case .newDocument:

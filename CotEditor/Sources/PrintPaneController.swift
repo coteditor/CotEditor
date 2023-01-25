@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -104,7 +104,7 @@ final class PrintPaneController: NSViewController {
         
         // select menu
         popupButton.selectItem(at: 0)  // black and white (default)
-        if let themeName = themeName {
+        if let themeName {
             if themeNames.contains(themeName) {
                 popupButton.selectItem(withTitle: themeName)
             } else if index == 1 {
@@ -162,7 +162,7 @@ extension PrintPaneController: NSFontChanging {
     /// font in font panel did update
     @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let sender = sender else { return }
+        guard let sender else { return }
         
         let newFont = sender.convert(.systemFont(ofSize: 0))
         

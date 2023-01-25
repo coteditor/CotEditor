@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -95,7 +95,7 @@ final class DocumentController: NSDocumentController {
         // invalidate encoding that was set in the open panel
         self.accessorySelectedEncoding = nil
         
-        if let transientDocument = transientDocument, let document = document as? Document {
+        if let transientDocument, let document = document as? Document {
             self.replaceTransientDocument(transientDocument, with: document)
             if displayDocument {
                 document.makeWindowControllers()
@@ -314,7 +314,7 @@ final class DocumentController: NSDocumentController {
         
         // check if the file is possible binary
         let binaryTypes: [UTType] = [.image, .audiovisualContent, .archive]
-        if let type = type,
+        if let type,
            binaryTypes.contains(where: type.conforms(to:)),
            !type.conforms(to: .svg),  // SVG is plain-text (except SVGZ)
            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
