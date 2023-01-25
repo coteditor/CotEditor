@@ -28,7 +28,7 @@ import SwiftUI
 
 private struct Edge {
     
-    enum Horizontal  {
+    enum Horizontal {
         
         case left
         case right

@@ -70,7 +70,7 @@ final class RegexTextField: NSTextField {
         self.formatter = formatter
         
         // bind with cellView's objectValue
-        if !self.bindingKeyPath.isEmpty  {
+        if !self.bindingKeyPath.isEmpty {
             guard let tableCellView = self.superview as? NSTableCellView else { return assertionFailure() }
             
             self.bind(NSBindingName(#keyPath(parsesRegularExpression)), to: tableCellView, withKeyPath: "objectValue." + self.bindingKeyPath, options: [.nullPlaceholder: false])

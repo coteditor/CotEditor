@@ -74,7 +74,7 @@ class DefaultKey<Value>: DefaultKeys {
 }
 
 
-// specialize RawRepresentable types to use them for UserDefaults observation using UserDefaults.Publisher.
+// Specialize RawRepresentable types to use them for UserDefaults observation using UserDefaults.Publisher.
 // Otherwise, the type inference for RawRepresentable doesn't work unfortunately.
 final class RawRepresentableDefaultKey<Value>: DefaultKey<Value> where Value: RawRepresentable {
     
