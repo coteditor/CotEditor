@@ -64,7 +64,7 @@ struct SyntaxValidationView: View {
             Label {
                 Text(self.message)
             } icon: {
-                Image(nsImage: NSImage(named: (self.count == 0) ? NSImage.statusAvailableName : NSImage.statusUnavailableName)!)
+                Image(status: (self.count == 0) ? .available : .unavailable)
             }
         }
         

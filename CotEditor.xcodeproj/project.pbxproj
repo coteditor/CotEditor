@@ -401,6 +401,8 @@
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
 		2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
+		2A8321742980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
+		2A8321752980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
 		2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
@@ -1163,6 +1165,7 @@
 		2A80C6671CEE540F00AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
+		2A8321732980C41600F87D35 /* Image+Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Status.swift"; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -1571,6 +1574,7 @@
 				2A04E9BE27FEF72E008C82D8 /* Alignments.swift */,
 				2A158C242946CC20000A4EC1 /* NSHostingView.swift */,
 				2AFD328829482D53000ED1C5 /* Color.swift */,
+				2A8321732980C41600F87D35 /* Image+Status.swift */,
 			);
 			name = SwiftUI;
 			sourceTree = "<group>";
@@ -3020,6 +3024,7 @@
 				2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AAD61F91D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
 				2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */,
+				2A8321742980C41600F87D35 /* Image+Status.swift in Sources */,
 				2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C33901D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2AEB8B442726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
@@ -3372,6 +3377,7 @@
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AAD61F81D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */,
+				2A8321752980C41600F87D35 /* Image+Status.swift in Sources */,
 				2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2AEB8B452726220000C2F3DD /* IncompatibleCharacterFormatter.swift in Sources */,
