@@ -28,7 +28,7 @@ import Foundation
 extension MultipleReplace.Settings {
     
     /// Observable object to modify settings in the UI.
-    final class Object: ObservableObject {
+    @MainActor final class Object: ObservableObject {
         
         @Published var textIsLiteralSearch: Bool
         @Published var textIgnoresDiacriticMarks: Bool
