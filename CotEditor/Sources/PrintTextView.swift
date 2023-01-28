@@ -28,6 +28,14 @@ import Cocoa
 
 final class PrintTextView: NSTextView, Themable {
     
+    struct DocumentInfo {
+        
+        var name: String
+        var fileURL: URL?
+        var syntaxName: String
+    }
+    
+    
     // MARK: Constants
     
     static let margin = NSEdgeInsets(top: 56, left: 24, bottom: 56, right: 24)
@@ -39,14 +47,12 @@ final class PrintTextView: NSTextView, Themable {
     
     // MARK: Public Properties
     
-    var fileURL: URL?
-    var documentName: String?
-    var syntaxName: String = BundledStyleName.none
     private(set) var theme: Theme?
     
     
     // MARK: Private Properties
     
+    private let documentInfo: DocumentInfo
     private let tabWidth: Int
     private let lineHeight: CGFloat
     private var printsLineNumber = false
@@ -58,8 +64,9 @@ final class PrintTextView: NSTextView, Themable {
     // MARK: -
     // MARK: Lifecycle
     
-    init() {
+    init(info: DocumentInfo) {
         
+        self.documentInfo = info
         self.tabWidth = UserDefaults.standard[.tabWidth]
         self.lineHeight = UserDefaults.standard[.lineHeight]
         
@@ -115,7 +122,7 @@ final class PrintTextView: NSTextView, Themable {
     /// job title
     override var printJobTitle: String {
         
-        self.documentName ?? super.printJobTitle
+        self.documentInfo.name
     }
     
     
@@ -380,11 +387,11 @@ final class PrintTextView: NSTextView, Themable {
         
         switch type {
             case .documentName:
-                return self.documentName
+                return self.documentInfo.name
             case .syntaxName:
-                return self.syntaxName
+                return self.documentInfo.syntaxName
             case .filePath:
-                return self.fileURL?.pathAbbreviatingWithTilde ?? self.documentName
+                return self.documentInfo.fileURL?.pathAbbreviatingWithTilde ?? self.documentInfo.name
             case .printDate:
                 return String(localized: "Printed on \(.now, format: .dateTime)")
             case .pageNumber:
