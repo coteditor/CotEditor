@@ -104,7 +104,7 @@ Please follow the style of the existing codes in CotEditor.
 
 - Respect the existing coding style.
 - Leave reasonable comments.
-- Never omit `self`.
+- Never omit `self` escept in `willSet`/`didSet`.
 - Add `final` to classes by default.
 - Insert a blank line after class/function statement line.
     ```Swift
@@ -125,10 +125,10 @@ Please follow the style of the existing codes in CotEditor.
 - Write the `guard` statement in one-line if just return a simple value.
     ```Swift
     // prefer
-    guard let foo = foo else { return nil }
+    guard !foo.isEmpty else { return nil }
     
     // instead of
-    guard let foo = foo else {
+    guard !foo.isEmpty else {
         return nil
     }
     ```
