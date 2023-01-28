@@ -74,7 +74,7 @@ struct StatusImage_Previews: PreviewProvider {
         VStack(alignment: .leading) {
             Label(title: { Text("none") }, icon: { Image(status: .none) })
             Label(title: { Text("available") }, icon: { Image(status: .available) })
-            Label(title: { Text("particallyAvailable") }, icon: { Image(status: .none) })
+            Label(title: { Text("particallyAvailable") }, icon: { Image(status: .particallyAvailable) })
             Label(title: { Text("unavailable") }, icon: { Image(status: .unavailable) })
         }.padding()
     }
