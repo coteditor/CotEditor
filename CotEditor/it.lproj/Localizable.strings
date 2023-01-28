@@ -416,6 +416,7 @@
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Stampato su %@";  // %@ is date
+"Last modified on %@" = "Last modified on %@";  // %@ is date  // FIXME: added
 
 
 
@@ -441,6 +442,7 @@
 "Document Name" = "Nome documento";
 "File Path" = "Percorso file";
 "Print Date" = "Data di stampa";
+"Last Modified Date" = "Last Modified Date";  // FIXME: added
 "Page Number" = "Numero di pagina";
 "Left" = "Allinea a sinistra";
 "Center" = "Allinea al centro";

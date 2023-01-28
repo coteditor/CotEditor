@@ -416,6 +416,7 @@
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "打印：%@";  // %@ is date
+"Last modified on %@" = "Last modified on %@";  // %@ is date  // FIXME: added
 
 
 
@@ -441,6 +442,7 @@
 "Document Name" = "文档名";
 "File Path" = "文件路径";
 "Print Date" = "打印日期";
+"Last Modified Date" = "Last Modified Date";  // FIXME: added
 "Page Number" = "页码";
 "Left" = "左";
 "Center" = "居中";

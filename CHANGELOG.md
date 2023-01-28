@@ -5,6 +5,11 @@ Change Log
 4.4.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add “last modified date” to the print header/footer options.
+
+
 ### Fixes
 
 - Fix an issue that the print Header/Footer alignment options did not match the selected settings.

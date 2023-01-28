@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,6 +75,8 @@
 "897.title" = "Dosya Yolu";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
 "898.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "10r-6b-mkA"; */
+"10r-6b-mkA.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
 "893.title" = "Sayfa Numarası";
 
@@ -96,6 +98,8 @@
 "903.title" = "Belge Yolu";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
 "904.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "kqU-Qs-8oe"; */
+"kqU-Qs-8oe.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
 "905.title" = "Sayfa Numarası";
 
@@ -121,6 +125,8 @@
 "938.title" = "Dosya Yolu";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
 "939.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "mgU-MY-7x3"; */
+"mgU-MY-7x3.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
 "940.title" = "Sayfa Numarası";
 
@@ -142,6 +148,8 @@
 "930.title" = "Dosya Yolu";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
 "931.title" = "Yazdırma Tarihi";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "QjN-Pm-wiz"; */
+"QjN-Pm-wiz.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
 "932.title" = "Sayfa Numarası";
 

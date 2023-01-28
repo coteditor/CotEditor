@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 CotEditor Project
+//  © 2016-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,6 +73,8 @@
 "897.title" = "Percorso file";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
 "898.title" = "Data di stampa";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "10r-6b-mkA"; */
+"10r-6b-mkA.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
 "893.title" = "Numero pagina";
 
@@ -92,6 +94,8 @@
 "903.title" = "Percorso file";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
 "904.title" = "Data di stampa";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "kqU-Qs-8oe"; */
+"kqU-Qs-8oe.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
 "905.title" = "Numero pagina";
 
@@ -115,6 +119,8 @@
 "938.title" = "Percorso file";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
 "939.title" = "Data di stampa";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "mgU-MY-7x3"; */
+"mgU-MY-7x3.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
 "940.title" = "Numero pagina";
 
@@ -137,6 +143,8 @@
 "930.title" = "Percorso file";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
 "931.title" = "Data di stampa";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "QjN-Pm-wiz"; */
+"QjN-Pm-wiz.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
 "932.title" = "Numero pagina";
 

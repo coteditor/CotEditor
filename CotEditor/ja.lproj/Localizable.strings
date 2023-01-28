@@ -416,6 +416,7 @@
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "プリント: %@";  // %@ is date
+"Last Modified on %@" = "最終変更: %@";  // %@ is date
 
 
 
@@ -441,6 +442,7 @@
 "Document Name" = "書類名";
 "File Path" = "ファイルパス";
 "Print Date" = "プリント日時";
+"Last Modified Date" = "最終変更日時";
 "Page Number" = "ページ番号";
 "Left" = "左揃え";
 "Center" = "中央揃え";

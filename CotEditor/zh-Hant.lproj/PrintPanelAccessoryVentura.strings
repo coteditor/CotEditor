@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 CotEditor Project
+//  © 2022-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,8 @@
 "Pt8-CF-UKF.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "5pM-iD-yzY"; */
 "5pM-iD-yzY.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "r1K-hB-8RP"; */
+"r1K-hB-8RP.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "AJ9-Ls-PY8"; */
 "AJ9-Ls-PY8.title" = "頁碼";
 
@@ -75,6 +77,8 @@
 "vb5-jb-jaf.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "OlC-eq-RvC"; */
 "OlC-eq-RvC.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "aRQ-eh-HdK"; */
+"aRQ-eh-HdK.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "SnR-fR-DZF"; */
 "SnR-fR-DZF.title" = "頁碼";
 
@@ -100,6 +104,8 @@
 "sI8-qH-dUB.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "Qcn-h2-Kj0"; */
 "Qcn-h2-Kj0.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "2ob-oq-goq"; */
+"2ob-oq-goq.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "rsB-Kk-kBp"; */
 "rsB-Kk-kBp.title" = "頁碼";
 
@@ -122,6 +128,8 @@
 "3eZ-nZ-qLl.title" = "檔案路徑";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "li5-BL-b9F"; */
 "li5-BL-b9F.title" = "列印日期";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "Met-Fp-jVh"; */
+"Met-Fp-jVh.title" = "Last Modified Date";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "rNw-Nn-0WT"; */
 "rNw-Nn-0WT.title" = "頁碼";
 

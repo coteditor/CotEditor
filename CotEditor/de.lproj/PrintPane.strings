@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,6 +73,8 @@
 "897.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
 "898.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "10r-6b-mkA"; */
+"10r-6b-mkA.title" = "Zuletzt geändertes Datum";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
 "893.title" = "Seitenzahl";
 
@@ -92,6 +94,8 @@
 "903.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
 "904.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "kqU-Qs-8oe"; */
+"kqU-Qs-8oe.title" = "Zuletzt geändertes Datum";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
 "905.title" = "Seitenzahl";
 
@@ -115,6 +119,8 @@
 "938.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
 "939.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "mgU-MY-7x3"; */
+"mgU-MY-7x3.title" = "Zuletzt geändertes Datum";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
 "940.title" = "Seitenzahl";
 
@@ -134,6 +140,8 @@
 "930.title" = "Dateipfad";
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
 "931.title" = "Druckdatum";
+/* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "QjN-Pm-wiz"; */
+"QjN-Pm-wiz.title" = "Zuletzt geändertes Datum";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
 "932.title" = "Seitenzahl";
 

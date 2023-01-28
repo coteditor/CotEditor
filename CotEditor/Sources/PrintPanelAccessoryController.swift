@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -409,6 +409,8 @@ private extension PrintInfoType {
                 return "File Path".localized
             case .printDate:
                 return "Print Date".localized
+            case .lastModifiedDate:
+                return "Last Modified Date".localized
             case .pageNumber:
                 return "Page Number".localized
         }

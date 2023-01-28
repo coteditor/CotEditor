@@ -120,8 +120,8 @@
                                 </connections>
                             </switch>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="219" y="129" width="141" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="nGA-NN-REz" id="jk3-rE-AyP">
+                                <rect key="frame" x="206" y="129" width="154" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="3uu-24-iga">
@@ -134,6 +134,9 @@
                                             <menuItem title="Document Name" state="on" tag="2" id="nGA-NN-REz"/>
                                             <menuItem title="File Path" tag="3" id="Pt8-CF-UKF"/>
                                             <menuItem title="Print Date" tag="4" id="5pM-iD-yzY"/>
+                                            <menuItem title="Last Modified Date" tag="6" id="r1K-hB-8RP">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Page Number" tag="5" id="AJ9-Ls-PY8"/>
                                         </items>
                                     </menu>
@@ -196,8 +199,8 @@
                                 </connections>
                             </segmentedControl>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="219" y="99" width="141" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="5" imageScaling="proportionallyDown" inset="2" selectedItem="SnR-fR-DZF" id="Vqj-Po-rB8">
+                                <rect key="frame" x="206" y="99" width="154" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="Bk3-uv-jzy">
@@ -210,6 +213,9 @@
                                             <menuItem title="Document Name" tag="2" id="mUC-Ec-3CH"/>
                                             <menuItem title="File Path" tag="3" id="vb5-jb-jaf"/>
                                             <menuItem title="Print Date" tag="4" id="OlC-eq-RvC"/>
+                                            <menuItem title="Last Modified Date" tag="6" id="aRQ-eh-HdK">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Page Number" state="on" tag="5" id="SnR-fR-DZF"/>
                                         </items>
                                     </menu>
@@ -246,8 +252,8 @@
                                 </connections>
                             </segmentedControl>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="219" y="27" width="141" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" tag="5" imageScaling="proportionallyDown" inset="2" selectedItem="rsB-Kk-kBp" id="inp-eT-VVY">
+                                <rect key="frame" x="206" y="27" width="154" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="TfU-Pz-bEH">
@@ -260,6 +266,9 @@
                                             <menuItem title="Document Name" tag="2" id="q7l-X0-G9F"/>
                                             <menuItem title="File Path" tag="3" id="sI8-qH-dUB"/>
                                             <menuItem title="Print Date" tag="4" id="Qcn-h2-Kj0"/>
+                                            <menuItem title="Last Modified Date" tag="6" id="2ob-oq-goq">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Page Number" state="on" tag="5" id="rsB-Kk-kBp"/>
                                         </items>
                                     </menu>
@@ -270,7 +279,7 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="BMN-9W-V2O" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="219" y="-3" width="141" height="25"/>
+                                <rect key="frame" x="206" y="-3" width="154" height="25"/>
                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="VyN-kq-VID" id="mh2-B1-LxR">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -284,6 +293,9 @@
                                             <menuItem title="Document Name" tag="2" id="3Gu-P5-h2x"/>
                                             <menuItem title="File Path" tag="3" id="3eZ-nZ-qLl"/>
                                             <menuItem title="Print Date" tag="4" id="li5-BL-b9F"/>
+                                            <menuItem title="Last Modified Date" tag="6" id="Met-Fp-jVh">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Page Number" tag="5" id="rNw-Nn-0WT"/>
                                         </items>
                                     </menu>

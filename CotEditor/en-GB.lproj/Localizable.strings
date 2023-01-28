@@ -416,6 +416,7 @@
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "Printed on %@";  // %@ is date
+"Last modified on %@" = "Last modified on %@";  // %@ is date
 
 
 
@@ -441,6 +442,7 @@
 "Document Name" = "Document Name";
 "File Path" = "File Path";
 "Print Date" = "Print Date";
+"Last Modified Date" = "Last Modified Date";
 "Page Number" = "Page Number";
 "Left" = "Left";
 "Center" = "Centre";

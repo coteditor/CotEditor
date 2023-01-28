@@ -78,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiR-qP-3Z4">
-                                        <rect key="frame" x="254" y="135" width="80" height="24"/>
+                                        <rect key="frame" x="267" y="135" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Jap-f3-ehL">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -117,7 +117,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kOZ-e4-wvP">
-                                        <rect key="frame" x="254" y="105" width="80" height="24"/>
+                                        <rect key="frame" x="267" y="105" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="90p-SJ-bXq">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -187,7 +187,7 @@
                                         </connections>
                                     </textField>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Bt-cy-Umw">
-                                        <rect key="frame" x="111" y="133" width="141" height="25"/>
+                                        <rect key="frame" x="111" y="133" width="154" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="G8K-i7-Dee"/>
                                         </constraints>
@@ -204,6 +204,9 @@
                                                     <menuItem title="Document Name" tag="2" id="896"/>
                                                     <menuItem title="File Path" tag="3" id="897"/>
                                                     <menuItem title="Print Date" tag="4" id="898"/>
+                                                    <menuItem title="Last Modified Date" tag="6" id="10r-6b-mkA">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
                                                     <menuItem title="Page Number" tag="5" id="893"/>
                                                 </items>
                                             </menu>
@@ -222,7 +225,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ili-wb-NLt">
-                                        <rect key="frame" x="254" y="18" width="80" height="24"/>
+                                        <rect key="frame" x="267" y="18" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Pjk-d8-E4v">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -261,7 +264,7 @@
                                         </connections>
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgD-wy-VQk">
-                                        <rect key="frame" x="111" y="46" width="141" height="25"/>
+                                        <rect key="frame" x="111" y="46" width="154" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="941" id="tRU-Ql-e0X">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -275,6 +278,9 @@
                                                     <menuItem title="Document Name" tag="2" id="937"/>
                                                     <menuItem title="File Path" tag="3" id="938"/>
                                                     <menuItem title="Print Date" tag="4" id="939"/>
+                                                    <menuItem title="Last Modified Date" tag="6" id="mgU-MY-7x3">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
                                                     <menuItem title="Page Number" tag="5" id="940"/>
                                                 </items>
                                             </menu>
@@ -296,7 +302,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WDk-Zl-PJd">
-                                        <rect key="frame" x="254" y="48" width="80" height="24"/>
+                                        <rect key="frame" x="267" y="48" width="80" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Zgh-yF-xd2">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -321,8 +327,8 @@
                                         </connections>
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-TU-mOj">
-                                        <rect key="frame" x="111" y="103" width="141" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="Syntax Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="plk-U5-NGA" id="cUP-ax-qGf">
+                                        <rect key="frame" x="111" y="103" width="154" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="cUP-ax-qGf">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="Pj9-MO-pKh">
@@ -335,6 +341,9 @@
                                                     <menuItem title="Document Name" tag="2" id="902"/>
                                                     <menuItem title="File Path" tag="3" id="903"/>
                                                     <menuItem title="Print Date" tag="4" id="904"/>
+                                                    <menuItem title="Last Modified Date" tag="6" id="kqU-Qs-8oe">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
                                                     <menuItem title="Page Number" tag="5" id="905"/>
                                                 </items>
                                             </menu>
@@ -345,7 +354,7 @@
                                         </connections>
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nPF-cF-nDP">
-                                        <rect key="frame" x="111" y="16" width="141" height="25"/>
+                                        <rect key="frame" x="111" y="16" width="154" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="927" id="dc6-yt-bjo">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -359,6 +368,9 @@
                                                     <menuItem title="Document Name" tag="2" id="929"/>
                                                     <menuItem title="File Path" tag="3" id="930"/>
                                                     <menuItem title="Print Date" tag="4" id="931"/>
+                                                    <menuItem title="Last Modified Date" tag="6" id="QjN-Pm-wiz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
                                                     <menuItem title="Page Number" tag="5" id="932"/>
                                                 </items>
                                             </menu>

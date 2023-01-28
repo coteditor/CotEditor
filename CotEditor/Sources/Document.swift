@@ -617,8 +617,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.printPanelAccessoryController.documentShowsLineNumber = viewController.showsLineNumber
         
         // create printView
+        // -> Because the last *edited* date is not recorded anywhere, use `.now` if the document was modified since the last save.
+        let lastModifiedDate = self.hasUnautosavedChanges ? .now : self.fileModificationDate
         let info = PrintTextView.DocumentInfo(name: self.displayName,
                                               fileURL: self.fileURL,
+                                              lastModifiedDate: lastModifiedDate,
                                               syntaxName: self.syntaxParser.style.name)
         let printView = PrintTextView(info: info)
         

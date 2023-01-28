@@ -32,6 +32,7 @@ final class PrintTextView: NSTextView, Themable {
         
         var name: String
         var fileURL: URL?
+        var lastModifiedDate: Date?
         var syntaxName: String
     }
     
@@ -394,6 +395,10 @@ final class PrintTextView: NSTextView, Themable {
                 return self.documentInfo.fileURL?.pathAbbreviatingWithTilde ?? self.documentInfo.name
             case .printDate:
                 return String(localized: "Printed on \(.now, format: .dateTime)")
+            case .lastModifiedDate:
+                return self.documentInfo.lastModifiedDate
+                    .flatMap { String(localized: "Last modified on \($0, format: .dateTime)") }
+                    ?? "–"
             case .pageNumber:
                 return NSPrintOperation.current.flatMap { String($0.currentPage) }
             case .none:
