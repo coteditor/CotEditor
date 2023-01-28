@@ -150,7 +150,7 @@
                                     <segments>
                                         <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -176,7 +176,7 @@
                                     <segments>
                                         <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -226,7 +226,7 @@
                                     <segments>
                                         <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
@@ -300,7 +300,7 @@
                                     <segments>
                                         <segment toolTip="Align Left" image="arrow.backward.to.line" catalog="system" width="22"/>
                                         <segment toolTip="Center" image="arrow.right.and.line.vertical.and.arrow.left" width="24" selected="YES" tag="1"/>
-                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22">
+                                        <segment toolTip="Align Right" image="arrow.forward.to.line" catalog="system" width="22" tag="2">
                                             <nil key="label"/>
                                         </segment>
                                     </segments>
