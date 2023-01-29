@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 final class MenuKeyBindingManager: KeyBindingManager {
     
@@ -57,33 +57,35 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Key Binding Manager Methods
     
-    /// name of file to save custom key bindings in the plist file form (without extension)
+    /// Name of file to save custom key bindings in the plist file form (without extension).
     override var settingFileName: String {
         
         "Shortcuts"
     }
     
     
-    /// default key bindings
+    /// Default key bindings.
     override var defaultKeyBindings: Set<KeyBinding> {
         
         self._defaultKeyBindings
     }
     
     
-    /// create a KVO-compatible collection for outlineView in the settings from the key binding setting
+    /// Create a KVO-compatible collection for NSOutlineView in the settings from the key binding setting.
     ///
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
-    override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
+    override func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] {
         
         self.outlineTree(menu: NSApp.mainMenu!, defaults: usesDefaults)
     }
     
     
-    /// save passed-in key binding settings
-    override func saveKeyBindings(outlineTree: [NSTreeNode]) throws {
+    /// Save passed-in key binding settings.
+    ///
+    /// - Parameter keyBindings: The key bindings to save.
+    override func saveKeyBindings(_ keyBindings: [KeyBinding]) throws {
         
-        try super.saveKeyBindings(outlineTree: outlineTree)
+        try super.saveKeyBindings(keyBindings)
         
         // apply new settings to the menu
         self.applyKeyBindingsToMainMenu()
@@ -93,12 +95,12 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Methods
     
-    /// re-apply keyboard short cut to all menu items
+    /// Re-apply keyboard shortcut to all menu items.
     func applyKeyBindingsToMainMenu() {
         
         let mainMenu = NSApp.mainMenu!
         
-        // at first, clear all current short cut settings at first
+        // at first, clear all current shortcut settings at first
         self.clearMenuKeyBindingRecurrently(menu: mainMenu)
         
         // then apply the latest settings
@@ -107,20 +109,17 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// keyEquivalent and modifierMask for passed-in selector
-    func shortcut(for action: Selector, tag: Int) -> Shortcut {
-        
-        let shortcut = self.shortcut(for: action, tag: tag, defaults: false)
-        
-        return shortcut.isValid ? shortcut : .none
-    }
-    
-    
     
     // MARK: Private Methods
     
-    /// return key bindings for selector
-    private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool) -> Shortcut {
+    /// Return the shortcut for the passed-in selector and menu item tag.
+    ///
+    /// - Parameters:
+    ///   - action: The action selector.
+    ///   - tag: The menu item tag.
+    ///   - usesDefaults: Whether find the shortcut from the application defaults or user defaults.
+    /// - Returns: A Shortcut struct.
+    private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool = false) -> Shortcut {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
         let keyBinding = keyBindings.first { $0.action == action && $0.tag == tag }
@@ -129,7 +128,10 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// whether shortcut of menu item is allowed to modify
+    /// Whether shortcut of menu item is allowed to modify.
+    ///
+    /// - Parameter menuItem: The menu item to check.
+    /// - Returns: Whether the given menu item can be modified by users.
     private static func allowsModifying(_ menuItem: NSMenuItem) -> Bool {
         
         // specific item types
@@ -173,7 +175,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// Allow modifying only menu items existed at launch .
+    /// Allow modifying only menu items existed at launch.
     ///
     /// - Parameter menuItem: The menu item to check.
     /// - Returns: Whether the given menu item can be modified by users.
@@ -226,7 +228,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// apply current keyboard short cut settings to the passed-in menu
+    /// apply current keyboard short cutsettings to the passed-in menu
     private func applyMenuKeyBindingRecurrently(menu: NSMenu) {
         
         menu.items
@@ -250,19 +252,17 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// read key bindings from the menu and create an array data for outlineView in the settings
-    private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [NSTreeNode] {
+    private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] {
         
         menu.items
             .filter(self.allowsModifying)
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
-                    let node = NamedTreeNode(name: menuItem.title)
                     let subtree = self.outlineTree(menu: submenu, defaults: usesDefaults)
                     
                     guard !subtree.isEmpty else { return nil }  // ignore empty submenu
                     
-                    node.mutableChildren.addObjects(from: subtree)
-                    return node
+                    return Node(name: menuItem.title, item: .children(subtree))
                 }
                 
                 guard let action = menuItem.action else { return nil }
@@ -274,7 +274,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 
                 let item = KeyBindingItem(name: menuItem.title, action: action, tag: menuItem.tag, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
-                return NamedTreeNode(name: menuItem.title, representedObject: item)
+                return Node(name: menuItem.title, item: .value(item))
             }
     }
 }

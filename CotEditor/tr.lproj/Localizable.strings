@@ -767,7 +767,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu keybindings action
+// Label for text menu key bindings action
 "Insert Text %lld" = "%lld Metnini Ekle";
 
 // Keyboard key name
@@ -832,6 +832,8 @@
 
 
 /* MARK: Snippet */
+// placeholder text
+"Select Action" = "Eylem Seç";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu";
 

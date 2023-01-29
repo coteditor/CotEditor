@@ -24,11 +24,8 @@
 //
 
 import struct Foundation.Selector
-import AppKit.NSTreeNode
 
 final class KeyBindingItem {
-    
-    // MARK: Public Properties
     
     let name: String
     let action: Selector
@@ -44,28 +41,5 @@ final class KeyBindingItem {
         self.tag = tag
         self.shortcut = shortcut
         self.defaultShortcut = defaultShortcut
-    }
-}
-
-
-
-// MARK: -
-
-final class NamedTreeNode: NSTreeNode {
-    
-    // MARK: Public Properties
-    
-    let name: String
-    
-    
-    
-    // MARK: -
-    // MARK: Lifecycle
-    
-    required init(name: String, representedObject: Any? = nil) {
-        
-        self.name = name
-        
-        super.init(representedObject: representedObject)
     }
 }

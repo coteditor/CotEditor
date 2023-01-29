@@ -768,7 +768,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu keybindings action
+// Label for text menu key bindings action
 "Insert Text %lld" = "Inserisci testo %lld";
 
 // Keyboard key name
@@ -833,6 +833,8 @@
 
 
 /* MARK: Snippet */
+// placeholder text
+"Select Action" = "Selezionare l’azione.";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
 

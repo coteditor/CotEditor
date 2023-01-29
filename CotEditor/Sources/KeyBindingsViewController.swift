@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Private Properties
     
-    private var outlineTree: [NSTreeNode] = []
+    private var outlineTree: [Node<KeyBindingItem>] = []
     @objc private dynamic var warningMessage: String?  // for binding
     @objc private dynamic var isRestorable: Bool = false  // for binding
     
@@ -54,6 +54,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         self.outlineTree = self.manager.outlineTree(defaults: false)
         self.isRestorable = !self.manager.usesDefaultKeyBindings
+        self.warningMessage = nil
         self.outlineView?.reloadData()
     }
     
@@ -72,72 +73,67 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        self.children(of: item)?.count ?? 0
+        guard let node = item as? Node<KeyBindingItem> else { return self.outlineTree.count }
+        
+        return node.children?.count ?? 0
     }
     
     
     /// return if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        (self.children(of: item) != nil)
+        guard let node = item as? Node<KeyBindingItem> else { return false }
+        
+        return node.children != nil
     }
     
     
     /// return child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        self.children(of: item)![index]
-    }
-    
-    
-    /// return suitable item for cell to display
-    func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
+        guard let node = item as? Node<KeyBindingItem> else { return self.outlineTree[index] }
         
-        guard
-            let identifier = tableColumn?.identifier,
-            let node = item as? NamedTreeNode
-        else { return "" }
-        
-        switch identifier {
-            case .title:
-                return node.name
-            
-            case .keySpecChars:
-                guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut else { return nil }
-                return shortcut.isValid ? shortcut.description : nil
-            
-            default:
-                return ""
-        }
+        return node.children![index]
     }
     
     
     
     // MARK: Outline View Delegate
     
-    /// initialize table cell view
-    func outlineView(_ outlineView: NSOutlineView, didAdd rowView: NSTableRowView, forRow row: Int) {
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         
-        if let view = rowView.view(atColumn: outlineView.column(withIdentifier: .keySpecChars)) as? NSTableCellView,
-            let textField = view.textField,
-            let node = outlineView.item(atRow: row) as? NSTreeNode
-        {
-            let keyBinding = node.representedObject as? KeyBindingItem
-            
-            // set if table cell is editable
-            textField.isEditable = (keyBinding != nil)
-            
-            // set default short cut to placeholder
-            textField.placeholderString = keyBinding?.defaultShortcut.description
+        guard
+            let node = item as? Node<KeyBindingItem>,
+            let identifier = tableColumn?.identifier,
+            let cellView = outlineView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
+        else { return nil }
+        
+        switch identifier {
+            case .title:
+                cellView.objectValue = node.name
+                
+            case .keySpecChars:
+                switch node.item {
+                    case let .value(item):
+                        cellView.objectValue = (item.shortcut?.isValid == true) ? item.shortcut : nil
+                        cellView.textField?.placeholderString = item.defaultShortcut.description
+                        
+                    case .children:
+                        cellView.textField?.isEditable = false
+                }
+                
+            default:
+                preconditionFailure()
         }
+        
+        return cellView
     }
     
     
     
-    // MARK: Text Field Delegate
-    // (outlineView->ShortcutKeyField)
+    // MARK: Text Field Delegate (ShortcutKeyField)
     
-    /// validate and apply new shortcut key input
+    /// Validate and apply new shortcut key input.
     func controlTextDidEndEditing(_ obj: Notification) {
         
         guard
@@ -149,8 +145,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         let column = outlineView.column(for: textField)
         
         guard
-            let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf,
-            let item = node.representedObject as? KeyBindingItem
+            let node = outlineView.item(atRow: row) as? Node<KeyBindingItem>,
+            let item = node.value
         else { return }
         
         let oldShortcut = item.shortcut
@@ -200,7 +196,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Action Messages
     
-    /// restore key binding setting to default
+    /// Restore key binding setting to default.
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
         self.outlineTree = self.manager.outlineTree(defaults: true)
@@ -217,27 +213,25 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Private Methods
     
-    /// corresponding key binding manager
+    /// Corresponding key binding manager.
     fileprivate var manager: KeyBindingManager {
         
         MenuKeyBindingManager.shared
     }
     
     
-    /// return child items of passed-in item
-    private func children(of item: Any?) -> [NSTreeNode]? {
-        
-        guard let node = item as? NSTreeNode else { return self.outlineTree }
-        
-        return node.isLeaf ? nil : node.children
-    }
-    
-    
-    /// save current settings
+    /// Save current settings.
     fileprivate func saveSettings() {
         
+        let keyBindings: [KeyBinding] = self.outlineTree.flatMap(\.flatValues)
+            .compactMap { item in
+                guard let shortcut = item.shortcut else { return nil }
+                
+                return KeyBinding(name: item.name, action: item.action, tag: item.tag, shortcut: shortcut.isValid ? shortcut : nil)
+            }
+        
         do {
-            try self.manager.saveKeyBindings(outlineTree: self.outlineTree)
+            try self.manager.saveKeyBindings(keyBindings)
         } catch {
             Swift.print(error)
         }
@@ -250,23 +244,10 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 // MARK: -
 
-/// model object for NSArrayController
-private final class SnippetItem: NSObject {
-    
-    @objc dynamic var text: String
-    
-    required init(_ text: String) {
-        
-        self.text = text
-    }
-}
-
-
 final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
-    @objc private dynamic var snippets: [SnippetItem] = []
+    // MARK: Private Properties
     
-    @IBOutlet private var snippetArrayController: NSArrayController?
     @IBOutlet private weak var formatTextView: TokenTextView?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
     
@@ -279,9 +260,6 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         
         super.viewDidLoad()
         
-        self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
-        self.snippets = SnippetKeyBindingManager.shared.snippets.map { SnippetItem($0) }
-        
         // setup variable menu
         self.variableInsertionMenu!.menu!.items += Snippet.Variable.allCases.map { $0.insertionMenuItem(target: self.formatTextView) }
     }
@@ -290,6 +268,8 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        
+        self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
         
         if let outlineView = self.outlineView, outlineView.selectedRow == -1 {
             outlineView.selectRowIndexes([0], byExtendingSelection: false)
@@ -300,26 +280,17 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     // MARK: Key Bindings View Controller Methods
     
-    /// corresponding key binding manager
+    /// Corresponding key binding manager.
     fileprivate override var manager: KeyBindingManager {
         
         SnippetKeyBindingManager.shared
     }
     
     
-    /// save current settings
-    fileprivate override func saveSettings() {
-        
-        SnippetKeyBindingManager.shared.snippets = self.snippets.map(\.text)
-        
-        super.saveSettings()
-    }
-    
-    
-    /// restore key binding setting to default
+    /// Restore key binding setting to default.
     @IBAction override func setToFactoryDefaults(_ sender: Any?) {
         
-        self.snippets = SnippetKeyBindingManager.shared.defaultSnippets.map { SnippetItem($0) }
+        SnippetKeyBindingManager.shared.restoreSnippets()
         
         super.setToFactoryDefaults(sender)
     }
@@ -328,29 +299,41 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     // MARK: Outline View Delegate
     
-    /// change snippet array controller's selection
+    /// Change snippet array controller's selection.
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard
-            let arrayController = self.snippetArrayController,
-            let outlineView = notification.object as? NSOutlineView
+            let outlineView = notification.object as? NSOutlineView,
+            let textView = self.formatTextView
         else { return assertionFailure() }
         
-        guard outlineView.selectedRow >= 0 else { return }
+        if outlineView.selectedRow >= 0 {
+            textView.isEditable = true
+            textView.textColor = .labelColor
+            textView.backgroundColor = .textBackgroundColor
+            textView.string = SnippetKeyBindingManager.shared.snippets[outlineView.selectedRow]
+        } else {
+            textView.isEditable = false
+            textView.textColor = .tertiaryLabelColor
+            textView.backgroundColor = .labelColor.withAlphaComponent(0.05)
+            textView.string = String(localized: "Select Action")
+        }
         
-        arrayController.setSelectionIndex(outlineView.selectedRow)
     }
     
     
     
-    // MARK: Text View Delegate
-    // (insertion text view)
+    // MARK: Text View Delegate (insertion text view)
     
-    /// insertion text did update
+    /// Insertion text did update.
     func textDidEndEditing(_ notification: Notification) {
         
-        if notification.object is NSTextView {
-            self.saveSettings()
-        }
+        guard
+            let textView = notification.object as? NSTextView,
+            let index = self.outlineView?.selectedRow,
+            index >= 0
+        else { return }
+        
+        SnippetKeyBindingManager.shared.snippets[index] = textView.string
     }
 }

@@ -769,7 +769,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu keybindings action
+// Label for text menu key bindings action
 "Insert Text %lld" = "插入文本%lld";
 
 // Keyboard key name
@@ -834,6 +834,8 @@
 
 
 /* MARK: Snippet */
+// placeholder text
+"Select Action" = "选择动作。";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段后的光标位置";
 

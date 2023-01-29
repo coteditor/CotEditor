@@ -24,32 +24,33 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
 
 struct InvalidShortcutError: LocalizedError {
     
     enum ErrorKind {
+        
         case singleType
         case alreadyTaken(name: String)
         case shiftOnlyModifier
         case unsupported
     }
     
-    let kind: ErrorKind
-    let shortcut: Shortcut
+    var kind: ErrorKind
+    var shortcut: Shortcut
     
     
     var errorDescription: String? {
         
         switch self.kind {
             case .singleType:
-                return "Single type is invalid for a shortcut.".localized
+                return String(localized: "Single type is invalid for a shortcut.")
             
             case let .alreadyTaken(name):
                 return String(localized: "“\(self.shortcut.description)” is already taken by the “\(name)” command.")
                 
             case .shiftOnlyModifier:
-                return "The Shift key can be used only with another modifier key.".localized
+                return String(localized: "The Shift key can be used only with another modifier key.")
                 
             case .unsupported:
                 return String(localized: "The combination “\(self.shortcut.description)” is not supported for the key binding customization.")
@@ -59,7 +60,7 @@ struct InvalidShortcutError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        "Please combine with other keys.".localized
+        String(localized: "Please combine with other keys.")
     }
 }
 
@@ -73,7 +74,7 @@ protocol KeyBindingManagerProtocol: AnyObject {
     var keyBindings: Set<KeyBinding> { get }
     var defaultKeyBindings: Set<KeyBinding> { get }
     
-    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode]
+    func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>]
 }
 
 
@@ -100,55 +101,57 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     
     // MARK: Setting File Managing Protocol
     
-    /// directory name in both Application Support and bundled Resources
+    /// Directory name in both Application Support and bundled Resources.
     static let directoryName: String = "KeyBindings"
     
     
     
     // MARK: Abstract Properties/Methods
     
-    /// name of file to save custom key bindings in the plist file form (without extension)
+    /// Name of file to save custom key bindings in the plist file form (without extension).
     var settingFileName: String { preconditionFailure() }
     
-    /// default key bindings
+    /// Default key bindings.
     var defaultKeyBindings: Set<KeyBinding> { preconditionFailure() }
     
     
-    /// create a KVO-compatible collection for outlineView in the settings from the key binding setting
+    /// Create a KVO-compatible collection for NSOutlineView in the settings from the key binding setting.
     ///
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
-    func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] { preconditionFailure() }
+    func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] { preconditionFailure() }
     
     
     
     // MARK: Public Methods
     
-    /// file URL to save custom key bindings file
+    /// File URL to save custom key bindings file.
     final var keyBindingSettingFileURL: URL {
         
         self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName, conformingTo: .propertyList)
     }
     
     
-    /// whether key bindings are not customized
+    /// Whether key bindings are not customized.
     var usesDefaultKeyBindings: Bool {
         
         self.keyBindings == self.defaultKeyBindings
     }
     
     
-    /// save passed-in key binding settings
-    func saveKeyBindings(outlineTree: [NSTreeNode]) throws {
+    /// Save passed-in key binding settings.
+    ///
+    /// - Parameter keyBindings: The key bindings to save.
+    func saveKeyBindings(_ keyBindings: [KeyBinding]) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
-        let keyBindings = outlineTree.keyBindings
         let fileURL = self.keyBindingSettingFileURL
         
-        let defaultExistsAction = self.defaultKeyBindings.map(\.action)
-        let diff = keyBindings.subtracting(self.defaultKeyBindings)
-            .filter { $0.shortcut != nil || defaultExistsAction.contains($0.action) }
+        let keyBindingsSet = Set(keyBindings)
+        let defaultExistsActions = self.defaultKeyBindings.map(\.action)
+        let diff = keyBindingsSet.subtracting(self.defaultKeyBindings)
+            .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
         
         // write to file
         if diff.isEmpty {
@@ -159,18 +162,21 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         } else {
             let encoder = PropertyListEncoder()
             encoder.outputFormat = .xml
-            let data = try encoder.encode(diff.sorted())
+            let data = try encoder.encode(diff.sorted(\.action.description))
             try data.write(to: fileURL, options: .atomic)
         }
         
         // store new values
-        self.keyBindings = keyBindings.filter { $0.shortcut != nil }
+        self.keyBindings = keyBindingsSet.filter { $0.shortcut != nil }
     }
     
     
-    /// Validate new shortcut are settable.
+    /// Validate whether the new shortcut is settable.
     ///
     /// - Throws: `InvalidShortcutError`
+    /// - Parameters:
+    ///   - shortcut: The shortcut to test.
+    ///   - oldShortcut: The previous shortcut for the action whose shortcut to test.
     final func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
         
         // blank key is always valid
@@ -201,28 +207,5 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
             let name = duplicatedShortcut.name.trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))
             throw InvalidShortcutError(kind: .alreadyTaken(name: name), shortcut: shortcut)
         }
-    }
-}
-
-
-
-private extension Collection<NSTreeNode> {
-    
-    var keyBindings: Set<KeyBinding> {
-        
-        let keyBindings: [KeyBinding] = self.flatMap { node -> [KeyBinding] in
-            if let children = node.children, !children.isEmpty {
-                return children.keyBindings.sorted()
-            }
-            
-            guard
-                let keyItem = node.representedObject as? KeyBindingItem,
-                let shortcut = keyItem.shortcut
-            else { return [] }
-            
-            return [KeyBinding(name: keyItem.name, action: keyItem.action, tag: keyItem.tag, shortcut: shortcut.isValid ? shortcut : nil)]
-        }
-        
-        return Set(keyBindings)
     }
 }

@@ -768,7 +768,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu keybindings action
+// Label for text menu key bindings action
 "Insert Text %lld" = "テキストを挿入%lld";
 
 // Keyboard key name
@@ -833,6 +833,8 @@
 
 
 /* MARK: Snippet */
+// placeholder text
+"Select Action" = "アクションを選択してください。";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 

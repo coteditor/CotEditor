@@ -263,6 +263,7 @@ struct Shortcut: Hashable {
     ].mapKeys(\.unicodeScalar)
 }
 
+
 private extension NSEvent.SpecialKey {
     
     static let space = Self(rawValue: 0x20)

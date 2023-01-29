@@ -509,6 +509,8 @@
 		2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
 		2AA5BCFA24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
 		2AA5BCFB24FFB21C00618F83 /* String+Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA5BCF924FFB21C00618F83 /* String+Match.swift */; };
+		2AA704CE2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
+		2AA704CF2987878B008CBCB5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA704CD2987878B008CBCB5 /* Node.swift */; };
 		2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA761351D45634400031AAF /* String+Counting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA761341D45634400031AAF /* String+Counting.swift */; };
@@ -1227,6 +1229,7 @@
 		2AA4EE3C28D55CE80014B045 /* DelegateContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateContext.swift; sourceTree = "<group>"; };
 		2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RoundedBackground.swift"; sourceTree = "<group>"; };
 		2AA5BCF924FFB21C00618F83 /* String+Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Match.swift"; sourceTree = "<group>"; };
+		2AA704CD2987878B008CBCB5 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
 		2AA761391D457BD500031AAF /* String+Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Indentation.swift"; sourceTree = "<group>"; };
@@ -1661,6 +1664,7 @@
 				2A3E61C627C4962B00C6E5B6 /* Formatters */,
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
 				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
+				2AA704CD2987878B008CBCB5 /* Node.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2AA4EE3C28D55CE80014B045 /* DelegateContext.swift */,
 				2ADBC91421C9F30000B884FF /* Atomic.swift */,
@@ -2287,8 +2291,8 @@
 				2A64F2471D26327C001B229F /* KeyBindingManager.swift */,
 				2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */,
 				2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */,
-				2A64F24A1D26615A001B229F /* KeyBindingItem.swift */,
 				2A10C5F61FD19237002AB5AE /* KeyBinding.swift */,
+				2A64F24A1D26615A001B229F /* KeyBindingItem.swift */,
 			);
 			name = "Key Binding Managers";
 			sourceTree = "<group>";
@@ -3059,6 +3063,7 @@
 				2ACC5E421E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
 				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */,
+				2AA704CE2987878B008CBCB5 /* Node.swift in Sources */,
 				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
@@ -3412,6 +3417,7 @@
 				2ACC5E411E7B08D300109ABC /* MultipleReplaceViewController.swift in Sources */,
 				2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */,
+				2AA704CF2987878B008CBCB5 /* Node.swift in Sources */,
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A10B6F521450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,

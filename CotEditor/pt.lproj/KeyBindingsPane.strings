@@ -64,8 +64,6 @@
 "tuB-9O-QZH.title" = "Formato da inserção:";
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
 "wC4-qj-3oD.title" = "Inserir Variável";
-/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select Action"; ObjectID = "Y5G-PR-ofT"; */
-"Y5G-PR-ofT.ibShadowedNoSelectionPlaceholder" = "Selecione uma Ação";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
 "0Du-JI-ZN7.title" = "Restaurar Padrões";

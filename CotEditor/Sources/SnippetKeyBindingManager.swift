@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
 
 final class SnippetKeyBindingManager: KeyBindingManager {
     
@@ -32,10 +32,10 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     static let shared = SnippetKeyBindingManager()
     
-    let defaultSnippets: [String]
-    
     
     // MARK: Private Properties
+    
+    private let defaultSnippets: [String]
     
     private let _defaultKeyBindings: Set<KeyBinding>
     
@@ -56,24 +56,24 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     // MARK: Key Binding Manager Methods
     
-    /// name of file to save custom key bindings in the plist file form (without extension)
+    /// Name of file to save custom key bindings in the plist file form (without extension).
     override var settingFileName: String {
         
         "SnippetKeyBindings"
     }
     
     
-    /// default key bindings
+    /// Default key bindings.
     override var defaultKeyBindings: Set<KeyBinding> {
         
         self._defaultKeyBindings
     }
     
     
-    /// create a KVO-compatible collection for outlineView in the settings from the key binding setting
+    /// Create a KVO-compatible collection for NSOutlineView in the settings from the key binding setting.
     ///
     /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
-    override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
+    override func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
@@ -85,12 +85,12 @@ final class SnippetKeyBindingManager: KeyBindingManager {
             
             let item = KeyBindingItem(name: title, action: action, tag: 0, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
             
-            return NamedTreeNode(name: title, representedObject: item)
+            return Node(name: title, item: .value(item))
         }
     }
     
     
-    /// whether key bindings are not customized
+    /// Whether key bindings are not customized.
     override var usesDefaultKeyBindings: Bool {
         
         (self.snippets == self.defaultSnippets) && super.usesDefaultKeyBindings
@@ -100,7 +100,10 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     // MARK: Public Methods
     
-    /// return snippet string for key binding if exists
+    /// Return snippet string for key binding if exists.
+    ///
+    /// - Parameter shortcut: The shortcut for the snippet to obtain.
+    /// - Returns: A Snippet struct.
     func snippet(shortcut: Shortcut) -> Snippet? {
         
         guard
@@ -113,11 +116,17 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// snippet texts to insert with key binding
+    /// Snippet texts to insert with key binding.
     var snippets: [String] {
         
         get { UserDefaults.standard[.insertCustomTextArray] }
         set { UserDefaults.standard[.insertCustomTextArray] = newValue }
+    }
+    
+    
+    func restoreSnippets() {
+        
+        self.snippets = self.defaultSnippets
     }
     
     
