@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 CotEditor Project
+//  © 2018-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,9 +40,6 @@
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
 
-/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
-"qGe-Et-FB2.title" = "Estes atalhos devem incluir a tecla Comando.";
-
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
 "jNh-nd-VRd.headerCell.title" = "Ação";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
@@ -57,9 +54,6 @@
 "eMZ-Mx-JSK.title" = "Atalhos para a inserção de texto predefinido";
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
 "a9m-M2-rgC.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
-
-/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
-"5zd-aF-0zL.title" = "Estes atalhos não devem incluir a tecla Comando.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Ação";

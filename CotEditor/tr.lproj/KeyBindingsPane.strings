@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,9 +40,6 @@
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Bir bağıntıyı değiştirmek için onu seçin, düğme sütununa tıklayın ve düğmeleri girin.";
 
-/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
-"qGe-Et-FB2.title" = "Buradaki düğmeler Command düğmesini içermelidir.";
-
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
 "jNh-nd-VRd.headerCell.title" = "Eylem";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
@@ -58,9 +55,6 @@
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
 "a9m-M2-rgC.title" = "Bir bağıntıyı değiştirmek için onu seçin, düğme sütununa tıklayın ve bağıntıyı girin.";
-
-/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
-"5zd-aF-0zL.title" = "Buradaki düğmeler Command düğmesini dışarıda bırakmalıdır.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Eylem";

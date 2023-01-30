@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,9 +40,6 @@
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Zum Ändern eines Kurzbefehls wähle ihn aus, klicke in die Taste-Spalte und drücke die Tasten.";
 
-/* Class = "NSTextFieldCell"; title = "The keys here must include the Command key."; ObjectID = "qGe-Et-FB2"; */
-"qGe-Et-FB2.title" = "Eine der Tasten muss die Command-Taste sein.";
-
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
 "jNh-nd-VRd.headerCell.title" = "Aktion";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
@@ -58,9 +55,6 @@
 
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
 "a9m-M2-rgC.title" = "Zum Ändern eines Kurzbefehls wähle ihn aus, klicke in die Taste-Spalte und drücke die Tasten.";
-
-/* Class = "NSTextFieldCell"; title = "The keys here must exclude the Command key."; ObjectID = "5zd-aF-0zL"; */
-"5zd-aF-0zL.title" = "Keine der Tasten darf die Command-Taste sein.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Aktion";
