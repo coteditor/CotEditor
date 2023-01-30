@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the print Header/Footer alignment options did not match the selected settings.
+- Fix missing localization in the Find window.
 - Remove outdated description in the Key Binding pane.
 
 

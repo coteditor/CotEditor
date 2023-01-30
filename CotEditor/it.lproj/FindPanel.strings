@@ -28,8 +28,8 @@
 "Wal-Sg-6d6.title" = "Trova e sostituisci";
 
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
-"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Cerca";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "ISG-Ev-a6H"; */
+"ISG-Ev-a6H.ibShadowedIsNilPlaceholder" = "Cerca";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "Inserire il testo da cercare.";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
@@ -37,8 +37,8 @@
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
 "ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Cancella";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "VUA-ld-ABD"; */
-"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Sostituisci";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "2Xr-us-IiG"; */
+"2Xr-us-IiG.ibShadowedIsNilPlaceholder" = "Sostituisci";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "Inserire il testo con cui sostituire il testo trovato.";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */

@@ -28,8 +28,8 @@
 "Wal-Sg-6d6.title" = "查找与替换";
 
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
-"3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "查找";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "ISG-Ev-a6H"; */
+"ISG-Ev-a6H.ibShadowedIsNilPlaceholder" = "查找";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "输入要查找的文本。";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
@@ -37,8 +37,8 @@
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
 "ObJ-nS-x0g.ibExternalAccessibilityDescription" = "清除";
 
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "VUA-ld-ABD"; */
-"VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "替换";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace with"; ObjectID = "2Xr-us-IiG"; */
+"2Xr-us-IiG.ibShadowedIsNilPlaceholder" = "替换";
 /* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "输入用来替换查找到的文本。";
 /* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
