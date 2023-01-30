@@ -88,6 +88,7 @@
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="delegate" destination="fdE-8e-ywb" id="v4C-dI-JPd"/>
+                                                <outlet property="nextKeyView" destination="qiQ-tb-XCa" id="KaO-S0-PGY"/>
                                             </connections>
                                         </textView>
                                     </subviews>
