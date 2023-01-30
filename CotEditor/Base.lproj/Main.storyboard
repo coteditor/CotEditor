@@ -111,7 +111,8 @@
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="xe3-FG-SLT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Revert to Saved" keyEquivalent="r" id="112">
+                                        <menuItem title="Revert to Saved" id="112">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="f6J-Sb-kOt"/>
                                             </connections>

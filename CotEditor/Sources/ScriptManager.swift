@@ -36,7 +36,7 @@ extension NSAppleEventDescriptor: @unchecked Sendable { }
 private struct ScriptItem {
     
     var script: any Script
-    var shortcut: Shortcut
+    var shortcut: Shortcut?
 }
 
 
@@ -334,8 +334,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     .replacingOccurrences(of: "^[0-9]+\\)", with: "", options: .regularExpression)  // remove ordering prefix
                 
                 var shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
-                shortcut = shortcut.isValid ? shortcut : .none
-                if shortcut != .none {
+                shortcut = (shortcut?.isValid == true) ? shortcut : nil
+                if shortcut != nil {
                     name = name.replacingOccurrences(of: "\\..+$", with: "", options: .regularExpression)
                 }
                 
@@ -419,17 +419,18 @@ private extension NSMenuItem {
         guard self.keyEquivalent.isEmpty else { return [] }
         
         if let scriptItem = self.representedObject as? ScriptItem {
-            let shortcut = scriptItem.shortcut
-            
-            guard !exclude.contains(shortcut) else { return [] }
+            guard
+                let shortcut = scriptItem.shortcut,
+                !exclude.contains(shortcut)
+            else { return [] }
             
             self.keyEquivalent = shortcut.keyEquivalent
             self.keyEquivalentModifierMask = shortcut.modifierMask
             
-            return shortcut == .none ? [] : [shortcut]
+            return [shortcut]
             
-        } else if recursively {
-            return self.submenu?.items.flatMap { $0.applyShortcut(recursively: true, exclude: exclude) } ?? []
+        } else if recursively, let submenu = self.submenu {
+            return submenu.items.flatMap { $0.applyShortcut(recursively: true, exclude: exclude) }
             
         } else {
             return []

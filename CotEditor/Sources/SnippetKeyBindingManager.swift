@@ -79,13 +79,13 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
-            let title = String(localized: "Insert Text \(index)")
+            let name = String(localized: "Insert Text \(index)")
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
-            let item = KeyBindingItem(name: title, action: action, tag: 0, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
+            let item = KeyBindingItem(name: name, action: action, tag: 0, shortcut: keyBinding?.shortcut, defaultShortcut: nil)
             
-            return Node(name: title, item: .value(item))
+            return Node(name: name, item: .value(item))
         }
     }
     

@@ -100,7 +100,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         let mainMenu = NSApp.mainMenu!
         
-        // at first, clear all current shortcut settings at first
+        // first, clear all current shortcut settings
         self.clearMenuKeyBindingRecurrently(menu: mainMenu)
         
         // then apply the latest settings
@@ -119,12 +119,12 @@ final class MenuKeyBindingManager: KeyBindingManager {
     ///   - tag: The menu item tag.
     ///   - usesDefaults: Whether find the shortcut from the application defaults or user defaults.
     /// - Returns: A Shortcut struct.
-    private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool = false) -> Shortcut {
+    private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool = false) -> Shortcut? {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
         let keyBinding = keyBindings.first { $0.action == action && $0.tag == tag }
         
-        return keyBinding?.shortcut ?? .none
+        return keyBinding?.shortcut
     }
     
     
@@ -207,7 +207,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
                 let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
                                         keyEquivalent: menuItem.keyEquivalent)
                 
-                return [KeyBinding(name: menuItem.title, action: action, tag: menuItem.tag, shortcut: shortcut.isValid ? shortcut : nil)]
+                return [KeyBinding(action: action, tag: menuItem.tag, shortcut: shortcut)]
             }
     }
     
@@ -238,12 +238,10 @@ final class MenuKeyBindingManager: KeyBindingManager {
                     return self.applyMenuKeyBindingRecurrently(menu: submenu)
                 }
                 
-                guard let action = menuItem.action else { return }
-                
-                let shortcut = self.shortcut(for: action, tag: menuItem.tag)
-                
-                // apply only if both keyEquivalent and modifierMask exist
-                guard shortcut.isValid else { return }
+                guard
+                    let action = menuItem.action,
+                    let shortcut = self.shortcut(for: action, tag: menuItem.tag)
+                else { return }
                 
                 menuItem.keyEquivalent = shortcut.keyEquivalent
                 menuItem.keyEquivalentModifierMask = shortcut.modifierMask

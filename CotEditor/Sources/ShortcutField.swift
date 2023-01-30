@@ -1,5 +1,5 @@
 //
-//  ShortcutKeyField.swift
+//  ShortcutField.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 import Cocoa
 import Combine
 
-final class ShortcutKeyField: NSTextField {
+final class ShortcutField: NSTextField {
     
     // MARK: Private Properties
     
@@ -50,8 +50,15 @@ final class ShortcutKeyField: NSTextField {
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event) -> NSEvent? in
             guard let shortcut = Shortcut(keyDownEvent: event) else { return event }
             
-            // -> The single .delete works as delete.
-            self.objectValue = (event.specialKey == .delete && shortcut.modifierMask.isEmpty) ? nil : shortcut.keySpecChars
+            if event.keyCode == 53, shortcut.modifierMask.isEmpty {  // single Escape
+                // treat as cancel
+            } else if event.specialKey == .delete, shortcut.modifierMask.isEmpty {  // single Delete
+                // treat as delete
+                self.objectValue = nil
+            } else {
+                self.objectValue = shortcut
+            }
+            
             self.window?.endEditing(for: nil)
             
             return nil

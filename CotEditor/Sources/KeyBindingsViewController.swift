@@ -28,12 +28,12 @@ import Cocoa
 /// outlineView column identifier
 private extension NSUserInterfaceItemIdentifier {
     
-    static let title = NSUserInterfaceItemIdentifier("title")
-    static let keySpecChars = NSUserInterfaceItemIdentifier("keyBindingKey")
+    static let action = NSUserInterfaceItemIdentifier("action")
+    static let key = NSUserInterfaceItemIdentifier("key")
 }
 
 
-class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
+class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     // MARK: Private Properties
     
@@ -105,18 +105,18 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         guard
             let node = item as? Node<KeyBindingItem>,
             let identifier = tableColumn?.identifier,
-            let cellView = outlineView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
+            let cellView = outlineView.makeView(withIdentifier: identifier, owner: self) as? NSTableCellView
         else { return nil }
         
         switch identifier {
-            case .title:
+            case .action:
                 cellView.objectValue = node.name
                 
-            case .keySpecChars:
+            case .key:
                 switch node.item {
                     case let .value(item):
-                        cellView.objectValue = (item.shortcut?.isValid == true) ? item.shortcut : nil
-                        cellView.textField?.placeholderString = item.defaultShortcut.description
+                        cellView.objectValue = item.shortcut
+                        cellView.textField?.placeholderString = item.defaultShortcut?.symbol
                         
                     case .children:
                         cellView.textField?.isEditable = false
@@ -131,18 +131,15 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     
-    // MARK: Text Field Delegate (ShortcutKeyField)
+    // MARK: Action Messages
     
     /// Validate and apply new shortcut key input.
-    func controlTextDidEndEditing(_ obj: Notification) {
+    @IBAction func didEditShortcut(_ sender: ShortcutField) {
         
-        guard
-            let textField = obj.object as? NSTextField,
-            let outlineView = self.outlineView
-        else { return assertionFailure() }
+        guard let outlineView = self.outlineView else { return assertionFailure() }
         
-        let row = outlineView.row(for: textField)
-        let column = outlineView.column(for: textField)
+        let row = outlineView.row(for: sender)
+        let column = outlineView.column(for: sender)
         
         guard
             let node = outlineView.item(atRow: row) as? Node<KeyBindingItem>,
@@ -150,51 +147,39 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         else { return }
         
         let oldShortcut = item.shortcut
-        let input = textField.stringValue
+        let shortcut = sender.objectValue as? Shortcut
         
         // reset once warning
         self.warningMessage = nil
         
-        // cancel input
-        guard
-            input != "\u{1b}",  // = ESC key  -> treat Esc key as cancel
-            input != oldShortcut?.description  // not edited
-        else {
-            // reset text field display
-            textField.objectValue = oldShortcut?.description
-            return
+        // not edited
+        guard shortcut != oldShortcut else { return }
+        
+        if let shortcut {
+            do {
+                try KeyBindingManager.validate(shortcut: shortcut)
+                
+            } catch let error as InvalidShortcutError {
+                self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
+                sender.objectValue = oldShortcut  // reset text field
+                NSSound.beep()
+                
+                // make text field edit mode again
+                Task {
+                    outlineView.editColumn(column, row: row, with: nil, select: true)
+                }
+                
+                return
+                
+            } catch { assertionFailure("Caught unknown error: \(error)") }
         }
-        
-        let shortcut = Shortcut(keySpecChars: input)
-        
-        do {
-            try self.manager.validate(shortcut: shortcut, oldShortcut: oldShortcut)
-            
-        } catch let error as InvalidShortcutError {
-            self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
-            textField.objectValue = oldShortcut?.keySpecChars  // reset view with previous key
-            NSSound.beep()
-            
-            // make text field edit mode again if invalid
-            DispatchQueue.main.async {
-                outlineView.editColumn(column, row: row, with: nil, select: true)
-            }
-            // reset text field display
-            textField.objectValue = oldShortcut?.description
-            return
-            
-        } catch { assertionFailure("Caught unknown error: \(error)") }
         
         // successfully update data
         item.shortcut = shortcut
-        textField.objectValue = shortcut.description
         self.saveSettings()
-        self.outlineView?.reloadData(forRowIndexes: [row], columnIndexes: [column])
+        outlineView.reloadData(forRowIndexes: [row], columnIndexes: [column])
     }
     
-    
-    
-    // MARK: Action Messages
     
     /// Restore key binding setting to default.
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
@@ -203,10 +188,10 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         self.saveSettings()
         
+        self.isRestorable = false
+        self.warningMessage = nil
         self.outlineView?.deselectAll(nil)
         self.outlineView?.reloadData()
-        self.warningMessage = nil
-        self.isRestorable = false
     }
     
     
@@ -223,12 +208,10 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// Save current settings.
     fileprivate func saveSettings() {
         
-        let keyBindings: [KeyBinding] = self.outlineTree.flatMap(\.flatValues)
-            .compactMap { item in
-                guard let shortcut = item.shortcut else { return nil }
-                
-                return KeyBinding(name: item.name, action: item.action, tag: item.tag, shortcut: shortcut.isValid ? shortcut : nil)
-            }
+        let keyBindings = self.outlineTree
+            .flatMap(\.flatValues)
+            .filter { $0.shortcut?.isValid ?? true }
+            .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
         
         do {
             try self.manager.saveKeyBindings(keyBindings)
@@ -261,19 +244,10 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         super.viewDidLoad()
         
         // setup variable menu
-        self.variableInsertionMenu!.menu!.items += Snippet.Variable.allCases.map { $0.insertionMenuItem(target: self.formatTextView) }
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
+        self.variableInsertionMenu!.menu!.items += Snippet.Variable.allCases
+            .map { $0.insertionMenuItem(target: self.formatTextView) }
         
         self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
-        
-        if let outlineView = self.outlineView, outlineView.selectedRow == -1 {
-            outlineView.selectRowIndexes([0], byExtendingSelection: false)
-        }
     }
     
     
@@ -299,7 +273,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     
     // MARK: Outline View Delegate
     
-    /// Change snippet array controller's selection.
+    /// Change row selection in table.
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard

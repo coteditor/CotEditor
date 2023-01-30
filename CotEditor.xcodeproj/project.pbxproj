@@ -238,6 +238,8 @@
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A4E638020ADC45F0033CE63 /* NSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */; };
 		2A4E638120ADC45F0033CE63 /* NSBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */; };
+		2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C042988D44E002080AA /* ShortcutFormatter.swift */; };
+		2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A505C042988D44E002080AA /* ShortcutFormatter.swift */; };
 		2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A51329B28DDE337009FF910 /* NSDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A51329A28DDE337009FF910 /* NSDocumentController.swift */; };
@@ -530,8 +532,8 @@
 		2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
 		2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
 		2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
-		2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
-		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
+		2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutField.swift */; };
+		2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutField.swift */; };
 		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
 		2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
 		2AAD61F01D2B0856008FE772 /* FuzzyRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */; };
@@ -1043,6 +1045,7 @@
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A4E637F20ADC45F0033CE63 /* NSBezierPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSBezierPath.swift; sourceTree = "<group>"; };
+		2A505C042988D44E002080AA /* ShortcutFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutFormatter.swift; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A51329A28DDE337009FF910 /* NSDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSDocumentController.swift; sourceTree = "<group>"; };
 		2A53F56627585A0E00ED16DF /* RegularExpressionReferenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionReferenceView.swift; sourceTree = "<group>"; };
@@ -1239,7 +1242,7 @@
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
+		2AACB1CC1D195ABD0073775B /* ShortcutField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuzzyRange.swift; sourceTree = "<group>"; };
 		2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
@@ -1848,7 +1851,7 @@
 			isa = PBXGroup;
 			children = (
 				2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */,
-				2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */,
+				2AACB1CC1D195ABD0073775B /* ShortcutField.swift */,
 			);
 			name = "Key Bindings Edit Pane";
 			sourceTree = "<group>";
@@ -2022,6 +2025,7 @@
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2AEB8B432726220000C2F3DD /* IncompatibleCharacterFormatter.swift */,
 				2A0F3EBF27A26D1200FB27A3 /* TokenFormatter.swift */,
+				2A505C042988D44E002080AA /* ShortcutFormatter.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatStyle.swift */,
 				2A57B98E294ED75900771696 /* RangedIntegerFormatStyle.swift */,
 			);
@@ -2128,6 +2132,7 @@
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 				2A89847C1C3CE1CE006290FF /* Syntax */,
 				2AA14CFA1FA47E9000EAF586 /* Script */,
+				2A505C07298952E5002080AA /* Shortcut */,
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
 				2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */,
@@ -2135,7 +2140,6 @@
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
 				2ACF23AD26302A4C002B5E10 /* Theme+SyntaxStyle.swift */,
-				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2A7FCC45280A367C0070EAB3 /* ValueRange.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
@@ -2147,6 +2151,16 @@
 				2A341D19281EE23C00B85CB6 /* UserActivity.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		2A505C07298952E5002080AA /* Shortcut */ = {
+			isa = PBXGroup;
+			children = (
+				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
+				2A10C5F61FD19237002AB5AE /* KeyBinding.swift */,
+				2A64F24A1D26615A001B229F /* KeyBindingItem.swift */,
+			);
+			name = Shortcut;
 			sourceTree = "<group>";
 		};
 		2A53F5692758912600ED16DF /* SwiftUI */ = {
@@ -2291,8 +2305,6 @@
 				2A64F2471D26327C001B229F /* KeyBindingManager.swift */,
 				2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */,
 				2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */,
-				2A10C5F61FD19237002AB5AE /* KeyBinding.swift */,
-				2A64F24A1D26615A001B229F /* KeyBindingItem.swift */,
 			);
 			name = "Key Binding Managers";
 			sourceTree = "<group>";
@@ -3154,7 +3166,8 @@
 				2A938ACF297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */,
 				2A62F3762699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
-				2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
+				2AACB1CE1D195ABD0073775B /* ShortcutField.swift in Sources */,
+				2A505C052988D44E002080AA /* ShortcutFormatter.swift in Sources */,
 				2A2391E52907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
 				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */,
@@ -3508,7 +3521,8 @@
 				2A938AD0297E4D7B007FBE5F /* SettingsWindowController.swift in Sources */,
 				2A62F3772699C2EA00AB3510 /* ShareMenuItem.swift in Sources */,
 				2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
-				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
+				2AACB1CD1D195ABD0073775B /* ShortcutField.swift in Sources */,
+				2A505C062988D44E002080AA /* ShortcutFormatter.swift in Sources */,
 				2A2391E62907B03800BCFEC9 /* ShrinkPopUpButton.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2AB1BD20287D747200C6FEAF /* SizeGetter.swift in Sources */,

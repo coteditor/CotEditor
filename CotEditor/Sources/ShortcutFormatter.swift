@@ -1,14 +1,14 @@
 //
-//  KeyBinding.swift
+//  ShortcutFormatter.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-12-01.
+//  Created by 1024jp on 2023-01-31.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2023 1024jp
+//  © 2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,11 +23,22 @@
 //  limitations under the License.
 //
 
-import struct Foundation.Selector
+import Foundation
 
-struct KeyBinding: Hashable, Codable {
+final class ShortcutFormatter: Formatter {
     
-    var action: Selector
-    var tag: Int = 0
-    var shortcut: Shortcut?
+    /// convert to plain string
+    override func string(for obj: Any?) -> String? {
+        
+        (obj as? Shortcut)?.symbol
+    }
+    
+    
+    /// format backwards
+    override func getObjectValue(_ obj: AutoreleasingUnsafeMutablePointer<AnyObject?>?, for string: String, errorDescription error: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool {
+        
+        obj?.pointee = Shortcut(symbolRepresentation: string) as AnyObject?
+        
+        return true
+    }
 }

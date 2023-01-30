@@ -31,10 +31,10 @@ final class KeyBindingItem {
     let action: Selector
     let tag: Int
     var shortcut: Shortcut?
-    let defaultShortcut: Shortcut
+    let defaultShortcut: Shortcut?
     
     
-    init(name: String, action: Selector, tag: Int, shortcut: Shortcut?, defaultShortcut: Shortcut) {
+    init(name: String, action: Selector, tag: Int, shortcut: Shortcut?, defaultShortcut: Shortcut?) {
         
         self.name = name
         self.action = action

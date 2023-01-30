@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,42 +29,70 @@ import XCTest
 
 final class ShortcutTests: XCTestCase {
     
+    func testEquivalent() {
+        
+        XCTAssertEqual(Shortcut(modifierMask: [.control], keyEquivalent: "A"),
+                       Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a"))
+        
+        XCTAssertEqual(Shortcut(keySpecChars: "^A"),
+                       Shortcut(keySpecChars: "^$a"))
+    }
+    
+    
     func testKeySpecCharsCreation() {
         
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a").keySpecChars, "^$a")
-        XCTAssertEqual(Shortcut(modifierMask: [.command, .option], keyEquivalent: "b").keySpecChars, "~@b")
-        XCTAssertEqual(Shortcut(modifierMask: [.control], keyEquivalent: "A").keySpecChars, "^$A")  // uppercase for Shift key
+        XCTAssertNil(Shortcut(modifierMask: [], keyEquivalent: ""))
+        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")?.keySpecChars, "^$a")
+        XCTAssertEqual(Shortcut(modifierMask: [.command, .option], keyEquivalent: "b")?.keySpecChars, "~@b")
+        XCTAssertEqual(Shortcut(modifierMask: [.control], keyEquivalent: "A")?.keySpecChars, "^$a")  // uppercase for Shift key
+        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")?.keySpecChars, "^$a")
         
-        XCTAssertEqual(Shortcut(modifierMask: [], keyEquivalent: "a").keySpecChars, "a")
-        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").keySpecChars, "^$")
-        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isValid)
-        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "").isEmpty)
-        XCTAssertTrue(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a").isValid)
-        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "ab").isValid)
-        XCTAssertTrue(Shortcut.none.isEmpty)
+        XCTAssertEqual(Shortcut(modifierMask: [], keyEquivalent: "a")?.keySpecChars, "a")
+        XCTAssertNil(Shortcut(modifierMask: [.control, .shift], keyEquivalent: ""))
+        XCTAssertTrue(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")!.isValid)
+        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "ab")!.isValid)
     }
     
     
     func testStringToShortcut() {
         
-        let shortcut = Shortcut(keySpecChars: "^$a")
+        let shortcut = Shortcut(keySpecChars: "^$a")!
         
         XCTAssertEqual(shortcut.keyEquivalent, "a")
         XCTAssertEqual(shortcut.modifierMask, [.control, .shift])
     }
     
     
+    func testMenuItemShortcut() {
+        
+        let menuItem = NSMenuItem(title: "", action: nil, keyEquivalent: "C")
+        menuItem.keyEquivalentModifierMask = [.command]
+        
+        let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
+        
+        XCTAssertEqual(shortcut?.symbol, "⇧ ⌘ C")
+    }
+    
+    
     func testShortcutSymbols () {
         
         // test modifier symbols
-        XCTAssertEqual(Shortcut(keySpecChars: "^$a").description, "^ ⇧ A")
-        XCTAssertEqual(Shortcut(keySpecChars: "~@b").description, "⌥ ⌘ B")
+        XCTAssertNil(Shortcut(keySpecChars: ""))
+        XCTAssertEqual(Shortcut(keySpecChars: "^$a")?.symbol, "^ ⇧ A")
+        XCTAssertEqual(Shortcut(keySpecChars: "~@b")?.symbol, "⌥ ⌘ B")
         
         // test unprintable keys
         let f10 = String(UnicodeScalar(NSF10FunctionKey)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + f10).description, "⌘ F10")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + f10)?.symbol, "⌘ F10")
         
         let delete = String(UnicodeScalar(NSDeleteCharacter)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "⌘ ⌦")
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete)?.symbol, "⌘ ⌦")
+        
+        // test creation
+        XCTAssertNil(Shortcut(symbolRepresentation: ""))
+        XCTAssertEqual(Shortcut(symbolRepresentation: "^ ⇧ A")?.keySpecChars, "^$a")
+        XCTAssertEqual(Shortcut(symbolRepresentation: "⌥ ⌘ B")?.keySpecChars, "~@b")
+        XCTAssertEqual(Shortcut(symbolRepresentation: "⌘ F10")?.keySpecChars, "@" + f10)
+        XCTAssertEqual(Shortcut(symbolRepresentation: "⌘ ⌦")?.keySpecChars, "@" + delete)
     }
 }

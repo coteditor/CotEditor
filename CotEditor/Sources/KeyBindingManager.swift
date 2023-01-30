@@ -47,13 +47,13 @@ struct InvalidShortcutError: LocalizedError {
                 return String(localized: "Single type is invalid for a shortcut.")
             
             case let .alreadyTaken(name):
-                return String(localized: "“\(self.shortcut.description)” is already taken by the “\(name)” command.")
+                return String(localized: "“\(self.shortcut.symbol)” is already taken by the “\(name)” command.")
                 
             case .shiftOnlyModifier:
                 return String(localized: "The Shift key can be used only with another modifier key.")
                 
             case .unsupported:
-                return String(localized: "The combination “\(self.shortcut.description)” is not supported for the key binding customization.")
+                return String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the key binding customization.")
         }
     }
     
@@ -138,6 +138,20 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     }
     
     
+    /// Find the action that has the same shortcut as the given `shortcut`.
+    ///
+    /// - Parameter shortcut: The shortcut to find.
+    /// - Returns: The command name for the user.
+    func commandName(for shortcut: Shortcut) -> String? {
+        
+        self.outlineTree(defaults: false).lazy
+            .flatMap(\.flatValues)
+            .first(where: { $0.shortcut == shortcut })?
+            .name
+            .trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))  // remove ellipsis
+    }
+    
+    
     /// Save passed-in key binding settings.
     ///
     /// - Parameter keyBindings: The key bindings to save.
@@ -176,11 +190,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     /// - Throws: `InvalidShortcutError`
     /// - Parameters:
     ///   - shortcut: The shortcut to test.
-    ///   - oldShortcut: The previous shortcut for the action whose shortcut to test.
-    final func validate(shortcut: Shortcut, oldShortcut: Shortcut?) throws {
-        
-        // blank key is always valid
-        if shortcut.isEmpty { return }
+    final class func validate(shortcut: Shortcut) throws {
         
         if shortcut.keyEquivalent == "\u{9}" || shortcut.keyEquivalent == "\u{19}" {  // Tab or Backtab
             throw InvalidShortcutError(kind: .unsupported, shortcut: shortcut)
@@ -200,12 +210,11 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         }
         
         // duplication check
-        if shortcut != oldShortcut,
-           let duplicatedShortcut = [MenuKeyBindingManager.shared, SnippetKeyBindingManager.shared]
-            .flatMap(\.keyBindings).first(where: { $0.shortcut == shortcut })
+        if let duplicatedName = [MenuKeyBindingManager.shared,
+                                 SnippetKeyBindingManager.shared].lazy
+            .compactMap({ $0.commandName(for: shortcut) }).first
         {
-            let name = duplicatedShortcut.name.trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))
-            throw InvalidShortcutError(kind: .alreadyTaken(name: name), shortcut: shortcut)
+            throw InvalidShortcutError(kind: .alreadyTaken(name: duplicatedName), shortcut: shortcut)
         }
     }
 }

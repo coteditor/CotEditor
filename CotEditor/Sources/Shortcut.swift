@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ enum ModifierKey: CaseIterable {
     }
     
     
-    /// printable symbol
+    /// Symbol to display in GUI.
     var symbol: String {
         
         switch self {
@@ -67,7 +67,7 @@ enum ModifierKey: CaseIterable {
     }
     
     
-    /// storeble symbol
+    /// Symbol to store.
     var keySpecChar: String {
         
         switch self {
@@ -81,51 +81,67 @@ enum ModifierKey: CaseIterable {
 
 
 
-struct Shortcut: Hashable {
+struct Shortcut {
     
     let modifierMask: NSEvent.ModifierFlags
     let keyEquivalent: String
     
     
-    static let none = Shortcut(modifierMask: [], keyEquivalent: "")
+    // MARK: Lifecycle
     
-    /// Some special keys allowed to asign without modifier keys.
-    private static let singleKeys: [NSEvent.SpecialKey] = [
-        .home,
-        .end,
-        .pageUp,
-        .pageDown,
-    ]
-    
-    
-    init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
+    init?(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
-        // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
-        let needsShift = keyEquivalent.last?.isUppercase == true
+        guard !keyEquivalent.isEmpty else { return nil }
         
         self.modifierMask = modifierMask
-            .intersection(ModifierKey.mask)
-            .union(needsShift ? .shift : [])
         self.keyEquivalent = keyEquivalent
     }
     
     
-    init(keySpecChars: String) {
+    /// Initialize Shortcut from a stored string.
+    ///
+    /// - Parameter keySpecChars: The storeble representation.
+    init?(keySpecChars: String) {
         
-        guard let keyEquivalent = keySpecChars.last else {
-            self.init(modifierMask: [], keyEquivalent: "")
-            return
-        }
+        guard let keyEquivalent = keySpecChars.last else { return nil }
         
         let modifierCharacters = keySpecChars.dropLast()
         let modifierMask = ModifierKey.allCases
             .filter { modifierCharacters.contains($0.keySpecChar) }
             .reduce(into: NSEvent.ModifierFlags()) { $0.formUnion($1.mask) }
         
-        self.init(modifierMask: modifierMask, keyEquivalent: String(keyEquivalent))
+        self.modifierMask = modifierMask
+        self.keyEquivalent = String(keyEquivalent)
     }
     
     
+    /// Initialize Shortcut from a display representation.
+    ///
+    /// - Parameter string: The shortcut string to display in GUI.
+    init?(symbolRepresentation string: String) {
+        
+        let components = string.components(separatedBy: .whitespaces)
+        
+        guard let lastSymbol = components.last, !lastSymbol.isEmpty else { return nil }
+        
+        let keyEquivalent = Self.keyEquivalentSymbols
+            .first { $0.value == lastSymbol }
+            .map(\.key)
+            .map(String.init) ?? lastSymbol.lowercased()
+        
+        let modifierCharacters = components.dropLast().joined()
+        let modifierMask = ModifierKey.allCases
+            .filter { modifierCharacters.contains($0.symbol) }
+            .reduce(into: NSEvent.ModifierFlags()) { $0.formUnion($1.mask) }
+        
+        self.modifierMask = modifierMask
+        self.keyEquivalent = keyEquivalent
+    }
+    
+    
+    /// Initialize Shortcut from a key down event.
+    ///
+    /// - Parameter event: The key down event.
     init?(keyDownEvent event: NSEvent) {
         
         assert(event.type == .keyDown)
@@ -152,56 +168,52 @@ struct Shortcut: Hashable {
             .intersection(ModifierKey.mask)
             .subtracting(ignoresShift ? .shift : [])
         
-        self.init(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
+        self.modifierMask = modifierMask
+        self.keyEquivalent = keyEquivalent
     }
     
     
-    /// unique string to store in plist
+    // MARK: Public Methods
+    
+    /// Unique string to store in plist.
     var keySpecChars: String {
         
+        let shortcut = self.normalized
         let modifierCharacters = ModifierKey.allCases
-            .filter { self.modifierMask.contains($0.mask) }
+            .filter { shortcut.modifierMask.contains($0.mask) }
             .map(\.keySpecChar)
             .joined()
         
-        return modifierCharacters + self.keyEquivalent
+        return modifierCharacters + shortcut.keyEquivalent
     }
     
     
-    /// whether the shortcut key is empty
-    var isEmpty: Bool {
+    /// Shortcut string to display.
+    var symbol: String {
         
-        self.modifierMask.isEmpty && self.keyEquivalent.isEmpty
+        let shortcut = self.normalized
+        
+        return (shortcut.modifierMaskSymbols + [shortcut.keyEquivalentSymbol]).joined(separator: .thinSpace)
     }
     
     
     /// Whether key combination is valid for a shortcut.
-    ///
-    /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {
+        
+        guard self.keyEquivalent.count == 1 else { return false }
         
         if Self.singleKeys.map(\.unicodeScalar).map(String.init).contains(self.keyEquivalent) {
             return true
         }
         
-        return !self.modifierMask.isEmpty && self.keyEquivalent.count == 1
-    }
-    
-    
-    
-    // MARK: Protocols
-    
-    func hash(into hasher: inout Hasher) {
-        
-        hasher.combine(self.modifierMask.rawValue)
-        hasher.combine(self.keyEquivalent)
+        return !self.modifierMask.isEmpty
     }
     
     
     
     // MARK: Private Methods
     
-    /// modifier keys string to display
+    /// Modifier keys string to display.
     private var modifierMaskSymbols: [String] {
         
         ModifierKey.allCases
@@ -210,7 +222,7 @@ struct Shortcut: Hashable {
     }
     
     
-    /// key equivalent to display
+    /// Key equivalent to display.
     private var keyEquivalentSymbol: String {
         
         guard let scalar = self.keyEquivalent.unicodeScalars.first else { return "" }
@@ -220,7 +232,16 @@ struct Shortcut: Hashable {
     }
     
     
-    /// table for key equivalent that have special symbols to display.
+    /// Some special keys allowed to assign without modifier keys.
+    private static let singleKeys: [NSEvent.SpecialKey] = [
+        .home,
+        .end,
+        .pageUp,
+        .pageDown,
+    ]
+    
+    
+    /// Table for key equivalent that have special symbols to display.
     private static let keyEquivalentSymbols: [Unicode.Scalar: String] = [
         NSEvent.SpecialKey
         .upArrow: "↑",
@@ -271,12 +292,47 @@ private extension NSEvent.SpecialKey {
 }
 
 
-extension Shortcut: CustomStringConvertible {
+extension Shortcut: Equatable {
     
-    /// shortcut string to display
-    var description: String {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         
-        (self.modifierMaskSymbols + [self.keyEquivalentSymbol]).joined(separator: .thinSpace)
+        let lhs = lhs.normalized
+        let rhs = rhs.normalized
+        
+        return lhs.modifierMask == rhs.modifierMask && lhs.keyEquivalent == rhs.keyEquivalent
+    }
+    
+    
+    /// Normalize Shortcut by prefering to use the Shift key rather than an upper key equivalent character.
+    ///
+    /// According to the AppKit's specification, the Command-Shift-c and Command-C should be considered to be identical.
+    private var normalized: Self {
+        
+        let needsShift = self.keyEquivalent.last?.isUppercase == true
+        
+        let modifierMask = self.modifierMask.union(needsShift ? .shift : [])
+        let keyEquivalent = self.keyEquivalent.lowercased()
+        
+        return Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)!
+    }
+}
+
+
+extension Shortcut: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        
+        self.symbol
+    }
+}
+
+
+extension Shortcut: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        
+        hasher.combine(self.modifierMask.rawValue)
+        hasher.combine(self.keyEquivalent)
     }
 }
 
@@ -286,8 +342,13 @@ extension Shortcut: Codable {
     init(from decoder: Decoder) throws {
         
         let container = try decoder.singleValueContainer()
+        let string = try container.decode(String.self)
         
-        self.init(keySpecChars: try container.decode(String.self))
+        guard let shortcut = Shortcut(keySpecChars: string) else {
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid key binding format: \(string)")
+        }
+        
+        self = shortcut
     }
     
     

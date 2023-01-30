@@ -78,7 +78,7 @@
         <!--Menu Items-->
         <scene sceneID="fv7-Li-pVg">
             <objects>
-                <viewController title="Menu Items" storyboardIdentifier="MenuKeyBindingsViewController" id="sBQ-LT-Rwm" customClass="KeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Menu Items" id="sBQ-LT-Rwm" customClass="KeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="DCK-MH-F2c">
                         <rect key="frame" x="0.0" y="0.0" width="524" height="336"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -104,7 +104,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="title" editable="NO" width="330.5" minWidth="16" maxWidth="1000" id="jNh-nd-VRd">
+                                                <tableColumn identifier="action" editable="NO" width="330.5" minWidth="16" maxWidth="1000" id="jNh-nd-VRd">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Action">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -139,7 +139,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="keyBindingKey" width="107.5" minWidth="40" maxWidth="1000" id="PSD-Um-TfH">
+                                                <tableColumn identifier="key" width="107.5" minWidth="40" maxWidth="1000" id="PSD-Um-TfH">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -152,13 +152,14 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="bQJ-P8-Oc8">
-                                                            <rect key="frame" x="340" y="2" width="111" height="16"/>
+                                                            <rect key="frame" x="339.5" y="2" width="111" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="TE0-Ap-drx" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="TE0-Ap-drx" customClass="ShortcutField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⌘N" id="T1C-pj-eFu">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="T1C-pj-eFu">
+                                                                        <customFormatter key="formatter" id="fhb-0S-Lkf" customClass="ShortcutFormatter" customModule="CotEditor" customModuleProvider="target"/>
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -167,8 +168,8 @@
                                                                         </allowedInputSourceLocales>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="bQJ-P8-Oc8" name="value" keyPath="objectValue.description" id="85M-IL-06p"/>
-                                                                        <outlet property="delegate" destination="sBQ-LT-Rwm" id="tuA-rs-BE1"/>
+                                                                        <action selector="didEditShortcut:" target="sBQ-LT-Rwm" id="Ycy-gR-Zfs"/>
+                                                                        <binding destination="bQJ-P8-Oc8" name="value" keyPath="objectValue" id="Bs8-XO-Dju"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -273,7 +274,7 @@
         <!--Snippets-->
         <scene sceneID="kiX-WG-Gvf">
             <objects>
-                <viewController title="Snippets" storyboardIdentifier="SnippetKeyBindingsViewController" id="9kQ-W2-4kw" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Snippets" id="9kQ-W2-4kw" customClass="SnippetKeyBindingsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="yh9-JI-r5p">
                         <rect key="frame" x="0.0" y="0.0" width="524" height="360"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1028,14 +1029,14 @@
                                     <rect key="frame" x="1" y="1" width="502" height="174"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="4UU-j5-2K9" viewBased="YES" indentationPerLevel="16" outlineTableColumn="sz5-hl-bZK" id="ehK-hE-MU5">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="16" rowSizeStyle="automatic" headerView="4UU-j5-2K9" viewBased="YES" indentationPerLevel="16" outlineTableColumn="sz5-hl-bZK" id="ehK-hE-MU5">
                                             <rect key="frame" x="0.0" y="0.0" width="502" height="151"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="4"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="title" editable="NO" width="330.5" minWidth="16" maxWidth="1000" id="sz5-hl-bZK">
+                                                <tableColumn identifier="action" editable="NO" width="330.5" minWidth="16" maxWidth="1000" id="sz5-hl-bZK">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Action">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -1070,7 +1071,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="keyBindingKey" width="107.5" minWidth="27.056640625" maxWidth="1000" id="hXU-bV-zlt">
+                                                <tableColumn identifier="key" width="107.5" minWidth="27.056640625" maxWidth="1000" id="hXU-bV-zlt">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -1083,13 +1084,14 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="5Mj-24-vkv">
-                                                            <rect key="frame" x="340" y="2" width="111" height="16"/>
+                                                            <rect key="frame" x="339.5" y="2" width="111" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="CBW-5n-q6l" customClass="ShortcutKeyField" customModule="CotEditor" customModuleProvider="target">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="CBW-5n-q6l" customClass="ShortcutField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="⇧↩" id="X9M-VG-4QE">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" id="X9M-VG-4QE">
+                                                                        <customFormatter key="formatter" id="dL7-Mc-g0v" customClass="ShortcutFormatter" customModule="CotEditor" customModuleProvider="target"/>
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1098,8 +1100,8 @@
                                                                         </allowedInputSourceLocales>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="5Mj-24-vkv" name="value" keyPath="objectValue.description" id="Pxn-rt-vhH"/>
-                                                                        <outlet property="delegate" destination="9kQ-W2-4kw" id="yBG-gT-119"/>
+                                                                        <action selector="didEditShortcut:" target="9kQ-W2-4kw" id="0sc-LY-9AP"/>
+                                                                        <binding destination="5Mj-24-vkv" name="value" keyPath="objectValue" id="B8A-op-AAz"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
