@@ -34,9 +34,6 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Kurzbefehle für Menüeinträge";
 
-/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
-"Dl2-3y-7EJ.title" = "(außer Skript-Menü)";
-
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Zum Ändern eines Kurzbefehls wähle ihn aus, klicke in die Taste-Spalte und drücke die Tasten.";
 

@@ -780,7 +780,6 @@
 "The Shift key can be used only with another modifier key." = "Shiftキーはほかの修飾キーと合わせて使う必要があります。";
 "The combination “%@” is not supported for the key binding customization." = "“%@”の組み合わせはキーバインディングのカスタマイズに対応していません。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
-"Please combine with other keys." = "別のキーと組み合わせてください。";
 
 
 

@@ -34,9 +34,6 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Atalhos para os itens de menus";
 
-/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
-"Dl2-3y-7EJ.title" = "(excluindo o menu Script)";
-
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
 

@@ -160,7 +160,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
                 try KeyBindingManager.validate(shortcut: shortcut)
                 
             } catch let error as InvalidShortcutError {
-                self.warningMessage = error.localizedDescription + " " + (error.recoverySuggestion ?? "")
+                self.warningMessage = error.localizedDescription
                 sender.objectValue = oldShortcut  // reset text field
                 NSSound.beep()
                 

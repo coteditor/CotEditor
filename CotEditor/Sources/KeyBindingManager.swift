@@ -56,12 +56,6 @@ struct InvalidShortcutError: LocalizedError {
                 return String(localized: "The combination “\(self.shortcut.symbol)” is not supported for the key binding customization.")
         }
     }
-    
-    
-    var recoverySuggestion: String? {
-        
-        String(localized: "Please combine with other keys.")
-    }
 }
 
 

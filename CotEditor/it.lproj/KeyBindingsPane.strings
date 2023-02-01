@@ -34,9 +34,6 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Abbreviazioni per gli elementi del menu";
 
-/* Class = "NSTextFieldCell"; title = "(excluding Script menu)"; ObjectID = "Dl2-3y-7EJ"; */
-"Dl2-3y-7EJ.title" = "(tranne per il menu degli Script)";
-
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";
 

@@ -779,7 +779,6 @@
 "The Shift key can be used only with another modifier key." = "Shift düğmesi yalnızca başka bir değiştirici düğme ile kullanılabilir.";
 "The combination “%@” is not supported for the key binding customization." = "“%@” kombinasyonu, düğme bağıntısı özelleştirmesi için desteklenmiyor.";
 "Single type is invalid for a shortcut." = "Bir kısayol için tekli tür geçersizdir.";
-"Please combine with other keys." = "Lütfen başka düğmeler ile ikileyin.";
 
 
 

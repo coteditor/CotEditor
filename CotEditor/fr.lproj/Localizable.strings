@@ -779,7 +779,6 @@
 "The Shift key can be used only with another modifier key." = "La touche Maj ne peut être utilisée que avec une autre touche de modification.";
 "The combination “%@” is not supported for the key binding customization." = "La combinaison « %@ » n’est pas supportée comme combinaison de raccourci clavier.";
 "Single type is invalid for a shortcut." = "Un raccourci clavier ne peut pas être composé que d’une seule touche.";
-"Please combine with other keys." = "Veuillez combiner avec d’autres touches.";
 
 
 
