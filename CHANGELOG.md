@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Add “last modified date” to the print header/footer options.
+- [dev] Update Yams from 5.0.3 to 5.0.4.
 
 
 ### Fixes
