@@ -27,16 +27,14 @@ import struct Foundation.Selector
 
 final class KeyBindingItem {
     
-    let name: String
     let action: Selector
     let tag: Int
     var shortcut: Shortcut?
     let defaultShortcut: Shortcut?
     
     
-    init(name: String, action: Selector, tag: Int, shortcut: Shortcut?, defaultShortcut: Shortcut?) {
+    init(action: Selector, tag: Int, shortcut: Shortcut?, defaultShortcut: Shortcut?) {
         
-        self.name = name
         self.action = action
         self.tag = tag
         self.shortcut = shortcut

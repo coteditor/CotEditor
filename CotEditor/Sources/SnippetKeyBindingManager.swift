@@ -79,14 +79,29 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
-            let name = String(localized: "Insert Text \(index)")
+            let name = self.localizedCommandName(for: index)
             let action = self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
-            let item = KeyBindingItem(name: name, action: action, tag: 0, shortcut: keyBinding?.shortcut, defaultShortcut: nil)
+            let item = KeyBindingItem(action: action, tag: 0, shortcut: keyBinding?.shortcut, defaultShortcut: nil)
             
             return Node(name: name, item: .value(item))
         }
+    }
+    
+    
+    /// Find the action that has the given shortcut.
+    ///
+    /// - Parameter shortcut: The shortcut to find.
+    /// - Returns: The command name for the user.
+    override func commandName(for shortcut: Shortcut) -> String? {
+        
+        guard
+            let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }),
+            let index = self.snippetIndex(for: keyBinding.action)
+        else { return nil }
+        
+        return self.localizedCommandName(for: index)
     }
     
     
@@ -150,5 +165,12 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         else { return nil }
         
         return Int(selector[range])
+    }
+    
+    
+    /// localized command name for given index.
+    private func localizedCommandName(for index: Int) -> String {
+        
+        String(localized: "Insert Text \(index)")
     }
 }

@@ -14,8 +14,9 @@ Change Log
 ### Fixes
 
 - Fix an issue that the print Header/Footer alignment options did not match the selected settings.
+- Fix an issue that some shortcut keys could be used for menu key binding customization without warning even when they are used for existing commands.
 - Fix missing localization in the Find window.
-- Remove outdated description in the Key Binding pane.
+- Remove outdated descriptions in the Key Binding pane.
 
 
 

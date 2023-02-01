@@ -75,6 +75,7 @@ protocol KeyBindingManagerProtocol: AnyObject {
     var defaultKeyBindings: Set<KeyBinding> { get }
     
     func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>]
+    func commandName(for shortcut: Shortcut) -> String?
 }
 
 
@@ -121,6 +122,13 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] { preconditionFailure() }
     
     
+    /// Find the action that has the given shortcut.
+    ///
+    /// - Parameter shortcut: The shortcut to find.
+    /// - Returns: The command name for the user.
+    func commandName(for shortcut: Shortcut) -> String? { preconditionFailure() }
+    
+    
     
     // MARK: Public Methods
     
@@ -135,20 +143,6 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     var usesDefaultKeyBindings: Bool {
         
         self.keyBindings == self.defaultKeyBindings
-    }
-    
-    
-    /// Find the action that has the same shortcut as the given `shortcut`.
-    ///
-    /// - Parameter shortcut: The shortcut to find.
-    /// - Returns: The command name for the user.
-    func commandName(for shortcut: Shortcut) -> String? {
-        
-        self.outlineTree(defaults: false).lazy
-            .flatMap(\.flatValues)
-            .first(where: { $0.shortcut == shortcut })?
-            .name
-            .trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))  // remove ellipsis
     }
     
     

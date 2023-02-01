@@ -92,6 +92,16 @@ final class MenuKeyBindingManager: KeyBindingManager {
     }
     
     
+    /// Find the action that has the given shortcut.
+    ///
+    /// - Parameter shortcut: The shortcut to find.
+    /// - Returns: The command name for the user.
+    override func commandName(for shortcut: Shortcut) -> String? {
+        
+        self.commandName(for: shortcut, in: NSApp.mainMenu!)
+    }
+    
+    
     
     // MARK: Public Methods
     
@@ -270,9 +280,30 @@ final class MenuKeyBindingManager: KeyBindingManager {
                     ? defaultShortcut
                     : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 
-                let item = KeyBindingItem(name: menuItem.title, action: action, tag: menuItem.tag, shortcut: shortcut, defaultShortcut: defaultShortcut)
+                let item = KeyBindingItem(action: action, tag: menuItem.tag, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
                 return Node(name: menuItem.title, item: .value(item))
             }
+    }
+    
+    
+    /// Find the action that has the given shortcut in the menu.
+    private func commandName(for shortcut: Shortcut, in menu: NSMenu) -> String? {
+        
+        menu.items.lazy
+            .filter { $0.action != #selector(ScriptManager.launchScript) }
+            .compactMap { menuItem in
+                if let submenu = menuItem.submenu {
+                    return self.commandName(for: shortcut, in: submenu)
+                }
+                
+                guard shortcut == Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
+                                           keyEquivalent: menuItem.keyEquivalent)
+                else { return nil }
+                
+                return menuItem.title
+            }
+            .first?
+            .trimmingCharacters(in: .whitespaces.union(.punctuationCharacters))  // remove ellipsis
     }
 }
