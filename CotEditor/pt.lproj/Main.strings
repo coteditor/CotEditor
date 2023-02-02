@@ -470,6 +470,8 @@
 "15m-xz-4oB.title" = "Inserir Fragmento";
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
 "dZy-7n-iCq.title" = "Inserir Fragmento";
+/* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
+"OmB-Ve-DEy.title" = "Edit Snippets…";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Inserir Nome da Codificação";

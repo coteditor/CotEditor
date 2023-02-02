@@ -470,6 +470,8 @@
 "15m-xz-4oB.title" = "Insérer un Snippet";
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
 "dZy-7n-iCq.title" = "Insérer un Snippet";
+/* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
+"OmB-Ve-DEy.title" = "Edit Snippets…";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Insérer le nom de l’encodage";

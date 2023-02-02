@@ -331,6 +331,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    /// show Snippet pane in the Settings window
+    @IBAction func showSnippetEditor(_ sender: Any?) {
+        
+        self.settingsWindowController.openPane(.snippets)
+    }
+    
+    
     /// show console panel
     @IBAction func showConsolePanel(_ sender: Any?) {
         

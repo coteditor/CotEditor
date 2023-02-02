@@ -470,6 +470,8 @@
 "15m-xz-4oB.title" = "スニペットを挿入";
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
 "dZy-7n-iCq.title" = "スニペットを挿入";
+/* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
+"OmB-Ve-DEy.title" = "スニペットを編集…";
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "エンコーディング名を挿入";
