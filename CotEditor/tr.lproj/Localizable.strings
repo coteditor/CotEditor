@@ -416,7 +416,7 @@
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "%@ tarihinde yazdırıldı";  // %@ is date
-"Last modified on %@" = "Last modified on %@";  // %@ is date  // FIXME: added
+"Last modified on %@" = "En son %@ tarihinde değiştirildi";  // %@ is date
 
 
 
@@ -442,7 +442,7 @@
 "Document Name" = "Belge Adı";
 "File Path" = "Dosya Yolu";
 "Print Date" = "Yazdırma Tarihi";
-"Last Modified Date" = "Last Modified Date";  // FIXME: added
+"Last Modified Date" = "Son Değiştirilme Tarihi";
 "Page Number" = "Sayfa Numarası";
 "Left" = "Sol";
 "Center" = "Orta";
