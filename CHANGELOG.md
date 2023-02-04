@@ -7,8 +7,8 @@ Change Log
 
 ### New Features
 
-- Add “last modified date” to the print header/footer options.
-- Add “Ignore” option to the inconsistent line endigns alert (close #1427)
+- Add “last modified date” option to the print header/footer options.
+- Add “Ignore” option to the inconsistent line endings alert.
 
 
 ### Improvements
