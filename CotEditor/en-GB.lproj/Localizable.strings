@@ -595,6 +595,7 @@
 "Key Bindings" = "Key Bindings";
 "Print" = "Print";
 
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "The change will be applied first on the next launch.";
@@ -652,7 +653,6 @@
 "Jump to URL" = "Jump to URL";
 
 
-
 // Format pane
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "Duplicate “%@”…";
@@ -660,10 +660,9 @@
 "Reveal “%@” in Finder" = "Reveal “%@” in Finder";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "Are you sure you want to delete the file drop setting for “%@”?";
-"Deleted setting can’t be restored." = "Deleted setting can’t be restored.";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "Select a snippet to edit.";
 
 
 // Print pane
@@ -833,8 +832,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select a snippet to edit." = "Select a snippet to edit.";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";
 

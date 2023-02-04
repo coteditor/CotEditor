@@ -82,5 +82,5 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "変数を挿入";
 
-/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
+"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "スニペットを選択してください。";

@@ -595,6 +595,7 @@
 "Key Bindings" = "Kurzbefehle";
 "Print" = "Drucken";
 
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Die Änderung wird erst beim nächsten Start angewendet.";
@@ -659,10 +660,9 @@
 "Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "Möchtest du die Einstellung von Datei-Drop für „%@“ wirklich löschen?";
-"Deleted setting can’t be restored." = "Gelöschte Einstellung kann nicht wiederhergestellt werden.";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "Wähle ein zu bearbeitendes Snippet.";
 
 
 // Print pane
@@ -832,8 +832,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select a snippet to edit." = "Wähle ein zu bearbeitendes Snippet.";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
 

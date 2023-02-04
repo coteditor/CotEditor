@@ -84,5 +84,5 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "Değişken Ekle";
 
-/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Seçili uzantı yok.";
+/* Class = "CocoaBindingsConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
+"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "Seçili uzantı yok.";  // FIXME: changed

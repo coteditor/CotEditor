@@ -595,6 +595,7 @@
 "Key Bindings" = "Abbreviazioni";
 "Print" = "Stampa";
 
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "La modifica verrà applicata al prossimo avvio.";
@@ -660,10 +661,9 @@
 "Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "Si è sicuri di voler cancellare l’impostazione di “%@” per il File Drop?";
-"Deleted setting can’t be restored." = "Le impostazioni eliminate non potranno essere recuperate.";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "Selezionare l’azione.";  // FIXME: changed
 
 
 // Print pane
@@ -833,8 +833,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select a snippet to edit." = "Selezionare l’azione.";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
 

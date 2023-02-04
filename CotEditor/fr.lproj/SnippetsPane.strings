@@ -82,5 +82,5 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "Insérer une variable";
 
-/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "Aucune extension n’est sélectionnée.";
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
+"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "Aucune extension n’est sélectionnée.";  // FIXME: changed

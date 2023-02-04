@@ -1226,9 +1226,9 @@
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <accessibilityConnection property="title" destination="JWP-To-iJP" id="qgB-0g-43k"/>
-                                                <binding destination="pUX-ce-iNp" name="value" keyPath="selection.formatString" id="ib2-Zw-Ucy">
+                                                <binding destination="pUX-ce-iNp" name="value" keyPath="selection.formatString" id="EZ8-ej-Fvr">
                                                     <dictionary key="options">
-                                                        <string key="NSNoSelectionPlaceholder">No extension is selected.</string>
+                                                        <string key="NSNoSelectionPlaceholder">Select a snippet to edit.</string>
                                                     </dictionary>
                                                 </binding>
                                                 <outlet property="delegate" destination="UtY-fi-jOg" id="m5L-QI-08f"/>

@@ -595,6 +595,7 @@
 "Key Bindings" = "Düğme Bağıntıları";
 "Print" = "Yazdır";
 
+
 // General pane
 // Autosave setting update alert
 "The change will be applied first on the next launch." = "Değişiklikler bir sonraki çalıştırmada uygulanacak.";
@@ -659,10 +660,9 @@
 "Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "“%@” için dosya bırakma ayarını silmek istediğinize emin misiniz?";
-"Deleted setting can’t be restored." = "Silinen ayar geri yüklenemez.";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "Eylem Seç";  // FIXME: changed
 
 
 // Print pane
@@ -832,8 +832,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select a snippet to edit." = "Eylem Seç";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Kırpıntı eklendikten sonraki imleç konumu";
 
