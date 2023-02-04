@@ -25,41 +25,16 @@
 
 import AppKit
 
-extension NSWindow {
-    
-    /// end current editing and restore the current responder afterwards
-    @discardableResult
-    func endEditing() -> Bool {
-        
-        let responder: NSResponder?
-        if let editor = self.firstResponder as? NSTextView, editor.isFieldEditor {
-            // -> Regarding field editors, the real first responder is its delegate.
-            responder = editor.delegate as? NSResponder
-        } else {
-            responder = self.firstResponder
-        }
-        
-        let sucsess = self.makeFirstResponder(nil)
-        
-        // restore current responder
-        if sucsess, let responder {
-            self.makeFirstResponder(responder)
-        }
-        
-        return sucsess
-    }
-}
-
-
-
 extension NSViewController {
     
-    /// end current editing and restore the current responder afterwards
+    /// Safely end the current editing.
+    ///
+    /// - Returns: `true` when the operation is successful; otherwise, `false`.
     @discardableResult
     func endEditing() -> Bool {
         
-        guard self.isViewLoaded else { return true }
+        guard self.isViewLoaded, let window = self.view.window else { return true }
         
-        return self.view.window?.endEditing() ?? false
+        return window.makeFirstResponder(nil)
     }
 }

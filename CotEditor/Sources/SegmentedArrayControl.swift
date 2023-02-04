@@ -63,12 +63,12 @@ final class SegmentedArrayControl: NSSegmentedControl {
         switch sender.selectedSegment {
             case 0:  // add
                 guard arrayController.canAdd else { return assertionFailure() }
-                self.window?.endEditing()
+                self.window?.makeFirstResponder(nil)  // end current editing
                 arrayController.add(sender)
                 
             case 1:  // remove
                 guard arrayController.canRemove else { return assertionFailure() }
-                self.window?.endEditing()
+                self.window?.makeFirstResponder(nil)  // end current editing
                 arrayController.remove(sender)
                 
             default:
