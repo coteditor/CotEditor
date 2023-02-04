@@ -21,7 +21,7 @@ Change Log
 - Fix an issue that the print Header/Footer alignment options did not match the selected settings.
 - Fix an issue that some shortcut keys could be used for menu key binding customization without warning even when they are used for existing commands.
 - Fix missing localization in the Find window.
-- Remove outdated descriptions in the Key Binding pane.
+- Remove outdated descriptions in the Key Bindings pane.
 
 
 
@@ -1183,8 +1183,8 @@ Change Log
 
 ### Improvements
 
-- Remove the default value of the snippet keybindings, that inserts `<br />` with `⇧↩`.
-- [trivial] Remove the snippet keybindings setting migration from CotEdtiror 2.x format and earlier.
+- Remove the default value of the snippet key bindings, that inserts `<br />` with `⇧↩`.
+- [trivial] Remove the snippet key bindings setting migration from CotEdtiror 2.x format and earlier.
 - [beta] Add missing localizations for French.
 
 
@@ -2574,7 +2574,7 @@ no change.
 ### Fixes
 
 - Fix an issue where the sidebar inspector did close inward when the pane was switched after opening the sidebar outward.
-- Fix an issue where snippet keybindings could not be restored to the default correctly.
+- Fix an issue where snippet key bindings could not be restored to the default correctly.
 - Fix an issue where progress spinner for outline menu displayed unwantedly on document opening.
 - [beta] Fix an issue where deletion of replacement set items was not saved.
 - [beta] Fix a possible crash on window closing.
@@ -3616,7 +3616,7 @@ no change.
 - Fix an issue where detected indent style was applied not only on file opening but also every time when file reverted.
 - Fix an issue where “Find All” result view did not open on OS X Mountain Lion.
 - Fix an issue where incompatible character markup could break if undo/redo lossy encoding change continuously.
-- Fix an issue where keybindings of some submenu containers were customizable.
+- Fix an issue where key bindings of some submenu containers were customizable.
 - Fix an issue where tab width could be set as `0`.
 - Fix an issue where tab width changing via AppleScript changes only the tab width in the focused editor rather than all split editors.
 - Fix an issue where byte length display did not update after changing file encoding.
@@ -3968,7 +3968,7 @@ no change.
 - Fix line-wrapping behavior when the line contains a long unbreakable word.
 - Fix an issue where the application crashed by an invalid find regular expression option combination.
 - Fix an issue where the application could crash just after starting dictation.
-- Fix an issue where keybinding setting could fail.
+- Fix an issue where key binding setting could fail.
 - Fix an issue where the scroll bar style didn't change to light color on dark background theme.
 - Fix an issue where the character inspector didn't show up on Mavericks and earlier.
 - Fix an issue where split orientation setting wasn't applied.
