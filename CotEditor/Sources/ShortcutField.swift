@@ -59,14 +59,15 @@ final class ShortcutField: NSTextField {
                 self.objectValue = shortcut
             }
             
-            self.window?.endEditing(for: nil)
+            self.window?.makeFirstResponder(nil)
             
             return nil
         }
         
         if let window = self.window {
             self.windowObserver = NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification, object: window)
-                .sink { [unowned self] _ in window.endEditing(for: self) }
+                .map { $0.object as! NSWindow }
+                .sink { $0.makeFirstResponder(nil) }
         }
         
         return true
