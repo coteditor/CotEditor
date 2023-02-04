@@ -8,6 +8,11 @@ Change Log
 ### New Features
 
 - Add “last modified date” to the print header/footer options.
+- Add “Ignore” option to the inconsistent line endigns alert (close #1427)
+
+
+### Improvements
+
 - [dev] Update Yams from 5.0.3 to 5.0.4.
 
 

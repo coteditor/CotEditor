@@ -276,13 +276,13 @@
 "Don’t ask again for this document" = "Não pergunte novamente para este arquivo";
 "Convert" = "Converter";
 "Review" = "Revisar";
+"Update" = "Ignorar";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "O arquivo foi modificado por outro aplicativo. Também há alterações não salvas no CotEditor.";
 "The file has been changed by another application." = "O arquivo foi modificado por outro aplicativo.";
 "Do you want to keep CotEditor’s edition or update it to the modified edition?" = "Deseja manter a edição do CotEditor ou atualizar para a edição modificada?";
 "Keep CotEditor’s Edition" = "Manter Edição do CotEditor";
-"Update" = "Atualizar";
 
 // Save panel options
 "Give execute permission" = "Conceder permissão de execução";

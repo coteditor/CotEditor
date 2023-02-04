@@ -275,6 +275,7 @@
 "Don’t ask again for this document" = "Bu belge için yeniden sorma";
 "Convert" = "Dönüştür";
 "Review" = "Gözden Geçir";
+"Ignore" = "Yok Say";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "Dosya başka bir uygulama tarafından değiştirilmiş. Aynı zamanda CotEditor’da kaydedilmemiş değişiklikler var.";

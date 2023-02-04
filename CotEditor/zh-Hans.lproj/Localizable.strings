@@ -275,6 +275,7 @@
 "Don’t ask again for this document" = "对该文档不再询问";
 "Convert" = "转换";
 "Review" = "检查";
+"Ignore" = "忽略";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "文件被其他应用更改，CotEditor中还有未保存的变更。";

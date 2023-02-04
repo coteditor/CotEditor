@@ -275,6 +275,7 @@
 "Don’t ask again for this document" = "Für dieses Dokument nicht erneut fragen";
 "Convert" = "Umwandeln";
 "Review" = "Prüfen";
+"Ignore" = "Ignorieren";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "Die Datei wurde von einem anderen Programm geändert. Es gibt auch ungespeicherte Änderungen in CotEditor.";

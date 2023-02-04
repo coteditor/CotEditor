@@ -275,6 +275,7 @@
 "Don’t ask again for this document" = "Don’t ask again for this document";
 "Convert" = "Convert";
 "Review" = "Review";
+"Ignore" = "Ignore";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "The file has been changed by another application. There are also unsaved changes in CotEditor.";

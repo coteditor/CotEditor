@@ -275,6 +275,7 @@
 "Don’t ask again for this document" = "この書類では次回から確認しない";
 "Convert" = "変換";
 "Review" = "確認";
+"Ignore" = "無視";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";

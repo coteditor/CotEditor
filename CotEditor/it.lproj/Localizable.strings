@@ -274,7 +274,8 @@
 "Do you want to convert all line endings to %@, the most common line endings in this document?" = "Si desidera convertire tutti i fine riga in %@, il fine riga più comune del documento?";
 "Don’t ask again for this document" = "Non chiedere più per questo documento";
 "Convert" = "Converti";
-"Review" = "Rivedi";  // this button displays the inconsistent line endings list in the Warnings pane
+"Review" = "Rivedi";
+"Ignore" = "Ignora";
 
 // Modified by an external application alert
 "The file has been changed by another application. There are also unsaved changes in CotEditor." = "Il file è stato modificato da un’altra applicazione. Ci sono anche delle modifiche non salvate in CotEditor.";

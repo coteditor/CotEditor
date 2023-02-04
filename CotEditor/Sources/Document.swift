@@ -1158,6 +1158,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.informativeText = String(localized: "Do you want to convert all line endings to \(self.lineEnding.name), the most common line endings in this document?")
         alert.addButton(withTitle: "Convert".localized)
         alert.addButton(withTitle: "Review".localized)
+        alert.addButton(withTitle: "Ignore".localized)
         alert.showsSuppressionButton = true
         alert.suppressionButton?.title = "Don’t ask again for this document".localized
         alert.showsHelp = true
@@ -1183,6 +1184,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 case .alertSecondButtonReturn:  // == Review
                     (self.windowControllers.first?.contentViewController as? WindowContentViewController)?
                         .showSidebarPane(index: .warnings)
+                case .alertThirdButtonReturn:  // == Ignore
+                    break
                 default:
                     fatalError()
             }
