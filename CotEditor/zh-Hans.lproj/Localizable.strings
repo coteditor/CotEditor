@@ -770,7 +770,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "插入文本%lld";
 
 // Keyboard key name
@@ -779,7 +779,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”已被“%@”命令使用。";
 "The Shift key can be used only with another modifier key." = "Shift键只能配合其他修饰键使用。";
-"The combination “%@” is not supported for the key binding customization." = "组合键“%@”无法被用作自定义绑定键。";
+"The combination “%@” is not supported for the shortcut customization." = "组合键“%@”无法被用作自定义绑定键。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
 
 
@@ -835,7 +835,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select Action" = "选择动作。";
+"Select a snippet." = "选择动作。";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段后的光标位置";
 

@@ -769,7 +769,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "テキストを挿入%lld";
 
 // Keyboard key name
@@ -778,7 +778,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”はすでに“%@”コマンドで使用されています。";
 "The Shift key can be used only with another modifier key." = "Shiftキーはほかの修飾キーと合わせて使う必要があります。";
-"The combination “%@” is not supported for the key binding customization." = "“%@”の組み合わせはキーバインディングのカスタマイズに対応していません。";
+"The combination “%@” is not supported for the shortcut customization." = "“%@”の組み合わせはショートカットのカスタマイズに対応していません。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
 
 
@@ -834,7 +834,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select Action" = "アクションを選択してください。";
+"Select a snippet." = "スニペットを選択してください。";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 

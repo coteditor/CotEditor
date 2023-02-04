@@ -33,7 +33,7 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
+final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     // MARK: Private Properties
     
@@ -41,7 +41,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     @objc private dynamic var warningMessage: String?  // for binding
     @objc private dynamic var isRestorable: Bool = false  // for binding
     
-    @IBOutlet fileprivate weak var outlineView: NSOutlineView?
+    @IBOutlet private weak var outlineView: NSOutlineView?
     
     
     
@@ -52,8 +52,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         super.viewWillAppear()
         
-        self.outlineTree = self.manager.outlineTree(defaults: false)
-        self.isRestorable = !self.manager.usesDefaultKeyBindings
+        self.outlineTree = KeyBindingManager.shared.outlineTree(defaults: false)
+        self.isRestorable = KeyBindingManager.shared.isCustomized
         self.warningMessage = nil
         self.outlineView?.reloadData()
     }
@@ -157,9 +157,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         if let shortcut {
             do {
-                try KeyBindingManager.validate(shortcut: shortcut)
+                try shortcut.checkCustomizationAvailability()
                 
-            } catch let error as InvalidShortcutError {
+            } catch {
                 self.warningMessage = error.localizedDescription
                 sender.objectValue = oldShortcut  // reset text field
                 NSSound.beep()
@@ -168,10 +168,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
                 Task {
                     outlineView.editColumn(column, row: row, with: nil, select: true)
                 }
-                
                 return
-                
-            } catch { assertionFailure("Caught unknown error: \(error)") }
+            }
         }
         
         // successfully update data
@@ -184,7 +182,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// Restore key binding setting to default.
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
-        self.outlineTree = self.manager.outlineTree(defaults: true)
+        self.outlineTree = KeyBindingManager.shared.outlineTree(defaults: true)
         
         self.saveSettings()
         
@@ -198,15 +196,8 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Private Methods
     
-    /// Corresponding key binding manager.
-    fileprivate var manager: KeyBindingManager {
-        
-        MenuKeyBindingManager.shared
-    }
-    
-    
     /// Save current settings.
-    fileprivate func saveSettings() {
+    private func saveSettings() {
         
         let keyBindings = self.outlineTree
             .flatMap(\.flatValues)
@@ -214,100 +205,11 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
         
         do {
-            try self.manager.saveKeyBindings(keyBindings)
+            try KeyBindingManager.shared.saveKeyBindings(keyBindings)
         } catch {
             Swift.print(error)
         }
         
-        self.isRestorable = !self.manager.usesDefaultKeyBindings
-    }
-}
-
-
-
-// MARK: -
-
-final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
-    
-    // MARK: Private Properties
-    
-    @IBOutlet private weak var formatTextView: TokenTextView?
-    @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
-    
-    
-    
-    // MARK: -
-    // MARK: View Controller Methods
-    
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        // setup variable menu
-        self.variableInsertionMenu!.menu!.items += Snippet.Variable.allCases
-            .map { $0.insertionMenuItem(target: self.formatTextView) }
-        
-        self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
-    }
-    
-    
-    
-    // MARK: Key Bindings View Controller Methods
-    
-    /// Corresponding key binding manager.
-    fileprivate override var manager: KeyBindingManager {
-        
-        SnippetKeyBindingManager.shared
-    }
-    
-    
-    /// Restore key binding setting to default.
-    @IBAction override func setToFactoryDefaults(_ sender: Any?) {
-        
-        SnippetKeyBindingManager.shared.restoreSnippets()
-        
-        super.setToFactoryDefaults(sender)
-    }
-    
-    
-    
-    // MARK: Outline View Delegate
-    
-    /// Change row selection in table.
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        
-        guard
-            let outlineView = notification.object as? NSOutlineView,
-            let textView = self.formatTextView
-        else { return assertionFailure() }
-        
-        if outlineView.selectedRow >= 0 {
-            textView.isEditable = true
-            textView.textColor = .labelColor
-            textView.backgroundColor = .textBackgroundColor
-            textView.string = SnippetKeyBindingManager.shared.snippets[outlineView.selectedRow]
-        } else {
-            textView.isEditable = false
-            textView.textColor = .tertiaryLabelColor
-            textView.backgroundColor = .labelColor.withAlphaComponent(0.05)
-            textView.string = String(localized: "Select Action")
-        }
-        
-    }
-    
-    
-    
-    // MARK: Text View Delegate (insertion text view)
-    
-    /// Insertion text did update.
-    func textDidEndEditing(_ notification: Notification) {
-        
-        guard
-            let textView = notification.object as? NSTextView,
-            let index = self.outlineView?.selectedRow,
-            index >= 0
-        else { return }
-        
-        SnippetKeyBindingManager.shared.snippets[index] = textView.string
+        self.isRestorable = KeyBindingManager.shared.isCustomized
     }
 }

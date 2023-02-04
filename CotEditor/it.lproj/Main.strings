@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 CotEditor Project
+//  © 2016-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -465,6 +465,11 @@
 "600.title" = "Normalizzazioni Unicode";
 /* Class = "NSMenuItem"; title = "Unicode Normalization"; ObjectID = "599"; */
 "599.title" = "Normalizzazioni Unicode";
+
+/* Class = "NSMenuItem"; title = "Insert Snippet"; ObjectID = "15m-xz-4oB"; */
+"15m-xz-4oB.title" = "Inserisci snippet";
+/* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
+"dZy-7n-iCq.title" = "Inserisci snippet";
 
 /* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
 "663.title" = "Inserisci nome della codifica";

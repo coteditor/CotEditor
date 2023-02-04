@@ -769,7 +769,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "Insert Text %lld";
 
 // Keyboard key name
@@ -778,7 +778,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@” is already taken by the “%@” command.";
 "The Shift key can be used only with another modifier key." = "The Shift key can be used only with another modifier key.";
-"The combination “%@” is not supported for the key binding customization." = "The combination “%@” is not supported for the key binding customization.";
+"The combination “%@” is not supported for the shortcut customization." = "The combination “%@” is not supported for the shortcut customisation.";
 "Single type is invalid for a shortcut." = "Single type is invalid for a shortcut.";
 
 
@@ -834,7 +834,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select Action" = "Select Action";
+"Select a snippet." = "Select a snippet.";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";
 

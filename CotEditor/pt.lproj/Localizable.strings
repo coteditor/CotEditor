@@ -769,7 +769,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "Inserir Texto %lld";
 
 // Keyboard key name
@@ -778,7 +778,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@.”";
 "The Shift key can be used only with another modifier key." = "A tecla Shift só pode ser usada em conjunto com outra tecla de modificação.";
-"The combination “%@” is not supported for the key binding customization." = "A combinação “%@” não é suportada pela customização de combinações de teclas.";
+"The combination “%@” is not supported for the shortcut customization." = "A combinação “%@” não é suportada pela customização de combinações de teclas.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
 
 
@@ -834,7 +834,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select Action" = "Selecione uma Ação";
+"Select a snippet." = "Selecione uma Ação";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
 

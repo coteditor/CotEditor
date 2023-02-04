@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,49 @@
 
 import Foundation.NSString
 
-struct Snippet {
+struct Snippet: Identifiable, Codable {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case name
+        case shortcut
+        case format
+    }
+    
+    let id = UUID()
+    
+    var name: String
+    var shortcut: Shortcut?
+    var format: String = ""
+}
+
+
+extension Snippet {
+    
+    init?(dictionary: [String: String]) {
+        
+        guard let name = dictionary[CodingKeys.name.stringValue] else { return nil }
+        
+        self.name = name
+        if let keySpecChar = dictionary[CodingKeys.shortcut.stringValue] {
+            self.shortcut = Shortcut(keySpecChars: keySpecChar)
+        }
+        self.format = dictionary[CodingKeys.format.stringValue] ?? ""
+    }
+    
+    
+    var dictionary: [String: String] {
+        
+        var dictionary = [CodingKeys.name: self.name]
+        dictionary[.shortcut] = self.shortcut?.keySpecChars
+        dictionary[.format] = self.format
+        
+        return dictionary.mapKeys(\.stringValue)
+    }
+}
+
+
+extension Snippet {
     
     enum Variable: String, TokenRepresentable {
         
@@ -42,21 +84,6 @@ struct Snippet {
                     return "The insertion point after inserting the snippet."
             }
         }
-    }
-    
-    
-    // MARK: Private Properties
-    
-    private let format: String
-    
-    
-    
-    // MARK: -
-    // MARK: Lifecycle
-    
-    init(_ format: String) {
-        
-        self.format = format
     }
     
     
@@ -89,7 +116,7 @@ struct Snippet {
         
         let format = self.format.replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)
         
-        return Self(format)
+        return Snippet(name: self.name, shortcut: self.shortcut, format: format)
     }
     
     

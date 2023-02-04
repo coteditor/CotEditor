@@ -768,7 +768,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "Text hinzufügen %lld";
 
 // Keyboard key name
@@ -777,7 +777,7 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "„%@“ wird bereits vom „%@“-Befehl verwendet.";
 "The Shift key can be used only with another modifier key." = "Die Shift-Taste kann nur mit einer anderen Modifikatortaste verwendet werden.";
-"The combination “%@” is not supported for the key binding customization." = "Die Kombination „%@“ wird für die Anpassung des Kurzbefehles nicht unterstützt.";
+"The combination “%@” is not supported for the shortcut customization." = "Die Kombination „%@“ wird für die Anpassung des Kurzbefehles nicht unterstützt.";
 "Single type is invalid for a shortcut." = "Einzelne Tasten sind für einen Kurzbefehl ungültig.";
 
 
@@ -833,7 +833,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select Action" = "Wähle eine Aktion.";
+"Select a snippet." = "Wähle ein Snippet.";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
 

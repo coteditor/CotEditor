@@ -53,8 +53,8 @@
 /* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
 "a9m-M2-rgC.title" = "アクションを選択し、キー列をクリックして編集状態にしてから、新しいキーを入力してください。";
 
-/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "sz5-hl-bZK"; */
-"sz5-hl-bZK.headerCell.title" = "アクション";
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
+"sz5-hl-bZK.headerCell.title" = "名前";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
 "hXU-bV-zlt.headerCell.title" = "キー";
 
@@ -62,6 +62,3 @@
 "tuB-9O-QZH.title" = "挿入フォーマット:";
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
 "wC4-qj-3oD.title" = "変数を挿入";
-
-/* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "0Du-JI-ZN7"; */
-"0Du-JI-ZN7.title" = "デフォルトに戻す";
