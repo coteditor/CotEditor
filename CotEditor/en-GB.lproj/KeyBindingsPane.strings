@@ -24,16 +24,6 @@
 //  limitations under the License.
 //
 
-/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
-"sBQ-LT-Rwm.title" = "Menu Items";
-/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
-"9kQ-W2-4kw.title" = "Snippets";
-
-
-
-/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
-"ZYM-tb-Csx.title" = "Shortcuts for menu items";
-
 /* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "To change a shortcut, click the key column, and then type the new keys.";
 
@@ -46,21 +36,3 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
 "CyK-OL-qHa.title" = "Restore Defaults";
-
-
-
-/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
-"eMZ-Mx-JSK.title" = "Shortcuts for preset text insertion";
-
-/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "To change a shortcut, click the key column, and then type the new keys.";
-
-/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
-"sz5-hl-bZK.headerCell.title" = "Name";
-/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
-"hXU-bV-zlt.headerCell.title" = "Key";
-
-/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
-"tuB-9O-QZH.title" = "Insertion Format:";
-/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
-"wC4-qj-3oD.title" = "Insert Variable";

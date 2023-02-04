@@ -1,5 +1,5 @@
 //
-//  FileDropPane.strings (Simplified Chinese)
+//  SnippetsPane.strings (Simplified Chinese)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,8 +24,35 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "File Drop Definitions:"; ObjectID = "3331"; */
-"3331.title" = "文件拖拽定义：";
+/* Class = "NSViewController"; title = "Command"; ObjectID = "Jku-3h-OhR"; */
+"Jku-3h-OhR.title" = "命令";
+/* Class = "NSViewController"; title = "File Drop"; ObjectID = "UtY-fi-jOg"; */
+"UtY-fi-jOg.title" = "文件拖拽";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
+"o3A-71-iGh.title" = "Text to be inserted by a command in the menu or by keyboard shortcut:";  // FIXME: added
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
+"cMF-G3-bl6.headerCell.title" = "Name";  // FIXME: changed
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
+"wer-OB-X46.headerCell.title" = "按键";
+
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[0]" = "添加";
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[1] = "Delete"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[1]" = "删除";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "PaR-eN-FFs"; */
+"PaR-eN-FFs.title" = "按格式插入：";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "vOg-Tt-3ZZ"; */
+"vOg-Tt-3ZZ.title" = "插入变量";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
+"JRQ-2g-t49.title" = "Text to be inserted by dropping files to the editor:";  // FIXME: added
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "扩展名";

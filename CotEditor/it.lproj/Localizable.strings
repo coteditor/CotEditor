@@ -591,7 +591,7 @@
 "Appearance" = "Aspetto";
 "Edit" = "Modifica";
 "Format" = "Formato";
-"File Drop" = "File trascinato";
+"Snippets" = "Snippet";
 "Key Bindings" = "Abbreviazioni";
 "Print" = "Stampa";
 
@@ -834,7 +834,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select a snippet." = "Selezionare l’azione.";  // FIXME: changed
+"Select a snippet to edit." = "Selezionare l’azione.";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
 

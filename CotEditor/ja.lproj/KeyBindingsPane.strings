@@ -24,16 +24,6 @@
 //  limitations under the License.
 //
 
-/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
-"sBQ-LT-Rwm.title" = "メニュー項目";
-/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
-"9kQ-W2-4kw.title" = "スニペット";
-
-
-
-/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
-"ZYM-tb-Csx.title" = "メニュー項目へのショートカット";
-
 /* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "ショートカットを変更するには、キー列をクリックして編集状態にしてから、新しいキーを入力してください。";
 
@@ -46,21 +36,3 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
 "CyK-OL-qHa.title" = "デフォルトに戻す";
-
-
-
-/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
-"eMZ-Mx-JSK.title" = "プリセットしたテキストを挿入するショートカット";
-
-/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "ショートカットを変更するには、キー列をクリックして編集状態にしてから、新しいキーを入力してください。";
-
-/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
-"sz5-hl-bZK.headerCell.title" = "名前";
-/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
-"hXU-bV-zlt.headerCell.title" = "キー";
-
-/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
-"tuB-9O-QZH.title" = "挿入フォーマット:";
-/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
-"wC4-qj-3oD.title" = "変数を挿入";

@@ -109,10 +109,8 @@ extension DefaultKeys {
     static let referToEncodingTag = DefaultKey<Bool>("referToEncodingTag")
     static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
     
-    // Key Bindings
+    // Snippets
     static let snippets = DefaultKey<[[String: String]]>("snippets")
-    
-    // File Drop
     static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
     
     // Print

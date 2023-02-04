@@ -27,13 +27,6 @@ import Foundation.NSString
 
 struct Snippet: Identifiable, Codable {
     
-    private enum CodingKeys: String, CodingKey {
-        
-        case name
-        case shortcut
-        case format
-    }
-    
     let id = UUID()
     
     var name: String
@@ -43,6 +36,14 @@ struct Snippet: Identifiable, Codable {
 
 
 extension Snippet {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case name
+        case shortcut
+        case format
+    }
+    
     
     init?(dictionary: [String: String]) {
         
@@ -62,7 +63,7 @@ extension Snippet {
         dictionary[.shortcut] = self.shortcut?.keySpecChars
         dictionary[.format] = self.format
         
-        return dictionary.mapKeys(\.stringValue)
+        return dictionary.mapKeys(\.rawValue)
     }
 }
 

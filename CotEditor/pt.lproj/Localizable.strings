@@ -592,7 +592,7 @@
 "Appearance" = "Aparência";
 "Edit" = "Edição";
 "Format" = "Formato";
-"File Drop" = "Arquivos Soltos";
+"Snippets" = "Fragmentos";
 "Key Bindings" = "Atalhos";
 "Print" = "Impressão";
 
@@ -834,7 +834,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select a snippet." = "Selecione uma Ação";  // FIXME: changed
+"Select a snippet to edit." = "Selecione uma Ação";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
 

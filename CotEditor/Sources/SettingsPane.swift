@@ -30,7 +30,7 @@ enum SettingsPane: String, CaseIterable {
     case appearance
     case edit
     case format
-    case fileDrop
+    case snippets
     case keyBindings
     case print
     
@@ -48,8 +48,8 @@ enum SettingsPane: String, CaseIterable {
                 return "Edit"
             case .format:
                 return "Format"
-            case .fileDrop:
-                return "File Drop"
+            case .snippets:
+                return "Snippets"
             case .keyBindings:
                 return "Key Bindings"
             case .print:
@@ -71,8 +71,8 @@ enum SettingsPane: String, CaseIterable {
                 return "square.and.pencil"
             case .format:
                 return "doc.text"
-            case .fileDrop:
-                return "arrow.down.doc"
+            case .snippets:
+                return "note.text"
             case .keyBindings:
                 return "keyboard"
             case .print:

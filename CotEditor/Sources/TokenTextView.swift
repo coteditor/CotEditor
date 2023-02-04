@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2020 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -165,17 +165,12 @@ extension TokenRepresentable {
     /// - Returns: A menu item.
     func insertionMenuItem(target: TokenTextView? = nil) -> NSMenuItem {
         
-        let fontSize = NSFont.systemFontSize(for: .small)
-        let font = NSFont.menuFont(ofSize: fontSize)
-        let paragraphStyle = NSParagraphStyle.default.mutable
-        paragraphStyle.firstLineHeadIndent = 2 * fontSize
-        paragraphStyle.headIndent = 2 * fontSize
+        let font = NSFont.menuFont(ofSize: NSFont.systemFontSize(for: .small))
         
         let token = NSAttributedString(string: self.token, attributes: [.font: font])
         let description = NSAttributedString(string: self.localizedDescription,
                                              attributes: [.font: font,
-                                                          .foregroundColor: NSColor.secondaryLabelColor,
-                                                          .paragraphStyle: paragraphStyle])
+                                                          .foregroundColor: NSColor.secondaryLabelColor])
         
         let item = NSMenuItem()
         item.target = target

@@ -1,5 +1,5 @@
 //
-//  FileDropPaneController.swift
+//  FileDropViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,7 +27,7 @@
 import Combine
 import Cocoa
 
-final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
+final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
     
     // MARK: Private Properties
     
@@ -37,13 +37,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
     @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
-    @IBOutlet private weak var formatTextView: TokenTextView? {
-        
-        didSet {
-            // set tokenizer for format text view
-            formatTextView!.tokenizer = FileDropItem.Token.tokenizer
-        }
-    }
+    @IBOutlet private weak var formatTextView: TokenTextView?
     
     
     
@@ -76,6 +70,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             menu.items += FileDropItem.Token.imageTokens
                 .map { $0.insertionMenuItem(target: self.formatTextView) }
         }
+        
+        // set tokenizer for format text view
+        self.formatTextView!.tokenizer = FileDropItem.Token.tokenizer
     }
     
     

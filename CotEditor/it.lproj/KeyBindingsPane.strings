@@ -24,16 +24,6 @@
 //  limitations under the License.
 //
 
-/* Class = "NSViewController"; title = "Menu Items"; ObjectID = "sBQ-LT-Rwm"; */
-"sBQ-LT-Rwm.title" = "Elementi del menu";
-/* Class = "NSViewController"; title = "Snippets"; ObjectID = "9kQ-W2-4kw"; */
-"9kQ-W2-4kw.title" = "Snippet";
-
-
-
-/* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
-"ZYM-tb-Csx.title" = "Abbreviazioni per gli elementi del menu";
-
 /* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
 "Hue-bU-8wr.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";  // FIXME: modifided
 
@@ -46,21 +36,3 @@
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "CyK-OL-qHa"; */
 "CyK-OL-qHa.title" = "Ripristina default";
-
-
-
-/* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
-"eMZ-Mx-JSK.title" = "Abbreviazioni per inserimento di testo preimpostato";
-
-/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";  // FIXME: modifided
-
-/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
-"sz5-hl-bZK.headerCell.title" = "Name";  // FIXME: changed
-/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "hXU-bV-zlt"; */
-"hXU-bV-zlt.headerCell.title" = "Tasto";
-
-/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "tuB-9O-QZH"; */
-"tuB-9O-QZH.title" = "Formato di inserimento:";
-/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "wC4-qj-3oD"; */
-"wC4-qj-3oD.title" = "Inserisci Variabile";

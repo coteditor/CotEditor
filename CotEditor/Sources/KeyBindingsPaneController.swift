@@ -1,5 +1,5 @@
 //
-//  KeyBindingsViewController.swift
+//  KeyBindingsPaneController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -28,12 +28,12 @@ import Cocoa
 /// outlineView column identifier
 private extension NSUserInterfaceItemIdentifier {
     
-    static let action = NSUserInterfaceItemIdentifier("action")
+    static let command = NSUserInterfaceItemIdentifier("command")
     static let key = NSUserInterfaceItemIdentifier("key")
 }
 
 
-final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
+final class KeyBindingsPaneController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
     
     // MARK: Private Properties
     
@@ -58,14 +58,6 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
         self.warningMessage = nil
         self.listView?.reloadData()
         self.outlineView?.reloadData()
-    }
-    
-    
-    override func viewWillDisappear() {
-        
-        super.viewWillDisappear()
-        
-        self.endEditing()
     }
     
     
@@ -117,7 +109,7 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
         else { return nil }
         
         switch identifier {
-            case .action:
+            case .command:
                 cellView.objectValue = node.name
                 
             case .key:
@@ -222,7 +214,7 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
 
 
 
-extension KeyBindingsViewController: NSTableViewDataSource, NSTableViewDelegate {
+extension KeyBindingsPaneController: NSTableViewDataSource, NSTableViewDelegate {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         

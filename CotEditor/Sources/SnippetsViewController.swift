@@ -65,7 +65,8 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         self.variableInsertionMenu!.menu!.items += Snippet.Variable.allCases
             .map { $0.insertionMenuItem(target: self.formatTextView) }
         
-        self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
+        // set tokenizer for format text view
+        self.formatTextView!.tokenizer = Snippet.Variable.tokenizer
     }
     
     
@@ -75,15 +76,8 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         
         self.snippets = SnippetManager.shared.snippets
         self.tableView?.reloadData()
+        self.selectiondDidChange()
         self.warningMessage = nil
-    }
-    
-    
-    override func viewWillDisappear() {
-        
-        super.viewWillDisappear()
-        
-        self.endEditing()
     }
     
     
@@ -175,28 +169,11 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     /// Change selection in the table.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard
-            let tableView = notification.object as? NSTableView,
-            let textView = self.formatTextView
-        else { return assertionFailure() }
-        
-        if tableView.selectedRowIndexes.count == 1 {
-            textView.isEditable = true
-            textView.textColor = .labelColor
-            textView.backgroundColor = .textBackgroundColor
-            textView.string = self.snippets[tableView.selectedRow].format
-        } else {
-            textView.isEditable = false
-            textView.textColor = .secondaryLabelColor
-            textView.backgroundColor = .labelColor.withAlphaComponent(0.04)
-            textView.string = String(localized: "Select a snippet.")
-        }
-        
-        self.addRemoveButton?.setEnabled(!tableView.selectedRowIndexes.isEmpty, forSegment: 1)
+        self.selectiondDidChange()
     }
     
     
-    // MARK: Text View Delegate (insertion text view)
+    // MARK: Text View Delegate (format text view)
     
     /// Insertion text did update.
     func textDidEndEditing(_ notification: Notification) {
@@ -304,6 +281,28 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     private func saveSettings() {
         
         SnippetManager.shared.save(self.snippets)
+    }
+    
+    
+    /// Update controls according to the state of selection in the table view.
+    private func selectiondDidChange() {
+        
+        guard
+            let tableView = self.tableView,
+            let textView = self.formatTextView
+        else { return assertionFailure() }
+        
+        if tableView.selectedRowIndexes.count == 1 {
+            textView.isEditable = true
+            textView.textColor = .textColor
+            textView.string = self.snippets[tableView.selectedRow].format
+        } else {
+            textView.isEditable = false
+            textView.textColor = .disabledControlTextColor
+            textView.string = String(localized: "Select a snippet to edit.")
+        }
+        
+        self.addRemoveButton?.setEnabled(!tableView.selectedRowIndexes.isEmpty, forSegment: 1)
     }
 }
 

@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8L1-iP-mOW">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="k2s-73-fbg">
+            <objects>
+                <viewController id="8L1-iP-mOW" sceneMemberID="viewController">
+                    <view key="view" id="5bv-m9-nez">
+                        <rect key="frame" x="0.0" y="0.0" width="570" height="440"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button identifier="settings_snippets" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kV3-Ig-n3x">
+                                <rect key="frame" x="527" y="16" width="25" height="25"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gOO-ru-gDn">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="1X9-4Z-niC" id="Qgb-DK-GzA"/>
+                                </connections>
+                            </button>
+                            <containerView translatesAutoresizingMaskIntoConstraints="NO" id="S7M-ag-ikd">
+                                <rect key="frame" x="20" y="52" width="530" height="378"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="378" id="Q3e-Zm-PmG"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="gEe-a7-TzV" kind="embed" id="nd7-Ir-vrS"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="S7M-ag-ikd" firstAttribute="top" secondItem="5bv-m9-nez" secondAttribute="top" constant="10" id="M8r-sd-dj6"/>
+                            <constraint firstAttribute="trailing" secondItem="S7M-ag-ikd" secondAttribute="trailing" constant="20" symbolic="YES" id="Rfj-N5-Dux"/>
+                            <constraint firstItem="S7M-ag-ikd" firstAttribute="leading" secondItem="5bv-m9-nez" secondAttribute="leading" constant="20" symbolic="YES" id="SSa-OD-ESC"/>
+                            <constraint firstAttribute="bottom" secondItem="kV3-Ig-n3x" secondAttribute="bottom" constant="20" symbolic="YES" id="g4c-Og-KHa"/>
+                            <constraint firstItem="kV3-Ig-n3x" firstAttribute="top" secondItem="S7M-ag-ikd" secondAttribute="bottom" constant="12" symbolic="YES" id="nMO-AA-XIL"/>
+                            <constraint firstItem="kV3-Ig-n3x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5bv-m9-nez" secondAttribute="leading" constant="20" symbolic="YES" id="oAa-wx-VIj"/>
+                            <constraint firstAttribute="trailing" secondItem="kV3-Ig-n3x" secondAttribute="trailing" constant="20" symbolic="YES" id="pt3-Ug-ow3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="1X9-4Z-niC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-421" y="203"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="U29-ND-aiS">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="unspecified" id="gEe-a7-TzV" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem id="QbH-HM-hwJ"/>
+                        <tabViewItem id="SXo-Mh-X1Z"/>
+                    </tabViewItems>
+                    <tabView key="tabView" misplaced="YES" id="OvP-Cg-Kd2">
+                        <rect key="frame" x="0.0" y="0.0" width="530" height="378"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="gEe-a7-TzV" id="DKk-QA-JqN"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="OvP-Cg-Kd2" id="HuL-sW-Err"/>
+                        <segue destination="Jku-3h-OhR" kind="relationship" relationship="tabItems" id="KQr-1s-8A3"/>
+                        <segue destination="UtY-fi-jOg" kind="relationship" relationship="tabItems" id="POu-ie-psl"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="fKW-ej-gXg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-421" y="728"/>
+        </scene>
+        <!--Command-->
+        <scene sceneID="08h-d7-riI">
+            <objects>
+                <viewController title="Command" id="Jku-3h-OhR" customClass="SnippetsViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="cRl-JP-UAb">
+                        <rect key="frame" x="0.0" y="0.0" width="524" height="330"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ds-uj-8Oj">
+                                <rect key="frame" x="10" y="176" width="504" height="126"/>
+                                <clipView key="contentView" id="57f-vc-YkM">
+                                    <rect key="frame" x="1" y="1" width="502" height="124"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnResizing="NO" emptySelection="NO" autosaveColumns="NO" rowHeight="21" rowSizeStyle="automatic" headerView="974-uz-WFB" viewBased="YES" id="dsG-7b-UG0">
+                                            <rect key="frame" x="0.0" y="0.0" width="502" height="96"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <size key="intercellSpacing" width="8" height="0.0"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="name" editable="NO" width="394" minWidth="16" maxWidth="1000" id="cMF-G3-bl6">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" id="muD-7X-atL">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="WTC-7C-m9U">
+                                                            <rect key="frame" x="4" y="0.0" width="396" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-hR-j2t">
+                                                                    <rect key="frame" x="0.0" y="3" width="396" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Insert Text 0" id="4d2-ZY-6Rc">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <action selector="didEditName:" target="Jku-3h-OhR" id="h0w-qj-58G"/>
+                                                                        <binding destination="WTC-7C-m9U" name="value" keyPath="objectValue" id="Tbm-8r-CNX"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="zxQ-hR-j2t" id="mvr-2v-RPy"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn identifier="key" editable="NO" width="64" minWidth="64" maxWidth="64" id="wer-OB-X46">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" id="Vp7-uB-dGW">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="YN5-88-L3R">
+                                                            <rect key="frame" x="408" y="0.0" width="66" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" id="7e5-Al-qqJ" customClass="ShortcutField" customModule="CotEditor" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="3" width="56" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" id="gro-YE-m3e">
+                                                                        <customFormatter key="formatter" id="6BR-Gb-CrL" customClass="ShortcutFormatter" customModule="CotEditor" customModuleProvider="target"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <allowedInputSourceLocales>
+                                                                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                                        </allowedInputSourceLocales>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <action selector="didEditShortcut:" target="Jku-3h-OhR" id="xGK-2E-G76"/>
+                                                                        <binding destination="YN5-88-L3R" name="value" keyPath="objectValue" id="oQt-9f-v7S"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="7e5-Al-qqJ" id="CyT-9a-tb3"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="Jku-3h-OhR" id="RXI-N6-7wE"/>
+                                                <outlet property="delegate" destination="Jku-3h-OhR" id="uhb-13-lpw"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="09H-dK-VID">
+                                    <rect key="frame" x="1" y="149" width="502" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="dcy-AX-VPZ">
+                                    <rect key="frame" x="414" y="17" width="15" height="130"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="974-uz-WFB">
+                                    <rect key="frame" x="0.0" y="0.0" width="502" height="28"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zir-3g-sBb">
+                                <rect key="frame" x="7" y="146" width="55" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="t2r-oN-Xpf">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment toolTip="Add" image="NSAddTemplate" width="24"/>
+                                        <segment toolTip="Delete" image="NSRemoveTemplate" width="24" enabled="NO" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="addRemove:" target="Jku-3h-OhR" id="3Wy-4X-3Bg"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K7g-Vp-Prr">
+                                <rect key="frame" x="339" y="154" width="177" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="SHORTCUT WARNING MESSAGE" id="rUw-Mw-hR2">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Jku-3h-OhR" name="value" keyPath="warningMessage" id="icx-80-xfY"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6IG-gg-VIP">
+                                <rect key="frame" x="8" y="118" width="108" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Insertion Format:" usesSingleLineMode="YES" id="PaR-eN-FFs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MiJ-hw-gnc">
+                                <rect key="frame" x="350" y="114" width="168" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="6WQ-p5-YBP"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="vOg-Tt-3ZZ" id="vaY-AY-tye">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <menu key="menu" showsStateColumn="NO" id="btm-95-vZA">
+                                        <items>
+                                            <menuItem title="Insert Variable" state="on" hidden="YES" id="vOg-Tt-3ZZ"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uil-3J-Loj">
+                                <rect key="frame" x="10" y="10" width="504" height="100"/>
+                                <clipView key="contentView" id="Aal-ZX-ppq">
+                                    <rect key="frame" x="1" y="1" width="502" height="98"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" layoutManager="textKit1" id="Fbn-Oh-pop" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="502" height="86"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="502" height="86"/>
+                                            <size key="maxSize" width="528" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <allowedInputSourceLocales>
+                                                <string>eu</string>
+                                                <string>hr_BA</string>
+                                                <string>en_CM</string>
+                                                <string>rw_RW</string>
+                                                <string>en_SZ</string>
+                                                <string>tk_Latn</string>
+                                                <string>uz_Arab</string>
+                                                <string>he_IL</string>
+                                                <string>ar</string>
+                                                <string>en_PN</string>
+                                                <string>as</string>
+                                                <string>en_NF</string>
+                                                <string>rwk_TZ</string>
+                                                <string>zh_Hant_TW</string>
+                                                <string>gsw_LI</string>
+                                                <string>th_TH</string>
+                                                <string>ta_IN</string>
+                                                <string>es_EA</string>
+                                                <string>fr_GF</string>
+                                                <string>ar_001</string>
+                                                <string>en_RW</string>
+                                                <string>tr_TR</string>
+                                                <string>de_CH</string>
+                                                <string>ee_TG</string>
+                                                <string>en_NG</string>
+                                                <string>fr_TG</string>
+                                                <string>az</string>
+                                                <string>fr_SC</string>
+                                                <string>es_HN</string>
+                                                <string>en_AG</string>
+                                                <string>ru_KZ</string>
+                                                <string>gsw</string>
+                                                <string>dyo</string>
+                                                <string>so_ET</string>
+                                                <string>zh_Hant_MO</string>
+                                                <string>de_BE</string>
+                                                <string>km_KH</string>
+                                                <string>my_MM</string>
+                                                <string>mgh_MZ</string>
+                                                <string>ee_GH</string>
+                                                <string>es_EC</string>
+                                                <string>kw_GB</string>
+                                                <string>rm_CH</string>
+                                                <string>en_ME</string>
+                                                <string>nyn</string>
+                                                <string>mk_MK</string>
+                                                <string>bs_Cyrl_BA</string>
+                                                <string>ar_MR</string>
+                                                <string>en_BM</string>
+                                                <string>ms_Arab</string>
+                                                <string>en_AI</string>
+                                                <string>gl_ES</string>
+                                                <string>en_PR</string>
+                                                <string>ha_Latn_GH</string>
+                                                <string>ne_IN</string>
+                                                <string>or_IN</string>
+                                                <string>khq_ML</string>
+                                                <string>en_MG</string>
+                                                <string>pt_TL</string>
+                                                <string>en_LC</string>
+                                                <string>ta_SG</string>
+                                                <string>jmc_TZ</string>
+                                                <string>om_ET</string>
+                                                <string>lv_LV</string>
+                                                <string>es_US</string>
+                                                <string>en_PT</string>
+                                                <string>vai_Latn_LR</string>
+                                                <string>to_TO</string>
+                                                <string>en_NL</string>
+                                                <string>cgg_UG</string>
+                                                <string>ta</string>
+                                                <string>en_MH</string>
+                                                <string>iu_Cans_CA</string>
+                                                <string>zu_ZA</string>
+                                                <string>shi_Latn_MA</string>
+                                                <string>brx_IN</string>
+                                                <string>ar_KM</string>
+                                                <string>en_AL</string>
+                                                <string>te</string>
+                                                <string>chr_US</string>
+                                                <string>yo_BJ</string>
+                                                <string>fr_VU</string>
+                                                <string>pa</string>
+                                                <string>tg</string>
+                                                <string>ks_Arab</string>
+                                                <string>kea</string>
+                                                <string>te_IN</string>
+                                                <string>th</string>
+                                                <string>fr_RE</string>
+                                                <string>ur_IN</string>
+                                                <string>yo_NG</string>
+                                                <string>ti</string>
+                                                <string>guz_KE</string>
+                                                <string>tk</string>
+                                                <string>kl_GL</string>
+                                                <string>ksf_CM</string>
+                                                <string>mua_CM</string>
+                                                <string>lag_TZ</string>
+                                                <string>fr_TN</string>
+                                                <string>es_PA</string>
+                                                <string>pl_PL</string>
+                                                <string>to</string>
+                                                <string>hi_IN</string>
+                                                <string>dje_NE</string>
+                                                <string>es_GQ</string>
+                                                <string>kok_IN</string>
+                                                <string>pl</string>
+                                                <string>tr</string>
+                                                <string>bem</string>
+                                                <string>ha</string>
+                                                <string>ckb</string>
+                                                <string>lg</string>
+                                                <string>fr_GN</string>
+                                                <string>en_PW</string>
+                                                <string>en_NO</string>
+                                                <string>nyn_UG</string>
+                                                <string>sr_Latn_RS</string>
+                                                <string>pa_Guru</string>
+                                                <string>he</string>
+                                                <string>swc_CD</string>
+                                                <string>ug_Arab</string>
+                                                <string>lu_CD</string>
+                                                <string>mgo_CM</string>
+                                                <string>sn_ZW</string>
+                                                <string>en_BS</string>
+                                                <string>ps_AF</string>
+                                                <string>da</string>
+                                                <string>ms_Latn_SG</string>
+                                                <string>ps</string>
+                                                <string>ln</string>
+                                                <string>pt</string>
+                                                <string>iu_Cans</string>
+                                                <string>hi</string>
+                                                <string>lo</string>
+                                                <string>ebu</string>
+                                                <string>de</string>
+                                                <string>gu_IN</string>
+                                                <string>seh</string>
+                                                <string>en_CX</string>
+                                                <string>en_ZM</string>
+                                                <string>tzm_Latn_MA</string>
+                                                <string>fr_HT</string>
+                                                <string>fr_GP</string>
+                                                <string>lt</string>
+                                                <string>lu</string>
+                                                <string>ln_CD</string>
+                                                <string>vai_Latn</string>
+                                                <string>el_GR</string>
+                                                <string>lv</string>
+                                                <string>en_KE</string>
+                                                <string>sbp</string>
+                                                <string>hr</string>
+                                                <string>en_CY</string>
+                                                <string>es_GT</string>
+                                                <string>twq_NE</string>
+                                                <string>zh_Hant_HK</string>
+                                                <string>kln_KE</string>
+                                                <string>fr_GQ</string>
+                                                <string>chr</string>
+                                                <string>hu</string>
+                                                <string>es_UY</string>
+                                                <string>fr_CA</string>
+                                                <string>en_NR</string>
+                                                <string>mer</string>
+                                                <string>shi</string>
+                                                <string>es_PE</string>
+                                                <string>fr_SN</string>
+                                                <string>bez</string>
+                                                <string>sw_TZ</string>
+                                                <string>kkj</string>
+                                                <string>hy</string>
+                                                <string>kk_Cyrl_KZ</string>
+                                                <string>en_CZ</string>
+                                                <string>teo_KE</string>
+                                                <string>teo</string>
+                                                <string>dz_BT</string>
+                                                <string>ar_JO</string>
+                                                <string>mer_KE</string>
+                                                <string>khq</string>
+                                                <string>ln_CF</string>
+                                                <string>nn_NO</string>
+                                                <string>en_MO</string>
+                                                <string>ar_TD</string>
+                                                <string>dz</string>
+                                                <string>ses</string>
+                                                <string>en_BW</string>
+                                                <string>en_AS</string>
+                                                <string>ar_IL</string>
+                                                <string>ms_Latn_BN</string>
+                                                <string>bo_CN</string>
+                                                <string>nnh</string>
+                                                <string>teo_UG</string>
+                                                <string>hy_AM</string>
+                                                <string>ln_CG</string>
+                                                <string>sr_Latn_BA</string>
+                                                <string>en_MP</string>
+                                                <string>ksb_TZ</string>
+                                                <string>ar_SA</string>
+                                                <string>ar_LY</string>
+                                                <string>en_AT</string>
+                                                <string>so_KE</string>
+                                                <string>fr_CD</string>
+                                                <string>af_NA</string>
+                                                <string>en_NU</string>
+                                                <string>es_PH</string>
+                                                <string>en_KI</string>
+                                                <string>en_JE</string>
+                                                <string>lkt</string>
+                                                <string>en_AU</string>
+                                                <string>fa_IR</string>
+                                                <string>uz_Latn_UZ</string>
+                                                <string>ky_Cyrl</string>
+                                                <string>zh_Hans_CN</string>
+                                                <string>ewo_CM</string>
+                                                <string>fr_PF</string>
+                                                <string>ca_IT</string>
+                                                <string>en_BZ</string>
+                                                <string>ar_KW</string>
+                                                <string>pt_GW</string>
+                                                <string>fr_FR</string>
+                                                <string>am_ET</string>
+                                                <string>en_VC</string>
+                                                <string>fr_DJ</string>
+                                                <string>fr_CF</string>
+                                                <string>es_SV</string>
+                                                <string>en_MS</string>
+                                                <string>pt_ST</string>
+                                                <string>ar_SD</string>
+                                                <string>luy_KE</string>
+                                                <string>swc</string>
+                                                <string>de_LI</string>
+                                                <string>fr_CG</string>
+                                                <string>zh_Hans_SG</string>
+                                                <string>en_MT</string>
+                                                <string>ewo</string>
+                                                <string>af_ZA</string>
+                                                <string>om_KE</string>
+                                                <string>nl_SR</string>
+                                                <string>es_ES</string>
+                                                <string>es_DO</string>
+                                                <string>ar_IQ</string>
+                                                <string>fr_CH</string>
+                                                <string>nnh_CM</string>
+                                                <string>es_419</string>
+                                                <string>en_MU</string>
+                                                <string>en_US_POSIX</string>
+                                                <string>yav_CM</string>
+                                                <string>luo_KE</string>
+                                                <string>dua_CM</string>
+                                                <string>et_EE</string>
+                                                <string>en_IE</string>
+                                                <string>ak_GH</string>
+                                                <string>rwk</string>
+                                                <string>es_CL</string>
+                                                <string>kea_CV</string>
+                                                <string>fr_CI</string>
+                                                <string>fr_BE</string>
+                                                <string>en_NZ</string>
+                                                <string>ky_Cyrl_KG</string>
+                                                <string>en_LR</string>
+                                                <string>en_KN</string>
+                                                <string>nb_SJ</string>
+                                                <string>sg</string>
+                                                <string>sr_Cyrl_RS</string>
+                                                <string>ru_RU</string>
+                                                <string>en_ZW</string>
+                                                <string>sv_AX</string>
+                                                <string>si</string>
+                                                <string>ga_IE</string>
+                                                <string>en_VG</string>
+                                                <string>sk</string>
+                                                <string>agq_CM</string>
+                                                <string>fr_BF</string>
+                                                <string>naq_NA</string>
+                                                <string>sl</string>
+                                                <string>en_MW</string>
+                                                <string>mr_IN</string>
+                                                <string>az_Latn</string>
+                                                <string>en_LS</string>
+                                                <string>de_AT</string>
+                                                <string>ka</string>
+                                                <string>sn</string>
+                                                <string>sr_Latn_ME</string>
+                                                <string>fr_NC</string>
+                                                <string>so</string>
+                                                <string>is_IS</string>
+                                                <string>twq</string>
+                                                <string>ig_NG</string>
+                                                <string>sq</string>
+                                                <string>fo_FO</string>
+                                                <string>sr</string>
+                                                <string>tzm</string>
+                                                <string>ga</string>
+                                                <string>om</string>
+                                                <string>en_LT</string>
+                                                <string>bas_CM</string>
+                                                <string>ki</string>
+                                                <string>nl_BE</string>
+                                                <string>ar_QA</string>
+                                                <string>sv</string>
+                                                <string>kk</string>
+                                                <string>sw</string>
+                                                <string>es_CO</string>
+                                                <string>az_Latn_AZ</string>
+                                                <string>rn_BI</string>
+                                                <string>or</string>
+                                                <string>kl</string>
+                                                <string>ca</string>
+                                                <string>en_VI</string>
+                                                <string>km</string>
+                                                <string>kn</string>
+                                                <string>en_LU</string>
+                                                <string>fr_SY</string>
+                                                <string>ar_TN</string>
+                                                <string>en_JM</string>
+                                                <string>fr_PM</string>
+                                                <string>ko</string>
+                                                <string>fr_NE</string>
+                                                <string>fr_MA</string>
+                                                <string>gl</string>
+                                                <string>ru_MD</string>
+                                                <string>saq_KE</string>
+                                                <string>ks</string>
+                                                <string>fr_CM</string>
+                                                <string>gv_IM</string>
+                                                <string>fr_BI</string>
+                                                <string>en_LV</string>
+                                                <string>ks_Arab_IN</string>
+                                                <string>es_NI</string>
+                                                <string>en_GB</string>
+                                                <string>kw</string>
+                                                <string>nl_SX</string>
+                                                <string>dav_KE</string>
+                                                <string>tr_CY</string>
+                                                <string>ky</string>
+                                                <string>en_UG</string>
+                                                <string>tzm_Latn</string>
+                                                <string>en_TC</string>
+                                                <string>nus_SD</string>
+                                                <string>ar_EG</string>
+                                                <string>fr_BJ</string>
+                                                <string>gu</string>
+                                                <string>es_PR</string>
+                                                <string>fr_RW</string>
+                                                <string>sr_Cyrl_BA</string>
+                                                <string>gv</string>
+                                                <string>fr_MC</string>
+                                                <string>cs</string>
+                                                <string>bez_TZ</string>
+                                                <string>es_CR</string>
+                                                <string>asa_TZ</string>
+                                                <string>ar_EH</string>
+                                                <string>ms_Arab_BN</string>
+                                                <string>mn_Cyrl</string>
+                                                <string>sbp_TZ</string>
+                                                <string>ha_Latn_NE</string>
+                                                <string>lt_LT</string>
+                                                <string>mfe</string>
+                                                <string>en_GD</string>
+                                                <string>cy</string>
+                                                <string>ca_FR</string>
+                                                <string>es_BO</string>
+                                                <string>fr_BL</string>
+                                                <string>bn_IN</string>
+                                                <string>uz_Cyrl_UZ</string>
+                                                <string>az_Cyrl</string>
+                                                <string>en_IM</string>
+                                                <string>sw_KE</string>
+                                                <string>en_SB</string>
+                                                <string>ur_PK</string>
+                                                <string>pa_Arab</string>
+                                                <string>haw_US</string>
+                                                <string>ar_SO</string>
+                                                <string>en_IN</string>
+                                                <string>ha_Latn</string>
+                                                <string>fil</string>
+                                                <string>fr_MF</string>
+                                                <string>en_WS</string>
+                                                <string>es_CU</string>
+                                                <string>ja_JP</string>
+                                                <string>en_SC</string>
+                                                <string>en_IO</string>
+                                                <string>pt_PT</string>
+                                                <string>en_HK</string>
+                                                <string>en_GG</string>
+                                                <string>fr_MG</string>
+                                                <string>de_LU</string>
+                                                <string>ms_Latn_MY</string>
+                                                <string>tg_Cyrl</string>
+                                                <string>en_SD</string>
+                                                <string>shi_Tfng</string>
+                                                <string>ln_AO</string>
+                                                <string>ug_Arab_CN</string>
+                                                <string>as_IN</string>
+                                                <string>en_GH</string>
+                                                <string>ro_RO</string>
+                                                <string>jgo_CM</string>
+                                                <string>dua</string>
+                                                <string>en_UM</string>
+                                                <string>en_SE</string>
+                                                <string>kn_IN</string>
+                                                <string>en_KY</string>
+                                                <string>vun_TZ</string>
+                                                <string>kln</string>
+                                                <string>en_GI</string>
+                                                <string>ca_ES</string>
+                                                <string>rof</string>
+                                                <string>pt_CV</string>
+                                                <string>kok</string>
+                                                <string>pt_BR</string>
+                                                <string>ar_DJ</string>
+                                                <string>zh</string>
+                                                <string>fi_FI</string>
+                                                <string>tg_Cyrl_TJ</string>
+                                                <string>es_PY</string>
+                                                <string>ar_SS</string>
+                                                <string>mua</string>
+                                                <string>sr_Cyrl_ME</string>
+                                                <string>vai_Vaii_LR</string>
+                                                <string>en_001</string>
+                                                <string>xog_UG</string>
+                                                <string>en_TK</string>
+                                                <string>si_LK</string>
+                                                <string>en_SG</string>
+                                                <string>nl_NL</string>
+                                                <string>vi</string>
+                                                <string>sv_SE</string>
+                                                <string>pt_AO</string>
+                                                <string>fr_DZ</string>
+                                                <string>ca_AD</string>
+                                                <string>xog</string>
+                                                <string>en_IS</string>
+                                                <string>nb</string>
+                                                <string>seh_MZ</string>
+                                                <string>es_AR</string>
+                                                <string>sk_SK</string>
+                                                <string>en_SH</string>
+                                                <string>ti_ER</string>
+                                                <string>nd</string>
+                                                <string>az_Cyrl_AZ</string>
+                                                <string>zu</string>
+                                                <string>ne</string>
+                                                <string>nd_ZW</string>
+                                                <string>el_CY</string>
+                                                <string>en_IT</string>
+                                                <string>nl_BQ</string>
+                                                <string>da_GL</string>
+                                                <string>ja</string>
+                                                <string>rm</string>
+                                                <string>fr_ML</string>
+                                                <string>rn</string>
+                                                <string>en_VU</string>
+                                                <string>rof_TZ</string>
+                                                <string>ro</string>
+                                                <string>ebu_KE</string>
+                                                <string>ru_KG</string>
+                                                <string>en_SI</string>
+                                                <string>sg_CF</string>
+                                                <string>mfe_MU</string>
+                                                <string>nl</string>
+                                                <string>brx</string>
+                                                <string>bs_Latn</string>
+                                                <string>fa</string>
+                                                <string>zgh_MA</string>
+                                                <string>en_GM</string>
+                                                <string>shi_Latn</string>
+                                                <string>en_FI</string>
+                                                <string>nn</string>
+                                                <string>en_EE</string>
+                                                <string>ru</string>
+                                                <string>kam_KE</string>
+                                                <string>vai_Vaii</string>
+                                                <string>ar_ER</string>
+                                                <string>ti_ET</string>
+                                                <string>rw</string>
+                                                <string>ff</string>
+                                                <string>luo</string>
+                                                <string>fa_AF</string>
+                                                <string>ha_Latn_NG</string>
+                                                <string>nl_CW</string>
+                                                <string>en_HR</string>
+                                                <string>en_FJ</string>
+                                                <string>fi</string>
+                                                <string>pt_MO</string>
+                                                <string>be</string>
+                                                <string>en_US</string>
+                                                <string>en_TO</string>
+                                                <string>en_SK</string>
+                                                <string>bg</string>
+                                                <string>ru_BY</string>
+                                                <string>it_IT</string>
+                                                <string>ml_IN</string>
+                                                <string>gsw_CH</string>
+                                                <string>fo</string>
+                                                <string>sv_FI</string>
+                                                <string>en_FK</string>
+                                                <string>nus</string>
+                                                <string>ta_LK</string>
+                                                <string>vun</string>
+                                                <string>sr_Latn</string>
+                                                <string>fr</string>
+                                                <string>en_SL</string>
+                                                <string>bm</string>
+                                                <string>ar_BH</string>
+                                                <string>guz</string>
+                                                <string>bn</string>
+                                                <string>bo</string>
+                                                <string>ar_SY</string>
+                                                <string>lo_LA</string>
+                                                <string>ne_NP</string>
+                                                <string>uz_Latn</string>
+                                                <string>be_BY</string>
+                                                <string>es_IC</string>
+                                                <string>sr_Latn_XK</string>
+                                                <string>ar_MA</string>
+                                                <string>pa_Guru_IN</string>
+                                                <string>br</string>
+                                                <string>luy</string>
+                                                <string>kde_TZ</string>
+                                                <string>bs</string>
+                                                <string>hu_HU</string>
+                                                <string>ar_AE</string>
+                                                <string>en_HU</string>
+                                                <string>zh_Hans</string>
+                                                <string>en_FM</string>
+                                                <string>sq_AL</string>
+                                                <string>ko_KP</string>
+                                                <string>en_150</string>
+                                                <string>en_DE</string>
+                                                <string>fr_MQ</string>
+                                                <string>en_CA</string>
+                                                <string>en_TR</string>
+                                                <string>ro_MD</string>
+                                                <string>es_VE</string>
+                                                <string>fr_WF</string>
+                                                <string>mt_MT</string>
+                                                <string>kab</string>
+                                                <string>nmg_CM</string>
+                                                <string>ru_UA</string>
+                                                <string>fr_MR</string>
+                                                <string>tk_Latn_TM</string>
+                                                <string>zh_Hans_MO</string>
+                                                <string>mn_Cyrl_MN</string>
+                                                <string>bs_Cyrl</string>
+                                                <string>sw_UG</string>
+                                                <string>ko_KR</string>
+                                                <string>en_DG</string>
+                                                <string>bo_IN</string>
+                                                <string>en_CC</string>
+                                                <string>shi_Tfng_MA</string>
+                                                <string>lag</string>
+                                                <string>it_SM</string>
+                                                <string>en_TT</string>
+                                                <string>ms_Arab_MY</string>
+                                                <string>sq_MK</string>
+                                                <string>ms_Latn</string>
+                                                <string>bem_ZM</string>
+                                                <string>kde</string>
+                                                <string>ar_OM</string>
+                                                <string>cgg</string>
+                                                <string>bas</string>
+                                                <string>kam</string>
+                                                <string>zh_Hant</string>
+                                                <string>es_MX</string>
+                                                <string>en_GU</string>
+                                                <string>fr_MU</string>
+                                                <string>fr_KM</string>
+                                                <string>ar_LB</string>
+                                                <string>en_BA</string>
+                                                <string>en_TV</string>
+                                                <string>sr_Cyrl</string>
+                                                <string>dje</string>
+                                                <string>kab_DZ</string>
+                                                <string>fil_PH</string>
+                                                <string>vai</string>
+                                                <string>hr_HR</string>
+                                                <string>bs_Latn_BA</string>
+                                                <string>nl_AW</string>
+                                                <string>dav</string>
+                                                <string>so_SO</string>
+                                                <string>ar_PS</string>
+                                                <string>en_FR</string>
+                                                <string>uz_Cyrl</string>
+                                                <string>ff_SN</string>
+                                                <string>en_BB</string>
+                                                <string>ki_KE</string>
+                                                <string>naq</string>
+                                                <string>en_SS</string>
+                                                <string>mg_MG</string>
+                                                <string>mas_KE</string>
+                                                <string>en_RO</string>
+                                                <string>en_PG</string>
+                                                <string>mgh</string>
+                                                <string>dyo_SN</string>
+                                                <string>mas</string>
+                                                <string>agq</string>
+                                                <string>bn_BD</string>
+                                                <string>haw</string>
+                                                <string>nb_NO</string>
+                                                <string>da_DK</string>
+                                                <string>en_DK</string>
+                                                <string>saq</string>
+                                                <string>ug</string>
+                                                <string>cy_GB</string>
+                                                <string>fr_YT</string>
+                                                <string>jmc</string>
+                                                <string>ses_ML</string>
+                                                <string>en_PH</string>
+                                                <string>de_DE</string>
+                                                <string>ar_YE</string>
+                                                <string>bm_ML</string>
+                                                <string>yo</string>
+                                                <string>lkt_US</string>
+                                                <string>uz_Arab_AF</string>
+                                                <string>jgo</string>
+                                                <string>uk</string>
+                                                <string>sl_SI</string>
+                                                <string>en_CH</string>
+                                                <string>asa</string>
+                                                <string>lg_UG</string>
+                                                <string>mgo</string>
+                                                <string>id_ID</string>
+                                                <string>en_NA</string>
+                                                <string>en_GY</string>
+                                                <string>zgh</string>
+                                                <string>pt_MZ</string>
+                                                <string>fr_LU</string>
+                                                <string>kk_Cyrl</string>
+                                                <string>mas_TZ</string>
+                                                <string>ur</string>
+                                                <string>en_DM</string>
+                                                <string>ta_MY</string>
+                                                <string>en_BE</string>
+                                                <string>mg</string>
+                                                <string>fr_GA</string>
+                                                <string>ka_GE</string>
+                                                <string>nmg</string>
+                                                <string>en_TZ</string>
+                                                <string>eu_ES</string>
+                                                <string>ar_DZ</string>
+                                                <string>id</string>
+                                                <string>so_DJ</string>
+                                                <string>yav</string>
+                                                <string>mk</string>
+                                                <string>pa_Arab_PK</string>
+                                                <string>ml</string>
+                                                <string>en_ER</string>
+                                                <string>ig</string>
+                                                <string>mn</string>
+                                                <string>ksb</string>
+                                                <string>uz</string>
+                                                <string>vi_VN</string>
+                                                <string>ii</string>
+                                                <string>en_PK</string>
+                                                <string>ee</string>
+                                                <string>mr</string>
+                                                <string>ms</string>
+                                                <string>en_ES</string>
+                                                <string>sq_XK</string>
+                                                <string>it_CH</string>
+                                                <string>mt</string>
+                                                <string>en_CK</string>
+                                                <string>br_FR</string>
+                                                <string>sr_Cyrl_XK</string>
+                                                <string>ksf</string>
+                                                <string>en_SX</string>
+                                                <string>bg_BG</string>
+                                                <string>en_PL</string>
+                                                <string>af</string>
+                                                <string>el</string>
+                                                <string>cs_CZ</string>
+                                                <string>fr_TD</string>
+                                                <string>zh_Hans_HK</string>
+                                                <string>is</string>
+                                                <string>my</string>
+                                                <string>en</string>
+                                                <string>it</string>
+                                                <string>ii_CN</string>
+                                                <string>eo</string>
+                                                <string>iu</string>
+                                                <string>en_ZA</string>
+                                                <string>en_AD</string>
+                                                <string>ak</string>
+                                                <string>en_RU</string>
+                                                <string>kkj_CM</string>
+                                                <string>am</string>
+                                                <string>es</string>
+                                                <string>et</string>
+                                                <string>uk_UA</string>
+                                            </allowedInputSourceLocales>
+                                            <connections>
+                                                <accessibilityConnection property="title" destination="6IG-gg-VIP" id="mTh-yr-rjn"/>
+                                                <outlet property="delegate" destination="Jku-3h-OhR" id="PJt-a1-j9B"/>
+                                            </connections>
+                                        </textView>
+                                    </subviews>
+                                    <edgeInsets key="contentInsets" left="0.0" right="0.0" top="6" bottom="6"/>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="gA0-oF-WUh"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="sU0-Fi-Pyv">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="IKs-Tg-JFh">
+                                    <rect key="frame" x="489" y="1" width="14" height="58"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DUN-ho-Mkq">
+                                <rect key="frame" x="8" y="310" width="508" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Text to be inserted by a command in the menu or by keyboard shortcut:" id="o3A-71-iGh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="uil-3J-Loj" secondAttribute="trailing" constant="10" id="2bN-Ds-oXj"/>
+                            <constraint firstItem="zir-3g-sBb" firstAttribute="top" secondItem="7ds-uj-8Oj" secondAttribute="bottom" constant="8" symbolic="YES" id="7UM-XW-eM2"/>
+                            <constraint firstAttribute="trailing" secondItem="DUN-ho-Mkq" secondAttribute="trailing" constant="10" id="B2J-US-bt5"/>
+                            <constraint firstAttribute="trailing" secondItem="7ds-uj-8Oj" secondAttribute="trailing" constant="10" id="BRn-TL-1Y0"/>
+                            <constraint firstItem="6IG-gg-VIP" firstAttribute="top" secondItem="zir-3g-sBb" secondAttribute="bottom" constant="14" id="D3C-tE-nK1"/>
+                            <constraint firstItem="7ds-uj-8Oj" firstAttribute="top" secondItem="DUN-ho-Mkq" secondAttribute="bottom" constant="8" symbolic="YES" id="KJL-mI-WLL"/>
+                            <constraint firstAttribute="trailing" secondItem="K7g-Vp-Prr" secondAttribute="trailing" constant="10" id="Rc5-nB-GqI"/>
+                            <constraint firstItem="uil-3J-Loj" firstAttribute="top" secondItem="6IG-gg-VIP" secondAttribute="bottom" constant="8" symbolic="YES" id="Slp-1l-h4D"/>
+                            <constraint firstItem="K7g-Vp-Prr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zir-3g-sBb" secondAttribute="trailing" constant="8" symbolic="YES" id="UMf-Gh-vCO"/>
+                            <constraint firstItem="7ds-uj-8Oj" firstAttribute="leading" secondItem="cRl-JP-UAb" secondAttribute="leading" constant="10" id="eBc-zU-BRk"/>
+                            <constraint firstItem="MiJ-hw-gnc" firstAttribute="trailing" secondItem="uil-3J-Loj" secondAttribute="trailing" id="fv0-Ed-MlE"/>
+                            <constraint firstItem="MiJ-hw-gnc" firstAttribute="centerY" secondItem="6IG-gg-VIP" secondAttribute="centerY" id="gOh-1q-A7h"/>
+                            <constraint firstItem="DUN-ho-Mkq" firstAttribute="top" secondItem="cRl-JP-UAb" secondAttribute="top" constant="4" id="gk0-Iu-v6h"/>
+                            <constraint firstItem="zir-3g-sBb" firstAttribute="leading" secondItem="cRl-JP-UAb" secondAttribute="leading" constant="10" id="gwc-qh-Hrc"/>
+                            <constraint firstItem="DUN-ho-Mkq" firstAttribute="leading" secondItem="cRl-JP-UAb" secondAttribute="leading" constant="10" id="ha3-KK-O11"/>
+                            <constraint firstAttribute="bottom" secondItem="uil-3J-Loj" secondAttribute="bottom" constant="10" id="ikz-ET-z6i"/>
+                            <constraint firstItem="6IG-gg-VIP" firstAttribute="leading" secondItem="cRl-JP-UAb" secondAttribute="leading" constant="10" id="nI9-ak-j3i"/>
+                            <constraint firstItem="K7g-Vp-Prr" firstAttribute="top" secondItem="7ds-uj-8Oj" secondAttribute="bottom" constant="8" symbolic="YES" id="uhY-uQ-Xef"/>
+                            <constraint firstItem="MiJ-hw-gnc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6IG-gg-VIP" secondAttribute="trailing" constant="8" symbolic="YES" id="xqQ-Mn-0Ny"/>
+                            <constraint firstItem="uil-3J-Loj" firstAttribute="leading" secondItem="cRl-JP-UAb" secondAttribute="leading" constant="10" id="zOl-gw-MNw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addRemoveButton" destination="zir-3g-sBb" id="HUl-xN-SwB"/>
+                        <outlet property="formatTextView" destination="Fbn-Oh-pop" id="Ygp-uw-3yH"/>
+                        <outlet property="tableView" destination="dsG-7b-UG0" id="Pk7-qM-KSe"/>
+                        <outlet property="variableInsertionMenu" destination="MiJ-hw-gnc" id="YFW-aj-ydK"/>
+                    </connections>
+                </viewController>
+                <customObject id="3nJ-L4-Stp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="523"/>
+        </scene>
+        <!--File Drop-->
+        <scene sceneID="HD1-eZ-pHa">
+            <objects>
+                <viewController title="File Drop" showSeguePresentationStyle="single" id="UtY-fi-jOg" customClass="FileDropViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="Gi6-Rx-eMY">
+                        <rect key="frame" x="0.0" y="0.0" width="524" height="330"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="21" horizontalPageScroll="10" verticalLineScroll="21" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prG-8I-L0n">
+                                <rect key="frame" x="10" y="176" width="504" height="126"/>
+                                <clipView key="contentView" id="Etr-Iq-249">
+                                    <rect key="frame" x="1" y="1" width="502" height="124"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="21" rowSizeStyle="automatic" headerView="c3e-u6-nJD" viewBased="YES" id="eYE-eu-OMg">
+                                            <rect key="frame" x="0.0" y="0.0" width="502" height="101"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <size key="intercellSpacing" width="8" height="0.0"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn identifier="extensions" width="161.5" minWidth="40" maxWidth="1000" headerToolTip="Filename extensions of dropped file (comma separated)." id="FAF-cL-AAk">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Extensions">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="i45-l2-hfd">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="dXX-uc-NQC">
+                                                            <rect key="frame" x="4" y="0.0" width="164" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField identifier="extensions" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jIX-u0-ddX">
+                                                                    <rect key="frame" x="0.0" y="3" width="164" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="png, jpg, gif" usesSingleLineMode="YES" id="caT-Gh-1x2">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="dXX-uc-NQC" name="value" keyPath="objectValue.extensions" id="hY5-0z-qN6">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSNullPlaceholder">All</string>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                        <outlet property="delegate" destination="UtY-fi-jOg" id="vLJ-XO-Uua"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="jIX-u0-ddX" id="O7M-Jq-kw5"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn width="141.5" minWidth="40" maxWidth="1000" headerToolTip="Syntax style in which this file drop setting is used." id="RqT-x4-YbN">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Syntax Style">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="KE5-on-7Qz">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="Nke-jc-fMr">
+                                                            <rect key="frame" x="175.5" y="0.0" width="141" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <popUpButton id="IBU-1D-WII">
+                                                                    <rect key="frame" x="-3" y="1" width="142" height="20"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <popUpButtonCell key="cell" type="bevel" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="W3Z-PB-IUJ" id="eh9-Os-Ang">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="menu"/>
+                                                                        <menu key="menu" id="LxZ-tS-R8a">
+                                                                            <items>
+                                                                                <menuItem title="All" state="on" id="W3Z-PB-IUJ">
+                                                                                    <attributedString key="attributedTitle">
+                                                                                        <fragment content="All">
+                                                                                            <attributes>
+                                                                                                <color key="NSColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <font key="NSFont" metaFont="menu"/>
+                                                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                            </attributes>
+                                                                                        </fragment>
+                                                                                    </attributedString>
+                                                                                </menuItem>
+                                                                                <menuItem isSeparatorItem="YES" id="LII-bD-opK"/>
+                                                                            </items>
+                                                                        </menu>
+                                                                    </popUpButtonCell>
+                                                                    <connections>
+                                                                        <binding destination="Nke-jc-fMr" name="selectedObject" keyPath="objectValue.scope" id="IEo-3L-WB7"/>
+                                                                    </connections>
+                                                                </popUpButton>
+                                                            </subviews>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn width="170.5" minWidth="10" maxWidth="1000" headerToolTip="" id="p2m-Qi-6k3">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="S3y-Nq-mzn">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="bjH-aA-F7G">
+                                                            <rect key="frame" x="325" y="0.0" width="173" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField identifier="description" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" id="RRF-15-RQ7">
+                                                                    <rect key="frame" x="0.0" y="3" width="173" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="25Y-1h-PMq">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="bjH-aA-F7G" name="value" keyPath="objectValue.description" id="2dW-X6-NCn"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="RRF-15-RQ7" id="osi-6o-PjU"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <binding destination="pUX-ce-iNp" name="content" keyPath="arrangedObjects" id="u7V-Nj-NL7"/>
+                                                <binding destination="pUX-ce-iNp" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="u7V-Nj-NL7" id="gul-uF-38z"/>
+                                                <binding destination="pUX-ce-iNp" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="gul-uF-38z" id="jIv-ca-ukj"/>
+                                                <outlet property="dataSource" destination="pUX-ce-iNp" id="Df3-O8-WXj"/>
+                                                <outlet property="delegate" destination="UtY-fi-jOg" id="v7O-e5-mbS"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.59999999999999998" horizontal="YES" id="ebT-4a-UjZ">
+                                    <rect key="frame" x="1" y="109" width="502" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="NiP-Ns-ZTe">
+                                    <rect key="frame" x="244" y="1" width="15" height="133"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="c3e-u6-nJD">
+                                    <rect key="frame" x="0.0" y="0.0" width="502" height="23"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pHE-ps-xId">
+                                <rect key="frame" x="7" y="146" width="55" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="momentary" id="oXA-8G-UhH">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment toolTip="Add" image="NSAddTemplate" width="24"/>
+                                        <segment toolTip="Delete" image="NSRemoveTemplate" width="24" enabled="NO" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="addRemove:" target="UtY-fi-jOg" id="EM2-wI-Ym8"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
+                                <rect key="frame" x="8" y="118" width="108" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OK0-xb-bxI">
+                                <rect key="frame" x="350" y="114" width="168" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="VNd-PI-sho"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Insert Variable" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" borderStyle="border" inset="2" pullsDown="YES" preferredEdge="maxY" selectedItem="541" id="Akg-Ri-30c">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <menu key="menu" showsStateColumn="NO" id="w2E-24-Qeh">
+                                        <items>
+                                            <menuItem title="Insert Variable" hidden="YES" id="541"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqq-0d-en4">
+                                <rect key="frame" x="10" y="10" width="504" height="100"/>
+                                <clipView key="contentView" id="W5x-PA-UNW">
+                                    <rect key="frame" x="1" y="1" width="502" height="98"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" richText="NO" horizontallyResizable="YES" verticallyResizable="YES" allowsUndo="YES" smartInsertDelete="YES" id="Rdu-bG-bow" customClass="TokenTextView" customModule="CotEditor" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="502" height="86"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="502" height="86"/>
+                                            <size key="maxSize" width="600" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <accessibilityConnection property="title" destination="JWP-To-iJP" id="qgB-0g-43k"/>
+                                                <binding destination="pUX-ce-iNp" name="value" keyPath="selection.formatString" id="ib2-Zw-Ucy">
+                                                    <dictionary key="options">
+                                                        <string key="NSNoSelectionPlaceholder">No extension is selected.</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <outlet property="delegate" destination="UtY-fi-jOg" id="m5L-QI-08f"/>
+                                            </connections>
+                                        </textView>
+                                    </subviews>
+                                    <edgeInsets key="contentInsets" left="0.0" right="0.0" top="6" bottom="6"/>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="loJ-FY-YbR"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="qiW-CZ-ex7">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="7DS-EA-ldr">
+                                    <rect key="frame" x="487" y="1" width="16" height="98"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YcM-e0-LrE">
+                                <rect key="frame" x="8" y="310" width="508" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Text to be inserted by dropping files to the editor:" id="JRQ-2g-t49">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Pqq-0d-en4" secondAttribute="trailing" constant="10" id="0bO-Xz-zcs"/>
+                            <constraint firstItem="prG-8I-L0n" firstAttribute="top" secondItem="YcM-e0-LrE" secondAttribute="bottom" constant="8" symbolic="YES" id="5F9-6T-fdP"/>
+                            <constraint firstAttribute="trailing" secondItem="YcM-e0-LrE" secondAttribute="trailing" constant="10" id="6TK-z5-liC"/>
+                            <constraint firstItem="JWP-To-iJP" firstAttribute="top" secondItem="pHE-ps-xId" secondAttribute="bottom" constant="14" id="Fvn-fX-tXN"/>
+                            <constraint firstItem="pHE-ps-xId" firstAttribute="top" secondItem="prG-8I-L0n" secondAttribute="bottom" constant="8" symbolic="YES" id="JIh-KI-e7V"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pHE-ps-xId" secondAttribute="trailing" constant="20" symbolic="YES" id="Q7G-Ik-z9Z"/>
+                            <constraint firstAttribute="bottom" secondItem="Pqq-0d-en4" secondAttribute="bottom" constant="10" id="TAa-VJ-czI"/>
+                            <constraint firstItem="OK0-xb-bxI" firstAttribute="centerY" secondItem="JWP-To-iJP" secondAttribute="centerY" id="ZXh-mf-bwT"/>
+                            <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="JWP-To-iJP" secondAttribute="bottom" constant="8" symbolic="YES" id="bFY-y4-yig"/>
+                            <constraint firstItem="Pqq-0d-en4" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="10" id="g5O-VB-rVd"/>
+                            <constraint firstItem="OK0-xb-bxI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JWP-To-iJP" secondAttribute="trailing" constant="8" symbolic="YES" id="haC-59-G3v"/>
+                            <constraint firstAttribute="trailing" secondItem="prG-8I-L0n" secondAttribute="trailing" constant="10" id="lW3-sx-P2B"/>
+                            <constraint firstItem="YcM-e0-LrE" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="10" id="pod-1t-Z09"/>
+                            <constraint firstItem="JWP-To-iJP" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="10" id="q9y-ee-vj6"/>
+                            <constraint firstAttribute="trailing" secondItem="OK0-xb-bxI" secondAttribute="trailing" constant="10" id="ydR-wd-jfm"/>
+                            <constraint firstItem="prG-8I-L0n" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="10" id="yg8-O0-IK3"/>
+                            <constraint firstItem="YcM-e0-LrE" firstAttribute="top" secondItem="Gi6-Rx-eMY" secondAttribute="top" constant="4" id="z2t-QH-xKv"/>
+                            <constraint firstItem="pHE-ps-xId" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="10" id="zbr-mB-90o"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addRemoveButton" destination="pHE-ps-xId" id="Ygl-e0-7U9"/>
+                        <outlet property="fileDropController" destination="pUX-ce-iNp" id="txr-r2-FdH"/>
+                        <outlet property="formatTextView" destination="Rdu-bG-bow" id="9Qd-ji-qr0"/>
+                        <outlet property="tableView" destination="eYE-eu-OMg" id="gpl-NL-Zj2"/>
+                        <outlet property="variableInsertionMenu" destination="OK0-xb-bxI" id="SlA-dI-eRW"/>
+                    </connections>
+                </viewController>
+                <customObject id="pSS-ll-nVa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <arrayController clearsFilterPredicateOnInsertion="NO" id="pUX-ce-iNp" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
+                    <declaredKeys>
+                        <string>extensions</string>
+                        <string>formatString</string>
+                        <string>scope</string>
+                        <string>description</string>
+                    </declaredKeys>
+                </arrayController>
+            </objects>
+            <point key="canvasLocation" x="220" y="964"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="18" height="17"/>
+        <image name="NSRemoveTemplate" width="18" height="5"/>
+    </resources>
+</document>

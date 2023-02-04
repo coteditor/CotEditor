@@ -74,8 +74,8 @@ private extension SettingsPane {
                 return "EditPane"
             case .format:
                 return "FormatPane"
-            case .fileDrop:
-                return "FileDropPane"
+            case .snippets:
+                return "SnippetsPane"
             case .keyBindings:
                 return "KeyBindingsPane"
             case .print:

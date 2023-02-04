@@ -591,7 +591,7 @@
 "Appearance" = "外观";
 "Edit" = "编辑";
 "Format" = "格式";
-"File Drop" = "文件拖拽";
+"Snippets" = "代码片段";
 "Key Bindings" = "按键绑定";
 "Print" = "打印";
 
@@ -835,7 +835,7 @@
 
 /* MARK: Snippet */
 // placeholder text
-"Select a snippet." = "选择动作。";  // FIXME: changed
+"Select a snippet to edit." = "选择动作。";  // FIXME: changed
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段后的光标位置";
 
