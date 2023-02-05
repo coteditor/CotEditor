@@ -2,6 +2,22 @@
 Change Log
 ==========================
 
+4.5.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
+- Add the Insert Snippet submenu to the Text menu.
+
+
+### Improvements
+
+- Reconstruct the Snippets (ex. File Drop) and Key Bindings panes in the Settings window.
+- Update the help contents.
+
+
+
 4.4.5 (unreleased)
 --------------------------
 
