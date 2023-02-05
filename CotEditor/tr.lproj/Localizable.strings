@@ -285,7 +285,7 @@
 "Update" = "Güncelle";
 
 // Save panel options
-"Give execute permission" = "Çalıştırma izni ver";
+"Make file executable" = "Çalıştırma izni ver";  // FIXME: updated
 
 
 

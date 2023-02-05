@@ -285,7 +285,7 @@
 "Update" = "Aktualisieren";
 
 // Save panel options
-"Give execute permission" = "Ausführungsrecht geben";
+"Make file executable" = "Datai als ausführbar definieren";
 
 
 

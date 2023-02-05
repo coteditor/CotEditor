@@ -285,7 +285,7 @@
 "Update" = "Aggiorna";
 
 // Save panel options
-"Give execute permission" = "Assegna i permessi di esecuzione";
+"Make file executable" = "Assegna i permessi di esecuzione";  // FIXME: updated
 
 
 

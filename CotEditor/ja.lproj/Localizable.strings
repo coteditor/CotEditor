@@ -285,7 +285,7 @@
 "Update" = "更新";
 
 // Save panel options
-"Give execute permission" = "実行権を付与";
+"Make file executable" = "実行可能ファイルにする";
 
 
 

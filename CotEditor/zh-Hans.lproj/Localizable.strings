@@ -285,7 +285,7 @@
 "Update" = "更新";
 
 // Save panel options
-"Give execute permission" = "使文件可执行";
+"Make file executable" = "使文件可执行";
 
 
 
