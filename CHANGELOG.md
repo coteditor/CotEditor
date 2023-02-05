@@ -2697,7 +2697,7 @@ no change.
 - Refine dialog messages on text encoding change.
 - Change sidebar behavior to close inward when it was opened inward because of insufficient space.
 - Avoid requiring high power GPU use.
-- [trivial] Hide insertion point in shortcut input fields in the Key Binding pane.
+- [trivial] Hide insertion point in shortcut input fields in the Key Bindings pane.
 - [trivial] Set a spoken name of CotEditor.
 - [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asynchronous saving.
 - [non-AppStore ver.] Update Sparkle framework.

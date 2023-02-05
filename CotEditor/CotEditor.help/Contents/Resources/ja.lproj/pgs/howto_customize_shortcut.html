@@ -1,0 +1,58 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="キーバインディング, キーバインド, ショートカット"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>CotEditorでキーボードショートカットをカスタマイズする</title>
+</head>
+
+<body>
+
+<h1>CotEditorでキーボードショートカットをカスタマイズする</h1>
+
+<p>CotEditorのさまざまなコマンドに割り当てるキーボードショートカットをカスタマイズすることができます。</p>
+
+<p>ショートカットの変更はコマンドの種類によって方法が異なります:</p>
+
+<table>
+<caption>ショートカットの設定方法</caption>
+<thead>
+	<tr><th>種類</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>メニューコマンド</th>
+		<td>メニューに表示される一般的なコマンドのショートカットです。既存のメニューコマンドのキーボードショートカットの変更は<a href="settings_keybindings.html">「キーバインド」設定</a>で行います。
+			<ul>
+			<li>システムが提供している一部のメニューコマンドは、CotEditorからショートカットのカスタマイズができません。Cocoa標準のショートカットの変更についての詳細は、Appleの文書を参照してください: <a href="https://support.apple.com/ja-jp/guide/mac-help/mchlp2271/mac" rel="external">Apple - Macでアプリケーションのキーボードショートカットを作成する</a></li>
+			</ul></td>
+	</tr>
+	<tr>
+		<th>スニペット挿入</th>
+		<td>ユーザが設定したスニペット（テキスト断片）を挿入するコマンドのショートカットです。スニペットの挿入コマンドもメニューの中に表示されますが、これらのコマンドへのショートカットの設定は「キーバインド」設定ではなく<a href="settings_snippets.html">「スニペット」設定</a>で行います。</td>
+	</tr>
+	<tr>
+		<th>CotEditorスクリプト</th>
+		<td>ユーザが作成したCotEditorスクリプトを実行するショートカットです。スクリプトファイルの名前に特定の文字列を含めることでショートカットを設定できます。詳しくは「<a href="script_menu.html">スクリプトメニューをカスタマイズする</a>」を参照してください。</td>
+	</tr>
+</tbody>
+</table>
+
+
+<p>既にほかのコマンドで使われているショートカット（スクリプトのショートカットやリストに表示されないメニュー項目も含みます）と重複するものは設定できません。ショートカットが重複した場合、その中のどれか1つのみが実行されます。</p>
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="settings_keybindings.html">「キーバインド」設定を変更する</a></li>
+	<li><a href="settings_snippets.html">「スニペット」設定を変更する</a></li>
+	<li><a href="script_menu.html">スクリプトメニューをカスタマイズする</a></li>
+	<li><a href="faq_shortcut.html">キーボードショートカットを変更後、予期しない動作をする場合</a></li>
+</ul>
+</section>
+
+</body>
+</html>

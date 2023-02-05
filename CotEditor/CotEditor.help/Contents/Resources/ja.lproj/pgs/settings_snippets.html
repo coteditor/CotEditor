@@ -1,0 +1,86 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="「スニペット」設定, スニペット設定, スニペット, ファイルドロップ"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>CotEditorで「スニペット」設定を変更する</title>
+</head>
+
+<body>
+<a name="settings_snippets"></a>
+
+<h1>CotEditorで「スニペット」設定を変更する</h1>
+
+<p>MacのCotEidtorアプリケーション<img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/>で、コマンドやファイルドロップで挿入されるテキストを設定するには、「スニペット」設定を使用します。これらの設定を変更するには、「CotEditor」＞「設定」と選択してから「スニペット」をクリックします。</p>
+
+
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">CotEditorを開く</a></p>
+
+
+<table class="settings">
+<caption>コマンド</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>コマンド定義</th>
+		<td>スニペット挿入コマンドを定義します。ここで定義したコマンドは、「テキスト」&gt;「スニペットを挿入」メニューに登録されます。<ul>
+			<li><strong>名前</strong>: この名前がスニペットメニューでコマンド名として表示されます。</li>
+			<li><strong>キー</strong>: このスニペット挿入コマンドに割り当てられるキーボードショートカットを設定します。ショートカットは設定しなくても構いません。</li>
+			</ul></td>
+	</tr>
+	<tr>
+		<th>挿入フォーマット</th>
+		<td>上のコマンド定義リストで選択したコマンドで挿入するテキストを設定します。
+			<ul>
+				<li>スニペットに<code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>という変数が含まれる場合は、スニペット挿入時に文字列<code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>は取り除かれ、代わりにその位置に挿入ポイントが移動します。</li>
+			</ul></td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<table class="settings">
+<caption>ファイルドロップ</caption>
+<thead>
+	<tr><th>オプション</th><th>説明</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>ファイルドロップ定義</th>
+		<td>ファイルドロップを実行する条件を定義します。ファイルをエディタに直接ドロップしたときにここで定義した条件を満たしていると、ドロップ箇所にファイルに合わせた任意のテキストを挿入することができます。<ul>
+			<li><strong>拡張子</strong>: この拡張子を持つファイルがドロップされたときのみ本設定が実行されます。空欄（すべて）の場合はすベてのファイルが対象になります。入力する拡張子にドットは必要ありません。カンマ区切りにすることで複数の拡張子を指定することができます。</li>
+			<li><strong>シンタックススタイル</strong>: このシンタックススタイルを持つ書類にファイルがドロップされたときのみ本設定が実行されます。空欄（すべて）の場合はすベての書類が対象になります。</li>
+			<li><strong>説明</strong>: 登録する設定にメモがある場合はこの欄を使用できます。この項目は動作に影響せず、空でも構いません。</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>挿入フォーマット</th>
+		<td>上のファイルドロップ定義のリストで選択した条件で挿入するテキストを設定します。
+			<ul>
+				<li>「変数」は、ドロップしたファイル固有の情報に置換される特別なキーワードです。個々の変数のはたらきについては「<a href="about_filedrop.html">ファイルドロップの挿入フォーマットを作成する</a>」を参照してください。</li>
+			</ul>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="howto_filedrop.html">ファイルをエディタにドロップする</a></li>
+	<li><a href="about_filedrop.html">ファイルドロップの挿入フォーマットを作成する</a></li>
+	<li><a href="settings.html">設定を変更する</a></li>
+</ul>
+</section>
+
+</body>
+</html>
