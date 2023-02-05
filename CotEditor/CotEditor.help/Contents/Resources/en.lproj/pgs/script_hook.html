@@ -88,13 +88,13 @@ HookingScript.scptd
 
 <pre class="highlight source"><span></span><span class="k">using terms from</span> <span class="nb">application</span> <span class="s2">&quot;CotEditor&quot;</span>
     <span class="nb">on</span> <span class="na">document</span> <span class="nv">opened</span> <span class="nv">theDocument</span>
-        <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
-        <span class="nb">display alert</span> <span class="s2">&quot;Opened &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
+        <span class="k">set</span> <span class="nv">title</span> <span class="k">to</span> <span class="nv">name</span> <span class="k">of</span> <span class="nv">theDocument</span>
+        <span class="nb">display alert</span> <span class="s2">&quot;Opened &quot;</span> <span class="o">&amp;</span> <span class="nv">title</span>
     <span class="k">end</span> <span class="na">document</span> <span class="nv">opened</span>
 
     <span class="nb">on</span> <span class="na">document</span> <span class="nv">saved</span> <span class="nv">theDocument</span>
-        <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
-        <span class="nb">display alert</span> <span class="s2">&quot;Saved &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
+        <span class="k">set</span> <span class="nv">title</span> <span class="k">to</span> <span class="nv">name</span> <span class="k">of</span> <span class="nv">theDocument</span>
+        <span class="nb">display alert</span> <span class="s2">&quot;Saved &quot;</span> <span class="o">&amp;</span> <span class="nv">title</span>
     <span class="k">end</span> <span class="na">document</span> <span class="nv">saved</span>
 <span class="k">end</span> <span class="k">using terms from</span>
 </pre>
@@ -107,11 +107,11 @@ HookingScript.scptd
 <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">includeStandardAdditions</span> <span class="o">=</span> <span class="kc">true</span>
 
 <span class="kd">function</span> <span class="nx">documentOpened</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Opened &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
+  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Opened &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">name</span><span class="p">())</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">documentSaved</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Saved &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
+  <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Saved &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">name</span><span class="p">())</span>
 <span class="p">}</span>
 </pre>
 
