@@ -34,11 +34,13 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Shortcuts for menu items";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
-"Hue-bU-8wr.title" = "To change a binding, select it, click the key column, and then type the keys.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "To change a shortcut, click the key column, and then type the new keys.";
 
-/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
-"jNh-nd-VRd.headerCell.title" = "Action";
+/* Class = "NSTableColumn"; headerCell.title = "Menu"; ObjectID = "597-z1-wgd"; */
+"597-z1-wgd.headerCell.title" = "Menu";
+/* Class = "NSTableColumn"; headerCell.title = "Command"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Command";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
 "PSD-Um-TfH.headerCell.title" = "Key";
 
@@ -50,8 +52,8 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
 "eMZ-Mx-JSK.title" = "Shortcuts for preset text insertion";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "To change a binding, select it, click the key column, and then type the keys.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "To change a shortcut, click the key column, and then type the new keys.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Name";

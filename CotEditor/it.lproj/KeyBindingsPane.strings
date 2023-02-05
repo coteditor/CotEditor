@@ -34,11 +34,13 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Abbreviazioni per gli elementi del menu";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
-"Hue-bU-8wr.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";  // FIXME: modifided
 
-/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
-"jNh-nd-VRd.headerCell.title" = "Azione";
+/* Class = "NSTableColumn"; headerCell.title = "Menu"; ObjectID = "597-z1-wgd"; */
+"597-z1-wgd.headerCell.title" = "Menu";  // FIXME: added
+/* Class = "NSTableColumn"; headerCell.title = "Command"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Comando";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
 "PSD-Um-TfH.headerCell.title" = "Tasto";
 
@@ -50,8 +52,8 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
 "eMZ-Mx-JSK.title" = "Abbreviazioni per inserimento di testo preimpostato";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";  // FIXME: modifided
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Name";  // FIXME: changed

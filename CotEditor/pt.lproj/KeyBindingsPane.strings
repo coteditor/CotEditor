@@ -34,11 +34,13 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Atalhos para os itens de menus";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
-"Hue-bU-8wr.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";  // FIXME: modifided
 
-/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
-"jNh-nd-VRd.headerCell.title" = "Ação";
+/* Class = "NSTableColumn"; headerCell.title = "Menu"; ObjectID = "597-z1-wgd"; */
+"597-z1-wgd.headerCell.title" = "Menu";  // FIXME: added
+/* Class = "NSTableColumn"; headerCell.title = "Command"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Comando";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
 "PSD-Um-TfH.headerCell.title" = "Teclas";
 
@@ -49,8 +51,8 @@
 
 /* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
 "eMZ-Mx-JSK.title" = "Atalhos para a inserção de texto predefinido";
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "Para alterar um atalho, selecione-o, clique na coluna Teclas e pressione as teclas.";  // FIXME: modifided
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Name";  // FIXME: changed

@@ -37,10 +37,11 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
     
     // MARK: Private Properties
     
-    private var outlineTree: [Node<KeyBindingItem>] = []
+    private var menuTree: [Node<KeyBindingItem>] = []
     @objc private dynamic var warningMessage: String?  // for binding
     @objc private dynamic var isRestorable: Bool = false  // for binding
     
+    @IBOutlet private weak var listView: NSTableView?
     @IBOutlet private weak var outlineView: NSOutlineView?
     
     
@@ -52,9 +53,10 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
         
         super.viewWillAppear()
         
-        self.outlineTree = KeyBindingManager.shared.outlineTree(defaults: false)
+        self.menuTree = KeyBindingManager.shared.menuTree
         self.isRestorable = KeyBindingManager.shared.isCustomized
         self.warningMessage = nil
+        self.listView?.reloadData()
         self.outlineView?.reloadData()
     }
     
@@ -73,27 +75,33 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
     /// return number of child items
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         
-        guard let node = item as? Node<KeyBindingItem> else { return self.outlineTree.count }
-        
-        return node.children?.count ?? 0
+        if let node = item as? Node<KeyBindingItem> {
+            return node.children?.count ?? 0
+        } else if let index = self.listView?.selectedRow, index >= 0 {
+            return self.menuTree[index].children?.count ?? 0
+        } else {
+            return 0
+        }
     }
     
     
     /// return if item is expandable
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         
-        guard let node = item as? Node<KeyBindingItem> else { return false }
-        
-        return node.children != nil
+        (item as? Node<KeyBindingItem>)?.children != nil
     }
     
     
     /// return child items
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         
-        guard let node = item as? Node<KeyBindingItem> else { return self.outlineTree[index] }
-        
-        return node.children![index]
+        if let node = item as? Node<KeyBindingItem> {
+            return node.children![index]
+        } else if let rootIndex = self.listView?.selectedRow {
+            return self.menuTree[rootIndex].children![index]
+        } else {
+            preconditionFailure()
+        }
     }
     
     
@@ -182,13 +190,11 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
     /// Restore key binding setting to default.
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
-        self.outlineTree = KeyBindingManager.shared.outlineTree(defaults: true)
+        try? KeyBindingManager.shared.restoreDefaults()
         
-        self.saveSettings()
-        
+        self.menuTree = KeyBindingManager.shared.menuTree
         self.isRestorable = false
         self.warningMessage = nil
-        self.outlineView?.deselectAll(nil)
         self.outlineView?.reloadData()
     }
     
@@ -199,7 +205,7 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
     /// Save current settings.
     private func saveSettings() {
         
-        let keyBindings = self.outlineTree
+        let keyBindings = self.menuTree
             .flatMap(\.flatValues)
             .filter { $0.shortcut?.isValid ?? true }
             .compactMap { KeyBinding(action: $0.action, tag: $0.tag, shortcut: $0.shortcut) }
@@ -211,5 +217,28 @@ final class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource
         }
         
         self.isRestorable = KeyBindingManager.shared.isCustomized
+    }
+}
+
+
+
+extension KeyBindingsViewController: NSTableViewDataSource, NSTableViewDelegate {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        
+        self.menuTree.count
+    }
+    
+    
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        self.menuTree[row].name
+    }
+    
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        self.commitEditing()
+        self.outlineView?.reloadData()
     }
 }

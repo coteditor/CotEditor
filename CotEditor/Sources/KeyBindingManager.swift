@@ -51,7 +51,7 @@ final class KeyBindingManager: SettingManaging {
     private init() {
         
         guard let mainMenu = NSApp.mainMenu else {
-            fatalError("KeyBindingManager should be initialized after Main.storyboard is loaded.")
+            fatalError("KeyBindingManager must be initialized after Main.storyboard is loaded.")
         }
         
         self.defaultKeyBindings = Set(Self.scanKeyBindings(in: mainMenu))
@@ -74,7 +74,14 @@ final class KeyBindingManager: SettingManaging {
     /// Whether shortcuts are customized.
     var isCustomized: Bool {
         
-        self.keyBindings != self.defaultKeyBindings
+        self.keyBindings != self.defaultKeyBindings.filter { $0.shortcut != nil }
+    }
+    
+    
+    /// A collection of the menu tree to display in the settings view.
+    var menuTree: [Node<KeyBindingItem>] {
+        
+        self.menuTree(of: NSApp.mainMenu!)
     }
     
     
@@ -83,21 +90,16 @@ final class KeyBindingManager: SettingManaging {
         
         let mainMenu = NSApp.mainMenu!
         
-        // first, clear all current shortcuts
         self.clearShortcuts(in: mainMenu)
-        
-        // then apply the latest settings
         self.applyShortcuts(to: mainMenu)
         mainMenu.update()
     }
     
     
-    /// Create a KVO-compatible collection for NSOutlineView in the Key Bindings pane.
-    ///
-    /// - Parameter usesDefaults: `true` for default setting and `false` for the current user setting.
-    func outlineTree(defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] {
+    /// Remove all user costomization.
+    func restoreDefaults() throws {
         
-        self.outlineTree(menu: NSApp.mainMenu!, defaults: usesDefaults)
+        try self.saveKeyBindings(self.defaultKeyBindings.unique)
     }
     
     
@@ -183,10 +185,9 @@ final class KeyBindingManager: SettingManaging {
     /// - Returns: A Shortcut struct.
     private func shortcut(for action: Selector, tag: Int, defaults usesDefaults: Bool = false) -> Shortcut? {
         
-        let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
-        let keyBinding = keyBindings.first { $0.action == action && $0.tag == tag }
-        
-        return keyBinding?.shortcut
+        (usesDefaults ? self.defaultKeyBindings : self.keyBindings)
+            .first { $0.action == action && $0.tag == tag }?
+            .shortcut
     }
     
     
@@ -319,19 +320,18 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Create a KVO-compatible collection for NSOutlineView in Key Bindings pane.
+    /// A collection of the menu tree.
     ///
     /// - Parameters:
     ///   - menu: The menu where to collect key binding items.
-    ///   - usesDefaults: `true` for default setting and `false` for the current user setting.
     /// - Returns: A tree of KeyBindingItem nodes.
-    private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [Node<KeyBindingItem>] {
+    private func menuTree(of menu: NSMenu) -> [Node<KeyBindingItem>] {
         
         menu.items
             .filter(self.allowsModifying)
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
-                    let subtree = self.outlineTree(menu: submenu, defaults: usesDefaults)
+                    let subtree = self.menuTree(of: submenu)
                     
                     guard !subtree.isEmpty else { return nil }  // ignore empty submenu
                     
@@ -340,11 +340,8 @@ final class KeyBindingManager: SettingManaging {
                 
                 guard let action = menuItem.action else { return nil }
                 
+                let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 let defaultShortcut = self.shortcut(for: action, tag: menuItem.tag, defaults: true)
-                let shortcut = usesDefaults
-                    ? defaultShortcut
-                    : Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
-                
                 let item = KeyBindingItem(action: action, tag: menuItem.tag, shortcut: shortcut, defaultShortcut: defaultShortcut)
                 
                 return Node(name: menuItem.title, item: .value(item))

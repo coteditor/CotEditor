@@ -34,11 +34,13 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for menu items"; ObjectID = "ZYM-tb-Csx"; */
 "ZYM-tb-Csx.title" = "Raccourcis clavier pour les commandes du menu";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "Hue-bU-8wr"; */
-"Hue-bU-8wr.title" = "Pour changer une association, sélectionnez la, cliquez sur la colonne Raccourci, puis effectuez le raccourci désiré sur le clavier.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
+"Hue-bU-8wr.title" = "Pour changer une association, sélectionnez la, cliquez sur la colonne Raccourci, puis effectuez le raccourci désiré sur le clavier.";  // FIXME: modifided
 
-/* Class = "NSTableColumn"; headerCell.title = "Action"; ObjectID = "jNh-nd-VRd"; */
-"jNh-nd-VRd.headerCell.title" = "Action";
+/* Class = "NSTableColumn"; headerCell.title = "Menu"; ObjectID = "597-z1-wgd"; */
+"597-z1-wgd.headerCell.title" = "Menu";  // FIXME: added
+/* Class = "NSTableColumn"; headerCell.title = "Command"; ObjectID = "jNh-nd-VRd"; */
+"jNh-nd-VRd.headerCell.title" = "Commande";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
 "PSD-Um-TfH.headerCell.title" = "Raccourci";
 
@@ -50,8 +52,8 @@
 /* Class = "NSTextFieldCell"; title = "Shortcuts for preset text insertion"; ObjectID = "eMZ-Mx-JSK"; */
 "eMZ-Mx-JSK.title" = "Raccourcis pour les insertions de textes prédéfinis";
 
-/* Class = "NSTextFieldCell"; title = "To change a binding, select it, click the key column, and then type the keys."; ObjectID = "a9m-M2-rgC"; */
-"a9m-M2-rgC.title" = "Pour changer une association, sélectionnez la, cliquez sur la colonne Raccourci, puis effectuez le raccourci désiré sur le clavier.";
+/* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "a9m-M2-rgC"; */
+"a9m-M2-rgC.title" = "Pour changer une association, sélectionnez la, cliquez sur la colonne Raccourci, puis effectuez le raccourci désiré sur le clavier.";  // FIXME: modifided
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "sz5-hl-bZK"; */
 "sz5-hl-bZK.headerCell.title" = "Name";  // FIXME: changed
