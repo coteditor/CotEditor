@@ -169,9 +169,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
             !scripts.isEmpty
         else { return }
         
-        let event = self.createEvent(by: document, eventID: eventType.eventID)
-        
         Task {
+            let event = self.createEvent(by: document, eventID: eventType.eventID)
             await self.dispatch(event, handlers: scripts)
         }
     }
@@ -278,6 +277,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   - eventID: The event ID to be set in the returned event.
     /// - Returns: A descriptor for an Apple event by the `Document`.
     private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
+        
+        assert(!Thread.isMainThread)
         
         let event = NSAppleEventDescriptor(eventClass: "cEd1",
                                            eventID: eventID,
