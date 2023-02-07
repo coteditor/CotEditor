@@ -42,6 +42,20 @@ final class SettingsWindowController: NSWindowController {
         
         self.init(window: window)
     }
+    
+    
+    // MARK: Public Methods
+    
+    /// Open specific setting pane.
+    ///
+    /// - Parameter pane: The pane to display.
+    func openPane(_ pane: SettingsPane) {
+        
+        let index = SettingsPane.allCases.firstIndex(of: pane)!
+        (self.contentViewController as? NSTabViewController)?.selectedTabViewItemIndex = index
+        
+        self.showWindow(nil)
+    }
 }
 
 
@@ -74,8 +88,8 @@ private extension SettingsPane {
                 return "EditPane"
             case .format:
                 return "FormatPane"
-            case .fileDrop:
-                return "FileDropPane"
+            case .snippets:
+                return "SnippetsPane"
             case .keyBindings:
                 return "KeyBindingsPane"
             case .print:

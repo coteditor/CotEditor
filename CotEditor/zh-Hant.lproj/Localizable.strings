@@ -591,9 +591,10 @@
 "Appearance" = "外觀";
 "Edit" = "編輯";
 "Format" = "格式";
-"File Drop" = "檔案拖拽";
+"Snippets" = "程式碼片段";
 "Key Bindings" = "按鍵繫結";
 "Print" = "列印";
+
 
 // General pane
 // Autosave setting update alert
@@ -661,10 +662,9 @@
 "Reveal “%@” in Finder" = "在訪達中顯示「%@」";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "確定刪除檔案拖拽設置「%@」？";
-"Deleted setting can’t be restored." = "設置刪除後無法恢復。";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "選擇動作。";  // FIXME: changed
 
 
 // Print pane
@@ -770,7 +770,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "插入文字%lld";
 
 // Keyboard key name
@@ -779,9 +779,8 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "「%@」已被「%@」命令使用。";
 "The Shift key can be used only with another modifier key." = "Shift鍵只能配合其他修飾鍵使用。";
-"The combination “%@” is not supported for the key binding customization." = "組合鍵「%@」無法用作自訂綁定熱鍵。";
+"The combination “%@” is not supported for the shortcut customization." = "組合鍵「%@」無法用作自訂綁定熱鍵。";
 "Single type is invalid for a shortcut." = "單獨的按鍵類型不能被用作快捷鍵。";
-"Please combine with other keys." = "請與其他鍵組合使用。";
 
 
 
@@ -835,8 +834,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select Action" = "選擇動作。";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段後的遊標位置";
 

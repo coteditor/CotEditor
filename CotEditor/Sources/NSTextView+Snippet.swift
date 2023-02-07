@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,17 @@
 //
 
 import Cocoa
+
+extension EditorTextView: SnippetInsertable {
+    
+    @IBAction func insertSnippet(_ sender: NSMenuItem) {
+        
+        guard let snippet = sender.representedObject as? Snippet else { return assertionFailure() }
+        
+        self.insert(snippet: snippet)
+    }
+}
+
 
 extension NSTextView {
     
@@ -57,5 +68,6 @@ extension NSTextView {
                 }
         
         self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
+        self.centerSelectionInVisibleArea(self)
     }
 }

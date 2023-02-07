@@ -2,12 +2,23 @@
 Change Log
 ==========================
 
-4.5.0-alpha (unreleased)
+4.5.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
+- Add the Insert Snippet submenu to the Text menu.
 
 
-4.4.5 (550)
+### Improvements
+
+- Reconstruct the Snippets (ex. File Drop) and Key Bindings panes in the Settings window.
+- Update the help contents.
+
+
+
+4.4.5 (unreleased)
 --------------------------
 
 ### New Features
@@ -2702,7 +2713,7 @@ no change.
 - Refine dialog messages on text encoding change.
 - Change sidebar behavior to close inward when it was opened inward because of insufficient space.
 - Avoid requiring high power GPU use.
-- [trivial] Hide insertion point in shortcut input fields in the Key Binding pane.
+- [trivial] Hide insertion point in shortcut input fields in the Key Bindings pane.
 - [trivial] Set a spoken name of CotEditor.
 - [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asynchronous saving.
 - [non-AppStore ver.] Update Sparkle framework.

@@ -71,6 +71,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
     @IBOutlet private weak var themesMenu: NSMenu?
     @IBOutlet private weak var normalizationMenu: NSMenu?
+    @IBOutlet private weak var snippetMenu: NSMenu?
     
     
     #if DEBUG
@@ -96,7 +97,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    override func awakeFromNib() {
+    @MainActor override func awakeFromNib() {
         
         super.awakeFromNib()
         
@@ -131,6 +132,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .receive(on: RunLoop.main)
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)
+        
+        SnippetManager.shared.menu = self.snippetMenu!
         
         ScriptManager.shared.observeScriptsDirectory()
         
@@ -187,7 +190,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// just after application did launch
     func applicationDidFinishLaunching(_ notification: Notification) {
         
-        MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
+        KeyBindingManager.shared.applyShortcutsToMainMenu()
         
         NSApp.servicesProvider = ServicesProvider()
         NSHelpManager.shared.registerBooks(in: .main)
@@ -325,6 +328,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showPreferences(_ sender: Any?) {
         
         self.settingsWindowController.showWindow(sender)
+    }
+    
+    
+    /// show Snippet pane in the Settings window
+    @IBAction func showSnippetEditor(_ sender: Any?) {
+        
+        self.settingsWindowController.openPane(.snippets)
     }
     
     

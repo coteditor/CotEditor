@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="key bindings, shortcut"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Customize keyboard shortcuts in CotEditor</title>
+</head>
+
+<body>
+
+<h1>Customize keyboard shortcuts in CotEditor</h1>
+
+<p>You can fully customize keyboard shortcuts for various commands in CotEditor.</p>
+
+<p>The method to change shortcuts depends on the type of the command:</p>
+
+<table>
+<caption>Methods to define keyboard shortcuts</caption>
+<thead>
+	<tr><th>Type</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Menu command</th>
+		<td>Keyboard shortcuts for standard menu command displayed in the menu. Go to the <a href="settings_keybindings.html">Key Bindings settings</a> in the Settings to change the keyboard shortcut for existing menu commands.
+			<ul>
+			<li>Some menu commands provided by the system can not be customized in CotEditor. For details about customizing the standard shortcuts for Cocoa applications, see Apple’s documentation: <a href="https://support.apple.com/guide/mac-help/create-keyboard-shortcuts-for-apps-mchlp2271/mac" rel="external">Create keyboard shortcuts for apps on Mac</a></li>
+			</ul></td>
+	</tr>
+	<tr>
+		<th>Snippet insertion</th>
+		<td>Keyboard shortcuts for commands to insert a user snippet (preset text). The commands inserting snippets appear in the menu too, but the shortcuts to these commands are not set in the Key Bindings settings but in the <a href="settings_snippets.html">Snippets</a> settings.</td>
+	</tr>
+	<tr>
+		<th>CotEditor script</th>
+		<td>Keyboard shortcuts to execute user’s CotEditor scripts. Include a specific character combination to the script file name to define a keyboard shortcut. See <a href="script_menu.html">Customize Script menu</a> for details.</td>
+	</tr>
+</tbody>
+</table>
+
+<p>You cannot set the shortcuts that are already taken (for example, shortcuts for your scripts or menu items that don’t appear in the list). When the same shortcut is assigned to multiple commands, it performs only one command among them.</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="settings_keybindings.html">Change Key Bindings settings</a></li>
+	<li><a href="settings_snippets.html">Change Snippets settings</a></li>
+	<li><a href="script_menu.html">Customize Script menu</a></li>
+	<li><a href="faq_shortcut.html">If your keyboard shortcut doesn’t work as you expect</a></li>
+</ul>
+</section>
+
+</body>
+</html>

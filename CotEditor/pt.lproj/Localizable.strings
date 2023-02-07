@@ -592,9 +592,10 @@
 "Appearance" = "Aparência";
 "Edit" = "Edição";
 "Format" = "Formato";
-"File Drop" = "Arquivos Soltos";
+"Snippets" = "Fragmentos";
 "Key Bindings" = "Atalhos";
 "Print" = "Impressão";
+
 
 // General pane
 // Autosave setting update alert
@@ -660,10 +661,9 @@
 "Reveal “%@” in Finder" = "Mostrar “%@” no Finder";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "Tem certeza de que deseja apagar o ajuste de arquivo solto para “%@”?";
-"Deleted setting can’t be restored." = "Os ajustes apagados não podem ser restaurados.";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "Selecione uma Ação";  // FIXME: changed
 
 
 // Print pane
@@ -769,7 +769,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "Inserir Texto %lld";
 
 // Keyboard key name
@@ -778,9 +778,8 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@” já está sendo usado pelo comando “%@.”";
 "The Shift key can be used only with another modifier key." = "A tecla Shift só pode ser usada em conjunto com outra tecla de modificação.";
-"The combination “%@” is not supported for the key binding customization." = "A combinação “%@” não é suportada pela customização de combinações de teclas.";
+"The combination “%@” is not supported for the shortcut customization." = "A combinação “%@” não é suportada pela customização de combinações de teclas.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
-"Please combine with other keys." = "Combine-a com outra tecla.";
 
 
 
@@ -834,8 +833,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select Action" = "Selecione uma Ação";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "A posição do cursor depois de inserir o fragmento.";
 

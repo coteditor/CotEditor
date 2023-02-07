@@ -345,7 +345,7 @@ extension Shortcut: Codable {
         let string = try container.decode(String.self)
         
         guard let shortcut = Shortcut(keySpecChars: string) else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid key binding format: \(string)")
+            throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid shortcut format: \(string)")
         }
         
         self = shortcut

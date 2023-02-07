@@ -970,6 +970,20 @@ CA
                                             <menu key="submenu" title="Unicode Normalizations" id="600"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="597"/>
+                                        <menuItem title="Insert Snippet" id="15m-xz-4oB">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Insert Snippet" id="dZy-7n-iCq">
+                                                <items>
+                                                    <menuItem isSeparatorItem="YES" id="9T2-OR-egj"/>
+                                                    <menuItem title="Edit Snippets…" id="OmB-Ve-DEy">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="showSnippetEditor:" target="Voe-Tx-rLC" id="jp7-Gn-70w"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Insert Encoding Name" toolTip="Insert encoding name as IANA charset name" id="663">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -1221,6 +1235,7 @@ CA
                     <connections>
                         <outlet property="encodingsMenu" destination="300" id="Oy6-3l-RCI"/>
                         <outlet property="normalizationMenu" destination="600" id="Ned-B7-VAN"/>
+                        <outlet property="snippetMenu" destination="dZy-7n-iCq" id="3hf-hr-ScA"/>
                         <outlet property="syntaxStylesMenu" destination="304" id="kdn-rP-dcP"/>
                         <outlet property="themesMenu" destination="165-HJ-Xty" id="R7w-wo-SVO"/>
                     </connections>

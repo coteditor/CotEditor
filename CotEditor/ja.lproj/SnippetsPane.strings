@@ -1,5 +1,5 @@
 //
-//  FileDropPane.strings (Japanese)
+//  SnippetsPane.strings (Japanese)
 //
 //  CotEditor
 //  https://coteditor.com
@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,8 +24,35 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "File Drop Definitions:"; ObjectID = "3331"; */
-"3331.title" = "ファイルドロップ定義:";
+/* Class = "NSViewController"; title = "Command"; ObjectID = "Jku-3h-OhR"; */
+"Jku-3h-OhR.title" = "コマンド";
+/* Class = "NSViewController"; title = "File Drop"; ObjectID = "UtY-fi-jOg"; */
+"UtY-fi-jOg.title" = "ファイルドロップ";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
+"o3A-71-iGh.title" = "メニューコマンドやキーボードショートカットで挿入できるテキスト:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
+"cMF-G3-bl6.headerCell.title" = "名前";
+/* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
+"wer-OB-X46.headerCell.title" = "キー";
+
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[0]" = "追加";
+/* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[1] = "Delete"; ObjectID = "t2r-oN-Xpf"; */
+"t2r-oN-Xpf.ibShadowedToolTips[1]" = "削除";
+
+/* Class = "NSTextFieldCell"; title = "Insertion Format:"; ObjectID = "PaR-eN-FFs"; */
+"PaR-eN-FFs.title" = "挿入フォーマット:";
+/* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "vOg-Tt-3ZZ"; */
+"vOg-Tt-3ZZ.title" = "変数を挿入";
+
+
+
+/* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
+"JRQ-2g-t49.title" = "ファイルをエディタにドロップして挿入できるテキスト:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "拡張子";
@@ -55,5 +82,5 @@
 /* Class = "NSMenuItem"; title = "Insert Variable"; ObjectID = "541"; */
 "541.title" = "変数を挿入";
 
-/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
-"ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "拡張子が選択されていません。";
+/* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
+"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "スニペットを選択してください。";

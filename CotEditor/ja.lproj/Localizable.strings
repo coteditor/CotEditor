@@ -591,9 +591,10 @@
 "Appearance" = "表示";
 "Edit" = "編集";
 "Format" = "フォーマット";
-"File Drop" = "ファイルドロップ";
+"Snippets" = "スニペット";
 "Key Bindings" = "キーバインド";
 "Print" = "プリント";
+
 
 // General pane
 // Autosave setting update alert
@@ -660,10 +661,9 @@
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
 
 
-// File Drop pane
-// File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか?";
-"Deleted setting can’t be restored." = "削除した設定は元に戻せません。";
+// Snippets pane
+// placeholder text
+"Select a snippet to edit." = "編集するスニペットを選択してください。";
 
 
 // Print pane
@@ -769,7 +769,7 @@
 
 
 /* MARK: KeyBindingManager */
-// Label for text menu key bindings action
+// Label for snippet commands (deprecated)
 "Insert Text %lld" = "テキストを挿入%lld";
 
 // Keyboard key name
@@ -778,9 +778,8 @@
 // Warning messages
 "“%@” is already taken by the “%@” command." = "“%@”はすでに“%@”コマンドで使用されています。";
 "The Shift key can be used only with another modifier key." = "Shiftキーはほかの修飾キーと合わせて使う必要があります。";
-"The combination “%@” is not supported for the key binding customization." = "“%@”の組み合わせはキーバインディングのカスタマイズに対応していません。";
+"The combination “%@” is not supported for the shortcut customization." = "“%@”の組み合わせはショートカットのカスタマイズに対応していません。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
-"Please combine with other keys." = "別のキーと組み合わせてください。";
 
 
 
@@ -834,8 +833,6 @@
 
 
 /* MARK: Snippet */
-// placeholder text
-"Select Action" = "アクションを選択してください。";
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
 

@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="Snippets settings, snippet, File Drop"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Change Snippets settings in CotEditor</title>
+</head>
+
+<body>
+<a name="settings_snippets"></a>
+
+<h1>Change Snippets settings in CotEditor</h1>
+
+<p>In the CotEditor app <img class="appicon" src="../../Shared/gfx/icon_16x16@2x.png" height="16" alt=""/> on your Mac, use Snippets settings to define preset texts to insert with a command or by dropping a file onto the editor. To change these settings, choose CotEditor &gt; Settings, then click Snippets.</p>
+
+<p class="openapp"><a href="x-help-action://openApp?bundleId=com.coteditor.CotEditor">Open CotEditor for me</a></p>
+
+
+<table class="settings">
+<caption>Command</caption>
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>Command definitions</th>
+		<td>Define the snippet insertion command. The commands defined here will be assigned to the Text &gt; Insert Snippet menu.<ul>
+			<li><strong>Name</strong>: The name of the command that will be displayed in the menu for this snippet.</li>
+			<li><strong>Key</strong>: A keyboard shortcut to perform this snippet insertion command. A shortcut is optional and can be left blank.</li>
+			</ul></td>
+	</tr>
+	<tr>
+		<th>Insertion formart</th>
+		<td>Set the text to be inserted with the command selected in the command definition list above.
+			<ul>
+				<li>When a snippet contains <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code>, the word <code>&lt;&lt;&lt;CURSOR&gt;&gt;&gt;</code> will be removed on insertion and move the insertion point there instead.</li>
+			</ul></td>
+	</tr>
+</tbody>
+</table>
+
+
+<table class="settings">
+<caption>File Drop</caption>
+<thead>
+	<tr><th>Option</th><th>Description</th></tr>
+</thead>
+
+<tbody>
+	<tr>
+		<th>File drop definitions</th>
+		<td>Define the conditions to perform the file drop. When files are dropped directly into the editor and the conditions defined here are fulfilled, the text that matches the files can be inserted at the drop location.<ul>
+			<li><strong>Extensions</strong>: The setting is performed only when a file with one of these extensions is dropped. If this field is empty (All), all files are eligible. No dot is required for filename extensions. You can set multiple extensions by separating them by a comma.</li>
+			<li><strong>Syntax Style</strong>: The setting is performed only when a file is dropped to a document having this syntax style. If this field is empty (All), all documents are eligible.</li>
+			<li><strong>Description</strong>: You can use this field to leave a comment about the row. This field doesn’t affect the file drop behavior and can be left blank.</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<th>Insertion formart</th>
+		<td>Set the text to be inserted for the condition that is selected in the file drop definition list above.
+			<ul>
+				<li>In an insertion format, you can use CotEditor’s variables. Variables are going to be replaced with the corresponding information of the dropped file. See <a href="about_filedrop.html">Write insertion format for File Drop</a> for each variable’s details.</li>
+			</ul>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="howto_filedrop.html">Drop files to editor</a></li>
+	<li><a href="about_filedrop.html">Write insertion format for File Drop</a></li>
+	<li><a href="settings.html">Change settings</a></li>
+</ul>
+</section>
+
+</body>
+</html>
