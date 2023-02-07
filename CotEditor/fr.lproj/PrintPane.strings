@@ -74,7 +74,7 @@
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
 "898.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "10r-6b-mkA"; */
-"10r-6b-mkA.title" = "Last Modified Date";  // FIXME: added
+"10r-6b-mkA.title" = "Date de la dernière modification";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
 "893.title" = "Numéro de page";
 
@@ -95,7 +95,7 @@
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
 "904.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "kqU-Qs-8oe"; */
-"kqU-Qs-8oe.title" = "Last Modified Date";  // FIXME: added
+"kqU-Qs-8oe.title" = "Date de la dernière modification";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
 "905.title" = "Numéro de page";
 
@@ -120,7 +120,7 @@
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
 "939.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "mgU-MY-7x3"; */
-"mgU-MY-7x3.title" = "Last Modified Date";  // FIXME: added
+"mgU-MY-7x3.title" = "Date de la dernière modification";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
 "940.title" = "Numéro de page";
 
@@ -141,7 +141,7 @@
 /* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
 "931.title" = "Date d’impression";
 /* Class = "NSMenuItem"; title = "Last Modified Date"; ObjectID = "QjN-Pm-wiz"; */
-"QjN-Pm-wiz.title" = "Last Modified Date";  // FIXME: added
+"QjN-Pm-wiz.title" = "Date de la dernière modification";
 /* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
 "932.title" = "Numéro de page";
 
