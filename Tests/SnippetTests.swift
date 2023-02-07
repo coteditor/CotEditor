@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class SnippetTests: XCTestCase {
     
     func testSimpleSnippet() {
         
-        let snippet = Snippet("<h1><<<CURSOR>>></h1>")
+        let snippet = Snippet(name: "", format: "<h1><<<CURSOR>>></h1>")
         
         XCTAssertEqual(snippet.string, "<h1></h1>")
         XCTAssertEqual(snippet.selections, [NSRange(location: 4, length: 0)])
@@ -39,13 +39,13 @@ final class SnippetTests: XCTestCase {
     
     func testMultipleLines() {
         
-        let pattern = """
+        let format = """
             <ul>
                 <li><<<CURSOR>>></li>
                 <li><<<CURSOR>>></li>
             </ul>
             """
-        let snippet = Snippet(pattern)
+        let snippet = Snippet(name: "", format: format)
         
         let expectedString = """
             <ul>
