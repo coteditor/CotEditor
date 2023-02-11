@@ -405,7 +405,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // open as document
         do {
-            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(contents: report, title: title, display: true)
+            let document = try (NSDocumentController.shared as! DocumentController).openUntitledDocument(content: report, title: title, display: true)
             document.setSyntaxStyle(name: BundledStyleName.markdown)
         } catch {
             NSApp.presentError(error)

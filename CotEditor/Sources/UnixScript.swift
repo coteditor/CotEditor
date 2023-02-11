@@ -189,7 +189,7 @@ final class UnixScript: Script {
                 editor.insert(string: output, at: .afterAll)
             
             case .newDocument:
-                try (DocumentController.shared as! DocumentController).openUntitledDocument(contents: output, display: true)
+                try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
             
             case .pasteBoard:
                 NSPasteboard.general.clearContents()

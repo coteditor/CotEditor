@@ -505,7 +505,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // retry completion if needed
         // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
         if self.needsRecompletion {
-            self.needsRecompletion = false
             self.completionDebouncer.schedule(delay: .milliseconds(50))
         }
         
@@ -1065,10 +1064,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
+        let didChange = orientation != self.layoutOrientation
+        
         // -> Need to send KVO notification manually on Swift. (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(for: \.layoutOrientation)
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
+        
+        guard didChange else { return }
         
         self.invalidateNonContiguousLayout()
         
@@ -1374,6 +1377,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     func detectLink() {
         
         self.urlDetectionTask?.cancel()
+        
+        guard self.isAutomaticLinkDetectionEnabled else { return }
+        
         self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
             try? await self?.textStorage?.linkURLs()
             
@@ -1501,7 +1507,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private func invalidateNonContiguousLayout() {
         
         self.layoutManager?.allowsNonContiguousLayout = {
-            // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 12)
+            // disable non-contiguous layout on vertical layout (2016-06 on OS X 10.11 - macOS 13)
             //  -> Otherwise by vertical layout, the view scrolls occasionally a bit on typing.
             if self.layoutOrientation == .vertical { return false }
             
@@ -1782,6 +1788,7 @@ extension EditorTextView {
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
         self.completionDebouncer.cancel()
+        self.needsRecompletion = false
         
         self.isShowingCompletion = !flag
         

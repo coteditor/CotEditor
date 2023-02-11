@@ -27,7 +27,7 @@ import AppKit.NSTextStorage
 
 extension NSTextStorage {
     
-    /// Detect URLs in the string and link them.
+    /// Link detected URLs in the content.
     ///
     /// - Throws: `CancellationError`
     func linkURLs() throws {

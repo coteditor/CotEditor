@@ -156,7 +156,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         if let string = coder.decodeObject(of: NSString.self, forKey: SerializationKey.originalContentString) as? String {
-            self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
+            self.replaceContent(with: string)
         }
     }
     
@@ -382,8 +382,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // update textStorage
-        assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        self.textStorage.replaceCharacters(in: self.textStorage.range, with: file.string)
+        self.replaceContent(with: file.string)
         
         // set read values
         self.fileEncoding = file.fileEncoding
@@ -826,6 +825,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    /// Replace whole content with the given `string`.
+    ///
+    /// - Parameter string: The content string to replace with.
+    func replaceContent(with string: String) {
+        
+        assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
+        
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
+    }
+    
+    
     /// reinterpret file with the desired encoding
     func reinterpret(encoding: String.Encoding) throws {
         
@@ -894,7 +904,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.changeLineEnding(to: currentLineEnding)
-                target.textStorage.replaceCharacters(in: target.textStorage.range, with: string)
+                target.replaceContent(with: string)
             }
             undoManager.setActionName(String(localized: "Line Endings to “\(lineEnding.name)”"))
         }
