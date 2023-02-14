@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,64 +39,6 @@ extension StringProtocol {
         self.utf16.count
     }
 }
-
-
-
-extension NSRange {
-    
-    static let notFound = NSRange(location: NSNotFound, length: 0)
-    
-    
-    /// A boolean value indicating whether the range contains no elements.
-    var isEmpty: Bool {
-        
-        self.length == 0
-    }
-    
-    
-    /// Check if the given index is in the receiver or touchs to one of the receiver's bounds.
-    ///
-    /// - Parameter index: The index to test.
-    func touches(_ index: Int) -> Bool {
-        
-        self.lowerBound <= index && index <= self.upperBound
-    }
-    
-    
-    /// Return a boolean indicating whether the specified range intersects the receiver’s range.
-    ///
-    /// - Parameter other: The other range.
-    func intersects(_ other: NSRange) -> Bool {
-        
-        self.intersection(other) != nil
-    }
-    
-    
-    /// Check if the two ranges overlap or touch each other.
-    ///
-    /// - Parameter range: The range to test.
-    /// - Note: Unlike Swift.Range's `overlaps(_:)`, this method returns `true` when a range length is 0.
-    func touches(_ range: NSRange) -> Bool {
-        
-        if self.location == NSNotFound { return false }
-        if range.location == NSNotFound { return false }
-        if self.upperBound < range.lowerBound { return false }
-        if range.upperBound < self.lowerBound { return false }
-        
-        return true
-    }
-    
-    
-    /// Return a copied NSRange but whose location is shifted toward the given `offset`.
-    ///
-    /// - Parameter offset: The offset to shift.
-    /// - Returns: A new NSRange.
-    func shifted(by offset: Int) -> NSRange {
-        
-        NSRange(location: self.location + offset, length: self.length)
-    }
-}
-
 
 
 extension NSString {
@@ -302,10 +244,10 @@ extension NSString {
         assert(range.contains(index))
         
         let lowerDelimiterRange = self.rangeOfCharacter(from: set, options: .backwards, range: NSRange(range.lowerBound..<index))
-        let lowerBound = (lowerDelimiterRange != .notFound) ? lowerDelimiterRange.upperBound : range.lowerBound
+        let lowerBound = !lowerDelimiterRange.isNotFound ? lowerDelimiterRange.upperBound : range.lowerBound
         
         let upperDelimiterRange = self.rangeOfCharacter(from: set, range: NSRange(index..<range.upperBound))
-        let upperBound = (upperDelimiterRange != .notFound) ? upperDelimiterRange.lowerBound : range.upperBound
+        let upperBound = !upperDelimiterRange.isNotFound ? upperDelimiterRange.lowerBound : range.upperBound
         
         return NSRange(lowerBound..<upperBound)
     }

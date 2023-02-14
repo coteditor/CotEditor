@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -433,7 +433,7 @@ extension String {
         let lineEndingRange = string.range(of: "\\R", options: .regularExpression, range: range)
         
         // do nothing with single line
-        guard lineEndingRange != .notFound else { return nil }
+        guard !lineEndingRange.isNotFound else { return nil }
         
         let lineEnding = string.substring(with: lineEndingRange)
         let lineRange = string.lineContentsRange(for: range)

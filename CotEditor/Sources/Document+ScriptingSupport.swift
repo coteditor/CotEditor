@@ -530,13 +530,13 @@ private extension NSString {
             guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else { return nil }
             
             foundRange = regex.rangeOfFirstMatch(in: self as String, options: .withoutAnchoringBounds, range: targetRange)
-            if foundRange == .notFound, isWrapSearch {
+            if foundRange.isNotFound, isWrapSearch {
                 foundRange = regex.rangeOfFirstMatch(in: self as String, options: .withoutAnchoringBounds, range: self.range)
             }
             
         } else {
             foundRange = self.range(of: searchString, options: options, range: targetRange)
-            if foundRange == .notFound, isWrapSearch {
+            if foundRange.isNotFound, isWrapSearch {
                 foundRange = self.range(of: searchString, options: options)
             }
         }

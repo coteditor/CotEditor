@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2022 1024jp
+//  © 2017-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -110,7 +110,7 @@ extension Collection<String> {
             let root = (proposedName as NSString).substring(to: result.range.location)
             let numberRange = result.range(at: 1)
             
-            guard numberRange != .notFound else { return (root, nil) }
+            guard !numberRange.isNotFound else { return (root, nil) }
             
             let number = Int((proposedName as NSString).substring(with: numberRange))
             

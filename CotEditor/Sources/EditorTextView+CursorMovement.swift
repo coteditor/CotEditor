@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2022 1024jp
+//  © 2019-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -280,7 +280,7 @@ extension EditorTextView {
         // manipulate only when the difference stemmed from the additional word boundaries
         let superCursor = isLowerOrigin ? superRange.upperBound : superRange.lowerBound
         let diffRange = (superCursor < newCursor) ? NSRange(superCursor..<newCursor) : NSRange(newCursor..<superCursor)
-        guard (self.string as NSString).rangeOfCharacter(from: .additionalWordSeparators, range: diffRange) != .notFound else { return }
+        guard !(self.string as NSString).rangeOfCharacter(from: .additionalWordSeparators, range: diffRange).isNotFound else { return }
         
         // adjust selection range character by character
         while self.selectedRange != newRange {
@@ -566,13 +566,13 @@ extension EditorTextView {
             var nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
             
             // resume from the top of the document
-            if nextRange == .notFound {
+            if nextRange.isNotFound {
                 var location = 0
                 repeat {
                     nextRange = string.range(of: selectedWord, range: NSRange(location..<lastRange.lowerBound))
                     location = nextRange.upperBound
                     
-                    guard nextRange != .notFound else { return }
+                    guard !nextRange.isNotFound else { return }
                     
                 } while selectedRanges.contains(where: { $0.intersects(nextRange) })
             }
@@ -763,7 +763,7 @@ private extension NSAttributedString {
         let range = isForward ? (location + 1)..<nextIndex : nextIndex..<(location - 1)
         let trimmedRange = (self.string as NSString).rangeOfCharacter(from: delimiters, options: options, range: NSRange(range))
         
-        guard trimmedRange != .notFound else { return nextIndex }
+        guard !trimmedRange.isNotFound else { return nextIndex }
         
         return isForward ? trimmedRange.lowerBound : trimmedRange.upperBound
     }

@@ -1731,7 +1731,7 @@ extension EditorTextView {
         let searchRange = NSRange(location: 0, length: range.upperBound)
         let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
         
-        guard invalidRange != .notFound else { return range }
+        guard !invalidRange.isNotFound else { return range }
         
         return NSRange(invalidRange.upperBound..<range.upperBound)
     }
