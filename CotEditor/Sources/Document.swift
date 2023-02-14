@@ -61,6 +61,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private(set) lazy var selection = TextSelection(document: self)
     private(set) lazy var analyzer = DocumentAnalyzer(document: self)
     private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
+    let urlDetector: URLDetector
     
     let didChangeSyntaxStyle = PassthroughSubject<String, Never>()
     
@@ -80,6 +81,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var syntaxUpdateObserver: AnyCancellable?
     private var textStorageObserver: AnyCancellable?
     private var windowObserver: AnyCancellable?
+    private var defaultObservers: Set<AnyCancellable> = []
     
     private var lastSavedData: Data?  // temporal data used only within saving process
     
@@ -106,6 +108,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // observe for inconsistent line endings
         self.lineEndingScanner = .init(textStorage: self.textStorage, lineEnding: lineEnding)
+        
+        // auto-link URLs in the content
+        self.urlDetector = URLDetector(textStorage: self.textStorage)
+        UserDefaults.standard.publisher(for: .autoLinkDetection, initial: true)
+            .assign(to: \.isEnabled, on: self.urlDetector)
+            .store(in: &self.defaultObservers)
         
         super.init()
         
@@ -644,7 +652,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // detect URLs manually (2019-05 macOS 10.14).
         // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
         //    but then, multiline-URLs over a page break would be broken. (cf. #958)
-        try? printView.textStorage?.linkURLs()
+        Task { try? await printView.textStorage?.linkURLs() }
         
         // create print operation
         let printInfo = self.printInfo

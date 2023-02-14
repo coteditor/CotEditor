@@ -62,8 +62,8 @@
 		2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */; };
 		2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
-		2A1125C623F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */; };
-		2A1125C723F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */; };
+		2A1125C623F6EFB2006A1DB2 /* URLDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */; };
+		2A1125C723F6EFB2006A1DB2 /* URLDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */; };
@@ -432,6 +432,9 @@
 		2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
 		2A8E25BB24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
 		2A8E25BC24DC59C400FCC33A /* FileEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */; };
+		2A8E47E2299A2314006A40D8 /* EditedRangeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E47E1299A2314006A40D8 /* EditedRangeSet.swift */; };
+		2A8E47E3299A2314006A40D8 /* EditedRangeSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E47E1299A2314006A40D8 /* EditedRangeSet.swift */; };
+		2A8E47E5299A2401006A40D8 /* EditedRangeSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E47E4299A2401006A40D8 /* EditedRangeSetTests.swift */; };
 		2A8E47E7299B2F5C006A40D8 /* NSRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E47E6299B2F5C006A40D8 /* NSRangeTests.swift */; };
 		2A8E47E9299C6064006A40D8 /* NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E47E8299C6064006A40D8 /* NSRange.swift */; };
 		2A8E47EA299C6064006A40D8 /* NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E47E8299C6064006A40D8 /* NSRange.swift */; };
@@ -931,7 +934,7 @@
 		2A10D1471E7477D30027192A /* StyledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
 		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
-		2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+URLDetection.swift"; sourceTree = "<group>"; };
+		2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLDetector.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* Unicode.UTF32.CodeUnit+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Unicode.UTF32.CodeUnit+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextField.swift; sourceTree = "<group>"; };
@@ -1194,6 +1197,8 @@
 		2A8DA9431D286C53003D0C4B /* ScriptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptManager.swift; sourceTree = "<group>"; };
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		2A8E25BA24DC59C400FCC33A /* FileEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEncoding.swift; sourceTree = "<group>"; };
+		2A8E47E1299A2314006A40D8 /* EditedRangeSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedRangeSet.swift; sourceTree = "<group>"; };
+		2A8E47E4299A2401006A40D8 /* EditedRangeSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedRangeSetTests.swift; sourceTree = "<group>"; };
 		2A8E47E6299B2F5C006A40D8 /* NSRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRangeTests.swift; sourceTree = "<group>"; };
 		2A8E47E8299C6064006A40D8 /* NSRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRange.swift; sourceTree = "<group>"; };
 		2A8EF013241F0A8A001BDBC0 /* StringLineProcessingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLineProcessingTests.swift; sourceTree = "<group>"; };
@@ -1676,6 +1681,7 @@
 				2A3E61C627C4962B00C6E5B6 /* Formatters */,
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
 				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
+				2A8E47E1299A2314006A40D8 /* EditedRangeSet.swift */,
 				2AA704CD2987878B008CBCB5 /* Node.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
 				2AA4EE3C28D55CE80014B045 /* DelegateContext.swift */,
@@ -2088,7 +2094,6 @@
 				2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */,
 				2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */,
 				2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */,
-				2A1125C523F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift */,
 				2AFE848522AE71130001C4ED /* TextContainer.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */,
@@ -2254,6 +2259,7 @@
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2A80BE8C27FFA61700D2F7FF /* LineEndingScanner.swift */,
+				2A1125C523F6EFB2006A1DB2 /* URLDetector.swift */,
 			);
 			name = Scanners;
 			sourceTree = "<group>";
@@ -2415,6 +2421,7 @@
 				2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */,
 				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
+				2A8E47E4299A2401006A40D8 /* EditedRangeSetTests.swift */,
 				2A3F8F672429E04000CBBA89 /* DebouncerTests.swift */,
 				2A04E9BA27FD6911008C82D8 /* SnippetTests.swift */,
 				2A80BE8F27FFFA8900D2F7FF /* LineEndingScannerTests.swift */,
@@ -3003,6 +3010,7 @@
 				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A68722F288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
+				2A8E47E2299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
 				2AF45E1F1E6C0D920030CD60 /* EditorCounter.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
@@ -3114,7 +3122,6 @@
 				2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */,
 				2A180F4B2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
 				2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
-				2A1125C723F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */,
 				2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A1311D72127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,
 				2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */,
@@ -3236,6 +3243,7 @@
 				2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
+				2A1125C723F6EFB2006A1DB2 /* URLDetector.swift in Sources */,
 				2A341D1A281EE23C00B85CB6 /* UserActivity.swift in Sources */,
 				2A222C3024FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
 				2A1A4EAC24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,
@@ -3261,6 +3269,7 @@
 				2AC39F731E8AC80E009F97D5 /* CollectionTests.swift in Sources */,
 				2A3F8F682429E04000CBBA89 /* DebouncerTests.swift in Sources */,
 				2ABEFB6A23DC0CA0008769F4 /* EditorInfoCountOperationTests.swift in Sources */,
+				2A8E47E5299A2401006A40D8 /* EditedRangeSetTests.swift in Sources */,
 				2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */,
 				2AC72EA2253478D5001D3CA0 /* FileDropItemTests.swift in Sources */,
 				2A9B134C27E2CE86009954A4 /* FileManagerTests.swift in Sources */,
@@ -3278,6 +3287,7 @@
 				2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */,
 				2A643BB3245172EB00B2AD54 /* NSBezierPathTests.swift in Sources */,
 				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
+				2A8E47E7299B2F5C006A40D8 /* NSRangeTests.swift in Sources */,
 				2A7B279924E435FE00F02304 /* OutlineTests.swift in Sources */,
 				2AFD328F2949B34A000ED1C5 /* RegularExpressionSyntaxTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
@@ -3360,6 +3370,7 @@
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A687230288A5C44006D6B41 /* DraggableHostingView.swift in Sources */,
+				2A8E47E3299A2314006A40D8 /* EditedRangeSet.swift in Sources */,
 				2AF45E1E1E6C0D920030CD60 /* EditorCounter.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
@@ -3471,7 +3482,6 @@
 				2A6FD9ED1D3A85D700A59784 /* NSString.swift in Sources */,
 				2A180F4C2854E71800EBAF66 /* NSTextSelectionDataSource.swift in Sources */,
 				2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */,
-				2A1125C623F6EFB2006A1DB2 /* NSTextStorage+URLDetection.swift in Sources */,
 				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A1311D62127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
@@ -3594,6 +3604,7 @@
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
+				2A1125C623F6EFB2006A1DB2 /* URLDetector.swift in Sources */,
 				2A341D1B281EE23C00B85CB6 /* UserActivity.swift in Sources */,
 				2A222C3124FA8E0500251084 /* UserDefaults.Publisher.swift in Sources */,
 				2A1A4EAD24FB7BDE00B50AA0 /* UserDefaults+DefaultKey.swift in Sources */,

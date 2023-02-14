@@ -110,8 +110,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private var instanceHighlightTask: Task<Void, any Error>?
     
-    private var urlDetectionTask: Task<Void, any Error>?
-    
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
@@ -177,7 +175,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
         self.isAutomaticQuoteSubstitutionEnabled = defaults[.enableSmartQuotes]
         self.isAutomaticDashSubstitutionEnabled = defaults[.enableSmartDashes]
-        self.isAutomaticLinkDetectionEnabled = defaults[.autoLinkDetection]
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
@@ -221,15 +218,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 .sink { [unowned self] in self.isAutomaticDashSubstitutionEnabled = $0 },
             defaults.publisher(for: .checkSpellingAsType)
                 .sink { [unowned self] in self.isContinuousSpellCheckingEnabled = $0 },
-            defaults.publisher(for: .autoLinkDetection)
-                .sink { [unowned self] (value) in
-                    self.isAutomaticLinkDetectionEnabled = value
-                    if self.isAutomaticLinkDetectionEnabled {
-                        self.detectLink()
-                    } else {
-                        self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
-                    }
-                },
             
             Publishers.Merge(defaults.publisher(for: .fontName).eraseToVoid(),
                              defaults.publisher(for: .fontSize).eraseToVoid())
@@ -267,7 +255,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     deinit {
         self.insertionPointTimer?.cancel()
-        self.urlDetectionTask?.cancel()
         self.instanceHighlightTask?.cancel()
     }
     
@@ -506,12 +493,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
         if self.needsRecompletion {
             self.completionDebouncer.schedule(delay: .milliseconds(50))
-        }
-        
-        // retry the manual url detection for the entire text
-        // -> The detection for the typed line will be automatically done by NSTextView.
-        if self.urlDetectionTask != nil {
-            self.detectLink()
         }
     }
     
@@ -1091,13 +1072,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// read pasted/dropped item from NSPaseboard (involed in `performDragOperation(_:)`)
     override func readSelection(from pboard: NSPasteboard, type: NSPasteboard.PasteboardType) -> Bool {
         
-        // link URLs in pasted string
-        defer {
-            if self.isAutomaticLinkDetectionEnabled {
-                self.detectLink()
-            }
-        }
-        
         // on file drop
         if pboard.name == .drag,
             let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
@@ -1367,27 +1341,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     @IBAction func inputBackSlash(_ sender: Any?) {
         
         super.insertText("\\", replacementRange: .notFound)
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// Detect URLs in content asynchronously.
-    func detectLink() {
-        
-        self.urlDetectionTask?.cancel()
-        
-        guard self.isAutomaticLinkDetectionEnabled else { return }
-        
-        self.urlDetectionTask = Task.detached(priority: .userInitiated) { [weak self] in
-            try? await self?.textStorage?.linkURLs()
-            
-            // remove the task itself when completed to use the `.urlDetectionTask` property as the task completion flag.
-            await MainActor.run { [weak self] in
-                self?.urlDetectionTask = nil
-            }
-        }
     }
     
     

@@ -132,13 +132,9 @@ final class EditorViewController: NSSplitViewController {
     /// - Parameter textStorage: The text storage to set.
     func setTextStorage(_ textStorage: NSTextStorage) {
         
-        guard let textView = self.textView else { return assertionFailure() }
+        guard let layoutManager = self.textView?.layoutManager else { return assertionFailure() }
         
-        textView.layoutManager?.replaceTextStorage(textStorage)
-        
-        if textView.isAutomaticLinkDetectionEnabled {
-            textView.detectLink()
-        }
+        layoutManager.replaceTextStorage(textStorage)
     }
     
     
