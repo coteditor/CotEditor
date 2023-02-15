@@ -10,6 +10,7 @@ Change Log
 - Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
 - Add the Insert Snippet submenu to the Text menu.
 - Enable the character inspector inspecting more information about each Unicode scalar consists a character.
+- [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
 
 
 ### Improvements
