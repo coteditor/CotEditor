@@ -410,23 +410,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] This method may be called from a background thread due to async-saving.
         
         let fileEncoding = self.fileEncoding
-        let string = self.textStorage.string.immutable
-        
-        // unblock the user interface, since fetching current document state has been done here
-        self.unblockUserInteraction()
         
         // get data from string to save
-        guard var data = string.convertingYenSign(for: fileEncoding.encoding).data(using: fileEncoding.encoding, allowLossyConversion: true) else {
-            throw CocoaError(.fileWriteInapplicableStringEncoding,
-                             userInfo: [NSStringEncodingErrorKey: fileEncoding.encoding.rawValue])
-        }
+        // -> .data(using:allowLossyConversion:) never returns nil as long as allowLossyConversion is true.
+        var data = self.textStorage.string
+            .convertingYenSign(for: fileEncoding.encoding)
+            .data(using: fileEncoding.encoding, allowLossyConversion: true)!
+        
+        self.unblockUserInteraction()
         
         // add UTF-8 BOM if needed
         if fileEncoding.withUTF8BOM {
             data.insert(contentsOf: Unicode.BOM.utf8.sequence, at: 0)
         }
         
-        // keep to swap later with `fileData`, but only when succeed
+        // keep to swap with `fileData` later, but only when succeed
         self.lastSavedData = data
         
         return data
