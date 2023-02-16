@@ -126,7 +126,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// store internal document state
     override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
@@ -143,7 +142,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// restore internal document state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -172,7 +170,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Document Methods
     
-    /// enable Autosave in Place
     override class var autosavesInPlace: Bool {
         
         // avoid changing the value while the application is running
@@ -182,7 +179,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// whether documents use iCloud storage
     override class var usesUbiquitousStorage: Bool {
         
         // pretend as if iCloud storage is disabled to let the system give up opening the open panel on launch (2018-02 macOS 10.13)
@@ -196,14 +192,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// can read document on a background thread?
     override class func canConcurrentlyReadDocuments(ofType: String) -> Bool {
         
         true
     }
     
     
-    /// enable asynchronous saving
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) -> Bool {
         
         true
@@ -247,7 +241,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// make custom windowControllers
     override func makeWindowControllers() {
         
         if self.windowControllers.isEmpty {  // -> A transient document already has one.
@@ -271,7 +264,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// return preferred file extension corresponding to the current syntax style
     override nonisolated func fileNameExtension(forType typeName: String, saveOperation: NSDocument.SaveOperationType) -> String? {
         
         if !self.isDraft, let pathExtension = self.fileURL?.pathExtension {
@@ -282,7 +274,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// revert to saved file contents
     override func revert(toContentsOf url: URL, ofType typeName: String) throws {
         
         assert(Thread.isMainThread)
@@ -326,7 +317,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// setup duplicated document
     override func duplicate() throws -> NSDocument {
         
         let document = try super.duplicate() as! Document
@@ -341,7 +331,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// load document from file and return whether it succeeded
     override func read(from url: URL, ofType typeName: String) throws {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
@@ -404,7 +393,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// create Data object to save
     override func data(ofType typeName: String) throws -> Data {
         
         // [caution] This method may be called from a background thread due to async-saving.
@@ -431,7 +419,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// save or autosave the document contents to a file
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         
         // break undo grouping
@@ -469,7 +456,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// store the state of the new file (invoked in file saving process)
     override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {
         
         // [caution] This method may be called from a background thread due to async-saving.
@@ -492,7 +478,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// customize document's file attributes
     override func fileAttributesToWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws -> [String: Any] {
         
         // [caution] This method may be called from a background thread due to async-saving.
@@ -533,14 +518,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// avoid let system add the standard save panel accessory (pop-up menu for document type change)
     override var shouldRunSavePanelWithAccessoryView: Bool {
         
         false
     }
     
     
-    /// prepare save panel
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
         // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 12)
@@ -573,7 +556,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// display dialogs about save before closing document
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         // suppress save dialog if content is empty and not saved explicitly
@@ -604,7 +586,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// close document
     override func close() {
         
         self.textStorageObserver?.cancel()
@@ -613,7 +594,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// setup print setting including print panel
     override func printOperation(withSettings printSettings: [NSPrintInfo.AttributeKey: Any]) throws -> NSPrintOperation {
         
         let viewController = self.viewController!
@@ -669,7 +649,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// printing information associated with the document
     override var printInfo: NSPrintInfo {
         
         get {
@@ -693,7 +672,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// document was updated
     override func updateChangeCount(_ change: NSDocument.ChangeType) {
         
         self.isTransient = false
@@ -737,7 +715,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Protocols
     
-    /// file has been modified by an external process
+    /// File has been modified by an external process.
     override func presentedItemDidChange() {
         
         // [caution] This method can be called from any thread.
@@ -784,7 +762,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// apply current state to menu items
+    /// Apply the current states to menu items.
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
@@ -804,7 +782,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// open existing document file (alternative methods for `init(contentsOf:ofType:)`)
+    /// Open existing document file (alternative methods for `init(contentsOf:ofType:)`).
     func didMakeDocumentForExisitingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
@@ -842,7 +820,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// reinterpret file with the desired encoding
+    /// Reinterpret the document file with the desired encoding.
+    ///
+    /// - Parameter encoding: The file encoding to read.
+    /// - Throws: `ReinterpretationError`
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
@@ -865,8 +846,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// change file encoding registering process to the undo manager
+    /// Change the file encoding and register the process to the undo manager.
     ///
+    /// - Parameters:
+    ///   - fileEncoding: The file encoding to change with.
+    ///   - lossy: Whether the change is lossy.
     /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `true`.
     func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
@@ -896,7 +880,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// change line endings registering process to the undo manager
+    /// Change line endings and register the process to the undo manager.
+    ///
+    /// - Parameter lineEnding: The line ending type to change with.
     func changeLineEnding(to lineEnding: LineEnding) {
         
         assert(Thread.isMainThread)
@@ -921,7 +907,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// change syntax style with style name
+    /// Change the syntax style to one with the given style name.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the style to change with.
+    ///   - isInitial: Whether the setting is initial.
     func setSyntaxStyle(name: String, isInitial: Bool = false) {
         
         guard
@@ -943,7 +933,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Action Messages
     
-    /// save document
+    /// Save document.
     @IBAction override func save(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
@@ -954,7 +944,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// save document with new name
+    /// Save document to a new location.
     @IBAction override func saveAs(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
@@ -965,7 +955,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// change line ending with sender's tag
+    /// Change the line ending with sender's tag.
     @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
         guard let lineEnding = LineEnding.allCases[safe: sender.tag] else { return assertionFailure() }
@@ -974,7 +964,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// change document file encoding
+    /// Change the document file encoding.
     @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
         let fileEncoding = FileEncoding(tag: sender.tag)
@@ -1064,7 +1054,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// change syntax style
+    /// Change the syntax style.
     @IBAction func changeSyntaxStyle(_ sender: AnyObject?) {
         
         guard let name = sender?.title else { return assertionFailure() }
@@ -1073,7 +1063,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// insert IANA CharSet name to editor's insertion point
+    /// Insert the IANA CharSet name of the document encoding to the editor's insertion point.
     @IBAction func insertIANACharSetName(_ sender: Any?) {
         
         guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
@@ -1085,7 +1075,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Private Methods
     
-    /// callback from save panel after calling `runModalSavePanel(for:didSave:contextInfo)`.
+    /// Callback from save panel after calling `runModalSavePanel(for:didSave:contextInfo)`.
     @objc private func document(_ document: NSDocument, didSave didSaveSuccessfully: Bool, contextInfo: UnsafeMutableRawPointer) {
         
         if didSaveSuccessfully {
@@ -1099,7 +1089,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// transfer file information to UI
+    /// Transfer file information to UI.
     private func applyContentToWindow() {
         
         // update incompatible characters if pane is visible
@@ -1132,7 +1122,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// check if can save safely with the current encoding and ask if not
+    /// Check if can save safely with the current encoding and ask if not.
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
@@ -1148,7 +1138,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// check if the content can be saved with the file encoding
+    /// Check if the content can be saved with the current file encoding.
     private func checkSavingSafetyForConverting() throws {
         
         guard self.textStorage.string.canBeConverted(to: self.fileEncoding.encoding) else {
@@ -1209,7 +1199,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// display alert about file modification by an external process
+    /// Display alert about file modification by an external process.
     private func showUpdatedByExternalProcessAlert() {
         
         assert(Thread.isMainThread)
@@ -1252,7 +1242,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// Revert receiver with current document file without asking to user before
+    /// Revert receiver with current document file without asking to user before.
     private func revertWithoutAsking() {
         
         assert(Thread.isMainThread)
