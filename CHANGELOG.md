@@ -11,6 +11,7 @@ Change Log
 - Add the Insert Snippet submenu to the Text menu.
 - Enable the character inspector inspecting more information about each Unicode scalar consists a character.
 - Improve the performance of text editing while the URL detection is enabled.
+- Enable using a single function key stroke as a keyboard shortcut.
 - [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
 
 
