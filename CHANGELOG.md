@@ -10,8 +10,8 @@ Change Log
 - Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
 - Add the Insert Snippet submenu to the Text menu.
 - Enable the character inspector inspecting more information about each Unicode scalar consists a character.
-- Improve the performance of text editing while the URL detection is enabled.
 - Enable using a single function key stroke as a keyboard shortcut.
+- Improve the performance of text editing while the URL detection is enabled.
 - [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
 
 
@@ -23,11 +23,11 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that all URL links removed when the document was updated.
+- Fix an issue that all URL links removed when the document was updated by an external process.
 
 
 
-4.4.5 (unreleased)
+4.4.5 (550)
 --------------------------
 
 ### New Features
