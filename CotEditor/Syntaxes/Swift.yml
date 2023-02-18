@@ -6,10 +6,10 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.7.1"
-  description: "Based on Swift 5.7"
+  version: "4.8.0"
+  description: "Based on Swift 5.8"
   license: "Same as CotEditor"
-  lastModified: "2022-06-19"
+  lastModified: "2023-02-18"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME:)[ \\t](.+)"
   keyString: "$2"
@@ -54,6 +54,7 @@ attributes:
 - beginString: "@autoclosure"
 - beginString: "@available"
 - beginString: "@asyncHandler"
+- beginString: "@backDeployed"
 - beginString: "@Binding"
 - beginString: "@convention"
 - beginString: "@derivative"
@@ -86,6 +87,7 @@ attributes:
 - beginString: "@ObservedObject"
 - beginString: "@optional"
 - beginString: "@propertyWrapper"
+- beginString: "@preconcurrency"
 - beginString: "@Published"
 - beginString: "@required"
 - beginString: "@requires_stored_property_inits"
@@ -100,6 +102,8 @@ attributes:
 - beginString: "@usableFromInline"
 - beginString: "@warn_unqualified_access"
 - beginString: "@warn_unused_result"
+- beginString: "(?<=@backDeployed\\()before:"
+  regularExpression: true
 characters:
 - beginString: "'"
   endString: "'"
