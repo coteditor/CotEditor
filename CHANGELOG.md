@@ -9,9 +9,9 @@ Change Log
 
 - Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
 - Add the Insert Snippet submenu to the Text menu.
-- Enable the character inspector inspecting more information about each Unicode scalar consists a character.
-- Enable using a single function key stroke as a keyboard shortcut.
-- Improve the performance of text editing while the URL detection is enabled.
+- Enable the character inspector to inspect more information about each Unicode scalar consists of a character.
+- Allow single function key stroke for a keyboard shortcut.
+- Improve the performance of text editing while URL detection is enabled.
 - Deprecate the Insert Encoding Name command (use AppleScript instead).
 - Update item order of the Edit menu.
 - Update Swift syntax style to add keywords for Swift 5.8.
@@ -26,7 +26,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue that all URL links removed when the document was updated by an external process.
+- Fix an issue that all URL links were removed when the document was updated by an external process.
 - Fix the redo action label for the line endings conversion and file encoding change.
 
 
