@@ -851,7 +851,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// - Parameters:
     ///   - fileEncoding: The file encoding to change with.
     ///   - lossy: Whether the change is lossy.
-    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `true`.
+    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thrown but only if `lossy` flag is `false`.
     func changeEncoding(to fileEncoding: FileEncoding, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
@@ -865,8 +865,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // register undo
         if let undoManager = self.undoManager {
-            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding] target in
-                try? target.changeEncoding(to: currentFileEncoding, lossy: lossy)
+            undoManager.registerUndo(withTarget: self) { [currentFileEncoding = self.fileEncoding, shouldSaveEncodingXattr = self.shouldSaveEncodingXattr] target in
+                target.fileEncoding = currentFileEncoding
+                target.shouldSaveEncodingXattr = shouldSaveEncodingXattr
+                target.incompatibleCharacterScanner.invalidate()
+                
+                // register redo
+                target.undoManager?.registerUndo(withTarget: target) { try? $0.changeEncoding(to: fileEncoding, lossy: lossy) }
             }
             undoManager.setActionName(String(localized: "Encoding to “\(fileEncoding.localizedName)”"))
         }
@@ -896,6 +901,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
                 target.replaceContent(with: string)
                 target.lineEnding = currentLineEnding
+                
+                // register redo
                 target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding)
                 }
             }
