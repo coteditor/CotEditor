@@ -473,11 +473,6 @@
 /* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
 "OmB-Ve-DEy.title" = "Edit Snippets…";  // FIXME: added
 
-/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
-"663.title" = "Inserisci nome della codifica";
-/* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "Inserisci il nome della codifica come set di caratteri IANA";
-
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Ispeziona carattere";
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */

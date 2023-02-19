@@ -473,11 +473,6 @@
 /* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
 "OmB-Ve-DEy.title" = "Edit Snippets…";  // FIXME: added
 
-/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
-"663.title" = "Kodlama Adı Gir";
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Insert encoding name as IANA charset name"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "Kodlama adını IANA karakter kümesi adı olarak gir";
-
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "Karakter Denetle";
 /* Class = "NSMenuItem"; title = "Advanced Character Count…"; ObjectID = "SPF-Mw-eZP"; */

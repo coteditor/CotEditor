@@ -1071,15 +1071,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// Insert the IANA CharSet name of the document encoding to the editor's insertion point.
-    @IBAction func insertIANACharSetName(_ sender: Any?) {
-        
-        guard let string = self.fileEncoding.encoding.ianaCharSetName else { return }
-        
-        self.textView?.insert(string: string, at: .replaceSelection)
-    }
-    
-    
     
     // MARK: Private Methods
     

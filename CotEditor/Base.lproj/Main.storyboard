@@ -984,12 +984,6 @@ CA
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                        <menuItem title="Insert Encoding Name" toolTip="Insert encoding name as IANA charset name" id="663">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="insertIANACharSetName:" target="Ady-hI-5gd" id="0Sd-vf-sc8"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="640"/>
                                         <menuItem title="Inspect Character" keyEquivalent="i" id="ToR-yH-ahH">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
