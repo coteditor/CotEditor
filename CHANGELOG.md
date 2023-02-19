@@ -13,6 +13,7 @@ Change Log
 - Enable using a single function key stroke as a keyboard shortcut.
 - Improve the performance of text editing while the URL detection is enabled.
 - Deprecate the Insert Encoding Name command (use AppleScript instead).
+- Update item order of the Edit menu.
 - Update Swift syntax style to add keywords for Swift 5.8.
 - [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
 
