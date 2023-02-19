@@ -887,18 +887,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         assert(Thread.isMainThread)
         
-        guard
-            lineEnding != self.lineEnding ||
-                self.textStorage.string.lineEndingRanges().count > 1
+        guard lineEnding != self.lineEnding ||
+                !self.lineEndingScanner.inconsistentLineEndings.isEmpty
         else { return }
         
         // register undo
         if let undoManager = self.undoManager {
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding, string = self.textStorage.string] target in
-                target.changeLineEnding(to: currentLineEnding)
                 target.replaceContent(with: string)
+                target.lineEnding = currentLineEnding
+                target.undoManager?.registerUndo(withTarget: target) { $0.changeLineEnding(to: lineEnding)
+                }
             }
-            undoManager.setActionName(String(localized: "Line Endings to “\(lineEnding.name)”"))
+            undoManager.setActionName(String(localized: "Line Endings to \(lineEnding.name)"))
         }
         
         // update line ending

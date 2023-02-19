@@ -240,7 +240,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "“%@” olarak kodlanıyor";
-"Line Endings to “%@”" = "Satır Sonları: “%@”";
+"Line Endings to %@" = "Satır Sonları: %@";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "Dosya Kodlaması";

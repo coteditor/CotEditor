@@ -240,7 +240,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Codierung zu „%@“";
-"Line Endings to “%@”" = "Zeilenenden zu „%@“";
+"Line Endings to %@" = "Zeilenenden zu %@";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "Dateicodierung";

@@ -240,7 +240,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Codifica in “%@”";
-"Line Endings to “%@”" = "Termine riga a “%@”";
+"Line Endings to %@" = "Termine riga a %@";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "Codifica file";

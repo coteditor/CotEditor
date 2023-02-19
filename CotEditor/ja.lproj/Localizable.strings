@@ -240,7 +240,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "エンコーディングを“%@”へ";
-"Line Endings to “%@”" = "改行コードを“%@”へ";
+"Line Endings to %@" = "改行コードを%@へ";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "エンコーディング";

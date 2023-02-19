@@ -240,7 +240,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Encodage en « %@ »";
-"Line Endings to “%@”" = "Fins de ligne en « %@ »";
+"Line Endings to %@" = "Fins de ligne en %@";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "Encodage du fichier";

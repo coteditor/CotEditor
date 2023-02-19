@@ -25,6 +25,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that all URL links removed when the document was updated by an external process.
+- Fix the redo action label for line endings conversion.
 
 
 

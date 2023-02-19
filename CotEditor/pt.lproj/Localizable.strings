@@ -241,7 +241,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "Codificação para “%@”";
-"Line Endings to “%@”" = "Finais de Linha para “%@”";
+"Line Endings to %@" = "Finais de Linha para %@";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "Codificação do arquivo";

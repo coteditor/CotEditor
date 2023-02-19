@@ -240,7 +240,7 @@
 /* MARK: Document */
 // Undo action names
 "Encoding to “%@”" = "編碼變更為「%@」";
-"Line Endings to “%@”" = "行尾變更為「%@」";
+"Line Endings to %@" = "行尾變更為%@";
 
 // Convert or reinterpret encoding alert
 "File encoding" = "檔案編碼";
