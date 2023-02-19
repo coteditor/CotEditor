@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     // MARK: Private Properties
     
     private var trackingTimer: Timer?
+    private var isShowingOptionalItems = false
     
     
-    
-    // MARK: Menu Methods
+    // MARK: Lifecycle
     
     required init(coder: NSCoder) {
         
@@ -46,23 +46,14 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     }
     
     
-    override func update() {
-        
-        super.update()  // validation performs here
-        
-        let isOptionPressed = NSEvent.modifierFlags.contains(.option)
-        for item in self.items where item.isEnabled {
-            let isOptional = item.keyEquivalentModifierMask == .option && item.keyEquivalent.isEmpty
-            item.isHidden = isOptional && item.state == .off && !isOptionPressed
-        }
-    }
-    
-    
     // MARK: Menu Delegate Methods
     
     func menuWillOpen(_ menu: NSMenu) {
         
-        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+        self.update()  // UI validation is performed here
+        self.validateKeyEvent(force: true)
+        
+        let timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(validateKeyEvent), userInfo: nil, repeats: true)
         RunLoop.current.add(timer, forMode: .eventTracking)
         self.trackingTimer = timer
     }
@@ -71,5 +62,40 @@ final class OptionalMenu: NSMenu, NSMenuDelegate {
     func menuDidClose(_ menu: NSMenu) {
         
         self.trackingTimer?.invalidate()
+        self.updateOptionalItems(shows: false)
+    }
+    
+    
+    // MARK: Private Functions
+    
+    /// Check the state of the modifier key press and update the item visibility.
+    ///
+    /// - Parameter force: Whether forcing to update the item visibility.
+    @objc private func validateKeyEvent(force: Bool = false) {
+        
+        let shows = NSEvent.modifierFlags.contains(.option)
+        
+        guard force || shows != self.isShowingOptionalItems else { return }
+        
+        self.updateOptionalItems(shows: shows)
+    }
+    
+    
+    /// Update the visivilisty of optional items.
+    ///
+    /// - Parameter shows: `true` to show optional items.
+    private func updateOptionalItems(shows: Bool) {
+        
+        for item in self.items {
+            guard
+                item.isEnabled,
+                item.keyEquivalentModifierMask == .option,
+                item.keyEquivalent.isEmpty
+            else { continue }
+            
+            item.isHidden = (item.state == .off) && !shows
+        }
+        
+        self.isShowingOptionalItems = shows
     }
 }
