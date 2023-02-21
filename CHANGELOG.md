@@ -16,6 +16,7 @@ Change Log
 - Update item order of the Edit menu.
 - Update Swift syntax style to add keywords for Swift 5.8.
 - [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
+- [dev] Update Yams from 5.0.4 to 5.0.5.
 
 
 ### Improvements
