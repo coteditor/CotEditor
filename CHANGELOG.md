@@ -10,19 +10,19 @@ Change Log
 - Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
 - Add the Insert Snippet submenu to the Text menu.
 - Enable the character inspector to inspect more information about each Unicode scalar consists of a character.
-- Allow single function key stroke for a keyboard shortcut.
-- Improve the performance of text editing while URL detection is enabled.
-- Deprecate the Insert Encoding Name command (use AppleScript instead).
-- Update item order of the Edit menu.
-- Update Swift syntax style to add keywords for Swift 5.8.
-- [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
-- [dev] Update Yams from 5.0.4 to 5.0.5.
 
 
 ### Improvements
 
 - Reconstruct the Snippets (ex. File Drop) and Key Bindings panes in the Settings window.
+- Allow single function key stroke for a keyboard shortcut.
+- Improve the performance of text editing while URL detection is enabled.
+- Deprecate the Insert Encoding Name command (use AppleScript instead).
+- Update item order of the Edit menu.
+- Update Swift syntax style to add keywords for Swift 5.8.
 - Update the help contents.
+- [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
+- [dev] Update Yams from 5.0.4 to 5.0.5.
 
 
 ### Fixes
