@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -323,6 +323,7 @@ extension OutlineViewController: NSOutlineViewDataSource {
                 let attributes: [NSAttributedString.Key: Any] = [
                     .font: NSFont.systemFont(ofSize: fontSize, weight: .semibold),
                     .backgroundColor: NSColor.findHighlightColor,
+                    .foregroundColor: NSColor.black.withAlphaComponent(0.9),  // for legibility in Dark Mode
                 ]
                 for range in ranges {
                     mutableAttrTitle.addAttributes(attributes, range: range)

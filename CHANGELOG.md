@@ -19,6 +19,7 @@ Change Log
 - Improve the performance of text editing while URL detection is enabled.
 - Deprecate the Insert Encoding Name command (use AppleScript instead).
 - Update item order of the Edit menu.
+- Make filter highlights of the outline list more legible in the Dark Mode.
 - Update Swift syntax style to add keywords for Swift 5.8.
 - Update the help contents.
 - [non-AppStore ver.] Update Sparkle from 2.3.1 to 2.3.2.
