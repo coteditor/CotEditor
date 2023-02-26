@@ -352,29 +352,6 @@
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "Metin";
 
-/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
-"Kb8-QD-tYZ.title" = "Satırlar";
-/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
-"BSD-be-CV9.title" = "Satırlar";
-/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
-"4t7-IA-1r3.title" = "Yukarı Taşı";
-/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
-"J59-OR-kzC.title" = "Aşağı Taşı";
-/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
-"OQl-Uo-yfn.title" = "Sırala";
-/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
-"lNH-Mh-pIE.title" = "Dizgiye Göre Sırala…";
-/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
-"xhf-NR-D2Q.title" = "Ters";
-/* Class = "NSMenuItem"; title = "Shuffle"; ObjectID = "M8V-zi-g4l"; */
-"M8V-zi-g4l.title" = "Karıştır";
-/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
-"bjv-m0-tZq.title" = "Çoğaltılanları Sil";
-/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
-"m48-5E-yia.title" = "Satırı Çoğalt";
-/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
-"sFn-3j-pY5.title" = "Satır Sil";
-
 /* Class = "NSMenuItem"; title = "Insert Snippet"; ObjectID = "15m-xz-4oB"; */
 "15m-xz-4oB.title" = "Kırpıntı Ekle";
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
@@ -427,6 +404,29 @@
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "Sondaki Boşlukları Sil";
+
+/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
+"Kb8-QD-tYZ.title" = "Satırlar";
+/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
+"BSD-be-CV9.title" = "Satırlar";
+/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
+"4t7-IA-1r3.title" = "Yukarı Taşı";
+/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
+"J59-OR-kzC.title" = "Aşağı Taşı";
+/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
+"OQl-Uo-yfn.title" = "Sırala";
+/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
+"lNH-Mh-pIE.title" = "Dizgiye Göre Sırala…";
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
+"xhf-NR-D2Q.title" = "Ters";
+/* Class = "NSMenuItem"; title = "Shuffle"; ObjectID = "M8V-zi-g4l"; */
+"M8V-zi-g4l.title" = "Karıştır";
+/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
+"bjv-m0-tZq.title" = "Çoğaltılanları Sil";
+/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
+"m48-5E-yia.title" = "Satırı Çoğalt";
+/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
+"sFn-3j-pY5.title" = "Satır Sil";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "Dönüşümler";

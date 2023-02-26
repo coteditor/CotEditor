@@ -692,72 +692,6 @@ DQ
                                 <attributedString key="attributedTitle"/>
                                 <menu key="submenu" title="Text" id="578">
                                     <items>
-                                        <menuItem title="Lines" id="Kb8-QD-tYZ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Lines" id="BSD-be-CV9">
-                                                <items>
-                                                    <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                                        <connections>
-                                                            <action selector="moveLineUp:" target="Ady-hI-5gd" id="Mrs-c7-Xw5"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
-                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                                        <connections>
-                                                            <action selector="moveLineDown:" target="Ady-hI-5gd" id="But-Oc-YKE"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
-                                                    <menuItem title="Sort" id="OQl-Uo-yfn">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="sortLinesAscending:" target="Ady-hI-5gd" id="TIS-6k-Eco"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Sort by Pattern…" id="lNH-Mh-pIE">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="patternSort:" target="Ady-hI-5gd" id="RKB-GW-fDT"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Reverse" id="xhf-NR-D2Q">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="reverseLines:" target="Ady-hI-5gd" id="Ch5-d7-qWS"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Shuffle" id="M8V-zi-g4l">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="shuffleLines:" target="Ady-hI-5gd" id="osd-nP-5fS"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Delete Duplicates" id="bjv-m0-tZq">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="deleteDuplicateLine:" target="Ady-hI-5gd" id="TYg-rf-Z8w"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
-                                                    <menuItem title="Duplicate Line" keyEquivalent="D" id="m48-5E-yia">
-                                                        <connections>
-                                                            <action selector="duplicateLine:" target="Ady-hI-5gd" id="LDu-DF-GdX"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Delete Line" id="sFn-3j-pY5">
-                                                        <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
-                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                                        <connections>
-                                                            <action selector="deleteLine:" target="Ady-hI-5gd" id="vej-dU-Adx"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="174"/>
                                         <menuItem title="Insert Snippet" id="15m-xz-4oB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Insert Snippet" id="dZy-7n-iCq">
@@ -878,6 +812,72 @@ CA
                                             <connections>
                                                 <action selector="trimTrailingWhitespace:" target="Ady-hI-5gd" id="5DQ-Ed-A6I"/>
                                             </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="174"/>
+                                        <menuItem title="Lines" id="Kb8-QD-tYZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Lines" id="BSD-be-CV9">
+                                                <items>
+                                                    <menuItem title="Move Up" keyEquivalent="" id="4t7-IA-1r3">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="moveLineUp:" target="Ady-hI-5gd" id="Mrs-c7-Xw5"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Move Down" keyEquivalent="" id="J59-OR-kzC">
+                                                        <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="moveLineDown:" target="Ady-hI-5gd" id="But-Oc-YKE"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="hVD-Co-9NR"/>
+                                                    <menuItem title="Sort" id="OQl-Uo-yfn">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="sortLinesAscending:" target="Ady-hI-5gd" id="TIS-6k-Eco"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Sort by Pattern…" id="lNH-Mh-pIE">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="patternSort:" target="Ady-hI-5gd" id="RKB-GW-fDT"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Reverse" id="xhf-NR-D2Q">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="reverseLines:" target="Ady-hI-5gd" id="Ch5-d7-qWS"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Shuffle" id="M8V-zi-g4l">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="shuffleLines:" target="Ady-hI-5gd" id="osd-nP-5fS"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Delete Duplicates" id="bjv-m0-tZq">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="deleteDuplicateLine:" target="Ady-hI-5gd" id="TYg-rf-Z8w"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="Dpo-h5-IyY"/>
+                                                    <menuItem title="Duplicate Line" keyEquivalent="D" id="m48-5E-yia">
+                                                        <connections>
+                                                            <action selector="duplicateLine:" target="Ady-hI-5gd" id="LDu-DF-GdX"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Delete Line" id="sFn-3j-pY5">
+                                                        <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
+                                                        <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="deleteLine:" target="Ady-hI-5gd" id="vej-dU-Adx"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="591"/>
                                         <menuItem title="Transformations" id="GXo-ds-ygp" userLabel="Transformations">

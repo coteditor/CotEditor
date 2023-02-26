@@ -352,29 +352,6 @@
 /* Class = "NSMenuItem"; title = "Text"; ObjectID = "579"; */
 "579.title" = "Testo";
 
-/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
-"Kb8-QD-tYZ.title" = "Righe";
-/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
-"BSD-be-CV9.title" = "Righe";
-/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
-"4t7-IA-1r3.title" = "Sposta in alto";
-/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
-"J59-OR-kzC.title" = "Sposta in basso";
-/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
-"OQl-Uo-yfn.title" = "Ordina";
-/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
-"lNH-Mh-pIE.title" = "Ordina per motivo…";
-/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
-"xhf-NR-D2Q.title" = "Inverti";
-/* Class = "NSMenuItem"; title = "Shuffle"; ObjectID = "M8V-zi-g4l"; */
-"M8V-zi-g4l.title" = "Mescola";
-/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
-"bjv-m0-tZq.title" = "Elimina duplicati";
-/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
-"m48-5E-yia.title" = "Duplica riga";
-/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
-"sFn-3j-pY5.title" = "Elimina riga";
-
 /* Class = "NSMenuItem"; title = "Insert Snippet"; ObjectID = "15m-xz-4oB"; */
 "15m-xz-4oB.title" = "Inserisci snippet";
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
@@ -427,6 +404,29 @@
 
 /* Class = "NSMenuItem"; title = "Trim Trailing Whitespace"; ObjectID = "hBJ-Ge-278"; */
 "hBJ-Ge-278.title" = "Rimuovi gli spazi bianchi a fine riga";
+
+/* Class = "NSMenuItem"; title = "Lines"; ObjectID = "Kb8-QD-tYZ"; */
+"Kb8-QD-tYZ.title" = "Righe";
+/* Class = "NSMenu"; title = "Lines"; ObjectID = "BSD-be-CV9"; */
+"BSD-be-CV9.title" = "Righe";
+/* Class = "NSMenuItem"; title = "Move Up"; ObjectID = "4t7-IA-1r3"; */
+"4t7-IA-1r3.title" = "Sposta in alto";
+/* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
+"J59-OR-kzC.title" = "Sposta in basso";
+/* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
+"OQl-Uo-yfn.title" = "Ordina";
+/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
+"lNH-Mh-pIE.title" = "Ordina per motivo…";
+/* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
+"xhf-NR-D2Q.title" = "Inverti";
+/* Class = "NSMenuItem"; title = "Shuffle"; ObjectID = "M8V-zi-g4l"; */
+"M8V-zi-g4l.title" = "Mescola";
+/* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
+"bjv-m0-tZq.title" = "Elimina duplicati";
+/* Class = "NSMenuItem"; title = "Duplicate Line"; ObjectID = "m48-5E-yia"; */
+"m48-5E-yia.title" = "Duplica riga";
+/* Class = "NSMenuItem"; title = "Delete Line"; ObjectID = "sFn-3j-pY5"; */
+"sFn-3j-pY5.title" = "Elimina riga";
 
 /* Class = "NSMenuItem"; title = "Transformations"; ObjectID = "GXo-ds-ygp"; */
 "GXo-ds-ygp.title" = "Trasformazioni";
