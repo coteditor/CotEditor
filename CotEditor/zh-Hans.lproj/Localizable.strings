@@ -664,7 +664,7 @@
 
 // Snippets pane
 // placeholder text
-"Select a snippet to edit." = "选择动作。";  // FIXME: changed
+"Select a snippet to edit." = "选择片段进行编辑。";
 
 
 // Print pane
