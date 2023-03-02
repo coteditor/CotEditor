@@ -28,6 +28,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue that the Replace button in the Find window did not select the next match.
 - Fix an issue that all URL links were removed when the document was updated by an external process.
 - Fix the redo action label for the line endings conversion and file encoding change.
 

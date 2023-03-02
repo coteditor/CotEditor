@@ -74,7 +74,7 @@ struct FindPanelButtonView: View {
             Spacer()
             
             Button("Replace") {
-                self.performAction(.replace)
+                self.performAction(.replaceAndFind)
             }
             .help("Replace the current selection with the replacement text, then find the next match.")
             .fixedSize()
