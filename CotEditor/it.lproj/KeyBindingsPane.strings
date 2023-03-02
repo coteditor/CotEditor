@@ -25,10 +25,10 @@
 //
 
 /* Class = "NSTextFieldCell"; title = "To change a shortcut, click the key column, and then type the new keys."; ObjectID = "Hue-bU-8wr"; */
-"Hue-bU-8wr.title" = "Per modificare un’abbreviazione, selezionarla, cliccare sulla colonna della chiave, e digitare la nuova combinazione di tasti.";  // FIXME: modifided
+"Hue-bU-8wr.title" = "Per modificare un'abbreviazione, cliccare la colonna e poi digitare la nuova combinazione.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Menu"; ObjectID = "597-z1-wgd"; */
-"597-z1-wgd.headerCell.title" = "Menu";  // FIXME: added
+"597-z1-wgd.headerCell.title" = "Menu";
 /* Class = "NSTableColumn"; headerCell.title = "Command"; ObjectID = "jNh-nd-VRd"; */
 "jNh-nd-VRd.headerCell.title" = "Comando";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "PSD-Um-TfH"; */
