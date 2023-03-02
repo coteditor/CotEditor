@@ -32,10 +32,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
-"o3A-71-iGh.title" = "Text to be inserted by a command in the menu or by keyboard shortcut:";  // FIXME: added
+"o3A-71-iGh.title" = "Texte à insérer lors d'une commande de menu ou d'un raccourcis clavier :"
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
-"cMF-G3-bl6.headerCell.title" = "Name";  // FIXME: changed
+"cMF-G3-bl6.headerCell.title" = "Nom";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
 "wer-OB-X46.headerCell.title" = "Raccourci";
 
@@ -52,7 +52,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
-"JRQ-2g-t49.title" = "Text to be inserted by dropping files to the editor:";  // FIXME: added
+"JRQ-2g-t49.title" = "Texte à insérer en glissant-déposant des fichiers dans l'éditeur :";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "Extensions";
@@ -83,4 +83,4 @@
 "541.title" = "Insérer une variable";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
-"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "Aucune extension n’est sélectionnée.";  // FIXME: changed
+"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "Sélectionnez un snippet à éditer";
