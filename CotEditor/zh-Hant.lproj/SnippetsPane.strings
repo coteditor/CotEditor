@@ -32,10 +32,10 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
-"o3A-71-iGh.title" = "Text to be inserted by a command in the menu or by keyboard shortcut:";  // FIXME: added
+"o3A-71-iGh.title" = "欲藉由選單命令或鍵盤熱鍵插入的文字:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
-"cMF-G3-bl6.headerCell.title" = "Name";  // FIXME: changed
+"cMF-G3-bl6.headerCell.title" = "名稱";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
 "wer-OB-X46.headerCell.title" = "按鍵";
 
@@ -52,7 +52,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
-"JRQ-2g-t49.title" = "Text to be inserted by dropping files to the editor:";  // FIXME: added
+"JRQ-2g-t49.title" = "欲藉由將檔案拽入至編輯器的方式插入的文字:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
 "FAF-cL-AAk.headerCell.title" = "副檔名";
@@ -83,4 +83,4 @@
 "541.title" = "插入變數";
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "Select a snippet to edit."; ObjectID = "K7h-ZH-zco"; */
-"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "沒有選中副檔名。";  // FIXME: changed
+"K7h-ZH-zco.ibShadowedNoSelectionPlaceholder" = "請選擇一個程式碼片段以編輯。";

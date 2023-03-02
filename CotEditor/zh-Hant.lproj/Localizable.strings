@@ -664,7 +664,7 @@
 
 // Snippets pane
 // placeholder text
-"Select a snippet to edit." = "選擇動作。";  // FIXME: changed
+"Select a snippet to edit." = "請選擇一個程式碼片段以編輯。";
 
 
 // Print pane
