@@ -286,7 +286,7 @@
 "Update" = "Atualizar";
 
 // Save panel options
-"Make file executable" = "Conceder permissão de execução";  // FIXME: updated
+"Make file executable" = "Transforme em arquivo executável";
 
 
 
@@ -663,7 +663,7 @@
 
 // Snippets pane
 // placeholder text
-"Select a snippet to edit." = "Selecione uma Ação";  // FIXME: changed
+"Select a snippet to edit." = "Selecione um snippet para editar.";
 
 
 // Print pane
