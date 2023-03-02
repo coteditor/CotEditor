@@ -285,7 +285,7 @@
 "Update" = "Güncelle";
 
 // Save panel options
-"Make file executable" = "Çalıştırma izni ver";  // FIXME: updated
+"Make file executable" = "Dosyayı çalıştırılabilir yap";
 
 
 
@@ -662,7 +662,7 @@
 
 // Snippets pane
 // placeholder text
-"Select a snippet to edit." = "Eylem Seç";  // FIXME: changed
+"Select a snippet to edit." = "Düzenlenecek bir kod parçacığı seçin.";
 
 
 // Print pane

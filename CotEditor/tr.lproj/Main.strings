@@ -357,7 +357,7 @@
 /* Class = "NSMenu"; title = "Insert Snippet"; ObjectID = "dZy-7n-iCq"; */
 "dZy-7n-iCq.title" = "Kırpıntı Ekle";
 /* Class = "NSMenuItem"; title = "Edit Snippets…"; ObjectID = "OmB-Ve-DEy"; */
-"OmB-Ve-DEy.title" = "Edit Snippets…";  // FIXME: added
+"OmB-Ve-DEy.title" = "Kod Parçacıklarını Düzenle…";
 
 /* Class = "NSMenu"; title = "Comment"; ObjectID = "EYa-d3-sUR"; */
 "EYa-d3-sUR.title" = "Yorum";
