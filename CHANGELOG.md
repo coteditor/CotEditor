@@ -9,7 +9,7 @@ Change Log
 
 - Renew the snippets feature to enable naming it, changing the order, and performing from the menu.
 - Add the Insert Snippet submenu to the Text menu.
-- Enable the character inspector to inspect more information about each Unicode scalar consisting of a character.
+- Enable the character inspector to inspect more information about each Unicode scalar that makes up a character.
 
 
 ### Improvements
