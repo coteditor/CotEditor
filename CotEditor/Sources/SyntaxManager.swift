@@ -128,10 +128,10 @@ final class SyntaxManager: SettingFileManaging {
             return settingName
         }
         
-        if let pathExtension = fileName.components(separatedBy: ".").last,
+        if let pathExtension = fileName.split(separator: ".").last,
            let extensionTable = mappingTables[.extensions]
         {
-            if let settingName = extensionTable[pathExtension]?.first {
+            if let settingName = extensionTable[String(pathExtension)]?.first {
                 return settingName
             }
             
@@ -420,15 +420,16 @@ private extension StringProtocol {
             .trimmingCharacters(in: .whitespacesAndNewlines)
         
         // find interpreter
-        let components = shebang.components(separatedBy: " ")
-        let interpreter = components.first?.components(separatedBy: "/").last
+        let components = shebang.split(separator: " ", maxSplits: 2)
+        
+        guard let interpreter = components.first?.split(separator: "/").last else { return nil }
         
         // use first arg if the path targets env
-        if interpreter == "env" {
-            return components[safe: 1]
+        if interpreter == "env", let interpreter = components[safe: 1] {
+            return String(interpreter)
         }
         
-        return interpreter
+        return String(interpreter)
     }
 }
 
