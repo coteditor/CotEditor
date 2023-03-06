@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,6 @@ import UniformTypeIdentifiers
 
 extension UTType {
     
-    static let cotTheme = UTType("com.coteditor.CotEditor.theme")!
-    static let cotReplacement = UTType("com.coteditor.CotEditor.replacement")!
+    static let cotTheme = UTType(exportedAs: "com.coteditor.CotEditor.theme")
+    static let cotReplacement = UTType(exportedAs: "com.coteditor.CotEditor.replacement")
 }
