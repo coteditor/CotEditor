@@ -289,10 +289,7 @@ final class TextFinder {
     /// Select all matched strings.
     @MainActor private func selectAll() {
         
-        guard
-            let textFind = self.prepareTextFind()
-        else { return NSSound.beep() }
-        
+        guard let textFind = self.prepareTextFind() else { return }
         guard let matchedRanges = try? textFind.matches else { return }
         
         self.client.selectedRanges = matchedRanges as [NSValue]
@@ -383,8 +380,9 @@ final class TextFinder {
     
     /// Check Find can be performed and alert if needed.
     ///
+    /// - Parameter presentsError: Whether shows error dialog on the find panel.
     /// - Returns: A TextFind object with the current state, or `nil` if not ready.
-    @MainActor private func prepareTextFind() -> TextFind? {
+    @MainActor private func prepareTextFind(presentsError: Bool = true) -> TextFind? {
         
         let client = self.client!
         
@@ -405,6 +403,8 @@ final class TextFinder {
             return try TextFind(for: string, findString: findString, mode: mode, inSelection: inSelection, selectedRanges: selectedRanges)
             
         } catch let error as TextFind.Error {
+            guard presentsError else { return nil }
+            
             switch error {
                 case .regularExpression, .emptyInSelectionSearch:
                     FindPanelController.shared.showWindow(self)
@@ -412,6 +412,8 @@ final class TextFinder {
                 case .emptyFindString:
                     break
             }
+            NSSound.beep()
+            
             return nil
             
         } catch {
@@ -431,12 +433,7 @@ final class TextFinder {
         
         assert(forward || !isIncremental)
         
-        guard
-            let textFind = self.prepareTextFind()
-        else {
-            if !isIncremental { NSSound.beep() }
-            return
-        }
+        guard let textFind = self.prepareTextFind(presentsError: !isIncremental) else { return }
         
         let client = self.client!
         
@@ -487,9 +484,7 @@ final class TextFinder {
     @discardableResult
     @MainActor private func replaceSelected() -> Bool {
         
-        guard
-            let textFind = self.prepareTextFind()
-        else { NSSound.beep(); return false }
+        guard let textFind = self.prepareTextFind() else { return false }
         
         let replacementString = TextFinderSettings.shared.replacementString
         
@@ -510,9 +505,7 @@ final class TextFinder {
     ///   - actionName: The name of the action to display in the progress sheet.
     @MainActor private func findAll(showsList: Bool, actionName: LocalizedStringKey) async {
         
-        guard
-            let textFind = self.prepareTextFind()
-        else { return NSSound.beep() }
+        guard let textFind = self.prepareTextFind() else { return }
         
         let client = self.client!
         client.isEditable = false
@@ -602,9 +595,7 @@ final class TextFinder {
     /// Replace all matched strings and apply the result to views.
     @MainActor private func replaceAll() async {
         
-        guard
-            let textFind = self.prepareTextFind()
-        else { return NSSound.beep() }
+        guard let textFind = self.prepareTextFind() else { return }
         
         let client = self.client!
         client.isEditable = false
