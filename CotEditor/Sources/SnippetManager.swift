@@ -67,6 +67,16 @@ final class SnippetManager {
     }
     
     
+    /// Return a snippet corresponding to the given shortcut.
+    ///
+    /// - Parameter shortcut: The shortcut.
+    /// - Returns: The corresponded snippet or nil.
+    func snippet(for shortcut: Shortcut) -> Snippet? {
+        
+        self.snippets.first(where: { $0.shortcut == shortcut })
+    }
+    
+    
     /// Save the given snippets and update UI.
     ///
     /// - Parameter snippets: The snippets to save.

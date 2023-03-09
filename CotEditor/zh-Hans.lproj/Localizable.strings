@@ -836,6 +836,7 @@
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "插入片段后的光标位置";
+"The selected text." = "The selected text.";  // FIXME: added
 
 
 

@@ -835,6 +835,7 @@
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "スニペット挿入後の挿入ポイント";
+"The selected text." = "選択テキスト";
 
 
 

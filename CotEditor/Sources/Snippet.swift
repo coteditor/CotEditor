@@ -76,6 +76,7 @@ extension Snippet {
         static let suffix = ">>>"
         
         case cursor = "CURSOR"
+        case selection = "SELECTION"
         
         
         var description: String {
@@ -83,49 +84,61 @@ extension Snippet {
             switch self {
                 case .cursor:
                     return "The insertion point after inserting the snippet."
+                case .selection:
+                    return "The selected text."
             }
         }
     }
     
     
-    /// String to insert.
-    var string: String {
-        
-        self.tokenRanges(for: .cursor)
-            .reversed()
-            .reduce(self.format) { ($0 as NSString).replacingCharacters(in: $1, with: "") }
-    }
-    
-    
-    /// The selected ranges in snippet string.
-    var selections: [NSRange] {
-        
-        self.tokenRanges(for: .cursor)
-            .enumerated()
-            .map { $0.element.location - $0.offset * $0.element.length }
-            .map { NSRange(location: $0, length: 0) }
-    }
-    
-    
-    /// Return a copy of the receiver by inserting the given ident to every new line.
+    /// Return strings to insert.
     ///
-    /// - Parameter indent: The indent string to insert.
-    /// - Returns: An indented snippet.
-    func indented(with indent: String) -> Self {
+    /// - Parameters:
+    ///   - string: The whole content string where to insert the snippet.
+    ///   - ranges: The current selected ranges.
+    /// - Returns: Strings to insert and the content-based selected ranges.
+    func insertions(for string: String, ranges: [NSRange]) -> (strings: [String], selectedRanges: [NSRange]?) {
         
-        guard !indent.isEmpty else { return self }
+        var offset = 0
+        let insertions = ranges.map { (range) in
+            let selectedString = (string as NSString).substring(with: range)
+            let indent = string.rangeOfIndent(at: range.location)
+                .flatMap { (string as NSString).substring(with: $0) } ?? ""
+            
+            let insertion = self.insertion(selectedString: selectedString, indent: indent)
+            let selectedRanges = insertion.selectedRanges.map { $0.shifted(by: range.location + offset) }
+            offset += string.length - range.length
+            
+            return (string: insertion.string, ranges: selectedRanges)
+        }
+        let selectedRanges = insertions.flatMap(\.ranges)
         
-        let format = self.format.replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)
-        
-        return Snippet(name: self.name, shortcut: self.shortcut, format: format)
+        return (insertions.map(\.string), selectedRanges.isEmpty ? nil : selectedRanges)
     }
     
     
-    
-    // MARK: Private Methods
-    
-    private func tokenRanges(for variable: Variable) -> [NSRange] {
+    /// Return a string to insert.
+    ///
+    /// - Parameters:
+    ///   - selectedString: The selected string.
+    ///   - indent: The indent string to insert.
+    /// - Returns: A string to insert and the snippet-based selected ranges.
+    func insertion(selectedString: String, indent: String = "") -> (string: String, selectedRanges: [NSRange]) {
         
-        (self.format as NSString).ranges(of: variable.token)
+        assert(indent.allSatisfy(\.isWhitespace))
+        
+        let format = self.format
+            .replacingOccurrences(of: "(?<=\\R)", with: indent, options: .regularExpression)  // indent
+            .replacingOccurrences(of: Variable.selection.token, with: selectedString)  // selection
+        
+        let cursors = (format as NSString).ranges(of: Variable.cursor.token)
+        let ranges = cursors
+                .enumerated()
+                .map { $0.element.location - $0.offset * $0.element.length }
+                .map { NSRange(location: $0, length: 0) }
+        
+        let text = format.replacingOccurrences(of: Variable.cursor.token, with: "")
+        
+        return (text, ranges)
     }
 }

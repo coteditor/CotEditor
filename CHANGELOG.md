@@ -5,6 +5,11 @@ Change Log
 4.5.0-beta.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add a new variable “selection” to the snippet feature to place the current selected text to the inserted text.
+
+
 ### Fixes
 
 - Fix an issue in the search window that an error dialog for invalid regular expression appeared even on incremental search.

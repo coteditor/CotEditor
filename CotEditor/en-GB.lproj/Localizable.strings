@@ -834,6 +834,7 @@
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "The insertion point after inserting the snippet.";
+"The selected text." = "The selected text.";
 
 
 

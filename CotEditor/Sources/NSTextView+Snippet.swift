@@ -38,36 +38,16 @@ extension EditorTextView: SnippetInsertable {
 
 extension NSTextView {
     
+    /// Insert the given snippet to the insertion points.
+    ///
+    /// - Parameter snippet: The snippet to insert.
     func insert(snippet: Snippet) {
         
-        guard
-            !snippet.string.isEmpty,
-            let insertionRanges = self.rangesForUserTextChange?.map(\.rangeValue)
-        else { return }
+        guard let ranges = self.rangesForUserTextChange?.map(\.rangeValue) else { return }
         
-        // insert indent to every newline
-        let snippets: [Snippet] = insertionRanges.map { (range) in
-            guard let indentRange = self.string.rangeOfIndent(at: range.location) else { return snippet }
-            
-            let indent = (self.string as NSString).substring(with: indentRange)
-            
-            return snippet.indented(with: indent)
-        }
+        let (strings, selectedRanges) = snippet.insertions(for: self.string, ranges: ranges)
         
-        let strings = snippets.map(\.string)
-        let selectedRanges: [NSRange]? = snippet.selections.isEmpty
-            ? nil
-            : zip(snippets, insertionRanges)
-                .flatMap { (snippet, range) -> [NSRange] in
-                    let offset = insertionRanges
-                        .prefix { $0 != range }
-                        .map { snippet.string.length - $0.length }
-                        .reduce(range.location, +)
-                    
-                    return snippet.selections.map { $0.shifted(by: offset) }
-                }
-        
-        self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
+        self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
         self.centerSelectionInVisibleArea(self)
     }
 }
