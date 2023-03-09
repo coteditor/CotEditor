@@ -5,6 +5,10 @@ Change Log
 4.5.0-beta.2 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue in the search window that an error dialog for invalid regular expression appeared even on incremental search.
+
 
 
 4.5.0-beta (553)
