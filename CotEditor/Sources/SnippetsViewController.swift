@@ -81,6 +81,15 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
+    override func viewWillDisappear() {
+        
+        super.viewWillDisappear()
+        
+        self.endEditing()
+        self.saveSetting()
+    }
+    
+    
     
     // MARK: Table View Data Source
     
@@ -136,7 +145,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         self.snippets.move(fromOffsets: sourceRows, toOffset: row)
         tableView.moveRows(at: sourceRows, to: row)
         
-        self.saveSettings()
+        self.saveSetting()
         
         return true
     }
@@ -185,7 +194,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         else { return }
         
         self.snippets[tableView.selectedRow].format = textView.string
-        self.saveSettings()
+        self.saveSetting()
     }
     
     
@@ -213,7 +222,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
                 preconditionFailure()
         }
         
-        self.saveSettings()
+        self.saveSetting()
     }
     
     
@@ -228,7 +237,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         
         // successfully update data
         self.snippets[row].name = sender.stringValue
-        self.saveSettings()
+        self.saveSetting()
         tableView.reloadData(forRowIndexes: [row], columnIndexes: [column])
     }
     
@@ -269,7 +278,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         
         // successfully update data
         self.snippets[row].shortcut = shortcut
-        self.saveSettings()
+        self.saveSetting()
         tableView.reloadData(forRowIndexes: [row], columnIndexes: [column])
     }
     
@@ -277,8 +286,8 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     // MARK: Private Methods
     
-    /// Save current settings.
-    private func saveSettings() {
+    /// Save current setting.
+    private func saveSetting() {
         
         SnippetManager.shared.save(self.snippets)
     }

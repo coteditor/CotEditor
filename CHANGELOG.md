@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue in the search window that an error dialog for invalid regular expression appeared even on incremental search.
+- [beta] Fix an issue that the snippet setting was occasionally not saved.
 
 
 
