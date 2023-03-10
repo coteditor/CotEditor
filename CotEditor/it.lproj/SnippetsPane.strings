@@ -34,10 +34,15 @@
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
 "o3A-71-iGh.title" = "Testo da inserire con una abbreviazione o un comando da menu:";
 
+/* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "pbJ-4Q-CE2"; */
+"pbJ-4Q-CE2.headerCell.title" = "Stile della sintassi";
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
 "cMF-G3-bl6.headerCell.title" = "Nome";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
 "wer-OB-X46.headerCell.title" = "Tasto";
+
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "vXM-oG-cI7"; */
+"vXM-oG-cI7.title" = "Tutti";
 
 /* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
 "t2r-oN-Xpf.ibShadowedToolTips[0]" = "Aggiungi";

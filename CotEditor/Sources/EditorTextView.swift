@@ -449,7 +449,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // perform snippet insertion if not in the middle of Japanese input
         if !self.hasMarkedText(),
            let shortcut = Shortcut(keyDownEvent: event),
-           let snippet = SnippetManager.shared.snippet(for: shortcut)
+           let document = self.document,
+           let snippet = SnippetManager.shared.snippet(for: shortcut, scope: document.syntaxParser.style.name)
         {
             return self.insert(snippet: snippet)
         }

@@ -26,6 +26,7 @@
 
 import Foundation
 import AppKit
+import Combine
 
 @objc protocol SnippetInsertable: AnyObject {
     
@@ -43,6 +44,13 @@ final class SnippetManager {
     @MainActor weak var menu: NSMenu?  { didSet { self.updateMenu() } }
     
     
+    // MARK: Private Properties
+    
+    private var scope: String?  { didSet { Task { await self.updateMenu() } } }
+    private var scopeObserver: AnyCancellable?
+    
+    
+    
     // MARK: Lifecycle
     
     private init() {
@@ -51,6 +59,10 @@ final class SnippetManager {
             .compactMap(Snippet.init(dictionary:))
         
         self.migrateIfNeeded()
+        
+        self.scopeObserver = (DocumentController.shared as! DocumentController).$currentStyleName
+            .removeDuplicates()
+            .sink { [unowned self] in self.scope = $0 }
     }
     
     
@@ -67,14 +79,17 @@ final class SnippetManager {
     }
     
     
-    /// Return a snippet corresponding to the given shortcut.
+    /// Return a snippet corresponding to the given conditions.
     ///
     /// - Parameters:
     ///   - shortcut: The shortcut.
+    ///   - scope: The syntax style scope.
     /// - Returns: The corresponded snippet or nil.
-    func snippet(for shortcut: Shortcut) -> Snippet? {
+    func snippet(for shortcut: Shortcut, scope: String) -> Snippet? {
         
-        self.snippets.first { $0.shortcut == shortcut }
+        let snippets = self.snippets.filter { $0.shortcut == shortcut }
+        
+        return snippets.first { $0.scope == scope } ?? snippets.first { $0.scope == nil }
     }
     
     
@@ -100,15 +115,31 @@ final class SnippetManager {
         guard let menu else { return assertionFailure() }
         guard menu.items.count > 1 || !self.snippets.isEmpty else { return }
         
+        let generalSnippets = self.snippets.filter { $0.scope == nil }
+        let scopeSnippets = self.scope.flatMap { scope in self.snippets.filter { $0.scope == scope } } ?? []
+        
         let editItem = menu.items.last!
         let action = #selector(SnippetInsertable.insertSnippet)
         
         menu.items.removeAll()
         
-        if !self.snippets.isEmpty {
-            menu.items += self.snippets.map { snippet in
-                let item = NSMenuItem(title: snippet.name, action: action, keyEquivalent: snippet.shortcut?.keyEquivalent ?? "")
-                item.keyEquivalentModifierMask = snippet.shortcut?.modifierMask ?? []
+        // add general snippets
+        if !generalSnippets.isEmpty {
+            menu.items += generalSnippets.map { snippet in
+                let item = NSMenuItem(title: snippet.name, action: action, keyEquivalent: "")
+                item.shortcut = scopeSnippets.contains { $0.shortcut == snippet.shortcut } ? nil : snippet.shortcut
+                item.representedObject = snippet
+                return item
+            }
+            menu.items.append(.separator())
+        }
+        
+        // add snippets for the current scope
+        if !scopeSnippets.isEmpty, let scope {
+            menu.items.append(HeadingMenuItem(title: scope))
+            menu.items += scopeSnippets.map { snippet in
+                let item = NSMenuItem(title: snippet.name, action: action, keyEquivalent: "")
+                item.shortcut = snippet.shortcut
                 item.representedObject = snippet
                 return item
             }

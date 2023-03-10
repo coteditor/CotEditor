@@ -28,6 +28,7 @@ import AppKit
 /// tableView column identifier
 private extension NSUserInterfaceItemIdentifier {
     
+    static let scope = NSUserInterfaceItemIdentifier("scope")
     static let name = NSUserInterfaceItemIdentifier("name")
     static let key = NSUserInterfaceItemIdentifier("key")
 }
@@ -106,6 +107,8 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         let snippet = self.snippets[row]
         
         switch identifier {
+            case .scope:
+                return snippet.scope
             case .name:
                 return snippet.name
             case .key:
@@ -170,6 +173,48 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     // MARK: Table View Delegate
     
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+
+        guard
+            let identifier = tableColumn?.identifier,
+            let cellView = tableView.makeView(withIdentifier: identifier, owner: self) as? NSTableCellView
+        else { return nil }
+
+        let snippet = self.snippets[row]
+
+        switch identifier {
+            case .scope:
+                guard let menu = cellView.subviews.first as? NSPopUpButton else { assertionFailure(); return nil }
+
+                // reset attributed string for "All" item
+                // -> Otherwise, the title isn't localized.
+                let allItem = menu.itemArray.first!
+                allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
+                
+                // add styles
+                for styleName in SyntaxManager.shared.settingNames {
+                    menu.addItem(withTitle: styleName)
+                    menu.lastItem!.representedObject = styleName
+                }
+
+                // select item
+                if let scope = snippet.scope {
+                    menu.selectItem(withTitle: scope)
+                } else {
+                    if let emptyItem = menu.itemArray.first(where: { !$0.isSeparatorItem && $0.title.isEmpty }) {
+                        menu.menu?.removeItem(emptyItem)
+                    }
+                    menu.selectItem(at: 0)
+                }
+
+            default:
+                break
+        }
+
+        return cellView
+    }
+    
+    
     /// Change selection in the table.
     func tableViewSelectionDidChange(_ notification: Notification) {
         
@@ -218,6 +263,21 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
         }
         
         self.saveSetting()
+    }
+    
+    
+    @IBAction func didSelectSyntaxStyle(_ sender: NSPopUpButton) {
+        
+        guard let tableView = self.tableView else { return assertionFailure() }
+        
+        let row = tableView.row(for: sender)
+        let column = tableView.column(for: sender)
+        
+        guard row >= 0, column >= 0 else { return }
+        
+        self.snippets[row].scope = sender.selectedItem?.representedObject as? String
+        self.saveSetting()
+        tableView.reloadData(forRowIndexes: [row], columnIndexes: [column])
     }
     
     

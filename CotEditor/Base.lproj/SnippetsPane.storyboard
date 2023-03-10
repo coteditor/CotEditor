@@ -96,7 +96,55 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="name" editable="NO" width="394" minWidth="16" maxWidth="1000" id="cMF-G3-bl6">
+                                                <tableColumn identifier="scope" width="109" minWidth="40" maxWidth="1000" headerToolTip="" id="pbJ-4Q-CE2">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Syntax Style">
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="q2i-OB-HQc">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="SdO-OQ-HSL">
+                                                            <rect key="frame" x="4" y="0.0" width="111" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <popUpButton id="68U-sn-0cP">
+                                                                    <rect key="frame" x="-3" y="1" width="112" height="20"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                                    <popUpButtonCell key="cell" type="bevel" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="vXM-oG-cI7" id="N04-oz-sU5">
+                                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="menu"/>
+                                                                        <menu key="menu" id="C83-Em-4tE">
+                                                                            <items>
+                                                                                <menuItem title="All" state="on" id="vXM-oG-cI7">
+                                                                                    <attributedString key="attributedTitle">
+                                                                                        <fragment content="All">
+                                                                                            <attributes>
+                                                                                                <color key="NSColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <font key="NSFont" metaFont="menu"/>
+                                                                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                            </attributes>
+                                                                                        </fragment>
+                                                                                    </attributedString>
+                                                                                </menuItem>
+                                                                                <menuItem isSeparatorItem="YES" id="lzH-e5-3FM"/>
+                                                                            </items>
+                                                                        </menu>
+                                                                    </popUpButtonCell>
+                                                                    <connections>
+                                                                        <action selector="didSelectSyntaxStyle:" target="Jku-3h-OhR" id="ngU-wa-lh2"/>
+                                                                        <binding destination="SdO-OQ-HSL" name="selectedObject" keyPath="objectValue" id="ISd-z5-emj"/>
+                                                                    </connections>
+                                                                </popUpButton>
+                                                            </subviews>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn identifier="name" editable="NO" width="277" minWidth="16" maxWidth="1000" id="cMF-G3-bl6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
@@ -109,11 +157,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="WTC-7C-m9U">
-                                                            <rect key="frame" x="4" y="0.0" width="396" height="21"/>
+                                                            <rect key="frame" x="123" y="0.0" width="277" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zxQ-hR-j2t">
-                                                                    <rect key="frame" x="0.0" y="3" width="396" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="3" width="277" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Insert Text 0" id="4d2-ZY-6Rc">
                                                                         <font key="font" metaFont="system"/>
@@ -180,7 +228,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="09H-dK-VID">
-                                    <rect key="frame" x="1" y="149" width="502" height="16"/>
+                                    <rect key="frame" x="1" y="109" width="502" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="dcy-AX-VPZ">
@@ -1056,7 +1104,7 @@
                                                                                     <attributedString key="attributedTitle">
                                                                                         <fragment content="All">
                                                                                             <attributes>
-                                                                                                <color key="NSColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                                <color key="NSColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
                                                                                                 <font key="NSFont" metaFont="menu"/>
                                                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                             </attributes>
@@ -1115,7 +1163,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="180" minWidth="10" maxWidth="1000" headerToolTip="" id="p2m-Qi-6k3">
+                                                <tableColumn width="179.5" minWidth="10" maxWidth="1000" headerToolTip="" id="p2m-Qi-6k3">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

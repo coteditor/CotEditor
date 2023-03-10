@@ -30,6 +30,7 @@ struct Snippet: Identifiable, Codable {
     let id = UUID()
     
     var name: String
+    var scope: String?
     var shortcut: Shortcut?
     var format: String = ""
 }
@@ -40,6 +41,7 @@ extension Snippet {
     private enum CodingKeys: String, CodingKey {
         
         case name
+        case scope
         case shortcut
         case format
     }
@@ -50,6 +52,7 @@ extension Snippet {
         guard let name = dictionary[CodingKeys.name.stringValue] else { return nil }
         
         self.name = name
+        self.scope = dictionary[CodingKeys.scope.stringValue]
         self.shortcut = dictionary[CodingKeys.shortcut.stringValue].flatMap(Shortcut.init(keySpecChars:))
         self.format = dictionary[CodingKeys.format.stringValue] ?? ""
     }
@@ -58,6 +61,7 @@ extension Snippet {
     var dictionary: [String: String] {
         
         var dictionary = [CodingKeys.name: self.name]
+        dictionary[.scope] = self.scope
         dictionary[.shortcut] = self.shortcut?.keySpecChars
         dictionary[.format] = self.format
         

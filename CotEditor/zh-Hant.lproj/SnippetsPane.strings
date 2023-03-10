@@ -34,10 +34,15 @@
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
 "o3A-71-iGh.title" = "欲藉由選單命令或鍵盤熱鍵插入的文字:";
 
+/* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "pbJ-4Q-CE2"; */
+"pbJ-4Q-CE2.headerCell.title" = "文法樣式";
 /* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "cMF-G3-bl6"; */
 "cMF-G3-bl6.headerCell.title" = "名稱";
 /* Class = "NSTableColumn"; headerCell.title = "Key"; ObjectID = "wer-OB-X46"; */
 "wer-OB-X46.headerCell.title" = "按鍵";
+
+/* Class = "NSMenuItem"; title = "All"; ObjectID = "vXM-oG-cI7"; */
+"vXM-oG-cI7.title" = "全部";
 
 /* Class = "NSSegmentedCell"; t2r-oN-Xpf.ibShadowedToolTips[0] = "Add"; ObjectID = "t2r-oN-Xpf"; */
 "t2r-oN-Xpf.ibShadowedToolTips[0]" = "新增";
