@@ -271,10 +271,7 @@ final class KeyBindingManager: SettingManaging {
                 
                 guard let action = menuItem.action else { return [] }
                 
-                let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
-                                        keyEquivalent: menuItem.keyEquivalent)
-                
-                return [KeyBinding(action: action, tag: menuItem.tag, shortcut: shortcut)]
+                return [KeyBinding(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut)]
             }
     }
     
@@ -291,8 +288,7 @@ final class KeyBindingManager: SettingManaging {
                     return self.clearShortcuts(in: submenu)
                 }
                 
-                menuItem.keyEquivalent = ""
-                menuItem.keyEquivalentModifierMask = []
+                menuItem.shortcut = nil
             }
     }
     
@@ -309,13 +305,9 @@ final class KeyBindingManager: SettingManaging {
                     return self.applyShortcuts(to: submenu)
                 }
                 
-                guard
-                    let action = menuItem.action,
-                    let shortcut = self.shortcut(for: action, tag: menuItem.tag)
-                else { return }
+                guard let action = menuItem.action else { return }
                 
-                menuItem.keyEquivalent = shortcut.keyEquivalent
-                menuItem.keyEquivalentModifierMask = shortcut.modifierMask
+                menuItem.shortcut = self.shortcut(for: action, tag: menuItem.tag)
             }
     }
     
@@ -340,9 +332,8 @@ final class KeyBindingManager: SettingManaging {
                 
                 guard let action = menuItem.action else { return nil }
                 
-                let shortcut = Shortcut(modifierMask: menuItem.keyEquivalentModifierMask, keyEquivalent: menuItem.keyEquivalent)
                 let defaultShortcut = self.shortcut(for: action, tag: menuItem.tag, defaults: true)
-                let item = KeyBindingItem(action: action, tag: menuItem.tag, shortcut: shortcut, defaultShortcut: defaultShortcut)
+                let item = KeyBindingItem(action: action, tag: menuItem.tag, shortcut: menuItem.shortcut, defaultShortcut: defaultShortcut)
                 
                 return Node(name: menuItem.title, item: .value(item))
             }
@@ -359,9 +350,7 @@ final class KeyBindingManager: SettingManaging {
                     return self.commandName(for: shortcut, in: submenu)
                 }
                 
-                guard shortcut == Shortcut(modifierMask: menuItem.keyEquivalentModifierMask,
-                                           keyEquivalent: menuItem.keyEquivalent)
-                else { return nil }
+                guard shortcut == menuItem.shortcut else { return nil }
                 
                 return menuItem.title
             }

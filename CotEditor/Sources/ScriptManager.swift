@@ -395,8 +395,7 @@ private extension NSMenuItem {
     /// Remove all keyboard shortcuts recursively.
     func removeAllShortcuts() {
         
-        self.keyEquivalent = ""
-        self.keyEquivalentModifierMask = []
+        self.shortcut = nil
         self.submenu?.items.forEach { $0.removeAllShortcuts() }
     }
     
@@ -418,8 +417,7 @@ private extension NSMenuItem {
                 !exclude.contains(shortcut)
             else { return [] }
             
-            self.keyEquivalent = shortcut.keyEquivalent
-            self.keyEquivalentModifierMask = shortcut.modifierMask
+            self.shortcut = shortcut
             
             return [shortcut]
             

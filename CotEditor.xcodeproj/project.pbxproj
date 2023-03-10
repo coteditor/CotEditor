@@ -552,6 +552,8 @@
 		2AAD61F91D2BA3F5008FE772 /* HighlightParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */; };
 		2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
+		2AAF6E9129BB8B45003DFF4B /* NSMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAF6E9029BB8B45003DFF4B /* NSMenuItem.swift */; };
+		2AAF6E9229BB8B45003DFF4B /* NSMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAF6E9029BB8B45003DFF4B /* NSMenuItem.swift */; };
 		2AB1BD1C287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD1B287D60DF00C6FEAF /* CharacterCountOptionsView.swift */; };
 		2AB1BD1D287D60DF00C6FEAF /* CharacterCountOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD1B287D60DF00C6FEAF /* CharacterCountOptionsView.swift */; };
 		2AB1BD1F287D747200C6FEAF /* SizeGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB1BD1E287D747200C6FEAF /* SizeGetter.swift */; };
@@ -1261,6 +1263,7 @@
 		2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
 		2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighlightParser.swift; sourceTree = "<group>"; };
 		2AAD61FB1D2BD102008FE772 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		2AAF6E9029BB8B45003DFF4B /* NSMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSMenuItem.swift; sourceTree = "<group>"; };
 		2AAFA57A1FFFCE2100E15768 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2AAFA57C1FFFCE2600E15768 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		2AAFA57E1FFFCE2800E15768 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PatternSortView.strings; sourceTree = "<group>"; };
@@ -1904,6 +1907,7 @@
 				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
 				2A1ABCA727F07CED0054795D /* NSScroller.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
+				2AAF6E9029BB8B45003DFF4B /* NSMenuItem.swift */,
 				2A48982C215B2BFD00A6CE8A /* NSCursor+Workaround.swift */,
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
@@ -3113,6 +3117,7 @@
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC937244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
+				2AAF6E9129BB8B45003DFF4B /* NSMenuItem.swift in Sources */,
 				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A8E47E9299C6064006A40D8 /* NSRange.swift in Sources */,
 				2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
@@ -3473,6 +3478,7 @@
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A9AC938244849B700D05643 /* NSLayoutManager+InvisibleDrawing.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
+				2AAF6E9229BB8B45003DFF4B /* NSMenuItem.swift in Sources */,
 				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A8E47EA299C6064006A40D8 /* NSRange.swift in Sources */,
 				2AF1D85821B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
