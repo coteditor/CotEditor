@@ -107,7 +107,7 @@ extension Snippet {
             
             let insertion = self.insertion(selectedString: selectedString, indent: indent)
             let selectedRanges = insertion.selectedRanges.map { $0.shifted(by: range.location + offset) }
-            offset += string.length - range.length
+            offset += insertion.string.length - range.length
             
             return (string: insertion.string, ranges: selectedRanges)
         }
