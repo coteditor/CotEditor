@@ -696,7 +696,6 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Insert Snippet" id="dZy-7n-iCq">
                                                 <items>
-                                                    <menuItem isSeparatorItem="YES" id="9T2-OR-egj"/>
                                                     <menuItem title="Edit Snippets…" id="OmB-Ve-DEy">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

@@ -69,11 +69,12 @@ final class SnippetManager {
     
     /// Return a snippet corresponding to the given shortcut.
     ///
-    /// - Parameter shortcut: The shortcut.
+    /// - Parameters:
+    ///   - shortcut: The shortcut.
     /// - Returns: The corresponded snippet or nil.
     func snippet(for shortcut: Shortcut) -> Snippet? {
         
-        self.snippets.first(where: { $0.shortcut == shortcut })
+        self.snippets.first { $0.shortcut == shortcut }
     }
     
     
@@ -97,21 +98,24 @@ final class SnippetManager {
     @MainActor private func updateMenu() {
         
         guard let menu else { return assertionFailure() }
+        guard menu.items.count > 1 || !self.snippets.isEmpty else { return }
         
+        let editItem = menu.items.last!
         let action = #selector(SnippetInsertable.insertSnippet)
-        let items = self.snippets.map {
-            let item = NSMenuItem()
-            item.title = $0.name
-            item.action = action
-            item.keyEquivalent = $0.shortcut?.keyEquivalent ?? ""
-            item.keyEquivalentModifierMask = $0.shortcut?.modifierMask ?? []
-            item.representedObject = $0
-            
-            return item
+        
+        menu.items.removeAll()
+        
+        if !self.snippets.isEmpty {
+            menu.items += self.snippets.map { snippet in
+                let item = NSMenuItem(title: snippet.name, action: action, keyEquivalent: snippet.shortcut?.keyEquivalent ?? "")
+                item.keyEquivalentModifierMask = snippet.shortcut?.modifierMask ?? []
+                item.representedObject = snippet
+                return item
+            }
+            menu.items.append(.separator())
         }
         
-        menu.items.removeAll { $0.action == action }
-        menu.items.insert(contentsOf: items, at: 0)
+        menu.items.append(editItem)
     }
 }
 

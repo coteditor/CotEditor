@@ -50,9 +50,7 @@ extension Snippet {
         guard let name = dictionary[CodingKeys.name.stringValue] else { return nil }
         
         self.name = name
-        if let keySpecChar = dictionary[CodingKeys.shortcut.stringValue] {
-            self.shortcut = Shortcut(keySpecChars: keySpecChar)
-        }
+        self.shortcut = dictionary[CodingKeys.shortcut.stringValue].flatMap(Shortcut.init(keySpecChars:))
         self.format = dictionary[CodingKeys.format.stringValue] ?? ""
     }
     
