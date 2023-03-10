@@ -256,7 +256,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     @MainActor private func presentError(_ error: Error, scriptName: String) {
         
         switch error {
-            case let error as ScriptError:
+            case is ScriptError:
                 let log = Console.Log(message: error.localizedDescription, title: scriptName)
                 Console.shared.show(log: log)
             default:
