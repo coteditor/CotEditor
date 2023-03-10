@@ -834,7 +834,7 @@
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Die Cursorposition nach dem Einfügen des Snippets.";
-"The selected text." = "Ausgewählter Text.";
+"The selected text." = "Der ausgewählte Text.";
 
 
 

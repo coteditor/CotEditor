@@ -835,7 +835,7 @@
 /* MARK: Snippet */
 // Descriptions about variables in the snippet feature
 "The insertion point after inserting the snippet." = "Posizione del cursore dopo aver inserito lo snippet.";
-"The selected text." = "The selected text.";  // FIXME: added
+"The selected text." = "Testo selezionato.";
 
 
 
