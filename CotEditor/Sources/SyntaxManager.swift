@@ -458,10 +458,10 @@ private extension SyntaxManager.StyleDictionary {
     private static func convertToYAMLEncodable(_ item: Any) -> Any {
         
         switch item {
-            case let dictionary as NSDictionary:
-                return (dictionary as! Dictionary).mapValues(Self.convertToYAMLEncodable)
-            case let array as NSArray:
-                return (array as Array).map(Self.convertToYAMLEncodable)
+            case let dictionary as [String: Any]:
+                return dictionary.mapValues(Self.convertToYAMLEncodable)
+            case let array as [Any]:
+                return array.map(Self.convertToYAMLEncodable)
             case let bool as Bool:
                 return bool
             case let string as String:
@@ -476,10 +476,10 @@ private extension SyntaxManager.StyleDictionary {
     private static func convertToCocoaBindable(_ item: Any) -> Any {
         
         switch item {
-            case let dictionary as Dictionary:
-                return NSMutableDictionary(dictionary: dictionary.mapValues(convertToCocoaBindable))
+            case let dictionary as [String: Any]:
+                return NSMutableDictionary(dictionary: dictionary.mapValues(Self.convertToCocoaBindable))
             case let array as [Any]:
-                return NSMutableArray(array: array.map(convertToCocoaBindable))
+                return NSMutableArray(array: array.map(Self.convertToCocoaBindable))
             case let date as Date:
                 return date.formatted(.iso8601.year().month().day())
             default:
