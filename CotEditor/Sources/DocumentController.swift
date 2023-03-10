@@ -27,6 +27,7 @@
 import Cocoa
 import SwiftUI
 import UniformTypeIdentifiers
+import Combine
 
 protocol AdditionalDocumentPreparing: NSDocument {
     
@@ -38,6 +39,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Properties
     
+    @Published private(set) var currentStyleName: String?
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
@@ -46,6 +48,8 @@ final class DocumentController: NSDocumentController {
     private let transientDocumentLock = NSLock()
     private var deferredDocuments: [NSDocument] = []
     
+    private var mainWindowObserver: AnyCancellable?
+    private var syntaxObserver: AnyCancellable?
     
     
     // MARK: -
@@ -56,6 +60,15 @@ final class DocumentController: NSDocumentController {
         super.init()
         
         self.autosavingDelay = 5.0
+        
+        // observe the frontmost syntax change
+        self.mainWindowObserver = NSApp.publisher(for: \.mainWindow)
+            .map { $0?.windowController?.document as? Document }
+            .sink { [unowned self] in
+                self.currentStyleName = $0?.syntaxParser.style.name
+                self.syntaxObserver = $0?.didChangeSyntaxStyle
+                    .sink { self.currentStyleName = $0 }
+            }
     }
     
     

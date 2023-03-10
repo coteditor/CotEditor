@@ -56,7 +56,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private var currentContext: String?  { didSet { self.applyShortcuts() } }
     
     private var debouncerTask: Task<Void, any Error>?
-    private var documentObserver: AnyCancellable?
     private var syntaxObserver: AnyCancellable?
     
     
@@ -68,16 +67,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         super.init()
         
-        // observe the frontmost syntax change
-        self.documentObserver = NotificationCenter.default.publisher(for: NSWindow.didBecomeMainNotification)
-            .compactMap { ($0.object as! NSWindow).windowController?.document as? Document }
-            .sink { [unowned self] in
-                self.syntaxObserver = $0.didChangeSyntaxStyle
-                    .merge(with: Just($0.syntaxParser.style.name))
-                    .removeDuplicates()
-                    .receive(on: RunLoop.main)
-                    .sink { self.currentContext = $0 }
-            }
+        self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentStyleName
+            .removeDuplicates()
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] in self.currentContext = $0 }
     }
     
     
