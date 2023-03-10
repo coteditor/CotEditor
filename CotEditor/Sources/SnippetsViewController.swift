@@ -99,6 +99,23 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     }
     
     
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        
+        guard let identifier = tableColumn?.identifier else { return nil }
+        
+        let snippet = self.snippets[row]
+        
+        switch identifier {
+            case .name:
+                return snippet.name
+            case .key:
+                return snippet.shortcut
+            default:
+                preconditionFailure()
+        }
+    }
+    
+    
     /// start dragging
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
         
@@ -152,28 +169,6 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     
     // MARK: Table View Delegate
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard
-            let identifier = tableColumn?.identifier,
-            let cellView = tableView.makeView(withIdentifier: identifier, owner: self) as? NSTableCellView
-        else { return nil }
-        
-        let snippet = self.snippets[row]
-        
-        switch identifier {
-            case .name:
-                cellView.objectValue = snippet.name
-            case .key:
-                cellView.objectValue = snippet.shortcut
-            default:
-                preconditionFailure()
-        }
-        
-        return cellView
-    }
-    
     
     /// Change selection in the table.
     func tableViewSelectionDidChange(_ notification: Notification) {

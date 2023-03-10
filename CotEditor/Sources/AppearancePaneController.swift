@@ -321,7 +321,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// set if table cell is editable
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
-        guard let view = tableView.view(atColumn: 0, row: row, makeIfNecessary: false) as? NSTableCellView else { return }
+        guard let view = rowView.view(atColumn: 0) as? NSTableCellView else { return }
         
         let themeName = self.themeNames[row]
         let isBundled = ThemeManager.shared.state(of: themeName)?.isBundled == true

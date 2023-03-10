@@ -114,7 +114,7 @@ final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTex
     func tableView(_ tableView: NSTableView, didAdd rowView: NSTableRowView, forRow row: Int) {
         
         guard
-            let cellView = rowView.view(atColumn: 1) as? NSTableCellView,
+            let cellView = rowView.view(atColumn: 0) as? NSTableCellView,
             let menu = cellView.subviews.first as? NSPopUpButton,
             let item = cellView.objectValue as? [String: String]
         else { return assertionFailure() }

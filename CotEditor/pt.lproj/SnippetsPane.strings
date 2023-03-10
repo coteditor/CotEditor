@@ -54,13 +54,13 @@
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
 "JRQ-2g-t49.title" = "Texto a ser inserido ao soltar arquivos no editor:";
 
-/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
-"FAF-cL-AAk.headerCell.title" = "Extensões";
-"FAF-cL-AAk.headerToolTip" = "Extensões de arquivo do arquivo solto (separadas por vírgulas).";  /* Filename extensions of dropped file (comma separated). */
-
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Estilo da Sintaxe";
 "RqT-x4-YbN.headerToolTip" = "Estilo da sintaxe no qual o ajuste de arquivo solto é ativado.";  /* Syntax style in which this file drop setting is used. */
+
+/* Class = "NSTableColumn"; headerCell.title = "Extensions"; ObjectID = "FAF-cL-AAk"; */
+"FAF-cL-AAk.headerCell.title" = "Extensões";
+"FAF-cL-AAk.headerToolTip" = "Extensões de arquivo do arquivo solto (separadas por vírgulas).";  /* Filename extensions of dropped file (comma separated). */
 
 /* Class = "NSTableColumn"; headerCell.title = "Description"; ObjectID = "p2m-Qi-6k3"; */
 "p2m-Qi-6k3.headerCell.title" = "Descrição";
