@@ -7,8 +7,8 @@ Change Log
 
 ### New Features
 
-- Add a new scope “syntax style” to the snippet feature to perform snippets only in a specific sytnax style.
-- Add a new variable “selection” to the snippet feature to place the current selected text to the inserted text.
+- Add a new scope “syntax style” to the snippet feature to perform snippets only in a specific syntax style.
+- Add a new variable “selection” to the snippet feature to place the currently selected text to the inserted text.
 
 
 ### Fixes
