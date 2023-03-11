@@ -168,6 +168,7 @@ extension DefaultKeys {
     
     // hidden settings
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
+    static let autoCompletionLength = DefaultKey<Int>("autoCompletionLength")
     static let coloringRangeBufferLength = DefaultKey<Int>("coloringRangeBufferLength")
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")

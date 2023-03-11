@@ -5,6 +5,10 @@ Change Log
 4.5.0-beta.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the threshold to trigger the automatic completion to 3 letters or more to optimize calculation time by large documents.
+
 
 
 4.5.0-beta.2 (555)

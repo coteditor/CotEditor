@@ -590,8 +590,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // auto completion
         if UserDefaults.standard[.autoComplete] {
-            let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
-            self.completionDebouncer.schedule(delay: .seconds(delay))
+            if self.rangeForUserCompletion.length >= UserDefaults.standard[.autoCompletionLength] {
+                let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
+                self.completionDebouncer.schedule(delay: .seconds(delay))
+            } else {
+                self.completionDebouncer.cancel()
+            }
         }
     }
     
