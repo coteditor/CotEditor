@@ -136,6 +136,10 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("a\u{FEFF}\nb".numberOfLines, 2)
         XCTAssertEqual("\u{FEFF}\nb".numberOfLines, 2)
         XCTAssertEqual("\u{FEFF}0000000000000000".numberOfLines, 1)
+        
+        let bomString = "\u{FEFF}\nb"
+        let range = bomString.startIndex..<bomString.index(bomString.startIndex, offsetBy: 2)
+        XCTAssertEqual(bomString.numberOfLines(in: [range, range]), 2)  // "\u{FEFF}\nb"
     }
     
     

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@
 //
 
 import Cocoa
+
+extension NSValue: @unchecked Sendable { }
+
 
 final class DocumentAnalyzer {
     
@@ -91,12 +94,13 @@ final class DocumentAnalyzer {
             try await Task.sleep(nanoseconds: delay * 1_000_000)  // debounce
             
             let string = await textView.string.immutable
-            let selectedRange = await textView.selectedRange
+            let selectedRanges = await textView.selectedRanges
+                .map(\.rangeValue)
+                .compactMap { Range($0, in: string) }
             
-            let counter = EditorCounter(string: string,
-                                        selectedRange: Range(selectedRange, in: string) ?? string.startIndex..<string.startIndex,
-                                        requiredInfo: self.requiredInfoTypes,
-                                        countsWholeText: self.needsCountWholeText)
+            guard !selectedRanges.isEmpty else { return assertionFailure() }
+            
+            let counter = EditorCounter(string: string, selectedRanges: selectedRanges, requiredInfo: self.requiredInfoTypes, countsWholeText: self.needsCountWholeText)
             
             var result = try await counter.count()
             

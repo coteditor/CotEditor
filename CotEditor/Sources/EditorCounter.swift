@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -82,7 +82,7 @@ final actor EditorCounter {
     // MARK: Private Properties
     
     let string: String
-    let selectedRange: Range<String.Index>
+    let selectedRanges: [Range<String.Index>]
     
     let requiredInfo: EditorInfoTypes
     let countsWholeText: Bool
@@ -92,12 +92,12 @@ final actor EditorCounter {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes, countsWholeText: Bool) {
+    init(string: String, selectedRanges: [Range<String.Index>], requiredInfo: EditorInfoTypes, countsWholeText: Bool) {
         
-        assert(selectedRange.upperBound <= string.endIndex)
+        assert(selectedRanges.allSatisfy { $0.upperBound <= string.endIndex })
         
         self.string = string
-        self.selectedRange = selectedRange
+        self.selectedRanges = selectedRanges
         self.requiredInfo = requiredInfo
         self.countsWholeText = countsWholeText
     }
@@ -110,7 +110,7 @@ final actor EditorCounter {
         
         var result = EditorCountResult()
         
-        let selectedString = self.string[self.selectedRange]
+        let selectedStrings = self.selectedRanges.map { self.string[$0] }
         
         if self.countsWholeText {
             if self.requiredInfo.contains(.characters) {
@@ -131,38 +131,38 @@ final actor EditorCounter {
         
         if self.requiredInfo.contains(.characters) {
             try Task.checkCancellation()
-            result.characters.selected = selectedString.count
+            result.characters.selected = selectedStrings.map(\.count).reduce(0, +)
         }
         
         if self.requiredInfo.contains(.lines) {
             try Task.checkCancellation()
-            result.lines.selected = selectedString.numberOfLines
+            result.lines.selected = self.string.numberOfLines(in: self.selectedRanges)
         }
         
         if self.requiredInfo.contains(.words) {
             try Task.checkCancellation()
-            result.words.selected = selectedString.numberOfWords
+            result.words.selected = selectedStrings.map(\.numberOfWords).reduce(0, +)
         }
         
         if self.requiredInfo.contains(.location) {
             try Task.checkCancellation()
             result.location = self.string.distance(from: self.string.startIndex,
-                                                   to: self.selectedRange.lowerBound)
+                                                   to: self.selectedRanges[0].lowerBound)
         }
         
         if self.requiredInfo.contains(.line) {
             try Task.checkCancellation()
-            result.line = self.string.lineNumber(at: self.selectedRange.lowerBound)
+            result.line = self.string.lineNumber(at: self.selectedRanges[0].lowerBound)
         }
         
         if self.requiredInfo.contains(.column) {
             try Task.checkCancellation()
-            result.column = self.string.columnNumber(at: self.selectedRange.lowerBound)
+            result.column = self.string.columnNumber(at: self.selectedRanges[0].lowerBound)
         }
         
         if self.requiredInfo.contains(.unicode) {
-            result.unicode = (selectedString.compareCount(with: 1) == .equal)
-                ? selectedString.first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
+            result.unicode = (selectedStrings[0].compareCount(with: 1) == .equal)
+                ? selectedStrings[0].first?.unicodeScalars.map(\.codePoint).joined(separator: ", ")
                 : nil
         }
         

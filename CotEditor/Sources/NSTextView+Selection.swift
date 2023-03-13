@@ -34,6 +34,15 @@ extension NSTextView {
     }
     
     
+    /// The selected strings.
+    var selectedStrings: [String] {
+        
+        self.selectedRanges
+            .map(\.rangeValue)
+            .map { (self.string as NSString).substring(with: $0) }
+    }
+    
+    
     /// character just before the given range
     func character(before range: NSRange) -> Unicode.Scalar? {
         

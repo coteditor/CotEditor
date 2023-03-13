@@ -90,9 +90,16 @@ import AppKit
             .merge(with: self.setting.objectWillChange)
             .merge(with: Just(Void()))  // initial calculation
             .receive(on: DispatchQueue.main)
-            .compactMap { [weak self] in self?.textView.selectedString }
+            .compactMap { [weak self] in self?.textView.selectedStrings }
             .receive(on: DispatchQueue.global())
-            .map { [unowned self] in $0.count(options: self.setting.options) }
+            .map { [unowned self] (strings) in
+                strings
+                    .map { $0.count(options: self.setting.options) }
+                    .reduce(0) { (total, count) in
+                        guard let total, let count else { return nil }
+                        return total + count
+                    }
+            }
             .receive(on: DispatchQueue.main)
             .assign(to: &self.$selectionCount)
     }

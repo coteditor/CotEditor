@@ -81,6 +81,38 @@ extension StringProtocol {
     }
     
     
+    /// Count the number of lines in the given ranges including the last blank line.
+    ///
+    /// - Parameter ranges: The character ranges to count lines.
+    /// - Returns: The number of lines.
+    func numberOfLines(in ranges: [Range<String.Index>]) -> Int {
+        
+        assert(!ranges.isEmpty)
+        
+        if self.isEmpty || ranges.isEmpty { return 0 }
+        
+        // use simple count for efficiency
+        if ranges.count == 1 {
+            return self.numberOfLines(in: ranges[0])
+        }
+        
+        // evaluate line ranges to avoid double-count lines holding multiple ranges
+        var lineRanges: [Range<String.Index>] = []
+        for range in ranges {
+            let lineRange = self.lineRange(for: range)
+            self.enumerateSubstrings(in: lineRange, options: [.byLines, .substringNotRequired]) { (_, substringRange, _, _) in
+                lineRanges.append(substringRange)
+            }
+            
+            if self[range].last?.isNewline == true {
+                lineRanges.append(self.lineRange(at: range.upperBound))
+            }
+        }
+        
+        return lineRanges.unique.count
+    }
+    
+    
     /// Calculate the number of characters from the beginning of the line where the given character index locates (0-based).
     ///
     /// - Parameter index: The character index.

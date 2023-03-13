@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2022 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(0..<3), in: self.testString)!
         let counter = EditorCounter(
             string: self.testString,
-            selectedRange: selectedRange,
+            selectedRanges: [selectedRange],
             requiredInfo: [],
             countsWholeText: true)
         
@@ -59,7 +59,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
         let counter = EditorCounter(
             string: self.testString,
-            selectedRange: selectedRange,
+            selectedRanges: [selectedRange],
             requiredInfo: .all,
             countsWholeText: true)
         
@@ -84,7 +84,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(11..<21), in: self.testString)!
         let counter = EditorCounter(
             string: self.testString,
-            selectedRange: selectedRange,
+            selectedRanges: [selectedRange],
             requiredInfo: .all,
             countsWholeText: false)
         
@@ -110,7 +110,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
         let selectedRange = Range(NSRange(1..<4), in: string)!
         let counter = EditorCounter(
             string: string,
-            selectedRange: selectedRange,
+            selectedRanges: [selectedRange],
             requiredInfo: .all,
             countsWholeText: true)
         

@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Change counting characters/lines/words to count all elements in multiple selections.
 - Change the threshold to trigger the automatic completion to 3 letters or more to optimize calculation time by large documents.
 - Allow `_` as a character for the automatic completion candidates.
 
@@ -14,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application did not terminate when no documents exist and the application goes background.
+
 
 
 4.5.0-beta.2 (555)
