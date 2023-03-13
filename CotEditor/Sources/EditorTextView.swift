@@ -1683,7 +1683,7 @@ extension EditorTextView {
         guard !self.string.isEmpty else { return range }
         
         let firstSyntaxLetters = self.syntaxCompletionWords.compactMap(\.unicodeScalars.first)
-        let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
+        let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters).union(.init(["_"]))
         
         // expand range until hitting a character that isn't in the word completion candidates
         let searchRange = NSRange(location: 0, length: range.upperBound)
