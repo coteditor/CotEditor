@@ -11,6 +11,10 @@ Change Log
 - Allow `_` as a character for the automatic completion candidates.
 
 
+### Fixes
+
+- Fix an issue that the application did not terminate when no documents exist and the application goes background.
+
 
 4.5.0-beta.2 (555)
 --------------------------
