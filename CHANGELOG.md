@@ -15,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application did not terminate when no documents exist and the application goes background.
+- Fix an issue on macOS 12 that the buttons at the bottom were not aligned.
 
 
 

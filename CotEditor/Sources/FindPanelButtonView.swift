@@ -43,7 +43,7 @@ struct FindPanelButtonView: View {
     
     var body: some View {
         
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .bottom) {
             if #available(macOS 13, *) {
                 Menu("Find All") {
                     Button("Highlight All") {
