@@ -68,12 +68,6 @@ extension StringProtocol {
         
         if self.isEmpty || range.isEmpty { return 0 }
         
-        // workaround for a bug since Swift 5 that removes BOM at the beginning (2019-05 Swift 5.1).
-        // cf. https://bugs.swift.org/browse/SR-10896
-        guard !self.starts(with: "\u{FEFF}") || self.compareCount(with: 16) == .greater else {
-            return self[range].count { $0.isNewline } + 1
-        }
-        
         var count = 0
         self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
             count += 1
