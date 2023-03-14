@@ -20,6 +20,7 @@ Change Log
 - Update the character inspector to add labels for each item and display the Unicode version.
 - Deprecate the print font setting in the Print settings.
 - Deprecate the cursor type option.
+- Make sure to perform the automatic whitespace trimming every time before explicit saving by the user.
 - Migrate the sharing interface to the modern version.
 - [trivial] Migrate the Opacity toolbar item to popover in macOS 14.
 - [trivial] Disable the contextual menu for shortcut fields.

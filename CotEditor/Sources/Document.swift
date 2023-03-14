@@ -418,9 +418,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, completionHandler: @escaping ((any Error)?) -> Void) {
         
+        assert(Thread.isMainThread)
+        
         // break undo grouping
-        for layoutManager in self.textStorage.layoutManagers {
-            layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
+        let textViews = self.textStorage.layoutManagers.compactMap(\.textViewForBeginningOfSelection)
+        for textView in textViews {
+            textView.breakUndoCoalescing()
+        }
+        
+        // trim trailing whitespace if needed
+        if !saveOperation.isAutosave, UserDefaults.standard[.autoTrimsTrailingWhitespace] {
+            textViews.first?.trimTrailingWhitespace(ignoresEmptyLines: !UserDefaults.standard[.trimsWhitespaceOnlyLines])
         }
         
         // workaround the issue that invoking the async version super blocks the save process
