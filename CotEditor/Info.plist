@@ -110,8 +110,6 @@
 © 2013-2023 1024jp</string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSSupportsAutomaticTermination</key>
-	<true/>
 	<key>NSServices</key>
 	<array>
 		<dict>
