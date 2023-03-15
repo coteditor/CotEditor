@@ -83,10 +83,11 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             case .vertical:
                 self.verticalLayoutOrientation = true
         }
-        self.isStatusBarShown = defaults[.showStatusBar]
-        self.showsNavigationBar = defaults[.showNavigationBar]
+        self.statusBarItem?.isCollapsed = !defaults[.showStatusBar]
         self.setTheme(name: ThemeManager.shared.userDefaultSettingName)
         self.defaultsObservers = [
+            defaults.publisher(for: .showStatusBar, initial: false)
+                .sink { [weak self] in self?.statusBarItem?.animator().isCollapsed = !$0 },
             defaults.publisher(for: .theme, initial: false)
                 .sink { [weak self] in self?.setTheme(name: $0) },
             defaults.publisher(for: .showInvisibles, initial: true)
@@ -258,18 +259,13 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                     item.state = (self.theme?.name == item.title) ? .on : .off
                 }
             
-            case #selector(toggleNavigationBar):
-                (item as? NSMenuItem)?.title = self.showsNavigationBar
-                    ? "Hide Navigation Bar".localized
-                    : "Show Navigation Bar".localized
-            
             case #selector(toggleLineNumber):
                 (item as? NSMenuItem)?.title = self.showsLineNumber
                     ? "Hide Line Numbers".localized
                     : "Show Line Numbers".localized
             
             case #selector(toggleStatusBar):
-                (item as? NSMenuItem)?.title = self.isStatusBarShown
+                (item as? NSMenuItem)?.title = self.statusBarItem?.isCollapsed == false
                     ? "Hide Status Bar".localized
                     : "Show Status Bar".localized
             
@@ -444,31 +440,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// Whether status bar is visible
-    var isStatusBarShown: Bool {
-        
-        get {
-            self.statusBarItem?.isCollapsed == false
-        }
-        
-        set {
-            assert(self.statusBarItem != nil)
-            self.statusBarItem?.isCollapsed = !newValue
-        }
-    }
-    
-    
-    /// visibility of navigation bars
-    var showsNavigationBar = false {
-        
-        didSet {
-            for viewController in self.editorViewControllers {
-                viewController.showsNavigationBar = showsNavigationBar
-            }
-        }
-    }
-    
-    
     /// visibility of line numbers view
     @objc var showsLineNumber = false {
         
@@ -637,17 +608,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// toggle visibility of navigation bar with fancy animation
-    @IBAction func toggleNavigationBar(_ sender: Any?) {
-        
-        NSAnimationContext.current.withAnimation {
-            self.showsNavigationBar.toggle()
-        }
-        
-        UserDefaults.standard[.showNavigationBar] = self.showsNavigationBar
-    }
-    
-    
     /// toggle visibility of line number view
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
@@ -655,14 +615,10 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    /// toggle visibility of status bar with fancy animation
+    /// toggle visibility of status bar with fancy animation (sync all documents)
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
-        NSAnimationContext.current.withAnimation {
-            self.isStatusBarShown.toggle()
-        }
-        
-        UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
+        UserDefaults.standard[.showStatusBar].toggle()
     }
     
     
@@ -880,7 +836,6 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
         }
         textView.showsPageGuide = self.showsPageGuide
         textView.showsIndentGuides = self.showsIndentGuides
-        editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
         if let syntaxParser = self.syntaxParser {

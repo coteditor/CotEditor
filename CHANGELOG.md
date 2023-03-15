@@ -10,6 +10,7 @@ Change Log
 - Change counting characters/lines/words to count all elements in multiple selections.
 - Change the threshold to trigger the automatic completion to 3 letters or more to optimize calculation time by large documents.
 - Allow `_` as a character for the automatic completion candidates.
+- Synchronize the visibility of all navigation/status bars in the application. 
 
 
 ### Fixes

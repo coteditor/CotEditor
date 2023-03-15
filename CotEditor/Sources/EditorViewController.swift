@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
 //
 
 import Cocoa
+import Combine
 
 final class EditorViewController: NSSplitViewController {
     
@@ -44,6 +45,8 @@ final class EditorViewController: NSSplitViewController {
     
     
     // MARK: Private Properties
+    
+    private var defaultObservers: [AnyCancellable] = []
     
     @IBOutlet private weak var navigationBarItem: NSSplitViewItem?
     @IBOutlet private weak var textViewItem: NSSplitViewItem?
@@ -70,6 +73,12 @@ final class EditorViewController: NSSplitViewController {
         
         self.navigationBarController?.textView = self.textView
         
+        // set user defaults
+        self.navigationBarItem!.isCollapsed = !UserDefaults.standard[.showNavigationBar]
+        UserDefaults.standard.publisher(for: .showNavigationBar)
+            .sink { [weak self] in self?.navigationBarItem?.animator().isCollapsed = !$0 }
+            .store(in: &self.defaultObservers)
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
@@ -90,6 +99,11 @@ final class EditorViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
+            case #selector(toggleNavigationBar):
+                (item as? NSMenuItem)?.title = self.navigationBarItem?.isCollapsed == false
+                ? "Hide Navigation Bar".localized
+                : "Show Navigation Bar".localized
+                
             case #selector(openOutlineMenu):
                 return self.outlineItems?.isEmpty == false
                 
@@ -116,14 +130,6 @@ final class EditorViewController: NSSplitViewController {
         
         get { self.textViewController?.showsLineNumber ?? false }
         set { self.textViewController?.showsLineNumber = newValue }
-    }
-    
-    
-    /// Whether navigation bar is visible.
-    var showsNavigationBar: Bool {
-        
-        get { self.navigationBarItem?.isCollapsed == false }
-        set { self.navigationBarItem?.isCollapsed = !newValue }
     }
     
     
@@ -154,10 +160,17 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Action Messages
     
+    /// Toggle visibility of navigation bar with fancy animation (sync all documents).
+    @IBAction func toggleNavigationBar(_ sender: Any?) {
+        
+        UserDefaults.standard[.showNavigationBar].toggle()
+    }
+    
+    
     /// Show the menu items of the outline menu in the navigation bar.
     @IBAction func openOutlineMenu(_ sender: Any) {
         
-        self.showsNavigationBar = true
+        self.navigationBarItem?.isCollapsed = false
         self.navigationBarController?.openOutlineMenu()
     }
     
