@@ -1647,14 +1647,12 @@ extension EditorTextView: TextFinderClient {
     /// Perform find next.
     @IBAction func matchNext(_ sender: Any?) {
         
-        
         self.textFinder.performAction(.nextMatch)
     }
     
     
     /// Perform find previous.
     @IBAction func matchPrevious(_ sender: Any?) {
-        
         
         self.textFinder.performAction(.previousMatch)
     }

@@ -423,7 +423,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
         
-        
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
         
