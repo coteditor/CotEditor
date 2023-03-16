@@ -17,7 +17,7 @@
 <article>
 	<header>
 		<h1>CotEditor 4.5.0</h1>
-		<p>release: <time>2023-03</time></p>
+		<p>release: <time>2023-03-18</time></p>
 	</header>
 
 
@@ -40,8 +40,12 @@
 		<ul>
 			<li>Reconstruct the Snippets (ex. File Drop) and Key Bindings panes in the Settings window.</li>
 			<li>Allow single function key stroke for a keyboard shortcut.</li>
-			<li>Optimize the performance of text editing while URL linking is enabled.</li>
 			<li>Update item order of the Edit menu.</li>
+			<li>Change counting characters/lines/words to count all elements in multiple selections.</li>
+			<li>Change the threshold to trigger the automatic completion to 3 letters to optimize calculation time by large documents.</li>
+			<li>Allow <code>_</code> as a character for completion candidates.</li>
+			<li>Synchronize the visibility of all navigation/status bars in the application.</li>
+			<li>Optimize the performance of text editing while URL linking is enabled.</li>
 			<li>Make filter highlights of the outline list more legible in the Dark Mode.</li>
 			<li>Update Swift syntax style to add keywords for Swift 5.8.</li>
 			<li>Deprecate the Insert Encoding Name command (use AppleScript instead).</li>
@@ -57,7 +61,9 @@
 
 		<ul>
 			<li>Fix an issue in the search window that an error dialog for invalid regular expression appeared even on incremental search.</li>
+			<li>Fix an issue that the application did not terminate when no documents exist and the application goes background.</li>
 			<li>Fix an issue that the Replace button in the Find window did not select the next match.</li>
+			<li>Fix an issue on macOS 12 that the buttons at the bottom were not aligned.</li>
 			<li>Fix an issue that all URL links were removed when an external process updated the document.</li>
 			<li>Fix the redo action label for the line endings conversion and file encoding change.</li>
 		</ul>
