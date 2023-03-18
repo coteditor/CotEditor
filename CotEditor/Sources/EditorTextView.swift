@@ -465,6 +465,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // exit multi-cursor mode
         if self.hasMultipleInsertions {
             self.selectedRange = self.insertionRanges.first!
+            self.scrollRangeToVisible(self.selectedRange)
             return
         }
         

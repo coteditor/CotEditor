@@ -5,6 +5,10 @@ Change Log
 4.5.1-alpha (unreleased)
 --------------------------
 
+### Improvements
+
+- Scroll the editor to make the remaining cursor visible when cancelling the multi-cursor editing mode.
+
 
 
 4.5.0 (558)
