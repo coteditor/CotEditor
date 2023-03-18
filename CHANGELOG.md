@@ -7,11 +7,12 @@ Change Log
 
 ### Improvements
 
-- Scroll the editor to make the remaining cursor visible when cancelling the multi-cursor editing mode.
+- Scroll the editor to make the remaining cursor visible when canceling the multi-cursor editing mode.
 
 
 ### Fixes
 
+- Fix the application could crash when the Invisibles toolbar item is displayed.
 - [trivial] Fix the shortcut key display for the mic key in the Key Bindings pane.
 
 
