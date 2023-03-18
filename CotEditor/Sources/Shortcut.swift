@@ -300,6 +300,7 @@ struct Shortcut {
         .f19: "F19",
         .help: "Help",
         .space: String(localized: "Space", comment: "keyboard key name"),
+        .mic: "🎤︎",  // U+1F3A4, U+FE0E
     ].mapKeys(\.unicodeScalar)
 }
 
@@ -308,6 +309,7 @@ private extension NSEvent.SpecialKey {
     
     static let space = Self(rawValue: 0x20)
     static let escape = Self(rawValue: 0x1b)
+    static let mic = Self(rawValue: 0x1f3a4)
 }
 
 

@@ -10,6 +10,11 @@ Change Log
 - Scroll the editor to make the remaining cursor visible when cancelling the multi-cursor editing mode.
 
 
+### Fixes
+
+- [trivial] Fix the shortcut key display for the mic key in the Key Bindings pane.
+
+
 
 4.5.0 (558)
 --------------------------
