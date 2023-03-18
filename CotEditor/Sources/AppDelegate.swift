@@ -173,7 +173,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Application Delegate
     
-    /// Enable secure restorable state
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         
         true
@@ -181,7 +180,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     #if SPARKLE
-    /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {
         
         UpdaterManager.shared.setup()
@@ -189,7 +187,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     #endif
     
     
-    /// just after application did launch
     func applicationDidFinishLaunching(_ notification: Notification) {
         
         KeyBindingManager.shared.applyShortcutsToMainMenu()
@@ -200,10 +197,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// store last version before termination
     func applicationWillTerminate(_ notification: Notification) {
         
-        // store the latest version
+        // store the latest version before termination
         // -> The bundle version (build number) must be Int.
         let thisVersion = Bundle.main.bundleVersion
         let lastVersion = UserDefaults.standard[.lastVersion].flatMap(Int.init)
@@ -217,7 +213,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         switch UserDefaults.standard[.noDocumentOnLaunchBehavior] {
@@ -232,7 +227,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// open multiple files at once
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         
         assert(Thread.isMainThread)
@@ -293,7 +287,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Action Messages
     
-    /// activate self and perform "New" menu action
+    /// Activate self and perform New menu action (from Dock menu).
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
@@ -301,7 +295,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// activate self and perform the Open menu command
+    /// Activate self and perform the Open menu command (from Dock menu).
     @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
@@ -309,7 +303,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// show standard about panel
+    /// Show the standard about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
         let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
@@ -326,35 +320,35 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// show Settings window
+    /// Show the Settings window.
     @IBAction func showPreferences(_ sender: Any?) {
         
         self.settingsWindowController.showWindow(sender)
     }
     
     
-    /// show Snippet pane in the Settings window
+    /// Show Snippet pane in the Settings window.
     @IBAction func showSnippetEditor(_ sender: Any?) {
         
         self.settingsWindowController.openPane(.snippets)
     }
     
     
-    /// show console panel
+    /// Show console panel.
     @IBAction func showConsolePanel(_ sender: Any?) {
         
         Console.shared.panelController.showWindow(sender)
     }
     
     
-    /// show acknowlegements
+    /// Show acknowlegements window.
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
         self.acknowledgmentsWindowController.showWindow(sender)
     }
     
     
-    /// open OSAScript dictionary in Script Editor
+    /// Open OSAScript dictionary in Script Editor.
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
         guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.scriptEditor) else { return }
@@ -366,7 +360,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// open a specific page in Help contents
+    /// Open a specific page in the system Help viewer.
     @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
@@ -375,21 +369,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// open web site (coteditor.com) in default web browser
+    /// Open the application web site (coteditor.com) in the default web browser.
     @IBAction func openWebSite(_ sender: Any?) {
         
         NSWorkspace.shared.open(AppWebURL.website.url)
     }
     
     
-    /// open bug report page in default web browser
+    /// Open the bug report page in the default web browser.
     @IBAction func reportBug(_ sender: Any?) {
         
         NSWorkspace.shared.open(AppWebURL.issueTracker.url)
     }
     
     
-    /// open new bug report window
+    /// Open a new bug report window.
     @IBAction func createBugReport(_ sender: Any?) {
         
         // load template file
