@@ -503,7 +503,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                                            "Unwrap Lines".localized]
                 }
                 item.toolTip = "Wrap lines".localized
-                item.stateImages[.on] = NSImage(named: "text.unwrap")
+                item.stateImages[.on] = NSImage(named: "text.wrap.slash")
                 item.stateImages[.off] = NSImage(named: "text.wrap")
                 item.action = #selector(DocumentViewController.toggleLineWrap)
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
