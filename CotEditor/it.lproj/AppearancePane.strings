@@ -27,11 +27,11 @@
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
 "Z85-S9-uID.title" = "Font:";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
-"3289.title" = "Select…";
+"3289.title" = "Seleziona…";
 /* Class = "NSButtonCell"; title = "Antialias"; ObjectID = "3290"; */
 "3290.title" = "Antialias";
 /* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
-"g3S-3v-6ZA.title" = "Ligature";
+"g3S-3v-6ZA.title" = "Legatura";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Altezza riga:";
