@@ -36,7 +36,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     // MARK: Private Properties
     
-    private static let appCastURL = URL(string: "https://coteditor.com/appcast.xml")!
+    private static let feedURLString = "https://coteditor.com/appcast.xml"
     
     private lazy var controller = SPUStandardUpdaterController(updaterDelegate: self, userDriverDelegate: nil)
     
@@ -52,7 +52,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     
     
     /// setup Sparkle
-    func setup() {
+    @MainActor func setup() {
         
         // insert "Check for Updates…" menu item
         guard let applicationMenu = MainMenu.application.menu else {
@@ -64,14 +64,21 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         menuItem.target = self.controller.updater
         applicationMenu.insertItem(menuItem, at: 1)
         
-        // set feed
-        self.controller.updater.setFeedURL(Self.appCastURL)
+        // migrate from outdated feed API (Sparkle 2.4.0, 2023-03)
+        self.controller.updater.clearFeedURLFromUserDefaults()
+        
         self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)  // daily
     }
     
     
     
     // MARK: Sparkle Updater Delegate
+    
+    func feedURLString(for updater: SPUUpdater) -> String? {
+        
+        Self.feedURLString
+    }
+    
     
     func allowedChannels(for updater: SPUUpdater) -> Set<String> {
         
