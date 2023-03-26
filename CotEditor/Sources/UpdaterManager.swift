@@ -23,8 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
-import AppKit.NSMenuItem
+import AppKit
 import Sparkle
 
 final class UpdaterManager: NSObject, SPUUpdaterDelegate {
@@ -48,6 +47,11 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     private override init() {
         
         super.init()
+        
+        // migrate from outdated feed API (Sparkle 2.4.0, 2023-03)
+        self.controller.updater.clearFeedURLFromUserDefaults()
+        
+        self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)  // daily
     }
     
     
@@ -55,19 +59,16 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     @MainActor func setup() {
         
         // insert "Check for Updates…" menu item
-        guard let applicationMenu = MainMenu.application.menu else {
-            preconditionFailure("No menu could be found to attach update menu item.")
+        guard let applicationMenu = NSApp.mainMenu?.item(at: MainMenu.application.rawValue)?.submenu else {
+            return assertionFailure("Found no menu to attach the update menu item.")
         }
-        let menuItem = NSMenuItem(title: "Check for Updates…".localized,
-                                  action: #selector(SPUUpdater.checkForUpdates),
-                                  keyEquivalent: "")
+        
+        let menuItem = NSMenuItem()
+        menuItem.title = "Check for Updates…".localized
+        menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
+        
         applicationMenu.insertItem(menuItem, at: 1)
-        
-        // migrate from outdated feed API (Sparkle 2.4.0, 2023-03)
-        self.controller.updater.clearFeedURLFromUserDefaults()
-        
-        self.controller.updater.updateCheckInterval = TimeInterval(60 * 60 * 24)  // daily
     }
     
     
