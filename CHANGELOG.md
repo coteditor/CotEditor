@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [non-AppStore ver.] Update Sparkle from 2.3.2 to 2.4.0.
+- [dev] Update the build environment to Xcode 14.3 RC (Swift 5.8).
 
 
 

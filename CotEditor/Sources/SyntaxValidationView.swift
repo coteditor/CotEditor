@@ -129,12 +129,13 @@ struct SyntaxValidationView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        let style = NSMutableDictionary(dictionary: [
+        let dictionary: [String: [[String: Any]]] = [
             "keywords": [["beginString": "abc"],
                          ["beginString": "abc"]],
             "commands": [["beginString": "Lorem ipsum dolor sit amet, consectetur[",
                           "regularExpression": true]],
-        ])
+        ]
+        let style = NSMutableDictionary(dictionary: dictionary)
         
         SyntaxValidationView(validator: .init(style: style))
             .frame(width: 400)

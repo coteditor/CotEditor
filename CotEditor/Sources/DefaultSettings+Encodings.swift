@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2020 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import CoreFoundation.CFString
 
 extension DefaultSettings {
     
-    static let encodings: [UInt32] = [
+    static let encodings: [UInt32] = ([
         CFStringBuiltInEncodings.UTF8,  // Unicode (UTF-8)
         kCFStringEncodingInvalidId,
         
@@ -108,7 +108,7 @@ extension DefaultSettings {
         CFStringBuiltInEncodings.UTF32,    // Unicode (UTF-32)
         CFStringBuiltInEncodings.UTF32BE,  // Unicode (UTF-32BE)
         CFStringBuiltInEncodings.UTF32LE,  // Unicode (UTF-16LE)
-        ]
+    ] as [Any])
         .map { encoding in
             switch encoding {
                 case let encoding as CFStringBuiltInEncodings:

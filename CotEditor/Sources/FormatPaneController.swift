@@ -169,10 +169,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// content of table cell
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         
-        guard let name = self.styleNames[safe: row] else { return nil }
+        guard
+            let name = self.styleNames[safe: row],
+            let state = SyntaxManager.shared.state(of: name)
+        else { return nil }
         
         return ["name": name,
-                "state": SyntaxManager.shared.state(of: name)?.isCustomized == true]
+                "state": state.isCustomized] as [String: Any]
     }
     
     

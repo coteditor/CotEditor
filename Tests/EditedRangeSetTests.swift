@@ -123,7 +123,7 @@ final class EditedRangeSetTests: XCTestCase {
         textStorage.replaceCharacters(in: NSRange(3..<5), with: "")
         textStorage.replaceCharacters(in: NSRange(1..<1), with: "1")
         
-        await self.waitForExpectations(timeout: 2)
+        await self.fulfillment(of: [expectation], timeout: 2)
         
         XCTAssertEqual(textStorage.string, "a1b00eg")
         XCTAssertEqual(set.ranges, [NSRange(location: 1, length: 1),
