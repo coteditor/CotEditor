@@ -53,7 +53,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private var scriptsDirectoryURL: URL?
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
-    private var currentContext: String?  { didSet { self.applyShortcuts() } }
+    private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
     
     private var debouncerTask: Task<Void, any Error>?
     private var syntaxObserver: AnyCancellable?
@@ -69,7 +69,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         self.syntaxObserver = (DocumentController.shared as! DocumentController).$currentStyleName
             .removeDuplicates()
-            .receive(on: RunLoop.main)
             .sink { [unowned self] in self.currentContext = $0 }
     }
     
@@ -112,9 +111,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Public Methods
     
     /// Menu for context menu.
-    var contexualMenu: NSMenu? {
+    @MainActor var contexualMenu: NSMenu? {
         
-        let items = MainMenu.script.menu!.items
+        let items = self.scriptMenu!.items
             .filter { $0.action != #selector(openScriptFolder) }
         
         guard items.contains(where: { $0.action == #selector(launchScript) }) else { return nil }
@@ -219,6 +218,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Methods
     
+    /// The Scripts menu in the main menu.
+    @MainActor private var scriptMenu: NSMenu? {
+        
+        NSApp.mainMenu?.item(at: MainMenu.script.rawValue)?.submenu
+    }
+    
+    
     /// Build the Script menu and scan script handlers.
     private func buildScriptMenu() async {
         
@@ -235,7 +241,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         let menuItems = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
         
         await MainActor.run {
-            MainMenu.script.menu?.items = menuItems
+            self.scriptMenu?.items = menuItems
             self.applyShortcuts()
         }
     }
@@ -366,11 +372,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// Apply the keyboard shortcuts to the Script menu items.
-    private func applyShortcuts() {
+    @MainActor private func applyShortcuts() {
         
-        assert(Thread.isMainThread)
-        
-        guard let menu = MainMenu.script.menu else { return assertionFailure() }
+        guard let menu = self.scriptMenu else { return assertionFailure() }
         
         // clear all shortcuts
         menu.items.forEach { $0.removeAllShortcuts() }
