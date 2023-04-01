@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- Workaround an issue on macOS 12 that the appliction uses 100% CPU after searching files in the open window.
+- Workaround an issue on macOS 12 that the application uses 100% CPU after searching files in the open window.
 - Fix typos in German localization (thanks to Jan Richter!).
 
 
