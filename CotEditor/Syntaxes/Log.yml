@@ -1,0 +1,53 @@
+attributes:
+- beginString: (?<= )\d{2}:\d{2}:\d{2}\.\d{3}(?= )
+  regularExpression: true
+characters: []
+commands:
+- beginString: System.err:[^\n]+\n
+  regularExpression: true
+commentDelimiters: {}
+comments: []
+completions: []
+extensions: []
+filenames: []
+interpreters: []
+keywords:
+- beginString: ^(?:\d{2}|\d{4}-)?\d{2}-\d{2}
+  description: date
+  endString: ' '
+  ignoreCase: false
+  regularExpression: true
+metadata:
+  author: Asins
+  lastModified: '2023-04-01'
+  version: '1.0'
+numbers: []
+outlineMenu: []
+strings: []
+types:
+- beginString: (?<= )(?:D|DEBUG|Debug)(?= )
+  regularExpression: true
+- beginString: (?<= )(?:E|ERROR|Error|Err)(?= )
+  description: Log Error Level
+  regularExpression: true
+- beginString: (?<= )(?:I|INFO|Info)(?= )
+  description: Log Info Level
+  regularExpression: true
+- beginString: (?<= )(?:W|WARN|Warn|WARNING|Warning)(?= )
+  description: Log Warning Level
+  regularExpression: true
+- beginString: \[(?:WARN|INFO|ERROR)(?::[^\]]+)?\]
+  ignoreCase: false
+  regularExpression: true
+values: []
+variables:
+- beginString: '"[\w\d-]+"(?=:\s*")'
+  description: attribute name
+  ignoreCase: true
+  regularExpression: true
+- beginString: (?<=":)".*?(?<!\\)"(?=[},])
+  description: JSON property values are strings
+  regularExpression: true
+- beginString: (?<=":)\d+(?=[},])
+  description: JSON property values are numbers
+  regularExpression: true
