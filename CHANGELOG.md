@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Update Swift syntax style to add some keywords.
 - [non-AppStore ver.] Update Sparkle from 2.3.2 to 2.4.0.
 - [dev] Update the build environment to Xcode 14.3 (Swift 5.8).
 
