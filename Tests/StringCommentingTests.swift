@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -229,7 +229,7 @@ private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditi
     // MultiCursorEditing
     var insertionLocations: [Int] = []
     var selectionOrigins: [Int] = []
-    var insertionPointTimer: DispatchSourceTimer?
+    var insertionPointTimer: (any DispatchSourceTimer)?
     var insertionPointOn: Bool = false
     var isPerformingRectangularSelection: Bool = false
     
