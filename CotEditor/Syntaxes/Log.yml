@@ -42,13 +42,13 @@ types:
   regularExpression: true
 values: []
 variables:
-- beginString: '"[\w\d-]+"(?=:\s*")'
-  description: attribute name
-  ignoreCase: true
-  regularExpression: true
 - beginString: (?<=":)".*?(?<!\\)"(?=[},])
   description: JSON property values are strings
   regularExpression: true
 - beginString: (?<=":)\d+(?=[},])
   description: JSON property values are numbers
+  regularExpression: true
+- beginString: (?<=\{|\[|(?:,\s?))"[\w\d-]+"(?=:\s*[\[{"\d])
+  description: attribute name
+  ignoreCase: true
   regularExpression: true
