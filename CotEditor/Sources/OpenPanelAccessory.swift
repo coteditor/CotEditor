@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ struct OpenPanelAccessory: View {
     
     @ObservedObject var options: OpenOptions
     
-    let openPanel: NSOpenPanel
+    weak var openPanel: NSOpenPanel?
     let encodings: [String.Encoding?]
     
     @State private var showsHiddenFiles = false
@@ -63,9 +63,11 @@ struct OpenPanelAccessory: View {
                 
                 Toggle("Show hidden files", isOn: $showsHiddenFiles)
                     .onChange(of: self.showsHiddenFiles) { shows in
-                        self.openPanel.showsHiddenFiles = shows
-                        self.openPanel.treatsFilePackagesAsDirectories = shows
-                        self.openPanel.validateVisibleColumns()
+                        guard let openPanel = self.openPanel else { return }
+                        
+                        openPanel.showsHiddenFiles = shows
+                        openPanel.treatsFilePackagesAsDirectories = shows
+                        openPanel.validateVisibleColumns()
                     }
             }.fixedSize(horizontal: true, vertical: true)
         }.padding()
@@ -80,6 +82,6 @@ struct OpenPanelAccessory_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        OpenPanelAccessory(options: .init(), openPanel: .init(), encodings: [.utf8])
+        OpenPanelAccessory(options: .init(), encodings: [.utf8])
     }
 }
