@@ -90,7 +90,7 @@
 "Select the search scope in the document or turn off the “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
 
 // accessibility announcement
-"Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
+"Search wrapped." = "Die Suche startet von vorn.";  // announced when the search restarted from the beginning.
 
 
 
@@ -102,7 +102,7 @@
 
 // pairs of button label and its tooltip
 "Find All" = "Alles suchen";
-"List all matches." = "Alle Übereinstimmungen listen.";
+"List all matches." = "Alle Übereinstimmungen auflisten.";
 
 "Replace All" = "Alles ersetzen";
 "Replace all matches with the replacement text." = "Alle Übereinstimmungen durch den Ersetzungstext ersetzen.";
@@ -134,8 +134,8 @@
 "new line character" = "Zeilenende (New Line)";
 "tab character" = "Tabulator-Zeichen";
 "word character" = "Buchstabe";
-"whitespace character" = "Whitespace";
-"non-whitespace character" = "kein Whitespace";
+"whitespace character" = "Leerzeichen";
+"non-whitespace character" = "kein Leerzeichen";
 "decimal number" = "Ziffer";
 "any character in range A to Z" = "irgendein Zeichen im Bereich A bis Z";
 "any character not in range A to Z" = "irgendein Zeichen nicht im Bereich A bis Z";
@@ -178,7 +178,7 @@
 
 // pairs of checkbox label and its tooltip
 "Match only whole word" = "Nur ganze Wörter";
-"Restrict search results to the whole words." = "Suchergebnisse auf ganze Wörter beschrenken.";
+"Restrict search results to the whole words." = "Suchergebnisse auf ganze Wörter beschränken.";
 
 "Distinguish characters strictly" = "Zeichen streng unterscheiden";
 "Exact character-by-character equivalence." = "Äquivalenz Zeichen für Zeichen vergleichen.";
@@ -285,7 +285,7 @@
 "Update" = "Aktualisieren";
 
 // Save panel options
-"Make file executable" = "Datai als ausführbar definieren";
+"Make file executable" = "Datei als ausführbar definieren";
 
 
 
@@ -462,8 +462,8 @@
 "No issues found." = "Keine Probleme gefunden.";
 
 // Incompatible characters
-"Scanning incompatible characters…" = "Inkompatiblen Zeichen scannen …";
-"Found an incompatible character." = "Es wurde eine inkompatiblen Zeichen gefunden.";
+"Scanning incompatible characters…" = "Inkompatible Zeichen scannen …";
+"Found an incompatible character." = "Es wurde ein inkompatibles Zeichen gefunden.";
 "Found %lld incompatible characters." = "Es wurden %lld inkompatiblen Zeichen gefunden.";  // %lld is the number of characters
 
 // Inconsistent line endings
