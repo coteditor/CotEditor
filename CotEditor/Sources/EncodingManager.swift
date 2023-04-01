@@ -107,10 +107,10 @@ final class EncodingManager {
     /// set available encoding menu items with action to passed-in menu
     func updateChangeEncodingMenu(_ menu: NSMenu) {
         
-        menu.items.removeAll { $0.action == #selector(EncodingHolder.changeEncoding) }
+        menu.items.removeAll { $0.action == #selector((any EncodingHolder).changeEncoding) }
         
         for item in self.createEncodingMenuItems() {
-            item.action = #selector(EncodingHolder.changeEncoding)
+            item.action = #selector((any EncodingHolder).changeEncoding)
             item.target = nil
             menu.addItem(item)
             
@@ -118,7 +118,7 @@ final class EncodingManager {
             if item.tag == FileEncoding(encoding: .utf8).tag {
                 let fileEncoding = FileEncoding(encoding: .utf8, withUTF8BOM: true)
                 let bomItem = NSMenuItem(title: fileEncoding.localizedName,
-                                         action: #selector(EncodingHolder.changeEncoding),
+                                         action: #selector((any EncodingHolder).changeEncoding),
                                          keyEquivalent: "")
                 bomItem.tag = fileEncoding.tag
                 menu.addItem(bomItem)

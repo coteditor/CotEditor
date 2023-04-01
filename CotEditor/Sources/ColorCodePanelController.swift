@@ -164,7 +164,7 @@ private struct ColorCodePanelAccessory: View {
         
         guard
             !self.colorCode.isEmpty,
-            NSApp.sendAction(#selector(ColorCodeReceiver.insertColorCode), to: nil, from: self.colorCode)
+            NSApp.sendAction(#selector((any ColorCodeReceiver).insertColorCode), to: nil, from: self.colorCode)
         else { return NSSound.beep() }
     }
     

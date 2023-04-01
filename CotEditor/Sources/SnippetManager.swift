@@ -119,7 +119,7 @@ final class SnippetManager {
         let scopeSnippets = self.scope.flatMap { scope in self.snippets.filter { $0.scope == scope } } ?? []
         
         let editItem = menu.items.last!
-        let action = #selector(SnippetInsertable.insertSnippet)
+        let action = #selector((any SnippetInsertable).insertSnippet)
         
         menu.items.removeAll()
         

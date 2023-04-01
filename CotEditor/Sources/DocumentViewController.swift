@@ -251,7 +251,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(changeTheme):
@@ -312,31 +312,31 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 return canActivateShowInvisibles
             
             case #selector(toggleAntialias):
-                (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
+                (item as? any StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
             
             case #selector(toggleLigatures):
-                (item as? StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
+                (item as? any StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
             
             case #selector(toggleAutoTabExpand):
-                (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
+                (item as? any StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
                     ? "Turn off expanding tabs to spaces".localized
                     : "Expand tabs to spaces automatically".localized
             
             case #selector(changeTabWidth):
-                (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
+                (item as? any StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
             
             case #selector(makeLayoutOrientationHorizontal):
-                (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
+                (item as? any StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
             
             case #selector(makeLayoutOrientationVertical):
-                (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
+                (item as? any StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
             
             case #selector(makeWritingDirectionLeftToRight):
-                (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
+                (item as? any StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
             
             case #selector(makeWritingDirectionRightToLeft):
-                (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
+                (item as? any StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
             
             case #selector(changeWritingDirection):
                 (item as? NSToolbarItemGroup)?.selectedIndex = {

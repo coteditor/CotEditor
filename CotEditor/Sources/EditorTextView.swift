@@ -78,7 +78,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     var insertionLocations: [Int] = []  { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
-    var insertionPointTimer: DispatchSourceTimer?
+    var insertionPointTimer: (any DispatchSourceTimer)?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false
     
@@ -1156,7 +1156,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     // MARK: Protocol
     
     /// apply current state to related menu items and toolbar items
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(performTextFinderAction):
@@ -1637,7 +1637,7 @@ extension EditorTextView: TextFinderClient {
     @IBAction func performEditorTextFinderAction(_ sender: Any?) {
         
         guard
-            let tag = (sender as? NSValidatedUserInterfaceItem)?.tag ?? (sender as? NSControl)?.tag,
+            let tag = (sender as? any NSValidatedUserInterfaceItem)?.tag ?? (sender as? NSControl)?.tag,
             let action = TextFinder.Action(rawValue: tag)
         else { return }
         

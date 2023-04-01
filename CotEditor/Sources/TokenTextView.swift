@@ -95,7 +95,7 @@ final class TokenTextView: NSTextView {
     
     
     /// validate insertion menu
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(insertVariable):

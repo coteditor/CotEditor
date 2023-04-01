@@ -4,11 +4,11 @@
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by imanishi on 2023/02/01.
+//  Created by 1024jp on 2023-02-01.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2023 CotEditor Project
+//  © 2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -136,7 +136,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     
     /// validate when dragged items come into tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return [] }
@@ -150,7 +150,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     
     
     /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return false }

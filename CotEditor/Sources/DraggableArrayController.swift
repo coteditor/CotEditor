@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2021 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     // MARK: Table Data Source Protocol
     
     /// start dragging
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         tableView.registerForDraggedTypes([.string])
         
@@ -42,7 +42,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return [] }
@@ -56,7 +56,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     
     
     /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return false }

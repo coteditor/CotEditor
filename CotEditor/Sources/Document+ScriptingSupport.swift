@@ -466,7 +466,7 @@ extension Document {
             return
         }
         
-        weak var observer: NSObjectProtocol?
+        weak var observer: (any NSObjectProtocol)?
         observer = NotificationCenter.default.addObserver(forName: EditorTextView.didBecomeFirstResponderNotification, object: nil, queue: .main) { [weak self] _ in
             guard let viewController = self?.viewController else { return }
             

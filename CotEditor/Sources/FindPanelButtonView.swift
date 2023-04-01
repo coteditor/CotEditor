@@ -106,7 +106,7 @@ struct FindPanelButtonView: View {
     
     @MainActor private func performAction(_ action: TextFinder.Action) {
         
-        self.firstResponder.performAction(#selector(TextFinderClient.performEditorTextFinderAction), tag: action.rawValue)
+        self.firstResponder.performAction(#selector((any TextFinderClient).performEditorTextFinderAction), tag: action.rawValue)
     }
 }
 

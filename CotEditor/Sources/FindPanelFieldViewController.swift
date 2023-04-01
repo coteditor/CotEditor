@@ -133,7 +133,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                     textView.isValid
                 else { return }
                 
-                NSApp.sendAction(#selector(TextFinderClient.incrementalSearch), to: nil, from: self)
+                NSApp.sendAction(#selector((any TextFinderClient).incrementalSearch), to: nil, from: self)
                 
             case self.replacementTextView!:
                 self.updateReplacedMessage(nil)
@@ -151,7 +151,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     @IBAction func performFind(_ sender: Any?) {
         
         // find backwards if the Shift key pressed
-        let action = NSEvent.modifierFlags.contains(.shift) ? #selector(TextFinderClient.matchPrevious) : #selector(TextFinderClient.matchNext)
+        let action = NSEvent.modifierFlags.contains(.shift)
+            ? #selector((any TextFinderClient).matchPrevious)
+            : #selector((any TextFinderClient).matchNext)
         
         NSApp.sendAction(action, to: nil, from: self)
     }

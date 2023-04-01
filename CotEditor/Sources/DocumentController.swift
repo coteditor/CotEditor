@@ -219,7 +219,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(newDocumentAsTab):

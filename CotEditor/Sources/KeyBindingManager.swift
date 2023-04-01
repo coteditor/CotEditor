@@ -219,12 +219,12 @@ final class KeyBindingManager: SettingManaging {
         
         // specific actions
         switch menuItem.action {
-            case #selector(EncodingHolder.changeEncoding),
-                 #selector(SyntaxHolder.changeSyntaxStyle),
-                 #selector(ThemeHolder.changeTheme),
+            case #selector((any EncodingHolder).changeEncoding),
+                 #selector((any SyntaxHolder).changeSyntaxStyle),
+                 #selector((any ThemeHolder).changeTheme),
                  #selector(Document.changeLineEnding(_:)),
                  #selector(DocumentViewController.changeTabWidth),
-                 #selector(SnippetInsertable.insertSnippet),
+                 #selector((any SnippetInsertable).insertSnippet),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSDocument.saveAs),

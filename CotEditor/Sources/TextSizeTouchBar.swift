@@ -108,7 +108,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     // MARK: User Interface Validations
     
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(resetTextSize):

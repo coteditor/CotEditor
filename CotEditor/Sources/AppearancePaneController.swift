@@ -220,7 +220,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
             info.draggingSource as? NSTableView != tableView,  // avoid self D&D
@@ -239,7 +239,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// check acceptability of dropped items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .cotTheme, for: tableView) {
             let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
@@ -269,7 +269,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         let provider = NSFilePromiseProvider(fileType: UTType.cotTheme.identifier, delegate: self)
         provider.userInfo = self.themeNames[row]

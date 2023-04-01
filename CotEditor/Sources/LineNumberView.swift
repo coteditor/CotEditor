@@ -216,7 +216,7 @@ final class LineNumberView: NSView {
         
         guard let textView = self.textView else { return 1 }
         
-        assert(textView.layoutManager is LineRangeCacheable)
+        assert(textView.layoutManager is any LineRangeCacheable)
         
         return textView.lineNumber(at: textView.string.length)
     }

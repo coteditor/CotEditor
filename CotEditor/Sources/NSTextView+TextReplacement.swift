@@ -104,7 +104,7 @@ extension NSTextView {
     /// set undoable selection change
     func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
         
-        if let self = self as? MultiCursorEditing,
+        if let self = self as? any MultiCursorEditing,
            let set = self.prepareForSelectionUpdate(ranges.map(\.rangeValue))
         {
             self.selectedRanges = set.selectedRanges
