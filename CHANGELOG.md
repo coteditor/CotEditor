@@ -5,6 +5,11 @@ Change Log
 4.5.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add BBCode syntax style.
+
+
 ### Improvements
 
 - Update Swift syntax style to add some keywords.

@@ -32,6 +32,17 @@
       "awk"
     ]
   },
+  "BBCode" : {
+    "extensions" : [
+
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
   "BibTeX" : {
     "extensions" : [
       "bib",
