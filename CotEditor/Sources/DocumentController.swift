@@ -245,10 +245,16 @@ final class DocumentController: NSDocumentController {
     @discardableResult
     func openUntitledDocument(content: String, title: String? = nil, display displayDocument: Bool) throws -> Document {
         
-        let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(displayDocument) as! Document)
+        let document = try self.transientDocument ?? (try self.openUntitledDocumentAndDisplay(false) as! Document)
         
         document.replaceContent(with: content)
         document.updateChangeCount(.changeDone)
+        
+        if displayDocument {
+            document.makeWindowControllers()
+            document.showWindows()
+        }
+        
         if let title {
             document.displayName = title
             document.windowControllers

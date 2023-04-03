@@ -5,6 +5,10 @@ Change Log
 4.5.3 (unreleased)
 --------------------------
 
+### Fixes
+
+- Fix an issue that the editor font did not applied to documents created via Services. 
+
 
 
 4.5.2 (562)
