@@ -25,7 +25,7 @@ Change Log
 ### Fixes
 
 - Workaround an issue on macOS 12 that the application uses 100% CPU after searching files in the open dialog.
-Fix typos in German and Italian localizations (thanks to Jan Richter and DAnn2012!).
+- Fix typos in German and Italian localizations (thanks to Jan Richter and DAnn2012!).
 
 
 
