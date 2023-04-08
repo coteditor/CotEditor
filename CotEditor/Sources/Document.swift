@@ -538,8 +538,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             savePanel.allowedContentTypes = [utType]
             
             // disable it immediately in the next runloop to allow setting other extensions
-            DispatchQueue.main.async {
-                savePanel.allowedContentTypes = []
+            Task.detached { @MainActor [weak savePanel] in
+                savePanel?.allowedContentTypes = []
             }
         } else {
             // just keep no extension
