@@ -146,7 +146,10 @@ struct Shortcut {
         
         assert(event.type == .keyDown)
         
-        guard let charactersIgnoringModifiers = event.charactersIgnoringModifiers else { return nil }
+        guard
+            let charactersIgnoringModifiers = event.charactersIgnoringModifiers,
+            charactersIgnoringModifiers.count == 1
+        else { return nil }
         
         // correct Backspace and Forward Delete keys
         //  -> Backspace:      The key above the Return.
@@ -334,7 +337,7 @@ extension Shortcut: Equatable {
         let modifierMask = self.modifierMask.union(needsShift ? .shift : [])
         let keyEquivalent = self.keyEquivalent.lowercased()
         
-        return Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)!
+        return Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent) ?? self
     }
 }
 
