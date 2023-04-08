@@ -749,14 +749,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard data != self.fileData else { return }
         
         // notify about external file update
-        DispatchQueue.main.async { [weak self] in
+        Task {
             switch UserDefaults.standard[.documentConflictOption] {
                 case .ignore:
                     assertionFailure()
                 case .notify:
-                    self?.showUpdatedByExternalProcessAlert()
+                    await self.showUpdatedByExternalProcessAlert()
                 case .revert:
-                    self?.revertWithoutAsking()
+                    await self.revertWithoutAsking()
             }
         }
     }
@@ -1199,9 +1199,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// Display alert about file modification by an external process.
-    private func showUpdatedByExternalProcessAlert() {
-        
-        assert(Thread.isMainThread)
+    @MainActor private func showUpdatedByExternalProcessAlert() {
         
         // do nothing if alert is already shown
         guard !self.isExternalUpdateAlertShown else { return }
@@ -1242,9 +1240,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// Revert receiver with current document file without asking to user before.
-    private func revertWithoutAsking() {
-        
-        assert(Thread.isMainThread)
+    @MainActor private func revertWithoutAsking() {
         
         guard
             let fileURL = self.fileURL,
@@ -1374,7 +1370,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     private func showIncompatibleCharacters() {
         
-        let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
+        weak var windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             windowContentController?.showSidebarPane(index: .warnings)
         }
