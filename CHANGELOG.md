@@ -5,6 +5,11 @@ Change Log
 4.5.3 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update Swift syntax style to fix highlighting with `\` characters.
+
+
 ### Fixes
 
 - Fix an issue that the editor font did not applied to documents created via Services. 
