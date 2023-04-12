@@ -543,6 +543,9 @@
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
 "203.title" = "拡大/縮小";
 
+/* Class = "NSMenuItem"; title = "Keep on Top"; ObjectID = "caZ-qh-5JE"; */
+"caZ-qh-5JE.title" = "常に一番上に表示";
+
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "すべてを手前に移動";
 

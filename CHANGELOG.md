@@ -5,6 +5,11 @@ Change Log
 4.5.3 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Keep on Top command in the Window menu.
+
+
 ### Improvements
 
 - Remove the Open command in the Dock menu. 

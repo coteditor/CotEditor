@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -122,8 +122,14 @@ final class DocumentWindow: NSWindow {
     }
     
     
+    // MARK: Actions
     
-    // MARK: Private Methods
+    /// Toggle the window level between normal and floating.
+    @IBAction func toggleKeepOnTop(_ sender: Any?) {
+        
+        self.level = (self.level == .floating) ? .normal : .floating
+    }
+    
     
     /// make sure window title bar (incl. toolbar) is opaque
     private func invalidateTitlebarOpacity() {
@@ -202,6 +208,8 @@ extension DocumentWindow {
             case #selector(toggleTabBar):
                 menuItem.keyEquivalentModifierMask = [.command, .shift]
                 menuItem.keyEquivalent = "t"
+            case #selector(toggleKeepOnTop):
+                menuItem.state = (self.level == .floating) ? .on : .off
             default:
                 break
         }

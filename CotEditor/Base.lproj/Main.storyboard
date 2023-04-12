@@ -1128,6 +1128,12 @@ CA
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="uUW-DZ-rJM"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Keep on Top" id="caZ-qh-5JE">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleKeepOnTop:" target="Ady-hI-5gd" id="jT9-SB-I5W"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="92"/>
                                         <menuItem title="Bring All to Front" id="5">
                                             <modifierMask key="keyEquivalentModifierMask"/>

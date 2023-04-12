@@ -543,6 +543,9 @@
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
 "203.title" = "Ampliar/Reduzir";
 
+/* Class = "NSMenuItem"; title = "Keep on Top"; ObjectID = "caZ-qh-5JE"; */
+"caZ-qh-5JE.title" = "Manter em Primeiro Plano";
+
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "Trazer Todas para a Frente";
 
