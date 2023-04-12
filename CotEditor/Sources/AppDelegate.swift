@@ -306,8 +306,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Show the standard about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
-        var html = try! String(contentsOf: creditsURL)
+        let url = Bundle.main.url(forResource: "Credits", withExtension: "html")!
+        var html = try! String(contentsOf: url)
         
         #if !SPARKLE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
@@ -315,7 +315,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         #endif
         
-        let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
+        let data = html.data(using: .utf8)!
+        let attrString = NSAttributedString(html: data, baseURL: url, documentAttributes: nil)!
+        
         NSApp.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
     
