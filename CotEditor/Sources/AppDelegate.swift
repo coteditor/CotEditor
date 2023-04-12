@@ -295,14 +295,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Activate self and perform the Open menu command (from Dock menu).
-    @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
-        
-        NSApp.activate(ignoringOtherApps: true)
-        NSDocumentController.shared.openDocument(sender)
-    }
-    
-    
     /// Show the standard about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
