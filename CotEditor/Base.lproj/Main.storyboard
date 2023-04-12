@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -699,7 +699,7 @@ DQ
                                                     <menuItem title="Edit Snippets…" id="OmB-Ve-DEy">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="showSnippetEditor:" target="Voe-Tx-rLC" id="jp7-Gn-70w"/>
+                                                            <action selector="showSnippetEditor:" target="Ady-hI-5gd" id="ZTz-YQ-KNQ"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -1239,12 +1239,6 @@ CA
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="newDocumentActivatingApplication:" target="Ady-hI-5gd" id="Rgw-fI-unE"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Open…" id="I1W-t0-8TD">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="openDocumentActivatingApplication:" target="Ady-hI-5gd" id="uWy-CI-rzD"/>
                             </connections>
                         </menuItem>
                     </items>

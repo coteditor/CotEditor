@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Remove the Open command in the Dock menu. 
 - Update Swift syntax style to fix highlighting with `\` characters.
 
 
