@@ -13,7 +13,7 @@ Change Log
 ### Improvements
 
 - Remove the Open command in the Dock menu.
-- Update Swift syntax style to fix highlighting with `\` characters.
+- Update Swift syntax style to fix highlighting with `/` characters.
 - [non-AppStore ver.] Update Sparkle from 2.4.0 to 2.4.1.
 
 
