@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -197,18 +197,18 @@ final class EncodingDetectionTests: XCTestCase {
     
     func testXattrEncoding() {
         
-        let utf8Data = "utf-8;134217984".data(using: .utf8)
+        let utf8Data = Data("utf-8;134217984".utf8)
         
         XCTAssertEqual(String.Encoding.utf8.xattrEncodingData, utf8Data)
-        XCTAssertEqual(utf8Data?.decodingXattrEncoding, .utf8)
-        XCTAssertEqual("utf-8".data(using: .utf8)?.decodingXattrEncoding, .utf8)
+        XCTAssertEqual(utf8Data.decodingXattrEncoding, .utf8)
+        XCTAssertEqual(Data("utf-8".utf8).decodingXattrEncoding, .utf8)
         
         
-        let eucJPData = "euc-jp;2336".data(using: .utf8)
+        let eucJPData = Data("euc-jp;2336".utf8)
         
         XCTAssertEqual(String.Encoding.japaneseEUC.xattrEncodingData, eucJPData)
-        XCTAssertEqual(eucJPData?.decodingXattrEncoding, .japaneseEUC)
-        XCTAssertEqual("euc-jp".data(using: .utf8)?.decodingXattrEncoding, .japaneseEUC)
+        XCTAssertEqual(eucJPData.decodingXattrEncoding, .japaneseEUC)
+        XCTAssertEqual(Data("euc-jp".utf8).decodingXattrEncoding, .japaneseEUC)
     }
     
     
