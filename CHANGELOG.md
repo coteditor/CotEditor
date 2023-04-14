@@ -21,6 +21,7 @@ Change Log
 
 - Fix an issue that the application crashed by typing the ¨ key with a Norwegian keyboard.
 - Fix an issue that the editor font did not apply to documents created via Services.
+- Fix an issue that the application could crash by opening the About window.
 
 
 

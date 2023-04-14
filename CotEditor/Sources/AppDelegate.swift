@@ -298,19 +298,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Show the standard about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        let url = Bundle.main.url(forResource: "Credits", withExtension: "html")!
-        var html = try! String(contentsOf: url)
+        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
         
         #if !SPARKLE  // Remove Sparkle from 3rd party code list
-        if let range = html.range(of: "Sparkle") {
+        options[.credits] = {
+            guard
+                let url = Bundle.main.url(forResource: "Credits", withExtension: "html"),
+                var html = try? String(contentsOf: url),
+                let range = html.range(of: "Sparkle")
+            else { assertionFailure(); return nil }
+            
             html.removeSubrange(html.lineRange(for: range))
-        }
+            
+            return NSAttributedString(html: Data(html.utf8), baseURL: url, documentAttributes: nil)
+        }()
         #endif
         
-        let data = html.data(using: .utf8)!
-        let attrString = NSAttributedString(html: data, baseURL: url, documentAttributes: nil)!
-        
-        NSApp.orderFrontStandardAboutPanel(options: [.credits: attrString])
+        NSApp.orderFrontStandardAboutPanel(options: options)
     }
     
     
