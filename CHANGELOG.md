@@ -7,12 +7,12 @@ Change Log
 
 ### New Features
 
-- Add Keep on Top command in the Window menu.
+- Add the Keep on Top command in the Window menu.
 
 
 ### Improvements
 
-- Remove the Open command in the Dock menu. 
+- Remove the Open command in the Dock menu.
 - Update Swift syntax style to fix highlighting with `\` characters.
 - [non-AppStore ver.] Update Sparkle from 2.4.0 to 2.4.1.
 
@@ -20,7 +20,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the application crashed by typing the ¨ key with a Norwegian keyboard.
-- Fix an issue that the editor font did not applied to documents created via Services. 
+- Fix an issue that the editor font did not apply to documents created via Services.
 
 
 
