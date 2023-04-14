@@ -770,17 +770,17 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Surround Selection With" id="AUq-CT-rPl">
                                                 <items>
-                                                    <menuItem title="Single Quotes" keyEquivalent="'" id="Srp-eD-10Q">
+                                                    <menuItem title="Single Quotes" keyEquivalent="'" localization="NO" mirroring="NO" id="Srp-eD-10Q">
                                                         <connections>
                                                             <action selector="surroundSelectionWithSingleQuotes:" target="Ady-hI-5gd" id="Ouh-e3-teo"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Double Quotes" tag="-1" keyEquivalent="&quot;" id="O8z-C9-ECD">
+                                                    <menuItem title="Double Quotes" keyEquivalent="&quot;" localization="NO" mirroring="NO" id="O8z-C9-ECD">
                                                         <connections>
                                                             <action selector="surroundSelectionWithDoubleQuotes:" target="Ady-hI-5gd" id="rqZ-qN-jAw"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Parentheses" keyEquivalent="(" id="G3o-1h-GwR">
+                                                    <menuItem title="Parentheses" keyEquivalent="(" localization="NO" mirroring="NO" id="G3o-1h-GwR">
                                                         <connections>
                                                             <action selector="surroundSelectionWithParentheses:" target="Ady-hI-5gd" id="gvU-WD-OLA"/>
                                                         </connections>
