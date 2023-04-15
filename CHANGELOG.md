@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add the Keep on Top command in the Window menu.
+- Add “Keep on Top” command in the Window menu.
 
 
 ### Improvements
@@ -23,7 +23,7 @@ Change Log
 - Fix an issue that the application crashed by typing the ¨ key with a Norwegian keyboard.
 - Fix an issue that menu command shortcuts could be unwantedly localized according to the user's keyboard layout.
 - Fix an issue that the editor font did not apply to documents created via Services.
-- Fix an issue that the application could crash by opening the About window.
+- Fix an issue that the application could crash by opening the About window in some specific conditions.
 
 
 
