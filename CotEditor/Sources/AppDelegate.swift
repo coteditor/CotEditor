@@ -192,7 +192,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         KeyBindingManager.shared.applyShortcutsToMainMenu()
         
         NSApp.servicesProvider = ServicesProvider()
-        NSHelpManager.shared.registerBooks(in: .main)
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
     }
     

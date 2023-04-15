@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Remove the Open command in the Dock menu.
+- Enable the ToC button in Help Viewer.
 - Update Swift syntax style to fix highlighting with `/` characters.
 - [non-AppStore ver.] Update Sparkle from 2.4.0 to 2.4.1.
 
