@@ -20,8 +20,6 @@
 				<string>public.plain-text</string>
 				<string>public.text</string>
 				<string>public.data</string>
-				<string>com.coteditor.CotEditor.theme</string>
-				<string>com.coteditor.CotEditor.replacement</string>
 				<string>public.c-header</string>
 				<string>public.c-plus-plus-header</string>
 				<string>public.c-plus-plus-source</string>
@@ -172,7 +170,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.data</string>
+				<string>public.json</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Theme</string>
@@ -196,7 +194,7 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.data</string>
+				<string>public.json</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>CotEditor Replacement Definition</string>
