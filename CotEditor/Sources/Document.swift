@@ -558,13 +558,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
+        if UserDefaults.standard.bool(forKey: "disableClosingEmptyDocument") {
+            return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+        }
+        
         // suppress save dialog if content is empty and not saved explicitly
         if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
             
             // delete autosaved file if exists
             if let fileURL = self.fileURL {
-                NSDocumentController.shared.removeRecentDocument(url: fileURL)
+                if !UserDefaults.standard.bool(forKey: "disableExplicitRecentDocumentRemoval") {
+                    NSDocumentController.shared.removeRecentDocument(url: fileURL)
+                }
                 
                 var deletionError: NSError?
                 NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &deletionError) { (newURL) in  // FILE_ACCESS
