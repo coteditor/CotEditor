@@ -366,6 +366,10 @@
 "Hide indent guide lines" = "Masquer les guides d’indentation";
 "Show indent guide lines" = "Afficher les guides d’indentation";
 
+"Keep on Top" = "Gardar au premier plan";
+// tooltip
+"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+
 "Opacity" = "Opacité";
 // tooltip
 "Change editor’s opacity" = "Changer l’opacité de l’éditeur";

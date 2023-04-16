@@ -367,6 +367,10 @@
 "Hide indent guide lines" = "Oculte a linha de guia da página";
 "Show indent guide lines" = "Mostre a linha de guia da página";
 
+"Keep on Top" = "Manter em Primeiro Plano";
+// tooltip
+"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+
 "Opacity" = "Opacidade";
 // tooltip
 "Change editor’s opacity" = "Altere a opacidade do editor";

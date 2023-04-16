@@ -366,6 +366,10 @@
 "Hide indent guide lines" = "Einzugshilfslinien ausblenden";
 "Show indent guide lines" = "Einzugshilfslinien einblenden";
 
+"Keep on Top" = "Oben behalten";
+// tooltip
+"Keep the window always on top" = "Fenster immer oben behalten";
+
 "Opacity" = "Deckkraft";
 // tooltip
 "Change editor’s opacity" = "Deckkraft des Editors wechseln";

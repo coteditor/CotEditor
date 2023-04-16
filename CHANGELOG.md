@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Add “Keep on Top” toolbar item.
 - Restore the “Keep on Top” state of windows from the last session.
 
 

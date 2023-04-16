@@ -366,6 +366,10 @@
 "Hide indent guide lines" = "Hide indent guide lines";
 "Show indent guide lines" = "Show indent guide lines";
 
+"Keep on Top" = "Keep on Top";
+// tooltip
+"Keep the window always on top" = "Keep the window always on top";
+
 "Opacity" = "Opacity";
 // tooltip
 "Change editor’s opacity" = "Change editor’s opacity";

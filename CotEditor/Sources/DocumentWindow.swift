@@ -128,15 +128,47 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Actions
     
-    /// Toggle the window level between normal and floating.
-    @IBAction func toggleKeepOnTop(_ sender: Any?) {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
-        self.level = (self.level == .floating) ? .normal : .floating
-        self.invalidateRestorableState()
+        switch item.action {
+            case #selector(toggleTabBar):
+                (item as? NSMenuItem)?.keyEquivalentModifierMask = [.command, .shift]
+                (item as? NSMenuItem)?.keyEquivalent = "t"
+                
+            case #selector(toggleKeepOnTop):
+                (item as? any StatableItem)?.state = self.isFloating ? .on : .off
+                
+            default:
+                break
+        }
+        
+        return super.validateUserInterfaceItem(item)
     }
     
     
-    /// make sure window title bar (incl. toolbar) is opaque
+    /// Toggle the window level between normal and floating.
+    @IBAction func toggleKeepOnTop(_ sender: Any?) {
+        
+        self.isFloating.toggle()
+    }
+    
+    
+    // MARK: Private Methods
+    
+    /// Wthether the window level is floating.
+    private var isFloating: Bool {
+        
+        get {
+            self.level == .floating
+        }
+        set {
+            self.level = newValue ? .floating : .normal
+            self.invalidateRestorableState()
+        }
+    }
+    
+    
+    /// Make sure window title bar (incl. toolbar) is opaque.
     private func invalidateTitlebarOpacity() {
         
         guard let titlebarView = self.standardWindowButton(.closeButton)?.superview else { return }
@@ -203,22 +235,5 @@ extension DocumentWindow {
         }
         
         return false
-    }
-    
-    
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        // programmatically set the shortcut for "Show/Hide Tab Bar", which is inserted by AppKit automatically.
-        switch menuItem.action {
-            case #selector(toggleTabBar):
-                menuItem.keyEquivalentModifierMask = [.command, .shift]
-                menuItem.keyEquivalent = "t"
-            case #selector(toggleKeepOnTop):
-                menuItem.state = (self.level == .floating) ? .on : .off
-            default:
-                break
-        }
-        
-        return super.validateMenuItem(menuItem)
     }
 }
