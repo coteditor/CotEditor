@@ -82,19 +82,19 @@ final class WindowContentViewController: NSSplitViewController {
             case #selector(toggleInspector):
                 let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
                 (item as? NSMenuItem)?.title = title.localized
-            
+                
             case #selector(getInfo):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
                 return self.canToggleSidebar
-            
+                
             case #selector(toggleOutlineMenu):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
                 return self.canToggleSidebar
-            
+                
             case #selector(toggleWarningsPane):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .warnings) ? .on : .off
                 return self.canToggleSidebar
-            
+                
             default: break
         }
         

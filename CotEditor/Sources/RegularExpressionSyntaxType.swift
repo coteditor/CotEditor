@@ -119,7 +119,7 @@ enum RegularExpressionSyntaxType: CaseIterable {
                             escapeIgnorer + "[$^]",  // ^ $
                             escapeIgnorer + "\\\\[AbGZz]",  // \A, \b, ...
                         ]
-            }
+                }
                 
             case .replacement(let unescapes):
                 switch self {

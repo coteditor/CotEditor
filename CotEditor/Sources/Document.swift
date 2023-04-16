@@ -1276,7 +1276,7 @@ private enum ReinterpretationError: LocalizedError {
         switch self {
             case .noFile:
                 return "The document doesn’t have a file to reinterpret.".localized
-            
+                
             case let .reinterpretationFailed(fileURL, encoding):
                 return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }

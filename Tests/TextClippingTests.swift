@@ -27,7 +27,7 @@ import XCTest
 @testable import CotEditor
 
 final class TextClippingTests: XCTestCase {
-
+    
     func testReadingTextClippingFile() throws {
         
         let url = Bundle(for: type(of: self)).url(forResource: "moof", withExtension: "textClipping")!

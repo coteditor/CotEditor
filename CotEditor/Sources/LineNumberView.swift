@@ -315,7 +315,7 @@ final class LineNumberView: NSView {
                         let rect = CGRect(x: y.rounded() + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
                         context.stroke(rect, width: scale)
                     }
-                
+                    
                 case .wrapped:
                     // draw wrapped mark (-)
                     let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
@@ -353,11 +353,11 @@ final class LineNumberView: NSView {
                     let requiredNumberOfDigits = max(self.numberOfLines.digits.count, self.minNumberOfDigits)
                     let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
                     return max(thickness.rounded(.up), self.minVerticalThickness)
-                
+                    
                 case .vertical:
                     let thickness = drawingInfo.fontSize + 4 * drawingInfo.tickLength
                     return max(thickness.rounded(.up), self.minHorizontalThickness)
-                
+                    
                 @unknown default: fatalError()
             }
         }()

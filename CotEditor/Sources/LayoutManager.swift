@@ -172,10 +172,10 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
         // -> Otherwise, `.unemphasizedSelectedContentBackgroundColor` will be used forcibly and text becomes unreadable
         //    when the window appearance and theme are inconsistent.
         if color == .unemphasizedSelectedContentBackgroundColor,  // check if inactive
-            let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
-                                                   effectiveRange: nil, withoutAdditionalLayout: true),
-            let theme = (textContainer.textView as? any Themable)?.theme,
-            let secondarySelectionColor = theme.secondarySelectionColor
+           let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
+                                                  effectiveRange: nil, withoutAdditionalLayout: true),
+           let theme = (textContainer.textView as? any Themable)?.theme,
+           let secondarySelectionColor = theme.secondarySelectionColor
         {
             secondarySelectionColor.setFill()
         }
@@ -219,7 +219,7 @@ class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, Lin
     }
     
     
-   
+    
     // MARK: Invisible Drawing Methods
     
     func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool {

@@ -27,7 +27,7 @@ import XCTest
 @testable import CotEditor
 
 final class FileDropItemTests: XCTestCase {
-
+    
     func testAvailability() {
         
         let emptyItem = FileDropItem()

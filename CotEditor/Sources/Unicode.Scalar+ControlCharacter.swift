@@ -113,7 +113,7 @@ extension Unicode.Scalar {
             case 0x009D: return "OPERATING SYSTEM COMMAND"
             case 0x009E: return "PRIVACY MESSAGE"
             case 0x009F: return "APPLICATION PROGRAM COMMAND"
-            
+                
             default:
                 assert(self.properties.generalCategory != .control)
                 return nil

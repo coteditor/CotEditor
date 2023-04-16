@@ -83,7 +83,7 @@ final class SplitViewController: NSSplitViewController {
                 
             case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
                 return self.splitViewItems.count > 1
-            
+                
             default: break
         }
         

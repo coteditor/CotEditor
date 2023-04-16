@@ -106,7 +106,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         switch tableColumn?.identifier {
             case NSUserInterfaceItemIdentifier("line"):
                 return self.target?.lineNumber(at: match.range.location)
-            
+                
             default:
                 let attrString = match.attributedLineString.mutable
                 
@@ -164,7 +164,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     private var message: String? {
         
         guard let documentName = (self.target?.window?.windowController?.document as? NSDocument)?.displayName else { return nil }
-            
+        
         switch self.matches.count {
             case 0:
                 return String(localized: "No strings found in “\(documentName).”")

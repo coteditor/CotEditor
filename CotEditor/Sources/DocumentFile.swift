@@ -142,9 +142,9 @@ struct DocumentFile {
         
         // try reading encoding declaration and take priority of it if it seems well
         if refersToEncodingTag,
-            let scannedEncoding = string.scanEncodingDeclaration(upTo: self.maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings),
-            scannedEncoding != usedEncoding,
-            let string = String(bomCapableData: data, encoding: scannedEncoding)
+           let scannedEncoding = string.scanEncodingDeclaration(upTo: self.maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings),
+           scannedEncoding != usedEncoding,
+           let string = String(bomCapableData: data, encoding: scannedEncoding)
         {
             return (string, scannedEncoding)
         }

@@ -616,7 +616,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
                 else { return }
                 
                 self.removeReplacements(at: rows)
-            
+                
             default:
                 break
         }

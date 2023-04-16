@@ -75,7 +75,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.view = NSButton(title: "Actual Size".localized, target: self, action: #selector(resetTextSize))
                 return item
-            
+                
             case .textSizeSlider:
                 guard let textView = self.textView else { return nil }
                 
@@ -98,7 +98,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                     .assign(to: \.doubleValue, on: item)
                 
                 return item
-            
+                
             default:
                 return nil
         }

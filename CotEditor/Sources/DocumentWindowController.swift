@@ -234,7 +234,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if let item = popUpButton.item(withTitle: styleName) {
             popUpButton.select(item)
-        
+            
         } else {
             // insert item by adding deleted item section
             popUpButton.insertItem(withTitle: styleName, at: 1)
@@ -622,7 +622,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
-            
+                
             default:
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
         }

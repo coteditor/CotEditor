@@ -26,7 +26,7 @@
 import AppKit
 
 final class DisableableTextField: NSTextField {
-
+    
     // MARK: Text Field Methods
     
     override var isEnabled: Bool {

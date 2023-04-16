@@ -35,26 +35,26 @@ extension Unicode.GeneralCategory {
                 return "Lowercase Letter"
             case .titlecaseLetter:
                 return "Titlecase Letter"
-            
+                
             case .modifierLetter:
                 return "Modifier Letter"
             case .otherLetter:
                 return "Other Letter"
-            
+                
             case .nonspacingMark:
                 return "Nonspacing Mark"
             case .spacingMark:
                 return "Spacing Mark"
             case .enclosingMark:
                 return "Enclosing Mark"
-            
+                
             case .decimalNumber:
                 return "Decimal Number"
             case .letterNumber:
                 return "Letter Number"
             case .otherNumber:
                 return "Other Number"
-            
+                
             case .connectorPunctuation:
                 return "Connector Punctuation"
             case .dashPunctuation:
@@ -69,7 +69,7 @@ extension Unicode.GeneralCategory {
                 return "Final Punctuation"
             case .otherPunctuation:
                 return "Other Punctuation"
-            
+                
             case .mathSymbol:
                 return "Math Symbol"
             case .currencySymbol:
@@ -78,14 +78,14 @@ extension Unicode.GeneralCategory {
                 return "Modifier Symbol"
             case .otherSymbol:
                 return "Other Symbol"
-            
+                
             case .spaceSeparator:
                 return "Space Separator"
             case .lineSeparator:
                 return "Line Separator"
             case .paragraphSeparator:
                 return "Paragraph Separator"
-            
+                
             case .control:
                 return "Control"
             case .format:
@@ -96,7 +96,7 @@ extension Unicode.GeneralCategory {
                 return "Private Use"
             case .unassigned:
                 return "Unassigned"
-            
+                
             @unknown default:
                 assertionFailure()
                 return "(UNKNOWN)"
@@ -114,26 +114,26 @@ extension Unicode.GeneralCategory {
                 return "Ll"
             case .titlecaseLetter:
                 return "Lt"
-            
+                
             case .modifierLetter:
                 return "Lm"
             case .otherLetter:
                 return "Lo"
-            
+                
             case .nonspacingMark:
                 return "Mn"
             case .spacingMark:
                 return "Mc"
             case .enclosingMark:
                 return "Me"
-            
+                
             case .decimalNumber:
                 return "Nd"
             case .letterNumber:
                 return "Nl"
             case .otherNumber:
                 return "No"
-            
+                
             case .connectorPunctuation:
                 return "Pc"
             case .dashPunctuation:
@@ -148,7 +148,7 @@ extension Unicode.GeneralCategory {
                 return "Pf"
             case .otherPunctuation:
                 return "Po"
-            
+                
             case .mathSymbol:
                 return "Sm"
             case .currencySymbol:
@@ -157,14 +157,14 @@ extension Unicode.GeneralCategory {
                 return "Sk"
             case .otherSymbol:
                 return "So"
-            
+                
             case .spaceSeparator:
                 return "Zs"
             case .lineSeparator:
                 return "Zl"
             case .paragraphSeparator:
                 return "Zp"
-            
+                
             case .control:
                 return "Cc"
             case .format:
@@ -175,7 +175,7 @@ extension Unicode.GeneralCategory {
                 return "Co"
             case .unassigned:
                 return "Cn"
-            
+                
             @unknown default:
                 assertionFailure()
                 return "?"

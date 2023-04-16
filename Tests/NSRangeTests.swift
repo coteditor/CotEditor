@@ -27,7 +27,7 @@ import XCTest
 @testable import CotEditor
 
 final class NSRangeTests: XCTestCase {
-
+    
     func testBoundaryTouch() {
         
         XCTAssert(NSRange(location: 2, length: 2).touches(NSRange(location: 4, length: 2)))
@@ -50,5 +50,5 @@ final class NSRangeTests: XCTestCase {
         XCTAssert(NSRange(location: NSNotFound, length: 1).isNotFound)
         XCTAssertFalse(NSRange(location: 1, length: 1).isNotFound)
     }
-
+    
 }

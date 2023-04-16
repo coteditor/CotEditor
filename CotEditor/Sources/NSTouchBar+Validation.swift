@@ -56,14 +56,14 @@ extension NSTouchBar {
             switch item {
                 case let item as NSCustomTouchBarItem:
                     item.validate()
-                
+                    
                 case let item as NSGroupTouchBarItem:
                     item.groupTouchBar.validateVisibleItems()
-                
+                    
                 case let item as NSPopoverTouchBarItem:
                     item.popoverTouchBar.validateVisibleItems()
                     item.pressAndHoldTouchBar?.validateVisibleItems()
-                
+                    
                 default: break
             }
         }
@@ -161,11 +161,11 @@ private final class TouchBarValidator {
                  .mouseMoved,
                  nil:
                 return
-            
+                
             case .keyUp,
                  .flagsChanged:
                 delay = .lazy
-            
+                
             default:
                 delay = .normal
         }

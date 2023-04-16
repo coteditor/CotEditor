@@ -72,27 +72,27 @@ extension DocumentViewController: NSTouchBarDelegate {
                 let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: "Invisibles".localized)!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
                 return item
-            
+                
             case .indentGuides:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Indent Guides", comment: "touch bar item")
                 let image = NSImage(named: "text.indentguides")!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleIndentGuidesViaTouchBar))
                 return item
-            
+                
             case .wrapLines:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Wrap Lines", comment: "touch bar item")
                 let image = NSImage(named: "text.wrap")!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleLineWrapViaTouchBar))
                 return item
-            
+                
             case .share:
                 guard let document = self.document else { return nil }
                 let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
                 item.delegate = document
                 return item
-            
+                
             default:
                 return nil
         }
@@ -148,16 +148,16 @@ extension DocumentViewController: TouchBarItemValidations {
             switch item.identifier {
                 case .invisibles:
                     return self.showsInvisibles
-                
+                    
                 case .indentGuides:
                     return self.showsIndentGuides
-                
+                    
                 case .wrapLines:
                     return self.wrapsLines
-                
+                    
                 default: return nil
             }
-            }() else { return true }
+        }() else { return true }
         
         let color: NSColor? = isEnabled ? nil : .offStateButtonBezelColor
         if button.bezelColor != color {

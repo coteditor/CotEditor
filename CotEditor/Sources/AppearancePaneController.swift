@@ -167,33 +167,33 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(deleteTheme(_:)):
                 menuItem.isHidden = (state?.isBundled == true || !itemSelected)
-            
+                
             case #selector(restoreTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable == true
-            
+                
             case #selector(exportTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized == true
-            
+                
             case #selector(revealThemeInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 return state?.isCustomized == true
-            
+                
             case nil:
                 return false
-            
+                
             default:
                 break
         }

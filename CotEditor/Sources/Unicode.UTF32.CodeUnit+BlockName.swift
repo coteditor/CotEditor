@@ -359,7 +359,7 @@ extension Unicode.UTF32.CodeUnit {
             case 0xE0100...0xE01EF: return "Variation Selectors Supplement"
             case 0xF0000...0xFFFFF: return "Supplementary Private Use Area-A"
             case 0x100000...0x10FFFF: return "Supplementary Private Use Area-B"
-            
+                
             default: return nil  // return nil instead of "No_Block"
         }
     }

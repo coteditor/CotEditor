@@ -68,13 +68,13 @@ extension EditorTextView {
                                                trackingMode: .momentary,
                                                target: self, action: #selector(shift))
                 return item
-            
+                
             case .comment:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Comment", comment: "touch bar item")
                 item.view = NSButton(image: NSImage(named: "text.commentout")!, target: self, action: #selector(toggleComment))
                 return item
-            
+                
             case .textSize:
                 let item = NSPopoverTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Text Size", comment: "touch bar item")
@@ -82,7 +82,7 @@ extension EditorTextView {
                 item.popoverTouchBar = TextSizeTouchBar(textView: self)
                 item.pressAndHoldTouchBar = TextSizeTouchBar(textView: self, forPressAndHold: true)
                 return item
-            
+                
             default:
                 return super.touchBar(touchBar, makeItemForIdentifier: identifier)
         }

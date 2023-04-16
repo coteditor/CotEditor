@@ -143,7 +143,7 @@ struct ScriptDescriptor {
         
         try self.scriptType.init(url: self.url, name: self.name)
     }
-        
+    
     
     
     // MARK: Private Methods

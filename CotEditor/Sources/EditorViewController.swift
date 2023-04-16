@@ -110,11 +110,11 @@ final class EditorViewController: NSSplitViewController {
             case #selector(selectPrevItemOfOutlineMenu):
                 guard let textView = self.textView else { return false }
                 return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
-            
+                
             case #selector(selectNextItemOfOutlineMenu):
                 guard let textView = self.textView else { return false }
                 return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
-            
+                
             default: break
         }
         

@@ -344,8 +344,8 @@ final class DocumentController: NSDocumentController {
         // check if the file is enorm large
         let fileSizeThreshold = UserDefaults.standard[.largeFileAlertThreshold]
         if fileSizeThreshold > 0,
-            let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
-            fileSize > fileSizeThreshold
+           let fileSize = (try? url.resourceValues(forKeys: [.fileSizeKey]))?.fileSize,
+           fileSize > fileSizeThreshold
         {
             throw DocumentReadError(kind: .tooLarge(size: fileSize), url: url)
         }
@@ -388,7 +388,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         switch self.kind {
             case .binaryFile:
                 return String(localized: "The file “\(self.url.lastPathComponent)” doesn’t appear to be text data.")
-            
+                
             case .tooLarge(let size):
                 let byteSize = size.formatted(.byteCount(style: .file))
                 return String(localized: "The file “\(self.url.lastPathComponent)” has a size of \(byteSize).")
@@ -402,7 +402,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
             case .binaryFile(let type):
                 let localizedTypeName = type.localizedDescription ?? "unknown file type"
                 return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?")
-            
+                
             case .tooLarge:
                 return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized
         }

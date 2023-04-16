@@ -180,8 +180,8 @@ extension NSString {
         guard !ranges.isEmpty else { return [] }
         
         if includingLastEmptyLine,
-            ranges == [NSRange(location: self.length, length: 0)],
-            (self.length == 0 || self.character(at: self.length - 1).isNewline)
+           ranges == [NSRange(location: self.length, length: 0)],
+           (self.length == 0 || self.character(at: self.length - 1).isNewline)
         {
             return ranges
         }

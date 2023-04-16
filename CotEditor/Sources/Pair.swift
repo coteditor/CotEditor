@@ -87,11 +87,11 @@ extension StringProtocol {
             case pair.begin:
                 guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore) else { return .odd }
                 return .end(endIndex)
-            
+                
             case pair.end:
                 guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore) else { return .odd }
                 return .begin(beginIndex)
-            
+                
             default: preconditionFailure()
         }
     }
@@ -127,19 +127,19 @@ extension StringProtocol {
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
-                
+                    
                 case pair.end where ignoredNestDepth == 0:
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     nestDepth += 1
-                
+                    
                 case pairToIgnore?.begin:
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
-                
+                    
                 case pairToIgnore?.end:
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
-                
+                    
                 default: break
             }
         }
@@ -181,19 +181,19 @@ extension StringProtocol {
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     if nestDepth == 0 { return index }  // found
                     nestDepth -= 1
-                
+                    
                 case pair.begin where ignoredNestDepth == 0:
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     nestDepth += 1
-                
+                    
                 case pairToIgnore?.end:
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     ignoredNestDepth -= 1
-                
+                    
                 case pairToIgnore?.begin:
                     guard !self.isCharacterEscaped(at: index) else { continue }
                     ignoredNestDepth += 1
-                
+                    
                 default: break
             }
         }

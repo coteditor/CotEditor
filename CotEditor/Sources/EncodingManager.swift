@@ -135,11 +135,12 @@ final class EncodingManager {
         
         guard
             let list = UserDefaults.standard.array(forKey: DefaultKeys.encodingList.rawValue) as? [Int],
-            !list.isEmpty else {
-                // just restore to default if failed
-                UserDefaults.standard.restore(key: .encodingList)
-                return
-            }
+            !list.isEmpty
+        else {
+            // just restore to default if failed
+            UserDefaults.standard.restore(key: .encodingList)
+            return
+        }
         
         UserDefaults.standard[.encodingList] = list.map { CFStringEncoding(exactly: $0) ?? kCFStringEncodingInvalidId }
     }

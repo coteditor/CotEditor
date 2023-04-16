@@ -160,7 +160,7 @@ extension FileDropItem {
             }
         }
     }
-
+    
     
     
     // MARK: Public Methods

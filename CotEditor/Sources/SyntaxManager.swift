@@ -153,7 +153,7 @@ final class SyntaxManager: SettingFileManaging {
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-            let settingName = self.mappingTables[.interpreters]?[interpreter]?.first {
+           let settingName = self.mappingTables[.interpreters]?[interpreter]?.first {
             return settingName
         }
         
@@ -516,7 +516,7 @@ private extension SyntaxManager.StyleDictionary {
                     
                     return areEqual(lhsValue, rhsValue)
                 }
-            
+                
             case let (lhs, rhs) as ([Any], [Any]):
                 guard lhs.count == rhs.count else { return false }
                 
@@ -527,7 +527,7 @@ private extension SyntaxManager.StyleDictionary {
                     rhs.remove(at: rhsIndex)
                 }
                 return true
-            
+                
             default:
                 return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
         }

@@ -110,7 +110,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     
     // MARK: Invisible Drawing Methods
-
+    
     func isInvalidInvisible(_ invisible: Invisible, at characterIndex: Int) -> Bool {
         
         false

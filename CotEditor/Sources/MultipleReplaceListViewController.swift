@@ -103,22 +103,22 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         switch menuItem.action {
             case #selector(addSetting), #selector(importSetting(_:)):
                 menuItem.isHidden = (isContextualMenu && itemSelected)
-            
+                
             case #selector(renameSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(duplicateSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(deleteSetting(_:)):
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(exportSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
@@ -132,7 +132,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
                 
             case nil:
                 return false
-            
+                
             default:
                 break
         }

@@ -174,18 +174,18 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
     // MARK: Table View Delegate
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-
+        
         guard
             let identifier = tableColumn?.identifier,
             let cellView = tableView.makeView(withIdentifier: identifier, owner: self) as? NSTableCellView
         else { return nil }
-
+        
         let snippet = self.snippets[row]
-
+        
         switch identifier {
             case .scope:
                 guard let menu = cellView.subviews.first as? NSPopUpButton else { assertionFailure(); return nil }
-
+                
                 // reset attributed string for "All" item
                 // -> Otherwise, the title isn't localized.
                 let allItem = menu.itemArray.first!
@@ -196,7 +196,7 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
                     menu.addItem(withTitle: styleName)
                     menu.lastItem!.representedObject = styleName
                 }
-
+                
                 // select item
                 if let scope = snippet.scope {
                     menu.selectItem(withTitle: scope)
@@ -206,11 +206,11 @@ final class SnippetsViewController: NSViewController, NSTableViewDataSource, NST
                     }
                     menu.selectItem(at: 0)
                 }
-
+                
             default:
                 break
         }
-
+        
         return cellView
     }
     

@@ -154,7 +154,7 @@ final class KeyBindingManager: SettingManaging {
     /// Actual key bindings.
     private var keyBindings: [KeyBinding] {
         
-         self.defaultKeyBindings
+        self.defaultKeyBindings
             .filter { kb in
                 !self.userKeyBindings.contains {
                     ($0.action == kb.action && $0.tag == kb.tag) || $0.shortcut == kb.shortcut
@@ -247,7 +247,7 @@ final class KeyBindingManager: SettingManaging {
                  #selector(NSApplication.showHelp),
                  #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
                 return false
-            
+                
             default: break
         }
         
