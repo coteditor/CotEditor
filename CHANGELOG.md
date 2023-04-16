@@ -5,6 +5,10 @@ Change Log
 4.5.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- Restore the “Keep on Top” state of windows from the last session.
+
 
 
 4.5.3 (564)

@@ -73,6 +73,7 @@ final class DocumentWindow: NSWindow {
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(self.backgroundAlpha, forKey: #keyPath(backgroundAlpha))
+        coder.encode(self.level, forKey: #keyPath(level))
     }
     
     
@@ -82,6 +83,9 @@ final class DocumentWindow: NSWindow {
         
         if let alpha = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(backgroundAlpha)) as? CGFloat, alpha != 1 {
             self.backgroundAlpha = alpha
+        }
+        if let level = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(level)) as? NSWindow.Level {
+            self.level = level
         }
     }
     
@@ -128,6 +132,7 @@ final class DocumentWindow: NSWindow {
     @IBAction func toggleKeepOnTop(_ sender: Any?) {
         
         self.level = (self.level == .floating) ? .normal : .floating
+        self.invalidateRestorableState()
     }
     
     
