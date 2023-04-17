@@ -310,11 +310,12 @@ final class KeyBindingManager: SettingManaging {
         
         menu.items
             .filter(self.allowsModifying)
-            .filter(self.isModified)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     return self.clearShortcuts(in: submenu)
                 }
+                
+                guard self.isModified(menuItem) else { return }
                 
                 menuItem.shortcut = nil
             }
@@ -328,13 +329,15 @@ final class KeyBindingManager: SettingManaging {
         
         menu.items
             .filter(self.allowsModifying)
-            .filter(self.isModified)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     return self.applyShortcuts(to: submenu)
                 }
                 
-                guard let action = menuItem.action else { return }
+                guard
+                    self.isModified(menuItem),
+                    let action = menuItem.action
+                else { return }
                 
                 menuItem.allowsAutomaticKeyEquivalentLocalization = false
                 menuItem.shortcut = self.shortcut(for: action, tag: menuItem.tag)
