@@ -11,6 +11,11 @@ Change Log
 - Restore the “Keep on Top” state of windows from the last session.
 
 
+### Fixes
+
+- Fix an issue in CotEditor 4.5.3 that some menu command shortcuts could not be customized.
+
+
 
 4.5.3 (564)
 --------------------------
