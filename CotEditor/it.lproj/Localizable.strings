@@ -351,10 +351,10 @@
 "Custom…" = "Personalizzato…";
 "Auto-Expand Tabs" = "Espandi Tab automaticamente";
 
-"Wrap Lines" = "Aapo automatico";
+"Wrap Lines" = "A capo automatico";
 // tooltip
 "Unwrap lines" = "Rimuovi a capo automatico";
-"Wrap lines" = "Aapo automatico";
+"Wrap lines" = "A capo automatico";
 
 "Invisibles" = "Caratteri invisibili";
 // tooltip
@@ -366,9 +366,9 @@
 "Hide indent guide lines" = "Nascondi le guide per l’indentazione";
 "Show indent guide lines" = "Mostra le guide per l’indentazione";
 
-"Keep on Top" = "Mantieni in alto";
+"Keep on Top" = "Mantieni in primo piano";
 // tooltip
-"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+"Keep the window always on top" = "Mantieni la finestra sempre in primo piano";
 
 "Opacity" = "Opacità";
 // tooltip
