@@ -5,6 +5,10 @@ Change Log
 4.5.5 (unreleased)
 --------------------------
 
+### Fixes
+
+- Workaround an issue that “Keep on Top” feature blocks all windows from coming back to the foreground in the Stage Manager mode.
+
 
 
 4.5.4 (566)

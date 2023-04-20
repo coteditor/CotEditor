@@ -84,8 +84,8 @@ final class DocumentWindow: NSWindow {
         if let alpha = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(backgroundAlpha)) as? CGFloat, alpha != 1 {
             self.backgroundAlpha = alpha
         }
-        if let level = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(level)) as? NSWindow.Level {
-            self.level = level
+        if let level = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(level)) as? NSWindow.Level, level == .floating {
+            self.isFloating = true
         }
     }
     
@@ -126,6 +126,28 @@ final class DocumentWindow: NSWindow {
     }
     
     
+    /// Workaround an issue with Stage Manager (2023-04, macOS 13, FB12129976).
+    override func miniaturize(_ sender: Any?) {
+        
+        super.miniaturize(sender)
+        
+        if self.isFloating {
+            self.level = .normal
+        }
+    }
+    
+    
+    /// Workaround an issue with Stage Manager (2023-04, macOS 13, FB12129976).
+    override func makeKey() {
+        
+        super.makeKey()
+        
+        if self.isFloating {
+            self.level = .floating
+        }
+    }
+    
+    
     // MARK: Actions
     
     override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
@@ -156,13 +178,10 @@ final class DocumentWindow: NSWindow {
     // MARK: Private Methods
     
     /// Wthether the window level is floating.
-    private var isFloating: Bool {
+    private var isFloating: Bool = false {
         
-        get {
-            self.level == .floating
-        }
-        set {
-            self.level = newValue ? .floating : .normal
+        didSet {
+            self.level = isFloating ? .floating : .normal
             self.invalidateRestorableState()
         }
     }
