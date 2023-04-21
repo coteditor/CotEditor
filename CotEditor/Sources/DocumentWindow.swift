@@ -126,22 +126,22 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    /// Workaround an issue with Stage Manager (2023-04, macOS 13, FB12129976).
     override func miniaturize(_ sender: Any?) {
         
         super.miniaturize(sender)
         
+        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976)
         if self.isFloating {
             self.level = .normal
         }
     }
     
     
-    /// Workaround an issue with Stage Manager (2023-04, macOS 13, FB12129976).
     override func makeKey() {
         
         super.makeKey()
         
+        // workaround an issue with Stage Manager (2023-04 macOS 13, FB12129976)
         if self.isFloating {
             self.level = .floating
         }
@@ -233,19 +233,18 @@ extension DocumentWindow {
         // prefer existing shortcut that user might define
         guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
         
-        let modifierFlags = event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad)
+        guard let shortcut = Shortcut(keyDownEvent: event) else { return true }
         
         // toggle tab bar with ⌘⇧T`
         // -> This is needed under the case when "Show/Hide Tab Bar" menu item is not yet added to the View menu. (2020-01)
-        if modifierFlags == [.command, .shift], event.characters == "t" {
+        if shortcut.modifierMask == [.command, .shift], shortcut.keyEquivalent == "T" {
             self.toggleTabBar(nil)
             return true
         }
         
         // select tabbed window with `⌘+number` (`⌘9` for the last tab)
-        if modifierFlags == [.command],
-           let characters = event.charactersIgnoringModifiers,
-           let number = Int(characters), number > 0,
+        if shortcut.modifierMask == [.command],
+           let number = Int(shortcut.keyEquivalent), number > 0,
            let windows = self.tabbedWindows,
            let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
         {
