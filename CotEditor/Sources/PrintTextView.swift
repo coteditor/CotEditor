@@ -242,7 +242,7 @@ final class PrintTextView: NSTextView, Themable {
                                 return "·"  // draw number only every 5 times
                             }
                             return String(lineNumber)
-                        
+                            
                         case .wrapped:
                             return "-"
                     }
@@ -342,7 +342,7 @@ final class PrintTextView: NSTextView, Themable {
                 return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
             case let (.none, .some(string)):
                 return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
-            
+                
             case let (.some(primaryString), .some(secondaryString)):
                 switch (primaryAlignment, secondaryAlignment) {
                     // case: double-sided
@@ -357,7 +357,7 @@ final class PrintTextView: NSTextView, Themable {
                         let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
                         
                         return [primaryAttrString, secondaryAttrString].joined(separator: "\n")
-            }
+                }
         }
     }
     
@@ -472,7 +472,7 @@ private final class PrintLayoutManager: LayoutManager {
         // zero width for folded characters
         if self.showsSelectionOnly,
            let selectedRange = layoutManager.firstTextView?.selectedRange,
-            !selectedRange.contains(charIndex)
+           !selectedRange.contains(charIndex)
         {
             return .zeroAdvancement
         }
@@ -510,7 +510,7 @@ private enum HeaderFooterLocation {
                             primaryAlignment: .primaryHeaderAlignment,
                             secondaryContent: .secondaryHeaderContent,
                             secondaryAlignment: .secondaryHeaderAlignment)
-            
+                
             case .footer:
                 return Keys(needsDraw: .printsFooter,
                             primaryContent: .primaryFooterContent,

@@ -553,7 +553,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         switch recoveryOptionIndex {
             case 0:  // == Cancel
                 return false
-            
+                
             case 1:  // == Replace
                 do {
                     try self.replacingClosure()
@@ -562,7 +562,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
                     return false
                 }
                 return true
-            
+                
             default:
                 preconditionFailure()
         }

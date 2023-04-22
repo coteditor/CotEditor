@@ -103,12 +103,11 @@ struct RegularExpressionReferenceView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
         } footer: {
-            let icuLink =
-            AttributedString(localized: "ICU Regular Expressions")
-            .settingAttributes(.init([
-                .link: URL(string: "https://unicode-org.github.io/icu/userguide/strings/regexp.html")!,
-            ]))
-                             
+            let icuLink = AttributedString(localized: "ICU Regular Expressions")
+                .settingAttributes(.init([
+                    .link: URL(string: "https://unicode-org.github.io/icu/userguide/strings/regexp.html")!,
+                ]))
+            
             Text("The syntax conforms to the \(icuLink) specifications.")
                 .font(.footnote)
                 .foregroundColor(.secondaryLabel)

@@ -366,6 +366,10 @@
 "Hide indent guide lines" = "隐藏缩进指示线";
 "Show indent guide lines" = "显示缩进指示线";
 
+"Keep on Top" = "保留在顶部";
+// tooltip
+"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+
 "Opacity" = "透明度";
 // tooltip
 "Change editor’s opacity" = "更改编辑器透明度";

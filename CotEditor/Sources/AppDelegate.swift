@@ -113,15 +113,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .store(in: &self.menuUpdateObservers)
         
         SyntaxManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "") } }
+            .map { $0.map { NSMenuItem(title: $0, action: #selector((any SyntaxHolder).changeSyntaxStyle), keyEquivalent: "") } }
             .receive(on: RunLoop.main)
             .sink { [weak self] (items) in
                 guard let menu = self?.syntaxStylesMenu else { return }
                 
-                let recolorItem = menu.items.first { $0.action == #selector(SyntaxHolder.recolorAll) }
+                let recolorItem = menu.items.first { $0.action == #selector((any SyntaxHolder).recolorAll) }
                 
                 menu.removeAllItems()
-                menu.addItem(withTitle: BundledStyleName.none, action: #selector(SyntaxHolder.changeSyntaxStyle), keyEquivalent: "")
+                menu.addItem(withTitle: BundledStyleName.none, action: #selector((any SyntaxHolder).changeSyntaxStyle), keyEquivalent: "")
                 menu.addItem(.separator())
                 menu.items += items
                 menu.addItem(.separator())
@@ -130,7 +130,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .store(in: &self.menuUpdateObservers)
         
         ThemeManager.shared.$settingNames
-            .map { $0.map { NSMenuItem(title: $0, action: #selector(ThemeHolder.changeTheme), keyEquivalent: "") } }
+            .map { $0.map { NSMenuItem(title: $0, action: #selector((any ThemeHolder).changeTheme), keyEquivalent: "") } }
             .receive(on: RunLoop.main)
             .assign(to: \.items, on: self.themesMenu!)
             .store(in: &self.menuUpdateObservers)
@@ -192,7 +192,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         KeyBindingManager.shared.applyShortcutsToMainMenu()
         
         NSApp.servicesProvider = ServicesProvider()
-        NSHelpManager.shared.registerBooks(in: .main)
         NSTouchBar.isAutomaticCustomizeTouchBarMenuItemEnabled = true
     }
     
@@ -295,28 +294,26 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// Activate self and perform the Open menu command (from Dock menu).
-    @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
-        
-        NSApp.activate(ignoringOtherApps: true)
-        NSDocumentController.shared.openDocument(sender)
-    }
-    
-    
     /// Show the standard about panel.
     @IBAction func showAboutPanel(_ sender: Any?) {
         
-        let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
-        var html = try! String(contentsOf: creditsURL)
+        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
         
         #if !SPARKLE  // Remove Sparkle from 3rd party code list
-        if let range = html.range(of: "Sparkle") {
+        options[.credits] = {
+            guard
+                let url = Bundle.main.url(forResource: "Credits", withExtension: "html"),
+                var html = try? String(contentsOf: url),
+                let range = html.range(of: "Sparkle")
+            else { assertionFailure(); return nil }
+            
             html.removeSubrange(html.lineRange(for: range))
-        }
+            
+            return NSAttributedString(html: Data(html.utf8), baseURL: url, documentAttributes: nil)
+        }()
         #endif
         
-        let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
-        NSApp.orderFrontStandardAboutPanel(options: [.credits: attrString])
+        NSApp.orderFrontStandardAboutPanel(options: options)
     }
     
     
@@ -363,7 +360,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Open a specific page in the system Help viewer.
     @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
-        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
+        guard let identifier = (sender as? any NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
         
         NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: Bundle.main.helpBookName)
     }

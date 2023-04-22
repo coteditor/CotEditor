@@ -320,7 +320,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
 
 extension EditorTextViewController: NSUserInterfaceValidations {
     
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(toggleAdvancedCounter):

@@ -175,22 +175,22 @@ final class UnixScript: Script {
             case .replaceSelection:
                 guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .replaceSelection)
-            
+                
             case .replaceAllText:
                 guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .replaceAll)
-            
+                
             case .insertAfterSelection:
                 guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .afterSelection)
-            
+                
             case .appendToAllText:
                 guard let editor else { throw ScriptError.noOutputTarget }
                 editor.insert(string: output, at: .afterAll)
-            
+                
             case .newDocument:
                 try (DocumentController.shared as! DocumentController).openUntitledDocument(content: output, display: true)
-            
+                
             case .pasteBoard:
                 NSPasteboard.general.clearContents()
                 NSPasteboard.general.setString(output, forType: .string)

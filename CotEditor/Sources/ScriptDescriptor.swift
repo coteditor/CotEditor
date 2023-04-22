@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -143,12 +143,12 @@ struct ScriptDescriptor {
         
         try self.scriptType.init(url: self.url, name: self.name)
     }
-        
+    
     
     
     // MARK: Private Methods
     
-    private var scriptType: Script.Type {
+    private var scriptType: any Script.Type {
         
         switch self.type {
             case .appleScript:

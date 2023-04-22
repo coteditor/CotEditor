@@ -231,7 +231,7 @@ private extension Invisible {
                                         CGPoint(x: 0.2 * size.height, y: y + radius),
                                         CGPoint(x: 0.5 * size.height, y: y + radius - 0.25 * size.height)])
                 return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, transform: transform)
-            
+                
             case .tab:
                 // -> The width of tab is elastic and even can be (almost) zero.
                 let arrow = CGSize(width: 0.3 * size.height, height: 0.25 * size.height)
@@ -246,12 +246,12 @@ private extension Invisible {
                                         endPoint,
                                         endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height)])
                 return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, transform: transform)
-            
+                
             case .space:
                 let radius = 0.15 * size.height + lineWidth
                 let rect = CGRect(x: (size.width - radius) / 2, y: (size.height - radius) / 2, width: radius, height: radius)
                 return CGPath(ellipseIn: rect, transform: nil)
-            
+                
             case .noBreakSpace:
                 let hat = CGMutablePath()
                 let hatCorner = CGPoint(x: 0.5 * size.width, y: 0.05 * size.height)
@@ -262,14 +262,14 @@ private extension Invisible {
                 path.addPath(hat.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0))
                 path.addPath(Self.space.path(in: size, lineWidth: lineWidth))
                 return path
-            
+                
             case .fullwidthSpace:
                 let length = min(0.95 * size.width, size.height) - lineWidth
                 let radius = 0.1 * length
                 let rect = CGRect(x: (size.width - length) / 2, y: (size.height - length) / 2, width: length, height: length)
                 return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
                     .copy(strokingWithWidth: lineWidth, lineCap: .butt, lineJoin: .miter, miterLimit: 0)
-            
+                
             case .otherWhitespace:
                 let path = CGMutablePath()
                 path.addLines(between: [CGPoint(x: 0.2 * size.width, y: 0.3 * size.height),
@@ -277,7 +277,7 @@ private extension Invisible {
                 path.addLines(between: [CGPoint(x: 0.2 * size.width, y: 0.8 * size.height),
                                         CGPoint(x: 0.8 * size.width, y: 0.8 * size.height)])
                 return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0)
-            
+                
             case .otherControl:
                 let question = CGMutablePath()  // `?` mark in unit size
                 question.move(to: CGPoint(x: 0, y: 0.25))

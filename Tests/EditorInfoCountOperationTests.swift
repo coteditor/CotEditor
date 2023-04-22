@@ -132,7 +132,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     
     func testCountFormatting() {
         
-       var count = EditorCountResult.Count()
+        var count = EditorCountResult.Count()
         
         XCTAssertNil(count.formatted)
         

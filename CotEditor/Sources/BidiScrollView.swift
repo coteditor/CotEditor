@@ -52,7 +52,7 @@ final class BidiScrollView: NSScrollView {
     override func tile() {
         
         super.tile()
-       
+        
         // add a space for the vertical scroller to the left edge if the style is legacy
         guard
             self.scrollerDirection == .rightToLeft,

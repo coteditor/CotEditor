@@ -27,7 +27,7 @@ import XCTest
 @testable import CotEditor
 
 final class OutlineTests: XCTestCase {
-
+    
     private let items: [OutlineItem] = [
         OutlineItem(title: "dog", range: NSRange(location: 10, length: 5)),         // 0
         OutlineItem(title: .separator, range: NSRange(location: 20, length: 5)),

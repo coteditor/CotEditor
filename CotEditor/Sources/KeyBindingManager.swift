@@ -40,8 +40,9 @@ final class KeyBindingManager: SettingManaging {
     
     // MARK: Private Properties
     
-    private let defaultKeyBindings: Set<KeyBinding>
-    private var keyBindings: Set<KeyBinding> = []
+    private let defaultKeyBindings: [KeyBinding]
+    private var userKeyBindings: [KeyBinding] = []
+    private var modifiedKeyBindings: Set<KeyBinding> = []
     
     
     
@@ -54,17 +55,10 @@ final class KeyBindingManager: SettingManaging {
             fatalError("KeyBindingManager must be initialized after Main.storyboard is loaded.")
         }
         
-        self.defaultKeyBindings = Set(Self.scanKeyBindings(in: mainMenu))
+        self.defaultKeyBindings = Self.scanKeyBindings(in: mainMenu)
+        self.userKeyBindings = (try? self.loadSettings()) ?? []
         
-        let customKeyBindings = (try? self.loadSettings()) ?? []
-        let keyBindings = self.defaultKeyBindings
-            .filter { kb in
-                !customKeyBindings.contains {
-                    ($0.action == kb.action && $0.tag == kb.tag) || $0.shortcut == kb.shortcut
-                }
-            } + customKeyBindings
-        
-        self.keyBindings = Set(keyBindings).filter { $0.shortcut != nil }
+        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
     }
     
     
@@ -74,7 +68,7 @@ final class KeyBindingManager: SettingManaging {
     /// Whether shortcuts are customized.
     var isCustomized: Bool {
         
-        self.keyBindings != self.defaultKeyBindings.filter { $0.shortcut != nil }
+        !self.userKeyBindings.isEmpty
     }
     
     
@@ -88,6 +82,8 @@ final class KeyBindingManager: SettingManaging {
     /// Apply all keyboard shortcuts to the main menu.
     func applyShortcutsToMainMenu() {
         
+        guard !self.modifiedKeyBindings.isEmpty else { return }
+        
         let mainMenu = NSApp.mainMenu!
         
         self.clearShortcuts(in: mainMenu)
@@ -99,7 +95,10 @@ final class KeyBindingManager: SettingManaging {
     /// Remove all user costomization.
     func restoreDefaults() throws {
         
-        try self.saveKeyBindings(self.defaultKeyBindings.unique)
+        try self.removeSettingFile()
+        
+        self.userKeyBindings.removeAll()
+        self.applyShortcutsToMainMenu()
     }
     
     
@@ -118,34 +117,24 @@ final class KeyBindingManager: SettingManaging {
     /// - Parameter keyBindings: The key bindings to save.
     func saveKeyBindings(_ keyBindings: [KeyBinding]) throws {
         
-        let fileURL = self.settingFileURL
-        
-        let keyBindingsSet = Set(keyBindings)
         let defaultExistsActions = self.defaultKeyBindings.map(\.action)
-        let diff = keyBindingsSet.subtracting(self.defaultKeyBindings)
+        
+        // store new values
+        self.userKeyBindings = Set(keyBindings).subtracting(self.defaultKeyBindings)
             .filter { $0.shortcut != nil || defaultExistsActions.contains($0.action) }
+        self.modifiedKeyBindings.formUnion(self.userKeyBindings)
         
         // write to file
-        if diff.isEmpty {
-            // just remove setting file if the new setting is exactly the same as the default
-            if fileURL.isReachable {
-                try FileManager.default.removeItem(at: fileURL)
-                let parent = fileURL.deletingLastPathComponent()
-                if try FileManager.default.contentsOfDirectory(at: parent, includingPropertiesForKeys: [], options: .skipsHiddenFiles).isEmpty {
-                    try FileManager.default.removeItem(at: parent)
-                }
-            }
+        if self.userKeyBindings.isEmpty {
+            try self.removeSettingFile()
         } else {
             let encoder = PropertyListEncoder()
             encoder.outputFormat = .xml
-            let data = try encoder.encode(diff.sorted(\.action.description))
+            let data = try encoder.encode(self.userKeyBindings.sorted(\.action.description))
             
             try self.prepareUserSettingDirectory()
-            try data.write(to: fileURL, options: .atomic)
+            try data.write(to: self.settingFileURL, options: .atomic)
         }
-        
-        // store new values
-        self.keyBindings = keyBindingsSet.filter { $0.shortcut != nil }
         
         // apply new settings to the menu
         self.applyShortcutsToMainMenu()
@@ -162,6 +151,18 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
+    /// Actual key bindings.
+    private var keyBindings: [KeyBinding] {
+        
+        self.defaultKeyBindings
+            .filter { kb in
+                !self.userKeyBindings.contains {
+                    ($0.action == kb.action && $0.tag == kb.tag) || $0.shortcut == kb.shortcut
+                }
+            } + self.userKeyBindings.filter { $0.shortcut != nil }
+    }
+    
+    
     /// Load user settings.
     private func loadSettings() throws -> [KeyBinding] {
         
@@ -173,6 +174,21 @@ final class KeyBindingManager: SettingManaging {
         let keyBindings = try PropertyListDecoder().decode([KeyBinding].self, from: data)
         
         return keyBindings.filter { $0.shortcut?.isValid ?? true }
+    }
+    
+    
+    /// Remove setting file in the user domain, if exists.
+    private func removeSettingFile() throws {
+        
+        guard self.settingFileURL.isReachable else { return }
+        
+        try FileManager.default.removeItem(at: self.settingFileURL)
+        
+        // remove also the parent directory
+        let parent = self.settingFileURL.deletingLastPathComponent()
+        if try FileManager.default.contentsOfDirectory(at: parent, includingPropertiesForKeys: [], options: .skipsHiddenFiles).isEmpty {
+            try FileManager.default.removeItem(at: parent)
+        }
     }
     
     
@@ -219,19 +235,19 @@ final class KeyBindingManager: SettingManaging {
         
         // specific actions
         switch menuItem.action {
-            case #selector(EncodingHolder.changeEncoding),
-                 #selector(SyntaxHolder.changeSyntaxStyle),
-                 #selector(ThemeHolder.changeTheme),
+            case #selector((any EncodingHolder).changeEncoding),
+                 #selector((any SyntaxHolder).changeSyntaxStyle),
+                 #selector((any ThemeHolder).changeTheme),
                  #selector(Document.changeLineEnding(_:)),
                  #selector(DocumentViewController.changeTabWidth),
-                 #selector(SnippetInsertable.insertSnippet),
+                 #selector((any SnippetInsertable).insertSnippet),
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSDocument.saveAs),
                  #selector(NSApplication.showHelp),
                  #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
                 return false
-            
+                
             default: break
         }
         
@@ -242,7 +258,7 @@ final class KeyBindingManager: SettingManaging {
     /// Allow modifying only menu items existed at launch.
     ///
     /// - Parameter menuItem: The menu item to check.
-    /// - Returns: Whether the given menu item can be modified by users.
+    /// - Returns: Whether the given menu item can be modified by the user.
     private func allowsModifying(_ menuItem: NSMenuItem) -> Bool {
         
         guard Self.allowsModifying(menuItem) else { return false }
@@ -251,8 +267,19 @@ final class KeyBindingManager: SettingManaging {
             case #selector(NSMenu.submenuAction), .none:
                 return true
             case let .some(action):
-                return self.defaultKeyBindings.map(\.action).contains(action)
+                return self.defaultKeyBindings.contains { $0.action == action }
         }
+    }
+    
+    
+    /// The shorcut for the given menuItem was customized in the session.
+    ///
+    /// - Parameter menuItem: The menu item to check.
+    /// - Returns: Whether the given menu item was modified by the user.
+    private func isModified(_ menuItem: NSMenuItem) -> Bool {
+        
+        self.modifiedKeyBindings
+            .contains { $0.action == menuItem.action && $0.tag == menuItem.tag }
     }
     
     
@@ -276,7 +303,7 @@ final class KeyBindingManager: SettingManaging {
     }
     
     
-    /// Clear all keyboard shortcuts in the passed-in menu.
+    /// Clear keyboard shortcuts to be modified in the passed-in menu.
     ///
     /// - Parameter menu: The menu where to remove shortcuts.
     private func clearShortcuts(in menu: NSMenu) {
@@ -288,12 +315,14 @@ final class KeyBindingManager: SettingManaging {
                     return self.clearShortcuts(in: submenu)
                 }
                 
+                guard self.isModified(menuItem) else { return }
+                
                 menuItem.shortcut = nil
             }
     }
     
     
-    /// Apply current keyboard shortcut settings to the passed-in menu.
+    /// Apply keyboard shortcuts customized by the user to the passed-in menu.
     ///
     /// - Parameter menu: The menu where to apply shortcuts.
     private func applyShortcuts(to menu: NSMenu) {
@@ -305,8 +334,12 @@ final class KeyBindingManager: SettingManaging {
                     return self.applyShortcuts(to: submenu)
                 }
                 
-                guard let action = menuItem.action else { return }
+                guard
+                    self.isModified(menuItem),
+                    let action = menuItem.action
+                else { return }
                 
+                menuItem.allowsAutomaticKeyEquivalentLocalization = false
                 menuItem.shortcut = self.shortcut(for: action, tag: menuItem.tag)
             }
     }

@@ -96,7 +96,7 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(toggleNavigationBar):
@@ -110,11 +110,11 @@ final class EditorViewController: NSSplitViewController {
             case #selector(selectPrevItemOfOutlineMenu):
                 guard let textView = self.textView else { return false }
                 return self.outlineItems?.previousItem(for: textView.selectedRange) != nil
-            
+                
             case #selector(selectNextItemOfOutlineMenu):
                 guard let textView = self.textView else { return false }
                 return self.outlineItems?.nextItem(for: textView.selectedRange) != nil
-            
+                
             default: break
         }
         

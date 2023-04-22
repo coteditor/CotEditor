@@ -79,8 +79,8 @@ final class CommandLineToolManager: Sendable {
         guard url.isReachable else { return .invalidTarget }
         
         if url == self.linkURL ||
-           url == self.bundledCommandURL ||
-           url == Bundle(url: self.preferredApplicationURL)?.cotURL
+            url == self.bundledCommandURL ||
+            url == Bundle(url: self.preferredApplicationURL)?.cotURL
         { return .validTarget }
         
         return .differentTarget

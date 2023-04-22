@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2020 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,14 +56,14 @@ extension NSTouchBar {
             switch item {
                 case let item as NSCustomTouchBarItem:
                     item.validate()
-                
+                    
                 case let item as NSGroupTouchBarItem:
                     item.groupTouchBar.validateVisibleItems()
-                
+                    
                 case let item as NSPopoverTouchBarItem:
                     item.popoverTouchBar.validateVisibleItems()
                     item.pressAndHoldTouchBar?.validateVisibleItems()
-                
+                    
                 default: break
             }
         }
@@ -161,11 +161,11 @@ private final class TouchBarValidator {
                  .mouseMoved,
                  nil:
                 return
-            
+                
             case .keyUp,
                  .flagsChanged:
                 delay = .lazy
-            
+                
             default:
                 delay = .normal
         }
@@ -204,9 +204,9 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         else { return }
         
         switch validator {
-            case let validator as TouchBarItemValidations:
+            case let validator as any TouchBarItemValidations:
                 control.isEnabled = validator.validateTouchBarItem(self)
-            case let validator as NSUserInterfaceValidations:
+            case let validator as any NSUserInterfaceValidations:
                 control.isEnabled = validator.validateUserInterfaceItem(self)
             default: break
         }

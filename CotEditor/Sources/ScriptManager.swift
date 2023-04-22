@@ -346,9 +346,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
                           let script = try? descriptor.makeScript()
                 {  // scripts
                     // -> Check script possibility before folder because a script can be a directory, e.g. .scptd.
-                    for eventType in descriptor.eventTypes {
-                        guard let script = script as? any EventScript else { continue }
-                        self.scriptHandlersTable[eventType, default: []].append(script)
+                    if let script = script as? any EventScript {
+                        for eventType in descriptor.eventTypes {
+                            self.scriptHandlersTable[eventType, default: []].append(script)
+                        }
                     }
                     
                     let item = NSMenuItem(title: script.name, action: #selector(launchScript), keyEquivalent: "")

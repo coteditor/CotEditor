@@ -538,8 +538,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             savePanel.allowedContentTypes = [utType]
             
             // disable it immediately in the next runloop to allow setting other extensions
-            DispatchQueue.main.async {
-                savePanel.allowedContentTypes = []
+            Task.detached { @MainActor [weak savePanel] in
+                savePanel?.allowedContentTypes = []
             }
         } else {
             // just keep no extension
@@ -558,13 +558,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
+        if UserDefaults.standard.bool(forKey: "disableClosingEmptyDocument") {
+            return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+        }
+        
         // suppress save dialog if content is empty and not saved explicitly
         if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
             
             // delete autosaved file if exists
             if let fileURL = self.fileURL {
-                NSDocumentController.shared.removeRecentDocument(url: fileURL)
+                if !UserDefaults.standard.bool(forKey: "disableExplicitRecentDocumentRemoval") {
+                    NSDocumentController.shared.removeRecentDocument(url: fileURL)
+                }
                 
                 var deletionError: NSError?
                 NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: fileURL, options: .forDeleting, error: &deletionError) { (newURL) in  // FILE_ACCESS
@@ -749,14 +755,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard data != self.fileData else { return }
         
         // notify about external file update
-        DispatchQueue.main.async { [weak self] in
+        Task {
             switch UserDefaults.standard[.documentConflictOption] {
                 case .ignore:
                     assertionFailure()
                 case .notify:
-                    self?.showUpdatedByExternalProcessAlert()
+                    await self.showUpdatedByExternalProcessAlert()
                 case .revert:
-                    self?.revertWithoutAsking()
+                    await self.revertWithoutAsking()
             }
         }
     }
@@ -1199,9 +1205,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// Display alert about file modification by an external process.
-    private func showUpdatedByExternalProcessAlert() {
-        
-        assert(Thread.isMainThread)
+    @MainActor private func showUpdatedByExternalProcessAlert() {
         
         // do nothing if alert is already shown
         guard !self.isExternalUpdateAlertShown else { return }
@@ -1242,9 +1246,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// Revert receiver with current document file without asking to user before.
-    private func revertWithoutAsking() {
-        
-        assert(Thread.isMainThread)
+    @MainActor private func revertWithoutAsking() {
         
         guard
             let fileURL = self.fileURL,
@@ -1274,7 +1276,7 @@ private enum ReinterpretationError: LocalizedError {
         switch self {
             case .noFile:
                 return "The document doesn’t have a file to reinterpret.".localized
-            
+                
             case let .reinterpretationFailed(fileURL, encoding):
                 return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
         }
@@ -1374,7 +1376,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     private func showIncompatibleCharacters() {
         
-        let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
+        weak var windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             windowContentController?.showSidebarPane(index: .warnings)
         }

@@ -75,26 +75,26 @@ final class WindowContentViewController: NSSplitViewController {
     }
     
     
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         // disable toggling sidebar in the tab overview mode
         switch item.action {
             case #selector(toggleInspector):
                 let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
                 (item as? NSMenuItem)?.title = title.localized
-            
+                
             case #selector(getInfo):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
                 return self.canToggleSidebar
-            
+                
             case #selector(toggleOutlineMenu):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
                 return self.canToggleSidebar
-            
+                
             case #selector(toggleWarningsPane):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .warnings) ? .on : .off
                 return self.canToggleSidebar
-            
+                
             default: break
         }
         

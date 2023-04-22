@@ -234,7 +234,7 @@ final class DocumentWindowController: NSWindowController, NSWindowDelegate {
         
         if let item = popUpButton.item(withTitle: styleName) {
             popUpButton.select(item)
-        
+            
         } else {
             // insert item by adding deleted item section
             popUpButton.insertItem(withTitle: styleName, at: 1)
@@ -286,6 +286,7 @@ private extension NSToolbarItem.Identifier {
     static let wrapLines = Self(Self.prefix + "wrapLines")
     static let indentGuides = Self(Self.prefix + "indentGuildes")
     
+    static let keepOnTop = Self(Self.prefix + "keepOnTop")
     static let opacity = Self(Self.prefix + "opacity")
     static let spellCheck = Self(Self.prefix + "spellCheck")
     static let colorCode = Self(Self.prefix + "colorCode")
@@ -324,6 +325,7 @@ extension DocumentWindowController: NSToolbarDelegate {
             .wrapLines,
             .invisibles,
             .indentGuides,
+            .keepOnTop,
             .opacity,
             .spellCheck,
             .colorCode,
@@ -531,6 +533,17 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.menuFormRepresentation = NSMenuItem(title: item.label, action: item.action, keyEquivalent: "")
                 return item
                 
+            case .keepOnTop:
+                let item = StatableToolbarItem(itemIdentifier: itemIdentifier)
+                item.isBordered = true
+                item.label = "Keep on Top".localized
+                item.toolTip = "Keep the window always on top".localized
+                item.stateImages[.on] = NSImage(systemSymbolName: "pin.slash", accessibilityDescription: item.label)
+                item.stateImages[.off] = NSImage(systemSymbolName: "pin", accessibilityDescription: item.label)
+                item.action = #selector(DocumentWindow.toggleKeepOnTop)
+                return item
+                
+                
             case .opacity:
                 let menuItem = NSMenuItem()
                 menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
@@ -609,7 +622,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 guard let splitView = (self.contentViewController as? NSSplitViewController)?.splitView else { return nil }
                 let item = NSTrackingSeparatorToolbarItem(identifier: itemIdentifier, splitView: splitView, dividerIndex: 0)
                 return item
-            
+                
             default:
                 return NSToolbarItem(itemIdentifier: itemIdentifier)
         }

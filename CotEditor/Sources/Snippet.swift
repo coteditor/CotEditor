@@ -135,9 +135,9 @@ extension Snippet {
         
         let cursors = (format as NSString).ranges(of: Variable.cursor.token)
         let ranges = cursors
-                .enumerated()
-                .map { $0.element.location - $0.offset * $0.element.length }
-                .map { NSRange(location: $0, length: 0) }
+            .enumerated()
+            .map { $0.element.location - $0.offset * $0.element.length }
+            .map { NSRange(location: $0, length: 0) }
         
         let text = format.replacingOccurrences(of: Variable.cursor.token, with: "")
         

@@ -366,6 +366,10 @@
 "Hide indent guide lines" = "インデントガイドを非表示";
 "Show indent guide lines" = "インデントガイドを表示";
 
+"Keep on Top" = "常に一番上に表示";
+// tooltip
+"Keep the window always on top" = "ウインドウを常に一番上に表示";
+
 "Opacity" = "不透明度";
 // tooltip
 "Change editor’s opacity" = "エディタの不透明度を変更";

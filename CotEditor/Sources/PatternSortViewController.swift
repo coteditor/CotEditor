@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -189,7 +189,7 @@ protocol SortPatternViewControllerDelegate: AnyObject {
 
 class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     
-    weak var delegate: SortPatternViewControllerDelegate?
+    weak var delegate: (any SortPatternViewControllerDelegate)?
     
     
     override func viewWillAppear() {

@@ -28,8 +28,6 @@
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
 "qTb-gl-0V3.title" = "Neu";
-/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
-"I1W-t0-8TD.title" = "Öffnen …";
 
 
 
@@ -544,6 +542,9 @@
 "23.title" = "Im Dock ablegen";
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
 "203.title" = "Zoomen";
+
+/* Class = "NSMenuItem"; title = "Keep on Top"; ObjectID = "caZ-qh-5JE"; */
+"caZ-qh-5JE.title" = "Oben behalten";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "Alle nach vorne bringen";

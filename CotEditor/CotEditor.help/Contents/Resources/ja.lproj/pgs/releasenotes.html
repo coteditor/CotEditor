@@ -5,6 +5,8 @@
 	<meta name="keywords" content="バージョン,リリースノート"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
 	<link rel="stylesheet" href="../../Shared/sty/releasenotes.css"/>
+	<script defer src="../../Shared/js/toc.js"></script>
+	
 	<title>CotEditorのリリースノート</title>
 </head>
 
@@ -16,8 +18,114 @@
 
 <article>
 	<header>
+		<h1>CotEditor 4.5.4</h1>
+		<p>リリース: <time>2023-04-18</time></p>
+	</header>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>「常に一番上に表示」ツールバー項目を追加</li>
+			<li>最後のセッションからウインドウを復帰するときに「常に一番上に表示」の状態も復帰</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>メニューコマンドのショートカットをカスタマイズできないことがあったCotEditor 4.5.3の不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.5.3</h1>
+		<p>リリース: <time>2023-04-16</time></p>
+	</header>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li>「常に一番上に表示」コマンドをウインドウメニューに追加</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>Dockメニューの「開く」コマンドを削除</li>
+			<li>ヘルプビューアの目次ボタンを有効化</li>
+			<li>Swiftシンタックススタイルを更新して<code>/</code>のハイライトを修正</li>
+			<li><span class="label">非AppStore版</span>: Sparkleを2.4.0から2.4.1に更新</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>ノルウェー語キーボードで「¨」を入力するとアプリケーションがクラッシュした不具合を修正</li>
+			<li>ユーザのキーボードレイアウトに依ってはメニューコマンドショートカットが意図せず変更される事があった不具合を修正</li>
+			<li>サービス経由で作成した書類にフォント設定が反映されていなかった不具合を修正</li>
+			<li>特定の環境下において「CotEditorについて」ウインドウを開こうとするとアプリケーションがクラッシュすることがあった不具合を修正</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
+		<h1>CotEditor 4.5.2</h1>
+		<p>リリース: <time>2023-04-02</time></p>
+	</header>
+
+
+	<section>
+		<h2>新機能</h2>
+
+		<ul>
+			<li>BBCodeシンタックススタイルを追加</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>改良</h2>
+
+		<ul>
+			<li>Swiftシンタックススタイルを更新していくつかのキーワードを追加</li>
+			<li><span class="label">非AppStore版</span>: Sparkleを2.3.2から2.4.0に更新</li>
+			<li><span class="trivial">開発</span>: 開発環境をXcode 14.3 (Swift 5.8)に更新</li>
+		</ul>
+	</section>
+
+
+	<section>
+		<h2>修正</h2>
+
+		<ul>
+			<li>「開く」ダイアログ表示後CPU使用率が100%を超えるmacOS 12の不具合を修正</li>
+			<li>ドイツ語とイタリア語のローカリゼーションのタイポを修正 (Jan RichterさんとDAnn2012さんに感謝!)</li>
+		</ul>
+	</section>
+</article>
+
+
+<article>
+	<header>
 		<h1>CotEditor 4.5.1</h1>
-		<p> リリース: <time>2023-03-18</time></p>
+		<p>リリース: <time>2023-03-18</time></p>
 	</header>
 
 
@@ -74,10 +182,9 @@
 			<li>URLリンクを有効にしているときのテキスト編集のパフォーマンスを最適化</li>
 			<li>ナビゲーションバーおよびステータスバーの表示変更をアプリケーション内のすべての書類で同期</li>
 			<li>ダークモード時のアウトラインのリストのフィルターハイライトを読みやすいように改良</li>
-			<li>Swiftシンタックスハイライトを更新してSwift 5.8のキーワードを追加</li>
+			<li>Swiftシンタックススタイルを更新してSwift 5.8のキーワードを追加</li>
 			<li>「エンコーディング名を挿入」コマンドを廃止（代わりにAppleScriptを使ってください）</li>
 			<li>ヘルプを更新</li>
-			<li><span class="label">非AppStore版</span>: Sparkleを2.3.1から2.3.2に更新</li>
 			<li><span class="trivial">開発</span>: Yamsを5.0.4から5.0.5に更新</li>
 		</ul>
 	</section>

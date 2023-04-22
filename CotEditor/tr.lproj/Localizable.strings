@@ -366,6 +366,10 @@
 "Hide indent guide lines" = "Girintileme kılavuz çizgilerini gizle";
 "Show indent guide lines" = "Girintileme kılavuz çizgilerini göster";
 
+"Keep on Top" = "En Üstte Tut";
+// tooltip
+"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+
 "Opacity" = "Matlık";
 // tooltip
 "Change editor’s opacity" = "Düzenleyici matlığını değiştir";

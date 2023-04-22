@@ -35,7 +35,7 @@ final class SettingsWindow: NSPanel {
         switch menuItem.action {
             case #selector(toggleToolbarShown):
                 return false
-            
+                
             default:
                 return super.validateMenuItem(menuItem)
         }

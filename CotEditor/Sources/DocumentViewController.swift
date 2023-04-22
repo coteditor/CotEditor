@@ -204,7 +204,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             
             // detect indent style
             if UserDefaults.standard[.detectsIndentStyle],
-                let indentStyle = document.textStorage.string.detectedIndentStyle
+               let indentStyle = document.textStorage.string.detectedIndentStyle
             {
                 self.isAutoTabExpandEnabled = {
                     switch indentStyle {
@@ -251,30 +251,30 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
     }
     
     
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
                     item.state = (self.theme?.name == item.title) ? .on : .off
                 }
-            
+                
             case #selector(toggleLineNumber):
                 (item as? NSMenuItem)?.title = self.showsLineNumber
                     ? "Hide Line Numbers".localized
                     : "Show Line Numbers".localized
-            
+                
             case #selector(toggleStatusBar):
                 (item as? NSMenuItem)?.title = self.statusBarItem?.isCollapsed == false
                     ? "Hide Status Bar".localized
                     : "Show Status Bar".localized
-            
+                
             case #selector(togglePageGuide):
                 (item as? NSMenuItem)?.title = self.showsPageGuide
                     ? "Hide Page Guide".localized
                     : "Show Page Guide".localized
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
-            
+                
             case #selector(toggleIndentGuides):
                 (item as? NSMenuItem)?.title = self.showsIndentGuides
                     ? "Hide Indent Guides".localized
@@ -283,7 +283,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                     ? "Hide indent guide lines".localized
                     : "Show indent guide lines".localized
                 (item as? StatableToolbarItem)?.state = self.showsIndentGuides ? .on : .off
-            
+                
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
                     ? "Unwrap Lines".localized
@@ -294,7 +294,7 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                         : "Wrap lines".localized
                 }
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
-            
+                
             case #selector(toggleInvisibleChars):
                 (item as? NSMenuItem)?.title = self.showsInvisibles
                     ? "Hide Invisibles".localized
@@ -310,34 +310,34 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                         : "Show invisible characters".localized
                 }
                 return canActivateShowInvisibles
-            
+                
             case #selector(toggleAntialias):
-                (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
-            
+                (item as? any StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
+                
             case #selector(toggleLigatures):
-                (item as? StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
-            
+                (item as? any StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
+                
             case #selector(toggleAutoTabExpand):
-                (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
+                (item as? any StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
                     ? "Turn off expanding tabs to spaces".localized
                     : "Expand tabs to spaces automatically".localized
-            
+                
             case #selector(changeTabWidth):
-                (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
-            
+                (item as? any StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
+                
             case #selector(makeLayoutOrientationHorizontal):
-                (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
-            
+                (item as? any StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
+                
             case #selector(makeLayoutOrientationVertical):
-                (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
-            
+                (item as? any StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
+                
             case #selector(makeWritingDirectionLeftToRight):
-                (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
-            
+                (item as? any StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
+                
             case #selector(makeWritingDirectionRightToLeft):
-                (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
-            
+                (item as? any StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
+                
             case #selector(changeWritingDirection):
                 (item as? NSToolbarItemGroup)?.selectedIndex = {
                     switch self.writingDirection {
@@ -346,16 +346,16 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                         default: return 0
                     }
                 }()
-            
+                
             case #selector(changeOrientation):
                 (item as? NSToolbarItemGroup)?.selectedIndex = self.verticalLayoutOrientation ? 1 : 0
                 
             case #selector(showOpacitySlider):
                 return self.view.window?.styleMask.contains(.fullScreen) == false
-            
+                
             case #selector(closeSplitTextView):
                 return (self.splitViewController?.splitViewItems.count ?? 0) > 1
-            
+                
             default: break
         }
         

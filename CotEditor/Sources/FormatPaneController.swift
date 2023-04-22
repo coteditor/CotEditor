@@ -34,7 +34,7 @@ private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
 final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSMenuDelegate {
-
+    
     // MARK: Private Properties
     
     private var styleNames: [String] = []
@@ -115,39 +115,39 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         switch menuItem.action {
             case #selector(openSyntaxMappingConflictSheet(_:)):
                 return !SyntaxManager.shared.mappingConflicts.isEmpty
-            
+                
             case #selector(duplicateSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(deleteSyntaxStyle(_:)):
                 menuItem.isHidden = (state?.isBundled == true || !itemSelected)
-            
+                
             case #selector(restoreSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable ?? false
-            
+                
             case #selector(exportSyntaxStyle(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized ?? false
-            
+                
             case #selector(revealSyntaxStyleInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 return state?.isCustomized ?? false
-            
+                
             case nil:
                 return false
-            
+                
             default:
                 break
         }
@@ -220,7 +220,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
             info.draggingSource as? NSTableView != tableView,  // avoid self D&D
@@ -239,7 +239,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     
     /// check acceptability of dropped items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .yaml, for: tableView) {
             let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
@@ -269,7 +269,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         guard let settingName = self.styleNames[safe: row] else { return nil }
         

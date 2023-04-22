@@ -73,7 +73,7 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(toggleSplitOrientation):
@@ -83,7 +83,7 @@ final class SplitViewController: NSSplitViewController {
                 
             case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
                 return self.splitViewItems.count > 1
-            
+                
             default: break
         }
         

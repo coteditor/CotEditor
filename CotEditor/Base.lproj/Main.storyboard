@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -699,7 +699,7 @@ DQ
                                                     <menuItem title="Edit Snippets…" id="OmB-Ve-DEy">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="showSnippetEditor:" target="Voe-Tx-rLC" id="jp7-Gn-70w"/>
+                                                            <action selector="showSnippetEditor:" target="Ady-hI-5gd" id="ZTz-YQ-KNQ"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -770,17 +770,17 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Surround Selection With" id="AUq-CT-rPl">
                                                 <items>
-                                                    <menuItem title="Single Quotes" keyEquivalent="'" id="Srp-eD-10Q">
+                                                    <menuItem title="Single Quotes" keyEquivalent="'" localization="NO" mirroring="NO" id="Srp-eD-10Q">
                                                         <connections>
                                                             <action selector="surroundSelectionWithSingleQuotes:" target="Ady-hI-5gd" id="Ouh-e3-teo"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Double Quotes" tag="-1" keyEquivalent="&quot;" id="O8z-C9-ECD">
+                                                    <menuItem title="Double Quotes" keyEquivalent="&quot;" localization="NO" mirroring="NO" id="O8z-C9-ECD">
                                                         <connections>
                                                             <action selector="surroundSelectionWithDoubleQuotes:" target="Ady-hI-5gd" id="rqZ-qN-jAw"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Parentheses" keyEquivalent="(" id="G3o-1h-GwR">
+                                                    <menuItem title="Parentheses" keyEquivalent="(" localization="NO" mirroring="NO" id="G3o-1h-GwR">
                                                         <connections>
                                                             <action selector="surroundSelectionWithParentheses:" target="Ady-hI-5gd" id="gvU-WD-OLA"/>
                                                         </connections>
@@ -1128,6 +1128,12 @@ CA
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="uUW-DZ-rJM"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Keep on Top" id="caZ-qh-5JE">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleKeepOnTop:" target="Ady-hI-5gd" id="jT9-SB-I5W"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="92"/>
                                         <menuItem title="Bring All to Front" id="5">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1239,12 +1245,6 @@ CA
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="newDocumentActivatingApplication:" target="Ady-hI-5gd" id="Rgw-fI-unE"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Open…" id="I1W-t0-8TD">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="openDocumentActivatingApplication:" target="Ady-hI-5gd" id="uWy-CI-rzD"/>
                             </connections>
                         </menuItem>
                     </items>

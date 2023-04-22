@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,9 +38,9 @@ extension Validatable where Self: NSToolbarItem {
         else { return false }
         
         switch validator {
-            case let validator as NSToolbarItemValidation:
+            case let validator as any NSToolbarItemValidation:
                 return validator.validateToolbarItem(self)
-            case let validator as NSUserInterfaceValidations:
+            case let validator as any NSUserInterfaceValidations:
                 return validator.validateUserInterfaceItem(self)
             default:
                 return true

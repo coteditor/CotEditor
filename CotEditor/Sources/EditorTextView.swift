@@ -78,7 +78,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     var insertionLocations: [Int] = []  { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
-    var insertionPointTimer: DispatchSourceTimer?
+    var insertionPointTimer: (any DispatchSourceTimer)?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false
     
@@ -424,11 +424,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // restore the first empty insertion if it seems to disappear
         if event.modifierFlags.contains(.command),
-            !self.selectedRange.isEmpty,
-            let selectedRange,
-            selectedRange.isEmpty,
-            !self.selectedRange.contains(selectedRange.location),
-            self.selectedRange.upperBound != selectedRange.location
+           !self.selectedRange.isEmpty,
+           let selectedRange,
+           selectedRange.isEmpty,
+           !self.selectedRange.contains(selectedRange.location),
+           self.selectedRange.upperBound != selectedRange.location
         {
             self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
         }
@@ -540,7 +540,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
                 // insert bracket pair if insertion point is not in a word
                 if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
-                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
+                   !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
                 {
                     // raise frag to manipulate the cursor later in `handleTextCheckingResults(_:forRange:types:options:orthography:wordCount:)`
                     if self.isAutomaticQuoteSubstitutionEnabled, pair.begin == "\"" {
@@ -557,8 +557,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             // just move cursor if closing bracket is already typed
             if BracePair.braces.contains(where: { String($0.end) == plainString }),  // ignore "
-                plainString.unicodeScalars.first == self.character(after: self.rangeForUserTextChange),
-                self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+               plainString.unicodeScalars.first == self.character(after: self.rangeForUserTextChange),
+               self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
             {
                 self.selectedRange.location += 1
                 return
@@ -567,14 +567,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // smart outdent with '}'
         if self.isAutomaticIndentEnabled, replacementRange.isEmpty,
-            plainString == "}"
+           plainString == "}"
         {
             let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
             let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
             if self.string.range(of: "^[ \\t]+\\R?$", options: .regularExpression, range: lineRange) != nil,
-                let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
+               let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
                 let desiredLevel = self.string.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
                 let currentLevel = self.string.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel
@@ -705,7 +705,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth)
+           let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth)
         {
             self.setSelectedRangesWithUndo(self.selectedRanges)
             self.selectedRange = deletionRange
@@ -713,10 +713,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // balance brackets
         if self.balancesBrackets,
-            self.rangeForUserTextChange.isEmpty,
-            let lastCharacter = self.character(before: self.rangeForUserTextChange),
-            let nextCharacter = self.character(after: self.rangeForUserTextChange),
-            self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
+           self.rangeForUserTextChange.isEmpty,
+           let lastCharacter = self.character(before: self.rangeForUserTextChange),
+           let nextCharacter = self.character(after: self.rangeForUserTextChange),
+           self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
             self.setSelectedRangesWithUndo(self.selectedRanges)
             self.selectedRange = NSRange(location: self.rangeForUserTextChange.location - 1, length: 2)
@@ -995,7 +995,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // draw page guide
         if self.showsPageGuide,
-            let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
+           let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
             let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerInset.width
@@ -1080,29 +1080,29 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // on file drop
         if pboard.name == .drag,
-            let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
-            self.insertDroppedFiles(urls)
+           let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
+           self.insertDroppedFiles(urls)
         {
             return true
         }
         
         // paste a single string to all insertion points
         if pboard.name == .general,
-            pboard.types?.contains(.multipleTextSelection) == false,
-            let string = pboard.string(forType: .string),
-            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
-            ranges.count > 1,
-            string.rangeOfCharacter(from: .newlines) == nil
+           pboard.types?.contains(.multipleTextSelection) == false,
+           let string = pboard.string(forType: .string),
+           let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
+           ranges.count > 1,
+           string.rangeOfCharacter(from: .newlines) == nil
         {
             return self.insertText(string, replacementRanges: ranges)
         }
         
         // keep multiple cursors after pasting multiple text
         if pboard.name == .general,
-            let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
-            let string = pboard.string(forType: .string),
-            let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
-            ranges.count > 1
+           let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
+           let string = pboard.string(forType: .string),
+           let ranges = self.rangesForUserTextChange?.map(\.rangeValue),
+           ranges.count > 1
         {
             let lines = string.components(separatedBy: .newlines)
             let multipleTexts: [String] = groupCounts
@@ -1156,7 +1156,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     // MARK: Protocol
     
     /// apply current state to related menu items and toolbar items
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
             case #selector(performTextFinderAction):
@@ -1167,27 +1167,27 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case #selector(copyWithStyle):
                 return !self.selectedRange.isEmpty
-            
+                
             case #selector(straightenQuotesInSelection):
                 // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
                 //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
                 return !self.selectedRange.isEmpty
-            
+                
             case #selector(toggleComment):
                 (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
                     ? "Uncomment".localized
                     : "Comment Out".localized
                 return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
-            
+                
             case #selector(inlineCommentOut):
                 return (self.inlineCommentDelimiter != nil)
-            
+                
             case #selector(blockCommentOut):
                 return (self.blockCommentDelimiters != nil)
-            
+                
             case #selector(uncomment(_:)):
                 return self.canUncomment(partly: true)
-            
+                
             default: break
         }
         
@@ -1637,7 +1637,7 @@ extension EditorTextView: TextFinderClient {
     @IBAction func performEditorTextFinderAction(_ sender: Any?) {
         
         guard
-            let tag = (sender as? NSValidatedUserInterfaceItem)?.tag ?? (sender as? NSControl)?.tag,
+            let tag = (sender as? any NSValidatedUserInterfaceItem)?.tag ?? (sender as? NSControl)?.tag,
             let action = TextFinder.Action(rawValue: tag)
         else { return }
         
@@ -1731,8 +1731,8 @@ extension EditorTextView {
         
         // provide nothing if there is only a candidate which is same as input word
         if let word = candidateWords.first,
-            candidateWords.count == 1,
-            word.caseInsensitiveCompare(particalWord) == .orderedSame
+           candidateWords.count == 1,
+           word.caseInsensitiveCompare(particalWord) == .orderedSame
         {
             return []
         }
@@ -1758,15 +1758,15 @@ extension EditorTextView {
         // -> The flag will be used in `didChangeText()`.
         var movement = movement
         if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
-            event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
+           event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
         {
             // fix that underscore is treated as the right arrow key
             if event.characters == "_", movement == NSRightTextMovement {
                 movement = NSIllegalTextMovement
             }
             if movement == NSIllegalTextMovement,
-                let character = event.characters?.utf16.first,
-                character < 0xF700, character != UInt16(NSDeleteCharacter)
+               let character = event.characters?.utf16.first,
+               character < 0xF700, character != UInt16(NSDeleteCharacter)
             {  // standard key-input
                 self.needsRecompletion = true
             }
@@ -1855,7 +1855,7 @@ extension EditorTextView {
         
         // select (syntax-highlighted) quoted text
         if ["\"", "'", "`"].contains(clickedCharacter),
-            let highlightRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: range.location)
+           let highlightRange = self.layoutManager?.effectiveRange(of: .syntaxType, at: range.location)
         {
             let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound

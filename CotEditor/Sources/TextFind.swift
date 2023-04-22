@@ -232,7 +232,7 @@ final class TextFind {
                 guard !fullWord || self.isFullWord(range: matchedRange) else { return nil }
                 
                 return ReplacementItem(value: replacementString, range: matchedRange)
-            
+                
             case .regularExpression:
                 let regex = self.regex!
                 guard let match = regex.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: selectedRange) else { return nil }

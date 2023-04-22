@@ -164,7 +164,7 @@ private struct ColorCodePanelAccessory: View {
         
         guard
             !self.colorCode.isEmpty,
-            NSApp.sendAction(#selector(ColorCodeReceiver.insertColorCode), to: nil, from: self.colorCode)
+            NSApp.sendAction(#selector((any ColorCodeReceiver).insertColorCode), to: nil, from: self.colorCode)
         else { return NSSound.beep() }
     }
     
@@ -252,9 +252,9 @@ private extension ColorCodeType {
 // MARK: - Preview
 
 struct ColorCodePanelAccessory_Previews: PreviewProvider {
-
+    
     static var previews: some View {
-
+        
         ColorCodePanelAccessory(colorCode: "#006699", panel: .shared)
             .frame(width: 240)
     }

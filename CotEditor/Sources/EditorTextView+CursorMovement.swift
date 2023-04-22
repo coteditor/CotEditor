@@ -602,12 +602,12 @@ extension EditorTextView {
                  (.rightArrow, .vertical):
                 self.doCommand(by: #selector(selectColumnUp))
                 return true
-            
+                
             case (.downArrow, .horizontal),
                  (.leftArrow, .vertical):
                 self.doCommand(by: #selector(selectColumnDown))
                 return true
-            
+                
             default:
                 return false
         }

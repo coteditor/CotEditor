@@ -79,7 +79,7 @@ private extension NSFont.Name {
                     case .bold: return "Bold"
                     default: return nil
                 }
-            
+                
             case .avenirNextCondensed:
                 switch weight {
                     case .ultraLight: return "UltraLight"

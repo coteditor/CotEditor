@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,6 +73,7 @@ final class DocumentWindow: NSWindow {
         super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
         coder.encode(self.backgroundAlpha, forKey: #keyPath(backgroundAlpha))
+        coder.encode(self.level, forKey: #keyPath(level))
     }
     
     
@@ -82,6 +83,9 @@ final class DocumentWindow: NSWindow {
         
         if let alpha = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(backgroundAlpha)) as? CGFloat, alpha != 1 {
             self.backgroundAlpha = alpha
+        }
+        if let level = coder.decodeObject(of: NSNumber.self, forKey: #keyPath(level)) as? NSWindow.Level, level == .floating {
+            self.isFloating = true
         }
     }
     
@@ -122,10 +126,68 @@ final class DocumentWindow: NSWindow {
     }
     
     
+    /// Workaround an issue with Stage Manager (2023-04, macOS 13, FB12129976).
+    override func miniaturize(_ sender: Any?) {
+        
+        super.miniaturize(sender)
+        
+        if self.isFloating {
+            self.level = .normal
+        }
+    }
+    
+    
+    /// Workaround an issue with Stage Manager (2023-04, macOS 13, FB12129976).
+    override func makeKey() {
+        
+        super.makeKey()
+        
+        if self.isFloating {
+            self.level = .floating
+        }
+    }
+    
+    
+    // MARK: Actions
+    
+    override func validateUserInterfaceItem(_ item: any NSValidatedUserInterfaceItem) -> Bool {
+        
+        switch item.action {
+            case #selector(toggleTabBar):
+                (item as? NSMenuItem)?.keyEquivalentModifierMask = [.command, .shift]
+                (item as? NSMenuItem)?.keyEquivalent = "t"
+                
+            case #selector(toggleKeepOnTop):
+                (item as? any StatableItem)?.state = self.isFloating ? .on : .off
+                
+            default:
+                break
+        }
+        
+        return super.validateUserInterfaceItem(item)
+    }
+    
+    
+    /// Toggle the window level between normal and floating.
+    @IBAction func toggleKeepOnTop(_ sender: Any?) {
+        
+        self.isFloating.toggle()
+    }
+    
     
     // MARK: Private Methods
     
-    /// make sure window title bar (incl. toolbar) is opaque
+    /// Wthether the window level is floating.
+    private var isFloating: Bool = false {
+        
+        didSet {
+            self.level = isFloating ? .floating : .normal
+            self.invalidateRestorableState()
+        }
+    }
+    
+    
+    /// Make sure window title bar (incl. toolbar) is opaque.
     private func invalidateTitlebarOpacity() {
         
         guard let titlebarView = self.standardWindowButton(.closeButton)?.superview else { return }
@@ -192,20 +254,5 @@ extension DocumentWindow {
         }
         
         return false
-    }
-    
-    
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        // programmatically set the shortcut for "Show/Hide Tab Bar", which is inserted by AppKit automatically.
-        switch menuItem.action {
-            case #selector(toggleTabBar):
-                menuItem.keyEquivalentModifierMask = [.command, .shift]
-                menuItem.keyEquivalent = "t"
-            default:
-                break
-        }
-        
-        return super.validateMenuItem(menuItem)
     }
 }

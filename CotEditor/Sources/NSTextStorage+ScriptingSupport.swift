@@ -43,7 +43,7 @@ extension NSTextStorage {
     ///   - editedString: The contents of the textStrage after the editing.
     func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
         
-        weak var observer: NSObjectProtocol?
+        weak var observer: (any NSObjectProtocol)?
         observer = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self, queue: .main) { [weak self] notification in
             if let observer {
                 NotificationCenter.default.removeObserver(observer)

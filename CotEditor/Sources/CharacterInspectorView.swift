@@ -42,7 +42,7 @@ struct CharacterInspectorView: View {
 }
 
 
-    
+
 private struct CharacterDetailView: View {
     
     @Binding var info: CharacterInfo
@@ -107,11 +107,11 @@ private struct ScalarDetailView: View {
         static let all: Self = [.codePoint, .block, .category]
     }
     
-
+    
     let scalar: Unicode.Scalar
     var items: Items = .all
-
-
+    
+    
     var body: some View {
         
         VStack(alignment: .leading, spacing: 2) {

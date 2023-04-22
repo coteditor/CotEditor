@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2022 1024jp
+//  © 2018-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ protocol MultiCursorEditing: NSTextView {
     var insertionLocations: [Int] { get set }
     var selectionOrigins: [Int] { get set }
     
-    var insertionPointTimer: DispatchSourceTimer? { get set }
+    var insertionPointTimer: (any DispatchSourceTimer)? { get set }
     var insertionPointOn: Bool { get set }
     var isPerformingRectangularSelection: Bool { get }
 }
@@ -118,9 +118,9 @@ extension MultiCursorEditing {
                 guard range.isEmpty else { return range }
                 
                 if !forward,
-                    let self = self as? Indenting,
-                    self.isAutomaticTabExpansionEnabled,
-                    let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
+                   let self = self as? any Indenting,
+                   self.isAutomaticTabExpansionEnabled,
+                   let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }
                 
                 let location = forward ? range.location : range.location - 1

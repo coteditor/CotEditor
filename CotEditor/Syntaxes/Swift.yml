@@ -6,10 +6,10 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.8.0"
+  version: "4.8.2"
   description: "Based on Swift 5.8"
   license: "Same as CotEditor"
-  lastModified: "2023-02-18"
+  lastModified: "2023-04-08"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME:)[ \\t](.+)"
   keyString: "$2"
@@ -328,7 +328,9 @@ types:
 - beginString: "UnsafeBufferPointerGenerator"
 - beginString: "UnsafeMutableBufferPointer"
 - beginString: "UnsafeMutablePointer"
+- beginString: "UnsafeMutableRawBufferPointer"
 - beginString: "UnsafePointer"
+- beginString: "UnsafeRawBufferPointer"
 - beginString: "UnsignedIntegerType"
 - beginString: "UTF16"
 - beginString: "UTF32"
@@ -353,8 +355,6 @@ strings:
   endString: "\"#"
 - beginString: "##\""
   endString: "\"##"
-- beginString: "/"
-  endString: "/"
 keywords:
 - beginString: "#available"
 - beginString: "#colorLiteral"

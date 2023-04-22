@@ -28,8 +28,6 @@
 
 /* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
 "qTb-gl-0V3.title" = "Nuovo";
-/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
-"I1W-t0-8TD.title" = "Apri…";
 
 
 
@@ -240,7 +238,7 @@
 /* Class = "NSMenuItem"; title = "Antialias"; ObjectID = "745"; */
 "745.title" = "Antialias";
 /* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
-"viH-Eo-wKz.title" = "Ligature";
+"viH-Eo-wKz.title" = "Legature";
 
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
 "djM-fI-MkN.title" = "Larghezza Tab";
@@ -544,6 +542,9 @@
 "23.title" = "Contrai";
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
 "203.title" = "Ridimensiona";
+
+/* Class = "NSMenuItem"; title = "Keep on Top"; ObjectID = "caZ-qh-5JE"; */
+"caZ-qh-5JE.title" = "Mantieni in alto";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "Porta tutto in primo piano";

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ final actor UserUnixTask {
     /// - Parameter input: The string to input.
     func pipe(input: String) {
         
-        guard let data = input.data(using: .utf8) else { return assertionFailure() }
+        let data = Data(input.utf8)
         
         self.inputPipe.fileHandleForWriting.writeabilityHandler = { (handle) in
             do {

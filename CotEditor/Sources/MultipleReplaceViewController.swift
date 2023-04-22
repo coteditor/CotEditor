@@ -226,7 +226,7 @@ final class MultipleReplaceViewController: NSViewController {
         NSApp.mainWindow?.firstResponder
             .flatMap { sequence(first: $0, next: \.nextResponder) }?
             .compactMap { $0 as? NSTextView }
-            .first { $0 is TextFinderClient }
+            .first { $0 is any TextFinderClient }
     }
     
     
@@ -570,7 +570,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     
     
     /// validate when dragged items come into tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return [] }
@@ -584,7 +584,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
     
     
     /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
         guard info.draggingSource as? NSTableView == tableView else { return false }
@@ -616,7 +616,7 @@ extension MultipleReplaceViewController: NSTableViewDataSource {
                 else { return }
                 
                 self.removeReplacements(at: rows)
-            
+                
             default:
                 break
         }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,12 +38,12 @@ final class UTTypeExtensionTests: XCTestCase {
     
     func testURLConformance() {
         
-        let xmlURL = URL(fileURLWithPath: "foo.xml")
+        let xmlURL = URL(filePath: "foo.xml")
         XCTAssertFalse(xmlURL.conforms(to: .svg))
         XCTAssertTrue(xmlURL.conforms(to: .xml))
         XCTAssertFalse(xmlURL.conforms(to: .plainText))
         
-        let svgzURL = URL(fileURLWithPath: "FOO.SVGZ")
+        let svgzURL = URL(filePath: "FOO.SVGZ")
         XCTAssertTrue(svgzURL.conforms(to: .svg))
     }
 }

@@ -2,13 +2,74 @@
 Change Log
 ==========================
 
-4.5.2 (unreleased)
+4.5.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- Workaround an issue that “Keep on Top” feature blocks all windows from coming back to the foreground in the Stage Manager mode.
+
+
+
+4.5.4 (566)
 --------------------------
 
 ### Improvements
 
+- Add “Keep on Top” toolbar item.
+- Restore the “Keep on Top” state of windows from the last session.
+
+
+### Fixes
+
+- Fix an issue in CotEditor 4.5.3 that some menu command shortcuts could not be customized.
+
+
+
+4.5.3 (564)
+--------------------------
+
+### New Features
+
+- Add “Keep on Top” command in the Window menu.
+
+
+### Improvements
+
+- Remove the Open command in the Dock menu.
+- Enable the ToC button in Help Viewer.
+- Update Swift syntax style to fix highlighting with `/` characters.
+- [non-AppStore ver.] Update Sparkle from 2.4.0 to 2.4.1.
+
+
+### Fixes
+
+- Fix an issue that the application crashed by typing the ¨ key with a Norwegian keyboard.
+- Fix an issue that menu command shortcuts could be unwantedly localized according to the user's keyboard layout.
+- Fix an issue that the editor font did not apply to documents created via Services.
+- Fix an issue that the application could crash by opening the About window in some specific conditions.
+
+
+
+4.5.2 (562)
+--------------------------
+
+### New Features
+
+- Add BBCode syntax style.
+
+
+### Improvements
+
+- Update Swift syntax style to add some keywords.
 - [non-AppStore ver.] Update Sparkle from 2.3.2 to 2.4.0.
-- [dev] Update the build environment to Xcode 14.3 RC (Swift 5.8).
+- [dev] Update the build environment to Xcode 14.3 (Swift 5.8).
+
+
+### Fixes
+
+- Workaround an issue on macOS 12 that the application uses 100% CPU after searching files in the open dialog.
+- Fix typos in German and Italian localizations (thanks to Jan Richter and DAnn2012!).
 
 
 
@@ -2482,7 +2543,6 @@ no change.
 - Fix an issue where the inputting text that is not finalized yet could be wrongly highlighted.
 - Fix an issue where some Unicode block names were not displayed in character info popover.
 - Address an issue where the application could rarely crash during syntax highlighting.
-
 
 
 

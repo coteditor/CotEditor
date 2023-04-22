@@ -103,22 +103,22 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
         switch menuItem.action {
             case #selector(addSetting), #selector(importSetting(_:)):
                 menuItem.isHidden = (isContextualMenu && itemSelected)
-            
+                
             case #selector(renameSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Rename “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(duplicateSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(deleteSetting(_:)):
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(exportSetting(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
@@ -132,7 +132,7 @@ final class MultipleReplaceListViewController: NSViewController, NSMenuItemValid
                 
             case nil:
                 return false
-            
+                
             default:
                 break
         }
@@ -416,7 +416,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
             info.draggingSource as? NSTableView != tableView,  // avoid self D&D
@@ -435,7 +435,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
     
     
     /// check acceptability of dropped items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .cotReplacement, for: tableView) {
             let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
@@ -463,7 +463,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
     }
     
     
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         let provider = NSFilePromiseProvider(fileType: UTType.cotReplacement.identifier, delegate: self)
         provider.userInfo = self.settingNames[row]

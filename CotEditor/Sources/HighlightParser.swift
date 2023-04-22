@@ -167,7 +167,7 @@ struct HighlightParser {
                 beginPosition.role.contains(.begin),
                 beginPosition.range.location >= seekLocation
             else { continue }
-                
+            
             // search corresponding end delimiter
             guard let endIndex = positions[index...].firstIndex(where: {
                 $0.role.contains(.end) && $0.token == beginPosition.token

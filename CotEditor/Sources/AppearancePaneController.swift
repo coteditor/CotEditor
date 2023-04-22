@@ -167,33 +167,33 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     menuItem.title = String(localized: "Duplicate “\(name)”")
                 }
                 menuItem.isHidden = !itemSelected
-            
+                
             case #selector(deleteTheme(_:)):
                 menuItem.isHidden = (state?.isBundled == true || !itemSelected)
-            
+                
             case #selector(restoreTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Restore “\(name)”")
                 }
                 menuItem.isHidden = (state?.isBundled == false || !itemSelected)
                 return state?.isRestorable == true
-            
+                
             case #selector(exportTheme(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Export “\(name)”…")
                 }
                 menuItem.isHidden = !itemSelected
                 return state?.isCustomized == true
-            
+                
             case #selector(revealThemeInFinder(_:)):
                 if let name = representedSettingName, !isContextualMenu {
                     menuItem.title = String(localized: "Reveal “\(name)” in Finder")
                 }
                 return state?.isCustomized == true
-            
+                
             case nil:
                 return false
-            
+                
             default:
                 break
         }
@@ -220,7 +220,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: any NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         guard
             info.draggingSource as? NSTableView != tableView,  // avoid self D&D
@@ -239,7 +239,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     /// check acceptability of dropped items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .cotTheme, for: tableView) {
             let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
@@ -269,7 +269,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
+    func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> (any NSPasteboardWriting)? {
         
         let provider = NSFilePromiseProvider(fileType: UTType.cotTheme.identifier, delegate: self)
         provider.userInfo = self.themeNames[row]
