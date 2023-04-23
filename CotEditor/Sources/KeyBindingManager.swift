@@ -244,6 +244,7 @@ final class KeyBindingManager: SettingManaging {
                  #selector(ScriptManager.launchScript),
                  #selector(AppDelegate.openHelpAnchor),
                  #selector(NSDocument.saveAs),
+                 #selector(NSWindow.makeKeyAndOrderFront),  // documents in Window menu
                  #selector(NSApplication.showHelp),
                  #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
                 return false
