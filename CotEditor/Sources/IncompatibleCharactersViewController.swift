@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -173,14 +173,14 @@ final class IncompatibleCharactersViewController: NSViewController {
             self.currentTableHeight = scrollView.frame.height
         }
         
-        let fixedConstraint = self.fixedHeightConstraint ?? NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 30)
+        let fixedConstraint = self.fixedHeightConstraint ?? scrollView.heightAnchor.constraint(equalToConstant: 30)
         self.fixedHeightConstraint = fixedConstraint
-        let flexibleConstraintt = self.flexibleHeightConstraint ?? NSLayoutConstraint(item: scrollView, attribute: .height, relatedBy: .greaterThanOrEqual, toItem: nil, attribute: .height, multiplier: 1, constant: 50)
-        self.flexibleHeightConstraint = flexibleConstraintt
+        let flexibleConstraint = self.flexibleHeightConstraint ?? scrollView.heightAnchor.constraint(greaterThanOrEqualToConstant: 50)
+        self.flexibleHeightConstraint = flexibleConstraint
         
         let visualHeight = isCollapsed ? 30 : self.currentTableHeight
         
-        flexibleConstraintt.isActive = false
+        flexibleConstraint.isActive = false
         fixedConstraint.constant = scrollView.frame.height
         fixedConstraint.isActive = true
         
@@ -194,7 +194,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         } completionHandler: { [weak self] in
             if !isCollapsed {
                 fixedConstraint.isActive = false
-                flexibleConstraintt.isActive = true
+                flexibleConstraint.isActive = true
             }
             scrollView.frame.size.height = visualHeight
             self?.view.needsLayout = true
