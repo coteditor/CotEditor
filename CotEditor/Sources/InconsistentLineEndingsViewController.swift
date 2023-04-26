@@ -44,7 +44,6 @@ final class InconsistentLineEndingsViewController: NSViewController {
     
     private var observers: Set<AnyCancellable> = []
     
-    @IBOutlet private var numberFormatter: NumberFormatter?
     @IBOutlet private weak var messageField: NSTextField?
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -162,7 +161,7 @@ extension InconsistentLineEndingsViewController: NSTableViewDataSource {
         switch identifier {
             case .line:
                 // calculate the line number first at this point to postpone the high cost processing as much as possible
-                return self.document?.lineEndingScanner.lineNumber(at: lineEnding.location)
+                return self.document?.lineEndingScanner.lineNumber(at: lineEnding.location).formatted()
             case .lineEnding:
                 return lineEnding.value.name
             default:

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cib-LV-qRp">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="cib-LV-qRp">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -78,7 +78,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="UA9-od-qam" name="value" keyPath="objectValue" id="G5z-z3-fal"/>
-                                                                        <outlet property="formatter" destination="Rsm-xE-2zT" id="4k2-w8-j2k"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -235,12 +234,10 @@
                     </view>
                     <connections>
                         <outlet property="messageField" destination="dTM-lN-A7l" id="CnA-AF-tdl"/>
-                        <outlet property="numberFormatter" destination="Rsm-xE-2zT" id="yVP-dB-g42"/>
                         <outlet property="tableView" destination="k0y-Cz-Raz" id="EYt-uL-akX"/>
                     </connections>
                 </viewController>
                 <customObject id="m7E-ag-dEX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <numberFormatter formatterBehavior="default10_4" usesGroupingSeparator="NO" formatWidth="-1" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="42" id="Rsm-xE-2zT"/>
             </objects>
             <point key="canvasLocation" x="-74" y="152"/>
         </scene>
@@ -307,7 +304,6 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="Xw9-ja-yOu" name="value" keyPath="objectValue" id="Rr9-Bu-tuM"/>
-                                                                        <outlet property="formatter" destination="g92-NO-XZs" id="tEQ-AZ-SZL"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -405,12 +401,10 @@
                     </view>
                     <connections>
                         <outlet property="messageField" destination="fSg-L5-9SX" id="k95-Mz-sx3"/>
-                        <outlet property="numberFormatter" destination="g92-NO-XZs" id="4uf-w2-wA9"/>
                         <outlet property="tableView" destination="YoU-dq-kJ0" id="dj4-Cy-nXd"/>
                     </connections>
                 </viewController>
                 <customObject id="heb-LF-jlf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <numberFormatter formatterBehavior="default10_4" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="g92-NO-XZs"/>
             </objects>
             <point key="canvasLocation" x="-74" y="519"/>
         </scene>

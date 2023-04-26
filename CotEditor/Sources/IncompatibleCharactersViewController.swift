@@ -52,7 +52,6 @@ final class IncompatibleCharactersViewController: NSViewController {
     
     @objc private dynamic var message: String?
     
-    @IBOutlet private var numberFormatter: NumberFormatter?
     @IBOutlet private weak var messageField: NSTextField?
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -263,7 +262,7 @@ extension IncompatibleCharactersViewController: NSTableViewDataSource {
         
         switch identifier {
             case .line:
-                return self.document?.lineEndingScanner.lineNumber(at: incompatibleCharacter.location)
+                return self.document?.lineEndingScanner.lineNumber(at: incompatibleCharacter.location).formatted()
             case .character:
                 return String(incompatibleCharacter.character)
             case .converted:
