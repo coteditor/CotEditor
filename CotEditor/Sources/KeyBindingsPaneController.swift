@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 /// outlineView column identifier
 private extension NSUserInterfaceItemIdentifier {

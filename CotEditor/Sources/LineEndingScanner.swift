@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
+import Combine
 import Foundation
 import class AppKit.NSTextStorage
-import Combine
 
 final class LineEndingScanner {
     

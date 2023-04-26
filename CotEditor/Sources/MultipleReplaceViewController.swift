@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
-import Cocoa
-import SwiftUI
+import AppKit
 import Combine
+import SwiftUI
 
 final class MultipleReplaceViewController: NSViewController {
     

@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 import SwiftUI
 
 extension EditorTextView {

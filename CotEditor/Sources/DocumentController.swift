@@ -24,10 +24,10 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
+import Combine
 import SwiftUI
 import UniformTypeIdentifiers
-import Combine
 
 protocol AdditionalDocumentPreparing: NSDocument {
     

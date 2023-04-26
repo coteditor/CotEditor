@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import XCTest
 import Combine
+import XCTest
 @testable import CotEditor
 
 final class EditedRangeSetTests: XCTestCase {

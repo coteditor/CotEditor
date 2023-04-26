@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 private enum OSALineEnding: FourCharCode {
     

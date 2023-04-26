@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import SwiftUI
 import AppKit
+import SwiftUI
 
 struct InsetTextField: NSViewRepresentable {
     

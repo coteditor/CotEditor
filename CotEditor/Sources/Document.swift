@@ -24,10 +24,10 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Combine
-import Cocoa
-import UniformTypeIdentifiers
 import SwiftUI
+import UniformTypeIdentifiers
 
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     

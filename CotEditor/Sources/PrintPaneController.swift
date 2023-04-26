@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 import Combine
 
 final class PrintPaneController: NSViewController {

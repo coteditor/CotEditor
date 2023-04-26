@@ -24,11 +24,11 @@
 //  limitations under the License.
 //
 
-import Combine
-import Cocoa
+import AppKit
 import AudioToolbox
-import UniformTypeIdentifiers
+import Combine
 import SwiftUI
+import UniformTypeIdentifiers
 
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 

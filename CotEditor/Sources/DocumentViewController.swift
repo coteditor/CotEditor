@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Combine
-import Cocoa
 import SwiftUI
 
 private let maximumNumberOfSplitEditors = 8

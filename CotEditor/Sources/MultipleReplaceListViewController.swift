@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
-import Combine
-import Cocoa
+import AppKit
 import AudioToolbox
+import Combine
 import UniformTypeIdentifiers
 
 final class MultipleReplaceListViewController: NSViewController, NSMenuItemValidation {

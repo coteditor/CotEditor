@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 import WebKit
 
 final class WebDocumentWindowController: NSWindowController {

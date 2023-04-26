@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import Combine
 import AppKit
+import Combine
 
 final class IncompatibleCharacterScanner {
     

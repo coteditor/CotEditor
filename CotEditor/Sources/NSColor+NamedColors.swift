@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import AppKit.NSColor
 import AppKit.NSAppearance
+import AppKit.NSColor
 
 extension NSColor {
     

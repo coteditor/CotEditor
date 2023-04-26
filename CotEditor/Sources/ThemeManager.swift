@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Combine
 import Foundation
-import AppKit
 import UniformTypeIdentifiers
 
 @objc protocol ThemeHolder: AnyObject {

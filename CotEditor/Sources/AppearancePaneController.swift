@@ -24,10 +24,10 @@
 //  limitations under the License.
 //
 
-import Combine
-import Cocoa
-import SwiftUI
+import AppKit
 import AudioToolbox
+import Combine
+import SwiftUI
 import UniformTypeIdentifiers
 
 final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSTextFieldDelegate, NSMenuDelegate {

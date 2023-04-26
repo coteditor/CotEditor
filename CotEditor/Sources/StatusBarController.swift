@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Combine
-import Cocoa
 
 @MainActor final class StatusBarController: NSViewController {
     

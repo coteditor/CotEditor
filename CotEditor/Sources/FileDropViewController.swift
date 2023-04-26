@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Combine
-import Cocoa
 
 final class FileDropViewController: NSViewController, NSTableViewDelegate, NSTextFieldDelegate, NSTextViewDelegate {
     

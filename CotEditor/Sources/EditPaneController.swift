@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 final class EditPaneController: NSViewController {
     

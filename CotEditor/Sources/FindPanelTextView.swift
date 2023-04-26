@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 /// text view that behaves like a NSTextField
 class FindPanelTextView: NSTextView {

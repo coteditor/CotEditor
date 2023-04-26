@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import XCTest
 import UniformTypeIdentifiers
+import XCTest
 @testable import CotEditor
 
 final class UTTypeExtensionTests: XCTestCase {

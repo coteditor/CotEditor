@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 import Combine
 
 private let defaultResultViewHeight: CGFloat = 200

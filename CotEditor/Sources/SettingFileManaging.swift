@@ -25,8 +25,8 @@
 
 import Combine
 import Foundation
-import AppKit.NSApplication
 import UniformTypeIdentifiers
+import AppKit.NSApplication
 
 enum SettingChange {
     

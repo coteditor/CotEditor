@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 private extension NSTouchBar.CustomizationIdentifier {
     

@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
-import SwiftUI
-import Combine
 import AppKit
+import Combine
+import SwiftUI
 
 @MainActor final class CharacterCountOptionsSetting: ObservableObject {
     

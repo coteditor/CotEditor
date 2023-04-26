@@ -24,8 +24,8 @@
 //  limitations under the License.
 //
 
+import AppKit
 import Combine
-import Cocoa
 
 // NSObject-based NSAppleEventDescriptor must be used but not sendable
 // -> According to the documentation, NSAppleEventDescriptor is just a wrapper of AEDesc,

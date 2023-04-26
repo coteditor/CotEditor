@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import AppKit.NSTextStorage
 import Combine
+import AppKit.NSTextStorage
 
 final class URLDetector {
     

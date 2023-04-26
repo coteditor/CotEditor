@@ -23,8 +23,8 @@
 //  limitations under the License.
 //
 
-import struct Foundation.NSRange
 import AppKit.NSFont
+import struct Foundation.NSRange
 
 struct OutlineItem: Equatable {
     

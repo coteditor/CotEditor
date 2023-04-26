@@ -24,7 +24,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 import SwiftUI
 
 final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
