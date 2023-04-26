@@ -351,10 +351,10 @@
 "Custom…" = "Personalizzato…";
 "Auto-Expand Tabs" = "Espandi Tab automaticamente";
 
-"Wrap Lines" = "Aapo automatico";
+"Wrap Lines" = "A capo automatico";
 // tooltip
 "Unwrap lines" = "Rimuovi a capo automatico";
-"Wrap lines" = "Aapo automatico";
+"Wrap lines" = "A capo automatico";
 
 "Invisibles" = "Caratteri invisibili";
 // tooltip
@@ -368,7 +368,7 @@
 
 "Keep on Top" = "Mantieni in alto";
 // tooltip
-"Keep the window always on top" = "Keep the window always on top";  // FIXME: added
+"Keep the window always on top" = "Mantieni la finestra sempre in alto";
 
 "Opacity" = "Opacità";
 // tooltip
