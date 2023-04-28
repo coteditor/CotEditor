@@ -30,10 +30,7 @@ import Combine
 import SwiftUI
 import UniformTypeIdentifiers
 
-private let isUTF8WithBOMFlag = "UTF-8 with BOM"
-
-
-final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSMenuDelegate {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSFilePromiseProviderDelegate, NSMenuDelegate, EncodingHolder {
     
     // MARK: Private Properties
     
@@ -317,15 +314,14 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     
     // MARK: Action Messages
     
-    /// save also availability of UTF-8 BOM
-    @IBAction func changeEncoding(_ sender: Any?) {
+    /// save default file encoding
+    @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
-        let withUTF8BOM = (self.encodingPopupButton?.selectedItem?.representedObject as? String) == isUTF8WithBOMFlag
-        
-        UserDefaults.standard[.saveUTF8BOM] = withUTF8BOM
+        EncodingManager.shared.defaultEncoding = FileEncoding(tag: sender.tag)
     }
     
     
+    /// show encoding list sheet
     @IBAction func showEncodingList(_ sender: Any?) {
         
         let view = EncodingListView()
@@ -461,38 +457,13 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// build encoding menu
     private func setupEncodingMenu() {
         
-        guard let popupButton = self.encodingPopupButton else { return assertionFailure() }
-        assert(popupButton.menu != nil)
+        guard
+            let popupButton = self.encodingPopupButton,
+            let menu = popupButton.menu
+        else { return assertionFailure() }
         
-        popupButton.removeAllItems()
-        
-        let utf8Int = Int(String.Encoding.utf8.rawValue)
-        for item in EncodingManager.shared.createEncodingMenuItems() {
-            popupButton.menu?.addItem(item)
-            
-            // add "UTF-8 with BOM" item
-            if item.tag == utf8Int {
-                let fileEncoding = FileEncoding(encoding: .utf8, withUTF8BOM: true)
-                let bomItem = NSMenuItem()
-                bomItem.title = fileEncoding.localizedName
-                bomItem.tag = utf8Int
-                bomItem.representedObject = isUTF8WithBOMFlag
-                popupButton.menu?.addItem(bomItem)
-            }
-        }
-        
-        // select menu item for the current setting manually although Cocoa-Bindings is used
-        // -> Because items were actually added after Cocoa-Binding selected the item.
-        let defaultEncoding = UserDefaults.standard[.encodingInNew]
-        if Int(defaultEncoding) == utf8Int {
-            let utf8WithBomIndex = popupButton.indexOfItem(withRepresentedObject: isUTF8WithBOMFlag)
-            let index = UserDefaults.standard[.saveUTF8BOM] ? utf8WithBomIndex : utf8WithBomIndex - 1
-            // -> The normal "UTF-8" locates just above "UTF-8 with BOM".
-            
-            popupButton.selectItem(at: index)
-        } else {
-            popupButton.selectItem(withTag: Int(defaultEncoding))
-        }
+        EncodingManager.shared.updateChangeEncodingMenu(menu)
+        popupButton.selectItem(withTag: EncodingManager.shared.defaultEncoding.tag)
     }
     
     

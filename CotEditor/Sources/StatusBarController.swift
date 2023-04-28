@@ -145,12 +145,14 @@ import Combine
         
         // observe document status change
         document.$fileEncoding
+            .map(\.tag)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.invalidateEncodingSelection() }
+            .sink { [weak self] in self?.encodingPopUpButton?.selectItem(withTag: $0) }
             .store(in: &self.documentObservers)
         document.$lineEnding
+            .map(\.index)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] in self?.invalidateLineEndingSelection(to: $0) }
+            .sink { [weak self] in self?.lineEndingPopUpButton?.selectItem(withTag: $0) }
             .store(in: &self.documentObservers)
     }
     
@@ -193,27 +195,16 @@ import Combine
     /// build encoding popup item
     @MainActor private func buildEncodingPopupButton() {
         
-        guard let popUpButton = self.encodingPopUpButton else { return }
+        guard
+            let popupButton = self.encodingPopUpButton,
+            let menu = popupButton.menu
+        else { return assertionFailure() }
         
-        EncodingManager.shared.updateChangeEncodingMenu(popUpButton.menu!)
+        EncodingManager.shared.updateChangeEncodingMenu(menu)
         
-        self.invalidateEncodingSelection()
-    }
-    
-    
-    /// select item in the encoding popup menu
-    @MainActor private func invalidateLineEndingSelection(to lineEnding: LineEnding) {
-        
-        self.lineEndingPopUpButton?.selectItem(withTag: lineEnding.index)
-    }
-    
-    
-    /// select item in the line ending menu
-    @MainActor private func invalidateEncodingSelection() {
-        
-        guard let fileEncoding = self.document?.fileEncoding else { return }
-        
-        self.encodingPopUpButton?.selectItem(withTag: fileEncoding.tag)
+        if let fileEncoding = self.document?.fileEncoding {
+            popupButton.selectItem(withTag: fileEncoding.tag)
+        }
     }
 }
 

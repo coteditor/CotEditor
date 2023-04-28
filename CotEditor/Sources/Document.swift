@@ -94,16 +94,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let defaultEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
-        let encoding = String.availableStringEncodings.contains(defaultEncoding) ? defaultEncoding : .utf8
-        self.fileEncoding = FileEncoding(encoding: encoding, withUTF8BOM: (encoding == .utf8) && UserDefaults.standard[.saveUTF8BOM])
-        
         let lineEnding = LineEnding.allCases[safe: UserDefaults.standard[.lineEndCharCode]] ?? .lf
         self.lineEnding = lineEnding
+        
         let style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]) ?? SyntaxStyle()
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage, style: style)
         
         // use the encoding selected by the user in the open panel, if exists
+        self.fileEncoding = EncodingManager.shared.defaultEncoding
         self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
         
         // observe for inconsistent line endings
