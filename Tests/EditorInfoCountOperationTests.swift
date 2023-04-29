@@ -36,7 +36,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     
     func testNoRequiredInfo() async throws {
         
-        let selectedRange = Range(NSRange(0..<3), in: self.testString)!
+        let selectedRange = try XCTUnwrap(Range(NSRange(0..<3), in: self.testString))
         let counter = EditorCounter(
             string: self.testString,
             selectedRanges: [selectedRange],
@@ -56,7 +56,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     
     func testAllRequiredInfo() async throws {
         
-        let selectedRange = Range(NSRange(11..<21), in: self.testString)!
+        let selectedRange = try XCTUnwrap(Range(NSRange(11..<21), in: self.testString))
         let counter = EditorCounter(
             string: self.testString,
             selectedRanges: [selectedRange],
@@ -81,7 +81,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     
     func testWholeTextSkip() async throws {
         
-        let selectedRange = Range(NSRange(11..<21), in: self.testString)!
+        let selectedRange = try XCTUnwrap(Range(NSRange(11..<21), in: self.testString))
         let counter = EditorCounter(
             string: self.testString,
             selectedRanges: [selectedRange],
@@ -107,7 +107,7 @@ final class EditorInfoCountOperationTests: XCTestCase {
     func testCRLF() async throws {
         
         let string = "a\r\nb"
-        let selectedRange = Range(NSRange(1..<4), in: string)!
+        let selectedRange = try XCTUnwrap(Range(NSRange(1..<4), in: string))
         let counter = EditorCounter(
             string: string,
             selectedRanges: [selectedRange],

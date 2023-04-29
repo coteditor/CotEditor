@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ final class ThemeTests: XCTestCase {
     func testDefaultTheme() throws {
         
         let themeName = "Dendrobates"
-        let theme = try self.loadThemeWithName(themeName)!
+        let theme = try self.loadThemeWithName(themeName)
         
         XCTAssertEqual(theme.name, themeName)
         XCTAssertEqual(theme.text.color, NSColor.black.usingColorSpace(.genericRGB))
@@ -50,7 +50,8 @@ final class ThemeTests: XCTestCase {
         XCTAssertFalse(theme.isDarkTheme)
         
         for type in SyntaxType.allCases {
-            XCTAssertGreaterThan(theme.style(for: type)!.color.hueComponent, 0)
+            let style = try XCTUnwrap(theme.style(for: type))
+            XCTAssertGreaterThan(style.color.hueComponent, 0)
         }
         
         XCTAssertFalse(theme.isDarkTheme)
@@ -60,7 +61,7 @@ final class ThemeTests: XCTestCase {
     func testDarkTheme() throws {
         
         let themeName = "Solarized (Dark)"
-        let theme = try self.loadThemeWithName(themeName)!
+        let theme = try self.loadThemeWithName(themeName)
         
         XCTAssertEqual(theme.name, themeName)
         XCTAssertTrue(theme.isDarkTheme)
@@ -70,7 +71,7 @@ final class ThemeTests: XCTestCase {
     /// test if all of bundled themes are valid
     func testBundledThemes() throws {
         
-        let themeDirectoryURL = self.bundle.url(forResource: self.themeDirectoryName, withExtension: nil)!
+        let themeDirectoryURL = try XCTUnwrap(self.bundle.url(forResource: self.themeDirectoryName, withExtension: nil))
         let urls = try FileManager.default.contentsOfDirectory(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])
             .filter { UTType.cotTheme.preferredFilenameExtension == $0.pathExtension }
         
@@ -86,10 +87,12 @@ final class ThemeTests: XCTestCase {
 
 private extension ThemeTests {
     
-    func loadThemeWithName(_ name: String) throws -> Theme? {
+    func loadThemeWithName(_ name: String) throws -> Theme {
         
-        let url = self.bundle.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
+        guard
+            let url = self.bundle.url(forResource: name, withExtension: UTType.cotTheme.preferredFilenameExtension, subdirectory: self.themeDirectoryName)
+        else { throw CocoaError(.fileNoSuchFile) }
         
-        return try Theme(contentsOf: url!)
+        return try Theme(contentsOf: url)
     }
 }

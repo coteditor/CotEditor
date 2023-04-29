@@ -88,7 +88,7 @@ final class LineRangeCacheableTests: XCTestCase {
     }
     
     
-    func testRangeToLineRangeCalculation() {
+    func testRangeToLineRangeCalculation() throws {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
         XCTAssertEqual(lineString.lineRange(for: NSRange(0..<3)), NSRange(0..<5))
@@ -113,7 +113,8 @@ final class LineRangeCacheableTests: XCTestCase {
             let lineString = LineString(string)
             
             for index in (0...string.length).shuffled() {
-                let range = NSRange(index..<(index...string.length).randomElement()!)
+                let endIndex = try XCTUnwrap((index...string.length).randomElement())
+                let range = NSRange(index..<endIndex)
                 let result = (string as NSString).lineRange(for: range)
                 
                 XCTAssertEqual(lineString.lineRange(for: range), result, "At \(index) with string \"\(string)\"")

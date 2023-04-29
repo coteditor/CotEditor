@@ -49,14 +49,14 @@ final class ShortcutTests: XCTestCase {
         
         XCTAssertEqual(Shortcut(modifierMask: [], keyEquivalent: "a")?.keySpecChars, "a")
         XCTAssertNil(Shortcut(modifierMask: [.control, .shift], keyEquivalent: ""))
-        XCTAssertTrue(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")!.isValid)
-        XCTAssertFalse(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "ab")!.isValid)
+        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "a")?.isValid, true)
+        XCTAssertEqual(Shortcut(modifierMask: [.control, .shift], keyEquivalent: "ab")?.isValid, false)
     }
     
     
-    func testStringToShortcut() {
+    func testStringToShortcut() throws {
         
-        let shortcut = Shortcut(keySpecChars: "^$a")!
+        let shortcut = try XCTUnwrap(Shortcut(keySpecChars: "^$a"))
         
         XCTAssertEqual(shortcut.keyEquivalent, "a")
         XCTAssertEqual(shortcut.modifierMask, [.control, .shift])
@@ -74,7 +74,7 @@ final class ShortcutTests: XCTestCase {
     }
     
     
-    func testShortcutSymbols () {
+    func testShortcutSymbols() throws {
         
         // test modifier symbols
         XCTAssertNil(Shortcut(keySpecChars: ""))
@@ -82,11 +82,12 @@ final class ShortcutTests: XCTestCase {
         XCTAssertEqual(Shortcut(keySpecChars: "~@b")?.symbol, "⌥ ⌘ B")
         
         // test unprintable keys
-        let f10 = String(UnicodeScalar(NSF10FunctionKey)!)
+        
+        let f10 = try XCTUnwrap(UnicodeScalar(NSF10FunctionKey).flatMap(String.init))
         XCTAssertEqual(Shortcut(keySpecChars: "@" + f10)?.symbol, "⌘ F10")
         
-        let delete = String(UnicodeScalar(NSDeleteCharacter)!)
-        XCTAssertEqual(Shortcut(keySpecChars: "@" + delete)?.symbol, "⌘ ⌦")
+        let delete = try XCTUnwrap(UnicodeScalar(NSDeleteCharacter).flatMap(String.init))
+        XCTAssertEqual(Shortcut(keySpecChars: "@" + String(delete))?.symbol, "⌘ ⌦")
         
         // test creation
         XCTAssertNil(Shortcut(symbolRepresentation: ""))

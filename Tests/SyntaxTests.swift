@@ -49,24 +49,23 @@ final class SyntaxTests: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         
         // load styles
-        let dictsWithNames = bundle.urls(forResourcesWithExtension: "yml", subdirectory: styleDirectoryName)!
-            .map { url -> (String, SyntaxManager.StyleDictionary) in
-                let string = try! String(contentsOf: url)
-                let name = url.deletingPathExtension().lastPathComponent
-                let dict = try! Yams.load(yaml: string) as! [String: Any]
-                
-                return (name, dict)
-            }
-        self.styleDicts = .init(uniqueKeysWithValues: dictsWithNames)
+        let urls = try XCTUnwrap(bundle.urls(forResourcesWithExtension: "yml", subdirectory: styleDirectoryName))
+        self.styleDicts = try urls.reduce(into: [:]) { (dict, url) in
+            let string = try String(contentsOf: url)
+            let name = url.deletingPathExtension().lastPathComponent
+            
+            dict[name] = try XCTUnwrap(Yams.load(yaml: string) as? [String: Any])
+        }
         
         // create HTML style
-        self.htmlStyle = SyntaxStyle(dictionary: self.styleDicts["HTML"]!, name: "HTML")
+        let htmlDict = try XCTUnwrap(self.styleDicts["HTML"])
+        self.htmlStyle = SyntaxStyle(dictionary: htmlDict, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
         
         // load test file
-        let sourceURL = bundle.url(forResource: "sample", withExtension: "html")
-        self.htmlSource = try String(contentsOf: sourceURL!)
+        let sourceURL = try XCTUnwrap(bundle.url(forResource: "sample", withExtension: "html"))
+        self.htmlSource = try String(contentsOf: sourceURL)
         
         XCTAssertNotNil(self.htmlSource)
     }
@@ -79,7 +78,7 @@ final class SyntaxTests: XCTestCase {
             XCTAssert(validator.validate())
             
             for error in validator.errors {
-                XCTFail("\(name) \(error.errorDescription!) -> \(error.failureReason!)")
+                XCTFail("\(name): \(error)")
             }
         }
     }
@@ -102,9 +101,9 @@ final class SyntaxTests: XCTestCase {
     }
     
     
-    func testXMLSytle() {
+    func testXMLSytle() throws {
         
-        let style = self.htmlStyle!
+        let style = try XCTUnwrap(self.htmlStyle)
         
         XCTAssertEqual(style.name, "HTML")
         XCTAssertFalse(style.highlightParser.isEmpty)
@@ -114,10 +113,10 @@ final class SyntaxTests: XCTestCase {
     }
     
     
-    func testOutlineParse() {
+    func testOutlineParse() throws {
         
-        let style = self.htmlStyle!
-        let source = self.htmlSource!
+        let style = try XCTUnwrap(self.htmlStyle)
+        let source = try XCTUnwrap(self.htmlSource)
         
         let textStorage = NSTextStorage(string: source)
         let parser = SyntaxParser(textStorage: textStorage, style: style)

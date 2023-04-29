@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020-2021 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,33 +40,33 @@ final class FuzzyRangeTests: XCTestCase {
     }
     
     
-    func testFuzzyLineRange() {
+    func testFuzzyLineRange() throws {
         
         let string = "1\r\n2\r\n3\r\n4"  // 1 based
         var range: NSRange
         
-        range = string.rangeForLine(in: FuzzyRange(location: 1, length: 2))!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: 1, length: 2)))
         XCTAssertEqual((string as NSString).substring(with: range), "1\r\n2\r\n")
         
-        range = string.rangeForLine(in: FuzzyRange(location: 4, length: 1))!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: 4, length: 1)))
         XCTAssertEqual((string as NSString).substring(with: range), "4")
         
-        range = string.rangeForLine(in: FuzzyRange(location: 3, length: 0))!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: 3, length: 0)))
         XCTAssertEqual((string as NSString).substring(with: range), "3\r\n")
         
-        range = string.rangeForLine(in: FuzzyRange(location: -1, length: 1))!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: -1, length: 1)))
         XCTAssertEqual((string as NSString).substring(with: range), "4")
         
-        range = string.rangeForLine(in: FuzzyRange(location: -2, length: 1))!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: -2, length: 1)))
         XCTAssertEqual((string as NSString).substring(with: range), "3\r\n")
         
-        range = string.rangeForLine(in: FuzzyRange(location: 2, length: -2))!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: 2, length: -2)))
         XCTAssertEqual((string as NSString).substring(with: range), "2\r\n")
         
-        range = "1\n".rangeForLine(in: FuzzyRange(location: -1, length: 0))!
+        range = try XCTUnwrap("1\n".rangeForLine(in: FuzzyRange(location: -1, length: 0)))
         XCTAssertEqual(range, NSRange(location: 2, length: 0))
         
-        range = string.rangeForLine(in: FuzzyRange(location: 1, length: 2), includingLineEnding: false)!
+        range = try XCTUnwrap(string.rangeForLine(in: FuzzyRange(location: 1, length: 2), includingLineEnding: false))
         XCTAssertEqual((string as NSString).substring(with: range), "1\r\n2")
     }
     
@@ -80,11 +80,11 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertEqual(FuzzyRange(location: -1, length: 0).string, "-1")
         XCTAssertEqual(FuzzyRange(location: -1, length: -1).string, "-1:-1")
         
-        XCTAssertEqual(FuzzyRange(string: "0")!, FuzzyRange(location: 0, length: 0))
-        XCTAssertEqual(FuzzyRange(string: "1")!, FuzzyRange(location: 1, length: 0))
-        XCTAssertEqual(FuzzyRange(string: "1:2")!, FuzzyRange(location: 1, length: 2))
-        XCTAssertEqual(FuzzyRange(string: "-1")!, FuzzyRange(location: -1, length: 0))
-        XCTAssertEqual(FuzzyRange(string: "-1:-1")!, FuzzyRange(location: -1, length: -1))
+        XCTAssertEqual(FuzzyRange(string: "0"), FuzzyRange(location: 0, length: 0))
+        XCTAssertEqual(FuzzyRange(string: "1"), FuzzyRange(location: 1, length: 0))
+        XCTAssertEqual(FuzzyRange(string: "1:2"), FuzzyRange(location: 1, length: 2))
+        XCTAssertEqual(FuzzyRange(string: "-1"), FuzzyRange(location: -1, length: 0))
+        XCTAssertEqual(FuzzyRange(string: "-1:-1"), FuzzyRange(location: -1, length: -1))
         XCTAssertNil(FuzzyRange(string: ""))
         XCTAssertNil(FuzzyRange(string: "abc"))
         XCTAssertNil(FuzzyRange(string: "1:a"))

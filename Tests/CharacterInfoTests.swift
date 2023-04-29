@@ -62,8 +62,8 @@ final class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(unicode.codePoint, "U+1F600")
         XCTAssertTrue(unicode.isSurrogatePair)
-        XCTAssertEqual(unicode.surrogateCodePoints!.lead, "U+D83D")
-        XCTAssertEqual(unicode.surrogateCodePoints!.trail, "U+DE00")
+        XCTAssertEqual(unicode.surrogateCodePoints?.lead, "U+D83D")
+        XCTAssertEqual(unicode.surrogateCodePoints?.trail, "U+DE00")
         XCTAssertEqual(unicode.name, "GRINNING FACE")
         XCTAssertEqual(unicode.blockName, "Emoticons")
         XCTAssertNotNil(unicode.localizedBlockName)
@@ -80,31 +80,31 @@ final class CharacterInfoTests: XCTestCase {
     }
     
     
-    func testUnicodeControlPictures() {
+    func testUnicodeControlPictures() throws {
         
         // test NULL
-        let nullCharacter = Unicode.Scalar(0x0000)!
-        let nullPictureCharacter = Unicode.Scalar(0x2400)!
+        let nullCharacter = try XCTUnwrap(Unicode.Scalar(0x0000))
+        let nullPictureCharacter = try XCTUnwrap(Unicode.Scalar(0x2400))
         XCTAssertEqual(nullCharacter.name, "NULL")
         XCTAssertEqual(nullPictureCharacter.name, "SYMBOL FOR NULL")
         XCTAssertEqual(nullCharacter.pictureRepresentation, nullPictureCharacter)
         
         // test SPACE
-        let spaceCharacter = Unicode.Scalar(0x0020)!
-        let spacePictureCharacter = Unicode.Scalar(0x2420)!
+        let spaceCharacter = try XCTUnwrap(Unicode.Scalar(0x0020))
+        let spacePictureCharacter = try XCTUnwrap(Unicode.Scalar(0x2420))
         XCTAssertEqual(spaceCharacter.name, "SPACE")
         XCTAssertEqual(spacePictureCharacter.name, "SYMBOL FOR SPACE")
         XCTAssertEqual(spaceCharacter.pictureRepresentation, spacePictureCharacter)
         
         // test DELETE
-        let deleteCharacter = Unicode.Scalar(NSDeleteCharacter)!
+        let deleteCharacter = try XCTUnwrap(Unicode.Scalar(NSDeleteCharacter))
         let deletePictureCharacter = Unicode.Scalar("␡")
         XCTAssertEqual(deleteCharacter.name, "DELETE")
         XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
         XCTAssertEqual(deleteCharacter.pictureRepresentation, deletePictureCharacter)
         
         // test one after the last C0 control character
-        let exclamationCharacter = Unicode.Scalar(0x0021)!
+        let exclamationCharacter = try XCTUnwrap(Unicode.Scalar(0x0021))
         XCTAssertEqual(exclamationCharacter.name, "EXCLAMATION MARK")
         XCTAssertNil(exclamationCharacter.pictureRepresentation)
     }
@@ -119,7 +119,7 @@ final class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(charInfo.character, "☺︎")
         XCTAssertFalse(charInfo.isComplex)
         XCTAssertEqual(charInfo.character.unicodeScalars.map(\.codePoint), ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name!), ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name), ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
         XCTAssertEqual(charInfo.localizedDescription, "WHITE SMILING FACE (Text Style)")
     }
     
@@ -149,6 +149,6 @@ final class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(charInfo.character, " ")
         XCTAssertEqual(charInfo.pictureCharacter, "␠")
-        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name!), ["SPACE"])
+        XCTAssertEqual(charInfo.character.unicodeScalars.map(\.name), ["SPACE"])
     }
 }

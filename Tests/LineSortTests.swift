@@ -127,7 +127,7 @@ final class LineSortTests: XCTestCase {
     }
     
     
-    func testTargetRange() {
+    func testTargetRange() throws {
         
         let string = "dog"
         XCTAssertEqual(EntireLineSortPattern().range(for: string), string.startIndex..<string.endIndex)
@@ -143,8 +143,9 @@ final class LineSortTests: XCTestCase {
         
         let tsvString = "a\tb"
         pattern.column = 1
+        let range = try XCTUnwrap(pattern.range(for: tsvString))
         XCTAssertEqual(pattern.sortKey(for: tsvString), tsvString)
-        XCTAssertEqual(NSRange(pattern.range(for: tsvString)!, in: tsvString), NSRange(0..<3))
+        XCTAssertEqual(NSRange(range, in: tsvString), NSRange(0..<3))
     }
     
     

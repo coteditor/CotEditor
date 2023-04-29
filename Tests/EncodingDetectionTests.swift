@@ -232,9 +232,10 @@ final class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func testYenEncoding() {
+    func testYenEncoding() throws {
         
         // encodings listed in faq_about_yen_backslash.html
+        let ascii = try XCTUnwrap(CFStringEncodings(rawValue: CFIndex(CFStringBuiltInEncodings.ASCII.rawValue)))
         let inHelpCFEncodings: [CFStringEncodings] = [
             .dosJapanese,
             .EUC_JP,              // Japanese (EUC)
@@ -263,7 +264,7 @@ final class EncodingDetectionTests: XCTestCase {
             .isoLatin8,           // Celtic (ISO Latin 8)
             .isoLatin10,          // Romanian (ISO Latin 10)
             .dosRussian,          // Russian (DOS)
-            CFStringEncodings(rawValue: CFIndex(CFStringBuiltInEncodings.ASCII.rawValue))!,  // Western (ASCII)
+            ascii,                // Western (ASCII)
         ]
         let inHelpEncodings = inHelpCFEncodings
             .map { CFStringEncoding($0.rawValue) }
@@ -298,8 +299,10 @@ private extension EncodingDetectionTests {
     
     func dataForFileName(_ fileName: String) throws -> Data {
         
-        let fileURL = self.bundle.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
+        guard
+            let fileURL = self.bundle.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
+        else { throw CocoaError(.fileNoSuchFile) }
         
-        return try Data(contentsOf: fileURL!)
+        return try Data(contentsOf: fileURL)
     }
 }

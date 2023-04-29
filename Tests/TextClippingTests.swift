@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2020 1024jp
+//  © 2020-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ final class TextClippingTests: XCTestCase {
     
     func testReadingTextClippingFile() throws {
         
-        let url = Bundle(for: type(of: self)).url(forResource: "moof", withExtension: "textClipping")!
+        let bundle = Bundle(for: type(of: self))
+        let url = try XCTUnwrap(bundle.url(forResource: "moof", withExtension: "textClipping"))
         let textClipping = try TextClipping(url: url)
         
         XCTAssertEqual(textClipping.string, "🐕moof🐄")

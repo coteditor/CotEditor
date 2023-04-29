@@ -349,7 +349,7 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testWhitespaceTriming() {
+    func testWhitespaceTriming() throws {
         
         let string = """
             
@@ -359,7 +359,7 @@ final class StringExtensionsTests: XCTestCase {
             abc
             """
         
-        let trimmed = string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: false))
+        let trimmed = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: false))
         let expectedTrimmed = """
             
             abc def
@@ -369,7 +369,7 @@ final class StringExtensionsTests: XCTestCase {
             """
         XCTAssertEqual(trimmed, expectedTrimmed)
         
-        let trimmedIgnoringEmptyLines = string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: true))
+        let trimmedIgnoringEmptyLines = try string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: true))
         let expectedTrimmedIgnoringEmptyLines =  """
             
             abc def
@@ -399,10 +399,10 @@ final class StringExtensionsTests: XCTestCase {
 
 private extension String {
     
-    func trim(ranges: [NSRange]) -> String {
+    func trim(ranges: [NSRange]) throws -> String {
         
-        ranges.reversed()
-            .map { Range($0, in: self)! }
+        try ranges.reversed()
+            .map { try XCTUnwrap(Range($0, in: self)) }
             .reduce(self) { $0.replacingCharacters(in: $1, with: "") }
     }
 }
