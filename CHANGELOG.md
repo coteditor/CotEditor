@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Workaround an issue that “Keep on Top” feature blocks all windows from coming back to the foreground in the Stage Manager mode.
+- Fix an issue that invalid style name could be registered.
 - Fix an issue in the Key Binding settings that the documents currently opened were wrongly listed in the Window menu.
 
 
