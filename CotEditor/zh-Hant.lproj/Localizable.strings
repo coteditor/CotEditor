@@ -731,10 +731,6 @@
 // Suffix of copied syntax coloring style
 "copy" = "拷貝";
 
-// Delete syntax style alert
-"Delete" = "刪除";
-"Replace" = "取代";
-
 // Import syntax style file choose openPanel button
 "Import" = "導入";
 // Importing same name style alert

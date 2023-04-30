@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@
 "D source" = "D source";
 "Dart script" = "Dart script";
 "Diff" = "Diff";
-"Fortran Source" = "Fortran Source";
+"Fortran source" = "Fortran source";
 "Go script" = "Go script";
 "Haskell script" = "Haskell script";
 "HTML document" = "HTML document";
@@ -53,7 +53,7 @@
 "JavaScript" = "JavaScript";
 "JSON document" = "JSON document";
 "Julia script" = "Julia script";
-"Kotlin source" = "Kotlin source";
+"Kotlin script" = "Kotlin script";
 "Lisp script" = "Lisp script";
 "Lua script" = "Lua script";
 "Markdown document" = "Markdown document";

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@
 "D source" = "D kaynağı";
 "Dart script" = "Dart betiği";
 "Diff" = "Diff";
-"Fortran Source" = "Fortran kaynağı";
+"Fortran source" = "Fortran kaynağı";
 "Go script" = "Go betiği";
 "Haskell script" = "Haskell betiği";
 "HTML document" = "HTML belgesi";
@@ -53,7 +53,7 @@
 "JavaScript" = "JavaScript";
 "JSON document" = "JSON belgesi";
 "Julia script" = "Julia betiğe";
-"Kotlin source" = "Kotlin kaynağı";
+"Kotlin script" = "Kotlin betiğe";
 "Lisp script" = "Lisp betiği";
 "Lua script" = "Lua betiğe";
 "Markdown document" = "Markdown belgesi";

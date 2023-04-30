@@ -512,7 +512,7 @@
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "Alles ersetzen";
 /* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "Multipel ersetzen…";
+"o7K-sI-KJA.title" = "Multipel ersetzen …";
 
 /* Class = "NSMenuItem"; title = "Highlight All"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Alles hervorheben";

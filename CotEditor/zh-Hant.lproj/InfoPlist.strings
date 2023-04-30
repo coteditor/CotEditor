@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@
 "D source" = "D源碼";
 "Dart script" = "Dart腳本";
 "Diff" = "Diff";
-"Fortran Source" = "Fortran源碼";
+"Fortran source" = "Fortran源碼";
 "Go script" = "Go 腳本";
 "Haskell script" = "Haskell腳本";
 "HTML document" = "HTML文件";
@@ -52,7 +52,7 @@
 "JavaScript" = "JavaScript";
 "JSON document" = "JSON文件";
 "Julia script" = "Julia腳本";
-"Kotlin source" = "Kotlin源碼";
+"Kotlin script" = "Kotlin腳本";
 "Lisp script" = "Lisp腳本";
 "Lua script" = "Lua腳本";
 "Markdown document" = "Markdown文件";

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@
 "D source" = "Dソース";
 "Dart script" = "Dartスクリプト";
 "Diff" = "Diff";
-"Fortran Source" = "Fortranソース";
+"Fortran source" = "Fortranソース";
 "Go script" = "Goスクリプト";
 "Haskell script" = "Haskellスクリプト";
 "HTML document" = "HTML書類";
@@ -53,7 +53,7 @@
 "JavaScript" = "JavaScript";
 "JSON document" = "JSON書類";
 "Julia script" = "Juliaスクリプト";
-"Kotlin source" = "Kotlinソース";
+"Kotlin script" = "Kotlinスクリプト";
 "Lisp script" = "Lispスクリプト";
 "Lua script" = "Luaスクリプト";
 "Markdown document" = "Markdown書類";

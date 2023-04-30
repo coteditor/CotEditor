@@ -29,6 +29,8 @@
 "Cancel" = "Cancel";
 "Start" = "Start";
 "Restore Defaults" = "Restore Defaults";
+"Delete" = "Delete";
+"Restore" = "Restore";
 
 
 // Appending words in parentheses
@@ -620,10 +622,6 @@
 "Restore “%@”" = "Restore “%@”";
 "Reveal “%@” in Finder" = "Reveal “%@” in Finder";
 
-// Swipe to delete (also used in the Format pane)
-"Delete" = "Delete";
-"Restore" = "Restore";
-
 /* Theme View */
 "Text:" = "Text:";
 "Cursor:" = "Cursor:";
@@ -730,10 +728,6 @@
 
 // Suffix of copied syntax coloring style
 "copy" = "copy";
-
-// Delete syntax style alert
-"Delete" = "Delete";
-"Replace" = "Replace";
 
 // Import syntax style file choose openPanel button
 "Import" = "Import";

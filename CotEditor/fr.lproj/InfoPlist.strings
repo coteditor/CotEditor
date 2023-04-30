@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 CotEditor Project
+//  © 2015-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@
 "D source" = "Source D";
 "Dart script" = "Script Dart";
 "Diff" = "Diff";
-"Fortran Source" = "Source Fortran";
+"Fortran source" = "Source Fortran";
 "Go script" = "Script Go";
 "Haskell script" = "Script Haskell";
 "HTML document" = "Document HTML";
@@ -53,7 +53,7 @@
 "JavaScript" = "JavaScript";
 "JSON document" = "Document JSON";
 "Julia script" = "Script Julia";
-"Kotlin source" = "Source Kotlin";
+"Kotlin script" = "Script Kotlin";
 "Lisp script" = "Script Lisp";
 "Lua script" = "Script Lua";
 "Markdown document" = "Document Markdown";

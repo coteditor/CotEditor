@@ -211,7 +211,7 @@ final class IncompatibleCharactersViewController: NSViewController {
                 case 0:  return String(localized: "No issues found.")
                 case 1:  return String(localized: "Found an incompatible character.")
                 default: return String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.",
-                comment: "%lld is the number of characters.")
+                                       comment: "%lld is the number of characters.")
             }
         }()
     }
