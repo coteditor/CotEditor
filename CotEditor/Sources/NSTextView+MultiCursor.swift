@@ -128,10 +128,10 @@ extension MultiCursorEditing {
                 return (self.string as NSString).rangeOfComposedCharacterSequence(at: location)
             }
             // remove overlappings
-            .compactMap { Range($0) }
+            .compactMap(Range.init)
             .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
             .rangeView
-            .map { NSRange($0) }
+            .map(NSRange.init)
         
         return self.insertText("", replacementRanges: deletionRanges)
     }
@@ -181,10 +181,10 @@ extension MultiCursorEditing {
         
         let ranges = ranges.unique.sorted(\.location)
         let selectionSet = ranges
-            .compactMap { Range($0) }
+            .compactMap(Range.init)
             .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         let nonemptyRanges = selectionSet.rangeView
-            .map { NSRange($0) }
+            .map(NSRange.init)
         var emptyRanges = ranges
             .filter { $0.isEmpty }
             .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound

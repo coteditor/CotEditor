@@ -94,7 +94,7 @@ final class EncodingManager {
     /// - Returns: A string encoding or nil.
     func encoding(name encodingName: String) -> String.Encoding? {
         
-        self.encodings
+        self.encodings.lazy
             .compactMap { $0 }
             .first { encodingName == String.localizedName(of: $0) }
     }
@@ -117,13 +117,11 @@ final class EncodingManager {
     /// - Parameter menu: The menu to update its items.
     func updateChangeEncodingMenu(_ menu: NSMenu) {
         
-        var fileEncodings = self.encodings
-            .map { $0.flatMap { FileEncoding(encoding: $0) } }
+        var fileEncodings = self.encodings.map { $0.flatMap { FileEncoding(encoding: $0) } }
         
         // add "UTF-8 with BOM" item just after the normal UTF-8
         if let index = fileEncodings.firstIndex(where: { $0?.encoding == .utf8 }) {
-            fileEncodings.insert(FileEncoding(encoding: .utf8, withUTF8BOM: true),
-                                 at: index + 1)
+            fileEncodings.insert(FileEncoding(encoding: .utf8, withUTF8BOM: true), at: index + 1)
         }
         
         let action = #selector((any EncodingHolder).changeEncoding)

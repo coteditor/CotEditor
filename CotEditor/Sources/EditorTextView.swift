@@ -1480,7 +1480,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         guard !urls.isEmpty else { return false }
         
-        let fileDropItems = UserDefaults.standard[.fileDropArray].map { FileDropItem(dictionary: $0) }
+        let fileDropItems = UserDefaults.standard[.fileDropArray].map(FileDropItem.init(dictionary:))
         let documentURL = self.document?.fileURL
         let syntaxStyle = self.document?.syntaxParser.style.name
         

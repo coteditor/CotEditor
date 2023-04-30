@@ -267,11 +267,12 @@ final class EncodingDetectionTests: XCTestCase {
             ascii,                // Western (ASCII)
         ]
         let inHelpEncodings = inHelpCFEncodings
-            .map { CFStringEncoding($0.rawValue) }
-            .map { String.Encoding(cfEncoding: $0) }
+            .map(\.rawValue)
+            .map(CFStringEncoding.init)
+            .map(String.Encoding.init(cfEncoding:))
         let availableEncodings = DefaultSettings.encodings
             .filter { $0 != kCFStringEncodingInvalidId }
-            .map { String.Encoding(cfEncoding: $0) }
+            .map(String.Encoding.init(cfEncoding:))
         let yenIncompatibleEncodigs = availableEncodings
             .filter { !"¥".canBeConverted(to: $0) }
         

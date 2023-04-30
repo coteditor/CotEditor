@@ -146,7 +146,7 @@ extension NSTextView {
         
         // calculate selectedRanges after deletion
         let removedIndexes = replacementRanges
-            .compactMap { Range($0) }
+            .compactMap(Range.init)
             .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         let selectedRanges: [NSRange] = editingRanges.map { range in
             let location = range.location - removedIndexes.count { $0 < range.location }

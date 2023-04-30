@@ -78,7 +78,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         let destinationRows = IndexSet(destinationRow..<(destinationRow + draggingItems.count))
         
         // update
-        NSAnimationContext.runAnimationGroup({ _ in
+        NSAnimationContext.runAnimationGroup { _ in
             // update UI
             var sourceOffset = 0
             var destinationOffset = 0
@@ -95,11 +95,11 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
             }
             tableView.endUpdates()
             
-        }, completionHandler: {
+        } completionHandler: {
             // update data
             self.remove(atArrangedObjectIndexes: sourceRows)
             self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
-        })
+        }
         
         return true
     }
