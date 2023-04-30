@@ -426,7 +426,7 @@
 /* MARK: PrintTextView */
 // header/footer
 "Printed on %@" = "プリント: %@";  // %@ is date
-"Last Modified on %@" = "最終変更: %@";  // %@ is date
+"Last modified on %@" = "最終変更: %@";  // %@ is date
 
 
 
