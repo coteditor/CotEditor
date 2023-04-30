@@ -8,9 +8,9 @@ Change Log
 ### Fixes
 
 - Workaround an issue that “Keep on Top” feature blocks all windows from coming back to the foreground in the Stage Manager mode.
-- Fix an issue that invalid style name could be registered.
+- Fix an issue that invalid style names could be registered.
 - Fix an issue in the Key Binding settings that the documents currently opened were wrongly listed in the Window menu.
-- Fix an issue that the context menu in the editor didn't contain the script menu when the root scripts folder has only folders. 
+- Fix an issue that the context menu in the editor didn't contain the script menu when the root scripts folder has only folders.
 
 
 
