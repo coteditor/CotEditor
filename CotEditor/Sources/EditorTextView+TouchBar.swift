@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,8 +61,8 @@ extension EditorTextView {
         switch identifier {
             case .shift:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                let leftImage = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: "Shift Left".localized)!
-                let rightImage = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: "Shift Right".localized)!
+                let leftImage = NSImage(systemSymbolName: "decrease.indent", accessibilityDescription: String(localized: "Shift Left"))!
+                let rightImage = NSImage(systemSymbolName: "increase.indent", accessibilityDescription: String(localized: "Shift Right"))!
                 item.customizationLabel = String(localized: "Shift", comment: "touch bar item")
                 item.view = NSSegmentedControl(images: [leftImage, rightImage],
                                                trackingMode: .momentary,
@@ -78,7 +78,7 @@ extension EditorTextView {
             case .textSize:
                 let item = NSPopoverTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Text Size", comment: "touch bar item")
-                item.collapsedRepresentationImage = NSImage(systemSymbolName: "textformat.size", accessibilityDescription: "Text Size".localized)!
+                item.collapsedRepresentationImage = NSImage(systemSymbolName: "textformat.size", accessibilityDescription: String(localized: "Text Size"))!
                 item.popoverTouchBar = TextSizeTouchBar(textView: self)
                 item.pressAndHoldTouchBar = TextSizeTouchBar(textView: self, forPressAndHold: true)
                 return item

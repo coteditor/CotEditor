@@ -114,11 +114,11 @@ final class GeneralPaneController: NSViewController {
     @MainActor private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
         
         let alert = NSAlert()
-        alert.messageText = "The change will be applied first on the next launch.".localized
-        alert.informativeText = "Do you want to restart CotEditor now?".localized
-        alert.addButton(withTitle: "Restart Now".localized)
-        alert.addButton(withTitle: "Later".localized)
-        alert.addButton(withTitle: "Cancel".localized)
+        alert.messageText = String(localized: "The change will be applied first on the next launch.")
+        alert.informativeText = String(localized: "Do you want to restart CotEditor now?")
+        alert.addButton(withTitle: String(localized: "Restart Now"))
+        alert.addButton(withTitle: String(localized: "Later"))
+        alert.addButton(withTitle: String(localized: "Cancel"))
         
         Task {
             let returnCode = await alert.beginSheetModal(for: self.view.window!)

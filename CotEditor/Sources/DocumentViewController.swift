@@ -261,53 +261,55 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
                 
             case #selector(toggleLineNumber):
                 (item as? NSMenuItem)?.title = self.showsLineNumber
-                    ? "Hide Line Numbers".localized
-                    : "Show Line Numbers".localized
+                    ? String(localized: "Hide Line Numbers")
+                    : String(localized: "Show Line Numbers")
                 
             case #selector(toggleStatusBar):
                 (item as? NSMenuItem)?.title = self.statusBarItem?.isCollapsed == false
-                    ? "Hide Status Bar".localized
-                    : "Show Status Bar".localized
+                    ? String(localized: "Hide Status Bar")
+                    : String(localized: "Show Status Bar")
                 
             case #selector(togglePageGuide):
                 (item as? NSMenuItem)?.title = self.showsPageGuide
-                    ? "Hide Page Guide".localized
-                    : "Show Page Guide".localized
+                    ? String(localized: "Hide Page Guide")
+                    : String(localized: "Show Page Guide")
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
                 
             case #selector(toggleIndentGuides):
                 (item as? NSMenuItem)?.title = self.showsIndentGuides
-                    ? "Hide Indent Guides".localized
-                    : "Show Indent Guides".localized
+                    ? String(localized: "Hide Indent Guides")
+                    : String(localized: "Show Indent Guides")
                 (item as? NSToolbarItem)?.toolTip = self.showsIndentGuides
-                    ? "Hide indent guide lines".localized
-                    : "Show indent guide lines".localized
+                    ? String(localized: "Hide indent guide lines")
+                    : String(localized: "Show indent guide lines")
                 (item as? StatableToolbarItem)?.state = self.showsIndentGuides ? .on : .off
                 
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
-                    ? "Unwrap Lines".localized
-                    : "Wrap Lines".localized
+                    ? String(localized: "Unwrap Lines")
+                    : String(localized: "Wrap Lines")
                 if #available(macOS 13, *) {
                     (item as? NSToolbarItem)?.label = self.wrapsLines
-                        ? "Unwrap lines".localized
-                        : "Wrap lines".localized
+                        ? String(localized: "Unwrap lines")
+                        : String(localized: "Wrap lines")
                 }
                 (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
                 
             case #selector(toggleInvisibleChars):
                 (item as? NSMenuItem)?.title = self.showsInvisibles
-                    ? "Hide Invisibles".localized
-                    : "Show Invisibles".localized
+                    ? String(localized: "Hide Invisibles")
+                    : String(localized: "Show Invisibles")
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
                 let canActivateShowInvisibles = !UserDefaults.standard.showsInvisible.isEmpty
-                item.toolTip = canActivateShowInvisibles ? nil : "To show invisible characters, set them in Settings".localized
+                item.toolTip = canActivateShowInvisibles
+                    ? nil
+                    : String(localized: "To show invisible characters, set them in Settings")
                 if canActivateShowInvisibles {
                     (item as? NSToolbarItem)?.toolTip = self.showsInvisibles
-                        ? "Hide invisible characters".localized
-                        : "Show invisible characters".localized
+                        ? String(localized: "Hide invisible characters")
+                        : String(localized: "Show invisible characters")
                 }
                 return canActivateShowInvisibles
                 
@@ -320,8 +322,8 @@ final class DocumentViewController: NSSplitViewController, ThemeHolder, NSToolba
             case #selector(toggleAutoTabExpand):
                 (item as? any StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
                 (item as? NSToolbarItem)?.toolTip = self.isAutoTabExpandEnabled
-                    ? "Turn off expanding tabs to spaces".localized
-                    : "Expand tabs to spaces automatically".localized
+                    ? String(localized: "Turn off expanding tabs to spaces")
+                    : String(localized: "Expand tabs to spaces automatically")
                 
             case #selector(changeTabWidth):
                 (item as? any StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off

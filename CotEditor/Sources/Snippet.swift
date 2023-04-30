@@ -81,13 +81,13 @@ extension Snippet {
         case selection = "SELECTION"
         
         
-        var description: String {
+        var localizedDescription: String {
             
             switch self {
                 case .cursor:
-                    return "The insertion point after inserting the snippet."
+                    return String(localized: "The insertion point after inserting the snippet.")
                 case .selection:
-                    return "The selected text."
+                    return String(localized: "The selected text.")
             }
         }
     }

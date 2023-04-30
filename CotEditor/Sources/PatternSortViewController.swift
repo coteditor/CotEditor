@@ -247,7 +247,7 @@ final class RegularExpressionSortPatternViewController: SortPatternViewControlle
         
         menu.items.removeAll()
         menu.addItem(.init())  // dummy item
-        menu.addItem(HeadingMenuItem(title: "Recents".localized))
+        menu.addItem(HeadingMenuItem(title: String(localized: "Recents")))
         
         guard !UserDefaults.standard[.regexPatternSortHistory].isEmpty else { return }
         
@@ -262,7 +262,7 @@ final class RegularExpressionSortPatternViewController: SortPatternViewControlle
             }
             .reversed()
         menu.addItem(.separator())
-        menu.addItem(withTitle: "Clear Recents".localized, action: #selector(clearRecents), keyEquivalent: "")
+        menu.addItem(withTitle: String(localized: "Clear Recents"), action: #selector(clearRecents), keyEquivalent: "")
     }
 }
 

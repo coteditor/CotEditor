@@ -404,15 +404,15 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
                 return String(localized: "The file appears to be \(localizedTypeName).\n\nDo you really want to open the file?")
                 
             case .tooLarge:
-                return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized
+                return String(localized: "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?")
         }
     }
     
     
     var recoveryOptions: [String] {
         
-        ["Open".localized,
-         "Cancel".localized]
+        [String(localized: "Open"),
+         String(localized: "Cancel")]
     }
     
     

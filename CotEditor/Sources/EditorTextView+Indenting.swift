@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ extension EditorTextView: Indenting {
             guard self.indent() else { return }
         }
         
-        self.undoManager?.setActionName("Shift Right".localized)
+        self.undoManager?.setActionName(String(localized: "Shift Right"))
     }
     
     
@@ -51,7 +51,7 @@ extension EditorTextView: Indenting {
             guard self.outdent() else { return }
         }
         
-        self.undoManager?.setActionName("Shift Left".localized)
+        self.undoManager?.setActionName(String(localized: "Shift Left"))
     }
     
     
@@ -207,6 +207,6 @@ extension Indenting {
         }
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: "Convert Indentation".localized)
+                     actionName: String(localized: "Convert Indentation"))
     }
 }

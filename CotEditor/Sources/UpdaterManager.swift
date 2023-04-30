@@ -64,7 +64,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         }
         
         let menuItem = NSMenuItem()
-        menuItem.title = "Check for Updates…".localized
+        menuItem.title = String(localized: "Check for Updates…")
         menuItem.action = #selector(SPUUpdater.checkForUpdates)
         menuItem.target = self.controller.updater
         

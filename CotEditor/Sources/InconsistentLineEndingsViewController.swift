@@ -106,7 +106,7 @@ final class InconsistentLineEndingsViewController: NSViewController {
         messageField.textColor = self.lineEndings.isEmpty ? .secondaryLabelColor : .labelColor
         messageField.stringValue = {
             switch self.lineEndings.count {
-                case 0:  return "No issues found.".localized
+                case 0:  return String(localized: "No issues found.")
                 case 1:  return String(localized: "Found a line ending other than \(self.documentLineEnding.name).")
                 default: return String(localized: "Found \(self.lineEndings.count) line endings other than \(self.documentLineEnding.name).")
             }

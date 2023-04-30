@@ -67,8 +67,8 @@ private extension SettingsPane {
         
         let viewController: NSViewController = NSStoryboard(name: self.storyboardName, bundle: nil).instantiateInitialController()!
         let tabViewItem = NSTabViewItem(viewController: viewController)
-        tabViewItem.label = self.label.localized
-        tabViewItem.image = NSImage(systemSymbolName: self.symbolName, accessibilityDescription: tabViewItem.label)
+        tabViewItem.label = self.label
+        tabViewItem.image = NSImage(systemSymbolName: self.symbolName, accessibilityDescription: self.label)
         tabViewItem.identifier = self.rawValue
         
         return tabViewItem

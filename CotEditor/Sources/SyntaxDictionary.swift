@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2021 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,11 +35,6 @@ enum SyntaxType: String, CaseIterable {
     case strings
     case characters
     case comments
-    
-    var localizedName: String {
-        
-        self.rawValue.localized
-    }
 }
 
 

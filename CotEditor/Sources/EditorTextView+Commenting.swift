@@ -146,7 +146,7 @@ extension Commenting {
         let newSelectedRanges = selectedRanges.map { $0.inserted(items: items) }
         
         self.replace(with: newStrings, ranges: replacementRanges, selectedRanges: newSelectedRanges,
-                     actionName: "Comment Out".localized)
+                     actionName: String(localized: "Comment Out"))
     }
     
     
@@ -182,7 +182,7 @@ extension Commenting {
         let newSelectedRanges = selectedRanges.map { $0.deleted(ranges: deletionRanges) }
         
         self.replace(with: newStrings, ranges: deletionRanges, selectedRanges: newSelectedRanges,
-                     actionName: "Uncomment".localized)
+                     actionName: String(localized: "Uncomment"))
     }
     
     

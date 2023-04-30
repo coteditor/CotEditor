@@ -235,7 +235,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
         
-        let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
+        let openMenuItem = NSMenuItem(title: String(localized: "Open Scripts Folder"),
                                       action: #selector(self.openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         let menuItems = self.scriptMenuItems(in: directoryURL) + [.separator(), openMenuItem]
@@ -356,7 +356,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     // -> Shortcut will be applied later in `applyShortcuts()`.
                     item.representedObject = ScriptItem(script: script, shortcut: shortcut)
                     item.target = self
-                    item.toolTip = "Option-click to open script in editor.".localized
+                    item.toolTip = String(localized: "Option-click to open script in editor.")
                     
                     return item
                     

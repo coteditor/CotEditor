@@ -82,7 +82,7 @@ final class EditorViewController: NSSplitViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("Editor".localized)
+        self.view.setAccessibilityLabel(String(localized: "Editor"))
     }
     
     
@@ -101,8 +101,8 @@ final class EditorViewController: NSSplitViewController {
         switch item.action {
             case #selector(toggleNavigationBar):
                 (item as? NSMenuItem)?.title = self.navigationBarItem?.isCollapsed == false
-                ? "Hide Navigation Bar".localized
-                : "Show Navigation Bar".localized
+                ? String(localized: "Hide Navigation Bar")
+                : String(localized: "Show Navigation Bar")
                 
             case #selector(openOutlineMenu):
                 return self.outlineItems?.isEmpty == false

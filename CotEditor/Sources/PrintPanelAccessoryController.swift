@@ -46,7 +46,7 @@ extension NSPrintInfo.AttributeKey {
 
 enum ThemeName {
     
-    static let blackAndWhite = "Black and White".localized
+    static let blackAndWhite = String(localized: "Black and White")
 }
 
 
@@ -169,68 +169,68 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
         var items: [[NSPrintPanel.AccessorySummaryKey: String]] = [
-            [.itemName: "Color".localized,
-             .itemDescription: self.theme.localized]
+            [.itemName: String(localized: "Color"),
+             .itemDescription: self.theme]
         ]
         
         if #available(macOS 13, *) {
             if self.printsBackground {
-                items += [[.itemName: "Print Background".localized,
-                           .itemDescription: "On".localized]]
+                items += [[.itemName: String(localized: "Print Background"),
+                           .itemDescription: String(localized: "On")]]
             }
             if self.printsLineNumbers {
-                items += [[.itemName: "Line Number".localized,
-                           .itemDescription: "On".localized]]
+                items += [[.itemName: String(localized: "Line Number"),
+                           .itemDescription: String(localized: "On")]]
             }
             if self.printsInvisibles {
-                items += [[.itemName: "Invisibles".localized,
-                           .itemDescription: "On".localized]]
+                items += [[.itemName: String(localized: "Invisibles"),
+                           .itemDescription: String(localized: "On")]]
             }
             if self.printsHeader, self.primaryHeaderContent != .none {
-                items += [[.itemName: "Primary Header".localized,
+                items += [[.itemName: String(localized: "Primary Header"),
                            .itemDescription: self.primaryHeaderContent.localizedDescription
                            + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")]]
             }
             if self.printsHeader, self.secondaryHeaderContent != .none {
-                items += [[.itemName: "Secondary Header".localized,
+                items += [[.itemName: String(localized: "Secondary Header"),
                            .itemDescription: self.secondaryHeaderContent.localizedDescription
                            + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")]]
             }
             if self.printsFooter, self.primaryFooterContent != .none {
-                items += [[.itemName: "Primary Footer".localized,
+                items += [[.itemName: String(localized: "Primary Footer"),
                            .itemDescription: self.primaryFooterContent.localizedDescription
                            + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")]]
             }
             if self.printsFooter, self.secondaryFooterContent != .none {
-                items += [[.itemName: "Secondary Footer".localized,
+                items += [[.itemName: String(localized: "Secondary Footer"),
                            .itemDescription: self.secondaryFooterContent.localizedDescription
                            + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")]]
             }
             
         } else {
             items += [
-                [.itemName: "Print Background".localized,
-                 .itemDescription: self.printsBackground ? "On".localized : "Off".localized],
-                [.itemName: "Line Number".localized,
-                 .itemDescription: self.printsLineNumbers ? "On".localized : "Off".localized],
-                [.itemName: "Invisibles".localized,
-                 .itemDescription: self.printsInvisibles ? "On".localized : "Off".localized],
+                [.itemName: String(localized: "Print Background"),
+                 .itemDescription: self.printsBackground ? String(localized: "On") : String(localized: "Off")],
+                [.itemName: String(localized: "Line Number"),
+                 .itemDescription: self.printsLineNumbers ? String(localized: "On") : String(localized: "Off")],
+                [.itemName: String(localized: "Invisibles"),
+                 .itemDescription: self.printsInvisibles ? String(localized: "On") : String(localized: "Off")],
                 
-                [.itemName: "Print Header".localized,
-                 .itemDescription: self.printsHeader ? "On" .localized : "Off".localized],
-                [.itemName: "Primary Header".localized,
+                [.itemName: String(localized: "Print Header"),
+                 .itemDescription: self.printsHeader ? String(localized: "On") : String(localized: "Off")],
+                [.itemName: String(localized: "Primary Header"),
                  .itemDescription: self.primaryHeaderContent.localizedDescription
                  + String(localized: " (\(self.primaryHeaderAlignment.localizedDescription))")],
-                [.itemName: "Secondary Header".localized,
+                [.itemName: String(localized: "Secondary Header"),
                  .itemDescription: self.secondaryHeaderContent.localizedDescription
                  + String(localized: " (\(self.secondaryHeaderAlignment.localizedDescription))")],
                 
-                [.itemName: "Print Footer".localized,
-                 .itemDescription: self.printsFooter ? "On".localized : "Off".localized],
-                [.itemName: "Primary Footer".localized,
+                [.itemName: String(localized: "Print Footer"),
+                 .itemDescription: self.printsFooter ? String(localized: "On") : String(localized: "Off")],
+                [.itemName: String(localized: "Primary Footer"),
                  .itemDescription: self.primaryFooterContent.localizedDescription
                  + String(localized: " (\(self.primaryFooterAlignment.localizedDescription))")],
-                [.itemName: "Secondary Footer".localized,
+                [.itemName: String(localized: "Secondary Footer"),
                  .itemDescription: self.secondaryFooterContent.localizedDescription
                  + String(localized: " (\(self.secondaryFooterAlignment.localizedDescription))")],
             ]
@@ -263,7 +263,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         popupButton.addItem(withTitle: ThemeName.blackAndWhite)
         
         popupButton.menu?.addItem(.separator())
-        popupButton.menu?.addItem(HeadingMenuItem(title: "Theme".localized))
+        popupButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
         
         for themeName in themeNames {
             popupButton.addItem(withTitle: themeName)
@@ -400,19 +400,19 @@ private extension PrintInfoType {
         
         switch self {
             case .none:
-                return "None".localized
+                return String(localized: "None")
             case .syntaxName:
-                return "Syntax Name".localized
+                return String(localized: "Syntax Name")
             case .documentName:
-                return "Document Name".localized
+                return String(localized: "Document Name")
             case .filePath:
-                return "File Path".localized
+                return String(localized: "File Path")
             case .printDate:
-                return "Print Date".localized
+                return String(localized: "Print Date")
             case .lastModifiedDate:
-                return "Last Modified Date".localized
+                return String(localized: "Last Modified Date")
             case .pageNumber:
-                return "Page Number".localized
+                return String(localized: "Page Number")
         }
     }
 }
@@ -424,11 +424,11 @@ private extension AlignmentType {
         
         switch self {
             case .left:
-                return "Left".localized
+                return String(localized: "Left")
             case .center:
-                return "Center".localized
+                return String(localized: "Center")
             case .right:
-                return "Right".localized
+                return String(localized: "Right")
         }
     }
 }

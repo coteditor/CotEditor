@@ -47,7 +47,7 @@ extension NSTextView {
         
         let (strings, selectedRanges) = snippet.insertions(for: self.string, ranges: ranges)
         
-        self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
+        self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges, actionName: String(localized: "Insert Snippet"))
         self.centerSelectionInVisibleArea(self)
     }
 }

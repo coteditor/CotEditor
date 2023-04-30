@@ -466,7 +466,7 @@ final class TextFinder {
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
-                client.requestAccessibilityAnnouncement("Search wrapped.".localized)
+                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped."))
             }
         } else if !isIncremental {
             client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)
@@ -494,7 +494,7 @@ final class TextFinder {
         return self.client.replace(with: result.value, range: result.range,
                                    selectedRange: NSRange(location: result.range.location,
                                                           length: result.value.length),
-                                   actionName: "Replace".localized)
+                                   actionName: String(localized: "Replace"))
     }
     
     
@@ -628,7 +628,7 @@ final class TextFinder {
         if !replacementItems.isEmpty {
             // apply found strings to the text view
             client.replace(with: replacementItems.map(\.value), ranges: replacementItems.map(\.range), selectedRanges: selectedRanges,
-                           actionName: "Replace All".localized)
+                           actionName: String(localized: "Replace All"))
         }
         
         if progress.count > 0 {

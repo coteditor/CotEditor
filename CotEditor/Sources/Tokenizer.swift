@@ -31,7 +31,6 @@ protocol TokenRepresentable: CaseIterable {
     static var suffix: String { get }
     
     var token: String { get }
-    var description: String { get }
     var localizedDescription: String { get }
 }
 
@@ -41,12 +40,6 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     var token: String {
         
         Self.prefix + self.rawValue + Self.suffix
-    }
-    
-    
-    var localizedDescription: String {
-        
-        self.description.localized
     }
     
     

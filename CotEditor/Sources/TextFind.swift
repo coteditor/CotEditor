@@ -48,11 +48,11 @@ final class TextFind {
             
             switch self {
                 case .regularExpression:
-                    return "Invalid regular expression".localized
+                    return String(localized: "Invalid regular expression")
                 case .emptyFindString:
-                    return "Empty find string".localized
+                    return String(localized: "Empty find string")
                 case .emptyInSelectionSearch:
-                    return "The option “in selection” is selected, although nothing is selected.".localized
+                    return String(localized: "The option “in selection” is selected, although nothing is selected.")
             }
         }
         
@@ -63,9 +63,9 @@ final class TextFind {
                 case .regularExpression(let reason):
                     return reason
                 case .emptyFindString:
-                    return "Input text to find.".localized
+                    return String(localized: "Input text to find.")
                 case .emptyInSelectionSearch:
-                    return "Select the search scope in the document or turn off the “in selection” option.".localized
+                    return String(localized: "Select the search scope in the document or turn off the “in selection” option.")
             }
         }
     }

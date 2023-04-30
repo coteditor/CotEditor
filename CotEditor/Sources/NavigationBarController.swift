@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2022 1024jp
+//  © 2014-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,9 +72,9 @@ final class NavigationBarController: NSViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("Navigation Bar".localized)
+        self.view.setAccessibilityLabel(String(localized: "Navigation Bar"))
         
-        self.outlineMenu?.setAccessibilityLabel("Outline Menu".localized)
+        self.outlineMenu?.setAccessibilityLabel(String(localized: "Outline Menu"))
     }
     
     
@@ -281,12 +281,12 @@ final class NavigationBarController: NSViewController {
         
         self.prevButton?.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
         self.prevButton?.target = self.parent
-        self.prevButton?.toolTip = "Jump to previous outline item".localized
+        self.prevButton?.toolTip = String(localized: "Jump to previous outline item")
         self.prevButton?.isEnabled = self.canSelectPrevItem
         
         self.nextButton?.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
         self.nextButton?.target = self.parent
-        self.nextButton?.toolTip = "Jump to next outline item".localized
+        self.nextButton?.toolTip = String(localized: "Jump to next outline item")
         self.nextButton?.isEnabled = self.canSelectNextItem
     }
 }

@@ -420,9 +420,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
         alert.messageText = String(localized: "“\(url.lastPathComponent)” is a CotEditor theme file.")
-        alert.informativeText = "Do you want to install this theme?".localized
-        alert.addButton(withTitle: "Install".localized)
-        alert.addButton(withTitle: "Open as Text File".localized)
+        alert.informativeText = String(localized: "Do you want to install this theme?")
+        alert.addButton(withTitle: String(localized: "Install"))
+        alert.addButton(withTitle: String(localized: "Open as Text File"))
         
         let returnCode = alert.runModal()
         

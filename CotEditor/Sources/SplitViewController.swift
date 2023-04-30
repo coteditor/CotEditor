@@ -78,8 +78,8 @@ final class SplitViewController: NSSplitViewController {
         switch item.action {
             case #selector(toggleSplitOrientation):
                 (item as? NSMenuItem)?.title = self.splitView.isVertical
-                    ? "Stack Editors Horizontally".localized
-                    : "Stack Editors Vertically".localized
+                    ? String(localized: "Stack Editors Horizontally")
+                    : String(localized: "Stack Editors Vertically")
                 
             case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
                 return self.splitViewItems.count > 1

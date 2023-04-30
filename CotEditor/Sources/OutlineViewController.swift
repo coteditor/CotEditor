@@ -84,7 +84,7 @@ final class OutlineViewController: NSViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("Outline".localized)
+        self.view.setAccessibilityLabel(String(localized: "Outline"))
     }
     
     
@@ -246,7 +246,7 @@ final class OutlineViewController: NSViewController {
         
         self.filteredOutlineItems = self.outlineItems.filterItems(with: searchString)
         self.filteringMessage = (!searchString.isEmpty && self.filteredOutlineItems.isEmpty)
-            ? "No Filter Results".localized
+            ? String(localized: "No Filter Results")
             : nil
     }
 }

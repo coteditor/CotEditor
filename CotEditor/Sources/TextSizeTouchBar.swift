@@ -73,7 +73,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         switch identifier {
             case .textSizeActual:
                 let item = NSCustomTouchBarItem(identifier: identifier)
-                item.view = NSButton(title: "Actual Size".localized, target: self, action: #selector(resetTextSize))
+                item.view = NSButton(title: String(localized: "Actual Size"), target: self, action: #selector(resetTextSize))
                 return item
                 
             case .textSizeSlider:
@@ -85,9 +85,9 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 item.doubleValue = textView.scale
                 item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
-                let minimumValueImage = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: "Smaller".localized)!
+                let minimumValueImage = NSImage(systemSymbolName: "textformat.size.smaller", accessibilityDescription: String(localized: "Smaller"))!
                 item.minimumValueAccessory = NSSliderAccessory(image: minimumValueImage)
-                let maximumValueImage = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: "Bigger".localized)!
+                let maximumValueImage = NSImage(systemSymbolName: "textformat.size.larger", accessibilityDescription: String(localized: "Bigger"))!
                 item.maximumValueAccessory = NSSliderAccessory(image: maximumValueImage)
                 item.maximumSliderWidth = 300
                 

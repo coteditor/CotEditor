@@ -199,7 +199,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         if state.isBundled {
             return [NSTableViewRowAction(style: .regular,
-                                         title: "Restore".localized,
+                                         title: String(localized: "Restore"),
                                          handler: { [weak self] (_, _) in
                                             self?.restoreSyntaxStyle(name: styleName)
                                             
@@ -208,7 +208,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
                                          })]
         } else {
             return [NSTableViewRowAction(style: .destructive,
-                                         title: "Delete".localized,
+                                         title: String(localized: "Delete"),
                                          handler: { [weak self] (_, _) in
                                             self?.deleteSyntaxStyle(name: styleName)
                                          })]
@@ -396,7 +396,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.isExtensionHidden = false
-        savePanel.nameFieldLabel = "Export As:".localized
+        savePanel.nameFieldLabel = String(localized: "Export As:")
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedContentTypes = [SyntaxManager.shared.fileType]
         
@@ -416,7 +416,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @IBAction func importSyntaxStyle(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = "Import".localized
+        openPanel.prompt = String(localized: "Import")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
@@ -534,9 +534,9 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let alert = NSAlert()
         alert.messageText = String(localized: "Are you sure you want to delete “\(name)” syntax style?")
-        alert.informativeText = "This action cannot be undone.".localized
-        alert.addButton(withTitle: "Cancel".localized)
-        alert.addButton(withTitle: "Delete".localized)
+        alert.informativeText = String(localized: "This action cannot be undone.")
+        alert.addButton(withTitle: String(localized: "Cancel"))
+        alert.addButton(withTitle: String(localized: "Delete"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!

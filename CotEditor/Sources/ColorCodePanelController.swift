@@ -41,7 +41,7 @@ final class ColorCodePanelController: NSObject, NSWindowDelegate {
     // MARK: Private Properties
     
     private let stylesheetColorList: NSColorList = KeywordColor.stylesheetColors
-        .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) {
+        .reduce(into: NSColorList(name: String(localized: "Stylesheet Keywords"))) {
             $0.setColor(NSColor(hex: $1.value)!, forKey: $1.keyword)
         }
     

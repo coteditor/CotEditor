@@ -80,8 +80,9 @@ final class WindowContentViewController: NSSplitViewController {
         // disable toggling sidebar in the tab overview mode
         switch item.action {
             case #selector(toggleInspector):
-                let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
-                (item as? NSMenuItem)?.title = title.localized
+                (item as? NSMenuItem)?.title = self.isSidebarShown
+                    ? String(localized: "Hide Inspector")
+                    : String(localized: "Show Inspector")
                 
             case #selector(getInfo):
                 (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off

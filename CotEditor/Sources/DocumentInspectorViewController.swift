@@ -76,7 +76,7 @@ final class DocumentInspectorViewController: NSViewController {
         super.viewDidLoad()
         
         // set accessibility
-        self.view.setAccessibilityLabel("Document Inspector".localized)
+        self.view.setAccessibilityLabel(String(localized: "Document Inspector"))
     }
     
     

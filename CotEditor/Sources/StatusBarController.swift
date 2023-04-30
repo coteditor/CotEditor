@@ -64,7 +64,7 @@ import Combine
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("Status Bar".localized)
+        self.view.setAccessibilityLabel(String(localized: "Status Bar"))
     }
     
     
@@ -163,22 +163,28 @@ import Combine
         var status: [NSAttributedString] = []
         
         if types.contains(.lines) {
-            status.append(.formatted(label: "Lines") + .formatted(state: result.lines.formatted))
+            let label = String(localized: "Lines: ")
+            status.append(.formatted(label: label) + .formatted(state: result.lines.formatted))
         }
         if types.contains(.characters) {
-            status.append(.formatted(label: "Characters") + .formatted(state: result.characters.formatted))
+            let label = String(localized: "Characters: ")
+            status.append(.formatted(label: label) + .formatted(state: result.characters.formatted))
         }
         if types.contains(.words) {
-            status.append(.formatted(label: "Words") + .formatted(state: result.words.formatted))
+            let label = String(localized: "Words: ")
+            status.append(.formatted(label: label) + .formatted(state: result.words.formatted))
         }
         if types.contains(.location) {
-            status.append(.formatted(label: "Location") + .formatted(state: result.location?.formatted()))
+            let label = String(localized: "Location: ")
+            status.append(.formatted(label: label) + .formatted(state: result.location?.formatted()))
         }
         if types.contains(.line) {
-            status.append(.formatted(label: "Line") + .formatted(state: result.line?.formatted()))
+            let label = String(localized: "Line: ")
+            status.append(.formatted(label: label) + .formatted(state: result.line?.formatted()))
         }
         if types.contains(.column) {
-            status.append(.formatted(label: "Column") + .formatted(state: result.column?.formatted()))
+            let label = String(localized: "Column: ")
+            status.append(.formatted(label: label) + .formatted(state: result.column?.formatted()))
         }
         
         let attrStatus = status.joined(separator: "   ").mutable
@@ -231,6 +237,9 @@ private extension UserDefaults {
 private extension NSAttributedString {
     
     /// Formatted state for status bar.
+    ///
+    /// - Parameter state: The content string.
+    /// - Returns: An attributed string.
     static func formatted(state: String?) -> Self {
         
         if let state {
@@ -242,8 +251,11 @@ private extension NSAttributedString {
     
     
     /// Formatted label for status bar.
+    ///
+    /// - Parameter label: Localized label.
+    /// - Returns: An attributed string.
     static func formatted(label: String) -> Self {
         
-        Self(string: (label + ": ").localized, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
+        Self(string: label, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
     }
 }

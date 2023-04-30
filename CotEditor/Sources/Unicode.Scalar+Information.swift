@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2021 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,13 +68,15 @@ extension Unicode.Scalar {
     /// Localized and sanitized unicode block name.
     var localizedBlockName: String? {
         
+        guard let blockName else { return nil }
+        
         // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
         //    Otherwise, we cannot localize block names correctly. (2015-11)
-        
-        self.blockName?
+        let key = blockName
             .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
             .replacingOccurrences(of: "Description", with: "Desc.")
-            .localized(tableName: "Unicode")
+        
+        return String(localized: String.LocalizationValue(key), table: "Unicode")
     }
 }
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ extension DocumentViewController: NSTouchBarDelegate {
             case .invisibles:
                 let item = NSCustomTouchBarItem(identifier: identifier)
                 item.customizationLabel = String(localized: "Invisibles", comment: "touch bar item")
-                let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: "Invisibles".localized)!
+                let image = NSImage(systemSymbolName: "paragraphsign", accessibilityDescription: String(localized: "Invisibles"))!
                 item.view = NSButton(image: image, target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
                 return item
                 

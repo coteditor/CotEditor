@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2022 1024jp
+//  © 2016-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -93,9 +93,9 @@ struct ScriptFileError: LocalizedError {
         
         switch self.kind {
             case .permission:
-                return "Check the permission of the script file.".localized
+                return String(localized: "Check the permission of the script file.")
             default:
-                return "Check the script file.".localized
+                return String(localized: "Check the script file.")
         }
     }
 }
@@ -115,9 +115,9 @@ enum ScriptError: Error {
             case .standardError(let string):
                 return string
             case .noInputTarget:
-                return "No document to get input.".localized
+                return String(localized: "No document to get input.")
             case .noOutputTarget:
-                return "No document to put output.".localized
+                return String(localized: "No document to put output.")
         }
     }
 }

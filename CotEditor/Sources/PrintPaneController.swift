@@ -51,7 +51,7 @@ final class PrintPaneController: NSViewController {
         
         self.setupColorMenu()
         
-        self.usePrintFontButton?.setAccessibilityLabel("Use print font".localized)
+        self.usePrintFontButton?.setAccessibilityLabel(String(localized: "Use print font"))
     }
     
     
@@ -93,10 +93,10 @@ final class PrintPaneController: NSViewController {
         
         // build popup button
         popupButton.addItem(withTitle: ThemeName.blackAndWhite)
-        popupButton.addItem(withTitle: "Same as Document’s Setting".localized)
+        popupButton.addItem(withTitle: String(localized: "Same as Document’s Setting"))
         
         popupButton.menu?.addItem(.separator())
-        popupButton.menu?.addItem(HeadingMenuItem(title: "Theme".localized))
+        popupButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
         
         for name in themeNames {
             popupButton.addItem(withTitle: name)

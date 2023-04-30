@@ -450,11 +450,11 @@ enum InvalidNameError: LocalizedError {
         
         switch self {
             case .empty:
-                return "Name can’t be empty.".localized
+                return String(localized: "Name can’t be empty.")
             case .containSlash:
-                return "You can’t use a name that contains “/”.".localized
+                return String(localized: "You can’t use a name that contains “/”.")
             case .startWithDot:
-                return "You can’t use a name that begins with a dot “.”.".localized
+                return String(localized: "You can’t use a name that begins with a dot “.”.")
             case .duplicated(let name):
                 return String(localized: "The name “\(name)” is already taken.")
         }
@@ -463,7 +463,7 @@ enum InvalidNameError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        "Please choose another name.".localized
+        String(localized: "Please choose another name.")
     }
 }
 
@@ -530,11 +530,11 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
             case .yaml:
-                return "Do you want to replace it?\nReplaced style can’t be restored.".localized
+                return String(localized: "Do you want to replace it?\nReplaced style can’t be restored.")
             case .cotTheme:
-                return "Do you want to replace it?\nReplaced theme can’t be restored.".localized
+                return String(localized: "Do you want to replace it?\nReplaced theme can’t be restored.")
             case .cotReplacement:
-                return "Do you want to replace it?\nReplaced definition can’t be restored.".localized
+                return String(localized: "Do you want to replace it?\nReplaced definition can’t be restored.")
             default:
                 fatalError()
         }
@@ -543,8 +543,8 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var recoveryOptions: [String] {
         
-        ["Cancel".localized,
-         "Replace".localized]
+        [String(localized: "Cancel"),
+         String(localized: "Replace")]
     }
     
     

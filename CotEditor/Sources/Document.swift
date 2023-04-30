@@ -1010,11 +1010,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             // ask whether just change the encoding or reinterpret document file
             let alert = NSAlert()
-            alert.messageText = "File encoding".localized
+            alert.messageText = String(localized: "File encoding")
             alert.informativeText = String(localized: "Do you want to convert or reinterpret this document using “\(fileEncoding.localizedName)”?")
-            alert.addButton(withTitle: "Convert".localized)
-            alert.addButton(withTitle: "Reinterpret".localized)
-            alert.addButton(withTitle: "Cancel".localized)
+            alert.addButton(withTitle: String(localized: "Convert"))
+            alert.addButton(withTitle: String(localized: "Reinterpret"))
+            alert.addButton(withTitle: String(localized: "Cancel"))
             
             let documentWindow = self.windowForSheet!
             Task {
@@ -1032,10 +1032,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         // ask user if document is edited
                         if self.isDocumentEdited {
                             let alert = NSAlert()
-                            alert.messageText = "The document has unsaved changes.".localized
+                            alert.messageText = String(localized: "The document has unsaved changes.")
                             alert.informativeText = String(localized: "Do you want to discard the changes and reopen the document using “\(fileEncoding.localizedName)”?")
-                            alert.addButton(withTitle: "Cancel".localized)
-                            alert.addButton(withTitle: "Discard Changes".localized)
+                            alert.addButton(withTitle: String(localized: "Cancel"))
+                            alert.addButton(withTitle: String(localized: "Discard Changes"))
                             alert.buttons.last?.hasDestructiveAction = true
                             
                             documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
@@ -1163,13 +1163,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let alert = NSAlert()
         alert.alertStyle = .warning
-        alert.messageText = "The document has inconsistent line endings.".localized
+        alert.messageText = String(localized: "The document has inconsistent line endings.")
         alert.informativeText = String(localized: "Do you want to convert all line endings to \(self.lineEnding.name), the most common line endings in this document?")
-        alert.addButton(withTitle: "Convert".localized)
-        alert.addButton(withTitle: "Review".localized)
-        alert.addButton(withTitle: "Ignore".localized)
+        alert.addButton(withTitle: String(localized: "Convert"))
+        alert.addButton(withTitle: String(localized: "Review"))
+        alert.addButton(withTitle: String(localized: "Ignore"))
         alert.showsSuppressionButton = true
-        alert.suppressionButton?.title = "Don’t ask again for this document".localized
+        alert.suppressionButton?.title = String(localized: "Don’t ask again for this document")
         alert.showsHelp = true
         alert.helpAnchor = "inconsistent_line_endings"
         
@@ -1211,15 +1211,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
             self.isExternalUpdateAlertShown = true
             
-            let messageText = self.isDocumentEdited
+            let messageText: String.LocalizationValue = self.isDocumentEdited
                 ? "The file has been changed by another application. There are also unsaved changes in CotEditor."
                 : "The file has been changed by another application."
             
             let alert = NSAlert()
-            alert.messageText = messageText.localized
-            alert.informativeText = "Do you want to keep CotEditor’s edition or update it to the modified edition?".localized
-            alert.addButton(withTitle: "Keep CotEditor’s Edition".localized)
-            alert.addButton(withTitle: "Update".localized)
+            alert.messageText = String(localized: messageText)
+            alert.informativeText = String(localized: "Do you want to keep CotEditor’s edition or update it to the modified edition?")
+            alert.addButton(withTitle: String(localized: "Keep CotEditor’s Edition"))
+            alert.addButton(withTitle: String(localized: "Update"))
             
             // mark the alert as critical in order to interrupt other sheets already attached
             guard let documentWindow = self.windowForSheet else {
@@ -1273,7 +1273,7 @@ private enum ReinterpretationError: LocalizedError {
         
         switch self {
             case .noFile:
-                return "The document doesn’t have a file to reinterpret.".localized
+                return String(localized: "The document doesn’t have a file to reinterpret.")
                 
             case let .reinterpretationFailed(fileURL, encoding):
                 return String(localized: "The file “\(fileURL.lastPathComponent)” couldn’t be reinterpreted using text encoding “\(String.localizedName(of: encoding)).”")
@@ -1288,7 +1288,7 @@ private enum ReinterpretationError: LocalizedError {
                 return nil
                 
             case .reinterpretationFailed:
-                return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
+                return String(localized: "The file may have been saved using a different text encoding, or it may not be a text file.")
         }
     }
 }
@@ -1318,10 +1318,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .lossySaving:
-                return "Do you want to continue processing?".localized
+                return String(localized: "Do you want to continue processing?")
                 
             case .lossyConversion:
-                return "Do you want to change encoding and show incompatible characters?".localized
+                return String(localized: "Do you want to change encoding and show incompatible characters?")
         }
     }
     
@@ -1330,13 +1330,13 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
             case .lossySaving:
-                return ["Show Incompatible Characters".localized,
-                        "Save Available Text".localized,
-                        "Cancel".localized]
+                return [String(localized: "Show Incompatible Characters"),
+                        String(localized: "Save Available Text"),
+                        String(localized: "Cancel")]
                 
             case .lossyConversion:
-                return ["Change Encoding".localized,
-                        "Cancel".localized]
+                return [String(localized: "Change Encoding"),
+                        String(localized: "Cancel")]
         }
     }
     

@@ -206,9 +206,9 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
             self.regex = nil
             self.numberOfCaptureGroups = 0
             if self.searchPattern.isEmpty {
-                self.errorMessage = "Empty pattern".localized
+                self.errorMessage = String(localized: "Empty pattern")
             } else {
-                self.errorMessage = "Invalid pattern".localized
+                self.errorMessage = String(localized: "Invalid pattern")
             }
             
             throw error

@@ -114,7 +114,7 @@ extension NSTextView {
         
         if progress.count > 0 {
             // apply to the text view
-            self.replace(with: [result.string], ranges: [string.nsRange], selectedRanges: result.selectedRanges, actionName: "Replace All".localized)
+            self.replace(with: [result.string], ranges: [string.nsRange], selectedRanges: result.selectedRanges, actionName: String(localized: "Replace All"))
         } else {
             NSSound.beep()
         }

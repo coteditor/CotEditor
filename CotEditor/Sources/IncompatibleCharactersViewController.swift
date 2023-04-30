@@ -67,7 +67,7 @@ final class IncompatibleCharactersViewController: NSViewController {
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
-        self.view.setAccessibilityLabel("Incompatible Characters".localized)
+        self.view.setAccessibilityLabel(String(localized: "Incompatible Characters"))
     }
     
     
@@ -207,9 +207,9 @@ final class IncompatibleCharactersViewController: NSViewController {
         self.messageField?.textColor = self.incompatibleCharacters.isEmpty ? .secondaryLabelColor : .labelColor
         self.messageField?.stringValue = {
             switch self.incompatibleCharacters.count {
-                case _ where isScanning: return "Scanning incompatible characters…".localized
-                case 0:  return "No issues found.".localized
-                case 1:  return "Found an incompatible character.".localized
+                case _ where isScanning: return String(localized: "Scanning incompatible characters…")
+                case 0:  return String(localized: "No issues found.")
+                case 1:  return String(localized: "Found an incompatible character.")
                 default: return String(localized: "Found \(self.incompatibleCharacters.count) incompatible characters.")
             }
         }()

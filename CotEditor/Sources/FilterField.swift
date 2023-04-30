@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ final class FilterField: NSSearchField {
     // MARK: Private Properties
     
     private let image: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle",
-                                       accessibilityDescription: "filter".localized)!
+                                       accessibilityDescription: String(localized: "filter"))!
     private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
-                                                accessibilityDescription: "filter".localized)!
+                                                accessibilityDescription: String(localized: "filter"))!
         .tinted(with: .controlAccentColor)
     
     
@@ -53,15 +53,15 @@ final class FilterField: NSSearchField {
         
         self.font = .systemFont(ofSize: NSFont.smallSystemFontSize)
         
-        let searchMenu = NSMenu(title: "Recent Filters".localized)
-        searchMenu.addItem(withTitle: "Recent Filters".localized, action: nil, keyEquivalent: "")
+        let searchMenu = NSMenu(title: String(localized: "Recent Filters"))
+        searchMenu.addItem(withTitle: String(localized: "Recent Filters"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsTitleMenuItemTag
         searchMenu.addItem(withTitle: "", action: nil, keyEquivalent: "")
             .tag = NSSearchField.recentsMenuItemTag
         searchMenu.addItem(.separator())
-        searchMenu.addItem(withTitle: "Clear Recent Filters".localized, action: nil, keyEquivalent: "")
+        searchMenu.addItem(withTitle: String(localized: "Clear Recent Filters"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.clearRecentsMenuItemTag
-        searchMenu.addItem(withTitle: "No Recent Filter".localized, action: nil, keyEquivalent: "")
+        searchMenu.addItem(withTitle: String(localized: "No Recent Filter"), action: nil, keyEquivalent: "")
             .tag = NSSearchField.noRecentsMenuItemTag
         self.searchMenuTemplate = searchMenu
     }

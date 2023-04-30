@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2022 1024jp
+//  © 2015-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,24 +45,23 @@ enum UnicodeNormalizationForm: String {
     /// Localized name.
     var localizedName: String {
         
-        let key: String
+        let table = Self.localizationTable
         switch self {
             case .nfd:
-                key = "NFD"
+                return String(localized: "NFD", table: table)
             case .nfc:
-                key = "NFC"
+                return String(localized: "NFC", table: table)
             case .nfkd:
-                key = "NFKD"
+                return String(localized: "NFKD", table: table)
             case .nfkc:
-                key = "NFKC"
+                return String(localized: "NFKC", table: table)
             case .nfkcCasefold:
-                key = "NFKC Casefold"
+                return String(localized: "NFKC Casefold", table: table)
             case .modifiedNFD:
-                key = "Modified NFD"
+                return String(localized: "Modified NFD", table: table)
             case .modifiedNFC:
-                key = "Modified NFC"
+                return String(localized: "Modified NFC", table: table)
         }
-        return key.localized(tableName: Self.localizationTable)
     }
     
     
@@ -72,26 +71,26 @@ enum UnicodeNormalizationForm: String {
         let table = Self.localizationTable
         switch self {
             case .nfd:
-                return "Canonical Decomposition"
-                    .localized(tableName: table, comment: "description for NFD")
+                return String(localized: "Canonical Decomposition",
+                              table: table, comment: "description for NFD")
             case .nfc:
-                return "Canonical Decomposition, followed by Canonical Composition"
-                    .localized(tableName: table, comment: "description for NFC")
+                return String(localized: "Canonical Decomposition, followed by Canonical Composition",
+                              table: table, comment: "description for NFC")
             case .nfkd:
-                return "Compatibility Decomposition"
-                    .localized(tableName: table, comment: "description for NFKD")
+                return String(localized: "Compatibility Decomposition",
+                              table: table, comment: "description for NFKD")
             case .nfkc:
-                return "Compatibility Decomposition, followed by Canonical Composition"
-                    .localized(tableName: table, comment: "description for NFKC")
+                return String(localized: "Compatibility Decomposition, followed by Canonical Composition",
+                              table: table, comment: "description for NFKC")
             case .nfkcCasefold:
-                return "Applying NFKC, CaseFolding, and removal of default-ignorable code points"
-                    .localized(tableName: table, comment: "description for NFKD Casefold")
+                return String(localized: "Applying NFKC, CaseFolding, and removal of default-ignorable code points",
+                              table: table, comment: "description for NFKD Casefold")
             case .modifiedNFD:
-                return "Unofficial NFD-based normalization form used in HFS+"
-                    .localized(tableName: table, comment: "description for Modified NFD")
+                return String(localized: "Unofficial NFD-based normalization form used in HFS+",
+                              table: table, comment: "description for Modified NFD")
             case .modifiedNFC:
-                return "Unofficial NFC-based normalization form corresponding to Modified NFD"
-                    .localized(tableName: table, comment: "description for Modified NFC")
+                return String(localized: "Unofficial NFC-based normalization form corresponding to Modified NFD",
+                              table: table, comment: "description for Modified NFC")
         }
     }
 }
@@ -123,7 +122,7 @@ extension StringProtocol {
 
 extension StringProtocol {
     
-    /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. NFKC_Casefold or NFKC_CF.
+    /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. `NFKC_Casefold` or `NFKC_CF`.
     var precomposedStringWithCompatibilityMappingWithCasefold: String {
         
         self.precomposedStringWithCompatibilityMapping

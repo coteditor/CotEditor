@@ -73,7 +73,7 @@ final class SnippetManager {
     /// - Returns: the snippet created.
     func createUntitledSetting() -> Snippet {
         
-        let name = self.snippets.map(\.name).createAvailableName(for: "Untitled".localized)
+        let name = self.snippets.map(\.name).createAvailableName(for: String(localized: "Untitled"))
         
         return Snippet(name: name)
     }

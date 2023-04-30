@@ -111,11 +111,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             let validationView = SyntaxValidationView(validator: self.validator)
             let validationTabItem = NSTabViewItem(viewController: NSHostingController(rootView: validationView))
             validationTabItem.identifier = "validation"
-            validationTabItem.label = "Syntax Validation".localized
+            validationTabItem.label = String(localized: "Syntax Validation")
             tabViewController.addTabViewItem(validationTabItem)
             
             self.tabViewController = tabViewController
-            self.menuTitles = tabViewController.tabViewItems.map(\.label.localized)
+            self.menuTitles = tabViewController.tabViewItems.map(\.label)
+                .map { String(localized: String.LocalizationValue($0)) }
             tabViewController.children.forEach { $0.representedObject = self.style }
         }
     }
@@ -139,7 +140,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             self.styleNameField?.isEditable = false
             self.styleNameField?.isBordered = true
             
-            self.message = "Bundled styles can’t be renamed.".localized
+            self.message = String(localized: "Bundled styles can’t be renamed.")
         }
     }
     

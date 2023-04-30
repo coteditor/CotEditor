@@ -154,16 +154,17 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         // append Script menu
         if let scriptMenu = ScriptManager.shared.contexualMenu {
-            let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
-            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: "Scripts".localized)
-            item.toolTip = "Scripts".localized
+            let item = NSMenuItem()
+            item.image = NSImage(systemSymbolName: "applescript.fill", accessibilityDescription: String(localized: "Scripts"))
+            item.toolTip = String(localized: "Scripts")
             item.submenu = scriptMenu
+            
             menu.addItem(item)
         }
         
         // add "Inspect Character" menu item if single character is selected
         if self.textView?.selectsSingleCharacter == true {
-            menu.insertItem(withTitle: "Inspect Character".localized,
+            menu.insertItem(withTitle: String(localized: "Inspect Character"),
                             action: #selector(showSelectionInfo),
                             keyEquivalent: "",
                             at: 1)
@@ -325,8 +326,8 @@ extension EditorTextViewController: NSUserInterfaceValidations {
         switch item.action {
             case #selector(toggleAdvancedCounter):
                 (item as? NSMenuItem)?.title = (self.advancedCounterView == nil)
-                    ? "Advanced Character Count…".localized
-                    : "Stop Advanced Character Count".localized
+                    ? String(localized: "Advanced Character Count…")
+                    : String(localized: "Stop Advanced Character Count")
                 return true
                 
             case #selector(showSelectionInfo):

@@ -72,7 +72,7 @@ final class ConsolePanelController: NSWindowController {
         let panel = NSPanel(contentViewController: viewController)
         panel.styleMask = [.closable, .resizable, .titled, .fullSizeContentView, .utilityWindow]
         panel.isFloatingPanel = false
-        panel.title = "Console".localized
+        panel.title = String(localized: "Console")
         panel.setContentSize(NSSize(width: 360, height: 200))
         
         self.init(window: panel)
@@ -118,8 +118,8 @@ extension ConsolePanelController: NSToolbarDelegate {
             case .clear:
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
-                item.label = "Clear Log".localized
-                item.toolTip = "Clear error log".localized
+                item.label = String(localized: "Clear Log")
+                item.toolTip = String(localized: "Clear error log")
                 item.image = NSImage(systemSymbolName: "trash", accessibilityDescription: item.label)
                 item.action = #selector(ConsoleViewController.clear)
                 return item

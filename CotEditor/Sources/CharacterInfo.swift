@@ -41,7 +41,7 @@ private extension Unicode.Scalar {
     }
     
     
-    var variantDescription: String? {
+    var variantDescription: String.LocalizationValue? {
         
         switch self {
             case EmojiVariationSelector.emoji:
@@ -89,7 +89,7 @@ struct CharacterInfo {
         guard var unicodeName = unicodes.first?.name else { return nil }
         
         if self.isVariant, let variantDescription = unicodes.last?.variantDescription {
-            unicodeName += " (" + variantDescription.localized(tableName: "Unicode") + ")"
+            unicodeName += " (" + String(localized: variantDescription, table: "Unicode") + ")"
         }
         
         return unicodeName

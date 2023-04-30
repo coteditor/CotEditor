@@ -868,7 +868,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // add "Copy as Rich Text" menu item
         let copyIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(copy(_:)))
         if copyIndex >= 0 {  // -1 == not found
-            menu.insertItem(withTitle: "Copy as Rich Text".localized,
+            menu.insertItem(withTitle: String(localized: "Copy as Rich Text"),
                             action: #selector(copyWithStyle),
                             keyEquivalent: "",
                             at: copyIndex + 1)
@@ -877,7 +877,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // add "Select All" menu item
         let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste))
         if pasteIndex >= 0 {  // -1 == not found
-            menu.insertItem(withTitle: "Select All".localized,
+            menu.insertItem(withTitle: String(localized: "Select All"),
                             action: #selector(selectAll),
                             keyEquivalent: "",
                             at: pasteIndex + 1)
@@ -891,7 +891,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             guard index >= 0 else { continue }  // -1 == not found
             
-            submenu.insertItem(withTitle: "Straighten Quotes".localized,
+            submenu.insertItem(withTitle: String(localized: "Straighten Quotes"),
                                action: #selector(straightenQuotesInSelection),
                                keyEquivalent: "",
                                at: index + 1)
@@ -1175,8 +1175,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case #selector(toggleComment):
                 (item as? NSMenuItem)?.title = self.canUncomment(partly: false)
-                    ? "Uncomment".localized
-                    : "Comment Out".localized
+                    ? String(localized: "Uncomment")
+                    : String(localized: "Comment Out")
                 return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
                 
             case #selector(inlineCommentOut):

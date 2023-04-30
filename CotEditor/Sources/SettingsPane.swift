@@ -35,29 +35,31 @@ enum SettingsPane: String, CaseIterable {
     case print
     
     
+    /// Localized label.
     var label: String {
         
         switch self {
             case .general:
-                return "General"
+                return String(localized: "General")
             case .window:
-                return "Window"
+                return String(localized: "Window")
             case .appearance:
-                return "Appearance"
+                return String(localized: "Appearance")
             case .edit:
-                return "Edit"
+                return String(localized: "Edit")
             case .format:
-                return "Format"
+                return String(localized: "Format")
             case .snippets:
-                return "Snippets"
+                return String(localized: "Snippets")
             case .keyBindings:
-                return "Key Bindings"
+                return String(localized: "Key Bindings")
             case .print:
-                return "Print"
+                return String(localized: "Print")
         }
     }
     
     
+    /// Symbol image name.
     var symbolName: String {
         
         switch self {

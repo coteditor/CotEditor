@@ -78,17 +78,17 @@ enum LineEnding: Character, CaseIterable {
         
         switch self {
             case .lf:
-                return "macOS / Unix (LF)".localized
+                return String(localized: "macOS / Unix (LF)")
             case .cr:
-                return "Classic Mac OS (CR)".localized
+                return String(localized: "Classic Mac OS (CR)")
             case .crlf:
-                return "Windows (CRLF)".localized
+                return String(localized: "Windows (CRLF)")
             case .nel:
-                return "Next Line (NEL)".localized
+                return String(localized: "Next Line (NEL)")
             case .lineSeparator:
-                return "Unicode Line Separator (LS)".localized
+                return String(localized: "Unicode Line Separator (LS)")
             case .paragraphSeparator:
-                return "Unicode Paragraph Separator (PS)".localized
+                return String(localized: "Unicode Paragraph Separator (PS)")
         }
     }
 }

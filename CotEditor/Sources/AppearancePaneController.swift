@@ -347,7 +347,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         if state.isRestorable {
             return [NSTableViewRowAction(style: .regular,
-                                         title: "Restore".localized,
+                                         title: String(localized: "Restore"),
                                          handler: { [weak self] (_, _) in
                                             self?.restoreTheme(name: themeName)
                                             
@@ -356,7 +356,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                                          })]
         } else {
             return [NSTableViewRowAction(style: .destructive,
-                                         title: "Delete".localized,
+                                         title: String(localized: "Delete"),
                                          handler: { [weak self] (_, _) in
                                             self?.deleteTheme(name: themeName)
                                          })]
@@ -498,7 +498,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.isExtensionHidden = true
-        savePanel.nameFieldLabel = "Export As:".localized
+        savePanel.nameFieldLabel = String(localized: "Export As:")
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedContentTypes = [ThemeManager.shared.fileType]
         
@@ -518,7 +518,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = "Import".localized
+        openPanel.prompt = String(localized: "Import")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
@@ -632,9 +632,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let alert = NSAlert()
         alert.messageText = String(localized: "Are you sure you want to delete “\(name)” theme?")
-        alert.informativeText = "This action cannot be undone.".localized
-        alert.addButton(withTitle: "Cancel".localized)
-        alert.addButton(withTitle: "Delete".localized)
+        alert.informativeText = String(localized: "This action cannot be undone.")
+        alert.addButton(withTitle: String(localized: "Cancel"))
+        alert.addButton(withTitle: String(localized: "Delete"))
         alert.buttons.last?.hasDestructiveAction = true
         
         let window = self.view.window!

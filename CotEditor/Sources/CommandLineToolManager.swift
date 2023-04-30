@@ -96,9 +96,9 @@ extension CommandLineToolManager.Status {
             case .none, .validTarget:
                 return nil
             case .differentTarget:
-                return "The current 'cot' symbolic link doesn’t target the running CotEditor.".localized
+                return String(localized: "The current 'cot' symbolic link doesn’t target the running CotEditor.")
             case .invalidTarget:
-                return "The current 'cot' symbolic link may target an invalid path.".localized
+                return String(localized: "The current 'cot' symbolic link may target an invalid path.")
         }
     }
 }

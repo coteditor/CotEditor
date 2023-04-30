@@ -186,7 +186,7 @@ extension SyntaxStyleValidator.StyleError {
     
     var errorDescription: String? {
         
-        self.type.localized + ": " + self.string
+        self.localizedType + ": " + self.string
     }
     
     
@@ -194,20 +194,20 @@ extension SyntaxStyleValidator.StyleError {
         
         switch self.kind {
             case .duplicated:
-                return "The same word is registered multiple times.".localized
+                return String(localized: "The same word is registered multiple times.")
                 
             case .regularExpression:
-                return "Invalid regular expression.".localized
+                return String(localized: "Invalid regular expression.")
                 
             case .blockComment:
-                return "Block comment needs both begin delimiter and end delimiter.".localized
+                return String(localized: "Block comment needs both begin delimiter and end delimiter.")
         }
     }
     
     
     var localizedType: String {
         
-        self.type.localized
+        String(localized: String.LocalizationValue(self.type))
     }
     
     
@@ -215,10 +215,10 @@ extension SyntaxStyleValidator.StyleError {
         
         switch self.role {
             case .begin:
-                return "Begin string".localized
+                return String(localized: "Begin string")
                 
             case .end:
-                return "End string".localized
+                return String(localized: "End string")
                 
             case .none:
                 return nil

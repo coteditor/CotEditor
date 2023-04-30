@@ -156,7 +156,7 @@ extension NSTextView {
         }
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
-                     actionName: "Trim Trailing Whitespace".localized)
+                     actionName: String(localized: "Trim Trailing Whitespace"))
     }
 }
 
