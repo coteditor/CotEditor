@@ -57,7 +57,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
-"JRQ-2g-t49.title" = "Testo da inserire mediante rilascio file nell'editor:";
+"JRQ-2g-t49.title" = "Testo da inserire mediante rilascio file nell’editor:";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Stile della sintassi";

@@ -32,7 +32,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
-"o3A-71-iGh.title" = "Texte à insérer lors d'une commande de menu ou d'un raccourcis clavier :";
+"o3A-71-iGh.title" = "Texte à insérer lors d’une commande de menu ou d’un raccourcis clavier :";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "pbJ-4Q-CE2"; */
 "pbJ-4Q-CE2.headerCell.title" = "Syntaxe";
@@ -57,7 +57,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by dropping files to the editor:"; ObjectID = "JRQ-2g-t49"; */
-"JRQ-2g-t49.title" = "Texte à insérer en glissant-déposant des fichiers dans l'éditeur :";
+"JRQ-2g-t49.title" = "Texte à insérer en glissant-déposant des fichiers dans l’éditeur :";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "RqT-x4-YbN"; */
 "RqT-x4-YbN.headerCell.title" = "Syntaxe";

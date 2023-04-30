@@ -675,8 +675,8 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の'cot'シンボリックリンクはこのCotEditor以外に向けられています。";
-"The current 'cot' symbolic link may target an invalid path." = "現在の'cot'シンボリックリンクは無効なパスに向けられています。";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在のcotシンボリックリンクはこのCotEditor以外に向けられています。";
+"The current 'cot' symbolic link may target an invalid path." = "現在のcotシンボリックリンクは無効なパスに向けられています。";
 
 
 
