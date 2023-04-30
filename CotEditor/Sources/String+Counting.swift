@@ -190,6 +190,10 @@ struct CharacterCountOptions {
 
 extension String {
     
+    /// Count string in the way described in the `option`.
+    ///
+    /// - Parameter options: The way to count.
+    /// - Returns: Counted number, or nil if failed.
     func count(options: CharacterCountOptions) -> Int? {
         
         guard !self.isEmpty else { return 0 }
@@ -219,7 +223,8 @@ extension String {
             case .utf16:
                 return string.utf16.count
             case .byte:
-                return string.data(using: options.encoding)?.count
+                guard string.canBeConverted(to: options.encoding) else { return nil }
+                return string.lengthOfBytes(using: options.encoding)
         }
     }
 }

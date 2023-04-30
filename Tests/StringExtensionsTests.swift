@@ -198,6 +198,25 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testByteCountOptions() {
+        
+        let string = "abc犬牛"
+        var options = CharacterCountOptions(unit: .byte)
+        
+        options.encoding = .utf8
+        XCTAssertEqual(string.count(options: options), 9)
+        
+        options.encoding = .shiftJIS
+        XCTAssertEqual(string.count(options: options), 7)
+        
+        options.encoding = .ascii
+        XCTAssertNil(string.count(options: options))
+        
+        options.encoding = .nonLossyASCII
+        XCTAssertEqual(string.count(options: options), 15)
+    }
+    
+    
     func testProgrammingCases() {
         
         XCTAssertEqual("AbcDefg Hij".snakecased, "abc_defg hij")
