@@ -110,13 +110,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Methods
     
-    /// Menu for context menu.
+    /// Script menu for context menu.
     @MainActor var contexualMenu: NSMenu? {
         
         let items = self.scriptMenu!.items
             .filter { $0.action != #selector(openScriptFolder) }
         
-        guard items.contains(where: { $0.action == #selector(launchScript) }) else { return nil }
+        guard items.contains(where: { !$0.isSeparatorItem }) else { return nil }
         
         let menu = NSMenu()
         menu.items = items.map { $0.copy() as! NSMenuItem }
