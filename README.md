@@ -31,7 +31,7 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 Contribution
 --------------------------
 
-CotEditor has own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
+CotEditor has its own contributing guidelines. Read [CONTRIBUTING.md](CONTRIBUTING.md) through before you create an issue or make a pull-request.
 
 
 
