@@ -29,6 +29,8 @@
 "Cancel" = "Abbrechen";
 "Start" = "Start";
 "Restore Defaults" = "Standard wiederherstellen";
+"Delete" = "Löschen";
+"Restore" = "Wiederherstellen";
 
 
 // Appending words in parentheses
@@ -37,9 +39,11 @@
 
 // Accessibility labels
 "Inspector" = "Infofenster";
+"Document Inspector" = "Dokument-Informationen";
 "Outline" = "Gliederung";
 "Warnings" = "Vorwarnungen";
 "Incompatible Characters" = "Inkompatible Zeichen";
+"Filter" = "Filter";
 "Status Bar" = "Statusleiste";
 "Navigation Bar" = "Navigationsleiste";
 "Editor" = "Editor";
@@ -50,12 +54,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "Nach Updates suchen …";
-"What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
 "Share" = "Teilen";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "Möchtest du „%@“ wirklich löschen?";
 "This action cannot be undone." = "Diese Aktion kann nicht widerrufen werden.";
 
 
@@ -184,10 +188,10 @@
 "Exact character-by-character equivalence." = "Äquivalenz Zeichen für Zeichen vergleichen.";
 
 "Ignore diacritical marks" = "Diakritische Zeichen ignorieren";
-"Search ignores diacritical marks (ex. ö = o)." = "Suche ignoriert diakritische Zeichen (z. B. ö = o).";
+"Search ignores diacritical marks (e.g. ö = o)." = "Suche ignoriert diakritische Zeichen (z. B. ö = o).";
 
 "Ignore width differences" = "Breitenunterschiede ignorieren";
-"Search ignores width differences in character forms (ex. ａ = a)." = "Suche ignoriert den Unterschied der Breite der Zeichenform (z. B. ａ = a).";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "Suche ignoriert den Unterschied der Breite der Zeichenform (z. B. ａ = a).";
 
 
 "Regular Expression Search" = "Regulärer-Ausdruck-Suche";
@@ -349,6 +353,7 @@
 // menu
 "Tab Width" = "Tabulatorbreite";
 "Custom…" = "Konfigurieren …";
+"Expand to Spaces Automatically" = "Tabulatoren automatisch expandieren";
 "Auto-Expand Tabs" = "Tabulatoren automatisch expandieren";
 
 "Wrap Lines" = "Zeilen umbrechen";
@@ -501,6 +506,7 @@
 "Copy as Rich Text" = "Als formatierten Text kopieren";
 "Select All" = "Alles auswählen";
 "Straighten Quotes" = "Anführungszeichen glätten";
+"Scripts" = "Skripten";
 
 
 
@@ -550,7 +556,6 @@
 // Outline menu title
 "Jump to previous outline item" = "Zum vorherigen Gliederungsposten";
 "Jump to next outline item" = "Zum nächsten Gliederungsposten";
-"Extracting Outline…" = "Gliederung extrahieren …";
 
 
 
@@ -616,12 +621,6 @@
 "Duplicate “%@”" = "„%@“ duplizieren";
 "Restore “%@”" = "„%@“ zurücksetzen";
 "Reveal “%@” in Finder" = "„%@“ im Finder anzeigen";
-// Theme delete alert
-"Are you sure you want to delete “%@” theme?" = "Möchtest du das Thema „%@“ wirklich löschen?";
-
-// Swipe to delete (also used in the Format pane)
-"Delete" = "Löschen";
-"Restore" = "Zurücksetzen";
 
 /* Theme View */
 "Text:" = "Text:";
@@ -729,11 +728,6 @@
 
 // Suffix of copied syntax coloring style
 "copy" = "Kopie";
-
-// Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "Möchtest du den Syntaxstil „%@“ wirklich löschen?";
-"Delete" = "Löschen";
-"Replace" = "Ersetzen";
 
 // Import syntax style file choose openPanel button
 "Import" = "Importieren";

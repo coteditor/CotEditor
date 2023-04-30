@@ -597,7 +597,7 @@ extension DocumentWindowController: NSToolbarDelegate {
                 let item = NSToolbarItem(itemIdentifier: itemIdentifier)
                 item.isBordered = true
                 item.label = String(localized: "Find")
-                item.toolTip = String(localized: "Show Find and Replace")
+                item.toolTip = String(localized: "Show Find & Replace")
                 item.image = NSImage(systemSymbolName: "magnifyingglass", accessibilityDescription: item.label)
                 item.action = #selector(performTextFinderAction)
                 item.tag = TextFinder.Action.showFindInterface.rawValue

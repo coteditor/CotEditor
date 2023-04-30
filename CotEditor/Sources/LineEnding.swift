@@ -72,25 +72,6 @@ enum LineEnding: Character, CaseIterable {
                 return "PS"
         }
     }
-    
-    
-    var localizedName: String {
-        
-        switch self {
-            case .lf:
-                return String(localized: "macOS / Unix (LF)")
-            case .cr:
-                return String(localized: "Classic Mac OS (CR)")
-            case .crlf:
-                return String(localized: "Windows (CRLF)")
-            case .nel:
-                return String(localized: "Next Line (NEL)")
-            case .lineSeparator:
-                return String(localized: "Unicode Line Separator (LS)")
-            case .paragraphSeparator:
-                return String(localized: "Unicode Paragraph Separator (PS)")
-        }
-    }
 }
 
 

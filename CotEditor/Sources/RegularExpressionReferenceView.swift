@@ -108,7 +108,8 @@ struct RegularExpressionReferenceView: View {
                     .link: URL(string: "https://unicode-org.github.io/icu/userguide/strings/regexp.html")!,
                 ]))
             
-            Text("The syntax conforms to the \(icuLink) specifications.")
+            Text("The syntax conforms to the \(icuLink) specifications.",
+                 comment: "%@ is the name of the regex engine (ICU Regular Expressions)")
                 .font(.footnote)
                 .foregroundColor(.secondaryLabel)
                 .frame(maxWidth: .infinity, alignment: .trailing)

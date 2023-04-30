@@ -37,9 +37,11 @@
 
 // Accessibility labels
 "Inspector" = "Inspector";
+"Document Inspector" = "Document Inspector";
 "Outline" = "Outline";
 "Warnings" = "Warnings";
 "Incompatible Characters" = "Incompatible Characters";
+"Filter" = "Filter";
 "Status Bar" = "Status Bar";
 "Editor" = "Editor";
 "Navigation Bar" = "Navigation Bar";
@@ -50,12 +52,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "Check for Updates…";
-"What’s New in CotEditor %@" = "What’s New in CotEditor %@";  // %@ is version number
 
 "Share" = "Share";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "Are you sure you want to delete “%@”?";
 "This action cannot be undone." = "This action cannot be undone.";
 
 
@@ -184,10 +186,10 @@
 "Exact character-by-character equivalence." = "Exact character-by-character equivalence.";
 
 "Ignore diacritical marks" = "Ignore diacritical marks";
-"Search ignores diacritical marks (ex. ö = o)." = "Search ignores diacritical marks (ex. ö = o).";
+"Search ignores diacritical marks (e.g. ö = o)." = "Search ignores diacritical marks (e.g. ö = o).";
 
 "Ignore width differences" = "Ignore width differences";
-"Search ignores width differences in character forms (ex. ａ = a)." = "Search ignores width differences in character forms (ex. ａ = a).";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "Search ignores width differences in character forms (e.g. ａ = a).";
 
 
 "Regular Expression Search" = "Regular Expression Search";
@@ -349,6 +351,7 @@
 // menu
 "Tab Width" = "Tab Width";
 "Custom…" = "Custom…";
+"Expand to Spaces Automatically" = "Expand to Spaces Automatically";
 "Auto-Expand Tabs" = "Auto-Expand Tabs";
 
 "Wrap Lines" = "Wrap Lines";
@@ -501,6 +504,7 @@
 "Copy as Rich Text" = "Copy as Rich Text";
 "Select All" = "Select All";
 "Straighten Quotes" = "Straighten Quotes";
+"Scripts" = "Scripts";
 
 
 
@@ -550,7 +554,6 @@
 // Outline menu title
 "Jump to previous outline item" = "Jump to previous outline item";
 "Jump to next outline item" = "Jump to next outline item";
-"Extracting Outline…" = "Extracting Outline…";
 
 
 
@@ -616,8 +619,6 @@
 "Duplicate “%@”" = "Duplicate “%@”";
 "Restore “%@”" = "Restore “%@”";
 "Reveal “%@” in Finder" = "Reveal “%@” in Finder";
-// Theme deletion alert
-"Are you sure you want to delete “%@” theme?" = "Are you sure you want to delete “%@” theme?";
 
 // Swipe to delete (also used in the Format pane)
 "Delete" = "Delete";
@@ -731,7 +732,6 @@
 "copy" = "copy";
 
 // Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "Are you sure you want to delete “%@” syntax style?";
 "Delete" = "Delete";
 "Replace" = "Replace";
 

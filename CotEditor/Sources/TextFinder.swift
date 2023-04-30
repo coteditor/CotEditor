@@ -63,7 +63,7 @@ enum TextFindResult {
                     case ...0:
                         return String(localized: "Not found")
                     default:
-                        return String(localized: "\(self.count) found")
+                        return String(localized: "\(self.count) found", comment: "%lld is number of founds")
                 }
                 
             case .replaced:
@@ -71,7 +71,7 @@ enum TextFindResult {
                     case ...0:
                         return String(localized: "Not replaced")
                     default:
-                        return String(localized: "\(self.count) replaced")
+                        return String(localized: "\(self.count) replaced", comment: "%lld is number of replaced")
                 }
         }
     }
@@ -466,7 +466,7 @@ final class TextFinder {
             
             if result.wrapped {
                 client.enclosingScrollView?.superview?.showHUD(symbol: .wrap(flipped: !forward))
-                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped."))
+                client.requestAccessibilityAnnouncement(String(localized: "Search wrapped.", comment: "Announced when the search restarted from the beginning."))
             }
         } else if !isIncremental {
             client.enclosingScrollView?.superview?.showHUD(symbol: forward ? .reachBottom : .reachTop)

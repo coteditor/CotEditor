@@ -29,6 +29,8 @@
 "Cancel" = "取消";
 "Start" = "開始";
 "Restore Defaults" = "恢復預設";
+"Delete" = "刪除";
+"Restore" = "還原";
 
 
 // Appending words in parentheses
@@ -37,9 +39,11 @@
 
 // Accessibility labels
 "Inspector" = "檢查器";
+"Document Inspector" = "文件檢閱器";
 "Outline" = "大綱";
 "Warnings" = "警告";
 "Incompatible Characters" = "不兼容字元";
+"Filter" = "過濾";
 "Status Bar" = "狀態欄";
 "Editor" = "編輯器";
 "Navigation Bar" = "巡覽列";
@@ -50,12 +54,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "檢查更新…";
-"What’s New in CotEditor %@" = "CotEditor %@新特性";  // %@ is version number
 
 "Share" = "共享";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "確認刪除「%@」？";
 "This action cannot be undone." = "此操作不能撤銷。";
 
 
@@ -184,10 +188,10 @@
 "Exact character-by-character equivalence." = "逐字元相等檢索";
 
 "Ignore diacritical marks" = "忽略變音符號";
-"Search ignores diacritical marks (ex. ö = o)." = "忽略變音符號進行檢索（例如ö = o）。";
+"Search ignores diacritical marks (e.g. ö = o)." = "忽略變音符號進行檢索（例如ö = o）。";
 
 "Ignore width differences" = "忽略字元寬度";
-"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字元形式的寬度進行檢索（例如ａ = a）。";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字元形式的寬度進行檢索（例如ａ = a）。";
 
 
 "Regular Expression Search" = "常規表示式檢索";
@@ -349,6 +353,7 @@
 // menu
 "Tab Width" = "Tab寬度";
 "Custom…" = "自訂…";
+"Expand to Spaces Automatically" = "Tab轉為空格";
 "Auto-Expand Tabs" = "Tab轉為空格";
 
 "Wrap Lines" = "換行";
@@ -501,6 +506,7 @@
 "Copy as Rich Text" = "以富文字拷貝";
 "Select All" = "全部選擇";
 "Straighten Quotes" = "直引號";
+"Scripts" = "Scripts";  // FIXME: added
 
 
 
@@ -550,7 +556,6 @@
 // Outline menu title
 "Jump to previous outline item" = "上一個提綱項目";
 "Jump to next outline item" = "下一個提綱項目";
-"Extracting Outline…" = "提取提綱…";
 
 
 
@@ -616,12 +621,6 @@
 "Duplicate “%@”" = "拷貝「%@」";
 "Restore “%@”" = "還原「%@」";
 "Reveal “%@” in Finder" = "在訪達中顯示「%@」";
-// Theme delete alert
-"Are you sure you want to delete “%@” theme?" = "確認刪除「%@」主題？";
-
-// Swipe to delete (also used in the Format pane)
-"Delete" = "刪除";
-"Restore" = "還原";
 
 
 /* Theme View */
@@ -733,7 +732,6 @@
 "copy" = "拷貝";
 
 // Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "確定刪除文法樣式「%@」？";
 "Delete" = "刪除";
 "Replace" = "取代";
 

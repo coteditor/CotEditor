@@ -30,9 +30,9 @@ final class FilterField: NSSearchField {
     // MARK: Private Properties
     
     private let image: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle",
-                                       accessibilityDescription: String(localized: "filter"))!
+                                       accessibilityDescription: String(localized: "Filter"))!
     private let filteringImage: NSImage = .init(systemSymbolName: "line.3.horizontal.decrease.circle.fill",
-                                                accessibilityDescription: String(localized: "filter"))!
+                                                accessibilityDescription: String(localized: "Filter"))!
         .tinted(with: .controlAccentColor)
     
     

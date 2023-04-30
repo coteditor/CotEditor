@@ -41,25 +41,25 @@ private extension Unicode.Scalar {
     }
     
     
-    var variantDescription: String.LocalizationValue? {
+    var variantDescription: String? {
         
         switch self {
             case EmojiVariationSelector.emoji:
-                return "Emoji Style"
+                return String(localized: "Emoji Style", table: "Unicode")
             case EmojiVariationSelector.text:
-                return "Text Style"
+                return String(localized: "Text Style", table: "Unicode")
             case SkinToneModifier.type12:
-                return "Skin Tone I-II"
+                return String(localized: "Skin Tone I-II", table: "Unicode")
             case SkinToneModifier.type3:
-                return "Skin Tone III"
+                return String(localized: "Skin Tone III", table: "Unicode")
             case SkinToneModifier.type4:
-                return "Skin Tone IV"
+                return String(localized: "Skin Tone IV", table: "Unicode")
             case SkinToneModifier.type5:
-                return "Skin Tone V"
+                return String(localized: "Skin Tone V", table: "Unicode")
             case SkinToneModifier.type6:
-                return "Skin Tone VI"
+                return String(localized: "Skin Tone VI", table: "Unicode")
             case _ where self.properties.isVariationSelector:
-                return "Variant"
+                return String(localized: "Variant", table: "Unicode")
             default:
                 return nil
         }
@@ -89,7 +89,7 @@ struct CharacterInfo {
         guard var unicodeName = unicodes.first?.name else { return nil }
         
         if self.isVariant, let variantDescription = unicodes.last?.variantDescription {
-            unicodeName += " (" + String(localized: variantDescription, table: "Unicode") + ")"
+            unicodeName += " (\(variantDescription))"
         }
         
         return unicodeName

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2022 1024jp
+//  © 2022-2023 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,15 +24,15 @@
 //  limitations under the License.
 //
 
+/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
+"aUE-uy-XLQ.title" = "Ana hat çıkarılıyor…";
+
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
 "BUj-TD-scp.ibShadowedToolTip" = "Bir önceki ana hat ögesine atlayın";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
 "MlW-Dz-FOk.ibShadowedToolTip" = "Bir sonraki ana hat ögesine atla";
 
-
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "Bölünmüş düzenleyiciyi kapat";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
 "syK-XU-x2I.ibShadowedToolTip" = "Düzenleyiciyi böl";

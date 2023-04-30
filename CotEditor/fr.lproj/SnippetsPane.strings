@@ -32,7 +32,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Text to be inserted by a command in the menu or by keyboard shortcut:"; ObjectID = "o3A-71-iGh"; */
-"o3A-71-iGh.title" = "Texte à insérer lors d'une commande de menu ou d'un raccourcis clavier :"
+"o3A-71-iGh.title" = "Texte à insérer lors d'une commande de menu ou d'un raccourcis clavier :";
 
 /* Class = "NSTableColumn"; headerCell.title = "Syntax Style"; ObjectID = "pbJ-4Q-CE2"; */
 "pbJ-4Q-CE2.headerCell.title" = "Syntaxe";

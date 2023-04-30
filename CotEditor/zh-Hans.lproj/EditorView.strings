@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2022 CotEditor Project
+//  © 2014-2023 CotEditor Project
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,15 +24,16 @@
 //  limitations under the License.
 //
 
+
+/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
+"aUE-uy-XLQ.title" = "提取提纲…";
+
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
 "BUj-TD-scp.ibShadowedToolTip" = "上一个提纲项目";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
 "MlW-Dz-FOk.ibShadowedToolTip" = "下一个提纲项目";
 
-
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "关闭分栏编辑器";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
 "syK-XU-x2I.ibShadowedToolTip" = "分栏显示";

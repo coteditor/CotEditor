@@ -29,6 +29,8 @@
 "Cancel" = "Annulla";
 "Start" = "Inizio";
 "Restore Defaults" = "Ripristina default";
+"Delete" = "Elimina";
+"Restore" = "Ripristina";
 
 
 // Appending words in parentheses
@@ -37,9 +39,11 @@
 
 // Accessibility labels
 "Inspector" = "Ispettore";
+"Document Inspector" = "Ispettore del documento";
 "Outline" = "Outline";
 "Warnings" = "Avvisi";
 "Incompatible Characters" = "Caratteri incompatibili";
+"Filter" = "Filtra";
 "Status Bar" = "Barra di stato";
 "Editor" = "Editor";
 "Navigation Bar" = "Barra di navigazione";
@@ -50,12 +54,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "Controlla aggiornamenti…";
-"What’s New in CotEditor %@" = "Cosa c’è di nuovo in CotEditor %@";  // %@ is version number
 
 "Share" = "Condividi";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "Si è sicuri di voler cancellare “%@”?";
 "This action cannot be undone." = "L’azione è irreversibile.";
 
 
@@ -184,10 +188,10 @@
 "Exact character-by-character equivalence." = "Equivalenza assoluta dei caratteri.";
 
 "Ignore diacritical marks" = "Ignora segni diacritici";
-"Search ignores diacritical marks (ex. ö = o)." = "La ricerca ignora i segni diacritici (es. ö = o).";
+"Search ignores diacritical marks (e.g. ö = o)." = "La ricerca ignora i segni diacritici (es. ö = o).";
 
 "Ignore width differences" = "Ignora le differenze di ampiezza";
-"Search ignores width differences in character forms (ex. ａ = a)." = "La ricerca ignora le differenze di ampiezza nei caratteri (es. ａ = a).";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "La ricerca ignora le differenze di ampiezza nei caratteri (es. ａ = a).";
 
 
 "Regular Expression Search" = "Ricerca espressioni regolari";
@@ -349,6 +353,7 @@
 // menu
 "Tab Width" = "Larghezza Tab";
 "Custom…" = "Personalizzato…";
+"Expand to Spaces Automatically" = "Espandi Tab automaticamente";
 "Auto-Expand Tabs" = "Espandi Tab automaticamente";
 
 "Wrap Lines" = "A capo automatico";
@@ -501,6 +506,7 @@
 "Copy as Rich Text" = "Copia come Rich Text";
 "Select All" = "Seleziona tutto";
 "Straighten Quotes" = "Raddrizza virgolette";
+"Scripts" = "Scripts";  // FIXME: added
 
 
 
@@ -550,7 +556,6 @@
 // Outline menu title
 "Jump to previous outline item" = "Salta all’elemento Outline successivo";
 "Jump to next outline item" = "Salta all’elemento Outline precedente";
-"Extracting Outline…" = "Estrazione Outline…";
 
 
 
@@ -616,12 +621,6 @@
 "Duplicate “%@”" = "Duplica “%@”";
 "Restore “%@”" = "Ripristina “%@”";
 "Reveal “%@” in Finder" = "Mostra “%@” nel Finder";
-// Theme delete alert
-"Are you sure you want to delete “%@” theme?" = "Si è sicuri di voler cancellare il tema “%@”?";
-
-// Swipe to delete (also used in the Format pane)
-"Delete" = "Elimina";
-"Restore" = "Ripristina";
 
 /* Theme View */
 "Text:" = "Testo:";
@@ -730,11 +729,6 @@
 
 // Suffix of copied syntax coloring style
 "copy" = "Copia";
-
-// Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "Si è sicuri di voler cancellare lo stile “%@”?";
-"Delete" = "Cancella";
-"Replace" = "Sostituisci";
 
 // Import syntax style file choose openPanel button
 "Import" = "Importa";

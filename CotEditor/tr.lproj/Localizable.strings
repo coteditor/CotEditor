@@ -29,6 +29,8 @@
 "Cancel" = "Vazgeç";
 "Start" = "Başlangıç";
 "Restore Defaults" = "Saptanmışlara Dön";
+"Delete" = "Sil";
+"Restore" = "Geri Yükle";
 
 
 // Appending words in parentheses
@@ -37,9 +39,11 @@
 
 // Accessibility labels
 "Inspector" = "Denetçi";
+"Document Inspector" = "Belge Denetçisi";
 "Outline" = "Ana Hat";
 "Warnings" = "Uyarılar";
 "Incompatible Characters" = "Uyumsuz Karakterler";
+"Filter" = "Filtre";
 "Status Bar" = "Durum Çubuğu";
 "Editor" = "Düzenleyici";
 "Navigation Bar" = "Dolaşım Çubuğu";
@@ -50,12 +54,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "Güncellemeleri Denetle…";
-"What’s New in CotEditor %@" = "CotEditor %@ Sürümündeki Yenilikler";  // %@ is version number
 
 "Share" = "Paylaş";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "“%@” silmek istediğinize emin misiniz?";
 "This action cannot be undone." = "Bu eylem geri alınamaz.";
 
 
@@ -184,10 +188,10 @@
 "Exact character-by-character equivalence." = "Tam karakter eşliği.";
 
 "Ignore diacritical marks" = "Aksan imlerini yok say";
-"Search ignores diacritical marks (ex. ö = o)." = "Arama, aksan imlerini yok sayar (örn. ö = o).";
+"Search ignores diacritical marks (e.g. ö = o)." = "Arama, aksan imlerini yok sayar (örn. ö = o).";
 
 "Ignore width differences" = "Genişlik ayrımlarını yok say";
-"Search ignores width differences in character forms (ex. ａ = a)." = "Arama, karakter biçimlerindeki genişlik ayrımlarını yok sayar (örn. ａ = a).";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "Arama, karakter biçimlerindeki genişlik ayrımlarını yok sayar (örn. ａ = a).";
 
 
 "Regular Expression Search" = "Düzenli İfade Araması";
@@ -349,6 +353,7 @@
 // menu
 "Tab Width" = "Sekme Genişliği";
 "Custom…" = "Özel…";
+"Expand to Spaces Automatically" = "Sekmeleri Kendiliğinden Genişlet";
 "Auto-Expand Tabs" = "Sekmeleri Kendiliğinden Genişlet";
 
 "Wrap Lines" = "Satırları Kaydır";
@@ -501,6 +506,7 @@
 "Copy as Rich Text" = "Zengin Metin Olarak Kopyala";
 "Select All" = "Tümünü Seç";
 "Straighten Quotes" = "Tırnakları Düzleştir";
+"Scripts" = "Scripts";  // FIXME: added
 
 
 
@@ -550,7 +556,6 @@
 // Outline menu title
 "Jump to previous outline item" = "Bir önceki ana hat ögesine atla";
 "Jump to next outline item" = "Bir sonraki ana hat ögesine atla";
-"Extracting Outline…" = "Ana hat çıkarılıyor…";
 
 
 
@@ -616,12 +621,6 @@
 "Duplicate “%@”" = "“%@” Ögesini Çoğalt";
 "Restore “%@”" = "“%@” Ögesini Geri Yükle";
 "Reveal “%@” in Finder" = "“%@” Ögesini Finder’da Göster";
-// Theme deletion alert
-"Are you sure you want to delete “%@” theme?" = "“%@” temasını silmek istediğinize emin misiniz?";
-
-// Swipe to delete (also used in the Format pane)
-"Delete" = "Sil";
-"Restore" = "Geri Yükle";
 
 /* Theme View */
 "Text:" = "Metin:";
@@ -729,11 +728,6 @@
 
 // Suffix of copied syntax coloring style
 "copy" = "kopyası";
-
-// Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "“%@” sözdizim biçemini silmek istediğinize emin misiniz?";
-"Delete" = "Sil";
-"Replace" = "Değiştir";
 
 // Import syntax style file choose openPanel button
 "Import" = "İçe Aktar";

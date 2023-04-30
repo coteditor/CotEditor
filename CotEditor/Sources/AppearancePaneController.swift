@@ -631,7 +631,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     private func deleteTheme(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(localized: "Are you sure you want to delete “\(name)” theme?")
+        alert.messageText = String(localized: "Are you sure you want to delete “\(name)”?")
         alert.informativeText = String(localized: "This action cannot be undone.")
         alert.addButton(withTitle: String(localized: "Cancel"))
         alert.addButton(withTitle: String(localized: "Delete"))

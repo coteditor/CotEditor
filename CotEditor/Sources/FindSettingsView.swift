@@ -102,11 +102,11 @@ struct FindTextualOptionsView: View {
                 Toggle("Distinguish characters strictly", isOn: $isLiteralSearch)
                     .help("Exact character-by-character equivalence.")
                 Toggle("Ignore diacritical marks", isOn: $ignoresDiacriticMarks)
-                    .help("Search ignores diacritical marks (e.g., ö = o).")
+                    .help("Search ignores diacritical marks (e.g. ö = o).")
                 Toggle("Ignore width differences", isOn: $ignoresWidth)
-                    .help("Search ignores width differences in character forms (e.g., ａ = a).")
+                    .help("Search ignores width differences in character forms (e.g. ａ = a).")
             } header: {
-                Text("Textural Search")
+                Text("Textual Search")
                     .fontWeight(.semibold)
             }
         }

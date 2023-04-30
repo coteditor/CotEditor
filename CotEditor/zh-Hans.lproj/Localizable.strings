@@ -29,6 +29,8 @@
 "Cancel" = "取消";
 "Start" = "开始";
 "Restore Defaults" = "恢复默认";
+"Delete" = "删除";
+"Restore" = "还原";
 
 
 // Appending words in parentheses
@@ -37,9 +39,11 @@
 
 // Accessibility labels
 "Inspector" = "检查器";
+"Document Inspector" = "文稿信息";
 "Outline" = "大纲";
 "Warnings" = "警告";
 "Incompatible Characters" = "不兼容字符";
+"Filter" = "过滤";
 "Status Bar" = "状态栏";
 "Editor" = "编辑器";
 "Navigation Bar" = "导航栏";
@@ -50,12 +54,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "检查更新…";
-"What’s New in CotEditor %@" = "CotEditor %@新特性";  // %@ is version number
 
 "Share" = "共享";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "确认删除“%@”？";
 "This action cannot be undone." = "此操作不能撤销。";
 
 
@@ -184,10 +188,10 @@
 "Exact character-by-character equivalence." = "逐字符相等查找";
 
 "Ignore diacritical marks" = "忽略变音符号";
-"Search ignores diacritical marks (ex. ö = o)." = "忽略变音符号进行查找（例如ö = o）。";
+"Search ignores diacritical marks (e.g. ö = o)." = "忽略变音符号进行查找（例如ö = o）。";
 
 "Ignore width differences" = "忽略字符宽度";
-"Search ignores width differences in character forms (ex. ａ = a)." = "忽略字符形式的宽度进行查找（例如ａ = a）。";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "忽略字符形式的宽度进行查找（例如ａ = a）。";
 
 
 "Regular Expression Search" = "正则表达式查找";
@@ -349,6 +353,7 @@
 // menu
 "Tab Width" = "Tab宽度";
 "Custom…" = "自定义…";
+"Expand to Spaces Automatically" = "Tab转为空格";
 "Auto-Expand Tabs" = "Tab转为空格";
 
 "Wrap Lines" = "换行";
@@ -501,6 +506,7 @@
 "Copy as Rich Text" = "以富文本拷贝";
 "Select All" = "全部选择";
 "Straighten Quotes" = "直引号";
+"Scripts" = "Scripts";  // FIXME: added
 
 
 
@@ -550,7 +556,6 @@
 // Outline menu title
 "Jump to previous outline item" = "上一个提纲项目";
 "Jump to next outline item" = "下一个提纲项目";
-"Extracting Outline…" = "提取提纲…";
 
 
 
@@ -616,12 +621,6 @@
 "Duplicate “%@”" = "拷贝“%@”";
 "Restore “%@”" = "还原“%@”";
 "Reveal “%@” in Finder" = "在访达中显示“%@”";
-// Theme delete alert
-"Are you sure you want to delete “%@” theme?" = "确认删除“%@”主题？";
-
-// Swipe to delete (also used in the Format pane)
-"Delete" = "删除";
-"Restore" = "还原";
 
 
 /* Theme View */
@@ -731,11 +730,6 @@
 
 // Suffix of copied syntax coloring style
 "copy" = "拷贝";
-
-// Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "确定删除语法样式“%@”？";
-"Delete" = "删除";
-"Replace" = "替换";
 
 // Import syntax style file choose openPanel button
 "Import" = "导入";

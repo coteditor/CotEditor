@@ -29,6 +29,8 @@
 "Cancel" = "キャンセル";
 "Start" = "開始";
 "Restore Defaults" = "デフォルトに戻す";
+"Delete" = "削除";
+"Restore" = "元に戻す";
 
 
 // Appending words in parentheses
@@ -37,9 +39,11 @@
 
 // Accessibility labels
 "Inspector" = "インスペクタ";
+"Document Inspector" = "書類情報";
 "Outline" = "アウトライン";
 "Warnings" = "警告";
 "Incompatible Characters" = "非互換文字";
+"Filter" = "フィルタ";
 "Status Bar" = "ステータスバー";
 "Editor" = "エディタ";
 "Navigation Bar" = "ナビゲーションバー";
@@ -50,12 +54,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認…";
-"What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
 "Share" = "共有";
 
 
 // warning message occurs in multiple places
+"Are you sure you want to delete “%@”?" = "“%@”を削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
 
 
@@ -184,10 +188,10 @@
 "Exact character-by-character equivalence." = "バイトレベルで完全一致する文字列にのみ一致";
 
 "Ignore diacritical marks" = "発音区別記号を無視";
-"Search ignores diacritical marks (ex. ö = o)." = "文字の発音記号を無視して検索（例: ö = o）";
+"Search ignores diacritical marks (e.g. ö = o)." = "文字の発音記号を無視して検索（例: ö = o）";
 
 "Ignore width differences" = "全角/半角を無視";
-"Search ignores width differences in character forms (ex. ａ = a)." = "文字の全角/半角を無視して検索（例: ａ = a）";
+"Search ignores width differences in character forms (e.g. ａ = a)." = "文字の全角/半角を無視して検索（例: ａ = a）";
 
 
 "Regular Expression Search" = "正規表現検索";
@@ -349,6 +353,7 @@
 // menu
 "Tab Width" = "タブ幅";
 "Custom…" = "カスタム…";
+"Expand to Spaces Automatically" = "自動でスペースに展開";
 "Auto-Expand Tabs" = "タブを自動でスペースに展開";
 
 "Wrap Lines" = "行を折り返す";
@@ -501,6 +506,7 @@
 "Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
 "Straighten Quotes" = "引用符をまっすぐにする";
+"Scripts" = "スクリプト";
 
 
 
@@ -550,7 +556,6 @@
 // Outline menu title
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
-"Extracting Outline…" = "アウトラインを抽出中…";
 
 
 
@@ -564,7 +569,7 @@
 /* MARK: ColorCodePanelAccessory */
 "color code" = "カラーコード";
 
-"Hex" = "16進法";
+"Hexadecimal" = "16進法";
 "Hexadecimal (Short)" = "16進法（ショート）";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
@@ -616,12 +621,6 @@
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
-// Theme deletion alert
-"Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか?";
-
-// Swipe to delete (also used in the Format pane)
-"Delete" = "削除";
-"Restore" = "元に戻す";
 
 
 /* Theme View */
@@ -730,11 +729,6 @@
 
 // Suffix of copied syntax coloring style
 "copy" = "コピー";
-
-// Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか?";
-"Delete" = "削除";
-"Replace" = "置換";
 
 // Import syntax style file choose openPanel button
 "Import" = "読み込む";

@@ -232,7 +232,7 @@ private extension ColorCodeType {
             case .hex:
                 return "Hexadecimal"
             case .shortHex:
-                return "Hexadecimal (short)"
+                return "Hexadecimal (Short)"
             case .cssRGB:
                 return "CSS RGB"
             case .cssRGBa:

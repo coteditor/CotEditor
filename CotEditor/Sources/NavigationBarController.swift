@@ -74,7 +74,7 @@ final class NavigationBarController: NSViewController {
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel(String(localized: "Navigation Bar"))
         
-        self.outlineMenu?.setAccessibilityLabel(String(localized: "Outline Menu"))
+        self.outlineMenu?.setAccessibilityLabel(String(localized: "Outline"))
     }
     
     
