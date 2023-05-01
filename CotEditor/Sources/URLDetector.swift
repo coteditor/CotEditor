@@ -127,7 +127,7 @@ extension NSTextStorage {
         let range = range ?? self.range
         
         let links: [ValueRange<URL>] = try await Task.detached {
-            try (try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue))
+            try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
                 .cancellableMatches(in: string, range: range)
                 .compactMap { (result) in
                     guard let url = result.url else { return nil }
