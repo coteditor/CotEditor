@@ -28,7 +28,7 @@ extension Unicode.UTF32.CodeUnit {
     /// Unicode block name.
     ///
     /// Based on Unicode 15.0.0 (2022-01-28)
-    /// cf. <http://www.unicode.org/Public/UNIDATA/Blocks.txt>
+    /// cf. <https://www.unicode.org/Public/UNIDATA/Blocks.txt>
     var blockName: String? {
         
         switch self {
