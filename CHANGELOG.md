@@ -5,6 +5,11 @@ Change Log
 4.5.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Mojo syntax style.
+
+
 ### Fixes
 
 - Workaround an issue that “Keep on Top” feature blocks all windows from coming back to the foreground in the Stage Manager mode.

@@ -57,6 +57,7 @@
 "Lisp script" = "Script Lisp";
 "Lua script" = "Script Lua";
 "Markdown document" = "Document Markdown";
+"Mojo script" = "Script Mojo";
 "Perl script" = "Script Perl";
 "PHP script" = "Script PHP";
 "Python script" = "Script Python";

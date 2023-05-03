@@ -60,6 +60,7 @@
 				<string>org.tug.tex</string>
 				<string>com.coteditor.conf</string>
 				<string>com.coteditor.lisp</string>
+				<string>com.coteditor.mojo</string>
 				<string>com.coteditor.scheme</string>
 				<string>com.coteditor.verilog</string>
 				<string>com.coteditor.vhdl</string>
@@ -261,6 +262,31 @@
 				<array>
 					<string>lisp</string>
 					<string>lsp</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Mojo script</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>Mojo-fill</string>
+				<key>UTTypeIconText</key>
+				<string>mojo</string>
+			</dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.mojo</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>mojo</string>
+					<string>🔥</string>
 				</array>
 			</dict>
 		</dict>

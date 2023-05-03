@@ -465,6 +465,18 @@
 
     ]
   },
+  "Mojo" : {
+    "extensions" : [
+      "mojo",
+      "🔥"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "mojo"
+    ]
+  },
   "Pascal" : {
     "extensions" : [
       "pas",
