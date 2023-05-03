@@ -371,7 +371,7 @@
 "Hide indent guide lines" = "インデントガイドを非表示";
 "Show indent guide lines" = "インデントガイドを表示";
 
-"Keep on Top" = "常に一番上に表示";
+"Keep on Top" = "一番上に表示";
 // tooltip
 "Keep the window always on top" = "ウインドウを常に一番上に表示";
 
