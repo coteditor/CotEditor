@@ -1241,7 +1241,7 @@ CA
                 <customObject id="1Vq-aI-bgB" customClass="NSFontManager"/>
                 <menu id="XYx-Cu-L71" userLabel="Dock Menu">
                     <items>
-                        <menuItem title="New" id="qTb-gl-0V3">
+                        <menuItem title="New Document" id="qTb-gl-0V3">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="newDocumentActivatingApplication:" target="Ady-hI-5gd" id="Rgw-fI-unE"/>

@@ -26,8 +26,8 @@
 
 // MARK: Dock Menu
 
-/* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
-"qTb-gl-0V3.title" = "新增檔案";
+/* Class = "NSMenuItem"; title = "New Document"; ObjectID = "qTb-gl-0V3"; */
+"qTb-gl-0V3.title" = "新增文件";
 
 
 
