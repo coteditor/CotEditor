@@ -75,7 +75,9 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        let message = String(localized: (progress.count == 0) ? "Not found" : "\(progress.count) found")
+        let message = (progress.count == 0)
+            ? String(localized: "Not found")
+            : String(localized: "\(progress.count) found")
         
         self.requestAccessibilityAnnouncement(message)
         
@@ -121,7 +123,9 @@ extension NSTextView {
         
         progress.isFinished = true
         
-        let message = String(localized: (progress.count == 0) ? "Not replaced" : "\(progress.count) replaced")
+        let message = (progress.count == 0)
+            ? String(localized: "Not replaced")
+            : String(localized: "\(progress.count) replaced")
         
         self.requestAccessibilityAnnouncement(message)
         

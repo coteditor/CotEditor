@@ -39,28 +39,24 @@ enum UnicodeNormalizationForm: String {
     static let modifiedForms: [Self] = [.modifiedNFD, .modifiedNFC]
     
     
-    private static let localizationTable = "UnicodeNormalization"
-    
-    
     /// Localized name.
     var localizedName: String {
         
-        let table = Self.localizationTable
         switch self {
             case .nfd:
-                return String(localized: "NFD", table: table)
+                return String(localized: "NFD", table: "UnicodeNormalization")
             case .nfc:
-                return String(localized: "NFC", table: table)
+                return String(localized: "NFC", table: "UnicodeNormalization")
             case .nfkd:
-                return String(localized: "NFKD", table: table)
+                return String(localized: "NFKD", table: "UnicodeNormalization")
             case .nfkc:
-                return String(localized: "NFKC", table: table)
+                return String(localized: "NFKC", table: "UnicodeNormalization")
             case .nfkcCasefold:
-                return String(localized: "NFKC Casefold", table: table)
+                return String(localized: "NFKC Casefold", table: "UnicodeNormalization")
             case .modifiedNFD:
-                return String(localized: "Modified NFD", table: table)
+                return String(localized: "Modified NFD", table: "UnicodeNormalization")
             case .modifiedNFC:
-                return String(localized: "Modified NFC", table: table)
+                return String(localized: "Modified NFC", table: "UnicodeNormalization")
         }
     }
     
@@ -68,29 +64,28 @@ enum UnicodeNormalizationForm: String {
     /// Localized description for user.
     var localizedDescription: String {
         
-        let table = Self.localizationTable
         switch self {
             case .nfd:
                 return String(localized: "Canonical Decomposition",
-                              table: table, comment: "description for NFD")
+                              table: "UnicodeNormalization", comment: "description for NFD")
             case .nfc:
                 return String(localized: "Canonical Decomposition, followed by Canonical Composition",
-                              table: table, comment: "description for NFC")
+                              table: "UnicodeNormalization", comment: "description for NFC")
             case .nfkd:
                 return String(localized: "Compatibility Decomposition",
-                              table: table, comment: "description for NFKD")
+                              table: "UnicodeNormalization", comment: "description for NFKD")
             case .nfkc:
                 return String(localized: "Compatibility Decomposition, followed by Canonical Composition",
-                              table: table, comment: "description for NFKC")
+                              table: "UnicodeNormalization", comment: "description for NFKC")
             case .nfkcCasefold:
                 return String(localized: "Applying NFKC, CaseFolding, and removal of default-ignorable code points",
-                              table: table, comment: "description for NFKD Casefold")
+                              table: "UnicodeNormalization", comment: "description for NFKD Casefold")
             case .modifiedNFD:
                 return String(localized: "Unofficial NFD-based normalization form used in HFS+",
-                              table: table, comment: "description for Modified NFD")
+                              table: "UnicodeNormalization", comment: "description for Modified NFD")
             case .modifiedNFC:
                 return String(localized: "Unofficial NFC-based normalization form corresponding to Modified NFD",
-                              table: table, comment: "description for Modified NFC")
+                              table: "UnicodeNormalization", comment: "description for Modified NFC")
         }
     }
 }

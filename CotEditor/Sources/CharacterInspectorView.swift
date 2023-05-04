@@ -118,7 +118,7 @@ private struct ScalarDetailView: View {
             if self.items.contains(.codePoint) {
                 Group {
                     if let surrogates = self.scalar.surrogateCodePoints {
-                        Text("\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
+                        Text(verbatim: "\(self.scalar.codePoint) (\(surrogates.lead) \(surrogates.trail))")
                     } else {
                         Text(self.scalar.codePoint)
                     }
@@ -141,7 +141,7 @@ private struct ScalarDetailView: View {
             
             if self.items.contains(.category) {
                 let category = self.scalar.properties.generalCategory
-                Text("\(category.longName) (\(category.shortName))")
+                Text(verbatim: "\(category.longName) (\(category.shortName))")
                     .foregroundColor(.label)
                     .textSelection(.enabled)
             }

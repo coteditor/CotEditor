@@ -1211,12 +1211,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
             self.isExternalUpdateAlertShown = true
             
-            let messageText: String.LocalizationValue = self.isDocumentEdited
-                ? "The file has been changed by another application. There are also unsaved changes in CotEditor."
-                : "The file has been changed by another application."
-            
             let alert = NSAlert()
-            alert.messageText = String(localized: messageText)
+            alert.messageText = self.isDocumentEdited
+                ? String(localized: "The file has been changed by another application. There are also unsaved changes in CotEditor.")
+                : String(localized: "The file has been changed by another application.")
             alert.informativeText = String(localized: "Do you want to keep CotEditor’s edition or update it to the modified edition?")
             alert.addButton(withTitle: String(localized: "Keep CotEditor’s Edition"))
             alert.addButton(withTitle: String(localized: "Update"))
