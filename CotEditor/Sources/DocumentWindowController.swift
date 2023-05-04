@@ -543,7 +543,6 @@ extension DocumentWindowController: NSToolbarDelegate {
                 item.action = #selector(DocumentWindow.toggleKeepOnTop)
                 return item
                 
-                
             case .opacity:
                 let menuItem = NSMenuItem()
                 menuItem.view = OpacityHostingView(window: self.window as? DocumentWindow)
