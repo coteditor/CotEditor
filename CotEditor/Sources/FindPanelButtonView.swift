@@ -55,13 +55,13 @@ struct FindPanelButtonView: View {
                 } primaryAction: {
                     self.performAction(.findAll)
                 }
-                .help("List all matches.")
+                .help("Find and list all matches up.")
                 .fixedSize()
             } else {
                 Button("Find All") {
                     self.performAction(.findAll)
                 }
-                .help("List all matches.")
+                .help("Find and list all matches up.")
                 .fixedSize()
             }
             

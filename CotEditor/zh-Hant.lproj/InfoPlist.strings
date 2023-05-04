@@ -71,6 +71,7 @@
 "Swift source" = "Swift源碼";
 "TeX document" = "TeX文件";
 "Textile document" = "Textile文件";
+"TOML document" = "TOML文件";
 "Verilog source" = "Verilog源碼";
 "VHDL source" = "VHDL源碼";
 "XML document" = "XML文件";

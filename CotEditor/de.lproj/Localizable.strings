@@ -33,8 +33,11 @@
 "Restore" = "Wiederherstellen";
 
 
-// Appending words in parentheses
+// words with symbols
 " (%@)" = " (%@)";
+"(%@)" = "(%@)";
+"(%@):" = "(%@):";
+"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -100,13 +103,11 @@
 
 /* MARK: FindPanelController */
 "Not found" = "Nicht gefunden";
-"%lld found" = "%lld gefunden";  // %lld is number of founds
 "Not replaced" = "Nicht ersetzt";
-"%lld replaced" = "%lld ersetzt";  // %lld is number of replaced
 
 // pairs of button label and its tooltip
 "Find All" = "Alles suchen";
-"List all matches." = "Alle Übereinstimmungen auflisten.";
+"Find and list all matches up." = "Suchen und alle Übereinstimmungen auflisten.";
 
 "Replace All" = "Alles ersetzen";
 "Replace all matches with the replacement text." = "Alle Übereinstimmungen durch den Ersetzungstext ersetzen.";

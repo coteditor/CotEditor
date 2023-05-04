@@ -72,6 +72,7 @@
 "Swift source" = "Swift kaynağı";
 "TeX document" = "TeX belgesi";
 "Textile document" = "Textile belgesi";
+"TOML document" = "TOML belgesi";
 "Verilog source" = "Verilog kaynağı";
 "VHDL source" = "VHDL kaynağı";
 "XML document" = "XML belgesi";

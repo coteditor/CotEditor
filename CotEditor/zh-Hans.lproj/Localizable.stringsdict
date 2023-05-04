@@ -30,5 +30,33 @@
 			<string>*%lld*个字符</string>
 		</dict>
 	</dict>
+	<key>%lld found</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@found@</string>
+		<key>found</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>other</key>
+			<string>找到%lld项</string>
+		</dict>
+	</dict>
+	<key>%lld replaced</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replaced@</string>
+		<key>replaced</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>other</key>
+			<string>%lld处被替换</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

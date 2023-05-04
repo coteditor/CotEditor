@@ -30,5 +30,33 @@
 			<string>*%lld* karakter</string>
 		</dict>
 	</dict>
+	<key>%lld found</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@found@</string>
+		<key>found</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>other</key>
+			<string>%lld bulundu</string>
+		</dict>
+	</dict>
+	<key>%lld replaced</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@replaced@</string>
+		<key>replaced</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>lld</string>
+			<key>other</key>
+			<string>%lld değiştirildi</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

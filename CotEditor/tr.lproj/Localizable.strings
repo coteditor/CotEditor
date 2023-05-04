@@ -33,8 +33,11 @@
 "Restore" = "Geri Yükle";
 
 
-// Appending words in parentheses
+// words with symbols
 " (%@)" = " (%@)";
+"(%@)" = "(%@)";
+"(%@):" = "(%@):";
+"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -100,13 +103,11 @@
 
 /* MARK: FindPanelController */
 "Not found" = "Bulunamadı";
-"%lld found" = "%lld bulundu";  // %lld is number of founds
 "Not replaced" = "Değiştirilmedi";
-"%lld replaced" = "%lld değiştirildi";  // %lld is number of replaced
 
 // pairs of button label and its tooltip
 "Find All" = "Tümünü Bul";
-"List all matches." = "Tüm eşleşmeleri listele.";
+"Find and list all matches up." = "Tüm eşleşmeleri listele.";
 
 "Replace All" = "Tümünü Değiştir";
 "Replace all matches with the replacement text." = "Tüm eşleşmeleri değişim metniyle değiştir.";
@@ -570,7 +571,7 @@
 "color code" = "renk kodu";
 
 "Hexadecimal" = "Onaltılık";
-"Hexadecimal (short)" = "Onaltılık (kısa)";
+"Hexadecimal (Short)" = "Onaltılık (Kısa)";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";

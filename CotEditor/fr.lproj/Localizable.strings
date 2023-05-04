@@ -33,8 +33,11 @@
 "Restore" = "Restaurer";
 
 
-// Appending words in parentheses
+// words with symbols
 " (%@)" = " (%@)";
+"(%@)" = "(%@)";
+"(%@):" = "(%@) :";
+"%@:" = "%@ :";
 
 
 // Accessibility labels
@@ -100,13 +103,11 @@
 
 /* MARK: FindPanelController */
 "Not found" = "Introuvable";
-"%lld found" = "%lld trouvé(s)";  // %lld is number of founds
-"Not replaced" = "Non remplacé(s)";
-"%lld replaced" = "%lld remplacé(s)";  // %lld is number of replaced
+"Not replaced" = "Non remplacé";
 
 // pairs of button label and its tooltip
 "Find All" = "Tout rechercher";
-"List all matches." = "Liste tous les résultats.";
+"Find and list all matches up." = "Liste tous les résultats.";
 
 "Replace All" = "Tout remplacer";
 "Replace all matches with the replacement text." = "Remplace tous les résultats par le texte de remplacement.";
@@ -570,7 +571,7 @@
 "color code" = "Code couleur";
 
 "Hexadecimal" = "Hexa";
-"Hexadecimal (Short)" = "Hexa (court)";
+"Hexadecimal (Short)" = "Hexa (Court)";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";

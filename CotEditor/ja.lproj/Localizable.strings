@@ -33,8 +33,11 @@
 "Restore" = "元に戻す";
 
 
-// Appending words in parentheses
+// words with symbols
 " (%@)" = "（%@）";
+"(%@)" = "（%@）";
+"(%@):" = "（%@）:";
+"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -100,13 +103,11 @@
 
 /* MARK: FindPanelController */
 "Not found" = "見つかりません";
-"%lld found" = "%lld件見つかりました";  // %lld is number of founds
 "Not replaced" = "見つかりません";
-"%lld replaced" = "%lld件置換しました";  // %lld is number of replaced
 
 // pairs of button label and its tooltip
 "Find All" = "すべて検索";
-"List all matches." = "すべての一致を検索しリストアップ";
+"Find and list all matches up." = "すべての一致を検索しリストアップ";
 
 "Replace All" = "すべて置換";
 "Replace all matches with the replacement text." = "すべての一致を置換テキストで置き換え";
@@ -621,7 +622,6 @@
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
 "Reveal “%@” in Finder" = "“%@”をFinderに表示";
-
 
 /* Theme View */
 "Text:" = "文字:";

@@ -33,8 +33,11 @@
 "Restore" = "Ripristina";
 
 
-// Appending words in parentheses
+// words with symbols
 " (%@)" = " (%@)";
+"(%@)" = "(%@)";
+"(%@):" = "(%@):";
+"%@:" = "%@:";
 
 
 // Accessibility labels
@@ -100,13 +103,11 @@
 
 /* MARK: FindPanelController */
 "Not found" = "Non trovato";
-"%lld found" = "%lld trovati";  // %lld is number of founds
 "Not replaced" = "Non sostituiti";
-"%lld replaced" = "%lld sostituzioni";  // %lld is number of replaced
 
 // pairs of button label and its tooltip
 "Find All" = "Cerca tutto";
-"List all matches." = "Mostra tutti i risultati di ricerca.";
+"Find and list all matches up." = "Mostra tutti i risultati di ricerca.";
 
 "Replace All" = "Sostituisci tutto";
 "Replace all matches with the replacement text." = "Applica il testo sostitutivo a tutti i risultati di ricerca.";
@@ -570,7 +571,7 @@
 "color code" = "Codice colore";
 
 "Hexadecimal" = "Esadecimale";
-"Hexadecimal (Short)" = "Esadecimale (breve)";
+"Hexadecimal (Short)" = "Esadecimale (Breve)";
 "CSS RGB" = "CSS RGB";
 "CSS RGBa" = "CSS RGBa";
 "CSS HSL" = "CSS HSL";
@@ -644,7 +645,6 @@
 "Comments:" = "Commenti:";
 
 "Show theme file information" = "Mostra informazioni sul file del tema";
-
 
 // Theme metadata
 "Author:" = "Autore:";

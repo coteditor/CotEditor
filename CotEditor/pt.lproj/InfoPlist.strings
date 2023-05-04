@@ -71,6 +71,7 @@
 "Swift source" = "Fonte Swift";
 "TeX document" = "Documento TeX";
 "Textile document" = "Documento Textile";
+"TOML document" = "Documento TOML";
 "Verilog source" = "Fonte Verilog";
 "VHDL source" = "Fonte VHDL";
 "XML document" = "Documento XML";

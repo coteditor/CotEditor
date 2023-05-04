@@ -89,7 +89,7 @@ struct CharacterInfo {
         guard var unicodeName = unicodes.first?.name else { return nil }
         
         if self.isVariant, let variantDescription = unicodes.last?.variantDescription {
-            unicodeName += " (\(variantDescription))"
+            unicodeName += String(localized: " (\(variantDescription))")
         }
         
         return unicodeName

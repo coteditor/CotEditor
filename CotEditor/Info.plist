@@ -829,7 +829,7 @@
 				<string>public.plain-text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>TeX</string>
+			<string>TeX document</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
@@ -855,7 +855,7 @@
 				<string>public.plain-text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>TOML</string>
+			<string>TOML document</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>
@@ -885,7 +885,7 @@
 				<string>public.text</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>XML</string>
+			<string>XML document</string>
 			<key>UTTypeIcons</key>
 			<dict>
 				<key>UTTypeIconBackgroundName</key>

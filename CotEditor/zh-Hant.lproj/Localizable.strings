@@ -33,8 +33,11 @@
 "Restore" = "還原";
 
 
-// Appending words in parentheses
+// words with symbols
 " (%@)" = "（%@）";
+"(%@)" = "（%@）";
+"(%@):" = "（%@）：";
+"%@:" = "%@：";
 
 
 // Accessibility labels
@@ -100,13 +103,11 @@
 
 /* MARK: FindPanelController */
 "Not found" = "未找到";
-"%lld found" = "找到%lld項";  // %lld is number of founds
 "Not replaced" = "沒有進行取代";
-"%lld replaced" = "%lld處被取代";  // %lld is number of replaced
 
 // pairs of button label and its tooltip
 "Find All" = "檢索全部";
-"Find and list up all matches." = "列出所有匹配。";
+"Find and list all matches up." = "列出所有匹配。";
 
 "Replace All" = "全部取代";
 "Replace all matches with the replacement text." = "將所有匹配用取代文字取代。";
@@ -622,9 +623,8 @@
 "Restore “%@”" = "還原「%@」";
 "Reveal “%@” in Finder" = "在訪達中顯示「%@」";
 
-
 /* Theme View */
-"Characters:" = "文字：";
+"Text:" = "字元：";
 "Cursor:" = "游標：";
 "Invisibles:" = "不可見元素：";
 "Background:" = "背景：";
@@ -641,7 +641,6 @@
 "Values:" = "值：";
 "Numbers:" = "數字：";
 "Strings:" = "字串：";
-"Text:" = "字元：";
 "Characters:" = "文字：";
 "Comments:" = "註釋：";
 
