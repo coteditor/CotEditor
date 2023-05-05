@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8Mx-zQ-ItP">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -153,25 +154,19 @@
                                     <outlet property="delegate" destination="8Mx-zQ-ItP" id="c3v-YQ-BDu"/>
                                 </connections>
                             </textField>
-                            <imageView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lO8-kQ-ymg">
-                                <rect key="frame" x="476" y="407" width="15" height="26"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="60M-wW-SyO"/>
-                                    <constraint firstAttribute="height" constant="15" id="qlg-PM-Jx3"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="NSInvalidDataFreestandingTemplate" id="6vM-Tt-iUW"/>
-                                <connections>
-                                    <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="styleNameValid" id="jgz-kY-X66"/>
-                                </connections>
-                            </imageView>
-                            <textField horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Mlh-TL-DXQ">
-                                <rect key="frame" x="186" y="391" width="51" height="14"/>
+                            <textField hidden="YES" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Mlh-TL-DXQ">
+                                <rect key="frame" x="203" y="391" width="51" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="message" id="d7M-En-Qx0">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="message" id="km6-wW-DJP">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="8Mx-zQ-ItP" name="value" keyPath="message" id="UJL-ls-rfQ"/>
                                 </connections>
                             </textField>
@@ -293,7 +288,11 @@ DQ
                                 </buttonCell>
                                 <connections>
                                     <action selector="save:" target="8Mx-zQ-ItP" id="Nwz-1i-ZQ1"/>
-                                    <binding destination="8Mx-zQ-ItP" name="enabled" keyPath="styleNameValid" id="bQY-nY-uok"/>
+                                    <binding destination="8Mx-zQ-ItP" name="enabled" keyPath="message" id="Fow-Ka-989">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="IvE-I1-v3u">
@@ -305,25 +304,38 @@ DQ
                                     <segue destination="EHY-tm-pM1" kind="embed" id="P6G-9S-M94"/>
                                 </connections>
                             </containerView>
+                            <imageView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lO8-kQ-ymg">
+                                <rect key="frame" x="188" y="393" width="13.5" height="12"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" id="6vM-Tt-iUW">
+                                    <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="small" renderingMode="original"/>
+                                </imageCell>
+                                <connections>
+                                    <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="message" id="qvT-7d-boZ">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="N84-W6-0ZN" firstAttribute="leading" secondItem="FtY-5J-Kkn" secondAttribute="trailing" constant="8" symbolic="YES" id="0vZ-Cc-XdJ"/>
-                            <constraint firstItem="lO8-kQ-ymg" firstAttribute="leading" secondItem="N84-W6-0ZN" secondAttribute="trailing" constant="8" symbolic="YES" id="288-IC-puw"/>
+                            <constraint firstItem="lO8-kQ-ymg" firstAttribute="leading" secondItem="N84-W6-0ZN" secondAttribute="leading" id="7z7-gy-z8h"/>
                             <constraint firstItem="N84-W6-0ZN" firstAttribute="top" secondItem="rup-fw-CX3" secondAttribute="top" constant="20" symbolic="YES" id="AVp-PH-FZc"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lO8-kQ-ymg" secondAttribute="trailing" constant="20" symbolic="YES" id="D82-Xg-hIX"/>
                             <constraint firstItem="Kxb-9F-vML" firstAttribute="leading" secondItem="dje-ga-BFL" secondAttribute="trailing" constant="12" symbolic="YES" id="JiT-EL-3Vf"/>
                             <constraint firstAttribute="trailing" secondItem="IvE-I1-v3u" secondAttribute="trailing" constant="20" symbolic="YES" id="MGC-o4-VHS"/>
                             <constraint firstItem="Kxb-9F-vML" firstAttribute="top" secondItem="IvE-I1-v3u" secondAttribute="bottom" constant="12" id="Mt3-Up-tq4"/>
                             <constraint firstItem="FtY-5J-Kkn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rup-fw-CX3" secondAttribute="leading" constant="20" symbolic="YES" id="Pq5-Cn-Wh4"/>
                             <constraint firstItem="8JS-kM-ddu" firstAttribute="leading" secondItem="rup-fw-CX3" secondAttribute="leading" constant="20" symbolic="YES" id="SSw-WR-xGW"/>
+                            <constraint firstItem="Mlh-TL-DXQ" firstAttribute="firstBaseline" secondItem="lO8-kQ-ymg" secondAttribute="firstBaseline" id="V7j-Zd-VcL"/>
+                            <constraint firstItem="Mlh-TL-DXQ" firstAttribute="leading" secondItem="lO8-kQ-ymg" secondAttribute="trailing" constant="4" id="Vk9-JH-F2O"/>
                             <constraint firstAttribute="trailing" secondItem="Kxb-9F-vML" secondAttribute="trailing" constant="20" symbolic="YES" id="Z8K-Zz-g22"/>
                             <constraint firstItem="IvE-I1-v3u" firstAttribute="top" secondItem="Mlh-TL-DXQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Zcd-qa-V1q"/>
                             <constraint firstItem="Mlh-TL-DXQ" firstAttribute="top" secondItem="N84-W6-0ZN" secondAttribute="bottom" constant="4" id="Zh4-hi-Cps"/>
                             <constraint firstItem="IvE-I1-v3u" firstAttribute="bottom" secondItem="kPV-Wi-w56" secondAttribute="bottom" id="baq-Br-d7w"/>
                             <constraint firstItem="IvE-I1-v3u" firstAttribute="leading" secondItem="kPV-Wi-w56" secondAttribute="trailing" constant="8" symbolic="YES" id="beA-6d-UgC"/>
-                            <constraint firstItem="N84-W6-0ZN" firstAttribute="centerY" secondItem="lO8-kQ-ymg" secondAttribute="centerY" id="gGQ-Av-Kpa"/>
-                            <constraint firstItem="Mlh-TL-DXQ" firstAttribute="leading" secondItem="N84-W6-0ZN" secondAttribute="leading" id="gxj-Ou-2IQ"/>
                             <constraint firstItem="8JS-kM-ddu" firstAttribute="top" secondItem="Kxb-9F-vML" secondAttribute="top" id="jGP-Mj-ZLU"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N84-W6-0ZN" secondAttribute="trailing" constant="20" symbolic="YES" id="jxA-Er-SsD"/>
                             <constraint firstItem="N84-W6-0ZN" firstAttribute="baseline" secondItem="FtY-5J-Kkn" secondAttribute="baseline" id="liT-nC-6yq"/>
                             <constraint firstAttribute="bottom" secondItem="dje-ga-BFL" secondAttribute="bottom" constant="20" symbolic="YES" id="nCX-QV-PEL"/>
                             <constraint firstAttribute="bottom" secondItem="Kxb-9F-vML" secondAttribute="bottom" constant="20" symbolic="YES" id="o7c-9m-4W2"/>
@@ -355,6 +367,6 @@ DQ
         <segue reference="oWW-tk-Ap2"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="NSInvalidDataFreestandingTemplate" width="20" height="20"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="13" height="12"/>
     </resources>
 </document>

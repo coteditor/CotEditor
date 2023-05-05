@@ -48,7 +48,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     @objc private dynamic var menuTitles: [String] = []  // for binding
     @objc private dynamic var message: String?
-    @objc private dynamic var isStyleNameValid = true
     
     private var tabViewController: NSTabViewController?
     
@@ -126,8 +125,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         super.viewDidLoad()
         
+        let styleNameField = self.styleNameField!
+        
         // setup style name field
-        self.styleNameField?.stringValue = {
+        styleNameField.stringValue = {
             switch self.mode {
                 case .edit(let state): return state.name
                 case .copy(let state): return SyntaxManager.shared.savableSettingName(for: state.name, appendingCopySuffix: true)
@@ -135,12 +136,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             }
         }()
         if self.isBundledStyle {
-            self.styleNameField?.isBezeled = false
-            self.styleNameField?.isSelectable = false
-            self.styleNameField?.isEditable = false
-            self.styleNameField?.isBordered = true
-            
-            self.message = String(localized: "Bundled styles can’t be renamed.")
+            styleNameField.isBezeled = false
+            styleNameField.isSelectable = false
+            styleNameField.isEditable = false
+            styleNameField.isBordered = true
+            styleNameField.toolTip = String(localized: "Bundled styles can’t be renamed.")
         }
     }
     
@@ -265,16 +265,16 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     // MARK: Private Methods
     
-    /// validate passed-in style name and return if valid
+    /// Validate the passed-in style name.
+    ///
+    /// - Parameter styleName: The style name to test.
+    /// - Returns: `true` if the style name is valid.
     @discardableResult
     private func validate(styleName: String) -> Bool {
         
         if case .edit = self.mode, self.isBundledStyle { return true }  // cannot edit style name
         
-        self.isStyleNameValid = true
         self.message = nil
-        
-        if case .edit(let state) = self.mode, (styleName.caseInsensitiveCompare(state.name) == .orderedSame) { return true }
         
         let originalName: String? = {
             guard case .edit(let state) = self.mode else { return nil }
@@ -283,13 +283,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         do {
             try SyntaxManager.shared.validate(settingName: styleName, originalName: originalName)
-            
-        } catch let error as InvalidNameError {
-            self.isStyleNameValid = false
-            self.message = "⚠️ " + error.localizedDescription + " " + error.recoverySuggestion!
-            
-        } catch { assertionFailure("Caught unknown error: \(error)") }
+        } catch {
+            self.message = error.localizedDescription
+            return false
+        }
         
-        return self.isStyleNameValid
+        return true
     }
 }
