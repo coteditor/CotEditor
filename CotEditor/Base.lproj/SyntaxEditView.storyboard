@@ -155,19 +155,19 @@
                                 </connections>
                             </textField>
                             <textField hidden="YES" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Mlh-TL-DXQ">
-                                <rect key="frame" x="203" y="391" width="51" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="message" id="d7M-En-Qx0">
+                                <rect key="frame" x="203" y="391" width="100" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="ERROR MESSAGE." id="d7M-En-Qx0">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="8Mx-zQ-ItP" name="value" keyPath="message" id="UJL-ls-rfQ"/>
                                     <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="message" id="km6-wW-DJP">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNil</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="8Mx-zQ-ItP" name="value" keyPath="message" id="UJL-ls-rfQ"/>
                                 </connections>
                             </textField>
                             <scrollView verticalCompressionResistancePriority="250" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPV-Wi-w56" userLabel="Menu View">

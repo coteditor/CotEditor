@@ -215,16 +215,16 @@ extension SettingFileManaging {
             throw InvalidNameError.empty
         }
         
-        if settingName.contains("/") {  // Containing "/" is invalid for a file name.
+        if settingName.contains("/") {  // invalid for a file name
             throw InvalidNameError.containSlash
         }
         
-        if settingName.hasPrefix(".") {  // Starting with "." is invalid for a file name.
+        if settingName.hasPrefix(".") {  // invalid for a file name
             throw InvalidNameError.startWithDot
         }
         
-        if self.settingNames.contains(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
-            throw InvalidNameError.duplicated(name: settingName)
+        if let duplicateName = self.settingNames.first(where: { $0.caseInsensitiveCompare(settingName) == .orderedSame }) {
+            throw InvalidNameError.duplicated(name: duplicateName)
         }
     }
     
