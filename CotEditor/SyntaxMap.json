@@ -540,7 +540,7 @@
 
     ]
   },
-  "Protocol Buffer" : {
+  "Protocol Buffers" : {
     "extensions" : [
       "proto"
     ],

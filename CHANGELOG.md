@@ -5,6 +5,10 @@ Change Log
 4.5.6 (unreleased)
 --------------------------
 
+### Improvements
+
+- Rename “Protocol Buffer” style with “Protocol Buffers.”
+
 
 
 4.5.5 (569)
