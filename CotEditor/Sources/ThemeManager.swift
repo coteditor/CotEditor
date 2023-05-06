@@ -126,15 +126,13 @@ final class ThemeManager: SettingFileManaging {
     /// save setting file
     func save(setting: Setting, name: String) throws {
         
-        // create directory to save in user domain if not yet exist
-        try self.prepareUserSettingDirectory()
-        
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         
         let data = try encoder.encode(setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
         
+        try self.prepareUserSettingDirectory()
         try data.write(to: fileURL)
         
         self.cachedSettings[name] = setting

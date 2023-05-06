@@ -197,9 +197,6 @@ final class SyntaxManager: SettingFileManaging {
     /// save setting file
     func save(settingDictionary: StyleDictionary, name: SettingName, oldName: SettingName?) throws {
         
-        // create directory to save in user domain if not yet exist
-        try self.prepareUserSettingDirectory()
-        
         // sort items
         let beginStringSort = NSSortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
                                                selector: #selector(NSString.caseInsensitiveCompare))
@@ -213,8 +210,7 @@ final class SyntaxManager: SettingFileManaging {
             (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [keyStringSort])
         }
         
-        // save
-        let saveURL = self.preparedURLForUserSetting(name: name)
+        let fileURL = self.preparedURLForUserSetting(name: name)
         
         // move old file to new place to overwrite when style name is also changed
         if let oldName, name != oldName {
@@ -224,13 +220,16 @@ final class SyntaxManager: SettingFileManaging {
         // just remove the current custom setting file in the user domain if new style is just the same as bundled one
         // so that application uses bundled one
         if self.isEqualToBundledSetting(settingDictionary, name: name) {
-            if saveURL.isReachable {
-                try FileManager.default.removeItem(at: saveURL)
+            if fileURL.isReachable {
+                try FileManager.default.removeItem(at: fileURL)
             }
         } else {
             // save file to user domain
             let yamlString = try Yams.dump(object: settingDictionary.yamlEncodable, allowUnicode: true)
-            try yamlString.write(to: saveURL, atomically: true, encoding: .utf8)
+            let data = Data(yamlString.utf8)
+            
+            try self.prepareUserSettingDirectory()
+            try data.write(to: fileURL)
         }
         
         // invalidate current cache
