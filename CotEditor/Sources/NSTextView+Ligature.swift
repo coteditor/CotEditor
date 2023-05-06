@@ -48,6 +48,8 @@ extension NSTextView {
         }
         
         set {
+            guard newValue != ligature else { return }
+            
             switch newValue {
                 case .standard:  // NSTextView uses the standard ligature by default.
                     self.typingAttributes[.ligature] = nil
