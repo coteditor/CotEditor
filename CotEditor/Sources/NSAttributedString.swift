@@ -93,7 +93,7 @@ extension NSMutableAttributedString {
         
         let truncationIndex = (self.string as NSString)
             .lowerBoundOfComposedCharacterSequence(location, offsetBy: offset)
-        moof(self.string, location, offset, truncationIndex)
+        
         guard truncationIndex > 0 else { return }
         
         self.replaceCharacters(in: NSRange(..<truncationIndex), with: "…")
