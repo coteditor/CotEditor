@@ -438,7 +438,7 @@ extension MultipleReplaceListViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, acceptDrop info: any NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         if let receivers = info.filePromiseReceivers(with: .cotReplacement, for: tableView) {
-            let dropDirectoryURL = FileManager.default.createTemporaryDirectory()
+            let dropDirectoryURL = ReplacementManager.shared.itemReplacementDirectoryURL
             
             for receiver in receivers {
                 receiver.receivePromisedFiles(atDestination: dropDirectoryURL, operationQueue: .main) { [weak self] (fileURL, error) in

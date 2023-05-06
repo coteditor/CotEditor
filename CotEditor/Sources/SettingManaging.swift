@@ -42,6 +42,21 @@ extension SettingManaging {
     }
     
     
+    
+    /// Temporary URL for setting file replacement to the setting directory.
+    var itemReplacementDirectoryURL: URL {
+        
+        guard
+            let url = try? FileManager.default.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: supportDirectoryURL, create: true)
+        else {
+            assertionFailure("failed directory creation")
+            return FileManager.default.temporaryDirectory
+        }
+        
+        return url
+    }
+    
+    
     /// create user setting directory if not yet exist
     func prepareUserSettingDirectory() throws {
         
