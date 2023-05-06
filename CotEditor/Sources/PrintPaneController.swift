@@ -25,16 +25,11 @@
 //
 
 import AppKit
-import Combine
 
 final class PrintPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private var fontObserver: AnyCancellable?
-    
-    @IBOutlet private weak var usePrintFontButton: NSButton?
-    @IBOutlet private weak var fontField: NSTextField?
     @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
     
     
@@ -46,27 +41,14 @@ final class PrintPaneController: NSViewController {
         
         super.viewWillAppear()
         
-        self.fontObserver = UserDefaults.standard.publisher(for: .printFontSize, initial: true)
-            .sink { [weak self] _ in self?.setupFontFamilyNameAndSize() }
-        
         self.setupColorMenu()
-        
-        self.usePrintFontButton?.setAccessibilityLabel(String(localized: "Use print font"))
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.fontObserver = nil
     }
     
     
     
     // MARK: Action Messages
     
-    /// color setting did update
+    /// Color setting did update.
     @IBAction func changePrintTheme(_ sender: NSPopUpButton) {
         
         let index = sender.indexOfSelectedItem
@@ -80,7 +62,7 @@ final class PrintPaneController: NSViewController {
     
     // MARK: Private Methods
     
-    /// update popup menu for color setting
+    /// Update popup menu for color setting.
     private func setupColorMenu() {
         
         let index = UserDefaults.standard[.printColorIndex]
@@ -111,86 +93,5 @@ final class PrintPaneController: NSViewController {
                 popUpButton.selectItem(at: 1)  // same as document
             }
         }
-    }
-}
-
-
-
-// MARK: - Font Setting
-
-extension PrintPaneController: NSFontChanging {
-    
-    // MARK: View Controller Methods
-    
-    override func viewWillDisappear() {
-        
-        super.viewWillDisappear()
-        
-        // detach a possible font panel's target set in `showFonts()`
-        if NSFontManager.shared.target === self {
-            NSFontManager.shared.target = nil
-        }
-    }
-    
-    
-    
-    // MARK: Font Changing Methods
-    
-    /// restrict items in the font panel toolbar
-    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
-        
-        [.collection, .face, .size]
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// show font panel
-    @IBAction func showFonts(_ sender: Any?) {
-        
-        let name = UserDefaults.standard[.printFontName]
-        let size = UserDefaults.standard[.printFontSize]
-        let font = NSFont(name: name, size: size) ?? NSFont.userFont(ofSize: size)!
-        
-        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared.orderFrontFontPanel(sender)
-        NSFontManager.shared.target = self
-    }
-    
-    
-    /// font in font panel did update
-    @IBAction func changeFont(_ sender: NSFontManager?) {
-        
-        guard let sender else { return }
-        
-        let newFont = sender.convert(.systemFont(ofSize: 0))
-        
-        UserDefaults.standard[.printFontName] = newFont.fontName
-        UserDefaults.standard[.printFontSize] = newFont.pointSize
-        
-        self.setupFontFamilyNameAndSize()
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// display font name and size in the font field
-    private func setupFontFamilyNameAndSize() {
-        
-        let name = UserDefaults.standard[.printFontName]
-        let size = UserDefaults.standard[.printFontSize]
-        
-        guard
-            let font = NSFont(name: name, size: size),
-            let fontField = self.fontField
-        else { return }
-        
-        let displayName = font.displayName ?? font.fontName
-        let maxDisplaySize = NSFont.systemFontSize(for: .regular)
-        
-        fontField.stringValue = displayName + " " + size.formatted()
-        fontField.font = font.withSize(min(size, maxDisplaySize))
     }
 }

@@ -52,7 +52,6 @@
 "Navigation Bar" = "导航栏";
 "Line Numbers" = "行号";
 "Find Result" = "查找结果";
-"Use print font" = "使用打印字体";
 
 
 // Main menu item titles
@@ -431,8 +430,9 @@
 
 /* MARK: PrintAccessoryViewController */
 // Summary item names
+"Font Size" = "字体大小";
 "Color" = "颜色";
-"Print Background" = "打印背景";
+"Print Backgrounds" = "打印背景";
 "Line Number" = "行号";
 "Invisibles" = "不可见元素";
 "Print Header" = "打印页眉";
@@ -443,6 +443,7 @@
 "Secondary Footer" = "次页脚";
 
 // Summary item values
+"%@ pt" = "%@点";
 "On" = "开";
 "Off" = "关";
 "Same as Document’s Setting" = "同文档设置一致";

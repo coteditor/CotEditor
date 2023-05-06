@@ -24,13 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
-"C9y-bs-mE1.title" = "Font:";
-/* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "Belge Fontuyla Aynı";
-/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
-"3385.title" = "Seç…";
-
+/* Class = "NSTextFieldCell"; title = "Font size:"; ObjectID = "C9y-bs-mE1"; */
+"C9y-bs-mE1.title" = "Font puntosu:";
+/* Class = "NSTextFieldCell"; title = "pt"; ObjectID = "jUN-Ue-xrO"; */
+"jUN-Ue-xrO.title" = "punto";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "Renk:";
@@ -38,9 +35,8 @@
 "1353.title" = "Siyah - Beyaz";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Belge Ayarlarıyla Aynı";
-/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+/* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "Arka planları yazdır";
-
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
 "3380.title" = "Satır numaraları:";

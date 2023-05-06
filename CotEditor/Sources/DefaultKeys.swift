@@ -114,8 +114,6 @@ extension DefaultKeys {
     static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
     
     // Print
-    static let setPrintFont = DefaultKey<Bool>("setPrintFont")
-    static let printFontName = DefaultKey<String>("printFontName")
     static let printFontSize = DefaultKey<CGFloat>("printFontSize")
     static let printColorIndex = DefaultKey<Int>("printColorIndex")
     static let printTheme = DefaultKey<String?>("printTheme")

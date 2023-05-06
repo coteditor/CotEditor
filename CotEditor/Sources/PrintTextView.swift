@@ -281,6 +281,11 @@ final class PrintTextView: NSTextView, Themable {
             let printInfo = NSPrintOperation.current?.printInfo
         else { return assertionFailure() }
         
+        // set font size
+        if let fontSize: CGFloat = printInfo[.fontSize], self.font?.pointSize != fontSize {
+            self.font = self.font?.withSize(fontSize)
+        }
+        
         // set line numbers
         self.printsLineNumber = printInfo[.printsLineNumbers] ?? false
         // adjust paddings considering the line numbers

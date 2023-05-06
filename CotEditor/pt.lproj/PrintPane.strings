@@ -23,13 +23,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
-"C9y-bs-mE1.title" = "Fonte:";
-/* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "Usar fonte do documento";
-/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
-"3385.title" = "Selecionar…";
-
+/* Class = "NSTextFieldCell"; title = "Font size:"; ObjectID = "C9y-bs-mE1"; */
+"C9y-bs-mE1.title" = "Tamanho da fonte:";
+/* Class = "NSTextFieldCell"; title = "pt"; ObjectID = "jUN-Ue-xrO"; */
+"jUN-Ue-xrO.title" = "pt";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "Cor:";
@@ -37,7 +34,7 @@
 "1353.title" = "Preto e Branco";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Usar Ajustes do Documento";
-/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+/* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "Imprimir fundos";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
@@ -57,6 +54,8 @@
 "953.title" = "Usar Ajustes do Documento";
 /* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
 "954.title" = "Imprimir";
+
+
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Imprimir cabeçalho";

@@ -24,12 +24,10 @@
 //  limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
-"C9y-bs-mE1.title" = "Font:";
-/* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
-"PfG-m4-gpq.title" = "Come da documento";
-/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
-"3385.title" = "Seleziona…";
+/* Class = "NSTextFieldCell"; title = "Font size:"; ObjectID = "C9y-bs-mE1"; */
+"C9y-bs-mE1.title" = "Dimensioni font:";
+/* Class = "NSTextFieldCell"; title = "pt"; ObjectID = "jUN-Ue-xrO"; */
+"jUN-Ue-xrO.title" = "pt";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
 "3388.title" = "Colore:";
@@ -37,7 +35,7 @@
 "1353.title" = "Bianco e nero";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "Come da documento";
-/* Class = "NSButtonCell"; title = "Print background"; ObjectID = "P53-bb-aGF"; */
+/* Class = "NSButtonCell"; title = "Print backgrounds"; ObjectID = "P53-bb-aGF"; */
 "P53-bb-aGF.title" = "Stampa sfondi";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */

@@ -24,21 +24,22 @@
 //  limitations under the License.
 //
 
+/* Class = "NSTextFieldCell"; title = "Font Size"; ObjectID = "fSa-V2-D11"; */
+"fSa-V2-D11.title" = "フォントサイズ";
+/* Class = "NSTextFieldCell"; title = "pt"; ObjectID = "U13-G4-pKV"; */
+"U13-G4-pKV.title" = "pt";
+
 /* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "yQ7-YE-ZK9"; */
 "yQ7-YE-ZK9.title" = "カラー";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "nUs-hp-672"; */
 "nUs-hp-672.title" = "白黒";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "P9K-oM-I0Z"; */
-"P9K-oM-I0Z.title" = "書類の設定と同じ";
-/* Class = "NSTextFieldCell"; title = "Print Background"; ObjectID = "5eL-Aw-LdI"; */
+/* Class = "NSTextFieldCell"; title = "Print Backgrounds"; ObjectID = "5eL-Aw-LdI"; */
 "5eL-Aw-LdI.title" = "背景をプリント";
-
 
 /* Class = "NSTextFieldCell"; title = "Print Line Numbers"; ObjectID = "L7u-ng-jC7"; */
 "L7u-ng-jC7.title" = "行番号をプリント";
 /* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
 "M5e-Tg-MlQ.title" = "不可視文字をプリント";
-
 
 
 /* Class = "NSTextFieldCell"; title = "Print Header"; ObjectID = "l4b-D2-DDX"; */

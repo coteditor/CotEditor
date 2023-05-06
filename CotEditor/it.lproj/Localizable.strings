@@ -52,7 +52,6 @@
 "Navigation Bar" = "Barra di navigazione";
 "Line Numbers" = "Numeri di riga";
 "Find Result" = "Risultati di ricerca";
-"Use print font" = "Usa font di stampa";
 
 
 // Main menu item titles
@@ -431,8 +430,9 @@
 
 /* MARK: PrintAccessoryViewController */
 // Summary item names
+"Font Size" = "Dimensioni font";
 "Color" = "Colore";
-"Print Background" = "Stampa sfondi";
+"Print Backgrounds" = "Stampa sfondi";
 "Line Number" = "Numero riga";
 "Invisibles" = "Caratteri invisibili";
 "Print Header" = "Stampa intestazione";
@@ -443,6 +443,7 @@
 "Secondary Footer" = "Pie’ di pagina secondario";
 
 // Summary item values
+"%@ pt" = "%@ pt";
 "On" = "Acceso";
 "Off" = "Spento";
 "Same as Document’s Setting" = "Come da documento";

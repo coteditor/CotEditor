@@ -52,7 +52,6 @@
 "Editor" = "Editor";
 "Line Numbers" = "Zeilennummern";
 "Find Result" = "Suchergebnis";
-"Use print font" = "Schrift für drucken benutzen";
 
 
 // Main menu item titles
@@ -431,8 +430,9 @@
 
 /* MARK: PrintAccessoryViewController */
 // Summary item names
+"Font Size" = "Schriftgröße";
 "Color" = "Farbe";
-"Print Background" = "Hintergrund drucken";
+"Print Backgrounds" = "Hintergrund drucken";
 "Line Number" = "Zeilennummern";
 "Invisibles" = "Steuerzeichen";
 "Print Header" = "Kopfzeilen drucken";
@@ -443,6 +443,7 @@
 "Secondary Footer" = "Sekundäre Fußzeile";
 
 // Summary item values
+"%@ pt" = "%@ pt";
 "On" = "Ein";
 "Off" = "Aus";
 "Same as Document’s Setting" = "Wie Dokument";

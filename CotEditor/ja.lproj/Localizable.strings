@@ -52,7 +52,6 @@
 "Navigation Bar" = "ナビゲーションバー";
 "Line Numbers" = "行番号";
 "Find Result" = "検索結果";
-"Use print font" = "プリント用フォントを使う";
 
 
 // Main menu item titles
@@ -431,8 +430,9 @@
 
 /* MARK: PrintAccessoryViewController */
 // Summary item names
+"Font Size" = "フォントサイズ";
 "Color" = "カラー";
-"Print Background" = "背景をプリント";
+"Print Backgrounds" = "背景をプリント";
 "Line Number" = "行番号";
 "Invisibles" = "不可視文字";
 "Print Header" = "ヘッダをプリント";
@@ -443,6 +443,7 @@
 "Secondary Footer" = "副フッタ";
 
 // Summary item values
+"%@ pt" = "%@ pt";
 "On" = "オン";
 "Off" = "オフ";
 "Same as Document’s Setting" = "書類の設定と同じ";

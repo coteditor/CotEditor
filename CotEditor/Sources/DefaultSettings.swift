@@ -125,8 +125,6 @@ struct DefaultSettings {
                          scope: "CSS"),
         ].map(\.dictionary),
         
-        .setPrintFont: false,
-        .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
         .printFontSize: NSFont.systemFontSize,
         .printColorIndex: PrintColorMode.blackAndWhite.rawValue,
         .printBackground: false,

@@ -52,7 +52,6 @@
 "Navigation Bar" = "Dolaşım Çubuğu";
 "Line Numbers" = "Satır Numaraları";
 "Find Result" = "Arama Sonucu";
-"Use print font" = "Baskı fontunu kullan";
 
 
 // Main menu item titles
@@ -431,8 +430,9 @@
 
 /* MARK: PrintAccessoryViewController */
 // Summary item names
+"Font Size" = "Font Puntosu";
 "Color" = "Renk";
-"Print Background" = "Arka Planları Yazdır";
+"Print Backgrounds" = "Arka Planları Yazdır";
 "Line Number" = "Satır Numarası";
 "Invisibles" = "Görünmez Karakterler";
 "Print Header" = "Üstbilgiyi Yazdır";
@@ -443,6 +443,7 @@
 "Secondary Footer" = "İkincil Altbilgi";
 
 // Summary item values
+"%@ pt" = "%@ punto";
 "On" = "Açık";
 "Off" = "Kapalı";
 "Same as Document’s Setting" = "Belge Ayarlarıyla Aynı";

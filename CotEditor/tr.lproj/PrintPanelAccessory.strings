@@ -24,21 +24,22 @@
 //  limitations under the License.
 //
 
+/* Class = "NSTextFieldCell"; title = "Font Size"; ObjectID = "fSa-V2-D11"; */
+"fSa-V2-D11.title" = "Font Puntosu";
+/* Class = "NSTextFieldCell"; title = "pt"; ObjectID = "U13-G4-pKV"; */
+"U13-G4-pKV.title" = "punto";
+
 /* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "yQ7-YE-ZK9"; */
 "yQ7-YE-ZK9.title" = "Renk";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "nUs-hp-672"; */
 "nUs-hp-672.title" = "Siyah - Beyaz";
-/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "P9K-oM-I0Z"; */
-"P9K-oM-I0Z.title" = "Belge Ayarlarıyla Aynı";
-/* Class = "NSTextFieldCell"; title = "Print Background"; ObjectID = "5eL-Aw-LdI"; */
+/* Class = "NSTextFieldCell"; title = "Print Backgrounds"; ObjectID = "5eL-Aw-LdI"; */
 "5eL-Aw-LdI.title" = "Arka planları yazdır";
-
 
 /* Class = "NSTextFieldCell"; title = "Print Line Numbers"; ObjectID = "L7u-ng-jC7"; */
 "L7u-ng-jC7.title" = "Satır Numaralarını Yazdır";
 /* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
 "M5e-Tg-MlQ.title" = "Görünmez Karakterleri Yazdır";
-
 
 
 /* Class = "NSTextFieldCell"; title = "Print Header"; ObjectID = "l4b-D2-DDX"; */

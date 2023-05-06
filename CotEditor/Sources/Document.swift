@@ -591,9 +591,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
         printView.baseWritingDirection = viewController.writingDirection
         printView.ligature = UserDefaults.standard[.ligature] ? .standard : .none
-        printView.font = UserDefaults.standard[.setPrintFont]
-            ? NSFont(name: UserDefaults.standard[.printFontName], size: UserDefaults.standard[.printFontSize])
-            : viewController.font
+        printView.font = viewController.font?.withSize(UserDefaults.standard[.printFontSize])
         
         // [caution] need to set string after setting other properties
         printView.string = self.textStorage.string

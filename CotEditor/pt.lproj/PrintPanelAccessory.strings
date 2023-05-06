@@ -24,21 +24,24 @@
 //  limitations under the License.
 //
 
+/* Class = "NSTextFieldCell"; title = "Font Size"; ObjectID = "fSa-V2-D11"; */
+"fSa-V2-D11.title" = "Tamanho da Fonte";
+/* Class = "NSTextFieldCell"; title = "pt"; ObjectID = "U13-G4-pKV"; */
+"U13-G4-pKV.title" = "pt";
+
 /* Class = "NSTextFieldCell"; title = "Color"; ObjectID = "yQ7-YE-ZK9"; */
 "yQ7-YE-ZK9.title" = "Cor";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "nUs-hp-672"; */
 "nUs-hp-672.title" = "Preto e Branco";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "P9K-oM-I0Z"; */
 "P9K-oM-I0Z.title" = "Usar Ajustes do Documento";
-/* Class = "NSTextFieldCell"; title = "Print Background"; ObjectID = "5eL-Aw-LdI"; */
-"5eL-Aw-LdI.title" = "Imprimir fundos";
-
+/* Class = "NSTextFieldCell"; title = "Print Backgrounds"; ObjectID = "5eL-Aw-LdI"; */
+"5eL-Aw-LdI.title" = "Imprimir Fundos";
 
 /* Class = "NSTextFieldCell"; title = "Print Line Numbers"; ObjectID = "L7u-ng-jC7"; */
 "L7u-ng-jC7.title" = "Imprimir Números de Linha";
 /* Class = "NSTextFieldCell"; title = "Print Invisibles"; ObjectID = "M5e-Tg-MlQ"; */
 "M5e-Tg-MlQ.title" = "Imprimir Invisíveis";
-
 
 
 /* Class = "NSTextFieldCell"; title = "Print Header"; ObjectID = "l4b-D2-DDX"; */

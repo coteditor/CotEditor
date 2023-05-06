@@ -27,6 +27,7 @@ import AppKit
 
 extension NSPrintInfo.AttributeKey {
     
+    static let fontSize = Self("CEFontSize")
     static let theme = Self("CEThemeName")
     static let printsBackground = Self("CEPrintBackground")
     static let printsLineNumbers = Self("CEPrintLineNumber")
@@ -82,6 +83,8 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             
             let defaults = UserDefaults.standard
             
+            self.fontSize = defaults[.printFontSize]
+            
             self.theme = {
                 switch PrintColorMode(rawValue: defaults[.printColorIndex]) {
                     case .blackAndWhite:
@@ -104,6 +107,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                         return true
                 }
             }()
+            
             self.printsInvisibles = {
                 switch defaults[.printInvisibleCharIndex] {
                     case .no:
@@ -145,6 +149,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     func keyPathsForValuesAffectingPreview() -> Set<String> {
         
         [
+            #keyPath(fontSize),
             #keyPath(theme),
             #keyPath(printsBackground),
             #keyPath(printsLineNumbers),
@@ -169,12 +174,14 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     func localizedSummaryItems() -> [[NSPrintPanel.AccessorySummaryKey: String]] {
         
         var items: [[NSPrintPanel.AccessorySummaryKey: String]] = [
+            [.itemName: String(localized: "Font Size"),
+             .itemDescription: "\(Double(self.fontSize).formatted(.number.precision(.fractionLength(0...1)))) pt"],
             [.itemName: String(localized: "Color"),
-             .itemDescription: self.theme]
+             .itemDescription: self.theme],
         ]
         
         if self.printsBackground {
-            items += [[.itemName: String(localized: "Print Background"),
+            items += [[.itemName: String(localized: "Print Backgrounds"),
                        .itemDescription: String(localized: "On")]]
         }
         if self.printsLineNumbers {
@@ -250,6 +257,13 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     // MARK: Setting Accessors
+    
+    /// print theme
+    @objc dynamic var fontSize: CGFloat {
+        
+        get { self.printInfo?[.fontSize] ?? 0 }
+        set { self.printInfo?[.fontSize] = newValue }
+    }
     
     /// print theme
     @objc dynamic var theme: String {
