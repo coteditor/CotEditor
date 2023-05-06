@@ -133,7 +133,7 @@ final class KeyBindingManager: SettingManaging {
             let data = try encoder.encode(self.userKeyBindings.sorted(\.action.description))
             
             try self.prepareUserSettingDirectory()
-            try data.write(to: self.settingFileURL, options: .atomic)
+            try data.write(to: self.settingFileURL)
         }
         
         // apply new settings to the menu

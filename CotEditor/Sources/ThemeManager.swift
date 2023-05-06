@@ -135,7 +135,7 @@ final class ThemeManager: SettingFileManaging {
         let data = try encoder.encode(setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
         
-        try data.write(to: fileURL, options: .atomic)
+        try data.write(to: fileURL)
         
         self.cachedSettings[name] = setting
         
