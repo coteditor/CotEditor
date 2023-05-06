@@ -118,7 +118,7 @@ struct ScriptDescriptor {
         
         guard
             let contentType = try? url.resourceValues(forKeys: [.contentTypeKey]).contentType,
-            let type = ScriptingFileType.allCases.first(where: { $0.fileTypes.contains { $0.conforms(to: contentType) } })
+            let type = ScriptingFileType.allCases.first(where: { $0.fileTypes.contains { contentType.conforms(to: $0) } })
         else { return nil }
         
         self.url = url

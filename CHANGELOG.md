@@ -10,6 +10,11 @@ Change Log
 - Rename “Protocol Buffer” style with “Protocol Buffers.”
 
 
+### Fixes
+
+- Fix an issue that the Scripts menu listed the files without extension up as scripts.
+
+
 
 4.5.5 (569)
 --------------------------
