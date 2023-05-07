@@ -214,7 +214,7 @@ final class PrintTextView: NSTextView, Themable {
             let attrs: [NSAttributedString.Key: Any] = [.font: numberFont,
                                                         .foregroundColor: self.textColor ?? .textColor]
             
-            // calculate character width by treating the font as a mono-space font
+            // calculate character width using `8` as the representative character
             let numberSize = NSAttributedString(string: "8", attributes: attrs).size()
             
             // adjust values for line number drawing
