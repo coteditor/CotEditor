@@ -2052,7 +2052,7 @@ no change.
 ### Improvements
 
 - Remember the last used custom characters for “Surround Selection With” > “Custom” action.
-- [beta] Keep insertion points afeter cut.
+- [beta] Keep insertion points after cut.
 - [beta] Localize newly added strings.
 
 
@@ -2124,7 +2124,7 @@ no change.
 
 ### Improvements
 
-- [beta] Exit muti-cursor mode by using `esc` key.
+- [beta] Exit multi-cursor mode by using `esc` key.
 - [beta] Add `^⇧↑` and `^⇧↓` shortcuts to add an insertion point above/below.
 
 
@@ -2220,7 +2220,7 @@ no change.
 - Fix an issue where line number views did not update when the editor is scrolled via script.
 - Fix the preferences pane switching animation under macOS 10.13 and earlier.
 - [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific conditions.
-- [trivial] Fix an issue where editor occasionally scrolled unintendedly when an arrow key is pressed.
+- [trivial] Fix an issue where editor occasionally scrolled unintentionally when an arrow key is pressed.
 
 
 
@@ -3242,7 +3242,7 @@ no change.
 - Enable changing text size with a single stroke by pressing and holding Touch Bar's Text Size button.
 - Improve invisible character drawing on a non-opaque view.
 - Improve auto-brackets/quotes insertion behavior with multiple selections.
-- Improve the setting file naming rule for when the name overwraps with an existing setting.
+- Improve the setting file naming rule for when the name overlaps with an existing setting.
 - Improve condition to insert a closing quote automatically.
 - Improve the encoding declaration detection.
 - Update “Ruby” syntax style to fix commands highlight.
