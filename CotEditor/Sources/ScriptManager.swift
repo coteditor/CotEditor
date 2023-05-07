@@ -55,7 +55,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private var scriptHandlersTable: [ScriptingEventType: [any EventScript]] = [:]
     private var currentContext: String?  { didSet { Task { await self.applyShortcuts() } } }
     
-    private var debouncerTask: Task<Void, any Error>?
+    private var debounceTask: Task<Void, any Error>?
     private var syntaxObserver: AnyCancellable?
     
     
@@ -91,8 +91,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// Contents of the script folder did change.
     func presentedItemDidChange() {
         
-        self.debouncerTask?.cancel()
-        self.debouncerTask = .detached { [weak self] in
+        self.debounceTask?.cancel()
+        self.debounceTask = .detached { [weak self] in
             if await NSApp.isActive {
                 try await Task.sleep(nanoseconds: 200 * 1_000_000)  // 200 milliseconds
                 await self?.buildScriptMenu()
@@ -230,7 +230,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         assert(!Thread.isMainThread)
         
-        self.debouncerTask?.cancel()
+        self.debounceTask?.cancel()
         self.scriptHandlersTable.removeAll()
         
         guard let directoryURL = self.scriptsDirectoryURL else { return }
