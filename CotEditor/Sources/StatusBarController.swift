@@ -75,7 +75,7 @@ import Combine
         // observe popup menu line-up change
         self.encodingListObserver = EncodingManager.shared.$encodings
             .receive(on: RunLoop.main)
-            .sink { [weak self] _ in self?.buildEncodingPopupButton() }
+            .sink { [weak self] _ in self?.buildEncodingPopUpButton() }
         
         // observe change in defaults
         let editorDefaultKeys: [DefaultKey<Bool>] = [
@@ -198,18 +198,18 @@ import Combine
     }
     
     
-    /// build encoding popup item
-    @MainActor private func buildEncodingPopupButton() {
+    /// build encoding pop-up item
+    @MainActor private func buildEncodingPopUpButton() {
         
         guard
-            let popupButton = self.encodingPopUpButton,
-            let menu = popupButton.menu
+            let popUpButton = self.encodingPopUpButton,
+            let menu = popUpButton.menu
         else { return assertionFailure() }
         
         EncodingManager.shared.updateChangeEncodingMenu(menu)
         
         if let fileEncoding = self.document?.fileEncoding {
-            popupButton.selectItem(withTag: fileEncoding.tag)
+            popUpButton.selectItem(withTag: fileEncoding.tag)
         }
     }
 }

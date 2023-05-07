@@ -63,7 +63,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     // MARK: Private Properties
     
-    @IBOutlet private weak var colorPopupButton: NSPopUpButton?
+    @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
     
     
     
@@ -253,27 +253,27 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// update popup menu for color setting
     private func setupColorMenu() {
         
-        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
+        guard let popUpButton = self.colorPopUpButton else { return assertionFailure() }
         
         let themeNames = ThemeManager.shared.settingNames
         
         // build popup button
-        popupButton.removeAllItems()
+        popUpButton.removeAllItems()
         
-        popupButton.addItem(withTitle: ThemeName.blackAndWhite)
+        popUpButton.addItem(withTitle: ThemeName.blackAndWhite)
         
-        popupButton.menu?.addItem(.separator())
-        popupButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
+        popUpButton.menu?.addItem(.separator())
+        popUpButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
         
         for themeName in themeNames {
-            popupButton.addItem(withTitle: themeName)
+            popUpButton.addItem(withTitle: themeName)
         }
         
         // select menu item
         if themeNames.contains(self.theme) {
-            popupButton.selectItem(withTitle: self.theme)
+            popUpButton.selectItem(withTitle: self.theme)
         } else {
-            popupButton.selectItem(at: 0)  // -> select "Black and White"
+            popUpButton.selectItem(at: 0)  // -> select "Black and White"
         }
     }
     

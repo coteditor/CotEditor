@@ -41,7 +41,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     private var syntaxStyleChangeObserver: AnyCancellable?
     private lazy var filePromiseQueue = OperationQueue()
     
-    @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
+    @IBOutlet private weak var encodingPopUpButton: NSPopUpButton?
     
     @IBOutlet private var syntaxTableMenu: NSMenu?
     @IBOutlet private weak var syntaxTableView: NSTableView?
@@ -458,12 +458,12 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     private func setupEncodingMenu() {
         
         guard
-            let popupButton = self.encodingPopupButton,
-            let menu = popupButton.menu
+            let popUpButton = self.encodingPopUpButton,
+            let menu = popUpButton.menu
         else { return assertionFailure() }
         
         EncodingManager.shared.updateChangeEncodingMenu(menu)
-        popupButton.selectItem(withTag: EncodingManager.shared.defaultEncoding.tag)
+        popUpButton.selectItem(withTag: EncodingManager.shared.defaultEncoding.tag)
     }
     
     
@@ -481,18 +481,18 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         }
         
         // update default style popup menu
-        if let popup = self.syntaxStylesDefaultPopup {
-            popup.removeAllItems()
-            popup.addItem(withTitle: BundledStyleName.none)
-            popup.menu?.addItem(.separator())
-            popup.addItems(withTitles: styleNames)
+        if let popUpButton = self.syntaxStylesDefaultPopup {
+            popUpButton.removeAllItems()
+            popUpButton.addItem(withTitle: BundledStyleName.none)
+            popUpButton.menu?.addItem(.separator())
+            popUpButton.addItems(withTitles: styleNames)
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
             // -> Because items were actually added after Cocoa-Binding selected the item.
             let defaultStyle = UserDefaults.standard[.syntaxStyle]
             let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
             
-            popup.selectItem(withTitle: selectedStyle)
+            popUpButton.selectItem(withTitle: selectedStyle)
         }
     }
     

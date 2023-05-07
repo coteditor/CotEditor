@@ -35,7 +35,7 @@ final class PrintPaneController: NSViewController {
     
     @IBOutlet private weak var usePrintFontButton: NSButton?
     @IBOutlet private weak var fontField: NSTextField?
-    @IBOutlet private weak var colorPopupButton: NSPopUpButton?
+    @IBOutlet private weak var colorPopUpButton: NSPopUpButton?
     
     
     
@@ -87,28 +87,28 @@ final class PrintPaneController: NSViewController {
         let themeName = UserDefaults.standard[.printTheme]
         let themeNames = ThemeManager.shared.settingNames
         
-        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
+        guard let popUpButton = self.colorPopUpButton else { return assertionFailure() }
         
-        popupButton.removeAllItems()
+        popUpButton.removeAllItems()
         
         // build popup button
-        popupButton.addItem(withTitle: ThemeName.blackAndWhite)
-        popupButton.addItem(withTitle: String(localized: "Same as Document’s Setting"))
+        popUpButton.addItem(withTitle: ThemeName.blackAndWhite)
+        popUpButton.addItem(withTitle: String(localized: "Same as Document’s Setting"))
         
-        popupButton.menu?.addItem(.separator())
-        popupButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
+        popUpButton.menu?.addItem(.separator())
+        popUpButton.menu?.addItem(HeadingMenuItem(title: String(localized: "Theme")))
         
         for name in themeNames {
-            popupButton.addItem(withTitle: name)
+            popUpButton.addItem(withTitle: name)
         }
         
         // select menu
-        popupButton.selectItem(at: 0)  // black and white (default)
+        popUpButton.selectItem(at: 0)  // black and white (default)
         if let themeName {
             if themeNames.contains(themeName) {
-                popupButton.selectItem(withTitle: themeName)
+                popUpButton.selectItem(withTitle: themeName)
             } else if index == 1 {
-                popupButton.selectItem(at: 1)  // same as document
+                popUpButton.selectItem(at: 1)  // same as document
             }
         }
     }

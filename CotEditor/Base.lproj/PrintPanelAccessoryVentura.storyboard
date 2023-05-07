@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="bU7-R8-ocO">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -121,17 +121,17 @@
                             </switch>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="f1I-iq-7Ha" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="206" y="129" width="154" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP">
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="Y5Z-M5-b2b" id="jk3-rE-AyP">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="3uu-24-iga">
                                         <items>
-                                            <menuItem title="None" id="Y5Z-M5-b2b"/>
+                                            <menuItem title="None" state="on" id="Y5Z-M5-b2b"/>
                                             <menuItem isSeparatorItem="YES" id="0TU-v9-RAS">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
                                             <menuItem title="Syntax Name" tag="1" id="fni-Se-oWa"/>
-                                            <menuItem title="Document Name" state="on" tag="2" id="nGA-NN-REz"/>
+                                            <menuItem title="Document Name" tag="2" id="nGA-NN-REz"/>
                                             <menuItem title="File Path" tag="3" id="Pt8-CF-UKF"/>
                                             <menuItem title="Print Date" tag="4" id="5pM-iD-yzY"/>
                                             <menuItem title="Last Modified Date" tag="6" id="r1K-hB-8RP">
@@ -200,12 +200,12 @@
                             </segmentedControl>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="lW8-WA-sUW" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="206" y="99" width="154" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8">
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="M42-Kl-i11" id="Vqj-Po-rB8">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="Bk3-uv-jzy">
                                         <items>
-                                            <menuItem title="None" id="M42-Kl-i11"/>
+                                            <menuItem title="None" state="on" id="M42-Kl-i11"/>
                                             <menuItem isSeparatorItem="YES" tag="-1" id="v7M-JD-zEm">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
@@ -216,7 +216,7 @@
                                             <menuItem title="Last Modified Date" tag="6" id="aRQ-eh-HdK">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Page Number" state="on" tag="5" id="SnR-fR-DZF"/>
+                                            <menuItem title="Page Number" tag="5" id="SnR-fR-DZF"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -253,12 +253,12 @@
                             </segmentedControl>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="JEM-Eg-bfM" customClass="ShrinkPopUpButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="206" y="27" width="154" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY">
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="qXf-Q9-bwe" id="inp-eT-VVY">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="TfU-Pz-bEH">
                                         <items>
-                                            <menuItem title="None" id="qXf-Q9-bwe"/>
+                                            <menuItem title="None" state="on" id="qXf-Q9-bwe"/>
                                             <menuItem isSeparatorItem="YES" id="Oyl-oQ-s6R">
                                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                             </menuItem>
@@ -269,7 +269,7 @@
                                             <menuItem title="Last Modified Date" tag="6" id="2ob-oq-goq">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Page Number" state="on" tag="5" id="rsB-Kk-kBp"/>
+                                            <menuItem title="Page Number" tag="5" id="rsB-Kk-kBp"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -414,7 +414,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="colorPopupButton" destination="bRC-3n-rin" id="4ry-Bx-h5w"/>
+                        <outlet property="colorPopUpButton" destination="bRC-3n-rin" id="O2m-OW-cSE"/>
                     </connections>
                 </viewController>
                 <customObject id="9uD-mB-xHs" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -425,6 +425,6 @@
     <resources>
         <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
         <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
-        <image name="arrow.right.and.line.vertical.and.arrow.left" width="20" height="12"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" width="16" height="10"/>
     </resources>
 </document>

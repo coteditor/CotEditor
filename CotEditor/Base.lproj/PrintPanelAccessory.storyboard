@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -96,12 +96,12 @@
                                     </button>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
                                         <rect key="frame" x="52" y="101" width="154" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="395" id="709">
+                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="395" id="709">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="306">
                                                 <items>
-                                                    <menuItem title="None" id="395"/>
+                                                    <menuItem title="None" state="on" id="395"/>
                                                     <menuItem isSeparatorItem="YES" tag="-1" id="396">
                                                         <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                     </menuItem>
@@ -112,7 +112,7 @@
                                                     <menuItem title="Last Modified Date" tag="6" id="Rfz-cB-J3C">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Page Number" state="on" tag="5" id="310"/>
+                                                    <menuItem title="Page Number" tag="5" id="310"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -175,12 +175,12 @@
                                     </popUpButton>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
                                         <rect key="frame" x="52" y="47" width="154" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="397" id="714">
+                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="397" id="714">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="314">
                                                 <items>
-                                                    <menuItem title="None" id="397"/>
+                                                    <menuItem title="None" state="on" id="397"/>
                                                     <menuItem isSeparatorItem="YES" id="398">
                                                         <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                     </menuItem>
@@ -191,7 +191,7 @@
                                                     <menuItem title="Last Modified Date" tag="6" id="G8U-I0-Wj6">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                     </menuItem>
-                                                    <menuItem title="Page Number" state="on" tag="5" id="318"/>
+                                                    <menuItem title="Page Number" tag="5" id="318"/>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -205,17 +205,17 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="100" id="EKF-Mv-PUx"/>
                                         </constraints>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="393" id="704">
+                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="393" id="704">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="199">
                                                 <items>
-                                                    <menuItem title="None" id="393"/>
+                                                    <menuItem title="None" state="on" id="393"/>
                                                     <menuItem isSeparatorItem="YES" id="394">
                                                         <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                     </menuItem>
                                                     <menuItem title="Syntax Name" tag="1" id="UJ5-ki-qHL"/>
-                                                    <menuItem title="Document Name" state="on" tag="2" id="202"/>
+                                                    <menuItem title="Document Name" tag="2" id="202"/>
                                                     <menuItem title="File Path" tag="3" id="203"/>
                                                     <menuItem title="Print Date" tag="4" id="206"/>
                                                     <menuItem title="Last Modified Date" tag="6" id="7Bx-Yb-zJx">
@@ -375,7 +375,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="colorPopupButton" destination="585" id="QFr-Mu-ai1"/>
+                        <outlet property="colorPopUpButton" destination="585" id="AIz-QK-Q67"/>
                     </connections>
                 </viewController>
                 <customObject id="1l0-w4-WHu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -386,6 +386,6 @@
     <resources>
         <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
         <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
-        <image name="arrow.right.and.line.vertical.and.arrow.left" width="20" height="12"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" width="16" height="10"/>
     </resources>
 </document>

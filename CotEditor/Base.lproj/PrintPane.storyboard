@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4if-cg-44c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -328,16 +328,16 @@
                                     </segmentedControl>
                                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8BQ-TU-mOj">
                                         <rect key="frame" x="111" y="103" width="154" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="cUP-ax-qGf">
+                                        <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="906" id="cUP-ax-qGf">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="Pj9-MO-pKh">
                                                 <items>
-                                                    <menuItem title="None" id="906"/>
+                                                    <menuItem title="None" state="on" id="906"/>
                                                     <menuItem isSeparatorItem="YES" id="g6g-YF-fyF">
                                                         <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                                     </menuItem>
-                                                    <menuItem title="Syntax Name" state="on" tag="1" id="plk-U5-NGA"/>
+                                                    <menuItem title="Syntax Name" tag="1" id="plk-U5-NGA"/>
                                                     <menuItem title="Document Name" tag="2" id="902"/>
                                                     <menuItem title="File Path" tag="3" id="903"/>
                                                     <menuItem title="Print Date" tag="4" id="904"/>
@@ -501,7 +501,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="colorPopupButton" destination="ito-FV-Lxm" id="X5I-oa-8Lz"/>
+                        <outlet property="colorPopUpButton" destination="ito-FV-Lxm" id="iHs-JJ-Z5Z"/>
                         <outlet property="fontField" destination="Ia8-c8-PX3" id="K2S-7d-aja"/>
                         <outlet property="usePrintFontButton" destination="09q-2f-wNl" id="Kxd-xO-Jj0"/>
                     </connections>
@@ -515,6 +515,6 @@
     <resources>
         <image name="arrow.backward.to.line" catalog="system" width="17" height="12"/>
         <image name="arrow.forward.to.line" catalog="system" width="17" height="12"/>
-        <image name="arrow.right.and.line.vertical.and.arrow.left" width="20" height="12"/>
+        <image name="arrow.right.and.line.vertical.and.arrow.left" width="16" height="10"/>
     </resources>
 </document>

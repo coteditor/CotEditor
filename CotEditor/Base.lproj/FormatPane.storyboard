@@ -453,7 +453,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="encodingPopupButton" destination="Lt0-OL-jLy" id="w5i-oR-AuW"/>
+                        <outlet property="encodingPopUpButton" destination="Lt0-OL-jLy" id="P7f-U4-aIl"/>
                         <outlet property="syntaxStylesDefaultPopup" destination="1qJ-mx-epO" id="mfw-hS-uEE"/>
                         <outlet property="syntaxTableMenu" destination="enl-Xp-NM4" id="go1-Qs-mtH"/>
                         <outlet property="syntaxTableView" destination="UvE-MV-Lh2" id="NeY-XD-uTY"/>
@@ -506,11 +506,6 @@
             <point key="canvasLocation" x="-76" y="62.5"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="cbJ-XK-bnG">
-            <size key="intrinsicContentSize" width="16" height="16"/>
-        </designable>
-    </designables>
     <resources>
         <image name="NSActionTemplate" width="20" height="20"/>
         <image name="NSAddTemplate" width="18" height="17"/>
