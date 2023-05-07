@@ -409,6 +409,10 @@
 		2A8321752980C41600F87D35 /* Image+Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8321732980C41600F87D35 /* Image+Status.swift */; };
 		2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
+		2A8458932A073C5F0056B1EA /* HighlightDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8458922A073C5F0056B1EA /* HighlightDefinition.swift */; };
+		2A8458942A073C5F0056B1EA /* HighlightDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8458922A073C5F0056B1EA /* HighlightDefinition.swift */; };
+		2A8458962A073C830056B1EA /* OutlineDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8458952A073C830056B1EA /* OutlineDefinition.swift */; };
+		2A8458972A073C830056B1EA /* OutlineDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8458952A073C830056B1EA /* OutlineDefinition.swift */; };
 		2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
 		2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
 		2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
@@ -1181,6 +1185,8 @@
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		2A8458922A073C5F0056B1EA /* HighlightDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightDefinition.swift; sourceTree = "<group>"; };
+		2A8458952A073C830056B1EA /* OutlineDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineDefinition.swift; sourceTree = "<group>"; };
 		2A8544E6267872E0006EF01A /* SyntaxMapBuilder */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SyntaxMapBuilder; sourceTree = "<group>"; };
 		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
@@ -2262,6 +2268,8 @@
 			isa = PBXGroup;
 			children = (
 				2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */,
+				2A8458922A073C5F0056B1EA /* HighlightDefinition.swift */,
+				2A8458952A073C830056B1EA /* OutlineDefinition.swift */,
 				2A4714E22093A2D40093E27F /* SyntaxParser.swift */,
 				2AAD61F71D2BA3F5008FE772 /* HighlightParser.swift */,
 				2A4714E5209630510093E27F /* OutlineExtractor.swift */,
@@ -3049,6 +3057,7 @@
 				2A5D13171D1EF5AA00D38E6A /* GoToLineView.swift in Sources */,
 				2A158C1C2945A6B1000A4EC1 /* HeadingMenuItem.swift in Sources */,
 				2A4A7D132856FF340085D2E7 /* HelpButton.swift in Sources */,
+				2A8458932A073C5F0056B1EA /* HighlightDefinition.swift in Sources */,
 				2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AAD61F91D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
 				2A5D13141D1EE8FF00D38E6A /* HUDView.swift in Sources */,
@@ -3141,6 +3150,7 @@
 				2AC6069C20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61BF27C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
+				2A8458962A073C830056B1EA /* OutlineDefinition.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A63A9D824E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
@@ -3408,6 +3418,7 @@
 				2A158C1D2945A6B1000A4EC1 /* HeadingMenuItem.swift in Sources */,
 				2A4A7D142856FF340085D2E7 /* HelpButton.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
+				2A8458942A073C5F0056B1EA /* HighlightDefinition.swift in Sources */,
 				2AAD61F81D2BA3F5008FE772 /* HighlightParser.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDView.swift in Sources */,
 				2A8321752980C41600F87D35 /* Image+Status.swift in Sources */,
@@ -3499,6 +3510,7 @@
 				2AC6069B20416ADE00F9C839 /* OpenPanelAccessory.swift in Sources */,
 				2A3E61C027C3795B00C6E5B6 /* OptionalMenu.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
+				2A8458972A073C830056B1EA /* OutlineDefinition.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A63A9D924E8C8F70017ACBB /* OutlinePopUpButton.swift in Sources */,
