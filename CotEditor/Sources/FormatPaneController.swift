@@ -35,7 +35,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     // MARK: Private Properties
     
     private var styleNames: [String] = []
-    @objc private dynamic var isBundled = false  // binded to remove button
+    @objc private dynamic var isBundled = false  // bound to remove button
     
     private var encodingChangeObserver: AnyCancellable?
     private var syntaxStyleChangeObserver: AnyCancellable?

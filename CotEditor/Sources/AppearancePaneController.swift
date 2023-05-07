@@ -35,7 +35,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // MARK: Private Properties
     
     private var themeNames: [String] = []
-    @objc private dynamic var isBundled = false  // binded to remove button
+    @objc private dynamic var isBundled = false  // bound to remove button
     
     private var fontObserver: AnyCancellable?
     private var themeManagerObservers: Set<AnyCancellable> = []
