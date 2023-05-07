@@ -104,7 +104,7 @@ Please follow the style of the existing codes in CotEditor.
 
 - Respect the existing coding style.
 - Leave reasonable comments.
-- Never omit `self` escept in `willSet`/`didSet`.
+- Never omit `self` except in `willSet`/`didSet`.
 - Add `final` to classes by default.
 - Insert a blank line after class/function statement line.
     ```Swift

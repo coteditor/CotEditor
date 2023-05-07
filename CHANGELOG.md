@@ -1367,7 +1367,7 @@ Change Log
 ### Improvements
 
 - Remove the default value of the snippet key bindings, that inserts `<br />` with `⇧↩`.
-- [trivial] Remove the snippet key bindings setting migration from CotEdtiror 2.x format and earlier.
+- [trivial] Remove the snippet key bindings setting migration from CotEditor 2.x format and earlier.
 - [beta] Add missing localizations for French.
 
 
@@ -1805,7 +1805,7 @@ no change.
 
 ### Improvements
 
-- Optimize performance of text layout calcuration.
+- Optimize performance of text layout calculation.
 
 
 ### Fixes
@@ -2461,7 +2461,7 @@ no change.
 ### Improvements
 
 - Abandon the ancient ODB editor support.
-- [beta] Localize newly added strings in Chinase, German, and Italian.
+- [beta] Localize newly added strings in Chinese, German, and Italian.
 - [non-AppStore ver.] Update Sparkle framework.
 
 
@@ -2518,8 +2518,8 @@ no change.
 
 ### Fixes
 
-- Fix an issue where toolbar items did not reflect their state on macOS 10.12 or earier.
-- Fix margin around the Tab toolbar icon on macOS 10.12 or earier.
+- Fix an issue where toolbar items did not reflect their state on macOS 10.12 or earlier.
+- Fix margin around the Tab toolbar icon on macOS 10.12 or earlier.
 
 
 
