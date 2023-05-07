@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue that the Scripts menu listed the files without extension up as scripts.
+- Fix an issue that the size of line numbers did not update even when the editor’s font size was changed.
 
 
 

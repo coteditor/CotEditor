@@ -912,6 +912,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         set {
             guard let font = newValue else { return }
             
+            self.willChangeValue(for: \.font)
+            defer {
+                self.didChangeValue(for: \.font)
+            }
+            
             // let LayoutManager keep the set font to avoid an inconsistent line height
             // -> Because NSTextView's .font returns the font used for the first character of .string when it exists,
             //    not the font defined by user but a fallback font is returned through this property
