@@ -530,10 +530,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         if let fileType = self.fileType,
            let filenameExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation),
-           let utType = UTType(filenameExtension: filenameExtension)
+           let type = UTType(filenameExtension: filenameExtension)
         {
             // set once allowedContentTypes, so that the initial filename selection excludes the file extension
-            savePanel.allowedContentTypes = [utType]
+            savePanel.allowedContentTypes = [type]
             
             // disable it immediately in the next run loop to allow setting other extensions
             Task.detached { @MainActor [weak savePanel] in
