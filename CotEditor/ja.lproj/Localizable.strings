@@ -557,6 +557,9 @@
 // Outline menu title
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
+// Accessibility labels
+"Previous" = "前へ";
+"Next" = "次へ";
 
 
 

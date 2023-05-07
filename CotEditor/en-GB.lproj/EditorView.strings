@@ -27,11 +27,6 @@
 /* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
 "aUE-uy-XLQ.title" = "Extracting Outline…";
 
-/* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
-"BUj-TD-scp.ibShadowedToolTip" = "Jump to previous outline item";
-/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
-"MlW-Dz-FOk.ibShadowedToolTip" = "Jump to next outline item";
-
 /* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
 "Bmo-XE-CCn.ibShadowedToolTip" = "Close split editor";
 /* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */

@@ -557,6 +557,9 @@
 // Outline menu title
 "Jump to previous outline item" = "上一個提綱項目";
 "Jump to next outline item" = "下一個提綱項目";
+// Accessibility labels
+"Previous" = "上一個";
+"Next" = "下一個";
 
 
 

@@ -45,9 +45,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Properties
     
-    private var splitViewObservers: Set<AnyCancellable> = []
-    private var orientationObserver: AnyCancellable?
-    private var selectionObserver: AnyCancellable?
+    private var viewObservers: Set<AnyCancellable> = []
     
     @objc private dynamic var showsCloseButton = false
     @objc private dynamic var showsOutlineMenu = false
@@ -87,19 +85,21 @@ final class NavigationBarController: NSViewController {
             let textView = self.textView
         else { return assertionFailure() }
         
+        self.viewObservers.removeAll()
+        
         splitViewController.$isVertical
-            .map { $0 ? "split.add-vertical" : "split.add" }
-            .map { NSImage(named: $0) }
+            .map { NSImage(named: $0 ? "split.add-vertical" : "split.add") }
             .assign(to: \.image, on: self.openSplitButton!)
-            .store(in: &self.splitViewObservers)
+            .store(in: &self.viewObservers)
         splitViewController.$canCloseSplitItem
             .sink { [weak self] in self?.showsCloseButton = $0 }
-            .store(in: &self.splitViewObservers)
+            .store(in: &self.viewObservers)
         
-        self.orientationObserver = textView.publisher(for: \.layoutOrientation, options: .initial)
+        textView.publisher(for: \.layoutOrientation, options: .initial)
             .sink { [weak self] in self?.updateTextOrientation(to: $0) }
+            .store(in: &self.viewObservers)
         
-        self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
+        NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
             .map { $0.object as! NSTextView }
             .filter { !$0.hasMarkedText() }
             // avoid updating outline item selection before finishing outline parse
@@ -108,6 +108,7 @@ final class NavigationBarController: NSViewController {
             .filter { $0.textStorage?.editedMask.contains(.editedCharacters) == false }
             .debounce(for: .seconds(0.05), scheduler: RunLoop.main)
             .sink { [weak self] _ in self?.invalidateOutlineMenuSelection() }
+            .store(in: &self.viewObservers)
         
         self.updateOutlineMenu()
     }
@@ -117,9 +118,7 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.splitViewObservers.removeAll()
-        self.orientationObserver = nil
-        self.selectionObserver = nil
+        self.viewObservers.removeAll()
     }
     
     
@@ -268,41 +267,36 @@ final class NavigationBarController: NSViewController {
     /// - Parameter orientation: The text orientation in the text view.
     private func updateTextOrientation(to orientation: NSLayoutManager.TextLayoutOrientation) {
         
+        guard
+            let prevButton = self.prevButton,
+            let nextButton = self.nextButton
+        else { return assertionFailure() }
+        
+        let prevSymbol: NSImage.Name
+        let nextSymbol: NSImage.Name
         switch orientation {
             case .horizontal:
-                self.leftButton?.image = Chevron.up.image
-                self.rightButton?.image = Chevron.down.image
+                prevSymbol = "chevron.up"
+                nextSymbol = "chevron.down"
             case .vertical:
-                self.leftButton?.image = Chevron.left.image
-                self.rightButton?.image = Chevron.right.image
+                prevSymbol = "chevron.right"
+                nextSymbol = "chevron.left"
             @unknown default:
                 fatalError()
         }
         
-        self.prevButton?.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
-        self.prevButton?.target = self.parent
-        self.prevButton?.toolTip = String(localized: "Jump to previous outline item")
-        self.prevButton?.isEnabled = self.canSelectPrevItem
+        prevButton.image = NSImage(systemSymbolName: prevSymbol,
+                                   accessibilityDescription: String(localized: "Previous"))!
+        prevButton.toolTip = String(localized: "Jump to previous outline item")
+        prevButton.action = #selector(EditorViewController.selectPrevItemOfOutlineMenu)
+        prevButton.target = self.parent
+        prevButton.isEnabled = self.canSelectPrevItem
         
-        self.nextButton?.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
-        self.nextButton?.target = self.parent
-        self.nextButton?.toolTip = String(localized: "Jump to next outline item")
-        self.nextButton?.isEnabled = self.canSelectNextItem
-    }
-}
-
-
-
-private enum Chevron: String {
-    
-    case left
-    case right
-    case up
-    case down
-    
-    
-    var image: NSImage {
-        
-        NSImage(systemSymbolName: "chevron." + self.rawValue, accessibilityDescription: self.rawValue)!
+        nextButton.image = NSImage(systemSymbolName: nextSymbol,
+                                   accessibilityDescription: String(localized: "Next"))!
+        nextButton.toolTip = String(localized: "Jump to next outline item")
+        nextButton.action = #selector(EditorViewController.selectNextItemOfOutlineMenu)
+        nextButton.target = self.parent
+        nextButton.isEnabled = self.canSelectNextItem
     }
 }

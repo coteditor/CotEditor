@@ -557,6 +557,9 @@
 // Outline menu title
 "Jump to previous outline item" = "Salta all’elemento Outline successivo";
 "Jump to next outline item" = "Salta all’elemento Outline precedente";
+// Accessibility labels
+"Previous" = "Precedente";
+"Next" = "Avanti";
 
 
 
