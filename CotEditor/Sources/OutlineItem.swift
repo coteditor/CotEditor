@@ -68,8 +68,10 @@ extension OutlineItem {
             attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         
-        attributes[.font] = NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits),
-                                   size: baseFont.pointSize)
+        if !traits.isEmpty {
+            attributes[.font] = NSFont(descriptor: baseFont.fontDescriptor.withSymbolicTraits(traits),
+                                       size: baseFont.pointSize)
+        }
         
         return NSAttributedString(string: self.title, attributes: attributes)
     }
